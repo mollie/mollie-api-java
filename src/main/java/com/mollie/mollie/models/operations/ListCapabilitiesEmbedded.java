@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.EntityCapability;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -20,11 +21,11 @@ public class ListCapabilitiesEmbedded {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("capabilities")
-    private Optional<? extends List<Capabilities>> capabilities;
+    private Optional<? extends List<EntityCapability>> capabilities;
 
     @JsonCreator
     public ListCapabilitiesEmbedded(
-            @JsonProperty("capabilities") Optional<? extends List<Capabilities>> capabilities) {
+            @JsonProperty("capabilities") Optional<? extends List<EntityCapability>> capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
         this.capabilities = capabilities;
     }
@@ -35,8 +36,8 @@ public class ListCapabilitiesEmbedded {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Capabilities>> capabilities() {
-        return (Optional<List<Capabilities>>) capabilities;
+    public Optional<List<EntityCapability>> capabilities() {
+        return (Optional<List<EntityCapability>>) capabilities;
     }
 
     public static Builder builder() {
@@ -44,14 +45,14 @@ public class ListCapabilitiesEmbedded {
     }
 
 
-    public ListCapabilitiesEmbedded withCapabilities(List<Capabilities> capabilities) {
+    public ListCapabilitiesEmbedded withCapabilities(List<EntityCapability> capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
         this.capabilities = Optional.ofNullable(capabilities);
         return this;
     }
 
 
-    public ListCapabilitiesEmbedded withCapabilities(Optional<? extends List<Capabilities>> capabilities) {
+    public ListCapabilitiesEmbedded withCapabilities(Optional<? extends List<EntityCapability>> capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
         this.capabilities = capabilities;
         return this;
@@ -85,20 +86,20 @@ public class ListCapabilitiesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<Capabilities>> capabilities = Optional.empty();
+        private Optional<? extends List<EntityCapability>> capabilities = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder capabilities(List<Capabilities> capabilities) {
+        public Builder capabilities(List<EntityCapability> capabilities) {
             Utils.checkNotNull(capabilities, "capabilities");
             this.capabilities = Optional.ofNullable(capabilities);
             return this;
         }
 
-        public Builder capabilities(Optional<? extends List<Capabilities>> capabilities) {
+        public Builder capabilities(Optional<? extends List<EntityCapability>> capabilities) {
             Utils.checkNotNull(capabilities, "capabilities");
             this.capabilities = capabilities;
             return this;

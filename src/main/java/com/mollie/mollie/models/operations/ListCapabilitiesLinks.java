@@ -19,11 +19,11 @@ public class ListCapabilitiesLinks {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends ListCapabilitiesDocumentation> documentation;
+    private Optional<? extends Documentation> documentation;
 
     @JsonCreator
     public ListCapabilitiesLinks(
-            @JsonProperty("documentation") Optional<? extends ListCapabilitiesDocumentation> documentation) {
+            @JsonProperty("documentation") Optional<? extends Documentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
     }
@@ -34,8 +34,8 @@ public class ListCapabilitiesLinks {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCapabilitiesDocumentation> documentation() {
-        return (Optional<ListCapabilitiesDocumentation>) documentation;
+    public Optional<Documentation> documentation() {
+        return (Optional<Documentation>) documentation;
     }
 
     public static Builder builder() {
@@ -43,14 +43,14 @@ public class ListCapabilitiesLinks {
     }
 
 
-    public ListCapabilitiesLinks withDocumentation(ListCapabilitiesDocumentation documentation) {
+    public ListCapabilitiesLinks withDocumentation(Documentation documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
     }
 
 
-    public ListCapabilitiesLinks withDocumentation(Optional<? extends ListCapabilitiesDocumentation> documentation) {
+    public ListCapabilitiesLinks withDocumentation(Optional<? extends Documentation> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -84,20 +84,20 @@ public class ListCapabilitiesLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListCapabilitiesDocumentation> documentation = Optional.empty();
+        private Optional<? extends Documentation> documentation = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder documentation(ListCapabilitiesDocumentation documentation) {
+        public Builder documentation(Documentation documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = Optional.ofNullable(documentation);
             return this;
         }
 
-        public Builder documentation(Optional<? extends ListCapabilitiesDocumentation> documentation) {
+        public Builder documentation(Optional<? extends Documentation> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

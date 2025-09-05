@@ -26,16 +26,16 @@ can use this endpoint to automate profile creation.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.EntityProfile;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreateProfileResponseBody;
-import com.mollie.mollie.models.operations.CreateProfileRequestBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateProfileResponse;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws CreateProfileResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -43,7 +43,7 @@ public class Application {
                     .build())
             .build();
 
-        CreateProfileRequestBody req = CreateProfileRequestBody.builder()
+        EntityProfile req = EntityProfile.builder()
                 .name("My website name")
                 .website("https://example.com")
                 .email("test@mollie.com")
@@ -59,7 +59,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityProfileResponse().isPresent()) {
             // handle response
         }
     }
@@ -68,9 +68,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `request`                                                                       | [CreateProfileRequestBody](../../models/operations/CreateProfileRequestBody.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `request`                                             | [EntityProfile](../../models/shared/EntityProfile.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
 
 ### Response
 
@@ -78,10 +78,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| models/errors/CreateProfileResponseBody | 422                                     | application/hal+json                    |
-| models/errors/APIException              | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 422                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -97,13 +97,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListProfilesResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListProfilesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListProfilesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -127,7 +127,7 @@ public class Application {
 
 | Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    | Example                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `from`                                                                                                                         | *Optional\<String>*                                                                                                            | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set. | pfl_QkEhN94Ba                                                                                                                  |
+| `from`                                                                                                                         | *JsonNullable\<String>*                                                                                                        | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set. |                                                                                                                                |
 | `limit`                                                                                                                        | *JsonNullable\<Long>*                                                                                                          | :heavy_minus_sign:                                                                                                             | The maximum number of items to return. Defaults to 50 items.                                                                   | 50                                                                                                                             |
 
 ### Response
@@ -136,10 +136,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| models/errors/ListProfilesResponseBody | 400                                    | application/hal+json                   |
-| models/errors/APIException             | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -153,14 +153,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetProfileProfilesResponseBody;
-import com.mollie.mollie.models.errors.GetProfileResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetProfileResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetProfileResponseBody, GetProfileProfilesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -173,7 +172,7 @@ public class Application {
                 .testmode(false)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityProfileResponse().isPresent()) {
             // handle response
         }
     }
@@ -184,7 +183,7 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | pfl_QkEhN94Ba                                                                                                                                                                                                                                                                                                                                                                          |
+| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -193,11 +192,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/GetProfileResponseBody         | 404                                          | application/hal+json                         |
-| models/errors/GetProfileProfilesResponseBody | 410                                          | application/hal+json                         |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 410                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## update
 
@@ -214,14 +212,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws UpdateProfileResponseBody, UpdateProfileProfilesResponseBody, UpdateProfileProfilesResponseResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -245,7 +243,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityProfileResponse().isPresent()) {
             // handle response
         }
     }
@@ -254,10 +252,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     | Example                                                                         |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `id`                                                                            | *String*                                                                        | :heavy_check_mark:                                                              | Provide the ID of the item you want to perform this operation on.               | pfl_QkEhN94Ba                                                                   |
-| `requestBody`                                                                   | [UpdateProfileRequestBody](../../models/operations/UpdateProfileRequestBody.md) | :heavy_check_mark:                                                              | N/A                                                                             |                                                                                 |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `id`                                                                            | *String*                                                                        | :heavy_check_mark:                                                              | Provide the ID of the item you want to perform this operation on.               |
+| `requestBody`                                                                   | [UpdateProfileRequestBody](../../models/operations/UpdateProfileRequestBody.md) | :heavy_check_mark:                                                              | N/A                                                                             |
 
 ### Response
 
@@ -265,12 +263,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                              | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| models/errors/UpdateProfileResponseBody                 | 404                                                     | application/hal+json                                    |
-| models/errors/UpdateProfileProfilesResponseBody         | 410                                                     | application/hal+json                                    |
-| models/errors/UpdateProfileProfilesResponseResponseBody | 422                                                     | application/hal+json                                    |
-| models/errors/APIException                              | 4XX, 5XX                                                | \*/\*                                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 410, 422               | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## delete
 
@@ -284,14 +280,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.DeleteProfileProfilesResponseBody;
-import com.mollie.mollie.models.errors.DeleteProfileResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.DeleteProfileResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws DeleteProfileResponseBody, DeleteProfileProfilesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -312,9 +307,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. | pfl_QkEhN94Ba                                                     |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. |
 
 ### Response
 
@@ -322,11 +317,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models/errors/DeleteProfileResponseBody         | 404                                             | application/hal+json                            |
-| models/errors/DeleteProfileProfilesResponseBody | 410                                             | application/hal+json                            |
-| models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 410                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## getCurrent
 
@@ -360,7 +354,7 @@ public class Application {
         GetCurrentProfileResponse res = sdk.profiles().getCurrent()
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityProfileResponse().isPresent()) {
             // handle response
         }
     }

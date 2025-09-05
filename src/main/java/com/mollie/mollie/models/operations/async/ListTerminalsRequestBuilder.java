@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.operations.ListTerminalsQueryParamSort;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.operations.ListTerminalsRequest;
 import com.mollie.mollie.operations.ListTerminals;
 import com.mollie.mollie.utils.Options;
@@ -24,7 +24,7 @@ public class ListTerminalsRequestBuilder {
 
     private Optional<String> from = Optional.empty();
     private JsonNullable<Long> limit = JsonNullable.undefined();
-    private JsonNullable<? extends ListTerminalsQueryParamSort> sort = JsonNullable.undefined();
+    private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -57,13 +57,13 @@ public class ListTerminalsRequestBuilder {
         return this;
     }
 
-    public ListTerminalsRequestBuilder sort(ListTerminalsQueryParamSort sort) {
+    public ListTerminalsRequestBuilder sort(ListSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
     }
 
-    public ListTerminalsRequestBuilder sort(JsonNullable<? extends ListTerminalsQueryParamSort> sort) {
+    public ListTerminalsRequestBuilder sort(JsonNullable<? extends ListSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;

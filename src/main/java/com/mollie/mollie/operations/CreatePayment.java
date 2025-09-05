@@ -9,11 +9,11 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
+import com.mollie.mollie.models.components.PaymentResponse;
 import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
-import com.mollie.mollie.models.operations.CreatePaymentResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -118,7 +118,7 @@ public class CreatePayment {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "requestBody",
+                    "paymentRequest",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
@@ -201,11 +201,11 @@ public class CreatePayment {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    CreatePaymentResponseBody out = Utils.mapper().readValue(
+                    PaymentResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                    res.withObject(out);
+                    res.withPaymentResponse(out);
                     return res;
                 } else {
                     throw new APIException(
@@ -218,12 +218,10 @@ public class CreatePayment {
             
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    com.mollie.mollie.models.errors.CreatePaymentResponseBody out = Utils.mapper().readValue(
+                    ErrorResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                        out.withRawResponse(response);
-                    
                     throw out;
                 } else {
                     throw new APIException(
@@ -236,12 +234,10 @@ public class CreatePayment {
             
             if (Utils.statusCodeMatches(response.statusCode(), "503")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    CreatePaymentPaymentsResponseBody out = Utils.mapper().readValue(
+                    ErrorResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                        out.withRawResponse(response);
-                    
                     throw out;
                 } else {
                     throw new APIException(
@@ -342,11 +338,11 @@ public class CreatePayment {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
                         try {
-                            CreatePaymentResponseBody out = Utils.mapper().readValue(
+                            PaymentResponse out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            res.withObject(out);
+                            res.withPaymentResponse(out);
                             return res;
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -360,13 +356,12 @@ public class CreatePayment {
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.CreatePaymentResponseBody out;
+                        com.mollie.mollie.models.errors.async.ErrorResponse out;
                         try {
                             out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            out.withRawResponse(response);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }
@@ -380,13 +375,12 @@ public class CreatePayment {
             if (Utils.statusCodeMatches(response.statusCode(), "503")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.CreatePaymentPaymentsResponseBody out;
+                        com.mollie.mollie.models.errors.async.ErrorResponse out;
                         try {
                             out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            out.withRawResponse(response);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

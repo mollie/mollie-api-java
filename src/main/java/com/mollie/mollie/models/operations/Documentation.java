@@ -5,52 +5,47 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
-/**
- * Documentation
- * 
- * <p>In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
- */
+
 public class Documentation {
-    /**
-     * The actual URL string.
-     */
-    @JsonProperty("href")
-    private String href;
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("href")
+    private Optional<String> href;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private String type;
+    private Optional<String> type;
 
     @JsonCreator
     public Documentation(
-            @JsonProperty("href") String href,
-            @JsonProperty("type") String type) {
+            @JsonProperty("href") Optional<String> href,
+            @JsonProperty("type") Optional<String> type) {
         Utils.checkNotNull(href, "href");
         Utils.checkNotNull(type, "type");
         this.href = href;
         this.type = type;
     }
+    
+    public Documentation() {
+        this(Optional.empty(), Optional.empty());
+    }
 
-    /**
-     * The actual URL string.
-     */
     @JsonIgnore
-    public String href() {
+    public Optional<String> href() {
         return href;
     }
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
     @JsonIgnore
-    public String type() {
+    public Optional<String> type() {
         return type;
     }
 
@@ -59,19 +54,27 @@ public class Documentation {
     }
 
 
-    /**
-     * The actual URL string.
-     */
     public Documentation withHref(String href) {
+        Utils.checkNotNull(href, "href");
+        this.href = Optional.ofNullable(href);
+        return this;
+    }
+
+
+    public Documentation withHref(Optional<String> href) {
         Utils.checkNotNull(href, "href");
         this.href = href;
         return this;
     }
 
-    /**
-     * The content type of the page or endpoint the URL points to.
-     */
     public Documentation withType(String type) {
+        Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    public Documentation withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -107,29 +110,35 @@ public class Documentation {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String href;
+        private Optional<String> href = Optional.empty();
 
-        private String type;
+        private Optional<String> type = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        /**
-         * The actual URL string.
-         */
         public Builder href(String href) {
+            Utils.checkNotNull(href, "href");
+            this.href = Optional.ofNullable(href);
+            return this;
+        }
+
+        public Builder href(Optional<String> href) {
             Utils.checkNotNull(href, "href");
             this.href = href;
             return this;
         }
 
 
-        /**
-         * The content type of the page or endpoint the URL points to.
-         */
         public Builder type(String type) {
+            Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Optional<String> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

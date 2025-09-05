@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.SubscriptionResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -22,11 +23,11 @@ public class ListSubscriptionsEmbedded {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subscriptions")
-    private Optional<? extends List<ListSubscriptionsSubscriptions>> subscriptions;
+    private Optional<? extends List<SubscriptionResponse>> subscriptions;
 
     @JsonCreator
     public ListSubscriptionsEmbedded(
-            @JsonProperty("subscriptions") Optional<? extends List<ListSubscriptionsSubscriptions>> subscriptions) {
+            @JsonProperty("subscriptions") Optional<? extends List<SubscriptionResponse>> subscriptions) {
         Utils.checkNotNull(subscriptions, "subscriptions");
         this.subscriptions = subscriptions;
     }
@@ -40,8 +41,8 @@ public class ListSubscriptionsEmbedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<ListSubscriptionsSubscriptions>> subscriptions() {
-        return (Optional<List<ListSubscriptionsSubscriptions>>) subscriptions;
+    public Optional<List<SubscriptionResponse>> subscriptions() {
+        return (Optional<List<SubscriptionResponse>>) subscriptions;
     }
 
     public static Builder builder() {
@@ -52,7 +53,7 @@ public class ListSubscriptionsEmbedded {
     /**
      * An array of subscription objects.
      */
-    public ListSubscriptionsEmbedded withSubscriptions(List<ListSubscriptionsSubscriptions> subscriptions) {
+    public ListSubscriptionsEmbedded withSubscriptions(List<SubscriptionResponse> subscriptions) {
         Utils.checkNotNull(subscriptions, "subscriptions");
         this.subscriptions = Optional.ofNullable(subscriptions);
         return this;
@@ -62,7 +63,7 @@ public class ListSubscriptionsEmbedded {
     /**
      * An array of subscription objects.
      */
-    public ListSubscriptionsEmbedded withSubscriptions(Optional<? extends List<ListSubscriptionsSubscriptions>> subscriptions) {
+    public ListSubscriptionsEmbedded withSubscriptions(Optional<? extends List<SubscriptionResponse>> subscriptions) {
         Utils.checkNotNull(subscriptions, "subscriptions");
         this.subscriptions = subscriptions;
         return this;
@@ -96,7 +97,7 @@ public class ListSubscriptionsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<ListSubscriptionsSubscriptions>> subscriptions = Optional.empty();
+        private Optional<? extends List<SubscriptionResponse>> subscriptions = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -106,7 +107,7 @@ public class ListSubscriptionsEmbedded {
         /**
          * An array of subscription objects.
          */
-        public Builder subscriptions(List<ListSubscriptionsSubscriptions> subscriptions) {
+        public Builder subscriptions(List<SubscriptionResponse> subscriptions) {
             Utils.checkNotNull(subscriptions, "subscriptions");
             this.subscriptions = Optional.ofNullable(subscriptions);
             return this;
@@ -115,7 +116,7 @@ public class ListSubscriptionsEmbedded {
         /**
          * An array of subscription objects.
          */
-        public Builder subscriptions(Optional<? extends List<ListSubscriptionsSubscriptions>> subscriptions) {
+        public Builder subscriptions(Optional<? extends List<SubscriptionResponse>> subscriptions) {
             Utils.checkNotNull(subscriptions, "subscriptions");
             this.subscriptions = subscriptions;
             return this;

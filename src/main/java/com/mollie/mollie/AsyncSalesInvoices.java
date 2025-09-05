@@ -5,13 +5,13 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.operations.CreateSalesInvoiceRequestBody;
+import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
+import com.mollie.mollie.models.components.EntitySalesInvoice;
+import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
 import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequest;
-import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequestBody;
 import com.mollie.mollie.models.operations.GetSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.ListSalesInvoicesRequest;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequest;
-import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBody;
 import com.mollie.mollie.models.operations.async.CreateSalesInvoiceRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreateSalesInvoiceResponse;
 import com.mollie.mollie.models.operations.async.DeleteSalesInvoiceRequestBuilder;
@@ -98,8 +98,8 @@ public class AsyncSalesInvoices {
      * @param options additional options
      * @return CompletableFuture&lt;CreateSalesInvoiceResponse&gt; - The async response
      */
-    public CompletableFuture<CreateSalesInvoiceResponse> create(Optional<? extends CreateSalesInvoiceRequestBody> request, Optional<Options> options) {
-        AsyncRequestOperation<Optional<? extends CreateSalesInvoiceRequestBody>, CreateSalesInvoiceResponse> operation
+    public CompletableFuture<CreateSalesInvoiceResponse> create(Optional<? extends EntitySalesInvoice> request, Optional<Options> options) {
+        AsyncRequestOperation<Optional<? extends EntitySalesInvoice>, CreateSalesInvoiceResponse> operation
               = new CreateSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -138,7 +138,7 @@ public class AsyncSalesInvoices {
      */
     public CompletableFuture<ListSalesInvoicesResponse> listDirect() {
         return list(
-                Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+                JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
                 Optional.empty());
     }
 
@@ -165,7 +165,7 @@ public class AsyncSalesInvoices {
      * @return CompletableFuture&lt;ListSalesInvoicesResponse&gt; - The async response
      */
     public CompletableFuture<ListSalesInvoicesResponse> list(
-            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<String> from, JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode, Optional<Options> options) {
         ListSalesInvoicesRequest request =
             ListSalesInvoicesRequest
@@ -293,18 +293,18 @@ public class AsyncSalesInvoices {
      * respectively).
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param requestBody 
+     * @param updateValuesSalesInvoice 
      * @param options additional options
      * @return CompletableFuture&lt;UpdateSalesInvoiceResponse&gt; - The async response
      */
     public CompletableFuture<UpdateSalesInvoiceResponse> update(
-            String id, Optional<? extends UpdateSalesInvoiceRequestBody> requestBody,
+            String id, Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice,
             Optional<Options> options) {
         UpdateSalesInvoiceRequest request =
             UpdateSalesInvoiceRequest
                 .builder()
                 .id(id)
-                .requestBody(requestBody)
+                .updateValuesSalesInvoice(updateValuesSalesInvoice)
                 .build();
         AsyncRequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
               = new UpdateSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -357,18 +357,18 @@ public class AsyncSalesInvoices {
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param requestBody 
+     * @param deleteValuesSalesInvoice 
      * @param options additional options
      * @return CompletableFuture&lt;DeleteSalesInvoiceResponse&gt; - The async response
      */
     public CompletableFuture<DeleteSalesInvoiceResponse> delete(
-            String id, Optional<? extends DeleteSalesInvoiceRequestBody> requestBody,
+            String id, Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice,
             Optional<Options> options) {
         DeleteSalesInvoiceRequest request =
             DeleteSalesInvoiceRequest
                 .builder()
                 .id(id)
-                .requestBody(requestBody)
+                .deleteValuesSalesInvoice(deleteValuesSalesInvoice)
                 .build();
         AsyncRequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
               = new DeleteSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

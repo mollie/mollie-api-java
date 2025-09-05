@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityProfileResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -36,22 +37,22 @@ public class GetCurrentProfileResponse implements Response {
      * The current profile object. For a complete reference of the profile object, refer to the
      * [Get profile](get-profile) endpoint documentation.
      */
-    private Optional<? extends GetCurrentProfileResponseBody> object;
+    private Optional<? extends EntityProfileResponse> entityProfileResponse;
 
     @JsonCreator
     public GetCurrentProfileResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetCurrentProfileResponseBody> object) {
+            Optional<? extends EntityProfileResponse> entityProfileResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityProfileResponse = entityProfileResponse;
     }
     
     public GetCurrentProfileResponse(
@@ -92,8 +93,8 @@ public class GetCurrentProfileResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetCurrentProfileResponseBody> object() {
-        return (Optional<GetCurrentProfileResponseBody>) object;
+    public Optional<EntityProfileResponse> entityProfileResponse() {
+        return (Optional<EntityProfileResponse>) entityProfileResponse;
     }
 
     public static Builder builder() {
@@ -132,9 +133,9 @@ public class GetCurrentProfileResponse implements Response {
      * The current profile object. For a complete reference of the profile object, refer to the
      * [Get profile](get-profile) endpoint documentation.
      */
-    public GetCurrentProfileResponse withObject(GetCurrentProfileResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetCurrentProfileResponse withEntityProfileResponse(EntityProfileResponse entityProfileResponse) {
+        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+        this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
         return this;
     }
 
@@ -143,9 +144,9 @@ public class GetCurrentProfileResponse implements Response {
      * The current profile object. For a complete reference of the profile object, refer to the
      * [Get profile](get-profile) endpoint documentation.
      */
-    public GetCurrentProfileResponse withObject(Optional<? extends GetCurrentProfileResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetCurrentProfileResponse withEntityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
+        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+        this.entityProfileResponse = entityProfileResponse;
         return this;
     }
 
@@ -162,14 +163,14 @@ public class GetCurrentProfileResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityProfileResponse, other.entityProfileResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityProfileResponse);
     }
     
     @Override
@@ -178,7 +179,7 @@ public class GetCurrentProfileResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityProfileResponse", entityProfileResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -190,7 +191,7 @@ public class GetCurrentProfileResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetCurrentProfileResponseBody> object = Optional.empty();
+        private Optional<? extends EntityProfileResponse> entityProfileResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -231,9 +232,9 @@ public class GetCurrentProfileResponse implements Response {
          * The current profile object. For a complete reference of the profile object, refer to the
          * [Get profile](get-profile) endpoint documentation.
          */
-        public Builder object(GetCurrentProfileResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityProfileResponse(EntityProfileResponse entityProfileResponse) {
+            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+            this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
             return this;
         }
 
@@ -241,9 +242,9 @@ public class GetCurrentProfileResponse implements Response {
          * The current profile object. For a complete reference of the profile object, refer to the
          * [Get profile](get-profile) endpoint documentation.
          */
-        public Builder object(Optional<? extends GetCurrentProfileResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
+            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+            this.entityProfileResponse = entityProfileResponse;
             return this;
         }
 
@@ -251,7 +252,7 @@ public class GetCurrentProfileResponse implements Response {
 
             return new GetCurrentProfileResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityProfileResponse);
         }
 
     }

@@ -77,7 +77,7 @@ public class AsyncBalances {
      */
     public CompletableFuture<ListBalancesResponse> listDirect() {
         return list(
-                JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+                JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
                 JsonNullable.undefined(), Optional.empty());
     }
 
@@ -101,7 +101,7 @@ public class AsyncBalances {
      * @return CompletableFuture&lt;ListBalancesResponse&gt; - The async response
      */
     public CompletableFuture<ListBalancesResponse> list(
-            JsonNullable<String> currency, Optional<String> from,
+            JsonNullable<String> currency, JsonNullable<String> from,
             JsonNullable<Long> limit, JsonNullable<Boolean> testmode,
             Optional<Options> options) {
         ListBalancesRequest request =
@@ -361,7 +361,7 @@ public class AsyncBalances {
      */
     public CompletableFuture<ListBalanceTransactionsResponse> listTransactions(String balanceId) {
         return listTransactions(
-                balanceId, Optional.empty(), JsonNullable.undefined(),
+                balanceId, JsonNullable.undefined(), JsonNullable.undefined(),
                 JsonNullable.undefined(), Optional.empty());
     }
 
@@ -392,7 +392,7 @@ public class AsyncBalances {
      * @return CompletableFuture&lt;ListBalanceTransactionsResponse&gt; - The async response
      */
     public CompletableFuture<ListBalanceTransactionsResponse> listTransactions(
-            String balanceId, Optional<String> from,
+            String balanceId, JsonNullable<String> from,
             JsonNullable<Long> limit, JsonNullable<Boolean> testmode,
             Optional<Options> options) {
         ListBalanceTransactionsRequest request =

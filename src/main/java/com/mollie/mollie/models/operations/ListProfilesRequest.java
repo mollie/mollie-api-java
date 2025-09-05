@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -20,7 +19,7 @@ public class ListProfilesRequest {
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
-    private Optional<String> from;
+    private JsonNullable<String> from;
 
     /**
      * The maximum number of items to return. Defaults to 50 items.
@@ -30,7 +29,7 @@ public class ListProfilesRequest {
 
     @JsonCreator
     public ListProfilesRequest(
-            Optional<String> from,
+            JsonNullable<String> from,
             JsonNullable<Long> limit) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
@@ -39,7 +38,7 @@ public class ListProfilesRequest {
     }
     
     public ListProfilesRequest() {
-        this(Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -47,7 +46,7 @@ public class ListProfilesRequest {
      * result set.
      */
     @JsonIgnore
-    public Optional<String> from() {
+    public JsonNullable<String> from() {
         return from;
     }
 
@@ -70,16 +69,15 @@ public class ListProfilesRequest {
      */
     public ListProfilesRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.ofNullable(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
-
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      * result set.
      */
-    public ListProfilesRequest withFrom(Optional<String> from) {
+    public ListProfilesRequest withFrom(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;
@@ -133,7 +131,7 @@ public class ListProfilesRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> from = Optional.empty();
+        private JsonNullable<String> from = JsonNullable.undefined();
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
@@ -148,7 +146,7 @@ public class ListProfilesRequest {
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
-            this.from = Optional.ofNullable(from);
+            this.from = JsonNullable.of(from);
             return this;
         }
 
@@ -156,7 +154,7 @@ public class ListProfilesRequest {
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
          * result set.
          */
-        public Builder from(Optional<String> from) {
+        public Builder from(JsonNullable<String> from) {
             Utils.checkNotNull(from, "from");
             this.from = from;
             return this;

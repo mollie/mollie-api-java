@@ -36,7 +36,7 @@ public class Application {
         GetOnboardingStatusResponse res = sdk.onboarding().get()
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityOnboardingStatus().isPresent()) {
             // handle response
         }
     }

@@ -9,9 +9,9 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
+import com.mollie.mollie.models.components.EntityProfileResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.operations.GetCurrentProfileResponse;
-import com.mollie.mollie.models.operations.GetCurrentProfileResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -181,11 +181,11 @@ public class GetCurrentProfile {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    GetCurrentProfileResponseBody out = Utils.mapper().readValue(
+                    EntityProfileResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                    res.withObject(out);
+                    res.withEntityProfileResponse(out);
                     return res;
                 } else {
                     throw new APIException(
@@ -286,11 +286,11 @@ public class GetCurrentProfile {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
                         try {
-                            GetCurrentProfileResponseBody out = Utils.mapper().readValue(
+                            EntityProfileResponse out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            res.withObject(out);
+                            res.withEntityProfileResponse(out);
                             return res;
                         } catch (Exception e) {
                             throw new RuntimeException(e);

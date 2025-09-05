@@ -22,15 +22,16 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListInvoicesInvoicesResponseBody;
-import com.mollie.mollie.models.errors.ListInvoicesResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListInvoicesRequest;
+import com.mollie.mollie.models.operations.ListInvoicesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListInvoicesResponseBody, ListInvoicesInvoicesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -44,7 +45,7 @@ public class Application {
                 .month("01")
                 .from("inv_xBEbP9rvAq")
                 .limit(50L)
-                .sort(QueryParamSort.DESC)
+                .sort(ListSort.DESC)
                 .build();
 
         ListInvoicesResponse res = sdk.invoices().list()
@@ -70,11 +71,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| models/errors/ListInvoicesResponseBody         | 400                                            | application/hal+json                           |
-| models/errors/ListInvoicesInvoicesResponseBody | 404                                            | application/hal+json                           |
-| models/errors/APIException                     | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -91,13 +91,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetInvoiceResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetInvoiceResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetInvoiceResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -109,7 +109,7 @@ public class Application {
                 .id("inv_FrvewDA3Pr")
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityInvoice().isPresent()) {
             // handle response
         }
     }
@@ -118,9 +118,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. | inv_FrvewDA3Pr                                                    |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. |
 
 ### Response
 
@@ -128,7 +128,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| models/errors/GetInvoiceResponseBody | 404                                  | application/hal+json                 |
-| models/errors/APIException           | 4XX, 5XX                             | \*/\*                                |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

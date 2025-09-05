@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.ListLinks;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -43,13 +44,13 @@ public class ListClientsResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListClientsLinks> links;
+    private Optional<? extends ListLinks> links;
 
     @JsonCreator
     public ListClientsResponseBody(
             @JsonProperty("count") Optional<Long> count,
             @JsonProperty("_embedded") Optional<? extends ListClientsEmbedded> embedded,
-            @JsonProperty("_links") Optional<? extends ListClientsLinks> links) {
+            @JsonProperty("_links") Optional<? extends ListLinks> links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
@@ -85,8 +86,8 @@ public class ListClientsResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListClientsLinks> links() {
-        return (Optional<ListClientsLinks>) links;
+    public Optional<ListLinks> links() {
+        return (Optional<ListLinks>) links;
     }
 
     public static Builder builder() {
@@ -137,7 +138,7 @@ public class ListClientsResponseBody {
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    public ListClientsResponseBody withLinks(ListClientsLinks links) {
+    public ListClientsResponseBody withLinks(ListLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = Optional.ofNullable(links);
         return this;
@@ -147,7 +148,7 @@ public class ListClientsResponseBody {
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    public ListClientsResponseBody withLinks(Optional<? extends ListClientsLinks> links) {
+    public ListClientsResponseBody withLinks(Optional<? extends ListLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -189,7 +190,7 @@ public class ListClientsResponseBody {
 
         private Optional<? extends ListClientsEmbedded> embedded = Optional.empty();
 
-        private Optional<? extends ListClientsLinks> links = Optional.empty();
+        private Optional<? extends ListLinks> links = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -239,7 +240,7 @@ public class ListClientsResponseBody {
         /**
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(ListClientsLinks links) {
+        public Builder links(ListLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = Optional.ofNullable(links);
             return this;
@@ -248,7 +249,7 @@ public class ListClientsResponseBody {
         /**
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(Optional<? extends ListClientsLinks> links) {
+        public Builder links(Optional<? extends ListLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

@@ -5,6 +5,8 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.ListSort;
+import com.mollie.mollie.models.components.WebhookEventTypes;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -22,7 +24,7 @@ public class ListWebhooksRequest {
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
-    private Optional<String> from;
+    private JsonNullable<String> from;
 
     /**
      * The maximum number of items to return. Defaults to 50 items.
@@ -35,13 +37,13 @@ public class ListWebhooksRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListWebhooksQueryParamSort> sort;
+    private JsonNullable<? extends ListSort> sort;
 
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=eventTypes")
-    private Optional<? extends QueryParamWebhookEventTypes> eventTypes;
+    private Optional<? extends WebhookEventTypes> eventTypes;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -55,10 +57,10 @@ public class ListWebhooksRequest {
 
     @JsonCreator
     public ListWebhooksRequest(
-            Optional<String> from,
+            JsonNullable<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListWebhooksQueryParamSort> sort,
-            Optional<? extends QueryParamWebhookEventTypes> eventTypes,
+            JsonNullable<? extends ListSort> sort,
+            Optional<? extends WebhookEventTypes> eventTypes,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
@@ -73,7 +75,7 @@ public class ListWebhooksRequest {
     }
     
     public ListWebhooksRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined());
     }
 
@@ -82,7 +84,7 @@ public class ListWebhooksRequest {
      * result set.
      */
     @JsonIgnore
-    public Optional<String> from() {
+    public JsonNullable<String> from() {
         return from;
     }
 
@@ -100,8 +102,8 @@ public class ListWebhooksRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListWebhooksQueryParamSort> sort() {
-        return (JsonNullable<ListWebhooksQueryParamSort>) sort;
+    public JsonNullable<ListSort> sort() {
+        return (JsonNullable<ListSort>) sort;
     }
 
     /**
@@ -109,8 +111,8 @@ public class ListWebhooksRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<QueryParamWebhookEventTypes> eventTypes() {
-        return (Optional<QueryParamWebhookEventTypes>) eventTypes;
+    public Optional<WebhookEventTypes> eventTypes() {
+        return (Optional<WebhookEventTypes>) eventTypes;
     }
 
     /**
@@ -136,16 +138,15 @@ public class ListWebhooksRequest {
      */
     public ListWebhooksRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.ofNullable(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
-
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      * result set.
      */
-    public ListWebhooksRequest withFrom(Optional<String> from) {
+    public ListWebhooksRequest withFrom(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;
@@ -173,7 +174,7 @@ public class ListWebhooksRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListWebhooksRequest withSort(ListWebhooksQueryParamSort sort) {
+    public ListWebhooksRequest withSort(ListSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
@@ -183,7 +184,7 @@ public class ListWebhooksRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListWebhooksRequest withSort(JsonNullable<? extends ListWebhooksQueryParamSort> sort) {
+    public ListWebhooksRequest withSort(JsonNullable<? extends ListSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -192,7 +193,7 @@ public class ListWebhooksRequest {
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      */
-    public ListWebhooksRequest withEventTypes(QueryParamWebhookEventTypes eventTypes) {
+    public ListWebhooksRequest withEventTypes(WebhookEventTypes eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = Optional.ofNullable(eventTypes);
         return this;
@@ -202,7 +203,7 @@ public class ListWebhooksRequest {
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
      */
-    public ListWebhooksRequest withEventTypes(Optional<? extends QueryParamWebhookEventTypes> eventTypes) {
+    public ListWebhooksRequest withEventTypes(Optional<? extends WebhookEventTypes> eventTypes) {
         Utils.checkNotNull(eventTypes, "eventTypes");
         this.eventTypes = eventTypes;
         return this;
@@ -271,13 +272,13 @@ public class ListWebhooksRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> from = Optional.empty();
+        private JsonNullable<String> from = JsonNullable.undefined();
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListWebhooksQueryParamSort> sort = JsonNullable.undefined();
+        private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
 
-        private Optional<? extends QueryParamWebhookEventTypes> eventTypes = Optional.empty();
+        private Optional<? extends WebhookEventTypes> eventTypes = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -292,7 +293,7 @@ public class ListWebhooksRequest {
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
-            this.from = Optional.ofNullable(from);
+            this.from = JsonNullable.of(from);
             return this;
         }
 
@@ -300,7 +301,7 @@ public class ListWebhooksRequest {
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
          * result set.
          */
-        public Builder from(Optional<String> from) {
+        public Builder from(JsonNullable<String> from) {
             Utils.checkNotNull(from, "from");
             this.from = from;
             return this;
@@ -330,7 +331,7 @@ public class ListWebhooksRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListWebhooksQueryParamSort sort) {
+        public Builder sort(ListSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
@@ -340,7 +341,7 @@ public class ListWebhooksRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListWebhooksQueryParamSort> sort) {
+        public Builder sort(JsonNullable<? extends ListSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -350,7 +351,7 @@ public class ListWebhooksRequest {
         /**
          * Used to filter out only the webhooks that are subscribed to certain types of events.
          */
-        public Builder eventTypes(QueryParamWebhookEventTypes eventTypes) {
+        public Builder eventTypes(WebhookEventTypes eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = Optional.ofNullable(eventTypes);
             return this;
@@ -359,7 +360,7 @@ public class ListWebhooksRequest {
         /**
          * Used to filter out only the webhooks that are subscribed to certain types of events.
          */
-        public Builder eventTypes(Optional<? extends QueryParamWebhookEventTypes> eventTypes) {
+        public Builder eventTypes(Optional<? extends WebhookEventTypes> eventTypes) {
             Utils.checkNotNull(eventTypes, "eventTypes");
             this.eventTypes = eventTypes;
             return this;

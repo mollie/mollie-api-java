@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.RouteCreateRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -22,16 +23,16 @@ public class PaymentCreateRouteRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends PaymentCreateRouteRequestBody> requestBody;
+    private Optional<? extends RouteCreateRequest> routeCreateRequest;
 
     @JsonCreator
     public PaymentCreateRouteRequest(
             String paymentId,
-            Optional<? extends PaymentCreateRouteRequestBody> requestBody) {
+            Optional<? extends RouteCreateRequest> routeCreateRequest) {
         Utils.checkNotNull(paymentId, "paymentId");
-        Utils.checkNotNull(requestBody, "requestBody");
+        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
         this.paymentId = paymentId;
-        this.requestBody = requestBody;
+        this.routeCreateRequest = routeCreateRequest;
     }
     
     public PaymentCreateRouteRequest(
@@ -49,8 +50,8 @@ public class PaymentCreateRouteRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentCreateRouteRequestBody> requestBody() {
-        return (Optional<PaymentCreateRouteRequestBody>) requestBody;
+    public Optional<RouteCreateRequest> routeCreateRequest() {
+        return (Optional<RouteCreateRequest>) routeCreateRequest;
     }
 
     public static Builder builder() {
@@ -67,16 +68,16 @@ public class PaymentCreateRouteRequest {
         return this;
     }
 
-    public PaymentCreateRouteRequest withRequestBody(PaymentCreateRouteRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
+    public PaymentCreateRouteRequest withRouteCreateRequest(RouteCreateRequest routeCreateRequest) {
+        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
+        this.routeCreateRequest = Optional.ofNullable(routeCreateRequest);
         return this;
     }
 
 
-    public PaymentCreateRouteRequest withRequestBody(Optional<? extends PaymentCreateRouteRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public PaymentCreateRouteRequest withRouteCreateRequest(Optional<? extends RouteCreateRequest> routeCreateRequest) {
+        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
+        this.routeCreateRequest = routeCreateRequest;
         return this;
     }
 
@@ -91,20 +92,20 @@ public class PaymentCreateRouteRequest {
         PaymentCreateRouteRequest other = (PaymentCreateRouteRequest) o;
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.routeCreateRequest, other.routeCreateRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, requestBody);
+            paymentId, routeCreateRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaymentCreateRouteRequest.class,
                 "paymentId", paymentId,
-                "requestBody", requestBody);
+                "routeCreateRequest", routeCreateRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,7 +113,7 @@ public class PaymentCreateRouteRequest {
 
         private String paymentId;
 
-        private Optional<? extends PaymentCreateRouteRequestBody> requestBody = Optional.empty();
+        private Optional<? extends RouteCreateRequest> routeCreateRequest = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -129,22 +130,22 @@ public class PaymentCreateRouteRequest {
         }
 
 
-        public Builder requestBody(PaymentCreateRouteRequestBody requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
+        public Builder routeCreateRequest(RouteCreateRequest routeCreateRequest) {
+            Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
+            this.routeCreateRequest = Optional.ofNullable(routeCreateRequest);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends PaymentCreateRouteRequestBody> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder routeCreateRequest(Optional<? extends RouteCreateRequest> routeCreateRequest) {
+            Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
+            this.routeCreateRequest = routeCreateRequest;
             return this;
         }
 
         public PaymentCreateRouteRequest build() {
 
             return new PaymentCreateRouteRequest(
-                paymentId, requestBody);
+                paymentId, routeCreateRequest);
         }
 
     }

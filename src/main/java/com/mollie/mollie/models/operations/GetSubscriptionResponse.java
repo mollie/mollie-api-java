@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.SubscriptionResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class GetSubscriptionResponse implements Response {
     /**
      * The subscription object.
      */
-    private Optional<? extends GetSubscriptionResponseBody> object;
+    private Optional<? extends SubscriptionResponse> subscriptionResponse;
 
     @JsonCreator
     public GetSubscriptionResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetSubscriptionResponseBody> object) {
+            Optional<? extends SubscriptionResponse> subscriptionResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.subscriptionResponse = subscriptionResponse;
     }
     
     public GetSubscriptionResponse(
@@ -90,8 +91,8 @@ public class GetSubscriptionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetSubscriptionResponseBody> object() {
-        return (Optional<GetSubscriptionResponseBody>) object;
+    public Optional<SubscriptionResponse> subscriptionResponse() {
+        return (Optional<SubscriptionResponse>) subscriptionResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class GetSubscriptionResponse implements Response {
     /**
      * The subscription object.
      */
-    public GetSubscriptionResponse withObject(GetSubscriptionResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetSubscriptionResponse withSubscriptionResponse(SubscriptionResponse subscriptionResponse) {
+        Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+        this.subscriptionResponse = Optional.ofNullable(subscriptionResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class GetSubscriptionResponse implements Response {
     /**
      * The subscription object.
      */
-    public GetSubscriptionResponse withObject(Optional<? extends GetSubscriptionResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetSubscriptionResponse withSubscriptionResponse(Optional<? extends SubscriptionResponse> subscriptionResponse) {
+        Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+        this.subscriptionResponse = subscriptionResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class GetSubscriptionResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.subscriptionResponse, other.subscriptionResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            subscriptionResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class GetSubscriptionResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "subscriptionResponse", subscriptionResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class GetSubscriptionResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetSubscriptionResponseBody> object = Optional.empty();
+        private Optional<? extends SubscriptionResponse> subscriptionResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class GetSubscriptionResponse implements Response {
         /**
          * The subscription object.
          */
-        public Builder object(GetSubscriptionResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder subscriptionResponse(SubscriptionResponse subscriptionResponse) {
+            Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+            this.subscriptionResponse = Optional.ofNullable(subscriptionResponse);
             return this;
         }
 
         /**
          * The subscription object.
          */
-        public Builder object(Optional<? extends GetSubscriptionResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder subscriptionResponse(Optional<? extends SubscriptionResponse> subscriptionResponse) {
+            Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+            this.subscriptionResponse = subscriptionResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class GetSubscriptionResponse implements Response {
 
             return new GetSubscriptionResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                subscriptionResponse);
         }
 
     }

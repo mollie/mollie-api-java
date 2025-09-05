@@ -5,10 +5,10 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.components.SubscriptionRequest;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequest;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.CreateSubscriptionRequest;
-import com.mollie.mollie.models.operations.CreateSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.GetSubscriptionRequest;
 import com.mollie.mollie.models.operations.ListAllSubscriptionsRequest;
 import com.mollie.mollie.models.operations.ListSubscriptionPaymentsRequest;
@@ -147,18 +147,18 @@ public class AsyncSubscriptions {
      * Your customer will be charged €10 on the last day of each month, starting in April 2018.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @param requestBody 
+     * @param subscriptionRequest 
      * @param options additional options
      * @return CompletableFuture&lt;CreateSubscriptionResponse&gt; - The async response
      */
     public CompletableFuture<CreateSubscriptionResponse> create(
-            String customerId, Optional<? extends CreateSubscriptionRequestBody> requestBody,
+            String customerId, Optional<? extends SubscriptionRequest> subscriptionRequest,
             Optional<Options> options) {
         CreateSubscriptionRequest request =
             CreateSubscriptionRequest
                 .builder()
                 .customerId(customerId)
-                .requestBody(requestBody)
+                .subscriptionRequest(subscriptionRequest)
                 .build();
         AsyncRequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
               = new CreateSubscription.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -415,7 +415,7 @@ public class AsyncSubscriptions {
      */
     public CompletableFuture<ListAllSubscriptionsResponse> allDirect() {
         return all(
-                Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+                JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
                 JsonNullable.undefined(), Optional.empty());
     }
 
@@ -444,7 +444,7 @@ public class AsyncSubscriptions {
      * @return CompletableFuture&lt;ListAllSubscriptionsResponse&gt; - The async response
      */
     public CompletableFuture<ListAllSubscriptionsResponse> all(
-            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<String> from, JsonNullable<Long> limit,
             JsonNullable<String> profileId, JsonNullable<Boolean> testmode,
             Optional<Options> options) {
         ListAllSubscriptionsRequest request =

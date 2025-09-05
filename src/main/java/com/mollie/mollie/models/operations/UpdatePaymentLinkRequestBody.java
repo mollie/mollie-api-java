@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Amount;
+import com.mollie.mollie.models.components.PaymentAddress;
+import com.mollie.mollie.models.components.PaymentLineItem;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -30,12 +33,11 @@ public class UpdatePaymentLinkRequestBody {
     private Optional<String> description;
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
-     * The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("minimumAmount")
-    private Optional<? extends UpdatePaymentLinkMinimumAmount> minimumAmount;
+    private Optional<? extends Amount> minimumAmount;
 
     /**
      * Whether the payment link is archived. Customers will not be able to complete payments on archived
@@ -67,31 +69,17 @@ public class UpdatePaymentLinkRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
-    private JsonNullable<? extends List<UpdatePaymentLinkLines>> lines;
+    private JsonNullable<? extends List<PaymentLineItem>> lines;
 
-    /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
-    private Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress;
+    private Optional<? extends PaymentAddress> billingAddress;
 
-    /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
-    private Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress;
+    private Optional<? extends PaymentAddress> shippingAddress;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
@@ -106,12 +94,12 @@ public class UpdatePaymentLinkRequestBody {
     @JsonCreator
     public UpdatePaymentLinkRequestBody(
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("minimumAmount") Optional<? extends UpdatePaymentLinkMinimumAmount> minimumAmount,
+            @JsonProperty("minimumAmount") Optional<? extends Amount> minimumAmount,
             @JsonProperty("archived") Optional<Boolean> archived,
             @JsonProperty("allowedMethods") JsonNullable<? extends List<String>> allowedMethods,
-            @JsonProperty("lines") JsonNullable<? extends List<UpdatePaymentLinkLines>> lines,
-            @JsonProperty("billingAddress") Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress,
-            @JsonProperty("shippingAddress") Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress,
+            @JsonProperty("lines") JsonNullable<? extends List<PaymentLineItem>> lines,
+            @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -149,13 +137,12 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
-     * The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentLinkMinimumAmount> minimumAmount() {
-        return (Optional<UpdatePaymentLinkMinimumAmount>) minimumAmount;
+    public Optional<Amount> minimumAmount() {
+        return (Optional<Amount>) minimumAmount;
     }
 
     /**
@@ -191,36 +178,20 @@ public class UpdatePaymentLinkRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<UpdatePaymentLinkLines>> lines() {
-        return (JsonNullable<List<UpdatePaymentLinkLines>>) lines;
+    public JsonNullable<List<PaymentLineItem>> lines() {
+        return (JsonNullable<List<PaymentLineItem>>) lines;
     }
 
-    /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentLinkBillingAddress> billingAddress() {
-        return (Optional<UpdatePaymentLinkBillingAddress>) billingAddress;
+    public Optional<PaymentAddress> billingAddress() {
+        return (Optional<PaymentAddress>) billingAddress;
     }
 
-    /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentLinkShippingAddress> shippingAddress() {
-        return (Optional<UpdatePaymentLinkShippingAddress>) shippingAddress;
+    public Optional<PaymentAddress> shippingAddress() {
+        return (Optional<PaymentAddress>) shippingAddress;
     }
 
     /**
@@ -265,10 +236,9 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
-     * The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public UpdatePaymentLinkRequestBody withMinimumAmount(UpdatePaymentLinkMinimumAmount minimumAmount) {
+    public UpdatePaymentLinkRequestBody withMinimumAmount(Amount minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         this.minimumAmount = Optional.ofNullable(minimumAmount);
         return this;
@@ -276,10 +246,9 @@ public class UpdatePaymentLinkRequestBody {
 
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
-     * The customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public UpdatePaymentLinkRequestBody withMinimumAmount(Optional<? extends UpdatePaymentLinkMinimumAmount> minimumAmount) {
+    public UpdatePaymentLinkRequestBody withMinimumAmount(Optional<? extends Amount> minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         this.minimumAmount = minimumAmount;
         return this;
@@ -342,7 +311,7 @@ public class UpdatePaymentLinkRequestBody {
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
-    public UpdatePaymentLinkRequestBody withLines(List<UpdatePaymentLinkLines> lines) {
+    public UpdatePaymentLinkRequestBody withLines(List<PaymentLineItem> lines) {
         Utils.checkNotNull(lines, "lines");
         this.lines = JsonNullable.of(lines);
         return this;
@@ -356,65 +325,33 @@ public class UpdatePaymentLinkRequestBody {
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
-    public UpdatePaymentLinkRequestBody withLines(JsonNullable<? extends List<UpdatePaymentLinkLines>> lines) {
+    public UpdatePaymentLinkRequestBody withLines(JsonNullable<? extends List<PaymentLineItem>> lines) {
         Utils.checkNotNull(lines, "lines");
         this.lines = lines;
         return this;
     }
 
-    /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-     */
-    public UpdatePaymentLinkRequestBody withBillingAddress(UpdatePaymentLinkBillingAddress billingAddress) {
+    public UpdatePaymentLinkRequestBody withBillingAddress(PaymentAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
         return this;
     }
 
 
-    /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-     */
-    public UpdatePaymentLinkRequestBody withBillingAddress(Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress) {
+    public UpdatePaymentLinkRequestBody withBillingAddress(Optional<? extends PaymentAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
         return this;
     }
 
-    /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     */
-    public UpdatePaymentLinkRequestBody withShippingAddress(UpdatePaymentLinkShippingAddress shippingAddress) {
+    public UpdatePaymentLinkRequestBody withShippingAddress(PaymentAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
 
 
-    /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     */
-    public UpdatePaymentLinkRequestBody withShippingAddress(Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress) {
+    public UpdatePaymentLinkRequestBody withShippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = shippingAddress;
         return this;
@@ -490,17 +427,17 @@ public class UpdatePaymentLinkRequestBody {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<? extends UpdatePaymentLinkMinimumAmount> minimumAmount = Optional.empty();
+        private Optional<? extends Amount> minimumAmount = Optional.empty();
 
         private Optional<Boolean> archived = Optional.empty();
 
         private JsonNullable<? extends List<String>> allowedMethods = JsonNullable.undefined();
 
-        private JsonNullable<? extends List<UpdatePaymentLinkLines>> lines = JsonNullable.undefined();
+        private JsonNullable<? extends List<PaymentLineItem>> lines = JsonNullable.undefined();
 
-        private Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress = Optional.empty();
+        private Optional<? extends PaymentAddress> billingAddress = Optional.empty();
 
-        private Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress = Optional.empty();
+        private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -535,20 +472,18 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
-         * The customer will be prompted to enter a value greater than or equal to the minimum amount.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder minimumAmount(UpdatePaymentLinkMinimumAmount minimumAmount) {
+        public Builder minimumAmount(Amount minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
             this.minimumAmount = Optional.ofNullable(minimumAmount);
             return this;
         }
 
         /**
-         * The minimum amount of the payment link. This property is only allowed when there is no amount provided.
-         * The customer will be prompted to enter a value greater than or equal to the minimum amount.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder minimumAmount(Optional<? extends UpdatePaymentLinkMinimumAmount> minimumAmount) {
+        public Builder minimumAmount(Optional<? extends Amount> minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
             this.minimumAmount = minimumAmount;
             return this;
@@ -613,7 +548,7 @@ public class UpdatePaymentLinkRequestBody {
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
-        public Builder lines(List<UpdatePaymentLinkLines> lines) {
+        public Builder lines(List<PaymentLineItem> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = JsonNullable.of(lines);
             return this;
@@ -627,65 +562,33 @@ public class UpdatePaymentLinkRequestBody {
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
-        public Builder lines(JsonNullable<? extends List<UpdatePaymentLinkLines>> lines) {
+        public Builder lines(JsonNullable<? extends List<PaymentLineItem>> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = lines;
             return this;
         }
 
 
-        /**
-         * The customer's billing address details. We advise to provide these details to improve fraud protection and
-         * conversion.
-         * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-         * `country`.
-         * 
-         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-         */
-        public Builder billingAddress(UpdatePaymentLinkBillingAddress billingAddress) {
+        public Builder billingAddress(PaymentAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
             return this;
         }
 
-        /**
-         * The customer's billing address details. We advise to provide these details to improve fraud protection and
-         * conversion.
-         * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-         * `country`.
-         * 
-         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-         */
-        public Builder billingAddress(Optional<? extends UpdatePaymentLinkBillingAddress> billingAddress) {
+        public Builder billingAddress(Optional<? extends PaymentAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = billingAddress;
             return this;
         }
 
 
-        /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-         * conversion.
-         * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-         * `country`.
-         */
-        public Builder shippingAddress(UpdatePaymentLinkShippingAddress shippingAddress) {
+        public Builder shippingAddress(PaymentAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
             return this;
         }
 
-        /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-         * conversion.
-         * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-         * `country`.
-         */
-        public Builder shippingAddress(Optional<? extends UpdatePaymentLinkShippingAddress> shippingAddress) {
+        public Builder shippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = shippingAddress;
             return this;

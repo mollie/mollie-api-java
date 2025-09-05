@@ -11,7 +11,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -41,7 +40,7 @@ public class ListRefundsRequest {
      * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private Optional<? extends ListRefundsQueryParamEmbed> embed;
+    private JsonNullable<String> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -58,7 +57,7 @@ public class ListRefundsRequest {
             String paymentId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            Optional<? extends ListRefundsQueryParamEmbed> embed,
+            JsonNullable<String> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(from, "from");
@@ -75,7 +74,7 @@ public class ListRefundsRequest {
     public ListRefundsRequest(
             String paymentId) {
         this(paymentId, Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -107,10 +106,9 @@ public class ListRefundsRequest {
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListRefundsQueryParamEmbed> embed() {
-        return (Optional<ListRefundsQueryParamEmbed>) embed;
+    public JsonNullable<String> embed() {
+        return embed;
     }
 
     /**
@@ -182,18 +180,17 @@ public class ListRefundsRequest {
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    public ListRefundsRequest withEmbed(ListRefundsQueryParamEmbed embed) {
+    public ListRefundsRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
-        this.embed = Optional.ofNullable(embed);
+        this.embed = JsonNullable.of(embed);
         return this;
     }
-
 
     /**
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    public ListRefundsRequest withEmbed(Optional<? extends ListRefundsQueryParamEmbed> embed) {
+    public ListRefundsRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -268,7 +265,7 @@ public class ListRefundsRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private Optional<? extends ListRefundsQueryParamEmbed> embed = Optional.empty();
+        private JsonNullable<String> embed = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -331,9 +328,9 @@ public class ListRefundsRequest {
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string
          * parameter.
          */
-        public Builder embed(ListRefundsQueryParamEmbed embed) {
+        public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
-            this.embed = Optional.ofNullable(embed);
+            this.embed = JsonNullable.of(embed);
             return this;
         }
 
@@ -341,7 +338,7 @@ public class ListRefundsRequest {
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string
          * parameter.
          */
-        public Builder embed(Optional<? extends ListRefundsQueryParamEmbed> embed) {
+        public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;

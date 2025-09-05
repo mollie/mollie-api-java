@@ -10,6 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.errors.APIException;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListPaymentsRequest;
 import com.mollie.mollie.models.operations.ListPaymentsResponse;
 import com.mollie.mollie.models.operations.ListPaymentsResponseBody;
@@ -204,12 +205,10 @@ public class ListPayments {
             
             if (Utils.statusCodeMatches(response.statusCode(), "400")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    com.mollie.mollie.models.errors.ListPaymentsResponseBody out = Utils.mapper().readValue(
+                    ErrorResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                        out.withRawResponse(response);
-                    
                     throw out;
                 } else {
                     throw new APIException(
@@ -328,13 +327,12 @@ public class ListPayments {
             if (Utils.statusCodeMatches(response.statusCode(), "400")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.ListPaymentsResponseBody out;
+                        com.mollie.mollie.models.errors.async.ErrorResponse out;
                         try {
                             out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            out.withRawResponse(response);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

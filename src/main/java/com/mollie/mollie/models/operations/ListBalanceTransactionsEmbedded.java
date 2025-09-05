@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.EntityBalanceTransaction;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -22,11 +23,11 @@ public class ListBalanceTransactionsEmbedded {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance_transactions")
-    private Optional<? extends List<BalanceTransactions>> balanceTransactions;
+    private Optional<? extends List<EntityBalanceTransaction>> balanceTransactions;
 
     @JsonCreator
     public ListBalanceTransactionsEmbedded(
-            @JsonProperty("balance_transactions") Optional<? extends List<BalanceTransactions>> balanceTransactions) {
+            @JsonProperty("balance_transactions") Optional<? extends List<EntityBalanceTransaction>> balanceTransactions) {
         Utils.checkNotNull(balanceTransactions, "balanceTransactions");
         this.balanceTransactions = balanceTransactions;
     }
@@ -40,8 +41,8 @@ public class ListBalanceTransactionsEmbedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<BalanceTransactions>> balanceTransactions() {
-        return (Optional<List<BalanceTransactions>>) balanceTransactions;
+    public Optional<List<EntityBalanceTransaction>> balanceTransactions() {
+        return (Optional<List<EntityBalanceTransaction>>) balanceTransactions;
     }
 
     public static Builder builder() {
@@ -52,7 +53,7 @@ public class ListBalanceTransactionsEmbedded {
     /**
      * An array of balance transaction objects.
      */
-    public ListBalanceTransactionsEmbedded withBalanceTransactions(List<BalanceTransactions> balanceTransactions) {
+    public ListBalanceTransactionsEmbedded withBalanceTransactions(List<EntityBalanceTransaction> balanceTransactions) {
         Utils.checkNotNull(balanceTransactions, "balanceTransactions");
         this.balanceTransactions = Optional.ofNullable(balanceTransactions);
         return this;
@@ -62,7 +63,7 @@ public class ListBalanceTransactionsEmbedded {
     /**
      * An array of balance transaction objects.
      */
-    public ListBalanceTransactionsEmbedded withBalanceTransactions(Optional<? extends List<BalanceTransactions>> balanceTransactions) {
+    public ListBalanceTransactionsEmbedded withBalanceTransactions(Optional<? extends List<EntityBalanceTransaction>> balanceTransactions) {
         Utils.checkNotNull(balanceTransactions, "balanceTransactions");
         this.balanceTransactions = balanceTransactions;
         return this;
@@ -96,7 +97,7 @@ public class ListBalanceTransactionsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<BalanceTransactions>> balanceTransactions = Optional.empty();
+        private Optional<? extends List<EntityBalanceTransaction>> balanceTransactions = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -106,7 +107,7 @@ public class ListBalanceTransactionsEmbedded {
         /**
          * An array of balance transaction objects.
          */
-        public Builder balanceTransactions(List<BalanceTransactions> balanceTransactions) {
+        public Builder balanceTransactions(List<EntityBalanceTransaction> balanceTransactions) {
             Utils.checkNotNull(balanceTransactions, "balanceTransactions");
             this.balanceTransactions = Optional.ofNullable(balanceTransactions);
             return this;
@@ -115,7 +116,7 @@ public class ListBalanceTransactionsEmbedded {
         /**
          * An array of balance transaction objects.
          */
-        public Builder balanceTransactions(Optional<? extends List<BalanceTransactions>> balanceTransactions) {
+        public Builder balanceTransactions(Optional<? extends List<EntityBalanceTransaction>> balanceTransactions) {
             Utils.checkNotNull(balanceTransactions, "balanceTransactions");
             this.balanceTransactions = balanceTransactions;
             return this;

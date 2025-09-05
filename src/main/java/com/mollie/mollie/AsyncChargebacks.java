@@ -5,7 +5,6 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.operations.GetChargebackQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetChargebackRequest;
 import com.mollie.mollie.models.operations.ListAllChargebacksRequest;
 import com.mollie.mollie.models.operations.ListChargebacksRequest;
@@ -124,7 +123,8 @@ public class AsyncChargebacks {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param chargebackId Provide the ID of the related chargeback.
-     * @param embed This endpoint allows you to embed additional information via the `embed` query string parameter.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     *         parameter.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -135,7 +135,7 @@ public class AsyncChargebacks {
      */
     public CompletableFuture<GetChargebackResponse> get(
             String paymentId, String chargebackId,
-            JsonNullable<? extends GetChargebackQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
+            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) {
         GetChargebackRequest request =
             GetChargebackRequest

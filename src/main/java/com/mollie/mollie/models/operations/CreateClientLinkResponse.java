@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityClientLinkResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class CreateClientLinkResponse implements Response {
     /**
      * The newly created client link object.
      */
-    private Optional<? extends CreateClientLinkResponseBody> object;
+    private Optional<? extends EntityClientLinkResponse> entityClientLinkResponse;
 
     @JsonCreator
     public CreateClientLinkResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CreateClientLinkResponseBody> object) {
+            Optional<? extends EntityClientLinkResponse> entityClientLinkResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityClientLinkResponse, "entityClientLinkResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityClientLinkResponse = entityClientLinkResponse;
     }
     
     public CreateClientLinkResponse(
@@ -90,8 +91,8 @@ public class CreateClientLinkResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateClientLinkResponseBody> object() {
-        return (Optional<CreateClientLinkResponseBody>) object;
+    public Optional<EntityClientLinkResponse> entityClientLinkResponse() {
+        return (Optional<EntityClientLinkResponse>) entityClientLinkResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class CreateClientLinkResponse implements Response {
     /**
      * The newly created client link object.
      */
-    public CreateClientLinkResponse withObject(CreateClientLinkResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CreateClientLinkResponse withEntityClientLinkResponse(EntityClientLinkResponse entityClientLinkResponse) {
+        Utils.checkNotNull(entityClientLinkResponse, "entityClientLinkResponse");
+        this.entityClientLinkResponse = Optional.ofNullable(entityClientLinkResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class CreateClientLinkResponse implements Response {
     /**
      * The newly created client link object.
      */
-    public CreateClientLinkResponse withObject(Optional<? extends CreateClientLinkResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CreateClientLinkResponse withEntityClientLinkResponse(Optional<? extends EntityClientLinkResponse> entityClientLinkResponse) {
+        Utils.checkNotNull(entityClientLinkResponse, "entityClientLinkResponse");
+        this.entityClientLinkResponse = entityClientLinkResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class CreateClientLinkResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityClientLinkResponse, other.entityClientLinkResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityClientLinkResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class CreateClientLinkResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityClientLinkResponse", entityClientLinkResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class CreateClientLinkResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CreateClientLinkResponseBody> object = Optional.empty();
+        private Optional<? extends EntityClientLinkResponse> entityClientLinkResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class CreateClientLinkResponse implements Response {
         /**
          * The newly created client link object.
          */
-        public Builder object(CreateClientLinkResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityClientLinkResponse(EntityClientLinkResponse entityClientLinkResponse) {
+            Utils.checkNotNull(entityClientLinkResponse, "entityClientLinkResponse");
+            this.entityClientLinkResponse = Optional.ofNullable(entityClientLinkResponse);
             return this;
         }
 
         /**
          * The newly created client link object.
          */
-        public Builder object(Optional<? extends CreateClientLinkResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityClientLinkResponse(Optional<? extends EntityClientLinkResponse> entityClientLinkResponse) {
+            Utils.checkNotNull(entityClientLinkResponse, "entityClientLinkResponse");
+            this.entityClientLinkResponse = entityClientLinkResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class CreateClientLinkResponse implements Response {
 
             return new CreateClientLinkResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityClientLinkResponse);
         }
 
     }

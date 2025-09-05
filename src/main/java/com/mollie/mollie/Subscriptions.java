@@ -5,12 +5,12 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.components.SubscriptionRequest;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequest;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequestBuilder;
 import com.mollie.mollie.models.operations.CancelSubscriptionResponse;
 import com.mollie.mollie.models.operations.CreateSubscriptionRequest;
-import com.mollie.mollie.models.operations.CreateSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.CreateSubscriptionRequestBuilder;
 import com.mollie.mollie.models.operations.CreateSubscriptionResponse;
 import com.mollie.mollie.models.operations.GetSubscriptionRequest;
@@ -147,19 +147,19 @@ public class Subscriptions {
      * Your customer will be charged €10 on the last day of each month, starting in April 2018.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @param requestBody 
+     * @param subscriptionRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateSubscriptionResponse create(
-            String customerId, Optional<? extends CreateSubscriptionRequestBody> requestBody,
+            String customerId, Optional<? extends SubscriptionRequest> subscriptionRequest,
             Optional<Options> options) throws Exception {
         CreateSubscriptionRequest request =
             CreateSubscriptionRequest
                 .builder()
                 .customerId(customerId)
-                .requestBody(requestBody)
+                .subscriptionRequest(subscriptionRequest)
                 .build();
         RequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
               = new CreateSubscription.Sync(sdkConfiguration, options);
@@ -411,7 +411,7 @@ public class Subscriptions {
      * @throws Exception if the API call fails
      */
     public ListAllSubscriptionsResponse allDirect() throws Exception {
-        return all(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+        return all(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
     }
 
@@ -441,7 +441,7 @@ public class Subscriptions {
      * @throws Exception if the API call fails
      */
     public ListAllSubscriptionsResponse all(
-            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<String> from, JsonNullable<Long> limit,
             JsonNullable<String> profileId, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         ListAllSubscriptionsRequest request =

@@ -51,7 +51,7 @@ public class Clients {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListClientsClientsLinks> links;
+    private Optional<? extends ListClientsLinks> links;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -64,7 +64,7 @@ public class Clients {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("commission") JsonNullable<? extends ListClientsCommission> commission,
             @JsonProperty("organizationCreatedAt") Optional<String> organizationCreatedAt,
-            @JsonProperty("_links") Optional<? extends ListClientsClientsLinks> links,
+            @JsonProperty("_links") Optional<? extends ListClientsLinks> links,
             @JsonProperty("_embedded") Optional<? extends ListClientsClientsEmbedded> embedded) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -124,8 +124,8 @@ public class Clients {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListClientsClientsLinks> links() {
-        return (Optional<ListClientsClientsLinks>) links;
+    public Optional<ListClientsLinks> links() {
+        return (Optional<ListClientsLinks>) links;
     }
 
     @SuppressWarnings("unchecked")
@@ -219,7 +219,7 @@ public class Clients {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public Clients withLinks(ListClientsClientsLinks links) {
+    public Clients withLinks(ListClientsLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = Optional.ofNullable(links);
         return this;
@@ -229,7 +229,7 @@ public class Clients {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public Clients withLinks(Optional<? extends ListClientsClientsLinks> links) {
+    public Clients withLinks(Optional<? extends ListClientsLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -295,7 +295,7 @@ public class Clients {
 
         private Optional<String> organizationCreatedAt = Optional.empty();
 
-        private Optional<? extends ListClientsClientsLinks> links = Optional.empty();
+        private Optional<? extends ListClientsLinks> links = Optional.empty();
 
         private Optional<? extends ListClientsClientsEmbedded> embedded = Optional.empty();
 
@@ -385,7 +385,7 @@ public class Clients {
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(ListClientsClientsLinks links) {
+        public Builder links(ListClientsLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = Optional.ofNullable(links);
             return this;
@@ -394,7 +394,7 @@ public class Clients {
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(Optional<? extends ListClientsClientsLinks> links) {
+        public Builder links(Optional<? extends ListClientsLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

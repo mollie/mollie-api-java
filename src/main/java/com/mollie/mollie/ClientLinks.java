@@ -5,7 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.operations.CreateClientLinkRequestBody;
+import com.mollie.mollie.models.components.EntityClientLink;
 import com.mollie.mollie.models.operations.CreateClientLinkRequestBuilder;
 import com.mollie.mollie.models.operations.CreateClientLinkResponse;
 import com.mollie.mollie.operations.CreateClientLink;
@@ -221,8 +221,8 @@ public class ClientLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateClientLinkResponse create(Optional<? extends CreateClientLinkRequestBody> request, Optional<Options> options) throws Exception {
-        RequestOperation<Optional<? extends CreateClientLinkRequestBody>, CreateClientLinkResponse> operation
+    public CreateClientLinkResponse create(Optional<? extends EntityClientLink> request, Optional<Options> options) throws Exception {
+        RequestOperation<Optional<? extends EntityClientLink>, CreateClientLinkResponse> operation
               = new CreateClientLink.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }

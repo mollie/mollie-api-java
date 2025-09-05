@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.WebhookEventTypes;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -29,8 +30,7 @@ public class CreateWebhookRequestBody {
     private String url;
 
     /**
-     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-     * that require explicit selection. Separate multiple event types with a comma.
+     * The event's type
      */
     @JsonProperty("eventTypes")
     private WebhookEventTypes webhookEventTypes;
@@ -87,8 +87,7 @@ public class CreateWebhookRequestBody {
     }
 
     /**
-     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-     * that require explicit selection. Separate multiple event types with a comma.
+     * The event's type
      */
     @JsonIgnore
     public WebhookEventTypes webhookEventTypes() {
@@ -131,8 +130,7 @@ public class CreateWebhookRequestBody {
     }
 
     /**
-     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-     * that require explicit selection. Separate multiple event types with a comma.
+     * The event's type
      */
     public CreateWebhookRequestBody withWebhookEventTypes(WebhookEventTypes webhookEventTypes) {
         Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
@@ -235,8 +233,7 @@ public class CreateWebhookRequestBody {
 
 
         /**
-         * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-         * that require explicit selection. Separate multiple event types with a comma.
+         * The event's type
          */
         public Builder webhookEventTypes(WebhookEventTypes webhookEventTypes) {
             Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");

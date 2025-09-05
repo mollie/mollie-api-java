@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -25,14 +24,14 @@ public class GetPaymentRequest {
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private JsonNullable<? extends QueryParamInclude> include;
+    private JsonNullable<String> include;
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private JsonNullable<? extends GetPaymentQueryParamEmbed> embed;
+    private JsonNullable<String> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -47,8 +46,8 @@ public class GetPaymentRequest {
     @JsonCreator
     public GetPaymentRequest(
             String paymentId,
-            JsonNullable<? extends QueryParamInclude> include,
-            JsonNullable<? extends GetPaymentQueryParamEmbed> embed,
+            JsonNullable<String> include,
+            JsonNullable<String> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(include, "include");
@@ -77,20 +76,18 @@ public class GetPaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<QueryParamInclude> include() {
-        return (JsonNullable<QueryParamInclude>) include;
+    public JsonNullable<String> include() {
+        return include;
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetPaymentQueryParamEmbed> embed() {
-        return (JsonNullable<GetPaymentQueryParamEmbed>) embed;
+    public JsonNullable<String> embed() {
+        return embed;
     }
 
     /**
@@ -122,7 +119,7 @@ public class GetPaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    public GetPaymentRequest withInclude(QueryParamInclude include) {
+    public GetPaymentRequest withInclude(String include) {
         Utils.checkNotNull(include, "include");
         this.include = JsonNullable.of(include);
         return this;
@@ -131,27 +128,27 @@ public class GetPaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    public GetPaymentRequest withInclude(JsonNullable<? extends QueryParamInclude> include) {
+    public GetPaymentRequest withInclude(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
         this.include = include;
         return this;
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public GetPaymentRequest withEmbed(GetPaymentQueryParamEmbed embed) {
+    public GetPaymentRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = JsonNullable.of(embed);
         return this;
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public GetPaymentRequest withEmbed(JsonNullable<? extends GetPaymentQueryParamEmbed> embed) {
+    public GetPaymentRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -220,9 +217,9 @@ public class GetPaymentRequest {
 
         private String paymentId;
 
-        private JsonNullable<? extends QueryParamInclude> include = JsonNullable.undefined();
+        private JsonNullable<String> include = JsonNullable.undefined();
 
-        private JsonNullable<? extends GetPaymentQueryParamEmbed> embed = JsonNullable.undefined();
+        private JsonNullable<String> embed = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -244,7 +241,7 @@ public class GetPaymentRequest {
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          */
-        public Builder include(QueryParamInclude include) {
+        public Builder include(String include) {
             Utils.checkNotNull(include, "include");
             this.include = JsonNullable.of(include);
             return this;
@@ -253,7 +250,7 @@ public class GetPaymentRequest {
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          */
-        public Builder include(JsonNullable<? extends QueryParamInclude> include) {
+        public Builder include(JsonNullable<String> include) {
             Utils.checkNotNull(include, "include");
             this.include = include;
             return this;
@@ -261,20 +258,20 @@ public class GetPaymentRequest {
 
 
         /**
-         * This endpoint allows embedding related API items by appending the
-         * following values via the `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder embed(GetPaymentQueryParamEmbed embed) {
+        public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = JsonNullable.of(embed);
             return this;
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the
-         * following values via the `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder embed(JsonNullable<? extends GetPaymentQueryParamEmbed> embed) {
+        public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;

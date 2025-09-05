@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.EntitySalesInvoiceResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -23,11 +24,11 @@ public class ListSalesInvoicesEmbedded {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sales_invoices")
-    private Optional<? extends List<SalesInvoices>> salesInvoices;
+    private Optional<? extends List<EntitySalesInvoiceResponse>> salesInvoices;
 
     @JsonCreator
     public ListSalesInvoicesEmbedded(
-            @JsonProperty("sales_invoices") Optional<? extends List<SalesInvoices>> salesInvoices) {
+            @JsonProperty("sales_invoices") Optional<? extends List<EntitySalesInvoiceResponse>> salesInvoices) {
         Utils.checkNotNull(salesInvoices, "salesInvoices");
         this.salesInvoices = salesInvoices;
     }
@@ -42,8 +43,8 @@ public class ListSalesInvoicesEmbedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<SalesInvoices>> salesInvoices() {
-        return (Optional<List<SalesInvoices>>) salesInvoices;
+    public Optional<List<EntitySalesInvoiceResponse>> salesInvoices() {
+        return (Optional<List<EntitySalesInvoiceResponse>>) salesInvoices;
     }
 
     public static Builder builder() {
@@ -55,7 +56,7 @@ public class ListSalesInvoicesEmbedded {
      * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
      * the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
-    public ListSalesInvoicesEmbedded withSalesInvoices(List<SalesInvoices> salesInvoices) {
+    public ListSalesInvoicesEmbedded withSalesInvoices(List<EntitySalesInvoiceResponse> salesInvoices) {
         Utils.checkNotNull(salesInvoices, "salesInvoices");
         this.salesInvoices = Optional.ofNullable(salesInvoices);
         return this;
@@ -66,7 +67,7 @@ public class ListSalesInvoicesEmbedded {
      * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
      * the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
-    public ListSalesInvoicesEmbedded withSalesInvoices(Optional<? extends List<SalesInvoices>> salesInvoices) {
+    public ListSalesInvoicesEmbedded withSalesInvoices(Optional<? extends List<EntitySalesInvoiceResponse>> salesInvoices) {
         Utils.checkNotNull(salesInvoices, "salesInvoices");
         this.salesInvoices = salesInvoices;
         return this;
@@ -100,7 +101,7 @@ public class ListSalesInvoicesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<SalesInvoices>> salesInvoices = Optional.empty();
+        private Optional<? extends List<EntitySalesInvoiceResponse>> salesInvoices = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -111,7 +112,7 @@ public class ListSalesInvoicesEmbedded {
          * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
          * the [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
-        public Builder salesInvoices(List<SalesInvoices> salesInvoices) {
+        public Builder salesInvoices(List<EntitySalesInvoiceResponse> salesInvoices) {
             Utils.checkNotNull(salesInvoices, "salesInvoices");
             this.salesInvoices = Optional.ofNullable(salesInvoices);
             return this;
@@ -121,7 +122,7 @@ public class ListSalesInvoicesEmbedded {
          * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
          * the [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
-        public Builder salesInvoices(Optional<? extends List<SalesInvoices>> salesInvoices) {
+        public Builder salesInvoices(Optional<? extends List<EntitySalesInvoiceResponse>> salesInvoices) {
             Utils.checkNotNull(salesInvoices, "salesInvoices");
             this.salesInvoices = salesInvoices;
             return this;

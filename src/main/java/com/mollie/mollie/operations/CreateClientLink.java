@@ -9,11 +9,11 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
+import com.mollie.mollie.models.components.EntityClientLink;
+import com.mollie.mollie.models.components.EntityClientLinkResponse;
 import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.CreateClientLinkClientLinksResponseBody;
-import com.mollie.mollie.models.operations.CreateClientLinkRequestBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateClientLinkResponse;
-import com.mollie.mollie.models.operations.CreateClientLinkResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -131,13 +131,13 @@ public class CreateClientLink {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends CreateClientLinkRequestBody>, CreateClientLinkResponse> {
+            implements RequestOperation<Optional<? extends EntityClientLink>, CreateClientLinkResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends CreateClientLinkRequestBody> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends CreateClientLinkRequestBody>>() {});
+        private HttpRequest onBuildRequest(Optional<? extends EntityClientLink> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntityClientLink>>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -153,7 +153,7 @@ public class CreateClientLink {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends CreateClientLinkRequestBody> request) throws Exception {
+        public HttpResponse<InputStream> doRequest(Optional<? extends EntityClientLink> request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -196,11 +196,11 @@ public class CreateClientLink {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    CreateClientLinkResponseBody out = Utils.mapper().readValue(
+                    EntityClientLinkResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                    res.withObject(out);
+                    res.withEntityClientLinkResponse(out);
                     return res;
                 } else {
                     throw new APIException(
@@ -211,32 +211,12 @@ public class CreateClientLink {
                 }
             }
             
-            if (Utils.statusCodeMatches(response.statusCode(), "404")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    com.mollie.mollie.models.errors.CreateClientLinkResponseBody out = Utils.mapper().readValue(
+                    ErrorResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                        out.withRawResponse(response);
-                    
-                    throw out;
-                } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
-                }
-            }
-            
-            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    CreateClientLinkClientLinksResponseBody out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                        out.withRawResponse(response);
-                    
                     throw out;
                 } else {
                     throw new APIException(
@@ -273,7 +253,7 @@ public class CreateClientLink {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends CreateClientLinkRequestBody>, com.mollie.mollie.models.operations.async.CreateClientLinkResponse> {
+            implements AsyncRequestOperation<Optional<? extends EntityClientLink>, com.mollie.mollie.models.operations.async.CreateClientLinkResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -283,8 +263,8 @@ public class CreateClientLink {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends CreateClientLinkRequestBody> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends CreateClientLinkRequestBody>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends EntityClientLink> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntityClientLink>>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -297,7 +277,7 @@ public class CreateClientLink {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends CreateClientLinkRequestBody> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends EntityClientLink> request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)
@@ -337,11 +317,11 @@ public class CreateClientLink {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
                         try {
-                            CreateClientLinkResponseBody out = Utils.mapper().readValue(
+                            EntityClientLinkResponse out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            res.withObject(out);
+                            res.withEntityClientLinkResponse(out);
                             return res;
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -352,36 +332,15 @@ public class CreateClientLink {
                 }
             }
             
-            if (Utils.statusCodeMatches(response.statusCode(), "404")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.CreateClientLinkResponseBody out;
+                        com.mollie.mollie.models.errors.async.ErrorResponse out;
                         try {
                             out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            out.withRawResponse(response);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                        throw out;
-                    });
-                } else {
-                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
-                }
-            }
-            
-            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.CreateClientLinkClientLinksResponseBody out;
-                        try {
-                            out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            out.withRawResponse(response);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

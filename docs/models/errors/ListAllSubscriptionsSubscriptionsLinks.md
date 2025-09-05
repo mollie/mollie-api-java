@@ -1,8 +1,0 @@
-# ListAllSubscriptionsSubscriptionsLinks
-
-
-## Fields
-
-| Field                                                                                                                   | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `documentation`                                                                                                         | [ListAllSubscriptionsSubscriptionsDocumentation](../../models/errors/ListAllSubscriptionsSubscriptionsDocumentation.md) | :heavy_check_mark:                                                                                                      | The URL to the generic Mollie API error handling guide.                                                                 |

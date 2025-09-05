@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Url;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -16,18 +17,18 @@ public class ListMethodsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonProperty("self")
-    private ListMethodsSelf self;
+    private Url self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonProperty("documentation")
-    private ListMethodsDocumentation documentation;
+    private Url documentation;
 
     @JsonCreator
     public ListMethodsLinks(
-            @JsonProperty("self") ListMethodsSelf self,
-            @JsonProperty("documentation") ListMethodsDocumentation documentation) {
+            @JsonProperty("self") Url self,
+            @JsonProperty("documentation") Url documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
         this.self = self;
@@ -38,7 +39,7 @@ public class ListMethodsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonIgnore
-    public ListMethodsSelf self() {
+    public Url self() {
         return self;
     }
 
@@ -46,7 +47,7 @@ public class ListMethodsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonIgnore
-    public ListMethodsDocumentation documentation() {
+    public Url documentation() {
         return documentation;
     }
 
@@ -58,7 +59,7 @@ public class ListMethodsLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListMethodsLinks withSelf(ListMethodsSelf self) {
+    public ListMethodsLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -67,7 +68,7 @@ public class ListMethodsLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListMethodsLinks withDocumentation(ListMethodsDocumentation documentation) {
+    public ListMethodsLinks withDocumentation(Url documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -103,9 +104,9 @@ public class ListMethodsLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private ListMethodsSelf self;
+        private Url self;
 
-        private ListMethodsDocumentation documentation;
+        private Url documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -115,7 +116,7 @@ public class ListMethodsLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder self(ListMethodsSelf self) {
+        public Builder self(Url self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
@@ -125,7 +126,7 @@ public class ListMethodsLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(ListMethodsDocumentation documentation) {
+        public Builder documentation(Url documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

@@ -10,8 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.ListBalanceTransactionsBalancesResponseBody;
-import com.mollie.mollie.models.errors.ListBalanceTransactionsBalancesResponseResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListBalanceTransactionsRequest;
 import com.mollie.mollie.models.operations.ListBalanceTransactionsResponse;
 import com.mollie.mollie.models.operations.ListBalanceTransactionsResponseBody;
@@ -206,50 +205,12 @@ public class ListBalanceTransactions {
                 }
             }
             
-            if (Utils.statusCodeMatches(response.statusCode(), "400")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "404", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    com.mollie.mollie.models.errors.ListBalanceTransactionsResponseBody out = Utils.mapper().readValue(
+                    ErrorResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                        out.withRawResponse(response);
-                    
-                    throw out;
-                } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
-                }
-            }
-            
-            if (Utils.statusCodeMatches(response.statusCode(), "404")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    ListBalanceTransactionsBalancesResponseBody out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                        out.withRawResponse(response);
-                    
-                    throw out;
-                } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
-                }
-            }
-            
-            if (Utils.statusCodeMatches(response.statusCode(), "429")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    ListBalanceTransactionsBalancesResponseResponseBody out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                        out.withRawResponse(response);
-                    
                     throw out;
                 } else {
                     throw new APIException(
@@ -365,56 +326,15 @@ public class ListBalanceTransactions {
                 }
             }
             
-            if (Utils.statusCodeMatches(response.statusCode(), "400")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "404", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.ListBalanceTransactionsResponseBody out;
+                        com.mollie.mollie.models.errors.async.ErrorResponse out;
                         try {
                             out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            out.withRawResponse(response);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                        throw out;
-                    });
-                } else {
-                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
-                }
-            }
-            
-            if (Utils.statusCodeMatches(response.statusCode(), "404")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.ListBalanceTransactionsBalancesResponseBody out;
-                        try {
-                            out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            out.withRawResponse(response);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                        throw out;
-                    });
-                } else {
-                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
-                }
-            }
-            
-            if (Utils.statusCodeMatches(response.statusCode(), "429")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.ListBalanceTransactionsBalancesResponseResponseBody out;
-                        try {
-                            out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            out.withRawResponse(response);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

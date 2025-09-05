@@ -5,8 +5,8 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.components.EntityMandate;
 import com.mollie.mollie.models.operations.CreateMandateRequest;
-import com.mollie.mollie.models.operations.CreateMandateRequestBody;
 import com.mollie.mollie.models.operations.GetMandateRequest;
 import com.mollie.mollie.models.operations.ListMandatesRequest;
 import com.mollie.mollie.models.operations.RevokeMandateRequest;
@@ -91,18 +91,18 @@ public class AsyncMandates {
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @param requestBody 
+     * @param entityMandate 
      * @param options additional options
      * @return CompletableFuture&lt;CreateMandateResponse&gt; - The async response
      */
     public CompletableFuture<CreateMandateResponse> create(
-            String customerId, Optional<? extends CreateMandateRequestBody> requestBody,
+            String customerId, Optional<? extends EntityMandate> entityMandate,
             Optional<Options> options) {
         CreateMandateRequest request =
             CreateMandateRequest
                 .builder()
                 .customerId(customerId)
-                .requestBody(requestBody)
+                .entityMandate(entityMandate)
                 .build();
         AsyncRequestOperation<CreateMandateRequest, CreateMandateResponse> operation
               = new CreateMandate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

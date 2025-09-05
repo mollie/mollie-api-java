@@ -20,7 +20,7 @@ public class GetChargebackRequestBuilder {
 
     private String paymentId;
     private String chargebackId;
-    private JsonNullable<? extends GetChargebackQueryParamEmbed> embed = JsonNullable.undefined();
+    private JsonNullable<String> embed = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -41,13 +41,13 @@ public class GetChargebackRequestBuilder {
         return this;
     }
 
-    public GetChargebackRequestBuilder embed(GetChargebackQueryParamEmbed embed) {
+    public GetChargebackRequestBuilder embed(String embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = JsonNullable.of(embed);
         return this;
     }
 
-    public GetChargebackRequestBuilder embed(JsonNullable<? extends GetChargebackQueryParamEmbed> embed) {
+    public GetChargebackRequestBuilder embed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;

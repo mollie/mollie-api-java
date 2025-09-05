@@ -23,14 +23,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListChargebacksChargebacksResponseBody;
-import com.mollie.mollie.models.errors.ListChargebacksResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListChargebacksRequest;
+import com.mollie.mollie.models.operations.ListChargebacksResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListChargebacksResponseBody, ListChargebacksChargebacksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -42,7 +42,7 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
                 .limit(50L)
-                .embed(ListChargebacksQueryParamEmbed.PAYMENT)
+                .embed("payment")
                 .testmode(false)
                 .build();
 
@@ -69,11 +69,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                           | Status Code                                          | Content Type                                         |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| models/errors/ListChargebacksResponseBody            | 400                                                  | application/hal+json                                 |
-| models/errors/ListChargebacksChargebacksResponseBody | 404                                                  | application/hal+json                                 |
-| models/errors/APIException                           | 4XX, 5XX                                             | \*/\*                                                |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -87,14 +86,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetChargebackResponseBody;
-import com.mollie.mollie.models.operations.GetChargebackQueryParamEmbed;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetChargebackResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetChargebackResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -105,11 +103,11 @@ public class Application {
         GetChargebackResponse res = sdk.chargebacks().get()
                 .paymentId("tr_5B8cwPMGnU")
                 .chargebackId("chb_xFzwUN4ci8HAmSGUACS4J")
-                .embed(GetChargebackQueryParamEmbed.PAYMENT)
+                .embed("payment")
                 .testmode(false)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityChargeback().isPresent()) {
             // handle response
         }
     }
@@ -122,7 +120,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `chargebackId`                                                                                                                                                                                                                                                                                                                                                                         | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related chargeback.                                                                                                                                                                                                                                                                                                                                              | chb_xFzwUN4ci8HAmSGUACS4J                                                                                                                                                                                                                                                                                                                                                              |
-| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [JsonNullable\<GetChargebackQueryParamEmbed>](../../models/operations/GetChargebackQueryParamEmbed.md)                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to embed additional information via the `embed` query string parameter.                                                                                                                                                                                                                                                                                       | payment                                                                                                                                                                                                                                                                                                                                                                                |
+| `embed`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the following values via the `embed` query string<br/>parameter.                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -131,10 +129,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| models/errors/GetChargebackResponseBody | 404                                     | application/hal+json                    |
-| models/errors/APIException              | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## all
 
@@ -149,15 +147,16 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListAllChargebacksChargebacksResponseBody;
-import com.mollie.mollie.models.errors.ListAllChargebacksResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllChargebacksRequest;
+import com.mollie.mollie.models.operations.ListAllChargebacksResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListAllChargebacksResponseBody, ListAllChargebacksChargebacksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -168,8 +167,8 @@ public class Application {
         ListAllChargebacksRequest req = ListAllChargebacksRequest.builder()
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
                 .limit(50L)
-                .embed(ListAllChargebacksQueryParamEmbed.PAYMENT)
-                .sort(ListAllChargebacksQueryParamSort.DESC)
+                .embed("payment")
+                .sort(ListSort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
@@ -197,8 +196,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                              | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| models/errors/ListAllChargebacksResponseBody            | 400                                                     | application/hal+json                                    |
-| models/errors/ListAllChargebacksChargebacksResponseBody | 404                                                     | application/hal+json                                    |
-| models/errors/APIException                              | 4XX, 5XX                                                | \*/\*                                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

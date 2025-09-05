@@ -5,15 +5,12 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CancelPaymentRequest;
 import com.mollie.mollie.models.operations.CancelPaymentRequestBody;
 import com.mollie.mollie.models.operations.CreatePaymentRequest;
-import com.mollie.mollie.models.operations.CreatePaymentRequestBody;
-import com.mollie.mollie.models.operations.GetPaymentQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetPaymentRequest;
-import com.mollie.mollie.models.operations.Include;
 import com.mollie.mollie.models.operations.ListPaymentsRequest;
-import com.mollie.mollie.models.operations.QueryParamInclude;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequest;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBody;
 import com.mollie.mollie.models.operations.UpdatePaymentRequest;
@@ -124,18 +121,18 @@ public class AsyncPayments {
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param requestBody 
+     * @param paymentRequest 
      * @param options additional options
      * @return CompletableFuture&lt;CreatePaymentResponse&gt; - The async response
      */
     public CompletableFuture<CreatePaymentResponse> create(
-            JsonNullable<? extends Include> include, Optional<? extends CreatePaymentRequestBody> requestBody,
+            JsonNullable<String> include, Optional<? extends PaymentRequest> paymentRequest,
             Optional<Options> options) {
         CreatePaymentRequest request =
             CreatePaymentRequest
                 .builder()
                 .include(include)
-                .requestBody(requestBody)
+                .paymentRequest(paymentRequest)
                 .build();
         AsyncRequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
               = new CreatePayment.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -222,8 +219,8 @@ public class AsyncPayments {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param embed This endpoint allows embedding related API items by appending the
-     *         following values via the `embed` query string parameter.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     *         parameter.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -233,8 +230,8 @@ public class AsyncPayments {
      * @return CompletableFuture&lt;GetPaymentResponse&gt; - The async response
      */
     public CompletableFuture<GetPaymentResponse> get(
-            String paymentId, JsonNullable<? extends QueryParamInclude> include,
-            JsonNullable<? extends GetPaymentQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
+            String paymentId, JsonNullable<String> include,
+            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) {
         GetPaymentRequest request =
             GetPaymentRequest

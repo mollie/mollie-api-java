@@ -27,15 +27,14 @@ having collected the customer's authorization.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreateCaptureCapturesResponseBody;
-import com.mollie.mollie.models.errors.CreateCaptureResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCaptureResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws CreateCaptureResponseBody, CreateCaptureCapturesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -45,16 +44,24 @@ public class Application {
 
         CreateCaptureResponse res = sdk.captures().create()
                 .paymentId("tr_5B8cwPMGnU")
-                .requestBody(CreateCaptureRequestBody.builder()
+                .entityCapture(EntityCapture.builder()
+                    .id("cpt_vytxeTZskVKR7C7WgdSP3d")
                     .description("Capture for cart #12345")
-                    .amount(CreateCaptureAmount.builder()
+                    .amount(AmountNullable.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
+                    .settlementAmount(AmountNullable.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .paymentId("tr_5B8cwPMGnU")
+                    .shipmentId("shp_5x4xQJDWGNcY3tKGL7X5J")
+                    .settlementId("stl_5B8cwPMGnU")
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.captureResponse().isPresent()) {
             // handle response
         }
     }
@@ -63,10 +70,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `paymentId`                                                                                | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related payment.                                                     | tr_5B8cwPMGnU                                                                              |
-| `requestBody`                                                                              | [Optional\<CreateCaptureRequestBody>](../../models/operations/CreateCaptureRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `paymentId`                                                          | *String*                                                             | :heavy_check_mark:                                                   | Provide the ID of the related payment.                               | tr_5B8cwPMGnU                                                        |
+| `entityCapture`                                                      | [Optional\<EntityCapture>](../../models/components/EntityCapture.md) | :heavy_minus_sign:                                                   | N/A                                                                  |                                                                      |
 
 ### Response
 
@@ -74,11 +81,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models/errors/CreateCaptureResponseBody         | 404                                             | application/hal+json                            |
-| models/errors/CreateCaptureCapturesResponseBody | 422                                             | application/hal+json                            |
-| models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -94,14 +100,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListCapturesCapturesResponseBody;
-import com.mollie.mollie.models.errors.ListCapturesResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListCapturesRequest;
+import com.mollie.mollie.models.operations.ListCapturesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListCapturesResponseBody, ListCapturesCapturesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -113,7 +119,7 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
                 .limit(50L)
-                .embed(ListCapturesQueryParamEmbed.PAYMENT)
+                .embed("payment")
                 .testmode(false)
                 .build();
 
@@ -140,11 +146,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| models/errors/ListCapturesResponseBody         | 400                                            | application/hal+json                           |
-| models/errors/ListCapturesCapturesResponseBody | 404                                            | application/hal+json                           |
-| models/errors/APIException                     | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -159,14 +164,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetCaptureResponseBody;
-import com.mollie.mollie.models.operations.GetCaptureQueryParamEmbed;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetCaptureResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetCaptureResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -177,11 +181,11 @@ public class Application {
         GetCaptureResponse res = sdk.captures().get()
                 .paymentId("tr_5B8cwPMGnU")
                 .captureId("cpt_gVMhHKqSSRYJyPsuoPNFH")
-                .embed(GetCaptureQueryParamEmbed.PAYMENT)
+                .embed("payment")
                 .testmode(false)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.captureResponse().isPresent()) {
             // handle response
         }
     }
@@ -194,7 +198,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `captureId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related capture.                                                                                                                                                                                                                                                                                                                                                 | cpt_gVMhHKqSSRYJyPsuoPNFH                                                                                                                                                                                                                                                                                                                                                              |
-| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [Optional\<GetCaptureQueryParamEmbed>](../../models/operations/GetCaptureQueryParamEmbed.md)                                                                                                                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to embed additional resources via the<br/>`embed` query string parameter.                                                                                                                                                                                                                                                                                     | payment                                                                                                                                                                                                                                                                                                                                                                                |
+| `embed`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the following values via the `embed` query string<br/>parameter.                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -203,7 +207,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| models/errors/GetCaptureResponseBody | 404                                  | application/hal+json                 |
-| models/errors/APIException           | 4XX, 5XX                             | \*/\*                                |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

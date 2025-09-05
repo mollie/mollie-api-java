@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.operations.CreateClientLinkRequestBody;
+import com.mollie.mollie.models.components.EntityClientLink;
 import com.mollie.mollie.operations.CreateClientLink;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class CreateClientLinkRequestBuilder {
 
-    private Optional<? extends CreateClientLinkRequestBody> request = Optional.empty();
+    private Optional<? extends EntityClientLink> request = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -25,13 +25,13 @@ public class CreateClientLinkRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateClientLinkRequestBuilder request(CreateClientLinkRequestBody request) {
+    public CreateClientLinkRequestBuilder request(EntityClientLink request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateClientLinkRequestBuilder request(Optional<? extends CreateClientLinkRequestBody> request) {
+    public CreateClientLinkRequestBuilder request(Optional<? extends EntityClientLink> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -54,7 +54,7 @@ public class CreateClientLinkRequestBuilder {
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestOperation<Optional<? extends CreateClientLinkRequestBody>, CreateClientLinkResponse> operation
+        AsyncRequestOperation<Optional<? extends EntityClientLink>, CreateClientLinkResponse> operation
               = new CreateClientLink.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
 
         return operation.doRequest(request)

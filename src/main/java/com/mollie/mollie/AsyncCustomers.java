@@ -5,18 +5,16 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.components.EntityCustomer;
+import com.mollie.mollie.models.components.ListSort;
+import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
-import com.mollie.mollie.models.operations.CreateCustomerPaymentRequestBody;
-import com.mollie.mollie.models.operations.CreateCustomerRequestBody;
 import com.mollie.mollie.models.operations.DeleteCustomerRequest;
 import com.mollie.mollie.models.operations.DeleteCustomerRequestBody;
-import com.mollie.mollie.models.operations.GetCustomerQueryParamInclude;
 import com.mollie.mollie.models.operations.GetCustomerRequest;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsRequest;
-import com.mollie.mollie.models.operations.ListCustomersQueryParamSort;
 import com.mollie.mollie.models.operations.ListCustomersRequest;
 import com.mollie.mollie.models.operations.UpdateCustomerRequest;
-import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
 import com.mollie.mollie.models.operations.async.CreateCustomerPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreateCustomerPaymentResponse;
 import com.mollie.mollie.models.operations.async.CreateCustomerRequestBuilder;
@@ -106,8 +104,8 @@ public class AsyncCustomers {
      * @param options additional options
      * @return CompletableFuture&lt;CreateCustomerResponse&gt; - The async response
      */
-    public CompletableFuture<CreateCustomerResponse> create(Optional<? extends CreateCustomerRequestBody> request, Optional<Options> options) {
-        AsyncRequestOperation<Optional<? extends CreateCustomerRequestBody>, CreateCustomerResponse> operation
+    public CompletableFuture<CreateCustomerResponse> create(Optional<? extends EntityCustomer> request, Optional<Options> options) {
+        AsyncRequestOperation<Optional<? extends EntityCustomer>, CreateCustomerResponse> operation
               = new CreateCustomer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -152,8 +150,7 @@ public class AsyncCustomers {
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     *         newest to oldest.
+     * @param sort 
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -164,7 +161,7 @@ public class AsyncCustomers {
      */
     public CompletableFuture<ListCustomersResponse> list(
             Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<? extends ListCustomersQueryParamSort> sort, JsonNullable<Boolean> testmode,
+            JsonNullable<? extends ListSort> sort, JsonNullable<Boolean> testmode,
             Optional<Options> options) {
         ListCustomersRequest request =
             ListCustomersRequest
@@ -222,7 +219,7 @@ public class AsyncCustomers {
      * @return CompletableFuture&lt;GetCustomerResponse&gt; - The async response
      */
     public CompletableFuture<GetCustomerResponse> get(
-            String customerId, JsonNullable<? extends GetCustomerQueryParamInclude> include,
+            String customerId, JsonNullable<String> include,
             JsonNullable<Boolean> testmode, Optional<Options> options) {
         GetCustomerRequest request =
             GetCustomerRequest
@@ -273,18 +270,18 @@ public class AsyncCustomers {
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @param requestBody 
+     * @param entityCustomer 
      * @param options additional options
      * @return CompletableFuture&lt;UpdateCustomerResponse&gt; - The async response
      */
     public CompletableFuture<UpdateCustomerResponse> update(
-            String customerId, Optional<? extends UpdateCustomerRequestBody> requestBody,
+            String customerId, Optional<? extends EntityCustomer> entityCustomer,
             Optional<Options> options) {
         UpdateCustomerRequest request =
             UpdateCustomerRequest
                 .builder()
                 .customerId(customerId)
-                .requestBody(requestBody)
+                .entityCustomer(entityCustomer)
                 .build();
         AsyncRequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
               = new UpdateCustomer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -401,18 +398,18 @@ public class AsyncCustomers {
      * parameter predefined.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @param requestBody 
+     * @param paymentRequest 
      * @param options additional options
      * @return CompletableFuture&lt;CreateCustomerPaymentResponse&gt; - The async response
      */
     public CompletableFuture<CreateCustomerPaymentResponse> createPayment(
-            String customerId, Optional<? extends CreateCustomerPaymentRequestBody> requestBody,
+            String customerId, Optional<? extends PaymentRequest> paymentRequest,
             Optional<Options> options) {
         CreateCustomerPaymentRequest request =
             CreateCustomerPaymentRequest
                 .builder()
                 .customerId(customerId)
-                .requestBody(requestBody)
+                .paymentRequest(paymentRequest)
                 .build();
         AsyncRequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation
               = new CreateCustomerPayment.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

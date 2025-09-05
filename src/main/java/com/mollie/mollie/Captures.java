@@ -5,11 +5,10 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.components.EntityCapture;
 import com.mollie.mollie.models.operations.CreateCaptureRequest;
-import com.mollie.mollie.models.operations.CreateCaptureRequestBody;
 import com.mollie.mollie.models.operations.CreateCaptureRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCaptureResponse;
-import com.mollie.mollie.models.operations.GetCaptureQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetCaptureRequest;
 import com.mollie.mollie.models.operations.GetCaptureRequestBuilder;
 import com.mollie.mollie.models.operations.GetCaptureResponse;
@@ -96,19 +95,19 @@ public class Captures {
      * having collected the customer's authorization.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @param requestBody 
+     * @param entityCapture 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateCaptureResponse create(
-            String paymentId, Optional<? extends CreateCaptureRequestBody> requestBody,
+            String paymentId, Optional<? extends EntityCapture> entityCapture,
             Optional<Options> options) throws Exception {
         CreateCaptureRequest request =
             CreateCaptureRequest
                 .builder()
                 .paymentId(paymentId)
-                .requestBody(requestBody)
+                .entityCapture(entityCapture)
                 .build();
         RequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
               = new CreateCapture.Sync(sdkConfiguration, options);
@@ -185,7 +184,7 @@ public class Captures {
      * @throws Exception if the API call fails
      */
     public GetCaptureResponse get(String paymentId, String captureId) throws Exception {
-        return get(paymentId, captureId, Optional.empty(),
+        return get(paymentId, captureId, JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
     }
 
@@ -197,8 +196,8 @@ public class Captures {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param captureId Provide the ID of the related capture.
-     * @param embed This endpoint allows you to embed additional resources via the
-     *         `embed` query string parameter.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     *         parameter.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -210,7 +209,7 @@ public class Captures {
      */
     public GetCaptureResponse get(
             String paymentId, String captureId,
-            Optional<? extends GetCaptureQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
+            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetCaptureRequest request =
             GetCaptureRequest

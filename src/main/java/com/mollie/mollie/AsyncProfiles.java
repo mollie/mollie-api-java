@@ -6,7 +6,7 @@ package com.mollie.mollie;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
 
-import com.mollie.mollie.models.operations.CreateProfileRequestBody;
+import com.mollie.mollie.models.components.EntityProfile;
 import com.mollie.mollie.models.operations.DeleteProfileRequest;
 import com.mollie.mollie.models.operations.GetProfileRequest;
 import com.mollie.mollie.models.operations.ListProfilesRequest;
@@ -83,7 +83,7 @@ public class AsyncProfiles {
      * @param request The request object containing all the parameters for the API call.
      * @return CompletableFuture&lt;CreateProfileResponse&gt; - The async response
      */
-    public CompletableFuture<CreateProfileResponse> create(CreateProfileRequestBody request) {
+    public CompletableFuture<CreateProfileResponse> create(EntityProfile request) {
         return create(request, Optional.empty());
     }
 
@@ -99,8 +99,8 @@ public class AsyncProfiles {
      * @param options additional options
      * @return CompletableFuture&lt;CreateProfileResponse&gt; - The async response
      */
-    public CompletableFuture<CreateProfileResponse> create(CreateProfileRequestBody request, Optional<Options> options) {
-        AsyncRequestOperation<CreateProfileRequestBody, CreateProfileResponse> operation
+    public CompletableFuture<CreateProfileResponse> create(EntityProfile request, Optional<Options> options) {
+        AsyncRequestOperation<EntityProfile, CreateProfileResponse> operation
               = new CreateProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -130,7 +130,7 @@ public class AsyncProfiles {
      * @return CompletableFuture&lt;ListProfilesResponse&gt; - The async response
      */
     public CompletableFuture<ListProfilesResponse> listDirect() {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -147,7 +147,7 @@ public class AsyncProfiles {
      * @return CompletableFuture&lt;ListProfilesResponse&gt; - The async response
      */
     public CompletableFuture<ListProfilesResponse> list(
-            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<String> from, JsonNullable<Long> limit,
             Optional<Options> options) {
         ListProfilesRequest request =
             ListProfilesRequest

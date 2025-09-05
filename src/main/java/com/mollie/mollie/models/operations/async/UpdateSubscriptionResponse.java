@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.UpdateSubscriptionResponseBody;
+import com.mollie.mollie.models.components.SubscriptionResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class UpdateSubscriptionResponse implements AsyncResponse {
     /**
      * The updated subscription object.
      */
-    private Optional<? extends UpdateSubscriptionResponseBody> object;
+    private Optional<? extends SubscriptionResponse> subscriptionResponse;
 
     @JsonCreator
     public UpdateSubscriptionResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends UpdateSubscriptionResponseBody> object) {
+            Optional<? extends SubscriptionResponse> subscriptionResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.subscriptionResponse = subscriptionResponse;
     }
     
     public UpdateSubscriptionResponse(
@@ -91,8 +91,8 @@ public class UpdateSubscriptionResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateSubscriptionResponseBody> object() {
-        return (Optional<UpdateSubscriptionResponseBody>) object;
+    public Optional<SubscriptionResponse> subscriptionResponse() {
+        return (Optional<SubscriptionResponse>) subscriptionResponse;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class UpdateSubscriptionResponse implements AsyncResponse {
     /**
      * The updated subscription object.
      */
-    public UpdateSubscriptionResponse withObject(UpdateSubscriptionResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public UpdateSubscriptionResponse withSubscriptionResponse(SubscriptionResponse subscriptionResponse) {
+        Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+        this.subscriptionResponse = Optional.ofNullable(subscriptionResponse);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class UpdateSubscriptionResponse implements AsyncResponse {
     /**
      * The updated subscription object.
      */
-    public UpdateSubscriptionResponse withObject(Optional<? extends UpdateSubscriptionResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public UpdateSubscriptionResponse withSubscriptionResponse(Optional<? extends SubscriptionResponse> subscriptionResponse) {
+        Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+        this.subscriptionResponse = subscriptionResponse;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class UpdateSubscriptionResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.subscriptionResponse, other.subscriptionResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            subscriptionResponse);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class UpdateSubscriptionResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "subscriptionResponse", subscriptionResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class UpdateSubscriptionResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends UpdateSubscriptionResponseBody> object = Optional.empty();
+        private Optional<? extends SubscriptionResponse> subscriptionResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class UpdateSubscriptionResponse implements AsyncResponse {
         /**
          * The updated subscription object.
          */
-        public Builder object(UpdateSubscriptionResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder subscriptionResponse(SubscriptionResponse subscriptionResponse) {
+            Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+            this.subscriptionResponse = Optional.ofNullable(subscriptionResponse);
             return this;
         }
 
         /**
          * The updated subscription object.
          */
-        public Builder object(Optional<? extends UpdateSubscriptionResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder subscriptionResponse(Optional<? extends SubscriptionResponse> subscriptionResponse) {
+            Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+            this.subscriptionResponse = subscriptionResponse;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class UpdateSubscriptionResponse implements AsyncResponse {
 
             return new UpdateSubscriptionResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                subscriptionResponse);
         }
 
     }

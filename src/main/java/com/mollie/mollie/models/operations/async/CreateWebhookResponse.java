@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.CreateWebhookResponseBody;
+import com.mollie.mollie.models.components.CreateWebhook;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class CreateWebhookResponse implements AsyncResponse {
     /**
      * The webhook object.
      */
-    private Optional<? extends CreateWebhookResponseBody> object;
+    private Optional<? extends CreateWebhook> createWebhook;
 
     @JsonCreator
     public CreateWebhookResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends CreateWebhookResponseBody> object) {
+            Optional<? extends CreateWebhook> createWebhook) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(createWebhook, "createWebhook");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.createWebhook = createWebhook;
     }
     
     public CreateWebhookResponse(
@@ -91,8 +91,8 @@ public class CreateWebhookResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateWebhookResponseBody> object() {
-        return (Optional<CreateWebhookResponseBody>) object;
+    public Optional<CreateWebhook> createWebhook() {
+        return (Optional<CreateWebhook>) createWebhook;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class CreateWebhookResponse implements AsyncResponse {
     /**
      * The webhook object.
      */
-    public CreateWebhookResponse withObject(CreateWebhookResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CreateWebhookResponse withCreateWebhook(CreateWebhook createWebhook) {
+        Utils.checkNotNull(createWebhook, "createWebhook");
+        this.createWebhook = Optional.ofNullable(createWebhook);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class CreateWebhookResponse implements AsyncResponse {
     /**
      * The webhook object.
      */
-    public CreateWebhookResponse withObject(Optional<? extends CreateWebhookResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CreateWebhookResponse withCreateWebhook(Optional<? extends CreateWebhook> createWebhook) {
+        Utils.checkNotNull(createWebhook, "createWebhook");
+        this.createWebhook = createWebhook;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class CreateWebhookResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.createWebhook, other.createWebhook);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            createWebhook);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class CreateWebhookResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "createWebhook", createWebhook);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class CreateWebhookResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends CreateWebhookResponseBody> object = Optional.empty();
+        private Optional<? extends CreateWebhook> createWebhook = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class CreateWebhookResponse implements AsyncResponse {
         /**
          * The webhook object.
          */
-        public Builder object(CreateWebhookResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder createWebhook(CreateWebhook createWebhook) {
+            Utils.checkNotNull(createWebhook, "createWebhook");
+            this.createWebhook = Optional.ofNullable(createWebhook);
             return this;
         }
 
         /**
          * The webhook object.
          */
-        public Builder object(Optional<? extends CreateWebhookResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder createWebhook(Optional<? extends CreateWebhook> createWebhook) {
+            Utils.checkNotNull(createWebhook, "createWebhook");
+            this.createWebhook = createWebhook;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class CreateWebhookResponse implements AsyncResponse {
 
             return new CreateWebhookResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                createWebhook);
         }
 
     }

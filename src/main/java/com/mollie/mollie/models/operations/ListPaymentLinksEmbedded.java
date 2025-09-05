@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.PaymentLinkResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -22,11 +23,11 @@ public class ListPaymentLinksEmbedded {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_links")
-    private Optional<? extends List<PaymentLinks>> paymentLinks;
+    private Optional<? extends List<PaymentLinkResponse>> paymentLinks;
 
     @JsonCreator
     public ListPaymentLinksEmbedded(
-            @JsonProperty("payment_links") Optional<? extends List<PaymentLinks>> paymentLinks) {
+            @JsonProperty("payment_links") Optional<? extends List<PaymentLinkResponse>> paymentLinks) {
         Utils.checkNotNull(paymentLinks, "paymentLinks");
         this.paymentLinks = paymentLinks;
     }
@@ -40,8 +41,8 @@ public class ListPaymentLinksEmbedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<PaymentLinks>> paymentLinks() {
-        return (Optional<List<PaymentLinks>>) paymentLinks;
+    public Optional<List<PaymentLinkResponse>> paymentLinks() {
+        return (Optional<List<PaymentLinkResponse>>) paymentLinks;
     }
 
     public static Builder builder() {
@@ -52,7 +53,7 @@ public class ListPaymentLinksEmbedded {
     /**
      * An array of payment link objects.
      */
-    public ListPaymentLinksEmbedded withPaymentLinks(List<PaymentLinks> paymentLinks) {
+    public ListPaymentLinksEmbedded withPaymentLinks(List<PaymentLinkResponse> paymentLinks) {
         Utils.checkNotNull(paymentLinks, "paymentLinks");
         this.paymentLinks = Optional.ofNullable(paymentLinks);
         return this;
@@ -62,7 +63,7 @@ public class ListPaymentLinksEmbedded {
     /**
      * An array of payment link objects.
      */
-    public ListPaymentLinksEmbedded withPaymentLinks(Optional<? extends List<PaymentLinks>> paymentLinks) {
+    public ListPaymentLinksEmbedded withPaymentLinks(Optional<? extends List<PaymentLinkResponse>> paymentLinks) {
         Utils.checkNotNull(paymentLinks, "paymentLinks");
         this.paymentLinks = paymentLinks;
         return this;
@@ -96,7 +97,7 @@ public class ListPaymentLinksEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<PaymentLinks>> paymentLinks = Optional.empty();
+        private Optional<? extends List<PaymentLinkResponse>> paymentLinks = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -106,7 +107,7 @@ public class ListPaymentLinksEmbedded {
         /**
          * An array of payment link objects.
          */
-        public Builder paymentLinks(List<PaymentLinks> paymentLinks) {
+        public Builder paymentLinks(List<PaymentLinkResponse> paymentLinks) {
             Utils.checkNotNull(paymentLinks, "paymentLinks");
             this.paymentLinks = Optional.ofNullable(paymentLinks);
             return this;
@@ -115,7 +116,7 @@ public class ListPaymentLinksEmbedded {
         /**
          * An array of payment link objects.
          */
-        public Builder paymentLinks(Optional<? extends List<PaymentLinks>> paymentLinks) {
+        public Builder paymentLinks(Optional<? extends List<PaymentLinkResponse>> paymentLinks) {
             Utils.checkNotNull(paymentLinks, "paymentLinks");
             this.paymentLinks = paymentLinks;
             return this;

@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.GetOnboardingStatusResponseBody;
+import com.mollie.mollie.models.components.EntityOnboardingStatus;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class GetOnboardingStatusResponse implements AsyncResponse {
     /**
      * The onboarding status object of the current organization.
      */
-    private Optional<? extends GetOnboardingStatusResponseBody> object;
+    private Optional<? extends EntityOnboardingStatus> entityOnboardingStatus;
 
     @JsonCreator
     public GetOnboardingStatusResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends GetOnboardingStatusResponseBody> object) {
+            Optional<? extends EntityOnboardingStatus> entityOnboardingStatus) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityOnboardingStatus, "entityOnboardingStatus");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityOnboardingStatus = entityOnboardingStatus;
     }
     
     public GetOnboardingStatusResponse(
@@ -91,8 +91,8 @@ public class GetOnboardingStatusResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetOnboardingStatusResponseBody> object() {
-        return (Optional<GetOnboardingStatusResponseBody>) object;
+    public Optional<EntityOnboardingStatus> entityOnboardingStatus() {
+        return (Optional<EntityOnboardingStatus>) entityOnboardingStatus;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class GetOnboardingStatusResponse implements AsyncResponse {
     /**
      * The onboarding status object of the current organization.
      */
-    public GetOnboardingStatusResponse withObject(GetOnboardingStatusResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetOnboardingStatusResponse withEntityOnboardingStatus(EntityOnboardingStatus entityOnboardingStatus) {
+        Utils.checkNotNull(entityOnboardingStatus, "entityOnboardingStatus");
+        this.entityOnboardingStatus = Optional.ofNullable(entityOnboardingStatus);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class GetOnboardingStatusResponse implements AsyncResponse {
     /**
      * The onboarding status object of the current organization.
      */
-    public GetOnboardingStatusResponse withObject(Optional<? extends GetOnboardingStatusResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetOnboardingStatusResponse withEntityOnboardingStatus(Optional<? extends EntityOnboardingStatus> entityOnboardingStatus) {
+        Utils.checkNotNull(entityOnboardingStatus, "entityOnboardingStatus");
+        this.entityOnboardingStatus = entityOnboardingStatus;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class GetOnboardingStatusResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityOnboardingStatus, other.entityOnboardingStatus);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityOnboardingStatus);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class GetOnboardingStatusResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityOnboardingStatus", entityOnboardingStatus);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class GetOnboardingStatusResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends GetOnboardingStatusResponseBody> object = Optional.empty();
+        private Optional<? extends EntityOnboardingStatus> entityOnboardingStatus = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class GetOnboardingStatusResponse implements AsyncResponse {
         /**
          * The onboarding status object of the current organization.
          */
-        public Builder object(GetOnboardingStatusResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityOnboardingStatus(EntityOnboardingStatus entityOnboardingStatus) {
+            Utils.checkNotNull(entityOnboardingStatus, "entityOnboardingStatus");
+            this.entityOnboardingStatus = Optional.ofNullable(entityOnboardingStatus);
             return this;
         }
 
         /**
          * The onboarding status object of the current organization.
          */
-        public Builder object(Optional<? extends GetOnboardingStatusResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityOnboardingStatus(Optional<? extends EntityOnboardingStatus> entityOnboardingStatus) {
+            Utils.checkNotNull(entityOnboardingStatus, "entityOnboardingStatus");
+            this.entityOnboardingStatus = entityOnboardingStatus;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class GetOnboardingStatusResponse implements AsyncResponse {
 
             return new GetOnboardingStatusResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityOnboardingStatus);
         }
 
     }

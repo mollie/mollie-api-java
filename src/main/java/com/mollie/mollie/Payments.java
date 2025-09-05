@@ -5,23 +5,20 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CancelPaymentRequest;
 import com.mollie.mollie.models.operations.CancelPaymentRequestBody;
 import com.mollie.mollie.models.operations.CancelPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CancelPaymentResponse;
 import com.mollie.mollie.models.operations.CreatePaymentRequest;
-import com.mollie.mollie.models.operations.CreatePaymentRequestBody;
 import com.mollie.mollie.models.operations.CreatePaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
-import com.mollie.mollie.models.operations.GetPaymentQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetPaymentRequest;
 import com.mollie.mollie.models.operations.GetPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.GetPaymentResponse;
-import com.mollie.mollie.models.operations.Include;
 import com.mollie.mollie.models.operations.ListPaymentsRequest;
 import com.mollie.mollie.models.operations.ListPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.ListPaymentsResponse;
-import com.mollie.mollie.models.operations.QueryParamInclude;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequest;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBody;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBuilder;
@@ -124,19 +121,19 @@ public class Payments {
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param requestBody 
+     * @param paymentRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreatePaymentResponse create(
-            JsonNullable<? extends Include> include, Optional<? extends CreatePaymentRequestBody> requestBody,
+            JsonNullable<String> include, Optional<? extends PaymentRequest> paymentRequest,
             Optional<Options> options) throws Exception {
         CreatePaymentRequest request =
             CreatePaymentRequest
                 .builder()
                 .include(include)
-                .requestBody(requestBody)
+                .paymentRequest(paymentRequest)
                 .build();
         RequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
               = new CreatePayment.Sync(sdkConfiguration, options);
@@ -221,8 +218,8 @@ public class Payments {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param embed This endpoint allows embedding related API items by appending the
-     *         following values via the `embed` query string parameter.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     *         parameter.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -233,8 +230,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public GetPaymentResponse get(
-            String paymentId, JsonNullable<? extends QueryParamInclude> include,
-            JsonNullable<? extends GetPaymentQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
+            String paymentId, JsonNullable<String> include,
+            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetPaymentRequest request =
             GetPaymentRequest

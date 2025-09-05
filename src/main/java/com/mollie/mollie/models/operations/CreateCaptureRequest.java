@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityCapture;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -22,16 +23,16 @@ public class CreateCaptureRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends CreateCaptureRequestBody> requestBody;
+    private Optional<? extends EntityCapture> entityCapture;
 
     @JsonCreator
     public CreateCaptureRequest(
             String paymentId,
-            Optional<? extends CreateCaptureRequestBody> requestBody) {
+            Optional<? extends EntityCapture> entityCapture) {
         Utils.checkNotNull(paymentId, "paymentId");
-        Utils.checkNotNull(requestBody, "requestBody");
+        Utils.checkNotNull(entityCapture, "entityCapture");
         this.paymentId = paymentId;
-        this.requestBody = requestBody;
+        this.entityCapture = entityCapture;
     }
     
     public CreateCaptureRequest(
@@ -49,8 +50,8 @@ public class CreateCaptureRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCaptureRequestBody> requestBody() {
-        return (Optional<CreateCaptureRequestBody>) requestBody;
+    public Optional<EntityCapture> entityCapture() {
+        return (Optional<EntityCapture>) entityCapture;
     }
 
     public static Builder builder() {
@@ -67,16 +68,16 @@ public class CreateCaptureRequest {
         return this;
     }
 
-    public CreateCaptureRequest withRequestBody(CreateCaptureRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
+    public CreateCaptureRequest withEntityCapture(EntityCapture entityCapture) {
+        Utils.checkNotNull(entityCapture, "entityCapture");
+        this.entityCapture = Optional.ofNullable(entityCapture);
         return this;
     }
 
 
-    public CreateCaptureRequest withRequestBody(Optional<? extends CreateCaptureRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreateCaptureRequest withEntityCapture(Optional<? extends EntityCapture> entityCapture) {
+        Utils.checkNotNull(entityCapture, "entityCapture");
+        this.entityCapture = entityCapture;
         return this;
     }
 
@@ -91,20 +92,20 @@ public class CreateCaptureRequest {
         CreateCaptureRequest other = (CreateCaptureRequest) o;
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.entityCapture, other.entityCapture);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, requestBody);
+            paymentId, entityCapture);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateCaptureRequest.class,
                 "paymentId", paymentId,
-                "requestBody", requestBody);
+                "entityCapture", entityCapture);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,7 +113,7 @@ public class CreateCaptureRequest {
 
         private String paymentId;
 
-        private Optional<? extends CreateCaptureRequestBody> requestBody = Optional.empty();
+        private Optional<? extends EntityCapture> entityCapture = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -129,22 +130,22 @@ public class CreateCaptureRequest {
         }
 
 
-        public Builder requestBody(CreateCaptureRequestBody requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
+        public Builder entityCapture(EntityCapture entityCapture) {
+            Utils.checkNotNull(entityCapture, "entityCapture");
+            this.entityCapture = Optional.ofNullable(entityCapture);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends CreateCaptureRequestBody> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder entityCapture(Optional<? extends EntityCapture> entityCapture) {
+            Utils.checkNotNull(entityCapture, "entityCapture");
+            this.entityCapture = entityCapture;
             return this;
         }
 
         public CreateCaptureRequest build() {
 
             return new CreateCaptureRequest(
-                paymentId, requestBody);
+                paymentId, entityCapture);
         }
 
     }

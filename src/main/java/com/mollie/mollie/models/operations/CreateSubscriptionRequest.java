@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.SubscriptionRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -22,16 +23,16 @@ public class CreateSubscriptionRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends CreateSubscriptionRequestBody> requestBody;
+    private Optional<? extends SubscriptionRequest> subscriptionRequest;
 
     @JsonCreator
     public CreateSubscriptionRequest(
             String customerId,
-            Optional<? extends CreateSubscriptionRequestBody> requestBody) {
+            Optional<? extends SubscriptionRequest> subscriptionRequest) {
         Utils.checkNotNull(customerId, "customerId");
-        Utils.checkNotNull(requestBody, "requestBody");
+        Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
         this.customerId = customerId;
-        this.requestBody = requestBody;
+        this.subscriptionRequest = subscriptionRequest;
     }
     
     public CreateSubscriptionRequest(
@@ -49,8 +50,8 @@ public class CreateSubscriptionRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateSubscriptionRequestBody> requestBody() {
-        return (Optional<CreateSubscriptionRequestBody>) requestBody;
+    public Optional<SubscriptionRequest> subscriptionRequest() {
+        return (Optional<SubscriptionRequest>) subscriptionRequest;
     }
 
     public static Builder builder() {
@@ -67,16 +68,16 @@ public class CreateSubscriptionRequest {
         return this;
     }
 
-    public CreateSubscriptionRequest withRequestBody(CreateSubscriptionRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
+    public CreateSubscriptionRequest withSubscriptionRequest(SubscriptionRequest subscriptionRequest) {
+        Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
+        this.subscriptionRequest = Optional.ofNullable(subscriptionRequest);
         return this;
     }
 
 
-    public CreateSubscriptionRequest withRequestBody(Optional<? extends CreateSubscriptionRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreateSubscriptionRequest withSubscriptionRequest(Optional<? extends SubscriptionRequest> subscriptionRequest) {
+        Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
+        this.subscriptionRequest = subscriptionRequest;
         return this;
     }
 
@@ -91,20 +92,20 @@ public class CreateSubscriptionRequest {
         CreateSubscriptionRequest other = (CreateSubscriptionRequest) o;
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.subscriptionRequest, other.subscriptionRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, requestBody);
+            customerId, subscriptionRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateSubscriptionRequest.class,
                 "customerId", customerId,
-                "requestBody", requestBody);
+                "subscriptionRequest", subscriptionRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,7 +113,7 @@ public class CreateSubscriptionRequest {
 
         private String customerId;
 
-        private Optional<? extends CreateSubscriptionRequestBody> requestBody = Optional.empty();
+        private Optional<? extends SubscriptionRequest> subscriptionRequest = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -129,22 +130,22 @@ public class CreateSubscriptionRequest {
         }
 
 
-        public Builder requestBody(CreateSubscriptionRequestBody requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
+        public Builder subscriptionRequest(SubscriptionRequest subscriptionRequest) {
+            Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
+            this.subscriptionRequest = Optional.ofNullable(subscriptionRequest);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends CreateSubscriptionRequestBody> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder subscriptionRequest(Optional<? extends SubscriptionRequest> subscriptionRequest) {
+            Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
+            this.subscriptionRequest = subscriptionRequest;
             return this;
         }
 
         public CreateSubscriptionRequest build() {
 
             return new CreateSubscriptionRequest(
-                customerId, requestBody);
+                customerId, subscriptionRequest);
         }
 
     }

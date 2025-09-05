@@ -21,7 +21,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListSalesInvoicesRequestBuilder {
 
-    private Optional<String> from = Optional.empty();
+    private JsonNullable<String> from = JsonNullable.undefined();
     private JsonNullable<Long> limit = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -30,14 +30,14 @@ public class ListSalesInvoicesRequestBuilder {
     public ListSalesInvoicesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-                
+
     public ListSalesInvoicesRequestBuilder from(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
 
-    public ListSalesInvoicesRequestBuilder from(Optional<String> from) {
+    public ListSalesInvoicesRequestBuilder from(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;

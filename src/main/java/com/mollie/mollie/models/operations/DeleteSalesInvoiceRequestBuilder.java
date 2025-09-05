@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
 import com.mollie.mollie.operations.DeleteSalesInvoice;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class DeleteSalesInvoiceRequestBuilder {
 
     private String id;
-    private Optional<? extends DeleteSalesInvoiceRequestBody> requestBody = Optional.empty();
+    private Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -31,15 +32,15 @@ public class DeleteSalesInvoiceRequestBuilder {
         return this;
     }
                 
-    public DeleteSalesInvoiceRequestBuilder requestBody(DeleteSalesInvoiceRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
+    public DeleteSalesInvoiceRequestBuilder deleteValuesSalesInvoice(DeleteValuesSalesInvoice deleteValuesSalesInvoice) {
+        Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
+        this.deleteValuesSalesInvoice = Optional.of(deleteValuesSalesInvoice);
         return this;
     }
 
-    public DeleteSalesInvoiceRequestBuilder requestBody(Optional<? extends DeleteSalesInvoiceRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public DeleteSalesInvoiceRequestBuilder deleteValuesSalesInvoice(Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice) {
+        Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
+        this.deleteValuesSalesInvoice = deleteValuesSalesInvoice;
         return this;
     }
                 
@@ -59,7 +60,7 @@ public class DeleteSalesInvoiceRequestBuilder {
     private DeleteSalesInvoiceRequest buildRequest() {
 
         DeleteSalesInvoiceRequest request = new DeleteSalesInvoiceRequest(id,
-            requestBody);
+            deleteValuesSalesInvoice);
 
         return request;
     }

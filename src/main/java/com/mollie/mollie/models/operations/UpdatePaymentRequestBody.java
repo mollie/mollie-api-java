@@ -8,6 +8,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Locale;
+import com.mollie.mollie.models.components.Metadata;
+import com.mollie.mollie.models.components.Method;
+import com.mollie.mollie.models.components.PaymentAddress;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -77,7 +81,7 @@ public class UpdatePaymentRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends UpdatePaymentMetadata> metadata;
+    private JsonNullable<? extends Metadata> metadata;
 
     /**
      * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
@@ -90,14 +94,14 @@ public class UpdatePaymentRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<? extends UpdatePaymentMethod> method;
+    private JsonNullable<? extends Method> method;
 
     /**
      * Allows you to preset the language to be used.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private Optional<? extends UpdatePaymentLocale> locale;
+    private Optional<? extends Locale> locale;
 
     /**
      * The date by which the payment should be completed in `YYYY-MM-DD` format
@@ -155,12 +159,12 @@ public class UpdatePaymentRequestBody {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
-    private Optional<? extends UpdatePaymentBillingAddress> billingAddress;
+    private Optional<? extends PaymentAddress> billingAddress;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
-    private Optional<? extends UpdatePaymentShippingAddress> shippingAddress;
+    private Optional<? extends PaymentAddress> shippingAddress;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -173,15 +177,15 @@ public class UpdatePaymentRequestBody {
             @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
-            @JsonProperty("metadata") JsonNullable<? extends UpdatePaymentMetadata> metadata,
-            @JsonProperty("method") JsonNullable<? extends UpdatePaymentMethod> method,
-            @JsonProperty("locale") Optional<? extends UpdatePaymentLocale> locale,
+            @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
+            @JsonProperty("method") JsonNullable<? extends Method> method,
+            @JsonProperty("locale") Optional<? extends Locale> locale,
             @JsonProperty("dueDate") Optional<String> dueDate,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
             @JsonProperty("issuer") JsonNullable<String> issuer,
-            @JsonProperty("billingAddress") Optional<? extends UpdatePaymentBillingAddress> billingAddress,
-            @JsonProperty("shippingAddress") Optional<? extends UpdatePaymentShippingAddress> shippingAddress,
+            @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
             @JsonProperty("billingEmail") Optional<String> billingEmail) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -284,8 +288,8 @@ public class UpdatePaymentRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<UpdatePaymentMetadata> metadata() {
-        return (JsonNullable<UpdatePaymentMetadata>) metadata;
+    public JsonNullable<Metadata> metadata() {
+        return (JsonNullable<Metadata>) metadata;
     }
 
     /**
@@ -299,8 +303,8 @@ public class UpdatePaymentRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<UpdatePaymentMethod> method() {
-        return (JsonNullable<UpdatePaymentMethod>) method;
+    public JsonNullable<Method> method() {
+        return (JsonNullable<Method>) method;
     }
 
     /**
@@ -308,8 +312,8 @@ public class UpdatePaymentRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentLocale> locale() {
-        return (Optional<UpdatePaymentLocale>) locale;
+    public Optional<Locale> locale() {
+        return (Optional<Locale>) locale;
     }
 
     /**
@@ -371,14 +375,14 @@ public class UpdatePaymentRequestBody {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentBillingAddress> billingAddress() {
-        return (Optional<UpdatePaymentBillingAddress>) billingAddress;
+    public Optional<PaymentAddress> billingAddress() {
+        return (Optional<PaymentAddress>) billingAddress;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentShippingAddress> shippingAddress() {
-        return (Optional<UpdatePaymentShippingAddress>) shippingAddress;
+    public Optional<PaymentAddress> shippingAddress() {
+        return (Optional<PaymentAddress>) shippingAddress;
     }
 
     @JsonIgnore
@@ -518,7 +522,7 @@ public class UpdatePaymentRequestBody {
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
-    public UpdatePaymentRequestBody withMetadata(UpdatePaymentMetadata metadata) {
+    public UpdatePaymentRequestBody withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
@@ -528,7 +532,7 @@ public class UpdatePaymentRequestBody {
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
-    public UpdatePaymentRequestBody withMetadata(JsonNullable<? extends UpdatePaymentMetadata> metadata) {
+    public UpdatePaymentRequestBody withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -543,7 +547,7 @@ public class UpdatePaymentRequestBody {
      * but will only show the methods specified in the array. For example, you can use this functionality to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
-    public UpdatePaymentRequestBody withMethod(UpdatePaymentMethod method) {
+    public UpdatePaymentRequestBody withMethod(Method method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -558,7 +562,7 @@ public class UpdatePaymentRequestBody {
      * but will only show the methods specified in the array. For example, you can use this functionality to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
-    public UpdatePaymentRequestBody withMethod(JsonNullable<? extends UpdatePaymentMethod> method) {
+    public UpdatePaymentRequestBody withMethod(JsonNullable<? extends Method> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -567,7 +571,7 @@ public class UpdatePaymentRequestBody {
     /**
      * Allows you to preset the language to be used.
      */
-    public UpdatePaymentRequestBody withLocale(UpdatePaymentLocale locale) {
+    public UpdatePaymentRequestBody withLocale(Locale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = Optional.ofNullable(locale);
         return this;
@@ -577,7 +581,7 @@ public class UpdatePaymentRequestBody {
     /**
      * Allows you to preset the language to be used.
      */
-    public UpdatePaymentRequestBody withLocale(Optional<? extends UpdatePaymentLocale> locale) {
+    public UpdatePaymentRequestBody withLocale(Optional<? extends Locale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -706,27 +710,27 @@ public class UpdatePaymentRequestBody {
         return this;
     }
 
-    public UpdatePaymentRequestBody withBillingAddress(UpdatePaymentBillingAddress billingAddress) {
+    public UpdatePaymentRequestBody withBillingAddress(PaymentAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
         return this;
     }
 
 
-    public UpdatePaymentRequestBody withBillingAddress(Optional<? extends UpdatePaymentBillingAddress> billingAddress) {
+    public UpdatePaymentRequestBody withBillingAddress(Optional<? extends PaymentAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
         return this;
     }
 
-    public UpdatePaymentRequestBody withShippingAddress(UpdatePaymentShippingAddress shippingAddress) {
+    public UpdatePaymentRequestBody withShippingAddress(PaymentAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
 
 
-    public UpdatePaymentRequestBody withShippingAddress(Optional<? extends UpdatePaymentShippingAddress> shippingAddress) {
+    public UpdatePaymentRequestBody withShippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = shippingAddress;
         return this;
@@ -811,11 +815,11 @@ public class UpdatePaymentRequestBody {
 
         private JsonNullable<String> webhookUrl = JsonNullable.undefined();
 
-        private JsonNullable<? extends UpdatePaymentMetadata> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<? extends UpdatePaymentMethod> method = JsonNullable.undefined();
+        private JsonNullable<? extends Method> method = JsonNullable.undefined();
 
-        private Optional<? extends UpdatePaymentLocale> locale = Optional.empty();
+        private Optional<? extends Locale> locale = Optional.empty();
 
         private Optional<String> dueDate = Optional.empty();
 
@@ -825,9 +829,9 @@ public class UpdatePaymentRequestBody {
 
         private JsonNullable<String> issuer = JsonNullable.undefined();
 
-        private Optional<? extends UpdatePaymentBillingAddress> billingAddress = Optional.empty();
+        private Optional<? extends PaymentAddress> billingAddress = Optional.empty();
 
-        private Optional<? extends UpdatePaymentShippingAddress> shippingAddress = Optional.empty();
+        private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
 
         private Optional<String> billingEmail = Optional.empty();
 
@@ -966,7 +970,7 @@ public class UpdatePaymentRequestBody {
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
          * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
-        public Builder metadata(UpdatePaymentMetadata metadata) {
+        public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
@@ -976,7 +980,7 @@ public class UpdatePaymentRequestBody {
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
          * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
-        public Builder metadata(JsonNullable<? extends UpdatePaymentMetadata> metadata) {
+        public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -992,7 +996,7 @@ public class UpdatePaymentRequestBody {
          * but will only show the methods specified in the array. For example, you can use this functionality to only show
          * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          */
-        public Builder method(UpdatePaymentMethod method) {
+        public Builder method(Method method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -1007,7 +1011,7 @@ public class UpdatePaymentRequestBody {
          * but will only show the methods specified in the array. For example, you can use this functionality to only show
          * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          */
-        public Builder method(JsonNullable<? extends UpdatePaymentMethod> method) {
+        public Builder method(JsonNullable<? extends Method> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -1017,7 +1021,7 @@ public class UpdatePaymentRequestBody {
         /**
          * Allows you to preset the language to be used.
          */
-        public Builder locale(UpdatePaymentLocale locale) {
+        public Builder locale(Locale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = Optional.ofNullable(locale);
             return this;
@@ -1026,7 +1030,7 @@ public class UpdatePaymentRequestBody {
         /**
          * Allows you to preset the language to be used.
          */
-        public Builder locale(Optional<? extends UpdatePaymentLocale> locale) {
+        public Builder locale(Optional<? extends Locale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -1159,26 +1163,26 @@ public class UpdatePaymentRequestBody {
         }
 
 
-        public Builder billingAddress(UpdatePaymentBillingAddress billingAddress) {
+        public Builder billingAddress(PaymentAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
             return this;
         }
 
-        public Builder billingAddress(Optional<? extends UpdatePaymentBillingAddress> billingAddress) {
+        public Builder billingAddress(Optional<? extends PaymentAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = billingAddress;
             return this;
         }
 
 
-        public Builder shippingAddress(UpdatePaymentShippingAddress shippingAddress) {
+        public Builder shippingAddress(PaymentAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
             return this;
         }
 
-        public Builder shippingAddress(Optional<? extends UpdatePaymentShippingAddress> shippingAddress) {
+        public Builder shippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = shippingAddress;
             return this;

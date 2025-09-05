@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.EntityRefund;
 import com.mollie.mollie.operations.CreateRefund;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class CreateRefundRequestBuilder {
 
     private String paymentId;
-    private Optional<? extends CreateRefundRequestBody> requestBody = Optional.empty();
+    private Optional<? extends EntityRefund> entityRefund = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -31,15 +32,15 @@ public class CreateRefundRequestBuilder {
         return this;
     }
                 
-    public CreateRefundRequestBuilder requestBody(CreateRefundRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
+    public CreateRefundRequestBuilder entityRefund(EntityRefund entityRefund) {
+        Utils.checkNotNull(entityRefund, "entityRefund");
+        this.entityRefund = Optional.of(entityRefund);
         return this;
     }
 
-    public CreateRefundRequestBuilder requestBody(Optional<? extends CreateRefundRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreateRefundRequestBuilder entityRefund(Optional<? extends EntityRefund> entityRefund) {
+        Utils.checkNotNull(entityRefund, "entityRefund");
+        this.entityRefund = entityRefund;
         return this;
     }
                 
@@ -59,7 +60,7 @@ public class CreateRefundRequestBuilder {
     private CreateRefundRequest buildRequest() {
 
         CreateRefundRequest request = new CreateRefundRequest(paymentId,
-            requestBody);
+            entityRefund);
 
         return request;
     }

@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class GetCustomerRequestBuilder {
 
     private String customerId;
-    private JsonNullable<? extends GetCustomerQueryParamInclude> include = JsonNullable.undefined();
+    private JsonNullable<String> include = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -34,13 +34,13 @@ public class GetCustomerRequestBuilder {
         return this;
     }
 
-    public GetCustomerRequestBuilder include(GetCustomerQueryParamInclude include) {
+    public GetCustomerRequestBuilder include(String include) {
         Utils.checkNotNull(include, "include");
         this.include = JsonNullable.of(include);
         return this;
     }
 
-    public GetCustomerRequestBuilder include(JsonNullable<? extends GetCustomerQueryParamInclude> include) {
+    public GetCustomerRequestBuilder include(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
         this.include = include;
         return this;

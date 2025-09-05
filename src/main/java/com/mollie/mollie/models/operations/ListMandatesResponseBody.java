@@ -5,15 +5,12 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.ListLinks;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * ListMandatesResponseBody
@@ -28,37 +25,30 @@ public class ListMandatesResponseBody {
      * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
      * limit is 50 items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
-    private Optional<Long> count;
+    private long count;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
-    private Optional<? extends ListMandatesEmbedded> embedded;
+    private ListMandatesEmbedded embedded;
 
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListMandatesLinks> links;
+    private ListLinks links;
 
     @JsonCreator
     public ListMandatesResponseBody(
-            @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("_embedded") Optional<? extends ListMandatesEmbedded> embedded,
-            @JsonProperty("_links") Optional<? extends ListMandatesLinks> links) {
+            @JsonProperty("count") long count,
+            @JsonProperty("_embedded") ListMandatesEmbedded embedded,
+            @JsonProperty("_links") ListLinks links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
         this.count = count;
         this.embedded = embedded;
         this.links = links;
-    }
-    
-    public ListMandatesResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -69,23 +59,21 @@ public class ListMandatesResponseBody {
      * limit is 50 items.
      */
     @JsonIgnore
-    public Optional<Long> count() {
+    public long count() {
         return count;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMandatesEmbedded> embedded() {
-        return (Optional<ListMandatesEmbedded>) embedded;
+    public ListMandatesEmbedded embedded() {
+        return embedded;
     }
 
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListMandatesLinks> links() {
-        return (Optional<ListMandatesLinks>) links;
+    public ListLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -102,32 +90,11 @@ public class ListMandatesResponseBody {
      */
     public ListMandatesResponseBody withCount(long count) {
         Utils.checkNotNull(count, "count");
-        this.count = Optional.ofNullable(count);
-        return this;
-    }
-
-
-    /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-     * as well.
-     * 
-     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-     * limit is 50 items.
-     */
-    public ListMandatesResponseBody withCount(Optional<Long> count) {
-        Utils.checkNotNull(count, "count");
         this.count = count;
         return this;
     }
 
     public ListMandatesResponseBody withEmbedded(ListMandatesEmbedded embedded) {
-        Utils.checkNotNull(embedded, "embedded");
-        this.embedded = Optional.ofNullable(embedded);
-        return this;
-    }
-
-
-    public ListMandatesResponseBody withEmbedded(Optional<? extends ListMandatesEmbedded> embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
         return this;
@@ -136,17 +103,7 @@ public class ListMandatesResponseBody {
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    public ListMandatesResponseBody withLinks(ListMandatesLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-     */
-    public ListMandatesResponseBody withLinks(Optional<? extends ListMandatesLinks> links) {
+    public ListMandatesResponseBody withLinks(ListLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -184,11 +141,11 @@ public class ListMandatesResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Long> count = Optional.empty();
+        private Long count;
 
-        private Optional<? extends ListMandatesEmbedded> embedded = Optional.empty();
+        private ListMandatesEmbedded embedded;
 
-        private Optional<? extends ListMandatesLinks> links = Optional.empty();
+        private ListLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -204,31 +161,12 @@ public class ListMandatesResponseBody {
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");
-            this.count = Optional.ofNullable(count);
-            return this;
-        }
-
-        /**
-         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
-         * as well.
-         * 
-         * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
-         * limit is 50 items.
-         */
-        public Builder count(Optional<Long> count) {
-            Utils.checkNotNull(count, "count");
             this.count = count;
             return this;
         }
 
 
         public Builder embedded(ListMandatesEmbedded embedded) {
-            Utils.checkNotNull(embedded, "embedded");
-            this.embedded = Optional.ofNullable(embedded);
-            return this;
-        }
-
-        public Builder embedded(Optional<? extends ListMandatesEmbedded> embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = embedded;
             return this;
@@ -238,16 +176,7 @@ public class ListMandatesResponseBody {
         /**
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(ListMandatesLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ListMandatesLinks> links) {
+        public Builder links(ListLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

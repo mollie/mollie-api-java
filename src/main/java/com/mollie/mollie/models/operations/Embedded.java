@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.EntityBalance;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -23,11 +24,11 @@ public class Embedded {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances")
-    private Optional<? extends List<Balances>> balances;
+    private Optional<? extends List<EntityBalance>> balances;
 
     @JsonCreator
     public Embedded(
-            @JsonProperty("balances") Optional<? extends List<Balances>> balances) {
+            @JsonProperty("balances") Optional<? extends List<EntityBalance>> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
     }
@@ -42,8 +43,8 @@ public class Embedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Balances>> balances() {
-        return (Optional<List<Balances>>) balances;
+    public Optional<List<EntityBalance>> balances() {
+        return (Optional<List<EntityBalance>>) balances;
     }
 
     public static Builder builder() {
@@ -55,7 +56,7 @@ public class Embedded {
      * An array of balance objects. For a complete reference of
      * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
-    public Embedded withBalances(List<Balances> balances) {
+    public Embedded withBalances(List<EntityBalance> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = Optional.ofNullable(balances);
         return this;
@@ -66,7 +67,7 @@ public class Embedded {
      * An array of balance objects. For a complete reference of
      * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
-    public Embedded withBalances(Optional<? extends List<Balances>> balances) {
+    public Embedded withBalances(Optional<? extends List<EntityBalance>> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
@@ -100,7 +101,7 @@ public class Embedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<Balances>> balances = Optional.empty();
+        private Optional<? extends List<EntityBalance>> balances = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -111,7 +112,7 @@ public class Embedded {
          * An array of balance objects. For a complete reference of
          * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
          */
-        public Builder balances(List<Balances> balances) {
+        public Builder balances(List<EntityBalance> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = Optional.ofNullable(balances);
             return this;
@@ -121,7 +122,7 @@ public class Embedded {
          * An array of balance objects. For a complete reference of
          * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
          */
-        public Builder balances(Optional<? extends List<Balances>> balances) {
+        public Builder balances(Optional<? extends List<EntityBalance>> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
             return this;

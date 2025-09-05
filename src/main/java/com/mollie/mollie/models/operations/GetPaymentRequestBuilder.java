@@ -19,8 +19,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class GetPaymentRequestBuilder {
 
     private String paymentId;
-    private JsonNullable<? extends QueryParamInclude> include = JsonNullable.undefined();
-    private JsonNullable<? extends GetPaymentQueryParamEmbed> embed = JsonNullable.undefined();
+    private JsonNullable<String> include = JsonNullable.undefined();
+    private JsonNullable<String> embed = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -35,25 +35,25 @@ public class GetPaymentRequestBuilder {
         return this;
     }
 
-    public GetPaymentRequestBuilder include(QueryParamInclude include) {
+    public GetPaymentRequestBuilder include(String include) {
         Utils.checkNotNull(include, "include");
         this.include = JsonNullable.of(include);
         return this;
     }
 
-    public GetPaymentRequestBuilder include(JsonNullable<? extends QueryParamInclude> include) {
+    public GetPaymentRequestBuilder include(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
         this.include = include;
         return this;
     }
 
-    public GetPaymentRequestBuilder embed(GetPaymentQueryParamEmbed embed) {
+    public GetPaymentRequestBuilder embed(String embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = JsonNullable.of(embed);
         return this;
     }
 
-    public GetPaymentRequestBuilder embed(JsonNullable<? extends GetPaymentQueryParamEmbed> embed) {
+    public GetPaymentRequestBuilder embed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;

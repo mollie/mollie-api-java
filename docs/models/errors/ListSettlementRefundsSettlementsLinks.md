@@ -1,8 +1,0 @@
-# ListSettlementRefundsSettlementsLinks
-
-
-## Fields
-
-| Field                                                                                                                 | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           |
-| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| `documentation`                                                                                                       | [ListSettlementRefundsSettlementsDocumentation](../../models/errors/ListSettlementRefundsSettlementsDocumentation.md) | :heavy_check_mark:                                                                                                    | The URL to the generic Mollie API error handling guide.                                                               |

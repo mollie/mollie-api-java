@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.MandateResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class CreateMandateResponse implements Response {
     /**
      * The newly created mandate object.
      */
-    private Optional<? extends CreateMandateResponseBody> object;
+    private Optional<? extends MandateResponse> mandateResponse;
 
     @JsonCreator
     public CreateMandateResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CreateMandateResponseBody> object) {
+            Optional<? extends MandateResponse> mandateResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(mandateResponse, "mandateResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.mandateResponse = mandateResponse;
     }
     
     public CreateMandateResponse(
@@ -90,8 +91,8 @@ public class CreateMandateResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateMandateResponseBody> object() {
-        return (Optional<CreateMandateResponseBody>) object;
+    public Optional<MandateResponse> mandateResponse() {
+        return (Optional<MandateResponse>) mandateResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class CreateMandateResponse implements Response {
     /**
      * The newly created mandate object.
      */
-    public CreateMandateResponse withObject(CreateMandateResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CreateMandateResponse withMandateResponse(MandateResponse mandateResponse) {
+        Utils.checkNotNull(mandateResponse, "mandateResponse");
+        this.mandateResponse = Optional.ofNullable(mandateResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class CreateMandateResponse implements Response {
     /**
      * The newly created mandate object.
      */
-    public CreateMandateResponse withObject(Optional<? extends CreateMandateResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CreateMandateResponse withMandateResponse(Optional<? extends MandateResponse> mandateResponse) {
+        Utils.checkNotNull(mandateResponse, "mandateResponse");
+        this.mandateResponse = mandateResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class CreateMandateResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.mandateResponse, other.mandateResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            mandateResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class CreateMandateResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "mandateResponse", mandateResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class CreateMandateResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CreateMandateResponseBody> object = Optional.empty();
+        private Optional<? extends MandateResponse> mandateResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class CreateMandateResponse implements Response {
         /**
          * The newly created mandate object.
          */
-        public Builder object(CreateMandateResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder mandateResponse(MandateResponse mandateResponse) {
+            Utils.checkNotNull(mandateResponse, "mandateResponse");
+            this.mandateResponse = Optional.ofNullable(mandateResponse);
             return this;
         }
 
         /**
          * The newly created mandate object.
          */
-        public Builder object(Optional<? extends CreateMandateResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder mandateResponse(Optional<? extends MandateResponse> mandateResponse) {
+            Utils.checkNotNull(mandateResponse, "mandateResponse");
+            this.mandateResponse = mandateResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class CreateMandateResponse implements Response {
 
             return new CreateMandateResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                mandateResponse);
         }
 
     }

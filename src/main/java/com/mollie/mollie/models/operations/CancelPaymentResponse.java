@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.PaymentResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class CancelPaymentResponse implements Response {
     /**
      * The canceled payment object.
      */
-    private Optional<? extends CancelPaymentResponseBody> object;
+    private Optional<? extends PaymentResponse> paymentResponse;
 
     @JsonCreator
     public CancelPaymentResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CancelPaymentResponseBody> object) {
+            Optional<? extends PaymentResponse> paymentResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(paymentResponse, "paymentResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.paymentResponse = paymentResponse;
     }
     
     public CancelPaymentResponse(
@@ -90,8 +91,8 @@ public class CancelPaymentResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CancelPaymentResponseBody> object() {
-        return (Optional<CancelPaymentResponseBody>) object;
+    public Optional<PaymentResponse> paymentResponse() {
+        return (Optional<PaymentResponse>) paymentResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class CancelPaymentResponse implements Response {
     /**
      * The canceled payment object.
      */
-    public CancelPaymentResponse withObject(CancelPaymentResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CancelPaymentResponse withPaymentResponse(PaymentResponse paymentResponse) {
+        Utils.checkNotNull(paymentResponse, "paymentResponse");
+        this.paymentResponse = Optional.ofNullable(paymentResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class CancelPaymentResponse implements Response {
     /**
      * The canceled payment object.
      */
-    public CancelPaymentResponse withObject(Optional<? extends CancelPaymentResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CancelPaymentResponse withPaymentResponse(Optional<? extends PaymentResponse> paymentResponse) {
+        Utils.checkNotNull(paymentResponse, "paymentResponse");
+        this.paymentResponse = paymentResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class CancelPaymentResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.paymentResponse, other.paymentResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            paymentResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class CancelPaymentResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "paymentResponse", paymentResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class CancelPaymentResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CancelPaymentResponseBody> object = Optional.empty();
+        private Optional<? extends PaymentResponse> paymentResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class CancelPaymentResponse implements Response {
         /**
          * The canceled payment object.
          */
-        public Builder object(CancelPaymentResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder paymentResponse(PaymentResponse paymentResponse) {
+            Utils.checkNotNull(paymentResponse, "paymentResponse");
+            this.paymentResponse = Optional.ofNullable(paymentResponse);
             return this;
         }
 
         /**
          * The canceled payment object.
          */
-        public Builder object(Optional<? extends CancelPaymentResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder paymentResponse(Optional<? extends PaymentResponse> paymentResponse) {
+            Utils.checkNotNull(paymentResponse, "paymentResponse");
+            this.paymentResponse = paymentResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class CancelPaymentResponse implements Response {
 
             return new CancelPaymentResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                paymentResponse);
         }
 
     }

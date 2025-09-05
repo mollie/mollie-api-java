@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -35,14 +36,14 @@ public class ListAllRefundsRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListAllRefundsQueryParamSort> sort;
+    private JsonNullable<? extends ListSort> sort;
 
     /**
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private Optional<? extends ListAllRefundsQueryParamEmbed> embed;
+    private JsonNullable<String> embed;
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to
@@ -68,8 +69,8 @@ public class ListAllRefundsRequest {
     public ListAllRefundsRequest(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListAllRefundsQueryParamSort> sort,
-            Optional<? extends ListAllRefundsQueryParamEmbed> embed,
+            JsonNullable<? extends ListSort> sort,
+            JsonNullable<String> embed,
             Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(from, "from");
@@ -88,7 +89,7 @@ public class ListAllRefundsRequest {
     
     public ListAllRefundsRequest() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -114,18 +115,17 @@ public class ListAllRefundsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListAllRefundsQueryParamSort> sort() {
-        return (JsonNullable<ListAllRefundsQueryParamSort>) sort;
+    public JsonNullable<ListSort> sort() {
+        return (JsonNullable<ListSort>) sort;
     }
 
     /**
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllRefundsQueryParamEmbed> embed() {
-        return (Optional<ListAllRefundsQueryParamEmbed>) embed;
+    public JsonNullable<String> embed() {
+        return embed;
     }
 
     /**
@@ -200,7 +200,7 @@ public class ListAllRefundsRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListAllRefundsRequest withSort(ListAllRefundsQueryParamSort sort) {
+    public ListAllRefundsRequest withSort(ListSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
@@ -210,7 +210,7 @@ public class ListAllRefundsRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListAllRefundsRequest withSort(JsonNullable<? extends ListAllRefundsQueryParamSort> sort) {
+    public ListAllRefundsRequest withSort(JsonNullable<? extends ListSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -220,18 +220,17 @@ public class ListAllRefundsRequest {
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    public ListAllRefundsRequest withEmbed(ListAllRefundsQueryParamEmbed embed) {
+    public ListAllRefundsRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
-        this.embed = Optional.ofNullable(embed);
+        this.embed = JsonNullable.of(embed);
         return this;
     }
-
 
     /**
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    public ListAllRefundsRequest withEmbed(Optional<? extends ListAllRefundsQueryParamEmbed> embed) {
+    public ListAllRefundsRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -333,9 +332,9 @@ public class ListAllRefundsRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListAllRefundsQueryParamSort> sort = JsonNullable.undefined();
+        private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
 
-        private Optional<? extends ListAllRefundsQueryParamEmbed> embed = Optional.empty();
+        private JsonNullable<String> embed = JsonNullable.undefined();
 
         private Optional<String> profileId = Optional.empty();
 
@@ -390,7 +389,7 @@ public class ListAllRefundsRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListAllRefundsQueryParamSort sort) {
+        public Builder sort(ListSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
@@ -400,7 +399,7 @@ public class ListAllRefundsRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListAllRefundsQueryParamSort> sort) {
+        public Builder sort(JsonNullable<? extends ListSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -411,9 +410,9 @@ public class ListAllRefundsRequest {
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string
          * parameter.
          */
-        public Builder embed(ListAllRefundsQueryParamEmbed embed) {
+        public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
-            this.embed = Optional.ofNullable(embed);
+            this.embed = JsonNullable.of(embed);
             return this;
         }
 
@@ -421,7 +420,7 @@ public class ListAllRefundsRequest {
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string
          * parameter.
          */
-        public Builder embed(Optional<? extends ListAllRefundsQueryParamEmbed> embed) {
+        public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;

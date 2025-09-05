@@ -27,14 +27,14 @@ Once registered, customers will also appear in your Mollie dashboard.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreateCustomerResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws CreateCustomerResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -42,10 +42,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerRequestBody req = CreateCustomerRequestBody.builder()
+        EntityCustomer req = EntityCustomer.builder()
+                .id("cst_5B8cwPMGnU")
                 .name("John Doe")
                 .email("example@email.com")
-                .locale(CreateCustomerLocale.EN_US)
+                .locale(LocaleResponse.EN_US)
                 .testmode(false)
                 .build();
 
@@ -53,7 +54,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.customerResponse().isPresent()) {
             // handle response
         }
     }
@@ -62,9 +63,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `request`                                                                         | [CreateCustomerRequestBody](../../models/operations/CreateCustomerRequestBody.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+| Parameter                                               | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `request`                                               | [EntityCustomer](../../models/shared/EntityCustomer.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
 
 ### Response
 
@@ -72,10 +73,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| models/errors/CreateCustomerResponseBody | 404                                      | application/hal+json                     |
-| models/errors/APIException               | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -90,16 +91,15 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListCustomersCustomersResponseBody;
-import com.mollie.mollie.models.errors.ListCustomersResponseBody;
-import com.mollie.mollie.models.operations.ListCustomersQueryParamSort;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListCustomersResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListCustomersResponseBody, ListCustomersCustomersResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -110,7 +110,7 @@ public class Application {
         ListCustomersResponse res = sdk.customers().list()
                 .from("cst_5B8cwPMGnU")
                 .limit(50L)
-                .sort(ListCustomersQueryParamSort.DESC)
+                .sort(ListSort.DESC)
                 .testmode(false)
                 .call();
 
@@ -127,7 +127,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                         |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<Long>*                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
-| `sort`                                                                                                                                                                                                                                                                                                                                                                                 | [JsonNullable\<ListCustomersQueryParamSort>](../../models/operations/ListCustomersQueryParamSort.md)                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from<br/>newest to oldest.                                                                                                                                                                                                                                             | desc                                                                                                                                                                                                                                                                                                                                                                                   |
+| `sort`                                                                                                                                                                                                                                                                                                                                                                                 | [JsonNullable\<ListSort>](../../models/components/ListSort.md)                                                                                                                                                                                                                                                                                                                         | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from<br/>newest to oldest.                                                                                                                                                                                                                                             | desc                                                                                                                                                                                                                                                                                                                                                                                   |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -136,11 +136,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| models/errors/ListCustomersResponseBody          | 400                                              | application/hal+json                             |
-| models/errors/ListCustomersCustomersResponseBody | 404                                              | application/hal+json                             |
-| models/errors/APIException                       | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -154,14 +153,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetCustomerResponseBody;
-import com.mollie.mollie.models.operations.GetCustomerQueryParamInclude;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetCustomerResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetCustomerResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -171,7 +169,7 @@ public class Application {
 
         GetCustomerResponse res = sdk.customers().get()
                 .customerId("cst_5B8cwPMGnU")
-                .include(GetCustomerQueryParamInclude.EVENTS)
+                .include("events")
                 .testmode(false)
                 .call();
 
@@ -187,7 +185,7 @@ public class Application {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `customerId`                                                                                                                                                                                                                                                                                                                                                                           | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related customer.                                                                                                                                                                                                                                                                                                                                                | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                         |
-| `include`                                                                                                                                                                                                                                                                                                                                                                              | [JsonNullable\<GetCustomerQueryParamInclude>](../../models/operations/GetCustomerQueryParamInclude.md)                                                                                                                                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   | events                                                                                                                                                                                                                                                                                                                                                                                 |
+| `include`                                                                                                                                                                                                                                                                                                                                                                              | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -196,10 +194,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| models/errors/GetCustomerResponseBody | 404                                   | application/hal+json                  |
-| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## update
 
@@ -214,14 +212,14 @@ For an in-depth explanation of each parameter, refer to the [Create customer](cr
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.UpdateCustomerResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdateCustomerResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws UpdateCustomerResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -231,15 +229,16 @@ public class Application {
 
         UpdateCustomerResponse res = sdk.customers().update()
                 .customerId("cst_5B8cwPMGnU")
-                .requestBody(UpdateCustomerRequestBody.builder()
+                .entityCustomer(EntityCustomer.builder()
+                    .id("cst_5B8cwPMGnU")
                     .name("John Doe")
                     .email("example@email.com")
-                    .locale(UpdateCustomerLocale.EN_US)
+                    .locale(LocaleResponse.EN_US)
                     .testmode(false)
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.customerResponse().isPresent()) {
             // handle response
         }
     }
@@ -248,10 +247,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                 | *String*                                                                                     | :heavy_check_mark:                                                                           | Provide the ID of the related customer.                                                      | cst_5B8cwPMGnU                                                                               |
-| `requestBody`                                                                                | [Optional\<UpdateCustomerRequestBody>](../../models/operations/UpdateCustomerRequestBody.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |                                                                                              |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `customerId`                                                           | *String*                                                               | :heavy_check_mark:                                                     | Provide the ID of the related customer.                                | cst_5B8cwPMGnU                                                         |
+| `entityCustomer`                                                       | [Optional\<EntityCustomer>](../../models/components/EntityCustomer.md) | :heavy_minus_sign:                                                     | N/A                                                                    |                                                                        |
 
 ### Response
 
@@ -259,10 +258,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| models/errors/UpdateCustomerResponseBody | 404                                      | application/hal+json                     |
-| models/errors/APIException               | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## delete
 
@@ -276,14 +275,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.DeleteCustomerResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.DeleteCustomerRequestBody;
 import com.mollie.mollie.models.operations.DeleteCustomerResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws DeleteCustomerResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -318,10 +317,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| models/errors/DeleteCustomerResponseBody | 404                                      | application/hal+json                     |
-| models/errors/APIException               | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## createPayment
 
@@ -344,17 +343,16 @@ parameter predefined.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreateCustomerPaymentCustomersResponseBody;
-import com.mollie.mollie.models.errors.CreateCustomerPaymentResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws CreateCustomerPaymentResponseBody, CreateCustomerPaymentCustomersResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -364,9 +362,30 @@ public class Application {
 
         CreateCustomerPaymentResponse res = sdk.customers().createPayment()
                 .customerId("cst_5B8cwPMGnU")
-                .requestBody(CreateCustomerPaymentRequestBody.builder()
+                .paymentRequest(PaymentRequest.builder()
+                    .id("tr_5B8cwPMGnU")
                     .description("Chess Board")
-                    .amount(CreateCustomerPaymentAmount.builder()
+                    .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .amountRefunded(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .amountRemaining(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .amountCaptured(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .amountChargedBack(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .settlementAmount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
@@ -374,38 +393,38 @@ public class Application {
                     .cancelUrl("https://example.org/cancel")
                     .webhookUrl("https://example.org/webhooks")
                     .lines(List.of(
-                        CreateCustomerPaymentLines.builder()
+                        PaymentRequestLines.builder()
                             .description("LEGO 4440 Forest Police Station")
                             .quantity(1L)
-                            .unitPrice(CreateCustomerPaymentUnitPrice.builder()
+                            .unitPrice(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .totalAmount(CreateCustomerPaymentTotalAmount.builder()
+                            .totalAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .type(CreateCustomerPaymentType.PHYSICAL)
+                            .type(PaymentRequestType.PHYSICAL)
                             .quantityUnit("pcs")
-                            .discountAmount(CreateCustomerPaymentDiscountAmount.builder()
+                            .discountAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .vatRate("21.00")
-                            .vatAmount(CreateCustomerPaymentVatAmount.builder()
+                            .vatAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .sku("9780241661628")
                             .categories(List.of(
-                                CreateCustomerPaymentCategories.MEAL,
-                                CreateCustomerPaymentCategories.ECO))
+                                PaymentRequestCategories.MEAL,
+                                PaymentRequestCategories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
-                            .recurring(CreateCustomerPaymentRecurring.builder()
+                            .recurring(RecurringLineItem.builder()
                                 .interval("... months")
                                 .description("Gym subscription")
-                                .amount(CreateCustomerPaymentCustomersAmount.builder()
+                                .amount(Amount.builder()
                                     .currency("EUR")
                                     .value("10.00")
                                     .build())
@@ -413,7 +432,7 @@ public class Application {
                                 .startDate("2024-12-12")
                                 .build())
                             .build()))
-                    .billingAddress(CreateCustomerPaymentBillingAddress.builder()
+                    .billingAddress(PaymentAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
@@ -427,7 +446,7 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .shippingAddress(CreateCustomerPaymentShippingAddress.builder()
+                    .shippingAddress(PaymentAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
@@ -441,70 +460,75 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .locale(CreateCustomerPaymentLocale.EN_US)
-                    .method(CreateCustomerPaymentMethod.IDEAL)
+                    .locale(Locale.EN_US)
+                    .method(Method.IDEAL)
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
-                    .captureMode(CreateCustomerPaymentCaptureMode.MANUAL)
+                    .captureMode(CaptureMode.MANUAL)
                     .captureDelay("8 hours")
-                    .applicationFee(CreateCustomerPaymentApplicationFee.builder()
-                        .amount(CreateCustomerPaymentCustomersRequestAmount.builder()
+                    .applicationFee(PaymentRequestApplicationFee.builder()
+                        .amount(Amount.builder()
                             .currency("EUR")
                             .value("10.00")
                             .build())
                         .description("10")
                         .build())
                     .routing(List.of(
-                        CreateCustomerPaymentRouting.builder()
-                            .amount(CreateCustomerPaymentCustomersRequestRequestBodyAmount.builder()
+                        EntityPaymentRoute.builder()
+                            .id("rt_5B8cwPMGnU")
+                            .amount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .destination(CreateCustomerPaymentDestination.builder()
-                                .type(CreateCustomerPaymentCustomersType.ORGANIZATION)
+                            .destination(EntityPaymentRouteDestination.builder()
+                                .type(EntityPaymentRouteType.ORGANIZATION)
                                 .organizationId("org_1234567")
                                 .build())
-                            .links(CreateCustomerPaymentLinks.builder()
-                                .self(CreateCustomerPaymentSelf.builder()
+                            .links(EntityPaymentRouteLinks.builder()
+                                .self(Url.builder()
                                     .href("https://...")
                                     .type("application/hal+json")
                                     .build())
-                                .payment(CreateCustomerPaymentPayment.builder()
+                                .payment(Url.builder()
                                     .href("https://...")
                                     .type("application/hal+json")
                                     .build())
                                 .build())
                             .releaseDate("2024-12-12")
                             .build(),
-                        CreateCustomerPaymentRouting.builder()
-                            .amount(CreateCustomerPaymentCustomersRequestRequestBodyAmount.builder()
+                        EntityPaymentRoute.builder()
+                            .id("rt_5B8cwPMGnU")
+                            .amount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .destination(CreateCustomerPaymentDestination.builder()
-                                .type(CreateCustomerPaymentCustomersType.ORGANIZATION)
+                            .destination(EntityPaymentRouteDestination.builder()
+                                .type(EntityPaymentRouteType.ORGANIZATION)
                                 .organizationId("org_1234567")
                                 .build())
-                            .links(CreateCustomerPaymentLinks.builder()
-                                .self(CreateCustomerPaymentSelf.builder()
+                            .links(EntityPaymentRouteLinks.builder()
+                                .self(Url.builder()
                                     .href("https://...")
                                     .type("application/hal+json")
                                     .build())
-                                .payment(CreateCustomerPaymentPayment.builder()
+                                .payment(Url.builder()
                                     .href("https://...")
                                     .type("application/hal+json")
                                     .build())
                                 .build())
                             .releaseDate("2024-12-12")
                             .build()))
-                    .sequenceType(CreateCustomerPaymentSequenceType.ONEOFF)
+                    .sequenceType(SequenceType.ONEOFF)
+                    .subscriptionId("sub_5B8cwPMGnU")
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
+                    .settlementId("stl_5B8cwPMGnU")
+                    .orderId("ord_5B8cwPMGnU")
                     .dueDate("2025-01-01")
                     .testmode(false)
                     .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
-                    .company(CreateCustomerPaymentCompany.builder()
+                    .company(Company.builder()
                         .registrationNumber("12345678")
                         .vatNumber("NL123456789B01")
                         .build())
@@ -518,7 +542,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.paymentResponse().isPresent()) {
             // handle response
         }
     }
@@ -527,10 +551,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                | Example                                                                                                    |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                               | *String*                                                                                                   | :heavy_check_mark:                                                                                         | Provide the ID of the related customer.                                                                    | cst_5B8cwPMGnU                                                                                             |
-| `requestBody`                                                                                              | [Optional\<CreateCustomerPaymentRequestBody>](../../models/operations/CreateCustomerPaymentRequestBody.md) | :heavy_minus_sign:                                                                                         | N/A                                                                                                        |                                                                                                            |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `customerId`                                                           | *String*                                                               | :heavy_check_mark:                                                     | Provide the ID of the related customer.                                | cst_5B8cwPMGnU                                                         |
+| `paymentRequest`                                                       | [Optional\<PaymentRequest>](../../models/components/PaymentRequest.md) | :heavy_minus_sign:                                                     | N/A                                                                    |                                                                        |
 
 ### Response
 
@@ -538,11 +562,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                                               | Status Code                                              | Content Type                                             |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| models/errors/CreateCustomerPaymentResponseBody          | 422                                                      | application/hal+json                                     |
-| models/errors/CreateCustomerPaymentCustomersResponseBody | 503                                                      | application/hal+json                                     |
-| models/errors/APIException                               | 4XX, 5XX                                                 | \*/\*                                                    |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 422                         | application/hal+json        |
+| models/errors/ErrorResponse | 503                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## listPayments
 
@@ -555,14 +579,16 @@ Retrieve all payments linked to the customer.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListCustomerPaymentsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListCustomerPaymentsRequest;
+import com.mollie.mollie.models.operations.ListCustomerPaymentsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListCustomerPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -574,7 +600,7 @@ public class Application {
                 .customerId("cst_5B8cwPMGnU")
                 .from("tr_5B8cwPMGnU")
                 .limit(50L)
-                .sort(ListCustomerPaymentsQueryParamSort.DESC)
+                .sort(ListSort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
@@ -602,7 +628,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| models/errors/ListCustomerPaymentsResponseBody | 400                                            | application/hal+json                           |
-| models/errors/APIException                     | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

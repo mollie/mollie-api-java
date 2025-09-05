@@ -10,21 +10,13 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class ListClientsRequest {
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
-     * 
-     * <p>* `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `organizations.read` scope.
-     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `onboarding.read` scope.
-     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *   Available for *oauth* partners with the `onboarding.read` scope.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private JsonNullable<String> embed;
@@ -34,7 +26,7 @@ public class ListClientsRequest {
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
-    private Optional<String> from;
+    private JsonNullable<String> from;
 
     /**
      * The maximum number of items to return. Defaults to 50 items.
@@ -45,7 +37,7 @@ public class ListClientsRequest {
     @JsonCreator
     public ListClientsRequest(
             JsonNullable<String> embed,
-            Optional<String> from,
+            JsonNullable<String> from,
             JsonNullable<Long> limit) {
         Utils.checkNotNull(embed, "embed");
         Utils.checkNotNull(from, "from");
@@ -56,19 +48,12 @@ public class ListClientsRequest {
     }
     
     public ListClientsRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
-     * 
-     * <p>* `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `organizations.read` scope.
-     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `onboarding.read` scope.
-     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *   Available for *oauth* partners with the `onboarding.read` scope.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     @JsonIgnore
     public JsonNullable<String> embed() {
@@ -80,7 +65,7 @@ public class ListClientsRequest {
      * result set.
      */
     @JsonIgnore
-    public Optional<String> from() {
+    public JsonNullable<String> from() {
         return from;
     }
 
@@ -98,15 +83,8 @@ public class ListClientsRequest {
 
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
-     * 
-     * <p>* `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `organizations.read` scope.
-     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `onboarding.read` scope.
-     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *   Available for *oauth* partners with the `onboarding.read` scope.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     public ListClientsRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
@@ -115,15 +93,8 @@ public class ListClientsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the
-     * following values via the `embed` query string parameter.
-     * 
-     * <p>* `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `organizations.read` scope.
-     * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *   partners with the `onboarding.read` scope.
-     * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *   Available for *oauth* partners with the `onboarding.read` scope.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     public ListClientsRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
@@ -137,16 +108,15 @@ public class ListClientsRequest {
      */
     public ListClientsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.ofNullable(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
-
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      * result set.
      */
-    public ListClientsRequest withFrom(Optional<String> from) {
+    public ListClientsRequest withFrom(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;
@@ -204,7 +174,7 @@ public class ListClientsRequest {
 
         private JsonNullable<String> embed = JsonNullable.undefined();
 
-        private Optional<String> from = Optional.empty();
+        private JsonNullable<String> from = JsonNullable.undefined();
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
@@ -214,15 +184,8 @@ public class ListClientsRequest {
 
 
         /**
-         * This endpoint allows embedding related API items by appending the
-         * following values via the `embed` query string parameter.
-         * 
-         * <p>* `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-         *   partners with the `organizations.read` scope.
-         * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-         *   partners with the `onboarding.read` scope.
-         * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-         *   Available for *oauth* partners with the `onboarding.read` scope.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
         public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
@@ -231,15 +194,8 @@ public class ListClientsRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the
-         * following values via the `embed` query string parameter.
-         * 
-         * <p>* `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-         *   partners with the `organizations.read` scope.
-         * * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-         *   partners with the `onboarding.read` scope.
-         * * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-         *   Available for *oauth* partners with the `onboarding.read` scope.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
         public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");
@@ -254,7 +210,7 @@ public class ListClientsRequest {
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
-            this.from = Optional.ofNullable(from);
+            this.from = JsonNullable.of(from);
             return this;
         }
 
@@ -262,7 +218,7 @@ public class ListClientsRequest {
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
          * result set.
          */
-        public Builder from(Optional<String> from) {
+        public Builder from(JsonNullable<String> from) {
             Utils.checkNotNull(from, "from");
             this.from = from;
             return this;

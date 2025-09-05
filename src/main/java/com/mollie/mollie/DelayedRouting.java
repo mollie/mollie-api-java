@@ -5,8 +5,8 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.components.RouteCreateRequest;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequest;
-import com.mollie.mollie.models.operations.PaymentCreateRouteRequestBody;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequestBuilder;
 import com.mollie.mollie.models.operations.PaymentCreateRouteResponse;
 import com.mollie.mollie.models.operations.PaymentListRoutesRequest;
@@ -73,19 +73,19 @@ public class DelayedRouting {
      * The routed amount is credited to the account of your customer.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @param requestBody 
+     * @param routeCreateRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PaymentCreateRouteResponse create(
-            String paymentId, Optional<? extends PaymentCreateRouteRequestBody> requestBody,
+            String paymentId, Optional<? extends RouteCreateRequest> routeCreateRequest,
             Optional<Options> options) throws Exception {
         PaymentCreateRouteRequest request =
             PaymentCreateRouteRequest
                 .builder()
                 .paymentId(paymentId)
-                .requestBody(requestBody)
+                .routeCreateRequest(routeCreateRequest)
                 .build();
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
               = new PaymentCreateRoute.Sync(sdkConfiguration, options);

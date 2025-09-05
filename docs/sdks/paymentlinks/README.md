@@ -25,16 +25,15 @@ complete the payment. A [payment](get-payment) will only be created once the cus
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreatePaymentLinkPaymentLinksResponseBody;
-import com.mollie.mollie.models.errors.CreatePaymentLinkResponseBody;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws CreatePaymentLinkResponseBody, CreatePaymentLinkPaymentLinksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -44,47 +43,48 @@ public class Application {
 
         CreatePaymentLinkRequestBody req = CreatePaymentLinkRequestBody.builder()
                 .description("Chess Board")
-                .amount(CreatePaymentLinkAmount.builder()
+                .id("pl_d9fQur83kFdhH8hIhaZfq")
+                .amount(AmountNullable.builder()
                     .currency("EUR")
                     .value("10.00")
                     .build())
-                .minimumAmount(MinimumAmount.builder()
+                .minimumAmount(AmountNullable.builder()
                     .currency("EUR")
                     .value("10.00")
                     .build())
                 .redirectUrl("https://webshop.example.org/payment-links/redirect/")
                 .webhookUrl("https://webshop.example.org/payment-links/webhook/")
                 .lines(List.of(
-                    CreatePaymentLinkLines.builder()
+                    PaymentLineItem.builder()
                         .description("LEGO 4440 Forest Police Station")
                         .quantity(1L)
-                        .unitPrice(CreatePaymentLinkUnitPrice.builder()
+                        .unitPrice(Amount.builder()
                             .currency("EUR")
                             .value("10.00")
                             .build())
-                        .totalAmount(CreatePaymentLinkTotalAmount.builder()
+                        .totalAmount(Amount.builder()
                             .currency("EUR")
                             .value("10.00")
                             .build())
-                        .type(CreatePaymentLinkType.PHYSICAL)
+                        .type(PaymentLineItemType.PHYSICAL)
                         .quantityUnit("pcs")
-                        .discountAmount(CreatePaymentLinkDiscountAmount.builder()
+                        .discountAmount(Amount.builder()
                             .currency("EUR")
                             .value("10.00")
                             .build())
                         .vatRate("21.00")
-                        .vatAmount(CreatePaymentLinkVatAmount.builder()
+                        .vatAmount(Amount.builder()
                             .currency("EUR")
                             .value("10.00")
                             .build())
                         .sku("9780241661628")
                         .categories(List.of(
-                            CreatePaymentLinkCategories.MEAL,
-                            CreatePaymentLinkCategories.ECO))
+                            PaymentLineItemCategories.MEAL,
+                            PaymentLineItemCategories.ECO))
                         .imageUrl("https://...")
                         .productUrl("https://...")
                         .build()))
-                .billingAddress(CreatePaymentLinkBillingAddress.builder()
+                .billingAddress(PaymentAddress.builder()
                     .title("Mr.")
                     .givenName("Piet")
                     .familyName("Mondriaan")
@@ -98,7 +98,7 @@ public class Application {
                     .region("Noord-Holland")
                     .country("NL")
                     .build())
-                .shippingAddress(CreatePaymentLinkShippingAddress.builder()
+                .shippingAddress(PaymentAddress.builder()
                     .title("Mr.")
                     .givenName("Piet")
                     .familyName("Mondriaan")
@@ -117,14 +117,14 @@ public class Application {
                 .expiresAt("2025-12-24T11:00:16+00:00")
                 .allowedMethods(List.of(
                     "ideal"))
-                .applicationFee(CreatePaymentLinkApplicationFee.builder()
-                    .amount(CreatePaymentLinkPaymentLinksAmount.builder()
+                .applicationFee(ApplicationFee.builder()
+                    .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
                     .description("Platform fee")
                     .build())
-                .sequenceType(CreatePaymentLinkSequenceType.ONEOFF)
+                .sequenceType(PaymentLinkSequenceType.ONEOFF)
                 .customerId("cst_XimFHuaEzd")
                 .testmode(false)
                 .build();
@@ -133,7 +133,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.paymentLinkResponse().isPresent()) {
             // handle response
         }
     }
@@ -152,11 +152,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                              | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| models/errors/CreatePaymentLinkResponseBody             | 404                                                     | application/hal+json                                    |
-| models/errors/CreatePaymentLinkPaymentLinksResponseBody | 422                                                     | application/hal+json                                    |
-| models/errors/APIException                              | 4XX, 5XX                                                | \*/\*                                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -172,13 +171,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListPaymentLinksResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListPaymentLinksResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListPaymentLinksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -213,10 +212,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                 | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| models/errors/ListPaymentLinksResponseBody | 400                                        | application/hal+json                       |
-| models/errors/APIException                 | 4XX, 5XX                                   | \*/\*                                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -230,13 +229,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetPaymentLinkResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetPaymentLinkResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetPaymentLinkResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -249,7 +248,7 @@ public class Application {
                 .testmode(false)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.paymentLinkResponse().isPresent()) {
             // handle response
         }
     }
@@ -269,10 +268,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| models/errors/GetPaymentLinkResponseBody | 404                                      | application/hal+json                     |
-| models/errors/APIException               | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## update
 
@@ -285,16 +284,16 @@ Certain details of an existing payment link can be updated.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.UpdatePaymentLinkPaymentLinksResponseBody;
-import com.mollie.mollie.models.errors.UpdatePaymentLinkResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdatePaymentLinkRequestBody;
+import com.mollie.mollie.models.operations.UpdatePaymentLinkResponse;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws UpdatePaymentLinkResponseBody, UpdatePaymentLinkPaymentLinksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -306,7 +305,7 @@ public class Application {
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
                 .requestBody(UpdatePaymentLinkRequestBody.builder()
                     .description("Chess Board")
-                    .minimumAmount(UpdatePaymentLinkMinimumAmount.builder()
+                    .minimumAmount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
@@ -314,36 +313,36 @@ public class Application {
                     .allowedMethods(List.of(
                         "ideal"))
                     .lines(List.of(
-                        UpdatePaymentLinkLines.builder()
+                        PaymentLineItem.builder()
                             .description("LEGO 4440 Forest Police Station")
                             .quantity(1L)
-                            .unitPrice(UpdatePaymentLinkUnitPrice.builder()
+                            .unitPrice(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .totalAmount(UpdatePaymentLinkTotalAmount.builder()
+                            .totalAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .type(UpdatePaymentLinkType.PHYSICAL)
+                            .type(PaymentLineItemType.PHYSICAL)
                             .quantityUnit("pcs")
-                            .discountAmount(UpdatePaymentLinkDiscountAmount.builder()
+                            .discountAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .vatRate("21.00")
-                            .vatAmount(UpdatePaymentLinkVatAmount.builder()
+                            .vatAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .sku("9780241661628")
                             .categories(List.of(
-                                UpdatePaymentLinkCategories.MEAL,
-                                UpdatePaymentLinkCategories.ECO))
+                                PaymentLineItemCategories.MEAL,
+                                PaymentLineItemCategories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .build()))
-                    .billingAddress(UpdatePaymentLinkBillingAddress.builder()
+                    .billingAddress(PaymentAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
@@ -357,7 +356,7 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .shippingAddress(UpdatePaymentLinkShippingAddress.builder()
+                    .shippingAddress(PaymentAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
@@ -375,7 +374,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.paymentLinkResponse().isPresent()) {
             // handle response
         }
     }
@@ -395,11 +394,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                              | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| models/errors/UpdatePaymentLinkResponseBody             | 404                                                     | application/hal+json                                    |
-| models/errors/UpdatePaymentLinkPaymentLinksResponseBody | 422                                                     | application/hal+json                                    |
-| models/errors/APIException                              | 4XX, 5XX                                                | \*/\*                                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## delete
 
@@ -419,15 +417,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.DeletePaymentLinkPaymentLinksResponseBody;
-import com.mollie.mollie.models.errors.DeletePaymentLinkResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.DeletePaymentLinkResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws DeletePaymentLinkResponseBody, DeletePaymentLinkPaymentLinksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -462,11 +459,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                              | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| models/errors/DeletePaymentLinkResponseBody             | 404                                                     | application/hal+json                                    |
-| models/errors/DeletePaymentLinkPaymentLinksResponseBody | 422                                                     | application/hal+json                                    |
-| models/errors/APIException                              | 4XX, 5XX                                                | \*/\*                                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## listPayments
 
@@ -481,14 +477,16 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetPaymentLinkPaymentsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsRequest;
+import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetPaymentLinkPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -500,7 +498,7 @@ public class Application {
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
                 .from("tr_5B8cwPMGnU")
                 .limit(50L)
-                .sort(GetPaymentLinkPaymentsQueryParamSort.DESC)
+                .sort(ListSort.DESC)
                 .testmode(false)
                 .build();
 
@@ -527,7 +525,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| models/errors/GetPaymentLinkPaymentsResponseBody | 400                                              | application/hal+json                             |
-| models/errors/APIException                       | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

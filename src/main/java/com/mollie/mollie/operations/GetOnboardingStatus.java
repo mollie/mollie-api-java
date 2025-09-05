@@ -9,9 +9,9 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
+import com.mollie.mollie.models.components.EntityOnboardingStatus;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.operations.GetOnboardingStatusResponse;
-import com.mollie.mollie.models.operations.GetOnboardingStatusResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -181,11 +181,11 @@ public class GetOnboardingStatus {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    GetOnboardingStatusResponseBody out = Utils.mapper().readValue(
+                    EntityOnboardingStatus out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                    res.withObject(out);
+                    res.withEntityOnboardingStatus(out);
                     return res;
                 } else {
                     throw new APIException(
@@ -286,11 +286,11 @@ public class GetOnboardingStatus {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
                         try {
-                            GetOnboardingStatusResponseBody out = Utils.mapper().readValue(
+                            EntityOnboardingStatus out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            res.withObject(out);
+                            res.withEntityOnboardingStatus(out);
                             return res;
                         } catch (Exception e) {
                             throw new RuntimeException(e);

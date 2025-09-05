@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntitySettlement;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class GetSettlementResponse implements Response {
     /**
      * The settlement object.
      */
-    private Optional<? extends GetSettlementResponseBody> object;
+    private Optional<? extends EntitySettlement> entitySettlement;
 
     @JsonCreator
     public GetSettlementResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetSettlementResponseBody> object) {
+            Optional<? extends EntitySettlement> entitySettlement) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entitySettlement, "entitySettlement");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entitySettlement = entitySettlement;
     }
     
     public GetSettlementResponse(
@@ -90,8 +91,8 @@ public class GetSettlementResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetSettlementResponseBody> object() {
-        return (Optional<GetSettlementResponseBody>) object;
+    public Optional<EntitySettlement> entitySettlement() {
+        return (Optional<EntitySettlement>) entitySettlement;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class GetSettlementResponse implements Response {
     /**
      * The settlement object.
      */
-    public GetSettlementResponse withObject(GetSettlementResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetSettlementResponse withEntitySettlement(EntitySettlement entitySettlement) {
+        Utils.checkNotNull(entitySettlement, "entitySettlement");
+        this.entitySettlement = Optional.ofNullable(entitySettlement);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class GetSettlementResponse implements Response {
     /**
      * The settlement object.
      */
-    public GetSettlementResponse withObject(Optional<? extends GetSettlementResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetSettlementResponse withEntitySettlement(Optional<? extends EntitySettlement> entitySettlement) {
+        Utils.checkNotNull(entitySettlement, "entitySettlement");
+        this.entitySettlement = entitySettlement;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class GetSettlementResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entitySettlement, other.entitySettlement);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entitySettlement);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class GetSettlementResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entitySettlement", entitySettlement);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class GetSettlementResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetSettlementResponseBody> object = Optional.empty();
+        private Optional<? extends EntitySettlement> entitySettlement = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class GetSettlementResponse implements Response {
         /**
          * The settlement object.
          */
-        public Builder object(GetSettlementResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entitySettlement(EntitySettlement entitySettlement) {
+            Utils.checkNotNull(entitySettlement, "entitySettlement");
+            this.entitySettlement = Optional.ofNullable(entitySettlement);
             return this;
         }
 
         /**
          * The settlement object.
          */
-        public Builder object(Optional<? extends GetSettlementResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entitySettlement(Optional<? extends EntitySettlement> entitySettlement) {
+            Utils.checkNotNull(entitySettlement, "entitySettlement");
+            this.entitySettlement = entitySettlement;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class GetSettlementResponse implements Response {
 
             return new GetSettlementResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entitySettlement);
         }
 
     }

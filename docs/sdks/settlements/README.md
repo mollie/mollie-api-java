@@ -27,15 +27,16 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Currencies;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListSettlementsResponseBody;
-import com.mollie.mollie.models.errors.ListSettlementsSettlementsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementsRequest;
+import com.mollie.mollie.models.operations.ListSettlementsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListSettlementsResponseBody, ListSettlementsSettlementsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -75,11 +76,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                           | Status Code                                          | Content Type                                         |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| models/errors/ListSettlementsResponseBody            | 400                                                  | application/hal+json                                 |
-| models/errors/ListSettlementsSettlementsResponseBody | 404                                                  | application/hal+json                                 |
-| models/errors/APIException                           | 4XX, 5XX                                             | \*/\*                                                |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -104,13 +104,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetSettlementResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetSettlementResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetSettlementResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -122,7 +122,7 @@ public class Application {
                 .id("stl_jDk30akdN")
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entitySettlement().isPresent()) {
             // handle response
         }
     }
@@ -131,9 +131,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. | stl_jDk30akdN                                                     |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. |
 
 ### Response
 
@@ -141,10 +141,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| models/errors/GetSettlementResponseBody | 404                                     | application/hal+json                    |
-| models/errors/APIException              | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## getOpen
 
@@ -181,7 +181,7 @@ public class Application {
         GetOpenSettlementResponse res = sdk.settlements().getOpen()
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entitySettlement().isPresent()) {
             // handle response
         }
     }
@@ -232,7 +232,7 @@ public class Application {
         GetNextSettlementResponse res = sdk.settlements().getNext()
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entitySettlement().isPresent()) {
             // handle response
         }
     }
@@ -265,14 +265,16 @@ For capture-based payment methods such as Klarna, the payments are not listed he
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListSettlementPaymentsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsRequest;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListSettlementPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -284,7 +286,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("tr_5B8cwPMGnU")
                 .limit(50L)
-                .sort(Sort.DESC)
+                .sort(ListSort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
@@ -312,10 +314,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                       | Status Code                                      | Content Type                                     |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| models/errors/ListSettlementPaymentsResponseBody | 400                                              | application/hal+json                             |
-| models/errors/APIException                       | 4XX, 5XX                                         | \*/\*                                            |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## listCaptures
 
@@ -331,14 +333,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListSettlementCapturesResponseBody;
-import com.mollie.mollie.models.errors.ListSettlementCapturesSettlementsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementCapturesRequest;
+import com.mollie.mollie.models.operations.ListSettlementCapturesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListSettlementCapturesResponseBody, ListSettlementCapturesSettlementsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -350,7 +352,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
                 .limit(50L)
-                .embed(Embed.PAYMENT)
+                .embed("payment")
                 .testmode(false)
                 .build();
 
@@ -377,11 +379,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                                  | Status Code                                                 | Content Type                                                |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| models/errors/ListSettlementCapturesResponseBody            | 400                                                         | application/hal+json                                        |
-| models/errors/ListSettlementCapturesSettlementsResponseBody | 404                                                         | application/hal+json                                        |
-| models/errors/APIException                                  | 4XX, 5XX                                                    | \*/\*                                                       |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## listRefunds
 
@@ -397,14 +398,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListSettlementRefundsResponseBody;
-import com.mollie.mollie.models.errors.ListSettlementRefundsSettlementsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementRefundsRequest;
+import com.mollie.mollie.models.operations.ListSettlementRefundsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListSettlementRefundsResponseBody, ListSettlementRefundsSettlementsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -416,7 +417,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("re_5B8cwPMGnU")
                 .limit(50L)
-                .embed(QueryParamEmbed.PAYMENT)
+                .embed("payment")
                 .testmode(false)
                 .build();
 
@@ -443,11 +444,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                                 | Status Code                                                | Content Type                                               |
-| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| models/errors/ListSettlementRefundsResponseBody            | 400                                                        | application/hal+json                                       |
-| models/errors/ListSettlementRefundsSettlementsResponseBody | 404                                                        | application/hal+json                                       |
-| models/errors/APIException                                 | 4XX, 5XX                                                   | \*/\*                                                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## listChargebacks
 
@@ -463,14 +463,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListSettlementChargebacksResponseBody;
-import com.mollie.mollie.models.errors.ListSettlementChargebacksSettlementsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementChargebacksRequest;
+import com.mollie.mollie.models.operations.ListSettlementChargebacksResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListSettlementChargebacksResponseBody, ListSettlementChargebacksSettlementsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -482,7 +482,7 @@ public class Application {
                 .settlementId("stl_jDk30akdN")
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
                 .limit(50L)
-                .embed(ListSettlementChargebacksQueryParamEmbed.PAYMENT)
+                .embed("payment")
                 .testmode(false)
                 .build();
 
@@ -509,8 +509,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                                     | Status Code                                                    | Content Type                                                   |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| models/errors/ListSettlementChargebacksResponseBody            | 400                                                            | application/hal+json                                           |
-| models/errors/ListSettlementChargebacksSettlementsResponseBody | 404                                                            | application/hal+json                                           |
-| models/errors/APIException                                     | 4XX, 5XX                                                       | \*/\*                                                          |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

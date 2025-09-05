@@ -5,30 +5,28 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.components.EntityCustomer;
+import com.mollie.mollie.models.components.ListSort;
+import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
-import com.mollie.mollie.models.operations.CreateCustomerPaymentRequestBody;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
-import com.mollie.mollie.models.operations.CreateCustomerRequestBody;
 import com.mollie.mollie.models.operations.CreateCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCustomerResponse;
 import com.mollie.mollie.models.operations.DeleteCustomerRequest;
 import com.mollie.mollie.models.operations.DeleteCustomerRequestBody;
 import com.mollie.mollie.models.operations.DeleteCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.DeleteCustomerResponse;
-import com.mollie.mollie.models.operations.GetCustomerQueryParamInclude;
 import com.mollie.mollie.models.operations.GetCustomerRequest;
 import com.mollie.mollie.models.operations.GetCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.GetCustomerResponse;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsRequest;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsResponse;
-import com.mollie.mollie.models.operations.ListCustomersQueryParamSort;
 import com.mollie.mollie.models.operations.ListCustomersRequest;
 import com.mollie.mollie.models.operations.ListCustomersRequestBuilder;
 import com.mollie.mollie.models.operations.ListCustomersResponse;
 import com.mollie.mollie.models.operations.UpdateCustomerRequest;
-import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
 import com.mollie.mollie.models.operations.UpdateCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateCustomerResponse;
 import com.mollie.mollie.operations.CreateCustomer;
@@ -107,8 +105,8 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateCustomerResponse create(Optional<? extends CreateCustomerRequestBody> request, Optional<Options> options) throws Exception {
-        RequestOperation<Optional<? extends CreateCustomerRequestBody>, CreateCustomerResponse> operation
+    public CreateCustomerResponse create(Optional<? extends EntityCustomer> request, Optional<Options> options) throws Exception {
+        RequestOperation<Optional<? extends EntityCustomer>, CreateCustomerResponse> operation
               = new CreateCustomer.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -151,8 +149,7 @@ public class Customers {
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     *         newest to oldest.
+     * @param sort 
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -164,7 +161,7 @@ public class Customers {
      */
     public ListCustomersResponse list(
             Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<? extends ListCustomersQueryParamSort> sort, JsonNullable<Boolean> testmode,
+            JsonNullable<? extends ListSort> sort, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         ListCustomersRequest request =
             ListCustomersRequest
@@ -221,7 +218,7 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public GetCustomerResponse get(
-            String customerId, JsonNullable<? extends GetCustomerQueryParamInclude> include,
+            String customerId, JsonNullable<String> include,
             JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
         GetCustomerRequest request =
             GetCustomerRequest
@@ -271,19 +268,19 @@ public class Customers {
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @param requestBody 
+     * @param entityCustomer 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateCustomerResponse update(
-            String customerId, Optional<? extends UpdateCustomerRequestBody> requestBody,
+            String customerId, Optional<? extends EntityCustomer> entityCustomer,
             Optional<Options> options) throws Exception {
         UpdateCustomerRequest request =
             UpdateCustomerRequest
                 .builder()
                 .customerId(customerId)
-                .requestBody(requestBody)
+                .entityCustomer(entityCustomer)
                 .build();
         RequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
               = new UpdateCustomer.Sync(sdkConfiguration, options);
@@ -399,19 +396,19 @@ public class Customers {
      * parameter predefined.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @param requestBody 
+     * @param paymentRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateCustomerPaymentResponse createPayment(
-            String customerId, Optional<? extends CreateCustomerPaymentRequestBody> requestBody,
+            String customerId, Optional<? extends PaymentRequest> paymentRequest,
             Optional<Options> options) throws Exception {
         CreateCustomerPaymentRequest request =
             CreateCustomerPaymentRequest
                 .builder()
                 .customerId(customerId)
-                .requestBody(requestBody)
+                .paymentRequest(paymentRequest)
                 .build();
         RequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation
               = new CreateCustomerPayment.Sync(sdkConfiguration, options);

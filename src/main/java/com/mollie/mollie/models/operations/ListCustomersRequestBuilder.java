@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.operations.ListCustomers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -21,7 +22,7 @@ public class ListCustomersRequestBuilder {
 
     private Optional<String> from = Optional.empty();
     private JsonNullable<Long> limit = JsonNullable.undefined();
-    private JsonNullable<? extends ListCustomersQueryParamSort> sort = JsonNullable.undefined();
+    private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -54,13 +55,13 @@ public class ListCustomersRequestBuilder {
         return this;
     }
 
-    public ListCustomersRequestBuilder sort(ListCustomersQueryParamSort sort) {
+    public ListCustomersRequestBuilder sort(ListSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
     }
 
-    public ListCustomersRequestBuilder sort(JsonNullable<? extends ListCustomersQueryParamSort> sort) {
+    public ListCustomersRequestBuilder sort(JsonNullable<? extends ListSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;

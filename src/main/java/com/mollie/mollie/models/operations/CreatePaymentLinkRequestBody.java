@@ -8,6 +8,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.AmountNullable;
+import com.mollie.mollie.models.components.PaymentAddress;
+import com.mollie.mollie.models.components.PaymentLineItem;
+import com.mollie.mollie.models.components.PaymentLinkSequenceType;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -19,6 +23,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class CreatePaymentLinkRequestBody {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("id")
+    private Optional<String> id;
+
     /**
      * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
      * customer's bank or card statement when possible.
@@ -27,20 +36,18 @@ public class CreatePaymentLinkRequestBody {
     private String description;
 
     /**
-     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
-     * amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private JsonNullable<? extends CreatePaymentLinkAmount> amount;
+    private JsonNullable<? extends AmountNullable> amount;
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
-     * customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("minimumAmount")
-    private JsonNullable<? extends MinimumAmount> minimumAmount;
+    private JsonNullable<? extends AmountNullable> minimumAmount;
 
     /**
      * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
@@ -74,31 +81,17 @@ public class CreatePaymentLinkRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
-    private JsonNullable<? extends List<CreatePaymentLinkLines>> lines;
+    private JsonNullable<? extends List<PaymentLineItem>> lines;
 
-    /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
-    private Optional<? extends CreatePaymentLinkBillingAddress> billingAddress;
+    private Optional<? extends PaymentAddress> billingAddress;
 
-    /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
-    private Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress;
+    private Optional<? extends PaymentAddress> shippingAddress;
 
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -151,19 +144,12 @@ public class CreatePaymentLinkRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applicationFee")
-    private Optional<? extends CreatePaymentLinkApplicationFee> applicationFee;
+    private Optional<? extends ApplicationFee> applicationFee;
 
-    /**
-     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
-     * 
-     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
-     * 
-     * <p>The mandate ID can be retrieved by making a call to the
-     * [Payment Link Payments Endpoint](get-payment-link-payments).
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sequenceType")
-    private JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType;
+    private Optional<? extends PaymentLinkSequenceType> sequenceType;
 
     /**
      * **Only relevant when `sequenceType` is set to `first`**
@@ -189,22 +175,24 @@ public class CreatePaymentLinkRequestBody {
 
     @JsonCreator
     public CreatePaymentLinkRequestBody(
+            @JsonProperty("id") Optional<String> id,
             @JsonProperty("description") String description,
-            @JsonProperty("amount") JsonNullable<? extends CreatePaymentLinkAmount> amount,
-            @JsonProperty("minimumAmount") JsonNullable<? extends MinimumAmount> minimumAmount,
+            @JsonProperty("amount") JsonNullable<? extends AmountNullable> amount,
+            @JsonProperty("minimumAmount") JsonNullable<? extends AmountNullable> minimumAmount,
             @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
-            @JsonProperty("lines") JsonNullable<? extends List<CreatePaymentLinkLines>> lines,
-            @JsonProperty("billingAddress") Optional<? extends CreatePaymentLinkBillingAddress> billingAddress,
-            @JsonProperty("shippingAddress") Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress,
+            @JsonProperty("lines") JsonNullable<? extends List<PaymentLineItem>> lines,
+            @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
             @JsonProperty("profileId") JsonNullable<String> profileId,
             @JsonProperty("reusable") JsonNullable<Boolean> reusable,
             @JsonProperty("expiresAt") JsonNullable<String> expiresAt,
             @JsonProperty("allowedMethods") JsonNullable<? extends List<String>> allowedMethods,
-            @JsonProperty("applicationFee") Optional<? extends CreatePaymentLinkApplicationFee> applicationFee,
-            @JsonProperty("sequenceType") JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType,
+            @JsonProperty("applicationFee") Optional<? extends ApplicationFee> applicationFee,
+            @JsonProperty("sequenceType") Optional<? extends PaymentLinkSequenceType> sequenceType,
             @JsonProperty("customerId") JsonNullable<String> customerId,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
+        Utils.checkNotNull(id, "id");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -221,6 +209,7 @@ public class CreatePaymentLinkRequestBody {
         Utils.checkNotNull(sequenceType, "sequenceType");
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(testmode, "testmode");
+        this.id = id;
         this.description = description;
         this.amount = amount;
         this.minimumAmount = minimumAmount;
@@ -241,12 +230,17 @@ public class CreatePaymentLinkRequestBody {
     
     public CreatePaymentLinkRequestBody(
             String description) {
-        this(description, JsonNullable.undefined(), JsonNullable.undefined(),
+        this(Optional.empty(), description, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined());
+    }
+
+    @JsonIgnore
+    public Optional<String> id() {
+        return id;
     }
 
     /**
@@ -259,23 +253,21 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
-     * amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CreatePaymentLinkAmount> amount() {
-        return (JsonNullable<CreatePaymentLinkAmount>) amount;
+    public JsonNullable<AmountNullable> amount() {
+        return (JsonNullable<AmountNullable>) amount;
     }
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
-     * customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<MinimumAmount> minimumAmount() {
-        return (JsonNullable<MinimumAmount>) minimumAmount;
+    public JsonNullable<AmountNullable> minimumAmount() {
+        return (JsonNullable<AmountNullable>) minimumAmount;
     }
 
     /**
@@ -312,36 +304,20 @@ public class CreatePaymentLinkRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<CreatePaymentLinkLines>> lines() {
-        return (JsonNullable<List<CreatePaymentLinkLines>>) lines;
+    public JsonNullable<List<PaymentLineItem>> lines() {
+        return (JsonNullable<List<PaymentLineItem>>) lines;
     }
 
-    /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentLinkBillingAddress> billingAddress() {
-        return (Optional<CreatePaymentLinkBillingAddress>) billingAddress;
+    public Optional<PaymentAddress> billingAddress() {
+        return (Optional<PaymentAddress>) billingAddress;
     }
 
-    /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentLinkShippingAddress> shippingAddress() {
-        return (Optional<CreatePaymentLinkShippingAddress>) shippingAddress;
+    public Optional<PaymentAddress> shippingAddress() {
+        return (Optional<PaymentAddress>) shippingAddress;
     }
 
     /**
@@ -400,22 +376,14 @@ public class CreatePaymentLinkRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentLinkApplicationFee> applicationFee() {
-        return (Optional<CreatePaymentLinkApplicationFee>) applicationFee;
+    public Optional<ApplicationFee> applicationFee() {
+        return (Optional<ApplicationFee>) applicationFee;
     }
 
-    /**
-     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
-     * 
-     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
-     * 
-     * <p>The mandate ID can be retrieved by making a call to the
-     * [Payment Link Payments Endpoint](get-payment-link-payments).
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CreatePaymentLinkSequenceType> sequenceType() {
-        return (JsonNullable<CreatePaymentLinkSequenceType>) sequenceType;
+    public Optional<PaymentLinkSequenceType> sequenceType() {
+        return (Optional<PaymentLinkSequenceType>) sequenceType;
     }
 
     /**
@@ -447,6 +415,19 @@ public class CreatePaymentLinkRequestBody {
     }
 
 
+    public CreatePaymentLinkRequestBody withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+
+    public CreatePaymentLinkRequestBody withId(Optional<String> id) {
+        Utils.checkNotNull(id, "id");
+        this.id = id;
+        return this;
+    }
+
     /**
      * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
      * customer's bank or card statement when possible.
@@ -458,40 +439,36 @@ public class CreatePaymentLinkRequestBody {
     }
 
     /**
-     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
-     * amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public CreatePaymentLinkRequestBody withAmount(CreatePaymentLinkAmount amount) {
+    public CreatePaymentLinkRequestBody withAmount(AmountNullable amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = JsonNullable.of(amount);
         return this;
     }
 
     /**
-     * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
-     * amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public CreatePaymentLinkRequestBody withAmount(JsonNullable<? extends CreatePaymentLinkAmount> amount) {
+    public CreatePaymentLinkRequestBody withAmount(JsonNullable<? extends AmountNullable> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
-     * customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public CreatePaymentLinkRequestBody withMinimumAmount(MinimumAmount minimumAmount) {
+    public CreatePaymentLinkRequestBody withMinimumAmount(AmountNullable minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         this.minimumAmount = JsonNullable.of(minimumAmount);
         return this;
     }
 
     /**
-     * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
-     * customer will be prompted to enter a value greater than or equal to the minimum amount.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public CreatePaymentLinkRequestBody withMinimumAmount(JsonNullable<? extends MinimumAmount> minimumAmount) {
+    public CreatePaymentLinkRequestBody withMinimumAmount(JsonNullable<? extends AmountNullable> minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         this.minimumAmount = minimumAmount;
         return this;
@@ -557,7 +534,7 @@ public class CreatePaymentLinkRequestBody {
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
-    public CreatePaymentLinkRequestBody withLines(List<CreatePaymentLinkLines> lines) {
+    public CreatePaymentLinkRequestBody withLines(List<PaymentLineItem> lines) {
         Utils.checkNotNull(lines, "lines");
         this.lines = JsonNullable.of(lines);
         return this;
@@ -571,65 +548,33 @@ public class CreatePaymentLinkRequestBody {
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
-    public CreatePaymentLinkRequestBody withLines(JsonNullable<? extends List<CreatePaymentLinkLines>> lines) {
+    public CreatePaymentLinkRequestBody withLines(JsonNullable<? extends List<PaymentLineItem>> lines) {
         Utils.checkNotNull(lines, "lines");
         this.lines = lines;
         return this;
     }
 
-    /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-     */
-    public CreatePaymentLinkRequestBody withBillingAddress(CreatePaymentLinkBillingAddress billingAddress) {
+    public CreatePaymentLinkRequestBody withBillingAddress(PaymentAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
         return this;
     }
 
 
-    /**
-     * The customer's billing address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-     */
-    public CreatePaymentLinkRequestBody withBillingAddress(Optional<? extends CreatePaymentLinkBillingAddress> billingAddress) {
+    public CreatePaymentLinkRequestBody withBillingAddress(Optional<? extends PaymentAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
         return this;
     }
 
-    /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     */
-    public CreatePaymentLinkRequestBody withShippingAddress(CreatePaymentLinkShippingAddress shippingAddress) {
+    public CreatePaymentLinkRequestBody withShippingAddress(PaymentAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
 
 
-    /**
-     * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-     * conversion.
-     * 
-     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-     * `country`.
-     */
-    public CreatePaymentLinkRequestBody withShippingAddress(Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress) {
+    public CreatePaymentLinkRequestBody withShippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = shippingAddress;
         return this;
@@ -741,7 +686,7 @@ public class CreatePaymentLinkRequestBody {
      * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
      * to your own account balance.
      */
-    public CreatePaymentLinkRequestBody withApplicationFee(CreatePaymentLinkApplicationFee applicationFee) {
+    public CreatePaymentLinkRequestBody withApplicationFee(ApplicationFee applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
         this.applicationFee = Optional.ofNullable(applicationFee);
         return this;
@@ -756,35 +701,20 @@ public class CreatePaymentLinkRequestBody {
      * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
      * to your own account balance.
      */
-    public CreatePaymentLinkRequestBody withApplicationFee(Optional<? extends CreatePaymentLinkApplicationFee> applicationFee) {
+    public CreatePaymentLinkRequestBody withApplicationFee(Optional<? extends ApplicationFee> applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
         this.applicationFee = applicationFee;
         return this;
     }
 
-    /**
-     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
-     * 
-     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
-     * 
-     * <p>The mandate ID can be retrieved by making a call to the
-     * [Payment Link Payments Endpoint](get-payment-link-payments).
-     */
-    public CreatePaymentLinkRequestBody withSequenceType(CreatePaymentLinkSequenceType sequenceType) {
+    public CreatePaymentLinkRequestBody withSequenceType(PaymentLinkSequenceType sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
-        this.sequenceType = JsonNullable.of(sequenceType);
+        this.sequenceType = Optional.ofNullable(sequenceType);
         return this;
     }
 
-    /**
-     * If set to `first`, a payment mandate is established right after a payment is made by the customer.
-     * 
-     * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
-     * 
-     * <p>The mandate ID can be retrieved by making a call to the
-     * [Payment Link Payments Endpoint](get-payment-link-payments).
-     */
-    public CreatePaymentLinkRequestBody withSequenceType(JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType) {
+
+    public CreatePaymentLinkRequestBody withSequenceType(Optional<? extends PaymentLinkSequenceType> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = sequenceType;
         return this;
@@ -852,6 +782,7 @@ public class CreatePaymentLinkRequestBody {
         }
         CreatePaymentLinkRequestBody other = (CreatePaymentLinkRequestBody) o;
         return 
+            Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.minimumAmount, other.minimumAmount) &&
@@ -873,17 +804,18 @@ public class CreatePaymentLinkRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description, amount, minimumAmount,
-            redirectUrl, webhookUrl, lines,
-            billingAddress, shippingAddress, profileId,
-            reusable, expiresAt, allowedMethods,
-            applicationFee, sequenceType, customerId,
-            testmode);
+            id, description, amount,
+            minimumAmount, redirectUrl, webhookUrl,
+            lines, billingAddress, shippingAddress,
+            profileId, reusable, expiresAt,
+            allowedMethods, applicationFee, sequenceType,
+            customerId, testmode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreatePaymentLinkRequestBody.class,
+                "id", id,
                 "description", description,
                 "amount", amount,
                 "minimumAmount", minimumAmount,
@@ -905,21 +837,23 @@ public class CreatePaymentLinkRequestBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Optional<String> id = Optional.empty();
+
         private String description;
 
-        private JsonNullable<? extends CreatePaymentLinkAmount> amount = JsonNullable.undefined();
+        private JsonNullable<? extends AmountNullable> amount = JsonNullable.undefined();
 
-        private JsonNullable<? extends MinimumAmount> minimumAmount = JsonNullable.undefined();
+        private JsonNullable<? extends AmountNullable> minimumAmount = JsonNullable.undefined();
 
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
 
         private JsonNullable<String> webhookUrl = JsonNullable.undefined();
 
-        private JsonNullable<? extends List<CreatePaymentLinkLines>> lines = JsonNullable.undefined();
+        private JsonNullable<? extends List<PaymentLineItem>> lines = JsonNullable.undefined();
 
-        private Optional<? extends CreatePaymentLinkBillingAddress> billingAddress = Optional.empty();
+        private Optional<? extends PaymentAddress> billingAddress = Optional.empty();
 
-        private Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress = Optional.empty();
+        private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
 
         private JsonNullable<String> profileId = JsonNullable.undefined();
 
@@ -929,9 +863,9 @@ public class CreatePaymentLinkRequestBody {
 
         private JsonNullable<? extends List<String>> allowedMethods = JsonNullable.undefined();
 
-        private Optional<? extends CreatePaymentLinkApplicationFee> applicationFee = Optional.empty();
+        private Optional<? extends ApplicationFee> applicationFee = Optional.empty();
 
-        private JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType = JsonNullable.undefined();
+        private Optional<? extends PaymentLinkSequenceType> sequenceType = Optional.empty();
 
         private JsonNullable<String> customerId = JsonNullable.undefined();
 
@@ -939,6 +873,19 @@ public class CreatePaymentLinkRequestBody {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        public Builder id(Optional<String> id) {
+            Utils.checkNotNull(id, "id");
+            this.id = id;
+            return this;
         }
 
 
@@ -954,20 +901,18 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
-         * amount.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(CreatePaymentLinkAmount amount) {
+        public Builder amount(AmountNullable amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = JsonNullable.of(amount);
             return this;
         }
 
         /**
-         * The amount of the payment link. If no amount is provided initially, the customer will be prompted to enter an
-         * amount.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(JsonNullable<? extends CreatePaymentLinkAmount> amount) {
+        public Builder amount(JsonNullable<? extends AmountNullable> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -975,20 +920,18 @@ public class CreatePaymentLinkRequestBody {
 
 
         /**
-         * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
-         * customer will be prompted to enter a value greater than or equal to the minimum amount.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder minimumAmount(MinimumAmount minimumAmount) {
+        public Builder minimumAmount(AmountNullable minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
             this.minimumAmount = JsonNullable.of(minimumAmount);
             return this;
         }
 
         /**
-         * The minimum amount of the payment link. This property is only allowed when there is no amount provided. The
-         * customer will be prompted to enter a value greater than or equal to the minimum amount.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder minimumAmount(JsonNullable<? extends MinimumAmount> minimumAmount) {
+        public Builder minimumAmount(JsonNullable<? extends AmountNullable> minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
             this.minimumAmount = minimumAmount;
             return this;
@@ -1057,7 +1000,7 @@ public class CreatePaymentLinkRequestBody {
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
-        public Builder lines(List<CreatePaymentLinkLines> lines) {
+        public Builder lines(List<PaymentLineItem> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = JsonNullable.of(lines);
             return this;
@@ -1071,65 +1014,33 @@ public class CreatePaymentLinkRequestBody {
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
-        public Builder lines(JsonNullable<? extends List<CreatePaymentLinkLines>> lines) {
+        public Builder lines(JsonNullable<? extends List<PaymentLineItem>> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = lines;
             return this;
         }
 
 
-        /**
-         * The customer's billing address details. We advise to provide these details to improve fraud protection and
-         * conversion.
-         * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-         * `country`.
-         * 
-         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-         */
-        public Builder billingAddress(CreatePaymentLinkBillingAddress billingAddress) {
+        public Builder billingAddress(PaymentAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
             return this;
         }
 
-        /**
-         * The customer's billing address details. We advise to provide these details to improve fraud protection and
-         * conversion.
-         * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-         * `country`.
-         * 
-         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
-         */
-        public Builder billingAddress(Optional<? extends CreatePaymentLinkBillingAddress> billingAddress) {
+        public Builder billingAddress(Optional<? extends PaymentAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = billingAddress;
             return this;
         }
 
 
-        /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-         * conversion.
-         * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-         * `country`.
-         */
-        public Builder shippingAddress(CreatePaymentLinkShippingAddress shippingAddress) {
+        public Builder shippingAddress(PaymentAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
             return this;
         }
 
-        /**
-         * The customer's shipping address details. We advise to provide these details to improve fraud protection and
-         * conversion.
-         * 
-         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`, `city` and
-         * `country`.
-         */
-        public Builder shippingAddress(Optional<? extends CreatePaymentLinkShippingAddress> shippingAddress) {
+        public Builder shippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = shippingAddress;
             return this;
@@ -1246,7 +1157,7 @@ public class CreatePaymentLinkRequestBody {
          * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
          * to your own account balance.
          */
-        public Builder applicationFee(CreatePaymentLinkApplicationFee applicationFee) {
+        public Builder applicationFee(ApplicationFee applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
             this.applicationFee = Optional.ofNullable(applicationFee);
             return this;
@@ -1260,36 +1171,20 @@ public class CreatePaymentLinkRequestBody {
          * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
          * to your own account balance.
          */
-        public Builder applicationFee(Optional<? extends CreatePaymentLinkApplicationFee> applicationFee) {
+        public Builder applicationFee(Optional<? extends ApplicationFee> applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
             this.applicationFee = applicationFee;
             return this;
         }
 
 
-        /**
-         * If set to `first`, a payment mandate is established right after a payment is made by the customer.
-         * 
-         * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
-         * 
-         * <p>The mandate ID can be retrieved by making a call to the
-         * [Payment Link Payments Endpoint](get-payment-link-payments).
-         */
-        public Builder sequenceType(CreatePaymentLinkSequenceType sequenceType) {
+        public Builder sequenceType(PaymentLinkSequenceType sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
-            this.sequenceType = JsonNullable.of(sequenceType);
+            this.sequenceType = Optional.ofNullable(sequenceType);
             return this;
         }
 
-        /**
-         * If set to `first`, a payment mandate is established right after a payment is made by the customer.
-         * 
-         * <p>Defaults to `oneoff`, which is a regular payment link and will not establish a mandate after payment.
-         * 
-         * <p>The mandate ID can be retrieved by making a call to the
-         * [Payment Link Payments Endpoint](get-payment-link-payments).
-         */
-        public Builder sequenceType(JsonNullable<? extends CreatePaymentLinkSequenceType> sequenceType) {
+        public Builder sequenceType(Optional<? extends PaymentLinkSequenceType> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = sequenceType;
             return this;
@@ -1352,12 +1247,12 @@ public class CreatePaymentLinkRequestBody {
         public CreatePaymentLinkRequestBody build() {
 
             return new CreatePaymentLinkRequestBody(
-                description, amount, minimumAmount,
-                redirectUrl, webhookUrl, lines,
-                billingAddress, shippingAddress, profileId,
-                reusable, expiresAt, allowedMethods,
-                applicationFee, sequenceType, customerId,
-                testmode);
+                id, description, amount,
+                minimumAmount, redirectUrl, webhookUrl,
+                lines, billingAddress, shippingAddress,
+                profileId, reusable, expiresAt,
+                allowedMethods, applicationFee, sequenceType,
+                customerId, testmode);
         }
 
     }

@@ -20,14 +20,14 @@ The routed amount is credited to the account of your customer.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.PaymentCreateRouteResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.PaymentCreateRouteResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws PaymentCreateRouteResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -37,21 +37,23 @@ public class Application {
 
         PaymentCreateRouteResponse res = sdk.delayedRouting().create()
                 .paymentId("tr_5B8cwPMGnU")
-                .requestBody(PaymentCreateRouteRequestBody.builder()
-                    .amount(PaymentCreateRouteAmount.builder()
+                .routeCreateRequest(RouteCreateRequest.builder()
+                    .id("crt_dyARQ3JzCgtPDhU2Pbq3J")
+                    .paymentId("tr_5B8cwPMGnU")
+                    .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
                     .description("Payment for Order #12345")
-                    .destination(PaymentCreateRouteDestination.builder()
-                        .type(PaymentCreateRouteType.ORGANIZATION)
+                    .destination(RouteCreateRequestDestination.builder()
+                        .type(RouteCreateRequestType.ORGANIZATION)
                         .organizationId("org_1234567")
                         .build())
                     .testmode(false)
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.routeCreateResponse().isPresent()) {
             // handle response
         }
     }
@@ -60,10 +62,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                          | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related payment.                                                               | tr_5B8cwPMGnU                                                                                        |
-| `requestBody`                                                                                        | [Optional\<PaymentCreateRouteRequestBody>](../../models/operations/PaymentCreateRouteRequestBody.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    | Example                                                                        |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `paymentId`                                                                    | *String*                                                                       | :heavy_check_mark:                                                             | Provide the ID of the related payment.                                         | tr_5B8cwPMGnU                                                                  |
+| `routeCreateRequest`                                                           | [Optional\<RouteCreateRequest>](../../models/components/RouteCreateRequest.md) | :heavy_minus_sign:                                                             | N/A                                                                            |                                                                                |
 
 ### Response
 
@@ -71,10 +73,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/PaymentCreateRouteResponseBody | 404                                          | application/hal+json                         |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -88,13 +90,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.PaymentListRoutesResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.PaymentListRoutesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws PaymentListRoutesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -127,7 +129,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| models/errors/PaymentListRoutesResponseBody | 404                                         | application/hal+json                        |
-| models/errors/APIException                  | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

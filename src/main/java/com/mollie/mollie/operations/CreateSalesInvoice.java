@@ -9,11 +9,11 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
+import com.mollie.mollie.models.components.EntitySalesInvoice;
+import com.mollie.mollie.models.components.EntitySalesInvoiceResponse;
 import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.CreateSalesInvoiceSalesInvoicesResponseBody;
-import com.mollie.mollie.models.operations.CreateSalesInvoiceRequestBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceResponse;
-import com.mollie.mollie.models.operations.CreateSalesInvoiceResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -131,13 +131,13 @@ public class CreateSalesInvoice {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends CreateSalesInvoiceRequestBody>, CreateSalesInvoiceResponse> {
+            implements RequestOperation<Optional<? extends EntitySalesInvoice>, CreateSalesInvoiceResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends CreateSalesInvoiceRequestBody> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends CreateSalesInvoiceRequestBody>>() {});
+        private HttpRequest onBuildRequest(Optional<? extends EntitySalesInvoice> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntitySalesInvoice>>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -153,7 +153,7 @@ public class CreateSalesInvoice {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends CreateSalesInvoiceRequestBody> request) throws Exception {
+        public HttpResponse<InputStream> doRequest(Optional<? extends EntitySalesInvoice> request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -196,11 +196,11 @@ public class CreateSalesInvoice {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    CreateSalesInvoiceResponseBody out = Utils.mapper().readValue(
+                    EntitySalesInvoiceResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                    res.withObject(out);
+                    res.withEntitySalesInvoiceResponse(out);
                     return res;
                 } else {
                     throw new APIException(
@@ -211,32 +211,12 @@ public class CreateSalesInvoice {
                 }
             }
             
-            if (Utils.statusCodeMatches(response.statusCode(), "404")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    com.mollie.mollie.models.errors.CreateSalesInvoiceResponseBody out = Utils.mapper().readValue(
+                    ErrorResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                        out.withRawResponse(response);
-                    
-                    throw out;
-                } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
-                }
-            }
-            
-            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    CreateSalesInvoiceSalesInvoicesResponseBody out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                        out.withRawResponse(response);
-                    
                     throw out;
                 } else {
                     throw new APIException(
@@ -273,7 +253,7 @@ public class CreateSalesInvoice {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends CreateSalesInvoiceRequestBody>, com.mollie.mollie.models.operations.async.CreateSalesInvoiceResponse> {
+            implements AsyncRequestOperation<Optional<? extends EntitySalesInvoice>, com.mollie.mollie.models.operations.async.CreateSalesInvoiceResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -283,8 +263,8 @@ public class CreateSalesInvoice {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends CreateSalesInvoiceRequestBody> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends CreateSalesInvoiceRequestBody>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends EntitySalesInvoice> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntitySalesInvoice>>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -297,7 +277,7 @@ public class CreateSalesInvoice {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends CreateSalesInvoiceRequestBody> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends EntitySalesInvoice> request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)
@@ -337,11 +317,11 @@ public class CreateSalesInvoice {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
                         try {
-                            CreateSalesInvoiceResponseBody out = Utils.mapper().readValue(
+                            EntitySalesInvoiceResponse out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            res.withObject(out);
+                            res.withEntitySalesInvoiceResponse(out);
                             return res;
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -352,36 +332,15 @@ public class CreateSalesInvoice {
                 }
             }
             
-            if (Utils.statusCodeMatches(response.statusCode(), "404")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.CreateSalesInvoiceResponseBody out;
+                        com.mollie.mollie.models.errors.async.ErrorResponse out;
                         try {
                             out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            out.withRawResponse(response);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                        throw out;
-                    });
-                } else {
-                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
-                }
-            }
-            
-            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.CreateSalesInvoiceSalesInvoicesResponseBody out;
-                        try {
-                            out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            out.withRawResponse(response);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

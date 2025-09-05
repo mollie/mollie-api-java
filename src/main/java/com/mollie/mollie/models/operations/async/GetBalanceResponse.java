@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.GetBalanceResponseBody;
+import com.mollie.mollie.models.components.EntityBalance;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class GetBalanceResponse implements AsyncResponse {
     /**
      * The balance object.
      */
-    private Optional<? extends GetBalanceResponseBody> object;
+    private Optional<? extends EntityBalance> entityBalance;
 
     @JsonCreator
     public GetBalanceResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends GetBalanceResponseBody> object) {
+            Optional<? extends EntityBalance> entityBalance) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityBalance, "entityBalance");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityBalance = entityBalance;
     }
     
     public GetBalanceResponse(
@@ -91,8 +91,8 @@ public class GetBalanceResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceResponseBody> object() {
-        return (Optional<GetBalanceResponseBody>) object;
+    public Optional<EntityBalance> entityBalance() {
+        return (Optional<EntityBalance>) entityBalance;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class GetBalanceResponse implements AsyncResponse {
     /**
      * The balance object.
      */
-    public GetBalanceResponse withObject(GetBalanceResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetBalanceResponse withEntityBalance(EntityBalance entityBalance) {
+        Utils.checkNotNull(entityBalance, "entityBalance");
+        this.entityBalance = Optional.ofNullable(entityBalance);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class GetBalanceResponse implements AsyncResponse {
     /**
      * The balance object.
      */
-    public GetBalanceResponse withObject(Optional<? extends GetBalanceResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetBalanceResponse withEntityBalance(Optional<? extends EntityBalance> entityBalance) {
+        Utils.checkNotNull(entityBalance, "entityBalance");
+        this.entityBalance = entityBalance;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class GetBalanceResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityBalance, other.entityBalance);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityBalance);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class GetBalanceResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityBalance", entityBalance);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class GetBalanceResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends GetBalanceResponseBody> object = Optional.empty();
+        private Optional<? extends EntityBalance> entityBalance = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class GetBalanceResponse implements AsyncResponse {
         /**
          * The balance object.
          */
-        public Builder object(GetBalanceResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityBalance(EntityBalance entityBalance) {
+            Utils.checkNotNull(entityBalance, "entityBalance");
+            this.entityBalance = Optional.ofNullable(entityBalance);
             return this;
         }
 
         /**
          * The balance object.
          */
-        public Builder object(Optional<? extends GetBalanceResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityBalance(Optional<? extends EntityBalance> entityBalance) {
+            Utils.checkNotNull(entityBalance, "entityBalance");
+            this.entityBalance = entityBalance;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class GetBalanceResponse implements AsyncResponse {
 
             return new GetBalanceResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityBalance);
         }
 
     }

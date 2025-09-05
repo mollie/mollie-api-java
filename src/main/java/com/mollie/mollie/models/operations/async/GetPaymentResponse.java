@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.GetPaymentResponseBody;
+import com.mollie.mollie.models.components.PaymentResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class GetPaymentResponse implements AsyncResponse {
     /**
      * The payment object.
      */
-    private Optional<? extends GetPaymentResponseBody> object;
+    private Optional<? extends PaymentResponse> paymentResponse;
 
     @JsonCreator
     public GetPaymentResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends GetPaymentResponseBody> object) {
+            Optional<? extends PaymentResponse> paymentResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(paymentResponse, "paymentResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.paymentResponse = paymentResponse;
     }
     
     public GetPaymentResponse(
@@ -91,8 +91,8 @@ public class GetPaymentResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetPaymentResponseBody> object() {
-        return (Optional<GetPaymentResponseBody>) object;
+    public Optional<PaymentResponse> paymentResponse() {
+        return (Optional<PaymentResponse>) paymentResponse;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class GetPaymentResponse implements AsyncResponse {
     /**
      * The payment object.
      */
-    public GetPaymentResponse withObject(GetPaymentResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetPaymentResponse withPaymentResponse(PaymentResponse paymentResponse) {
+        Utils.checkNotNull(paymentResponse, "paymentResponse");
+        this.paymentResponse = Optional.ofNullable(paymentResponse);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class GetPaymentResponse implements AsyncResponse {
     /**
      * The payment object.
      */
-    public GetPaymentResponse withObject(Optional<? extends GetPaymentResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetPaymentResponse withPaymentResponse(Optional<? extends PaymentResponse> paymentResponse) {
+        Utils.checkNotNull(paymentResponse, "paymentResponse");
+        this.paymentResponse = paymentResponse;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class GetPaymentResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.paymentResponse, other.paymentResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            paymentResponse);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class GetPaymentResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "paymentResponse", paymentResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class GetPaymentResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends GetPaymentResponseBody> object = Optional.empty();
+        private Optional<? extends PaymentResponse> paymentResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class GetPaymentResponse implements AsyncResponse {
         /**
          * The payment object.
          */
-        public Builder object(GetPaymentResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder paymentResponse(PaymentResponse paymentResponse) {
+            Utils.checkNotNull(paymentResponse, "paymentResponse");
+            this.paymentResponse = Optional.ofNullable(paymentResponse);
             return this;
         }
 
         /**
          * The payment object.
          */
-        public Builder object(Optional<? extends GetPaymentResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder paymentResponse(Optional<? extends PaymentResponse> paymentResponse) {
+            Utils.checkNotNull(paymentResponse, "paymentResponse");
+            this.paymentResponse = paymentResponse;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class GetPaymentResponse implements AsyncResponse {
 
             return new GetPaymentResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                paymentResponse);
         }
 
     }

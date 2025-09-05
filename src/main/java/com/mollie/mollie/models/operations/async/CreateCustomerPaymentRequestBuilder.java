@@ -6,8 +6,8 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
-import com.mollie.mollie.models.operations.CreateCustomerPaymentRequestBody;
 import com.mollie.mollie.operations.CreateCustomerPayment;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class CreateCustomerPaymentRequestBuilder {
 
     private String customerId;
-    private Optional<? extends CreateCustomerPaymentRequestBody> requestBody = Optional.empty();
+    private Optional<? extends PaymentRequest> paymentRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -34,15 +34,15 @@ public class CreateCustomerPaymentRequestBuilder {
         return this;
     }
                 
-    public CreateCustomerPaymentRequestBuilder requestBody(CreateCustomerPaymentRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
+    public CreateCustomerPaymentRequestBuilder paymentRequest(PaymentRequest paymentRequest) {
+        Utils.checkNotNull(paymentRequest, "paymentRequest");
+        this.paymentRequest = Optional.of(paymentRequest);
         return this;
     }
 
-    public CreateCustomerPaymentRequestBuilder requestBody(Optional<? extends CreateCustomerPaymentRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreateCustomerPaymentRequestBuilder paymentRequest(Optional<? extends PaymentRequest> paymentRequest) {
+        Utils.checkNotNull(paymentRequest, "paymentRequest");
+        this.paymentRequest = paymentRequest;
         return this;
     }
                 
@@ -62,7 +62,7 @@ public class CreateCustomerPaymentRequestBuilder {
     private CreateCustomerPaymentRequest buildRequest() {
 
         CreateCustomerPaymentRequest request = new CreateCustomerPaymentRequest(customerId,
-            requestBody);
+            paymentRequest);
 
         return request;
     }

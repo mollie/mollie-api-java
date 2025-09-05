@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityBalance;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class GetPrimaryBalanceResponse implements Response {
     /**
      * The primary balance object.
      */
-    private Optional<? extends GetPrimaryBalanceResponseBody> object;
+    private Optional<? extends EntityBalance> entityBalance;
 
     @JsonCreator
     public GetPrimaryBalanceResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetPrimaryBalanceResponseBody> object) {
+            Optional<? extends EntityBalance> entityBalance) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityBalance, "entityBalance");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityBalance = entityBalance;
     }
     
     public GetPrimaryBalanceResponse(
@@ -90,8 +91,8 @@ public class GetPrimaryBalanceResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetPrimaryBalanceResponseBody> object() {
-        return (Optional<GetPrimaryBalanceResponseBody>) object;
+    public Optional<EntityBalance> entityBalance() {
+        return (Optional<EntityBalance>) entityBalance;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class GetPrimaryBalanceResponse implements Response {
     /**
      * The primary balance object.
      */
-    public GetPrimaryBalanceResponse withObject(GetPrimaryBalanceResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetPrimaryBalanceResponse withEntityBalance(EntityBalance entityBalance) {
+        Utils.checkNotNull(entityBalance, "entityBalance");
+        this.entityBalance = Optional.ofNullable(entityBalance);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class GetPrimaryBalanceResponse implements Response {
     /**
      * The primary balance object.
      */
-    public GetPrimaryBalanceResponse withObject(Optional<? extends GetPrimaryBalanceResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetPrimaryBalanceResponse withEntityBalance(Optional<? extends EntityBalance> entityBalance) {
+        Utils.checkNotNull(entityBalance, "entityBalance");
+        this.entityBalance = entityBalance;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class GetPrimaryBalanceResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityBalance, other.entityBalance);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityBalance);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class GetPrimaryBalanceResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityBalance", entityBalance);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class GetPrimaryBalanceResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetPrimaryBalanceResponseBody> object = Optional.empty();
+        private Optional<? extends EntityBalance> entityBalance = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class GetPrimaryBalanceResponse implements Response {
         /**
          * The primary balance object.
          */
-        public Builder object(GetPrimaryBalanceResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityBalance(EntityBalance entityBalance) {
+            Utils.checkNotNull(entityBalance, "entityBalance");
+            this.entityBalance = Optional.ofNullable(entityBalance);
             return this;
         }
 
         /**
          * The primary balance object.
          */
-        public Builder object(Optional<? extends GetPrimaryBalanceResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityBalance(Optional<? extends EntityBalance> entityBalance) {
+            Utils.checkNotNull(entityBalance, "entityBalance");
+            this.entityBalance = entityBalance;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class GetPrimaryBalanceResponse implements Response {
 
             return new GetPrimaryBalanceResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityBalance);
         }
 
     }

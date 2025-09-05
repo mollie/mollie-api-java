@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -35,7 +36,7 @@ public class ListPaymentsRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListPaymentsQueryParamSort> sort;
+    private JsonNullable<? extends ListSort> sort;
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to
@@ -61,7 +62,7 @@ public class ListPaymentsRequest {
     public ListPaymentsRequest(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListPaymentsQueryParamSort> sort,
+            JsonNullable<? extends ListSort> sort,
             Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(from, "from");
@@ -104,8 +105,8 @@ public class ListPaymentsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListPaymentsQueryParamSort> sort() {
-        return (JsonNullable<ListPaymentsQueryParamSort>) sort;
+    public JsonNullable<ListSort> sort() {
+        return (JsonNullable<ListSort>) sort;
     }
 
     /**
@@ -180,7 +181,7 @@ public class ListPaymentsRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListPaymentsRequest withSort(ListPaymentsQueryParamSort sort) {
+    public ListPaymentsRequest withSort(ListSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
@@ -190,7 +191,7 @@ public class ListPaymentsRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListPaymentsRequest withSort(JsonNullable<? extends ListPaymentsQueryParamSort> sort) {
+    public ListPaymentsRequest withSort(JsonNullable<? extends ListSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -290,7 +291,7 @@ public class ListPaymentsRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListPaymentsQueryParamSort> sort = JsonNullable.undefined();
+        private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
 
         private Optional<String> profileId = Optional.empty();
 
@@ -345,7 +346,7 @@ public class ListPaymentsRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListPaymentsQueryParamSort sort) {
+        public Builder sort(ListSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
@@ -355,7 +356,7 @@ public class ListPaymentsRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListPaymentsQueryParamSort> sort) {
+        public Builder sort(JsonNullable<? extends ListSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

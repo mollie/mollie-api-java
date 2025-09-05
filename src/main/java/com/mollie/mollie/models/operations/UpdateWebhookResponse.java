@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityWebhook;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class UpdateWebhookResponse implements Response {
     /**
      * The webhook object.
      */
-    private Optional<? extends UpdateWebhookResponseBody> object;
+    private Optional<? extends EntityWebhook> entityWebhook;
 
     @JsonCreator
     public UpdateWebhookResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends UpdateWebhookResponseBody> object) {
+            Optional<? extends EntityWebhook> entityWebhook) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityWebhook, "entityWebhook");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityWebhook = entityWebhook;
     }
     
     public UpdateWebhookResponse(
@@ -90,8 +91,8 @@ public class UpdateWebhookResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateWebhookResponseBody> object() {
-        return (Optional<UpdateWebhookResponseBody>) object;
+    public Optional<EntityWebhook> entityWebhook() {
+        return (Optional<EntityWebhook>) entityWebhook;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class UpdateWebhookResponse implements Response {
     /**
      * The webhook object.
      */
-    public UpdateWebhookResponse withObject(UpdateWebhookResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public UpdateWebhookResponse withEntityWebhook(EntityWebhook entityWebhook) {
+        Utils.checkNotNull(entityWebhook, "entityWebhook");
+        this.entityWebhook = Optional.ofNullable(entityWebhook);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class UpdateWebhookResponse implements Response {
     /**
      * The webhook object.
      */
-    public UpdateWebhookResponse withObject(Optional<? extends UpdateWebhookResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public UpdateWebhookResponse withEntityWebhook(Optional<? extends EntityWebhook> entityWebhook) {
+        Utils.checkNotNull(entityWebhook, "entityWebhook");
+        this.entityWebhook = entityWebhook;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class UpdateWebhookResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityWebhook, other.entityWebhook);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityWebhook);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class UpdateWebhookResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityWebhook", entityWebhook);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class UpdateWebhookResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends UpdateWebhookResponseBody> object = Optional.empty();
+        private Optional<? extends EntityWebhook> entityWebhook = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class UpdateWebhookResponse implements Response {
         /**
          * The webhook object.
          */
-        public Builder object(UpdateWebhookResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityWebhook(EntityWebhook entityWebhook) {
+            Utils.checkNotNull(entityWebhook, "entityWebhook");
+            this.entityWebhook = Optional.ofNullable(entityWebhook);
             return this;
         }
 
         /**
          * The webhook object.
          */
-        public Builder object(Optional<? extends UpdateWebhookResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityWebhook(Optional<? extends EntityWebhook> entityWebhook) {
+            Utils.checkNotNull(entityWebhook, "entityWebhook");
+            this.entityWebhook = entityWebhook;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class UpdateWebhookResponse implements Response {
 
             return new UpdateWebhookResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityWebhook);
         }
 
     }

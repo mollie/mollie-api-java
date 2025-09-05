@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityPermission;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class GetPermissionResponse implements Response {
     /**
      * The permission object.
      */
-    private Optional<? extends GetPermissionResponseBody> object;
+    private Optional<? extends EntityPermission> entityPermission;
 
     @JsonCreator
     public GetPermissionResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetPermissionResponseBody> object) {
+            Optional<? extends EntityPermission> entityPermission) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityPermission, "entityPermission");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityPermission = entityPermission;
     }
     
     public GetPermissionResponse(
@@ -90,8 +91,8 @@ public class GetPermissionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetPermissionResponseBody> object() {
-        return (Optional<GetPermissionResponseBody>) object;
+    public Optional<EntityPermission> entityPermission() {
+        return (Optional<EntityPermission>) entityPermission;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class GetPermissionResponse implements Response {
     /**
      * The permission object.
      */
-    public GetPermissionResponse withObject(GetPermissionResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetPermissionResponse withEntityPermission(EntityPermission entityPermission) {
+        Utils.checkNotNull(entityPermission, "entityPermission");
+        this.entityPermission = Optional.ofNullable(entityPermission);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class GetPermissionResponse implements Response {
     /**
      * The permission object.
      */
-    public GetPermissionResponse withObject(Optional<? extends GetPermissionResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetPermissionResponse withEntityPermission(Optional<? extends EntityPermission> entityPermission) {
+        Utils.checkNotNull(entityPermission, "entityPermission");
+        this.entityPermission = entityPermission;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class GetPermissionResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityPermission, other.entityPermission);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityPermission);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class GetPermissionResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityPermission", entityPermission);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class GetPermissionResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetPermissionResponseBody> object = Optional.empty();
+        private Optional<? extends EntityPermission> entityPermission = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class GetPermissionResponse implements Response {
         /**
          * The permission object.
          */
-        public Builder object(GetPermissionResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityPermission(EntityPermission entityPermission) {
+            Utils.checkNotNull(entityPermission, "entityPermission");
+            this.entityPermission = Optional.ofNullable(entityPermission);
             return this;
         }
 
         /**
          * The permission object.
          */
-        public Builder object(Optional<? extends GetPermissionResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityPermission(Optional<? extends EntityPermission> entityPermission) {
+            Utils.checkNotNull(entityPermission, "entityPermission");
+            this.entityPermission = entityPermission;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class GetPermissionResponse implements Response {
 
             return new GetPermissionResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityPermission);
         }
 
     }

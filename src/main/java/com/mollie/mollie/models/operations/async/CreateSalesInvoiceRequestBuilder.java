@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.operations.CreateSalesInvoiceRequestBody;
+import com.mollie.mollie.models.components.EntitySalesInvoice;
 import com.mollie.mollie.operations.CreateSalesInvoice;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -17,7 +17,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class CreateSalesInvoiceRequestBuilder {
 
-    private Optional<? extends CreateSalesInvoiceRequestBody> request = Optional.empty();
+    private Optional<? extends EntitySalesInvoice> request = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -25,13 +25,13 @@ public class CreateSalesInvoiceRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateSalesInvoiceRequestBuilder request(CreateSalesInvoiceRequestBody request) {
+    public CreateSalesInvoiceRequestBuilder request(EntitySalesInvoice request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateSalesInvoiceRequestBuilder request(Optional<? extends CreateSalesInvoiceRequestBody> request) {
+    public CreateSalesInvoiceRequestBuilder request(Optional<? extends EntitySalesInvoice> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -54,7 +54,7 @@ public class CreateSalesInvoiceRequestBuilder {
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestOperation<Optional<? extends CreateSalesInvoiceRequestBody>, CreateSalesInvoiceResponse> operation
+        AsyncRequestOperation<Optional<? extends EntitySalesInvoice>, CreateSalesInvoiceResponse> operation
               = new CreateSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
 
         return operation.doRequest(request)

@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.GetWebhookResponseBody;
+import com.mollie.mollie.models.components.EntityWebhook;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class GetWebhookResponse implements AsyncResponse {
     /**
      * The webhook object.
      */
-    private Optional<? extends GetWebhookResponseBody> object;
+    private Optional<? extends EntityWebhook> entityWebhook;
 
     @JsonCreator
     public GetWebhookResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends GetWebhookResponseBody> object) {
+            Optional<? extends EntityWebhook> entityWebhook) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityWebhook, "entityWebhook");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityWebhook = entityWebhook;
     }
     
     public GetWebhookResponse(
@@ -91,8 +91,8 @@ public class GetWebhookResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWebhookResponseBody> object() {
-        return (Optional<GetWebhookResponseBody>) object;
+    public Optional<EntityWebhook> entityWebhook() {
+        return (Optional<EntityWebhook>) entityWebhook;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class GetWebhookResponse implements AsyncResponse {
     /**
      * The webhook object.
      */
-    public GetWebhookResponse withObject(GetWebhookResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetWebhookResponse withEntityWebhook(EntityWebhook entityWebhook) {
+        Utils.checkNotNull(entityWebhook, "entityWebhook");
+        this.entityWebhook = Optional.ofNullable(entityWebhook);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class GetWebhookResponse implements AsyncResponse {
     /**
      * The webhook object.
      */
-    public GetWebhookResponse withObject(Optional<? extends GetWebhookResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetWebhookResponse withEntityWebhook(Optional<? extends EntityWebhook> entityWebhook) {
+        Utils.checkNotNull(entityWebhook, "entityWebhook");
+        this.entityWebhook = entityWebhook;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class GetWebhookResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityWebhook, other.entityWebhook);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityWebhook);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class GetWebhookResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityWebhook", entityWebhook);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class GetWebhookResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends GetWebhookResponseBody> object = Optional.empty();
+        private Optional<? extends EntityWebhook> entityWebhook = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class GetWebhookResponse implements AsyncResponse {
         /**
          * The webhook object.
          */
-        public Builder object(GetWebhookResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityWebhook(EntityWebhook entityWebhook) {
+            Utils.checkNotNull(entityWebhook, "entityWebhook");
+            this.entityWebhook = Optional.ofNullable(entityWebhook);
             return this;
         }
 
         /**
          * The webhook object.
          */
-        public Builder object(Optional<? extends GetWebhookResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityWebhook(Optional<? extends EntityWebhook> entityWebhook) {
+            Utils.checkNotNull(entityWebhook, "entityWebhook");
+            this.entityWebhook = entityWebhook;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class GetWebhookResponse implements AsyncResponse {
 
             return new GetWebhookResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityWebhook);
         }
 
     }

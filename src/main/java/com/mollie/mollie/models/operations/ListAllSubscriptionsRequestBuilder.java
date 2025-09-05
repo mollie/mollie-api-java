@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllSubscriptionsRequestBuilder {
 
-    private Optional<String> from = Optional.empty();
+    private JsonNullable<String> from = JsonNullable.undefined();
     private JsonNullable<Long> limit = JsonNullable.undefined();
     private JsonNullable<String> profileId = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
@@ -29,14 +29,14 @@ public class ListAllSubscriptionsRequestBuilder {
     public ListAllSubscriptionsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-                
+
     public ListAllSubscriptionsRequestBuilder from(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
 
-    public ListAllSubscriptionsRequestBuilder from(Optional<String> from) {
+    public ListAllSubscriptionsRequestBuilder from(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;

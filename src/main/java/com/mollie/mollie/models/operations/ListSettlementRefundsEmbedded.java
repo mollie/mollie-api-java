@@ -5,43 +5,34 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.EntityRefundResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 
 
 public class ListSettlementRefundsEmbedded {
     /**
      * An array of refund objects.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refunds")
-    private Optional<? extends List<ListSettlementRefundsRefunds>> refunds;
+    private List<EntityRefundResponse> refunds;
 
     @JsonCreator
     public ListSettlementRefundsEmbedded(
-            @JsonProperty("refunds") Optional<? extends List<ListSettlementRefundsRefunds>> refunds) {
+            @JsonProperty("refunds") List<EntityRefundResponse> refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = refunds;
-    }
-    
-    public ListSettlementRefundsEmbedded() {
-        this(Optional.empty());
     }
 
     /**
      * An array of refund objects.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<ListSettlementRefundsRefunds>> refunds() {
-        return (Optional<List<ListSettlementRefundsRefunds>>) refunds;
+    public List<EntityRefundResponse> refunds() {
+        return refunds;
     }
 
     public static Builder builder() {
@@ -52,17 +43,7 @@ public class ListSettlementRefundsEmbedded {
     /**
      * An array of refund objects.
      */
-    public ListSettlementRefundsEmbedded withRefunds(List<ListSettlementRefundsRefunds> refunds) {
-        Utils.checkNotNull(refunds, "refunds");
-        this.refunds = Optional.ofNullable(refunds);
-        return this;
-    }
-
-
-    /**
-     * An array of refund objects.
-     */
-    public ListSettlementRefundsEmbedded withRefunds(Optional<? extends List<ListSettlementRefundsRefunds>> refunds) {
+    public ListSettlementRefundsEmbedded withRefunds(List<EntityRefundResponse> refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = refunds;
         return this;
@@ -96,7 +77,7 @@ public class ListSettlementRefundsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<ListSettlementRefundsRefunds>> refunds = Optional.empty();
+        private List<EntityRefundResponse> refunds;
 
         private Builder() {
           // force use of static builder() method
@@ -106,16 +87,7 @@ public class ListSettlementRefundsEmbedded {
         /**
          * An array of refund objects.
          */
-        public Builder refunds(List<ListSettlementRefundsRefunds> refunds) {
-            Utils.checkNotNull(refunds, "refunds");
-            this.refunds = Optional.ofNullable(refunds);
-            return this;
-        }
-
-        /**
-         * An array of refund objects.
-         */
-        public Builder refunds(Optional<? extends List<ListSettlementRefundsRefunds>> refunds) {
+        public Builder refunds(List<EntityRefundResponse> refunds) {
             Utils.checkNotNull(refunds, "refunds");
             this.refunds = refunds;
             return this;

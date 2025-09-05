@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -19,20 +20,20 @@ public class CreatePaymentRequest {
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private JsonNullable<? extends Include> include;
+    private JsonNullable<String> include;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends CreatePaymentRequestBody> requestBody;
+    private Optional<? extends PaymentRequest> paymentRequest;
 
     @JsonCreator
     public CreatePaymentRequest(
-            JsonNullable<? extends Include> include,
-            Optional<? extends CreatePaymentRequestBody> requestBody) {
+            JsonNullable<String> include,
+            Optional<? extends PaymentRequest> paymentRequest) {
         Utils.checkNotNull(include, "include");
-        Utils.checkNotNull(requestBody, "requestBody");
+        Utils.checkNotNull(paymentRequest, "paymentRequest");
         this.include = include;
-        this.requestBody = requestBody;
+        this.paymentRequest = paymentRequest;
     }
     
     public CreatePaymentRequest() {
@@ -42,16 +43,15 @@ public class CreatePaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Include> include() {
-        return (JsonNullable<Include>) include;
+    public JsonNullable<String> include() {
+        return include;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentRequestBody> requestBody() {
-        return (Optional<CreatePaymentRequestBody>) requestBody;
+    public Optional<PaymentRequest> paymentRequest() {
+        return (Optional<PaymentRequest>) paymentRequest;
     }
 
     public static Builder builder() {
@@ -62,7 +62,7 @@ public class CreatePaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    public CreatePaymentRequest withInclude(Include include) {
+    public CreatePaymentRequest withInclude(String include) {
         Utils.checkNotNull(include, "include");
         this.include = JsonNullable.of(include);
         return this;
@@ -71,22 +71,22 @@ public class CreatePaymentRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    public CreatePaymentRequest withInclude(JsonNullable<? extends Include> include) {
+    public CreatePaymentRequest withInclude(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
         this.include = include;
         return this;
     }
 
-    public CreatePaymentRequest withRequestBody(CreatePaymentRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
+    public CreatePaymentRequest withPaymentRequest(PaymentRequest paymentRequest) {
+        Utils.checkNotNull(paymentRequest, "paymentRequest");
+        this.paymentRequest = Optional.ofNullable(paymentRequest);
         return this;
     }
 
 
-    public CreatePaymentRequest withRequestBody(Optional<? extends CreatePaymentRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreatePaymentRequest withPaymentRequest(Optional<? extends PaymentRequest> paymentRequest) {
+        Utils.checkNotNull(paymentRequest, "paymentRequest");
+        this.paymentRequest = paymentRequest;
         return this;
     }
 
@@ -101,28 +101,28 @@ public class CreatePaymentRequest {
         CreatePaymentRequest other = (CreatePaymentRequest) o;
         return 
             Utils.enhancedDeepEquals(this.include, other.include) &&
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.paymentRequest, other.paymentRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            include, requestBody);
+            include, paymentRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreatePaymentRequest.class,
                 "include", include,
-                "requestBody", requestBody);
+                "paymentRequest", paymentRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends Include> include = JsonNullable.undefined();
+        private JsonNullable<String> include = JsonNullable.undefined();
 
-        private Optional<? extends CreatePaymentRequestBody> requestBody = Optional.empty();
+        private Optional<? extends PaymentRequest> paymentRequest = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -132,7 +132,7 @@ public class CreatePaymentRequest {
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          */
-        public Builder include(Include include) {
+        public Builder include(String include) {
             Utils.checkNotNull(include, "include");
             this.include = JsonNullable.of(include);
             return this;
@@ -141,29 +141,29 @@ public class CreatePaymentRequest {
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          */
-        public Builder include(JsonNullable<? extends Include> include) {
+        public Builder include(JsonNullable<String> include) {
             Utils.checkNotNull(include, "include");
             this.include = include;
             return this;
         }
 
 
-        public Builder requestBody(CreatePaymentRequestBody requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
+        public Builder paymentRequest(PaymentRequest paymentRequest) {
+            Utils.checkNotNull(paymentRequest, "paymentRequest");
+            this.paymentRequest = Optional.ofNullable(paymentRequest);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends CreatePaymentRequestBody> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder paymentRequest(Optional<? extends PaymentRequest> paymentRequest) {
+            Utils.checkNotNull(paymentRequest, "paymentRequest");
+            this.paymentRequest = paymentRequest;
             return this;
         }
 
         public CreatePaymentRequest build() {
 
             return new CreatePaymentRequest(
-                include, requestBody);
+                include, paymentRequest);
         }
 
     }

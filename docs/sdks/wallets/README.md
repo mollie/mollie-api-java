@@ -37,14 +37,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.RequestApplePayPaymentSessionResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestBody;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws RequestApplePayPaymentSessionResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -62,7 +62,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entitySession().isPresent()) {
             // handle response
         }
     }
@@ -81,7 +81,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                              | Status Code                                             | Content Type                                            |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| models/errors/RequestApplePayPaymentSessionResponseBody | 422                                                     | application/hal+json                                    |
-| models/errors/APIException                              | 4XX, 5XX                                                | \*/\*                                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 422                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

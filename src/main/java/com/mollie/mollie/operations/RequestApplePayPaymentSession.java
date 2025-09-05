@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.errors.RequestApplePayPaymentSessionResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestBody;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionResponse;
 import com.mollie.mollie.utils.AsyncRetries;
@@ -200,7 +200,7 @@ public class RequestApplePayPaymentSession {
                             response.body(),
                             new TypeReference<>() {
                             });
-                    res.withObject(out);
+                    res.withEntitySession(out);
                     return res;
                 } else {
                     throw new APIException(
@@ -213,12 +213,10 @@ public class RequestApplePayPaymentSession {
             
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    RequestApplePayPaymentSessionResponseBody out = Utils.mapper().readValue(
+                    ErrorResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                        out.withRawResponse(response);
-                    
                     throw out;
                 } else {
                     throw new APIException(
@@ -323,7 +321,7 @@ public class RequestApplePayPaymentSession {
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            res.withObject(out);
+                            res.withEntitySession(out);
                             return res;
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -337,13 +335,12 @@ public class RequestApplePayPaymentSession {
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.RequestApplePayPaymentSessionResponseBody out;
+                        com.mollie.mollie.models.errors.async.ErrorResponse out;
                         try {
                             out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            out.withRawResponse(response);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

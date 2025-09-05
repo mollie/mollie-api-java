@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Url;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -25,35 +26,35 @@ public class GetClientLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends GetClientSelf> self;
+    private Optional<? extends Url> self;
 
     /**
-     * The API resource URL of the client's organization.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organization")
-    private Optional<? extends GetClientOrganization> organization;
+    private Optional<? extends Url> organization;
 
     /**
-     * The API resource URL of the client's onboarding status.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("onboarding")
-    private Optional<? extends Onboarding> onboarding;
+    private Optional<? extends Url> onboarding;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends GetClientDocumentation> documentation;
+    private Optional<? extends Url> documentation;
 
     @JsonCreator
     public GetClientLinks(
-            @JsonProperty("self") Optional<? extends GetClientSelf> self,
-            @JsonProperty("organization") Optional<? extends GetClientOrganization> organization,
-            @JsonProperty("onboarding") Optional<? extends Onboarding> onboarding,
-            @JsonProperty("documentation") Optional<? extends GetClientDocumentation> documentation) {
+            @JsonProperty("self") Optional<? extends Url> self,
+            @JsonProperty("organization") Optional<? extends Url> organization,
+            @JsonProperty("onboarding") Optional<? extends Url> onboarding,
+            @JsonProperty("documentation") Optional<? extends Url> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(organization, "organization");
         Utils.checkNotNull(onboarding, "onboarding");
@@ -74,26 +75,8 @@ public class GetClientLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetClientSelf> self() {
-        return (Optional<GetClientSelf>) self;
-    }
-
-    /**
-     * The API resource URL of the client's organization.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<GetClientOrganization> organization() {
-        return (Optional<GetClientOrganization>) organization;
-    }
-
-    /**
-     * The API resource URL of the client's onboarding status.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Onboarding> onboarding() {
-        return (Optional<Onboarding>) onboarding;
+    public Optional<Url> self() {
+        return (Optional<Url>) self;
     }
 
     /**
@@ -101,8 +84,26 @@ public class GetClientLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetClientDocumentation> documentation() {
-        return (Optional<GetClientDocumentation>) documentation;
+    public Optional<Url> organization() {
+        return (Optional<Url>) organization;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Url> onboarding() {
+        return (Optional<Url>) onboarding;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Url> documentation() {
+        return (Optional<Url>) documentation;
     }
 
     public static Builder builder() {
@@ -113,7 +114,7 @@ public class GetClientLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetClientLinks withSelf(GetClientSelf self) {
+    public GetClientLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
         this.self = Optional.ofNullable(self);
         return this;
@@ -123,16 +124,16 @@ public class GetClientLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetClientLinks withSelf(Optional<? extends GetClientSelf> self) {
+    public GetClientLinks withSelf(Optional<? extends Url> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
 
     /**
-     * The API resource URL of the client's organization.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetClientLinks withOrganization(GetClientOrganization organization) {
+    public GetClientLinks withOrganization(Url organization) {
         Utils.checkNotNull(organization, "organization");
         this.organization = Optional.ofNullable(organization);
         return this;
@@ -140,18 +141,18 @@ public class GetClientLinks {
 
 
     /**
-     * The API resource URL of the client's organization.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetClientLinks withOrganization(Optional<? extends GetClientOrganization> organization) {
+    public GetClientLinks withOrganization(Optional<? extends Url> organization) {
         Utils.checkNotNull(organization, "organization");
         this.organization = organization;
         return this;
     }
 
     /**
-     * The API resource URL of the client's onboarding status.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetClientLinks withOnboarding(Onboarding onboarding) {
+    public GetClientLinks withOnboarding(Url onboarding) {
         Utils.checkNotNull(onboarding, "onboarding");
         this.onboarding = Optional.ofNullable(onboarding);
         return this;
@@ -159,9 +160,9 @@ public class GetClientLinks {
 
 
     /**
-     * The API resource URL of the client's onboarding status.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetClientLinks withOnboarding(Optional<? extends Onboarding> onboarding) {
+    public GetClientLinks withOnboarding(Optional<? extends Url> onboarding) {
         Utils.checkNotNull(onboarding, "onboarding");
         this.onboarding = onboarding;
         return this;
@@ -170,7 +171,7 @@ public class GetClientLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetClientLinks withDocumentation(GetClientDocumentation documentation) {
+    public GetClientLinks withDocumentation(Url documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
@@ -180,7 +181,7 @@ public class GetClientLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetClientLinks withDocumentation(Optional<? extends GetClientDocumentation> documentation) {
+    public GetClientLinks withDocumentation(Optional<? extends Url> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -221,13 +222,13 @@ public class GetClientLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends GetClientSelf> self = Optional.empty();
+        private Optional<? extends Url> self = Optional.empty();
 
-        private Optional<? extends GetClientOrganization> organization = Optional.empty();
+        private Optional<? extends Url> organization = Optional.empty();
 
-        private Optional<? extends Onboarding> onboarding = Optional.empty();
+        private Optional<? extends Url> onboarding = Optional.empty();
 
-        private Optional<? extends GetClientDocumentation> documentation = Optional.empty();
+        private Optional<? extends Url> documentation = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -237,7 +238,7 @@ public class GetClientLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder self(GetClientSelf self) {
+        public Builder self(Url self) {
             Utils.checkNotNull(self, "self");
             this.self = Optional.ofNullable(self);
             return this;
@@ -246,7 +247,7 @@ public class GetClientLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder self(Optional<? extends GetClientSelf> self) {
+        public Builder self(Optional<? extends Url> self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
@@ -254,18 +255,18 @@ public class GetClientLinks {
 
 
         /**
-         * The API resource URL of the client's organization.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder organization(GetClientOrganization organization) {
+        public Builder organization(Url organization) {
             Utils.checkNotNull(organization, "organization");
             this.organization = Optional.ofNullable(organization);
             return this;
         }
 
         /**
-         * The API resource URL of the client's organization.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder organization(Optional<? extends GetClientOrganization> organization) {
+        public Builder organization(Optional<? extends Url> organization) {
             Utils.checkNotNull(organization, "organization");
             this.organization = organization;
             return this;
@@ -273,18 +274,18 @@ public class GetClientLinks {
 
 
         /**
-         * The API resource URL of the client's onboarding status.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder onboarding(Onboarding onboarding) {
+        public Builder onboarding(Url onboarding) {
             Utils.checkNotNull(onboarding, "onboarding");
             this.onboarding = Optional.ofNullable(onboarding);
             return this;
         }
 
         /**
-         * The API resource URL of the client's onboarding status.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder onboarding(Optional<? extends Onboarding> onboarding) {
+        public Builder onboarding(Optional<? extends Url> onboarding) {
             Utils.checkNotNull(onboarding, "onboarding");
             this.onboarding = onboarding;
             return this;
@@ -294,7 +295,7 @@ public class GetClientLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(GetClientDocumentation documentation) {
+        public Builder documentation(Url documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = Optional.ofNullable(documentation);
             return this;
@@ -303,7 +304,7 @@ public class GetClientLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(Optional<? extends GetClientDocumentation> documentation) {
+        public Builder documentation(Optional<? extends Url> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

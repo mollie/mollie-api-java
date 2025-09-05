@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityOrganization;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class GetCurrentOrganizationResponse implements Response {
     /**
      * The current organization object.
      */
-    private Optional<? extends GetCurrentOrganizationResponseBody> object;
+    private Optional<? extends EntityOrganization> entityOrganization;
 
     @JsonCreator
     public GetCurrentOrganizationResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetCurrentOrganizationResponseBody> object) {
+            Optional<? extends EntityOrganization> entityOrganization) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityOrganization, "entityOrganization");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityOrganization = entityOrganization;
     }
     
     public GetCurrentOrganizationResponse(
@@ -90,8 +91,8 @@ public class GetCurrentOrganizationResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetCurrentOrganizationResponseBody> object() {
-        return (Optional<GetCurrentOrganizationResponseBody>) object;
+    public Optional<EntityOrganization> entityOrganization() {
+        return (Optional<EntityOrganization>) entityOrganization;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class GetCurrentOrganizationResponse implements Response {
     /**
      * The current organization object.
      */
-    public GetCurrentOrganizationResponse withObject(GetCurrentOrganizationResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetCurrentOrganizationResponse withEntityOrganization(EntityOrganization entityOrganization) {
+        Utils.checkNotNull(entityOrganization, "entityOrganization");
+        this.entityOrganization = Optional.ofNullable(entityOrganization);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class GetCurrentOrganizationResponse implements Response {
     /**
      * The current organization object.
      */
-    public GetCurrentOrganizationResponse withObject(Optional<? extends GetCurrentOrganizationResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetCurrentOrganizationResponse withEntityOrganization(Optional<? extends EntityOrganization> entityOrganization) {
+        Utils.checkNotNull(entityOrganization, "entityOrganization");
+        this.entityOrganization = entityOrganization;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class GetCurrentOrganizationResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityOrganization, other.entityOrganization);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityOrganization);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class GetCurrentOrganizationResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityOrganization", entityOrganization);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class GetCurrentOrganizationResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetCurrentOrganizationResponseBody> object = Optional.empty();
+        private Optional<? extends EntityOrganization> entityOrganization = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class GetCurrentOrganizationResponse implements Response {
         /**
          * The current organization object.
          */
-        public Builder object(GetCurrentOrganizationResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityOrganization(EntityOrganization entityOrganization) {
+            Utils.checkNotNull(entityOrganization, "entityOrganization");
+            this.entityOrganization = Optional.ofNullable(entityOrganization);
             return this;
         }
 
         /**
          * The current organization object.
          */
-        public Builder object(Optional<? extends GetCurrentOrganizationResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityOrganization(Optional<? extends EntityOrganization> entityOrganization) {
+            Utils.checkNotNull(entityOrganization, "entityOrganization");
+            this.entityOrganization = entityOrganization;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class GetCurrentOrganizationResponse implements Response {
 
             return new GetCurrentOrganizationResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityOrganization);
         }
 
     }

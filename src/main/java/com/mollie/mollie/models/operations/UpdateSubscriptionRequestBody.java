@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Amount;
+import com.mollie.mollie.models.components.Metadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -20,11 +22,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateSubscriptionRequestBody {
     /**
-     * Update the amount for future payments of this subscription.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends UpdateSubscriptionAmount> amount;
+    private Optional<? extends Amount> amount;
 
     /**
      * The subscription's description will be used as the description of the resulting individual payments and so showing
@@ -65,15 +67,12 @@ public class UpdateSubscriptionRequestBody {
     private Optional<Long> times;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
-     * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
-     * approximately 1kB.
-     * 
-     * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends UpdateSubscriptionMetadata> metadata;
+    private JsonNullable<? extends Metadata> metadata;
 
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
@@ -85,9 +84,7 @@ public class UpdateSubscriptionRequestBody {
     @JsonProperty("webhookUrl")
     private Optional<String> webhookUrl;
 
-    /**
-     * The mandate used for this subscription, if any.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateId")
     private Optional<String> mandateId;
@@ -104,12 +101,12 @@ public class UpdateSubscriptionRequestBody {
 
     @JsonCreator
     public UpdateSubscriptionRequestBody(
-            @JsonProperty("amount") Optional<? extends UpdateSubscriptionAmount> amount,
+            @JsonProperty("amount") Optional<? extends Amount> amount,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("interval") Optional<String> interval,
             @JsonProperty("startDate") Optional<String> startDate,
             @JsonProperty("times") Optional<Long> times,
-            @JsonProperty("metadata") JsonNullable<? extends UpdateSubscriptionMetadata> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("webhookUrl") Optional<String> webhookUrl,
             @JsonProperty("mandateId") Optional<String> mandateId,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
@@ -140,12 +137,12 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Update the amount for future payments of this subscription.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateSubscriptionAmount> amount() {
-        return (Optional<UpdateSubscriptionAmount>) amount;
+    public Optional<Amount> amount() {
+        return (Optional<Amount>) amount;
     }
 
     /**
@@ -191,16 +188,13 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
-     * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
-     * approximately 1kB.
-     * 
-     * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<UpdateSubscriptionMetadata> metadata() {
-        return (JsonNullable<UpdateSubscriptionMetadata>) metadata;
+    public JsonNullable<Metadata> metadata() {
+        return (JsonNullable<Metadata>) metadata;
     }
 
     /**
@@ -214,9 +208,6 @@ public class UpdateSubscriptionRequestBody {
         return webhookUrl;
     }
 
-    /**
-     * The mandate used for this subscription, if any.
-     */
     @JsonIgnore
     public Optional<String> mandateId() {
         return mandateId;
@@ -239,9 +230,9 @@ public class UpdateSubscriptionRequestBody {
 
 
     /**
-     * Update the amount for future payments of this subscription.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public UpdateSubscriptionRequestBody withAmount(UpdateSubscriptionAmount amount) {
+    public UpdateSubscriptionRequestBody withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
@@ -249,9 +240,9 @@ public class UpdateSubscriptionRequestBody {
 
 
     /**
-     * Update the amount for future payments of this subscription.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public UpdateSubscriptionRequestBody withAmount(Optional<? extends UpdateSubscriptionAmount> amount) {
+    public UpdateSubscriptionRequestBody withAmount(Optional<? extends Amount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -354,26 +345,20 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
-     * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
-     * approximately 1kB.
-     * 
-     * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
-    public UpdateSubscriptionRequestBody withMetadata(UpdateSubscriptionMetadata metadata) {
+    public UpdateSubscriptionRequestBody withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
-     * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
-     * approximately 1kB.
-     * 
-     * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
-    public UpdateSubscriptionRequestBody withMetadata(JsonNullable<? extends UpdateSubscriptionMetadata> metadata) {
+    public UpdateSubscriptionRequestBody withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -404,9 +389,6 @@ public class UpdateSubscriptionRequestBody {
         return this;
     }
 
-    /**
-     * The mandate used for this subscription, if any.
-     */
     public UpdateSubscriptionRequestBody withMandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
         this.mandateId = Optional.ofNullable(mandateId);
@@ -414,9 +396,6 @@ public class UpdateSubscriptionRequestBody {
     }
 
 
-    /**
-     * The mandate used for this subscription, if any.
-     */
     public UpdateSubscriptionRequestBody withMandateId(Optional<String> mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
         this.mandateId = mandateId;
@@ -493,7 +472,7 @@ public class UpdateSubscriptionRequestBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends UpdateSubscriptionAmount> amount = Optional.empty();
+        private Optional<? extends Amount> amount = Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
@@ -503,7 +482,7 @@ public class UpdateSubscriptionRequestBody {
 
         private Optional<Long> times = Optional.empty();
 
-        private JsonNullable<? extends UpdateSubscriptionMetadata> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
         private Optional<String> webhookUrl = Optional.empty();
 
@@ -517,18 +496,18 @@ public class UpdateSubscriptionRequestBody {
 
 
         /**
-         * Update the amount for future payments of this subscription.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(UpdateSubscriptionAmount amount) {
+        public Builder amount(Amount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = Optional.ofNullable(amount);
             return this;
         }
 
         /**
-         * Update the amount for future payments of this subscription.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(Optional<? extends UpdateSubscriptionAmount> amount) {
+        public Builder amount(Optional<? extends Amount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -632,26 +611,20 @@ public class UpdateSubscriptionRequestBody {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
-         * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
-         * approximately 1kB.
-         * 
-         * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
-        public Builder metadata(UpdateSubscriptionMetadata metadata) {
+        public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the
-         * entity. Whenever you fetch the entity with our API, we will also include the metadata. You can use up to
-         * approximately 1kB.
-         * 
-         * <p>Any metadata added to the subscription will be automatically forwarded to the payments generated for it.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
-        public Builder metadata(JsonNullable<? extends UpdateSubscriptionMetadata> metadata) {
+        public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -683,18 +656,12 @@ public class UpdateSubscriptionRequestBody {
         }
 
 
-        /**
-         * The mandate used for this subscription, if any.
-         */
         public Builder mandateId(String mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
             this.mandateId = Optional.ofNullable(mandateId);
             return this;
         }
 
-        /**
-         * The mandate used for this subscription, if any.
-         */
         public Builder mandateId(Optional<String> mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
             this.mandateId = mandateId;

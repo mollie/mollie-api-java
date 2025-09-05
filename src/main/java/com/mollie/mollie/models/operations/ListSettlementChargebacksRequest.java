@@ -11,7 +11,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -37,10 +36,11 @@ public class ListSettlementChargebacksRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows you to embed additional information via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private Optional<? extends ListSettlementChargebacksQueryParamEmbed> embed;
+    private JsonNullable<String> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -57,7 +57,7 @@ public class ListSettlementChargebacksRequest {
             String settlementId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            Optional<? extends ListSettlementChargebacksQueryParamEmbed> embed,
+            JsonNullable<String> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(settlementId, "settlementId");
         Utils.checkNotNull(from, "from");
@@ -74,7 +74,7 @@ public class ListSettlementChargebacksRequest {
     public ListSettlementChargebacksRequest(
             String settlementId) {
         this(settlementId, Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -103,12 +103,12 @@ public class ListSettlementChargebacksRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional information via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementChargebacksQueryParamEmbed> embed() {
-        return (Optional<ListSettlementChargebacksQueryParamEmbed>) embed;
+    public JsonNullable<String> embed() {
+        return embed;
     }
 
     /**
@@ -177,19 +177,20 @@ public class ListSettlementChargebacksRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional information via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public ListSettlementChargebacksRequest withEmbed(ListSettlementChargebacksQueryParamEmbed embed) {
+    public ListSettlementChargebacksRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
-        this.embed = Optional.ofNullable(embed);
+        this.embed = JsonNullable.of(embed);
         return this;
     }
 
-
     /**
-     * This endpoint allows you to embed additional information via the `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public ListSettlementChargebacksRequest withEmbed(Optional<? extends ListSettlementChargebacksQueryParamEmbed> embed) {
+    public ListSettlementChargebacksRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -264,7 +265,7 @@ public class ListSettlementChargebacksRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private Optional<? extends ListSettlementChargebacksQueryParamEmbed> embed = Optional.empty();
+        private JsonNullable<String> embed = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -324,18 +325,20 @@ public class ListSettlementChargebacksRequest {
 
 
         /**
-         * This endpoint allows you to embed additional information via the `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder embed(ListSettlementChargebacksQueryParamEmbed embed) {
+        public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
-            this.embed = Optional.ofNullable(embed);
+            this.embed = JsonNullable.of(embed);
             return this;
         }
 
         /**
-         * This endpoint allows you to embed additional information via the `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder embed(Optional<? extends ListSettlementChargebacksQueryParamEmbed> embed) {
+        public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;

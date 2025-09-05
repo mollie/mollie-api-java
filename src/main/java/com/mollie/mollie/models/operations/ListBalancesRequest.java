@@ -11,7 +11,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -27,7 +26,7 @@ public class ListBalancesRequest {
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
-    private Optional<String> from;
+    private JsonNullable<String> from;
 
     /**
      * The maximum number of items to return. Defaults to 50 items.
@@ -48,7 +47,7 @@ public class ListBalancesRequest {
     @JsonCreator
     public ListBalancesRequest(
             JsonNullable<String> currency,
-            Optional<String> from,
+            JsonNullable<String> from,
             JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(currency, "currency");
@@ -62,7 +61,7 @@ public class ListBalancesRequest {
     }
     
     public ListBalancesRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
@@ -79,7 +78,7 @@ public class ListBalancesRequest {
      * result set.
      */
     @JsonIgnore
-    public Optional<String> from() {
+    public JsonNullable<String> from() {
         return from;
     }
 
@@ -132,16 +131,15 @@ public class ListBalancesRequest {
      */
     public ListBalancesRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.ofNullable(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
-
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      * result set.
      */
-    public ListBalancesRequest withFrom(Optional<String> from) {
+    public ListBalancesRequest withFrom(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;
@@ -228,7 +226,7 @@ public class ListBalancesRequest {
 
         private JsonNullable<String> currency = JsonNullable.undefined();
 
-        private Optional<String> from = Optional.empty();
+        private JsonNullable<String> from = JsonNullable.undefined();
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
@@ -264,7 +262,7 @@ public class ListBalancesRequest {
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
-            this.from = Optional.ofNullable(from);
+            this.from = JsonNullable.of(from);
             return this;
         }
 
@@ -272,7 +270,7 @@ public class ListBalancesRequest {
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
          * result set.
          */
-        public Builder from(Optional<String> from) {
+        public Builder from(JsonNullable<String> from) {
             Utils.checkNotNull(from, "from");
             this.from = from;
             return this;

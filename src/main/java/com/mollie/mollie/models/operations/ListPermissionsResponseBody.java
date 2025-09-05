@@ -42,13 +42,13 @@ public class ListPermissionsResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListPermissionsLinks> links;
+    private Optional<? extends Links> links;
 
     @JsonCreator
     public ListPermissionsResponseBody(
             @JsonProperty("count") Optional<Long> count,
             @JsonProperty("_embedded") Optional<? extends ListPermissionsEmbedded> embedded,
-            @JsonProperty("_links") Optional<? extends ListPermissionsLinks> links) {
+            @JsonProperty("_links") Optional<? extends Links> links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
@@ -84,8 +84,8 @@ public class ListPermissionsResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListPermissionsLinks> links() {
-        return (Optional<ListPermissionsLinks>) links;
+    public Optional<Links> links() {
+        return (Optional<Links>) links;
     }
 
     public static Builder builder() {
@@ -136,7 +136,7 @@ public class ListPermissionsResponseBody {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public ListPermissionsResponseBody withLinks(ListPermissionsLinks links) {
+    public ListPermissionsResponseBody withLinks(Links links) {
         Utils.checkNotNull(links, "links");
         this.links = Optional.ofNullable(links);
         return this;
@@ -146,7 +146,7 @@ public class ListPermissionsResponseBody {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public ListPermissionsResponseBody withLinks(Optional<? extends ListPermissionsLinks> links) {
+    public ListPermissionsResponseBody withLinks(Optional<? extends Links> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -188,7 +188,7 @@ public class ListPermissionsResponseBody {
 
         private Optional<? extends ListPermissionsEmbedded> embedded = Optional.empty();
 
-        private Optional<? extends ListPermissionsLinks> links = Optional.empty();
+        private Optional<? extends Links> links = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -238,7 +238,7 @@ public class ListPermissionsResponseBody {
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(ListPermissionsLinks links) {
+        public Builder links(Links links) {
             Utils.checkNotNull(links, "links");
             this.links = Optional.ofNullable(links);
             return this;
@@ -247,7 +247,7 @@ public class ListPermissionsResponseBody {
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(Optional<? extends ListPermissionsLinks> links) {
+        public Builder links(Optional<? extends Links> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

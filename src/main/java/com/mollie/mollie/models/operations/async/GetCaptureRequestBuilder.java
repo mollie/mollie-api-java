@@ -6,7 +6,6 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.operations.GetCaptureQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetCaptureRequest;
 import com.mollie.mollie.operations.GetCapture;
 import com.mollie.mollie.utils.Options;
@@ -23,7 +22,7 @@ public class GetCaptureRequestBuilder {
 
     private String paymentId;
     private String captureId;
-    private Optional<? extends GetCaptureQueryParamEmbed> embed = Optional.empty();
+    private JsonNullable<String> embed = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -43,14 +42,14 @@ public class GetCaptureRequestBuilder {
         this.captureId = captureId;
         return this;
     }
-                
-    public GetCaptureRequestBuilder embed(GetCaptureQueryParamEmbed embed) {
+
+    public GetCaptureRequestBuilder embed(String embed) {
         Utils.checkNotNull(embed, "embed");
-        this.embed = Optional.of(embed);
+        this.embed = JsonNullable.of(embed);
         return this;
     }
 
-    public GetCaptureRequestBuilder embed(Optional<? extends GetCaptureQueryParamEmbed> embed) {
+    public GetCaptureRequestBuilder embed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;

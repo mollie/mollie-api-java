@@ -42,14 +42,14 @@ Your customer will be charged €10 on the last day of each month, starting in A
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreateSubscriptionResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateSubscriptionResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws CreateSubscriptionResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -59,30 +59,32 @@ public class Application {
 
         CreateSubscriptionResponse res = sdk.subscriptions().create()
                 .customerId("cst_5B8cwPMGnU")
-                .requestBody(CreateSubscriptionRequestBody.builder()
-                    .amount(CreateSubscriptionAmount.builder()
+                .subscriptionRequest(SubscriptionRequest.builder()
+                    .id("sub_5B8cwPMGnU")
+                    .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
-                    .interval("2 days")
-                    .description("Subscription of streaming channel")
                     .times(6L)
+                    .interval("2 days")
                     .startDate("2025-01-01")
-                    .method(CreateSubscriptionMethod.PAYPAL)
-                    .applicationFee(CreateSubscriptionApplicationFee.builder()
-                        .amount(CreateSubscriptionSubscriptionsAmount.builder()
+                    .description("Subscription of streaming channel")
+                    .method(SubscriptionRequestMethod.PAYPAL)
+                    .applicationFee(SubscriptionRequestApplicationFee.builder()
+                        .amount(Amount.builder()
                             .currency("EUR")
                             .value("10.00")
                             .build())
                         .description("Platform fee")
                         .build())
                     .webhookUrl("https://example.com/webhook")
+                    .customerId("cst_5B8cwPMGnU")
                     .mandateId("mdt_5B8cwPMGnU")
                     .testmode(false)
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.subscriptionResponse().isPresent()) {
             // handle response
         }
     }
@@ -91,10 +93,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                         | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related customer.                                                              | cst_5B8cwPMGnU                                                                                       |
-| `requestBody`                                                                                        | [Optional\<CreateSubscriptionRequestBody>](../../models/operations/CreateSubscriptionRequestBody.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `customerId`                                                                     | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related customer.                                          | cst_5B8cwPMGnU                                                                   |
+| `subscriptionRequest`                                                            | [Optional\<SubscriptionRequest>](../../models/components/SubscriptionRequest.md) | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 
@@ -102,10 +104,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/CreateSubscriptionResponseBody | 404                                          | application/hal+json                         |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -120,15 +122,16 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListSubscriptionsResponseBody;
-import com.mollie.mollie.models.errors.ListSubscriptionsSubscriptionsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSubscriptionsRequest;
+import com.mollie.mollie.models.operations.ListSubscriptionsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListSubscriptionsResponseBody, ListSubscriptionsSubscriptionsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -140,7 +143,7 @@ public class Application {
                 .customerId("cst_5B8cwPMGnU")
                 .from("sub_5B8cwPMGnU")
                 .limit(50L)
-                .sort(ListSubscriptionsQueryParamSort.DESC)
+                .sort(ListSort.DESC)
                 .testmode(false)
                 .build();
 
@@ -167,11 +170,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                               | Status Code                                              | Content Type                                             |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| models/errors/ListSubscriptionsResponseBody              | 400                                                      | application/hal+json                                     |
-| models/errors/ListSubscriptionsSubscriptionsResponseBody | 404                                                      | application/hal+json                                     |
-| models/errors/APIException                               | 4XX, 5XX                                                 | \*/\*                                                    |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -185,13 +187,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetSubscriptionResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetSubscriptionResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetSubscriptionResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -205,7 +207,7 @@ public class Application {
                 .testmode(false)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.subscriptionResponse().isPresent()) {
             // handle response
         }
     }
@@ -226,10 +228,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models/errors/GetSubscriptionResponseBody | 404                                       | application/hal+json                      |
-| models/errors/APIException                | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## update
 
@@ -246,14 +248,16 @@ For an in-depth explanation of each parameter, refer to the [Create subscription
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Amount;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.UpdateSubscriptionResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdateSubscriptionRequestBody;
+import com.mollie.mollie.models.operations.UpdateSubscriptionResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws UpdateSubscriptionResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -265,7 +269,7 @@ public class Application {
                 .customerId("cst_5B8cwPMGnU")
                 .subscriptionId("sub_5B8cwPMGnU")
                 .requestBody(UpdateSubscriptionRequestBody.builder()
-                    .amount(UpdateSubscriptionAmount.builder()
+                    .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
@@ -279,7 +283,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.subscriptionResponse().isPresent()) {
             // handle response
         }
     }
@@ -300,10 +304,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/UpdateSubscriptionResponseBody | 404                                          | application/hal+json                         |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## cancel
 
@@ -317,14 +321,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CancelSubscriptionResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.CancelSubscriptionResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws CancelSubscriptionResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -340,7 +344,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.subscriptionResponse().isPresent()) {
             // handle response
         }
     }
@@ -361,10 +365,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/CancelSubscriptionResponseBody | 404                                          | application/hal+json                         |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## all
 
@@ -380,14 +384,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListAllSubscriptionsResponseBody;
-import com.mollie.mollie.models.errors.ListAllSubscriptionsSubscriptionsResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListAllSubscriptionsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListAllSubscriptionsResponseBody, ListAllSubscriptionsSubscriptionsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -413,7 +416,7 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     | sub_rVKGtNd6s3                                                                                                                                                                                                                                                                                                                                                                         |
+| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<Long>*                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
 | `profileId`                                                                                                                                                                                                                                                                                                                                                                            | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.<br/><br/>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.<br/><br/>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the<br/>`profileId` parameter.                       | pfl_QkEhN94Ba                                                                                                                                                                                                                                                                                                                                                                          |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -424,11 +427,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                                  | Status Code                                                 | Content Type                                                |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| models/errors/ListAllSubscriptionsResponseBody              | 400                                                         | application/hal+json                                        |
-| models/errors/ListAllSubscriptionsSubscriptionsResponseBody | 404                                                         | application/hal+json                                        |
-| models/errors/APIException                                  | 4XX, 5XX                                                    | \*/\*                                                       |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## listPayments
 
@@ -443,14 +445,16 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListSubscriptionPaymentsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSubscriptionPaymentsRequest;
+import com.mollie.mollie.models.operations.ListSubscriptionPaymentsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListSubscriptionPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -463,7 +467,7 @@ public class Application {
                 .subscriptionId("sub_5B8cwPMGnU")
                 .from("tr_5B8cwPMGnU")
                 .limit(50L)
-                .sort(ListSubscriptionPaymentsQueryParamSort.DESC)
+                .sort(ListSort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
@@ -491,7 +495,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                         | Status Code                                        | Content Type                                       |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| models/errors/ListSubscriptionPaymentsResponseBody | 400                                                | application/hal+json                               |
-| models/errors/APIException                         | 4XX, 5XX                                           | \*/\*                                              |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

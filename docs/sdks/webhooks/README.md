@@ -24,13 +24,15 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreateWebhookResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.WebhookEventTypes;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateWebhookRequestBody;
+import com.mollie.mollie.models.operations.CreateWebhookResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws CreateWebhookResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -49,7 +51,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.createWebhook().isPresent()) {
             // handle response
         }
     }
@@ -68,10 +70,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| models/errors/CreateWebhookResponseBody | 422                                     | application/hal+json                    |
-| models/errors/APIException              | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 422                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -84,14 +86,15 @@ Returns a paginated list of your webhooks. If no webhook endpoints are available
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListWebhooksResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListWebhooksRequest;
+import com.mollie.mollie.models.operations.ListWebhooksResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListWebhooksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -102,8 +105,8 @@ public class Application {
         ListWebhooksRequest req = ListWebhooksRequest.builder()
                 .from("hook_B2EyhTH5N4KWUnoYPcgiH")
                 .limit(50L)
-                .sort(ListWebhooksQueryParamSort.DESC)
-                .eventTypes(QueryParamWebhookEventTypes.PAYMENT_LINK_PAID)
+                .sort(ListSort.DESC)
+                .eventTypes(WebhookEventTypes.PAYMENT_LINK_PAID)
                 .testmode(false)
                 .build();
 
@@ -130,10 +133,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| models/errors/ListWebhooksResponseBody | 400                                    | application/hal+json                   |
-| models/errors/APIException             | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## update
 
@@ -147,14 +150,15 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.UpdateWebhookResponseBody;
-import com.mollie.mollie.models.errors.UpdateWebhookWebhooksResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.WebhookEventTypes;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdateWebhookRequestBody;
+import com.mollie.mollie.models.operations.UpdateWebhookResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws UpdateWebhookResponseBody, UpdateWebhookWebhooksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -167,12 +171,12 @@ public class Application {
                 .requestBody(UpdateWebhookRequestBody.builder()
                     .name("Webhook #1")
                     .url("https://mollie.com/")
-                    .webhookEventTypes(UpdateWebhookWebhookEventTypes.PAYMENT_LINK_PAID)
+                    .webhookEventTypes(WebhookEventTypes.PAYMENT_LINK_PAID)
                     .testmode(false)
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityWebhook().isPresent()) {
             // handle response
         }
     }
@@ -181,10 +185,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          | hook_B2EyhTH5N4KWUnoYPcgiH                                                                 |
-| `requestBody`                                                                              | [Optional\<UpdateWebhookRequestBody>](../../models/operations/UpdateWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |
+| `requestBody`                                                                              | [Optional\<UpdateWebhookRequestBody>](../../models/operations/UpdateWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |
 
 ### Response
 
@@ -192,11 +196,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models/errors/UpdateWebhookResponseBody         | 404                                             | application/hal+json                            |
-| models/errors/UpdateWebhookWebhooksResponseBody | 422                                             | application/hal+json                            |
-| models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -210,14 +213,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetWebhookResponseBody;
-import com.mollie.mollie.models.errors.GetWebhookWebhooksResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetWebhookResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetWebhookResponseBody, GetWebhookWebhooksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -230,7 +232,7 @@ public class Application {
                 .testmode(false)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityWebhook().isPresent()) {
             // handle response
         }
     }
@@ -241,7 +243,7 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | hook_B2EyhTH5N4KWUnoYPcgiH                                                                                                                                                                                                                                                                                                                                                             |
+| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -250,11 +252,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                   | Status Code                                  | Content Type                                 |
-| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
-| models/errors/GetWebhookResponseBody         | 404                                          | application/hal+json                         |
-| models/errors/GetWebhookWebhooksResponseBody | 422                                          | application/hal+json                         |
-| models/errors/APIException                   | 4XX, 5XX                                     | \*/\*                                        |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## delete
 
@@ -268,15 +269,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.DeleteWebhookResponseBody;
-import com.mollie.mollie.models.errors.DeleteWebhookWebhooksResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.DeleteWebhookRequestBody;
 import com.mollie.mollie.models.operations.DeleteWebhookResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws DeleteWebhookResponseBody, DeleteWebhookWebhooksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -300,10 +300,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          | hook_B2EyhTH5N4KWUnoYPcgiH                                                                 |
-| `requestBody`                                                                              | [Optional\<DeleteWebhookRequestBody>](../../models/operations/DeleteWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |
+| `requestBody`                                                                              | [Optional\<DeleteWebhookRequestBody>](../../models/operations/DeleteWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |
 
 ### Response
 
@@ -311,11 +311,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models/errors/DeleteWebhookResponseBody         | 404                                             | application/hal+json                            |
-| models/errors/DeleteWebhookWebhooksResponseBody | 422                                             | application/hal+json                            |
-| models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## test
 
@@ -329,15 +328,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.TestWebhookResponseBody;
-import com.mollie.mollie.models.errors.TestWebhookWebhooksResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.TestWebhookRequestBody;
 import com.mollie.mollie.models.operations.TestWebhookResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws TestWebhookResponseBody, TestWebhookWebhooksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -361,10 +359,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `id`                                                                                   | *String*                                                                               | :heavy_check_mark:                                                                     | Provide the ID of the item you want to perform this operation on.                      | hook_B2EyhTH5N4KWUnoYPcgiH                                                             |
-| `requestBody`                                                                          | [Optional\<TestWebhookRequestBody>](../../models/operations/TestWebhookRequestBody.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |                                                                                        |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `id`                                                                                   | *String*                                                                               | :heavy_check_mark:                                                                     | Provide the ID of the item you want to perform this operation on.                      |
+| `requestBody`                                                                          | [Optional\<TestWebhookRequestBody>](../../models/operations/TestWebhookRequestBody.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |
 
 ### Response
 
@@ -372,8 +370,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                    | Status Code                                   | Content Type                                  |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| models/errors/TestWebhookResponseBody         | 404                                           | application/hal+json                          |
-| models/errors/TestWebhookWebhooksResponseBody | 422                                           | application/hal+json                          |
-| models/errors/APIException                    | 4XX, 5XX                                      | \*/\*                                         |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

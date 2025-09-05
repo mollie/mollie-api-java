@@ -19,7 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class ListClientsRequestBuilder {
 
     private JsonNullable<String> embed = JsonNullable.undefined();
-    private Optional<String> from = Optional.empty();
+    private JsonNullable<String> from = JsonNullable.undefined();
     private JsonNullable<Long> limit = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -39,14 +39,14 @@ public class ListClientsRequestBuilder {
         this.embed = embed;
         return this;
     }
-                
+
     public ListClientsRequestBuilder from(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
 
-    public ListClientsRequestBuilder from(Optional<String> from) {
+    public ListClientsRequestBuilder from(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;

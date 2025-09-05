@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListProfilesRequestBuilder {
 
-    private Optional<String> from = Optional.empty();
+    private JsonNullable<String> from = JsonNullable.undefined();
     private JsonNullable<Long> limit = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -28,14 +28,14 @@ public class ListProfilesRequestBuilder {
     public ListProfilesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-                
+
     public ListProfilesRequestBuilder from(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
 
-    public ListProfilesRequestBuilder from(Optional<String> from) {
+    public ListProfilesRequestBuilder from(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;

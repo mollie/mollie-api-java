@@ -6,7 +6,6 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.operations.GetRefundQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetRefundRequest;
 import com.mollie.mollie.operations.GetRefund;
 import com.mollie.mollie.utils.Options;
@@ -23,7 +22,7 @@ public class GetRefundRequestBuilder {
 
     private String paymentId;
     private String refundId;
-    private Optional<? extends GetRefundQueryParamEmbed> embed = Optional.empty();
+    private JsonNullable<String> embed = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -43,14 +42,14 @@ public class GetRefundRequestBuilder {
         this.refundId = refundId;
         return this;
     }
-                
-    public GetRefundRequestBuilder embed(GetRefundQueryParamEmbed embed) {
+
+    public GetRefundRequestBuilder embed(String embed) {
         Utils.checkNotNull(embed, "embed");
-        this.embed = Optional.of(embed);
+        this.embed = JsonNullable.of(embed);
         return this;
     }
 
-    public GetRefundRequestBuilder embed(Optional<? extends GetRefundQueryParamEmbed> embed) {
+    public GetRefundRequestBuilder embed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;

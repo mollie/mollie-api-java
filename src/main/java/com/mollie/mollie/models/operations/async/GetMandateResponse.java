@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.GetMandateResponseBody;
+import com.mollie.mollie.models.components.MandateResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class GetMandateResponse implements AsyncResponse {
     /**
      * The mandate object.
      */
-    private Optional<? extends GetMandateResponseBody> object;
+    private Optional<? extends MandateResponse> mandateResponse;
 
     @JsonCreator
     public GetMandateResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends GetMandateResponseBody> object) {
+            Optional<? extends MandateResponse> mandateResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(mandateResponse, "mandateResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.mandateResponse = mandateResponse;
     }
     
     public GetMandateResponse(
@@ -91,8 +91,8 @@ public class GetMandateResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetMandateResponseBody> object() {
-        return (Optional<GetMandateResponseBody>) object;
+    public Optional<MandateResponse> mandateResponse() {
+        return (Optional<MandateResponse>) mandateResponse;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class GetMandateResponse implements AsyncResponse {
     /**
      * The mandate object.
      */
-    public GetMandateResponse withObject(GetMandateResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetMandateResponse withMandateResponse(MandateResponse mandateResponse) {
+        Utils.checkNotNull(mandateResponse, "mandateResponse");
+        this.mandateResponse = Optional.ofNullable(mandateResponse);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class GetMandateResponse implements AsyncResponse {
     /**
      * The mandate object.
      */
-    public GetMandateResponse withObject(Optional<? extends GetMandateResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetMandateResponse withMandateResponse(Optional<? extends MandateResponse> mandateResponse) {
+        Utils.checkNotNull(mandateResponse, "mandateResponse");
+        this.mandateResponse = mandateResponse;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class GetMandateResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.mandateResponse, other.mandateResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            mandateResponse);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class GetMandateResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "mandateResponse", mandateResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class GetMandateResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends GetMandateResponseBody> object = Optional.empty();
+        private Optional<? extends MandateResponse> mandateResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class GetMandateResponse implements AsyncResponse {
         /**
          * The mandate object.
          */
-        public Builder object(GetMandateResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder mandateResponse(MandateResponse mandateResponse) {
+            Utils.checkNotNull(mandateResponse, "mandateResponse");
+            this.mandateResponse = Optional.ofNullable(mandateResponse);
             return this;
         }
 
         /**
          * The mandate object.
          */
-        public Builder object(Optional<? extends GetMandateResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder mandateResponse(Optional<? extends MandateResponse> mandateResponse) {
+            Utils.checkNotNull(mandateResponse, "mandateResponse");
+            this.mandateResponse = mandateResponse;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class GetMandateResponse implements AsyncResponse {
 
             return new GetMandateResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                mandateResponse);
         }
 
     }

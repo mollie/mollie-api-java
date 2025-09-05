@@ -26,16 +26,15 @@ With the Sales Invoice API you can generate sales invoices to send to your custo
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreateSalesInvoiceResponseBody;
-import com.mollie.mollie.models.errors.CreateSalesInvoiceSalesInvoicesResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateSalesInvoiceResponse;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws CreateSalesInvoiceResponseBody, CreateSalesInvoiceSalesInvoicesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -43,17 +42,34 @@ public class Application {
                     .build())
             .build();
 
-        CreateSalesInvoiceRequestBody req = CreateSalesInvoiceRequestBody.builder()
-                .status(Status.DRAFT)
+        EntitySalesInvoice req = EntitySalesInvoice.builder()
+                .id("invoice_4Y0eZitmBnQ6IDoMqZQKh")
+                .testmode(false)
+                .profileId("pfl_QkEhN94Ba")
+                .status(EntitySalesInvoiceStatus.DRAFT)
+                .vatScheme(VatScheme.STANDARD)
+                .vatMode(VatMode.EXCLUSIVE)
+                .memo("This is a memo!")
+                .paymentTerm(PaymentTerm.THIRTYDAYS)
+                .paymentDetails(SalesInvoicePaymentDetails.builder()
+                    .source(Source.PAYMENT_LINK)
+                    .sourceReference("pl_d9fQur83kFdhH8hIhaZfq")
+                    .build())
+                .emailDetails(SalesInvoiceEmailDetails.builder()
+                    .subject("Your invoice is available")
+                    .body("Please find your invoice enclosed.")
+                    .build())
+                .customerId("cst_8wmqcHMN4U")
+                .mandateId("mdt_pWUnw6pkBN")
                 .recipientIdentifier("customer-xyz-0123")
-                .recipient(Recipient.builder()
-                    .type(CreateSalesInvoiceType.CONSUMER)
+                .recipient(SalesInvoiceRecipient.builder()
+                    .type(SalesInvoiceRecipientType.CONSUMER)
                     .email("example@email.com")
                     .streetAndNumber("Keizersgracht 126")
                     .postalCode("5678AB")
                     .city("Amsterdam")
                     .country("NL")
-                    .locale(CreateSalesInvoiceLocale.NLNL)
+                    .locale(SalesInvoiceRecipientLocale.NLNL)
                     .title("Mrs.")
                     .givenName("Jane")
                     .familyName("Doe")
@@ -65,24 +81,28 @@ public class Application {
                     .region("Noord-Holland")
                     .build())
                 .lines(List.of())
-                .testmode(false)
-                .profileId("pfl_QkEhN94Ba")
-                .vatScheme(VatScheme.STANDARD)
-                .vatMode(VatMode.EXCLUSIVE)
-                .memo("This is a memo!")
-                .paymentTerm(PaymentTerm.THIRTYDAYS)
-                .paymentDetails(PaymentDetails.builder()
-                    .source(CreateSalesInvoiceSource.PAYMENT_LINK)
-                    .sourceReference("pl_d9fQur83kFdhH8hIhaZfq")
+                .discount(SalesInvoiceDiscount.builder()
+                    .type(SalesInvoiceDiscountType.AMOUNT)
+                    .value("10.00")
                     .build())
-                .emailDetails(EmailDetails.builder()
-                    .subject("Your invoice is available")
-                    .body("Please find your invoice enclosed.")
+                .amountDue(Amount.builder()
+                    .currency("EUR")
+                    .value("10.00")
                     .build())
-                .customerId("cst_8wmqcHMN4U")
-                .mandateId("mdt_pWUnw6pkBN")
-                .discount(CreateSalesInvoiceDiscount.builder()
-                    .type(CreateSalesInvoiceSalesInvoicesRequestType.AMOUNT)
+                .subtotalAmount(Amount.builder()
+                    .currency("EUR")
+                    .value("10.00")
+                    .build())
+                .totalAmount(Amount.builder()
+                    .currency("EUR")
+                    .value("10.00")
+                    .build())
+                .totalVatAmount(Amount.builder()
+                    .currency("EUR")
+                    .value("10.00")
+                    .build())
+                .discountedSubtotalAmount(Amount.builder()
+                    .currency("EUR")
                     .value("10.00")
                     .build())
                 .build();
@@ -91,7 +111,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entitySalesInvoiceResponse().isPresent()) {
             // handle response
         }
     }
@@ -100,9 +120,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `request`                                                                                 | [CreateSalesInvoiceRequestBody](../../models/operations/CreateSalesInvoiceRequestBody.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [EntitySalesInvoice](../../models/shared/EntitySalesInvoice.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 ### Response
 
@@ -110,11 +130,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| models/errors/CreateSalesInvoiceResponseBody              | 404                                                       | application/hal+json                                      |
-| models/errors/CreateSalesInvoiceSalesInvoicesResponseBody | 422                                                       | application/hal+json                                      |
-| models/errors/APIException                                | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -134,13 +153,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListSalesInvoicesResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListSalesInvoicesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListSalesInvoicesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -165,7 +184,7 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                                                                                                                                                                                                                                                                                                          |
+| `from`                                                                                                                                                                                                                                                                                                                                                                                 | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<Long>*                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
@@ -175,10 +194,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                  | Status Code                                 | Content Type                                |
-| ------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| models/errors/ListSalesInvoicesResponseBody | 400                                         | application/hal+json                        |
-| models/errors/APIException                  | 4XX, 5XX                                    | \*/\*                                       |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -196,13 +215,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetSalesInvoiceResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetSalesInvoiceResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetSalesInvoiceResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -215,7 +234,7 @@ public class Application {
                 .testmode(false)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entitySalesInvoiceResponse().isPresent()) {
             // handle response
         }
     }
@@ -226,7 +245,7 @@ public class Application {
 
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                                                                                                                                                                                                                                                                                                          |
+| `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -235,10 +254,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                | Status Code                               | Content Type                              |
-| ----------------------------------------- | ----------------------------------------- | ----------------------------------------- |
-| models/errors/GetSalesInvoiceResponseBody | 404                                       | application/hal+json                      |
-| models/errors/APIException                | 4XX, 5XX                                  | \*/\*                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## update
 
@@ -257,16 +276,15 @@ respectively).
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.UpdateSalesInvoiceResponseBody;
-import com.mollie.mollie.models.errors.UpdateSalesInvoiceSalesInvoicesResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdateSalesInvoiceResponse;
 import java.lang.Exception;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws UpdateSalesInvoiceResponseBody, UpdateSalesInvoiceSalesInvoicesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -276,28 +294,28 @@ public class Application {
 
         UpdateSalesInvoiceResponse res = sdk.salesInvoices().update()
                 .id("invoice_4Y0eZitmBnQ6IDoMqZQKh")
-                .requestBody(UpdateSalesInvoiceRequestBody.builder()
+                .updateValuesSalesInvoice(UpdateValuesSalesInvoice.builder()
                     .testmode(false)
-                    .status(UpdateSalesInvoiceStatus.PAID)
+                    .status(UpdateValuesSalesInvoiceStatus.PAID)
                     .memo("An updated memo!")
-                    .paymentTerm(UpdateSalesInvoicePaymentTerm.THIRTYDAYS)
-                    .paymentDetails(UpdateSalesInvoicePaymentDetails.builder()
-                        .source(UpdateSalesInvoiceSource.PAYMENT_LINK)
+                    .paymentTerm(UpdateValuesSalesInvoicePaymentTerm.THIRTYDAYS)
+                    .paymentDetails(SalesInvoicePaymentDetails.builder()
+                        .source(Source.PAYMENT_LINK)
                         .sourceReference("pl_d9fQur83kFdhH8hIhaZfq")
                         .build())
-                    .emailDetails(UpdateSalesInvoiceEmailDetails.builder()
+                    .emailDetails(SalesInvoiceEmailDetails.builder()
                         .subject("Your invoice is available")
                         .body("Please find your invoice enclosed.")
                         .build())
                     .recipientIdentifier("customer-xyz-0123")
-                    .recipient(UpdateSalesInvoiceRecipient.builder()
-                        .type(UpdateSalesInvoiceType.CONSUMER)
+                    .recipient(SalesInvoiceRecipient.builder()
+                        .type(SalesInvoiceRecipientType.CONSUMER)
                         .email("example@email.com")
                         .streetAndNumber("Keizersgracht 126")
                         .postalCode("5678AB")
                         .city("Amsterdam")
                         .country("NL")
-                        .locale(UpdateSalesInvoiceLocale.NLNL)
+                        .locale(SalesInvoiceRecipientLocale.NLNL)
                         .title("Mrs.")
                         .givenName("Jane")
                         .familyName("Doe")
@@ -309,27 +327,27 @@ public class Application {
                         .region("Noord-Holland")
                         .build())
                     .lines(List.of(
-                        UpdateSalesInvoiceLines.builder()
+                        SalesInvoiceLineItem.builder()
                             .description("LEGO 4440 Forest Police Station")
                             .quantity(1L)
                             .vatRate("21.00")
-                            .unitPrice(UpdateSalesInvoiceUnitPrice.builder()
+                            .unitPrice(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .discount(UpdateSalesInvoiceDiscount.builder()
-                                .type(UpdateSalesInvoiceSalesInvoicesType.AMOUNT)
+                            .discount(SalesInvoiceDiscount.builder()
+                                .type(SalesInvoiceDiscountType.AMOUNT)
                                 .value("10.00")
                                 .build())
                             .build()))
-                    .discount(UpdateSalesInvoiceSalesInvoicesDiscount.builder()
-                        .type(UpdateSalesInvoiceSalesInvoicesRequestType.AMOUNT)
+                    .discount(SalesInvoiceDiscount.builder()
+                        .type(SalesInvoiceDiscountType.AMOUNT)
                         .value("10.00")
                         .build())
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entitySalesInvoiceResponse().isPresent()) {
             // handle response
         }
     }
@@ -338,10 +356,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                 | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the item you want to perform this operation on.                                    | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                        |
-| `requestBody`                                                                                        | [Optional\<UpdateSalesInvoiceRequestBody>](../../models/operations/UpdateSalesInvoiceRequestBody.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |
+| `updateValuesSalesInvoice`                                                                 | [Optional\<UpdateValuesSalesInvoice>](../../models/components/UpdateValuesSalesInvoice.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |
 
 ### Response
 
@@ -349,11 +367,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| models/errors/UpdateSalesInvoiceResponseBody              | 404                                                       | application/hal+json                                      |
-| models/errors/UpdateSalesInvoiceSalesInvoicesResponseBody | 422                                                       | application/hal+json                                      |
-| models/errors/APIException                                | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## delete
 
@@ -371,16 +388,15 @@ Sales invoices which are in status `draft` can be deleted. For all other statuse
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.DeleteSalesInvoiceResponseBody;
-import com.mollie.mollie.models.errors.DeleteSalesInvoiceSalesInvoicesResponseBody;
-import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequestBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.DeleteSalesInvoiceResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws DeleteSalesInvoiceResponseBody, DeleteSalesInvoiceSalesInvoicesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -390,7 +406,7 @@ public class Application {
 
         DeleteSalesInvoiceResponse res = sdk.salesInvoices().delete()
                 .id("invoice_4Y0eZitmBnQ6IDoMqZQKh")
-                .requestBody(DeleteSalesInvoiceRequestBody.builder()
+                .deleteValuesSalesInvoice(DeleteValuesSalesInvoice.builder()
                     .testmode(false)
                     .build())
                 .call();
@@ -404,10 +420,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                 | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the item you want to perform this operation on.                                    | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                        |
-| `requestBody`                                                                                        | [Optional\<DeleteSalesInvoiceRequestBody>](../../models/operations/DeleteSalesInvoiceRequestBody.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |
+| `deleteValuesSalesInvoice`                                                                 | [Optional\<DeleteValuesSalesInvoice>](../../models/components/DeleteValuesSalesInvoice.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |
 
 ### Response
 
@@ -415,8 +431,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| models/errors/DeleteSalesInvoiceResponseBody              | 404                                                       | application/hal+json                                      |
-| models/errors/DeleteSalesInvoiceSalesInvoicesResponseBody | 422                                                       | application/hal+json                                      |
-| models/errors/APIException                                | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

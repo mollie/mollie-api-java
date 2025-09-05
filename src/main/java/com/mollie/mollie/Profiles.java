@@ -6,7 +6,7 @@ package com.mollie.mollie;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 import static com.mollie.mollie.operations.Operations.RequestlessOperation;
 
-import com.mollie.mollie.models.operations.CreateProfileRequestBody;
+import com.mollie.mollie.models.components.EntityProfile;
 import com.mollie.mollie.models.operations.CreateProfileRequestBuilder;
 import com.mollie.mollie.models.operations.CreateProfileResponse;
 import com.mollie.mollie.models.operations.DeleteProfileRequest;
@@ -83,7 +83,7 @@ public class Profiles {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateProfileResponse create(CreateProfileRequestBody request) throws Exception {
+    public CreateProfileResponse create(EntityProfile request) throws Exception {
         return create(request, Optional.empty());
     }
 
@@ -100,8 +100,8 @@ public class Profiles {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateProfileResponse create(CreateProfileRequestBody request, Optional<Options> options) throws Exception {
-        RequestOperation<CreateProfileRequestBody, CreateProfileResponse> operation
+    public CreateProfileResponse create(EntityProfile request, Optional<Options> options) throws Exception {
+        RequestOperation<EntityProfile, CreateProfileResponse> operation
               = new CreateProfile.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -130,7 +130,7 @@ public class Profiles {
      * @throws Exception if the API call fails
      */
     public ListProfilesResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -148,7 +148,7 @@ public class Profiles {
      * @throws Exception if the API call fails
      */
     public ListProfilesResponse list(
-            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<String> from, JsonNullable<Long> limit,
             Optional<Options> options) throws Exception {
         ListProfilesRequest request =
             ListProfilesRequest

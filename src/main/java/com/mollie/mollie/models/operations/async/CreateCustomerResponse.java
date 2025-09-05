@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.CreateCustomerResponseBody;
+import com.mollie.mollie.models.components.CustomerResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class CreateCustomerResponse implements AsyncResponse {
     /**
      * The newly created customer object.
      */
-    private Optional<? extends CreateCustomerResponseBody> object;
+    private Optional<? extends CustomerResponse> customerResponse;
 
     @JsonCreator
     public CreateCustomerResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends CreateCustomerResponseBody> object) {
+            Optional<? extends CustomerResponse> customerResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(customerResponse, "customerResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.customerResponse = customerResponse;
     }
     
     public CreateCustomerResponse(
@@ -91,8 +91,8 @@ public class CreateCustomerResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCustomerResponseBody> object() {
-        return (Optional<CreateCustomerResponseBody>) object;
+    public Optional<CustomerResponse> customerResponse() {
+        return (Optional<CustomerResponse>) customerResponse;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class CreateCustomerResponse implements AsyncResponse {
     /**
      * The newly created customer object.
      */
-    public CreateCustomerResponse withObject(CreateCustomerResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CreateCustomerResponse withCustomerResponse(CustomerResponse customerResponse) {
+        Utils.checkNotNull(customerResponse, "customerResponse");
+        this.customerResponse = Optional.ofNullable(customerResponse);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class CreateCustomerResponse implements AsyncResponse {
     /**
      * The newly created customer object.
      */
-    public CreateCustomerResponse withObject(Optional<? extends CreateCustomerResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CreateCustomerResponse withCustomerResponse(Optional<? extends CustomerResponse> customerResponse) {
+        Utils.checkNotNull(customerResponse, "customerResponse");
+        this.customerResponse = customerResponse;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class CreateCustomerResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.customerResponse, other.customerResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            customerResponse);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class CreateCustomerResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "customerResponse", customerResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class CreateCustomerResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends CreateCustomerResponseBody> object = Optional.empty();
+        private Optional<? extends CustomerResponse> customerResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class CreateCustomerResponse implements AsyncResponse {
         /**
          * The newly created customer object.
          */
-        public Builder object(CreateCustomerResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder customerResponse(CustomerResponse customerResponse) {
+            Utils.checkNotNull(customerResponse, "customerResponse");
+            this.customerResponse = Optional.ofNullable(customerResponse);
             return this;
         }
 
         /**
          * The newly created customer object.
          */
-        public Builder object(Optional<? extends CreateCustomerResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder customerResponse(Optional<? extends CustomerResponse> customerResponse) {
+            Utils.checkNotNull(customerResponse, "customerResponse");
+            this.customerResponse = customerResponse;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class CreateCustomerResponse implements AsyncResponse {
 
             return new CreateCustomerResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                customerResponse);
         }
 
     }

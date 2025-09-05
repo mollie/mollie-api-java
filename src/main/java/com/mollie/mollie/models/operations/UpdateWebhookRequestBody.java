@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.WebhookEventTypes;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -33,12 +34,11 @@ public class UpdateWebhookRequestBody {
     private Optional<String> url;
 
     /**
-     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-     * that require explicit selection. Separate multiple event types with a comma.
+     * The event's type
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("eventTypes")
-    private Optional<? extends UpdateWebhookWebhookEventTypes> webhookEventTypes;
+    private Optional<? extends WebhookEventTypes> webhookEventTypes;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
@@ -54,7 +54,7 @@ public class UpdateWebhookRequestBody {
     public UpdateWebhookRequestBody(
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("url") Optional<String> url,
-            @JsonProperty("eventTypes") Optional<? extends UpdateWebhookWebhookEventTypes> webhookEventTypes,
+            @JsonProperty("eventTypes") Optional<? extends WebhookEventTypes> webhookEventTypes,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(url, "url");
@@ -88,13 +88,12 @@ public class UpdateWebhookRequestBody {
     }
 
     /**
-     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-     * that require explicit selection. Separate multiple event types with a comma.
+     * The event's type
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateWebhookWebhookEventTypes> webhookEventTypes() {
-        return (Optional<UpdateWebhookWebhookEventTypes>) webhookEventTypes;
+    public Optional<WebhookEventTypes> webhookEventTypes() {
+        return (Optional<WebhookEventTypes>) webhookEventTypes;
     }
 
     /**
@@ -152,10 +151,9 @@ public class UpdateWebhookRequestBody {
     }
 
     /**
-     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-     * that require explicit selection. Separate multiple event types with a comma.
+     * The event's type
      */
-    public UpdateWebhookRequestBody withWebhookEventTypes(UpdateWebhookWebhookEventTypes webhookEventTypes) {
+    public UpdateWebhookRequestBody withWebhookEventTypes(WebhookEventTypes webhookEventTypes) {
         Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
         this.webhookEventTypes = Optional.ofNullable(webhookEventTypes);
         return this;
@@ -163,10 +161,9 @@ public class UpdateWebhookRequestBody {
 
 
     /**
-     * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-     * that require explicit selection. Separate multiple event types with a comma.
+     * The event's type
      */
-    public UpdateWebhookRequestBody withWebhookEventTypes(Optional<? extends UpdateWebhookWebhookEventTypes> webhookEventTypes) {
+    public UpdateWebhookRequestBody withWebhookEventTypes(Optional<? extends WebhookEventTypes> webhookEventTypes) {
         Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
         this.webhookEventTypes = webhookEventTypes;
         return this;
@@ -235,7 +232,7 @@ public class UpdateWebhookRequestBody {
 
         private Optional<String> url = Optional.empty();
 
-        private Optional<? extends UpdateWebhookWebhookEventTypes> webhookEventTypes = Optional.empty();
+        private Optional<? extends WebhookEventTypes> webhookEventTypes = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -283,20 +280,18 @@ public class UpdateWebhookRequestBody {
 
 
         /**
-         * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-         * that require explicit selection. Separate multiple event types with a comma.
+         * The event's type
          */
-        public Builder webhookEventTypes(UpdateWebhookWebhookEventTypes webhookEventTypes) {
+        public Builder webhookEventTypes(WebhookEventTypes webhookEventTypes) {
             Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
             this.webhookEventTypes = Optional.ofNullable(webhookEventTypes);
             return this;
         }
 
         /**
-         * The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
-         * that require explicit selection. Separate multiple event types with a comma.
+         * The event's type
          */
-        public Builder webhookEventTypes(Optional<? extends UpdateWebhookWebhookEventTypes> webhookEventTypes) {
+        public Builder webhookEventTypes(Optional<? extends WebhookEventTypes> webhookEventTypes) {
             Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
             this.webhookEventTypes = webhookEventTypes;
             return this;

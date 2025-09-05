@@ -6,8 +6,8 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.EntityCustomer;
 import com.mollie.mollie.models.operations.UpdateCustomerRequest;
-import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
 import com.mollie.mollie.operations.UpdateCustomer;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class UpdateCustomerRequestBuilder {
 
     private String customerId;
-    private Optional<? extends UpdateCustomerRequestBody> requestBody = Optional.empty();
+    private Optional<? extends EntityCustomer> entityCustomer = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -34,15 +34,15 @@ public class UpdateCustomerRequestBuilder {
         return this;
     }
                 
-    public UpdateCustomerRequestBuilder requestBody(UpdateCustomerRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
+    public UpdateCustomerRequestBuilder entityCustomer(EntityCustomer entityCustomer) {
+        Utils.checkNotNull(entityCustomer, "entityCustomer");
+        this.entityCustomer = Optional.of(entityCustomer);
         return this;
     }
 
-    public UpdateCustomerRequestBuilder requestBody(Optional<? extends UpdateCustomerRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public UpdateCustomerRequestBuilder entityCustomer(Optional<? extends EntityCustomer> entityCustomer) {
+        Utils.checkNotNull(entityCustomer, "entityCustomer");
+        this.entityCustomer = entityCustomer;
         return this;
     }
                 
@@ -62,7 +62,7 @@ public class UpdateCustomerRequestBuilder {
     private UpdateCustomerRequest buildRequest() {
 
         UpdateCustomerRequest request = new UpdateCustomerRequest(customerId,
-            requestBody);
+            entityCustomer);
 
         return request;
     }

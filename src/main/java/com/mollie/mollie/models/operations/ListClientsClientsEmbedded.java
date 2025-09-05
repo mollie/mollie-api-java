@@ -8,6 +8,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.EntityCapability;
+import com.mollie.mollie.models.components.EntityOnboardingStatus;
+import com.mollie.mollie.models.components.EntityOrganization;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -19,23 +22,23 @@ public class ListClientsClientsEmbedded {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("organization")
-    private Optional<? extends ListClientsClientsOrganization> organization;
+    private Optional<? extends EntityOrganization> organization;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("onboarding")
-    private Optional<? extends ListClientsOnboarding> onboarding;
+    private Optional<? extends EntityOnboardingStatus> onboarding;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("capabilities")
-    private Optional<? extends ListClientsCapabilities> capabilities;
+    private Optional<? extends EntityCapability> capabilities;
 
     @JsonCreator
     public ListClientsClientsEmbedded(
-            @JsonProperty("organization") Optional<? extends ListClientsClientsOrganization> organization,
-            @JsonProperty("onboarding") Optional<? extends ListClientsOnboarding> onboarding,
-            @JsonProperty("capabilities") Optional<? extends ListClientsCapabilities> capabilities) {
+            @JsonProperty("organization") Optional<? extends EntityOrganization> organization,
+            @JsonProperty("onboarding") Optional<? extends EntityOnboardingStatus> onboarding,
+            @JsonProperty("capabilities") Optional<? extends EntityCapability> capabilities) {
         Utils.checkNotNull(organization, "organization");
         Utils.checkNotNull(onboarding, "onboarding");
         Utils.checkNotNull(capabilities, "capabilities");
@@ -50,20 +53,20 @@ public class ListClientsClientsEmbedded {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListClientsClientsOrganization> organization() {
-        return (Optional<ListClientsClientsOrganization>) organization;
+    public Optional<EntityOrganization> organization() {
+        return (Optional<EntityOrganization>) organization;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListClientsOnboarding> onboarding() {
-        return (Optional<ListClientsOnboarding>) onboarding;
+    public Optional<EntityOnboardingStatus> onboarding() {
+        return (Optional<EntityOnboardingStatus>) onboarding;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListClientsCapabilities> capabilities() {
-        return (Optional<ListClientsCapabilities>) capabilities;
+    public Optional<EntityCapability> capabilities() {
+        return (Optional<EntityCapability>) capabilities;
     }
 
     public static Builder builder() {
@@ -71,40 +74,40 @@ public class ListClientsClientsEmbedded {
     }
 
 
-    public ListClientsClientsEmbedded withOrganization(ListClientsClientsOrganization organization) {
+    public ListClientsClientsEmbedded withOrganization(EntityOrganization organization) {
         Utils.checkNotNull(organization, "organization");
         this.organization = Optional.ofNullable(organization);
         return this;
     }
 
 
-    public ListClientsClientsEmbedded withOrganization(Optional<? extends ListClientsClientsOrganization> organization) {
+    public ListClientsClientsEmbedded withOrganization(Optional<? extends EntityOrganization> organization) {
         Utils.checkNotNull(organization, "organization");
         this.organization = organization;
         return this;
     }
 
-    public ListClientsClientsEmbedded withOnboarding(ListClientsOnboarding onboarding) {
+    public ListClientsClientsEmbedded withOnboarding(EntityOnboardingStatus onboarding) {
         Utils.checkNotNull(onboarding, "onboarding");
         this.onboarding = Optional.ofNullable(onboarding);
         return this;
     }
 
 
-    public ListClientsClientsEmbedded withOnboarding(Optional<? extends ListClientsOnboarding> onboarding) {
+    public ListClientsClientsEmbedded withOnboarding(Optional<? extends EntityOnboardingStatus> onboarding) {
         Utils.checkNotNull(onboarding, "onboarding");
         this.onboarding = onboarding;
         return this;
     }
 
-    public ListClientsClientsEmbedded withCapabilities(ListClientsCapabilities capabilities) {
+    public ListClientsClientsEmbedded withCapabilities(EntityCapability capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
         this.capabilities = Optional.ofNullable(capabilities);
         return this;
     }
 
 
-    public ListClientsClientsEmbedded withCapabilities(Optional<? extends ListClientsCapabilities> capabilities) {
+    public ListClientsClientsEmbedded withCapabilities(Optional<? extends EntityCapability> capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
         this.capabilities = capabilities;
         return this;
@@ -142,50 +145,50 @@ public class ListClientsClientsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListClientsClientsOrganization> organization = Optional.empty();
+        private Optional<? extends EntityOrganization> organization = Optional.empty();
 
-        private Optional<? extends ListClientsOnboarding> onboarding = Optional.empty();
+        private Optional<? extends EntityOnboardingStatus> onboarding = Optional.empty();
 
-        private Optional<? extends ListClientsCapabilities> capabilities = Optional.empty();
+        private Optional<? extends EntityCapability> capabilities = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder organization(ListClientsClientsOrganization organization) {
+        public Builder organization(EntityOrganization organization) {
             Utils.checkNotNull(organization, "organization");
             this.organization = Optional.ofNullable(organization);
             return this;
         }
 
-        public Builder organization(Optional<? extends ListClientsClientsOrganization> organization) {
+        public Builder organization(Optional<? extends EntityOrganization> organization) {
             Utils.checkNotNull(organization, "organization");
             this.organization = organization;
             return this;
         }
 
 
-        public Builder onboarding(ListClientsOnboarding onboarding) {
+        public Builder onboarding(EntityOnboardingStatus onboarding) {
             Utils.checkNotNull(onboarding, "onboarding");
             this.onboarding = Optional.ofNullable(onboarding);
             return this;
         }
 
-        public Builder onboarding(Optional<? extends ListClientsOnboarding> onboarding) {
+        public Builder onboarding(Optional<? extends EntityOnboardingStatus> onboarding) {
             Utils.checkNotNull(onboarding, "onboarding");
             this.onboarding = onboarding;
             return this;
         }
 
 
-        public Builder capabilities(ListClientsCapabilities capabilities) {
+        public Builder capabilities(EntityCapability capabilities) {
             Utils.checkNotNull(capabilities, "capabilities");
             this.capabilities = Optional.ofNullable(capabilities);
             return this;
         }
 
-        public Builder capabilities(Optional<? extends ListClientsCapabilities> capabilities) {
+        public Builder capabilities(Optional<? extends EntityCapability> capabilities) {
             Utils.checkNotNull(capabilities, "capabilities");
             this.capabilities = capabilities;
             return this;

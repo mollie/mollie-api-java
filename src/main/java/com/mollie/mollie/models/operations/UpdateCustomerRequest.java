@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityCustomer;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -22,16 +23,16 @@ public class UpdateCustomerRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends UpdateCustomerRequestBody> requestBody;
+    private Optional<? extends EntityCustomer> entityCustomer;
 
     @JsonCreator
     public UpdateCustomerRequest(
             String customerId,
-            Optional<? extends UpdateCustomerRequestBody> requestBody) {
+            Optional<? extends EntityCustomer> entityCustomer) {
         Utils.checkNotNull(customerId, "customerId");
-        Utils.checkNotNull(requestBody, "requestBody");
+        Utils.checkNotNull(entityCustomer, "entityCustomer");
         this.customerId = customerId;
-        this.requestBody = requestBody;
+        this.entityCustomer = entityCustomer;
     }
     
     public UpdateCustomerRequest(
@@ -49,8 +50,8 @@ public class UpdateCustomerRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateCustomerRequestBody> requestBody() {
-        return (Optional<UpdateCustomerRequestBody>) requestBody;
+    public Optional<EntityCustomer> entityCustomer() {
+        return (Optional<EntityCustomer>) entityCustomer;
     }
 
     public static Builder builder() {
@@ -67,16 +68,16 @@ public class UpdateCustomerRequest {
         return this;
     }
 
-    public UpdateCustomerRequest withRequestBody(UpdateCustomerRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
+    public UpdateCustomerRequest withEntityCustomer(EntityCustomer entityCustomer) {
+        Utils.checkNotNull(entityCustomer, "entityCustomer");
+        this.entityCustomer = Optional.ofNullable(entityCustomer);
         return this;
     }
 
 
-    public UpdateCustomerRequest withRequestBody(Optional<? extends UpdateCustomerRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public UpdateCustomerRequest withEntityCustomer(Optional<? extends EntityCustomer> entityCustomer) {
+        Utils.checkNotNull(entityCustomer, "entityCustomer");
+        this.entityCustomer = entityCustomer;
         return this;
     }
 
@@ -91,20 +92,20 @@ public class UpdateCustomerRequest {
         UpdateCustomerRequest other = (UpdateCustomerRequest) o;
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.entityCustomer, other.entityCustomer);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, requestBody);
+            customerId, entityCustomer);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdateCustomerRequest.class,
                 "customerId", customerId,
-                "requestBody", requestBody);
+                "entityCustomer", entityCustomer);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,7 +113,7 @@ public class UpdateCustomerRequest {
 
         private String customerId;
 
-        private Optional<? extends UpdateCustomerRequestBody> requestBody = Optional.empty();
+        private Optional<? extends EntityCustomer> entityCustomer = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -129,22 +130,22 @@ public class UpdateCustomerRequest {
         }
 
 
-        public Builder requestBody(UpdateCustomerRequestBody requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
+        public Builder entityCustomer(EntityCustomer entityCustomer) {
+            Utils.checkNotNull(entityCustomer, "entityCustomer");
+            this.entityCustomer = Optional.ofNullable(entityCustomer);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends UpdateCustomerRequestBody> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder entityCustomer(Optional<? extends EntityCustomer> entityCustomer) {
+            Utils.checkNotNull(entityCustomer, "entityCustomer");
+            this.entityCustomer = entityCustomer;
             return this;
         }
 
         public UpdateCustomerRequest build() {
 
             return new UpdateCustomerRequest(
-                customerId, requestBody);
+                customerId, entityCustomer);
         }
 
     }

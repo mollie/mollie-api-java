@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.UpdateSalesInvoiceResponseBody;
+import com.mollie.mollie.models.components.EntitySalesInvoiceResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class UpdateSalesInvoiceResponse implements AsyncResponse {
     /**
      * The sales invoice object.
      */
-    private Optional<? extends UpdateSalesInvoiceResponseBody> object;
+    private Optional<? extends EntitySalesInvoiceResponse> entitySalesInvoiceResponse;
 
     @JsonCreator
     public UpdateSalesInvoiceResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends UpdateSalesInvoiceResponseBody> object) {
+            Optional<? extends EntitySalesInvoiceResponse> entitySalesInvoiceResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entitySalesInvoiceResponse, "entitySalesInvoiceResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entitySalesInvoiceResponse = entitySalesInvoiceResponse;
     }
     
     public UpdateSalesInvoiceResponse(
@@ -91,8 +91,8 @@ public class UpdateSalesInvoiceResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateSalesInvoiceResponseBody> object() {
-        return (Optional<UpdateSalesInvoiceResponseBody>) object;
+    public Optional<EntitySalesInvoiceResponse> entitySalesInvoiceResponse() {
+        return (Optional<EntitySalesInvoiceResponse>) entitySalesInvoiceResponse;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class UpdateSalesInvoiceResponse implements AsyncResponse {
     /**
      * The sales invoice object.
      */
-    public UpdateSalesInvoiceResponse withObject(UpdateSalesInvoiceResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public UpdateSalesInvoiceResponse withEntitySalesInvoiceResponse(EntitySalesInvoiceResponse entitySalesInvoiceResponse) {
+        Utils.checkNotNull(entitySalesInvoiceResponse, "entitySalesInvoiceResponse");
+        this.entitySalesInvoiceResponse = Optional.ofNullable(entitySalesInvoiceResponse);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class UpdateSalesInvoiceResponse implements AsyncResponse {
     /**
      * The sales invoice object.
      */
-    public UpdateSalesInvoiceResponse withObject(Optional<? extends UpdateSalesInvoiceResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public UpdateSalesInvoiceResponse withEntitySalesInvoiceResponse(Optional<? extends EntitySalesInvoiceResponse> entitySalesInvoiceResponse) {
+        Utils.checkNotNull(entitySalesInvoiceResponse, "entitySalesInvoiceResponse");
+        this.entitySalesInvoiceResponse = entitySalesInvoiceResponse;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class UpdateSalesInvoiceResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entitySalesInvoiceResponse, other.entitySalesInvoiceResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entitySalesInvoiceResponse);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class UpdateSalesInvoiceResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entitySalesInvoiceResponse", entitySalesInvoiceResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class UpdateSalesInvoiceResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends UpdateSalesInvoiceResponseBody> object = Optional.empty();
+        private Optional<? extends EntitySalesInvoiceResponse> entitySalesInvoiceResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class UpdateSalesInvoiceResponse implements AsyncResponse {
         /**
          * The sales invoice object.
          */
-        public Builder object(UpdateSalesInvoiceResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entitySalesInvoiceResponse(EntitySalesInvoiceResponse entitySalesInvoiceResponse) {
+            Utils.checkNotNull(entitySalesInvoiceResponse, "entitySalesInvoiceResponse");
+            this.entitySalesInvoiceResponse = Optional.ofNullable(entitySalesInvoiceResponse);
             return this;
         }
 
         /**
          * The sales invoice object.
          */
-        public Builder object(Optional<? extends UpdateSalesInvoiceResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entitySalesInvoiceResponse(Optional<? extends EntitySalesInvoiceResponse> entitySalesInvoiceResponse) {
+            Utils.checkNotNull(entitySalesInvoiceResponse, "entitySalesInvoiceResponse");
+            this.entitySalesInvoiceResponse = entitySalesInvoiceResponse;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class UpdateSalesInvoiceResponse implements AsyncResponse {
 
             return new UpdateSalesInvoiceResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entitySalesInvoiceResponse);
         }
 
     }

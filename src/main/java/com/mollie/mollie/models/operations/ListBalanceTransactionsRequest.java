@@ -11,7 +11,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -27,7 +26,7 @@ public class ListBalanceTransactionsRequest {
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
-    private Optional<String> from;
+    private JsonNullable<String> from;
 
     /**
      * The maximum number of items to return. Defaults to 50 items.
@@ -48,7 +47,7 @@ public class ListBalanceTransactionsRequest {
     @JsonCreator
     public ListBalanceTransactionsRequest(
             String balanceId,
-            Optional<String> from,
+            JsonNullable<String> from,
             JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(balanceId, "balanceId");
@@ -63,7 +62,7 @@ public class ListBalanceTransactionsRequest {
     
     public ListBalanceTransactionsRequest(
             String balanceId) {
-        this(balanceId, Optional.empty(), JsonNullable.undefined(),
+        this(balanceId, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
@@ -80,7 +79,7 @@ public class ListBalanceTransactionsRequest {
      * result set.
      */
     @JsonIgnore
-    public Optional<String> from() {
+    public JsonNullable<String> from() {
         return from;
     }
 
@@ -124,16 +123,15 @@ public class ListBalanceTransactionsRequest {
      */
     public ListBalanceTransactionsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.ofNullable(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
-
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      * result set.
      */
-    public ListBalanceTransactionsRequest withFrom(Optional<String> from) {
+    public ListBalanceTransactionsRequest withFrom(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;
@@ -220,7 +218,7 @@ public class ListBalanceTransactionsRequest {
 
         private String balanceId;
 
-        private Optional<String> from = Optional.empty();
+        private JsonNullable<String> from = JsonNullable.undefined();
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
@@ -247,7 +245,7 @@ public class ListBalanceTransactionsRequest {
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
-            this.from = Optional.ofNullable(from);
+            this.from = JsonNullable.of(from);
             return this;
         }
 
@@ -255,7 +253,7 @@ public class ListBalanceTransactionsRequest {
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
          * result set.
          */
-        public Builder from(Optional<String> from) {
+        public Builder from(JsonNullable<String> from) {
             Utils.checkNotNull(from, "from");
             this.from = from;
             return this;

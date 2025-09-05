@@ -5,71 +5,52 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Amount;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * ApplicationFee
  * 
- * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+ * <p>With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
  * merchants.
  * 
- * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
- * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+ * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
+ * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
  * to your own account balance.
- * 
- * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
- * `routing` parameter.
  */
 public class ApplicationFee {
     /**
-     * The fee that you wish to charge.
-     * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-     * a €0.99 fee on a €1.00 payment.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends CreatePaymentPaymentsAmount> amount;
+    private Amount amount;
 
     /**
      * The description of the application fee. This will appear on settlement reports towards both you and the
      * connected merchant.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     @JsonCreator
     public ApplicationFee(
-            @JsonProperty("amount") Optional<? extends CreatePaymentPaymentsAmount> amount,
-            @JsonProperty("description") Optional<String> description) {
+            @JsonProperty("amount") Amount amount,
+            @JsonProperty("description") String description) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
         this.amount = amount;
         this.description = description;
     }
-    
-    public ApplicationFee() {
-        this(Optional.empty(), Optional.empty());
-    }
 
     /**
-     * The fee that you wish to charge.
-     * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-     * a €0.99 fee on a €1.00 payment.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentPaymentsAmount> amount() {
-        return (Optional<CreatePaymentPaymentsAmount>) amount;
+    public Amount amount() {
+        return amount;
     }
 
     /**
@@ -77,7 +58,7 @@ public class ApplicationFee {
      * connected merchant.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -87,25 +68,9 @@ public class ApplicationFee {
 
 
     /**
-     * The fee that you wish to charge.
-     * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-     * a €0.99 fee on a €1.00 payment.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public ApplicationFee withAmount(CreatePaymentPaymentsAmount amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * The fee that you wish to charge.
-     * 
-     * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-     * a €0.99 fee on a €1.00 payment.
-     */
-    public ApplicationFee withAmount(Optional<? extends CreatePaymentPaymentsAmount> amount) {
+    public ApplicationFee withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -116,17 +81,6 @@ public class ApplicationFee {
      * connected merchant.
      */
     public ApplicationFee withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
-     * connected merchant.
-     */
-    public ApplicationFee withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -162,9 +116,9 @@ public class ApplicationFee {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends CreatePaymentPaymentsAmount> amount = Optional.empty();
+        private Amount amount;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
         private Builder() {
           // force use of static builder() method
@@ -172,24 +126,9 @@ public class ApplicationFee {
 
 
         /**
-         * The fee that you wish to charge.
-         * 
-         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-         * a €0.99 fee on a €1.00 payment.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(CreatePaymentPaymentsAmount amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The fee that you wish to charge.
-         * 
-         * <p>Be careful to leave enough space for Mollie's own fees to be deducted as well. For example, you cannot charge
-         * a €0.99 fee on a €1.00 payment.
-         */
-        public Builder amount(Optional<? extends CreatePaymentPaymentsAmount> amount) {
+        public Builder amount(Amount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -201,16 +140,6 @@ public class ApplicationFee {
          * connected merchant.
          */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the
-         * connected merchant.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;

@@ -1,8 +1,0 @@
-# RequestApplePayPaymentSessionLinks
-
-
-## Fields
-
-| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `documentation`                                                                                                 | [RequestApplePayPaymentSessionDocumentation](../../models/errors/RequestApplePayPaymentSessionDocumentation.md) | :heavy_check_mark:                                                                                              | The URL to the generic Mollie API error handling guide.                                                         |

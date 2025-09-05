@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.Optional;
 
 
 public class RequestApplePayPaymentSessionRequestBody {
@@ -37,19 +37,19 @@ public class RequestApplePayPaymentSessionRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in
-     * the creation request. For organization-level credentials such as OAuth access tokens however, the
-     * `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
-    private JsonNullable<String> profileId;
+    private Optional<String> profileId;
 
     @JsonCreator
     public RequestApplePayPaymentSessionRequestBody(
             @JsonProperty("validationUrl") String validationUrl,
             @JsonProperty("domain") String domain,
-            @JsonProperty("profileId") JsonNullable<String> profileId) {
+            @JsonProperty("profileId") Optional<String> profileId) {
         Utils.checkNotNull(validationUrl, "validationUrl");
         Utils.checkNotNull(domain, "domain");
         Utils.checkNotNull(profileId, "profileId");
@@ -61,7 +61,7 @@ public class RequestApplePayPaymentSessionRequestBody {
     public RequestApplePayPaymentSessionRequestBody(
             String validationUrl,
             String domain) {
-        this(validationUrl, domain, JsonNullable.undefined());
+        this(validationUrl, domain, Optional.empty());
     }
 
     /**
@@ -90,12 +90,12 @@ public class RequestApplePayPaymentSessionRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in
-     * the creation request. For organization-level credentials such as OAuth access tokens however, the
-     * `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonIgnore
-    public JsonNullable<String> profileId() {
+    public Optional<String> profileId() {
         return profileId;
     }
 
@@ -132,24 +132,25 @@ public class RequestApplePayPaymentSessionRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in
-     * the creation request. For organization-level credentials such as OAuth access tokens however, the
-     * `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public RequestApplePayPaymentSessionRequestBody withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
-        this.profileId = JsonNullable.of(profileId);
+        this.profileId = Optional.ofNullable(profileId);
         return this;
     }
+
 
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in
-     * the creation request. For organization-level credentials such as OAuth access tokens however, the
-     * `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
-    public RequestApplePayPaymentSessionRequestBody withProfileId(JsonNullable<String> profileId) {
+    public RequestApplePayPaymentSessionRequestBody withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
         return this;
@@ -191,7 +192,7 @@ public class RequestApplePayPaymentSessionRequestBody {
 
         private String domain;
 
-        private JsonNullable<String> profileId = JsonNullable.undefined();
+        private Optional<String> profileId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -228,24 +229,24 @@ public class RequestApplePayPaymentSessionRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in
-         * the creation request. For organization-level credentials such as OAuth access tokens however, the
-         * `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
-            this.profileId = JsonNullable.of(profileId);
+            this.profileId = Optional.ofNullable(profileId);
             return this;
         }
 
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in
-         * the creation request. For organization-level credentials such as OAuth access tokens however, the
-         * `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
-        public Builder profileId(JsonNullable<String> profileId) {
+        public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
             this.profileId = profileId;
             return this;

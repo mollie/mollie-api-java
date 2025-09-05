@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.ListLinks;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -43,13 +44,13 @@ public class ListSettlementsResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListSettlementsLinks> links;
+    private Optional<? extends ListLinks> links;
 
     @JsonCreator
     public ListSettlementsResponseBody(
             @JsonProperty("count") Optional<Long> count,
             @JsonProperty("_embedded") Optional<? extends ListSettlementsEmbedded> embedded,
-            @JsonProperty("_links") Optional<? extends ListSettlementsLinks> links) {
+            @JsonProperty("_links") Optional<? extends ListLinks> links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
@@ -85,8 +86,8 @@ public class ListSettlementsResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListSettlementsLinks> links() {
-        return (Optional<ListSettlementsLinks>) links;
+    public Optional<ListLinks> links() {
+        return (Optional<ListLinks>) links;
     }
 
     public static Builder builder() {
@@ -137,7 +138,7 @@ public class ListSettlementsResponseBody {
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    public ListSettlementsResponseBody withLinks(ListSettlementsLinks links) {
+    public ListSettlementsResponseBody withLinks(ListLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = Optional.ofNullable(links);
         return this;
@@ -147,7 +148,7 @@ public class ListSettlementsResponseBody {
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    public ListSettlementsResponseBody withLinks(Optional<? extends ListSettlementsLinks> links) {
+    public ListSettlementsResponseBody withLinks(Optional<? extends ListLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -189,7 +190,7 @@ public class ListSettlementsResponseBody {
 
         private Optional<? extends ListSettlementsEmbedded> embedded = Optional.empty();
 
-        private Optional<? extends ListSettlementsLinks> links = Optional.empty();
+        private Optional<? extends ListLinks> links = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -239,7 +240,7 @@ public class ListSettlementsResponseBody {
         /**
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(ListSettlementsLinks links) {
+        public Builder links(ListLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = Optional.ofNullable(links);
             return this;
@@ -248,7 +249,7 @@ public class ListSettlementsResponseBody {
         /**
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(Optional<? extends ListSettlementsLinks> links) {
+        public Builder links(Optional<? extends ListLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

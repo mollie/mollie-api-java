@@ -1,8 +1,0 @@
-# CreateCustomerPaymentCustomersLinks
-
-
-## Fields
-
-| Field                                                                                                             | Type                                                                                                              | Required                                                                                                          | Description                                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `documentation`                                                                                                   | [CreateCustomerPaymentCustomersDocumentation](../../models/errors/CreateCustomerPaymentCustomersDocumentation.md) | :heavy_check_mark:                                                                                                | The URL to the generic Mollie API error handling guide.                                                           |

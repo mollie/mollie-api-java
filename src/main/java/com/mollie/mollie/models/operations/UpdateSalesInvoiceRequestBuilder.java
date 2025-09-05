@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
 import com.mollie.mollie.operations.UpdateSalesInvoice;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class UpdateSalesInvoiceRequestBuilder {
 
     private String id;
-    private Optional<? extends UpdateSalesInvoiceRequestBody> requestBody = Optional.empty();
+    private Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -31,15 +32,15 @@ public class UpdateSalesInvoiceRequestBuilder {
         return this;
     }
                 
-    public UpdateSalesInvoiceRequestBuilder requestBody(UpdateSalesInvoiceRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
+    public UpdateSalesInvoiceRequestBuilder updateValuesSalesInvoice(UpdateValuesSalesInvoice updateValuesSalesInvoice) {
+        Utils.checkNotNull(updateValuesSalesInvoice, "updateValuesSalesInvoice");
+        this.updateValuesSalesInvoice = Optional.of(updateValuesSalesInvoice);
         return this;
     }
 
-    public UpdateSalesInvoiceRequestBuilder requestBody(Optional<? extends UpdateSalesInvoiceRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public UpdateSalesInvoiceRequestBuilder updateValuesSalesInvoice(Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice) {
+        Utils.checkNotNull(updateValuesSalesInvoice, "updateValuesSalesInvoice");
+        this.updateValuesSalesInvoice = updateValuesSalesInvoice;
         return this;
     }
                 
@@ -59,7 +60,7 @@ public class UpdateSalesInvoiceRequestBuilder {
     private UpdateSalesInvoiceRequest buildRequest() {
 
         UpdateSalesInvoiceRequest request = new UpdateSalesInvoiceRequest(id,
-            requestBody);
+            updateValuesSalesInvoice);
 
         return request;
     }

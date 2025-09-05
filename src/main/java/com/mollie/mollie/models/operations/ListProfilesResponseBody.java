@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.ListLinks;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -42,13 +43,13 @@ public class ListProfilesResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListProfilesLinks> links;
+    private Optional<? extends ListLinks> links;
 
     @JsonCreator
     public ListProfilesResponseBody(
             @JsonProperty("count") Optional<Long> count,
             @JsonProperty("_embedded") Optional<? extends ListProfilesEmbedded> embedded,
-            @JsonProperty("_links") Optional<? extends ListProfilesLinks> links) {
+            @JsonProperty("_links") Optional<? extends ListLinks> links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
@@ -84,8 +85,8 @@ public class ListProfilesResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListProfilesLinks> links() {
-        return (Optional<ListProfilesLinks>) links;
+    public Optional<ListLinks> links() {
+        return (Optional<ListLinks>) links;
     }
 
     public static Builder builder() {
@@ -136,7 +137,7 @@ public class ListProfilesResponseBody {
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    public ListProfilesResponseBody withLinks(ListProfilesLinks links) {
+    public ListProfilesResponseBody withLinks(ListLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = Optional.ofNullable(links);
         return this;
@@ -146,7 +147,7 @@ public class ListProfilesResponseBody {
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    public ListProfilesResponseBody withLinks(Optional<? extends ListProfilesLinks> links) {
+    public ListProfilesResponseBody withLinks(Optional<? extends ListLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -188,7 +189,7 @@ public class ListProfilesResponseBody {
 
         private Optional<? extends ListProfilesEmbedded> embedded = Optional.empty();
 
-        private Optional<? extends ListProfilesLinks> links = Optional.empty();
+        private Optional<? extends ListLinks> links = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -238,7 +239,7 @@ public class ListProfilesResponseBody {
         /**
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(ListProfilesLinks links) {
+        public Builder links(ListLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = Optional.ofNullable(links);
             return this;
@@ -247,7 +248,7 @@ public class ListProfilesResponseBody {
         /**
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(Optional<? extends ListProfilesLinks> links) {
+        public Builder links(Optional<? extends ListLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

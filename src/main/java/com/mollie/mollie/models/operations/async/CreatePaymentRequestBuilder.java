@@ -6,22 +6,22 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentRequest;
-import com.mollie.mollie.models.operations.CreatePaymentRequestBody;
-import com.mollie.mollie.models.operations.Include;
 import com.mollie.mollie.operations.CreatePayment;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreatePaymentRequestBuilder {
 
-    private JsonNullable<? extends Include> include = JsonNullable.undefined();
-    private Optional<? extends CreatePaymentRequestBody> requestBody = Optional.empty();
+    private JsonNullable<String> include = JsonNullable.undefined();
+    private Optional<? extends PaymentRequest> paymentRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -29,27 +29,27 @@ public class CreatePaymentRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CreatePaymentRequestBuilder include(Include include) {
+    public CreatePaymentRequestBuilder include(String include) {
         Utils.checkNotNull(include, "include");
         this.include = JsonNullable.of(include);
         return this;
     }
 
-    public CreatePaymentRequestBuilder include(JsonNullable<? extends Include> include) {
+    public CreatePaymentRequestBuilder include(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
         this.include = include;
         return this;
     }
                 
-    public CreatePaymentRequestBuilder requestBody(CreatePaymentRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
+    public CreatePaymentRequestBuilder paymentRequest(PaymentRequest paymentRequest) {
+        Utils.checkNotNull(paymentRequest, "paymentRequest");
+        this.paymentRequest = Optional.of(paymentRequest);
         return this;
     }
 
-    public CreatePaymentRequestBuilder requestBody(Optional<? extends CreatePaymentRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreatePaymentRequestBuilder paymentRequest(Optional<? extends PaymentRequest> paymentRequest) {
+        Utils.checkNotNull(paymentRequest, "paymentRequest");
+        this.paymentRequest = paymentRequest;
         return this;
     }
                 
@@ -69,7 +69,7 @@ public class CreatePaymentRequestBuilder {
     private CreatePaymentRequest buildRequest() {
 
         CreatePaymentRequest request = new CreatePaymentRequest(include,
-            requestBody);
+            paymentRequest);
 
         return request;
     }

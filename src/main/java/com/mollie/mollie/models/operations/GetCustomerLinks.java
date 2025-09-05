@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Url;
+import com.mollie.mollie.models.components.UrlNullable;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -24,52 +26,49 @@ public class GetCustomerLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonProperty("self")
-    private GetCustomerSelf self;
+    private Url self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonProperty("dashboard")
-    private GetCustomerDashboard dashboard;
+    private Url dashboard;
 
     /**
-     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-     * exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payments")
-    private JsonNullable<? extends GetCustomerPayments> payments;
+    private JsonNullable<? extends UrlNullable> payments;
 
     /**
-     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-     * exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandates")
-    private JsonNullable<? extends GetCustomerMandates> mandates;
+    private JsonNullable<? extends UrlNullable> mandates;
 
     /**
-     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-     * subscriptions exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subscriptions")
-    private JsonNullable<? extends GetCustomerSubscriptions> subscriptions;
+    private JsonNullable<? extends UrlNullable> subscriptions;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonProperty("documentation")
-    private GetCustomerDocumentation documentation;
+    private Url documentation;
 
     @JsonCreator
     public GetCustomerLinks(
-            @JsonProperty("self") GetCustomerSelf self,
-            @JsonProperty("dashboard") GetCustomerDashboard dashboard,
-            @JsonProperty("payments") JsonNullable<? extends GetCustomerPayments> payments,
-            @JsonProperty("mandates") JsonNullable<? extends GetCustomerMandates> mandates,
-            @JsonProperty("subscriptions") JsonNullable<? extends GetCustomerSubscriptions> subscriptions,
-            @JsonProperty("documentation") GetCustomerDocumentation documentation) {
+            @JsonProperty("self") Url self,
+            @JsonProperty("dashboard") Url dashboard,
+            @JsonProperty("payments") JsonNullable<? extends UrlNullable> payments,
+            @JsonProperty("mandates") JsonNullable<? extends UrlNullable> mandates,
+            @JsonProperty("subscriptions") JsonNullable<? extends UrlNullable> subscriptions,
+            @JsonProperty("documentation") Url documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(dashboard, "dashboard");
         Utils.checkNotNull(payments, "payments");
@@ -85,9 +84,9 @@ public class GetCustomerLinks {
     }
     
     public GetCustomerLinks(
-            GetCustomerSelf self,
-            GetCustomerDashboard dashboard,
-            GetCustomerDocumentation documentation) {
+            Url self,
+            Url dashboard,
+            Url documentation) {
         this(self, dashboard, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), documentation);
     }
@@ -96,7 +95,7 @@ public class GetCustomerLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonIgnore
-    public GetCustomerSelf self() {
+    public Url self() {
         return self;
     }
 
@@ -104,45 +103,42 @@ public class GetCustomerLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonIgnore
-    public GetCustomerDashboard dashboard() {
+    public Url dashboard() {
         return dashboard;
     }
 
     /**
-     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-     * exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetCustomerPayments> payments() {
-        return (JsonNullable<GetCustomerPayments>) payments;
+    public JsonNullable<UrlNullable> payments() {
+        return (JsonNullable<UrlNullable>) payments;
     }
 
     /**
-     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-     * exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetCustomerMandates> mandates() {
-        return (JsonNullable<GetCustomerMandates>) mandates;
+    public JsonNullable<UrlNullable> mandates() {
+        return (JsonNullable<UrlNullable>) mandates;
     }
 
     /**
-     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-     * subscriptions exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetCustomerSubscriptions> subscriptions() {
-        return (JsonNullable<GetCustomerSubscriptions>) subscriptions;
+    public JsonNullable<UrlNullable> subscriptions() {
+        return (JsonNullable<UrlNullable>) subscriptions;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonIgnore
-    public GetCustomerDocumentation documentation() {
+    public Url documentation() {
         return documentation;
     }
 
@@ -154,7 +150,7 @@ public class GetCustomerLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetCustomerLinks withSelf(GetCustomerSelf self) {
+    public GetCustomerLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -163,67 +159,61 @@ public class GetCustomerLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetCustomerLinks withDashboard(GetCustomerDashboard dashboard) {
+    public GetCustomerLinks withDashboard(Url dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = dashboard;
         return this;
     }
 
     /**
-     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-     * exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetCustomerLinks withPayments(GetCustomerPayments payments) {
+    public GetCustomerLinks withPayments(UrlNullable payments) {
         Utils.checkNotNull(payments, "payments");
         this.payments = JsonNullable.of(payments);
         return this;
     }
 
     /**
-     * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-     * exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetCustomerLinks withPayments(JsonNullable<? extends GetCustomerPayments> payments) {
+    public GetCustomerLinks withPayments(JsonNullable<? extends UrlNullable> payments) {
         Utils.checkNotNull(payments, "payments");
         this.payments = payments;
         return this;
     }
 
     /**
-     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-     * exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetCustomerLinks withMandates(GetCustomerMandates mandates) {
+    public GetCustomerLinks withMandates(UrlNullable mandates) {
         Utils.checkNotNull(mandates, "mandates");
         this.mandates = JsonNullable.of(mandates);
         return this;
     }
 
     /**
-     * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-     * exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetCustomerLinks withMandates(JsonNullable<? extends GetCustomerMandates> mandates) {
+    public GetCustomerLinks withMandates(JsonNullable<? extends UrlNullable> mandates) {
         Utils.checkNotNull(mandates, "mandates");
         this.mandates = mandates;
         return this;
     }
 
     /**
-     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-     * subscriptions exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetCustomerLinks withSubscriptions(GetCustomerSubscriptions subscriptions) {
+    public GetCustomerLinks withSubscriptions(UrlNullable subscriptions) {
         Utils.checkNotNull(subscriptions, "subscriptions");
         this.subscriptions = JsonNullable.of(subscriptions);
         return this;
     }
 
     /**
-     * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-     * subscriptions exist (yet).
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetCustomerLinks withSubscriptions(JsonNullable<? extends GetCustomerSubscriptions> subscriptions) {
+    public GetCustomerLinks withSubscriptions(JsonNullable<? extends UrlNullable> subscriptions) {
         Utils.checkNotNull(subscriptions, "subscriptions");
         this.subscriptions = subscriptions;
         return this;
@@ -232,7 +222,7 @@ public class GetCustomerLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetCustomerLinks withDocumentation(GetCustomerDocumentation documentation) {
+    public GetCustomerLinks withDocumentation(Url documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -277,17 +267,17 @@ public class GetCustomerLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private GetCustomerSelf self;
+        private Url self;
 
-        private GetCustomerDashboard dashboard;
+        private Url dashboard;
 
-        private JsonNullable<? extends GetCustomerPayments> payments = JsonNullable.undefined();
+        private JsonNullable<? extends UrlNullable> payments = JsonNullable.undefined();
 
-        private JsonNullable<? extends GetCustomerMandates> mandates = JsonNullable.undefined();
+        private JsonNullable<? extends UrlNullable> mandates = JsonNullable.undefined();
 
-        private JsonNullable<? extends GetCustomerSubscriptions> subscriptions = JsonNullable.undefined();
+        private JsonNullable<? extends UrlNullable> subscriptions = JsonNullable.undefined();
 
-        private GetCustomerDocumentation documentation;
+        private Url documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -297,7 +287,7 @@ public class GetCustomerLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder self(GetCustomerSelf self) {
+        public Builder self(Url self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
@@ -307,7 +297,7 @@ public class GetCustomerLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder dashboard(GetCustomerDashboard dashboard) {
+        public Builder dashboard(Url dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
             this.dashboard = dashboard;
             return this;
@@ -315,20 +305,18 @@ public class GetCustomerLinks {
 
 
         /**
-         * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-         * exist (yet).
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder payments(GetCustomerPayments payments) {
+        public Builder payments(UrlNullable payments) {
             Utils.checkNotNull(payments, "payments");
             this.payments = JsonNullable.of(payments);
             return this;
         }
 
         /**
-         * The API resource URL of the [payments](list-payments) linked to this customer. Omitted if no such payments
-         * exist (yet).
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder payments(JsonNullable<? extends GetCustomerPayments> payments) {
+        public Builder payments(JsonNullable<? extends UrlNullable> payments) {
             Utils.checkNotNull(payments, "payments");
             this.payments = payments;
             return this;
@@ -336,20 +324,18 @@ public class GetCustomerLinks {
 
 
         /**
-         * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-         * exist (yet).
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder mandates(GetCustomerMandates mandates) {
+        public Builder mandates(UrlNullable mandates) {
             Utils.checkNotNull(mandates, "mandates");
             this.mandates = JsonNullable.of(mandates);
             return this;
         }
 
         /**
-         * The API resource URL of the [mandates](list-mandates) linked to this customer. Omitted if no such mandates
-         * exist (yet).
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder mandates(JsonNullable<? extends GetCustomerMandates> mandates) {
+        public Builder mandates(JsonNullable<? extends UrlNullable> mandates) {
             Utils.checkNotNull(mandates, "mandates");
             this.mandates = mandates;
             return this;
@@ -357,20 +343,18 @@ public class GetCustomerLinks {
 
 
         /**
-         * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-         * subscriptions exist (yet).
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder subscriptions(GetCustomerSubscriptions subscriptions) {
+        public Builder subscriptions(UrlNullable subscriptions) {
             Utils.checkNotNull(subscriptions, "subscriptions");
             this.subscriptions = JsonNullable.of(subscriptions);
             return this;
         }
 
         /**
-         * The API resource URL of the [subscriptions](list-subscriptions) linked to this customer. Omitted if no such
-         * subscriptions exist (yet).
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder subscriptions(JsonNullable<? extends GetCustomerSubscriptions> subscriptions) {
+        public Builder subscriptions(JsonNullable<? extends UrlNullable> subscriptions) {
             Utils.checkNotNull(subscriptions, "subscriptions");
             this.subscriptions = subscriptions;
             return this;
@@ -380,7 +364,7 @@ public class GetCustomerLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(GetCustomerDocumentation documentation) {
+        public Builder documentation(Url documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

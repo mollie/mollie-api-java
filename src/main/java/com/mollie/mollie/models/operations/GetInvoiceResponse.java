@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityInvoice;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class GetInvoiceResponse implements Response {
     /**
      * The invoice object.
      */
-    private Optional<? extends GetInvoiceResponseBody> object;
+    private Optional<? extends EntityInvoice> entityInvoice;
 
     @JsonCreator
     public GetInvoiceResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetInvoiceResponseBody> object) {
+            Optional<? extends EntityInvoice> entityInvoice) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityInvoice, "entityInvoice");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityInvoice = entityInvoice;
     }
     
     public GetInvoiceResponse(
@@ -90,8 +91,8 @@ public class GetInvoiceResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetInvoiceResponseBody> object() {
-        return (Optional<GetInvoiceResponseBody>) object;
+    public Optional<EntityInvoice> entityInvoice() {
+        return (Optional<EntityInvoice>) entityInvoice;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class GetInvoiceResponse implements Response {
     /**
      * The invoice object.
      */
-    public GetInvoiceResponse withObject(GetInvoiceResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetInvoiceResponse withEntityInvoice(EntityInvoice entityInvoice) {
+        Utils.checkNotNull(entityInvoice, "entityInvoice");
+        this.entityInvoice = Optional.ofNullable(entityInvoice);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class GetInvoiceResponse implements Response {
     /**
      * The invoice object.
      */
-    public GetInvoiceResponse withObject(Optional<? extends GetInvoiceResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetInvoiceResponse withEntityInvoice(Optional<? extends EntityInvoice> entityInvoice) {
+        Utils.checkNotNull(entityInvoice, "entityInvoice");
+        this.entityInvoice = entityInvoice;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class GetInvoiceResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityInvoice, other.entityInvoice);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityInvoice);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class GetInvoiceResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityInvoice", entityInvoice);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class GetInvoiceResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetInvoiceResponseBody> object = Optional.empty();
+        private Optional<? extends EntityInvoice> entityInvoice = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class GetInvoiceResponse implements Response {
         /**
          * The invoice object.
          */
-        public Builder object(GetInvoiceResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityInvoice(EntityInvoice entityInvoice) {
+            Utils.checkNotNull(entityInvoice, "entityInvoice");
+            this.entityInvoice = Optional.ofNullable(entityInvoice);
             return this;
         }
 
         /**
          * The invoice object.
          */
-        public Builder object(Optional<? extends GetInvoiceResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityInvoice(Optional<? extends EntityInvoice> entityInvoice) {
+            Utils.checkNotNull(entityInvoice, "entityInvoice");
+            this.entityInvoice = entityInvoice;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class GetInvoiceResponse implements Response {
 
             return new GetInvoiceResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityInvoice);
         }
 
     }

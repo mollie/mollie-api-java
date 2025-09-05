@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -41,7 +42,7 @@ public class ListCustomerPaymentsRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListCustomerPaymentsQueryParamSort> sort;
+    private JsonNullable<? extends ListSort> sort;
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to
@@ -68,7 +69,7 @@ public class ListCustomerPaymentsRequest {
             String customerId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListCustomerPaymentsQueryParamSort> sort,
+            JsonNullable<? extends ListSort> sort,
             Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(customerId, "customerId");
@@ -122,8 +123,8 @@ public class ListCustomerPaymentsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListCustomerPaymentsQueryParamSort> sort() {
-        return (JsonNullable<ListCustomerPaymentsQueryParamSort>) sort;
+    public JsonNullable<ListSort> sort() {
+        return (JsonNullable<ListSort>) sort;
     }
 
     /**
@@ -207,7 +208,7 @@ public class ListCustomerPaymentsRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListCustomerPaymentsRequest withSort(ListCustomerPaymentsQueryParamSort sort) {
+    public ListCustomerPaymentsRequest withSort(ListSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
@@ -217,7 +218,7 @@ public class ListCustomerPaymentsRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListCustomerPaymentsRequest withSort(JsonNullable<? extends ListCustomerPaymentsQueryParamSort> sort) {
+    public ListCustomerPaymentsRequest withSort(JsonNullable<? extends ListSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -321,7 +322,7 @@ public class ListCustomerPaymentsRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListCustomerPaymentsQueryParamSort> sort = JsonNullable.undefined();
+        private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
 
         private Optional<String> profileId = Optional.empty();
 
@@ -386,7 +387,7 @@ public class ListCustomerPaymentsRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListCustomerPaymentsQueryParamSort sort) {
+        public Builder sort(ListSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
@@ -396,7 +397,7 @@ public class ListCustomerPaymentsRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListCustomerPaymentsQueryParamSort> sort) {
+        public Builder sort(JsonNullable<? extends ListSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

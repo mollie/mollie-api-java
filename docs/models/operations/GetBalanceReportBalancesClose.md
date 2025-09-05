@@ -1,9 +1,0 @@
-# GetBalanceReportBalancesClose
-
-
-## Fields
-
-| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `amount`                                                                                          | [Optional\<GetBalanceReportAmount>](../../models/operations/GetBalanceReportAmount.md)            | :heavy_minus_sign:                                                                                | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field. |
-| `subtotals`                                                                                       | List\<[GetBalanceReportSubtotals](../../models/operations/GetBalanceReportSubtotals.md)>          | :heavy_minus_sign:                                                                                | N/A                                                                                               |

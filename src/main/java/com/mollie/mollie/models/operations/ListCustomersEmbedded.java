@@ -5,43 +5,34 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.CustomerResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 
 
 public class ListCustomersEmbedded {
     /**
      * An array of customer objects.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customers")
-    private Optional<? extends List<Customers>> customers;
+    private List<CustomerResponse> customers;
 
     @JsonCreator
     public ListCustomersEmbedded(
-            @JsonProperty("customers") Optional<? extends List<Customers>> customers) {
+            @JsonProperty("customers") List<CustomerResponse> customers) {
         Utils.checkNotNull(customers, "customers");
         this.customers = customers;
-    }
-    
-    public ListCustomersEmbedded() {
-        this(Optional.empty());
     }
 
     /**
      * An array of customer objects.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Customers>> customers() {
-        return (Optional<List<Customers>>) customers;
+    public List<CustomerResponse> customers() {
+        return customers;
     }
 
     public static Builder builder() {
@@ -52,17 +43,7 @@ public class ListCustomersEmbedded {
     /**
      * An array of customer objects.
      */
-    public ListCustomersEmbedded withCustomers(List<Customers> customers) {
-        Utils.checkNotNull(customers, "customers");
-        this.customers = Optional.ofNullable(customers);
-        return this;
-    }
-
-
-    /**
-     * An array of customer objects.
-     */
-    public ListCustomersEmbedded withCustomers(Optional<? extends List<Customers>> customers) {
+    public ListCustomersEmbedded withCustomers(List<CustomerResponse> customers) {
         Utils.checkNotNull(customers, "customers");
         this.customers = customers;
         return this;
@@ -96,7 +77,7 @@ public class ListCustomersEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<Customers>> customers = Optional.empty();
+        private List<CustomerResponse> customers;
 
         private Builder() {
           // force use of static builder() method
@@ -106,16 +87,7 @@ public class ListCustomersEmbedded {
         /**
          * An array of customer objects.
          */
-        public Builder customers(List<Customers> customers) {
-            Utils.checkNotNull(customers, "customers");
-            this.customers = Optional.ofNullable(customers);
-            return this;
-        }
-
-        /**
-         * An array of customer objects.
-         */
-        public Builder customers(Optional<? extends List<Customers>> customers) {
+        public Builder customers(List<CustomerResponse> customers) {
             Utils.checkNotNull(customers, "customers");
             this.customers = customers;
             return this;

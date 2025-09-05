@@ -5,9 +5,8 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.components.EntityCapture;
 import com.mollie.mollie.models.operations.CreateCaptureRequest;
-import com.mollie.mollie.models.operations.CreateCaptureRequestBody;
-import com.mollie.mollie.models.operations.GetCaptureQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetCaptureRequest;
 import com.mollie.mollie.models.operations.ListCapturesRequest;
 import com.mollie.mollie.models.operations.async.CreateCaptureRequestBuilder;
@@ -96,18 +95,18 @@ public class AsyncCaptures {
      * having collected the customer's authorization.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @param requestBody 
+     * @param entityCapture 
      * @param options additional options
      * @return CompletableFuture&lt;CreateCaptureResponse&gt; - The async response
      */
     public CompletableFuture<CreateCaptureResponse> create(
-            String paymentId, Optional<? extends CreateCaptureRequestBody> requestBody,
+            String paymentId, Optional<? extends EntityCapture> entityCapture,
             Optional<Options> options) {
         CreateCaptureRequest request =
             CreateCaptureRequest
                 .builder()
                 .paymentId(paymentId)
-                .requestBody(requestBody)
+                .entityCapture(entityCapture)
                 .build();
         AsyncRequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
               = new CreateCapture.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -186,7 +185,7 @@ public class AsyncCaptures {
      */
     public CompletableFuture<GetCaptureResponse> get(String paymentId, String captureId) {
         return get(
-                paymentId, captureId, Optional.empty(),
+                paymentId, captureId, JsonNullable.undefined(),
                 JsonNullable.undefined(), Optional.empty());
     }
 
@@ -198,8 +197,8 @@ public class AsyncCaptures {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param captureId Provide the ID of the related capture.
-     * @param embed This endpoint allows you to embed additional resources via the
-     *         `embed` query string parameter.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     *         parameter.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -210,7 +209,7 @@ public class AsyncCaptures {
      */
     public CompletableFuture<GetCaptureResponse> get(
             String paymentId, String captureId,
-            Optional<? extends GetCaptureQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
+            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) {
         GetCaptureRequest request =
             GetCaptureRequest

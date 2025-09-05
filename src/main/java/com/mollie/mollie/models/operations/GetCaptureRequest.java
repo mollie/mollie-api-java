@@ -10,8 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -29,11 +27,11 @@ public class GetCaptureRequest {
     private String captureId;
 
     /**
-     * This endpoint allows you to embed additional resources via the
-     * `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private Optional<? extends GetCaptureQueryParamEmbed> embed;
+    private JsonNullable<String> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -49,7 +47,7 @@ public class GetCaptureRequest {
     public GetCaptureRequest(
             String paymentId,
             String captureId,
-            Optional<? extends GetCaptureQueryParamEmbed> embed,
+            JsonNullable<String> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(captureId, "captureId");
@@ -64,7 +62,7 @@ public class GetCaptureRequest {
     public GetCaptureRequest(
             String paymentId,
             String captureId) {
-        this(paymentId, captureId, Optional.empty(),
+        this(paymentId, captureId, JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
@@ -85,13 +83,12 @@ public class GetCaptureRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional resources via the
-     * `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetCaptureQueryParamEmbed> embed() {
-        return (Optional<GetCaptureQueryParamEmbed>) embed;
+    public JsonNullable<String> embed() {
+        return embed;
     }
 
     /**
@@ -130,21 +127,20 @@ public class GetCaptureRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional resources via the
-     * `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public GetCaptureRequest withEmbed(GetCaptureQueryParamEmbed embed) {
+    public GetCaptureRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
-        this.embed = Optional.ofNullable(embed);
+        this.embed = JsonNullable.of(embed);
         return this;
     }
 
-
     /**
-     * This endpoint allows you to embed additional resources via the
-     * `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public GetCaptureRequest withEmbed(Optional<? extends GetCaptureQueryParamEmbed> embed) {
+    public GetCaptureRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -215,7 +211,7 @@ public class GetCaptureRequest {
 
         private String captureId;
 
-        private Optional<? extends GetCaptureQueryParamEmbed> embed = Optional.empty();
+        private JsonNullable<String> embed = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -245,20 +241,20 @@ public class GetCaptureRequest {
 
 
         /**
-         * This endpoint allows you to embed additional resources via the
-         * `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder embed(GetCaptureQueryParamEmbed embed) {
+        public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
-            this.embed = Optional.ofNullable(embed);
+            this.embed = JsonNullable.of(embed);
             return this;
         }
 
         /**
-         * This endpoint allows you to embed additional resources via the
-         * `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder embed(Optional<? extends GetCaptureQueryParamEmbed> embed) {
+        public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;

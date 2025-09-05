@@ -5,10 +5,15 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Url;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 
 /**
  * Links
@@ -19,39 +24,47 @@ public class Links {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Self self;
+    private Optional<? extends Url> self;
 
     /**
-     * The API resource URL of the [payment](get-payment) that belong to this route.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonProperty("payment")
-    private Payment payment;
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("documentation")
+    private Optional<? extends Url> documentation;
 
     @JsonCreator
     public Links(
-            @JsonProperty("self") Self self,
-            @JsonProperty("payment") Payment payment) {
+            @JsonProperty("self") Optional<? extends Url> self,
+            @JsonProperty("documentation") Optional<? extends Url> documentation) {
         Utils.checkNotNull(self, "self");
-        Utils.checkNotNull(payment, "payment");
+        Utils.checkNotNull(documentation, "documentation");
         this.self = self;
-        this.payment = payment;
+        this.documentation = documentation;
+    }
+    
+    public Links() {
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Self self() {
-        return self;
+    public Optional<Url> self() {
+        return (Optional<Url>) self;
     }
 
     /**
-     * The API resource URL of the [payment](get-payment) that belong to this route.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Payment payment() {
-        return payment;
+    public Optional<Url> documentation() {
+        return (Optional<Url>) documentation;
     }
 
     public static Builder builder() {
@@ -62,18 +75,38 @@ public class Links {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public Links withSelf(Self self) {
+    public Links withSelf(Url self) {
+        Utils.checkNotNull(self, "self");
+        this.self = Optional.ofNullable(self);
+        return this;
+    }
+
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public Links withSelf(Optional<? extends Url> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
 
     /**
-     * The API resource URL of the [payment](get-payment) that belong to this route.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public Links withPayment(Payment payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = payment;
+    public Links withDocumentation(Url documentation) {
+        Utils.checkNotNull(documentation, "documentation");
+        this.documentation = Optional.ofNullable(documentation);
+        return this;
+    }
+
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public Links withDocumentation(Optional<? extends Url> documentation) {
+        Utils.checkNotNull(documentation, "documentation");
+        this.documentation = documentation;
         return this;
     }
 
@@ -88,28 +121,28 @@ public class Links {
         Links other = (Links) o;
         return 
             Utils.enhancedDeepEquals(this.self, other.self) &&
-            Utils.enhancedDeepEquals(this.payment, other.payment);
+            Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self, payment);
+            self, documentation);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Links.class,
                 "self", self,
-                "payment", payment);
+                "documentation", documentation);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Self self;
+        private Optional<? extends Url> self = Optional.empty();
 
-        private Payment payment;
+        private Optional<? extends Url> documentation = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -119,7 +152,16 @@ public class Links {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder self(Self self) {
+        public Builder self(Url self) {
+            Utils.checkNotNull(self, "self");
+            this.self = Optional.ofNullable(self);
+            return this;
+        }
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder self(Optional<? extends Url> self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
@@ -127,18 +169,27 @@ public class Links {
 
 
         /**
-         * The API resource URL of the [payment](get-payment) that belong to this route.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder payment(Payment payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = payment;
+        public Builder documentation(Url documentation) {
+            Utils.checkNotNull(documentation, "documentation");
+            this.documentation = Optional.ofNullable(documentation);
+            return this;
+        }
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder documentation(Optional<? extends Url> documentation) {
+            Utils.checkNotNull(documentation, "documentation");
+            this.documentation = documentation;
             return this;
         }
 
         public Links build() {
 
             return new Links(
-                self, payment);
+                self, documentation);
         }
 
     }

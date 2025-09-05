@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.ListLinks;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -35,13 +36,13 @@ public class ListSettlementPaymentsResponseBody {
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
     @JsonProperty("_links")
-    private ListSettlementPaymentsLinks links;
+    private ListLinks links;
 
     @JsonCreator
     public ListSettlementPaymentsResponseBody(
             @JsonProperty("count") long count,
             @JsonProperty("_embedded") ListSettlementPaymentsEmbedded embedded,
-            @JsonProperty("_links") ListSettlementPaymentsLinks links) {
+            @JsonProperty("_links") ListLinks links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
@@ -71,7 +72,7 @@ public class ListSettlementPaymentsResponseBody {
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
     @JsonIgnore
-    public ListSettlementPaymentsLinks links() {
+    public ListLinks links() {
         return links;
     }
 
@@ -102,7 +103,7 @@ public class ListSettlementPaymentsResponseBody {
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
      */
-    public ListSettlementPaymentsResponseBody withLinks(ListSettlementPaymentsLinks links) {
+    public ListSettlementPaymentsResponseBody withLinks(ListLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -144,7 +145,7 @@ public class ListSettlementPaymentsResponseBody {
 
         private ListSettlementPaymentsEmbedded embedded;
 
-        private ListSettlementPaymentsLinks links;
+        private ListLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -175,7 +176,7 @@ public class ListSettlementPaymentsResponseBody {
         /**
          * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(ListSettlementPaymentsLinks links) {
+        public Builder links(ListLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

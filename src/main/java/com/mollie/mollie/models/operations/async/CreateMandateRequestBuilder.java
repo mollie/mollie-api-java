@@ -6,8 +6,8 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.EntityMandate;
 import com.mollie.mollie.models.operations.CreateMandateRequest;
-import com.mollie.mollie.models.operations.CreateMandateRequestBody;
 import com.mollie.mollie.operations.CreateMandate;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -20,7 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class CreateMandateRequestBuilder {
 
     private String customerId;
-    private Optional<? extends CreateMandateRequestBody> requestBody = Optional.empty();
+    private Optional<? extends EntityMandate> entityMandate = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -34,15 +34,15 @@ public class CreateMandateRequestBuilder {
         return this;
     }
                 
-    public CreateMandateRequestBuilder requestBody(CreateMandateRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
+    public CreateMandateRequestBuilder entityMandate(EntityMandate entityMandate) {
+        Utils.checkNotNull(entityMandate, "entityMandate");
+        this.entityMandate = Optional.of(entityMandate);
         return this;
     }
 
-    public CreateMandateRequestBuilder requestBody(Optional<? extends CreateMandateRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreateMandateRequestBuilder entityMandate(Optional<? extends EntityMandate> entityMandate) {
+        Utils.checkNotNull(entityMandate, "entityMandate");
+        this.entityMandate = entityMandate;
         return this;
     }
                 
@@ -62,7 +62,7 @@ public class CreateMandateRequestBuilder {
     private CreateMandateRequest buildRequest() {
 
         CreateMandateRequest request = new CreateMandateRequest(customerId,
-            requestBody);
+            entityMandate);
 
         return request;
     }

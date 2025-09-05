@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Address;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -24,9 +25,7 @@ public class Organization {
     @JsonProperty("name")
     private Optional<String> name;
 
-    /**
-     * The address of the organization.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
     private Optional<? extends Address> address;
@@ -90,9 +89,6 @@ public class Organization {
         return name;
     }
 
-    /**
-     * The address of the organization.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<Address> address() {
@@ -154,9 +150,6 @@ public class Organization {
         return this;
     }
 
-    /**
-     * The address of the organization.
-     */
     public Organization withAddress(Address address) {
         Utils.checkNotNull(address, "address");
         this.address = Optional.ofNullable(address);
@@ -164,9 +157,6 @@ public class Organization {
     }
 
 
-    /**
-     * The address of the organization.
-     */
     public Organization withAddress(Optional<? extends Address> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
@@ -311,18 +301,12 @@ public class Organization {
         }
 
 
-        /**
-         * The address of the organization.
-         */
         public Builder address(Address address) {
             Utils.checkNotNull(address, "address");
             this.address = Optional.ofNullable(address);
             return this;
         }
 
-        /**
-         * The address of the organization.
-         */
         public Builder address(Optional<? extends Address> address) {
             Utils.checkNotNull(address, "address");
             this.address = address;

@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.EntityCapture;
 import com.mollie.mollie.operations.CreateCapture;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class CreateCaptureRequestBuilder {
 
     private String paymentId;
-    private Optional<? extends CreateCaptureRequestBody> requestBody = Optional.empty();
+    private Optional<? extends EntityCapture> entityCapture = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -31,15 +32,15 @@ public class CreateCaptureRequestBuilder {
         return this;
     }
                 
-    public CreateCaptureRequestBuilder requestBody(CreateCaptureRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
+    public CreateCaptureRequestBuilder entityCapture(EntityCapture entityCapture) {
+        Utils.checkNotNull(entityCapture, "entityCapture");
+        this.entityCapture = Optional.of(entityCapture);
         return this;
     }
 
-    public CreateCaptureRequestBuilder requestBody(Optional<? extends CreateCaptureRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreateCaptureRequestBuilder entityCapture(Optional<? extends EntityCapture> entityCapture) {
+        Utils.checkNotNull(entityCapture, "entityCapture");
+        this.entityCapture = entityCapture;
         return this;
     }
                 
@@ -59,7 +60,7 @@ public class CreateCaptureRequestBuilder {
     private CreateCaptureRequest buildRequest() {
 
         CreateCaptureRequest request = new CreateCaptureRequest(paymentId,
-            requestBody);
+            entityCapture);
 
         return request;
     }

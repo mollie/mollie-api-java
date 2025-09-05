@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.CaptureResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class GetCaptureResponse implements Response {
     /**
      * The capture object.
      */
-    private Optional<? extends GetCaptureResponseBody> object;
+    private Optional<? extends CaptureResponse> captureResponse;
 
     @JsonCreator
     public GetCaptureResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetCaptureResponseBody> object) {
+            Optional<? extends CaptureResponse> captureResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(captureResponse, "captureResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.captureResponse = captureResponse;
     }
     
     public GetCaptureResponse(
@@ -90,8 +91,8 @@ public class GetCaptureResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetCaptureResponseBody> object() {
-        return (Optional<GetCaptureResponseBody>) object;
+    public Optional<CaptureResponse> captureResponse() {
+        return (Optional<CaptureResponse>) captureResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class GetCaptureResponse implements Response {
     /**
      * The capture object.
      */
-    public GetCaptureResponse withObject(GetCaptureResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetCaptureResponse withCaptureResponse(CaptureResponse captureResponse) {
+        Utils.checkNotNull(captureResponse, "captureResponse");
+        this.captureResponse = Optional.ofNullable(captureResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class GetCaptureResponse implements Response {
     /**
      * The capture object.
      */
-    public GetCaptureResponse withObject(Optional<? extends GetCaptureResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetCaptureResponse withCaptureResponse(Optional<? extends CaptureResponse> captureResponse) {
+        Utils.checkNotNull(captureResponse, "captureResponse");
+        this.captureResponse = captureResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class GetCaptureResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.captureResponse, other.captureResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            captureResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class GetCaptureResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "captureResponse", captureResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class GetCaptureResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetCaptureResponseBody> object = Optional.empty();
+        private Optional<? extends CaptureResponse> captureResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class GetCaptureResponse implements Response {
         /**
          * The capture object.
          */
-        public Builder object(GetCaptureResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder captureResponse(CaptureResponse captureResponse) {
+            Utils.checkNotNull(captureResponse, "captureResponse");
+            this.captureResponse = Optional.ofNullable(captureResponse);
             return this;
         }
 
         /**
          * The capture object.
          */
-        public Builder object(Optional<? extends GetCaptureResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder captureResponse(Optional<? extends CaptureResponse> captureResponse) {
+            Utils.checkNotNull(captureResponse, "captureResponse");
+            this.captureResponse = captureResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class GetCaptureResponse implements Response {
 
             return new GetCaptureResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                captureResponse);
         }
 
     }

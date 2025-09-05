@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityRefundResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class CreateRefundResponse implements Response {
     /**
      * The newly created refund object.
      */
-    private Optional<? extends CreateRefundResponseBody> object;
+    private Optional<? extends EntityRefundResponse> entityRefundResponse;
 
     @JsonCreator
     public CreateRefundResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CreateRefundResponseBody> object) {
+            Optional<? extends EntityRefundResponse> entityRefundResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityRefundResponse, "entityRefundResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityRefundResponse = entityRefundResponse;
     }
     
     public CreateRefundResponse(
@@ -90,8 +91,8 @@ public class CreateRefundResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateRefundResponseBody> object() {
-        return (Optional<CreateRefundResponseBody>) object;
+    public Optional<EntityRefundResponse> entityRefundResponse() {
+        return (Optional<EntityRefundResponse>) entityRefundResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class CreateRefundResponse implements Response {
     /**
      * The newly created refund object.
      */
-    public CreateRefundResponse withObject(CreateRefundResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CreateRefundResponse withEntityRefundResponse(EntityRefundResponse entityRefundResponse) {
+        Utils.checkNotNull(entityRefundResponse, "entityRefundResponse");
+        this.entityRefundResponse = Optional.ofNullable(entityRefundResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class CreateRefundResponse implements Response {
     /**
      * The newly created refund object.
      */
-    public CreateRefundResponse withObject(Optional<? extends CreateRefundResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CreateRefundResponse withEntityRefundResponse(Optional<? extends EntityRefundResponse> entityRefundResponse) {
+        Utils.checkNotNull(entityRefundResponse, "entityRefundResponse");
+        this.entityRefundResponse = entityRefundResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class CreateRefundResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityRefundResponse, other.entityRefundResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityRefundResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class CreateRefundResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityRefundResponse", entityRefundResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class CreateRefundResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CreateRefundResponseBody> object = Optional.empty();
+        private Optional<? extends EntityRefundResponse> entityRefundResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class CreateRefundResponse implements Response {
         /**
          * The newly created refund object.
          */
-        public Builder object(CreateRefundResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityRefundResponse(EntityRefundResponse entityRefundResponse) {
+            Utils.checkNotNull(entityRefundResponse, "entityRefundResponse");
+            this.entityRefundResponse = Optional.ofNullable(entityRefundResponse);
             return this;
         }
 
         /**
          * The newly created refund object.
          */
-        public Builder object(Optional<? extends CreateRefundResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityRefundResponse(Optional<? extends EntityRefundResponse> entityRefundResponse) {
+            Utils.checkNotNull(entityRefundResponse, "entityRefundResponse");
+            this.entityRefundResponse = entityRefundResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class CreateRefundResponse implements Response {
 
             return new CreateRefundResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityRefundResponse);
         }
 
     }

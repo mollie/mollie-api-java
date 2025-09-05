@@ -10,8 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -33,7 +31,7 @@ public class GetRefundRequest {
      * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private Optional<? extends GetRefundQueryParamEmbed> embed;
+    private JsonNullable<String> embed;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -49,7 +47,7 @@ public class GetRefundRequest {
     public GetRefundRequest(
             String paymentId,
             String refundId,
-            Optional<? extends GetRefundQueryParamEmbed> embed,
+            JsonNullable<String> embed,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(refundId, "refundId");
@@ -64,7 +62,7 @@ public class GetRefundRequest {
     public GetRefundRequest(
             String paymentId,
             String refundId) {
-        this(paymentId, refundId, Optional.empty(),
+        this(paymentId, refundId, JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
@@ -88,10 +86,9 @@ public class GetRefundRequest {
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetRefundQueryParamEmbed> embed() {
-        return (Optional<GetRefundQueryParamEmbed>) embed;
+    public JsonNullable<String> embed() {
+        return embed;
     }
 
     /**
@@ -133,18 +130,17 @@ public class GetRefundRequest {
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    public GetRefundRequest withEmbed(GetRefundQueryParamEmbed embed) {
+    public GetRefundRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
-        this.embed = Optional.ofNullable(embed);
+        this.embed = JsonNullable.of(embed);
         return this;
     }
-
 
     /**
      * This endpoint allows embedding related API items by appending the following values via the `embed` query string
      * parameter.
      */
-    public GetRefundRequest withEmbed(Optional<? extends GetRefundQueryParamEmbed> embed) {
+    public GetRefundRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -215,7 +211,7 @@ public class GetRefundRequest {
 
         private String refundId;
 
-        private Optional<? extends GetRefundQueryParamEmbed> embed = Optional.empty();
+        private JsonNullable<String> embed = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -248,9 +244,9 @@ public class GetRefundRequest {
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string
          * parameter.
          */
-        public Builder embed(GetRefundQueryParamEmbed embed) {
+        public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
-            this.embed = Optional.ofNullable(embed);
+            this.embed = JsonNullable.of(embed);
             return this;
         }
 
@@ -258,7 +254,7 @@ public class GetRefundRequest {
          * This endpoint allows embedding related API items by appending the following values via the `embed` query string
          * parameter.
          */
-        public Builder embed(Optional<? extends GetRefundQueryParamEmbed> embed) {
+        public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;

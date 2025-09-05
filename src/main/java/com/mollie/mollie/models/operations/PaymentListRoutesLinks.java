@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Url;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -21,23 +22,23 @@ import java.util.Optional;
  */
 public class PaymentListRoutesLinks {
     /**
-     * The URL to the current set of items.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends PaymentListRoutesSelf> self;
+    private Optional<? extends Url> self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends PaymentListRoutesDocumentation> documentation;
+    private Optional<? extends Url> documentation;
 
     @JsonCreator
     public PaymentListRoutesLinks(
-            @JsonProperty("self") Optional<? extends PaymentListRoutesSelf> self,
-            @JsonProperty("documentation") Optional<? extends PaymentListRoutesDocumentation> documentation) {
+            @JsonProperty("self") Optional<? extends Url> self,
+            @JsonProperty("documentation") Optional<? extends Url> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
         this.self = self;
@@ -49,12 +50,12 @@ public class PaymentListRoutesLinks {
     }
 
     /**
-     * The URL to the current set of items.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentListRoutesSelf> self() {
-        return (Optional<PaymentListRoutesSelf>) self;
+    public Optional<Url> self() {
+        return (Optional<Url>) self;
     }
 
     /**
@@ -62,8 +63,8 @@ public class PaymentListRoutesLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentListRoutesDocumentation> documentation() {
-        return (Optional<PaymentListRoutesDocumentation>) documentation;
+    public Optional<Url> documentation() {
+        return (Optional<Url>) documentation;
     }
 
     public static Builder builder() {
@@ -72,9 +73,9 @@ public class PaymentListRoutesLinks {
 
 
     /**
-     * The URL to the current set of items.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public PaymentListRoutesLinks withSelf(PaymentListRoutesSelf self) {
+    public PaymentListRoutesLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
         this.self = Optional.ofNullable(self);
         return this;
@@ -82,9 +83,9 @@ public class PaymentListRoutesLinks {
 
 
     /**
-     * The URL to the current set of items.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public PaymentListRoutesLinks withSelf(Optional<? extends PaymentListRoutesSelf> self) {
+    public PaymentListRoutesLinks withSelf(Optional<? extends Url> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -93,7 +94,7 @@ public class PaymentListRoutesLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public PaymentListRoutesLinks withDocumentation(PaymentListRoutesDocumentation documentation) {
+    public PaymentListRoutesLinks withDocumentation(Url documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
@@ -103,7 +104,7 @@ public class PaymentListRoutesLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public PaymentListRoutesLinks withDocumentation(Optional<? extends PaymentListRoutesDocumentation> documentation) {
+    public PaymentListRoutesLinks withDocumentation(Optional<? extends Url> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -139,9 +140,9 @@ public class PaymentListRoutesLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends PaymentListRoutesSelf> self = Optional.empty();
+        private Optional<? extends Url> self = Optional.empty();
 
-        private Optional<? extends PaymentListRoutesDocumentation> documentation = Optional.empty();
+        private Optional<? extends Url> documentation = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -149,18 +150,18 @@ public class PaymentListRoutesLinks {
 
 
         /**
-         * The URL to the current set of items.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder self(PaymentListRoutesSelf self) {
+        public Builder self(Url self) {
             Utils.checkNotNull(self, "self");
             this.self = Optional.ofNullable(self);
             return this;
         }
 
         /**
-         * The URL to the current set of items.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder self(Optional<? extends PaymentListRoutesSelf> self) {
+        public Builder self(Optional<? extends Url> self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
@@ -170,7 +171,7 @@ public class PaymentListRoutesLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(PaymentListRoutesDocumentation documentation) {
+        public Builder documentation(Url documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = Optional.ofNullable(documentation);
             return this;
@@ -179,7 +180,7 @@ public class PaymentListRoutesLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(Optional<? extends PaymentListRoutesDocumentation> documentation) {
+        public Builder documentation(Optional<? extends Url> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

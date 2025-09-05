@@ -5,43 +5,34 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.CaptureResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 
 
 public class ListSettlementCapturesEmbedded {
     /**
      * An array of capture objects.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captures")
-    private Optional<? extends List<ListSettlementCapturesCaptures>> captures;
+    private List<CaptureResponse> captures;
 
     @JsonCreator
     public ListSettlementCapturesEmbedded(
-            @JsonProperty("captures") Optional<? extends List<ListSettlementCapturesCaptures>> captures) {
+            @JsonProperty("captures") List<CaptureResponse> captures) {
         Utils.checkNotNull(captures, "captures");
         this.captures = captures;
-    }
-    
-    public ListSettlementCapturesEmbedded() {
-        this(Optional.empty());
     }
 
     /**
      * An array of capture objects.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<ListSettlementCapturesCaptures>> captures() {
-        return (Optional<List<ListSettlementCapturesCaptures>>) captures;
+    public List<CaptureResponse> captures() {
+        return captures;
     }
 
     public static Builder builder() {
@@ -52,17 +43,7 @@ public class ListSettlementCapturesEmbedded {
     /**
      * An array of capture objects.
      */
-    public ListSettlementCapturesEmbedded withCaptures(List<ListSettlementCapturesCaptures> captures) {
-        Utils.checkNotNull(captures, "captures");
-        this.captures = Optional.ofNullable(captures);
-        return this;
-    }
-
-
-    /**
-     * An array of capture objects.
-     */
-    public ListSettlementCapturesEmbedded withCaptures(Optional<? extends List<ListSettlementCapturesCaptures>> captures) {
+    public ListSettlementCapturesEmbedded withCaptures(List<CaptureResponse> captures) {
         Utils.checkNotNull(captures, "captures");
         this.captures = captures;
         return this;
@@ -96,7 +77,7 @@ public class ListSettlementCapturesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<ListSettlementCapturesCaptures>> captures = Optional.empty();
+        private List<CaptureResponse> captures;
 
         private Builder() {
           // force use of static builder() method
@@ -106,16 +87,7 @@ public class ListSettlementCapturesEmbedded {
         /**
          * An array of capture objects.
          */
-        public Builder captures(List<ListSettlementCapturesCaptures> captures) {
-            Utils.checkNotNull(captures, "captures");
-            this.captures = Optional.ofNullable(captures);
-            return this;
-        }
-
-        /**
-         * An array of capture objects.
-         */
-        public Builder captures(Optional<? extends List<ListSettlementCapturesCaptures>> captures) {
+        public Builder captures(List<CaptureResponse> captures) {
             Utils.checkNotNull(captures, "captures");
             this.captures = captures;
             return this;

@@ -34,17 +34,16 @@ guide on [method-specific parameters](extra-payment-parameters).
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreatePaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.CreatePaymentResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws CreatePaymentResponseBody, CreatePaymentPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -53,10 +52,31 @@ public class Application {
             .build();
 
         CreatePaymentResponse res = sdk.payments().create()
-                .include(Include.DETAILS_QR_CODE)
-                .requestBody(CreatePaymentRequestBody.builder()
+                .include("details.qrCode")
+                .paymentRequest(PaymentRequest.builder()
+                    .id("tr_5B8cwPMGnU")
                     .description("Chess Board")
                     .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .amountRefunded(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .amountRemaining(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .amountCaptured(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .amountChargedBack(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .settlementAmount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
@@ -64,38 +84,38 @@ public class Application {
                     .cancelUrl("https://example.org/cancel")
                     .webhookUrl("https://example.org/webhooks")
                     .lines(List.of(
-                        Lines.builder()
+                        PaymentRequestLines.builder()
                             .description("LEGO 4440 Forest Police Station")
                             .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
+                            .unitPrice(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .totalAmount(TotalAmount.builder()
+                            .totalAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .type(Type.PHYSICAL)
+                            .type(PaymentRequestType.PHYSICAL)
                             .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
+                            .discountAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
+                            .vatAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .sku("9780241661628")
                             .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
+                                PaymentRequestCategories.MEAL,
+                                PaymentRequestCategories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
-                            .recurring(Recurring.builder()
+                            .recurring(RecurringLineItem.builder()
                                 .interval("... days")
                                 .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
+                                .amount(Amount.builder()
                                     .currency("EUR")
                                     .value("10.00")
                                     .build())
@@ -103,38 +123,38 @@ public class Application {
                                 .startDate("2024-12-12")
                                 .build())
                             .build(),
-                        Lines.builder()
+                        PaymentRequestLines.builder()
                             .description("LEGO 4440 Forest Police Station")
                             .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
+                            .unitPrice(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .totalAmount(TotalAmount.builder()
+                            .totalAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .type(Type.PHYSICAL)
+                            .type(PaymentRequestType.PHYSICAL)
                             .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
+                            .discountAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
+                            .vatAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .sku("9780241661628")
                             .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
+                                PaymentRequestCategories.MEAL,
+                                PaymentRequestCategories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
-                            .recurring(Recurring.builder()
+                            .recurring(RecurringLineItem.builder()
                                 .interval("... weeks")
                                 .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
+                                .amount(Amount.builder()
                                     .currency("EUR")
                                     .value("10.00")
                                     .build())
@@ -142,38 +162,38 @@ public class Application {
                                 .startDate("2024-12-12")
                                 .build())
                             .build(),
-                        Lines.builder()
+                        PaymentRequestLines.builder()
                             .description("LEGO 4440 Forest Police Station")
                             .quantity(1L)
-                            .unitPrice(UnitPrice.builder()
+                            .unitPrice(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .totalAmount(TotalAmount.builder()
+                            .totalAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .type(Type.PHYSICAL)
+                            .type(PaymentRequestType.PHYSICAL)
                             .quantityUnit("pcs")
-                            .discountAmount(DiscountAmount.builder()
+                            .discountAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .vatRate("21.00")
-                            .vatAmount(VatAmount.builder()
+                            .vatAmount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
                             .sku("9780241661628")
                             .categories(List.of(
-                                Categories.MEAL,
-                                Categories.ECO))
+                                PaymentRequestCategories.MEAL,
+                                PaymentRequestCategories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
-                            .recurring(Recurring.builder()
+                            .recurring(RecurringLineItem.builder()
                                 .interval("... days")
                                 .description("Gym subscription")
-                                .amount(CreatePaymentAmount.builder()
+                                .amount(Amount.builder()
                                     .currency("EUR")
                                     .value("10.00")
                                     .build())
@@ -181,7 +201,7 @@ public class Application {
                                 .startDate("2024-12-12")
                                 .build())
                             .build()))
-                    .billingAddress(BillingAddress.builder()
+                    .billingAddress(PaymentAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
@@ -195,7 +215,7 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .shippingAddress(ShippingAddress.builder()
+                    .shippingAddress(PaymentAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
@@ -209,56 +229,58 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .locale(CreatePaymentLocale.EN_US)
+                    .locale(Locale.EN_US)
                     .method(Method.IDEAL)
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
                     .captureMode(CaptureMode.MANUAL)
                     .captureDelay("8 hours")
-                    .applicationFee(ApplicationFee.builder()
-                        .amount(CreatePaymentPaymentsAmount.builder()
+                    .applicationFee(PaymentRequestApplicationFee.builder()
+                        .amount(Amount.builder()
                             .currency("EUR")
                             .value("10.00")
                             .build())
                         .description("10")
                         .build())
                     .routing(List.of(
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
+                        EntityPaymentRoute.builder()
+                            .id("rt_5B8cwPMGnU")
+                            .amount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
+                            .destination(EntityPaymentRouteDestination.builder()
+                                .type(EntityPaymentRouteType.ORGANIZATION)
                                 .organizationId("org_1234567")
                                 .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
+                            .links(EntityPaymentRouteLinks.builder()
+                                .self(Url.builder()
                                     .href("https://...")
                                     .type("application/hal+json")
                                     .build())
-                                .payment(Payment.builder()
+                                .payment(Url.builder()
                                     .href("https://...")
                                     .type("application/hal+json")
                                     .build())
                                 .build())
                             .releaseDate("2024-12-12")
                             .build(),
-                        Routing.builder()
-                            .amount(CreatePaymentPaymentsRequestAmount.builder()
+                        EntityPaymentRoute.builder()
+                            .id("rt_5B8cwPMGnU")
+                            .amount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .destination(Destination.builder()
-                                .type(CreatePaymentType.ORGANIZATION)
+                            .destination(EntityPaymentRouteDestination.builder()
+                                .type(EntityPaymentRouteType.ORGANIZATION)
                                 .organizationId("org_1234567")
                                 .build())
-                            .links(Links.builder()
-                                .self(Self.builder()
+                            .links(EntityPaymentRouteLinks.builder()
+                                .self(Url.builder()
                                     .href("https://...")
                                     .type("application/hal+json")
                                     .build())
-                                .payment(Payment.builder()
+                                .payment(Url.builder()
                                     .href("https://...")
                                     .type("application/hal+json")
                                     .build())
@@ -266,9 +288,12 @@ public class Application {
                             .releaseDate("2024-12-12")
                             .build()))
                     .sequenceType(SequenceType.ONEOFF)
+                    .subscriptionId("sub_5B8cwPMGnU")
                     .mandateId("mdt_5B8cwPMGnU")
                     .customerId("cst_5B8cwPMGnU")
                     .profileId("pfl_5B8cwPMGnU")
+                    .settlementId("stl_5B8cwPMGnU")
+                    .orderId("ord_5B8cwPMGnU")
                     .dueDate("2025-01-01")
                     .testmode(false)
                     .applePayPaymentToken("{\"paymentData\": {\"version\": \"EC_v1\", \"data\": \"vK3BbrCbI/....\"}}")
@@ -286,7 +311,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.paymentResponse().isPresent()) {
             // handle response
         }
     }
@@ -295,10 +320,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `include`                                                                                            | [JsonNullable\<Include>](../../models/operations/Include.md)                                         | :heavy_minus_sign:                                                                                   | This endpoint allows you to include additional information via the `include` query string parameter. | details.qrCode                                                                                       |
-| `requestBody`                                                                                        | [Optional\<CreatePaymentRequestBody>](../../models/operations/CreatePaymentRequestBody.md)           | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `include`                                                                                            | *JsonNullable\<String>*                                                                              | :heavy_minus_sign:                                                                                   | This endpoint allows you to include additional information via the `include` query string parameter. |
+| `paymentRequest`                                                                                     | [Optional\<PaymentRequest>](../../models/components/PaymentRequest.md)                               | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |
 
 ### Response
 
@@ -306,11 +331,11 @@ public class Application {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models/errors/CreatePaymentResponseBody         | 422                                             | application/hal+json                            |
-| models/errors/CreatePaymentPaymentsResponseBody | 503                                             | application/hal+json                            |
-| models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 422                         | application/hal+json        |
+| models/errors/ErrorResponse | 503                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -325,14 +350,16 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListPaymentsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListPaymentsRequest;
+import com.mollie.mollie.models.operations.ListPaymentsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -343,7 +370,7 @@ public class Application {
         ListPaymentsRequest req = ListPaymentsRequest.builder()
                 .from("tr_5B8cwPMGnU")
                 .limit(50L)
-                .sort(ListPaymentsQueryParamSort.DESC)
+                .sort(ListSort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
@@ -371,10 +398,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                             | Status Code                            | Content Type                           |
-| -------------------------------------- | -------------------------------------- | -------------------------------------- |
-| models/errors/ListPaymentsResponseBody | 400                                    | application/hal+json                   |
-| models/errors/APIException             | 4XX, 5XX                               | \*/\*                                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -388,13 +415,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetPaymentResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetPaymentResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetPaymentResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -404,12 +431,12 @@ public class Application {
 
         GetPaymentResponse res = sdk.payments().get()
                 .paymentId("tr_5B8cwPMGnU")
-                .include(QueryParamInclude.DETAILS_QR_CODE)
-                .embed(GetPaymentQueryParamEmbed.CAPTURES)
+                .include("details.qrCode")
+                .embed("captures")
                 .testmode(false)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.paymentResponse().isPresent()) {
             // handle response
         }
     }
@@ -421,8 +448,8 @@ public class Application {
 | Parameter                                                                                                                                                                                                                                                                                                                                                                              | Type                                                                                                                                                                                                                                                                                                                                                                                   | Required                                                                                                                                                                                                                                                                                                                                                                               | Description                                                                                                                                                                                                                                                                                                                                                                            | Example                                                                                                                                                                                                                                                                                                                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
-| `include`                                                                                                                                                                                                                                                                                                                                                                              | [JsonNullable\<QueryParamInclude>](../../models/operations/QueryParamInclude.md)                                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   | details.qrCode                                                                                                                                                                                                                                                                                                                                                                         |
-| `embed`                                                                                                                                                                                                                                                                                                                                                                                | [JsonNullable\<GetPaymentQueryParamEmbed>](../../models/operations/GetPaymentQueryParamEmbed.md)                                                                                                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the<br/>following values via the `embed` query string parameter.                                                                                                                                                                                                                                                         | captures                                                                                                                                                                                                                                                                                                                                                                               |
+| `include`                                                                                                                                                                                                                                                                                                                                                                              | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows you to include additional information via the `include` query string parameter.                                                                                                                                                                                                                                                                                   |                                                                                                                                                                                                                                                                                                                                                                                        |
+| `embed`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | This endpoint allows embedding related API items by appending the following values via the `embed` query string<br/>parameter.                                                                                                                                                                                                                                                         |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ### Response
@@ -431,10 +458,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| models/errors/GetPaymentResponseBody | 404                                  | application/hal+json                 |
-| models/errors/APIException           | 4XX, 5XX                             | \*/\*                                |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## update
 
@@ -449,15 +476,15 @@ Updating the payment details will not result in a webhook call.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.UpdatePaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.UpdatePaymentResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdatePaymentRequestBody;
+import com.mollie.mollie.models.operations.UpdatePaymentResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws UpdatePaymentResponseBody, UpdatePaymentPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -472,13 +499,13 @@ public class Application {
                     .redirectUrl("https://example.org/redirect")
                     .cancelUrl("https://example.org/cancel")
                     .webhookUrl("https://example.org/webhooks")
-                    .method(UpdatePaymentMethod.IDEAL)
-                    .locale(UpdatePaymentLocale.EN_US)
+                    .method(Method.IDEAL)
+                    .locale(Locale.EN_US)
                     .dueDate("2025-01-01")
                     .restrictPaymentMethodsToCountry("NL")
                     .testmode(false)
                     .issuer("ideal_INGBNL2A")
-                    .billingAddress(UpdatePaymentBillingAddress.builder()
+                    .billingAddress(PaymentAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
@@ -492,7 +519,7 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .shippingAddress(UpdatePaymentShippingAddress.builder()
+                    .shippingAddress(PaymentAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
@@ -510,7 +537,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.paymentResponse().isPresent()) {
             // handle response
         }
     }
@@ -530,11 +557,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models/errors/UpdatePaymentResponseBody         | 404                                             | application/hal+json                            |
-| models/errors/UpdatePaymentPaymentsResponseBody | 422                                             | application/hal+json                            |
-| models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## cancel
 
@@ -553,15 +579,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CancelPaymentPaymentsResponseBody;
-import com.mollie.mollie.models.errors.CancelPaymentResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CancelPaymentRequestBody;
 import com.mollie.mollie.models.operations.CancelPaymentResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws CancelPaymentResponseBody, CancelPaymentPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -576,7 +601,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.paymentResponse().isPresent()) {
             // handle response
         }
     }
@@ -596,11 +621,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                      | Status Code                                     | Content Type                                    |
-| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
-| models/errors/CancelPaymentResponseBody         | 404                                             | application/hal+json                            |
-| models/errors/CancelPaymentPaymentsResponseBody | 422                                             | application/hal+json                            |
-| models/errors/APIException                      | 4XX, 5XX                                        | \*/\*                                           |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## releaseAuthorization
 
@@ -621,15 +645,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ReleaseAuthorizationPaymentsResponseBody;
-import com.mollie.mollie.models.errors.ReleaseAuthorizationResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBody;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ReleaseAuthorizationResponseBody, ReleaseAuthorizationPaymentsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -665,8 +688,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                             | Status Code                                            | Content Type                                           |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| models/errors/ReleaseAuthorizationResponseBody         | 404                                                    | application/hal+json                                   |
-| models/errors/ReleaseAuthorizationPaymentsResponseBody | 422                                                    | application/hal+json                                   |
-| models/errors/APIException                             | 4XX, 5XX                                               | \*/\*                                                  |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

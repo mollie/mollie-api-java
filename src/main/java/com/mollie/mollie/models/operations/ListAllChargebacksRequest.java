@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -31,18 +32,18 @@ public class ListAllChargebacksRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows you to embed additional information via the
-     * `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
-    private Optional<? extends ListAllChargebacksQueryParamEmbed> embed;
+    private JsonNullable<String> embed;
 
     /**
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListAllChargebacksQueryParamSort> sort;
+    private JsonNullable<? extends ListSort> sort;
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to
@@ -55,7 +56,7 @@ public class ListAllChargebacksRequest {
      * organization-level API credential and omit the `profileId` parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
-    private JsonNullable<String> profileId;
+    private Optional<String> profileId;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -71,9 +72,9 @@ public class ListAllChargebacksRequest {
     public ListAllChargebacksRequest(
             Optional<String> from,
             JsonNullable<Long> limit,
-            Optional<? extends ListAllChargebacksQueryParamEmbed> embed,
-            JsonNullable<? extends ListAllChargebacksQueryParamSort> sort,
-            JsonNullable<String> profileId,
+            JsonNullable<String> embed,
+            JsonNullable<? extends ListSort> sort,
+            Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
@@ -90,8 +91,8 @@ public class ListAllChargebacksRequest {
     }
     
     public ListAllChargebacksRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -112,13 +113,12 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional information via the
-     * `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllChargebacksQueryParamEmbed> embed() {
-        return (Optional<ListAllChargebacksQueryParamEmbed>) embed;
+    public JsonNullable<String> embed() {
+        return embed;
     }
 
     /**
@@ -127,8 +127,8 @@ public class ListAllChargebacksRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListAllChargebacksQueryParamSort> sort() {
-        return (JsonNullable<ListAllChargebacksQueryParamSort>) sort;
+    public JsonNullable<ListSort> sort() {
+        return (JsonNullable<ListSort>) sort;
     }
 
     /**
@@ -142,7 +142,7 @@ public class ListAllChargebacksRequest {
      * organization-level API credential and omit the `profileId` parameter.
      */
     @JsonIgnore
-    public JsonNullable<String> profileId() {
+    public Optional<String> profileId() {
         return profileId;
     }
 
@@ -203,21 +203,20 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * This endpoint allows you to embed additional information via the
-     * `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public ListAllChargebacksRequest withEmbed(ListAllChargebacksQueryParamEmbed embed) {
+    public ListAllChargebacksRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
-        this.embed = Optional.ofNullable(embed);
+        this.embed = JsonNullable.of(embed);
         return this;
     }
 
-
     /**
-     * This endpoint allows you to embed additional information via the
-     * `embed` query string parameter.
+     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * parameter.
      */
-    public ListAllChargebacksRequest withEmbed(Optional<? extends ListAllChargebacksQueryParamEmbed> embed) {
+    public ListAllChargebacksRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
         this.embed = embed;
         return this;
@@ -227,7 +226,7 @@ public class ListAllChargebacksRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListAllChargebacksRequest withSort(ListAllChargebacksQueryParamSort sort) {
+    public ListAllChargebacksRequest withSort(ListSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
@@ -237,7 +236,7 @@ public class ListAllChargebacksRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListAllChargebacksRequest withSort(JsonNullable<? extends ListAllChargebacksQueryParamSort> sort) {
+    public ListAllChargebacksRequest withSort(JsonNullable<? extends ListSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -255,9 +254,10 @@ public class ListAllChargebacksRequest {
      */
     public ListAllChargebacksRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
-        this.profileId = JsonNullable.of(profileId);
+        this.profileId = Optional.ofNullable(profileId);
         return this;
     }
+
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to
@@ -269,7 +269,7 @@ public class ListAllChargebacksRequest {
      * <p>To retrieve all chargebacks across the organization, use an
      * organization-level API credential and omit the `profileId` parameter.
      */
-    public ListAllChargebacksRequest withProfileId(JsonNullable<String> profileId) {
+    public ListAllChargebacksRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
         return this;
@@ -344,11 +344,11 @@ public class ListAllChargebacksRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private Optional<? extends ListAllChargebacksQueryParamEmbed> embed = Optional.empty();
+        private JsonNullable<String> embed = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListAllChargebacksQueryParamSort> sort = JsonNullable.undefined();
+        private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
 
-        private JsonNullable<String> profileId = JsonNullable.undefined();
+        private Optional<String> profileId = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -398,20 +398,20 @@ public class ListAllChargebacksRequest {
 
 
         /**
-         * This endpoint allows you to embed additional information via the
-         * `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder embed(ListAllChargebacksQueryParamEmbed embed) {
+        public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
-            this.embed = Optional.ofNullable(embed);
+            this.embed = JsonNullable.of(embed);
             return this;
         }
 
         /**
-         * This endpoint allows you to embed additional information via the
-         * `embed` query string parameter.
+         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * parameter.
          */
-        public Builder embed(Optional<? extends ListAllChargebacksQueryParamEmbed> embed) {
+        public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");
             this.embed = embed;
             return this;
@@ -422,7 +422,7 @@ public class ListAllChargebacksRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListAllChargebacksQueryParamSort sort) {
+        public Builder sort(ListSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
@@ -432,7 +432,7 @@ public class ListAllChargebacksRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListAllChargebacksQueryParamSort> sort) {
+        public Builder sort(JsonNullable<? extends ListSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;
@@ -451,7 +451,7 @@ public class ListAllChargebacksRequest {
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
-            this.profileId = JsonNullable.of(profileId);
+            this.profileId = Optional.ofNullable(profileId);
             return this;
         }
 
@@ -465,7 +465,7 @@ public class ListAllChargebacksRequest {
          * <p>To retrieve all chargebacks across the organization, use an
          * organization-level API credential and omit the `profileId` parameter.
          */
-        public Builder profileId(JsonNullable<String> profileId) {
+        public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
             this.profileId = profileId;
             return this;

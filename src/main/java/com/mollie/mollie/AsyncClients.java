@@ -64,7 +64,7 @@ public class AsyncClients {
      */
     public CompletableFuture<ListClientsResponse> listDirect() {
         return list(
-                JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+                JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
                 Optional.empty());
     }
 
@@ -75,15 +75,8 @@ public class AsyncClients {
      * 
      * <p>The results are paginated.
      * 
-     * @param embed This endpoint allows embedding related API items by appending the
-     *         following values via the `embed` query string parameter.
-     *         
-     *         * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *           partners with the `organizations.read` scope.
-     *         * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *           partners with the `onboarding.read` scope.
-     *         * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *           Available for *oauth* partners with the `onboarding.read` scope.
+     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     *         parameter.
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
@@ -91,7 +84,7 @@ public class AsyncClients {
      * @return CompletableFuture&lt;ListClientsResponse&gt; - The async response
      */
     public CompletableFuture<ListClientsResponse> list(
-            JsonNullable<String> embed, Optional<String> from,
+            JsonNullable<String> embed, JsonNullable<String> from,
             JsonNullable<Long> limit, Optional<Options> options) {
         ListClientsRequest request =
             ListClientsRequest
@@ -138,13 +131,6 @@ public class AsyncClients {
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
      *         parameter.
-     *         
-     *         * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *           partners with the `organizations.read` scope.
-     *         * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *           partners with the `onboarding.read` scope.
-     *         * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *           Available for *oauth* partners with the `onboarding.read` scope.
      * @param options additional options
      * @return CompletableFuture&lt;GetClientResponse&gt; - The async response
      */

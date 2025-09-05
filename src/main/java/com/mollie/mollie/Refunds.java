@@ -5,14 +5,13 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.components.EntityRefund;
 import com.mollie.mollie.models.operations.CancelRefundRequest;
 import com.mollie.mollie.models.operations.CancelRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CancelRefundResponse;
 import com.mollie.mollie.models.operations.CreateRefundRequest;
-import com.mollie.mollie.models.operations.CreateRefundRequestBody;
 import com.mollie.mollie.models.operations.CreateRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CreateRefundResponse;
-import com.mollie.mollie.models.operations.GetRefundQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetRefundRequest;
 import com.mollie.mollie.models.operations.GetRefundRequestBuilder;
 import com.mollie.mollie.models.operations.GetRefundResponse;
@@ -86,19 +85,19 @@ public class Refunds {
      * transfer or by refunding the amount to your customer's credit card.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @param requestBody 
+     * @param entityRefund 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateRefundResponse create(
-            String paymentId, Optional<? extends CreateRefundRequestBody> requestBody,
+            String paymentId, Optional<? extends EntityRefund> entityRefund,
             Optional<Options> options) throws Exception {
         CreateRefundRequest request =
             CreateRefundRequest
                 .builder()
                 .paymentId(paymentId)
-                .requestBody(requestBody)
+                .entityRefund(entityRefund)
                 .build();
         RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
               = new CreateRefund.Sync(sdkConfiguration, options);
@@ -173,7 +172,7 @@ public class Refunds {
      * @throws Exception if the API call fails
      */
     public GetRefundResponse get(String paymentId, String refundId) throws Exception {
-        return get(paymentId, refundId, Optional.empty(),
+        return get(paymentId, refundId, JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
     }
 
@@ -197,7 +196,7 @@ public class Refunds {
      */
     public GetRefundResponse get(
             String paymentId, String refundId,
-            Optional<? extends GetRefundQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
+            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         GetRefundRequest request =
             GetRefundRequest

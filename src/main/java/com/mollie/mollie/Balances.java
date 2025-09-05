@@ -76,7 +76,7 @@ public class Balances {
      * @throws Exception if the API call fails
      */
     public ListBalancesResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+        return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
     }
 
@@ -101,7 +101,7 @@ public class Balances {
      * @throws Exception if the API call fails
      */
     public ListBalancesResponse list(
-            JsonNullable<String> currency, Optional<String> from,
+            JsonNullable<String> currency, JsonNullable<String> from,
             JsonNullable<Long> limit, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         ListBalancesRequest request =
@@ -359,7 +359,7 @@ public class Balances {
      * @throws Exception if the API call fails
      */
     public ListBalanceTransactionsResponse listTransactions(String balanceId) throws Exception {
-        return listTransactions(balanceId, Optional.empty(), JsonNullable.undefined(),
+        return listTransactions(balanceId, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
     }
 
@@ -391,7 +391,7 @@ public class Balances {
      * @throws Exception if the API call fails
      */
     public ListBalanceTransactionsResponse listTransactions(
-            String balanceId, Optional<String> from,
+            String balanceId, JsonNullable<String> from,
             JsonNullable<Long> limit, JsonNullable<Boolean> testmode,
             Optional<Options> options) throws Exception {
         ListBalanceTransactionsRequest request =

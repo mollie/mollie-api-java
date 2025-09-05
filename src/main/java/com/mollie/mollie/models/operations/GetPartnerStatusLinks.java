@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Url;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -25,28 +26,27 @@ public class GetPartnerStatusLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends GetPartnerStatusSelf> self;
+    private Optional<? extends Url> self;
 
     /**
-     * The URL that can be used to have new organizations sign up and be automatically linked to this
-     * partner. Will be omitted if the partner is not of type `signuplink`.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("signuplink")
-    private Optional<? extends Signuplink> signuplink;
+    private Optional<? extends Url> signuplink;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends GetPartnerStatusDocumentation> documentation;
+    private Optional<? extends Url> documentation;
 
     @JsonCreator
     public GetPartnerStatusLinks(
-            @JsonProperty("self") Optional<? extends GetPartnerStatusSelf> self,
-            @JsonProperty("signuplink") Optional<? extends Signuplink> signuplink,
-            @JsonProperty("documentation") Optional<? extends GetPartnerStatusDocumentation> documentation) {
+            @JsonProperty("self") Optional<? extends Url> self,
+            @JsonProperty("signuplink") Optional<? extends Url> signuplink,
+            @JsonProperty("documentation") Optional<? extends Url> documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(signuplink, "signuplink");
         Utils.checkNotNull(documentation, "documentation");
@@ -64,18 +64,8 @@ public class GetPartnerStatusLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetPartnerStatusSelf> self() {
-        return (Optional<GetPartnerStatusSelf>) self;
-    }
-
-    /**
-     * The URL that can be used to have new organizations sign up and be automatically linked to this
-     * partner. Will be omitted if the partner is not of type `signuplink`.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Signuplink> signuplink() {
-        return (Optional<Signuplink>) signuplink;
+    public Optional<Url> self() {
+        return (Optional<Url>) self;
     }
 
     /**
@@ -83,8 +73,17 @@ public class GetPartnerStatusLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetPartnerStatusDocumentation> documentation() {
-        return (Optional<GetPartnerStatusDocumentation>) documentation;
+    public Optional<Url> signuplink() {
+        return (Optional<Url>) signuplink;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Url> documentation() {
+        return (Optional<Url>) documentation;
     }
 
     public static Builder builder() {
@@ -95,7 +94,7 @@ public class GetPartnerStatusLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetPartnerStatusLinks withSelf(GetPartnerStatusSelf self) {
+    public GetPartnerStatusLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
         this.self = Optional.ofNullable(self);
         return this;
@@ -105,17 +104,16 @@ public class GetPartnerStatusLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetPartnerStatusLinks withSelf(Optional<? extends GetPartnerStatusSelf> self) {
+    public GetPartnerStatusLinks withSelf(Optional<? extends Url> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
 
     /**
-     * The URL that can be used to have new organizations sign up and be automatically linked to this
-     * partner. Will be omitted if the partner is not of type `signuplink`.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetPartnerStatusLinks withSignuplink(Signuplink signuplink) {
+    public GetPartnerStatusLinks withSignuplink(Url signuplink) {
         Utils.checkNotNull(signuplink, "signuplink");
         this.signuplink = Optional.ofNullable(signuplink);
         return this;
@@ -123,10 +121,9 @@ public class GetPartnerStatusLinks {
 
 
     /**
-     * The URL that can be used to have new organizations sign up and be automatically linked to this
-     * partner. Will be omitted if the partner is not of type `signuplink`.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetPartnerStatusLinks withSignuplink(Optional<? extends Signuplink> signuplink) {
+    public GetPartnerStatusLinks withSignuplink(Optional<? extends Url> signuplink) {
         Utils.checkNotNull(signuplink, "signuplink");
         this.signuplink = signuplink;
         return this;
@@ -135,7 +132,7 @@ public class GetPartnerStatusLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetPartnerStatusLinks withDocumentation(GetPartnerStatusDocumentation documentation) {
+    public GetPartnerStatusLinks withDocumentation(Url documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
@@ -145,7 +142,7 @@ public class GetPartnerStatusLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public GetPartnerStatusLinks withDocumentation(Optional<? extends GetPartnerStatusDocumentation> documentation) {
+    public GetPartnerStatusLinks withDocumentation(Optional<? extends Url> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -183,11 +180,11 @@ public class GetPartnerStatusLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends GetPartnerStatusSelf> self = Optional.empty();
+        private Optional<? extends Url> self = Optional.empty();
 
-        private Optional<? extends Signuplink> signuplink = Optional.empty();
+        private Optional<? extends Url> signuplink = Optional.empty();
 
-        private Optional<? extends GetPartnerStatusDocumentation> documentation = Optional.empty();
+        private Optional<? extends Url> documentation = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -197,7 +194,7 @@ public class GetPartnerStatusLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder self(GetPartnerStatusSelf self) {
+        public Builder self(Url self) {
             Utils.checkNotNull(self, "self");
             this.self = Optional.ofNullable(self);
             return this;
@@ -206,7 +203,7 @@ public class GetPartnerStatusLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder self(Optional<? extends GetPartnerStatusSelf> self) {
+        public Builder self(Optional<? extends Url> self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
@@ -214,20 +211,18 @@ public class GetPartnerStatusLinks {
 
 
         /**
-         * The URL that can be used to have new organizations sign up and be automatically linked to this
-         * partner. Will be omitted if the partner is not of type `signuplink`.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder signuplink(Signuplink signuplink) {
+        public Builder signuplink(Url signuplink) {
             Utils.checkNotNull(signuplink, "signuplink");
             this.signuplink = Optional.ofNullable(signuplink);
             return this;
         }
 
         /**
-         * The URL that can be used to have new organizations sign up and be automatically linked to this
-         * partner. Will be omitted if the partner is not of type `signuplink`.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder signuplink(Optional<? extends Signuplink> signuplink) {
+        public Builder signuplink(Optional<? extends Url> signuplink) {
             Utils.checkNotNull(signuplink, "signuplink");
             this.signuplink = signuplink;
             return this;
@@ -237,7 +232,7 @@ public class GetPartnerStatusLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(GetPartnerStatusDocumentation documentation) {
+        public Builder documentation(Url documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = Optional.ofNullable(documentation);
             return this;
@@ -246,7 +241,7 @@ public class GetPartnerStatusLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder documentation(Optional<? extends GetPartnerStatusDocumentation> documentation) {
+        public Builder documentation(Optional<? extends Url> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

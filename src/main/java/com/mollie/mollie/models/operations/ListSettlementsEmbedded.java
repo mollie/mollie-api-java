@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.EntitySettlement;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -23,11 +24,11 @@ public class ListSettlementsEmbedded {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlements")
-    private Optional<? extends List<Settlements>> settlements;
+    private Optional<? extends List<EntitySettlement>> settlements;
 
     @JsonCreator
     public ListSettlementsEmbedded(
-            @JsonProperty("settlements") Optional<? extends List<Settlements>> settlements) {
+            @JsonProperty("settlements") Optional<? extends List<EntitySettlement>> settlements) {
         Utils.checkNotNull(settlements, "settlements");
         this.settlements = settlements;
     }
@@ -42,8 +43,8 @@ public class ListSettlementsEmbedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Settlements>> settlements() {
-        return (Optional<List<Settlements>>) settlements;
+    public Optional<List<EntitySettlement>> settlements() {
+        return (Optional<List<EntitySettlement>>) settlements;
     }
 
     public static Builder builder() {
@@ -55,7 +56,7 @@ public class ListSettlementsEmbedded {
      * An array of settlement objects. For a complete reference
      * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
-    public ListSettlementsEmbedded withSettlements(List<Settlements> settlements) {
+    public ListSettlementsEmbedded withSettlements(List<EntitySettlement> settlements) {
         Utils.checkNotNull(settlements, "settlements");
         this.settlements = Optional.ofNullable(settlements);
         return this;
@@ -66,7 +67,7 @@ public class ListSettlementsEmbedded {
      * An array of settlement objects. For a complete reference
      * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
-    public ListSettlementsEmbedded withSettlements(Optional<? extends List<Settlements>> settlements) {
+    public ListSettlementsEmbedded withSettlements(Optional<? extends List<EntitySettlement>> settlements) {
         Utils.checkNotNull(settlements, "settlements");
         this.settlements = settlements;
         return this;
@@ -100,7 +101,7 @@ public class ListSettlementsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<Settlements>> settlements = Optional.empty();
+        private Optional<? extends List<EntitySettlement>> settlements = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -111,7 +112,7 @@ public class ListSettlementsEmbedded {
          * An array of settlement objects. For a complete reference
          * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
          */
-        public Builder settlements(List<Settlements> settlements) {
+        public Builder settlements(List<EntitySettlement> settlements) {
             Utils.checkNotNull(settlements, "settlements");
             this.settlements = Optional.ofNullable(settlements);
             return this;
@@ -121,7 +122,7 @@ public class ListSettlementsEmbedded {
          * An array of settlement objects. For a complete reference
          * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
          */
-        public Builder settlements(Optional<? extends List<Settlements>> settlements) {
+        public Builder settlements(Optional<? extends List<EntitySettlement>> settlements) {
             Utils.checkNotNull(settlements, "settlements");
             this.settlements = settlements;
             return this;

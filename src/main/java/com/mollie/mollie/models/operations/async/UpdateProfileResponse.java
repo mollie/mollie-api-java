@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.UpdateProfileResponseBody;
+import com.mollie.mollie.models.components.EntityProfileResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class UpdateProfileResponse implements AsyncResponse {
     /**
      * The updated profile object.
      */
-    private Optional<? extends UpdateProfileResponseBody> object;
+    private Optional<? extends EntityProfileResponse> entityProfileResponse;
 
     @JsonCreator
     public UpdateProfileResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends UpdateProfileResponseBody> object) {
+            Optional<? extends EntityProfileResponse> entityProfileResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityProfileResponse = entityProfileResponse;
     }
     
     public UpdateProfileResponse(
@@ -91,8 +91,8 @@ public class UpdateProfileResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateProfileResponseBody> object() {
-        return (Optional<UpdateProfileResponseBody>) object;
+    public Optional<EntityProfileResponse> entityProfileResponse() {
+        return (Optional<EntityProfileResponse>) entityProfileResponse;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class UpdateProfileResponse implements AsyncResponse {
     /**
      * The updated profile object.
      */
-    public UpdateProfileResponse withObject(UpdateProfileResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public UpdateProfileResponse withEntityProfileResponse(EntityProfileResponse entityProfileResponse) {
+        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+        this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class UpdateProfileResponse implements AsyncResponse {
     /**
      * The updated profile object.
      */
-    public UpdateProfileResponse withObject(Optional<? extends UpdateProfileResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public UpdateProfileResponse withEntityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
+        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+        this.entityProfileResponse = entityProfileResponse;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class UpdateProfileResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityProfileResponse, other.entityProfileResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityProfileResponse);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class UpdateProfileResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityProfileResponse", entityProfileResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class UpdateProfileResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends UpdateProfileResponseBody> object = Optional.empty();
+        private Optional<? extends EntityProfileResponse> entityProfileResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class UpdateProfileResponse implements AsyncResponse {
         /**
          * The updated profile object.
          */
-        public Builder object(UpdateProfileResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityProfileResponse(EntityProfileResponse entityProfileResponse) {
+            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+            this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
             return this;
         }
 
         /**
          * The updated profile object.
          */
-        public Builder object(Optional<? extends UpdateProfileResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
+            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+            this.entityProfileResponse = entityProfileResponse;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class UpdateProfileResponse implements AsyncResponse {
 
             return new UpdateProfileResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityProfileResponse);
         }
 
     }

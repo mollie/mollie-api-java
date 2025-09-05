@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityWebhookEvent;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class GetWebhookEventResponse implements Response {
     /**
      * The webhook event object.
      */
-    private Optional<? extends GetWebhookEventResponseBody> object;
+    private Optional<? extends EntityWebhookEvent> entityWebhookEvent;
 
     @JsonCreator
     public GetWebhookEventResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetWebhookEventResponseBody> object) {
+            Optional<? extends EntityWebhookEvent> entityWebhookEvent) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityWebhookEvent, "entityWebhookEvent");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityWebhookEvent = entityWebhookEvent;
     }
     
     public GetWebhookEventResponse(
@@ -90,8 +91,8 @@ public class GetWebhookEventResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetWebhookEventResponseBody> object() {
-        return (Optional<GetWebhookEventResponseBody>) object;
+    public Optional<EntityWebhookEvent> entityWebhookEvent() {
+        return (Optional<EntityWebhookEvent>) entityWebhookEvent;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class GetWebhookEventResponse implements Response {
     /**
      * The webhook event object.
      */
-    public GetWebhookEventResponse withObject(GetWebhookEventResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetWebhookEventResponse withEntityWebhookEvent(EntityWebhookEvent entityWebhookEvent) {
+        Utils.checkNotNull(entityWebhookEvent, "entityWebhookEvent");
+        this.entityWebhookEvent = Optional.ofNullable(entityWebhookEvent);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class GetWebhookEventResponse implements Response {
     /**
      * The webhook event object.
      */
-    public GetWebhookEventResponse withObject(Optional<? extends GetWebhookEventResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetWebhookEventResponse withEntityWebhookEvent(Optional<? extends EntityWebhookEvent> entityWebhookEvent) {
+        Utils.checkNotNull(entityWebhookEvent, "entityWebhookEvent");
+        this.entityWebhookEvent = entityWebhookEvent;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class GetWebhookEventResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityWebhookEvent, other.entityWebhookEvent);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityWebhookEvent);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class GetWebhookEventResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityWebhookEvent", entityWebhookEvent);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class GetWebhookEventResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetWebhookEventResponseBody> object = Optional.empty();
+        private Optional<? extends EntityWebhookEvent> entityWebhookEvent = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class GetWebhookEventResponse implements Response {
         /**
          * The webhook event object.
          */
-        public Builder object(GetWebhookEventResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityWebhookEvent(EntityWebhookEvent entityWebhookEvent) {
+            Utils.checkNotNull(entityWebhookEvent, "entityWebhookEvent");
+            this.entityWebhookEvent = Optional.ofNullable(entityWebhookEvent);
             return this;
         }
 
         /**
          * The webhook event object.
          */
-        public Builder object(Optional<? extends GetWebhookEventResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityWebhookEvent(Optional<? extends EntityWebhookEvent> entityWebhookEvent) {
+            Utils.checkNotNull(entityWebhookEvent, "entityWebhookEvent");
+            this.entityWebhookEvent = entityWebhookEvent;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class GetWebhookEventResponse implements Response {
 
             return new GetWebhookEventResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityWebhookEvent);
         }
 
     }

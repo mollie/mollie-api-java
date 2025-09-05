@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -41,7 +42,7 @@ public class ListMandatesRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListMandatesQueryParamSort> sort;
+    private JsonNullable<? extends ListSort> sort;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -58,7 +59,7 @@ public class ListMandatesRequest {
             String customerId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListMandatesQueryParamSort> sort,
+            JsonNullable<? extends ListSort> sort,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(from, "from");
@@ -109,8 +110,8 @@ public class ListMandatesRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListMandatesQueryParamSort> sort() {
-        return (JsonNullable<ListMandatesQueryParamSort>) sort;
+    public JsonNullable<ListSort> sort() {
+        return (JsonNullable<ListSort>) sort;
     }
 
     /**
@@ -182,7 +183,7 @@ public class ListMandatesRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListMandatesRequest withSort(ListMandatesQueryParamSort sort) {
+    public ListMandatesRequest withSort(ListSort sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = JsonNullable.of(sort);
         return this;
@@ -192,7 +193,7 @@ public class ListMandatesRequest {
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
      * newest to oldest.
      */
-    public ListMandatesRequest withSort(JsonNullable<? extends ListMandatesQueryParamSort> sort) {
+    public ListMandatesRequest withSort(JsonNullable<? extends ListSort> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -267,7 +268,7 @@ public class ListMandatesRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListMandatesQueryParamSort> sort = JsonNullable.undefined();
+        private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -330,7 +331,7 @@ public class ListMandatesRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListMandatesQueryParamSort sort) {
+        public Builder sort(ListSort sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = JsonNullable.of(sort);
             return this;
@@ -340,7 +341,7 @@ public class ListMandatesRequest {
          * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListMandatesQueryParamSort> sort) {
+        public Builder sort(JsonNullable<? extends ListSort> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

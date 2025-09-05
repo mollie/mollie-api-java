@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.CancelSubscriptionResponseBody;
+import com.mollie.mollie.models.components.SubscriptionResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -37,22 +37,22 @@ public class CancelSubscriptionResponse implements AsyncResponse {
      * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
      * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
-    private Optional<? extends CancelSubscriptionResponseBody> object;
+    private Optional<? extends SubscriptionResponse> subscriptionResponse;
 
     @JsonCreator
     public CancelSubscriptionResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends CancelSubscriptionResponseBody> object) {
+            Optional<? extends SubscriptionResponse> subscriptionResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.subscriptionResponse = subscriptionResponse;
     }
     
     public CancelSubscriptionResponse(
@@ -93,8 +93,8 @@ public class CancelSubscriptionResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CancelSubscriptionResponseBody> object() {
-        return (Optional<CancelSubscriptionResponseBody>) object;
+    public Optional<SubscriptionResponse> subscriptionResponse() {
+        return (Optional<SubscriptionResponse>) subscriptionResponse;
     }
 
     public static Builder builder() {
@@ -133,9 +133,9 @@ public class CancelSubscriptionResponse implements AsyncResponse {
      * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
      * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
-    public CancelSubscriptionResponse withObject(CancelSubscriptionResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CancelSubscriptionResponse withSubscriptionResponse(SubscriptionResponse subscriptionResponse) {
+        Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+        this.subscriptionResponse = Optional.ofNullable(subscriptionResponse);
         return this;
     }
 
@@ -144,9 +144,9 @@ public class CancelSubscriptionResponse implements AsyncResponse {
      * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
      * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
-    public CancelSubscriptionResponse withObject(Optional<? extends CancelSubscriptionResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CancelSubscriptionResponse withSubscriptionResponse(Optional<? extends SubscriptionResponse> subscriptionResponse) {
+        Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+        this.subscriptionResponse = subscriptionResponse;
         return this;
     }
 
@@ -163,14 +163,14 @@ public class CancelSubscriptionResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.subscriptionResponse, other.subscriptionResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            subscriptionResponse);
     }
     
     @Override
@@ -179,7 +179,7 @@ public class CancelSubscriptionResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "subscriptionResponse", subscriptionResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -191,7 +191,7 @@ public class CancelSubscriptionResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends CancelSubscriptionResponseBody> object = Optional.empty();
+        private Optional<? extends SubscriptionResponse> subscriptionResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -232,9 +232,9 @@ public class CancelSubscriptionResponse implements AsyncResponse {
          * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
          * refer to the [Get subscription endpoint](get-subscription) documentation.
          */
-        public Builder object(CancelSubscriptionResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder subscriptionResponse(SubscriptionResponse subscriptionResponse) {
+            Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+            this.subscriptionResponse = Optional.ofNullable(subscriptionResponse);
             return this;
         }
 
@@ -242,9 +242,9 @@ public class CancelSubscriptionResponse implements AsyncResponse {
          * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
          * refer to the [Get subscription endpoint](get-subscription) documentation.
          */
-        public Builder object(Optional<? extends CancelSubscriptionResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder subscriptionResponse(Optional<? extends SubscriptionResponse> subscriptionResponse) {
+            Utils.checkNotNull(subscriptionResponse, "subscriptionResponse");
+            this.subscriptionResponse = subscriptionResponse;
             return this;
         }
 
@@ -252,7 +252,7 @@ public class CancelSubscriptionResponse implements AsyncResponse {
 
             return new CancelSubscriptionResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                subscriptionResponse);
         }
 
     }

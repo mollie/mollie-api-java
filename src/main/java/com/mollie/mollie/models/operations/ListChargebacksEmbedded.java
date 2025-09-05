@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.EntityChargeback;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -22,11 +23,11 @@ public class ListChargebacksEmbedded {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("chargebacks")
-    private Optional<? extends List<ListChargebacksChargebacks>> chargebacks;
+    private Optional<? extends List<EntityChargeback>> chargebacks;
 
     @JsonCreator
     public ListChargebacksEmbedded(
-            @JsonProperty("chargebacks") Optional<? extends List<ListChargebacksChargebacks>> chargebacks) {
+            @JsonProperty("chargebacks") Optional<? extends List<EntityChargeback>> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = chargebacks;
     }
@@ -40,8 +41,8 @@ public class ListChargebacksEmbedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<ListChargebacksChargebacks>> chargebacks() {
-        return (Optional<List<ListChargebacksChargebacks>>) chargebacks;
+    public Optional<List<EntityChargeback>> chargebacks() {
+        return (Optional<List<EntityChargeback>>) chargebacks;
     }
 
     public static Builder builder() {
@@ -52,7 +53,7 @@ public class ListChargebacksEmbedded {
     /**
      * A list of chargeback objects.
      */
-    public ListChargebacksEmbedded withChargebacks(List<ListChargebacksChargebacks> chargebacks) {
+    public ListChargebacksEmbedded withChargebacks(List<EntityChargeback> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = Optional.ofNullable(chargebacks);
         return this;
@@ -62,7 +63,7 @@ public class ListChargebacksEmbedded {
     /**
      * A list of chargeback objects.
      */
-    public ListChargebacksEmbedded withChargebacks(Optional<? extends List<ListChargebacksChargebacks>> chargebacks) {
+    public ListChargebacksEmbedded withChargebacks(Optional<? extends List<EntityChargeback>> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = chargebacks;
         return this;
@@ -96,7 +97,7 @@ public class ListChargebacksEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<ListChargebacksChargebacks>> chargebacks = Optional.empty();
+        private Optional<? extends List<EntityChargeback>> chargebacks = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -106,7 +107,7 @@ public class ListChargebacksEmbedded {
         /**
          * A list of chargeback objects.
          */
-        public Builder chargebacks(List<ListChargebacksChargebacks> chargebacks) {
+        public Builder chargebacks(List<EntityChargeback> chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");
             this.chargebacks = Optional.ofNullable(chargebacks);
             return this;
@@ -115,7 +116,7 @@ public class ListChargebacksEmbedded {
         /**
          * A list of chargeback objects.
          */
-        public Builder chargebacks(Optional<? extends List<ListChargebacksChargebacks>> chargebacks) {
+        public Builder chargebacks(Optional<? extends List<EntityChargeback>> chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");
             this.chargebacks = chargebacks;
             return this;

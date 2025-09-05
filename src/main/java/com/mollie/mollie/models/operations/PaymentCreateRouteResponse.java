@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.RouteCreateResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class PaymentCreateRouteResponse implements Response {
     /**
      * The route object.
      */
-    private Optional<? extends PaymentCreateRouteResponseBody> object;
+    private Optional<? extends RouteCreateResponse> routeCreateResponse;
 
     @JsonCreator
     public PaymentCreateRouteResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends PaymentCreateRouteResponseBody> object) {
+            Optional<? extends RouteCreateResponse> routeCreateResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(routeCreateResponse, "routeCreateResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.routeCreateResponse = routeCreateResponse;
     }
     
     public PaymentCreateRouteResponse(
@@ -90,8 +91,8 @@ public class PaymentCreateRouteResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentCreateRouteResponseBody> object() {
-        return (Optional<PaymentCreateRouteResponseBody>) object;
+    public Optional<RouteCreateResponse> routeCreateResponse() {
+        return (Optional<RouteCreateResponse>) routeCreateResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class PaymentCreateRouteResponse implements Response {
     /**
      * The route object.
      */
-    public PaymentCreateRouteResponse withObject(PaymentCreateRouteResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public PaymentCreateRouteResponse withRouteCreateResponse(RouteCreateResponse routeCreateResponse) {
+        Utils.checkNotNull(routeCreateResponse, "routeCreateResponse");
+        this.routeCreateResponse = Optional.ofNullable(routeCreateResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class PaymentCreateRouteResponse implements Response {
     /**
      * The route object.
      */
-    public PaymentCreateRouteResponse withObject(Optional<? extends PaymentCreateRouteResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public PaymentCreateRouteResponse withRouteCreateResponse(Optional<? extends RouteCreateResponse> routeCreateResponse) {
+        Utils.checkNotNull(routeCreateResponse, "routeCreateResponse");
+        this.routeCreateResponse = routeCreateResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class PaymentCreateRouteResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.routeCreateResponse, other.routeCreateResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            routeCreateResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class PaymentCreateRouteResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "routeCreateResponse", routeCreateResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class PaymentCreateRouteResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends PaymentCreateRouteResponseBody> object = Optional.empty();
+        private Optional<? extends RouteCreateResponse> routeCreateResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class PaymentCreateRouteResponse implements Response {
         /**
          * The route object.
          */
-        public Builder object(PaymentCreateRouteResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder routeCreateResponse(RouteCreateResponse routeCreateResponse) {
+            Utils.checkNotNull(routeCreateResponse, "routeCreateResponse");
+            this.routeCreateResponse = Optional.ofNullable(routeCreateResponse);
             return this;
         }
 
         /**
          * The route object.
          */
-        public Builder object(Optional<? extends PaymentCreateRouteResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder routeCreateResponse(Optional<? extends RouteCreateResponse> routeCreateResponse) {
+            Utils.checkNotNull(routeCreateResponse, "routeCreateResponse");
+            this.routeCreateResponse = routeCreateResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class PaymentCreateRouteResponse implements Response {
 
             return new PaymentCreateRouteResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                routeCreateResponse);
         }
 
     }

@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.PaymentResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class CreatePaymentResponse implements Response {
     /**
      * The newly created payment object.
      */
-    private Optional<? extends CreatePaymentResponseBody> object;
+    private Optional<? extends PaymentResponse> paymentResponse;
 
     @JsonCreator
     public CreatePaymentResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CreatePaymentResponseBody> object) {
+            Optional<? extends PaymentResponse> paymentResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(paymentResponse, "paymentResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.paymentResponse = paymentResponse;
     }
     
     public CreatePaymentResponse(
@@ -90,8 +91,8 @@ public class CreatePaymentResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreatePaymentResponseBody> object() {
-        return (Optional<CreatePaymentResponseBody>) object;
+    public Optional<PaymentResponse> paymentResponse() {
+        return (Optional<PaymentResponse>) paymentResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class CreatePaymentResponse implements Response {
     /**
      * The newly created payment object.
      */
-    public CreatePaymentResponse withObject(CreatePaymentResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CreatePaymentResponse withPaymentResponse(PaymentResponse paymentResponse) {
+        Utils.checkNotNull(paymentResponse, "paymentResponse");
+        this.paymentResponse = Optional.ofNullable(paymentResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class CreatePaymentResponse implements Response {
     /**
      * The newly created payment object.
      */
-    public CreatePaymentResponse withObject(Optional<? extends CreatePaymentResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CreatePaymentResponse withPaymentResponse(Optional<? extends PaymentResponse> paymentResponse) {
+        Utils.checkNotNull(paymentResponse, "paymentResponse");
+        this.paymentResponse = paymentResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class CreatePaymentResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.paymentResponse, other.paymentResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            paymentResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class CreatePaymentResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "paymentResponse", paymentResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class CreatePaymentResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CreatePaymentResponseBody> object = Optional.empty();
+        private Optional<? extends PaymentResponse> paymentResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class CreatePaymentResponse implements Response {
         /**
          * The newly created payment object.
          */
-        public Builder object(CreatePaymentResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder paymentResponse(PaymentResponse paymentResponse) {
+            Utils.checkNotNull(paymentResponse, "paymentResponse");
+            this.paymentResponse = Optional.ofNullable(paymentResponse);
             return this;
         }
 
         /**
          * The newly created payment object.
          */
-        public Builder object(Optional<? extends CreatePaymentResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder paymentResponse(Optional<? extends PaymentResponse> paymentResponse) {
+            Utils.checkNotNull(paymentResponse, "paymentResponse");
+            this.paymentResponse = paymentResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class CreatePaymentResponse implements Response {
 
             return new CreatePaymentResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                paymentResponse);
         }
 
     }

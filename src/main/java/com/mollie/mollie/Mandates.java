@@ -5,8 +5,8 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.components.EntityMandate;
 import com.mollie.mollie.models.operations.CreateMandateRequest;
-import com.mollie.mollie.models.operations.CreateMandateRequestBody;
 import com.mollie.mollie.models.operations.CreateMandateRequestBuilder;
 import com.mollie.mollie.models.operations.CreateMandateResponse;
 import com.mollie.mollie.models.operations.GetMandateRequest;
@@ -91,19 +91,19 @@ public class Mandates {
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @param requestBody 
+     * @param entityMandate 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateMandateResponse create(
-            String customerId, Optional<? extends CreateMandateRequestBody> requestBody,
+            String customerId, Optional<? extends EntityMandate> entityMandate,
             Optional<Options> options) throws Exception {
         CreateMandateRequest request =
             CreateMandateRequest
                 .builder()
                 .customerId(customerId)
-                .requestBody(requestBody)
+                .entityMandate(entityMandate)
                 .build();
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
               = new CreateMandate.Sync(sdkConfiguration, options);

@@ -5,43 +5,34 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.MandateResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 
 
 public class ListMandatesEmbedded {
     /**
      * An array of mandate objects.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandates")
-    private Optional<? extends List<ListMandatesMandates>> mandates;
+    private List<MandateResponse> mandates;
 
     @JsonCreator
     public ListMandatesEmbedded(
-            @JsonProperty("mandates") Optional<? extends List<ListMandatesMandates>> mandates) {
+            @JsonProperty("mandates") List<MandateResponse> mandates) {
         Utils.checkNotNull(mandates, "mandates");
         this.mandates = mandates;
-    }
-    
-    public ListMandatesEmbedded() {
-        this(Optional.empty());
     }
 
     /**
      * An array of mandate objects.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<ListMandatesMandates>> mandates() {
-        return (Optional<List<ListMandatesMandates>>) mandates;
+    public List<MandateResponse> mandates() {
+        return mandates;
     }
 
     public static Builder builder() {
@@ -52,17 +43,7 @@ public class ListMandatesEmbedded {
     /**
      * An array of mandate objects.
      */
-    public ListMandatesEmbedded withMandates(List<ListMandatesMandates> mandates) {
-        Utils.checkNotNull(mandates, "mandates");
-        this.mandates = Optional.ofNullable(mandates);
-        return this;
-    }
-
-
-    /**
-     * An array of mandate objects.
-     */
-    public ListMandatesEmbedded withMandates(Optional<? extends List<ListMandatesMandates>> mandates) {
+    public ListMandatesEmbedded withMandates(List<MandateResponse> mandates) {
         Utils.checkNotNull(mandates, "mandates");
         this.mandates = mandates;
         return this;
@@ -96,7 +77,7 @@ public class ListMandatesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<ListMandatesMandates>> mandates = Optional.empty();
+        private List<MandateResponse> mandates;
 
         private Builder() {
           // force use of static builder() method
@@ -106,16 +87,7 @@ public class ListMandatesEmbedded {
         /**
          * An array of mandate objects.
          */
-        public Builder mandates(List<ListMandatesMandates> mandates) {
-            Utils.checkNotNull(mandates, "mandates");
-            this.mandates = Optional.ofNullable(mandates);
-            return this;
-        }
-
-        /**
-         * An array of mandate objects.
-         */
-        public Builder mandates(Optional<? extends List<ListMandatesMandates>> mandates) {
+        public Builder mandates(List<MandateResponse> mandates) {
             Utils.checkNotNull(mandates, "mandates");
             this.mandates = mandates;
             return this;

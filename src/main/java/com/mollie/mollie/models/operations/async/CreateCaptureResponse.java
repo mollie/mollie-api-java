@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.CreateCaptureResponseBody;
+import com.mollie.mollie.models.components.CaptureResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -37,22 +37,22 @@ public class CreateCaptureResponse implements AsyncResponse {
      * The newly created capture object. For a complete reference of the
      * capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
-    private Optional<? extends CreateCaptureResponseBody> object;
+    private Optional<? extends CaptureResponse> captureResponse;
 
     @JsonCreator
     public CreateCaptureResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends CreateCaptureResponseBody> object) {
+            Optional<? extends CaptureResponse> captureResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(captureResponse, "captureResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.captureResponse = captureResponse;
     }
     
     public CreateCaptureResponse(
@@ -93,8 +93,8 @@ public class CreateCaptureResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCaptureResponseBody> object() {
-        return (Optional<CreateCaptureResponseBody>) object;
+    public Optional<CaptureResponse> captureResponse() {
+        return (Optional<CaptureResponse>) captureResponse;
     }
 
     public static Builder builder() {
@@ -133,9 +133,9 @@ public class CreateCaptureResponse implements AsyncResponse {
      * The newly created capture object. For a complete reference of the
      * capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
-    public CreateCaptureResponse withObject(CreateCaptureResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CreateCaptureResponse withCaptureResponse(CaptureResponse captureResponse) {
+        Utils.checkNotNull(captureResponse, "captureResponse");
+        this.captureResponse = Optional.ofNullable(captureResponse);
         return this;
     }
 
@@ -144,9 +144,9 @@ public class CreateCaptureResponse implements AsyncResponse {
      * The newly created capture object. For a complete reference of the
      * capture object, refer to the [Get capture endpoint](get-capture) documentation.
      */
-    public CreateCaptureResponse withObject(Optional<? extends CreateCaptureResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CreateCaptureResponse withCaptureResponse(Optional<? extends CaptureResponse> captureResponse) {
+        Utils.checkNotNull(captureResponse, "captureResponse");
+        this.captureResponse = captureResponse;
         return this;
     }
 
@@ -163,14 +163,14 @@ public class CreateCaptureResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.captureResponse, other.captureResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            captureResponse);
     }
     
     @Override
@@ -179,7 +179,7 @@ public class CreateCaptureResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "captureResponse", captureResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -191,7 +191,7 @@ public class CreateCaptureResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends CreateCaptureResponseBody> object = Optional.empty();
+        private Optional<? extends CaptureResponse> captureResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -232,9 +232,9 @@ public class CreateCaptureResponse implements AsyncResponse {
          * The newly created capture object. For a complete reference of the
          * capture object, refer to the [Get capture endpoint](get-capture) documentation.
          */
-        public Builder object(CreateCaptureResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder captureResponse(CaptureResponse captureResponse) {
+            Utils.checkNotNull(captureResponse, "captureResponse");
+            this.captureResponse = Optional.ofNullable(captureResponse);
             return this;
         }
 
@@ -242,9 +242,9 @@ public class CreateCaptureResponse implements AsyncResponse {
          * The newly created capture object. For a complete reference of the
          * capture object, refer to the [Get capture endpoint](get-capture) documentation.
          */
-        public Builder object(Optional<? extends CreateCaptureResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder captureResponse(Optional<? extends CaptureResponse> captureResponse) {
+            Utils.checkNotNull(captureResponse, "captureResponse");
+            this.captureResponse = captureResponse;
             return this;
         }
 
@@ -252,7 +252,7 @@ public class CreateCaptureResponse implements AsyncResponse {
 
             return new CreateCaptureResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                captureResponse);
         }
 
     }

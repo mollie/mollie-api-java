@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.CustomerResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class UpdateCustomerResponse implements Response {
     /**
      * The updated customer object.
      */
-    private Optional<? extends UpdateCustomerResponseBody> object;
+    private Optional<? extends CustomerResponse> customerResponse;
 
     @JsonCreator
     public UpdateCustomerResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends UpdateCustomerResponseBody> object) {
+            Optional<? extends CustomerResponse> customerResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(customerResponse, "customerResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.customerResponse = customerResponse;
     }
     
     public UpdateCustomerResponse(
@@ -90,8 +91,8 @@ public class UpdateCustomerResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateCustomerResponseBody> object() {
-        return (Optional<UpdateCustomerResponseBody>) object;
+    public Optional<CustomerResponse> customerResponse() {
+        return (Optional<CustomerResponse>) customerResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class UpdateCustomerResponse implements Response {
     /**
      * The updated customer object.
      */
-    public UpdateCustomerResponse withObject(UpdateCustomerResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public UpdateCustomerResponse withCustomerResponse(CustomerResponse customerResponse) {
+        Utils.checkNotNull(customerResponse, "customerResponse");
+        this.customerResponse = Optional.ofNullable(customerResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class UpdateCustomerResponse implements Response {
     /**
      * The updated customer object.
      */
-    public UpdateCustomerResponse withObject(Optional<? extends UpdateCustomerResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public UpdateCustomerResponse withCustomerResponse(Optional<? extends CustomerResponse> customerResponse) {
+        Utils.checkNotNull(customerResponse, "customerResponse");
+        this.customerResponse = customerResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class UpdateCustomerResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.customerResponse, other.customerResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            customerResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class UpdateCustomerResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "customerResponse", customerResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class UpdateCustomerResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends UpdateCustomerResponseBody> object = Optional.empty();
+        private Optional<? extends CustomerResponse> customerResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class UpdateCustomerResponse implements Response {
         /**
          * The updated customer object.
          */
-        public Builder object(UpdateCustomerResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder customerResponse(CustomerResponse customerResponse) {
+            Utils.checkNotNull(customerResponse, "customerResponse");
+            this.customerResponse = Optional.ofNullable(customerResponse);
             return this;
         }
 
         /**
          * The updated customer object.
          */
-        public Builder object(Optional<? extends UpdateCustomerResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder customerResponse(Optional<? extends CustomerResponse> customerResponse) {
+            Utils.checkNotNull(customerResponse, "customerResponse");
+            this.customerResponse = customerResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class UpdateCustomerResponse implements Response {
 
             return new UpdateCustomerResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                customerResponse);
         }
 
     }

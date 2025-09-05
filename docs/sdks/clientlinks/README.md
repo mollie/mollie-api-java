@@ -70,15 +70,14 @@ to the URL.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreateClientLinkClientLinksResponseBody;
-import com.mollie.mollie.models.errors.CreateClientLinkResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateClientLinkResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws CreateClientLinkResponseBody, CreateClientLinkClientLinksResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -86,15 +85,15 @@ public class Application {
                     .build())
             .build();
 
-        CreateClientLinkRequestBody req = CreateClientLinkRequestBody.builder()
+        EntityClientLink req = EntityClientLink.builder()
                 .owner(Owner.builder()
                     .email("john@example.org")
                     .givenName("John")
                     .familyName("Doe")
-                    .locale(Locale.EN_US)
+                    .locale(LocaleResponse.EN_US)
                     .build())
                 .name("Acme Corporation")
-                .address(CreateClientLinkAddress.builder()
+                .address(EntityClientLinkAddress.builder()
                     .country("NL")
                     .streetAndNumber("Main Street 123")
                     .postalCode("1234AB")
@@ -108,7 +107,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityClientLinkResponse().isPresent()) {
             // handle response
         }
     }
@@ -117,9 +116,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `request`                                                                             | [CreateClientLinkRequestBody](../../models/operations/CreateClientLinkRequestBody.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [EntityClientLink](../../models/shared/EntityClientLink.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
 ### Response
 
@@ -127,8 +126,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                            | Status Code                                           | Content Type                                          |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| models/errors/CreateClientLinkResponseBody            | 404                                                   | application/hal+json                                  |
-| models/errors/CreateClientLinkClientLinksResponseBody | 422                                                   | application/hal+json                                  |
-| models/errors/APIException                            | 4XX, 5XX                                              | \*/\*                                                 |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

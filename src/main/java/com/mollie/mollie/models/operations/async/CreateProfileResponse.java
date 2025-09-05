@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.CreateProfileResponseBody;
+import com.mollie.mollie.models.components.EntityProfileResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class CreateProfileResponse implements AsyncResponse {
     /**
      * The newly created profile object.
      */
-    private Optional<? extends CreateProfileResponseBody> object;
+    private Optional<? extends EntityProfileResponse> entityProfileResponse;
 
     @JsonCreator
     public CreateProfileResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends CreateProfileResponseBody> object) {
+            Optional<? extends EntityProfileResponse> entityProfileResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityProfileResponse = entityProfileResponse;
     }
     
     public CreateProfileResponse(
@@ -91,8 +91,8 @@ public class CreateProfileResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateProfileResponseBody> object() {
-        return (Optional<CreateProfileResponseBody>) object;
+    public Optional<EntityProfileResponse> entityProfileResponse() {
+        return (Optional<EntityProfileResponse>) entityProfileResponse;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class CreateProfileResponse implements AsyncResponse {
     /**
      * The newly created profile object.
      */
-    public CreateProfileResponse withObject(CreateProfileResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CreateProfileResponse withEntityProfileResponse(EntityProfileResponse entityProfileResponse) {
+        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+        this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class CreateProfileResponse implements AsyncResponse {
     /**
      * The newly created profile object.
      */
-    public CreateProfileResponse withObject(Optional<? extends CreateProfileResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CreateProfileResponse withEntityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
+        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+        this.entityProfileResponse = entityProfileResponse;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class CreateProfileResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityProfileResponse, other.entityProfileResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityProfileResponse);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class CreateProfileResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityProfileResponse", entityProfileResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class CreateProfileResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends CreateProfileResponseBody> object = Optional.empty();
+        private Optional<? extends EntityProfileResponse> entityProfileResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class CreateProfileResponse implements AsyncResponse {
         /**
          * The newly created profile object.
          */
-        public Builder object(CreateProfileResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityProfileResponse(EntityProfileResponse entityProfileResponse) {
+            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+            this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
             return this;
         }
 
         /**
          * The newly created profile object.
          */
-        public Builder object(Optional<? extends CreateProfileResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
+            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+            this.entityProfileResponse = entityProfileResponse;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class CreateProfileResponse implements AsyncResponse {
 
             return new CreateProfileResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityProfileResponse);
         }
 
     }

@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.EntityCustomer;
 import com.mollie.mollie.operations.CreateCustomer;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 public class CreateCustomerRequestBuilder {
 
-    private Optional<? extends CreateCustomerRequestBody> request = Optional.empty();
+    private Optional<? extends EntityCustomer> request = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -23,13 +24,13 @@ public class CreateCustomerRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateCustomerRequestBuilder request(CreateCustomerRequestBody request) {
+    public CreateCustomerRequestBuilder request(EntityCustomer request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public CreateCustomerRequestBuilder request(Optional<? extends CreateCustomerRequestBody> request) {
+    public CreateCustomerRequestBuilder request(Optional<? extends EntityCustomer> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -52,7 +53,7 @@ public class CreateCustomerRequestBuilder {
             .retryConfig(retryConfig)
             .build());
 
-        RequestOperation<Optional<? extends CreateCustomerRequestBody>, CreateCustomerResponse> operation
+        RequestOperation<Optional<? extends EntityCustomer>, CreateCustomerResponse> operation
               = new CreateCustomer.Sync(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));

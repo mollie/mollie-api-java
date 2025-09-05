@@ -9,10 +9,11 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
+import com.mollie.mollie.models.components.EntityProfile;
+import com.mollie.mollie.models.components.EntityProfileResponse;
 import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.operations.CreateProfileRequestBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateProfileResponse;
-import com.mollie.mollie.models.operations.CreateProfileResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -133,13 +134,13 @@ public class CreateProfile {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<CreateProfileRequestBody, CreateProfileResponse> {
+            implements RequestOperation<EntityProfile, CreateProfileResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest(CreateProfileRequestBody request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<CreateProfileRequestBody>() {});
+        private HttpRequest onBuildRequest(EntityProfile request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<EntityProfile>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -155,7 +156,7 @@ public class CreateProfile {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(CreateProfileRequestBody request) throws Exception {
+        public HttpResponse<InputStream> doRequest(EntityProfile request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -198,11 +199,11 @@ public class CreateProfile {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    CreateProfileResponseBody out = Utils.mapper().readValue(
+                    EntityProfileResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                    res.withObject(out);
+                    res.withEntityProfileResponse(out);
                     return res;
                 } else {
                     throw new APIException(
@@ -215,12 +216,10 @@ public class CreateProfile {
             
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    com.mollie.mollie.models.errors.CreateProfileResponseBody out = Utils.mapper().readValue(
+                    ErrorResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                        out.withRawResponse(response);
-                    
                     throw out;
                 } else {
                     throw new APIException(
@@ -257,7 +256,7 @@ public class CreateProfile {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<CreateProfileRequestBody, com.mollie.mollie.models.operations.async.CreateProfileResponse> {
+            implements AsyncRequestOperation<EntityProfile, com.mollie.mollie.models.operations.async.CreateProfileResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -267,8 +266,8 @@ public class CreateProfile {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(CreateProfileRequestBody request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<CreateProfileRequestBody>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(EntityProfile request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<EntityProfile>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -281,7 +280,7 @@ public class CreateProfile {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(CreateProfileRequestBody request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(EntityProfile request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)
@@ -321,11 +320,11 @@ public class CreateProfile {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
                         try {
-                            CreateProfileResponseBody out = Utils.mapper().readValue(
+                            EntityProfileResponse out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            res.withObject(out);
+                            res.withEntityProfileResponse(out);
                             return res;
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -339,13 +338,12 @@ public class CreateProfile {
             if (Utils.statusCodeMatches(response.statusCode(), "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.CreateProfileResponseBody out;
+                        com.mollie.mollie.models.errors.async.ErrorResponse out;
                         try {
                             out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            out.withRawResponse(response);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

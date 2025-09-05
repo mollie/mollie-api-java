@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -22,16 +23,16 @@ public class DeleteSalesInvoiceRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends DeleteSalesInvoiceRequestBody> requestBody;
+    private Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice;
 
     @JsonCreator
     public DeleteSalesInvoiceRequest(
             String id,
-            Optional<? extends DeleteSalesInvoiceRequestBody> requestBody) {
+            Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice) {
         Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(requestBody, "requestBody");
+        Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
         this.id = id;
-        this.requestBody = requestBody;
+        this.deleteValuesSalesInvoice = deleteValuesSalesInvoice;
     }
     
     public DeleteSalesInvoiceRequest(
@@ -49,8 +50,8 @@ public class DeleteSalesInvoiceRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<DeleteSalesInvoiceRequestBody> requestBody() {
-        return (Optional<DeleteSalesInvoiceRequestBody>) requestBody;
+    public Optional<DeleteValuesSalesInvoice> deleteValuesSalesInvoice() {
+        return (Optional<DeleteValuesSalesInvoice>) deleteValuesSalesInvoice;
     }
 
     public static Builder builder() {
@@ -67,16 +68,16 @@ public class DeleteSalesInvoiceRequest {
         return this;
     }
 
-    public DeleteSalesInvoiceRequest withRequestBody(DeleteSalesInvoiceRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
+    public DeleteSalesInvoiceRequest withDeleteValuesSalesInvoice(DeleteValuesSalesInvoice deleteValuesSalesInvoice) {
+        Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
+        this.deleteValuesSalesInvoice = Optional.ofNullable(deleteValuesSalesInvoice);
         return this;
     }
 
 
-    public DeleteSalesInvoiceRequest withRequestBody(Optional<? extends DeleteSalesInvoiceRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public DeleteSalesInvoiceRequest withDeleteValuesSalesInvoice(Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice) {
+        Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
+        this.deleteValuesSalesInvoice = deleteValuesSalesInvoice;
         return this;
     }
 
@@ -91,20 +92,20 @@ public class DeleteSalesInvoiceRequest {
         DeleteSalesInvoiceRequest other = (DeleteSalesInvoiceRequest) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.deleteValuesSalesInvoice, other.deleteValuesSalesInvoice);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, requestBody);
+            id, deleteValuesSalesInvoice);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DeleteSalesInvoiceRequest.class,
                 "id", id,
-                "requestBody", requestBody);
+                "deleteValuesSalesInvoice", deleteValuesSalesInvoice);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,7 +113,7 @@ public class DeleteSalesInvoiceRequest {
 
         private String id;
 
-        private Optional<? extends DeleteSalesInvoiceRequestBody> requestBody = Optional.empty();
+        private Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -129,22 +130,22 @@ public class DeleteSalesInvoiceRequest {
         }
 
 
-        public Builder requestBody(DeleteSalesInvoiceRequestBody requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
+        public Builder deleteValuesSalesInvoice(DeleteValuesSalesInvoice deleteValuesSalesInvoice) {
+            Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
+            this.deleteValuesSalesInvoice = Optional.ofNullable(deleteValuesSalesInvoice);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends DeleteSalesInvoiceRequestBody> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder deleteValuesSalesInvoice(Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice) {
+            Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
+            this.deleteValuesSalesInvoice = deleteValuesSalesInvoice;
             return this;
         }
 
         public DeleteSalesInvoiceRequest build() {
 
             return new DeleteSalesInvoiceRequest(
-                id, requestBody);
+                id, deleteValuesSalesInvoice);
         }
 
     }

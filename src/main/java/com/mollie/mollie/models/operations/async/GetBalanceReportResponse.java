@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.GetBalanceReportResponseBody;
+import com.mollie.mollie.models.components.EntityBalanceReport;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class GetBalanceReportResponse implements AsyncResponse {
     /**
      * The balance report object.
      */
-    private Optional<? extends GetBalanceReportResponseBody> object;
+    private Optional<? extends EntityBalanceReport> entityBalanceReport;
 
     @JsonCreator
     public GetBalanceReportResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends GetBalanceReportResponseBody> object) {
+            Optional<? extends EntityBalanceReport> entityBalanceReport) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityBalanceReport, "entityBalanceReport");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityBalanceReport = entityBalanceReport;
     }
     
     public GetBalanceReportResponse(
@@ -91,8 +91,8 @@ public class GetBalanceReportResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetBalanceReportResponseBody> object() {
-        return (Optional<GetBalanceReportResponseBody>) object;
+    public Optional<EntityBalanceReport> entityBalanceReport() {
+        return (Optional<EntityBalanceReport>) entityBalanceReport;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class GetBalanceReportResponse implements AsyncResponse {
     /**
      * The balance report object.
      */
-    public GetBalanceReportResponse withObject(GetBalanceReportResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetBalanceReportResponse withEntityBalanceReport(EntityBalanceReport entityBalanceReport) {
+        Utils.checkNotNull(entityBalanceReport, "entityBalanceReport");
+        this.entityBalanceReport = Optional.ofNullable(entityBalanceReport);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class GetBalanceReportResponse implements AsyncResponse {
     /**
      * The balance report object.
      */
-    public GetBalanceReportResponse withObject(Optional<? extends GetBalanceReportResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetBalanceReportResponse withEntityBalanceReport(Optional<? extends EntityBalanceReport> entityBalanceReport) {
+        Utils.checkNotNull(entityBalanceReport, "entityBalanceReport");
+        this.entityBalanceReport = entityBalanceReport;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class GetBalanceReportResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityBalanceReport, other.entityBalanceReport);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityBalanceReport);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class GetBalanceReportResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityBalanceReport", entityBalanceReport);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class GetBalanceReportResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends GetBalanceReportResponseBody> object = Optional.empty();
+        private Optional<? extends EntityBalanceReport> entityBalanceReport = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class GetBalanceReportResponse implements AsyncResponse {
         /**
          * The balance report object.
          */
-        public Builder object(GetBalanceReportResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityBalanceReport(EntityBalanceReport entityBalanceReport) {
+            Utils.checkNotNull(entityBalanceReport, "entityBalanceReport");
+            this.entityBalanceReport = Optional.ofNullable(entityBalanceReport);
             return this;
         }
 
         /**
          * The balance report object.
          */
-        public Builder object(Optional<? extends GetBalanceReportResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityBalanceReport(Optional<? extends EntityBalanceReport> entityBalanceReport) {
+            Utils.checkNotNull(entityBalanceReport, "entityBalanceReport");
+            this.entityBalanceReport = entityBalanceReport;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class GetBalanceReportResponse implements AsyncResponse {
 
             return new GetBalanceReportResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityBalanceReport);
         }
 
     }

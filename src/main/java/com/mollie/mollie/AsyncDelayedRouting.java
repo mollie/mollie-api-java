@@ -5,8 +5,8 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.components.RouteCreateRequest;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequest;
-import com.mollie.mollie.models.operations.PaymentCreateRouteRequestBody;
 import com.mollie.mollie.models.operations.PaymentListRoutesRequest;
 import com.mollie.mollie.models.operations.async.PaymentCreateRouteRequestBuilder;
 import com.mollie.mollie.models.operations.async.PaymentCreateRouteResponse;
@@ -73,18 +73,18 @@ public class AsyncDelayedRouting {
      * The routed amount is credited to the account of your customer.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @param requestBody 
+     * @param routeCreateRequest 
      * @param options additional options
      * @return CompletableFuture&lt;PaymentCreateRouteResponse&gt; - The async response
      */
     public CompletableFuture<PaymentCreateRouteResponse> create(
-            String paymentId, Optional<? extends PaymentCreateRouteRequestBody> requestBody,
+            String paymentId, Optional<? extends RouteCreateRequest> routeCreateRequest,
             Optional<Options> options) {
         PaymentCreateRouteRequest request =
             PaymentCreateRouteRequest
                 .builder()
                 .paymentId(paymentId)
-                .requestBody(requestBody)
+                .routeCreateRequest(routeCreateRequest)
                 .build();
         AsyncRequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
               = new PaymentCreateRoute.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

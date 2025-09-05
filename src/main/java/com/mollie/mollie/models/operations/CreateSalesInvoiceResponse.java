@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntitySalesInvoiceResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -36,22 +37,22 @@ public class CreateSalesInvoiceResponse implements Response {
      * The newly created invoice object. For a complete reference of the invoice object, refer to the
      * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
-    private Optional<? extends CreateSalesInvoiceResponseBody> object;
+    private Optional<? extends EntitySalesInvoiceResponse> entitySalesInvoiceResponse;
 
     @JsonCreator
     public CreateSalesInvoiceResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends CreateSalesInvoiceResponseBody> object) {
+            Optional<? extends EntitySalesInvoiceResponse> entitySalesInvoiceResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entitySalesInvoiceResponse, "entitySalesInvoiceResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entitySalesInvoiceResponse = entitySalesInvoiceResponse;
     }
     
     public CreateSalesInvoiceResponse(
@@ -92,8 +93,8 @@ public class CreateSalesInvoiceResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateSalesInvoiceResponseBody> object() {
-        return (Optional<CreateSalesInvoiceResponseBody>) object;
+    public Optional<EntitySalesInvoiceResponse> entitySalesInvoiceResponse() {
+        return (Optional<EntitySalesInvoiceResponse>) entitySalesInvoiceResponse;
     }
 
     public static Builder builder() {
@@ -132,9 +133,9 @@ public class CreateSalesInvoiceResponse implements Response {
      * The newly created invoice object. For a complete reference of the invoice object, refer to the
      * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
-    public CreateSalesInvoiceResponse withObject(CreateSalesInvoiceResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public CreateSalesInvoiceResponse withEntitySalesInvoiceResponse(EntitySalesInvoiceResponse entitySalesInvoiceResponse) {
+        Utils.checkNotNull(entitySalesInvoiceResponse, "entitySalesInvoiceResponse");
+        this.entitySalesInvoiceResponse = Optional.ofNullable(entitySalesInvoiceResponse);
         return this;
     }
 
@@ -143,9 +144,9 @@ public class CreateSalesInvoiceResponse implements Response {
      * The newly created invoice object. For a complete reference of the invoice object, refer to the
      * [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
-    public CreateSalesInvoiceResponse withObject(Optional<? extends CreateSalesInvoiceResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public CreateSalesInvoiceResponse withEntitySalesInvoiceResponse(Optional<? extends EntitySalesInvoiceResponse> entitySalesInvoiceResponse) {
+        Utils.checkNotNull(entitySalesInvoiceResponse, "entitySalesInvoiceResponse");
+        this.entitySalesInvoiceResponse = entitySalesInvoiceResponse;
         return this;
     }
 
@@ -162,14 +163,14 @@ public class CreateSalesInvoiceResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entitySalesInvoiceResponse, other.entitySalesInvoiceResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entitySalesInvoiceResponse);
     }
     
     @Override
@@ -178,7 +179,7 @@ public class CreateSalesInvoiceResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entitySalesInvoiceResponse", entitySalesInvoiceResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -190,7 +191,7 @@ public class CreateSalesInvoiceResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CreateSalesInvoiceResponseBody> object = Optional.empty();
+        private Optional<? extends EntitySalesInvoiceResponse> entitySalesInvoiceResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -231,9 +232,9 @@ public class CreateSalesInvoiceResponse implements Response {
          * The newly created invoice object. For a complete reference of the invoice object, refer to the
          * [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
-        public Builder object(CreateSalesInvoiceResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entitySalesInvoiceResponse(EntitySalesInvoiceResponse entitySalesInvoiceResponse) {
+            Utils.checkNotNull(entitySalesInvoiceResponse, "entitySalesInvoiceResponse");
+            this.entitySalesInvoiceResponse = Optional.ofNullable(entitySalesInvoiceResponse);
             return this;
         }
 
@@ -241,9 +242,9 @@ public class CreateSalesInvoiceResponse implements Response {
          * The newly created invoice object. For a complete reference of the invoice object, refer to the
          * [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
-        public Builder object(Optional<? extends CreateSalesInvoiceResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entitySalesInvoiceResponse(Optional<? extends EntitySalesInvoiceResponse> entitySalesInvoiceResponse) {
+            Utils.checkNotNull(entitySalesInvoiceResponse, "entitySalesInvoiceResponse");
+            this.entitySalesInvoiceResponse = entitySalesInvoiceResponse;
             return this;
         }
 
@@ -251,7 +252,7 @@ public class CreateSalesInvoiceResponse implements Response {
 
             return new CreateSalesInvoiceResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entitySalesInvoiceResponse);
         }
 
     }

@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.RouteCreateRequest;
 import com.mollie.mollie.operations.PaymentCreateRoute;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class PaymentCreateRouteRequestBuilder {
 
     private String paymentId;
-    private Optional<? extends PaymentCreateRouteRequestBody> requestBody = Optional.empty();
+    private Optional<? extends RouteCreateRequest> routeCreateRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -31,15 +32,15 @@ public class PaymentCreateRouteRequestBuilder {
         return this;
     }
                 
-    public PaymentCreateRouteRequestBuilder requestBody(PaymentCreateRouteRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
+    public PaymentCreateRouteRequestBuilder routeCreateRequest(RouteCreateRequest routeCreateRequest) {
+        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
+        this.routeCreateRequest = Optional.of(routeCreateRequest);
         return this;
     }
 
-    public PaymentCreateRouteRequestBuilder requestBody(Optional<? extends PaymentCreateRouteRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public PaymentCreateRouteRequestBuilder routeCreateRequest(Optional<? extends RouteCreateRequest> routeCreateRequest) {
+        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
+        this.routeCreateRequest = routeCreateRequest;
         return this;
     }
                 
@@ -59,7 +60,7 @@ public class PaymentCreateRouteRequestBuilder {
     private PaymentCreateRouteRequest buildRequest() {
 
         PaymentCreateRouteRequest request = new PaymentCreateRouteRequest(paymentId,
-            requestBody);
+            routeCreateRequest);
 
         return request;
     }

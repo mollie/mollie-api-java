@@ -35,14 +35,14 @@ wish to retrieve payment methods which exclusively support other currencies (e.g
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListMethodsResponseBody;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListMethodsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -51,9 +51,9 @@ public class Application {
             .build();
 
         ListMethodsRequest req = ListMethodsRequest.builder()
-                .sequenceType(QueryParamSequenceType.ONEOFF)
-                .locale(QueryParamLocale.EN_US)
-                .amount(QueryParamAmount.builder()
+                .sequenceType(SequenceType.ONEOFF)
+                .locale(ParameterLocale.EN_US)
+                .amount(Amount.builder()
                     .currency("EUR")
                     .value("10.00")
                     .build())
@@ -62,7 +62,7 @@ public class Application {
                 .includeWallets(IncludeWallets.APPLEPAY)
                 .orderLineCategories(OrderLineCategories.ECO)
                 .profileId("pfl_5B8cwPMGnU")
-                .include(ListMethodsQueryParamInclude.ISSUERS)
+                .include("issuers")
                 .testmode(false)
                 .build();
 
@@ -89,10 +89,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                            | Status Code                           | Content Type                          |
-| ------------------------------------- | ------------------------------------- | ------------------------------------- |
-| models/errors/ListMethodsResponseBody | 400                                   | application/hal+json                  |
-| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## all
 
@@ -108,14 +108,15 @@ The list can optionally be filtered using a number of parameters described below
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListAllMethodsResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllMethodsRequest;
+import com.mollie.mollie.models.operations.ListAllMethodsResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListAllMethodsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -124,13 +125,13 @@ public class Application {
             .build();
 
         ListAllMethodsRequest req = ListAllMethodsRequest.builder()
-                .locale(ListAllMethodsQueryParamLocale.EN_US)
-                .amount(ListAllMethodsQueryParamAmount.builder()
+                .locale(ParameterLocale.EN_US)
+                .amount(Amount.builder()
                     .currency("EUR")
                     .value("10.00")
                     .build())
-                .include(ListAllMethodsQueryParamInclude.ISSUERS)
-                .sequenceType(ListAllMethodsQueryParamSequenceType.ONEOFF)
+                .include("issuers")
+                .sequenceType(SequenceType.ONEOFF)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
                 .build();
@@ -158,10 +159,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                               | Status Code                              | Content Type                             |
-| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
-| models/errors/ListAllMethodsResponseBody | 400                                      | application/hal+json                     |
-| models/errors/APIException               | 4XX, 5XX                                 | \*/\*                                    |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -185,15 +186,15 @@ are enabled by passing the wallet ID (`applepay`) as the method ID.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetMethodMethodsResponseBody;
-import com.mollie.mollie.models.errors.GetMethodResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetMethodRequest;
+import com.mollie.mollie.models.operations.GetMethodResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetMethodResponseBody, GetMethodMethodsResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -203,11 +204,11 @@ public class Application {
 
         GetMethodRequest req = GetMethodRequest.builder()
                 .id("ideal")
-                .locale(GetMethodQueryParamLocale.EN_US)
+                .locale(ParameterLocale.EN_US)
                 .currency("EUR")
                 .profileId("pfl_5B8cwPMGnU")
-                .include(GetMethodQueryParamInclude.ISSUERS)
-                .sequenceType(GetMethodQueryParamSequenceType.ONEOFF)
+                .include("issuers")
+                .sequenceType(SequenceType.ONEOFF)
                 .testmode(false)
                 .build();
 
@@ -215,7 +216,7 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.entityMethod().isPresent()) {
             // handle response
         }
     }
@@ -234,8 +235,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                                 | Status Code                                | Content Type                               |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| models/errors/GetMethodResponseBody        | 400                                        | application/hal+json                       |
-| models/errors/GetMethodMethodsResponseBody | 404                                        | application/hal+json                       |
-| models/errors/APIException                 | 4XX, 5XX                                   | \*/\*                                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

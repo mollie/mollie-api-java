@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityChargeback;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class GetChargebackResponse implements Response {
     /**
      * The chargeback object.
      */
-    private Optional<? extends GetChargebackResponseBody> object;
+    private Optional<? extends EntityChargeback> entityChargeback;
 
     @JsonCreator
     public GetChargebackResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetChargebackResponseBody> object) {
+            Optional<? extends EntityChargeback> entityChargeback) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityChargeback, "entityChargeback");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityChargeback = entityChargeback;
     }
     
     public GetChargebackResponse(
@@ -90,8 +91,8 @@ public class GetChargebackResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetChargebackResponseBody> object() {
-        return (Optional<GetChargebackResponseBody>) object;
+    public Optional<EntityChargeback> entityChargeback() {
+        return (Optional<EntityChargeback>) entityChargeback;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class GetChargebackResponse implements Response {
     /**
      * The chargeback object.
      */
-    public GetChargebackResponse withObject(GetChargebackResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetChargebackResponse withEntityChargeback(EntityChargeback entityChargeback) {
+        Utils.checkNotNull(entityChargeback, "entityChargeback");
+        this.entityChargeback = Optional.ofNullable(entityChargeback);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class GetChargebackResponse implements Response {
     /**
      * The chargeback object.
      */
-    public GetChargebackResponse withObject(Optional<? extends GetChargebackResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetChargebackResponse withEntityChargeback(Optional<? extends EntityChargeback> entityChargeback) {
+        Utils.checkNotNull(entityChargeback, "entityChargeback");
+        this.entityChargeback = entityChargeback;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class GetChargebackResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityChargeback, other.entityChargeback);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityChargeback);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class GetChargebackResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityChargeback", entityChargeback);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class GetChargebackResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetChargebackResponseBody> object = Optional.empty();
+        private Optional<? extends EntityChargeback> entityChargeback = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class GetChargebackResponse implements Response {
         /**
          * The chargeback object.
          */
-        public Builder object(GetChargebackResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityChargeback(EntityChargeback entityChargeback) {
+            Utils.checkNotNull(entityChargeback, "entityChargeback");
+            this.entityChargeback = Optional.ofNullable(entityChargeback);
             return this;
         }
 
         /**
          * The chargeback object.
          */
-        public Builder object(Optional<? extends GetChargebackResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityChargeback(Optional<? extends EntityChargeback> entityChargeback) {
+            Utils.checkNotNull(entityChargeback, "entityChargeback");
+            this.entityChargeback = entityChargeback;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class GetChargebackResponse implements Response {
 
             return new GetChargebackResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityChargeback);
         }
 
     }

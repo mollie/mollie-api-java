@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityTerminal;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class GetTerminalResponse implements Response {
     /**
      * The terminal object.
      */
-    private Optional<? extends GetTerminalResponseBody> object;
+    private Optional<? extends EntityTerminal> entityTerminal;
 
     @JsonCreator
     public GetTerminalResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetTerminalResponseBody> object) {
+            Optional<? extends EntityTerminal> entityTerminal) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(entityTerminal, "entityTerminal");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.entityTerminal = entityTerminal;
     }
     
     public GetTerminalResponse(
@@ -90,8 +91,8 @@ public class GetTerminalResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetTerminalResponseBody> object() {
-        return (Optional<GetTerminalResponseBody>) object;
+    public Optional<EntityTerminal> entityTerminal() {
+        return (Optional<EntityTerminal>) entityTerminal;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class GetTerminalResponse implements Response {
     /**
      * The terminal object.
      */
-    public GetTerminalResponse withObject(GetTerminalResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetTerminalResponse withEntityTerminal(EntityTerminal entityTerminal) {
+        Utils.checkNotNull(entityTerminal, "entityTerminal");
+        this.entityTerminal = Optional.ofNullable(entityTerminal);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class GetTerminalResponse implements Response {
     /**
      * The terminal object.
      */
-    public GetTerminalResponse withObject(Optional<? extends GetTerminalResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetTerminalResponse withEntityTerminal(Optional<? extends EntityTerminal> entityTerminal) {
+        Utils.checkNotNull(entityTerminal, "entityTerminal");
+        this.entityTerminal = entityTerminal;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class GetTerminalResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.entityTerminal, other.entityTerminal);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            entityTerminal);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class GetTerminalResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "entityTerminal", entityTerminal);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class GetTerminalResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetTerminalResponseBody> object = Optional.empty();
+        private Optional<? extends EntityTerminal> entityTerminal = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class GetTerminalResponse implements Response {
         /**
          * The terminal object.
          */
-        public Builder object(GetTerminalResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder entityTerminal(EntityTerminal entityTerminal) {
+            Utils.checkNotNull(entityTerminal, "entityTerminal");
+            this.entityTerminal = Optional.ofNullable(entityTerminal);
             return this;
         }
 
         /**
          * The terminal object.
          */
-        public Builder object(Optional<? extends GetTerminalResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder entityTerminal(Optional<? extends EntityTerminal> entityTerminal) {
+            Utils.checkNotNull(entityTerminal, "entityTerminal");
+            this.entityTerminal = entityTerminal;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class GetTerminalResponse implements Response {
 
             return new GetTerminalResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                entityTerminal);
         }
 
     }

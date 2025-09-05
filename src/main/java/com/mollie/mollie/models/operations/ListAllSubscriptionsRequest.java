@@ -11,7 +11,6 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -21,7 +20,7 @@ public class ListAllSubscriptionsRequest {
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
-    private Optional<String> from;
+    private JsonNullable<String> from;
 
     /**
      * The maximum number of items to return. Defaults to 50 items.
@@ -52,7 +51,7 @@ public class ListAllSubscriptionsRequest {
 
     @JsonCreator
     public ListAllSubscriptionsRequest(
-            Optional<String> from,
+            JsonNullable<String> from,
             JsonNullable<Long> limit,
             JsonNullable<String> profileId,
             JsonNullable<Boolean> testmode) {
@@ -67,7 +66,7 @@ public class ListAllSubscriptionsRequest {
     }
     
     public ListAllSubscriptionsRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
@@ -76,7 +75,7 @@ public class ListAllSubscriptionsRequest {
      * result set.
      */
     @JsonIgnore
-    public Optional<String> from() {
+    public JsonNullable<String> from() {
         return from;
     }
 
@@ -124,16 +123,15 @@ public class ListAllSubscriptionsRequest {
      */
     public ListAllSubscriptionsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.ofNullable(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
-
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      * result set.
      */
-    public ListAllSubscriptionsRequest withFrom(Optional<String> from) {
+    public ListAllSubscriptionsRequest withFrom(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;
@@ -246,7 +244,7 @@ public class ListAllSubscriptionsRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> from = Optional.empty();
+        private JsonNullable<String> from = JsonNullable.undefined();
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
@@ -265,7 +263,7 @@ public class ListAllSubscriptionsRequest {
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
-            this.from = Optional.ofNullable(from);
+            this.from = JsonNullable.of(from);
             return this;
         }
 
@@ -273,7 +271,7 @@ public class ListAllSubscriptionsRequest {
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
          * result set.
          */
-        public Builder from(Optional<String> from) {
+        public Builder from(JsonNullable<String> from) {
             Utils.checkNotNull(from, "from");
             this.from = from;
             return this;

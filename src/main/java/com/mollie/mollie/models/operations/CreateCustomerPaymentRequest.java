@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -22,16 +23,16 @@ public class CreateCustomerPaymentRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends CreateCustomerPaymentRequestBody> requestBody;
+    private Optional<? extends PaymentRequest> paymentRequest;
 
     @JsonCreator
     public CreateCustomerPaymentRequest(
             String customerId,
-            Optional<? extends CreateCustomerPaymentRequestBody> requestBody) {
+            Optional<? extends PaymentRequest> paymentRequest) {
         Utils.checkNotNull(customerId, "customerId");
-        Utils.checkNotNull(requestBody, "requestBody");
+        Utils.checkNotNull(paymentRequest, "paymentRequest");
         this.customerId = customerId;
-        this.requestBody = requestBody;
+        this.paymentRequest = paymentRequest;
     }
     
     public CreateCustomerPaymentRequest(
@@ -49,8 +50,8 @@ public class CreateCustomerPaymentRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateCustomerPaymentRequestBody> requestBody() {
-        return (Optional<CreateCustomerPaymentRequestBody>) requestBody;
+    public Optional<PaymentRequest> paymentRequest() {
+        return (Optional<PaymentRequest>) paymentRequest;
     }
 
     public static Builder builder() {
@@ -67,16 +68,16 @@ public class CreateCustomerPaymentRequest {
         return this;
     }
 
-    public CreateCustomerPaymentRequest withRequestBody(CreateCustomerPaymentRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
+    public CreateCustomerPaymentRequest withPaymentRequest(PaymentRequest paymentRequest) {
+        Utils.checkNotNull(paymentRequest, "paymentRequest");
+        this.paymentRequest = Optional.ofNullable(paymentRequest);
         return this;
     }
 
 
-    public CreateCustomerPaymentRequest withRequestBody(Optional<? extends CreateCustomerPaymentRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreateCustomerPaymentRequest withPaymentRequest(Optional<? extends PaymentRequest> paymentRequest) {
+        Utils.checkNotNull(paymentRequest, "paymentRequest");
+        this.paymentRequest = paymentRequest;
         return this;
     }
 
@@ -91,20 +92,20 @@ public class CreateCustomerPaymentRequest {
         CreateCustomerPaymentRequest other = (CreateCustomerPaymentRequest) o;
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.paymentRequest, other.paymentRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, requestBody);
+            customerId, paymentRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateCustomerPaymentRequest.class,
                 "customerId", customerId,
-                "requestBody", requestBody);
+                "paymentRequest", paymentRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,7 +113,7 @@ public class CreateCustomerPaymentRequest {
 
         private String customerId;
 
-        private Optional<? extends CreateCustomerPaymentRequestBody> requestBody = Optional.empty();
+        private Optional<? extends PaymentRequest> paymentRequest = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -129,22 +130,22 @@ public class CreateCustomerPaymentRequest {
         }
 
 
-        public Builder requestBody(CreateCustomerPaymentRequestBody requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
+        public Builder paymentRequest(PaymentRequest paymentRequest) {
+            Utils.checkNotNull(paymentRequest, "paymentRequest");
+            this.paymentRequest = Optional.ofNullable(paymentRequest);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends CreateCustomerPaymentRequestBody> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder paymentRequest(Optional<? extends PaymentRequest> paymentRequest) {
+            Utils.checkNotNull(paymentRequest, "paymentRequest");
+            this.paymentRequest = paymentRequest;
             return this;
         }
 
         public CreateCustomerPaymentRequest build() {
 
             return new CreateCustomerPaymentRequest(
-                customerId, requestBody);
+                customerId, paymentRequest);
         }
 
     }

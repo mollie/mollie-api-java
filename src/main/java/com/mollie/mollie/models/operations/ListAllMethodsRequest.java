@@ -5,6 +5,9 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.Amount;
+import com.mollie.mollie.models.components.ParameterLocale;
+import com.mollie.mollie.models.components.SequenceType;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -17,11 +20,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllMethodsRequest {
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Response language
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
-    private Optional<? extends ListAllMethodsQueryParamLocale> locale;
+    private Optional<? extends ParameterLocale> locale;
 
     /**
      * If supplied, only payment methods that support the amount and currency
@@ -30,14 +32,13 @@ public class ListAllMethodsRequest {
      * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=amount")
-    private Optional<? extends ListAllMethodsQueryParamAmount> amount;
+    private Optional<? extends Amount> amount;
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private JsonNullable<? extends ListAllMethodsQueryParamInclude> include;
+    private JsonNullable<String> include;
 
     /**
      * Set this parameter to `first` to only return the methods that
@@ -46,7 +47,7 @@ public class ListAllMethodsRequest {
      * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sequenceType")
-    private Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType;
+    private Optional<? extends SequenceType> sequenceType;
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to
@@ -70,10 +71,10 @@ public class ListAllMethodsRequest {
 
     @JsonCreator
     public ListAllMethodsRequest(
-            Optional<? extends ListAllMethodsQueryParamLocale> locale,
-            Optional<? extends ListAllMethodsQueryParamAmount> amount,
-            JsonNullable<? extends ListAllMethodsQueryParamInclude> include,
-            Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType,
+            Optional<? extends ParameterLocale> locale,
+            Optional<? extends Amount> amount,
+            JsonNullable<String> include,
+            Optional<? extends SequenceType> sequenceType,
             Optional<String> profileId,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(locale, "locale");
@@ -96,13 +97,12 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Response language
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllMethodsQueryParamLocale> locale() {
-        return (Optional<ListAllMethodsQueryParamLocale>) locale;
+    public Optional<ParameterLocale> locale() {
+        return (Optional<ParameterLocale>) locale;
     }
 
     /**
@@ -113,18 +113,16 @@ public class ListAllMethodsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllMethodsQueryParamAmount> amount() {
-        return (Optional<ListAllMethodsQueryParamAmount>) amount;
+    public Optional<Amount> amount() {
+        return (Optional<Amount>) amount;
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListAllMethodsQueryParamInclude> include() {
-        return (JsonNullable<ListAllMethodsQueryParamInclude>) include;
+    public JsonNullable<String> include() {
+        return include;
     }
 
     /**
@@ -135,8 +133,8 @@ public class ListAllMethodsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListAllMethodsQueryParamSequenceType> sequenceType() {
-        return (Optional<ListAllMethodsQueryParamSequenceType>) sequenceType;
+    public Optional<SequenceType> sequenceType() {
+        return (Optional<SequenceType>) sequenceType;
     }
 
     /**
@@ -169,10 +167,9 @@ public class ListAllMethodsRequest {
 
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Response language
      */
-    public ListAllMethodsRequest withLocale(ListAllMethodsQueryParamLocale locale) {
+    public ListAllMethodsRequest withLocale(ParameterLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = Optional.ofNullable(locale);
         return this;
@@ -180,10 +177,9 @@ public class ListAllMethodsRequest {
 
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Response language
      */
-    public ListAllMethodsRequest withLocale(Optional<? extends ListAllMethodsQueryParamLocale> locale) {
+    public ListAllMethodsRequest withLocale(Optional<? extends ParameterLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -195,7 +191,7 @@ public class ListAllMethodsRequest {
      * 
      * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
-    public ListAllMethodsRequest withAmount(ListAllMethodsQueryParamAmount amount) {
+    public ListAllMethodsRequest withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
@@ -208,27 +204,25 @@ public class ListAllMethodsRequest {
      * 
      * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
      */
-    public ListAllMethodsRequest withAmount(Optional<? extends ListAllMethodsQueryParamAmount> amount) {
+    public ListAllMethodsRequest withAmount(Optional<? extends Amount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    public ListAllMethodsRequest withInclude(ListAllMethodsQueryParamInclude include) {
+    public ListAllMethodsRequest withInclude(String include) {
         Utils.checkNotNull(include, "include");
         this.include = JsonNullable.of(include);
         return this;
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    public ListAllMethodsRequest withInclude(JsonNullable<? extends ListAllMethodsQueryParamInclude> include) {
+    public ListAllMethodsRequest withInclude(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
         this.include = include;
         return this;
@@ -240,7 +234,7 @@ public class ListAllMethodsRequest {
      * 
      * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
      */
-    public ListAllMethodsRequest withSequenceType(ListAllMethodsQueryParamSequenceType sequenceType) {
+    public ListAllMethodsRequest withSequenceType(SequenceType sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = Optional.ofNullable(sequenceType);
         return this;
@@ -253,7 +247,7 @@ public class ListAllMethodsRequest {
      * 
      * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
      */
-    public ListAllMethodsRequest withSequenceType(Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType) {
+    public ListAllMethodsRequest withSequenceType(Optional<? extends SequenceType> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = sequenceType;
         return this;
@@ -351,13 +345,13 @@ public class ListAllMethodsRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ListAllMethodsQueryParamLocale> locale = Optional.empty();
+        private Optional<? extends ParameterLocale> locale = Optional.empty();
 
-        private Optional<? extends ListAllMethodsQueryParamAmount> amount = Optional.empty();
+        private Optional<? extends Amount> amount = Optional.empty();
 
-        private JsonNullable<? extends ListAllMethodsQueryParamInclude> include = JsonNullable.undefined();
+        private JsonNullable<String> include = JsonNullable.undefined();
 
-        private Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType = Optional.empty();
+        private Optional<? extends SequenceType> sequenceType = Optional.empty();
 
         private Optional<String> profileId = Optional.empty();
 
@@ -369,20 +363,18 @@ public class ListAllMethodsRequest {
 
 
         /**
-         * Passing a locale will sort the payment methods in the preferred order
-         * for the country, and translate the payment method names in the corresponding language.
+         * Response language
          */
-        public Builder locale(ListAllMethodsQueryParamLocale locale) {
+        public Builder locale(ParameterLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = Optional.ofNullable(locale);
             return this;
         }
 
         /**
-         * Passing a locale will sort the payment methods in the preferred order
-         * for the country, and translate the payment method names in the corresponding language.
+         * Response language
          */
-        public Builder locale(Optional<? extends ListAllMethodsQueryParamLocale> locale) {
+        public Builder locale(Optional<? extends ParameterLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -395,7 +387,7 @@ public class ListAllMethodsRequest {
          * 
          * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
          */
-        public Builder amount(ListAllMethodsQueryParamAmount amount) {
+        public Builder amount(Amount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = Optional.ofNullable(amount);
             return this;
@@ -407,7 +399,7 @@ public class ListAllMethodsRequest {
          * 
          * <p>Example: `/v2/methods/all?amount[value]=100.00&amp;amount[currency]=USD`
          */
-        public Builder amount(Optional<? extends ListAllMethodsQueryParamAmount> amount) {
+        public Builder amount(Optional<? extends Amount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -415,20 +407,18 @@ public class ListAllMethodsRequest {
 
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          */
-        public Builder include(ListAllMethodsQueryParamInclude include) {
+        public Builder include(String include) {
             Utils.checkNotNull(include, "include");
             this.include = JsonNullable.of(include);
             return this;
         }
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          */
-        public Builder include(JsonNullable<? extends ListAllMethodsQueryParamInclude> include) {
+        public Builder include(JsonNullable<String> include) {
             Utils.checkNotNull(include, "include");
             this.include = include;
             return this;
@@ -441,7 +431,7 @@ public class ListAllMethodsRequest {
          * 
          * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
          */
-        public Builder sequenceType(ListAllMethodsQueryParamSequenceType sequenceType) {
+        public Builder sequenceType(SequenceType sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = Optional.ofNullable(sequenceType);
             return this;
@@ -453,7 +443,7 @@ public class ListAllMethodsRequest {
          * 
          * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
          */
-        public Builder sequenceType(Optional<? extends ListAllMethodsQueryParamSequenceType> sequenceType) {
+        public Builder sequenceType(Optional<? extends SequenceType> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = sequenceType;
             return this;

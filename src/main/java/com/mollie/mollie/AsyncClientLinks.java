@@ -5,7 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.operations.CreateClientLinkRequestBody;
+import com.mollie.mollie.models.components.EntityClientLink;
 import com.mollie.mollie.models.operations.async.CreateClientLinkRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreateClientLinkResponse;
 import com.mollie.mollie.operations.CreateClientLink;
@@ -220,8 +220,8 @@ public class AsyncClientLinks {
      * @param options additional options
      * @return CompletableFuture&lt;CreateClientLinkResponse&gt; - The async response
      */
-    public CompletableFuture<CreateClientLinkResponse> create(Optional<? extends CreateClientLinkRequestBody> request, Optional<Options> options) {
-        AsyncRequestOperation<Optional<? extends CreateClientLinkRequestBody>, CreateClientLinkResponse> operation
+    public CompletableFuture<CreateClientLinkResponse> create(Optional<? extends EntityClientLink> request, Optional<Options> options) {
+        AsyncRequestOperation<Optional<? extends EntityClientLink>, CreateClientLinkResponse> operation
               = new CreateClientLink.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

@@ -5,11 +5,12 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.operations.CreateSalesInvoiceRequestBody;
+import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
+import com.mollie.mollie.models.components.EntitySalesInvoice;
+import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceRequestBuilder;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceResponse;
 import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequest;
-import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequestBody;
 import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequestBuilder;
 import com.mollie.mollie.models.operations.DeleteSalesInvoiceResponse;
 import com.mollie.mollie.models.operations.GetSalesInvoiceRequest;
@@ -19,7 +20,6 @@ import com.mollie.mollie.models.operations.ListSalesInvoicesRequest;
 import com.mollie.mollie.models.operations.ListSalesInvoicesRequestBuilder;
 import com.mollie.mollie.models.operations.ListSalesInvoicesResponse;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequest;
-import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBody;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceResponse;
 import com.mollie.mollie.operations.CreateSalesInvoice;
@@ -99,8 +99,8 @@ public class SalesInvoices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateSalesInvoiceResponse create(Optional<? extends CreateSalesInvoiceRequestBody> request, Optional<Options> options) throws Exception {
-        RequestOperation<Optional<? extends CreateSalesInvoiceRequestBody>, CreateSalesInvoiceResponse> operation
+    public CreateSalesInvoiceResponse create(Optional<? extends EntitySalesInvoice> request, Optional<Options> options) throws Exception {
+        RequestOperation<Optional<? extends EntitySalesInvoice>, CreateSalesInvoiceResponse> operation
               = new CreateSalesInvoice.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -137,7 +137,7 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public ListSalesInvoicesResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+        return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty());
     }
 
@@ -165,7 +165,7 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public ListSalesInvoicesResponse list(
-            Optional<String> from, JsonNullable<Long> limit,
+            JsonNullable<String> from, JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
         ListSalesInvoicesRequest request =
             ListSalesInvoicesRequest
@@ -292,19 +292,19 @@ public class SalesInvoices {
      * respectively).
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param requestBody 
+     * @param updateValuesSalesInvoice 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateSalesInvoiceResponse update(
-            String id, Optional<? extends UpdateSalesInvoiceRequestBody> requestBody,
+            String id, Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice,
             Optional<Options> options) throws Exception {
         UpdateSalesInvoiceRequest request =
             UpdateSalesInvoiceRequest
                 .builder()
                 .id(id)
-                .requestBody(requestBody)
+                .updateValuesSalesInvoice(updateValuesSalesInvoice)
                 .build();
         RequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
               = new UpdateSalesInvoice.Sync(sdkConfiguration, options);
@@ -356,19 +356,19 @@ public class SalesInvoices {
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @param requestBody 
+     * @param deleteValuesSalesInvoice 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteSalesInvoiceResponse delete(
-            String id, Optional<? extends DeleteSalesInvoiceRequestBody> requestBody,
+            String id, Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice,
             Optional<Options> options) throws Exception {
         DeleteSalesInvoiceRequest request =
             DeleteSalesInvoiceRequest
                 .builder()
                 .id(id)
-                .requestBody(requestBody)
+                .deleteValuesSalesInvoice(deleteValuesSalesInvoice)
                 .build();
         RequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
               = new DeleteSalesInvoice.Sync(sdkConfiguration, options);

@@ -9,10 +9,11 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
+import com.mollie.mollie.models.components.CustomerResponse;
+import com.mollie.mollie.models.components.EntityCustomer;
 import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.operations.CreateCustomerRequestBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateCustomerResponse;
-import com.mollie.mollie.models.operations.CreateCustomerResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -130,13 +131,13 @@ public class CreateCustomer {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends CreateCustomerRequestBody>, CreateCustomerResponse> {
+            implements RequestOperation<Optional<? extends EntityCustomer>, CreateCustomerResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends CreateCustomerRequestBody> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends CreateCustomerRequestBody>>() {});
+        private HttpRequest onBuildRequest(Optional<? extends EntityCustomer> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntityCustomer>>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -152,7 +153,7 @@ public class CreateCustomer {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends CreateCustomerRequestBody> request) throws Exception {
+        public HttpResponse<InputStream> doRequest(Optional<? extends EntityCustomer> request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -195,11 +196,11 @@ public class CreateCustomer {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    CreateCustomerResponseBody out = Utils.mapper().readValue(
+                    CustomerResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                    res.withObject(out);
+                    res.withCustomerResponse(out);
                     return res;
                 } else {
                     throw new APIException(
@@ -212,12 +213,10 @@ public class CreateCustomer {
             
             if (Utils.statusCodeMatches(response.statusCode(), "404")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    com.mollie.mollie.models.errors.CreateCustomerResponseBody out = Utils.mapper().readValue(
+                    ErrorResponse out = Utils.mapper().readValue(
                             response.body(),
                             new TypeReference<>() {
                             });
-                        out.withRawResponse(response);
-                    
                     throw out;
                 } else {
                     throw new APIException(
@@ -254,7 +253,7 @@ public class CreateCustomer {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends CreateCustomerRequestBody>, com.mollie.mollie.models.operations.async.CreateCustomerResponse> {
+            implements AsyncRequestOperation<Optional<? extends EntityCustomer>, com.mollie.mollie.models.operations.async.CreateCustomerResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -264,8 +263,8 @@ public class CreateCustomer {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends CreateCustomerRequestBody> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends CreateCustomerRequestBody>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends EntityCustomer> request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntityCustomer>>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -278,7 +277,7 @@ public class CreateCustomer {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends CreateCustomerRequestBody> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends EntityCustomer> request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)
@@ -318,11 +317,11 @@ public class CreateCustomer {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
                         try {
-                            CreateCustomerResponseBody out = Utils.mapper().readValue(
+                            CustomerResponse out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            res.withObject(out);
+                            res.withCustomerResponse(out);
                             return res;
                         } catch (Exception e) {
                             throw new RuntimeException(e);
@@ -336,13 +335,12 @@ public class CreateCustomer {
             if (Utils.statusCodeMatches(response.statusCode(), "404")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return response.body().toByteArray().thenApply(bodyBytes -> {
-                        com.mollie.mollie.models.errors.async.CreateCustomerResponseBody out;
+                        com.mollie.mollie.models.errors.async.ErrorResponse out;
                         try {
                             out = Utils.mapper().readValue(
                                     bodyBytes,
                                     new TypeReference<>() {
                                     });
-                            out.withRawResponse(response);
                         } catch (Exception e) {
                             throw new RuntimeException(e);
                         }

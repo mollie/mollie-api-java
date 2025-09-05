@@ -25,14 +25,14 @@ mandates for cards, your customers need to perform a 'first payment' with their 
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.CreateMandateResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateMandateResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws CreateMandateResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -42,10 +42,10 @@ public class Application {
 
         CreateMandateResponse res = sdk.mandates().create()
                 .customerId("cst_5B8cwPMGnU")
-                .requestBody(CreateMandateRequestBody.builder()
-                    .method(CreateMandateMethod.DIRECTDEBIT)
-                    .consumerName("John Doe")
+                .entityMandate(EntityMandate.builder()
                     .id("mdt_5B8cwPMGnU")
+                    .method(EntityMandateMethod.DIRECTDEBIT)
+                    .consumerName("John Doe")
                     .consumerAccount("NL55INGB0000000000")
                     .consumerBic("BANKBIC")
                     .consumerEmail("example@email.com")
@@ -53,11 +53,12 @@ public class Application {
                     .mandateReference("ID-1023892")
                     .paypalBillingAgreementId("B-12A34567B8901234CD")
                     .payPalVaultId("8kk8451t")
+                    .customerId("cst_5B8cwPMGnU")
                     .testmode(false)
                     .build())
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.mandateResponse().isPresent()) {
             // handle response
         }
     }
@@ -66,10 +67,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `customerId`                                                                               | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related customer.                                                    | cst_5B8cwPMGnU                                                                             |
-| `requestBody`                                                                              | [Optional\<CreateMandateRequestBody>](../../models/operations/CreateMandateRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          | Example                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `customerId`                                                         | *String*                                                             | :heavy_check_mark:                                                   | Provide the ID of the related customer.                              | cst_5B8cwPMGnU                                                       |
+| `entityMandate`                                                      | [Optional\<EntityMandate>](../../models/components/EntityMandate.md) | :heavy_minus_sign:                                                   | N/A                                                                  |                                                                      |
 
 ### Response
 
@@ -77,10 +78,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| models/errors/CreateMandateResponseBody | 404                                     | application/hal+json                    |
-| models/errors/APIException              | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
 
@@ -95,15 +96,16 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ListMandatesMandatesResponseBody;
-import com.mollie.mollie.models.errors.ListMandatesResponseBody;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListMandatesRequest;
+import com.mollie.mollie.models.operations.ListMandatesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ListMandatesResponseBody, ListMandatesMandatesResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -115,7 +117,7 @@ public class Application {
                 .customerId("cst_5B8cwPMGnU")
                 .from("mdt_5B8cwPMGnU")
                 .limit(50L)
-                .sort(ListMandatesQueryParamSort.DESC)
+                .sort(ListSort.DESC)
                 .testmode(false)
                 .build();
 
@@ -142,11 +144,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                                     | Status Code                                    | Content Type                                   |
-| ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| models/errors/ListMandatesResponseBody         | 400                                            | application/hal+json                           |
-| models/errors/ListMandatesMandatesResponseBody | 404                                            | application/hal+json                           |
-| models/errors/APIException                     | 4XX, 5XX                                       | \*/\*                                          |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
 
@@ -161,13 +162,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.GetMandateResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetMandateResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws GetMandateResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -181,7 +182,7 @@ public class Application {
                 .testmode(false)
                 .call();
 
-        if (res.object().isPresent()) {
+        if (res.mandateResponse().isPresent()) {
             // handle response
         }
     }
@@ -202,10 +203,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                           | Status Code                          | Content Type                         |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ |
-| models/errors/GetMandateResponseBody | 404                                  | application/hal+json                 |
-| models/errors/APIException           | 4XX, 5XX                             | \*/\*                                |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## revoke
 
@@ -220,14 +221,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.RevokeMandateResponseBody;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.RevokeMandateRequestBody;
 import com.mollie.mollie.models.operations.RevokeMandateResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws RevokeMandateResponseBody, Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -264,7 +265,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                              | Status Code                             | Content Type                            |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| models/errors/RevokeMandateResponseBody | 404                                     | application/hal+json                    |
-| models/errors/APIException              | 4XX, 5XX                                | \*/\*                                   |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

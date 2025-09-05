@@ -5,6 +5,8 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.ParameterLocale;
+import com.mollie.mollie.models.components.SequenceType;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -23,11 +25,10 @@ public class GetMethodRequest {
     private String id;
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Response language
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
-    private Optional<? extends GetMethodQueryParamLocale> locale;
+    private Optional<? extends ParameterLocale> locale;
 
     /**
      * If provided, the `minimumAmount` and `maximumAmount` will be converted
@@ -47,11 +48,10 @@ public class GetMethodRequest {
     private Optional<String> profileId;
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private JsonNullable<? extends GetMethodQueryParamInclude> include;
+    private JsonNullable<String> include;
 
     /**
      * Set this parameter to `first` to only return the methods that
@@ -60,7 +60,7 @@ public class GetMethodRequest {
      * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sequenceType")
-    private Optional<? extends GetMethodQueryParamSequenceType> sequenceType;
+    private Optional<? extends SequenceType> sequenceType;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -75,11 +75,11 @@ public class GetMethodRequest {
     @JsonCreator
     public GetMethodRequest(
             String id,
-            Optional<? extends GetMethodQueryParamLocale> locale,
+            Optional<? extends ParameterLocale> locale,
             Optional<String> currency,
             Optional<String> profileId,
-            JsonNullable<? extends GetMethodQueryParamInclude> include,
-            Optional<? extends GetMethodQueryParamSequenceType> sequenceType,
+            JsonNullable<String> include,
+            Optional<? extends SequenceType> sequenceType,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(locale, "locale");
@@ -113,13 +113,12 @@ public class GetMethodRequest {
     }
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Response language
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetMethodQueryParamLocale> locale() {
-        return (Optional<GetMethodQueryParamLocale>) locale;
+    public Optional<ParameterLocale> locale() {
+        return (Optional<ParameterLocale>) locale;
     }
 
     /**
@@ -144,13 +143,11 @@ public class GetMethodRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetMethodQueryParamInclude> include() {
-        return (JsonNullable<GetMethodQueryParamInclude>) include;
+    public JsonNullable<String> include() {
+        return include;
     }
 
     /**
@@ -161,8 +158,8 @@ public class GetMethodRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetMethodQueryParamSequenceType> sequenceType() {
-        return (Optional<GetMethodQueryParamSequenceType>) sequenceType;
+    public Optional<SequenceType> sequenceType() {
+        return (Optional<SequenceType>) sequenceType;
     }
 
     /**
@@ -192,10 +189,9 @@ public class GetMethodRequest {
     }
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Response language
      */
-    public GetMethodRequest withLocale(GetMethodQueryParamLocale locale) {
+    public GetMethodRequest withLocale(ParameterLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = Optional.ofNullable(locale);
         return this;
@@ -203,10 +199,9 @@ public class GetMethodRequest {
 
 
     /**
-     * Passing a locale will sort the payment methods in the preferred order
-     * for the country, and translate the payment method names in the corresponding language.
+     * Response language
      */
-    public GetMethodRequest withLocale(Optional<? extends GetMethodQueryParamLocale> locale) {
+    public GetMethodRequest withLocale(Optional<? extends ParameterLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -261,20 +256,18 @@ public class GetMethodRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    public GetMethodRequest withInclude(GetMethodQueryParamInclude include) {
+    public GetMethodRequest withInclude(String include) {
         Utils.checkNotNull(include, "include");
         this.include = JsonNullable.of(include);
         return this;
     }
 
     /**
-     * This endpoint allows you to include additional information via the
-     * `include` query string parameter.
+     * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    public GetMethodRequest withInclude(JsonNullable<? extends GetMethodQueryParamInclude> include) {
+    public GetMethodRequest withInclude(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
         this.include = include;
         return this;
@@ -286,7 +279,7 @@ public class GetMethodRequest {
      * 
      * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
      */
-    public GetMethodRequest withSequenceType(GetMethodQueryParamSequenceType sequenceType) {
+    public GetMethodRequest withSequenceType(SequenceType sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = Optional.ofNullable(sequenceType);
         return this;
@@ -299,7 +292,7 @@ public class GetMethodRequest {
      * 
      * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
      */
-    public GetMethodRequest withSequenceType(Optional<? extends GetMethodQueryParamSequenceType> sequenceType) {
+    public GetMethodRequest withSequenceType(Optional<? extends SequenceType> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = sequenceType;
         return this;
@@ -375,15 +368,15 @@ public class GetMethodRequest {
 
         private String id;
 
-        private Optional<? extends GetMethodQueryParamLocale> locale = Optional.empty();
+        private Optional<? extends ParameterLocale> locale = Optional.empty();
 
         private Optional<String> currency = Optional.empty();
 
         private Optional<String> profileId = Optional.empty();
 
-        private JsonNullable<? extends GetMethodQueryParamInclude> include = JsonNullable.undefined();
+        private JsonNullable<String> include = JsonNullable.undefined();
 
-        private Optional<? extends GetMethodQueryParamSequenceType> sequenceType = Optional.empty();
+        private Optional<? extends SequenceType> sequenceType = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -403,20 +396,18 @@ public class GetMethodRequest {
 
 
         /**
-         * Passing a locale will sort the payment methods in the preferred order
-         * for the country, and translate the payment method names in the corresponding language.
+         * Response language
          */
-        public Builder locale(GetMethodQueryParamLocale locale) {
+        public Builder locale(ParameterLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = Optional.ofNullable(locale);
             return this;
         }
 
         /**
-         * Passing a locale will sort the payment methods in the preferred order
-         * for the country, and translate the payment method names in the corresponding language.
+         * Response language
          */
-        public Builder locale(Optional<? extends GetMethodQueryParamLocale> locale) {
+        public Builder locale(Optional<? extends ParameterLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -472,20 +463,18 @@ public class GetMethodRequest {
 
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          */
-        public Builder include(GetMethodQueryParamInclude include) {
+        public Builder include(String include) {
             Utils.checkNotNull(include, "include");
             this.include = JsonNullable.of(include);
             return this;
         }
 
         /**
-         * This endpoint allows you to include additional information via the
-         * `include` query string parameter.
+         * This endpoint allows you to include additional information via the `include` query string parameter.
          */
-        public Builder include(JsonNullable<? extends GetMethodQueryParamInclude> include) {
+        public Builder include(JsonNullable<String> include) {
             Utils.checkNotNull(include, "include");
             this.include = include;
             return this;
@@ -498,7 +487,7 @@ public class GetMethodRequest {
          * 
          * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
          */
-        public Builder sequenceType(GetMethodQueryParamSequenceType sequenceType) {
+        public Builder sequenceType(SequenceType sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = Optional.ofNullable(sequenceType);
             return this;
@@ -510,7 +499,7 @@ public class GetMethodRequest {
          * 
          * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
          */
-        public Builder sequenceType(Optional<? extends GetMethodQueryParamSequenceType> sequenceType) {
+        public Builder sequenceType(Optional<? extends SequenceType> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = sequenceType;
             return this;

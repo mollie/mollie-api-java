@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.PaymentLinkResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -35,22 +36,22 @@ public class UpdatePaymentLinkResponse implements Response {
     /**
      * The payment link object.
      */
-    private Optional<? extends UpdatePaymentLinkResponseBody> object;
+    private Optional<? extends PaymentLinkResponse> paymentLinkResponse;
 
     @JsonCreator
     public UpdatePaymentLinkResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends UpdatePaymentLinkResponseBody> object) {
+            Optional<? extends PaymentLinkResponse> paymentLinkResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(paymentLinkResponse, "paymentLinkResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.paymentLinkResponse = paymentLinkResponse;
     }
     
     public UpdatePaymentLinkResponse(
@@ -90,8 +91,8 @@ public class UpdatePaymentLinkResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdatePaymentLinkResponseBody> object() {
-        return (Optional<UpdatePaymentLinkResponseBody>) object;
+    public Optional<PaymentLinkResponse> paymentLinkResponse() {
+        return (Optional<PaymentLinkResponse>) paymentLinkResponse;
     }
 
     public static Builder builder() {
@@ -129,9 +130,9 @@ public class UpdatePaymentLinkResponse implements Response {
     /**
      * The payment link object.
      */
-    public UpdatePaymentLinkResponse withObject(UpdatePaymentLinkResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public UpdatePaymentLinkResponse withPaymentLinkResponse(PaymentLinkResponse paymentLinkResponse) {
+        Utils.checkNotNull(paymentLinkResponse, "paymentLinkResponse");
+        this.paymentLinkResponse = Optional.ofNullable(paymentLinkResponse);
         return this;
     }
 
@@ -139,9 +140,9 @@ public class UpdatePaymentLinkResponse implements Response {
     /**
      * The payment link object.
      */
-    public UpdatePaymentLinkResponse withObject(Optional<? extends UpdatePaymentLinkResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public UpdatePaymentLinkResponse withPaymentLinkResponse(Optional<? extends PaymentLinkResponse> paymentLinkResponse) {
+        Utils.checkNotNull(paymentLinkResponse, "paymentLinkResponse");
+        this.paymentLinkResponse = paymentLinkResponse;
         return this;
     }
 
@@ -158,14 +159,14 @@ public class UpdatePaymentLinkResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.paymentLinkResponse, other.paymentLinkResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            paymentLinkResponse);
     }
     
     @Override
@@ -174,7 +175,7 @@ public class UpdatePaymentLinkResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "paymentLinkResponse", paymentLinkResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,7 +187,7 @@ public class UpdatePaymentLinkResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends UpdatePaymentLinkResponseBody> object = Optional.empty();
+        private Optional<? extends PaymentLinkResponse> paymentLinkResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -226,18 +227,18 @@ public class UpdatePaymentLinkResponse implements Response {
         /**
          * The payment link object.
          */
-        public Builder object(UpdatePaymentLinkResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder paymentLinkResponse(PaymentLinkResponse paymentLinkResponse) {
+            Utils.checkNotNull(paymentLinkResponse, "paymentLinkResponse");
+            this.paymentLinkResponse = Optional.ofNullable(paymentLinkResponse);
             return this;
         }
 
         /**
          * The payment link object.
          */
-        public Builder object(Optional<? extends UpdatePaymentLinkResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder paymentLinkResponse(Optional<? extends PaymentLinkResponse> paymentLinkResponse) {
+            Utils.checkNotNull(paymentLinkResponse, "paymentLinkResponse");
+            this.paymentLinkResponse = paymentLinkResponse;
             return this;
         }
 
@@ -245,7 +246,7 @@ public class UpdatePaymentLinkResponse implements Response {
 
             return new UpdatePaymentLinkResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                paymentLinkResponse);
         }
 
     }

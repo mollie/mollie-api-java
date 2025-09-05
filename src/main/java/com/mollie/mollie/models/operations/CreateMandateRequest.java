@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.EntityMandate;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -22,16 +23,16 @@ public class CreateMandateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends CreateMandateRequestBody> requestBody;
+    private Optional<? extends EntityMandate> entityMandate;
 
     @JsonCreator
     public CreateMandateRequest(
             String customerId,
-            Optional<? extends CreateMandateRequestBody> requestBody) {
+            Optional<? extends EntityMandate> entityMandate) {
         Utils.checkNotNull(customerId, "customerId");
-        Utils.checkNotNull(requestBody, "requestBody");
+        Utils.checkNotNull(entityMandate, "entityMandate");
         this.customerId = customerId;
-        this.requestBody = requestBody;
+        this.entityMandate = entityMandate;
     }
     
     public CreateMandateRequest(
@@ -49,8 +50,8 @@ public class CreateMandateRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CreateMandateRequestBody> requestBody() {
-        return (Optional<CreateMandateRequestBody>) requestBody;
+    public Optional<EntityMandate> entityMandate() {
+        return (Optional<EntityMandate>) entityMandate;
     }
 
     public static Builder builder() {
@@ -67,16 +68,16 @@ public class CreateMandateRequest {
         return this;
     }
 
-    public CreateMandateRequest withRequestBody(CreateMandateRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
+    public CreateMandateRequest withEntityMandate(EntityMandate entityMandate) {
+        Utils.checkNotNull(entityMandate, "entityMandate");
+        this.entityMandate = Optional.ofNullable(entityMandate);
         return this;
     }
 
 
-    public CreateMandateRequest withRequestBody(Optional<? extends CreateMandateRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreateMandateRequest withEntityMandate(Optional<? extends EntityMandate> entityMandate) {
+        Utils.checkNotNull(entityMandate, "entityMandate");
+        this.entityMandate = entityMandate;
         return this;
     }
 
@@ -91,20 +92,20 @@ public class CreateMandateRequest {
         CreateMandateRequest other = (CreateMandateRequest) o;
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
-            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.entityMandate, other.entityMandate);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, requestBody);
+            customerId, entityMandate);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateMandateRequest.class,
                 "customerId", customerId,
-                "requestBody", requestBody);
+                "entityMandate", entityMandate);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -112,7 +113,7 @@ public class CreateMandateRequest {
 
         private String customerId;
 
-        private Optional<? extends CreateMandateRequestBody> requestBody = Optional.empty();
+        private Optional<? extends EntityMandate> entityMandate = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -129,22 +130,22 @@ public class CreateMandateRequest {
         }
 
 
-        public Builder requestBody(CreateMandateRequestBody requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
+        public Builder entityMandate(EntityMandate entityMandate) {
+            Utils.checkNotNull(entityMandate, "entityMandate");
+            this.entityMandate = Optional.ofNullable(entityMandate);
             return this;
         }
 
-        public Builder requestBody(Optional<? extends CreateMandateRequestBody> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder entityMandate(Optional<? extends EntityMandate> entityMandate) {
+            Utils.checkNotNull(entityMandate, "entityMandate");
+            this.entityMandate = entityMandate;
             return this;
         }
 
         public CreateMandateRequest build() {
 
             return new CreateMandateRequest(
-                customerId, requestBody);
+                customerId, entityMandate);
         }
 
     }

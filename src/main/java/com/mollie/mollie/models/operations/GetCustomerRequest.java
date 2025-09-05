@@ -10,7 +10,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -25,7 +24,7 @@ public class GetCustomerRequest {
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private JsonNullable<? extends GetCustomerQueryParamInclude> include;
+    private JsonNullable<String> include;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -40,7 +39,7 @@ public class GetCustomerRequest {
     @JsonCreator
     public GetCustomerRequest(
             String customerId,
-            JsonNullable<? extends GetCustomerQueryParamInclude> include,
+            JsonNullable<String> include,
             JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(include, "include");
@@ -66,10 +65,9 @@ public class GetCustomerRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<GetCustomerQueryParamInclude> include() {
-        return (JsonNullable<GetCustomerQueryParamInclude>) include;
+    public JsonNullable<String> include() {
+        return include;
     }
 
     /**
@@ -101,7 +99,7 @@ public class GetCustomerRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    public GetCustomerRequest withInclude(GetCustomerQueryParamInclude include) {
+    public GetCustomerRequest withInclude(String include) {
         Utils.checkNotNull(include, "include");
         this.include = JsonNullable.of(include);
         return this;
@@ -110,7 +108,7 @@ public class GetCustomerRequest {
     /**
      * This endpoint allows you to include additional information via the `include` query string parameter.
      */
-    public GetCustomerRequest withInclude(JsonNullable<? extends GetCustomerQueryParamInclude> include) {
+    public GetCustomerRequest withInclude(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
         this.include = include;
         return this;
@@ -176,7 +174,7 @@ public class GetCustomerRequest {
 
         private String customerId;
 
-        private JsonNullable<? extends GetCustomerQueryParamInclude> include = JsonNullable.undefined();
+        private JsonNullable<String> include = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -198,7 +196,7 @@ public class GetCustomerRequest {
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          */
-        public Builder include(GetCustomerQueryParamInclude include) {
+        public Builder include(String include) {
             Utils.checkNotNull(include, "include");
             this.include = JsonNullable.of(include);
             return this;
@@ -207,7 +205,7 @@ public class GetCustomerRequest {
         /**
          * This endpoint allows you to include additional information via the `include` query string parameter.
          */
-        public Builder include(JsonNullable<? extends GetCustomerQueryParamInclude> include) {
+        public Builder include(JsonNullable<String> include) {
             Utils.checkNotNull(include, "include");
             this.include = include;
             return this;

@@ -20,7 +20,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class ListBalancesRequestBuilder {
 
     private JsonNullable<String> currency = JsonNullable.undefined();
-    private Optional<String> from = Optional.empty();
+    private JsonNullable<String> from = JsonNullable.undefined();
     private JsonNullable<Long> limit = JsonNullable.undefined();
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -41,14 +41,14 @@ public class ListBalancesRequestBuilder {
         this.currency = currency;
         return this;
     }
-                
+
     public ListBalancesRequestBuilder from(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
 
-    public ListBalancesRequestBuilder from(Optional<String> from) {
+    public ListBalancesRequestBuilder from(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;

@@ -5,10 +5,9 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.components.EntityRefund;
 import com.mollie.mollie.models.operations.CancelRefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundRequest;
-import com.mollie.mollie.models.operations.CreateRefundRequestBody;
-import com.mollie.mollie.models.operations.GetRefundQueryParamEmbed;
 import com.mollie.mollie.models.operations.GetRefundRequest;
 import com.mollie.mollie.models.operations.ListAllRefundsRequest;
 import com.mollie.mollie.models.operations.ListRefundsRequest;
@@ -86,18 +85,18 @@ public class AsyncRefunds {
      * transfer or by refunding the amount to your customer's credit card.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @param requestBody 
+     * @param entityRefund 
      * @param options additional options
      * @return CompletableFuture&lt;CreateRefundResponse&gt; - The async response
      */
     public CompletableFuture<CreateRefundResponse> create(
-            String paymentId, Optional<? extends CreateRefundRequestBody> requestBody,
+            String paymentId, Optional<? extends EntityRefund> entityRefund,
             Optional<Options> options) {
         CreateRefundRequest request =
             CreateRefundRequest
                 .builder()
                 .paymentId(paymentId)
-                .requestBody(requestBody)
+                .entityRefund(entityRefund)
                 .build();
         AsyncRequestOperation<CreateRefundRequest, CreateRefundResponse> operation
               = new CreateRefund.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -174,7 +173,7 @@ public class AsyncRefunds {
      */
     public CompletableFuture<GetRefundResponse> get(String paymentId, String refundId) {
         return get(
-                paymentId, refundId, Optional.empty(),
+                paymentId, refundId, JsonNullable.undefined(),
                 JsonNullable.undefined(), Optional.empty());
     }
 
@@ -197,7 +196,7 @@ public class AsyncRefunds {
      */
     public CompletableFuture<GetRefundResponse> get(
             String paymentId, String refundId,
-            Optional<? extends GetRefundQueryParamEmbed> embed, JsonNullable<Boolean> testmode,
+            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
             Optional<Options> options) {
         GetRefundRequest request =
             GetRefundRequest

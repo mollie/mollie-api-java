@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.Currencies;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
@@ -21,7 +22,7 @@ public class ListSettlementsRequest {
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
-    private Optional<String> from;
+    private JsonNullable<String> from;
 
     /**
      * The maximum number of items to return. Defaults to 50 items.
@@ -34,7 +35,7 @@ public class ListSettlementsRequest {
      * the balance token that the settlement was settled to.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=balanceId")
-    private JsonNullable<String> balanceId;
+    private Optional<String> balanceId;
 
     /**
      * Provide the year to query the settlements. Must be used combined with `month` parameter
@@ -52,16 +53,16 @@ public class ListSettlementsRequest {
      * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=currencies")
-    private JsonNullable<? extends Currencies> currencies;
+    private Optional<? extends Currencies> currencies;
 
     @JsonCreator
     public ListSettlementsRequest(
-            Optional<String> from,
+            JsonNullable<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<String> balanceId,
+            Optional<String> balanceId,
             JsonNullable<String> year,
             JsonNullable<String> month,
-            JsonNullable<? extends Currencies> currencies) {
+            Optional<? extends Currencies> currencies) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(balanceId, "balanceId");
@@ -77,8 +78,8 @@ public class ListSettlementsRequest {
     }
     
     public ListSettlementsRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -86,7 +87,7 @@ public class ListSettlementsRequest {
      * result set.
      */
     @JsonIgnore
-    public Optional<String> from() {
+    public JsonNullable<String> from() {
         return from;
     }
 
@@ -103,7 +104,7 @@ public class ListSettlementsRequest {
      * the balance token that the settlement was settled to.
      */
     @JsonIgnore
-    public JsonNullable<String> balanceId() {
+    public Optional<String> balanceId() {
         return balanceId;
     }
 
@@ -128,8 +129,8 @@ public class ListSettlementsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Currencies> currencies() {
-        return (JsonNullable<Currencies>) currencies;
+    public Optional<Currencies> currencies() {
+        return (Optional<Currencies>) currencies;
     }
 
     public static Builder builder() {
@@ -143,16 +144,15 @@ public class ListSettlementsRequest {
      */
     public ListSettlementsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.ofNullable(from);
+        this.from = JsonNullable.of(from);
         return this;
     }
-
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      * result set.
      */
-    public ListSettlementsRequest withFrom(Optional<String> from) {
+    public ListSettlementsRequest withFrom(JsonNullable<String> from) {
         Utils.checkNotNull(from, "from");
         this.from = from;
         return this;
@@ -182,15 +182,16 @@ public class ListSettlementsRequest {
      */
     public ListSettlementsRequest withBalanceId(String balanceId) {
         Utils.checkNotNull(balanceId, "balanceId");
-        this.balanceId = JsonNullable.of(balanceId);
+        this.balanceId = Optional.ofNullable(balanceId);
         return this;
     }
+
 
     /**
      * Provide the token of the balance to filter the settlements by. This is
      * the balance token that the settlement was settled to.
      */
-    public ListSettlementsRequest withBalanceId(JsonNullable<String> balanceId) {
+    public ListSettlementsRequest withBalanceId(Optional<String> balanceId) {
         Utils.checkNotNull(balanceId, "balanceId");
         this.balanceId = balanceId;
         return this;
@@ -237,14 +238,15 @@ public class ListSettlementsRequest {
      */
     public ListSettlementsRequest withCurrencies(Currencies currencies) {
         Utils.checkNotNull(currencies, "currencies");
-        this.currencies = JsonNullable.of(currencies);
+        this.currencies = Optional.ofNullable(currencies);
         return this;
     }
+
 
     /**
      * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
      */
-    public ListSettlementsRequest withCurrencies(JsonNullable<? extends Currencies> currencies) {
+    public ListSettlementsRequest withCurrencies(Optional<? extends Currencies> currencies) {
         Utils.checkNotNull(currencies, "currencies");
         this.currencies = currencies;
         return this;
@@ -289,17 +291,17 @@ public class ListSettlementsRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> from = Optional.empty();
+        private JsonNullable<String> from = JsonNullable.undefined();
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<String> balanceId = JsonNullable.undefined();
+        private Optional<String> balanceId = Optional.empty();
 
         private JsonNullable<String> year = JsonNullable.undefined();
 
         private JsonNullable<String> month = JsonNullable.undefined();
 
-        private JsonNullable<? extends Currencies> currencies = JsonNullable.undefined();
+        private Optional<? extends Currencies> currencies = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -312,7 +314,7 @@ public class ListSettlementsRequest {
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
-            this.from = Optional.ofNullable(from);
+            this.from = JsonNullable.of(from);
             return this;
         }
 
@@ -320,7 +322,7 @@ public class ListSettlementsRequest {
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
          * result set.
          */
-        public Builder from(Optional<String> from) {
+        public Builder from(JsonNullable<String> from) {
             Utils.checkNotNull(from, "from");
             this.from = from;
             return this;
@@ -352,7 +354,7 @@ public class ListSettlementsRequest {
          */
         public Builder balanceId(String balanceId) {
             Utils.checkNotNull(balanceId, "balanceId");
-            this.balanceId = JsonNullable.of(balanceId);
+            this.balanceId = Optional.ofNullable(balanceId);
             return this;
         }
 
@@ -360,7 +362,7 @@ public class ListSettlementsRequest {
          * Provide the token of the balance to filter the settlements by. This is
          * the balance token that the settlement was settled to.
          */
-        public Builder balanceId(JsonNullable<String> balanceId) {
+        public Builder balanceId(Optional<String> balanceId) {
             Utils.checkNotNull(balanceId, "balanceId");
             this.balanceId = balanceId;
             return this;
@@ -410,14 +412,14 @@ public class ListSettlementsRequest {
          */
         public Builder currencies(Currencies currencies) {
             Utils.checkNotNull(currencies, "currencies");
-            this.currencies = JsonNullable.of(currencies);
+            this.currencies = Optional.ofNullable(currencies);
             return this;
         }
 
         /**
          * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
          */
-        public Builder currencies(JsonNullable<? extends Currencies> currencies) {
+        public Builder currencies(Optional<? extends Currencies> currencies) {
             Utils.checkNotNull(currencies, "currencies");
             this.currencies = currencies;
             return this;

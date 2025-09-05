@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.RouteGetResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -22,11 +23,11 @@ public class PaymentListRoutesEmbedded {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("routes")
-    private Optional<? extends List<Routes>> routes;
+    private Optional<? extends List<RouteGetResponse>> routes;
 
     @JsonCreator
     public PaymentListRoutesEmbedded(
-            @JsonProperty("routes") Optional<? extends List<Routes>> routes) {
+            @JsonProperty("routes") Optional<? extends List<RouteGetResponse>> routes) {
         Utils.checkNotNull(routes, "routes");
         this.routes = routes;
     }
@@ -40,8 +41,8 @@ public class PaymentListRoutesEmbedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Routes>> routes() {
-        return (Optional<List<Routes>>) routes;
+    public Optional<List<RouteGetResponse>> routes() {
+        return (Optional<List<RouteGetResponse>>) routes;
     }
 
     public static Builder builder() {
@@ -52,7 +53,7 @@ public class PaymentListRoutesEmbedded {
     /**
      * An array of route objects.
      */
-    public PaymentListRoutesEmbedded withRoutes(List<Routes> routes) {
+    public PaymentListRoutesEmbedded withRoutes(List<RouteGetResponse> routes) {
         Utils.checkNotNull(routes, "routes");
         this.routes = Optional.ofNullable(routes);
         return this;
@@ -62,7 +63,7 @@ public class PaymentListRoutesEmbedded {
     /**
      * An array of route objects.
      */
-    public PaymentListRoutesEmbedded withRoutes(Optional<? extends List<Routes>> routes) {
+    public PaymentListRoutesEmbedded withRoutes(Optional<? extends List<RouteGetResponse>> routes) {
         Utils.checkNotNull(routes, "routes");
         this.routes = routes;
         return this;
@@ -96,7 +97,7 @@ public class PaymentListRoutesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<Routes>> routes = Optional.empty();
+        private Optional<? extends List<RouteGetResponse>> routes = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -106,7 +107,7 @@ public class PaymentListRoutesEmbedded {
         /**
          * An array of route objects.
          */
-        public Builder routes(List<Routes> routes) {
+        public Builder routes(List<RouteGetResponse> routes) {
             Utils.checkNotNull(routes, "routes");
             this.routes = Optional.ofNullable(routes);
             return this;
@@ -115,7 +116,7 @@ public class PaymentListRoutesEmbedded {
         /**
          * An array of route objects.
          */
-        public Builder routes(Optional<? extends List<Routes>> routes) {
+        public Builder routes(Optional<? extends List<RouteGetResponse>> routes) {
             Utils.checkNotNull(routes, "routes");
             this.routes = routes;
             return this;

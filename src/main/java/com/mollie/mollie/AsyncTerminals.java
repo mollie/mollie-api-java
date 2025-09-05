@@ -5,8 +5,8 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.operations.GetTerminalRequest;
-import com.mollie.mollie.models.operations.ListTerminalsQueryParamSort;
 import com.mollie.mollie.models.operations.ListTerminalsRequest;
 import com.mollie.mollie.models.operations.async.GetTerminalRequestBuilder;
 import com.mollie.mollie.models.operations.async.GetTerminalResponse;
@@ -80,8 +80,7 @@ public class AsyncTerminals {
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
-     *         newest to oldest.
+     * @param sort 
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -92,7 +91,7 @@ public class AsyncTerminals {
      */
     public CompletableFuture<ListTerminalsResponse> list(
             Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<? extends ListTerminalsQueryParamSort> sort, JsonNullable<Boolean> testmode,
+            JsonNullable<? extends ListSort> sort, JsonNullable<Boolean> testmode,
             Optional<Options> options) {
         ListTerminalsRequest request =
             ListTerminalsRequest

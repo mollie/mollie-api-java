@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.SubscriptionRequest;
 import com.mollie.mollie.operations.CreateSubscription;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
@@ -17,7 +18,7 @@ import java.util.Optional;
 public class CreateSubscriptionRequestBuilder {
 
     private String customerId;
-    private Optional<? extends CreateSubscriptionRequestBody> requestBody = Optional.empty();
+    private Optional<? extends SubscriptionRequest> subscriptionRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -31,15 +32,15 @@ public class CreateSubscriptionRequestBuilder {
         return this;
     }
                 
-    public CreateSubscriptionRequestBuilder requestBody(CreateSubscriptionRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
+    public CreateSubscriptionRequestBuilder subscriptionRequest(SubscriptionRequest subscriptionRequest) {
+        Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
+        this.subscriptionRequest = Optional.of(subscriptionRequest);
         return this;
     }
 
-    public CreateSubscriptionRequestBuilder requestBody(Optional<? extends CreateSubscriptionRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CreateSubscriptionRequestBuilder subscriptionRequest(Optional<? extends SubscriptionRequest> subscriptionRequest) {
+        Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
+        this.subscriptionRequest = subscriptionRequest;
         return this;
     }
                 
@@ -59,7 +60,7 @@ public class CreateSubscriptionRequestBuilder {
     private CreateSubscriptionRequest buildRequest() {
 
         CreateSubscriptionRequest request = new CreateSubscriptionRequest(customerId,
-            requestBody);
+            subscriptionRequest);
 
         return request;
     }
