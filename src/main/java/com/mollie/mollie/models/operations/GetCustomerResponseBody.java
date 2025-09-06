@@ -64,7 +64,7 @@ public class GetCustomerResponseBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private Optional<? extends LocaleResponse> locale;
+    private JsonNullable<? extends LocaleResponse> locale;
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
@@ -100,7 +100,7 @@ public class GetCustomerResponseBody {
             @JsonProperty("mode") Optional<? extends Mode> mode,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("email") JsonNullable<String> email,
-            @JsonProperty("locale") Optional<? extends LocaleResponse> locale,
+            @JsonProperty("locale") JsonNullable<? extends LocaleResponse> locale,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("_links") Optional<? extends GetCustomerLinks> links,
@@ -129,7 +129,7 @@ public class GetCustomerResponseBody {
     
     public GetCustomerResponseBody() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -177,8 +177,8 @@ public class GetCustomerResponseBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<LocaleResponse> locale() {
-        return (Optional<LocaleResponse>) locale;
+    public JsonNullable<LocaleResponse> locale() {
+        return (JsonNullable<LocaleResponse>) locale;
     }
 
     /**
@@ -311,15 +311,14 @@ public class GetCustomerResponseBody {
      */
     public GetCustomerResponseBody withLocale(LocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = Optional.ofNullable(locale);
+        this.locale = JsonNullable.of(locale);
         return this;
     }
-
 
     /**
      * Allows you to preset the language to be used.
      */
-    public GetCustomerResponseBody withLocale(Optional<? extends LocaleResponse> locale) {
+    public GetCustomerResponseBody withLocale(JsonNullable<? extends LocaleResponse> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -455,7 +454,7 @@ public class GetCustomerResponseBody {
 
         private JsonNullable<String> email = JsonNullable.undefined();
 
-        private Optional<? extends LocaleResponse> locale = Optional.empty();
+        private JsonNullable<? extends LocaleResponse> locale = JsonNullable.undefined();
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
@@ -564,14 +563,14 @@ public class GetCustomerResponseBody {
          */
         public Builder locale(LocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = Optional.ofNullable(locale);
+            this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
          * Allows you to preset the language to be used.
          */
-        public Builder locale(Optional<? extends LocaleResponse> locale) {
+        public Builder locale(JsonNullable<? extends LocaleResponse> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

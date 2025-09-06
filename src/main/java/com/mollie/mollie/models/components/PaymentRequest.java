@@ -149,7 +149,7 @@ public class PaymentRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private Optional<? extends Locale> locale;
+    private JsonNullable<? extends Locale> locale;
 
     /**
      * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
@@ -441,7 +441,7 @@ public class PaymentRequest {
             @JsonProperty("lines") JsonNullable<? extends List<PaymentRequestLines>> lines,
             @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
-            @JsonProperty("locale") Optional<? extends Locale> locale,
+            @JsonProperty("locale") JsonNullable<? extends Locale> locale,
             @JsonProperty("method") JsonNullable<? extends Method> method,
             @JsonProperty("issuer") JsonNullable<String> issuer,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
@@ -563,7 +563,7 @@ public class PaymentRequest {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
@@ -723,8 +723,8 @@ public class PaymentRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Locale> locale() {
-        return (Optional<Locale>) locale;
+    public JsonNullable<Locale> locale() {
+        return (JsonNullable<Locale>) locale;
     }
 
     /**
@@ -1345,15 +1345,14 @@ public class PaymentRequest {
      */
     public PaymentRequest withLocale(Locale locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = Optional.ofNullable(locale);
+        this.locale = JsonNullable.of(locale);
         return this;
     }
-
 
     /**
      * Allows you to preset the language to be used.
      */
-    public PaymentRequest withLocale(Optional<? extends Locale> locale) {
+    public PaymentRequest withLocale(JsonNullable<? extends Locale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -2180,7 +2179,7 @@ public class PaymentRequest {
 
         private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
 
-        private Optional<? extends Locale> locale = Optional.empty();
+        private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
 
         private JsonNullable<? extends Method> method = JsonNullable.undefined();
 
@@ -2556,14 +2555,14 @@ public class PaymentRequest {
          */
         public Builder locale(Locale locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = Optional.ofNullable(locale);
+            this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
          * Allows you to preset the language to be used.
          */
-        public Builder locale(Optional<? extends Locale> locale) {
+        public Builder locale(JsonNullable<? extends Locale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

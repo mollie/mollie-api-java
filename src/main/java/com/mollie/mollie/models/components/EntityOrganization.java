@@ -51,7 +51,7 @@ public class EntityOrganization {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private Optional<? extends LocaleResponse> locale;
+    private JsonNullable<? extends LocaleResponse> locale;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -98,7 +98,7 @@ public class EntityOrganization {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("email") Optional<String> email,
-            @JsonProperty("locale") Optional<? extends LocaleResponse> locale,
+            @JsonProperty("locale") JsonNullable<? extends LocaleResponse> locale,
             @JsonProperty("address") Optional<? extends Address> address,
             @JsonProperty("registrationNumber") Optional<String> registrationNumber,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
@@ -128,7 +128,7 @@ public class EntityOrganization {
     
     public EntityOrganization() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty());
     }
@@ -171,8 +171,8 @@ public class EntityOrganization {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<LocaleResponse> locale() {
-        return (Optional<LocaleResponse>) locale;
+    public JsonNullable<LocaleResponse> locale() {
+        return (JsonNullable<LocaleResponse>) locale;
     }
 
     @SuppressWarnings("unchecked")
@@ -309,15 +309,14 @@ public class EntityOrganization {
      */
     public EntityOrganization withLocale(LocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = Optional.ofNullable(locale);
+        this.locale = JsonNullable.of(locale);
         return this;
     }
-
 
     /**
      * Allows you to preset the language to be used.
      */
-    public EntityOrganization withLocale(Optional<? extends LocaleResponse> locale) {
+    public EntityOrganization withLocale(JsonNullable<? extends LocaleResponse> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -479,7 +478,7 @@ public class EntityOrganization {
 
         private Optional<String> email = Optional.empty();
 
-        private Optional<? extends LocaleResponse> locale = Optional.empty();
+        private JsonNullable<? extends LocaleResponse> locale = JsonNullable.undefined();
 
         private Optional<? extends Address> address = Optional.empty();
 
@@ -579,14 +578,14 @@ public class EntityOrganization {
          */
         public Builder locale(LocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = Optional.ofNullable(locale);
+            this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
          * Allows you to preset the language to be used.
          */
-        public Builder locale(Optional<? extends LocaleResponse> locale) {
+        public Builder locale(JsonNullable<? extends LocaleResponse> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

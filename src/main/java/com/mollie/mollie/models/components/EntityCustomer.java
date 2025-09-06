@@ -42,7 +42,7 @@ public class EntityCustomer {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private Optional<? extends LocaleResponse> locale;
+    private JsonNullable<? extends LocaleResponse> locale;
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
@@ -68,7 +68,7 @@ public class EntityCustomer {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("email") JsonNullable<String> email,
-            @JsonProperty("locale") Optional<? extends LocaleResponse> locale,
+            @JsonProperty("locale") JsonNullable<? extends LocaleResponse> locale,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(id, "id");
@@ -87,7 +87,7 @@ public class EntityCustomer {
     
     public EntityCustomer() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -116,8 +116,8 @@ public class EntityCustomer {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<LocaleResponse> locale() {
-        return (Optional<LocaleResponse>) locale;
+    public JsonNullable<LocaleResponse> locale() {
+        return (JsonNullable<LocaleResponse>) locale;
     }
 
     /**
@@ -201,15 +201,14 @@ public class EntityCustomer {
      */
     public EntityCustomer withLocale(LocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = Optional.ofNullable(locale);
+        this.locale = JsonNullable.of(locale);
         return this;
     }
-
 
     /**
      * Allows you to preset the language to be used.
      */
-    public EntityCustomer withLocale(Optional<? extends LocaleResponse> locale) {
+    public EntityCustomer withLocale(JsonNullable<? extends LocaleResponse> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -306,7 +305,7 @@ public class EntityCustomer {
 
         private JsonNullable<String> email = JsonNullable.undefined();
 
-        private Optional<? extends LocaleResponse> locale = Optional.empty();
+        private JsonNullable<? extends LocaleResponse> locale = JsonNullable.undefined();
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
@@ -373,14 +372,14 @@ public class EntityCustomer {
          */
         public Builder locale(LocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = Optional.ofNullable(locale);
+            this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
          * Allows you to preset the language to be used.
          */
-        public Builder locale(Optional<? extends LocaleResponse> locale) {
+        public Builder locale(JsonNullable<? extends LocaleResponse> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

@@ -12,7 +12,7 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Owner
@@ -43,14 +43,14 @@ public class Owner {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private Optional<? extends LocaleResponse> locale;
+    private JsonNullable<? extends LocaleResponse> locale;
 
     @JsonCreator
     public Owner(
             @JsonProperty("email") String email,
             @JsonProperty("givenName") String givenName,
             @JsonProperty("familyName") String familyName,
-            @JsonProperty("locale") Optional<? extends LocaleResponse> locale) {
+            @JsonProperty("locale") JsonNullable<? extends LocaleResponse> locale) {
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(givenName, "givenName");
         Utils.checkNotNull(familyName, "familyName");
@@ -66,7 +66,7 @@ public class Owner {
             String givenName,
             String familyName) {
         this(email, givenName, familyName,
-            Optional.empty());
+            JsonNullable.undefined());
     }
 
     /**
@@ -98,8 +98,8 @@ public class Owner {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<LocaleResponse> locale() {
-        return (Optional<LocaleResponse>) locale;
+    public JsonNullable<LocaleResponse> locale() {
+        return (JsonNullable<LocaleResponse>) locale;
     }
 
     public static Builder builder() {
@@ -139,15 +139,14 @@ public class Owner {
      */
     public Owner withLocale(LocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = Optional.ofNullable(locale);
+        this.locale = JsonNullable.of(locale);
         return this;
     }
-
 
     /**
      * Allows you to preset the language to be used.
      */
-    public Owner withLocale(Optional<? extends LocaleResponse> locale) {
+    public Owner withLocale(JsonNullable<? extends LocaleResponse> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -194,7 +193,7 @@ public class Owner {
 
         private String familyName;
 
-        private Optional<? extends LocaleResponse> locale = Optional.empty();
+        private JsonNullable<? extends LocaleResponse> locale = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -236,14 +235,14 @@ public class Owner {
          */
         public Builder locale(LocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = Optional.ofNullable(locale);
+            this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
          * Allows you to preset the language to be used.
          */
-        public Builder locale(Optional<? extends LocaleResponse> locale) {
+        public Builder locale(JsonNullable<? extends LocaleResponse> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

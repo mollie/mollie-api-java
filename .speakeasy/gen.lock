@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 5361df49d53bcce56f67914ee4958cb4
+  docChecksum: 5b3c94b71c47f8438aa46ead6de7e7fd
   docVersion: 1.0.0
-  speakeasyVersion: 1.609.0
-  generationVersion: 2.692.0
-  releaseVersion: 0.18.0
-  configChecksum: 1dc0eb8412dbe97127f1b389d85cb2a9
+  speakeasyVersion: 1.611.0
+  generationVersion: 2.694.1
+  releaseVersion: 0.18.1
+  configChecksum: 9e9769e47d0f8d30fb22e79481e35526
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.47.0
+    core: 3.47.1
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.83.0
@@ -5568,3 +5568,4 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes Detected:\n* `client.payments.get()`:  `response.locale` **Changed** **Breaking** :warning:\n* `client.customers.list()`:  `response._embedded.customers.[].locale` **Changed** **Breaking** :warning:\n* `client.organizations.getCurrent()`:  `response.locale` **Changed** **Breaking** :warning:\n* `client.payments.update()`: \n  *  `requestbody.locale` **Changed**\n  *  `response.locale` **Changed** **Breaking** :warning:\n* `client.clients.get()`:  `response._embedded.organization.locale` **Changed** **Breaking** :warning:\n* `client.subscriptions.listPayments()`:  `response._embedded.payments.[].locale` **Changed** **Breaking** :warning:\n* `client.payments.create()`: \n  *  `request.payment-request.locale` **Changed**\n  *  `response.locale` **Changed** **Breaking** :warning:\n* `client.payments.list()`:  `response._embedded.payments.[].locale` **Changed** **Breaking** :warning:\n* `client.organizations.get()`:  `response.locale` **Changed** **Breaking** :warning:\n* `client.payments.cancel()`:  `response.locale` **Changed** **Breaking** :warning:\n* `client.clients.list()`:  `response._embedded.clients.[].Embedded.organization.locale` **Changed** **Breaking** :warning:\n* `client.paymentLinks.listPayments()`:  `response._embedded.payments.[].locale` **Changed** **Breaking** :warning:\n* `client.customers.create()`: \n  *  `request.locale` **Changed**\n  *  `response.locale` **Changed** **Breaking** :warning:\n* `client.settlements.listPayments()`:  `response._embedded.payments.[].locale` **Changed** **Breaking** :warning:\n* `client.customers.get()`:  `response.locale` **Changed** **Breaking** :warning:\n* `client.customers.update()`: \n  *  `request.entity-customer.locale` **Changed**\n  *  `response.locale` **Changed** **Breaking** :warning:\n* `client.customers.createPayment()`: \n  *  `request.payment-request.locale` **Changed**\n  *  `response.locale` **Changed** **Breaking** :warning:\n* `client.customers.listPayments()`:  `response._embedded.payments.[].locale` **Changed** **Breaking** :warning:\n* `client.clientLinks.create()`: \n  *  `request.owner.locale` **Changed**\n"

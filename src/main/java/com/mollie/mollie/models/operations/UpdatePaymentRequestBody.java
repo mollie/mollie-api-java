@@ -101,7 +101,7 @@ public class UpdatePaymentRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private Optional<? extends Locale> locale;
+    private JsonNullable<? extends Locale> locale;
 
     /**
      * The date by which the payment should be completed in `YYYY-MM-DD` format
@@ -179,7 +179,7 @@ public class UpdatePaymentRequestBody {
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("method") JsonNullable<? extends Method> method,
-            @JsonProperty("locale") Optional<? extends Locale> locale,
+            @JsonProperty("locale") JsonNullable<? extends Locale> locale,
             @JsonProperty("dueDate") Optional<String> dueDate,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
@@ -220,7 +220,7 @@ public class UpdatePaymentRequestBody {
     public UpdatePaymentRequestBody() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
@@ -312,8 +312,8 @@ public class UpdatePaymentRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Locale> locale() {
-        return (Optional<Locale>) locale;
+    public JsonNullable<Locale> locale() {
+        return (JsonNullable<Locale>) locale;
     }
 
     /**
@@ -573,15 +573,14 @@ public class UpdatePaymentRequestBody {
      */
     public UpdatePaymentRequestBody withLocale(Locale locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = Optional.ofNullable(locale);
+        this.locale = JsonNullable.of(locale);
         return this;
     }
-
 
     /**
      * Allows you to preset the language to be used.
      */
-    public UpdatePaymentRequestBody withLocale(Optional<? extends Locale> locale) {
+    public UpdatePaymentRequestBody withLocale(JsonNullable<? extends Locale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -819,7 +818,7 @@ public class UpdatePaymentRequestBody {
 
         private JsonNullable<? extends Method> method = JsonNullable.undefined();
 
-        private Optional<? extends Locale> locale = Optional.empty();
+        private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
 
         private Optional<String> dueDate = Optional.empty();
 
@@ -1023,14 +1022,14 @@ public class UpdatePaymentRequestBody {
          */
         public Builder locale(Locale locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = Optional.ofNullable(locale);
+            this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
          * Allows you to preset the language to be used.
          */
-        public Builder locale(Optional<? extends Locale> locale) {
+        public Builder locale(JsonNullable<? extends Locale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
