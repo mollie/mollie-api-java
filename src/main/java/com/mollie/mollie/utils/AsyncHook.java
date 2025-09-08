@@ -93,7 +93,9 @@ public final class AsyncHook {
         @Override
         public CompletableFuture<HttpRequest> beforeRequest(Hook.BeforeRequestContext context, HttpRequest request) {
             HttpRequest.Builder b = Helpers.copy(request);
-            b.header("Idempotency-Key", UUID.randomUUID().toString());
+            if (request.headers().firstValue("Idempotency-Key").isEmpty()) {
+                b.header("Idempotency-Key", UUID.randomUUID().toString());
+            }
             return CompletableFuture.completedFuture(b.build());
         }
     }

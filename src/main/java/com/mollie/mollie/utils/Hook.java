@@ -308,10 +308,12 @@ public final class Hook {
     public static final class IdempotencyHook implements BeforeRequest {
     
         @Override
-        public HttpRequest beforeRequest(BeforeRequestContext context, HttpRequest request) throws Exception {
+        public CompletableFuture<HttpRequest> beforeRequest(Hook.BeforeRequestContext context, HttpRequest request) {
             HttpRequest.Builder b = Helpers.copy(request);
-            b.header("Idempotency-Key", UUID.randomUUID().toString());
-            return b.build();
+            if (request.headers().firstValue("Idempotency-Key").isEmpty()) {
+                b.header("Idempotency-Key", UUID.randomUUID().toString());
+            }
+            return CompletableFuture.completedFuture(b.build());
         }
     }
 }
