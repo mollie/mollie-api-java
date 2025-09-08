@@ -21,6 +21,7 @@ public class GetClientRequestBuilder {
 
     private String id;
     private JsonNullable<String> embed = JsonNullable.undefined();
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -46,6 +47,18 @@ public class GetClientRequestBuilder {
         return this;
     }
                 
+    public GetClientRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetClientRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
     public GetClientRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -62,7 +75,8 @@ public class GetClientRequestBuilder {
     private GetClientRequest buildRequest() {
 
         GetClientRequest request = new GetClientRequest(id,
-            embed);
+            embed,
+            idempotencyKey);
 
         return request;
     }

@@ -56,7 +56,9 @@ public class AsyncWebhookEvents {
      * @return CompletableFuture&lt;GetWebhookEventResponse&gt; - The async response
      */
     public CompletableFuture<GetWebhookEventResponse> get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(
+                id, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -70,17 +72,19 @@ public class AsyncWebhookEvents {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetWebhookEventResponse&gt; - The async response
      */
     public CompletableFuture<GetWebhookEventResponse> get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetWebhookEventRequest request =
             GetWebhookEventRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
               = new GetWebhookEvent.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

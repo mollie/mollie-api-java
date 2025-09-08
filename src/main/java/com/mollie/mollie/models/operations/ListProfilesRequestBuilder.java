@@ -20,6 +20,7 @@ public class ListProfilesRequestBuilder {
 
     private JsonNullable<String> from = JsonNullable.undefined();
     private JsonNullable<Long> limit = JsonNullable.undefined();
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -51,6 +52,18 @@ public class ListProfilesRequestBuilder {
         return this;
     }
                 
+    public ListProfilesRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public ListProfilesRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
     public ListProfilesRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -67,7 +80,8 @@ public class ListProfilesRequestBuilder {
     private ListProfilesRequest buildRequest() {
 
         ListProfilesRequest request = new ListProfilesRequest(from,
-            limit);
+            limit,
+            idempotencyKey);
 
         return request;
     }

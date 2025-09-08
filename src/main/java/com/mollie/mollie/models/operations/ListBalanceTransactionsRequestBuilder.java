@@ -10,19 +10,12 @@ import com.mollie.mollie.operations.ListBalanceTransactions;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListBalanceTransactionsRequestBuilder {
 
-    private String balanceId;
-    private JsonNullable<String> from = JsonNullable.undefined();
-    private JsonNullable<Long> limit = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private ListBalanceTransactionsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -30,45 +23,9 @@ public class ListBalanceTransactionsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListBalanceTransactionsRequestBuilder balanceId(String balanceId) {
-        Utils.checkNotNull(balanceId, "balanceId");
-        this.balanceId = balanceId;
-        return this;
-    }
-
-    public ListBalanceTransactionsRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = JsonNullable.of(from);
-        return this;
-    }
-
-    public ListBalanceTransactionsRequestBuilder from(JsonNullable<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListBalanceTransactionsRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListBalanceTransactionsRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-
-    public ListBalanceTransactionsRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public ListBalanceTransactionsRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public ListBalanceTransactionsRequestBuilder request(ListBalanceTransactionsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -84,17 +41,6 @@ public class ListBalanceTransactionsRequestBuilder {
         return this;
     }
 
-
-    private ListBalanceTransactionsRequest buildRequest() {
-
-        ListBalanceTransactionsRequest request = new ListBalanceTransactionsRequest(balanceId,
-            from,
-            limit,
-            testmode);
-
-        return request;
-    }
-
     public ListBalanceTransactionsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -102,7 +48,6 @@ public class ListBalanceTransactionsRequestBuilder {
 
         RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
               = new ListBalanceTransactions.Sync(sdkConfiguration, options);
-        ListBalanceTransactionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

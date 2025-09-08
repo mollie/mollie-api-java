@@ -26,6 +26,12 @@ public class RevokeMandateRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=mandateId")
     private String mandateId;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends RevokeMandateRequestBody> requestBody;
@@ -34,19 +40,23 @@ public class RevokeMandateRequest {
     public RevokeMandateRequest(
             String customerId,
             String mandateId,
+            Optional<String> idempotencyKey,
             Optional<? extends RevokeMandateRequestBody> requestBody) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(mandateId, "mandateId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(requestBody, "requestBody");
         this.customerId = customerId;
         this.mandateId = mandateId;
+        this.idempotencyKey = idempotencyKey;
         this.requestBody = requestBody;
     }
     
     public RevokeMandateRequest(
             String customerId,
             String mandateId) {
-        this(customerId, mandateId, Optional.empty());
+        this(customerId, mandateId, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -63,6 +73,14 @@ public class RevokeMandateRequest {
     @JsonIgnore
     public String mandateId() {
         return mandateId;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -94,6 +112,25 @@ public class RevokeMandateRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public RevokeMandateRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public RevokeMandateRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public RevokeMandateRequest withRequestBody(RevokeMandateRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
@@ -119,13 +156,15 @@ public class RevokeMandateRequest {
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.mandateId, other.mandateId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, mandateId, requestBody);
+            customerId, mandateId, idempotencyKey,
+            requestBody);
     }
     
     @Override
@@ -133,6 +172,7 @@ public class RevokeMandateRequest {
         return Utils.toString(RevokeMandateRequest.class,
                 "customerId", customerId,
                 "mandateId", mandateId,
+                "idempotencyKey", idempotencyKey,
                 "requestBody", requestBody);
     }
 
@@ -142,6 +182,8 @@ public class RevokeMandateRequest {
         private String customerId;
 
         private String mandateId;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends RevokeMandateRequestBody> requestBody = Optional.empty();
 
@@ -170,6 +212,25 @@ public class RevokeMandateRequest {
         }
 
 
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
+
         public Builder requestBody(RevokeMandateRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
@@ -185,7 +246,8 @@ public class RevokeMandateRequest {
         public RevokeMandateRequest build() {
 
             return new RevokeMandateRequest(
-                customerId, mandateId, requestBody);
+                customerId, mandateId, idempotencyKey,
+                requestBody);
         }
 
     }

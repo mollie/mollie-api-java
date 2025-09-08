@@ -6,76 +6,26 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.operations.ListCustomers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListCustomersRequestBuilder {
 
-    private Optional<String> from = Optional.empty();
-    private JsonNullable<Long> limit = JsonNullable.undefined();
-    private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private ListCustomersRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
     public ListCustomersRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-                
-    public ListCustomersRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
-        return this;
-    }
 
-    public ListCustomersRequestBuilder from(Optional<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListCustomersRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListCustomersRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-
-    public ListCustomersRequestBuilder sort(ListSort sort) {
-        Utils.checkNotNull(sort, "sort");
-        this.sort = JsonNullable.of(sort);
-        return this;
-    }
-
-    public ListCustomersRequestBuilder sort(JsonNullable<? extends ListSort> sort) {
-        Utils.checkNotNull(sort, "sort");
-        this.sort = sort;
-        return this;
-    }
-
-    public ListCustomersRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public ListCustomersRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public ListCustomersRequestBuilder request(ListCustomersRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -91,17 +41,6 @@ public class ListCustomersRequestBuilder {
         return this;
     }
 
-
-    private ListCustomersRequest buildRequest() {
-
-        ListCustomersRequest request = new ListCustomersRequest(from,
-            limit,
-            sort,
-            testmode);
-
-        return request;
-    }
-
     public ListCustomersResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -109,7 +48,6 @@ public class ListCustomersRequestBuilder {
 
         RequestOperation<ListCustomersRequest, ListCustomersResponse> operation
               = new ListCustomers.Sync(sdkConfiguration, options);
-        ListCustomersRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

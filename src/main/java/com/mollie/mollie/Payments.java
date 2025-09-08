@@ -34,7 +34,6 @@ import com.mollie.mollie.operations.ListPayments;
 import com.mollie.mollie.operations.ReleaseAuthorization;
 import com.mollie.mollie.operations.UpdatePayment;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
@@ -101,7 +100,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public CreatePaymentResponse createDirect() throws Exception {
-        return create(JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        return create(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -121,18 +121,20 @@ public class Payments {
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param paymentRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreatePaymentResponse create(
-            JsonNullable<String> include, Optional<? extends PaymentRequest> paymentRequest,
-            Optional<Options> options) throws Exception {
+            JsonNullable<String> include, Optional<String> idempotencyKey,
+            Optional<? extends PaymentRequest> paymentRequest, Optional<Options> options) throws Exception {
         CreatePaymentRequest request =
             CreatePaymentRequest
                 .builder()
                 .include(include)
+                .idempotencyKey(idempotencyKey)
                 .paymentRequest(paymentRequest)
                 .build();
         RequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
@@ -202,13 +204,12 @@ public class Payments {
      * 
      * <p>Retrieve a single payment object by its payment ID.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentResponse get(String paymentId) throws Exception {
-        return get(paymentId, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+    public GetPaymentResponse get(GetPaymentRequest request) throws Exception {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -216,31 +217,12 @@ public class Payments {
      * 
      * <p>Retrieve a single payment object by its payment ID.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     *         parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPaymentResponse get(
-            String paymentId, JsonNullable<String> include,
-            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
-        GetPaymentRequest request =
-            GetPaymentRequest
-                .builder()
-                .paymentId(paymentId)
-                .include(include)
-                .embed(embed)
-                .testmode(testmode)
-                .build();
+    public GetPaymentResponse get(GetPaymentRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
               = new GetPayment.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
@@ -271,7 +253,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public UpdatePaymentResponse update(String paymentId) throws Exception {
-        return update(paymentId, Optional.empty(), Optional.empty());
+        return update(paymentId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -282,18 +265,20 @@ public class Payments {
      * <p>Updating the payment details will not result in a webhook call.
      * 
      * @param paymentId Provide the ID of the related payment.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdatePaymentResponse update(
-            String paymentId, Optional<? extends UpdatePaymentRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String paymentId, Optional<String> idempotencyKey,
+            Optional<? extends UpdatePaymentRequestBody> requestBody, Optional<Options> options) throws Exception {
         UpdatePaymentRequest request =
             UpdatePaymentRequest
                 .builder()
                 .paymentId(paymentId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdatePaymentRequest, UpdatePaymentResponse> operation
@@ -332,7 +317,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public CancelPaymentResponse cancel(String paymentId) throws Exception {
-        return cancel(paymentId, Optional.empty(), Optional.empty());
+        return cancel(paymentId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -346,18 +332,20 @@ public class Payments {
      * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
      * 
      * @param paymentId Provide the ID of the related payment.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CancelPaymentResponse cancel(
-            String paymentId, Optional<? extends CancelPaymentRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String paymentId, Optional<String> idempotencyKey,
+            Optional<? extends CancelPaymentRequestBody> requestBody, Optional<Options> options) throws Exception {
         CancelPaymentRequest request =
             CancelPaymentRequest
                 .builder()
                 .paymentId(paymentId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
@@ -400,7 +388,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public ReleaseAuthorizationResponse releaseAuthorization(String paymentId) throws Exception {
-        return releaseAuthorization(paymentId, Optional.empty(), Optional.empty());
+        return releaseAuthorization(paymentId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -416,18 +405,20 @@ public class Payments {
      * If there is a successful capture, the payment will transition to `paid`.
      * 
      * @param paymentId Provide the ID of the related payment.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ReleaseAuthorizationResponse releaseAuthorization(
-            String paymentId, Optional<? extends ReleaseAuthorizationRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String paymentId, Optional<String> idempotencyKey,
+            Optional<? extends ReleaseAuthorizationRequestBody> requestBody, Optional<Options> options) throws Exception {
         ReleaseAuthorizationRequest request =
             ReleaseAuthorizationRequest
                 .builder()
                 .paymentId(paymentId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation

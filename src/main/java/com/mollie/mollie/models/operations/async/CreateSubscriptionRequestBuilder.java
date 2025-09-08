@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class CreateSubscriptionRequestBuilder {
 
     private String customerId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends SubscriptionRequest> subscriptionRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -31,6 +32,18 @@ public class CreateSubscriptionRequestBuilder {
     public CreateSubscriptionRequestBuilder customerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
+        return this;
+    }
+                
+    public CreateSubscriptionRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public CreateSubscriptionRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -62,6 +75,7 @@ public class CreateSubscriptionRequestBuilder {
     private CreateSubscriptionRequest buildRequest() {
 
         CreateSubscriptionRequest request = new CreateSubscriptionRequest(customerId,
+            idempotencyKey,
             subscriptionRequest);
 
         return request;

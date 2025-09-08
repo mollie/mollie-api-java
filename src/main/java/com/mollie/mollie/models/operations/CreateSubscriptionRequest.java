@@ -21,6 +21,12 @@ public class CreateSubscriptionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=customerId")
     private String customerId;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends SubscriptionRequest> subscriptionRequest;
@@ -28,16 +34,19 @@ public class CreateSubscriptionRequest {
     @JsonCreator
     public CreateSubscriptionRequest(
             String customerId,
+            Optional<String> idempotencyKey,
             Optional<? extends SubscriptionRequest> subscriptionRequest) {
         Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
         this.customerId = customerId;
+        this.idempotencyKey = idempotencyKey;
         this.subscriptionRequest = subscriptionRequest;
     }
     
     public CreateSubscriptionRequest(
             String customerId) {
-        this(customerId, Optional.empty());
+        this(customerId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -46,6 +55,14 @@ public class CreateSubscriptionRequest {
     @JsonIgnore
     public String customerId() {
         return customerId;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -65,6 +82,25 @@ public class CreateSubscriptionRequest {
     public CreateSubscriptionRequest withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
+        return this;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public CreateSubscriptionRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public CreateSubscriptionRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
 
@@ -92,19 +128,21 @@ public class CreateSubscriptionRequest {
         CreateSubscriptionRequest other = (CreateSubscriptionRequest) o;
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.subscriptionRequest, other.subscriptionRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, subscriptionRequest);
+            customerId, idempotencyKey, subscriptionRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateSubscriptionRequest.class,
                 "customerId", customerId,
+                "idempotencyKey", idempotencyKey,
                 "subscriptionRequest", subscriptionRequest);
     }
 
@@ -112,6 +150,8 @@ public class CreateSubscriptionRequest {
     public final static class Builder {
 
         private String customerId;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends SubscriptionRequest> subscriptionRequest = Optional.empty();
 
@@ -126,6 +166,25 @@ public class CreateSubscriptionRequest {
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = customerId;
+            return this;
+        }
+
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
             return this;
         }
 
@@ -145,7 +204,7 @@ public class CreateSubscriptionRequest {
         public CreateSubscriptionRequest build() {
 
             return new CreateSubscriptionRequest(
-                customerId, subscriptionRequest);
+                customerId, idempotencyKey, subscriptionRequest);
         }
 
     }

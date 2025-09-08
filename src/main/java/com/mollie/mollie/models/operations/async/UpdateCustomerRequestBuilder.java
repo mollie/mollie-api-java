@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class UpdateCustomerRequestBuilder {
 
     private String customerId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends EntityCustomer> entityCustomer = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -31,6 +32,18 @@ public class UpdateCustomerRequestBuilder {
     public UpdateCustomerRequestBuilder customerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
+        return this;
+    }
+                
+    public UpdateCustomerRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public UpdateCustomerRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -62,6 +75,7 @@ public class UpdateCustomerRequestBuilder {
     private UpdateCustomerRequest buildRequest() {
 
         UpdateCustomerRequest request = new UpdateCustomerRequest(customerId,
+            idempotencyKey,
             entityCustomer);
 
         return request;

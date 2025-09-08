@@ -5,11 +5,13 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequest;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestBody;
 import com.mollie.mollie.models.operations.async.RequestApplePayPaymentSessionRequestBuilder;
 import com.mollie.mollie.models.operations.async.RequestApplePayPaymentSessionResponse;
 import com.mollie.mollie.operations.RequestApplePayPaymentSession;
 import com.mollie.mollie.utils.Options;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -88,7 +90,7 @@ public class AsyncWallets {
      * @return CompletableFuture&lt;RequestApplePayPaymentSessionResponse&gt; - The async response
      */
     public CompletableFuture<RequestApplePayPaymentSessionResponse> requestApplePaySessionDirect() {
-        return requestApplePaySession(Optional.empty(), Optional.empty());
+        return requestApplePaySession(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -114,12 +116,21 @@ public class AsyncWallets {
      * full documentation, see the official
      * [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;RequestApplePayPaymentSessionResponse&gt; - The async response
      */
-    public CompletableFuture<RequestApplePayPaymentSessionResponse> requestApplePaySession(Optional<? extends RequestApplePayPaymentSessionRequestBody> request, Optional<Options> options) {
-        AsyncRequestOperation<Optional<? extends RequestApplePayPaymentSessionRequestBody>, RequestApplePayPaymentSessionResponse> operation
+    public CompletableFuture<RequestApplePayPaymentSessionResponse> requestApplePaySession(
+            Optional<String> idempotencyKey, Optional<? extends RequestApplePayPaymentSessionRequestBody> requestBody,
+            Optional<Options> options) {
+        RequestApplePayPaymentSessionRequest request =
+            RequestApplePayPaymentSessionRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .requestBody(requestBody)
+                .build();
+        AsyncRequestOperation<RequestApplePayPaymentSessionRequest, RequestApplePayPaymentSessionResponse> operation
               = new RequestApplePayPaymentSession.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

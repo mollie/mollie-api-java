@@ -18,6 +18,7 @@ public class UpdateSubscriptionRequestBuilder {
 
     private String customerId;
     private String subscriptionId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends UpdateSubscriptionRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -35,6 +36,18 @@ public class UpdateSubscriptionRequestBuilder {
     public UpdateSubscriptionRequestBuilder subscriptionId(String subscriptionId) {
         Utils.checkNotNull(subscriptionId, "subscriptionId");
         this.subscriptionId = subscriptionId;
+        return this;
+    }
+                
+    public UpdateSubscriptionRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public UpdateSubscriptionRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -67,6 +80,7 @@ public class UpdateSubscriptionRequestBuilder {
 
         UpdateSubscriptionRequest request = new UpdateSubscriptionRequest(customerId,
             subscriptionId,
+            idempotencyKey,
             requestBody);
 
         return request;

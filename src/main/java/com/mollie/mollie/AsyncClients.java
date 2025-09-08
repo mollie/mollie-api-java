@@ -65,7 +65,7 @@ public class AsyncClients {
     public CompletableFuture<ListClientsResponse> listDirect() {
         return list(
                 JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -80,18 +80,21 @@ public class AsyncClients {
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;ListClientsResponse&gt; - The async response
      */
     public CompletableFuture<ListClientsResponse> list(
             JsonNullable<String> embed, JsonNullable<String> from,
-            JsonNullable<Long> limit, Optional<Options> options) {
+            JsonNullable<Long> limit, Optional<String> idempotencyKey,
+            Optional<Options> options) {
         ListClientsRequest request =
             ListClientsRequest
                 .builder()
                 .embed(embed)
                 .from(from)
                 .limit(limit)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<ListClientsRequest, ListClientsResponse> operation
               = new ListClients.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -120,7 +123,9 @@ public class AsyncClients {
      * @return CompletableFuture&lt;GetClientResponse&gt; - The async response
      */
     public CompletableFuture<GetClientResponse> get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(
+                id, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -131,17 +136,19 @@ public class AsyncClients {
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
      *         parameter.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetClientResponse&gt; - The async response
      */
     public CompletableFuture<GetClientResponse> get(
             String id, JsonNullable<String> embed,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetClientRequest request =
             GetClientRequest
                 .builder()
                 .id(id)
                 .embed(embed)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetClientRequest, GetClientResponse> operation
               = new GetClient.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

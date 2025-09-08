@@ -39,21 +39,31 @@ public class ListPaymentLinksRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
     private JsonNullable<Boolean> testmode;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
     @JsonCreator
     public ListPaymentLinksRequest(
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode) {
+            JsonNullable<Boolean> testmode,
+            Optional<String> idempotencyKey) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(testmode, "testmode");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.from = from;
         this.limit = limit;
         this.testmode = testmode;
+        this.idempotencyKey = idempotencyKey;
     }
     
     public ListPaymentLinksRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -83,6 +93,14 @@ public class ListPaymentLinksRequest {
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
         return testmode;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     public static Builder builder() {
@@ -155,6 +173,25 @@ public class ListPaymentLinksRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListPaymentLinksRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListPaymentLinksRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -167,13 +204,15 @@ public class ListPaymentLinksRequest {
         return 
             Utils.enhancedDeepEquals(this.from, other.from) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
-            Utils.enhancedDeepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            from, limit, testmode);
+            from, limit, testmode,
+            idempotencyKey);
     }
     
     @Override
@@ -181,7 +220,8 @@ public class ListPaymentLinksRequest {
         return Utils.toString(ListPaymentLinksRequest.class,
                 "from", from,
                 "limit", limit,
-                "testmode", testmode);
+                "testmode", testmode,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -192,6 +232,8 @@ public class ListPaymentLinksRequest {
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -264,10 +306,30 @@ public class ListPaymentLinksRequest {
             return this;
         }
 
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public ListPaymentLinksRequest build() {
 
             return new ListPaymentLinksRequest(
-                from, limit, testmode);
+                from, limit, testmode,
+                idempotencyKey);
         }
 
     }

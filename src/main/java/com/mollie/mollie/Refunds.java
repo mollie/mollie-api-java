@@ -75,7 +75,8 @@ public class Refunds {
      * @throws Exception if the API call fails
      */
     public CreateRefundResponse create(String paymentId) throws Exception {
-        return create(paymentId, Optional.empty(), Optional.empty());
+        return create(paymentId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -85,18 +86,20 @@ public class Refunds {
      * transfer or by refunding the amount to your customer's credit card.
      * 
      * @param paymentId Provide the ID of the related payment.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityRefund 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateRefundResponse create(
-            String paymentId, Optional<? extends EntityRefund> entityRefund,
-            Optional<Options> options) throws Exception {
+            String paymentId, Optional<String> idempotencyKey,
+            Optional<? extends EntityRefund> entityRefund, Optional<Options> options) throws Exception {
         CreateRefundRequest request =
             CreateRefundRequest
                 .builder()
                 .paymentId(paymentId)
+                .idempotencyKey(idempotencyKey)
                 .entityRefund(entityRefund)
                 .build();
         RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
@@ -166,14 +169,12 @@ public class Refunds {
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param refundId Provide the ID of the related refund.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetRefundResponse get(String paymentId, String refundId) throws Exception {
-        return get(paymentId, refundId, JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+    public GetRefundResponse get(GetRefundRequest request) throws Exception {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -181,31 +182,12 @@ public class Refunds {
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param refundId Provide the ID of the related refund.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     *         parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetRefundResponse get(
-            String paymentId, String refundId,
-            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
-        GetRefundRequest request =
-            GetRefundRequest
-                .builder()
-                .paymentId(paymentId)
-                .refundId(refundId)
-                .embed(embed)
-                .testmode(testmode)
-                .build();
+    public GetRefundResponse get(GetRefundRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
               = new GetRefund.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
@@ -242,7 +224,7 @@ public class Refunds {
      */
     public CancelRefundResponse cancel(String paymentId, String refundId) throws Exception {
         return cancel(paymentId, refundId, JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -261,19 +243,22 @@ public class Refunds {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CancelRefundResponse cancel(
             String paymentId, String refundId,
-            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
+            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Options> options) throws Exception {
         CancelRefundRequest request =
             CancelRefundRequest
                 .builder()
                 .paymentId(paymentId)
                 .refundId(refundId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
               = new CancelRefund.Sync(sdkConfiguration, options);

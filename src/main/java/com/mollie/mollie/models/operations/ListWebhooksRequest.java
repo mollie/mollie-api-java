@@ -55,28 +55,37 @@ public class ListWebhooksRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
     private JsonNullable<Boolean> testmode;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
     @JsonCreator
     public ListWebhooksRequest(
             JsonNullable<String> from,
             JsonNullable<Long> limit,
             JsonNullable<? extends ListSort> sort,
             Optional<? extends WebhookEventTypes> eventTypes,
-            JsonNullable<Boolean> testmode) {
+            JsonNullable<Boolean> testmode,
+            Optional<String> idempotencyKey) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(eventTypes, "eventTypes");
         Utils.checkNotNull(testmode, "testmode");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.from = from;
         this.limit = limit;
         this.sort = sort;
         this.eventTypes = eventTypes;
         this.testmode = testmode;
+        this.idempotencyKey = idempotencyKey;
     }
     
     public ListWebhooksRequest() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -125,6 +134,14 @@ public class ListWebhooksRequest {
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
         return testmode;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     public static Builder builder() {
@@ -235,6 +252,25 @@ public class ListWebhooksRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListWebhooksRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListWebhooksRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -249,14 +285,15 @@ public class ListWebhooksRequest {
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.sort, other.sort) &&
             Utils.enhancedDeepEquals(this.eventTypes, other.eventTypes) &&
-            Utils.enhancedDeepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             from, limit, sort,
-            eventTypes, testmode);
+            eventTypes, testmode, idempotencyKey);
     }
     
     @Override
@@ -266,7 +303,8 @@ public class ListWebhooksRequest {
                 "limit", limit,
                 "sort", sort,
                 "eventTypes", eventTypes,
-                "testmode", testmode);
+                "testmode", testmode,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -281,6 +319,8 @@ public class ListWebhooksRequest {
         private Optional<? extends WebhookEventTypes> eventTypes = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -393,11 +433,30 @@ public class ListWebhooksRequest {
             return this;
         }
 
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public ListWebhooksRequest build() {
 
             return new ListWebhooksRequest(
                 from, limit, sort,
-                eventTypes, testmode);
+                eventTypes, testmode, idempotencyKey);
         }
 
     }

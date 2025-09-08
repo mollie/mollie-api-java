@@ -21,6 +21,7 @@ public class ListClientsRequestBuilder {
     private JsonNullable<String> embed = JsonNullable.undefined();
     private JsonNullable<String> from = JsonNullable.undefined();
     private JsonNullable<Long> limit = JsonNullable.undefined();
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -64,6 +65,18 @@ public class ListClientsRequestBuilder {
         return this;
     }
                 
+    public ListClientsRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public ListClientsRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
     public ListClientsRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -81,7 +94,8 @@ public class ListClientsRequestBuilder {
 
         ListClientsRequest request = new ListClientsRequest(embed,
             from,
-            limit);
+            limit,
+            idempotencyKey);
 
         return request;
     }

@@ -10,18 +10,12 @@ import com.mollie.mollie.operations.GetPayment;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetPaymentRequestBuilder {
 
-    private String paymentId;
-    private JsonNullable<String> include = JsonNullable.undefined();
-    private JsonNullable<String> embed = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private GetPaymentRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -29,45 +23,9 @@ public class GetPaymentRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetPaymentRequestBuilder paymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-
-    public GetPaymentRequestBuilder include(String include) {
-        Utils.checkNotNull(include, "include");
-        this.include = JsonNullable.of(include);
-        return this;
-    }
-
-    public GetPaymentRequestBuilder include(JsonNullable<String> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
-        return this;
-    }
-
-    public GetPaymentRequestBuilder embed(String embed) {
-        Utils.checkNotNull(embed, "embed");
-        this.embed = JsonNullable.of(embed);
-        return this;
-    }
-
-    public GetPaymentRequestBuilder embed(JsonNullable<String> embed) {
-        Utils.checkNotNull(embed, "embed");
-        this.embed = embed;
-        return this;
-    }
-
-    public GetPaymentRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public GetPaymentRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public GetPaymentRequestBuilder request(GetPaymentRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -83,17 +41,6 @@ public class GetPaymentRequestBuilder {
         return this;
     }
 
-
-    private GetPaymentRequest buildRequest() {
-
-        GetPaymentRequest request = new GetPaymentRequest(paymentId,
-            include,
-            embed,
-            testmode);
-
-        return request;
-    }
-
     public GetPaymentResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -101,7 +48,6 @@ public class GetPaymentRequestBuilder {
 
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
               = new GetPayment.Sync(sdkConfiguration, options);
-        GetPaymentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

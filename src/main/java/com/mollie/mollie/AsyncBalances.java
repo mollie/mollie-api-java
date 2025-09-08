@@ -4,10 +4,10 @@
 package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
 
 import com.mollie.mollie.models.operations.GetBalanceReportRequest;
 import com.mollie.mollie.models.operations.GetBalanceRequest;
+import com.mollie.mollie.models.operations.GetPrimaryBalanceRequest;
 import com.mollie.mollie.models.operations.ListBalanceTransactionsRequest;
 import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.async.GetBalanceReportRequestBuilder;
@@ -27,7 +27,6 @@ import com.mollie.mollie.operations.ListBalanceTransactions;
 import com.mollie.mollie.operations.ListBalances;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -73,12 +72,11 @@ public class AsyncBalances {
      * 
      * <p>The results are paginated.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return CompletableFuture&lt;ListBalancesResponse&gt; - The async response
      */
-    public CompletableFuture<ListBalancesResponse> listDirect() {
-        return list(
-                JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-                JsonNullable.undefined(), Optional.empty());
+    public CompletableFuture<ListBalancesResponse> list(ListBalancesRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -88,30 +86,11 @@ public class AsyncBalances {
      * 
      * <p>The results are paginated.
      * 
-     * @param currency Optionally only return balances with the given currency. For example: `EUR`.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return CompletableFuture&lt;ListBalancesResponse&gt; - The async response
      */
-    public CompletableFuture<ListBalancesResponse> list(
-            JsonNullable<String> currency, JsonNullable<String> from,
-            JsonNullable<Long> limit, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
-        ListBalancesRequest request =
-            ListBalancesRequest
-                .builder()
-                .currency(currency)
-                .from(from)
-                .limit(limit)
-                .testmode(testmode)
-                .build();
+    public CompletableFuture<ListBalancesResponse> list(ListBalancesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBalancesRequest, ListBalancesResponse> operation
               = new ListBalances.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
@@ -167,7 +146,9 @@ public class AsyncBalances {
      * @return CompletableFuture&lt;GetBalanceResponse&gt; - The async response
      */
     public CompletableFuture<GetBalanceResponse> get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(
+                id, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -195,17 +176,19 @@ public class AsyncBalances {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetBalanceResponse&gt; - The async response
      */
     public CompletableFuture<GetBalanceResponse> get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetBalanceRequest request =
             GetBalanceRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetBalanceRequest, GetBalanceResponse> operation
               = new GetBalance.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -241,7 +224,7 @@ public class AsyncBalances {
      * @return CompletableFuture&lt;GetPrimaryBalanceResponse&gt; - The async response
      */
     public CompletableFuture<GetPrimaryBalanceResponse> getPrimaryDirect() {
-        return getPrimary(Optional.empty());
+        return getPrimary(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -253,13 +236,19 @@ public class AsyncBalances {
      * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
      * endpoint.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetPrimaryBalanceResponse&gt; - The async response
      */
-    public CompletableFuture<GetPrimaryBalanceResponse> getPrimary(Optional<Options> options) {
-        AsyncRequestlessOperation<GetPrimaryBalanceResponse> operation
-            = new GetPrimaryBalance.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        return operation.doRequest()
+    public CompletableFuture<GetPrimaryBalanceResponse> getPrimary(Optional<String> idempotencyKey, Optional<Options> options) {
+        GetPrimaryBalanceRequest request =
+            GetPrimaryBalanceRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<GetPrimaryBalanceRequest, GetPrimaryBalanceResponse> operation
+              = new GetPrimaryBalance.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 
@@ -356,13 +345,11 @@ public class AsyncBalances {
      * 
      * <p>The results are paginated.
      * 
-     * @param balanceId Provide the ID of the related balance.
+     * @param request The request object containing all the parameters for the API call.
      * @return CompletableFuture&lt;ListBalanceTransactionsResponse&gt; - The async response
      */
-    public CompletableFuture<ListBalanceTransactionsResponse> listTransactions(String balanceId) {
-        return listTransactions(
-                balanceId, JsonNullable.undefined(), JsonNullable.undefined(),
-                JsonNullable.undefined(), Optional.empty());
+    public CompletableFuture<ListBalanceTransactionsResponse> listTransactions(ListBalanceTransactionsRequest request) {
+        return listTransactions(request, Optional.empty());
     }
 
     /**
@@ -379,30 +366,11 @@ public class AsyncBalances {
      * 
      * <p>The results are paginated.
      * 
-     * @param balanceId Provide the ID of the related balance.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return CompletableFuture&lt;ListBalanceTransactionsResponse&gt; - The async response
      */
-    public CompletableFuture<ListBalanceTransactionsResponse> listTransactions(
-            String balanceId, JsonNullable<String> from,
-            JsonNullable<Long> limit, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
-        ListBalanceTransactionsRequest request =
-            ListBalanceTransactionsRequest
-                .builder()
-                .balanceId(balanceId)
-                .from(from)
-                .limit(limit)
-                .testmode(testmode)
-                .build();
+    public CompletableFuture<ListBalanceTransactionsResponse> listTransactions(ListBalanceTransactionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
               = new ListBalanceTransactions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)

@@ -4,13 +4,14 @@
 package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
 
+import com.mollie.mollie.models.operations.GetCurrentOrganizationRequest;
 import com.mollie.mollie.models.operations.GetCurrentOrganizationRequestBuilder;
 import com.mollie.mollie.models.operations.GetCurrentOrganizationResponse;
 import com.mollie.mollie.models.operations.GetOrganizationRequest;
 import com.mollie.mollie.models.operations.GetOrganizationRequestBuilder;
 import com.mollie.mollie.models.operations.GetOrganizationResponse;
+import com.mollie.mollie.models.operations.GetPartnerStatusRequest;
 import com.mollie.mollie.models.operations.GetPartnerStatusRequestBuilder;
 import com.mollie.mollie.models.operations.GetPartnerStatusResponse;
 import com.mollie.mollie.operations.GetCurrentOrganization;
@@ -73,7 +74,8 @@ public class Organizations {
      * @throws Exception if the API call fails
      */
     public GetOrganizationResponse get(String id) throws Exception {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(id, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -92,18 +94,20 @@ public class Organizations {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetOrganizationResponse get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         GetOrganizationRequest request =
             GetOrganizationRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
               = new GetOrganization.Sync(sdkConfiguration, options);
@@ -138,7 +142,7 @@ public class Organizations {
      * @throws Exception if the API call fails
      */
     public GetCurrentOrganizationResponse getCurrentDirect() throws Exception {
-        return getCurrent(Optional.empty());
+        return getCurrent(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -150,14 +154,20 @@ public class Organizations {
      * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
      * documentation.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCurrentOrganizationResponse getCurrent(Optional<Options> options) throws Exception {
-        RequestlessOperation<GetCurrentOrganizationResponse> operation
-            = new GetCurrentOrganization.Sync(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest());
+    public GetCurrentOrganizationResponse getCurrent(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+        GetCurrentOrganizationRequest request =
+            GetCurrentOrganizationRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<GetCurrentOrganizationRequest, GetCurrentOrganizationResponse> operation
+              = new GetCurrentOrganization.Sync(sdkConfiguration, options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
@@ -182,7 +192,7 @@ public class Organizations {
      * @throws Exception if the API call fails
      */
     public GetPartnerStatusResponse getPartnerDirect() throws Exception {
-        return getPartner(Optional.empty());
+        return getPartner(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -191,14 +201,20 @@ public class Organizations {
      * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
      * accounts*.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetPartnerStatusResponse getPartner(Optional<Options> options) throws Exception {
-        RequestlessOperation<GetPartnerStatusResponse> operation
-            = new GetPartnerStatus.Sync(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest());
+    public GetPartnerStatusResponse getPartner(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+        GetPartnerStatusRequest request =
+            GetPartnerStatusRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<GetPartnerStatusRequest, GetPartnerStatusResponse> operation
+              = new GetPartnerStatus.Sync(sdkConfiguration, options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

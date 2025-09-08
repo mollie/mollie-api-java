@@ -3,7 +3,7 @@
  */
 package com.mollie.mollie.models.operations;
 
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.GetOpenSettlement;
@@ -11,15 +11,29 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 public class GetOpenSettlementRequestBuilder {
 
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
     public GetOpenSettlementRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetOpenSettlementRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetOpenSettlementRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
     }
                 
     public GetOpenSettlementRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -34,14 +48,23 @@ public class GetOpenSettlementRequestBuilder {
         return this;
     }
 
+
+    private GetOpenSettlementRequest buildRequest() {
+
+        GetOpenSettlementRequest request = new GetOpenSettlementRequest(idempotencyKey);
+
+        return request;
+    }
+
     public GetOpenSettlementResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        RequestlessOperation<GetOpenSettlementResponse> operation
-            = new GetOpenSettlement.Sync(sdkConfiguration, options);
+        RequestOperation<GetOpenSettlementRequest, GetOpenSettlementResponse> operation
+              = new GetOpenSettlement.Sync(sdkConfiguration, options);
+        GetOpenSettlementRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest());
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

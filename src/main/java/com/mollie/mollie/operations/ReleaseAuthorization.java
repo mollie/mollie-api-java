@@ -125,6 +125,7 @@ public class ReleaseAuthorization {
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

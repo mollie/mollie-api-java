@@ -5,7 +5,6 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.operations.GetTerminalRequest;
 import com.mollie.mollie.models.operations.ListTerminalsRequest;
 import com.mollie.mollie.models.operations.async.GetTerminalRequestBuilder;
@@ -16,7 +15,6 @@ import com.mollie.mollie.operations.GetTerminal;
 import com.mollie.mollie.operations.ListTerminals;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -62,12 +60,11 @@ public class AsyncTerminals {
      * 
      * <p>The results are paginated.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return CompletableFuture&lt;ListTerminalsResponse&gt; - The async response
      */
-    public CompletableFuture<ListTerminalsResponse> listDirect() {
-        return list(
-                Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-                JsonNullable.undefined(), Optional.empty());
+    public CompletableFuture<ListTerminalsResponse> list(ListTerminalsRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -77,30 +74,11 @@ public class AsyncTerminals {
      * 
      * <p>The results are paginated.
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort 
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return CompletableFuture&lt;ListTerminalsResponse&gt; - The async response
      */
-    public CompletableFuture<ListTerminalsResponse> list(
-            Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<? extends ListSort> sort, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
-        ListTerminalsRequest request =
-            ListTerminalsRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .sort(sort)
-                .testmode(testmode)
-                .build();
+    public CompletableFuture<ListTerminalsResponse> list(ListTerminalsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
               = new ListTerminals.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
@@ -128,7 +106,9 @@ public class AsyncTerminals {
      * @return CompletableFuture&lt;GetTerminalResponse&gt; - The async response
      */
     public CompletableFuture<GetTerminalResponse> get(String terminalId) {
-        return get(terminalId, JsonNullable.undefined(), Optional.empty());
+        return get(
+                terminalId, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -142,17 +122,19 @@ public class AsyncTerminals {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetTerminalResponse&gt; - The async response
      */
     public CompletableFuture<GetTerminalResponse> get(
             String terminalId, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetTerminalRequest request =
             GetTerminalRequest
                 .builder()
                 .terminalId(terminalId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetTerminalRequest, GetTerminalResponse> operation
               = new GetTerminal.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

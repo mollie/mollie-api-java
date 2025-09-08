@@ -19,6 +19,7 @@ import java.util.concurrent.CompletableFuture;
 public class GetSettlementRequestBuilder {
 
     private String id;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -29,6 +30,18 @@ public class GetSettlementRequestBuilder {
     public GetSettlementRequestBuilder id(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+                
+    public GetSettlementRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetSettlementRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -47,7 +60,8 @@ public class GetSettlementRequestBuilder {
 
     private GetSettlementRequest buildRequest() {
 
-        GetSettlementRequest request = new GetSettlementRequest(id);
+        GetSettlementRequest request = new GetSettlementRequest(id,
+            idempotencyKey);
 
         return request;
     }

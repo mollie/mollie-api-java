@@ -18,6 +18,7 @@ import java.util.Optional;
 public class DeleteSalesInvoiceRequestBuilder {
 
     private String id;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -29,6 +30,18 @@ public class DeleteSalesInvoiceRequestBuilder {
     public DeleteSalesInvoiceRequestBuilder id(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+                
+    public DeleteSalesInvoiceRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public DeleteSalesInvoiceRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -60,6 +73,7 @@ public class DeleteSalesInvoiceRequestBuilder {
     private DeleteSalesInvoiceRequest buildRequest() {
 
         DeleteSalesInvoiceRequest request = new DeleteSalesInvoiceRequest(id,
+            idempotencyKey,
             deleteValuesSalesInvoice);
 
         return request;

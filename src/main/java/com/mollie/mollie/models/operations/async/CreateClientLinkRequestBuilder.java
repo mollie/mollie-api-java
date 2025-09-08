@@ -7,17 +7,20 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.EntityClientLink;
+import com.mollie.mollie.models.operations.CreateClientLinkRequest;
 import com.mollie.mollie.operations.CreateClientLink;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateClientLinkRequestBuilder {
 
-    private Optional<? extends EntityClientLink> request = Optional.empty();
+    private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<? extends EntityClientLink> entityClientLink = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -25,15 +28,27 @@ public class CreateClientLinkRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateClientLinkRequestBuilder request(EntityClientLink request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public CreateClientLinkRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
         return this;
     }
 
-    public CreateClientLinkRequestBuilder request(Optional<? extends EntityClientLink> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public CreateClientLinkRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreateClientLinkRequestBuilder entityClientLink(EntityClientLink entityClientLink) {
+        Utils.checkNotNull(entityClientLink, "entityClientLink");
+        this.entityClientLink = Optional.of(entityClientLink);
+        return this;
+    }
+
+    public CreateClientLinkRequestBuilder entityClientLink(Optional<? extends EntityClientLink> entityClientLink) {
+        Utils.checkNotNull(entityClientLink, "entityClientLink");
+        this.entityClientLink = entityClientLink;
         return this;
     }
                 
@@ -49,13 +64,23 @@ public class CreateClientLinkRequestBuilder {
         return this;
     }
 
+
+    private CreateClientLinkRequest buildRequest() {
+
+        CreateClientLinkRequest request = new CreateClientLinkRequest(idempotencyKey,
+            entityClientLink);
+
+        return request;
+    }
+
     public CompletableFuture<CreateClientLinkResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestOperation<Optional<? extends EntityClientLink>, CreateClientLinkResponse> operation
+        AsyncRequestOperation<CreateClientLinkRequest, CreateClientLinkResponse> operation
               = new CreateClientLink.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        CreateClientLinkRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

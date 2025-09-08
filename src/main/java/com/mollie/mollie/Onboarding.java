@@ -3,11 +3,12 @@
  */
 package com.mollie.mollie;
 
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.operations.GetOnboardingStatusRequest;
 import com.mollie.mollie.models.operations.GetOnboardingStatusRequestBuilder;
 import com.mollie.mollie.models.operations.GetOnboardingStatusResponse;
+import com.mollie.mollie.models.operations.SubmitOnboardingDataRequest;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBody;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBuilder;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataResponse;
@@ -15,6 +16,7 @@ import com.mollie.mollie.operations.GetOnboardingStatus;
 import com.mollie.mollie.operations.SubmitOnboardingData;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 
@@ -56,7 +58,7 @@ public class Onboarding {
      * @throws Exception if the API call fails
      */
     public GetOnboardingStatusResponse getDirect() throws Exception {
-        return get(Optional.empty());
+        return get(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -64,14 +66,20 @@ public class Onboarding {
      * 
      * <p>Retrieve the onboarding status of the currently authenticated organization.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetOnboardingStatusResponse get(Optional<Options> options) throws Exception {
-        RequestlessOperation<GetOnboardingStatusResponse> operation
-            = new GetOnboardingStatus.Sync(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest());
+    public GetOnboardingStatusResponse get(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+        GetOnboardingStatusRequest request =
+            GetOnboardingStatusRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<GetOnboardingStatusRequest, GetOnboardingStatusResponse> operation
+              = new GetOnboardingStatus.Sync(sdkConfiguration, options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
@@ -104,7 +112,7 @@ public class Onboarding {
      * @throws Exception if the API call fails
      */
     public SubmitOnboardingDataResponse submitDirect() throws Exception {
-        return submit(Optional.empty(), Optional.empty());
+        return submit(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -117,13 +125,22 @@ public class Onboarding {
      * onboarding status is `needs-data`.  
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SubmitOnboardingDataResponse submit(Optional<? extends SubmitOnboardingDataRequestBody> request, Optional<Options> options) throws Exception {
-        RequestOperation<Optional<? extends SubmitOnboardingDataRequestBody>, SubmitOnboardingDataResponse> operation
+    public SubmitOnboardingDataResponse submit(
+            Optional<String> idempotencyKey, Optional<? extends SubmitOnboardingDataRequestBody> requestBody,
+            Optional<Options> options) throws Exception {
+        SubmitOnboardingDataRequest request =
+            SubmitOnboardingDataRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .requestBody(requestBody)
+                .build();
+        RequestOperation<SubmitOnboardingDataRequest, SubmitOnboardingDataResponse> operation
               = new SubmitOnboardingData.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }

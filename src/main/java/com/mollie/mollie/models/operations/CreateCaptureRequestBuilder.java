@@ -18,6 +18,7 @@ import java.util.Optional;
 public class CreateCaptureRequestBuilder {
 
     private String paymentId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends EntityCapture> entityCapture = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -29,6 +30,18 @@ public class CreateCaptureRequestBuilder {
     public CreateCaptureRequestBuilder paymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
+        return this;
+    }
+                
+    public CreateCaptureRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public CreateCaptureRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -60,6 +73,7 @@ public class CreateCaptureRequestBuilder {
     private CreateCaptureRequest buildRequest() {
 
         CreateCaptureRequest request = new CreateCaptureRequest(paymentId,
+            idempotencyKey,
             entityCapture);
 
         return request;

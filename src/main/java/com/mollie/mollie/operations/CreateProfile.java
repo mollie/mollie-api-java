@@ -9,10 +9,10 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.EntityProfile;
 import com.mollie.mollie.models.components.EntityProfileResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateProfileRequest;
 import com.mollie.mollie.models.operations.CreateProfileResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
@@ -118,7 +118,7 @@ public class CreateProfile {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "entityProfile",
                     "json",
                     false);
             if (serializedRequestBody == null) {
@@ -127,6 +127,7 @@ public class CreateProfile {
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -134,13 +135,13 @@ public class CreateProfile {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<EntityProfile, CreateProfileResponse> {
+            implements RequestOperation<CreateProfileRequest, CreateProfileResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest(EntityProfile request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<EntityProfile>() {});
+        private HttpRequest onBuildRequest(CreateProfileRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<CreateProfileRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -156,7 +157,7 @@ public class CreateProfile {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(EntityProfile request) throws Exception {
+        public HttpResponse<InputStream> doRequest(CreateProfileRequest request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -256,7 +257,7 @@ public class CreateProfile {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<EntityProfile, com.mollie.mollie.models.operations.async.CreateProfileResponse> {
+            implements AsyncRequestOperation<CreateProfileRequest, com.mollie.mollie.models.operations.async.CreateProfileResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -266,8 +267,8 @@ public class CreateProfile {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(EntityProfile request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<EntityProfile>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(CreateProfileRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<CreateProfileRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -280,7 +281,7 @@ public class CreateProfile {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(EntityProfile request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(CreateProfileRequest request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)

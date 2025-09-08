@@ -4,9 +4,10 @@
 package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
 
+import com.mollie.mollie.models.operations.GetCurrentOrganizationRequest;
 import com.mollie.mollie.models.operations.GetOrganizationRequest;
+import com.mollie.mollie.models.operations.GetPartnerStatusRequest;
 import com.mollie.mollie.models.operations.async.GetCurrentOrganizationRequestBuilder;
 import com.mollie.mollie.models.operations.async.GetCurrentOrganizationResponse;
 import com.mollie.mollie.models.operations.async.GetOrganizationRequestBuilder;
@@ -73,7 +74,9 @@ public class AsyncOrganizations {
      * @return CompletableFuture&lt;GetOrganizationResponse&gt; - The async response
      */
     public CompletableFuture<GetOrganizationResponse> get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(
+                id, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -92,17 +95,19 @@ public class AsyncOrganizations {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetOrganizationResponse&gt; - The async response
      */
     public CompletableFuture<GetOrganizationResponse> get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetOrganizationRequest request =
             GetOrganizationRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
               = new GetOrganization.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -138,7 +143,7 @@ public class AsyncOrganizations {
      * @return CompletableFuture&lt;GetCurrentOrganizationResponse&gt; - The async response
      */
     public CompletableFuture<GetCurrentOrganizationResponse> getCurrentDirect() {
-        return getCurrent(Optional.empty());
+        return getCurrent(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -150,13 +155,19 @@ public class AsyncOrganizations {
      * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
      * documentation.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetCurrentOrganizationResponse&gt; - The async response
      */
-    public CompletableFuture<GetCurrentOrganizationResponse> getCurrent(Optional<Options> options) {
-        AsyncRequestlessOperation<GetCurrentOrganizationResponse> operation
-            = new GetCurrentOrganization.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        return operation.doRequest()
+    public CompletableFuture<GetCurrentOrganizationResponse> getCurrent(Optional<String> idempotencyKey, Optional<Options> options) {
+        GetCurrentOrganizationRequest request =
+            GetCurrentOrganizationRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<GetCurrentOrganizationRequest, GetCurrentOrganizationResponse> operation
+              = new GetCurrentOrganization.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 
@@ -182,7 +193,7 @@ public class AsyncOrganizations {
      * @return CompletableFuture&lt;GetPartnerStatusResponse&gt; - The async response
      */
     public CompletableFuture<GetPartnerStatusResponse> getPartnerDirect() {
-        return getPartner(Optional.empty());
+        return getPartner(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -191,13 +202,19 @@ public class AsyncOrganizations {
      * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
      * accounts*.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetPartnerStatusResponse&gt; - The async response
      */
-    public CompletableFuture<GetPartnerStatusResponse> getPartner(Optional<Options> options) {
-        AsyncRequestlessOperation<GetPartnerStatusResponse> operation
-            = new GetPartnerStatus.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        return operation.doRequest()
+    public CompletableFuture<GetPartnerStatusResponse> getPartner(Optional<String> idempotencyKey, Optional<Options> options) {
+        GetPartnerStatusRequest request =
+            GetPartnerStatusRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<GetPartnerStatusRequest, GetPartnerStatusResponse> operation
+              = new GetPartnerStatus.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 

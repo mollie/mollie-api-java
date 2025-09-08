@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class UpdateSalesInvoiceRequestBuilder {
 
     private String id;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -31,6 +32,18 @@ public class UpdateSalesInvoiceRequestBuilder {
     public UpdateSalesInvoiceRequestBuilder id(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+                
+    public UpdateSalesInvoiceRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public UpdateSalesInvoiceRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -62,6 +75,7 @@ public class UpdateSalesInvoiceRequestBuilder {
     private UpdateSalesInvoiceRequest buildRequest() {
 
         UpdateSalesInvoiceRequest request = new UpdateSalesInvoiceRequest(id,
+            idempotencyKey,
             updateValuesSalesInvoice);
 
         return request;

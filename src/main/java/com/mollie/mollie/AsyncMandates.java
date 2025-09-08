@@ -78,7 +78,9 @@ public class AsyncMandates {
      * @return CompletableFuture&lt;CreateMandateResponse&gt; - The async response
      */
     public CompletableFuture<CreateMandateResponse> create(String customerId) {
-        return create(customerId, Optional.empty(), Optional.empty());
+        return create(
+                customerId, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -91,17 +93,19 @@ public class AsyncMandates {
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @param customerId Provide the ID of the related customer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityMandate 
      * @param options additional options
      * @return CompletableFuture&lt;CreateMandateResponse&gt; - The async response
      */
     public CompletableFuture<CreateMandateResponse> create(
-            String customerId, Optional<? extends EntityMandate> entityMandate,
-            Optional<Options> options) {
+            String customerId, Optional<String> idempotencyKey,
+            Optional<? extends EntityMandate> entityMandate, Optional<Options> options) {
         CreateMandateRequest request =
             CreateMandateRequest
                 .builder()
                 .customerId(customerId)
+                .idempotencyKey(idempotencyKey)
                 .entityMandate(entityMandate)
                 .build();
         AsyncRequestOperation<CreateMandateRequest, CreateMandateResponse> operation
@@ -182,7 +186,7 @@ public class AsyncMandates {
     public CompletableFuture<GetMandateResponse> get(String customerId, String mandateId) {
         return get(
                 customerId, mandateId, JsonNullable.undefined(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -198,18 +202,21 @@ public class AsyncMandates {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetMandateResponse&gt; - The async response
      */
     public CompletableFuture<GetMandateResponse> get(
             String customerId, String mandateId,
-            JsonNullable<Boolean> testmode, Optional<Options> options) {
+            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Options> options) {
         GetMandateRequest request =
             GetMandateRequest
                 .builder()
                 .customerId(customerId)
                 .mandateId(mandateId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetMandateRequest, GetMandateResponse> operation
               = new GetMandate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -243,7 +250,7 @@ public class AsyncMandates {
     public CompletableFuture<RevokeMandateResponse> revoke(String customerId, String mandateId) {
         return revoke(
                 customerId, mandateId, Optional.empty(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -254,18 +261,21 @@ public class AsyncMandates {
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;RevokeMandateResponse&gt; - The async response
      */
     public CompletableFuture<RevokeMandateResponse> revoke(
             String customerId, String mandateId,
-            Optional<? extends RevokeMandateRequestBody> requestBody, Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<? extends RevokeMandateRequestBody> requestBody,
+            Optional<Options> options) {
         RevokeMandateRequest request =
             RevokeMandateRequest
                 .builder()
                 .customerId(customerId)
                 .mandateId(mandateId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation

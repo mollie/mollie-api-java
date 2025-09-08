@@ -21,6 +21,12 @@ public class CreateCaptureRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentId")
     private String paymentId;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends EntityCapture> entityCapture;
@@ -28,16 +34,19 @@ public class CreateCaptureRequest {
     @JsonCreator
     public CreateCaptureRequest(
             String paymentId,
+            Optional<String> idempotencyKey,
             Optional<? extends EntityCapture> entityCapture) {
         Utils.checkNotNull(paymentId, "paymentId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(entityCapture, "entityCapture");
         this.paymentId = paymentId;
+        this.idempotencyKey = idempotencyKey;
         this.entityCapture = entityCapture;
     }
     
     public CreateCaptureRequest(
             String paymentId) {
-        this(paymentId, Optional.empty());
+        this(paymentId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -46,6 +55,14 @@ public class CreateCaptureRequest {
     @JsonIgnore
     public String paymentId() {
         return paymentId;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -65,6 +82,25 @@ public class CreateCaptureRequest {
     public CreateCaptureRequest withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
+        return this;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public CreateCaptureRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public CreateCaptureRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
 
@@ -92,19 +128,21 @@ public class CreateCaptureRequest {
         CreateCaptureRequest other = (CreateCaptureRequest) o;
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.entityCapture, other.entityCapture);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, entityCapture);
+            paymentId, idempotencyKey, entityCapture);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateCaptureRequest.class,
                 "paymentId", paymentId,
+                "idempotencyKey", idempotencyKey,
                 "entityCapture", entityCapture);
     }
 
@@ -112,6 +150,8 @@ public class CreateCaptureRequest {
     public final static class Builder {
 
         private String paymentId;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends EntityCapture> entityCapture = Optional.empty();
 
@@ -126,6 +166,25 @@ public class CreateCaptureRequest {
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
+            return this;
+        }
+
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
             return this;
         }
 
@@ -145,7 +204,7 @@ public class CreateCaptureRequest {
         public CreateCaptureRequest build() {
 
             return new CreateCaptureRequest(
-                paymentId, entityCapture);
+                paymentId, idempotencyKey, entityCapture);
         }
 
     }

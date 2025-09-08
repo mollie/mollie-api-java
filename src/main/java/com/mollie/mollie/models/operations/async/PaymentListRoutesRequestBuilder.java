@@ -22,6 +22,7 @@ public class PaymentListRoutesRequestBuilder {
 
     private String paymentId;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -47,6 +48,18 @@ public class PaymentListRoutesRequestBuilder {
         return this;
     }
                 
+    public PaymentListRoutesRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public PaymentListRoutesRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
     public PaymentListRoutesRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -63,7 +76,8 @@ public class PaymentListRoutesRequestBuilder {
     private PaymentListRoutesRequest buildRequest() {
 
         PaymentListRoutesRequest request = new PaymentListRoutesRequest(paymentId,
-            testmode);
+            testmode,
+            idempotencyKey);
 
         return request;
     }

@@ -85,26 +85,25 @@ public class Application {
                     .build())
             .build();
 
-        EntityClientLink req = EntityClientLink.builder()
-                .owner(Owner.builder()
-                    .email("john@example.org")
-                    .givenName("John")
-                    .familyName("Doe")
-                    .locale(LocaleResponse.EN_US)
-                    .build())
-                .name("Acme Corporation")
-                .address(EntityClientLinkAddress.builder()
-                    .country("NL")
-                    .streetAndNumber("Main Street 123")
-                    .postalCode("1234AB")
-                    .city("Amsterdam")
-                    .build())
-                .registrationNumber("12345678")
-                .vatNumber("123456789B01")
-                .build();
-
         CreateClientLinkResponse res = sdk.clientLinks().create()
-                .request(req)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .entityClientLink(EntityClientLink.builder()
+                    .owner(Owner.builder()
+                        .email("john@example.org")
+                        .givenName("John")
+                        .familyName("Doe")
+                        .locale(LocaleResponse.EN_US)
+                        .build())
+                    .name("Acme Corporation")
+                    .address(EntityClientLinkAddress.builder()
+                        .country("NL")
+                        .streetAndNumber("Main Street 123")
+                        .postalCode("1234AB")
+                        .city("Amsterdam")
+                        .build())
+                    .registrationNumber("12345678")
+                    .vatNumber("123456789B01")
+                    .build())
                 .call();
 
         if (res.entityClientLinkResponse().isPresent()) {
@@ -116,9 +115,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `request`                                                   | [EntityClientLink](../../models/shared/EntityClientLink.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `entityClientLink`                                                               | [Optional\<EntityClientLink>](../../models/components/EntityClientLink.md)       | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 

@@ -52,14 +52,13 @@ public class Application {
                     .build())
             .build();
 
-        RequestApplePayPaymentSessionRequestBody req = RequestApplePayPaymentSessionRequestBody.builder()
-                .validationUrl("https://apple-pay-gateway-cert.apple.com/paymentservices/paymentSession")
-                .domain("pay.myshop.com")
-                .profileId("pfl_5B8cwPMGnU")
-                .build();
-
         RequestApplePayPaymentSessionResponse res = sdk.wallets().requestApplePaySession()
-                .request(req)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(RequestApplePayPaymentSessionRequestBody.builder()
+                    .validationUrl("https://apple-pay-gateway-cert.apple.com/paymentservices/paymentSession")
+                    .domain("pay.myshop.com")
+                    .profileId("pfl_5B8cwPMGnU")
+                    .build())
                 .call();
 
         if (res.entitySession().isPresent()) {
@@ -71,9 +70,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                       | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                       | [RequestApplePayPaymentSessionRequestBody](../../models/operations/RequestApplePayPaymentSessionRequestBody.md) | :heavy_check_mark:                                                                                              | The request object to use for the request.                                                                      |
+| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                | Example                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                                                           | *Optional\<String>*                                                                                                        | :heavy_minus_sign:                                                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                           | 123e4567-e89b-12d3-a456-426                                                                                                |
+| `requestBody`                                                                                                              | [Optional\<RequestApplePayPaymentSessionRequestBody>](../../models/operations/RequestApplePayPaymentSessionRequestBody.md) | :heavy_minus_sign:                                                                                                         | N/A                                                                                                                        |                                                                                                                            |
 
 ### Response
 

@@ -11,11 +11,13 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 public class CreatePaymentLinkRequestBuilder {
 
-    private Optional<? extends CreatePaymentLinkRequestBody> request = Optional.empty();
+    private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<? extends CreatePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -23,15 +25,27 @@ public class CreatePaymentLinkRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreatePaymentLinkRequestBuilder request(CreatePaymentLinkRequestBody request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public CreatePaymentLinkRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
         return this;
     }
 
-    public CreatePaymentLinkRequestBuilder request(Optional<? extends CreatePaymentLinkRequestBody> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public CreatePaymentLinkRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreatePaymentLinkRequestBuilder requestBody(CreatePaymentLinkRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
+        return this;
+    }
+
+    public CreatePaymentLinkRequestBuilder requestBody(Optional<? extends CreatePaymentLinkRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -47,13 +61,23 @@ public class CreatePaymentLinkRequestBuilder {
         return this;
     }
 
+
+    private CreatePaymentLinkRequest buildRequest() {
+
+        CreatePaymentLinkRequest request = new CreatePaymentLinkRequest(idempotencyKey,
+            requestBody);
+
+        return request;
+    }
+
     public CreatePaymentLinkResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        RequestOperation<Optional<? extends CreatePaymentLinkRequestBody>, CreatePaymentLinkResponse> operation
+        RequestOperation<CreatePaymentLinkRequest, CreatePaymentLinkResponse> operation
               = new CreatePaymentLink.Sync(sdkConfiguration, options);
+        CreatePaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -42,73 +42,72 @@ public class Application {
                     .build())
             .build();
 
-        EntitySalesInvoice req = EntitySalesInvoice.builder()
-                .id("invoice_4Y0eZitmBnQ6IDoMqZQKh")
-                .testmode(false)
-                .profileId("pfl_QkEhN94Ba")
-                .status(SalesInvoiceStatus.DRAFT)
-                .vatScheme(SalesInvoiceVatScheme.STANDARD)
-                .vatMode(SalesInvoiceVatMode.EXCLUSIVE)
-                .memo("This is a memo!")
-                .paymentTerm(SalesInvoicePaymentTerm.THIRTYDAYS)
-                .paymentDetails(SalesInvoicePaymentDetails.builder()
-                    .source(SalesInvoicePaymentDetailsSource.PAYMENT_LINK)
-                    .sourceReference("pl_d9fQur83kFdhH8hIhaZfq")
-                    .build())
-                .emailDetails(SalesInvoiceEmailDetails.builder()
-                    .subject("Your invoice is available")
-                    .body("Please find your invoice enclosed.")
-                    .build())
-                .customerId("cst_8wmqcHMN4U")
-                .mandateId("mdt_pWUnw6pkBN")
-                .recipientIdentifier("customer-xyz-0123")
-                .recipient(SalesInvoiceRecipient.builder()
-                    .type(SalesInvoiceRecipientType.CONSUMER)
-                    .email("example@email.com")
-                    .streetAndNumber("Keizersgracht 126")
-                    .postalCode("5678AB")
-                    .city("Amsterdam")
-                    .country("NL")
-                    .locale(SalesInvoiceRecipientLocale.NLNL)
-                    .title("Mrs.")
-                    .givenName("Jane")
-                    .familyName("Doe")
-                    .organizationName("Organization Corp.")
-                    .organizationNumber("12345678")
-                    .vatNumber("NL123456789B01")
-                    .phone("+0123456789")
-                    .streetAdditional("4th floor")
-                    .region("Noord-Holland")
-                    .build())
-                .lines(List.of())
-                .discount(SalesInvoiceDiscount.builder()
-                    .type(SalesInvoiceDiscountType.AMOUNT)
-                    .value("10.00")
-                    .build())
-                .amountDue(Amount.builder()
-                    .currency("EUR")
-                    .value("10.00")
-                    .build())
-                .subtotalAmount(Amount.builder()
-                    .currency("EUR")
-                    .value("10.00")
-                    .build())
-                .totalAmount(Amount.builder()
-                    .currency("EUR")
-                    .value("10.00")
-                    .build())
-                .totalVatAmount(Amount.builder()
-                    .currency("EUR")
-                    .value("10.00")
-                    .build())
-                .discountedSubtotalAmount(Amount.builder()
-                    .currency("EUR")
-                    .value("10.00")
-                    .build())
-                .build();
-
         CreateSalesInvoiceResponse res = sdk.salesInvoices().create()
-                .request(req)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .entitySalesInvoice(EntitySalesInvoice.builder()
+                    .id("invoice_4Y0eZitmBnQ6IDoMqZQKh")
+                    .testmode(false)
+                    .profileId("pfl_QkEhN94Ba")
+                    .status(SalesInvoiceStatus.DRAFT)
+                    .vatScheme(SalesInvoiceVatScheme.STANDARD)
+                    .vatMode(SalesInvoiceVatMode.EXCLUSIVE)
+                    .memo("This is a memo!")
+                    .paymentTerm(SalesInvoicePaymentTerm.THIRTYDAYS)
+                    .paymentDetails(SalesInvoicePaymentDetails.builder()
+                        .source(SalesInvoicePaymentDetailsSource.PAYMENT_LINK)
+                        .sourceReference("pl_d9fQur83kFdhH8hIhaZfq")
+                        .build())
+                    .emailDetails(SalesInvoiceEmailDetails.builder()
+                        .subject("Your invoice is available")
+                        .body("Please find your invoice enclosed.")
+                        .build())
+                    .customerId("cst_8wmqcHMN4U")
+                    .mandateId("mdt_pWUnw6pkBN")
+                    .recipientIdentifier("customer-xyz-0123")
+                    .recipient(SalesInvoiceRecipient.builder()
+                        .type(SalesInvoiceRecipientType.CONSUMER)
+                        .email("example@email.com")
+                        .streetAndNumber("Keizersgracht 126")
+                        .postalCode("5678AB")
+                        .city("Amsterdam")
+                        .country("NL")
+                        .locale(SalesInvoiceRecipientLocale.NLNL)
+                        .title("Mrs.")
+                        .givenName("Jane")
+                        .familyName("Doe")
+                        .organizationName("Organization Corp.")
+                        .organizationNumber("12345678")
+                        .vatNumber("NL123456789B01")
+                        .phone("+0123456789")
+                        .streetAdditional("4th floor")
+                        .region("Noord-Holland")
+                        .build())
+                    .lines(List.of())
+                    .discount(SalesInvoiceDiscount.builder()
+                        .type(SalesInvoiceDiscountType.AMOUNT)
+                        .value("10.00")
+                        .build())
+                    .amountDue(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .subtotalAmount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .totalAmount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .totalVatAmount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .discountedSubtotalAmount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .build())
                 .call();
 
         if (res.entitySalesInvoiceResponse().isPresent()) {
@@ -120,9 +119,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `request`                                                       | [EntitySalesInvoice](../../models/shared/EntitySalesInvoice.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `entitySalesInvoice`                                                             | [Optional\<EntitySalesInvoice>](../../models/components/EntitySalesInvoice.md)   | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 
@@ -171,6 +171,7 @@ public class Application {
                 .from("invoice_4Y0eZitmBnQ6IDoMqZQKh")
                 .limit(50L)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.object().isPresent()) {
@@ -187,6 +188,7 @@ public class Application {
 | `from`                                                                                                                                                                                                                                                                                                                                                                                 | *JsonNullable\<String>*                                                                                                                                                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<Long>*                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                       | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                            |
 
 ### Response
 
@@ -232,6 +234,7 @@ public class Application {
         GetSalesInvoiceResponse res = sdk.salesInvoices().get()
                 .id("invoice_4Y0eZitmBnQ6IDoMqZQKh")
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.entitySalesInvoiceResponse().isPresent()) {
@@ -247,6 +250,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                       | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                            |
 
 ### Response
 
@@ -294,6 +298,7 @@ public class Application {
 
         UpdateSalesInvoiceResponse res = sdk.salesInvoices().update()
                 .id("invoice_4Y0eZitmBnQ6IDoMqZQKh")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .updateValuesSalesInvoice(UpdateValuesSalesInvoice.builder()
                     .testmode(false)
                     .status(SalesInvoiceStatus.DRAFT)
@@ -356,10 +361,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |
-| `updateValuesSalesInvoice`                                                                 | [Optional\<UpdateValuesSalesInvoice>](../../models/components/UpdateValuesSalesInvoice.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |                                                                                            |
+| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
+| `updateValuesSalesInvoice`                                                                 | [Optional\<UpdateValuesSalesInvoice>](../../models/components/UpdateValuesSalesInvoice.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
 
 ### Response
 
@@ -406,6 +412,7 @@ public class Application {
 
         DeleteSalesInvoiceResponse res = sdk.salesInvoices().delete()
                 .id("invoice_4Y0eZitmBnQ6IDoMqZQKh")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .deleteValuesSalesInvoice(DeleteValuesSalesInvoice.builder()
                     .testmode(false)
                     .build())
@@ -420,10 +427,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |
-| `deleteValuesSalesInvoice`                                                                 | [Optional\<DeleteValuesSalesInvoice>](../../models/components/DeleteValuesSalesInvoice.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |                                                                                            |
+| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
+| `deleteValuesSalesInvoice`                                                                 | [Optional\<DeleteValuesSalesInvoice>](../../models/components/DeleteValuesSalesInvoice.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
 
 ### Response
 

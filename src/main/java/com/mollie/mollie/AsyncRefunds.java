@@ -75,7 +75,9 @@ public class AsyncRefunds {
      * @return CompletableFuture&lt;CreateRefundResponse&gt; - The async response
      */
     public CompletableFuture<CreateRefundResponse> create(String paymentId) {
-        return create(paymentId, Optional.empty(), Optional.empty());
+        return create(
+                paymentId, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -85,17 +87,19 @@ public class AsyncRefunds {
      * transfer or by refunding the amount to your customer's credit card.
      * 
      * @param paymentId Provide the ID of the related payment.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityRefund 
      * @param options additional options
      * @return CompletableFuture&lt;CreateRefundResponse&gt; - The async response
      */
     public CompletableFuture<CreateRefundResponse> create(
-            String paymentId, Optional<? extends EntityRefund> entityRefund,
-            Optional<Options> options) {
+            String paymentId, Optional<String> idempotencyKey,
+            Optional<? extends EntityRefund> entityRefund, Optional<Options> options) {
         CreateRefundRequest request =
             CreateRefundRequest
                 .builder()
                 .paymentId(paymentId)
+                .idempotencyKey(idempotencyKey)
                 .entityRefund(entityRefund)
                 .build();
         AsyncRequestOperation<CreateRefundRequest, CreateRefundResponse> operation
@@ -167,14 +171,11 @@ public class AsyncRefunds {
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param refundId Provide the ID of the related refund.
+     * @param request The request object containing all the parameters for the API call.
      * @return CompletableFuture&lt;GetRefundResponse&gt; - The async response
      */
-    public CompletableFuture<GetRefundResponse> get(String paymentId, String refundId) {
-        return get(
-                paymentId, refundId, JsonNullable.undefined(),
-                JsonNullable.undefined(), Optional.empty());
+    public CompletableFuture<GetRefundResponse> get(GetRefundRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -182,30 +183,11 @@ public class AsyncRefunds {
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param refundId Provide the ID of the related refund.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     *         parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return CompletableFuture&lt;GetRefundResponse&gt; - The async response
      */
-    public CompletableFuture<GetRefundResponse> get(
-            String paymentId, String refundId,
-            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
-        GetRefundRequest request =
-            GetRefundRequest
-                .builder()
-                .paymentId(paymentId)
-                .refundId(refundId)
-                .embed(embed)
-                .testmode(testmode)
-                .build();
+    public CompletableFuture<GetRefundResponse> get(GetRefundRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetRefundRequest, GetRefundResponse> operation
               = new GetRefund.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
@@ -244,7 +226,7 @@ public class AsyncRefunds {
     public CompletableFuture<CancelRefundResponse> cancel(String paymentId, String refundId) {
         return cancel(
                 paymentId, refundId, JsonNullable.undefined(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -263,18 +245,21 @@ public class AsyncRefunds {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;CancelRefundResponse&gt; - The async response
      */
     public CompletableFuture<CancelRefundResponse> cancel(
             String paymentId, String refundId,
-            JsonNullable<Boolean> testmode, Optional<Options> options) {
+            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Options> options) {
         CancelRefundRequest request =
             CancelRefundRequest
                 .builder()
                 .paymentId(paymentId)
                 .refundId(refundId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<CancelRefundRequest, CancelRefundResponse> operation
               = new CancelRefund.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

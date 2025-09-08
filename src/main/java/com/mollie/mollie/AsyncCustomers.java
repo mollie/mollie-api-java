@@ -6,9 +6,9 @@ package com.mollie.mollie;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.models.components.EntityCustomer;
-import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
+import com.mollie.mollie.models.operations.CreateCustomerRequest;
 import com.mollie.mollie.models.operations.DeleteCustomerRequest;
 import com.mollie.mollie.models.operations.DeleteCustomerRequestBody;
 import com.mollie.mollie.models.operations.GetCustomerRequest;
@@ -38,7 +38,6 @@ import com.mollie.mollie.operations.ListCustomers;
 import com.mollie.mollie.operations.UpdateCustomer;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -89,7 +88,7 @@ public class AsyncCustomers {
      * @return CompletableFuture&lt;CreateCustomerResponse&gt; - The async response
      */
     public CompletableFuture<CreateCustomerResponse> createDirect() {
-        return create(Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -100,12 +99,21 @@ public class AsyncCustomers {
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param entityCustomer 
      * @param options additional options
      * @return CompletableFuture&lt;CreateCustomerResponse&gt; - The async response
      */
-    public CompletableFuture<CreateCustomerResponse> create(Optional<? extends EntityCustomer> request, Optional<Options> options) {
-        AsyncRequestOperation<Optional<? extends EntityCustomer>, CreateCustomerResponse> operation
+    public CompletableFuture<CreateCustomerResponse> create(
+            Optional<String> idempotencyKey, Optional<? extends EntityCustomer> entityCustomer,
+            Optional<Options> options) {
+        CreateCustomerRequest request =
+            CreateCustomerRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .entityCustomer(entityCustomer)
+                .build();
+        AsyncRequestOperation<CreateCustomerRequest, CreateCustomerResponse> operation
               = new CreateCustomer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -132,12 +140,11 @@ public class AsyncCustomers {
      * 
      * <p>The results are paginated.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return CompletableFuture&lt;ListCustomersResponse&gt; - The async response
      */
-    public CompletableFuture<ListCustomersResponse> listDirect() {
-        return list(
-                Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-                JsonNullable.undefined(), Optional.empty());
+    public CompletableFuture<ListCustomersResponse> list(ListCustomersRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -147,30 +154,11 @@ public class AsyncCustomers {
      * 
      * <p>The results are paginated.
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort 
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return CompletableFuture&lt;ListCustomersResponse&gt; - The async response
      */
-    public CompletableFuture<ListCustomersResponse> list(
-            Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<? extends ListSort> sort, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
-        ListCustomersRequest request =
-            ListCustomersRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .sort(sort)
-                .testmode(testmode)
-                .build();
+    public CompletableFuture<ListCustomersResponse> list(ListCustomersRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListCustomersRequest, ListCustomersResponse> operation
               = new ListCustomers.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
@@ -200,7 +188,7 @@ public class AsyncCustomers {
     public CompletableFuture<GetCustomerResponse> get(String customerId) {
         return get(
                 customerId, JsonNullable.undefined(), JsonNullable.undefined(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -215,18 +203,21 @@ public class AsyncCustomers {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetCustomerResponse&gt; - The async response
      */
     public CompletableFuture<GetCustomerResponse> get(
             String customerId, JsonNullable<String> include,
-            JsonNullable<Boolean> testmode, Optional<Options> options) {
+            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Options> options) {
         GetCustomerRequest request =
             GetCustomerRequest
                 .builder()
                 .customerId(customerId)
                 .include(include)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetCustomerRequest, GetCustomerResponse> operation
               = new GetCustomer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -259,7 +250,9 @@ public class AsyncCustomers {
      * @return CompletableFuture&lt;UpdateCustomerResponse&gt; - The async response
      */
     public CompletableFuture<UpdateCustomerResponse> update(String customerId) {
-        return update(customerId, Optional.empty(), Optional.empty());
+        return update(
+                customerId, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -270,17 +263,19 @@ public class AsyncCustomers {
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityCustomer 
      * @param options additional options
      * @return CompletableFuture&lt;UpdateCustomerResponse&gt; - The async response
      */
     public CompletableFuture<UpdateCustomerResponse> update(
-            String customerId, Optional<? extends EntityCustomer> entityCustomer,
-            Optional<Options> options) {
+            String customerId, Optional<String> idempotencyKey,
+            Optional<? extends EntityCustomer> entityCustomer, Optional<Options> options) {
         UpdateCustomerRequest request =
             UpdateCustomerRequest
                 .builder()
                 .customerId(customerId)
+                .idempotencyKey(idempotencyKey)
                 .entityCustomer(entityCustomer)
                 .build();
         AsyncRequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
@@ -310,7 +305,9 @@ public class AsyncCustomers {
      * @return CompletableFuture&lt;DeleteCustomerResponse&gt; - The async response
      */
     public CompletableFuture<DeleteCustomerResponse> delete(String customerId) {
-        return delete(customerId, Optional.empty(), Optional.empty());
+        return delete(
+                customerId, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -319,17 +316,19 @@ public class AsyncCustomers {
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
      * 
      * @param customerId Provide the ID of the related customer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;DeleteCustomerResponse&gt; - The async response
      */
     public CompletableFuture<DeleteCustomerResponse> delete(
-            String customerId, Optional<? extends DeleteCustomerRequestBody> requestBody,
-            Optional<Options> options) {
+            String customerId, Optional<String> idempotencyKey,
+            Optional<? extends DeleteCustomerRequestBody> requestBody, Optional<Options> options) {
         DeleteCustomerRequest request =
             DeleteCustomerRequest
                 .builder()
                 .customerId(customerId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
@@ -379,7 +378,9 @@ public class AsyncCustomers {
      * @return CompletableFuture&lt;CreateCustomerPaymentResponse&gt; - The async response
      */
     public CompletableFuture<CreateCustomerPaymentResponse> createPayment(String customerId) {
-        return createPayment(customerId, Optional.empty(), Optional.empty());
+        return createPayment(
+                customerId, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -398,17 +399,19 @@ public class AsyncCustomers {
      * parameter predefined.
      * 
      * @param customerId Provide the ID of the related customer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param paymentRequest 
      * @param options additional options
      * @return CompletableFuture&lt;CreateCustomerPaymentResponse&gt; - The async response
      */
     public CompletableFuture<CreateCustomerPaymentResponse> createPayment(
-            String customerId, Optional<? extends PaymentRequest> paymentRequest,
-            Optional<Options> options) {
+            String customerId, Optional<String> idempotencyKey,
+            Optional<? extends PaymentRequest> paymentRequest, Optional<Options> options) {
         CreateCustomerPaymentRequest request =
             CreateCustomerPaymentRequest
                 .builder()
                 .customerId(customerId)
+                .idempotencyKey(idempotencyKey)
                 .paymentRequest(paymentRequest)
                 .build();
         AsyncRequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation

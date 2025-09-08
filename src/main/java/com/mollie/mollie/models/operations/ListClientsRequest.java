@@ -10,6 +10,7 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -34,21 +35,31 @@ public class ListClientsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")
     private JsonNullable<Long> limit;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
     @JsonCreator
     public ListClientsRequest(
             JsonNullable<String> embed,
             JsonNullable<String> from,
-            JsonNullable<Long> limit) {
+            JsonNullable<Long> limit,
+            Optional<String> idempotencyKey) {
         Utils.checkNotNull(embed, "embed");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.embed = embed;
         this.from = from;
         this.limit = limit;
+        this.idempotencyKey = idempotencyKey;
     }
     
     public ListClientsRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -75,6 +86,14 @@ public class ListClientsRequest {
     @JsonIgnore
     public JsonNullable<Long> limit() {
         return limit;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     public static Builder builder() {
@@ -140,6 +159,25 @@ public class ListClientsRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListClientsRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListClientsRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -152,13 +190,15 @@ public class ListClientsRequest {
         return 
             Utils.enhancedDeepEquals(this.embed, other.embed) &&
             Utils.enhancedDeepEquals(this.from, other.from) &&
-            Utils.enhancedDeepEquals(this.limit, other.limit);
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            embed, from, limit);
+            embed, from, limit,
+            idempotencyKey);
     }
     
     @Override
@@ -166,7 +206,8 @@ public class ListClientsRequest {
         return Utils.toString(ListClientsRequest.class,
                 "embed", embed,
                 "from", from,
-                "limit", limit);
+                "limit", limit,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -177,6 +218,8 @@ public class ListClientsRequest {
         private JsonNullable<String> from = JsonNullable.undefined();
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -243,10 +286,30 @@ public class ListClientsRequest {
             return this;
         }
 
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public ListClientsRequest build() {
 
             return new ListClientsRequest(
-                embed, from, limit);
+                embed, from, limit,
+                idempotencyKey);
         }
 
     }

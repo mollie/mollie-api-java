@@ -6,11 +6,11 @@ package com.mollie.mollie;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.models.components.EntityCustomer;
-import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
+import com.mollie.mollie.models.operations.CreateCustomerRequest;
 import com.mollie.mollie.models.operations.CreateCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCustomerResponse;
 import com.mollie.mollie.models.operations.DeleteCustomerRequest;
@@ -39,7 +39,6 @@ import com.mollie.mollie.operations.UpdateCustomer;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -89,7 +88,7 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public CreateCustomerResponse createDirect() throws Exception {
-        return create(Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -100,13 +99,22 @@ public class Customers {
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param entityCustomer 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateCustomerResponse create(Optional<? extends EntityCustomer> request, Optional<Options> options) throws Exception {
-        RequestOperation<Optional<? extends EntityCustomer>, CreateCustomerResponse> operation
+    public CreateCustomerResponse create(
+            Optional<String> idempotencyKey, Optional<? extends EntityCustomer> entityCustomer,
+            Optional<Options> options) throws Exception {
+        CreateCustomerRequest request =
+            CreateCustomerRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .entityCustomer(entityCustomer)
+                .build();
+        RequestOperation<CreateCustomerRequest, CreateCustomerResponse> operation
               = new CreateCustomer.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -131,12 +139,12 @@ public class Customers {
      * 
      * <p>The results are paginated.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCustomersResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+    public ListCustomersResponse list(ListCustomersRequest request) throws Exception {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -146,31 +154,12 @@ public class Customers {
      * 
      * <p>The results are paginated.
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort 
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCustomersResponse list(
-            Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<? extends ListSort> sort, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
-        ListCustomersRequest request =
-            ListCustomersRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .sort(sort)
-                .testmode(testmode)
-                .build();
+    public ListCustomersResponse list(ListCustomersRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListCustomersRequest, ListCustomersResponse> operation
               = new ListCustomers.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
@@ -198,7 +187,7 @@ public class Customers {
      */
     public GetCustomerResponse get(String customerId) throws Exception {
         return get(customerId, JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -213,19 +202,22 @@ public class Customers {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetCustomerResponse get(
             String customerId, JsonNullable<String> include,
-            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
+            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Options> options) throws Exception {
         GetCustomerRequest request =
             GetCustomerRequest
                 .builder()
                 .customerId(customerId)
                 .include(include)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetCustomerRequest, GetCustomerResponse> operation
               = new GetCustomer.Sync(sdkConfiguration, options);
@@ -257,7 +249,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public UpdateCustomerResponse update(String customerId) throws Exception {
-        return update(customerId, Optional.empty(), Optional.empty());
+        return update(customerId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -268,18 +261,20 @@ public class Customers {
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityCustomer 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateCustomerResponse update(
-            String customerId, Optional<? extends EntityCustomer> entityCustomer,
-            Optional<Options> options) throws Exception {
+            String customerId, Optional<String> idempotencyKey,
+            Optional<? extends EntityCustomer> entityCustomer, Optional<Options> options) throws Exception {
         UpdateCustomerRequest request =
             UpdateCustomerRequest
                 .builder()
                 .customerId(customerId)
+                .idempotencyKey(idempotencyKey)
                 .entityCustomer(entityCustomer)
                 .build();
         RequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
@@ -308,7 +303,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public DeleteCustomerResponse delete(String customerId) throws Exception {
-        return delete(customerId, Optional.empty(), Optional.empty());
+        return delete(customerId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -317,18 +313,20 @@ public class Customers {
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
      * 
      * @param customerId Provide the ID of the related customer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteCustomerResponse delete(
-            String customerId, Optional<? extends DeleteCustomerRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String customerId, Optional<String> idempotencyKey,
+            Optional<? extends DeleteCustomerRequestBody> requestBody, Optional<Options> options) throws Exception {
         DeleteCustomerRequest request =
             DeleteCustomerRequest
                 .builder()
                 .customerId(customerId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
@@ -377,7 +375,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public CreateCustomerPaymentResponse createPayment(String customerId) throws Exception {
-        return createPayment(customerId, Optional.empty(), Optional.empty());
+        return createPayment(customerId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -396,18 +395,20 @@ public class Customers {
      * parameter predefined.
      * 
      * @param customerId Provide the ID of the related customer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param paymentRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateCustomerPaymentResponse createPayment(
-            String customerId, Optional<? extends PaymentRequest> paymentRequest,
-            Optional<Options> options) throws Exception {
+            String customerId, Optional<String> idempotencyKey,
+            Optional<? extends PaymentRequest> paymentRequest, Optional<Options> options) throws Exception {
         CreateCustomerPaymentRequest request =
             CreateCustomerPaymentRequest
                 .builder()
                 .customerId(customerId)
+                .idempotencyKey(idempotencyKey)
                 .paymentRequest(paymentRequest)
                 .build();
         RequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation

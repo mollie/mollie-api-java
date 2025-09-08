@@ -3,13 +3,15 @@
  */
 package com.mollie.mollie;
 
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.operations.ListCapabilitiesRequest;
 import com.mollie.mollie.models.operations.ListCapabilitiesRequestBuilder;
 import com.mollie.mollie.models.operations.ListCapabilitiesResponse;
 import com.mollie.mollie.operations.ListCapabilities;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 
@@ -75,7 +77,7 @@ public class Capabilities {
      * @throws Exception if the API call fails
      */
     public ListCapabilitiesResponse listDirect() throws Exception {
-        return list(Optional.empty());
+        return list(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -95,14 +97,20 @@ public class Capabilities {
      * This means that if at least one of the clients's profiles can receive payments,
      * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListCapabilitiesResponse list(Optional<Options> options) throws Exception {
-        RequestlessOperation<ListCapabilitiesResponse> operation
-            = new ListCapabilities.Sync(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest());
+    public ListCapabilitiesResponse list(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+        ListCapabilitiesRequest request =
+            ListCapabilitiesRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<ListCapabilitiesRequest, ListCapabilitiesResponse> operation
+              = new ListCapabilities.Sync(sdkConfiguration, options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

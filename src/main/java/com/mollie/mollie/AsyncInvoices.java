@@ -113,7 +113,7 @@ public class AsyncInvoices {
      * @return CompletableFuture&lt;GetInvoiceResponse&gt; - The async response
      */
     public CompletableFuture<GetInvoiceResponse> get(String id) {
-        return get(id, Optional.empty());
+        return get(id, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -125,14 +125,18 @@ public class AsyncInvoices {
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetInvoiceResponse&gt; - The async response
      */
-    public CompletableFuture<GetInvoiceResponse> get(String id, Optional<Options> options) {
+    public CompletableFuture<GetInvoiceResponse> get(
+            String id, Optional<String> idempotencyKey,
+            Optional<Options> options) {
         GetInvoiceRequest request =
             GetInvoiceRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
               = new GetInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

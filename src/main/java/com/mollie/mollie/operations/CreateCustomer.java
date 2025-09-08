@@ -10,9 +10,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.components.CustomerResponse;
-import com.mollie.mollie.models.components.EntityCustomer;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerRequest;
 import com.mollie.mollie.models.operations.CreateCustomerResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
@@ -118,12 +118,13 @@ public class CreateCustomer {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "entityCustomer",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -131,13 +132,13 @@ public class CreateCustomer {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends EntityCustomer>, CreateCustomerResponse> {
+            implements RequestOperation<CreateCustomerRequest, CreateCustomerResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends EntityCustomer> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntityCustomer>>() {});
+        private HttpRequest onBuildRequest(CreateCustomerRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<CreateCustomerRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -153,7 +154,7 @@ public class CreateCustomer {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends EntityCustomer> request) throws Exception {
+        public HttpResponse<InputStream> doRequest(CreateCustomerRequest request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -253,7 +254,7 @@ public class CreateCustomer {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends EntityCustomer>, com.mollie.mollie.models.operations.async.CreateCustomerResponse> {
+            implements AsyncRequestOperation<CreateCustomerRequest, com.mollie.mollie.models.operations.async.CreateCustomerResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -263,8 +264,8 @@ public class CreateCustomer {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends EntityCustomer> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntityCustomer>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(CreateCustomerRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<CreateCustomerRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -277,7 +278,7 @@ public class CreateCustomer {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends EntityCustomer> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(CreateCustomerRequest request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)

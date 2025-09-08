@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
 import com.mollie.mollie.models.components.EntitySalesInvoice;
 import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
+import com.mollie.mollie.models.operations.CreateSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.GetSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.ListSalesInvoicesRequest;
@@ -82,7 +83,7 @@ public class AsyncSalesInvoices {
      * @return CompletableFuture&lt;CreateSalesInvoiceResponse&gt; - The async response
      */
     public CompletableFuture<CreateSalesInvoiceResponse> createDirect() {
-        return create(Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -94,12 +95,21 @@ public class AsyncSalesInvoices {
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param entitySalesInvoice 
      * @param options additional options
      * @return CompletableFuture&lt;CreateSalesInvoiceResponse&gt; - The async response
      */
-    public CompletableFuture<CreateSalesInvoiceResponse> create(Optional<? extends EntitySalesInvoice> request, Optional<Options> options) {
-        AsyncRequestOperation<Optional<? extends EntitySalesInvoice>, CreateSalesInvoiceResponse> operation
+    public CompletableFuture<CreateSalesInvoiceResponse> create(
+            Optional<String> idempotencyKey, Optional<? extends EntitySalesInvoice> entitySalesInvoice,
+            Optional<Options> options) {
+        CreateSalesInvoiceRequest request =
+            CreateSalesInvoiceRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .entitySalesInvoice(entitySalesInvoice)
+                .build();
+        AsyncRequestOperation<CreateSalesInvoiceRequest, CreateSalesInvoiceResponse> operation
               = new CreateSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -139,7 +149,7 @@ public class AsyncSalesInvoices {
     public CompletableFuture<ListSalesInvoicesResponse> listDirect() {
         return list(
                 JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -161,18 +171,21 @@ public class AsyncSalesInvoices {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;ListSalesInvoicesResponse&gt; - The async response
      */
     public CompletableFuture<ListSalesInvoicesResponse> list(
             JsonNullable<String> from, JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode, Optional<Options> options) {
+            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Options> options) {
         ListSalesInvoicesRequest request =
             ListSalesInvoicesRequest
                 .builder()
                 .from(from)
                 .limit(limit)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
               = new ListSalesInvoices.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -209,7 +222,9 @@ public class AsyncSalesInvoices {
      * @return CompletableFuture&lt;GetSalesInvoiceResponse&gt; - The async response
      */
     public CompletableFuture<GetSalesInvoiceResponse> get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(
+                id, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -227,17 +242,19 @@ public class AsyncSalesInvoices {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetSalesInvoiceResponse&gt; - The async response
      */
     public CompletableFuture<GetSalesInvoiceResponse> get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetSalesInvoiceRequest request =
             GetSalesInvoiceRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetSalesInvoiceRequest, GetSalesInvoiceResponse> operation
               = new GetSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -278,7 +295,9 @@ public class AsyncSalesInvoices {
      * @return CompletableFuture&lt;UpdateSalesInvoiceResponse&gt; - The async response
      */
     public CompletableFuture<UpdateSalesInvoiceResponse> update(String id) {
-        return update(id, Optional.empty(), Optional.empty());
+        return update(
+                id, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -293,17 +312,19 @@ public class AsyncSalesInvoices {
      * respectively).
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param updateValuesSalesInvoice 
      * @param options additional options
      * @return CompletableFuture&lt;UpdateSalesInvoiceResponse&gt; - The async response
      */
     public CompletableFuture<UpdateSalesInvoiceResponse> update(
-            String id, Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice,
-            Optional<Options> options) {
+            String id, Optional<String> idempotencyKey,
+            Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice, Optional<Options> options) {
         UpdateSalesInvoiceRequest request =
             UpdateSalesInvoiceRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .updateValuesSalesInvoice(updateValuesSalesInvoice)
                 .build();
         AsyncRequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
@@ -343,7 +364,9 @@ public class AsyncSalesInvoices {
      * @return CompletableFuture&lt;DeleteSalesInvoiceResponse&gt; - The async response
      */
     public CompletableFuture<DeleteSalesInvoiceResponse> delete(String id) {
-        return delete(id, Optional.empty(), Optional.empty());
+        return delete(
+                id, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -357,17 +380,19 @@ public class AsyncSalesInvoices {
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param deleteValuesSalesInvoice 
      * @param options additional options
      * @return CompletableFuture&lt;DeleteSalesInvoiceResponse&gt; - The async response
      */
     public CompletableFuture<DeleteSalesInvoiceResponse> delete(
-            String id, Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice,
-            Optional<Options> options) {
+            String id, Optional<String> idempotencyKey,
+            Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice, Optional<Options> options) {
         DeleteSalesInvoiceRequest request =
             DeleteSalesInvoiceRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .deleteValuesSalesInvoice(deleteValuesSalesInvoice)
                 .build();
         AsyncRequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation

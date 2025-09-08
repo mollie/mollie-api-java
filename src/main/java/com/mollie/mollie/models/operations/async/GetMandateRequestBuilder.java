@@ -23,6 +23,7 @@ public class GetMandateRequestBuilder {
     private String customerId;
     private String mandateId;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -54,6 +55,18 @@ public class GetMandateRequestBuilder {
         return this;
     }
                 
+    public GetMandateRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetMandateRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
     public GetMandateRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -71,7 +84,8 @@ public class GetMandateRequestBuilder {
 
         GetMandateRequest request = new GetMandateRequest(customerId,
             mandateId,
-            testmode);
+            testmode,
+            idempotencyKey);
 
         return request;
     }

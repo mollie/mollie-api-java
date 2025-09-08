@@ -9,6 +9,7 @@ import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class UpdateProfileRequest {
@@ -18,6 +19,12 @@ public class UpdateProfileRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private UpdateProfileRequestBody requestBody;
@@ -25,11 +32,20 @@ public class UpdateProfileRequest {
     @JsonCreator
     public UpdateProfileRequest(
             String id,
+            Optional<String> idempotencyKey,
             UpdateProfileRequestBody requestBody) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(requestBody, "requestBody");
         this.id = id;
+        this.idempotencyKey = idempotencyKey;
         this.requestBody = requestBody;
+    }
+    
+    public UpdateProfileRequest(
+            String id,
+            UpdateProfileRequestBody requestBody) {
+        this(id, Optional.empty(), requestBody);
     }
 
     /**
@@ -38,6 +54,14 @@ public class UpdateProfileRequest {
     @JsonIgnore
     public String id() {
         return id;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @JsonIgnore
@@ -59,6 +83,25 @@ public class UpdateProfileRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public UpdateProfileRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public UpdateProfileRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public UpdateProfileRequest withRequestBody(UpdateProfileRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
@@ -76,19 +119,21 @@ public class UpdateProfileRequest {
         UpdateProfileRequest other = (UpdateProfileRequest) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, requestBody);
+            id, idempotencyKey, requestBody);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdateProfileRequest.class,
                 "id", id,
+                "idempotencyKey", idempotencyKey,
                 "requestBody", requestBody);
     }
 
@@ -96,6 +141,8 @@ public class UpdateProfileRequest {
     public final static class Builder {
 
         private String id;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private UpdateProfileRequestBody requestBody;
 
@@ -114,6 +161,25 @@ public class UpdateProfileRequest {
         }
 
 
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
+
         public Builder requestBody(UpdateProfileRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
@@ -123,7 +189,7 @@ public class UpdateProfileRequest {
         public UpdateProfileRequest build() {
 
             return new UpdateProfileRequest(
-                id, requestBody);
+                id, idempotencyKey, requestBody);
         }
 
     }

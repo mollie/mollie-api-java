@@ -3,7 +3,7 @@
  */
 package com.mollie.mollie.models.operations;
 
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.GetPartnerStatus;
@@ -11,15 +11,29 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 public class GetPartnerStatusRequestBuilder {
 
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
     public GetPartnerStatusRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetPartnerStatusRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetPartnerStatusRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
     }
                 
     public GetPartnerStatusRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -34,14 +48,23 @@ public class GetPartnerStatusRequestBuilder {
         return this;
     }
 
+
+    private GetPartnerStatusRequest buildRequest() {
+
+        GetPartnerStatusRequest request = new GetPartnerStatusRequest(idempotencyKey);
+
+        return request;
+    }
+
     public GetPartnerStatusResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        RequestlessOperation<GetPartnerStatusResponse> operation
-            = new GetPartnerStatus.Sync(sdkConfiguration, options);
+        RequestOperation<GetPartnerStatusRequest, GetPartnerStatusResponse> operation
+              = new GetPartnerStatus.Sync(sdkConfiguration, options);
+        GetPartnerStatusRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest());
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,10 +3,10 @@
  */
 package com.mollie.mollie;
 
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.models.operations.GetPermissionRequest;
+import com.mollie.mollie.models.operations.ListPermissionsRequest;
 import com.mollie.mollie.models.operations.async.GetPermissionRequestBuilder;
 import com.mollie.mollie.models.operations.async.GetPermissionResponse;
 import com.mollie.mollie.models.operations.async.ListPermissionsRequestBuilder;
@@ -63,7 +63,7 @@ public class AsyncPermissions {
      * @return CompletableFuture&lt;ListPermissionsResponse&gt; - The async response
      */
     public CompletableFuture<ListPermissionsResponse> listDirect() {
-        return list(Optional.empty());
+        return list(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -73,13 +73,19 @@ public class AsyncPermissions {
      * 
      * <p>The results are **not** paginated.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;ListPermissionsResponse&gt; - The async response
      */
-    public CompletableFuture<ListPermissionsResponse> list(Optional<Options> options) {
-        AsyncRequestlessOperation<ListPermissionsResponse> operation
-            = new ListPermissions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        return operation.doRequest()
+    public CompletableFuture<ListPermissionsResponse> list(Optional<String> idempotencyKey, Optional<Options> options) {
+        ListPermissionsRequest request =
+            ListPermissionsRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<ListPermissionsRequest, ListPermissionsResponse> operation
+              = new ListPermissions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 
@@ -104,7 +110,9 @@ public class AsyncPermissions {
      * @return CompletableFuture&lt;GetPermissionResponse&gt; - The async response
      */
     public CompletableFuture<GetPermissionResponse> get(String permissionId) {
-        return get(permissionId, JsonNullable.undefined(), Optional.empty());
+        return get(
+                permissionId, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -118,17 +126,19 @@ public class AsyncPermissions {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetPermissionResponse&gt; - The async response
      */
     public CompletableFuture<GetPermissionResponse> get(
             String permissionId, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetPermissionRequest request =
             GetPermissionRequest
                 .builder()
                 .permissionId(permissionId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetPermissionRequest, GetPermissionResponse> operation
               = new GetPermission.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

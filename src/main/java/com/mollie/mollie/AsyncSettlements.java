@@ -4,8 +4,9 @@
 package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
 
+import com.mollie.mollie.models.operations.GetNextSettlementRequest;
+import com.mollie.mollie.models.operations.GetOpenSettlementRequest;
 import com.mollie.mollie.models.operations.GetSettlementRequest;
 import com.mollie.mollie.models.operations.ListSettlementCapturesRequest;
 import com.mollie.mollie.models.operations.ListSettlementChargebacksRequest;
@@ -149,7 +150,7 @@ public class AsyncSettlements {
      * @return CompletableFuture&lt;GetSettlementResponse&gt; - The async response
      */
     public CompletableFuture<GetSettlementResponse> get(String id) {
-        return get(id, Optional.empty());
+        return get(id, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -169,14 +170,18 @@ public class AsyncSettlements {
      * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetSettlementResponse&gt; - The async response
      */
-    public CompletableFuture<GetSettlementResponse> get(String id, Optional<Options> options) {
+    public CompletableFuture<GetSettlementResponse> get(
+            String id, Optional<String> idempotencyKey,
+            Optional<Options> options) {
         GetSettlementRequest request =
             GetSettlementRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetSettlementRequest, GetSettlementResponse> operation
               = new GetSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -218,7 +223,7 @@ public class AsyncSettlements {
      * @return CompletableFuture&lt;GetOpenSettlementResponse&gt; - The async response
      */
     public CompletableFuture<GetOpenSettlementResponse> getOpenDirect() {
-        return getOpen(Optional.empty());
+        return getOpen(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -233,13 +238,19 @@ public class AsyncSettlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetOpenSettlementResponse&gt; - The async response
      */
-    public CompletableFuture<GetOpenSettlementResponse> getOpen(Optional<Options> options) {
-        AsyncRequestlessOperation<GetOpenSettlementResponse> operation
-            = new GetOpenSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        return operation.doRequest()
+    public CompletableFuture<GetOpenSettlementResponse> getOpen(Optional<String> idempotencyKey, Optional<Options> options) {
+        GetOpenSettlementRequest request =
+            GetOpenSettlementRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<GetOpenSettlementRequest, GetOpenSettlementResponse> operation
+              = new GetOpenSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 
@@ -275,7 +286,7 @@ public class AsyncSettlements {
      * @return CompletableFuture&lt;GetNextSettlementResponse&gt; - The async response
      */
     public CompletableFuture<GetNextSettlementResponse> getNextDirect() {
-        return getNext(Optional.empty());
+        return getNext(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -289,13 +300,19 @@ public class AsyncSettlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetNextSettlementResponse&gt; - The async response
      */
-    public CompletableFuture<GetNextSettlementResponse> getNext(Optional<Options> options) {
-        AsyncRequestlessOperation<GetNextSettlementResponse> operation
-            = new GetNextSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        return operation.doRequest()
+    public CompletableFuture<GetNextSettlementResponse> getNext(Optional<String> idempotencyKey, Optional<Options> options) {
+        GetNextSettlementRequest request =
+            GetNextSettlementRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<GetNextSettlementRequest, GetNextSettlementResponse> operation
+              = new GetNextSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 

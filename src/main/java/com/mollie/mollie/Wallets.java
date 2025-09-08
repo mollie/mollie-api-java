@@ -5,12 +5,14 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequest;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestBody;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestBuilder;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionResponse;
 import com.mollie.mollie.operations.RequestApplePayPaymentSession;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 
@@ -88,7 +90,7 @@ public class Wallets {
      * @throws Exception if the API call fails
      */
     public RequestApplePayPaymentSessionResponse requestApplePaySessionDirect() throws Exception {
-        return requestApplePaySession(Optional.empty(), Optional.empty());
+        return requestApplePaySession(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -114,13 +116,22 @@ public class Wallets {
      * full documentation, see the official
      * [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api) documentation.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public RequestApplePayPaymentSessionResponse requestApplePaySession(Optional<? extends RequestApplePayPaymentSessionRequestBody> request, Optional<Options> options) throws Exception {
-        RequestOperation<Optional<? extends RequestApplePayPaymentSessionRequestBody>, RequestApplePayPaymentSessionResponse> operation
+    public RequestApplePayPaymentSessionResponse requestApplePaySession(
+            Optional<String> idempotencyKey, Optional<? extends RequestApplePayPaymentSessionRequestBody> requestBody,
+            Optional<Options> options) throws Exception {
+        RequestApplePayPaymentSessionRequest request =
+            RequestApplePayPaymentSessionRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .requestBody(requestBody)
+                .build();
+        RequestOperation<RequestApplePayPaymentSessionRequest, RequestApplePayPaymentSessionResponse> operation
               = new RequestApplePayPaymentSession.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }

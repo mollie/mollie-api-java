@@ -64,6 +64,7 @@ public class Application {
                 .profileId("pfl_5B8cwPMGnU")
                 .include("issuers")
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         ListMethodsResponse res = sdk.methods().list()
@@ -134,6 +135,7 @@ public class Application {
                 .sequenceType(SequenceType.ONEOFF)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         ListAllMethodsResponse res = sdk.methods().all()
@@ -210,6 +212,7 @@ public class Application {
                 .include("issuers")
                 .sequenceType(SequenceType.ONEOFF)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         GetMethodResponse res = sdk.methods().get()

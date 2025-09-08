@@ -20,6 +20,7 @@ public class GetPaymentLinkRequestBuilder {
 
     private String paymentLinkId;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -45,6 +46,18 @@ public class GetPaymentLinkRequestBuilder {
         return this;
     }
                 
+    public GetPaymentLinkRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetPaymentLinkRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
     public GetPaymentLinkRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -61,7 +74,8 @@ public class GetPaymentLinkRequestBuilder {
     private GetPaymentLinkRequest buildRequest() {
 
         GetPaymentLinkRequest request = new GetPaymentLinkRequest(paymentLinkId,
-            testmode);
+            testmode,
+            idempotencyKey);
 
         return request;
     }

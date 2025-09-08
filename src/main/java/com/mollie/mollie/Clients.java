@@ -64,7 +64,7 @@ public class Clients {
      */
     public ListClientsResponse listDirect() throws Exception {
         return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -79,19 +79,22 @@ public class Clients {
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListClientsResponse list(
             JsonNullable<String> embed, JsonNullable<String> from,
-            JsonNullable<Long> limit, Optional<Options> options) throws Exception {
+            JsonNullable<Long> limit, Optional<String> idempotencyKey,
+            Optional<Options> options) throws Exception {
         ListClientsRequest request =
             ListClientsRequest
                 .builder()
                 .embed(embed)
                 .from(from)
                 .limit(limit)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<ListClientsRequest, ListClientsResponse> operation
               = new ListClients.Sync(sdkConfiguration, options);
@@ -119,7 +122,8 @@ public class Clients {
      * @throws Exception if the API call fails
      */
     public GetClientResponse get(String id) throws Exception {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(id, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -130,18 +134,20 @@ public class Clients {
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
      *         parameter.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetClientResponse get(
             String id, JsonNullable<String> embed,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         GetClientRequest request =
             GetClientRequest
                 .builder()
                 .id(id)
                 .embed(embed)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetClientRequest, GetClientResponse> operation
               = new GetClient.Sync(sdkConfiguration, options);

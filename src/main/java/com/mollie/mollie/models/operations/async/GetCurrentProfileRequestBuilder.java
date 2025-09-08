@@ -3,24 +3,39 @@
  */
 package com.mollie.mollie.models.operations.async;
 
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
+import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.operations.GetCurrentProfileRequest;
 import com.mollie.mollie.operations.GetCurrentProfile;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetCurrentProfileRequestBuilder {
 
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
     public GetCurrentProfileRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetCurrentProfileRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetCurrentProfileRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
     }
                 
     public GetCurrentProfileRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -35,15 +50,24 @@ public class GetCurrentProfileRequestBuilder {
         return this;
     }
 
+
+    private GetCurrentProfileRequest buildRequest() {
+
+        GetCurrentProfileRequest request = new GetCurrentProfileRequest(idempotencyKey);
+
+        return request;
+    }
+
     public CompletableFuture<GetCurrentProfileResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestlessOperation<GetCurrentProfileResponse> operation
-            = new GetCurrentProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        AsyncRequestOperation<GetCurrentProfileRequest, GetCurrentProfileResponse> operation
+              = new GetCurrentProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        GetCurrentProfileRequest request = buildRequest();
 
-        return operation.doRequest()
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 }

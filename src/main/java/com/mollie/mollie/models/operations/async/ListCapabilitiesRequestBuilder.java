@@ -3,24 +3,39 @@
  */
 package com.mollie.mollie.models.operations.async;
 
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
+import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.operations.ListCapabilitiesRequest;
 import com.mollie.mollie.operations.ListCapabilities;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ListCapabilitiesRequestBuilder {
 
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
     public ListCapabilitiesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public ListCapabilitiesRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public ListCapabilitiesRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
     }
                 
     public ListCapabilitiesRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -35,15 +50,24 @@ public class ListCapabilitiesRequestBuilder {
         return this;
     }
 
+
+    private ListCapabilitiesRequest buildRequest() {
+
+        ListCapabilitiesRequest request = new ListCapabilitiesRequest(idempotencyKey);
+
+        return request;
+    }
+
     public CompletableFuture<ListCapabilitiesResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestlessOperation<ListCapabilitiesResponse> operation
-            = new ListCapabilities.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        AsyncRequestOperation<ListCapabilitiesRequest, ListCapabilitiesResponse> operation
+              = new ListCapabilities.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        ListCapabilitiesRequest request = buildRequest();
 
-        return operation.doRequest()
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 }

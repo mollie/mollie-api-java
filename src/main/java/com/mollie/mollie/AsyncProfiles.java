@@ -4,10 +4,11 @@
 package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
 
 import com.mollie.mollie.models.components.EntityProfile;
+import com.mollie.mollie.models.operations.CreateProfileRequest;
 import com.mollie.mollie.models.operations.DeleteProfileRequest;
+import com.mollie.mollie.models.operations.GetCurrentProfileRequest;
 import com.mollie.mollie.models.operations.GetProfileRequest;
 import com.mollie.mollie.models.operations.ListProfilesRequest;
 import com.mollie.mollie.models.operations.UpdateProfileRequest;
@@ -80,11 +81,11 @@ public class AsyncProfiles {
      * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param entityProfile 
      * @return CompletableFuture&lt;CreateProfileResponse&gt; - The async response
      */
-    public CompletableFuture<CreateProfileResponse> create(EntityProfile request) {
-        return create(request, Optional.empty());
+    public CompletableFuture<CreateProfileResponse> create(EntityProfile entityProfile) {
+        return create(Optional.empty(), entityProfile, Optional.empty());
     }
 
     /**
@@ -95,12 +96,21 @@ public class AsyncProfiles {
      * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param entityProfile 
      * @param options additional options
      * @return CompletableFuture&lt;CreateProfileResponse&gt; - The async response
      */
-    public CompletableFuture<CreateProfileResponse> create(EntityProfile request, Optional<Options> options) {
-        AsyncRequestOperation<EntityProfile, CreateProfileResponse> operation
+    public CompletableFuture<CreateProfileResponse> create(
+            Optional<String> idempotencyKey, EntityProfile entityProfile,
+            Optional<Options> options) {
+        CreateProfileRequest request =
+            CreateProfileRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .entityProfile(entityProfile)
+                .build();
+        AsyncRequestOperation<CreateProfileRequest, CreateProfileResponse> operation
               = new CreateProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -130,7 +140,9 @@ public class AsyncProfiles {
      * @return CompletableFuture&lt;ListProfilesResponse&gt; - The async response
      */
     public CompletableFuture<ListProfilesResponse> listDirect() {
-        return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return list(
+                JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -143,17 +155,19 @@ public class AsyncProfiles {
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;ListProfilesResponse&gt; - The async response
      */
     public CompletableFuture<ListProfilesResponse> list(
             JsonNullable<String> from, JsonNullable<Long> limit,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         ListProfilesRequest request =
             ListProfilesRequest
                 .builder()
                 .from(from)
                 .limit(limit)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<ListProfilesRequest, ListProfilesResponse> operation
               = new ListProfiles.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -182,7 +196,9 @@ public class AsyncProfiles {
      * @return CompletableFuture&lt;GetProfileResponse&gt; - The async response
      */
     public CompletableFuture<GetProfileResponse> get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(
+                id, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -196,17 +212,19 @@ public class AsyncProfiles {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetProfileResponse&gt; - The async response
      */
     public CompletableFuture<GetProfileResponse> get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetProfileRequest request =
             GetProfileRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetProfileRequest, GetProfileResponse> operation
               = new GetProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -242,7 +260,9 @@ public class AsyncProfiles {
      * @return CompletableFuture&lt;UpdateProfileResponse&gt; - The async response
      */
     public CompletableFuture<UpdateProfileResponse> update(String id, UpdateProfileRequestBody requestBody) {
-        return update(id, requestBody, Optional.empty());
+        return update(
+                id, Optional.empty(), requestBody,
+                Optional.empty());
     }
 
     /**
@@ -254,17 +274,19 @@ public class AsyncProfiles {
      * Alternatively, you can use this endpoint to automate profile management.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;UpdateProfileResponse&gt; - The async response
      */
     public CompletableFuture<UpdateProfileResponse> update(
-            String id, UpdateProfileRequestBody requestBody,
-            Optional<Options> options) {
+            String id, Optional<String> idempotencyKey,
+            UpdateProfileRequestBody requestBody, Optional<Options> options) {
         UpdateProfileRequest request =
             UpdateProfileRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
@@ -294,7 +316,7 @@ public class AsyncProfiles {
      * @return CompletableFuture&lt;DeleteProfileResponse&gt; - The async response
      */
     public CompletableFuture<DeleteProfileResponse> delete(String id) {
-        return delete(id, Optional.empty());
+        return delete(id, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -303,14 +325,18 @@ public class AsyncProfiles {
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;DeleteProfileResponse&gt; - The async response
      */
-    public CompletableFuture<DeleteProfileResponse> delete(String id, Optional<Options> options) {
+    public CompletableFuture<DeleteProfileResponse> delete(
+            String id, Optional<String> idempotencyKey,
+            Optional<Options> options) {
         DeleteProfileRequest request =
             DeleteProfileRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
               = new DeleteProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -346,7 +372,7 @@ public class AsyncProfiles {
      * @return CompletableFuture&lt;GetCurrentProfileResponse&gt; - The async response
      */
     public CompletableFuture<GetCurrentProfileResponse> getCurrentDirect() {
-        return getCurrent(Optional.empty());
+        return getCurrent(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -358,13 +384,19 @@ public class AsyncProfiles {
      * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
      * documentation.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetCurrentProfileResponse&gt; - The async response
      */
-    public CompletableFuture<GetCurrentProfileResponse> getCurrent(Optional<Options> options) {
-        AsyncRequestlessOperation<GetCurrentProfileResponse> operation
-            = new GetCurrentProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        return operation.doRequest()
+    public CompletableFuture<GetCurrentProfileResponse> getCurrent(Optional<String> idempotencyKey, Optional<Options> options) {
+        GetCurrentProfileRequest request =
+            GetCurrentProfileRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<GetCurrentProfileRequest, GetCurrentProfileResponse> operation
+              = new GetCurrentProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 

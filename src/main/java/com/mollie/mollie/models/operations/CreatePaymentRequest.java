@@ -22,6 +22,12 @@ public class CreatePaymentRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
     private JsonNullable<String> include;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends PaymentRequest> paymentRequest;
@@ -29,15 +35,18 @@ public class CreatePaymentRequest {
     @JsonCreator
     public CreatePaymentRequest(
             JsonNullable<String> include,
+            Optional<String> idempotencyKey,
             Optional<? extends PaymentRequest> paymentRequest) {
         Utils.checkNotNull(include, "include");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(paymentRequest, "paymentRequest");
         this.include = include;
+        this.idempotencyKey = idempotencyKey;
         this.paymentRequest = paymentRequest;
     }
     
     public CreatePaymentRequest() {
-        this(JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -46,6 +55,14 @@ public class CreatePaymentRequest {
     @JsonIgnore
     public JsonNullable<String> include() {
         return include;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -77,6 +94,25 @@ public class CreatePaymentRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public CreatePaymentRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public CreatePaymentRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public CreatePaymentRequest withPaymentRequest(PaymentRequest paymentRequest) {
         Utils.checkNotNull(paymentRequest, "paymentRequest");
         this.paymentRequest = Optional.ofNullable(paymentRequest);
@@ -101,19 +137,21 @@ public class CreatePaymentRequest {
         CreatePaymentRequest other = (CreatePaymentRequest) o;
         return 
             Utils.enhancedDeepEquals(this.include, other.include) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.paymentRequest, other.paymentRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            include, paymentRequest);
+            include, idempotencyKey, paymentRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreatePaymentRequest.class,
                 "include", include,
+                "idempotencyKey", idempotencyKey,
                 "paymentRequest", paymentRequest);
     }
 
@@ -121,6 +159,8 @@ public class CreatePaymentRequest {
     public final static class Builder {
 
         private JsonNullable<String> include = JsonNullable.undefined();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends PaymentRequest> paymentRequest = Optional.empty();
 
@@ -148,6 +188,25 @@ public class CreatePaymentRequest {
         }
 
 
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
+
         public Builder paymentRequest(PaymentRequest paymentRequest) {
             Utils.checkNotNull(paymentRequest, "paymentRequest");
             this.paymentRequest = Optional.ofNullable(paymentRequest);
@@ -163,7 +222,7 @@ public class CreatePaymentRequest {
         public CreatePaymentRequest build() {
 
             return new CreatePaymentRequest(
-                include, paymentRequest);
+                include, idempotencyKey, paymentRequest);
         }
 
     }

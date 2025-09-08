@@ -4,10 +4,11 @@
 package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
 
+import com.mollie.mollie.models.operations.GetNextSettlementRequest;
 import com.mollie.mollie.models.operations.GetNextSettlementRequestBuilder;
 import com.mollie.mollie.models.operations.GetNextSettlementResponse;
+import com.mollie.mollie.models.operations.GetOpenSettlementRequest;
 import com.mollie.mollie.models.operations.GetOpenSettlementRequestBuilder;
 import com.mollie.mollie.models.operations.GetOpenSettlementResponse;
 import com.mollie.mollie.models.operations.GetSettlementRequest;
@@ -149,7 +150,7 @@ public class Settlements {
      * @throws Exception if the API call fails
      */
     public GetSettlementResponse get(String id) throws Exception {
-        return get(id, Optional.empty());
+        return get(id, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -169,15 +170,19 @@ public class Settlements {
      * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetSettlementResponse get(String id, Optional<Options> options) throws Exception {
+    public GetSettlementResponse get(
+            String id, Optional<String> idempotencyKey,
+            Optional<Options> options) throws Exception {
         GetSettlementRequest request =
             GetSettlementRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetSettlementRequest, GetSettlementResponse> operation
               = new GetSettlement.Sync(sdkConfiguration, options);
@@ -218,7 +223,7 @@ public class Settlements {
      * @throws Exception if the API call fails
      */
     public GetOpenSettlementResponse getOpenDirect() throws Exception {
-        return getOpen(Optional.empty());
+        return getOpen(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -233,14 +238,20 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetOpenSettlementResponse getOpen(Optional<Options> options) throws Exception {
-        RequestlessOperation<GetOpenSettlementResponse> operation
-            = new GetOpenSettlement.Sync(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest());
+    public GetOpenSettlementResponse getOpen(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+        GetOpenSettlementRequest request =
+            GetOpenSettlementRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<GetOpenSettlementRequest, GetOpenSettlementResponse> operation
+              = new GetOpenSettlement.Sync(sdkConfiguration, options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
@@ -275,7 +286,7 @@ public class Settlements {
      * @throws Exception if the API call fails
      */
     public GetNextSettlementResponse getNextDirect() throws Exception {
-        return getNext(Optional.empty());
+        return getNext(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -289,14 +300,20 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetNextSettlementResponse getNext(Optional<Options> options) throws Exception {
-        RequestlessOperation<GetNextSettlementResponse> operation
-            = new GetNextSettlement.Sync(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest());
+    public GetNextSettlementResponse getNext(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+        GetNextSettlementRequest request =
+            GetNextSettlementRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<GetNextSettlementRequest, GetNextSettlementResponse> operation
+              = new GetNextSettlement.Sync(sdkConfiguration, options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**

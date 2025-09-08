@@ -4,14 +4,15 @@
 package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
 
 import com.mollie.mollie.models.components.EntityProfile;
+import com.mollie.mollie.models.operations.CreateProfileRequest;
 import com.mollie.mollie.models.operations.CreateProfileRequestBuilder;
 import com.mollie.mollie.models.operations.CreateProfileResponse;
 import com.mollie.mollie.models.operations.DeleteProfileRequest;
 import com.mollie.mollie.models.operations.DeleteProfileRequestBuilder;
 import com.mollie.mollie.models.operations.DeleteProfileResponse;
+import com.mollie.mollie.models.operations.GetCurrentProfileRequest;
 import com.mollie.mollie.models.operations.GetCurrentProfileRequestBuilder;
 import com.mollie.mollie.models.operations.GetCurrentProfileResponse;
 import com.mollie.mollie.models.operations.GetProfileRequest;
@@ -79,12 +80,12 @@ public class Profiles {
      * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param entityProfile 
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateProfileResponse create(EntityProfile request) throws Exception {
-        return create(request, Optional.empty());
+    public CreateProfileResponse create(EntityProfile entityProfile) throws Exception {
+        return create(Optional.empty(), entityProfile, Optional.empty());
     }
 
     /**
@@ -95,13 +96,22 @@ public class Profiles {
      * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param entityProfile 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateProfileResponse create(EntityProfile request, Optional<Options> options) throws Exception {
-        RequestOperation<EntityProfile, CreateProfileResponse> operation
+    public CreateProfileResponse create(
+            Optional<String> idempotencyKey, EntityProfile entityProfile,
+            Optional<Options> options) throws Exception {
+        CreateProfileRequest request =
+            CreateProfileRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .entityProfile(entityProfile)
+                .build();
+        RequestOperation<CreateProfileRequest, CreateProfileResponse> operation
               = new CreateProfile.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -130,7 +140,8 @@ public class Profiles {
      * @throws Exception if the API call fails
      */
     public ListProfilesResponse listDirect() throws Exception {
-        return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -143,18 +154,20 @@ public class Profiles {
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
      * @param limit The maximum number of items to return. Defaults to 50 items.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListProfilesResponse list(
             JsonNullable<String> from, JsonNullable<Long> limit,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         ListProfilesRequest request =
             ListProfilesRequest
                 .builder()
                 .from(from)
                 .limit(limit)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
               = new ListProfiles.Sync(sdkConfiguration, options);
@@ -182,7 +195,8 @@ public class Profiles {
      * @throws Exception if the API call fails
      */
     public GetProfileResponse get(String id) throws Exception {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(id, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -196,18 +210,20 @@ public class Profiles {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetProfileResponse get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         GetProfileRequest request =
             GetProfileRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetProfileRequest, GetProfileResponse> operation
               = new GetProfile.Sync(sdkConfiguration, options);
@@ -242,7 +258,8 @@ public class Profiles {
      * @throws Exception if the API call fails
      */
     public UpdateProfileResponse update(String id, UpdateProfileRequestBody requestBody) throws Exception {
-        return update(id, requestBody, Optional.empty());
+        return update(id, Optional.empty(), requestBody,
+            Optional.empty());
     }
 
     /**
@@ -254,18 +271,20 @@ public class Profiles {
      * Alternatively, you can use this endpoint to automate profile management.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateProfileResponse update(
-            String id, UpdateProfileRequestBody requestBody,
-            Optional<Options> options) throws Exception {
+            String id, Optional<String> idempotencyKey,
+            UpdateProfileRequestBody requestBody, Optional<Options> options) throws Exception {
         UpdateProfileRequest request =
             UpdateProfileRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
@@ -294,7 +313,7 @@ public class Profiles {
      * @throws Exception if the API call fails
      */
     public DeleteProfileResponse delete(String id) throws Exception {
-        return delete(id, Optional.empty());
+        return delete(id, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -303,15 +322,19 @@ public class Profiles {
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public DeleteProfileResponse delete(String id, Optional<Options> options) throws Exception {
+    public DeleteProfileResponse delete(
+            String id, Optional<String> idempotencyKey,
+            Optional<Options> options) throws Exception {
         DeleteProfileRequest request =
             DeleteProfileRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
               = new DeleteProfile.Sync(sdkConfiguration, options);
@@ -346,7 +369,7 @@ public class Profiles {
      * @throws Exception if the API call fails
      */
     public GetCurrentProfileResponse getCurrentDirect() throws Exception {
-        return getCurrent(Optional.empty());
+        return getCurrent(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -358,14 +381,20 @@ public class Profiles {
      * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
      * documentation.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCurrentProfileResponse getCurrent(Optional<Options> options) throws Exception {
-        RequestlessOperation<GetCurrentProfileResponse> operation
-            = new GetCurrentProfile.Sync(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest());
+    public GetCurrentProfileResponse getCurrent(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+        GetCurrentProfileRequest request =
+            GetCurrentProfileRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<GetCurrentProfileRequest, GetCurrentProfileResponse> operation
+              = new GetCurrentProfile.Sync(sdkConfiguration, options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
 }

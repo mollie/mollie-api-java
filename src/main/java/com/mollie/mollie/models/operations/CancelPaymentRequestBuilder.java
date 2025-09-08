@@ -17,6 +17,7 @@ import java.util.Optional;
 public class CancelPaymentRequestBuilder {
 
     private String paymentId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends CancelPaymentRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -28,6 +29,18 @@ public class CancelPaymentRequestBuilder {
     public CancelPaymentRequestBuilder paymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
+        return this;
+    }
+                
+    public CancelPaymentRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public CancelPaymentRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -59,6 +72,7 @@ public class CancelPaymentRequestBuilder {
     private CancelPaymentRequest buildRequest() {
 
         CancelPaymentRequest request = new CancelPaymentRequest(paymentId,
+            idempotencyKey,
             requestBody);
 
         return request;

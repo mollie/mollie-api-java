@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class TestWebhookRequestBuilder {
 
     private String id;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends TestWebhookRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -31,6 +32,18 @@ public class TestWebhookRequestBuilder {
     public TestWebhookRequestBuilder id(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+                
+    public TestWebhookRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public TestWebhookRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -62,6 +75,7 @@ public class TestWebhookRequestBuilder {
     private TestWebhookRequest buildRequest() {
 
         TestWebhookRequest request = new TestWebhookRequest(id,
+            idempotencyKey,
             requestBody);
 
         return request;

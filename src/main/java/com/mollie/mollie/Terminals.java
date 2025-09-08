@@ -5,7 +5,6 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.operations.GetTerminalRequest;
 import com.mollie.mollie.models.operations.GetTerminalRequestBuilder;
 import com.mollie.mollie.models.operations.GetTerminalResponse;
@@ -17,7 +16,6 @@ import com.mollie.mollie.operations.ListTerminals;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -61,12 +59,12 @@ public class Terminals {
      * 
      * <p>The results are paginated.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListTerminalsResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+    public ListTerminalsResponse list(ListTerminalsRequest request) throws Exception {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -76,31 +74,12 @@ public class Terminals {
      * 
      * <p>The results are paginated.
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param sort 
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListTerminalsResponse list(
-            Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<? extends ListSort> sort, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
-        ListTerminalsRequest request =
-            ListTerminalsRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .sort(sort)
-                .testmode(testmode)
-                .build();
+    public ListTerminalsResponse list(ListTerminalsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
               = new ListTerminals.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
@@ -127,7 +106,8 @@ public class Terminals {
      * @throws Exception if the API call fails
      */
     public GetTerminalResponse get(String terminalId) throws Exception {
-        return get(terminalId, JsonNullable.undefined(), Optional.empty());
+        return get(terminalId, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -141,18 +121,20 @@ public class Terminals {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetTerminalResponse get(
             String terminalId, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         GetTerminalRequest request =
             GetTerminalRequest
                 .builder()
                 .terminalId(terminalId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
               = new GetTerminal.Sync(sdkConfiguration, options);

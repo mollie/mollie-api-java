@@ -72,6 +72,12 @@ public class GetMethodRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
     private JsonNullable<Boolean> testmode;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
     @JsonCreator
     public GetMethodRequest(
             String id,
@@ -80,7 +86,8 @@ public class GetMethodRequest {
             Optional<String> profileId,
             JsonNullable<String> include,
             Optional<? extends SequenceType> sequenceType,
-            JsonNullable<Boolean> testmode) {
+            JsonNullable<Boolean> testmode,
+            Optional<String> idempotencyKey) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(locale, "locale");
         Utils.checkNotNull(currency, "currency");
@@ -88,6 +95,7 @@ public class GetMethodRequest {
         Utils.checkNotNull(include, "include");
         Utils.checkNotNull(sequenceType, "sequenceType");
         Utils.checkNotNull(testmode, "testmode");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.id = id;
         this.locale = locale;
         this.currency = currency;
@@ -95,13 +103,14 @@ public class GetMethodRequest {
         this.include = include;
         this.sequenceType = sequenceType;
         this.testmode = testmode;
+        this.idempotencyKey = idempotencyKey;
     }
     
     public GetMethodRequest(
             String id) {
         this(id, Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -172,6 +181,14 @@ public class GetMethodRequest {
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
         return testmode;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     public static Builder builder() {
@@ -324,6 +341,25 @@ public class GetMethodRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public GetMethodRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public GetMethodRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -340,7 +376,8 @@ public class GetMethodRequest {
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.include, other.include) &&
             Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
-            Utils.enhancedDeepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
@@ -348,7 +385,7 @@ public class GetMethodRequest {
         return Utils.enhancedHash(
             id, locale, currency,
             profileId, include, sequenceType,
-            testmode);
+            testmode, idempotencyKey);
     }
     
     @Override
@@ -360,7 +397,8 @@ public class GetMethodRequest {
                 "profileId", profileId,
                 "include", include,
                 "sequenceType", sequenceType,
-                "testmode", testmode);
+                "testmode", testmode,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -379,6 +417,8 @@ public class GetMethodRequest {
         private Optional<? extends SequenceType> sequenceType = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -532,12 +572,31 @@ public class GetMethodRequest {
             return this;
         }
 
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public GetMethodRequest build() {
 
             return new GetMethodRequest(
                 id, locale, currency,
                 profileId, include, sequenceType,
-                testmode);
+                testmode, idempotencyKey);
         }
 
     }

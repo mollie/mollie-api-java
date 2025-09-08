@@ -5,6 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.operations.CreateWebhookRequest;
 import com.mollie.mollie.models.operations.CreateWebhookRequestBody;
 import com.mollie.mollie.models.operations.DeleteWebhookRequest;
 import com.mollie.mollie.models.operations.DeleteWebhookRequestBody;
@@ -78,7 +79,7 @@ public class AsyncWebhooks {
      * @return CompletableFuture&lt;CreateWebhookResponse&gt; - The async response
      */
     public CompletableFuture<CreateWebhookResponse> createDirect() {
-        return create(Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -86,12 +87,21 @@ public class AsyncWebhooks {
      * 
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;CreateWebhookResponse&gt; - The async response
      */
-    public CompletableFuture<CreateWebhookResponse> create(Optional<? extends CreateWebhookRequestBody> request, Optional<Options> options) {
-        AsyncRequestOperation<Optional<? extends CreateWebhookRequestBody>, CreateWebhookResponse> operation
+    public CompletableFuture<CreateWebhookResponse> create(
+            Optional<String> idempotencyKey, Optional<? extends CreateWebhookRequestBody> requestBody,
+            Optional<Options> options) {
+        CreateWebhookRequest request =
+            CreateWebhookRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .requestBody(requestBody)
+                .build();
+        AsyncRequestOperation<CreateWebhookRequest, CreateWebhookResponse> operation
               = new CreateWebhook.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -158,7 +168,9 @@ public class AsyncWebhooks {
      * @return CompletableFuture&lt;UpdateWebhookResponse&gt; - The async response
      */
     public CompletableFuture<UpdateWebhookResponse> update(String id) {
-        return update(id, Optional.empty(), Optional.empty());
+        return update(
+                id, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -167,17 +179,19 @@ public class AsyncWebhooks {
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;UpdateWebhookResponse&gt; - The async response
      */
     public CompletableFuture<UpdateWebhookResponse> update(
-            String id, Optional<? extends UpdateWebhookRequestBody> requestBody,
-            Optional<Options> options) {
+            String id, Optional<String> idempotencyKey,
+            Optional<? extends UpdateWebhookRequestBody> requestBody, Optional<Options> options) {
         UpdateWebhookRequest request =
             UpdateWebhookRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
@@ -207,7 +221,9 @@ public class AsyncWebhooks {
      * @return CompletableFuture&lt;GetWebhookResponse&gt; - The async response
      */
     public CompletableFuture<GetWebhookResponse> get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(
+                id, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -221,17 +237,19 @@ public class AsyncWebhooks {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetWebhookResponse&gt; - The async response
      */
     public CompletableFuture<GetWebhookResponse> get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetWebhookRequest request =
             GetWebhookRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetWebhookRequest, GetWebhookResponse> operation
               = new GetWebhook.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -260,7 +278,9 @@ public class AsyncWebhooks {
      * @return CompletableFuture&lt;DeleteWebhookResponse&gt; - The async response
      */
     public CompletableFuture<DeleteWebhookResponse> delete(String id) {
-        return delete(id, Optional.empty(), Optional.empty());
+        return delete(
+                id, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -269,17 +289,19 @@ public class AsyncWebhooks {
      * <p>Delete a single webhook object by its webhook ID.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;DeleteWebhookResponse&gt; - The async response
      */
     public CompletableFuture<DeleteWebhookResponse> delete(
-            String id, Optional<? extends DeleteWebhookRequestBody> requestBody,
-            Optional<Options> options) {
+            String id, Optional<String> idempotencyKey,
+            Optional<? extends DeleteWebhookRequestBody> requestBody, Optional<Options> options) {
         DeleteWebhookRequest request =
             DeleteWebhookRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
@@ -309,7 +331,9 @@ public class AsyncWebhooks {
      * @return CompletableFuture&lt;TestWebhookResponse&gt; - The async response
      */
     public CompletableFuture<TestWebhookResponse> test(String id) {
-        return test(id, Optional.empty(), Optional.empty());
+        return test(
+                id, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -318,17 +342,19 @@ public class AsyncWebhooks {
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;TestWebhookResponse&gt; - The async response
      */
     public CompletableFuture<TestWebhookResponse> test(
-            String id, Optional<? extends TestWebhookRequestBody> requestBody,
-            Optional<Options> options) {
+            String id, Optional<String> idempotencyKey,
+            Optional<? extends TestWebhookRequestBody> requestBody, Optional<Options> options) {
         TestWebhookRequest request =
             TestWebhookRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<TestWebhookRequest, TestWebhookResponse> operation

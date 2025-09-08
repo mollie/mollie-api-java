@@ -70,6 +70,12 @@ public class ListSubscriptionPaymentsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
     private JsonNullable<Boolean> testmode;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
     @JsonCreator
     public ListSubscriptionPaymentsRequest(
             String customerId,
@@ -78,7 +84,8 @@ public class ListSubscriptionPaymentsRequest {
             JsonNullable<Long> limit,
             JsonNullable<? extends ListSort> sort,
             Optional<String> profileId,
-            JsonNullable<Boolean> testmode) {
+            JsonNullable<Boolean> testmode,
+            Optional<String> idempotencyKey) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(subscriptionId, "subscriptionId");
         Utils.checkNotNull(from, "from");
@@ -86,6 +93,7 @@ public class ListSubscriptionPaymentsRequest {
         Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(testmode, "testmode");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.customerId = customerId;
         this.subscriptionId = subscriptionId;
         this.from = from;
@@ -93,6 +101,7 @@ public class ListSubscriptionPaymentsRequest {
         this.sort = sort;
         this.profileId = profileId;
         this.testmode = testmode;
+        this.idempotencyKey = idempotencyKey;
     }
     
     public ListSubscriptionPaymentsRequest(
@@ -100,7 +109,7 @@ public class ListSubscriptionPaymentsRequest {
             String subscriptionId) {
         this(customerId, subscriptionId, Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -168,6 +177,14 @@ public class ListSubscriptionPaymentsRequest {
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
         return testmode;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     public static Builder builder() {
@@ -305,6 +322,25 @@ public class ListSubscriptionPaymentsRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListSubscriptionPaymentsRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListSubscriptionPaymentsRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -321,7 +357,8 @@ public class ListSubscriptionPaymentsRequest {
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.sort, other.sort) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
-            Utils.enhancedDeepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
@@ -329,7 +366,7 @@ public class ListSubscriptionPaymentsRequest {
         return Utils.enhancedHash(
             customerId, subscriptionId, from,
             limit, sort, profileId,
-            testmode);
+            testmode, idempotencyKey);
     }
     
     @Override
@@ -341,7 +378,8 @@ public class ListSubscriptionPaymentsRequest {
                 "limit", limit,
                 "sort", sort,
                 "profileId", profileId,
-                "testmode", testmode);
+                "testmode", testmode,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -360,6 +398,8 @@ public class ListSubscriptionPaymentsRequest {
         private Optional<String> profileId = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -500,12 +540,31 @@ public class ListSubscriptionPaymentsRequest {
             return this;
         }
 
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public ListSubscriptionPaymentsRequest build() {
 
             return new ListSubscriptionPaymentsRequest(
                 customerId, subscriptionId, from,
                 limit, sort, profileId,
-                testmode);
+                testmode, idempotencyKey);
         }
 
     }

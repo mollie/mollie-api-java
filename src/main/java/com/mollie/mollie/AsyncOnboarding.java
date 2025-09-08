@@ -3,9 +3,10 @@
  */
 package com.mollie.mollie;
 
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.operations.GetOnboardingStatusRequest;
+import com.mollie.mollie.models.operations.SubmitOnboardingDataRequest;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBody;
 import com.mollie.mollie.models.operations.async.GetOnboardingStatusRequestBuilder;
 import com.mollie.mollie.models.operations.async.GetOnboardingStatusResponse;
@@ -14,6 +15,7 @@ import com.mollie.mollie.models.operations.async.SubmitOnboardingDataResponse;
 import com.mollie.mollie.operations.GetOnboardingStatus;
 import com.mollie.mollie.operations.SubmitOnboardingData;
 import com.mollie.mollie.utils.Options;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -56,7 +58,7 @@ public class AsyncOnboarding {
      * @return CompletableFuture&lt;GetOnboardingStatusResponse&gt; - The async response
      */
     public CompletableFuture<GetOnboardingStatusResponse> getDirect() {
-        return get(Optional.empty());
+        return get(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -64,13 +66,19 @@ public class AsyncOnboarding {
      * 
      * <p>Retrieve the onboarding status of the currently authenticated organization.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetOnboardingStatusResponse&gt; - The async response
      */
-    public CompletableFuture<GetOnboardingStatusResponse> get(Optional<Options> options) {
-        AsyncRequestlessOperation<GetOnboardingStatusResponse> operation
-            = new GetOnboardingStatus.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        return operation.doRequest()
+    public CompletableFuture<GetOnboardingStatusResponse> get(Optional<String> idempotencyKey, Optional<Options> options) {
+        GetOnboardingStatusRequest request =
+            GetOnboardingStatusRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<GetOnboardingStatusRequest, GetOnboardingStatusResponse> operation
+              = new GetOnboardingStatus.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 
@@ -104,7 +112,7 @@ public class AsyncOnboarding {
      * @return CompletableFuture&lt;SubmitOnboardingDataResponse&gt; - The async response
      */
     public CompletableFuture<SubmitOnboardingDataResponse> submitDirect() {
-        return submit(Optional.empty(), Optional.empty());
+        return submit(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -117,12 +125,21 @@ public class AsyncOnboarding {
      * onboarding status is `needs-data`.  
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;SubmitOnboardingDataResponse&gt; - The async response
      */
-    public CompletableFuture<SubmitOnboardingDataResponse> submit(Optional<? extends SubmitOnboardingDataRequestBody> request, Optional<Options> options) {
-        AsyncRequestOperation<Optional<? extends SubmitOnboardingDataRequestBody>, SubmitOnboardingDataResponse> operation
+    public CompletableFuture<SubmitOnboardingDataResponse> submit(
+            Optional<String> idempotencyKey, Optional<? extends SubmitOnboardingDataRequestBody> requestBody,
+            Optional<Options> options) {
+        SubmitOnboardingDataRequest request =
+            SubmitOnboardingDataRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .requestBody(requestBody)
+                .build();
+        AsyncRequestOperation<SubmitOnboardingDataRequest, SubmitOnboardingDataResponse> operation
               = new SubmitOnboardingData.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

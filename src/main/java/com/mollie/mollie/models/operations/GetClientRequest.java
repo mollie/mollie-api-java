@@ -9,6 +9,7 @@ import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -26,19 +27,28 @@ public class GetClientRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private JsonNullable<String> embed;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
     @JsonCreator
     public GetClientRequest(
             String id,
-            JsonNullable<String> embed) {
+            JsonNullable<String> embed,
+            Optional<String> idempotencyKey) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(embed, "embed");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.id = id;
         this.embed = embed;
+        this.idempotencyKey = idempotencyKey;
     }
     
     public GetClientRequest(
             String id) {
-        this(id, JsonNullable.undefined());
+        this(id, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -56,6 +66,14 @@ public class GetClientRequest {
     @JsonIgnore
     public JsonNullable<String> embed() {
         return embed;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     public static Builder builder() {
@@ -92,6 +110,25 @@ public class GetClientRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public GetClientRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public GetClientRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -103,20 +140,22 @@ public class GetClientRequest {
         GetClientRequest other = (GetClientRequest) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.embed, other.embed);
+            Utils.enhancedDeepEquals(this.embed, other.embed) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, embed);
+            id, embed, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetClientRequest.class,
                 "id", id,
-                "embed", embed);
+                "embed", embed,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -125,6 +164,8 @@ public class GetClientRequest {
         private String id;
 
         private JsonNullable<String> embed = JsonNullable.undefined();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -161,10 +202,29 @@ public class GetClientRequest {
             return this;
         }
 
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public GetClientRequest build() {
 
             return new GetClientRequest(
-                id, embed);
+                id, embed, idempotencyKey);
         }
 
     }

@@ -46,6 +46,7 @@ public class Application {
                 .from("inv_xBEbP9rvAq")
                 .limit(50L)
                 .sort(ListSort.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         ListInvoicesResponse res = sdk.invoices().list()
@@ -107,6 +108,7 @@ public class Application {
 
         GetInvoiceResponse res = sdk.invoices().get()
                 .id("inv_FrvewDA3Pr")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.entityInvoice().isPresent()) {
@@ -118,9 +120,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `id`                                                                             | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
 

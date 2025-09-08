@@ -19,6 +19,7 @@ import java.util.concurrent.CompletableFuture;
 public class DeleteProfileRequestBuilder {
 
     private String id;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -29,6 +30,18 @@ public class DeleteProfileRequestBuilder {
     public DeleteProfileRequestBuilder id(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+                
+    public DeleteProfileRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public DeleteProfileRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -47,7 +60,8 @@ public class DeleteProfileRequestBuilder {
 
     private DeleteProfileRequest buildRequest() {
 
-        DeleteProfileRequest request = new DeleteProfileRequest(id);
+        DeleteProfileRequest request = new DeleteProfileRequest(id,
+            idempotencyKey);
 
         return request;
     }

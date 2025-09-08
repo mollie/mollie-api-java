@@ -10,18 +10,12 @@ import com.mollie.mollie.operations.GetCapture;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetCaptureRequestBuilder {
 
-    private String paymentId;
-    private String captureId;
-    private JsonNullable<String> embed = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private GetCaptureRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -29,39 +23,9 @@ public class GetCaptureRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetCaptureRequestBuilder paymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-
-    public GetCaptureRequestBuilder captureId(String captureId) {
-        Utils.checkNotNull(captureId, "captureId");
-        this.captureId = captureId;
-        return this;
-    }
-
-    public GetCaptureRequestBuilder embed(String embed) {
-        Utils.checkNotNull(embed, "embed");
-        this.embed = JsonNullable.of(embed);
-        return this;
-    }
-
-    public GetCaptureRequestBuilder embed(JsonNullable<String> embed) {
-        Utils.checkNotNull(embed, "embed");
-        this.embed = embed;
-        return this;
-    }
-
-    public GetCaptureRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public GetCaptureRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public GetCaptureRequestBuilder request(GetCaptureRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -77,17 +41,6 @@ public class GetCaptureRequestBuilder {
         return this;
     }
 
-
-    private GetCaptureRequest buildRequest() {
-
-        GetCaptureRequest request = new GetCaptureRequest(paymentId,
-            captureId,
-            embed,
-            testmode);
-
-        return request;
-    }
-
     public GetCaptureResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -95,7 +48,6 @@ public class GetCaptureRequestBuilder {
 
         RequestOperation<GetCaptureRequest, GetCaptureResponse> operation
               = new GetCapture.Sync(sdkConfiguration, options);
-        GetCaptureRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

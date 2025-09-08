@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class CreateCustomerPaymentRequestBuilder {
 
     private String customerId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends PaymentRequest> paymentRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -31,6 +32,18 @@ public class CreateCustomerPaymentRequestBuilder {
     public CreateCustomerPaymentRequestBuilder customerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
+        return this;
+    }
+                
+    public CreateCustomerPaymentRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public CreateCustomerPaymentRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -62,6 +75,7 @@ public class CreateCustomerPaymentRequestBuilder {
     private CreateCustomerPaymentRequest buildRequest() {
 
         CreateCustomerPaymentRequest request = new CreateCustomerPaymentRequest(customerId,
+            idempotencyKey,
             paymentRequest);
 
         return request;

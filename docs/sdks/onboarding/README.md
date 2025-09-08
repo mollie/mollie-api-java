@@ -34,6 +34,7 @@ public class Application {
             .build();
 
         GetOnboardingStatusResponse res = sdk.onboarding().get()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.entityOnboardingStatus().isPresent()) {
@@ -42,6 +43,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
 
@@ -83,25 +90,24 @@ public class Application {
                     .build())
             .build();
 
-        SubmitOnboardingDataRequestBody req = SubmitOnboardingDataRequestBody.builder()
-                .organization(Organization.builder()
-                    .name("Mollie B.V.")
-                    .registrationNumber("30204462")
-                    .vatNumber("NL815839091B01")
-                    .vatRegulation(VatRegulation.DUTCH)
-                    .build())
-                .profile(Profile.builder()
-                    .name("Mollie")
-                    .url("https://www.mollie.com")
-                    .email("info@mollie.com")
-                    .phone("+31208202070")
-                    .description("Payment service provider")
-                    .businessCategory("MONEY_SERVICES")
-                    .build())
-                .build();
-
         SubmitOnboardingDataResponse res = sdk.onboarding().submit()
-                .request(req)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(SubmitOnboardingDataRequestBody.builder()
+                    .organization(Organization.builder()
+                        .name("Mollie B.V.")
+                        .registrationNumber("30204462")
+                        .vatNumber("NL815839091B01")
+                        .vatRegulation(VatRegulation.DUTCH)
+                        .build())
+                    .profile(Profile.builder()
+                        .name("Mollie")
+                        .url("https://www.mollie.com")
+                        .email("info@mollie.com")
+                        .phone("+31208202070")
+                        .description("Payment service provider")
+                        .businessCategory("MONEY_SERVICES")
+                        .build())
+                    .build())
                 .call();
 
         if (res.any().isPresent()) {
@@ -113,9 +119,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `request`                                                                                     | [SubmitOnboardingDataRequestBody](../../models/operations/SubmitOnboardingDataRequestBody.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              | Example                                                                                                  |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                                         | *Optional\<String>*                                                                                      | :heavy_minus_sign:                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                         | 123e4567-e89b-12d3-a456-426                                                                              |
+| `requestBody`                                                                                            | [Optional\<SubmitOnboardingDataRequestBody>](../../models/operations/SubmitOnboardingDataRequestBody.md) | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |                                                                                                          |
 
 ### Response
 

@@ -10,18 +10,12 @@ import com.mollie.mollie.operations.GetRefund;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetRefundRequestBuilder {
 
-    private String paymentId;
-    private String refundId;
-    private JsonNullable<String> embed = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private GetRefundRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -29,39 +23,9 @@ public class GetRefundRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetRefundRequestBuilder paymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-
-    public GetRefundRequestBuilder refundId(String refundId) {
-        Utils.checkNotNull(refundId, "refundId");
-        this.refundId = refundId;
-        return this;
-    }
-
-    public GetRefundRequestBuilder embed(String embed) {
-        Utils.checkNotNull(embed, "embed");
-        this.embed = JsonNullable.of(embed);
-        return this;
-    }
-
-    public GetRefundRequestBuilder embed(JsonNullable<String> embed) {
-        Utils.checkNotNull(embed, "embed");
-        this.embed = embed;
-        return this;
-    }
-
-    public GetRefundRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public GetRefundRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public GetRefundRequestBuilder request(GetRefundRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -77,17 +41,6 @@ public class GetRefundRequestBuilder {
         return this;
     }
 
-
-    private GetRefundRequest buildRequest() {
-
-        GetRefundRequest request = new GetRefundRequest(paymentId,
-            refundId,
-            embed,
-            testmode);
-
-        return request;
-    }
-
     public GetRefundResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -95,7 +48,6 @@ public class GetRefundRequestBuilder {
 
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
               = new GetRefund.Sync(sdkConfiguration, options);
-        GetRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -18,6 +18,7 @@ public class RevokeMandateRequestBuilder {
 
     private String customerId;
     private String mandateId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends RevokeMandateRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -35,6 +36,18 @@ public class RevokeMandateRequestBuilder {
     public RevokeMandateRequestBuilder mandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
         this.mandateId = mandateId;
+        return this;
+    }
+                
+    public RevokeMandateRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public RevokeMandateRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -67,6 +80,7 @@ public class RevokeMandateRequestBuilder {
 
         RevokeMandateRequest request = new RevokeMandateRequest(customerId,
             mandateId,
+            idempotencyKey,
             requestBody);
 
         return request;

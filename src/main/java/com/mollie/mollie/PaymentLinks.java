@@ -5,6 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.operations.CreatePaymentLinkRequest;
 import com.mollie.mollie.models.operations.CreatePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.CreatePaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.CreatePaymentLinkResponse;
@@ -82,7 +83,7 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public CreatePaymentLinkResponse createDirect() throws Exception {
-        return create(Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -92,13 +93,22 @@ public class PaymentLinks {
      * The payment link can be shared with your customers and will redirect them to them the payment page where they can
      * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreatePaymentLinkResponse create(Optional<? extends CreatePaymentLinkRequestBody> request, Optional<Options> options) throws Exception {
-        RequestOperation<Optional<? extends CreatePaymentLinkRequestBody>, CreatePaymentLinkResponse> operation
+    public CreatePaymentLinkResponse create(
+            Optional<String> idempotencyKey, Optional<? extends CreatePaymentLinkRequestBody> requestBody,
+            Optional<Options> options) throws Exception {
+        CreatePaymentLinkRequest request =
+            CreatePaymentLinkRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .requestBody(requestBody)
+                .build();
+        RequestOperation<CreatePaymentLinkRequest, CreatePaymentLinkResponse> operation
               = new CreatePaymentLink.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -128,7 +138,7 @@ public class PaymentLinks {
      */
     public ListPaymentLinksResponse listDirect() throws Exception {
         return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -146,19 +156,22 @@ public class PaymentLinks {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListPaymentLinksResponse list(
             Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
+            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Options> options) throws Exception {
         ListPaymentLinksRequest request =
             ListPaymentLinksRequest
                 .builder()
                 .from(from)
                 .limit(limit)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
               = new ListPaymentLinks.Sync(sdkConfiguration, options);
@@ -186,7 +199,8 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public GetPaymentLinkResponse get(String paymentLinkId) throws Exception {
-        return get(paymentLinkId, JsonNullable.undefined(), Optional.empty());
+        return get(paymentLinkId, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -200,18 +214,20 @@ public class PaymentLinks {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetPaymentLinkResponse get(
             String paymentLinkId, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         GetPaymentLinkRequest request =
             GetPaymentLinkRequest
                 .builder()
                 .paymentLinkId(paymentLinkId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
               = new GetPaymentLink.Sync(sdkConfiguration, options);
@@ -239,7 +255,8 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public UpdatePaymentLinkResponse update(String paymentLinkId) throws Exception {
-        return update(paymentLinkId, Optional.empty(), Optional.empty());
+        return update(paymentLinkId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -248,18 +265,20 @@ public class PaymentLinks {
      * <p>Certain details of an existing payment link can be updated.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdatePaymentLinkResponse update(
-            String paymentLinkId, Optional<? extends UpdatePaymentLinkRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String paymentLinkId, Optional<String> idempotencyKey,
+            Optional<? extends UpdatePaymentLinkRequestBody> requestBody, Optional<Options> options) throws Exception {
         UpdatePaymentLinkRequest request =
             UpdatePaymentLinkRequest
                 .builder()
                 .paymentLinkId(paymentLinkId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
@@ -300,7 +319,8 @@ public class PaymentLinks {
      * @throws Exception if the API call fails
      */
     public DeletePaymentLinkResponse delete(String paymentLinkId) throws Exception {
-        return delete(paymentLinkId, Optional.empty(), Optional.empty());
+        return delete(paymentLinkId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -315,18 +335,20 @@ public class PaymentLinks {
      * [Update payment link](update-payment-link) endpoint instead.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeletePaymentLinkResponse delete(
-            String paymentLinkId, Optional<? extends DeletePaymentLinkRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String paymentLinkId, Optional<String> idempotencyKey,
+            Optional<? extends DeletePaymentLinkRequestBody> requestBody, Optional<Options> options) throws Exception {
         DeletePaymentLinkRequest request =
             DeletePaymentLinkRequest
                 .builder()
                 .paymentLinkId(paymentLinkId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation

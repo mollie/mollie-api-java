@@ -17,6 +17,7 @@ import java.util.Optional;
 public class ReleaseAuthorizationRequestBuilder {
 
     private String paymentId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends ReleaseAuthorizationRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -28,6 +29,18 @@ public class ReleaseAuthorizationRequestBuilder {
     public ReleaseAuthorizationRequestBuilder paymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
+        return this;
+    }
+                
+    public ReleaseAuthorizationRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public ReleaseAuthorizationRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -59,6 +72,7 @@ public class ReleaseAuthorizationRequestBuilder {
     private ReleaseAuthorizationRequest buildRequest() {
 
         ReleaseAuthorizationRequest request = new ReleaseAuthorizationRequest(paymentId,
+            idempotencyKey,
             requestBody);
 
         return request;

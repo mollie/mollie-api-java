@@ -26,6 +26,12 @@ public class CancelSubscriptionRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=subscriptionId")
     private String subscriptionId;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends CancelSubscriptionRequestBody> requestBody;
@@ -34,19 +40,23 @@ public class CancelSubscriptionRequest {
     public CancelSubscriptionRequest(
             String customerId,
             String subscriptionId,
+            Optional<String> idempotencyKey,
             Optional<? extends CancelSubscriptionRequestBody> requestBody) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(subscriptionId, "subscriptionId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(requestBody, "requestBody");
         this.customerId = customerId;
         this.subscriptionId = subscriptionId;
+        this.idempotencyKey = idempotencyKey;
         this.requestBody = requestBody;
     }
     
     public CancelSubscriptionRequest(
             String customerId,
             String subscriptionId) {
-        this(customerId, subscriptionId, Optional.empty());
+        this(customerId, subscriptionId, Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -63,6 +73,14 @@ public class CancelSubscriptionRequest {
     @JsonIgnore
     public String subscriptionId() {
         return subscriptionId;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -94,6 +112,25 @@ public class CancelSubscriptionRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public CancelSubscriptionRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public CancelSubscriptionRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     public CancelSubscriptionRequest withRequestBody(CancelSubscriptionRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
@@ -119,13 +156,15 @@ public class CancelSubscriptionRequest {
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.subscriptionId, other.subscriptionId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, subscriptionId, requestBody);
+            customerId, subscriptionId, idempotencyKey,
+            requestBody);
     }
     
     @Override
@@ -133,6 +172,7 @@ public class CancelSubscriptionRequest {
         return Utils.toString(CancelSubscriptionRequest.class,
                 "customerId", customerId,
                 "subscriptionId", subscriptionId,
+                "idempotencyKey", idempotencyKey,
                 "requestBody", requestBody);
     }
 
@@ -142,6 +182,8 @@ public class CancelSubscriptionRequest {
         private String customerId;
 
         private String subscriptionId;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends CancelSubscriptionRequestBody> requestBody = Optional.empty();
 
@@ -170,6 +212,25 @@ public class CancelSubscriptionRequest {
         }
 
 
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
+
         public Builder requestBody(CancelSubscriptionRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
@@ -185,7 +246,8 @@ public class CancelSubscriptionRequest {
         public CancelSubscriptionRequest build() {
 
             return new CancelSubscriptionRequest(
-                customerId, subscriptionId, requestBody);
+                customerId, subscriptionId, idempotencyKey,
+                requestBody);
         }
 
     }

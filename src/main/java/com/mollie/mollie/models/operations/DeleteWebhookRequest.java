@@ -20,6 +20,12 @@ public class DeleteWebhookRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
     private String id;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends DeleteWebhookRequestBody> requestBody;
@@ -27,16 +33,19 @@ public class DeleteWebhookRequest {
     @JsonCreator
     public DeleteWebhookRequest(
             String id,
+            Optional<String> idempotencyKey,
             Optional<? extends DeleteWebhookRequestBody> requestBody) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(requestBody, "requestBody");
         this.id = id;
+        this.idempotencyKey = idempotencyKey;
         this.requestBody = requestBody;
     }
     
     public DeleteWebhookRequest(
             String id) {
-        this(id, Optional.empty());
+        this(id, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -45,6 +54,14 @@ public class DeleteWebhookRequest {
     @JsonIgnore
     public String id() {
         return id;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -64,6 +81,25 @@ public class DeleteWebhookRequest {
     public DeleteWebhookRequest withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public DeleteWebhookRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public DeleteWebhookRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
 
@@ -91,19 +127,21 @@ public class DeleteWebhookRequest {
         DeleteWebhookRequest other = (DeleteWebhookRequest) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, requestBody);
+            id, idempotencyKey, requestBody);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DeleteWebhookRequest.class,
                 "id", id,
+                "idempotencyKey", idempotencyKey,
                 "requestBody", requestBody);
     }
 
@@ -111,6 +149,8 @@ public class DeleteWebhookRequest {
     public final static class Builder {
 
         private String id;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends DeleteWebhookRequestBody> requestBody = Optional.empty();
 
@@ -125,6 +165,25 @@ public class DeleteWebhookRequest {
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
             return this;
         }
 
@@ -144,7 +203,7 @@ public class DeleteWebhookRequest {
         public DeleteWebhookRequest build() {
 
             return new DeleteWebhookRequest(
-                id, requestBody);
+                id, idempotencyKey, requestBody);
         }
 
     }

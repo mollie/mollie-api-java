@@ -3,12 +3,12 @@
  */
 package com.mollie.mollie;
 
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.models.operations.GetPermissionRequest;
 import com.mollie.mollie.models.operations.GetPermissionRequestBuilder;
 import com.mollie.mollie.models.operations.GetPermissionResponse;
+import com.mollie.mollie.models.operations.ListPermissionsRequest;
 import com.mollie.mollie.models.operations.ListPermissionsRequestBuilder;
 import com.mollie.mollie.models.operations.ListPermissionsResponse;
 import com.mollie.mollie.operations.GetPermission;
@@ -63,7 +63,7 @@ public class Permissions {
      * @throws Exception if the API call fails
      */
     public ListPermissionsResponse listDirect() throws Exception {
-        return list(Optional.empty());
+        return list(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -73,14 +73,20 @@ public class Permissions {
      * 
      * <p>The results are **not** paginated.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListPermissionsResponse list(Optional<Options> options) throws Exception {
-        RequestlessOperation<ListPermissionsResponse> operation
-            = new ListPermissions.Sync(sdkConfiguration, options);
-        return operation.handleResponse(operation.doRequest());
+    public ListPermissionsResponse list(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+        ListPermissionsRequest request =
+            ListPermissionsRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<ListPermissionsRequest, ListPermissionsResponse> operation
+              = new ListPermissions.Sync(sdkConfiguration, options);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
@@ -104,7 +110,8 @@ public class Permissions {
      * @throws Exception if the API call fails
      */
     public GetPermissionResponse get(String permissionId) throws Exception {
-        return get(permissionId, JsonNullable.undefined(), Optional.empty());
+        return get(permissionId, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -118,18 +125,20 @@ public class Permissions {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetPermissionResponse get(
             String permissionId, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         GetPermissionRequest request =
             GetPermissionRequest
                 .builder()
                 .permissionId(permissionId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetPermissionRequest, GetPermissionResponse> operation
               = new GetPermission.Sync(sdkConfiguration, options);

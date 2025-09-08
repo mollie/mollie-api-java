@@ -9,10 +9,10 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.EntityClientLink;
 import com.mollie.mollie.models.components.EntityClientLinkResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateClientLinkRequest;
 import com.mollie.mollie.models.operations.CreateClientLinkResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
@@ -118,12 +118,13 @@ public class CreateClientLink {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "entityClientLink",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -131,13 +132,13 @@ public class CreateClientLink {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends EntityClientLink>, CreateClientLinkResponse> {
+            implements RequestOperation<CreateClientLinkRequest, CreateClientLinkResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends EntityClientLink> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntityClientLink>>() {});
+        private HttpRequest onBuildRequest(CreateClientLinkRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<CreateClientLinkRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -153,7 +154,7 @@ public class CreateClientLink {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends EntityClientLink> request) throws Exception {
+        public HttpResponse<InputStream> doRequest(CreateClientLinkRequest request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -253,7 +254,7 @@ public class CreateClientLink {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends EntityClientLink>, com.mollie.mollie.models.operations.async.CreateClientLinkResponse> {
+            implements AsyncRequestOperation<CreateClientLinkRequest, com.mollie.mollie.models.operations.async.CreateClientLinkResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -263,8 +264,8 @@ public class CreateClientLink {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends EntityClientLink> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntityClientLink>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(CreateClientLinkRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<CreateClientLinkRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -277,7 +278,7 @@ public class CreateClientLink {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends EntityClientLink> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(CreateClientLinkRequest request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)

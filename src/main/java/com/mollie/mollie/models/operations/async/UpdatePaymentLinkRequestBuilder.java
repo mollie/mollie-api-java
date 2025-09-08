@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class UpdatePaymentLinkRequestBuilder {
 
     private String paymentLinkId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends UpdatePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -31,6 +32,18 @@ public class UpdatePaymentLinkRequestBuilder {
     public UpdatePaymentLinkRequestBuilder paymentLinkId(String paymentLinkId) {
         Utils.checkNotNull(paymentLinkId, "paymentLinkId");
         this.paymentLinkId = paymentLinkId;
+        return this;
+    }
+                
+    public UpdatePaymentLinkRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public UpdatePaymentLinkRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -62,6 +75,7 @@ public class UpdatePaymentLinkRequestBuilder {
     private UpdatePaymentLinkRequest buildRequest() {
 
         UpdatePaymentLinkRequest request = new UpdatePaymentLinkRequest(paymentLinkId,
+            idempotencyKey,
             requestBody);
 
         return request;

@@ -6,18 +6,21 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequest;
 import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestBody;
 import com.mollie.mollie.operations.RequestApplePayPaymentSession;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class RequestApplePayPaymentSessionRequestBuilder {
 
-    private Optional<? extends RequestApplePayPaymentSessionRequestBody> request = Optional.empty();
+    private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<? extends RequestApplePayPaymentSessionRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -25,15 +28,27 @@ public class RequestApplePayPaymentSessionRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public RequestApplePayPaymentSessionRequestBuilder request(RequestApplePayPaymentSessionRequestBody request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public RequestApplePayPaymentSessionRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
         return this;
     }
 
-    public RequestApplePayPaymentSessionRequestBuilder request(Optional<? extends RequestApplePayPaymentSessionRequestBody> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public RequestApplePayPaymentSessionRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public RequestApplePayPaymentSessionRequestBuilder requestBody(RequestApplePayPaymentSessionRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
+        return this;
+    }
+
+    public RequestApplePayPaymentSessionRequestBuilder requestBody(Optional<? extends RequestApplePayPaymentSessionRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -49,13 +64,23 @@ public class RequestApplePayPaymentSessionRequestBuilder {
         return this;
     }
 
+
+    private RequestApplePayPaymentSessionRequest buildRequest() {
+
+        RequestApplePayPaymentSessionRequest request = new RequestApplePayPaymentSessionRequest(idempotencyKey,
+            requestBody);
+
+        return request;
+    }
+
     public CompletableFuture<RequestApplePayPaymentSessionResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestOperation<Optional<? extends RequestApplePayPaymentSessionRequestBody>, RequestApplePayPaymentSessionResponse> operation
+        AsyncRequestOperation<RequestApplePayPaymentSessionRequest, RequestApplePayPaymentSessionResponse> operation
               = new RequestApplePayPaymentSession.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        RequestApplePayPaymentSessionRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

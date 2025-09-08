@@ -20,6 +20,12 @@ public class DeleteCustomerRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=customerId")
     private String customerId;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends DeleteCustomerRequestBody> requestBody;
@@ -27,16 +33,19 @@ public class DeleteCustomerRequest {
     @JsonCreator
     public DeleteCustomerRequest(
             String customerId,
+            Optional<String> idempotencyKey,
             Optional<? extends DeleteCustomerRequestBody> requestBody) {
         Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(requestBody, "requestBody");
         this.customerId = customerId;
+        this.idempotencyKey = idempotencyKey;
         this.requestBody = requestBody;
     }
     
     public DeleteCustomerRequest(
             String customerId) {
-        this(customerId, Optional.empty());
+        this(customerId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -45,6 +54,14 @@ public class DeleteCustomerRequest {
     @JsonIgnore
     public String customerId() {
         return customerId;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -64,6 +81,25 @@ public class DeleteCustomerRequest {
     public DeleteCustomerRequest withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
+        return this;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public DeleteCustomerRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public DeleteCustomerRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
 
@@ -91,19 +127,21 @@ public class DeleteCustomerRequest {
         DeleteCustomerRequest other = (DeleteCustomerRequest) o;
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, requestBody);
+            customerId, idempotencyKey, requestBody);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DeleteCustomerRequest.class,
                 "customerId", customerId,
+                "idempotencyKey", idempotencyKey,
                 "requestBody", requestBody);
     }
 
@@ -111,6 +149,8 @@ public class DeleteCustomerRequest {
     public final static class Builder {
 
         private String customerId;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends DeleteCustomerRequestBody> requestBody = Optional.empty();
 
@@ -125,6 +165,25 @@ public class DeleteCustomerRequest {
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = customerId;
+            return this;
+        }
+
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
             return this;
         }
 
@@ -144,7 +203,7 @@ public class DeleteCustomerRequest {
         public DeleteCustomerRequest build() {
 
             return new DeleteCustomerRequest(
-                customerId, requestBody);
+                customerId, idempotencyKey, requestBody);
         }
 
     }

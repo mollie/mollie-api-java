@@ -11,11 +11,13 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 public class RequestApplePayPaymentSessionRequestBuilder {
 
-    private Optional<? extends RequestApplePayPaymentSessionRequestBody> request = Optional.empty();
+    private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<? extends RequestApplePayPaymentSessionRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -23,15 +25,27 @@ public class RequestApplePayPaymentSessionRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public RequestApplePayPaymentSessionRequestBuilder request(RequestApplePayPaymentSessionRequestBody request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public RequestApplePayPaymentSessionRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
         return this;
     }
 
-    public RequestApplePayPaymentSessionRequestBuilder request(Optional<? extends RequestApplePayPaymentSessionRequestBody> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public RequestApplePayPaymentSessionRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public RequestApplePayPaymentSessionRequestBuilder requestBody(RequestApplePayPaymentSessionRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
+        return this;
+    }
+
+    public RequestApplePayPaymentSessionRequestBuilder requestBody(Optional<? extends RequestApplePayPaymentSessionRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -47,13 +61,23 @@ public class RequestApplePayPaymentSessionRequestBuilder {
         return this;
     }
 
+
+    private RequestApplePayPaymentSessionRequest buildRequest() {
+
+        RequestApplePayPaymentSessionRequest request = new RequestApplePayPaymentSessionRequest(idempotencyKey,
+            requestBody);
+
+        return request;
+    }
+
     public RequestApplePayPaymentSessionResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        RequestOperation<Optional<? extends RequestApplePayPaymentSessionRequestBody>, RequestApplePayPaymentSessionResponse> operation
+        RequestOperation<RequestApplePayPaymentSessionRequest, RequestApplePayPaymentSessionResponse> operation
               = new RequestApplePayPaymentSession.Sync(sdkConfiguration, options);
+        RequestApplePayPaymentSessionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

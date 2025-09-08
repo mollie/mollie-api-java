@@ -3,14 +3,15 @@
  */
 package com.mollie.mollie.operations;
 
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.components.EntityProfileResponse;
 import com.mollie.mollie.models.errors.APIException;
+import com.mollie.mollie.models.operations.GetCurrentProfileRequest;
 import com.mollie.mollie.models.operations.GetCurrentProfileResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
@@ -102,13 +103,14 @@ public class GetCurrentProfile {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-        HttpRequest buildRequest() throws Exception {
+        <T>HttpRequest buildRequest(T request) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/profiles/me");
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -116,13 +118,13 @@ public class GetCurrentProfile {
     }
 
     public static class Sync extends Base
-            implements RequestlessOperation<GetCurrentProfileResponse> {
+            implements RequestOperation<GetCurrentProfileRequest, GetCurrentProfileResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest() throws Exception {
-            HttpRequest req = buildRequest();
+        private HttpRequest onBuildRequest(GetCurrentProfileRequest request) throws Exception {
+            HttpRequest req = buildRequest(request);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -138,12 +140,12 @@ public class GetCurrentProfile {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest() throws Exception {
+        public HttpResponse<InputStream> doRequest(GetCurrentProfileRequest request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
                         try {
-                            r = onBuildRequest();
+                            r = onBuildRequest(request);
                         } catch (Exception e) {
                             throw new NonRetryableException(e);
                         }
@@ -222,7 +224,7 @@ public class GetCurrentProfile {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestlessOperation<com.mollie.mollie.models.operations.async.GetCurrentProfileResponse> {
+            implements AsyncRequestOperation<GetCurrentProfileRequest, com.mollie.mollie.models.operations.async.GetCurrentProfileResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -232,8 +234,8 @@ public class GetCurrentProfile {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest() throws Exception {
-            HttpRequest req = buildRequest();
+        private CompletableFuture<HttpRequest> onBuildRequest(GetCurrentProfileRequest request) throws Exception {
+            HttpRequest req = buildRequest(request);
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -246,13 +248,13 @@ public class GetCurrentProfile {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest() {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(GetCurrentProfileRequest request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)
                     .scheduler(retryScheduler)
                     .build();
-            return retries.retry(() -> Exceptions.unchecked(() -> onBuildRequest()).get().thenCompose(client::sendAsync)
+            return retries.retry(() -> Exceptions.unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                             .handle((resp, err) -> {
                                 if (err != null) {
                                     return onError(null, err);

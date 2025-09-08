@@ -11,11 +11,13 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 public class CreateWebhookRequestBuilder {
 
-    private Optional<? extends CreateWebhookRequestBody> request = Optional.empty();
+    private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<? extends CreateWebhookRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -23,15 +25,27 @@ public class CreateWebhookRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateWebhookRequestBuilder request(CreateWebhookRequestBody request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public CreateWebhookRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
         return this;
     }
 
-    public CreateWebhookRequestBuilder request(Optional<? extends CreateWebhookRequestBody> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public CreateWebhookRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreateWebhookRequestBuilder requestBody(CreateWebhookRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
+        return this;
+    }
+
+    public CreateWebhookRequestBuilder requestBody(Optional<? extends CreateWebhookRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -47,13 +61,23 @@ public class CreateWebhookRequestBuilder {
         return this;
     }
 
+
+    private CreateWebhookRequest buildRequest() {
+
+        CreateWebhookRequest request = new CreateWebhookRequest(idempotencyKey,
+            requestBody);
+
+        return request;
+    }
+
     public CreateWebhookResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        RequestOperation<Optional<? extends CreateWebhookRequestBody>, CreateWebhookResponse> operation
+        RequestOperation<CreateWebhookRequest, CreateWebhookResponse> operation
               = new CreateWebhook.Sync(sdkConfiguration, options);
+        CreateWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

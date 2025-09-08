@@ -7,17 +7,20 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.EntitySalesInvoice;
+import com.mollie.mollie.models.operations.CreateSalesInvoiceRequest;
 import com.mollie.mollie.operations.CreateSalesInvoice;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateSalesInvoiceRequestBuilder {
 
-    private Optional<? extends EntitySalesInvoice> request = Optional.empty();
+    private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<? extends EntitySalesInvoice> entitySalesInvoice = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -25,15 +28,27 @@ public class CreateSalesInvoiceRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateSalesInvoiceRequestBuilder request(EntitySalesInvoice request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public CreateSalesInvoiceRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
         return this;
     }
 
-    public CreateSalesInvoiceRequestBuilder request(Optional<? extends EntitySalesInvoice> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public CreateSalesInvoiceRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreateSalesInvoiceRequestBuilder entitySalesInvoice(EntitySalesInvoice entitySalesInvoice) {
+        Utils.checkNotNull(entitySalesInvoice, "entitySalesInvoice");
+        this.entitySalesInvoice = Optional.of(entitySalesInvoice);
+        return this;
+    }
+
+    public CreateSalesInvoiceRequestBuilder entitySalesInvoice(Optional<? extends EntitySalesInvoice> entitySalesInvoice) {
+        Utils.checkNotNull(entitySalesInvoice, "entitySalesInvoice");
+        this.entitySalesInvoice = entitySalesInvoice;
         return this;
     }
                 
@@ -49,13 +64,23 @@ public class CreateSalesInvoiceRequestBuilder {
         return this;
     }
 
+
+    private CreateSalesInvoiceRequest buildRequest() {
+
+        CreateSalesInvoiceRequest request = new CreateSalesInvoiceRequest(idempotencyKey,
+            entitySalesInvoice);
+
+        return request;
+    }
+
     public CompletableFuture<CreateSalesInvoiceResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestOperation<Optional<? extends EntitySalesInvoice>, CreateSalesInvoiceResponse> operation
+        AsyncRequestOperation<CreateSalesInvoiceRequest, CreateSalesInvoiceResponse> operation
               = new CreateSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        CreateSalesInvoiceRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

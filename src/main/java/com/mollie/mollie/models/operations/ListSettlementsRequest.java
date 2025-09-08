@@ -55,6 +55,12 @@ public class ListSettlementsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=currencies")
     private Optional<? extends Currencies> currencies;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
     @JsonCreator
     public ListSettlementsRequest(
             JsonNullable<String> from,
@@ -62,24 +68,28 @@ public class ListSettlementsRequest {
             Optional<String> balanceId,
             JsonNullable<String> year,
             JsonNullable<String> month,
-            Optional<? extends Currencies> currencies) {
+            Optional<? extends Currencies> currencies,
+            Optional<String> idempotencyKey) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(balanceId, "balanceId");
         Utils.checkNotNull(year, "year");
         Utils.checkNotNull(month, "month");
         Utils.checkNotNull(currencies, "currencies");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.from = from;
         this.limit = limit;
         this.balanceId = balanceId;
         this.year = year;
         this.month = month;
         this.currencies = currencies;
+        this.idempotencyKey = idempotencyKey;
     }
     
     public ListSettlementsRequest() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -131,6 +141,14 @@ public class ListSettlementsRequest {
     @JsonIgnore
     public Optional<Currencies> currencies() {
         return (Optional<Currencies>) currencies;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     public static Builder builder() {
@@ -252,6 +270,25 @@ public class ListSettlementsRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListSettlementsRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListSettlementsRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -267,14 +304,16 @@ public class ListSettlementsRequest {
             Utils.enhancedDeepEquals(this.balanceId, other.balanceId) &&
             Utils.enhancedDeepEquals(this.year, other.year) &&
             Utils.enhancedDeepEquals(this.month, other.month) &&
-            Utils.enhancedDeepEquals(this.currencies, other.currencies);
+            Utils.enhancedDeepEquals(this.currencies, other.currencies) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             from, limit, balanceId,
-            year, month, currencies);
+            year, month, currencies,
+            idempotencyKey);
     }
     
     @Override
@@ -285,7 +324,8 @@ public class ListSettlementsRequest {
                 "balanceId", balanceId,
                 "year", year,
                 "month", month,
-                "currencies", currencies);
+                "currencies", currencies,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -302,6 +342,8 @@ public class ListSettlementsRequest {
         private JsonNullable<String> month = JsonNullable.undefined();
 
         private Optional<? extends Currencies> currencies = Optional.empty();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -425,11 +467,31 @@ public class ListSettlementsRequest {
             return this;
         }
 
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public ListSettlementsRequest build() {
 
             return new ListSettlementsRequest(
                 from, limit, balanceId,
-                year, month, currencies);
+                year, month, currencies,
+                idempotencyKey);
         }
 
     }

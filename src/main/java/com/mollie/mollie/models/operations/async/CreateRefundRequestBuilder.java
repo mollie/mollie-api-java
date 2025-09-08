@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class CreateRefundRequestBuilder {
 
     private String paymentId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends EntityRefund> entityRefund = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -31,6 +32,18 @@ public class CreateRefundRequestBuilder {
     public CreateRefundRequestBuilder paymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
+        return this;
+    }
+                
+    public CreateRefundRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public CreateRefundRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -62,6 +75,7 @@ public class CreateRefundRequestBuilder {
     private CreateRefundRequest buildRequest() {
 
         CreateRefundRequest request = new CreateRefundRequest(paymentId,
+            idempotencyKey,
             entityRefund);
 
         return request;

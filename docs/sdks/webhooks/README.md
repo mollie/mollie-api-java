@@ -40,15 +40,14 @@ public class Application {
                     .build())
             .build();
 
-        CreateWebhookRequestBody req = CreateWebhookRequestBody.builder()
-                .name("Webhook #1")
-                .url("https://mollie.com/")
-                .webhookEventTypes(WebhookEventTypes.PAYMENT_LINK_PAID)
-                .testmode(false)
-                .build();
-
         CreateWebhookResponse res = sdk.webhooks().create()
-                .request(req)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(CreateWebhookRequestBody.builder()
+                    .name("Webhook #1")
+                    .url("https://mollie.com/")
+                    .webhookEventTypes(WebhookEventTypes.PAYMENT_LINK_PAID)
+                    .testmode(false)
+                    .build())
                 .call();
 
         if (res.createWebhook().isPresent()) {
@@ -60,9 +59,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `request`                                                                       | [CreateWebhookRequestBody](../../models/operations/CreateWebhookRequestBody.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
+| `requestBody`                                                                              | [Optional\<CreateWebhookRequestBody>](../../models/operations/CreateWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
 
 ### Response
 
@@ -108,6 +108,7 @@ public class Application {
                 .sort(ListSort.DESC)
                 .eventTypes(WebhookEventTypes.PAYMENT_LINK_PAID)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         ListWebhooksResponse res = sdk.webhooks().list()
@@ -168,6 +169,7 @@ public class Application {
 
         UpdateWebhookResponse res = sdk.webhooks().update()
                 .id("hook_B2EyhTH5N4KWUnoYPcgiH")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(UpdateWebhookRequestBody.builder()
                     .name("Webhook #1")
                     .url("https://mollie.com/")
@@ -185,10 +187,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |
-| `requestBody`                                                                              | [Optional\<UpdateWebhookRequestBody>](../../models/operations/UpdateWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |                                                                                            |
+| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
+| `requestBody`                                                                              | [Optional\<UpdateWebhookRequestBody>](../../models/operations/UpdateWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
 
 ### Response
 
@@ -230,6 +233,7 @@ public class Application {
         GetWebhookResponse res = sdk.webhooks().get()
                 .id("hook_B2EyhTH5N4KWUnoYPcgiH")
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.entityWebhook().isPresent()) {
@@ -245,6 +249,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                       | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                            |
 
 ### Response
 
@@ -286,6 +291,7 @@ public class Application {
 
         DeleteWebhookResponse res = sdk.webhooks().delete()
                 .id("hook_B2EyhTH5N4KWUnoYPcgiH")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(DeleteWebhookRequestBody.builder()
                     .testmode(false)
                     .build())
@@ -300,10 +306,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |
-| `requestBody`                                                                              | [Optional\<DeleteWebhookRequestBody>](../../models/operations/DeleteWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |                                                                                            |
+| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
+| `requestBody`                                                                              | [Optional\<DeleteWebhookRequestBody>](../../models/operations/DeleteWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
 
 ### Response
 
@@ -345,6 +352,7 @@ public class Application {
 
         TestWebhookResponse res = sdk.webhooks().test()
                 .id("hook_B2EyhTH5N4KWUnoYPcgiH")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(TestWebhookRequestBody.builder()
                     .testmode(false)
                     .build())
@@ -359,10 +367,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `id`                                                                                   | *String*                                                                               | :heavy_check_mark:                                                                     | Provide the ID of the item you want to perform this operation on.                      |
-| `requestBody`                                                                          | [Optional\<TestWebhookRequestBody>](../../models/operations/TestWebhookRequestBody.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `id`                                                                                   | *String*                                                                               | :heavy_check_mark:                                                                     | Provide the ID of the item you want to perform this operation on.                      |                                                                                        |
+| `idempotencyKey`                                                                       | *Optional\<String>*                                                                    | :heavy_minus_sign:                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.       | 123e4567-e89b-12d3-a456-426                                                            |
+| `requestBody`                                                                          | [Optional\<TestWebhookRequestBody>](../../models/operations/TestWebhookRequestBody.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |                                                                                        |
 
 ### Response
 

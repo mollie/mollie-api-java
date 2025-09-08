@@ -17,6 +17,7 @@ import java.util.Optional;
 public class DeletePaymentLinkRequestBuilder {
 
     private String paymentLinkId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends DeletePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -28,6 +29,18 @@ public class DeletePaymentLinkRequestBuilder {
     public DeletePaymentLinkRequestBuilder paymentLinkId(String paymentLinkId) {
         Utils.checkNotNull(paymentLinkId, "paymentLinkId");
         this.paymentLinkId = paymentLinkId;
+        return this;
+    }
+                
+    public DeletePaymentLinkRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public DeletePaymentLinkRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -59,6 +72,7 @@ public class DeletePaymentLinkRequestBuilder {
     private DeletePaymentLinkRequest buildRequest() {
 
         DeletePaymentLinkRequest request = new DeletePaymentLinkRequest(paymentLinkId,
+            idempotencyKey,
             requestBody);
 
         return request;

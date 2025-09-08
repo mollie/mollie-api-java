@@ -110,6 +110,12 @@ public class ListMethodsRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
     private JsonNullable<Boolean> testmode;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
     @JsonCreator
     public ListMethodsRequest(
             Optional<? extends SequenceType> sequenceType,
@@ -121,7 +127,8 @@ public class ListMethodsRequest {
             Optional<? extends OrderLineCategories> orderLineCategories,
             Optional<String> profileId,
             JsonNullable<String> include,
-            JsonNullable<Boolean> testmode) {
+            JsonNullable<Boolean> testmode,
+            Optional<String> idempotencyKey) {
         Utils.checkNotNull(sequenceType, "sequenceType");
         Utils.checkNotNull(locale, "locale");
         Utils.checkNotNull(amount, "amount");
@@ -132,6 +139,7 @@ public class ListMethodsRequest {
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(include, "include");
         Utils.checkNotNull(testmode, "testmode");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.sequenceType = sequenceType;
         this.locale = locale;
         this.amount = amount;
@@ -142,13 +150,14 @@ public class ListMethodsRequest {
         this.profileId = profileId;
         this.include = include;
         this.testmode = testmode;
+        this.idempotencyKey = idempotencyKey;
     }
     
     public ListMethodsRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -264,6 +273,14 @@ public class ListMethodsRequest {
     @JsonIgnore
     public JsonNullable<Boolean> testmode() {
         return testmode;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     public static Builder builder() {
@@ -517,6 +534,25 @@ public class ListMethodsRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListMethodsRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListMethodsRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -536,7 +572,8 @@ public class ListMethodsRequest {
             Utils.enhancedDeepEquals(this.orderLineCategories, other.orderLineCategories) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.include, other.include) &&
-            Utils.enhancedDeepEquals(this.testmode, other.testmode);
+            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
@@ -545,7 +582,7 @@ public class ListMethodsRequest {
             sequenceType, locale, amount,
             resource, billingCountry, includeWallets,
             orderLineCategories, profileId, include,
-            testmode);
+            testmode, idempotencyKey);
     }
     
     @Override
@@ -560,7 +597,8 @@ public class ListMethodsRequest {
                 "orderLineCategories", orderLineCategories,
                 "profileId", profileId,
                 "include", include,
-                "testmode", testmode);
+                "testmode", testmode,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -586,6 +624,8 @@ public class ListMethodsRequest {
         private JsonNullable<String> include = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -839,13 +879,32 @@ public class ListMethodsRequest {
             return this;
         }
 
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public ListMethodsRequest build() {
 
             return new ListMethodsRequest(
                 sequenceType, locale, amount,
                 resource, billingCountry, includeWallets,
                 orderLineCategories, profileId, include,
-                testmode);
+                testmode, idempotencyKey);
         }
 
     }

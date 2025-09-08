@@ -38,7 +38,6 @@ import com.mollie.mollie.operations.ListSubscriptions;
 import com.mollie.mollie.operations.UpdateSubscription;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -120,7 +119,9 @@ public class AsyncSubscriptions {
      * @return CompletableFuture&lt;CreateSubscriptionResponse&gt; - The async response
      */
     public CompletableFuture<CreateSubscriptionResponse> create(String customerId) {
-        return create(customerId, Optional.empty(), Optional.empty());
+        return create(
+                customerId, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -147,17 +148,19 @@ public class AsyncSubscriptions {
      * Your customer will be charged €10 on the last day of each month, starting in April 2018.
      * 
      * @param customerId Provide the ID of the related customer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param subscriptionRequest 
      * @param options additional options
      * @return CompletableFuture&lt;CreateSubscriptionResponse&gt; - The async response
      */
     public CompletableFuture<CreateSubscriptionResponse> create(
-            String customerId, Optional<? extends SubscriptionRequest> subscriptionRequest,
-            Optional<Options> options) {
+            String customerId, Optional<String> idempotencyKey,
+            Optional<? extends SubscriptionRequest> subscriptionRequest, Optional<Options> options) {
         CreateSubscriptionRequest request =
             CreateSubscriptionRequest
                 .builder()
                 .customerId(customerId)
+                .idempotencyKey(idempotencyKey)
                 .subscriptionRequest(subscriptionRequest)
                 .build();
         AsyncRequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
@@ -236,7 +239,7 @@ public class AsyncSubscriptions {
     public CompletableFuture<GetSubscriptionResponse> get(String customerId, String subscriptionId) {
         return get(
                 customerId, subscriptionId, JsonNullable.undefined(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -251,18 +254,21 @@ public class AsyncSubscriptions {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;GetSubscriptionResponse&gt; - The async response
      */
     public CompletableFuture<GetSubscriptionResponse> get(
             String customerId, String subscriptionId,
-            JsonNullable<Boolean> testmode, Optional<Options> options) {
+            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Options> options) {
         GetSubscriptionRequest request =
             GetSubscriptionRequest
                 .builder()
                 .customerId(customerId)
                 .subscriptionId(subscriptionId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetSubscriptionRequest, GetSubscriptionResponse> operation
               = new GetSubscription.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
@@ -302,7 +308,7 @@ public class AsyncSubscriptions {
     public CompletableFuture<UpdateSubscriptionResponse> update(String customerId, String subscriptionId) {
         return update(
                 customerId, subscriptionId, Optional.empty(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -316,18 +322,21 @@ public class AsyncSubscriptions {
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;UpdateSubscriptionResponse&gt; - The async response
      */
     public CompletableFuture<UpdateSubscriptionResponse> update(
             String customerId, String subscriptionId,
-            Optional<? extends UpdateSubscriptionRequestBody> requestBody, Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<? extends UpdateSubscriptionRequestBody> requestBody,
+            Optional<Options> options) {
         UpdateSubscriptionRequest request =
             UpdateSubscriptionRequest
                 .builder()
                 .customerId(customerId)
                 .subscriptionId(subscriptionId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<UpdateSubscriptionRequest, UpdateSubscriptionResponse> operation
@@ -360,7 +369,7 @@ public class AsyncSubscriptions {
     public CompletableFuture<CancelSubscriptionResponse> cancel(String customerId, String subscriptionId) {
         return cancel(
                 customerId, subscriptionId, Optional.empty(),
-                Optional.empty());
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -370,18 +379,21 @@ public class AsyncSubscriptions {
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return CompletableFuture&lt;CancelSubscriptionResponse&gt; - The async response
      */
     public CompletableFuture<CancelSubscriptionResponse> cancel(
             String customerId, String subscriptionId,
-            Optional<? extends CancelSubscriptionRequestBody> requestBody, Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<? extends CancelSubscriptionRequestBody> requestBody,
+            Optional<Options> options) {
         CancelSubscriptionRequest request =
             CancelSubscriptionRequest
                 .builder()
                 .customerId(customerId)
                 .subscriptionId(subscriptionId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CancelSubscriptionRequest, CancelSubscriptionResponse> operation
@@ -411,12 +423,11 @@ public class AsyncSubscriptions {
      * 
      * <p>The results are paginated.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return CompletableFuture&lt;ListAllSubscriptionsResponse&gt; - The async response
      */
-    public CompletableFuture<ListAllSubscriptionsResponse> allDirect() {
-        return all(
-                JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-                JsonNullable.undefined(), Optional.empty());
+    public CompletableFuture<ListAllSubscriptionsResponse> all(ListAllSubscriptionsRequest request) {
+        return all(request, Optional.empty());
     }
 
     /**
@@ -426,35 +437,11 @@ public class AsyncSubscriptions {
      * 
      * <p>The results are paginated.
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param profileId The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
-     *         
-     *         Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
-     *         
-     *         To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
-     *         `profileId` parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return CompletableFuture&lt;ListAllSubscriptionsResponse&gt; - The async response
      */
-    public CompletableFuture<ListAllSubscriptionsResponse> all(
-            JsonNullable<String> from, JsonNullable<Long> limit,
-            JsonNullable<String> profileId, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
-        ListAllSubscriptionsRequest request =
-            ListAllSubscriptionsRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .profileId(profileId)
-                .testmode(testmode)
-                .build();
+    public CompletableFuture<ListAllSubscriptionsResponse> all(ListAllSubscriptionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
               = new ListAllSubscriptions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)

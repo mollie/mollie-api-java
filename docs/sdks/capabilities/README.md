@@ -45,6 +45,7 @@ public class Application {
             .build();
 
         ListCapabilitiesResponse res = sdk.capabilities().list()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.object().isPresent()) {
@@ -53,6 +54,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
 

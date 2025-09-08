@@ -20,6 +20,12 @@ public class DeletePaymentLinkRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentLinkId")
     private String paymentLinkId;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends DeletePaymentLinkRequestBody> requestBody;
@@ -27,16 +33,19 @@ public class DeletePaymentLinkRequest {
     @JsonCreator
     public DeletePaymentLinkRequest(
             String paymentLinkId,
+            Optional<String> idempotencyKey,
             Optional<? extends DeletePaymentLinkRequestBody> requestBody) {
         Utils.checkNotNull(paymentLinkId, "paymentLinkId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(requestBody, "requestBody");
         this.paymentLinkId = paymentLinkId;
+        this.idempotencyKey = idempotencyKey;
         this.requestBody = requestBody;
     }
     
     public DeletePaymentLinkRequest(
             String paymentLinkId) {
-        this(paymentLinkId, Optional.empty());
+        this(paymentLinkId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -45,6 +54,14 @@ public class DeletePaymentLinkRequest {
     @JsonIgnore
     public String paymentLinkId() {
         return paymentLinkId;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -64,6 +81,25 @@ public class DeletePaymentLinkRequest {
     public DeletePaymentLinkRequest withPaymentLinkId(String paymentLinkId) {
         Utils.checkNotNull(paymentLinkId, "paymentLinkId");
         this.paymentLinkId = paymentLinkId;
+        return this;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public DeletePaymentLinkRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public DeletePaymentLinkRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
 
@@ -91,19 +127,21 @@ public class DeletePaymentLinkRequest {
         DeletePaymentLinkRequest other = (DeletePaymentLinkRequest) o;
         return 
             Utils.enhancedDeepEquals(this.paymentLinkId, other.paymentLinkId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentLinkId, requestBody);
+            paymentLinkId, idempotencyKey, requestBody);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DeletePaymentLinkRequest.class,
                 "paymentLinkId", paymentLinkId,
+                "idempotencyKey", idempotencyKey,
                 "requestBody", requestBody);
     }
 
@@ -111,6 +149,8 @@ public class DeletePaymentLinkRequest {
     public final static class Builder {
 
         private String paymentLinkId;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends DeletePaymentLinkRequestBody> requestBody = Optional.empty();
 
@@ -125,6 +165,25 @@ public class DeletePaymentLinkRequest {
         public Builder paymentLinkId(String paymentLinkId) {
             Utils.checkNotNull(paymentLinkId, "paymentLinkId");
             this.paymentLinkId = paymentLinkId;
+            return this;
+        }
+
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
             return this;
         }
 
@@ -144,7 +203,7 @@ public class DeletePaymentLinkRequest {
         public DeletePaymentLinkRequest build() {
 
             return new DeletePaymentLinkRequest(
-                paymentLinkId, requestBody);
+                paymentLinkId, idempotencyKey, requestBody);
         }
 
     }

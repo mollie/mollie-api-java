@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class PaymentCreateRouteRequestBuilder {
 
     private String paymentId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends RouteCreateRequest> routeCreateRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -31,6 +32,18 @@ public class PaymentCreateRouteRequestBuilder {
     public PaymentCreateRouteRequestBuilder paymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
+        return this;
+    }
+                
+    public PaymentCreateRouteRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public PaymentCreateRouteRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -62,6 +75,7 @@ public class PaymentCreateRouteRequestBuilder {
     private PaymentCreateRouteRequest buildRequest() {
 
         PaymentCreateRouteRequest request = new PaymentCreateRouteRequest(paymentId,
+            idempotencyKey,
             routeCreateRequest);
 
         return request;

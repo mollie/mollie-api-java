@@ -42,21 +42,20 @@ public class Application {
                     .build())
             .build();
 
-        EntityProfile req = EntityProfile.builder()
-                .name("My website name")
-                .website("https://example.com")
-                .email("test@mollie.com")
-                .phone("+31208202070")
-                .description("My website description")
-                .countriesOfActivity(List.of(
-                    "NL",
-                    "GB"))
-                .businessCategory("OTHER_MERCHANDISE")
-                .status(ProfileStatus.UNVERIFIED)
-                .build();
-
         CreateProfileResponse res = sdk.profiles().create()
-                .request(req)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .entityProfile(EntityProfile.builder()
+                    .name("My website name")
+                    .website("https://example.com")
+                    .email("test@mollie.com")
+                    .phone("+31208202070")
+                    .description("My website description")
+                    .countriesOfActivity(List.of(
+                        "NL",
+                        "GB"))
+                    .businessCategory("OTHER_MERCHANDISE")
+                    .status(ProfileStatus.UNVERIFIED)
+                    .build())
                 .call();
 
         if (res.entityProfileResponse().isPresent()) {
@@ -68,9 +67,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `request`                                             | [EntityProfile](../../models/shared/EntityProfile.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `entityProfile`                                                                  | [EntityProfile](../../models/components/EntityProfile.md)                        | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 
@@ -114,6 +114,7 @@ public class Application {
         ListProfilesResponse res = sdk.profiles().list()
                 .from("pfl_QkEhN94Ba")
                 .limit(50L)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.object().isPresent()) {
@@ -129,6 +130,7 @@ public class Application {
 | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | `from`                                                                                                                         | *JsonNullable\<String>*                                                                                                        | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set. |                                                                                                                                |
 | `limit`                                                                                                                        | *JsonNullable\<Long>*                                                                                                          | :heavy_minus_sign:                                                                                                             | The maximum number of items to return. Defaults to 50 items.                                                                   | 50                                                                                                                             |
+| `idempotencyKey`                                                                                                               | *Optional\<String>*                                                                                                            | :heavy_minus_sign:                                                                                                             | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                               | 123e4567-e89b-12d3-a456-426                                                                                                    |
 
 ### Response
 
@@ -170,6 +172,7 @@ public class Application {
         GetProfileResponse res = sdk.profiles().get()
                 .id("pfl_QkEhN94Ba")
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.entityProfileResponse().isPresent()) {
@@ -185,6 +188,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `id`                                                                                                                                                                                                                                                                                                                                                                                   | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the item you want to perform this operation on.                                                                                                                                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                       | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                            |
 
 ### Response
 
@@ -229,6 +233,7 @@ public class Application {
 
         UpdateProfileResponse res = sdk.profiles().update()
                 .id("pfl_QkEhN94Ba")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(UpdateProfileRequestBody.builder()
                     .name("My new website name")
                     .website("https://example.com")
@@ -252,10 +257,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `id`                                                                            | *String*                                                                        | :heavy_check_mark:                                                              | Provide the ID of the item you want to perform this operation on.               |
-| `requestBody`                                                                   | [UpdateProfileRequestBody](../../models/operations/UpdateProfileRequestBody.md) | :heavy_check_mark:                                                              | N/A                                                                             |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `id`                                                                             | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `requestBody`                                                                    | [UpdateProfileRequestBody](../../models/operations/UpdateProfileRequestBody.md)  | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 
@@ -296,6 +302,7 @@ public class Application {
 
         DeleteProfileResponse res = sdk.profiles().delete()
                 .id("pfl_QkEhN94Ba")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.any().isPresent()) {
@@ -307,9 +314,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `id`                                                                             | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
 
@@ -352,6 +360,7 @@ public class Application {
             .build();
 
         GetCurrentProfileResponse res = sdk.profiles().getCurrent()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.entityProfileResponse().isPresent()) {
@@ -360,6 +369,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
 

@@ -6,78 +6,28 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.operations.ListTerminalsRequest;
 import com.mollie.mollie.operations.ListTerminals;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListTerminalsRequestBuilder {
 
-    private Optional<String> from = Optional.empty();
-    private JsonNullable<Long> limit = JsonNullable.undefined();
-    private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private ListTerminalsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
     public ListTerminalsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-                
-    public ListTerminalsRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
-        return this;
-    }
 
-    public ListTerminalsRequestBuilder from(Optional<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListTerminalsRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListTerminalsRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-
-    public ListTerminalsRequestBuilder sort(ListSort sort) {
-        Utils.checkNotNull(sort, "sort");
-        this.sort = JsonNullable.of(sort);
-        return this;
-    }
-
-    public ListTerminalsRequestBuilder sort(JsonNullable<? extends ListSort> sort) {
-        Utils.checkNotNull(sort, "sort");
-        this.sort = sort;
-        return this;
-    }
-
-    public ListTerminalsRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public ListTerminalsRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public ListTerminalsRequestBuilder request(ListTerminalsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -93,17 +43,6 @@ public class ListTerminalsRequestBuilder {
         return this;
     }
 
-
-    private ListTerminalsRequest buildRequest() {
-
-        ListTerminalsRequest request = new ListTerminalsRequest(from,
-            limit,
-            sort,
-            testmode);
-
-        return request;
-    }
-
     public CompletableFuture<ListTerminalsResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -111,7 +50,6 @@ public class ListTerminalsRequestBuilder {
 
         AsyncRequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
               = new ListTerminals.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        ListTerminalsRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

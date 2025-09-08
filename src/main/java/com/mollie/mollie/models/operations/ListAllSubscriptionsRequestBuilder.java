@@ -10,19 +10,12 @@ import com.mollie.mollie.operations.ListAllSubscriptions;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllSubscriptionsRequestBuilder {
 
-    private JsonNullable<String> from = JsonNullable.undefined();
-    private JsonNullable<Long> limit = JsonNullable.undefined();
-    private JsonNullable<String> profileId = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private ListAllSubscriptionsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -30,51 +23,9 @@ public class ListAllSubscriptionsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListAllSubscriptionsRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = JsonNullable.of(from);
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder from(JsonNullable<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder profileId(String profileId) {
-        Utils.checkNotNull(profileId, "profileId");
-        this.profileId = JsonNullable.of(profileId);
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder profileId(JsonNullable<String> profileId) {
-        Utils.checkNotNull(profileId, "profileId");
-        this.profileId = profileId;
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public ListAllSubscriptionsRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public ListAllSubscriptionsRequestBuilder request(ListAllSubscriptionsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -90,17 +41,6 @@ public class ListAllSubscriptionsRequestBuilder {
         return this;
     }
 
-
-    private ListAllSubscriptionsRequest buildRequest() {
-
-        ListAllSubscriptionsRequest request = new ListAllSubscriptionsRequest(from,
-            limit,
-            profileId,
-            testmode);
-
-        return request;
-    }
-
     public ListAllSubscriptionsResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -108,7 +48,6 @@ public class ListAllSubscriptionsRequestBuilder {
 
         RequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
               = new ListAllSubscriptions.Sync(sdkConfiguration, options);
-        ListAllSubscriptionsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

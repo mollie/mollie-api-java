@@ -21,6 +21,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class CreatePaymentRequestBuilder {
 
     private JsonNullable<String> include = JsonNullable.undefined();
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends PaymentRequest> paymentRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -38,6 +39,18 @@ public class CreatePaymentRequestBuilder {
     public CreatePaymentRequestBuilder include(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
         this.include = include;
+        return this;
+    }
+                
+    public CreatePaymentRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public CreatePaymentRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -69,6 +82,7 @@ public class CreatePaymentRequestBuilder {
     private CreatePaymentRequest buildRequest() {
 
         CreatePaymentRequest request = new CreatePaymentRequest(include,
+            idempotencyKey,
             paymentRequest);
 
         return request;

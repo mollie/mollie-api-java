@@ -9,10 +9,10 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.EntitySalesInvoice;
 import com.mollie.mollie.models.components.EntitySalesInvoiceResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
@@ -118,12 +118,13 @@ public class CreateSalesInvoice {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "entitySalesInvoice",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -131,13 +132,13 @@ public class CreateSalesInvoice {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends EntitySalesInvoice>, CreateSalesInvoiceResponse> {
+            implements RequestOperation<CreateSalesInvoiceRequest, CreateSalesInvoiceResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends EntitySalesInvoice> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntitySalesInvoice>>() {});
+        private HttpRequest onBuildRequest(CreateSalesInvoiceRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<CreateSalesInvoiceRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -153,7 +154,7 @@ public class CreateSalesInvoice {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends EntitySalesInvoice> request) throws Exception {
+        public HttpResponse<InputStream> doRequest(CreateSalesInvoiceRequest request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -253,7 +254,7 @@ public class CreateSalesInvoice {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends EntitySalesInvoice>, com.mollie.mollie.models.operations.async.CreateSalesInvoiceResponse> {
+            implements AsyncRequestOperation<CreateSalesInvoiceRequest, com.mollie.mollie.models.operations.async.CreateSalesInvoiceResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -263,8 +264,8 @@ public class CreateSalesInvoice {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends EntitySalesInvoice> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends EntitySalesInvoice>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(CreateSalesInvoiceRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<CreateSalesInvoiceRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -277,7 +278,7 @@ public class CreateSalesInvoice {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends EntitySalesInvoice> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(CreateSalesInvoiceRequest request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)

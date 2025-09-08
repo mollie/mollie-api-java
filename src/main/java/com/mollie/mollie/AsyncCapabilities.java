@@ -3,12 +3,14 @@
  */
 package com.mollie.mollie;
 
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
+import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.operations.ListCapabilitiesRequest;
 import com.mollie.mollie.models.operations.async.ListCapabilitiesRequestBuilder;
 import com.mollie.mollie.models.operations.async.ListCapabilitiesResponse;
 import com.mollie.mollie.operations.ListCapabilities;
 import com.mollie.mollie.utils.Options;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -75,7 +77,7 @@ public class AsyncCapabilities {
      * @return CompletableFuture&lt;ListCapabilitiesResponse&gt; - The async response
      */
     public CompletableFuture<ListCapabilitiesResponse> listDirect() {
-        return list(Optional.empty());
+        return list(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -95,13 +97,19 @@ public class AsyncCapabilities {
      * This means that if at least one of the clients's profiles can receive payments,
      * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;ListCapabilitiesResponse&gt; - The async response
      */
-    public CompletableFuture<ListCapabilitiesResponse> list(Optional<Options> options) {
-        AsyncRequestlessOperation<ListCapabilitiesResponse> operation
-            = new ListCapabilities.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        return operation.doRequest()
+    public CompletableFuture<ListCapabilitiesResponse> list(Optional<String> idempotencyKey, Optional<Options> options) {
+        ListCapabilitiesRequest request =
+            ListCapabilitiesRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<ListCapabilitiesRequest, ListCapabilitiesResponse> operation
+              = new ListCapabilities.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 

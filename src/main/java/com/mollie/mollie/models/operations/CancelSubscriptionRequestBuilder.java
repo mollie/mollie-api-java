@@ -18,6 +18,7 @@ public class CancelSubscriptionRequestBuilder {
 
     private String customerId;
     private String subscriptionId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends CancelSubscriptionRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -35,6 +36,18 @@ public class CancelSubscriptionRequestBuilder {
     public CancelSubscriptionRequestBuilder subscriptionId(String subscriptionId) {
         Utils.checkNotNull(subscriptionId, "subscriptionId");
         this.subscriptionId = subscriptionId;
+        return this;
+    }
+                
+    public CancelSubscriptionRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public CancelSubscriptionRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -67,6 +80,7 @@ public class CancelSubscriptionRequestBuilder {
 
         CancelSubscriptionRequest request = new CancelSubscriptionRequest(customerId,
             subscriptionId,
+            idempotencyKey,
             requestBody);
 
         return request;

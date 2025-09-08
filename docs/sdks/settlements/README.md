@@ -51,6 +51,7 @@ public class Application {
                 .year("2025")
                 .month("1")
                 .currencies(Currencies.EUR)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         ListSettlementsResponse res = sdk.settlements().list()
@@ -120,6 +121,7 @@ public class Application {
 
         GetSettlementResponse res = sdk.settlements().get()
                 .id("stl_jDk30akdN")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.entitySettlement().isPresent()) {
@@ -131,9 +133,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `id`                                                              | *String*                                                          | :heavy_check_mark:                                                | Provide the ID of the item you want to perform this operation on. |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `id`                                                                             | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
 
@@ -179,6 +182,7 @@ public class Application {
             .build();
 
         GetOpenSettlementResponse res = sdk.settlements().getOpen()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.entitySettlement().isPresent()) {
@@ -187,6 +191,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
 
@@ -230,6 +240,7 @@ public class Application {
             .build();
 
         GetNextSettlementResponse res = sdk.settlements().getNext()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.entitySettlement().isPresent()) {
@@ -238,6 +249,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
 
@@ -289,6 +306,7 @@ public class Application {
                 .sort(ListSort.DESC)
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         ListSettlementPaymentsResponse res = sdk.settlements().listPayments()
@@ -354,6 +372,7 @@ public class Application {
                 .limit(50L)
                 .embed("payment")
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         ListSettlementCapturesResponse res = sdk.settlements().listCaptures()
@@ -419,6 +438,7 @@ public class Application {
                 .limit(50L)
                 .embed("payment")
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         ListSettlementRefundsResponse res = sdk.settlements().listRefunds()
@@ -484,6 +504,7 @@ public class Application {
                 .limit(50L)
                 .embed("payment")
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         ListSettlementChargebacksResponse res = sdk.settlements().listChargebacks()

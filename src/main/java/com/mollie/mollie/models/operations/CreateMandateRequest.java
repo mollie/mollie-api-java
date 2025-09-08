@@ -21,6 +21,12 @@ public class CreateMandateRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=customerId")
     private String customerId;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends EntityMandate> entityMandate;
@@ -28,16 +34,19 @@ public class CreateMandateRequest {
     @JsonCreator
     public CreateMandateRequest(
             String customerId,
+            Optional<String> idempotencyKey,
             Optional<? extends EntityMandate> entityMandate) {
         Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(entityMandate, "entityMandate");
         this.customerId = customerId;
+        this.idempotencyKey = idempotencyKey;
         this.entityMandate = entityMandate;
     }
     
     public CreateMandateRequest(
             String customerId) {
-        this(customerId, Optional.empty());
+        this(customerId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -46,6 +55,14 @@ public class CreateMandateRequest {
     @JsonIgnore
     public String customerId() {
         return customerId;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -65,6 +82,25 @@ public class CreateMandateRequest {
     public CreateMandateRequest withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
+        return this;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public CreateMandateRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public CreateMandateRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
 
@@ -92,19 +128,21 @@ public class CreateMandateRequest {
         CreateMandateRequest other = (CreateMandateRequest) o;
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.entityMandate, other.entityMandate);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, entityMandate);
+            customerId, idempotencyKey, entityMandate);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateMandateRequest.class,
                 "customerId", customerId,
+                "idempotencyKey", idempotencyKey,
                 "entityMandate", entityMandate);
     }
 
@@ -112,6 +150,8 @@ public class CreateMandateRequest {
     public final static class Builder {
 
         private String customerId;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends EntityMandate> entityMandate = Optional.empty();
 
@@ -126,6 +166,25 @@ public class CreateMandateRequest {
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = customerId;
+            return this;
+        }
+
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
             return this;
         }
 
@@ -145,7 +204,7 @@ public class CreateMandateRequest {
         public CreateMandateRequest build() {
 
             return new CreateMandateRequest(
-                customerId, entityMandate);
+                customerId, idempotencyKey, entityMandate);
         }
 
     }

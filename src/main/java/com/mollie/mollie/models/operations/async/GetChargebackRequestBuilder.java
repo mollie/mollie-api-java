@@ -11,19 +11,13 @@ import com.mollie.mollie.operations.GetChargeback;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetChargebackRequestBuilder {
 
-    private String paymentId;
-    private String chargebackId;
-    private JsonNullable<String> embed = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private GetChargebackRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -31,39 +25,9 @@ public class GetChargebackRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetChargebackRequestBuilder paymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-
-    public GetChargebackRequestBuilder chargebackId(String chargebackId) {
-        Utils.checkNotNull(chargebackId, "chargebackId");
-        this.chargebackId = chargebackId;
-        return this;
-    }
-
-    public GetChargebackRequestBuilder embed(String embed) {
-        Utils.checkNotNull(embed, "embed");
-        this.embed = JsonNullable.of(embed);
-        return this;
-    }
-
-    public GetChargebackRequestBuilder embed(JsonNullable<String> embed) {
-        Utils.checkNotNull(embed, "embed");
-        this.embed = embed;
-        return this;
-    }
-
-    public GetChargebackRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
-        return this;
-    }
-
-    public GetChargebackRequestBuilder testmode(JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
+    public GetChargebackRequestBuilder request(GetChargebackRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -79,17 +43,6 @@ public class GetChargebackRequestBuilder {
         return this;
     }
 
-
-    private GetChargebackRequest buildRequest() {
-
-        GetChargebackRequest request = new GetChargebackRequest(paymentId,
-            chargebackId,
-            embed,
-            testmode);
-
-        return request;
-    }
-
     public CompletableFuture<GetChargebackResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -97,7 +50,6 @@ public class GetChargebackRequestBuilder {
 
         AsyncRequestOperation<GetChargebackRequest, GetChargebackResponse> operation
               = new GetChargeback.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
-        GetChargebackRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

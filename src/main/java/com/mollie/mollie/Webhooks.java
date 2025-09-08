@@ -5,6 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.operations.CreateWebhookRequest;
 import com.mollie.mollie.models.operations.CreateWebhookRequestBody;
 import com.mollie.mollie.models.operations.CreateWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.CreateWebhookResponse;
@@ -78,7 +79,7 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public CreateWebhookResponse createDirect() throws Exception {
-        return create(Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -86,13 +87,22 @@ public class Webhooks {
      * 
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateWebhookResponse create(Optional<? extends CreateWebhookRequestBody> request, Optional<Options> options) throws Exception {
-        RequestOperation<Optional<? extends CreateWebhookRequestBody>, CreateWebhookResponse> operation
+    public CreateWebhookResponse create(
+            Optional<String> idempotencyKey, Optional<? extends CreateWebhookRequestBody> requestBody,
+            Optional<Options> options) throws Exception {
+        CreateWebhookRequest request =
+            CreateWebhookRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .requestBody(requestBody)
+                .build();
+        RequestOperation<CreateWebhookRequest, CreateWebhookResponse> operation
               = new CreateWebhook.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -158,7 +168,8 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public UpdateWebhookResponse update(String id) throws Exception {
-        return update(id, Optional.empty(), Optional.empty());
+        return update(id, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -167,18 +178,20 @@ public class Webhooks {
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateWebhookResponse update(
-            String id, Optional<? extends UpdateWebhookRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String id, Optional<String> idempotencyKey,
+            Optional<? extends UpdateWebhookRequestBody> requestBody, Optional<Options> options) throws Exception {
         UpdateWebhookRequest request =
             UpdateWebhookRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
@@ -207,7 +220,8 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public GetWebhookResponse get(String id) throws Exception {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(id, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -221,18 +235,20 @@ public class Webhooks {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetWebhookResponse get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         GetWebhookRequest request =
             GetWebhookRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetWebhookRequest, GetWebhookResponse> operation
               = new GetWebhook.Sync(sdkConfiguration, options);
@@ -260,7 +276,8 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public DeleteWebhookResponse delete(String id) throws Exception {
-        return delete(id, Optional.empty(), Optional.empty());
+        return delete(id, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -269,18 +286,20 @@ public class Webhooks {
      * <p>Delete a single webhook object by its webhook ID.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteWebhookResponse delete(
-            String id, Optional<? extends DeleteWebhookRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String id, Optional<String> idempotencyKey,
+            Optional<? extends DeleteWebhookRequestBody> requestBody, Optional<Options> options) throws Exception {
         DeleteWebhookRequest request =
             DeleteWebhookRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
@@ -309,7 +328,8 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public TestWebhookResponse test(String id) throws Exception {
-        return test(id, Optional.empty(), Optional.empty());
+        return test(id, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -318,18 +338,20 @@ public class Webhooks {
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public TestWebhookResponse test(
-            String id, Optional<? extends TestWebhookRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            String id, Optional<String> idempotencyKey,
+            Optional<? extends TestWebhookRequestBody> requestBody, Optional<Options> options) throws Exception {
         TestWebhookRequest request =
             TestWebhookRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<TestWebhookRequest, TestWebhookResponse> operation

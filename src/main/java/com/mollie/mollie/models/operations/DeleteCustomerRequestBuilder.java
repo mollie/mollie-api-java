@@ -17,6 +17,7 @@ import java.util.Optional;
 public class DeleteCustomerRequestBuilder {
 
     private String customerId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends DeleteCustomerRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -28,6 +29,18 @@ public class DeleteCustomerRequestBuilder {
     public DeleteCustomerRequestBuilder customerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
+        return this;
+    }
+                
+    public DeleteCustomerRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public DeleteCustomerRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -59,6 +72,7 @@ public class DeleteCustomerRequestBuilder {
     private DeleteCustomerRequest buildRequest() {
 
         DeleteCustomerRequest request = new DeleteCustomerRequest(customerId,
+            idempotencyKey,
             requestBody);
 
         return request;

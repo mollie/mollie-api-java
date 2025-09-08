@@ -116,6 +116,7 @@ public class ListBalances {
                     klass,
                     request,
                     null));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

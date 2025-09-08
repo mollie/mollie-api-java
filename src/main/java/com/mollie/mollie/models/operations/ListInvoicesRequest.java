@@ -12,6 +12,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -55,6 +56,12 @@ public class ListInvoicesRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
     private JsonNullable<? extends ListSort> sort;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
     @JsonCreator
     public ListInvoicesRequest(
             JsonNullable<String> reference,
@@ -62,24 +69,28 @@ public class ListInvoicesRequest {
             JsonNullable<String> month,
             JsonNullable<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListSort> sort) {
+            JsonNullable<? extends ListSort> sort,
+            Optional<String> idempotencyKey) {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(year, "year");
         Utils.checkNotNull(month, "month");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(sort, "sort");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.reference = reference;
         this.year = year;
         this.month = month;
         this.from = from;
         this.limit = limit;
         this.sort = sort;
+        this.idempotencyKey = idempotencyKey;
     }
     
     public ListInvoicesRequest() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -132,6 +143,14 @@ public class ListInvoicesRequest {
     @JsonIgnore
     public JsonNullable<ListSort> sort() {
         return (JsonNullable<ListSort>) sort;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     public static Builder builder() {
@@ -253,6 +272,25 @@ public class ListInvoicesRequest {
         return this;
     }
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListInvoicesRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public ListInvoicesRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -268,14 +306,16 @@ public class ListInvoicesRequest {
             Utils.enhancedDeepEquals(this.month, other.month) &&
             Utils.enhancedDeepEquals(this.from, other.from) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
-            Utils.enhancedDeepEquals(this.sort, other.sort);
+            Utils.enhancedDeepEquals(this.sort, other.sort) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             reference, year, month,
-            from, limit, sort);
+            from, limit, sort,
+            idempotencyKey);
     }
     
     @Override
@@ -286,7 +326,8 @@ public class ListInvoicesRequest {
                 "month", month,
                 "from", from,
                 "limit", limit,
-                "sort", sort);
+                "sort", sort,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -303,6 +344,8 @@ public class ListInvoicesRequest {
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
         private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -428,11 +471,31 @@ public class ListInvoicesRequest {
             return this;
         }
 
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
+            return this;
+        }
+
         public ListInvoicesRequest build() {
 
             return new ListInvoicesRequest(
                 reference, year, month,
-                from, limit, sort);
+                from, limit, sort,
+                idempotencyKey);
         }
 
     }

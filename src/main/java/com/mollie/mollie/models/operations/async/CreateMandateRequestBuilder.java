@@ -20,6 +20,7 @@ import java.util.concurrent.CompletableFuture;
 public class CreateMandateRequestBuilder {
 
     private String customerId;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends EntityMandate> entityMandate = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -31,6 +32,18 @@ public class CreateMandateRequestBuilder {
     public CreateMandateRequestBuilder customerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
+        return this;
+    }
+                
+    public CreateMandateRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public CreateMandateRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -62,6 +75,7 @@ public class CreateMandateRequestBuilder {
     private CreateMandateRequest buildRequest() {
 
         CreateMandateRequest request = new CreateMandateRequest(customerId,
+            idempotencyKey,
             entityMandate);
 
         return request;

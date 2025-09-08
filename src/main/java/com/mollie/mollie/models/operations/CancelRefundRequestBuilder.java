@@ -21,6 +21,7 @@ public class CancelRefundRequestBuilder {
     private String paymentId;
     private String refundId;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -52,6 +53,18 @@ public class CancelRefundRequestBuilder {
         return this;
     }
                 
+    public CancelRefundRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public CancelRefundRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
     public CancelRefundRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -69,7 +82,8 @@ public class CancelRefundRequestBuilder {
 
         CancelRefundRequest request = new CancelRefundRequest(paymentId,
             refundId,
-            testmode);
+            testmode,
+            idempotencyKey);
 
         return request;
     }

@@ -78,7 +78,8 @@ public class Mandates {
      * @throws Exception if the API call fails
      */
     public CreateMandateResponse create(String customerId) throws Exception {
-        return create(customerId, Optional.empty(), Optional.empty());
+        return create(customerId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -91,18 +92,20 @@ public class Mandates {
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @param customerId Provide the ID of the related customer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityMandate 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateMandateResponse create(
-            String customerId, Optional<? extends EntityMandate> entityMandate,
-            Optional<Options> options) throws Exception {
+            String customerId, Optional<String> idempotencyKey,
+            Optional<? extends EntityMandate> entityMandate, Optional<Options> options) throws Exception {
         CreateMandateRequest request =
             CreateMandateRequest
                 .builder()
                 .customerId(customerId)
+                .idempotencyKey(idempotencyKey)
                 .entityMandate(entityMandate)
                 .build();
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
@@ -181,7 +184,7 @@ public class Mandates {
      */
     public GetMandateResponse get(String customerId, String mandateId) throws Exception {
         return get(customerId, mandateId, JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -197,19 +200,22 @@ public class Mandates {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetMandateResponse get(
             String customerId, String mandateId,
-            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
+            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Options> options) throws Exception {
         GetMandateRequest request =
             GetMandateRequest
                 .builder()
                 .customerId(customerId)
                 .mandateId(mandateId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetMandateRequest, GetMandateResponse> operation
               = new GetMandate.Sync(sdkConfiguration, options);
@@ -241,7 +247,7 @@ public class Mandates {
      */
     public RevokeMandateResponse revoke(String customerId, String mandateId) throws Exception {
         return revoke(customerId, mandateId, Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -252,6 +258,7 @@ public class Mandates {
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
@@ -259,12 +266,14 @@ public class Mandates {
      */
     public RevokeMandateResponse revoke(
             String customerId, String mandateId,
-            Optional<? extends RevokeMandateRequestBody> requestBody, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<? extends RevokeMandateRequestBody> requestBody,
+            Optional<Options> options) throws Exception {
         RevokeMandateRequest request =
             RevokeMandateRequest
                 .builder()
                 .customerId(customerId)
                 .mandateId(mandateId)
+                .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation

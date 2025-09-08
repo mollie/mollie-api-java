@@ -17,6 +17,7 @@ import java.util.Optional;
 public class UpdateProfileRequestBuilder {
 
     private String id;
+    private Optional<String> idempotencyKey = Optional.empty();
     private UpdateProfileRequestBody requestBody;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -28,6 +29,18 @@ public class UpdateProfileRequestBuilder {
     public UpdateProfileRequestBuilder id(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+                
+    public UpdateProfileRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public UpdateProfileRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
 
@@ -53,6 +66,7 @@ public class UpdateProfileRequestBuilder {
     private UpdateProfileRequest buildRequest() {
 
         UpdateProfileRequest request = new UpdateProfileRequest(id,
+            idempotencyKey,
             requestBody);
 
         return request;

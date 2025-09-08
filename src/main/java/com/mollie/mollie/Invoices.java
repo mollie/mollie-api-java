@@ -113,7 +113,7 @@ public class Invoices {
      * @throws Exception if the API call fails
      */
     public GetInvoiceResponse get(String id) throws Exception {
-        return get(id, Optional.empty());
+        return get(id, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -125,15 +125,19 @@ public class Invoices {
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetInvoiceResponse get(String id, Optional<Options> options) throws Exception {
+    public GetInvoiceResponse get(
+            String id, Optional<String> idempotencyKey,
+            Optional<Options> options) throws Exception {
         GetInvoiceRequest request =
             GetInvoiceRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
               = new GetInvoice.Sync(sdkConfiguration, options);

@@ -19,11 +19,9 @@ import com.mollie.mollie.operations.CreateCapture;
 import com.mollie.mollie.operations.GetCapture;
 import com.mollie.mollie.operations.ListCaptures;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncCaptures {
@@ -79,7 +77,9 @@ public class AsyncCaptures {
      * @return CompletableFuture&lt;CreateCaptureResponse&gt; - The async response
      */
     public CompletableFuture<CreateCaptureResponse> create(String paymentId) {
-        return create(paymentId, Optional.empty(), Optional.empty());
+        return create(
+                paymentId, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -95,17 +95,19 @@ public class AsyncCaptures {
      * having collected the customer's authorization.
      * 
      * @param paymentId Provide the ID of the related payment.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityCapture 
      * @param options additional options
      * @return CompletableFuture&lt;CreateCaptureResponse&gt; - The async response
      */
     public CompletableFuture<CreateCaptureResponse> create(
-            String paymentId, Optional<? extends EntityCapture> entityCapture,
-            Optional<Options> options) {
+            String paymentId, Optional<String> idempotencyKey,
+            Optional<? extends EntityCapture> entityCapture, Optional<Options> options) {
         CreateCaptureRequest request =
             CreateCaptureRequest
                 .builder()
                 .paymentId(paymentId)
+                .idempotencyKey(idempotencyKey)
                 .entityCapture(entityCapture)
                 .build();
         AsyncRequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
@@ -179,14 +181,11 @@ public class AsyncCaptures {
      * <p>Retrieve a single payment capture by its ID and the ID of its parent
      * payment.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param captureId Provide the ID of the related capture.
+     * @param request The request object containing all the parameters for the API call.
      * @return CompletableFuture&lt;GetCaptureResponse&gt; - The async response
      */
-    public CompletableFuture<GetCaptureResponse> get(String paymentId, String captureId) {
-        return get(
-                paymentId, captureId, JsonNullable.undefined(),
-                JsonNullable.undefined(), Optional.empty());
+    public CompletableFuture<GetCaptureResponse> get(GetCaptureRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -195,30 +194,11 @@ public class AsyncCaptures {
      * <p>Retrieve a single payment capture by its ID and the ID of its parent
      * payment.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param captureId Provide the ID of the related capture.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     *         parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return CompletableFuture&lt;GetCaptureResponse&gt; - The async response
      */
-    public CompletableFuture<GetCaptureResponse> get(
-            String paymentId, String captureId,
-            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
-        GetCaptureRequest request =
-            GetCaptureRequest
-                .builder()
-                .paymentId(paymentId)
-                .captureId(captureId)
-                .embed(embed)
-                .testmode(testmode)
-                .build();
+    public CompletableFuture<GetCaptureResponse> get(GetCaptureRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetCaptureRequest, GetCaptureResponse> operation
               = new GetCapture.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
         return operation.doRequest(request)

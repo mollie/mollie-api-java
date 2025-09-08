@@ -63,7 +63,8 @@ public class DelayedRouting {
      * @throws Exception if the API call fails
      */
     public PaymentCreateRouteResponse create(String paymentId) throws Exception {
-        return create(paymentId, Optional.empty(), Optional.empty());
+        return create(paymentId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -73,18 +74,20 @@ public class DelayedRouting {
      * The routed amount is credited to the account of your customer.
      * 
      * @param paymentId Provide the ID of the related payment.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param routeCreateRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PaymentCreateRouteResponse create(
-            String paymentId, Optional<? extends RouteCreateRequest> routeCreateRequest,
-            Optional<Options> options) throws Exception {
+            String paymentId, Optional<String> idempotencyKey,
+            Optional<? extends RouteCreateRequest> routeCreateRequest, Optional<Options> options) throws Exception {
         PaymentCreateRouteRequest request =
             PaymentCreateRouteRequest
                 .builder()
                 .paymentId(paymentId)
+                .idempotencyKey(idempotencyKey)
                 .routeCreateRequest(routeCreateRequest)
                 .build();
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
@@ -113,7 +116,8 @@ public class DelayedRouting {
      * @throws Exception if the API call fails
      */
     public PaymentListRoutesResponse list(String paymentId) throws Exception {
-        return list(paymentId, JsonNullable.undefined(), Optional.empty());
+        return list(paymentId, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -127,18 +131,20 @@ public class DelayedRouting {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public PaymentListRoutesResponse list(
             String paymentId, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         PaymentListRoutesRequest request =
             PaymentListRoutesRequest
                 .builder()
                 .paymentId(paymentId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<PaymentListRoutesRequest, PaymentListRoutesResponse> operation
               = new PaymentListRoutes.Sync(sdkConfiguration, options);

@@ -63,7 +63,9 @@ public class AsyncDelayedRouting {
      * @return CompletableFuture&lt;PaymentCreateRouteResponse&gt; - The async response
      */
     public CompletableFuture<PaymentCreateRouteResponse> create(String paymentId) {
-        return create(paymentId, Optional.empty(), Optional.empty());
+        return create(
+                paymentId, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -73,17 +75,19 @@ public class AsyncDelayedRouting {
      * The routed amount is credited to the account of your customer.
      * 
      * @param paymentId Provide the ID of the related payment.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param routeCreateRequest 
      * @param options additional options
      * @return CompletableFuture&lt;PaymentCreateRouteResponse&gt; - The async response
      */
     public CompletableFuture<PaymentCreateRouteResponse> create(
-            String paymentId, Optional<? extends RouteCreateRequest> routeCreateRequest,
-            Optional<Options> options) {
+            String paymentId, Optional<String> idempotencyKey,
+            Optional<? extends RouteCreateRequest> routeCreateRequest, Optional<Options> options) {
         PaymentCreateRouteRequest request =
             PaymentCreateRouteRequest
                 .builder()
                 .paymentId(paymentId)
+                .idempotencyKey(idempotencyKey)
                 .routeCreateRequest(routeCreateRequest)
                 .build();
         AsyncRequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
@@ -113,7 +117,9 @@ public class AsyncDelayedRouting {
      * @return CompletableFuture&lt;PaymentListRoutesResponse&gt; - The async response
      */
     public CompletableFuture<PaymentListRoutesResponse> list(String paymentId) {
-        return list(paymentId, JsonNullable.undefined(), Optional.empty());
+        return list(
+                paymentId, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -127,17 +133,19 @@ public class AsyncDelayedRouting {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return CompletableFuture&lt;PaymentListRoutesResponse&gt; - The async response
      */
     public CompletableFuture<PaymentListRoutesResponse> list(
             String paymentId, JsonNullable<Boolean> testmode,
-            Optional<Options> options) {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         PaymentListRoutesRequest request =
             PaymentListRoutesRequest
                 .builder()
                 .paymentId(paymentId)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<PaymentListRoutesRequest, PaymentListRoutesResponse> operation
               = new PaymentListRoutes.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());

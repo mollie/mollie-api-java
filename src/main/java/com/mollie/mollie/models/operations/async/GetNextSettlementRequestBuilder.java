@@ -3,24 +3,39 @@
  */
 package com.mollie.mollie.models.operations.async;
 
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
+import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.operations.GetNextSettlementRequest;
 import com.mollie.mollie.operations.GetNextSettlement;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetNextSettlementRequestBuilder {
 
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
     public GetNextSettlementRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetNextSettlementRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetNextSettlementRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
     }
                 
     public GetNextSettlementRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -35,15 +50,24 @@ public class GetNextSettlementRequestBuilder {
         return this;
     }
 
+
+    private GetNextSettlementRequest buildRequest() {
+
+        GetNextSettlementRequest request = new GetNextSettlementRequest(idempotencyKey);
+
+        return request;
+    }
+
     public CompletableFuture<GetNextSettlementResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestlessOperation<GetNextSettlementResponse> operation
-            = new GetNextSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        AsyncRequestOperation<GetNextSettlementRequest, GetNextSettlementResponse> operation
+              = new GetNextSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        GetNextSettlementRequest request = buildRequest();
 
-        return operation.doRequest()
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 }

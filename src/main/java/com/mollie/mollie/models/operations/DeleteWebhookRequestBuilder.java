@@ -17,6 +17,7 @@ import java.util.Optional;
 public class DeleteWebhookRequestBuilder {
 
     private String id;
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends DeleteWebhookRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -28,6 +29,18 @@ public class DeleteWebhookRequestBuilder {
     public DeleteWebhookRequestBuilder id(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+                
+    public DeleteWebhookRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public DeleteWebhookRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
                 
@@ -59,6 +72,7 @@ public class DeleteWebhookRequestBuilder {
     private DeleteWebhookRequest buildRequest() {
 
         DeleteWebhookRequest request = new DeleteWebhookRequest(id,
+            idempotencyKey,
             requestBody);
 
         return request;

@@ -12,11 +12,13 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 public class CreateCustomerRequestBuilder {
 
-    private Optional<? extends EntityCustomer> request = Optional.empty();
+    private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<? extends EntityCustomer> entityCustomer = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -24,15 +26,27 @@ public class CreateCustomerRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreateCustomerRequestBuilder request(EntityCustomer request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public CreateCustomerRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
         return this;
     }
 
-    public CreateCustomerRequestBuilder request(Optional<? extends EntityCustomer> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public CreateCustomerRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreateCustomerRequestBuilder entityCustomer(EntityCustomer entityCustomer) {
+        Utils.checkNotNull(entityCustomer, "entityCustomer");
+        this.entityCustomer = Optional.of(entityCustomer);
+        return this;
+    }
+
+    public CreateCustomerRequestBuilder entityCustomer(Optional<? extends EntityCustomer> entityCustomer) {
+        Utils.checkNotNull(entityCustomer, "entityCustomer");
+        this.entityCustomer = entityCustomer;
         return this;
     }
                 
@@ -48,13 +62,23 @@ public class CreateCustomerRequestBuilder {
         return this;
     }
 
+
+    private CreateCustomerRequest buildRequest() {
+
+        CreateCustomerRequest request = new CreateCustomerRequest(idempotencyKey,
+            entityCustomer);
+
+        return request;
+    }
+
     public CreateCustomerResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        RequestOperation<Optional<? extends EntityCustomer>, CreateCustomerResponse> operation
+        RequestOperation<CreateCustomerRequest, CreateCustomerResponse> operation
               = new CreateCustomer.Sync(sdkConfiguration, options);
+        CreateCustomerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -22,6 +22,7 @@ public class GetTerminalRequestBuilder {
 
     private String terminalId;
     private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -47,6 +48,18 @@ public class GetTerminalRequestBuilder {
         return this;
     }
                 
+    public GetTerminalRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetTerminalRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
     public GetTerminalRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -63,7 +76,8 @@ public class GetTerminalRequestBuilder {
     private GetTerminalRequest buildRequest() {
 
         GetTerminalRequest request = new GetTerminalRequest(terminalId,
-            testmode);
+            testmode,
+            idempotencyKey);
 
         return request;
     }

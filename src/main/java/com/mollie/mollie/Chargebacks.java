@@ -18,11 +18,8 @@ import com.mollie.mollie.operations.GetChargeback;
 import com.mollie.mollie.operations.ListAllChargebacks;
 import com.mollie.mollie.operations.ListChargebacks;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.Exception;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Chargebacks {
@@ -105,14 +102,12 @@ public class Chargebacks {
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param chargebackId Provide the ID of the related chargeback.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetChargebackResponse get(String paymentId, String chargebackId) throws Exception {
-        return get(paymentId, chargebackId, JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+    public GetChargebackResponse get(GetChargebackRequest request) throws Exception {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -120,31 +115,12 @@ public class Chargebacks {
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param chargebackId Provide the ID of the related chargeback.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     *         parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetChargebackResponse get(
-            String paymentId, String chargebackId,
-            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
-        GetChargebackRequest request =
-            GetChargebackRequest
-                .builder()
-                .paymentId(paymentId)
-                .chargebackId(chargebackId)
-                .embed(embed)
-                .testmode(testmode)
-                .build();
+    public GetChargebackResponse get(GetChargebackRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetChargebackRequest, GetChargebackResponse> operation
               = new GetChargeback.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));

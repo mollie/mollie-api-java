@@ -3,24 +3,39 @@
  */
 package com.mollie.mollie.models.operations.async;
 
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
+import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.operations.GetPartnerStatusRequest;
 import com.mollie.mollie.operations.GetPartnerStatus;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetPartnerStatusRequestBuilder {
 
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
     public GetPartnerStatusRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetPartnerStatusRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetPartnerStatusRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
     }
                 
     public GetPartnerStatusRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -35,15 +50,24 @@ public class GetPartnerStatusRequestBuilder {
         return this;
     }
 
+
+    private GetPartnerStatusRequest buildRequest() {
+
+        GetPartnerStatusRequest request = new GetPartnerStatusRequest(idempotencyKey);
+
+        return request;
+    }
+
     public CompletableFuture<GetPartnerStatusResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestlessOperation<GetPartnerStatusResponse> operation
-            = new GetPartnerStatus.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        AsyncRequestOperation<GetPartnerStatusRequest, GetPartnerStatusResponse> operation
+              = new GetPartnerStatus.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        GetPartnerStatusRequest request = buildRequest();
 
-        return operation.doRequest()
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 }

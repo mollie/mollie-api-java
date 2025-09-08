@@ -6,18 +6,21 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.operations.SubmitOnboardingDataRequest;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBody;
 import com.mollie.mollie.operations.SubmitOnboardingData;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class SubmitOnboardingDataRequestBuilder {
 
-    private Optional<? extends SubmitOnboardingDataRequestBody> request = Optional.empty();
+    private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<? extends SubmitOnboardingDataRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -25,15 +28,27 @@ public class SubmitOnboardingDataRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public SubmitOnboardingDataRequestBuilder request(SubmitOnboardingDataRequestBody request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public SubmitOnboardingDataRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
         return this;
     }
 
-    public SubmitOnboardingDataRequestBuilder request(Optional<? extends SubmitOnboardingDataRequestBody> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public SubmitOnboardingDataRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public SubmitOnboardingDataRequestBuilder requestBody(SubmitOnboardingDataRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
+        return this;
+    }
+
+    public SubmitOnboardingDataRequestBuilder requestBody(Optional<? extends SubmitOnboardingDataRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -49,13 +64,23 @@ public class SubmitOnboardingDataRequestBuilder {
         return this;
     }
 
+
+    private SubmitOnboardingDataRequest buildRequest() {
+
+        SubmitOnboardingDataRequest request = new SubmitOnboardingDataRequest(idempotencyKey,
+            requestBody);
+
+        return request;
+    }
+
     public CompletableFuture<SubmitOnboardingDataResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestOperation<Optional<? extends SubmitOnboardingDataRequestBody>, SubmitOnboardingDataResponse> operation
+        AsyncRequestOperation<SubmitOnboardingDataRequest, SubmitOnboardingDataResponse> operation
               = new SubmitOnboardingData.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        SubmitOnboardingDataRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

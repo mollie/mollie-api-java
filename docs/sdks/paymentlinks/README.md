@@ -41,96 +41,95 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentLinkRequestBody req = CreatePaymentLinkRequestBody.builder()
-                .description("Chess Board")
-                .id("pl_d9fQur83kFdhH8hIhaZfq")
-                .amount(AmountNullable.builder()
-                    .currency("EUR")
-                    .value("10.00")
-                    .build())
-                .minimumAmount(AmountNullable.builder()
-                    .currency("EUR")
-                    .value("10.00")
-                    .build())
-                .redirectUrl("https://webshop.example.org/payment-links/redirect/")
-                .webhookUrl("https://webshop.example.org/payment-links/webhook/")
-                .lines(List.of(
-                    PaymentLineItem.builder()
-                        .description("LEGO 4440 Forest Police Station")
-                        .quantity(1L)
-                        .unitPrice(Amount.builder()
-                            .currency("EUR")
-                            .value("10.00")
-                            .build())
-                        .totalAmount(Amount.builder()
-                            .currency("EUR")
-                            .value("10.00")
-                            .build())
-                        .type(PaymentLineType.PHYSICAL)
-                        .quantityUnit("pcs")
-                        .discountAmount(Amount.builder()
-                            .currency("EUR")
-                            .value("10.00")
-                            .build())
-                        .vatRate("21.00")
-                        .vatAmount(Amount.builder()
-                            .currency("EUR")
-                            .value("10.00")
-                            .build())
-                        .sku("9780241661628")
-                        .categories(List.of(
-                            PaymentLineItemCategories.MEAL,
-                            PaymentLineItemCategories.ECO))
-                        .imageUrl("https://...")
-                        .productUrl("https://...")
-                        .build()))
-                .billingAddress(PaymentAddress.builder()
-                    .title("Mr.")
-                    .givenName("Piet")
-                    .familyName("Mondriaan")
-                    .organizationName("Mollie B.V.")
-                    .streetAndNumber("Keizersgracht 126")
-                    .streetAdditional("Apt. 1")
-                    .postalCode("1234AB")
-                    .email("piet@example.org")
-                    .phone("31208202070")
-                    .city("Amsterdam")
-                    .region("Noord-Holland")
-                    .country("NL")
-                    .build())
-                .shippingAddress(PaymentAddress.builder()
-                    .title("Mr.")
-                    .givenName("Piet")
-                    .familyName("Mondriaan")
-                    .organizationName("Mollie B.V.")
-                    .streetAndNumber("Keizersgracht 126")
-                    .streetAdditional("Apt. 1")
-                    .postalCode("1234AB")
-                    .email("piet@example.org")
-                    .phone("31208202070")
-                    .city("Amsterdam")
-                    .region("Noord-Holland")
-                    .country("NL")
-                    .build())
-                .profileId("pfl_QkEhN94Ba")
-                .reusable(false)
-                .expiresAt("2025-12-24T11:00:16+00:00")
-                .allowedMethods(List.of(
-                    "ideal"))
-                .applicationFee(ApplicationFee.builder()
-                    .amount(Amount.builder()
+        CreatePaymentLinkResponse res = sdk.paymentLinks().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(CreatePaymentLinkRequestBody.builder()
+                    .description("Chess Board")
+                    .id("pl_d9fQur83kFdhH8hIhaZfq")
+                    .amount(AmountNullable.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
-                    .description("Platform fee")
+                    .minimumAmount(AmountNullable.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .redirectUrl("https://webshop.example.org/payment-links/redirect/")
+                    .webhookUrl("https://webshop.example.org/payment-links/webhook/")
+                    .lines(List.of(
+                        PaymentLineItem.builder()
+                            .description("LEGO 4440 Forest Police Station")
+                            .quantity(1L)
+                            .unitPrice(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .totalAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .type(PaymentLineType.PHYSICAL)
+                            .quantityUnit("pcs")
+                            .discountAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .vatRate("21.00")
+                            .vatAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .sku("9780241661628")
+                            .categories(List.of(
+                                PaymentLineItemCategories.MEAL,
+                                PaymentLineItemCategories.ECO))
+                            .imageUrl("https://...")
+                            .productUrl("https://...")
+                            .build()))
+                    .billingAddress(PaymentAddress.builder()
+                        .title("Mr.")
+                        .givenName("Piet")
+                        .familyName("Mondriaan")
+                        .organizationName("Mollie B.V.")
+                        .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
+                        .postalCode("1234AB")
+                        .email("piet@example.org")
+                        .phone("31208202070")
+                        .city("Amsterdam")
+                        .region("Noord-Holland")
+                        .country("NL")
+                        .build())
+                    .shippingAddress(PaymentAddress.builder()
+                        .title("Mr.")
+                        .givenName("Piet")
+                        .familyName("Mondriaan")
+                        .organizationName("Mollie B.V.")
+                        .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
+                        .postalCode("1234AB")
+                        .email("piet@example.org")
+                        .phone("31208202070")
+                        .city("Amsterdam")
+                        .region("Noord-Holland")
+                        .country("NL")
+                        .build())
+                    .profileId("pfl_QkEhN94Ba")
+                    .reusable(false)
+                    .expiresAt("2025-12-24T11:00:16+00:00")
+                    .allowedMethods(List.of(
+                        "ideal"))
+                    .applicationFee(ApplicationFee.builder()
+                        .amount(Amount.builder()
+                            .currency("EUR")
+                            .value("10.00")
+                            .build())
+                        .description("Platform fee")
+                        .build())
+                    .sequenceType(PaymentLinkSequenceType.ONEOFF)
+                    .customerId("cst_XimFHuaEzd")
+                    .testmode(false)
                     .build())
-                .sequenceType(PaymentLinkSequenceType.ONEOFF)
-                .customerId("cst_XimFHuaEzd")
-                .testmode(false)
-                .build();
-
-        CreatePaymentLinkResponse res = sdk.paymentLinks().create()
-                .request(req)
                 .call();
 
         if (res.paymentLinkResponse().isPresent()) {
@@ -142,9 +141,10 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `request`                                                                               | [CreatePaymentLinkRequestBody](../../models/operations/CreatePaymentLinkRequestBody.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                                   | *Optional\<String>*                                                                                | :heavy_minus_sign:                                                                                 | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                   | 123e4567-e89b-12d3-a456-426                                                                        |
+| `requestBody`                                                                                      | [Optional\<CreatePaymentLinkRequestBody>](../../models/operations/CreatePaymentLinkRequestBody.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
 
 ### Response
 
@@ -189,6 +189,7 @@ public class Application {
                 .from("pl_d9fQur83kFdhH8hIhaZfq")
                 .limit(50L)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.object().isPresent()) {
@@ -205,6 +206,7 @@ public class Application {
 | `from`                                                                                                                                                                                                                                                                                                                                                                                 | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set.                                                                                                                                                                                                                                                     | pl_d9fQur83kFdhH8hIhaZfq                                                                                                                                                                                                                                                                                                                                                               |
 | `limit`                                                                                                                                                                                                                                                                                                                                                                                | *JsonNullable\<Long>*                                                                                                                                                                                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | The maximum number of items to return. Defaults to 50 items.                                                                                                                                                                                                                                                                                                                           | 50                                                                                                                                                                                                                                                                                                                                                                                     |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                       | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                            |
 
 ### Response
 
@@ -246,6 +248,7 @@ public class Application {
         GetPaymentLinkResponse res = sdk.paymentLinks().get()
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
         if (res.paymentLinkResponse().isPresent()) {
@@ -261,6 +264,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `paymentLinkId`                                                                                                                                                                                                                                                                                                                                                                        | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment link.                                                                                                                                                                                                                                                                                                                                            | pl_d9fQur83kFdhH8hIhaZfq                                                                                                                                                                                                                                                                                                                                                               |
 | `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                       | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                            |
 
 ### Response
 
@@ -303,6 +307,7 @@ public class Application {
 
         UpdatePaymentLinkResponse res = sdk.paymentLinks().update()
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(UpdatePaymentLinkRequestBody.builder()
                     .description("Chess Board")
                     .minimumAmount(Amount.builder()
@@ -386,6 +391,7 @@ public class Application {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `paymentLinkId`                                                                                    | *String*                                                                                           | :heavy_check_mark:                                                                                 | Provide the ID of the related payment link.                                                        | pl_d9fQur83kFdhH8hIhaZfq                                                                           |
+| `idempotencyKey`                                                                                   | *Optional\<String>*                                                                                | :heavy_minus_sign:                                                                                 | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                   | 123e4567-e89b-12d3-a456-426                                                                        |
 | `requestBody`                                                                                      | [Optional\<UpdatePaymentLinkRequestBody>](../../models/operations/UpdatePaymentLinkRequestBody.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
 
 ### Response
@@ -434,6 +440,7 @@ public class Application {
 
         DeletePaymentLinkResponse res = sdk.paymentLinks().delete()
                 .paymentLinkId("pl_d9fQur83kFdhH8hIhaZfq")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(DeletePaymentLinkRequestBody.builder()
                     .testmode(false)
                     .build())
@@ -451,6 +458,7 @@ public class Application {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `paymentLinkId`                                                                                    | *String*                                                                                           | :heavy_check_mark:                                                                                 | Provide the ID of the related payment link.                                                        | pl_d9fQur83kFdhH8hIhaZfq                                                                           |
+| `idempotencyKey`                                                                                   | *Optional\<String>*                                                                                | :heavy_minus_sign:                                                                                 | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                   | 123e4567-e89b-12d3-a456-426                                                                        |
 | `requestBody`                                                                                      | [Optional\<DeletePaymentLinkRequestBody>](../../models/operations/DeletePaymentLinkRequestBody.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
 
 ### Response
@@ -500,6 +508,7 @@ public class Application {
                 .limit(50L)
                 .sort(ListSort.DESC)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
         GetPaymentLinkPaymentsResponse res = sdk.paymentLinks().listPayments()

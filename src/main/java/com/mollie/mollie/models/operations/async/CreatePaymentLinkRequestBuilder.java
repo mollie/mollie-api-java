@@ -6,18 +6,21 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.operations.CreatePaymentLinkRequest;
 import com.mollie.mollie.models.operations.CreatePaymentLinkRequestBody;
 import com.mollie.mollie.operations.CreatePaymentLink;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class CreatePaymentLinkRequestBuilder {
 
-    private Optional<? extends CreatePaymentLinkRequestBody> request = Optional.empty();
+    private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<? extends CreatePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
@@ -25,15 +28,27 @@ public class CreatePaymentLinkRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
                 
-    public CreatePaymentLinkRequestBuilder request(CreatePaymentLinkRequestBody request) {
-        Utils.checkNotNull(request, "request");
-        this.request = Optional.of(request);
+    public CreatePaymentLinkRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
         return this;
     }
 
-    public CreatePaymentLinkRequestBuilder request(Optional<? extends CreatePaymentLinkRequestBody> request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public CreatePaymentLinkRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreatePaymentLinkRequestBuilder requestBody(CreatePaymentLinkRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
+        return this;
+    }
+
+    public CreatePaymentLinkRequestBuilder requestBody(Optional<? extends CreatePaymentLinkRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -49,13 +64,23 @@ public class CreatePaymentLinkRequestBuilder {
         return this;
     }
 
+
+    private CreatePaymentLinkRequest buildRequest() {
+
+        CreatePaymentLinkRequest request = new CreatePaymentLinkRequest(idempotencyKey,
+            requestBody);
+
+        return request;
+    }
+
     public CompletableFuture<CreatePaymentLinkResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestOperation<Optional<? extends CreatePaymentLinkRequestBody>, CreatePaymentLinkResponse> operation
+        AsyncRequestOperation<CreatePaymentLinkRequest, CreatePaymentLinkResponse> operation
               = new CreatePaymentLink.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        CreatePaymentLinkRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

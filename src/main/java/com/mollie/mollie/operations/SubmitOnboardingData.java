@@ -10,7 +10,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.errors.APIException;
-import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBody;
+import com.mollie.mollie.models.operations.SubmitOnboardingDataRequest;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
@@ -116,12 +116,13 @@ public class SubmitOnboardingData {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "requestBody",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -129,13 +130,13 @@ public class SubmitOnboardingData {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends SubmitOnboardingDataRequestBody>, SubmitOnboardingDataResponse> {
+            implements RequestOperation<SubmitOnboardingDataRequest, SubmitOnboardingDataResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends SubmitOnboardingDataRequestBody> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends SubmitOnboardingDataRequestBody>>() {});
+        private HttpRequest onBuildRequest(SubmitOnboardingDataRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<SubmitOnboardingDataRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -151,7 +152,7 @@ public class SubmitOnboardingData {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends SubmitOnboardingDataRequestBody> request) throws Exception {
+        public HttpResponse<InputStream> doRequest(SubmitOnboardingDataRequest request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -235,7 +236,7 @@ public class SubmitOnboardingData {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends SubmitOnboardingDataRequestBody>, com.mollie.mollie.models.operations.async.SubmitOnboardingDataResponse> {
+            implements AsyncRequestOperation<SubmitOnboardingDataRequest, com.mollie.mollie.models.operations.async.SubmitOnboardingDataResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -245,8 +246,8 @@ public class SubmitOnboardingData {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends SubmitOnboardingDataRequestBody> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends SubmitOnboardingDataRequestBody>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(SubmitOnboardingDataRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<SubmitOnboardingDataRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -259,7 +260,7 @@ public class SubmitOnboardingData {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends SubmitOnboardingDataRequestBody> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(SubmitOnboardingDataRequest request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)

@@ -56,7 +56,8 @@ public class WebhookEvents {
      * @throws Exception if the API call fails
      */
     public GetWebhookEventResponse get(String id) throws Exception {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(id, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -70,18 +71,20 @@ public class WebhookEvents {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetWebhookEventResponse get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         GetWebhookEventRequest request =
             GetWebhookEventRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
               = new GetWebhookEvent.Sync(sdkConfiguration, options);

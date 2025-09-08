@@ -6,11 +6,13 @@ package com.mollie.mollie;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.models.components.EntityClientLink;
+import com.mollie.mollie.models.operations.CreateClientLinkRequest;
 import com.mollie.mollie.models.operations.CreateClientLinkRequestBuilder;
 import com.mollie.mollie.models.operations.CreateClientLinkResponse;
 import com.mollie.mollie.operations.CreateClientLink;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 
@@ -156,7 +158,7 @@ public class ClientLinks {
      * @throws Exception if the API call fails
      */
     public CreateClientLinkResponse createDirect() throws Exception {
-        return create(Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -216,13 +218,22 @@ public class ClientLinks {
      * &gt;
      * &gt; A client link must be used within 30 days of creation. After that period, it will expire and you will need to create a new client link.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param entityClientLink 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateClientLinkResponse create(Optional<? extends EntityClientLink> request, Optional<Options> options) throws Exception {
-        RequestOperation<Optional<? extends EntityClientLink>, CreateClientLinkResponse> operation
+    public CreateClientLinkResponse create(
+            Optional<String> idempotencyKey, Optional<? extends EntityClientLink> entityClientLink,
+            Optional<Options> options) throws Exception {
+        CreateClientLinkRequest request =
+            CreateClientLinkRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .entityClientLink(entityClientLink)
+                .build();
+        RequestOperation<CreateClientLinkRequest, CreateClientLinkResponse> operation
               = new CreateClientLink.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }

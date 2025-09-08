@@ -21,6 +21,12 @@ public class PaymentCreateRouteRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=paymentId")
     private String paymentId;
 
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
+    private Optional<String> idempotencyKey;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends RouteCreateRequest> routeCreateRequest;
@@ -28,16 +34,19 @@ public class PaymentCreateRouteRequest {
     @JsonCreator
     public PaymentCreateRouteRequest(
             String paymentId,
+            Optional<String> idempotencyKey,
             Optional<? extends RouteCreateRequest> routeCreateRequest) {
         Utils.checkNotNull(paymentId, "paymentId");
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
         this.paymentId = paymentId;
+        this.idempotencyKey = idempotencyKey;
         this.routeCreateRequest = routeCreateRequest;
     }
     
     public PaymentCreateRouteRequest(
             String paymentId) {
-        this(paymentId, Optional.empty());
+        this(paymentId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -46,6 +55,14 @@ public class PaymentCreateRouteRequest {
     @JsonIgnore
     public String paymentId() {
         return paymentId;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    @JsonIgnore
+    public Optional<String> idempotencyKey() {
+        return idempotencyKey;
     }
 
     @SuppressWarnings("unchecked")
@@ -65,6 +82,25 @@ public class PaymentCreateRouteRequest {
     public PaymentCreateRouteRequest withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
+        return this;
+    }
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public PaymentCreateRouteRequest withIdempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+        return this;
+    }
+
+
+    /**
+     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     */
+    public PaymentCreateRouteRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
         return this;
     }
 
@@ -92,19 +128,21 @@ public class PaymentCreateRouteRequest {
         PaymentCreateRouteRequest other = (PaymentCreateRouteRequest) o;
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.routeCreateRequest, other.routeCreateRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, routeCreateRequest);
+            paymentId, idempotencyKey, routeCreateRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaymentCreateRouteRequest.class,
                 "paymentId", paymentId,
+                "idempotencyKey", idempotencyKey,
                 "routeCreateRequest", routeCreateRequest);
     }
 
@@ -112,6 +150,8 @@ public class PaymentCreateRouteRequest {
     public final static class Builder {
 
         private String paymentId;
+
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Optional<? extends RouteCreateRequest> routeCreateRequest = Optional.empty();
 
@@ -126,6 +166,25 @@ public class PaymentCreateRouteRequest {
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
+            return this;
+        }
+
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(String idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = Optional.ofNullable(idempotencyKey);
+            return this;
+        }
+
+        /**
+         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+         */
+        public Builder idempotencyKey(Optional<String> idempotencyKey) {
+            Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+            this.idempotencyKey = idempotencyKey;
             return this;
         }
 
@@ -145,7 +204,7 @@ public class PaymentCreateRouteRequest {
         public PaymentCreateRouteRequest build() {
 
             return new PaymentCreateRouteRequest(
-                paymentId, routeCreateRequest);
+                paymentId, idempotencyKey, routeCreateRequest);
         }
 
     }

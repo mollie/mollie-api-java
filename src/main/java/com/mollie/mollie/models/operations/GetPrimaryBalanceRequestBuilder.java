@@ -3,7 +3,7 @@
  */
 package com.mollie.mollie.models.operations;
 
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
+import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.GetPrimaryBalance;
@@ -11,15 +11,29 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 
 public class GetPrimaryBalanceRequestBuilder {
 
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
     public GetPrimaryBalanceRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetPrimaryBalanceRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetPrimaryBalanceRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
     }
                 
     public GetPrimaryBalanceRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -34,14 +48,23 @@ public class GetPrimaryBalanceRequestBuilder {
         return this;
     }
 
+
+    private GetPrimaryBalanceRequest buildRequest() {
+
+        GetPrimaryBalanceRequest request = new GetPrimaryBalanceRequest(idempotencyKey);
+
+        return request;
+    }
+
     public GetPrimaryBalanceResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        RequestlessOperation<GetPrimaryBalanceResponse> operation
-            = new GetPrimaryBalance.Sync(sdkConfiguration, options);
+        RequestOperation<GetPrimaryBalanceRequest, GetPrimaryBalanceResponse> operation
+              = new GetPrimaryBalance.Sync(sdkConfiguration, options);
+        GetPrimaryBalanceRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest());
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

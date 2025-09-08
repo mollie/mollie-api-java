@@ -49,7 +49,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.18.2'
+implementation 'com.mollie:mollie:0.18.3'
 ```
 
 Maven:
@@ -57,7 +57,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.18.2</version>
+    <version>0.18.3</version>
 </dependency>
 ```
 
@@ -87,6 +87,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
 
@@ -100,11 +101,16 @@ public class Application {
                     .build())
             .build();
 
-        ListBalancesResponse res = sdk.balances().list()
+        ListBalancesRequest req = ListBalancesRequest.builder()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListBalancesResponse res = sdk.balances().list()
+                .request(req)
                 .call();
 
         if (res.object().isPresent()) {
@@ -121,6 +127,7 @@ package hello.world;
 import com.mollie.mollie.AsyncClient;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.async.ListBalancesResponse;
 import java.util.concurrent.CompletableFuture;
 
@@ -135,11 +142,16 @@ public class Application {
             .build()
             .async();
 
-        CompletableFuture<ListBalancesResponse> resFut = sdk.balances().list()
+        ListBalancesRequest req = ListBalancesRequest.builder()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        CompletableFuture<ListBalancesResponse> resFut = sdk.balances().list()
+                .request(req)
                 .call();
 
         resFut.thenAccept(res -> {
@@ -239,6 +251,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
 
@@ -252,11 +265,16 @@ public class Application {
                     .build())
             .build();
 
-        ListBalancesResponse res = sdk.balances().list()
+        ListBalancesRequest req = ListBalancesRequest.builder()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListBalancesResponse res = sdk.balances().list()
+                .request(req)
                 .call();
 
         if (res.object().isPresent()) {
@@ -457,6 +475,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
@@ -473,7 +492,16 @@ public class Application {
                     .build())
             .build();
 
+        ListBalancesRequest req = ListBalancesRequest.builder()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
         ListBalancesResponse res = sdk.balances().list()
+                .request(req)
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)
@@ -484,10 +512,6 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .currency("EUR")
-                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .limit(50L)
-                .testmode(false)
                 .call();
 
         if (res.object().isPresent()) {
@@ -504,6 +528,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
@@ -530,11 +555,16 @@ public class Application {
                     .build())
             .build();
 
-        ListBalancesResponse res = sdk.balances().list()
+        ListBalancesRequest req = ListBalancesRequest.builder()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListBalancesResponse res = sdk.balances().list()
+                .request(req)
                 .call();
 
         if (res.object().isPresent()) {
@@ -565,6 +595,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
 
@@ -578,11 +609,16 @@ public class Application {
                     .build())
             .build();
 
-        ListBalancesResponse res = sdk.balances().list()
+        ListBalancesRequest req = ListBalancesRequest.builder()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListBalancesResponse res = sdk.balances().list()
+                .request(req)
                 .call();
 
         if (res.object().isPresent()) {
@@ -605,6 +641,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
 
@@ -619,11 +656,16 @@ public class Application {
                     .build())
             .build();
 
-        ListBalancesResponse res = sdk.balances().list()
+        ListBalancesRequest req = ListBalancesRequest.builder()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .testmode(false)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListBalancesResponse res = sdk.balances().list()
+                .request(req)
                 .call();
 
         if (res.object().isPresent()) {

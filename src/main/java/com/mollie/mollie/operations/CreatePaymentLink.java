@@ -12,7 +12,7 @@ import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.components.PaymentLinkResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.CreatePaymentLinkRequestBody;
+import com.mollie.mollie.models.operations.CreatePaymentLinkRequest;
 import com.mollie.mollie.models.operations.CreatePaymentLinkResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
@@ -118,12 +118,13 @@ public class CreatePaymentLink {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "request",
+                    "requestBody",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -131,13 +132,13 @@ public class CreatePaymentLink {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<Optional<? extends CreatePaymentLinkRequestBody>, CreatePaymentLinkResponse> {
+            implements RequestOperation<CreatePaymentLinkRequest, CreatePaymentLinkResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest(Optional<? extends CreatePaymentLinkRequestBody> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends CreatePaymentLinkRequestBody>>() {});
+        private HttpRequest onBuildRequest(CreatePaymentLinkRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<CreatePaymentLinkRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -153,7 +154,7 @@ public class CreatePaymentLink {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(Optional<? extends CreatePaymentLinkRequestBody> request) throws Exception {
+        public HttpResponse<InputStream> doRequest(CreatePaymentLinkRequest request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -253,7 +254,7 @@ public class CreatePaymentLink {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<Optional<? extends CreatePaymentLinkRequestBody>, com.mollie.mollie.models.operations.async.CreatePaymentLinkResponse> {
+            implements AsyncRequestOperation<CreatePaymentLinkRequest, com.mollie.mollie.models.operations.async.CreatePaymentLinkResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -263,8 +264,8 @@ public class CreatePaymentLink {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(Optional<? extends CreatePaymentLinkRequestBody> request) throws Exception {
-            HttpRequest req = buildRequest(request, new TypeReference<Optional<? extends CreatePaymentLinkRequestBody>>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(CreatePaymentLinkRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, new TypeReference<CreatePaymentLinkRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -277,7 +278,7 @@ public class CreatePaymentLink {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(Optional<? extends CreatePaymentLinkRequestBody> request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(CreatePaymentLinkRequest request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)

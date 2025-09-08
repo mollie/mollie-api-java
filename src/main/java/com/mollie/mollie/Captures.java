@@ -19,11 +19,9 @@ import com.mollie.mollie.operations.CreateCapture;
 import com.mollie.mollie.operations.GetCapture;
 import com.mollie.mollie.operations.ListCaptures;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Captures {
@@ -79,7 +77,8 @@ public class Captures {
      * @throws Exception if the API call fails
      */
     public CreateCaptureResponse create(String paymentId) throws Exception {
-        return create(paymentId, Optional.empty(), Optional.empty());
+        return create(paymentId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -95,18 +94,20 @@ public class Captures {
      * having collected the customer's authorization.
      * 
      * @param paymentId Provide the ID of the related payment.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityCapture 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public CreateCaptureResponse create(
-            String paymentId, Optional<? extends EntityCapture> entityCapture,
-            Optional<Options> options) throws Exception {
+            String paymentId, Optional<String> idempotencyKey,
+            Optional<? extends EntityCapture> entityCapture, Optional<Options> options) throws Exception {
         CreateCaptureRequest request =
             CreateCaptureRequest
                 .builder()
                 .paymentId(paymentId)
+                .idempotencyKey(idempotencyKey)
                 .entityCapture(entityCapture)
                 .build();
         RequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
@@ -178,14 +179,12 @@ public class Captures {
      * <p>Retrieve a single payment capture by its ID and the ID of its parent
      * payment.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param captureId Provide the ID of the related capture.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCaptureResponse get(String paymentId, String captureId) throws Exception {
-        return get(paymentId, captureId, JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+    public GetCaptureResponse get(GetCaptureRequest request) throws Exception {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -194,31 +193,12 @@ public class Captures {
      * <p>Retrieve a single payment capture by its ID and the ID of its parent
      * payment.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param captureId Provide the ID of the related capture.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     *         parameter.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetCaptureResponse get(
-            String paymentId, String captureId,
-            JsonNullable<String> embed, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
-        GetCaptureRequest request =
-            GetCaptureRequest
-                .builder()
-                .paymentId(paymentId)
-                .captureId(captureId)
-                .embed(embed)
-                .testmode(testmode)
-                .build();
+    public GetCaptureResponse get(GetCaptureRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetCaptureRequest, GetCaptureResponse> operation
               = new GetCapture.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));

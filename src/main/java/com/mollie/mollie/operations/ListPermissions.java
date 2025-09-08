@@ -3,14 +3,15 @@
  */
 package com.mollie.mollie.operations;
 
-import static com.mollie.mollie.operations.Operations.RequestlessOperation;
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
+import static com.mollie.mollie.operations.Operations.RequestOperation;
+import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListPermissionsRequest;
 import com.mollie.mollie.models.operations.ListPermissionsResponse;
 import com.mollie.mollie.models.operations.ListPermissionsResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
@@ -103,13 +104,14 @@ public class ListPermissions {
                     java.util.Optional.of(java.util.List.of()),
                     securitySource());
         }
-        HttpRequest buildRequest() throws Exception {
+        <T>HttpRequest buildRequest(T request) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/permissions");
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -117,13 +119,13 @@ public class ListPermissions {
     }
 
     public static class Sync extends Base
-            implements RequestlessOperation<ListPermissionsResponse> {
+            implements RequestOperation<ListPermissionsRequest, ListPermissionsResponse> {
         public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
             super(sdkConfiguration, options);
         }
 
-        private HttpRequest onBuildRequest() throws Exception {
-            HttpRequest req = buildRequest();
+        private HttpRequest onBuildRequest(ListPermissionsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -139,12 +141,12 @@ public class ListPermissions {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest() throws Exception {
+        public HttpResponse<InputStream> doRequest(ListPermissionsRequest request) throws Exception {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
                         try {
-                            r = onBuildRequest();
+                            r = onBuildRequest(request);
                         } catch (Exception e) {
                             throw new NonRetryableException(e);
                         }
@@ -239,7 +241,7 @@ public class ListPermissions {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestlessOperation<com.mollie.mollie.models.operations.async.ListPermissionsResponse> {
+            implements AsyncRequestOperation<ListPermissionsRequest, com.mollie.mollie.models.operations.async.ListPermissionsResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -249,8 +251,8 @@ public class ListPermissions {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest() throws Exception {
-            HttpRequest req = buildRequest();
+        private CompletableFuture<HttpRequest> onBuildRequest(ListPermissionsRequest request) throws Exception {
+            HttpRequest req = buildRequest(request);
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -263,13 +265,13 @@ public class ListPermissions {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest() {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(ListPermissionsRequest request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)
                     .scheduler(retryScheduler)
                     .build();
-            return retries.retry(() -> Exceptions.unchecked(() -> onBuildRequest()).get().thenCompose(client::sendAsync)
+            return retries.retry(() -> Exceptions.unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                             .handle((resp, err) -> {
                                 if (err != null) {
                                     return onError(null, err);

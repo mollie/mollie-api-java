@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
 import com.mollie.mollie.models.components.EntitySalesInvoice;
 import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
+import com.mollie.mollie.models.operations.CreateSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceRequestBuilder;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceResponse;
 import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequest;
@@ -82,7 +83,7 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public CreateSalesInvoiceResponse createDirect() throws Exception {
-        return create(Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -94,13 +95,22 @@ public class SalesInvoices {
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param entitySalesInvoice 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateSalesInvoiceResponse create(Optional<? extends EntitySalesInvoice> request, Optional<Options> options) throws Exception {
-        RequestOperation<Optional<? extends EntitySalesInvoice>, CreateSalesInvoiceResponse> operation
+    public CreateSalesInvoiceResponse create(
+            Optional<String> idempotencyKey, Optional<? extends EntitySalesInvoice> entitySalesInvoice,
+            Optional<Options> options) throws Exception {
+        CreateSalesInvoiceRequest request =
+            CreateSalesInvoiceRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .entitySalesInvoice(entitySalesInvoice)
+                .build();
+        RequestOperation<CreateSalesInvoiceRequest, CreateSalesInvoiceResponse> operation
               = new CreateSalesInvoice.Sync(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -138,7 +148,7 @@ public class SalesInvoices {
      */
     public ListSalesInvoicesResponse listDirect() throws Exception {
         return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -160,19 +170,22 @@ public class SalesInvoices {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public ListSalesInvoicesResponse list(
             JsonNullable<String> from, JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode, Optional<Options> options) throws Exception {
+            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Options> options) throws Exception {
         ListSalesInvoicesRequest request =
             ListSalesInvoicesRequest
                 .builder()
                 .from(from)
                 .limit(limit)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
               = new ListSalesInvoices.Sync(sdkConfiguration, options);
@@ -208,7 +221,8 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public GetSalesInvoiceResponse get(String id) throws Exception {
-        return get(id, JsonNullable.undefined(), Optional.empty());
+        return get(id, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -226,18 +240,20 @@ public class SalesInvoices {
      *         setting the `testmode` query parameter to `true`.
      *         
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public GetSalesInvoiceResponse get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
         GetSalesInvoiceRequest request =
             GetSalesInvoiceRequest
                 .builder()
                 .id(id)
                 .testmode(testmode)
+                .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetSalesInvoiceRequest, GetSalesInvoiceResponse> operation
               = new GetSalesInvoice.Sync(sdkConfiguration, options);
@@ -277,7 +293,8 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public UpdateSalesInvoiceResponse update(String id) throws Exception {
-        return update(id, Optional.empty(), Optional.empty());
+        return update(id, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -292,18 +309,20 @@ public class SalesInvoices {
      * respectively).
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param updateValuesSalesInvoice 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public UpdateSalesInvoiceResponse update(
-            String id, Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice,
-            Optional<Options> options) throws Exception {
+            String id, Optional<String> idempotencyKey,
+            Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice, Optional<Options> options) throws Exception {
         UpdateSalesInvoiceRequest request =
             UpdateSalesInvoiceRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .updateValuesSalesInvoice(updateValuesSalesInvoice)
                 .build();
         RequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
@@ -342,7 +361,8 @@ public class SalesInvoices {
      * @throws Exception if the API call fails
      */
     public DeleteSalesInvoiceResponse delete(String id) throws Exception {
-        return delete(id, Optional.empty(), Optional.empty());
+        return delete(id, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -356,18 +376,20 @@ public class SalesInvoices {
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param deleteValuesSalesInvoice 
      * @param options additional options
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
     public DeleteSalesInvoiceResponse delete(
-            String id, Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice,
-            Optional<Options> options) throws Exception {
+            String id, Optional<String> idempotencyKey,
+            Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice, Optional<Options> options) throws Exception {
         DeleteSalesInvoiceRequest request =
             DeleteSalesInvoiceRequest
                 .builder()
                 .id(id)
+                .idempotencyKey(idempotencyKey)
                 .deleteValuesSalesInvoice(deleteValuesSalesInvoice)
                 .build();
         RequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation

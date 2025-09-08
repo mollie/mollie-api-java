@@ -3,24 +3,39 @@
  */
 package com.mollie.mollie.models.operations.async;
 
-import static com.mollie.mollie.operations.Operations.AsyncRequestlessOperation;
+import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.operations.GetOnboardingStatusRequest;
 import com.mollie.mollie.operations.GetOnboardingStatus;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Exception;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetOnboardingStatusRequestBuilder {
 
+    private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
 
     public GetOnboardingStatusRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+                
+    public GetOnboardingStatusRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = Optional.of(idempotencyKey);
+        return this;
+    }
+
+    public GetOnboardingStatusRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
     }
                 
     public GetOnboardingStatusRequestBuilder retryConfig(RetryConfig retryConfig) {
@@ -35,15 +50,24 @@ public class GetOnboardingStatusRequestBuilder {
         return this;
     }
 
+
+    private GetOnboardingStatusRequest buildRequest() {
+
+        GetOnboardingStatusRequest request = new GetOnboardingStatusRequest(idempotencyKey);
+
+        return request;
+    }
+
     public CompletableFuture<GetOnboardingStatusResponse> call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestlessOperation<GetOnboardingStatusResponse> operation
-            = new GetOnboardingStatus.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        AsyncRequestOperation<GetOnboardingStatusRequest, GetOnboardingStatusResponse> operation
+              = new GetOnboardingStatus.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+        GetOnboardingStatusRequest request = buildRequest();
 
-        return operation.doRequest()
+        return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
 }
