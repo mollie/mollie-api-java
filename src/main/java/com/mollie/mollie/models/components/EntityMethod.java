@@ -68,7 +68,7 @@ public class EntityMethod {
      * The payment method's activation status for this profile.
      */
     @JsonProperty("status")
-    private EntityMethodStatus status;
+    private MethodStatus status;
 
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
@@ -92,7 +92,7 @@ public class EntityMethod {
             @JsonProperty("minimumAmount") Amount minimumAmount,
             @JsonProperty("maximumAmount") Optional<? extends AmountNullable> maximumAmount,
             @JsonProperty("image") Image image,
-            @JsonProperty("status") EntityMethodStatus status,
+            @JsonProperty("status") MethodStatus status,
             @JsonProperty("issuers") Optional<? extends List<Issuers>> issuers,
             @JsonProperty("_links") EntityMethodLinks links) {
         Utils.checkNotNull(resource, "resource");
@@ -120,7 +120,7 @@ public class EntityMethod {
             String description,
             Amount minimumAmount,
             Image image,
-            EntityMethodStatus status,
+            MethodStatus status,
             EntityMethodLinks links) {
         this(resource, Optional.empty(), description,
             minimumAmount, Optional.empty(), image,
@@ -190,7 +190,7 @@ public class EntityMethod {
      * The payment method's activation status for this profile.
      */
     @JsonIgnore
-    public EntityMethodStatus status() {
+    public MethodStatus status() {
         return status;
     }
 
@@ -309,7 +309,7 @@ public class EntityMethod {
     /**
      * The payment method's activation status for this profile.
      */
-    public EntityMethod withStatus(EntityMethodStatus status) {
+    public EntityMethod withStatus(MethodStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -403,7 +403,7 @@ public class EntityMethod {
 
         private Image image;
 
-        private EntityMethodStatus status;
+        private MethodStatus status;
 
         private Optional<? extends List<Issuers>> issuers = Optional.empty();
 
@@ -510,7 +510,7 @@ public class EntityMethod {
         /**
          * The payment method's activation status for this profile.
          */
-        public Builder status(EntityMethodStatus status) {
+        public Builder status(MethodStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

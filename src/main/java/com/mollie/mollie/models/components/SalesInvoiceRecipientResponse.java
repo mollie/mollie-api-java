@@ -20,7 +20,7 @@ public class SalesInvoiceRecipientResponse {
      * required on the `recipient` object.
      */
     @JsonProperty("type")
-    private SalesInvoiceRecipientResponseType type;
+    private SalesInvoiceRecipientTypeResponse type;
 
     /**
      * The title of the `consumer` type recipient, for example Mr. or Mrs..
@@ -123,11 +123,11 @@ public class SalesInvoiceRecipientResponse {
      * The locale for the recipient, to be used for translations in PDF generation and payment pages.
      */
     @JsonProperty("locale")
-    private SalesInvoiceRecipientResponseLocale locale;
+    private SalesInvoiceRecipientLocaleResponse locale;
 
     @JsonCreator
     public SalesInvoiceRecipientResponse(
-            @JsonProperty("type") SalesInvoiceRecipientResponseType type,
+            @JsonProperty("type") SalesInvoiceRecipientTypeResponse type,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("givenName") JsonNullable<String> givenName,
             @JsonProperty("familyName") JsonNullable<String> familyName,
@@ -142,7 +142,7 @@ public class SalesInvoiceRecipientResponse {
             @JsonProperty("city") String city,
             @JsonProperty("region") JsonNullable<String> region,
             @JsonProperty("country") String country,
-            @JsonProperty("locale") SalesInvoiceRecipientResponseLocale locale) {
+            @JsonProperty("locale") SalesInvoiceRecipientLocaleResponse locale) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(givenName, "givenName");
@@ -178,13 +178,13 @@ public class SalesInvoiceRecipientResponse {
     }
     
     public SalesInvoiceRecipientResponse(
-            SalesInvoiceRecipientResponseType type,
+            SalesInvoiceRecipientTypeResponse type,
             String email,
             String streetAndNumber,
             String postalCode,
             String city,
             String country,
-            SalesInvoiceRecipientResponseLocale locale) {
+            SalesInvoiceRecipientLocaleResponse locale) {
         this(type, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), email, JsonNullable.undefined(),
@@ -198,7 +198,7 @@ public class SalesInvoiceRecipientResponse {
      * required on the `recipient` object.
      */
     @JsonIgnore
-    public SalesInvoiceRecipientResponseType type() {
+    public SalesInvoiceRecipientTypeResponse type() {
         return type;
     }
 
@@ -322,7 +322,7 @@ public class SalesInvoiceRecipientResponse {
      * The locale for the recipient, to be used for translations in PDF generation and payment pages.
      */
     @JsonIgnore
-    public SalesInvoiceRecipientResponseLocale locale() {
+    public SalesInvoiceRecipientLocaleResponse locale() {
         return locale;
     }
 
@@ -335,7 +335,7 @@ public class SalesInvoiceRecipientResponse {
      * The type of recipient, either `consumer` or `business`. This will determine what further fields are
      * required on the `recipient` object.
      */
-    public SalesInvoiceRecipientResponse withType(SalesInvoiceRecipientResponseType type) {
+    public SalesInvoiceRecipientResponse withType(SalesInvoiceRecipientTypeResponse type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -559,7 +559,7 @@ public class SalesInvoiceRecipientResponse {
     /**
      * The locale for the recipient, to be used for translations in PDF generation and payment pages.
      */
-    public SalesInvoiceRecipientResponse withLocale(SalesInvoiceRecipientResponseLocale locale) {
+    public SalesInvoiceRecipientResponse withLocale(SalesInvoiceRecipientLocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -628,7 +628,7 @@ public class SalesInvoiceRecipientResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private SalesInvoiceRecipientResponseType type;
+        private SalesInvoiceRecipientTypeResponse type;
 
         private JsonNullable<String> title = JsonNullable.undefined();
 
@@ -658,7 +658,7 @@ public class SalesInvoiceRecipientResponse {
 
         private String country;
 
-        private SalesInvoiceRecipientResponseLocale locale;
+        private SalesInvoiceRecipientLocaleResponse locale;
 
         private Builder() {
           // force use of static builder() method
@@ -669,7 +669,7 @@ public class SalesInvoiceRecipientResponse {
          * The type of recipient, either `consumer` or `business`. This will determine what further fields are
          * required on the `recipient` object.
          */
-        public Builder type(SalesInvoiceRecipientResponseType type) {
+        public Builder type(SalesInvoiceRecipientTypeResponse type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -908,7 +908,7 @@ public class SalesInvoiceRecipientResponse {
         /**
          * The locale for the recipient, to be used for translations in PDF generation and payment pages.
          */
-        public Builder locale(SalesInvoiceRecipientResponseLocale locale) {
+        public Builder locale(SalesInvoiceRecipientLocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

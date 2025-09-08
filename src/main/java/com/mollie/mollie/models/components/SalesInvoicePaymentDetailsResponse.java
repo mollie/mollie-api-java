@@ -19,7 +19,7 @@ public class SalesInvoicePaymentDetailsResponse {
      * The way through which the invoice is to be set to paid.
      */
     @JsonProperty("source")
-    private SalesInvoicePaymentDetailsResponseSource source;
+    private SalesInvoicePaymentDetailsSourceResponse source;
 
     /**
      * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
@@ -31,7 +31,7 @@ public class SalesInvoicePaymentDetailsResponse {
 
     @JsonCreator
     public SalesInvoicePaymentDetailsResponse(
-            @JsonProperty("source") SalesInvoicePaymentDetailsResponseSource source,
+            @JsonProperty("source") SalesInvoicePaymentDetailsSourceResponse source,
             @JsonProperty("sourceReference") JsonNullable<String> sourceReference) {
         Utils.checkNotNull(source, "source");
         Utils.checkNotNull(sourceReference, "sourceReference");
@@ -40,7 +40,7 @@ public class SalesInvoicePaymentDetailsResponse {
     }
     
     public SalesInvoicePaymentDetailsResponse(
-            SalesInvoicePaymentDetailsResponseSource source) {
+            SalesInvoicePaymentDetailsSourceResponse source) {
         this(source, JsonNullable.undefined());
     }
 
@@ -48,7 +48,7 @@ public class SalesInvoicePaymentDetailsResponse {
      * The way through which the invoice is to be set to paid.
      */
     @JsonIgnore
-    public SalesInvoicePaymentDetailsResponseSource source() {
+    public SalesInvoicePaymentDetailsSourceResponse source() {
         return source;
     }
 
@@ -69,7 +69,7 @@ public class SalesInvoicePaymentDetailsResponse {
     /**
      * The way through which the invoice is to be set to paid.
      */
-    public SalesInvoicePaymentDetailsResponse withSource(SalesInvoicePaymentDetailsResponseSource source) {
+    public SalesInvoicePaymentDetailsResponse withSource(SalesInvoicePaymentDetailsSourceResponse source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
@@ -125,7 +125,7 @@ public class SalesInvoicePaymentDetailsResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private SalesInvoicePaymentDetailsResponseSource source;
+        private SalesInvoicePaymentDetailsSourceResponse source;
 
         private JsonNullable<String> sourceReference = JsonNullable.undefined();
 
@@ -137,7 +137,7 @@ public class SalesInvoicePaymentDetailsResponse {
         /**
          * The way through which the invoice is to be set to paid.
          */
-        public Builder source(SalesInvoicePaymentDetailsResponseSource source) {
+        public Builder source(SalesInvoicePaymentDetailsSourceResponse source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
             return this;

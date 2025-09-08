@@ -16,7 +16,7 @@ public class SalesInvoiceDiscountResponse {
      * The type of discount.
      */
     @JsonProperty("type")
-    private SalesInvoiceDiscountResponseType type;
+    private SalesInvoiceDiscountTypeResponse type;
 
     /**
      * A string containing an exact monetary amount in the given currency, or the percentage.
@@ -26,7 +26,7 @@ public class SalesInvoiceDiscountResponse {
 
     @JsonCreator
     public SalesInvoiceDiscountResponse(
-            @JsonProperty("type") SalesInvoiceDiscountResponseType type,
+            @JsonProperty("type") SalesInvoiceDiscountTypeResponse type,
             @JsonProperty("value") String value) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(value, "value");
@@ -38,7 +38,7 @@ public class SalesInvoiceDiscountResponse {
      * The type of discount.
      */
     @JsonIgnore
-    public SalesInvoiceDiscountResponseType type() {
+    public SalesInvoiceDiscountTypeResponse type() {
         return type;
     }
 
@@ -58,7 +58,7 @@ public class SalesInvoiceDiscountResponse {
     /**
      * The type of discount.
      */
-    public SalesInvoiceDiscountResponse withType(SalesInvoiceDiscountResponseType type) {
+    public SalesInvoiceDiscountResponse withType(SalesInvoiceDiscountTypeResponse type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -103,7 +103,7 @@ public class SalesInvoiceDiscountResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private SalesInvoiceDiscountResponseType type;
+        private SalesInvoiceDiscountTypeResponse type;
 
         private String value;
 
@@ -115,7 +115,7 @@ public class SalesInvoiceDiscountResponse {
         /**
          * The type of discount.
          */
-        public Builder type(SalesInvoiceDiscountResponseType type) {
+        public Builder type(SalesInvoiceDiscountTypeResponse type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

@@ -83,7 +83,7 @@ public class EntityOrganization {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRegulation")
-    private JsonNullable<? extends VatRegulation> vatRegulation;
+    private JsonNullable<? extends OrganizationVatRegulation> vatRegulation;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -102,7 +102,7 @@ public class EntityOrganization {
             @JsonProperty("address") Optional<? extends Address> address,
             @JsonProperty("registrationNumber") Optional<String> registrationNumber,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
-            @JsonProperty("vatRegulation") JsonNullable<? extends VatRegulation> vatRegulation,
+            @JsonProperty("vatRegulation") JsonNullable<? extends OrganizationVatRegulation> vatRegulation,
             @JsonProperty("_links") Optional<? extends EntityOrganizationLinks> links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -208,8 +208,8 @@ public class EntityOrganization {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<VatRegulation> vatRegulation() {
-        return (JsonNullable<VatRegulation>) vatRegulation;
+    public JsonNullable<OrganizationVatRegulation> vatRegulation() {
+        return (JsonNullable<OrganizationVatRegulation>) vatRegulation;
     }
 
     /**
@@ -384,7 +384,7 @@ public class EntityOrganization {
      * 
      * <p>The field is not present for merchants residing in other countries.
      */
-    public EntityOrganization withVatRegulation(VatRegulation vatRegulation) {
+    public EntityOrganization withVatRegulation(OrganizationVatRegulation vatRegulation) {
         Utils.checkNotNull(vatRegulation, "vatRegulation");
         this.vatRegulation = JsonNullable.of(vatRegulation);
         return this;
@@ -396,7 +396,7 @@ public class EntityOrganization {
      * 
      * <p>The field is not present for merchants residing in other countries.
      */
-    public EntityOrganization withVatRegulation(JsonNullable<? extends VatRegulation> vatRegulation) {
+    public EntityOrganization withVatRegulation(JsonNullable<? extends OrganizationVatRegulation> vatRegulation) {
         Utils.checkNotNull(vatRegulation, "vatRegulation");
         this.vatRegulation = vatRegulation;
         return this;
@@ -486,7 +486,7 @@ public class EntityOrganization {
 
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
 
-        private JsonNullable<? extends VatRegulation> vatRegulation = JsonNullable.undefined();
+        private JsonNullable<? extends OrganizationVatRegulation> vatRegulation = JsonNullable.undefined();
 
         private Optional<? extends EntityOrganizationLinks> links = Optional.empty();
 
@@ -655,7 +655,7 @@ public class EntityOrganization {
          * 
          * <p>The field is not present for merchants residing in other countries.
          */
-        public Builder vatRegulation(VatRegulation vatRegulation) {
+        public Builder vatRegulation(OrganizationVatRegulation vatRegulation) {
             Utils.checkNotNull(vatRegulation, "vatRegulation");
             this.vatRegulation = JsonNullable.of(vatRegulation);
             return this;
@@ -667,7 +667,7 @@ public class EntityOrganization {
          * 
          * <p>The field is not present for merchants residing in other countries.
          */
-        public Builder vatRegulation(JsonNullable<? extends VatRegulation> vatRegulation) {
+        public Builder vatRegulation(JsonNullable<? extends OrganizationVatRegulation> vatRegulation) {
             Utils.checkNotNull(vatRegulation, "vatRegulation");
             this.vatRegulation = vatRegulation;
             return this;

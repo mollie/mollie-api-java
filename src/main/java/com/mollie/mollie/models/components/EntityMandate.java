@@ -30,7 +30,7 @@ public class EntityMandate {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private Optional<? extends EntityMandateMethod> method;
+    private Optional<? extends MandateMethod> method;
 
     /**
      * The customer's name.
@@ -91,6 +91,14 @@ public class EntityMandate {
     @JsonProperty("payPalVaultId")
     private JsonNullable<String> payPalVaultId;
 
+    /**
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * when we did not received the IBAN yet from the first payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends MandateStatus> status;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customerId")
@@ -110,7 +118,7 @@ public class EntityMandate {
     @JsonCreator
     public EntityMandate(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("method") Optional<? extends EntityMandateMethod> method,
+            @JsonProperty("method") Optional<? extends MandateMethod> method,
             @JsonProperty("consumerName") Optional<String> consumerName,
             @JsonProperty("consumerAccount") JsonNullable<String> consumerAccount,
             @JsonProperty("consumerBic") JsonNullable<String> consumerBic,
@@ -119,6 +127,7 @@ public class EntityMandate {
             @JsonProperty("mandateReference") JsonNullable<String> mandateReference,
             @JsonProperty("paypalBillingAgreementId") JsonNullable<String> paypalBillingAgreementId,
             @JsonProperty("payPalVaultId") JsonNullable<String> payPalVaultId,
+            @JsonProperty("status") Optional<? extends MandateStatus> status,
             @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(id, "id");
@@ -131,6 +140,7 @@ public class EntityMandate {
         Utils.checkNotNull(mandateReference, "mandateReference");
         Utils.checkNotNull(paypalBillingAgreementId, "paypalBillingAgreementId");
         Utils.checkNotNull(payPalVaultId, "payPalVaultId");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(testmode, "testmode");
         this.id = id;
@@ -143,6 +153,7 @@ public class EntityMandate {
         this.mandateReference = mandateReference;
         this.paypalBillingAgreementId = paypalBillingAgreementId;
         this.payPalVaultId = payPalVaultId;
+        this.status = status;
         this.customerId = customerId;
         this.testmode = testmode;
     }
@@ -151,7 +162,8 @@ public class EntityMandate {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -166,8 +178,8 @@ public class EntityMandate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityMandateMethod> method() {
-        return (Optional<EntityMandateMethod>) method;
+    public Optional<MandateMethod> method() {
+        return (Optional<MandateMethod>) method;
     }
 
     /**
@@ -237,6 +249,16 @@ public class EntityMandate {
         return payPalVaultId;
     }
 
+    /**
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * when we did not received the IBAN yet from the first payment.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<MandateStatus> status() {
+        return (Optional<MandateStatus>) status;
+    }
+
     @JsonIgnore
     public Optional<String> customerId() {
         return customerId;
@@ -277,7 +299,7 @@ public class EntityMandate {
      * 
      * <p>SEPA Direct Debit and PayPal mandates can be created directly.
      */
-    public EntityMandate withMethod(EntityMandateMethod method) {
+    public EntityMandate withMethod(MandateMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = Optional.ofNullable(method);
         return this;
@@ -289,7 +311,7 @@ public class EntityMandate {
      * 
      * <p>SEPA Direct Debit and PayPal mandates can be created directly.
      */
-    public EntityMandate withMethod(Optional<? extends EntityMandateMethod> method) {
+    public EntityMandate withMethod(Optional<? extends MandateMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -446,6 +468,27 @@ public class EntityMandate {
         return this;
     }
 
+    /**
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * when we did not received the IBAN yet from the first payment.
+     */
+    public EntityMandate withStatus(MandateStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * when we did not received the IBAN yet from the first payment.
+     */
+    public EntityMandate withStatus(Optional<? extends MandateStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     public EntityMandate withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = Optional.ofNullable(customerId);
@@ -505,6 +548,7 @@ public class EntityMandate {
             Utils.enhancedDeepEquals(this.mandateReference, other.mandateReference) &&
             Utils.enhancedDeepEquals(this.paypalBillingAgreementId, other.paypalBillingAgreementId) &&
             Utils.enhancedDeepEquals(this.payPalVaultId, other.payPalVaultId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
@@ -515,7 +559,8 @@ public class EntityMandate {
             id, method, consumerName,
             consumerAccount, consumerBic, consumerEmail,
             signatureDate, mandateReference, paypalBillingAgreementId,
-            payPalVaultId, customerId, testmode);
+            payPalVaultId, status, customerId,
+            testmode);
     }
     
     @Override
@@ -531,6 +576,7 @@ public class EntityMandate {
                 "mandateReference", mandateReference,
                 "paypalBillingAgreementId", paypalBillingAgreementId,
                 "payPalVaultId", payPalVaultId,
+                "status", status,
                 "customerId", customerId,
                 "testmode", testmode);
     }
@@ -540,7 +586,7 @@ public class EntityMandate {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<? extends EntityMandateMethod> method = Optional.empty();
+        private Optional<? extends MandateMethod> method = Optional.empty();
 
         private Optional<String> consumerName = Optional.empty();
 
@@ -557,6 +603,8 @@ public class EntityMandate {
         private JsonNullable<String> paypalBillingAgreementId = JsonNullable.undefined();
 
         private JsonNullable<String> payPalVaultId = JsonNullable.undefined();
+
+        private Optional<? extends MandateStatus> status = Optional.empty();
 
         private Optional<String> customerId = Optional.empty();
 
@@ -585,7 +633,7 @@ public class EntityMandate {
          * 
          * <p>SEPA Direct Debit and PayPal mandates can be created directly.
          */
-        public Builder method(EntityMandateMethod method) {
+        public Builder method(MandateMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = Optional.ofNullable(method);
             return this;
@@ -596,7 +644,7 @@ public class EntityMandate {
          * 
          * <p>SEPA Direct Debit and PayPal mandates can be created directly.
          */
-        public Builder method(Optional<? extends EntityMandateMethod> method) {
+        public Builder method(Optional<? extends MandateMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -761,6 +809,27 @@ public class EntityMandate {
         }
 
 
+        /**
+         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+         * when we did not received the IBAN yet from the first payment.
+         */
+        public Builder status(MandateStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+         * when we did not received the IBAN yet from the first payment.
+         */
+        public Builder status(Optional<? extends MandateStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = Optional.ofNullable(customerId);
@@ -806,7 +875,8 @@ public class EntityMandate {
                 id, method, consumerName,
                 consumerAccount, consumerBic, consumerEmail,
                 signatureDate, mandateReference, paypalBillingAgreementId,
-                payPalVaultId, customerId, testmode);
+                payPalVaultId, status, customerId,
+                testmode);
         }
 
     }

@@ -60,7 +60,7 @@ public class EntityBalance {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends Status> status;
+    private Optional<? extends BalanceStatus> status;
 
     /**
      * The frequency with which the available amount on the balance will be settled to the configured transfer
@@ -70,7 +70,7 @@ public class EntityBalance {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferFrequency")
-    private Optional<? extends TransferFrequency> transferFrequency;
+    private Optional<? extends BalanceTransferFrequency> transferFrequency;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -123,8 +123,8 @@ public class EntityBalance {
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("currency") Optional<? extends Currencies> currency,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("status") Optional<? extends Status> status,
-            @JsonProperty("transferFrequency") Optional<? extends TransferFrequency> transferFrequency,
+            @JsonProperty("status") Optional<? extends BalanceStatus> status,
+            @JsonProperty("transferFrequency") Optional<? extends BalanceTransferFrequency> transferFrequency,
             @JsonProperty("transferThreshold") Optional<? extends Amount> transferThreshold,
             @JsonProperty("transferReference") JsonNullable<String> transferReference,
             @JsonProperty("transferDestination") JsonNullable<? extends TransferDestination> transferDestination,
@@ -218,8 +218,8 @@ public class EntityBalance {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Status> status() {
-        return (Optional<Status>) status;
+    public Optional<BalanceStatus> status() {
+        return (Optional<BalanceStatus>) status;
     }
 
     /**
@@ -230,8 +230,8 @@ public class EntityBalance {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<TransferFrequency> transferFrequency() {
-        return (Optional<TransferFrequency>) transferFrequency;
+    public Optional<BalanceTransferFrequency> transferFrequency() {
+        return (Optional<BalanceTransferFrequency>) transferFrequency;
     }
 
     /**
@@ -398,7 +398,7 @@ public class EntityBalance {
     /**
      * The status of the balance.
      */
-    public EntityBalance withStatus(Status status) {
+    public EntityBalance withStatus(BalanceStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -408,7 +408,7 @@ public class EntityBalance {
     /**
      * The status of the balance.
      */
-    public EntityBalance withStatus(Optional<? extends Status> status) {
+    public EntityBalance withStatus(Optional<? extends BalanceStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -420,7 +420,7 @@ public class EntityBalance {
      * 
      * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
      */
-    public EntityBalance withTransferFrequency(TransferFrequency transferFrequency) {
+    public EntityBalance withTransferFrequency(BalanceTransferFrequency transferFrequency) {
         Utils.checkNotNull(transferFrequency, "transferFrequency");
         this.transferFrequency = Optional.ofNullable(transferFrequency);
         return this;
@@ -433,7 +433,7 @@ public class EntityBalance {
      * 
      * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
      */
-    public EntityBalance withTransferFrequency(Optional<? extends TransferFrequency> transferFrequency) {
+    public EntityBalance withTransferFrequency(Optional<? extends BalanceTransferFrequency> transferFrequency) {
         Utils.checkNotNull(transferFrequency, "transferFrequency");
         this.transferFrequency = transferFrequency;
         return this;
@@ -623,9 +623,9 @@ public class EntityBalance {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<? extends Status> status = Optional.empty();
+        private Optional<? extends BalanceStatus> status = Optional.empty();
 
-        private Optional<? extends TransferFrequency> transferFrequency = Optional.empty();
+        private Optional<? extends BalanceTransferFrequency> transferFrequency = Optional.empty();
 
         private Optional<? extends Amount> transferThreshold = Optional.empty();
 
@@ -749,7 +749,7 @@ public class EntityBalance {
         /**
          * The status of the balance.
          */
-        public Builder status(Status status) {
+        public Builder status(BalanceStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -758,7 +758,7 @@ public class EntityBalance {
         /**
          * The status of the balance.
          */
-        public Builder status(Optional<? extends Status> status) {
+        public Builder status(Optional<? extends BalanceStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -771,7 +771,7 @@ public class EntityBalance {
          * 
          * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
          */
-        public Builder transferFrequency(TransferFrequency transferFrequency) {
+        public Builder transferFrequency(BalanceTransferFrequency transferFrequency) {
             Utils.checkNotNull(transferFrequency, "transferFrequency");
             this.transferFrequency = Optional.ofNullable(transferFrequency);
             return this;
@@ -783,7 +783,7 @@ public class EntityBalance {
          * 
          * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
          */
-        public Builder transferFrequency(Optional<? extends TransferFrequency> transferFrequency) {
+        public Builder transferFrequency(Optional<? extends BalanceTransferFrequency> transferFrequency) {
             Utils.checkNotNull(transferFrequency, "transferFrequency");
             this.transferFrequency = transferFrequency;
             return this;

@@ -100,7 +100,7 @@ public class EntityProfileResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends EntityProfileResponseStatus> status;
+    private Optional<? extends ProfileStatus> status;
 
     /**
      * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
@@ -137,7 +137,7 @@ public class EntityProfileResponse {
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
             @JsonProperty("businessCategory") Optional<String> businessCategory,
-            @JsonProperty("status") Optional<? extends EntityProfileResponseStatus> status,
+            @JsonProperty("status") Optional<? extends ProfileStatus> status,
             @JsonProperty("review") Optional<? extends Review> review,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("_links") Optional<? extends EntityProfileResponseLinks> links) {
@@ -274,8 +274,8 @@ public class EntityProfileResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityProfileResponseStatus> status() {
-        return (Optional<EntityProfileResponseStatus>) status;
+    public Optional<ProfileStatus> status() {
+        return (Optional<ProfileStatus>) status;
     }
 
     /**
@@ -516,7 +516,7 @@ public class EntityProfileResponse {
      * * `verified`: The profile has been verified and can be used to create live payments and test payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
-    public EntityProfileResponse withStatus(EntityProfileResponseStatus status) {
+    public EntityProfileResponse withStatus(ProfileStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -530,7 +530,7 @@ public class EntityProfileResponse {
      * * `verified`: The profile has been verified and can be used to create live payments and test payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
-    public EntityProfileResponse withStatus(Optional<? extends EntityProfileResponseStatus> status) {
+    public EntityProfileResponse withStatus(Optional<? extends ProfileStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -675,7 +675,7 @@ public class EntityProfileResponse {
 
         private Optional<String> businessCategory = Optional.empty();
 
-        private Optional<? extends EntityProfileResponseStatus> status = Optional.empty();
+        private Optional<? extends ProfileStatus> status = Optional.empty();
 
         private Optional<? extends Review> review = Optional.empty();
 
@@ -893,7 +893,7 @@ public class EntityProfileResponse {
          * * `verified`: The profile has been verified and can be used to create live payments and test payments.
          * * `blocked`: The profile is blocked and can no longer be used or changed.
          */
-        public Builder status(EntityProfileResponseStatus status) {
+        public Builder status(ProfileStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -906,7 +906,7 @@ public class EntityProfileResponse {
          * * `verified`: The profile has been verified and can be used to create live payments and test payments.
          * * `blocked`: The profile is blocked and can no longer be used or changed.
          */
-        public Builder status(Optional<? extends EntityProfileResponseStatus> status) {
+        public Builder status(Optional<? extends ProfileStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

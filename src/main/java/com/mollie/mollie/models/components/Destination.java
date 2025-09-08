@@ -20,7 +20,7 @@ public class Destination {
      * The type of destination. Currently only the destination type `organization` is supported.
      */
     @JsonProperty("type")
-    private EntityPaymentRouteResponseType type;
+    private RouteDestinationTypeResponse type;
 
 
     @JsonProperty("organizationId")
@@ -28,7 +28,7 @@ public class Destination {
 
     @JsonCreator
     public Destination(
-            @JsonProperty("type") EntityPaymentRouteResponseType type,
+            @JsonProperty("type") RouteDestinationTypeResponse type,
             @JsonProperty("organizationId") String organizationId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(organizationId, "organizationId");
@@ -40,7 +40,7 @@ public class Destination {
      * The type of destination. Currently only the destination type `organization` is supported.
      */
     @JsonIgnore
-    public EntityPaymentRouteResponseType type() {
+    public RouteDestinationTypeResponse type() {
         return type;
     }
 
@@ -57,7 +57,7 @@ public class Destination {
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
      */
-    public Destination withType(EntityPaymentRouteResponseType type) {
+    public Destination withType(RouteDestinationTypeResponse type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -99,7 +99,7 @@ public class Destination {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private EntityPaymentRouteResponseType type;
+        private RouteDestinationTypeResponse type;
 
         private String organizationId;
 
@@ -111,7 +111,7 @@ public class Destination {
         /**
          * The type of destination. Currently only the destination type `organization` is supported.
          */
-        public Builder type(EntityPaymentRouteResponseType type) {
+        public Builder type(RouteDestinationTypeResponse type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

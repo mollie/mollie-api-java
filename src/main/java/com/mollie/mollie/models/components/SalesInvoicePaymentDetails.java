@@ -19,7 +19,7 @@ public class SalesInvoicePaymentDetails {
      * The way through which the invoice is to be set to paid.
      */
     @JsonProperty("source")
-    private Source source;
+    private SalesInvoicePaymentDetailsSource source;
 
     /**
      * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
@@ -31,7 +31,7 @@ public class SalesInvoicePaymentDetails {
 
     @JsonCreator
     public SalesInvoicePaymentDetails(
-            @JsonProperty("source") Source source,
+            @JsonProperty("source") SalesInvoicePaymentDetailsSource source,
             @JsonProperty("sourceReference") JsonNullable<String> sourceReference) {
         Utils.checkNotNull(source, "source");
         Utils.checkNotNull(sourceReference, "sourceReference");
@@ -40,7 +40,7 @@ public class SalesInvoicePaymentDetails {
     }
     
     public SalesInvoicePaymentDetails(
-            Source source) {
+            SalesInvoicePaymentDetailsSource source) {
         this(source, JsonNullable.undefined());
     }
 
@@ -48,7 +48,7 @@ public class SalesInvoicePaymentDetails {
      * The way through which the invoice is to be set to paid.
      */
     @JsonIgnore
-    public Source source() {
+    public SalesInvoicePaymentDetailsSource source() {
         return source;
     }
 
@@ -69,7 +69,7 @@ public class SalesInvoicePaymentDetails {
     /**
      * The way through which the invoice is to be set to paid.
      */
-    public SalesInvoicePaymentDetails withSource(Source source) {
+    public SalesInvoicePaymentDetails withSource(SalesInvoicePaymentDetailsSource source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
@@ -125,7 +125,7 @@ public class SalesInvoicePaymentDetails {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Source source;
+        private SalesInvoicePaymentDetailsSource source;
 
         private JsonNullable<String> sourceReference = JsonNullable.undefined();
 
@@ -137,7 +137,7 @@ public class SalesInvoicePaymentDetails {
         /**
          * The way through which the invoice is to be set to paid.
          */
-        public Builder source(Source source) {
+        public Builder source(SalesInvoicePaymentDetailsSource source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
             return this;

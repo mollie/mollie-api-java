@@ -59,7 +59,7 @@ public class CreateWebhook {
      * The subscription's current status.
      */
     @JsonProperty("status")
-    private CreateWebhookStatus status;
+    private WebhookStatus status;
 
     /**
      * Whether this entity was created in live mode or in test mode.
@@ -88,7 +88,7 @@ public class CreateWebhook {
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("name") String name,
             @JsonProperty("eventTypes") List<WebhookEventTypes> eventTypes,
-            @JsonProperty("status") CreateWebhookStatus status,
+            @JsonProperty("status") WebhookStatus status,
             @JsonProperty("mode") Mode mode,
             @JsonProperty("webhookSecret") String webhookSecret,
             @JsonProperty("_links") CreateWebhookLinks links) {
@@ -176,7 +176,7 @@ public class CreateWebhook {
      * The subscription's current status.
      */
     @JsonIgnore
-    public CreateWebhookStatus status() {
+    public WebhookStatus status() {
         return status;
     }
 
@@ -275,7 +275,7 @@ public class CreateWebhook {
     /**
      * The subscription's current status.
      */
-    public CreateWebhook withStatus(CreateWebhookStatus status) {
+    public CreateWebhook withStatus(WebhookStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -373,7 +373,7 @@ public class CreateWebhook {
 
         private List<WebhookEventTypes> eventTypes;
 
-        private CreateWebhookStatus status;
+        private WebhookStatus status;
 
         private Mode mode;
 
@@ -459,7 +459,7 @@ public class CreateWebhook {
         /**
          * The subscription's current status.
          */
-        public Builder status(CreateWebhookStatus status) {
+        public Builder status(WebhookStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

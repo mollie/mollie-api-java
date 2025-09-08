@@ -27,11 +27,11 @@ public class Review {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends EntityProfileResponseReviewStatus> status;
+    private Optional<? extends ProfileReviewStatusResponse> status;
 
     @JsonCreator
     public Review(
-            @JsonProperty("status") Optional<? extends EntityProfileResponseReviewStatus> status) {
+            @JsonProperty("status") Optional<? extends ProfileReviewStatusResponse> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
     }
@@ -45,8 +45,8 @@ public class Review {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityProfileResponseReviewStatus> status() {
-        return (Optional<EntityProfileResponseReviewStatus>) status;
+    public Optional<ProfileReviewStatusResponse> status() {
+        return (Optional<ProfileReviewStatusResponse>) status;
     }
 
     public static Builder builder() {
@@ -57,7 +57,7 @@ public class Review {
     /**
      * The status of the requested changes.
      */
-    public Review withStatus(EntityProfileResponseReviewStatus status) {
+    public Review withStatus(ProfileReviewStatusResponse status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -67,7 +67,7 @@ public class Review {
     /**
      * The status of the requested changes.
      */
-    public Review withStatus(Optional<? extends EntityProfileResponseReviewStatus> status) {
+    public Review withStatus(Optional<? extends ProfileReviewStatusResponse> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -101,7 +101,7 @@ public class Review {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends EntityProfileResponseReviewStatus> status = Optional.empty();
+        private Optional<? extends ProfileReviewStatusResponse> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -111,7 +111,7 @@ public class Review {
         /**
          * The status of the requested changes.
          */
-        public Builder status(EntityProfileResponseReviewStatus status) {
+        public Builder status(ProfileReviewStatusResponse status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -120,7 +120,7 @@ public class Review {
         /**
          * The status of the requested changes.
          */
-        public Builder status(Optional<? extends EntityProfileResponseReviewStatus> status) {
+        public Builder status(Optional<? extends ProfileReviewStatusResponse> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

@@ -20,7 +20,7 @@ public class EntityPaymentRouteDestination {
      * The type of destination. Currently only the destination type `organization` is supported.
      */
     @JsonProperty("type")
-    private EntityPaymentRouteType type;
+    private RouteDestinationType type;
 
 
     @JsonProperty("organizationId")
@@ -28,7 +28,7 @@ public class EntityPaymentRouteDestination {
 
     @JsonCreator
     public EntityPaymentRouteDestination(
-            @JsonProperty("type") EntityPaymentRouteType type,
+            @JsonProperty("type") RouteDestinationType type,
             @JsonProperty("organizationId") String organizationId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(organizationId, "organizationId");
@@ -40,7 +40,7 @@ public class EntityPaymentRouteDestination {
      * The type of destination. Currently only the destination type `organization` is supported.
      */
     @JsonIgnore
-    public EntityPaymentRouteType type() {
+    public RouteDestinationType type() {
         return type;
     }
 
@@ -57,7 +57,7 @@ public class EntityPaymentRouteDestination {
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
      */
-    public EntityPaymentRouteDestination withType(EntityPaymentRouteType type) {
+    public EntityPaymentRouteDestination withType(RouteDestinationType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -99,7 +99,7 @@ public class EntityPaymentRouteDestination {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private EntityPaymentRouteType type;
+        private RouteDestinationType type;
 
         private String organizationId;
 
@@ -111,7 +111,7 @@ public class EntityPaymentRouteDestination {
         /**
          * The type of destination. Currently only the destination type `organization` is supported.
          */
-        public Builder type(EntityPaymentRouteType type) {
+        public Builder type(RouteDestinationType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

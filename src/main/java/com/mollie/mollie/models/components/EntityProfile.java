@@ -70,6 +70,17 @@ public class EntityProfile {
     @JsonProperty("businessCategory")
     private Optional<String> businessCategory;
 
+    /**
+     * The profile status determines whether the profile is able to receive live payments.
+     * 
+     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `blocked`: The profile is blocked and can no longer be used or changed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends ProfileStatus> status;
+
     @JsonCreator
     public EntityProfile(
             @JsonProperty("name") Optional<String> name,
@@ -78,7 +89,8 @@ public class EntityProfile {
             @JsonProperty("phone") Optional<String> phone,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
-            @JsonProperty("businessCategory") Optional<String> businessCategory) {
+            @JsonProperty("businessCategory") Optional<String> businessCategory,
+            @JsonProperty("status") Optional<? extends ProfileStatus> status) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(website, "website");
         Utils.checkNotNull(email, "email");
@@ -86,6 +98,7 @@ public class EntityProfile {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
         Utils.checkNotNull(businessCategory, "businessCategory");
+        Utils.checkNotNull(status, "status");
         this.name = name;
         this.website = website;
         this.email = email;
@@ -93,12 +106,13 @@ public class EntityProfile {
         this.description = description;
         this.countriesOfActivity = countriesOfActivity;
         this.businessCategory = businessCategory;
+        this.status = status;
     }
     
     public EntityProfile() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -160,6 +174,19 @@ public class EntityProfile {
     @JsonIgnore
     public Optional<String> businessCategory() {
         return businessCategory;
+    }
+
+    /**
+     * The profile status determines whether the profile is able to receive live payments.
+     * 
+     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `blocked`: The profile is blocked and can no longer be used or changed.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<ProfileStatus> status() {
+        return (Optional<ProfileStatus>) status;
     }
 
     public static Builder builder() {
@@ -308,6 +335,33 @@ public class EntityProfile {
         return this;
     }
 
+    /**
+     * The profile status determines whether the profile is able to receive live payments.
+     * 
+     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `blocked`: The profile is blocked and can no longer be used or changed.
+     */
+    public EntityProfile withStatus(ProfileStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * The profile status determines whether the profile is able to receive live payments.
+     * 
+     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `blocked`: The profile is blocked and can no longer be used or changed.
+     */
+    public EntityProfile withStatus(Optional<? extends ProfileStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -324,7 +378,8 @@ public class EntityProfile {
             Utils.enhancedDeepEquals(this.phone, other.phone) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.countriesOfActivity, other.countriesOfActivity) &&
-            Utils.enhancedDeepEquals(this.businessCategory, other.businessCategory);
+            Utils.enhancedDeepEquals(this.businessCategory, other.businessCategory) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
@@ -332,7 +387,7 @@ public class EntityProfile {
         return Utils.enhancedHash(
             name, website, email,
             phone, description, countriesOfActivity,
-            businessCategory);
+            businessCategory, status);
     }
     
     @Override
@@ -344,7 +399,8 @@ public class EntityProfile {
                 "phone", phone,
                 "description", description,
                 "countriesOfActivity", countriesOfActivity,
-                "businessCategory", businessCategory);
+                "businessCategory", businessCategory,
+                "status", status);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -363,6 +419,8 @@ public class EntityProfile {
         private Optional<? extends List<String>> countriesOfActivity = Optional.empty();
 
         private Optional<String> businessCategory = Optional.empty();
+
+        private Optional<? extends ProfileStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -509,12 +567,39 @@ public class EntityProfile {
             return this;
         }
 
+
+        /**
+         * The profile status determines whether the profile is able to receive live payments.
+         * 
+         * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
+         * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+         * * `blocked`: The profile is blocked and can no longer be used or changed.
+         */
+        public Builder status(ProfileStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * The profile status determines whether the profile is able to receive live payments.
+         * 
+         * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
+         * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+         * * `blocked`: The profile is blocked and can no longer be used or changed.
+         */
+        public Builder status(Optional<? extends ProfileStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
         public EntityProfile build() {
 
             return new EntityProfile(
                 name, website, email,
                 phone, description, countriesOfActivity,
-                businessCategory);
+                businessCategory, status);
         }
 
     }

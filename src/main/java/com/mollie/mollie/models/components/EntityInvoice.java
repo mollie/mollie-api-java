@@ -49,14 +49,10 @@ public class EntityInvoice {
 
     /**
      * Status of the invoice.
-     * 
-     * <p>* `open` — The invoice is not paid yet.
-     * * `paid` — The invoice is paid.
-     * * `overdue` — Payment of the invoice is overdue.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends EntityInvoiceStatus> status;
+    private Optional<? extends InvoiceStatus> status;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -120,7 +116,7 @@ public class EntityInvoice {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("reference") Optional<String> reference,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
-            @JsonProperty("status") Optional<? extends EntityInvoiceStatus> status,
+            @JsonProperty("status") Optional<? extends InvoiceStatus> status,
             @JsonProperty("netAmount") Optional<? extends Amount> netAmount,
             @JsonProperty("vatAmount") Optional<? extends Amount> vatAmount,
             @JsonProperty("grossAmount") Optional<? extends Amount> grossAmount,
@@ -200,15 +196,11 @@ public class EntityInvoice {
 
     /**
      * Status of the invoice.
-     * 
-     * <p>* `open` — The invoice is not paid yet.
-     * * `paid` — The invoice is paid.
-     * * `overdue` — Payment of the invoice is overdue.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityInvoiceStatus> status() {
-        return (Optional<EntityInvoiceStatus>) status;
+    public Optional<InvoiceStatus> status() {
+        return (Optional<InvoiceStatus>) status;
     }
 
     /**
@@ -364,12 +356,8 @@ public class EntityInvoice {
 
     /**
      * Status of the invoice.
-     * 
-     * <p>* `open` — The invoice is not paid yet.
-     * * `paid` — The invoice is paid.
-     * * `overdue` — Payment of the invoice is overdue.
      */
-    public EntityInvoice withStatus(EntityInvoiceStatus status) {
+    public EntityInvoice withStatus(InvoiceStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -378,12 +366,8 @@ public class EntityInvoice {
 
     /**
      * Status of the invoice.
-     * 
-     * <p>* `open` — The invoice is not paid yet.
-     * * `paid` — The invoice is paid.
-     * * `overdue` — Payment of the invoice is overdue.
      */
-    public EntityInvoice withStatus(Optional<? extends EntityInvoiceStatus> status) {
+    public EntityInvoice withStatus(Optional<? extends InvoiceStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -603,7 +587,7 @@ public class EntityInvoice {
 
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
 
-        private Optional<? extends EntityInvoiceStatus> status = Optional.empty();
+        private Optional<? extends InvoiceStatus> status = Optional.empty();
 
         private Optional<? extends Amount> netAmount = Optional.empty();
 
@@ -706,12 +690,8 @@ public class EntityInvoice {
 
         /**
          * Status of the invoice.
-         * 
-         * <p>* `open` — The invoice is not paid yet.
-         * * `paid` — The invoice is paid.
-         * * `overdue` — Payment of the invoice is overdue.
          */
-        public Builder status(EntityInvoiceStatus status) {
+        public Builder status(InvoiceStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -719,12 +699,8 @@ public class EntityInvoice {
 
         /**
          * Status of the invoice.
-         * 
-         * <p>* `open` — The invoice is not paid yet.
-         * * `paid` — The invoice is paid.
-         * * `overdue` — Payment of the invoice is overdue.
          */
-        public Builder status(Optional<? extends EntityInvoiceStatus> status) {
+        public Builder status(Optional<? extends InvoiceStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

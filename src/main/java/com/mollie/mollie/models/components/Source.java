@@ -3,39 +3,175 @@
  */
 package com.mollie.mollie.models.components;
 
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.utils.Utils;
+import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
  * Source
  * 
- * <p>The way through which the invoice is to be set to paid.
+ * <p>Where the funds will be pulled back from.
  */
-public enum Source {
-    MANUAL("manual"),
-    PAYMENT_LINK("payment-link"),
-    PAYMENT("payment");
+public class Source {
+    /**
+     * The type of source. Currently only the source type `organization` is supported.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("type")
+    private Optional<? extends RefundRoutingReversalsSourceType> type;
 
-    @JsonValue
-    private final String value;
 
-    Source(String value) {
-        this.value = value;
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("organizationId")
+    private Optional<String> organizationId;
+
+    @JsonCreator
+    public Source(
+            @JsonProperty("type") Optional<? extends RefundRoutingReversalsSourceType> type,
+            @JsonProperty("organizationId") Optional<String> organizationId) {
+        Utils.checkNotNull(type, "type");
+        Utils.checkNotNull(organizationId, "organizationId");
+        this.type = type;
+        this.organizationId = organizationId;
     }
     
-    public String value() {
-        return value;
+    public Source() {
+        this(Optional.empty(), Optional.empty());
     }
-    
-    public static Optional<Source> fromValue(String value) {
-        for (Source o: Source.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    /**
+     * The type of source. Currently only the source type `organization` is supported.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<RefundRoutingReversalsSourceType> type() {
+        return (Optional<RefundRoutingReversalsSourceType>) type;
+    }
+
+    @JsonIgnore
+    public Optional<String> organizationId() {
+        return organizationId;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+
+    /**
+     * The type of source. Currently only the source type `organization` is supported.
+     */
+    public Source withType(RefundRoutingReversalsSourceType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    /**
+     * The type of source. Currently only the source type `organization` is supported.
+     */
+    public Source withType(Optional<? extends RefundRoutingReversalsSourceType> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
+
+    public Source withOrganizationId(String organizationId) {
+        Utils.checkNotNull(organizationId, "organizationId");
+        this.organizationId = Optional.ofNullable(organizationId);
+        return this;
+    }
+
+
+    public Source withOrganizationId(Optional<String> organizationId) {
+        Utils.checkNotNull(organizationId, "organizationId");
+        this.organizationId = organizationId;
+        return this;
+    }
+
+    @Override
+    public boolean equals(java.lang.Object o) {
+        if (this == o) {
+            return true;
         }
-        return Optional.empty();
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Source other = (Source) o;
+        return 
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.organizationId, other.organizationId);
+    }
+    
+    @Override
+    public int hashCode() {
+        return Utils.enhancedHash(
+            type, organizationId);
+    }
+    
+    @Override
+    public String toString() {
+        return Utils.toString(Source.class,
+                "type", type,
+                "organizationId", organizationId);
+    }
+
+    @SuppressWarnings("UnusedReturnValue")
+    public final static class Builder {
+
+        private Optional<? extends RefundRoutingReversalsSourceType> type = Optional.empty();
+
+        private Optional<String> organizationId = Optional.empty();
+
+        private Builder() {
+          // force use of static builder() method
+        }
+
+
+        /**
+         * The type of source. Currently only the source type `organization` is supported.
+         */
+        public Builder type(RefundRoutingReversalsSourceType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        /**
+         * The type of source. Currently only the source type `organization` is supported.
+         */
+        public Builder type(Optional<? extends RefundRoutingReversalsSourceType> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
+
+
+        public Builder organizationId(String organizationId) {
+            Utils.checkNotNull(organizationId, "organizationId");
+            this.organizationId = Optional.ofNullable(organizationId);
+            return this;
+        }
+
+        public Builder organizationId(Optional<String> organizationId) {
+            Utils.checkNotNull(organizationId, "organizationId");
+            this.organizationId = organizationId;
+            return this;
+        }
+
+        public Source build() {
+
+            return new Source(
+                type, organizationId);
+        }
+
     }
 }
-

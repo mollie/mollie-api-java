@@ -62,7 +62,7 @@ public class CaptureResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends CaptureResponseStatus> status;
+    private Optional<? extends CaptureStatus> status;
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
@@ -109,7 +109,7 @@ public class CaptureResponse {
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") JsonNullable<? extends AmountNullable> amount,
             @JsonProperty("settlementAmount") JsonNullable<? extends AmountNullable> settlementAmount,
-            @JsonProperty("status") Optional<? extends CaptureResponseStatus> status,
+            @JsonProperty("status") Optional<? extends CaptureStatus> status,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("paymentId") Optional<String> paymentId,
             @JsonProperty("shipmentId") Optional<String> shipmentId,
@@ -205,8 +205,8 @@ public class CaptureResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CaptureResponseStatus> status() {
-        return (Optional<CaptureResponseStatus>) status;
+    public Optional<CaptureStatus> status() {
+        return (Optional<CaptureStatus>) status;
     }
 
     /**
@@ -365,7 +365,7 @@ public class CaptureResponse {
     /**
      * The capture's status.
      */
-    public CaptureResponse withStatus(CaptureResponseStatus status) {
+    public CaptureResponse withStatus(CaptureStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -375,7 +375,7 @@ public class CaptureResponse {
     /**
      * The capture's status.
      */
-    public CaptureResponse withStatus(Optional<? extends CaptureResponseStatus> status) {
+    public CaptureResponse withStatus(Optional<? extends CaptureStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -546,7 +546,7 @@ public class CaptureResponse {
 
         private JsonNullable<? extends AmountNullable> settlementAmount = JsonNullable.undefined();
 
-        private Optional<? extends CaptureResponseStatus> status = Optional.empty();
+        private Optional<? extends CaptureStatus> status = Optional.empty();
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
@@ -676,7 +676,7 @@ public class CaptureResponse {
         /**
          * The capture's status.
          */
-        public Builder status(CaptureResponseStatus status) {
+        public Builder status(CaptureStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -685,7 +685,7 @@ public class CaptureResponse {
         /**
          * The capture's status.
          */
-        public Builder status(Optional<? extends CaptureResponseStatus> status) {
+        public Builder status(Optional<? extends CaptureStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

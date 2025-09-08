@@ -28,7 +28,7 @@ public class TransferDestination {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends EntityBalanceType> type;
+    private Optional<? extends BalanceTransferDestinationType> type;
 
     /**
      * The configured bank account number of the beneficiary the balance amount is to be transferred to.
@@ -46,7 +46,7 @@ public class TransferDestination {
 
     @JsonCreator
     public TransferDestination(
-            @JsonProperty("type") Optional<? extends EntityBalanceType> type,
+            @JsonProperty("type") Optional<? extends BalanceTransferDestinationType> type,
             @JsonProperty("bankAccount") Optional<String> bankAccount,
             @JsonProperty("beneficiaryName") Optional<String> beneficiaryName) {
         Utils.checkNotNull(type, "type");
@@ -68,8 +68,8 @@ public class TransferDestination {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityBalanceType> type() {
-        return (Optional<EntityBalanceType>) type;
+    public Optional<BalanceTransferDestinationType> type() {
+        return (Optional<BalanceTransferDestinationType>) type;
     }
 
     /**
@@ -98,7 +98,7 @@ public class TransferDestination {
      * 
      * <p>* `bank-account` — Transfer the balance amount to an external bank account
      */
-    public TransferDestination withType(EntityBalanceType type) {
+    public TransferDestination withType(BalanceTransferDestinationType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -110,7 +110,7 @@ public class TransferDestination {
      * 
      * <p>* `bank-account` — Transfer the balance amount to an external bank account
      */
-    public TransferDestination withType(Optional<? extends EntityBalanceType> type) {
+    public TransferDestination withType(Optional<? extends BalanceTransferDestinationType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -186,7 +186,7 @@ public class TransferDestination {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends EntityBalanceType> type = Optional.empty();
+        private Optional<? extends BalanceTransferDestinationType> type = Optional.empty();
 
         private Optional<String> bankAccount = Optional.empty();
 
@@ -202,7 +202,7 @@ public class TransferDestination {
          * 
          * <p>* `bank-account` — Transfer the balance amount to an external bank account
          */
-        public Builder type(EntityBalanceType type) {
+        public Builder type(BalanceTransferDestinationType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -213,7 +213,7 @@ public class TransferDestination {
          * 
          * <p>* `bank-account` — Transfer the balance amount to an external bank account
          */
-        public Builder type(Optional<? extends EntityBalanceType> type) {
+        public Builder type(Optional<? extends BalanceTransferDestinationType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

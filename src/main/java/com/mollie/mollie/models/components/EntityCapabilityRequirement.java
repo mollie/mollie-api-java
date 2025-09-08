@@ -32,7 +32,7 @@ public class EntityCapabilityRequirement {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends EntityCapabilityRequirementStatus> status;
+    private Optional<? extends CapabilityRequirementStatus> status;
 
     /**
      * Due date until the requirement must be fulfilled, if any. The date is shown in ISO-8601 format.
@@ -49,7 +49,7 @@ public class EntityCapabilityRequirement {
     @JsonCreator
     public EntityCapabilityRequirement(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("status") Optional<? extends EntityCapabilityRequirementStatus> status,
+            @JsonProperty("status") Optional<? extends CapabilityRequirementStatus> status,
             @JsonProperty("dueDate") JsonNullable<String> dueDate,
             @JsonProperty("_links") Optional<? extends EntityCapabilityRequirementLinks> links) {
         Utils.checkNotNull(id, "id");
@@ -83,8 +83,8 @@ public class EntityCapabilityRequirement {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityCapabilityRequirementStatus> status() {
-        return (Optional<EntityCapabilityRequirementStatus>) status;
+    public Optional<CapabilityRequirementStatus> status() {
+        return (Optional<CapabilityRequirementStatus>) status;
     }
 
     /**
@@ -133,7 +133,7 @@ public class EntityCapabilityRequirement {
      * The status of the requirement depends on its due date.
      * If no due date is given, the status will be `requested`.
      */
-    public EntityCapabilityRequirement withStatus(EntityCapabilityRequirementStatus status) {
+    public EntityCapabilityRequirement withStatus(CapabilityRequirementStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -144,7 +144,7 @@ public class EntityCapabilityRequirement {
      * The status of the requirement depends on its due date.
      * If no due date is given, the status will be `requested`.
      */
-    public EntityCapabilityRequirement withStatus(Optional<? extends EntityCapabilityRequirementStatus> status) {
+    public EntityCapabilityRequirement withStatus(Optional<? extends CapabilityRequirementStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -218,7 +218,7 @@ public class EntityCapabilityRequirement {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<? extends EntityCapabilityRequirementStatus> status = Optional.empty();
+        private Optional<? extends CapabilityRequirementStatus> status = Optional.empty();
 
         private JsonNullable<String> dueDate = JsonNullable.undefined();
 
@@ -256,7 +256,7 @@ public class EntityCapabilityRequirement {
          * The status of the requirement depends on its due date.
          * If no due date is given, the status will be `requested`.
          */
-        public Builder status(EntityCapabilityRequirementStatus status) {
+        public Builder status(CapabilityRequirementStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -266,7 +266,7 @@ public class EntityCapabilityRequirement {
          * The status of the requirement depends on its due date.
          * If no due date is given, the status will be `requested`.
          */
-        public Builder status(Optional<? extends EntityCapabilityRequirementStatus> status) {
+        public Builder status(Optional<? extends CapabilityRequirementStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

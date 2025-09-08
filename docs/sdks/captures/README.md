@@ -55,6 +55,7 @@ public class Application {
                         .currency("EUR")
                         .value("10.00")
                         .build())
+                    .status(CaptureStatus.SUCCEEDED)
                     .paymentId("tr_5B8cwPMGnU")
                     .shipmentId("shp_5x4xQJDWGNcY3tKGL7X5J")
                     .settlementId("stl_5B8cwPMGnU")

@@ -46,7 +46,7 @@ public class Application {
                         .build())
                     .description("Payment for Order #12345")
                     .destination(RouteCreateRequestDestination.builder()
-                        .type(RouteCreateRequestType.ORGANIZATION)
+                        .type(RouteDestinationType.ORGANIZATION)
                         .organizationId("org_1234567")
                         .build())
                     .testmode(false)

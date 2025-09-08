@@ -61,7 +61,7 @@ public class EntitySettlement {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends EntitySettlementStatus> status;
+    private Optional<? extends SettlementStatus> status;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -110,7 +110,7 @@ public class EntitySettlement {
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("settledAt") JsonNullable<String> settledAt,
-            @JsonProperty("status") Optional<? extends EntitySettlementStatus> status,
+            @JsonProperty("status") Optional<? extends SettlementStatus> status,
             @JsonProperty("amount") Optional<? extends Amount> amount,
             @JsonProperty("balanceId") Optional<String> balanceId,
             @JsonProperty("invoiceId") Optional<String> invoiceId,
@@ -193,8 +193,8 @@ public class EntitySettlement {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntitySettlementStatus> status() {
-        return (Optional<EntitySettlementStatus>) status;
+    public Optional<SettlementStatus> status() {
+        return (Optional<SettlementStatus>) status;
     }
 
     /**
@@ -346,7 +346,7 @@ public class EntitySettlement {
     /**
      * The status of the settlement.
      */
-    public EntitySettlement withStatus(EntitySettlementStatus status) {
+    public EntitySettlement withStatus(SettlementStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -356,7 +356,7 @@ public class EntitySettlement {
     /**
      * The status of the settlement.
      */
-    public EntitySettlement withStatus(Optional<? extends EntitySettlementStatus> status) {
+    public EntitySettlement withStatus(Optional<? extends SettlementStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -524,7 +524,7 @@ public class EntitySettlement {
 
         private JsonNullable<String> settledAt = JsonNullable.undefined();
 
-        private Optional<? extends EntitySettlementStatus> status = Optional.empty();
+        private Optional<? extends SettlementStatus> status = Optional.empty();
 
         private Optional<? extends Amount> amount = Optional.empty();
 
@@ -641,7 +641,7 @@ public class EntitySettlement {
         /**
          * The status of the settlement.
          */
-        public Builder status(EntitySettlementStatus status) {
+        public Builder status(SettlementStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -650,7 +650,7 @@ public class EntitySettlement {
         /**
          * The status of the settlement.
          */
-        public Builder status(Optional<? extends EntitySettlementStatus> status) {
+        public Builder status(Optional<? extends SettlementStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

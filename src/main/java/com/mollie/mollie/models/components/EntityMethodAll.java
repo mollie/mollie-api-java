@@ -68,7 +68,7 @@ public class EntityMethodAll {
      * The payment method's activation status for this profile.
      */
     @JsonProperty("status")
-    private EntityMethodAllStatus status;
+    private MethodStatus status;
 
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
@@ -100,7 +100,7 @@ public class EntityMethodAll {
             @JsonProperty("minimumAmount") Amount minimumAmount,
             @JsonProperty("maximumAmount") Optional<? extends AmountNullable> maximumAmount,
             @JsonProperty("image") EntityMethodAllImage image,
-            @JsonProperty("status") EntityMethodAllStatus status,
+            @JsonProperty("status") MethodStatus status,
             @JsonProperty("issuers") Optional<? extends List<EntityMethodAllIssuers>> issuers,
             @JsonProperty("_links") EntityMethodAllLinks links,
             @JsonProperty("pricing") Optional<? extends List<Pricing>> pricing) {
@@ -131,7 +131,7 @@ public class EntityMethodAll {
             String description,
             Amount minimumAmount,
             EntityMethodAllImage image,
-            EntityMethodAllStatus status,
+            MethodStatus status,
             EntityMethodAllLinks links) {
         this(resource, Optional.empty(), description,
             minimumAmount, Optional.empty(), image,
@@ -202,7 +202,7 @@ public class EntityMethodAll {
      * The payment method's activation status for this profile.
      */
     @JsonIgnore
-    public EntityMethodAllStatus status() {
+    public MethodStatus status() {
         return status;
     }
 
@@ -331,7 +331,7 @@ public class EntityMethodAll {
     /**
      * The payment method's activation status for this profile.
      */
-    public EntityMethodAll withStatus(EntityMethodAllStatus status) {
+    public EntityMethodAll withStatus(MethodStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -449,7 +449,7 @@ public class EntityMethodAll {
 
         private EntityMethodAllImage image;
 
-        private EntityMethodAllStatus status;
+        private MethodStatus status;
 
         private Optional<? extends List<EntityMethodAllIssuers>> issuers = Optional.empty();
 
@@ -558,7 +558,7 @@ public class EntityMethodAll {
         /**
          * The payment method's activation status for this profile.
          */
-        public Builder status(EntityMethodAllStatus status) {
+        public Builder status(MethodStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

@@ -34,14 +34,10 @@ public class EntityOnboardingStatus {
 
     /**
      * The current status of the organization's onboarding process.
-     * 
-     * <p>* `needs-data` — The merchant needs to provide additional information
-     * * `in-review` — The merchant provided all information, awaiting review from Mollie
-     * * `completed` — The onboarding is completed
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends EntityOnboardingStatusStatus> status;
+    private Optional<? extends OnboardingStatus> status;
 
     /**
      * Whether the organization can receive payments.
@@ -75,7 +71,7 @@ public class EntityOnboardingStatus {
     public EntityOnboardingStatus(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends EntityOnboardingStatusStatus> status,
+            @JsonProperty("status") Optional<? extends OnboardingStatus> status,
             @JsonProperty("canReceivePayments") Optional<Boolean> canReceivePayments,
             @JsonProperty("canReceiveSettlements") Optional<Boolean> canReceiveSettlements,
             @JsonProperty("signedUpAt") Optional<String> signedUpAt,
@@ -121,15 +117,11 @@ public class EntityOnboardingStatus {
 
     /**
      * The current status of the organization's onboarding process.
-     * 
-     * <p>* `needs-data` — The merchant needs to provide additional information
-     * * `in-review` — The merchant provided all information, awaiting review from Mollie
-     * * `completed` — The onboarding is completed
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityOnboardingStatusStatus> status() {
-        return (Optional<EntityOnboardingStatusStatus>) status;
+    public Optional<OnboardingStatus> status() {
+        return (Optional<OnboardingStatus>) status;
     }
 
     /**
@@ -212,12 +204,8 @@ public class EntityOnboardingStatus {
 
     /**
      * The current status of the organization's onboarding process.
-     * 
-     * <p>* `needs-data` — The merchant needs to provide additional information
-     * * `in-review` — The merchant provided all information, awaiting review from Mollie
-     * * `completed` — The onboarding is completed
      */
-    public EntityOnboardingStatus withStatus(EntityOnboardingStatusStatus status) {
+    public EntityOnboardingStatus withStatus(OnboardingStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -226,12 +214,8 @@ public class EntityOnboardingStatus {
 
     /**
      * The current status of the organization's onboarding process.
-     * 
-     * <p>* `needs-data` — The merchant needs to provide additional information
-     * * `in-review` — The merchant provided all information, awaiting review from Mollie
-     * * `completed` — The onboarding is completed
      */
-    public EntityOnboardingStatus withStatus(Optional<? extends EntityOnboardingStatusStatus> status) {
+    public EntityOnboardingStatus withStatus(Optional<? extends OnboardingStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -359,7 +343,7 @@ public class EntityOnboardingStatus {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<? extends EntityOnboardingStatusStatus> status = Optional.empty();
+        private Optional<? extends OnboardingStatus> status = Optional.empty();
 
         private Optional<Boolean> canReceivePayments = Optional.empty();
 
@@ -416,12 +400,8 @@ public class EntityOnboardingStatus {
 
         /**
          * The current status of the organization's onboarding process.
-         * 
-         * <p>* `needs-data` — The merchant needs to provide additional information
-         * * `in-review` — The merchant provided all information, awaiting review from Mollie
-         * * `completed` — The onboarding is completed
          */
-        public Builder status(EntityOnboardingStatusStatus status) {
+        public Builder status(OnboardingStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -429,12 +409,8 @@ public class EntityOnboardingStatus {
 
         /**
          * The current status of the organization's onboarding process.
-         * 
-         * <p>* `needs-data` — The merchant needs to provide additional information
-         * * `in-review` — The merchant provided all information, awaiting review from Mollie
-         * * `completed` — The onboarding is completed
          */
-        public Builder status(Optional<? extends EntityOnboardingStatusStatus> status) {
+        public Builder status(Optional<? extends OnboardingStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

@@ -14,7 +14,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class EntityCapability {
@@ -35,12 +34,12 @@ public class EntityCapability {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends EntityCapabilityStatus> status;
+    private Optional<? extends CapabilityStatus> status;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("statusReason")
-    private JsonNullable<? extends EntityCapabilityStatusReason> statusReason;
+    private Optional<? extends CapabilityStatusReason> statusReason;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -51,8 +50,8 @@ public class EntityCapability {
     public EntityCapability(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends EntityCapabilityStatus> status,
-            @JsonProperty("statusReason") JsonNullable<? extends EntityCapabilityStatusReason> statusReason,
+            @JsonProperty("status") Optional<? extends CapabilityStatus> status,
+            @JsonProperty("statusReason") Optional<? extends CapabilityStatusReason> statusReason,
             @JsonProperty("requirements") Optional<? extends List<EntityCapabilityRequirement>> requirements) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(name, "name");
@@ -68,7 +67,7 @@ public class EntityCapability {
     
     public EntityCapability() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -89,14 +88,14 @@ public class EntityCapability {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityCapabilityStatus> status() {
-        return (Optional<EntityCapabilityStatus>) status;
+    public Optional<CapabilityStatus> status() {
+        return (Optional<CapabilityStatus>) status;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<EntityCapabilityStatusReason> statusReason() {
-        return (JsonNullable<EntityCapabilityStatusReason>) statusReason;
+    public Optional<CapabilityStatusReason> statusReason() {
+        return (Optional<CapabilityStatusReason>) statusReason;
     }
 
     @SuppressWarnings("unchecked")
@@ -148,26 +147,27 @@ public class EntityCapability {
         return this;
     }
 
-    public EntityCapability withStatus(EntityCapabilityStatus status) {
+    public EntityCapability withStatus(CapabilityStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
     }
 
 
-    public EntityCapability withStatus(Optional<? extends EntityCapabilityStatus> status) {
+    public EntityCapability withStatus(Optional<? extends CapabilityStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
-    public EntityCapability withStatusReason(EntityCapabilityStatusReason statusReason) {
+    public EntityCapability withStatusReason(CapabilityStatusReason statusReason) {
         Utils.checkNotNull(statusReason, "statusReason");
-        this.statusReason = JsonNullable.of(statusReason);
+        this.statusReason = Optional.ofNullable(statusReason);
         return this;
     }
 
-    public EntityCapability withStatusReason(JsonNullable<? extends EntityCapabilityStatusReason> statusReason) {
+
+    public EntityCapability withStatusReason(Optional<? extends CapabilityStatusReason> statusReason) {
         Utils.checkNotNull(statusReason, "statusReason");
         this.statusReason = statusReason;
         return this;
@@ -227,9 +227,9 @@ public class EntityCapability {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<? extends EntityCapabilityStatus> status = Optional.empty();
+        private Optional<? extends CapabilityStatus> status = Optional.empty();
 
-        private JsonNullable<? extends EntityCapabilityStatusReason> statusReason = JsonNullable.undefined();
+        private Optional<? extends CapabilityStatusReason> statusReason = Optional.empty();
 
         private Optional<? extends List<EntityCapabilityRequirement>> requirements = Optional.empty();
 
@@ -276,26 +276,26 @@ public class EntityCapability {
         }
 
 
-        public Builder status(EntityCapabilityStatus status) {
+        public Builder status(CapabilityStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
         }
 
-        public Builder status(Optional<? extends EntityCapabilityStatus> status) {
+        public Builder status(Optional<? extends CapabilityStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
 
-        public Builder statusReason(EntityCapabilityStatusReason statusReason) {
+        public Builder statusReason(CapabilityStatusReason statusReason) {
             Utils.checkNotNull(statusReason, "statusReason");
-            this.statusReason = JsonNullable.of(statusReason);
+            this.statusReason = Optional.ofNullable(statusReason);
             return this;
         }
 
-        public Builder statusReason(JsonNullable<? extends EntityCapabilityStatusReason> statusReason) {
+        public Builder statusReason(Optional<? extends CapabilityStatusReason> statusReason) {
             Utils.checkNotNull(statusReason, "statusReason");
             this.statusReason = statusReason;
             return this;

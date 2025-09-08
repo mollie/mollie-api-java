@@ -44,7 +44,7 @@ public class SubscriptionResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends SubscriptionResponseStatus> status;
+    private Optional<? extends SubscriptionStatus> status;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -111,7 +111,7 @@ public class SubscriptionResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<? extends SubscriptionResponseMethod> method;
+    private JsonNullable<? extends SubscriptionMethodResponse> method;
 
     /**
      * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
@@ -181,7 +181,7 @@ public class SubscriptionResponse {
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("mode") Optional<? extends Mode> mode,
-            @JsonProperty("status") Optional<? extends SubscriptionResponseStatus> status,
+            @JsonProperty("status") Optional<? extends SubscriptionStatus> status,
             @JsonProperty("amount") Optional<? extends Amount> amount,
             @JsonProperty("times") JsonNullable<Long> times,
             @JsonProperty("timesRemaining") JsonNullable<Long> timesRemaining,
@@ -189,7 +189,7 @@ public class SubscriptionResponse {
             @JsonProperty("startDate") Optional<String> startDate,
             @JsonProperty("nextPaymentDate") JsonNullable<String> nextPaymentDate,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("method") JsonNullable<? extends SubscriptionResponseMethod> method,
+            @JsonProperty("method") JsonNullable<? extends SubscriptionMethodResponse> method,
             @JsonProperty("applicationFee") Optional<? extends SubscriptionResponseApplicationFee> applicationFee,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("webhookUrl") Optional<String> webhookUrl,
@@ -279,8 +279,8 @@ public class SubscriptionResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SubscriptionResponseStatus> status() {
-        return (Optional<SubscriptionResponseStatus>) status;
+    public Optional<SubscriptionStatus> status() {
+        return (Optional<SubscriptionStatus>) status;
     }
 
     /**
@@ -356,8 +356,8 @@ public class SubscriptionResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<SubscriptionResponseMethod> method() {
-        return (JsonNullable<SubscriptionResponseMethod>) method;
+    public JsonNullable<SubscriptionMethodResponse> method() {
+        return (JsonNullable<SubscriptionMethodResponse>) method;
     }
 
     /**
@@ -494,7 +494,7 @@ public class SubscriptionResponse {
      * The subscription's current status is directly related to the status of the underlying customer or mandate that is
      * enabling the subscription.
      */
-    public SubscriptionResponse withStatus(SubscriptionResponseStatus status) {
+    public SubscriptionResponse withStatus(SubscriptionStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -505,7 +505,7 @@ public class SubscriptionResponse {
      * The subscription's current status is directly related to the status of the underlying customer or mandate that is
      * enabling the subscription.
      */
-    public SubscriptionResponse withStatus(Optional<? extends SubscriptionResponseStatus> status) {
+    public SubscriptionResponse withStatus(Optional<? extends SubscriptionStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -666,7 +666,7 @@ public class SubscriptionResponse {
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
      */
-    public SubscriptionResponse withMethod(SubscriptionResponseMethod method) {
+    public SubscriptionResponse withMethod(SubscriptionMethodResponse method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -675,7 +675,7 @@ public class SubscriptionResponse {
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
      */
-    public SubscriptionResponse withMethod(JsonNullable<? extends SubscriptionResponseMethod> method) {
+    public SubscriptionResponse withMethod(JsonNullable<? extends SubscriptionMethodResponse> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -919,7 +919,7 @@ public class SubscriptionResponse {
 
         private Optional<? extends Mode> mode = Optional.empty();
 
-        private Optional<? extends SubscriptionResponseStatus> status = Optional.empty();
+        private Optional<? extends SubscriptionStatus> status = Optional.empty();
 
         private Optional<? extends Amount> amount = Optional.empty();
 
@@ -935,7 +935,7 @@ public class SubscriptionResponse {
 
         private Optional<String> description = Optional.empty();
 
-        private JsonNullable<? extends SubscriptionResponseMethod> method = JsonNullable.undefined();
+        private JsonNullable<? extends SubscriptionMethodResponse> method = JsonNullable.undefined();
 
         private Optional<? extends SubscriptionResponseApplicationFee> applicationFee = Optional.empty();
 
@@ -1015,7 +1015,7 @@ public class SubscriptionResponse {
          * The subscription's current status is directly related to the status of the underlying customer or mandate that is
          * enabling the subscription.
          */
-        public Builder status(SubscriptionResponseStatus status) {
+        public Builder status(SubscriptionStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -1025,7 +1025,7 @@ public class SubscriptionResponse {
          * The subscription's current status is directly related to the status of the underlying customer or mandate that is
          * enabling the subscription.
          */
-        public Builder status(Optional<? extends SubscriptionResponseStatus> status) {
+        public Builder status(Optional<? extends SubscriptionStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -1190,7 +1190,7 @@ public class SubscriptionResponse {
         /**
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
          */
-        public Builder method(SubscriptionResponseMethod method) {
+        public Builder method(SubscriptionMethodResponse method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -1199,7 +1199,7 @@ public class SubscriptionResponse {
         /**
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
          */
-        public Builder method(JsonNullable<? extends SubscriptionResponseMethod> method) {
+        public Builder method(JsonNullable<? extends SubscriptionMethodResponse> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;

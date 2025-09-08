@@ -32,11 +32,21 @@ public class UpdateValuesSalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>Dependent parameters: `paymentDetails` for `paid`, `emailDetails` for `issued` and `paid`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * 
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * 
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends UpdateValuesSalesInvoiceStatus> status;
+    private Optional<? extends SalesInvoiceStatus> status;
 
     /**
      * A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
@@ -50,7 +60,7 @@ public class UpdateValuesSalesInvoice {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentTerm")
-    private JsonNullable<? extends UpdateValuesSalesInvoicePaymentTerm> paymentTerm;
+    private JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -94,9 +104,9 @@ public class UpdateValuesSalesInvoice {
     @JsonCreator
     public UpdateValuesSalesInvoice(
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
-            @JsonProperty("status") Optional<? extends UpdateValuesSalesInvoiceStatus> status,
+            @JsonProperty("status") Optional<? extends SalesInvoiceStatus> status,
             @JsonProperty("memo") JsonNullable<String> memo,
-            @JsonProperty("paymentTerm") JsonNullable<? extends UpdateValuesSalesInvoicePaymentTerm> paymentTerm,
+            @JsonProperty("paymentTerm") JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm,
             @JsonProperty("paymentDetails") JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails,
             @JsonProperty("emailDetails") JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails,
             @JsonProperty("recipientIdentifier") Optional<String> recipientIdentifier,
@@ -146,12 +156,22 @@ public class UpdateValuesSalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>Dependent parameters: `paymentDetails` for `paid`, `emailDetails` for `issued` and `paid`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * 
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * 
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateValuesSalesInvoiceStatus> status() {
-        return (Optional<UpdateValuesSalesInvoiceStatus>) status;
+    public Optional<SalesInvoiceStatus> status() {
+        return (Optional<SalesInvoiceStatus>) status;
     }
 
     /**
@@ -167,8 +187,8 @@ public class UpdateValuesSalesInvoice {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<UpdateValuesSalesInvoicePaymentTerm> paymentTerm() {
-        return (JsonNullable<UpdateValuesSalesInvoicePaymentTerm>) paymentTerm;
+    public JsonNullable<SalesInvoicePaymentTerm> paymentTerm() {
+        return (JsonNullable<SalesInvoicePaymentTerm>) paymentTerm;
     }
 
     @SuppressWarnings("unchecked")
@@ -249,9 +269,19 @@ public class UpdateValuesSalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>Dependent parameters: `paymentDetails` for `paid`, `emailDetails` for `issued` and `paid`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * 
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * 
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    public UpdateValuesSalesInvoice withStatus(UpdateValuesSalesInvoiceStatus status) {
+    public UpdateValuesSalesInvoice withStatus(SalesInvoiceStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -261,9 +291,19 @@ public class UpdateValuesSalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>Dependent parameters: `paymentDetails` for `paid`, `emailDetails` for `issued` and `paid`.
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+     * 
+     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+     * 
+     * <p>Dependent parameters:
+     *   - `paymentDetails` is required if invoice should be set directly to `paid`
+     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    public UpdateValuesSalesInvoice withStatus(Optional<? extends UpdateValuesSalesInvoiceStatus> status) {
+    public UpdateValuesSalesInvoice withStatus(Optional<? extends SalesInvoiceStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -290,7 +330,7 @@ public class UpdateValuesSalesInvoice {
     /**
      * The payment term to be set on the invoice.
      */
-    public UpdateValuesSalesInvoice withPaymentTerm(UpdateValuesSalesInvoicePaymentTerm paymentTerm) {
+    public UpdateValuesSalesInvoice withPaymentTerm(SalesInvoicePaymentTerm paymentTerm) {
         Utils.checkNotNull(paymentTerm, "paymentTerm");
         this.paymentTerm = JsonNullable.of(paymentTerm);
         return this;
@@ -299,7 +339,7 @@ public class UpdateValuesSalesInvoice {
     /**
      * The payment term to be set on the invoice.
      */
-    public UpdateValuesSalesInvoice withPaymentTerm(JsonNullable<? extends UpdateValuesSalesInvoicePaymentTerm> paymentTerm) {
+    public UpdateValuesSalesInvoice withPaymentTerm(JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm) {
         Utils.checkNotNull(paymentTerm, "paymentTerm");
         this.paymentTerm = paymentTerm;
         return this;
@@ -451,11 +491,11 @@ public class UpdateValuesSalesInvoice {
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
-        private Optional<? extends UpdateValuesSalesInvoiceStatus> status = Optional.empty();
+        private Optional<? extends SalesInvoiceStatus> status = Optional.empty();
 
         private JsonNullable<String> memo = JsonNullable.undefined();
 
-        private JsonNullable<? extends UpdateValuesSalesInvoicePaymentTerm> paymentTerm = JsonNullable.undefined();
+        private JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm = JsonNullable.undefined();
 
         private JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails = JsonNullable.undefined();
 
@@ -502,9 +542,19 @@ public class UpdateValuesSalesInvoice {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>Dependent parameters: `paymentDetails` for `paid`, `emailDetails` for `issued` and `paid`.
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+         * 
+         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+         * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+         * 
+         * <p>Dependent parameters:
+         *   - `paymentDetails` is required if invoice should be set directly to `paid`
+         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
-        public Builder status(UpdateValuesSalesInvoiceStatus status) {
+        public Builder status(SalesInvoiceStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -513,9 +563,19 @@ public class UpdateValuesSalesInvoice {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>Dependent parameters: `paymentDetails` for `paid`, `emailDetails` for `issued` and `paid`.
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
+         * 
+         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
+         * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
+         * 
+         * <p>Dependent parameters:
+         *   - `paymentDetails` is required if invoice should be set directly to `paid`
+         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
+         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
-        public Builder status(Optional<? extends UpdateValuesSalesInvoiceStatus> status) {
+        public Builder status(Optional<? extends SalesInvoiceStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -544,7 +604,7 @@ public class UpdateValuesSalesInvoice {
         /**
          * The payment term to be set on the invoice.
          */
-        public Builder paymentTerm(UpdateValuesSalesInvoicePaymentTerm paymentTerm) {
+        public Builder paymentTerm(SalesInvoicePaymentTerm paymentTerm) {
             Utils.checkNotNull(paymentTerm, "paymentTerm");
             this.paymentTerm = JsonNullable.of(paymentTerm);
             return this;
@@ -553,7 +613,7 @@ public class UpdateValuesSalesInvoice {
         /**
          * The payment term to be set on the invoice.
          */
-        public Builder paymentTerm(JsonNullable<? extends UpdateValuesSalesInvoicePaymentTerm> paymentTerm) {
+        public Builder paymentTerm(JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm) {
             Utils.checkNotNull(paymentTerm, "paymentTerm");
             this.paymentTerm = paymentTerm;
             return this;

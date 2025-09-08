@@ -25,7 +25,7 @@ public class Lines {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends PaymentResponseType> type;
+    private Optional<? extends PaymentLineTypeResponse> type;
 
     /**
      * A description of the line item. For example *LEGO 4440 Forest Police Station*.
@@ -116,7 +116,7 @@ public class Lines {
 
     @JsonCreator
     public Lines(
-            @JsonProperty("type") Optional<? extends PaymentResponseType> type,
+            @JsonProperty("type") Optional<? extends PaymentLineTypeResponse> type,
             @JsonProperty("description") String description,
             @JsonProperty("quantity") long quantity,
             @JsonProperty("quantityUnit") Optional<String> quantityUnit,
@@ -179,8 +179,8 @@ public class Lines {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentResponseType> type() {
-        return (Optional<PaymentResponseType>) type;
+    public Optional<PaymentLineTypeResponse> type() {
+        return (Optional<PaymentLineTypeResponse>) type;
     }
 
     /**
@@ -300,7 +300,7 @@ public class Lines {
      * 
      * <p>The `tip` payment line type is not available when creating a payment.
      */
-    public Lines withType(PaymentResponseType type) {
+    public Lines withType(PaymentLineTypeResponse type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -312,7 +312,7 @@ public class Lines {
      * 
      * <p>The `tip` payment line type is not available when creating a payment.
      */
-    public Lines withType(Optional<? extends PaymentResponseType> type) {
+    public Lines withType(Optional<? extends PaymentLineTypeResponse> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -581,7 +581,7 @@ public class Lines {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends PaymentResponseType> type = Optional.empty();
+        private Optional<? extends PaymentLineTypeResponse> type = Optional.empty();
 
         private String description;
 
@@ -619,7 +619,7 @@ public class Lines {
          * 
          * <p>The `tip` payment line type is not available when creating a payment.
          */
-        public Builder type(PaymentResponseType type) {
+        public Builder type(PaymentLineTypeResponse type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -630,7 +630,7 @@ public class Lines {
          * 
          * <p>The `tip` payment line type is not available when creating a payment.
          */
-        public Builder type(Optional<? extends PaymentResponseType> type) {
+        public Builder type(Optional<? extends PaymentLineTypeResponse> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

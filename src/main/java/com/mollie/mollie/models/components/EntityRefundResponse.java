@@ -71,11 +71,9 @@ public class EntityRefundResponse {
     @JsonProperty("settlementId")
     private Optional<String> settlementId;
 
-    /**
-     * Refunds may take some time to get confirmed.
-     */
+
     @JsonProperty("status")
-    private EntityRefundResponseStatus status;
+    private RefundStatus status;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -100,7 +98,7 @@ public class EntityRefundResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("routingReversals")
-    private JsonNullable<? extends List<EntityRefundResponseRoutingReversals>> routingReversals;
+    private JsonNullable<? extends List<RoutingReversals>> routingReversals;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -119,10 +117,10 @@ public class EntityRefundResponse {
             @JsonProperty("metadata") Optional<? extends Metadata> metadata,
             @JsonProperty("paymentId") Optional<String> paymentId,
             @JsonProperty("settlementId") Optional<String> settlementId,
-            @JsonProperty("status") EntityRefundResponseStatus status,
+            @JsonProperty("status") RefundStatus status,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("externalReference") Optional<? extends ExternalReference> externalReference,
-            @JsonProperty("routingReversals") JsonNullable<? extends List<EntityRefundResponseRoutingReversals>> routingReversals,
+            @JsonProperty("routingReversals") JsonNullable<? extends List<RoutingReversals>> routingReversals,
             @JsonProperty("_links") EntityRefundResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -160,7 +158,7 @@ public class EntityRefundResponse {
             Mode mode,
             String description,
             Amount amount,
-            EntityRefundResponseStatus status,
+            RefundStatus status,
             String createdAt,
             EntityRefundResponseLinks links) {
         this(resource, id, mode,
@@ -236,11 +234,8 @@ public class EntityRefundResponse {
         return settlementId;
     }
 
-    /**
-     * Refunds may take some time to get confirmed.
-     */
     @JsonIgnore
-    public EntityRefundResponseStatus status() {
+    public RefundStatus status() {
         return status;
     }
 
@@ -270,8 +265,8 @@ public class EntityRefundResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<EntityRefundResponseRoutingReversals>> routingReversals() {
-        return (JsonNullable<List<EntityRefundResponseRoutingReversals>>) routingReversals;
+    public JsonNullable<List<RoutingReversals>> routingReversals() {
+        return (JsonNullable<List<RoutingReversals>>) routingReversals;
     }
 
     /**
@@ -394,10 +389,7 @@ public class EntityRefundResponse {
         return this;
     }
 
-    /**
-     * Refunds may take some time to get confirmed.
-     */
-    public EntityRefundResponse withStatus(EntityRefundResponseStatus status) {
+    public EntityRefundResponse withStatus(RefundStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -435,7 +427,7 @@ public class EntityRefundResponse {
      * 
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
      */
-    public EntityRefundResponse withRoutingReversals(List<EntityRefundResponseRoutingReversals> routingReversals) {
+    public EntityRefundResponse withRoutingReversals(List<RoutingReversals> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
         this.routingReversals = JsonNullable.of(routingReversals);
         return this;
@@ -451,7 +443,7 @@ public class EntityRefundResponse {
      * 
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
      */
-    public EntityRefundResponse withRoutingReversals(JsonNullable<? extends List<EntityRefundResponseRoutingReversals>> routingReversals) {
+    public EntityRefundResponse withRoutingReversals(JsonNullable<? extends List<RoutingReversals>> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
         this.routingReversals = routingReversals;
         return this;
@@ -542,13 +534,13 @@ public class EntityRefundResponse {
 
         private Optional<String> settlementId = Optional.empty();
 
-        private EntityRefundResponseStatus status;
+        private RefundStatus status;
 
         private String createdAt;
 
         private Optional<? extends ExternalReference> externalReference = Optional.empty();
 
-        private JsonNullable<? extends List<EntityRefundResponseRoutingReversals>> routingReversals = JsonNullable.undefined();
+        private JsonNullable<? extends List<RoutingReversals>> routingReversals = JsonNullable.undefined();
 
         private EntityRefundResponseLinks links;
 
@@ -670,10 +662,7 @@ public class EntityRefundResponse {
         }
 
 
-        /**
-         * Refunds may take some time to get confirmed.
-         */
-        public Builder status(EntityRefundResponseStatus status) {
+        public Builder status(RefundStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -713,7 +702,7 @@ public class EntityRefundResponse {
          * 
          * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
          */
-        public Builder routingReversals(List<EntityRefundResponseRoutingReversals> routingReversals) {
+        public Builder routingReversals(List<RoutingReversals> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
             this.routingReversals = JsonNullable.of(routingReversals);
             return this;
@@ -729,7 +718,7 @@ public class EntityRefundResponse {
          * 
          * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
          */
-        public Builder routingReversals(JsonNullable<? extends List<EntityRefundResponseRoutingReversals>> routingReversals) {
+        public Builder routingReversals(JsonNullable<? extends List<RoutingReversals>> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
             this.routingReversals = routingReversals;
             return this;

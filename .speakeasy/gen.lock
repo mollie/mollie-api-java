@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 5b3c94b71c47f8438aa46ead6de7e7fd
+  docChecksum: 150d1c9453c094e3fb1016906ad8d062
   docVersion: 1.0.0
-  speakeasyVersion: 1.611.0
+  speakeasyVersion: 1.611.1
   generationVersion: 2.694.1
-  releaseVersion: 0.18.1
-  configChecksum: 9e9769e47d0f8d30fb22e79481e35526
+  releaseVersion: 0.18.2
+  configChecksum: 1d79cb9ea38a197efa635216e97cdad8
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -35,8 +35,15 @@ generatedFiles:
   - docs/models/components/AmountNullable.md
   - docs/models/components/ApplicationFee.md
   - docs/models/components/AvailableBalance.md
-  - docs/models/components/Brand.md
+  - docs/models/components/BalanceReportGrouping.md
+  - docs/models/components/BalanceStatus.md
+  - docs/models/components/BalanceTransactionType.md
+  - docs/models/components/BalanceTransferDestinationType.md
+  - docs/models/components/BalanceTransferFrequency.md
   - docs/models/components/CanceledOutgoingTransfer.md
+  - docs/models/components/CapabilityRequirementStatus.md
+  - docs/models/components/CapabilityStatus.md
+  - docs/models/components/CapabilityStatusReason.md
   - docs/models/components/Capital.md
   - docs/models/components/Capture.md
   - docs/models/components/CaptureCommision.md
@@ -44,17 +51,11 @@ generatedFiles:
   - docs/models/components/CaptureModeResponse.md
   - docs/models/components/CaptureResponse.md
   - docs/models/components/CaptureResponseLinks.md
-  - docs/models/components/CaptureResponseStatus.md
   - docs/models/components/CaptureRollingReserveRelease.md
+  - docs/models/components/CaptureStatus.md
   - docs/models/components/CardAudience.md
-  - docs/models/components/CardAudition.md
-  - docs/models/components/CardFunding.md
   - docs/models/components/CardIssuer.md
-  - docs/models/components/CardLabel.md
-  - docs/models/components/CardReadMethod.md
   - docs/models/components/CardRegion.md
-  - docs/models/components/CardSecurity.md
-  - docs/models/components/CardVerificationMethod.md
   - docs/models/components/Categories.md
   - docs/models/components/Chargeback.md
   - docs/models/components/ChargebackCompensation.md
@@ -74,7 +75,6 @@ generatedFiles:
   - docs/models/components/Corrections.md
   - docs/models/components/CreateWebhook.md
   - docs/models/components/CreateWebhookLinks.md
-  - docs/models/components/CreateWebhookStatus.md
   - docs/models/components/Currencies.md
   - docs/models/components/CustomerResponse.md
   - docs/models/components/CustomerResponseLinks.md
@@ -89,13 +89,9 @@ generatedFiles:
   - docs/models/components/EntityBalanceReportLinks.md
   - docs/models/components/EntityBalanceTransaction.md
   - docs/models/components/EntityBalanceTransactionApplicationFee.md
-  - docs/models/components/EntityBalanceType.md
   - docs/models/components/EntityCapability.md
   - docs/models/components/EntityCapabilityRequirement.md
   - docs/models/components/EntityCapabilityRequirementLinks.md
-  - docs/models/components/EntityCapabilityRequirementStatus.md
-  - docs/models/components/EntityCapabilityStatus.md
-  - docs/models/components/EntityCapabilityStatusReason.md
   - docs/models/components/EntityCapture.md
   - docs/models/components/EntityChargeback.md
   - docs/models/components/EntityChargebackLinks.md
@@ -109,22 +105,17 @@ generatedFiles:
   - docs/models/components/EntityInvoice.md
   - docs/models/components/EntityInvoiceLines.md
   - docs/models/components/EntityInvoiceLinks.md
-  - docs/models/components/EntityInvoiceStatus.md
   - docs/models/components/EntityMandate.md
-  - docs/models/components/EntityMandateMethod.md
   - docs/models/components/EntityMethod.md
   - docs/models/components/EntityMethodAll.md
   - docs/models/components/EntityMethodAllImage.md
   - docs/models/components/EntityMethodAllIssuers.md
   - docs/models/components/EntityMethodAllIssuersImage.md
   - docs/models/components/EntityMethodAllLinks.md
-  - docs/models/components/EntityMethodAllStatus.md
   - docs/models/components/EntityMethodImage.md
   - docs/models/components/EntityMethodLinks.md
-  - docs/models/components/EntityMethodStatus.md
   - docs/models/components/EntityOnboardingStatus.md
   - docs/models/components/EntityOnboardingStatusLinks.md
-  - docs/models/components/EntityOnboardingStatusStatus.md
   - docs/models/components/EntityOrganization.md
   - docs/models/components/EntityOrganizationLinks.md
   - docs/models/components/EntityPaymentRoute.md
@@ -132,57 +123,38 @@ generatedFiles:
   - docs/models/components/EntityPaymentRouteLinks.md
   - docs/models/components/EntityPaymentRouteResponse.md
   - docs/models/components/EntityPaymentRouteResponseLinks.md
-  - docs/models/components/EntityPaymentRouteResponseType.md
-  - docs/models/components/EntityPaymentRouteType.md
   - docs/models/components/EntityPermission.md
   - docs/models/components/EntityPermissionLinks.md
   - docs/models/components/EntityProfile.md
   - docs/models/components/EntityProfileResponse.md
   - docs/models/components/EntityProfileResponseLinks.md
-  - docs/models/components/EntityProfileResponseReviewStatus.md
-  - docs/models/components/EntityProfileResponseStatus.md
   - docs/models/components/EntityRefund.md
   - docs/models/components/EntityRefundExternalReference.md
   - docs/models/components/EntityRefundResponse.md
   - docs/models/components/EntityRefundResponseLinks.md
-  - docs/models/components/EntityRefundResponseRoutingReversals.md
-  - docs/models/components/EntityRefundResponseSource.md
-  - docs/models/components/EntityRefundResponseStatus.md
-  - docs/models/components/EntityRefundResponseType.md
-  - docs/models/components/EntityRefundRoutingReversalsType.md
+  - docs/models/components/EntityRefundRoutingReversals.md
   - docs/models/components/EntityRefundSource.md
-  - docs/models/components/EntityRefundType.md
   - docs/models/components/EntitySalesInvoice.md
   - docs/models/components/EntitySalesInvoiceMetadata.md
   - docs/models/components/EntitySalesInvoiceResponse.md
   - docs/models/components/EntitySalesInvoiceResponseLinks.md
   - docs/models/components/EntitySalesInvoiceResponseMetadata.md
-  - docs/models/components/EntitySalesInvoiceResponsePaymentTerm.md
-  - docs/models/components/EntitySalesInvoiceResponseStatus.md
-  - docs/models/components/EntitySalesInvoiceResponseVatMode.md
-  - docs/models/components/EntitySalesInvoiceResponseVatScheme.md
-  - docs/models/components/EntitySalesInvoiceStatus.md
   - docs/models/components/EntitySettlement.md
   - docs/models/components/EntitySettlementLinks.md
-  - docs/models/components/EntitySettlementStatus.md
   - docs/models/components/EntityTerminal.md
   - docs/models/components/EntityTerminalLinks.md
-  - docs/models/components/EntityTerminalStatus.md
   - docs/models/components/EntityWebhook.md
   - docs/models/components/EntityWebhookEvent.md
   - docs/models/components/EntityWebhookEventLinks.md
   - docs/models/components/EntityWebhookLinks.md
-  - docs/models/components/EntityWebhookStatus.md
   - docs/models/components/ExternalReference.md
   - docs/models/components/FailedPayment.md
   - docs/models/components/FailedPaymentFee.md
-  - docs/models/components/FailureReason.md
   - docs/models/components/FeePrepayments.md
-  - docs/models/components/FeeRegion.md
   - docs/models/components/FeeType.md
-  - docs/models/components/Grouping.md
   - docs/models/components/Image.md
   - docs/models/components/InvoiceCompensation.md
+  - docs/models/components/InvoiceStatus.md
   - docs/models/components/Issuers.md
   - docs/models/components/Lines.md
   - docs/models/components/Links.md
@@ -191,30 +163,44 @@ generatedFiles:
   - docs/models/components/Locale.md
   - docs/models/components/LocaleResponse.md
   - docs/models/components/ManagedFee.md
+  - docs/models/components/MandateDetailsCardLabelResponse.md
+  - docs/models/components/MandateMethod.md
+  - docs/models/components/MandateMethodResponse.md
   - docs/models/components/MandateResponse.md
-  - docs/models/components/MandateResponseCardLabel.md
   - docs/models/components/MandateResponseDetails.md
   - docs/models/components/MandateResponseLinks.md
-  - docs/models/components/MandateResponseMethod.md
-  - docs/models/components/MandateResponseStatus.md
+  - docs/models/components/MandateStatus.md
   - docs/models/components/Metadata.md
   - docs/models/components/Method.md
   - docs/models/components/MethodResponse.md
+  - docs/models/components/MethodStatus.md
   - docs/models/components/Mode.md
+  - docs/models/components/OnboardingStatus.md
   - docs/models/components/Open.md
   - docs/models/components/OrderLineCategories.md
+  - docs/models/components/OrganizationVatRegulation.md
   - docs/models/components/OutgoingTransfer.md
   - docs/models/components/Owner.md
   - docs/models/components/ParameterLocale.md
   - docs/models/components/Payment.md
   - docs/models/components/PaymentAddress.md
   - docs/models/components/PaymentCommission.md
+  - docs/models/components/PaymentDetailsCardAuditionResponse.md
+  - docs/models/components/PaymentDetailsCardFundingResponse.md
+  - docs/models/components/PaymentDetailsCardLabelResponse.md
+  - docs/models/components/PaymentDetailsCardSecurityResponse.md
+  - docs/models/components/PaymentDetailsFailureReasonResponse.md
+  - docs/models/components/PaymentDetailsFeeRegionResponse.md
+  - docs/models/components/PaymentDetailsReceiptCardReadMethodResponse.md
+  - docs/models/components/PaymentDetailsReceiptCardVerificationMethodResponse.md
+  - docs/models/components/PaymentDetailsSellerProtectionResponse.md
+  - docs/models/components/PaymentDetailsWalletResponse.md
   - docs/models/components/PaymentFee.md
   - docs/models/components/PaymentLineItem.md
   - docs/models/components/PaymentLineItemCategories.md
   - docs/models/components/PaymentLineItemResponse.md
-  - docs/models/components/PaymentLineItemResponseType.md
-  - docs/models/components/PaymentLineItemType.md
+  - docs/models/components/PaymentLineType.md
+  - docs/models/components/PaymentLineTypeResponse.md
   - docs/models/components/PaymentLinkResponse.md
   - docs/models/components/PaymentLinkResponseApplicationFee.md
   - docs/models/components/PaymentLinkResponseLinks.md
@@ -225,13 +211,10 @@ generatedFiles:
   - docs/models/components/PaymentRequestApplicationFee.md
   - docs/models/components/PaymentRequestCategories.md
   - docs/models/components/PaymentRequestLines.md
-  - docs/models/components/PaymentRequestType.md
   - docs/models/components/PaymentResponse.md
   - docs/models/components/PaymentResponseCategories.md
   - docs/models/components/PaymentResponseLinks.md
-  - docs/models/components/PaymentResponseStatus.md
-  - docs/models/components/PaymentResponseType.md
-  - docs/models/components/PaymentTerm.md
+  - docs/models/components/PaymentStatus.md
   - docs/models/components/Payments.md
   - docs/models/components/PendingBalance.md
   - docs/models/components/PlatformPaymentChargeback.md
@@ -239,12 +222,18 @@ generatedFiles:
   - docs/models/components/PostPaymentSplitPayment.md
   - docs/models/components/PrepaymentPartType.md
   - docs/models/components/Pricing.md
+  - docs/models/components/ProfileReviewStatusResponse.md
+  - docs/models/components/ProfileStatus.md
   - docs/models/components/QrCode.md
   - docs/models/components/Reason.md
   - docs/models/components/Receipt.md
   - docs/models/components/RecurringLineItem.md
   - docs/models/components/Refund.md
   - docs/models/components/RefundCompensation.md
+  - docs/models/components/RefundExternalReferenceType.md
+  - docs/models/components/RefundExternalReferenceTypeResponse.md
+  - docs/models/components/RefundRoutingReversalsSourceType.md
+  - docs/models/components/RefundStatus.md
   - docs/models/components/Refunds.md
   - docs/models/components/ReimbursementFee.md
   - docs/models/components/ReturnedManagedFee.md
@@ -257,69 +246,71 @@ generatedFiles:
   - docs/models/components/Review.md
   - docs/models/components/RouteCreateRequest.md
   - docs/models/components/RouteCreateRequestDestination.md
-  - docs/models/components/RouteCreateRequestType.md
   - docs/models/components/RouteCreateResponse.md
   - docs/models/components/RouteCreateResponseDestination.md
   - docs/models/components/RouteCreateResponseLinks.md
-  - docs/models/components/RouteCreateResponseType.md
+  - docs/models/components/RouteDestinationType.md
+  - docs/models/components/RouteDestinationTypeResponse.md
   - docs/models/components/RouteGetResponse.md
   - docs/models/components/RouteGetResponseDestination.md
   - docs/models/components/RouteGetResponseLinks.md
-  - docs/models/components/RouteGetResponseType.md
   - docs/models/components/RoutingReversals.md
   - docs/models/components/SalesInvoiceDiscount.md
   - docs/models/components/SalesInvoiceDiscountResponse.md
-  - docs/models/components/SalesInvoiceDiscountResponseType.md
   - docs/models/components/SalesInvoiceDiscountType.md
+  - docs/models/components/SalesInvoiceDiscountTypeResponse.md
   - docs/models/components/SalesInvoiceEmailDetails.md
   - docs/models/components/SalesInvoiceLineItem.md
   - docs/models/components/SalesInvoiceLineItemResponse.md
   - docs/models/components/SalesInvoicePaymentDetails.md
   - docs/models/components/SalesInvoicePaymentDetailsResponse.md
-  - docs/models/components/SalesInvoicePaymentDetailsResponseSource.md
+  - docs/models/components/SalesInvoicePaymentDetailsSource.md
+  - docs/models/components/SalesInvoicePaymentDetailsSourceResponse.md
+  - docs/models/components/SalesInvoicePaymentTerm.md
+  - docs/models/components/SalesInvoicePaymentTermResponse.md
   - docs/models/components/SalesInvoiceRecipient.md
   - docs/models/components/SalesInvoiceRecipientLocale.md
+  - docs/models/components/SalesInvoiceRecipientLocaleResponse.md
   - docs/models/components/SalesInvoiceRecipientResponse.md
-  - docs/models/components/SalesInvoiceRecipientResponseLocale.md
-  - docs/models/components/SalesInvoiceRecipientResponseType.md
   - docs/models/components/SalesInvoiceRecipientType.md
+  - docs/models/components/SalesInvoiceRecipientTypeResponse.md
+  - docs/models/components/SalesInvoiceStatus.md
+  - docs/models/components/SalesInvoiceStatusResponse.md
+  - docs/models/components/SalesInvoiceVatMode.md
+  - docs/models/components/SalesInvoiceVatModeResponse.md
+  - docs/models/components/SalesInvoiceVatScheme.md
+  - docs/models/components/SalesInvoiceVatSchemeResponse.md
   - docs/models/components/Security.md
-  - docs/models/components/SellerProtection.md
   - docs/models/components/SequenceType.md
   - docs/models/components/SequenceTypeResponse.md
+  - docs/models/components/SettlementStatus.md
   - docs/models/components/Source.md
   - docs/models/components/SplitPayment.md
-  - docs/models/components/Status.md
   - docs/models/components/StatusReason.md
   - docs/models/components/SubGroup.md
   - docs/models/components/SubTotals.md
+  - docs/models/components/SubscriptionMethod.md
+  - docs/models/components/SubscriptionMethodResponse.md
   - docs/models/components/SubscriptionRequest.md
   - docs/models/components/SubscriptionRequestApplicationFee.md
-  - docs/models/components/SubscriptionRequestMethod.md
   - docs/models/components/SubscriptionResponse.md
   - docs/models/components/SubscriptionResponseApplicationFee.md
   - docs/models/components/SubscriptionResponseLinks.md
-  - docs/models/components/SubscriptionResponseMethod.md
-  - docs/models/components/SubscriptionResponseStatus.md
+  - docs/models/components/SubscriptionStatus.md
+  - docs/models/components/TerminalBrand.md
   - docs/models/components/TerminalModel.md
+  - docs/models/components/TerminalStatus.md
   - docs/models/components/Topups.md
   - docs/models/components/Totals.md
   - docs/models/components/TransactionType.md
   - docs/models/components/TransferDestination.md
-  - docs/models/components/TransferFrequency.md
   - docs/models/components/Transfers.md
-  - docs/models/components/Type.md
   - docs/models/components/UnauthorizedDirectDebit.md
   - docs/models/components/UpdateValuesSalesInvoice.md
-  - docs/models/components/UpdateValuesSalesInvoicePaymentTerm.md
-  - docs/models/components/UpdateValuesSalesInvoiceStatus.md
   - docs/models/components/Url.md
   - docs/models/components/UrlNullable.md
-  - docs/models/components/VatMode.md
-  - docs/models/components/VatRegulation.md
-  - docs/models/components/VatScheme.md
-  - docs/models/components/Wallet.md
   - docs/models/components/WebhookEventTypes.md
+  - docs/models/components/WebhookStatus.md
   - docs/models/errors/Documentation.md
   - docs/models/errors/ErrorResponse.md
   - docs/models/errors/Links.md
@@ -694,8 +685,15 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/AmountNullable.java
   - src/main/java/com/mollie/mollie/models/components/ApplicationFee.java
   - src/main/java/com/mollie/mollie/models/components/AvailableBalance.java
-  - src/main/java/com/mollie/mollie/models/components/Brand.java
+  - src/main/java/com/mollie/mollie/models/components/BalanceReportGrouping.java
+  - src/main/java/com/mollie/mollie/models/components/BalanceStatus.java
+  - src/main/java/com/mollie/mollie/models/components/BalanceTransactionType.java
+  - src/main/java/com/mollie/mollie/models/components/BalanceTransferDestinationType.java
+  - src/main/java/com/mollie/mollie/models/components/BalanceTransferFrequency.java
   - src/main/java/com/mollie/mollie/models/components/CanceledOutgoingTransfer.java
+  - src/main/java/com/mollie/mollie/models/components/CapabilityRequirementStatus.java
+  - src/main/java/com/mollie/mollie/models/components/CapabilityStatus.java
+  - src/main/java/com/mollie/mollie/models/components/CapabilityStatusReason.java
   - src/main/java/com/mollie/mollie/models/components/Capital.java
   - src/main/java/com/mollie/mollie/models/components/Capture.java
   - src/main/java/com/mollie/mollie/models/components/CaptureCommision.java
@@ -703,17 +701,11 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/CaptureModeResponse.java
   - src/main/java/com/mollie/mollie/models/components/CaptureResponse.java
   - src/main/java/com/mollie/mollie/models/components/CaptureResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/components/CaptureResponseStatus.java
   - src/main/java/com/mollie/mollie/models/components/CaptureRollingReserveRelease.java
+  - src/main/java/com/mollie/mollie/models/components/CaptureStatus.java
   - src/main/java/com/mollie/mollie/models/components/CardAudience.java
-  - src/main/java/com/mollie/mollie/models/components/CardAudition.java
-  - src/main/java/com/mollie/mollie/models/components/CardFunding.java
   - src/main/java/com/mollie/mollie/models/components/CardIssuer.java
-  - src/main/java/com/mollie/mollie/models/components/CardLabel.java
-  - src/main/java/com/mollie/mollie/models/components/CardReadMethod.java
   - src/main/java/com/mollie/mollie/models/components/CardRegion.java
-  - src/main/java/com/mollie/mollie/models/components/CardSecurity.java
-  - src/main/java/com/mollie/mollie/models/components/CardVerificationMethod.java
   - src/main/java/com/mollie/mollie/models/components/Categories.java
   - src/main/java/com/mollie/mollie/models/components/Chargeback.java
   - src/main/java/com/mollie/mollie/models/components/ChargebackCompensation.java
@@ -733,7 +725,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/Corrections.java
   - src/main/java/com/mollie/mollie/models/components/CreateWebhook.java
   - src/main/java/com/mollie/mollie/models/components/CreateWebhookLinks.java
-  - src/main/java/com/mollie/mollie/models/components/CreateWebhookStatus.java
   - src/main/java/com/mollie/mollie/models/components/Currencies.java
   - src/main/java/com/mollie/mollie/models/components/CustomerResponse.java
   - src/main/java/com/mollie/mollie/models/components/CustomerResponseLinks.java
@@ -748,13 +739,9 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/EntityBalanceReportLinks.java
   - src/main/java/com/mollie/mollie/models/components/EntityBalanceTransaction.java
   - src/main/java/com/mollie/mollie/models/components/EntityBalanceTransactionApplicationFee.java
-  - src/main/java/com/mollie/mollie/models/components/EntityBalanceType.java
   - src/main/java/com/mollie/mollie/models/components/EntityCapability.java
   - src/main/java/com/mollie/mollie/models/components/EntityCapabilityRequirement.java
   - src/main/java/com/mollie/mollie/models/components/EntityCapabilityRequirementLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntityCapabilityRequirementStatus.java
-  - src/main/java/com/mollie/mollie/models/components/EntityCapabilityStatus.java
-  - src/main/java/com/mollie/mollie/models/components/EntityCapabilityStatusReason.java
   - src/main/java/com/mollie/mollie/models/components/EntityCapture.java
   - src/main/java/com/mollie/mollie/models/components/EntityChargeback.java
   - src/main/java/com/mollie/mollie/models/components/EntityChargebackLinks.java
@@ -768,22 +755,17 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/EntityInvoice.java
   - src/main/java/com/mollie/mollie/models/components/EntityInvoiceLines.java
   - src/main/java/com/mollie/mollie/models/components/EntityInvoiceLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntityInvoiceStatus.java
   - src/main/java/com/mollie/mollie/models/components/EntityMandate.java
-  - src/main/java/com/mollie/mollie/models/components/EntityMandateMethod.java
   - src/main/java/com/mollie/mollie/models/components/EntityMethod.java
   - src/main/java/com/mollie/mollie/models/components/EntityMethodAll.java
   - src/main/java/com/mollie/mollie/models/components/EntityMethodAllImage.java
   - src/main/java/com/mollie/mollie/models/components/EntityMethodAllIssuers.java
   - src/main/java/com/mollie/mollie/models/components/EntityMethodAllIssuersImage.java
   - src/main/java/com/mollie/mollie/models/components/EntityMethodAllLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntityMethodAllStatus.java
   - src/main/java/com/mollie/mollie/models/components/EntityMethodImage.java
   - src/main/java/com/mollie/mollie/models/components/EntityMethodLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntityMethodStatus.java
   - src/main/java/com/mollie/mollie/models/components/EntityOnboardingStatus.java
   - src/main/java/com/mollie/mollie/models/components/EntityOnboardingStatusLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntityOnboardingStatusStatus.java
   - src/main/java/com/mollie/mollie/models/components/EntityOrganization.java
   - src/main/java/com/mollie/mollie/models/components/EntityOrganizationLinks.java
   - src/main/java/com/mollie/mollie/models/components/EntityPaymentRoute.java
@@ -791,57 +773,38 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/EntityPaymentRouteLinks.java
   - src/main/java/com/mollie/mollie/models/components/EntityPaymentRouteResponse.java
   - src/main/java/com/mollie/mollie/models/components/EntityPaymentRouteResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntityPaymentRouteResponseType.java
-  - src/main/java/com/mollie/mollie/models/components/EntityPaymentRouteType.java
   - src/main/java/com/mollie/mollie/models/components/EntityPermission.java
   - src/main/java/com/mollie/mollie/models/components/EntityPermissionLinks.java
   - src/main/java/com/mollie/mollie/models/components/EntityProfile.java
   - src/main/java/com/mollie/mollie/models/components/EntityProfileResponse.java
   - src/main/java/com/mollie/mollie/models/components/EntityProfileResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntityProfileResponseReviewStatus.java
-  - src/main/java/com/mollie/mollie/models/components/EntityProfileResponseStatus.java
   - src/main/java/com/mollie/mollie/models/components/EntityRefund.java
   - src/main/java/com/mollie/mollie/models/components/EntityRefundExternalReference.java
   - src/main/java/com/mollie/mollie/models/components/EntityRefundResponse.java
   - src/main/java/com/mollie/mollie/models/components/EntityRefundResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntityRefundResponseRoutingReversals.java
-  - src/main/java/com/mollie/mollie/models/components/EntityRefundResponseSource.java
-  - src/main/java/com/mollie/mollie/models/components/EntityRefundResponseStatus.java
-  - src/main/java/com/mollie/mollie/models/components/EntityRefundResponseType.java
-  - src/main/java/com/mollie/mollie/models/components/EntityRefundRoutingReversalsType.java
+  - src/main/java/com/mollie/mollie/models/components/EntityRefundRoutingReversals.java
   - src/main/java/com/mollie/mollie/models/components/EntityRefundSource.java
-  - src/main/java/com/mollie/mollie/models/components/EntityRefundType.java
   - src/main/java/com/mollie/mollie/models/components/EntitySalesInvoice.java
   - src/main/java/com/mollie/mollie/models/components/EntitySalesInvoiceMetadata.java
   - src/main/java/com/mollie/mollie/models/components/EntitySalesInvoiceResponse.java
   - src/main/java/com/mollie/mollie/models/components/EntitySalesInvoiceResponseLinks.java
   - src/main/java/com/mollie/mollie/models/components/EntitySalesInvoiceResponseMetadata.java
-  - src/main/java/com/mollie/mollie/models/components/EntitySalesInvoiceResponsePaymentTerm.java
-  - src/main/java/com/mollie/mollie/models/components/EntitySalesInvoiceResponseStatus.java
-  - src/main/java/com/mollie/mollie/models/components/EntitySalesInvoiceResponseVatMode.java
-  - src/main/java/com/mollie/mollie/models/components/EntitySalesInvoiceResponseVatScheme.java
-  - src/main/java/com/mollie/mollie/models/components/EntitySalesInvoiceStatus.java
   - src/main/java/com/mollie/mollie/models/components/EntitySettlement.java
   - src/main/java/com/mollie/mollie/models/components/EntitySettlementLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntitySettlementStatus.java
   - src/main/java/com/mollie/mollie/models/components/EntityTerminal.java
   - src/main/java/com/mollie/mollie/models/components/EntityTerminalLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntityTerminalStatus.java
   - src/main/java/com/mollie/mollie/models/components/EntityWebhook.java
   - src/main/java/com/mollie/mollie/models/components/EntityWebhookEvent.java
   - src/main/java/com/mollie/mollie/models/components/EntityWebhookEventLinks.java
   - src/main/java/com/mollie/mollie/models/components/EntityWebhookLinks.java
-  - src/main/java/com/mollie/mollie/models/components/EntityWebhookStatus.java
   - src/main/java/com/mollie/mollie/models/components/ExternalReference.java
   - src/main/java/com/mollie/mollie/models/components/FailedPayment.java
   - src/main/java/com/mollie/mollie/models/components/FailedPaymentFee.java
-  - src/main/java/com/mollie/mollie/models/components/FailureReason.java
   - src/main/java/com/mollie/mollie/models/components/FeePrepayments.java
-  - src/main/java/com/mollie/mollie/models/components/FeeRegion.java
   - src/main/java/com/mollie/mollie/models/components/FeeType.java
-  - src/main/java/com/mollie/mollie/models/components/Grouping.java
   - src/main/java/com/mollie/mollie/models/components/Image.java
   - src/main/java/com/mollie/mollie/models/components/InvoiceCompensation.java
+  - src/main/java/com/mollie/mollie/models/components/InvoiceStatus.java
   - src/main/java/com/mollie/mollie/models/components/Issuers.java
   - src/main/java/com/mollie/mollie/models/components/Lines.java
   - src/main/java/com/mollie/mollie/models/components/Links.java
@@ -850,30 +813,44 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/Locale.java
   - src/main/java/com/mollie/mollie/models/components/LocaleResponse.java
   - src/main/java/com/mollie/mollie/models/components/ManagedFee.java
+  - src/main/java/com/mollie/mollie/models/components/MandateDetailsCardLabelResponse.java
+  - src/main/java/com/mollie/mollie/models/components/MandateMethod.java
+  - src/main/java/com/mollie/mollie/models/components/MandateMethodResponse.java
   - src/main/java/com/mollie/mollie/models/components/MandateResponse.java
-  - src/main/java/com/mollie/mollie/models/components/MandateResponseCardLabel.java
   - src/main/java/com/mollie/mollie/models/components/MandateResponseDetails.java
   - src/main/java/com/mollie/mollie/models/components/MandateResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/components/MandateResponseMethod.java
-  - src/main/java/com/mollie/mollie/models/components/MandateResponseStatus.java
+  - src/main/java/com/mollie/mollie/models/components/MandateStatus.java
   - src/main/java/com/mollie/mollie/models/components/Metadata.java
   - src/main/java/com/mollie/mollie/models/components/Method.java
   - src/main/java/com/mollie/mollie/models/components/MethodResponse.java
+  - src/main/java/com/mollie/mollie/models/components/MethodStatus.java
   - src/main/java/com/mollie/mollie/models/components/Mode.java
+  - src/main/java/com/mollie/mollie/models/components/OnboardingStatus.java
   - src/main/java/com/mollie/mollie/models/components/Open.java
   - src/main/java/com/mollie/mollie/models/components/OrderLineCategories.java
+  - src/main/java/com/mollie/mollie/models/components/OrganizationVatRegulation.java
   - src/main/java/com/mollie/mollie/models/components/OutgoingTransfer.java
   - src/main/java/com/mollie/mollie/models/components/Owner.java
   - src/main/java/com/mollie/mollie/models/components/ParameterLocale.java
   - src/main/java/com/mollie/mollie/models/components/Payment.java
   - src/main/java/com/mollie/mollie/models/components/PaymentAddress.java
   - src/main/java/com/mollie/mollie/models/components/PaymentCommission.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentDetailsCardAuditionResponse.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentDetailsCardFundingResponse.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentDetailsCardLabelResponse.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentDetailsCardSecurityResponse.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentDetailsFailureReasonResponse.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentDetailsFeeRegionResponse.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentDetailsReceiptCardReadMethodResponse.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentDetailsReceiptCardVerificationMethodResponse.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentDetailsSellerProtectionResponse.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentDetailsWalletResponse.java
   - src/main/java/com/mollie/mollie/models/components/PaymentFee.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLineItem.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLineItemCategories.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLineItemResponse.java
-  - src/main/java/com/mollie/mollie/models/components/PaymentLineItemResponseType.java
-  - src/main/java/com/mollie/mollie/models/components/PaymentLineItemType.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentLineType.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentLineTypeResponse.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLinkResponse.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLinkResponseApplicationFee.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLinkResponseLinks.java
@@ -884,13 +861,10 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/PaymentRequestApplicationFee.java
   - src/main/java/com/mollie/mollie/models/components/PaymentRequestCategories.java
   - src/main/java/com/mollie/mollie/models/components/PaymentRequestLines.java
-  - src/main/java/com/mollie/mollie/models/components/PaymentRequestType.java
   - src/main/java/com/mollie/mollie/models/components/PaymentResponse.java
   - src/main/java/com/mollie/mollie/models/components/PaymentResponseCategories.java
   - src/main/java/com/mollie/mollie/models/components/PaymentResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/components/PaymentResponseStatus.java
-  - src/main/java/com/mollie/mollie/models/components/PaymentResponseType.java
-  - src/main/java/com/mollie/mollie/models/components/PaymentTerm.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentStatus.java
   - src/main/java/com/mollie/mollie/models/components/Payments.java
   - src/main/java/com/mollie/mollie/models/components/PendingBalance.java
   - src/main/java/com/mollie/mollie/models/components/PlatformPaymentChargeback.java
@@ -898,12 +872,18 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/PostPaymentSplitPayment.java
   - src/main/java/com/mollie/mollie/models/components/PrepaymentPartType.java
   - src/main/java/com/mollie/mollie/models/components/Pricing.java
+  - src/main/java/com/mollie/mollie/models/components/ProfileReviewStatusResponse.java
+  - src/main/java/com/mollie/mollie/models/components/ProfileStatus.java
   - src/main/java/com/mollie/mollie/models/components/QrCode.java
   - src/main/java/com/mollie/mollie/models/components/Reason.java
   - src/main/java/com/mollie/mollie/models/components/Receipt.java
   - src/main/java/com/mollie/mollie/models/components/RecurringLineItem.java
   - src/main/java/com/mollie/mollie/models/components/Refund.java
   - src/main/java/com/mollie/mollie/models/components/RefundCompensation.java
+  - src/main/java/com/mollie/mollie/models/components/RefundExternalReferenceType.java
+  - src/main/java/com/mollie/mollie/models/components/RefundExternalReferenceTypeResponse.java
+  - src/main/java/com/mollie/mollie/models/components/RefundRoutingReversalsSourceType.java
+  - src/main/java/com/mollie/mollie/models/components/RefundStatus.java
   - src/main/java/com/mollie/mollie/models/components/Refunds.java
   - src/main/java/com/mollie/mollie/models/components/ReimbursementFee.java
   - src/main/java/com/mollie/mollie/models/components/ReturnedManagedFee.java
@@ -916,69 +896,71 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/Review.java
   - src/main/java/com/mollie/mollie/models/components/RouteCreateRequest.java
   - src/main/java/com/mollie/mollie/models/components/RouteCreateRequestDestination.java
-  - src/main/java/com/mollie/mollie/models/components/RouteCreateRequestType.java
   - src/main/java/com/mollie/mollie/models/components/RouteCreateResponse.java
   - src/main/java/com/mollie/mollie/models/components/RouteCreateResponseDestination.java
   - src/main/java/com/mollie/mollie/models/components/RouteCreateResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/components/RouteCreateResponseType.java
+  - src/main/java/com/mollie/mollie/models/components/RouteDestinationType.java
+  - src/main/java/com/mollie/mollie/models/components/RouteDestinationTypeResponse.java
   - src/main/java/com/mollie/mollie/models/components/RouteGetResponse.java
   - src/main/java/com/mollie/mollie/models/components/RouteGetResponseDestination.java
   - src/main/java/com/mollie/mollie/models/components/RouteGetResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/components/RouteGetResponseType.java
   - src/main/java/com/mollie/mollie/models/components/RoutingReversals.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoiceDiscount.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoiceDiscountResponse.java
-  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceDiscountResponseType.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoiceDiscountType.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceDiscountTypeResponse.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoiceEmailDetails.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoiceLineItem.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoiceLineItemResponse.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoicePaymentDetails.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoicePaymentDetailsResponse.java
-  - src/main/java/com/mollie/mollie/models/components/SalesInvoicePaymentDetailsResponseSource.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoicePaymentDetailsSource.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoicePaymentDetailsSourceResponse.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoicePaymentTerm.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoicePaymentTermResponse.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoiceRecipient.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoiceRecipientLocale.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceRecipientLocaleResponse.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoiceRecipientResponse.java
-  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceRecipientResponseLocale.java
-  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceRecipientResponseType.java
   - src/main/java/com/mollie/mollie/models/components/SalesInvoiceRecipientType.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceRecipientTypeResponse.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceStatus.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceStatusResponse.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceVatMode.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceVatModeResponse.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceVatScheme.java
+  - src/main/java/com/mollie/mollie/models/components/SalesInvoiceVatSchemeResponse.java
   - src/main/java/com/mollie/mollie/models/components/Security.java
-  - src/main/java/com/mollie/mollie/models/components/SellerProtection.java
   - src/main/java/com/mollie/mollie/models/components/SequenceType.java
   - src/main/java/com/mollie/mollie/models/components/SequenceTypeResponse.java
+  - src/main/java/com/mollie/mollie/models/components/SettlementStatus.java
   - src/main/java/com/mollie/mollie/models/components/Source.java
   - src/main/java/com/mollie/mollie/models/components/SplitPayment.java
-  - src/main/java/com/mollie/mollie/models/components/Status.java
   - src/main/java/com/mollie/mollie/models/components/StatusReason.java
   - src/main/java/com/mollie/mollie/models/components/SubGroup.java
   - src/main/java/com/mollie/mollie/models/components/SubTotals.java
+  - src/main/java/com/mollie/mollie/models/components/SubscriptionMethod.java
+  - src/main/java/com/mollie/mollie/models/components/SubscriptionMethodResponse.java
   - src/main/java/com/mollie/mollie/models/components/SubscriptionRequest.java
   - src/main/java/com/mollie/mollie/models/components/SubscriptionRequestApplicationFee.java
-  - src/main/java/com/mollie/mollie/models/components/SubscriptionRequestMethod.java
   - src/main/java/com/mollie/mollie/models/components/SubscriptionResponse.java
   - src/main/java/com/mollie/mollie/models/components/SubscriptionResponseApplicationFee.java
   - src/main/java/com/mollie/mollie/models/components/SubscriptionResponseLinks.java
-  - src/main/java/com/mollie/mollie/models/components/SubscriptionResponseMethod.java
-  - src/main/java/com/mollie/mollie/models/components/SubscriptionResponseStatus.java
+  - src/main/java/com/mollie/mollie/models/components/SubscriptionStatus.java
+  - src/main/java/com/mollie/mollie/models/components/TerminalBrand.java
   - src/main/java/com/mollie/mollie/models/components/TerminalModel.java
+  - src/main/java/com/mollie/mollie/models/components/TerminalStatus.java
   - src/main/java/com/mollie/mollie/models/components/Topups.java
   - src/main/java/com/mollie/mollie/models/components/Totals.java
   - src/main/java/com/mollie/mollie/models/components/TransactionType.java
   - src/main/java/com/mollie/mollie/models/components/TransferDestination.java
-  - src/main/java/com/mollie/mollie/models/components/TransferFrequency.java
   - src/main/java/com/mollie/mollie/models/components/Transfers.java
-  - src/main/java/com/mollie/mollie/models/components/Type.java
   - src/main/java/com/mollie/mollie/models/components/UnauthorizedDirectDebit.java
   - src/main/java/com/mollie/mollie/models/components/UpdateValuesSalesInvoice.java
-  - src/main/java/com/mollie/mollie/models/components/UpdateValuesSalesInvoicePaymentTerm.java
-  - src/main/java/com/mollie/mollie/models/components/UpdateValuesSalesInvoiceStatus.java
   - src/main/java/com/mollie/mollie/models/components/Url.java
   - src/main/java/com/mollie/mollie/models/components/UrlNullable.java
-  - src/main/java/com/mollie/mollie/models/components/VatMode.java
-  - src/main/java/com/mollie/mollie/models/components/VatRegulation.java
-  - src/main/java/com/mollie/mollie/models/components/VatScheme.java
-  - src/main/java/com/mollie/mollie/models/components/Wallet.java
   - src/main/java/com/mollie/mollie/models/components/WebhookEventTypes.java
+  - src/main/java/com/mollie/mollie/models/components/WebhookStatus.java
   - src/main/java/com/mollie/mollie/models/errors/APIException.java
   - src/main/java/com/mollie/mollie/models/errors/AuthException.java
   - src/main/java/com/mollie/mollie/models/errors/Documentation.java
@@ -2273,7 +2255,7 @@ examples:
         path:
           paymentId: "tr_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "re_5B8cwPMGnU", "description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
+        application/json: {"id": "re_5B8cwPMGnU", "description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "status": "queued", "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "refund", "id": "re_4qqhO89gsT", "mode": "live", "description": "Order", "amount": {"currency": "EUR", "value": "5.95"}, "metadata": "{\"bookkeeping_id\":12345}", "paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "status": "pending", "createdAt": "2023-03-14T17:09:02.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -2282,7 +2264,7 @@ examples:
         path:
           paymentId: "tr_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "re_5B8cwPMGnU", "description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
+        application/json: {"id": "re_5B8cwPMGnU", "description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "status": "queued", "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "refund", "id": "re_GKQYmNNAfL", "mode": "live", "description": "Refund description of example payment", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "-10.00"}, "metadata": null, "paymentId": "tr_aZm7dgj5zs", "status": "pending", "createdAt": "2023-02-06T15:55:57+00:00", "routingReversals": [{"amount": {"currency": "EUR", "value": "7.50"}, "source": {"organizationId": "org_7049691"}}], "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_aZm7dgj5zs?testmode=true", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -2304,7 +2286,7 @@ examples:
         path:
           paymentId: "tr_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "re_5B8cwPMGnU", "description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
+        application/json: {"id": "re_5B8cwPMGnU", "description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "status": "queued", "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "refund", "id": "re_5B8cwPMGnU", "mode": "live", "description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "status": "queued", "createdAt": "2024-03-20T09:13:37.0Z", "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"organizationId": "org_1234567"}}], "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
@@ -2721,7 +2703,7 @@ examples:
         path:
           paymentId: "tr_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "cpt_vytxeTZskVKR7C7WgdSP3d", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "paymentId": "tr_5B8cwPMGnU", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "settlementId": "stl_5B8cwPMGnU"}
+        application/json: {"id": "cpt_vytxeTZskVKR7C7WgdSP3d", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "status": "succeeded", "paymentId": "tr_5B8cwPMGnU", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "settlementId": "stl_5B8cwPMGnU"}
       responses:
         "201":
           application/hal+json: {"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "live", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "35.95"}, "status": "pending", "metadata": "{\"bookkeeping_id\":12345}", "paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "createdAt": "2023-08-02T09:29:56.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -2730,7 +2712,7 @@ examples:
         path:
           paymentId: "tr_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "cpt_vytxeTZskVKR7C7WgdSP3d", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "paymentId": "tr_5B8cwPMGnU", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "settlementId": "stl_5B8cwPMGnU"}
+        application/json: {"id": "cpt_vytxeTZskVKR7C7WgdSP3d", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "status": "succeeded", "paymentId": "tr_5B8cwPMGnU", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "settlementId": "stl_5B8cwPMGnU"}
       responses:
         "201":
           application/hal+json: {"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "test", "amount": {"currency": "EUR", "value": "467.92"}, "settlementAmount": {"currency": "EUR", "value": "467.92"}, "status": "pending", "paymentId": "tr_V9kqkGtyUH", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "createdAt": "2021-06-03T11:50:58+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_V9kqkGtyUH", "type": "application/hal+json"}, "shipment": {"href": "https://api.mollie.com/v2/orders/ord_uvpptr/shipments/shp_5x4xQJDWGNcY3tKGL7X5J", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -2750,7 +2732,7 @@ examples:
         path:
           paymentId: "tr_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "cpt_vytxeTZskVKR7C7WgdSP3d", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "paymentId": "tr_5B8cwPMGnU", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "settlementId": "stl_5B8cwPMGnU"}
+        application/json: {"id": "cpt_vytxeTZskVKR7C7WgdSP3d", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "status": "succeeded", "paymentId": "tr_5B8cwPMGnU", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "settlementId": "stl_5B8cwPMGnU"}
       responses:
         "201":
           application/hal+json: {"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "live", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "settlementAmount": {"currency": "EUR", "value": "10.00"}, "status": "succeeded", "paymentId": "tr_5B8cwPMGnU", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "settlementId": "stl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}, "shipment": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
@@ -3591,7 +3573,7 @@ examples:
         path:
           customerId: "cst_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "mdt_5B8cwPMGnU", "method": "directdebit", "consumerName": "John Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "BANKBIC", "consumerEmail": "example@email.com", "signatureDate": "2025-01-01", "mandateReference": "ID-1023892", "paypalBillingAgreementId": "B-12A34567B8901234CD", "payPalVaultId": "8kk8451t", "customerId": "cst_5B8cwPMGnU", "testmode": false}
+        application/json: {"id": "mdt_5B8cwPMGnU", "method": "directdebit", "consumerName": "John Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "BANKBIC", "consumerEmail": "example@email.com", "signatureDate": "2025-01-01", "mandateReference": "ID-1023892", "paypalBillingAgreementId": "B-12A34567B8901234CD", "payPalVaultId": "8kk8451t", "status": "valid", "customerId": "cst_5B8cwPMGnU", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "mandate", "id": "mdt_h3gAaD5zP", "mode": "live", "method": "directdebit", "details": {"consumerName": "John Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "INGBNL2A"}, "signatureDate": "2023-05-07", "mandateReference": "EXAMPLE-CORP-MD13804", "status": "valid", "customerId": "cst_4qqhO89gsT", "createdAt": "2023-05-07T10:49:08.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_4qqhO89gsT", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -3600,7 +3582,7 @@ examples:
         path:
           customerId: "cst_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "mdt_5B8cwPMGnU", "method": "directdebit", "consumerName": "John Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "BANKBIC", "consumerEmail": "example@email.com", "signatureDate": "2025-01-01", "mandateReference": "ID-1023892", "paypalBillingAgreementId": "B-12A34567B8901234CD", "payPalVaultId": "8kk8451t", "customerId": "cst_5B8cwPMGnU", "testmode": false}
+        application/json: {"id": "mdt_5B8cwPMGnU", "method": "directdebit", "consumerName": "John Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "BANKBIC", "consumerEmail": "example@email.com", "signatureDate": "2025-01-01", "mandateReference": "ID-1023892", "paypalBillingAgreementId": "B-12A34567B8901234CD", "payPalVaultId": "8kk8451t", "status": "valid", "customerId": "cst_5B8cwPMGnU", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "mandate", "id": "mdt_gDSN2rx3My", "mode": "test", "method": "directdebit", "details": {"consumerName": "Jane Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "INGBNL2A"}, "signatureDate": "2021-12-31", "mandateReference": "YOUR-COMPANY-MD13804", "status": "valid", "customerId": "cst_tKt44u85MM", "createdAt": "2022-01-03T15:42:11+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_tKt44u85MM", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -3618,7 +3600,7 @@ examples:
         path:
           customerId: "cst_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "mdt_5B8cwPMGnU", "method": "directdebit", "consumerName": "John Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "BANKBIC", "consumerEmail": "example@email.com", "signatureDate": "2025-01-01", "mandateReference": "ID-1023892", "paypalBillingAgreementId": "B-12A34567B8901234CD", "payPalVaultId": "8kk8451t", "customerId": "cst_5B8cwPMGnU", "testmode": false}
+        application/json: {"id": "mdt_5B8cwPMGnU", "method": "directdebit", "consumerName": "John Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "BANKBIC", "consumerEmail": "example@email.com", "signatureDate": "2025-01-01", "mandateReference": "ID-1023892", "paypalBillingAgreementId": "B-12A34567B8901234CD", "payPalVaultId": "8kk8451t", "status": "valid", "customerId": "cst_5B8cwPMGnU", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "mandate", "id": "mdt_5B8cwPMGnU", "mode": "live", "method": "directdebit", "details": {"consumerName": "John Doe", "consumerAccount": "NL55INGB0000000000", "consumerBic": "BANKBIC", "cardHolder": "John Doe", "cardNumber": "3240", "cardExpiryDate": "2025-01-01", "cardLabel": "Visa", "cardFingerprint": "d3290e932k02f"}, "signatureDate": "2025-01-01", "mandateReference": "ID-1023892", "status": "valid", "customerId": "cst_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
@@ -3733,7 +3715,7 @@ examples:
         path:
           customerId: "cst_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "sub_5B8cwPMGnU", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
+        application/json: {"id": "sub_5B8cwPMGnU", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "subscription", "id": "sub_rVKGtNd6s3", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "25.00"}, "times": 4, "timesRemaining": 4, "interval": "3 months", "startDate": "2023-06-01", "nextPaymentDate": "2023-09-01", "description": "Quarterly payment", "method": null, "metadata": null, "webhookUrl": "https://webshop.example.org/payments/webhook", "customerId": "cst_stTC2WHAuS", "mandateId": "mdt_38HS4fsS", "createdAt": "2023-04-06T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://api.mollie.com/v2/customers/cst_stTC2WHAuS", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -3751,7 +3733,7 @@ examples:
         path:
           customerId: "cst_5B8cwPMGnU"
       requestBody:
-        application/json: {"id": "sub_5B8cwPMGnU", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
+        application/json: {"id": "sub_5B8cwPMGnU", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "interval": "2 days", "startDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "subscription", "id": "sub_5B8cwPMGnU", "mode": "live", "status": "active", "amount": {"currency": "EUR", "value": "10.00"}, "times": 6, "timesRemaining": 5, "interval": "2 days", "startDate": "2025-01-01", "nextPaymentDate": "2025-01-01", "description": "Subscription of streaming channel", "method": "paypal", "applicationFee": {"amount": {"currency": "EUR", "value": "10.00"}, "description": "Platform fee"}, "webhookUrl": "https://example.com/webhook", "customerId": "cst_5B8cwPMGnU", "mandateId": "mdt_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "canceledAt": "2025-01-01T13:10:19.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "customer": {"href": "https://...", "type": "application/hal+json"}, "mandate": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
@@ -4145,7 +4127,7 @@ examples:
           testmode: false
       responses:
         "200":
-          application/hal+json: {"resource": "organization", "locale": "en_US", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "organization", "locale": "en_US", "vatRegulation": "dutch", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   get-current-organization:
@@ -4161,13 +4143,13 @@ examples:
   create-profile:
     create-profile-201-1:
       requestBody:
-        application/json: {"name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "description": "My website description", "countriesOfActivity": ["NL", "GB"], "businessCategory": "OTHER_MERCHANDISE"}
+        application/json: {"name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "description": "My website description", "countriesOfActivity": ["NL", "GB"], "businessCategory": "OTHER_MERCHANDISE", "status": "unverified"}
       responses:
         "201":
           application/hal+json: {"resource": "profile", "id": "pfl_QkEhN94Ba", "mode": "live", "name": "My website name", "website": "https://shop.example.org", "email": "info@example.org", "phone": "+31208202070", "businessCategory": "OTHER_MERCHANDISE", "status": "verified", "review": {"status": "pending"}, "createdAt": "2023-03-20T09:28:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_123456789/settings/profiles/pfl_QkEhN94Ba", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     create-profile-201-2:
       requestBody:
-        application/json: {"name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "description": "My website description", "countriesOfActivity": ["NL", "GB"], "businessCategory": "OTHER_MERCHANDISE"}
+        application/json: {"name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "description": "My website description", "countriesOfActivity": ["NL", "GB"], "businessCategory": "OTHER_MERCHANDISE", "status": "unverified"}
       responses:
         "201":
           application/hal+json: {"resource": "profile", "id": "pfl_2q3RyuMGry", "mode": "live", "name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "businessCategory": "OTHER_MERCHANDISE", "status": "unverified", "review": {"status": "pending"}, "createdAt": "2022-01-19T12:30:22+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/settings/profiles/pfl_2q3RyuMGry", "type": "text/html"}, "chargebacks": {"href": "https://api.mollie.com/v2/chargebacks?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "methods": {"href": "https://api.mollie.com/v2/methods?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/payments?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/refunds?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "checkoutPreviewUrl": {"href": "https://www.mollie.com/checkout/preview/pfl_2q3RyuMGry", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -4179,7 +4161,7 @@ examples:
           application/hal+json: {"status": 422, "title": "Unprocessable Entity", "detail": "The 'website' field is missing", "field": "website", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
     speakeasy-default-create-profile:
       requestBody:
-        application/json: {"name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "description": "My website description", "countriesOfActivity": ["NL", "GB"], "businessCategory": "OTHER_MERCHANDISE"}
+        application/json: {"name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "description": "My website description", "countriesOfActivity": ["NL", "GB"], "businessCategory": "OTHER_MERCHANDISE", "status": "unverified"}
       responses:
         "201":
           application/hal+json: {"resource": "profile", "id": "pfl_QkEhN94Ba", "mode": "live", "name": "My website name", "website": "https://example.com", "email": "test@mollie.com", "phone": "+31208202070", "description": "My website description", "countriesOfActivity": ["NL", "GB"], "businessCategory": "OTHER_MERCHANDISE", "status": "unverified", "review": {"status": "pending"}, "createdAt": "2024-03-20T09:13:37.0Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://www.mollie.com/dashboard/org_7049691/settings/profiles/pfl_2q3RyuMGry", "type": "text/html"}, "chargebacks": {"href": "https://api.mollie.com/v2/chargebacks?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "methods": {"href": "https://api.mollie.com/v2/methods?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/payments?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/refunds?profileId=pfl_2q3RyuMGry", "type": "application/hal+json"}, "checkoutPreviewUrl": {"href": "https://www.mollie.com/checkout/preview/pfl_2q3RyuMGry", "type": "text/html"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -4432,7 +4414,7 @@ examples:
           embed: "organization"
       responses:
         "200":
-          application/hal+json: {"resource": "client", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "locale": "en_US", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": {"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}}}
+          application/hal+json: {"resource": "client", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "locale": "en_US", "vatRegulation": "dutch", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": {"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   create-client-link:
@@ -5364,7 +5346,7 @@ examples:
         path:
           id: "invoice_4Y0eZitmBnQ6IDoMqZQKh"
       requestBody:
-        application/json: {"testmode": false, "status": "paid", "memo": "An updated memo!", "paymentTerm": "30 days", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": {"subject": "Your invoice is available", "body": "Please find your invoice enclosed."}, "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": {"type": "amount", "value": "10.00"}}
+        application/json: {"testmode": false, "status": "draft", "memo": "An updated memo!", "paymentTerm": "30 days", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": {"subject": "Your invoice is available", "body": "Please find your invoice enclosed."}, "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": {"type": "amount", "value": "10.00"}}
       responses:
         "200":
           application/hal+json: {"resource": "sales-invoice", "id": "invoice_4Y0eZitmBnQ6IDoMqZQKh", "invoiceNumber": "INV-0000001", "status": "draft", "vatScheme": "standard", "vatMode": "exclusive", "memo": "This is a memo!", "paymentTerm": "30 days", "paymentDetails": {"source": "payment-link", "sourceReference": "pl_d9fQur83kFdhH8hIhaZfq"}, "emailDetails": {"subject": "Your invoice is available", "body": "Please find your invoice enclosed."}, "customerId": "cst_8wmqcHMN4U", "mandateId": "mdt_pWUnw6pkBN", "recipientIdentifier": "customer-xyz-0123", "recipient": {"type": "consumer", "title": "Mrs.", "givenName": "Jane", "familyName": "Doe", "organizationName": "Organization Corp.", "organizationNumber": "12345678", "vatNumber": "NL123456789B01", "email": "example@email.com", "phone": "+0123456789", "streetAndNumber": "Keizersgracht 126", "streetAdditional": "4th floor", "postalCode": "5678AB", "city": "Amsterdam", "region": "Noord-Holland", "country": "NL", "locale": "nl_NL"}, "lines": [{"description": "LEGO 4440 Forest Police Station", "quantity": 1, "vatRate": "21.00", "unitPrice": {"currency": "EUR", "value": "10.00"}, "discount": {"type": "amount", "value": "10.00"}}], "discount": null, "amountDue": {"currency": "EUR", "value": "10.00"}, "subtotalAmount": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}, "totalVatAmount": {"currency": "EUR", "value": "10.00"}, "discountedSubtotalAmount": {"currency": "EUR", "value": "10.00"}, "createdAt": "2024-03-20T09:13:37.0Z", "issuedAt": "2024-10-03T10:47:38+00:00", "paidAt": "2024-10-04T10:47:38+00:00", "dueAt": "2024-11-01T10:47:38+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "invoicePayment": {"href": "https://...", "type": "application/hal+json"}, "pdfLink": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
@@ -5568,4 +5550,4 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `client.payments.get()`:  `response.locale` **Changed** **Breaking** :warning:\n* `client.customers.list()`:  `response._embedded.customers.[].locale` **Changed** **Breaking** :warning:\n* `client.organizations.getCurrent()`:  `response.locale` **Changed** **Breaking** :warning:\n* `client.payments.update()`: \n  *  `requestbody.locale` **Changed**\n  *  `response.locale` **Changed** **Breaking** :warning:\n* `client.clients.get()`:  `response._embedded.organization.locale` **Changed** **Breaking** :warning:\n* `client.subscriptions.listPayments()`:  `response._embedded.payments.[].locale` **Changed** **Breaking** :warning:\n* `client.payments.create()`: \n  *  `request.payment-request.locale` **Changed**\n  *  `response.locale` **Changed** **Breaking** :warning:\n* `client.payments.list()`:  `response._embedded.payments.[].locale` **Changed** **Breaking** :warning:\n* `client.organizations.get()`:  `response.locale` **Changed** **Breaking** :warning:\n* `client.payments.cancel()`:  `response.locale` **Changed** **Breaking** :warning:\n* `client.clients.list()`:  `response._embedded.clients.[].Embedded.organization.locale` **Changed** **Breaking** :warning:\n* `client.paymentLinks.listPayments()`:  `response._embedded.payments.[].locale` **Changed** **Breaking** :warning:\n* `client.customers.create()`: \n  *  `request.locale` **Changed**\n  *  `response.locale` **Changed** **Breaking** :warning:\n* `client.settlements.listPayments()`:  `response._embedded.payments.[].locale` **Changed** **Breaking** :warning:\n* `client.customers.get()`:  `response.locale` **Changed** **Breaking** :warning:\n* `client.customers.update()`: \n  *  `request.entity-customer.locale` **Changed**\n  *  `response.locale` **Changed** **Breaking** :warning:\n* `client.customers.createPayment()`: \n  *  `request.payment-request.locale` **Changed**\n  *  `response.locale` **Changed** **Breaking** :warning:\n* `client.customers.listPayments()`:  `response._embedded.payments.[].locale` **Changed** **Breaking** :warning:\n* `client.clientLinks.create()`: \n  *  `request.owner.locale` **Changed**\n"
+releaseNotes: "## Java SDK Changes Detected:\n* `client.capabilities.list()`:  `response._embedded.capabilities.[].statusReason` **Changed** **Breaking** :warning:\n* `client.clients.list()`:  `response._embedded.clients.[].Embedded.capabilities.statusReason` **Changed** **Breaking** :warning:\n* `client.clients.get()`:  `response._embedded.capabilities.statusReason` **Changed** **Breaking** :warning:\n* `client.refunds.create()`: \n  *  `request.entity-refund.status` **Added** **Breaking** :warning:\n  *  `response.routingreversals.[].source.type` **Added**\n* `client.settlements.listRefunds()`:  `response._embedded.refunds.[].routingReversals.[].source.type` **Added**\n* `client.profiles.create()`: \n  *  `request.status` **Added**\n* `client.refunds.list()`:  `response._embedded.refunds.[].routingReversals.[].source.type` **Added**\n* `client.refunds.get()`:  `response.routingreversals.[].source.type` **Added**\n* `client.refunds.all()`:  `response._embedded.refunds.[].routingReversals.[].source.type` **Added**\n* `client.captures.create()`: \n  *  `request.entity-capture.status` **Added**\n* `client.mandates.create()`: \n  *  `request.entity-mandate.status` **Added**\n* `client.subscriptions.create()`: \n  *  `request.subscription-request.status` **Added**\n"

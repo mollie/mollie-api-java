@@ -30,19 +30,10 @@ public class EntityBalanceTransaction {
     @JsonProperty("id")
     private Optional<String> id;
 
-    /**
-     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
-     * is not definitive.
-     * 
-     * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
-     * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
-     * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
-     * * Invoicing: `invoice-compensation` `balance-correction`
-     * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends Type> type;
+    private Optional<? extends BalanceTransactionType> type;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -128,7 +119,7 @@ public class EntityBalanceTransaction {
     public EntityBalanceTransaction(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("type") Optional<? extends Type> type,
+            @JsonProperty("type") Optional<? extends BalanceTransactionType> type,
             @JsonProperty("resultAmount") Optional<? extends Amount> resultAmount,
             @JsonProperty("initialAmount") Optional<? extends Amount> initialAmount,
             @JsonProperty("deductions") JsonNullable<? extends AmountNullable> deductions,
@@ -172,20 +163,10 @@ public class EntityBalanceTransaction {
         return id;
     }
 
-    /**
-     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
-     * is not definitive.
-     * 
-     * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
-     * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
-     * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
-     * * Invoicing: `invoice-compensation` `balance-correction`
-     * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Type> type() {
-        return (Optional<Type>) type;
+    public Optional<BalanceTransactionType> type() {
+        return (Optional<BalanceTransactionType>) type;
     }
 
     /**
@@ -316,34 +297,14 @@ public class EntityBalanceTransaction {
         return this;
     }
 
-    /**
-     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
-     * is not definitive.
-     * 
-     * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
-     * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
-     * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
-     * * Invoicing: `invoice-compensation` `balance-correction`
-     * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-     */
-    public EntityBalanceTransaction withType(Type type) {
+    public EntityBalanceTransaction withType(BalanceTransactionType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
     }
 
 
-    /**
-     * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
-     * is not definitive.
-     * 
-     * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
-     * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
-     * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
-     * * Invoicing: `invoice-compensation` `balance-correction`
-     * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-     */
-    public EntityBalanceTransaction withType(Optional<? extends Type> type) {
+    public EntityBalanceTransaction withType(Optional<? extends BalanceTransactionType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -581,7 +542,7 @@ public class EntityBalanceTransaction {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<? extends Type> type = Optional.empty();
+        private Optional<? extends BalanceTransactionType> type = Optional.empty();
 
         private Optional<? extends Amount> resultAmount = Optional.empty();
 
@@ -632,33 +593,13 @@ public class EntityBalanceTransaction {
         }
 
 
-        /**
-         * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
-         * is not definitive.
-         * 
-         * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
-         * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
-         * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
-         * * Invoicing: `invoice-compensation` `balance-correction`
-         * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-         */
-        public Builder type(Type type) {
+        public Builder type(BalanceTransactionType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
         }
 
-        /**
-         * The type of transaction, for example `payment` or `refund`. Values include the below examples, although this list
-         * is not definitive.
-         * 
-         * <p>* Regular payment processing: `payment` `capture` `unauthorized-direct-debit` `failed-payment`
-         * * Refunds and chargebacks: `refund` `returned-refund` `chargeback` `chargeback-reversal`
-         * * Settlements: `outgoing-transfer` `canceled-outgoing-transfer` `returned-transfer`
-         * * Invoicing: `invoice-compensation` `balance-correction`
-         * * Mollie Connect: `application-fee` `split-payment` `platform-payment-refund` `platform-payment-chargeback`
-         */
-        public Builder type(Optional<? extends Type> type) {
+        public Builder type(Optional<? extends BalanceTransactionType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

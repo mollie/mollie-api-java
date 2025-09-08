@@ -63,14 +63,14 @@ public class EntitySalesInvoice {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends EntitySalesInvoiceStatus> status;
+    private Optional<? extends SalesInvoiceStatus> status;
 
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatScheme")
-    private Optional<? extends VatScheme> vatScheme;
+    private Optional<? extends SalesInvoiceVatScheme> vatScheme;
 
     /**
      * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
@@ -78,7 +78,7 @@ public class EntitySalesInvoice {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatMode")
-    private Optional<? extends VatMode> vatMode;
+    private Optional<? extends SalesInvoiceVatMode> vatMode;
 
     /**
      * A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
@@ -100,7 +100,7 @@ public class EntitySalesInvoice {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentTerm")
-    private JsonNullable<? extends PaymentTerm> paymentTerm;
+    private JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -197,12 +197,12 @@ public class EntitySalesInvoice {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
             @JsonProperty("profileId") JsonNullable<String> profileId,
-            @JsonProperty("status") Optional<? extends EntitySalesInvoiceStatus> status,
-            @JsonProperty("vatScheme") Optional<? extends VatScheme> vatScheme,
-            @JsonProperty("vatMode") Optional<? extends VatMode> vatMode,
+            @JsonProperty("status") Optional<? extends SalesInvoiceStatus> status,
+            @JsonProperty("vatScheme") Optional<? extends SalesInvoiceVatScheme> vatScheme,
+            @JsonProperty("vatMode") Optional<? extends SalesInvoiceVatMode> vatMode,
             @JsonProperty("memo") JsonNullable<String> memo,
             @JsonProperty("metadata") JsonNullable<? extends EntitySalesInvoiceMetadata> metadata,
-            @JsonProperty("paymentTerm") JsonNullable<? extends PaymentTerm> paymentTerm,
+            @JsonProperty("paymentTerm") JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm,
             @JsonProperty("paymentDetails") JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails,
             @JsonProperty("emailDetails") JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails,
             @JsonProperty("customerId") Optional<String> customerId,
@@ -319,8 +319,8 @@ public class EntitySalesInvoice {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntitySalesInvoiceStatus> status() {
-        return (Optional<EntitySalesInvoiceStatus>) status;
+    public Optional<SalesInvoiceStatus> status() {
+        return (Optional<SalesInvoiceStatus>) status;
     }
 
     /**
@@ -328,8 +328,8 @@ public class EntitySalesInvoice {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<VatScheme> vatScheme() {
-        return (Optional<VatScheme>) vatScheme;
+    public Optional<SalesInvoiceVatScheme> vatScheme() {
+        return (Optional<SalesInvoiceVatScheme>) vatScheme;
     }
 
     /**
@@ -338,8 +338,8 @@ public class EntitySalesInvoice {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<VatMode> vatMode() {
-        return (Optional<VatMode>) vatMode;
+    public Optional<SalesInvoiceVatMode> vatMode() {
+        return (Optional<SalesInvoiceVatMode>) vatMode;
     }
 
     /**
@@ -365,8 +365,8 @@ public class EntitySalesInvoice {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<PaymentTerm> paymentTerm() {
-        return (JsonNullable<PaymentTerm>) paymentTerm;
+    public JsonNullable<SalesInvoicePaymentTerm> paymentTerm() {
+        return (JsonNullable<SalesInvoicePaymentTerm>) paymentTerm;
     }
 
     @SuppressWarnings("unchecked")
@@ -563,7 +563,7 @@ public class EntitySalesInvoice {
      *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
      *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    public EntitySalesInvoice withStatus(EntitySalesInvoiceStatus status) {
+    public EntitySalesInvoice withStatus(SalesInvoiceStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -585,7 +585,7 @@ public class EntitySalesInvoice {
      *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
      *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    public EntitySalesInvoice withStatus(Optional<? extends EntitySalesInvoiceStatus> status) {
+    public EntitySalesInvoice withStatus(Optional<? extends SalesInvoiceStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -594,7 +594,7 @@ public class EntitySalesInvoice {
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
      */
-    public EntitySalesInvoice withVatScheme(VatScheme vatScheme) {
+    public EntitySalesInvoice withVatScheme(SalesInvoiceVatScheme vatScheme) {
         Utils.checkNotNull(vatScheme, "vatScheme");
         this.vatScheme = Optional.ofNullable(vatScheme);
         return this;
@@ -604,7 +604,7 @@ public class EntitySalesInvoice {
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
      */
-    public EntitySalesInvoice withVatScheme(Optional<? extends VatScheme> vatScheme) {
+    public EntitySalesInvoice withVatScheme(Optional<? extends SalesInvoiceVatScheme> vatScheme) {
         Utils.checkNotNull(vatScheme, "vatScheme");
         this.vatScheme = vatScheme;
         return this;
@@ -614,7 +614,7 @@ public class EntitySalesInvoice {
      * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
      * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
      */
-    public EntitySalesInvoice withVatMode(VatMode vatMode) {
+    public EntitySalesInvoice withVatMode(SalesInvoiceVatMode vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
         this.vatMode = Optional.ofNullable(vatMode);
         return this;
@@ -625,7 +625,7 @@ public class EntitySalesInvoice {
      * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
      * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
      */
-    public EntitySalesInvoice withVatMode(Optional<? extends VatMode> vatMode) {
+    public EntitySalesInvoice withVatMode(Optional<? extends SalesInvoiceVatMode> vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
         this.vatMode = vatMode;
         return this;
@@ -672,7 +672,7 @@ public class EntitySalesInvoice {
     /**
      * The payment term to be set on the invoice.
      */
-    public EntitySalesInvoice withPaymentTerm(PaymentTerm paymentTerm) {
+    public EntitySalesInvoice withPaymentTerm(SalesInvoicePaymentTerm paymentTerm) {
         Utils.checkNotNull(paymentTerm, "paymentTerm");
         this.paymentTerm = JsonNullable.of(paymentTerm);
         return this;
@@ -681,7 +681,7 @@ public class EntitySalesInvoice {
     /**
      * The payment term to be set on the invoice.
      */
-    public EntitySalesInvoice withPaymentTerm(JsonNullable<? extends PaymentTerm> paymentTerm) {
+    public EntitySalesInvoice withPaymentTerm(JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm) {
         Utils.checkNotNull(paymentTerm, "paymentTerm");
         this.paymentTerm = paymentTerm;
         return this;
@@ -1002,17 +1002,17 @@ public class EntitySalesInvoice {
 
         private JsonNullable<String> profileId = JsonNullable.undefined();
 
-        private Optional<? extends EntitySalesInvoiceStatus> status = Optional.empty();
+        private Optional<? extends SalesInvoiceStatus> status = Optional.empty();
 
-        private Optional<? extends VatScheme> vatScheme = Optional.empty();
+        private Optional<? extends SalesInvoiceVatScheme> vatScheme = Optional.empty();
 
-        private Optional<? extends VatMode> vatMode = Optional.empty();
+        private Optional<? extends SalesInvoiceVatMode> vatMode = Optional.empty();
 
         private JsonNullable<String> memo = JsonNullable.undefined();
 
         private JsonNullable<? extends EntitySalesInvoiceMetadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<? extends PaymentTerm> paymentTerm = JsonNullable.undefined();
+        private JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm = JsonNullable.undefined();
 
         private JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails = JsonNullable.undefined();
 
@@ -1127,7 +1127,7 @@ public class EntitySalesInvoice {
          *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
          *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
-        public Builder status(EntitySalesInvoiceStatus status) {
+        public Builder status(SalesInvoiceStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -1148,7 +1148,7 @@ public class EntitySalesInvoice {
          *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
          *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
-        public Builder status(Optional<? extends EntitySalesInvoiceStatus> status) {
+        public Builder status(Optional<? extends SalesInvoiceStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -1158,7 +1158,7 @@ public class EntitySalesInvoice {
         /**
          * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
          */
-        public Builder vatScheme(VatScheme vatScheme) {
+        public Builder vatScheme(SalesInvoiceVatScheme vatScheme) {
             Utils.checkNotNull(vatScheme, "vatScheme");
             this.vatScheme = Optional.ofNullable(vatScheme);
             return this;
@@ -1167,7 +1167,7 @@ public class EntitySalesInvoice {
         /**
          * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
          */
-        public Builder vatScheme(Optional<? extends VatScheme> vatScheme) {
+        public Builder vatScheme(Optional<? extends SalesInvoiceVatScheme> vatScheme) {
             Utils.checkNotNull(vatScheme, "vatScheme");
             this.vatScheme = vatScheme;
             return this;
@@ -1178,7 +1178,7 @@ public class EntitySalesInvoice {
          * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
          * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
          */
-        public Builder vatMode(VatMode vatMode) {
+        public Builder vatMode(SalesInvoiceVatMode vatMode) {
             Utils.checkNotNull(vatMode, "vatMode");
             this.vatMode = Optional.ofNullable(vatMode);
             return this;
@@ -1188,7 +1188,7 @@ public class EntitySalesInvoice {
          * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
          * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
          */
-        public Builder vatMode(Optional<? extends VatMode> vatMode) {
+        public Builder vatMode(Optional<? extends SalesInvoiceVatMode> vatMode) {
             Utils.checkNotNull(vatMode, "vatMode");
             this.vatMode = vatMode;
             return this;
@@ -1238,7 +1238,7 @@ public class EntitySalesInvoice {
         /**
          * The payment term to be set on the invoice.
          */
-        public Builder paymentTerm(PaymentTerm paymentTerm) {
+        public Builder paymentTerm(SalesInvoicePaymentTerm paymentTerm) {
             Utils.checkNotNull(paymentTerm, "paymentTerm");
             this.paymentTerm = JsonNullable.of(paymentTerm);
             return this;
@@ -1247,7 +1247,7 @@ public class EntitySalesInvoice {
         /**
          * The payment term to be set on the invoice.
          */
-        public Builder paymentTerm(JsonNullable<? extends PaymentTerm> paymentTerm) {
+        public Builder paymentTerm(JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm) {
             Utils.checkNotNull(paymentTerm, "paymentTerm");
             this.paymentTerm = paymentTerm;
             return this;

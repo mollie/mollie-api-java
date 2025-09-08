@@ -39,21 +39,21 @@ public class Receipt {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardReadMethod")
-    private JsonNullable<? extends CardReadMethod> cardReadMethod;
+    private JsonNullable<? extends PaymentDetailsReceiptCardReadMethodResponse> cardReadMethod;
 
     /**
      * The method used to verify the cardholder's identity.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardVerificationMethod")
-    private JsonNullable<? extends CardVerificationMethod> cardVerificationMethod;
+    private JsonNullable<? extends PaymentDetailsReceiptCardVerificationMethodResponse> cardVerificationMethod;
 
     @JsonCreator
     public Receipt(
             @JsonProperty("authorizationCode") JsonNullable<String> authorizationCode,
             @JsonProperty("applicationIdentifier") JsonNullable<String> applicationIdentifier,
-            @JsonProperty("cardReadMethod") JsonNullable<? extends CardReadMethod> cardReadMethod,
-            @JsonProperty("cardVerificationMethod") JsonNullable<? extends CardVerificationMethod> cardVerificationMethod) {
+            @JsonProperty("cardReadMethod") JsonNullable<? extends PaymentDetailsReceiptCardReadMethodResponse> cardReadMethod,
+            @JsonProperty("cardVerificationMethod") JsonNullable<? extends PaymentDetailsReceiptCardVerificationMethodResponse> cardVerificationMethod) {
         Utils.checkNotNull(authorizationCode, "authorizationCode");
         Utils.checkNotNull(applicationIdentifier, "applicationIdentifier");
         Utils.checkNotNull(cardReadMethod, "cardReadMethod");
@@ -90,8 +90,8 @@ public class Receipt {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CardReadMethod> cardReadMethod() {
-        return (JsonNullable<CardReadMethod>) cardReadMethod;
+    public JsonNullable<PaymentDetailsReceiptCardReadMethodResponse> cardReadMethod() {
+        return (JsonNullable<PaymentDetailsReceiptCardReadMethodResponse>) cardReadMethod;
     }
 
     /**
@@ -99,8 +99,8 @@ public class Receipt {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CardVerificationMethod> cardVerificationMethod() {
-        return (JsonNullable<CardVerificationMethod>) cardVerificationMethod;
+    public JsonNullable<PaymentDetailsReceiptCardVerificationMethodResponse> cardVerificationMethod() {
+        return (JsonNullable<PaymentDetailsReceiptCardVerificationMethodResponse>) cardVerificationMethod;
     }
 
     public static Builder builder() {
@@ -147,7 +147,7 @@ public class Receipt {
     /**
      * The method by which the card was read by the terminal.
      */
-    public Receipt withCardReadMethod(CardReadMethod cardReadMethod) {
+    public Receipt withCardReadMethod(PaymentDetailsReceiptCardReadMethodResponse cardReadMethod) {
         Utils.checkNotNull(cardReadMethod, "cardReadMethod");
         this.cardReadMethod = JsonNullable.of(cardReadMethod);
         return this;
@@ -156,7 +156,7 @@ public class Receipt {
     /**
      * The method by which the card was read by the terminal.
      */
-    public Receipt withCardReadMethod(JsonNullable<? extends CardReadMethod> cardReadMethod) {
+    public Receipt withCardReadMethod(JsonNullable<? extends PaymentDetailsReceiptCardReadMethodResponse> cardReadMethod) {
         Utils.checkNotNull(cardReadMethod, "cardReadMethod");
         this.cardReadMethod = cardReadMethod;
         return this;
@@ -165,7 +165,7 @@ public class Receipt {
     /**
      * The method used to verify the cardholder's identity.
      */
-    public Receipt withCardVerificationMethod(CardVerificationMethod cardVerificationMethod) {
+    public Receipt withCardVerificationMethod(PaymentDetailsReceiptCardVerificationMethodResponse cardVerificationMethod) {
         Utils.checkNotNull(cardVerificationMethod, "cardVerificationMethod");
         this.cardVerificationMethod = JsonNullable.of(cardVerificationMethod);
         return this;
@@ -174,7 +174,7 @@ public class Receipt {
     /**
      * The method used to verify the cardholder's identity.
      */
-    public Receipt withCardVerificationMethod(JsonNullable<? extends CardVerificationMethod> cardVerificationMethod) {
+    public Receipt withCardVerificationMethod(JsonNullable<? extends PaymentDetailsReceiptCardVerificationMethodResponse> cardVerificationMethod) {
         Utils.checkNotNull(cardVerificationMethod, "cardVerificationMethod");
         this.cardVerificationMethod = cardVerificationMethod;
         return this;
@@ -219,9 +219,9 @@ public class Receipt {
 
         private JsonNullable<String> applicationIdentifier = JsonNullable.undefined();
 
-        private JsonNullable<? extends CardReadMethod> cardReadMethod = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetailsReceiptCardReadMethodResponse> cardReadMethod = JsonNullable.undefined();
 
-        private JsonNullable<? extends CardVerificationMethod> cardVerificationMethod = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetailsReceiptCardVerificationMethodResponse> cardVerificationMethod = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -269,7 +269,7 @@ public class Receipt {
         /**
          * The method by which the card was read by the terminal.
          */
-        public Builder cardReadMethod(CardReadMethod cardReadMethod) {
+        public Builder cardReadMethod(PaymentDetailsReceiptCardReadMethodResponse cardReadMethod) {
             Utils.checkNotNull(cardReadMethod, "cardReadMethod");
             this.cardReadMethod = JsonNullable.of(cardReadMethod);
             return this;
@@ -278,7 +278,7 @@ public class Receipt {
         /**
          * The method by which the card was read by the terminal.
          */
-        public Builder cardReadMethod(JsonNullable<? extends CardReadMethod> cardReadMethod) {
+        public Builder cardReadMethod(JsonNullable<? extends PaymentDetailsReceiptCardReadMethodResponse> cardReadMethod) {
             Utils.checkNotNull(cardReadMethod, "cardReadMethod");
             this.cardReadMethod = cardReadMethod;
             return this;
@@ -288,7 +288,7 @@ public class Receipt {
         /**
          * The method used to verify the cardholder's identity.
          */
-        public Builder cardVerificationMethod(CardVerificationMethod cardVerificationMethod) {
+        public Builder cardVerificationMethod(PaymentDetailsReceiptCardVerificationMethodResponse cardVerificationMethod) {
             Utils.checkNotNull(cardVerificationMethod, "cardVerificationMethod");
             this.cardVerificationMethod = JsonNullable.of(cardVerificationMethod);
             return this;
@@ -297,7 +297,7 @@ public class Receipt {
         /**
          * The method used to verify the cardholder's identity.
          */
-        public Builder cardVerificationMethod(JsonNullable<? extends CardVerificationMethod> cardVerificationMethod) {
+        public Builder cardVerificationMethod(JsonNullable<? extends PaymentDetailsReceiptCardVerificationMethodResponse> cardVerificationMethod) {
             Utils.checkNotNull(cardVerificationMethod, "cardVerificationMethod");
             this.cardVerificationMethod = cardVerificationMethod;
             return this;

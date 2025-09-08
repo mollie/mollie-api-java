@@ -53,20 +53,10 @@ public class EntityBalanceReport {
     @JsonProperty("until")
     private Optional<String> until;
 
-    /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-     * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-     * by transaction type, and then by other sub-groupings where available (e.g. payment method).
-     * 
-     * <p>With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-     * movement, and then again by other sub-groupings where available.
-     * 
-     * <p>Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-     * of the report.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("grouping")
-    private Optional<? extends Grouping> grouping;
+    private Optional<? extends BalanceReportGrouping> grouping;
 
     /**
      * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
@@ -108,7 +98,7 @@ public class EntityBalanceReport {
             @JsonProperty("timeZone") Optional<String> timeZone,
             @JsonProperty("from") Optional<String> from,
             @JsonProperty("until") Optional<String> until,
-            @JsonProperty("grouping") Optional<? extends Grouping> grouping,
+            @JsonProperty("grouping") Optional<? extends BalanceReportGrouping> grouping,
             @JsonProperty("totals") Optional<? extends Totals> totals,
             @JsonProperty("_links") Optional<? extends EntityBalanceReportLinks> links) {
         Utils.checkNotNull(resource, "resource");
@@ -176,21 +166,10 @@ public class EntityBalanceReport {
         return until;
     }
 
-    /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-     * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-     * by transaction type, and then by other sub-groupings where available (e.g. payment method).
-     * 
-     * <p>With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-     * movement, and then again by other sub-groupings where available.
-     * 
-     * <p>Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-     * of the report.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Grouping> grouping() {
-        return (Optional<Grouping>) grouping;
+    public Optional<BalanceReportGrouping> grouping() {
+        return (Optional<BalanceReportGrouping>) grouping;
     }
 
     /**
@@ -332,36 +311,14 @@ public class EntityBalanceReport {
         return this;
     }
 
-    /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-     * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-     * by transaction type, and then by other sub-groupings where available (e.g. payment method).
-     * 
-     * <p>With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-     * movement, and then again by other sub-groupings where available.
-     * 
-     * <p>Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-     * of the report.
-     */
-    public EntityBalanceReport withGrouping(Grouping grouping) {
+    public EntityBalanceReport withGrouping(BalanceReportGrouping grouping) {
         Utils.checkNotNull(grouping, "grouping");
         this.grouping = Optional.ofNullable(grouping);
         return this;
     }
 
 
-    /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-     * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-     * by transaction type, and then by other sub-groupings where available (e.g. payment method).
-     * 
-     * <p>With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-     * movement, and then again by other sub-groupings where available.
-     * 
-     * <p>Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-     * of the report.
-     */
-    public EntityBalanceReport withGrouping(Optional<? extends Grouping> grouping) {
+    public EntityBalanceReport withGrouping(Optional<? extends BalanceReportGrouping> grouping) {
         Utils.checkNotNull(grouping, "grouping");
         this.grouping = grouping;
         return this;
@@ -497,7 +454,7 @@ public class EntityBalanceReport {
 
         private Optional<String> until = Optional.empty();
 
-        private Optional<? extends Grouping> grouping = Optional.empty();
+        private Optional<? extends BalanceReportGrouping> grouping = Optional.empty();
 
         private Optional<? extends Totals> totals = Optional.empty();
 
@@ -605,35 +562,13 @@ public class EntityBalanceReport {
         }
 
 
-        /**
-         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-         * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-         * by transaction type, and then by other sub-groupings where available (e.g. payment method).
-         * 
-         * <p>With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-         * movement, and then again by other sub-groupings where available.
-         * 
-         * <p>Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-         * of the report.
-         */
-        public Builder grouping(Grouping grouping) {
+        public Builder grouping(BalanceReportGrouping grouping) {
             Utils.checkNotNull(grouping, "grouping");
             this.grouping = Optional.ofNullable(grouping);
             return this;
         }
 
-        /**
-         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped by
-         * status (e.g. `pending`, `available`), then by direction of movement (e.g. moved from pending to available), then
-         * by transaction type, and then by other sub-groupings where available (e.g. payment method).
-         * 
-         * <p>With the `transaction-categories` format, transactions are grouped by transaction type, then by direction of
-         * movement, and then again by other sub-groupings where available.
-         * 
-         * <p>Both reporting formats will always contain opening and closing amounts that correspond to the start and end dates
-         * of the report.
-         */
-        public Builder grouping(Optional<? extends Grouping> grouping) {
+        public Builder grouping(Optional<? extends BalanceReportGrouping> grouping) {
             Utils.checkNotNull(grouping, "grouping");
             this.grouping = grouping;
             return this;

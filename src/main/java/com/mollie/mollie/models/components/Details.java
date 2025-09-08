@@ -123,14 +123,14 @@ public class Details {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardAudition")
-    private JsonNullable<? extends CardAudition> cardAudition;
+    private JsonNullable<? extends PaymentDetailsCardAuditionResponse> cardAudition;
 
     /**
      * The card's label, if known.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardLabel")
-    private JsonNullable<? extends CardLabel> cardLabel;
+    private JsonNullable<? extends PaymentDetailsCardLabelResponse> cardLabel;
 
     /**
      * The ISO 3166-1 alpha-2 country code of the country the card was issued in.
@@ -151,21 +151,21 @@ public class Details {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardFunding")
-    private JsonNullable<? extends CardFunding> cardFunding;
+    private JsonNullable<? extends PaymentDetailsCardFundingResponse> cardFunding;
 
     /**
      * The level of security applied during card processing.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardSecurity")
-    private JsonNullable<? extends CardSecurity> cardSecurity;
+    private JsonNullable<? extends PaymentDetailsCardSecurityResponse> cardSecurity;
 
     /**
      * The applicable card fee region.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("feeRegion")
-    private JsonNullable<? extends FeeRegion> feeRegion;
+    private JsonNullable<? extends PaymentDetailsFeeRegionResponse> feeRegion;
 
     /**
      * The first 6 and last 4 digits of the card number.
@@ -200,7 +200,7 @@ public class Details {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("failureReason")
-    private JsonNullable<? extends FailureReason> failureReason;
+    private JsonNullable<? extends PaymentDetailsFailureReasonResponse> failureReason;
 
     /**
      * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
@@ -215,7 +215,7 @@ public class Details {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("wallet")
-    private JsonNullable<? extends Wallet> wallet;
+    private JsonNullable<? extends PaymentDetailsWalletResponse> wallet;
 
     /**
      * PayPal's reference for the payment.
@@ -237,7 +237,7 @@ public class Details {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sellerProtection")
-    private JsonNullable<? extends SellerProtection> sellerProtection;
+    private JsonNullable<? extends PaymentDetailsSellerProtectionResponse> sellerProtection;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -413,23 +413,23 @@ public class Details {
             @JsonProperty("transferReference") JsonNullable<String> transferReference,
             @JsonProperty("cardFingerprint") JsonNullable<String> cardFingerprint,
             @JsonProperty("cardHolder") JsonNullable<String> cardHolder,
-            @JsonProperty("cardAudition") JsonNullable<? extends CardAudition> cardAudition,
-            @JsonProperty("cardLabel") JsonNullable<? extends CardLabel> cardLabel,
+            @JsonProperty("cardAudition") JsonNullable<? extends PaymentDetailsCardAuditionResponse> cardAudition,
+            @JsonProperty("cardLabel") JsonNullable<? extends PaymentDetailsCardLabelResponse> cardLabel,
             @JsonProperty("cardCountryCode") JsonNullable<String> cardCountryCode,
             @JsonProperty("cardExpiryDate") JsonNullable<String> cardExpiryDate,
-            @JsonProperty("cardFunding") JsonNullable<? extends CardFunding> cardFunding,
-            @JsonProperty("cardSecurity") JsonNullable<? extends CardSecurity> cardSecurity,
-            @JsonProperty("feeRegion") JsonNullable<? extends FeeRegion> feeRegion,
+            @JsonProperty("cardFunding") JsonNullable<? extends PaymentDetailsCardFundingResponse> cardFunding,
+            @JsonProperty("cardSecurity") JsonNullable<? extends PaymentDetailsCardSecurityResponse> cardSecurity,
+            @JsonProperty("feeRegion") JsonNullable<? extends PaymentDetailsFeeRegionResponse> feeRegion,
             @JsonProperty("cardMaskedNumber") JsonNullable<String> cardMaskedNumber,
             @JsonProperty("card3dsEci") JsonNullable<String> card3dsEci,
             @JsonProperty("cardBin") JsonNullable<String> cardBin,
             @JsonProperty("cardIssuer") JsonNullable<String> cardIssuer,
-            @JsonProperty("failureReason") JsonNullable<? extends FailureReason> failureReason,
+            @JsonProperty("failureReason") JsonNullable<? extends PaymentDetailsFailureReasonResponse> failureReason,
             @JsonProperty("failureMessage") JsonNullable<String> failureMessage,
-            @JsonProperty("wallet") JsonNullable<? extends Wallet> wallet,
+            @JsonProperty("wallet") JsonNullable<? extends PaymentDetailsWalletResponse> wallet,
             @JsonProperty("paypalReference") JsonNullable<String> paypalReference,
             @JsonProperty("paypalPayerId") JsonNullable<String> paypalPayerId,
-            @JsonProperty("sellerProtection") JsonNullable<? extends SellerProtection> sellerProtection,
+            @JsonProperty("sellerProtection") JsonNullable<? extends PaymentDetailsSellerProtectionResponse> sellerProtection,
             @JsonProperty("paypalFee") JsonNullable<? extends AmountNullable> paypalFee,
             @JsonProperty("customerReference") Optional<String> customerReference,
             @JsonProperty("terminalId") Optional<String> terminalId,
@@ -682,8 +682,8 @@ public class Details {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CardAudition> cardAudition() {
-        return (JsonNullable<CardAudition>) cardAudition;
+    public JsonNullable<PaymentDetailsCardAuditionResponse> cardAudition() {
+        return (JsonNullable<PaymentDetailsCardAuditionResponse>) cardAudition;
     }
 
     /**
@@ -691,8 +691,8 @@ public class Details {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CardLabel> cardLabel() {
-        return (JsonNullable<CardLabel>) cardLabel;
+    public JsonNullable<PaymentDetailsCardLabelResponse> cardLabel() {
+        return (JsonNullable<PaymentDetailsCardLabelResponse>) cardLabel;
     }
 
     /**
@@ -716,8 +716,8 @@ public class Details {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CardFunding> cardFunding() {
-        return (JsonNullable<CardFunding>) cardFunding;
+    public JsonNullable<PaymentDetailsCardFundingResponse> cardFunding() {
+        return (JsonNullable<PaymentDetailsCardFundingResponse>) cardFunding;
     }
 
     /**
@@ -725,8 +725,8 @@ public class Details {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CardSecurity> cardSecurity() {
-        return (JsonNullable<CardSecurity>) cardSecurity;
+    public JsonNullable<PaymentDetailsCardSecurityResponse> cardSecurity() {
+        return (JsonNullable<PaymentDetailsCardSecurityResponse>) cardSecurity;
     }
 
     /**
@@ -734,8 +734,8 @@ public class Details {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<FeeRegion> feeRegion() {
-        return (JsonNullable<FeeRegion>) feeRegion;
+    public JsonNullable<PaymentDetailsFeeRegionResponse> feeRegion() {
+        return (JsonNullable<PaymentDetailsFeeRegionResponse>) feeRegion;
     }
 
     /**
@@ -775,8 +775,8 @@ public class Details {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<FailureReason> failureReason() {
-        return (JsonNullable<FailureReason>) failureReason;
+    public JsonNullable<PaymentDetailsFailureReasonResponse> failureReason() {
+        return (JsonNullable<PaymentDetailsFailureReasonResponse>) failureReason;
     }
 
     /**
@@ -793,8 +793,8 @@ public class Details {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Wallet> wallet() {
-        return (JsonNullable<Wallet>) wallet;
+    public JsonNullable<PaymentDetailsWalletResponse> wallet() {
+        return (JsonNullable<PaymentDetailsWalletResponse>) wallet;
     }
 
     /**
@@ -819,8 +819,8 @@ public class Details {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<SellerProtection> sellerProtection() {
-        return (JsonNullable<SellerProtection>) sellerProtection;
+    public JsonNullable<PaymentDetailsSellerProtectionResponse> sellerProtection() {
+        return (JsonNullable<PaymentDetailsSellerProtectionResponse>) sellerProtection;
     }
 
     /**
@@ -1250,7 +1250,7 @@ public class Details {
     /**
      * The card's target audience, if known.
      */
-    public Details withCardAudition(CardAudition cardAudition) {
+    public Details withCardAudition(PaymentDetailsCardAuditionResponse cardAudition) {
         Utils.checkNotNull(cardAudition, "cardAudition");
         this.cardAudition = JsonNullable.of(cardAudition);
         return this;
@@ -1259,7 +1259,7 @@ public class Details {
     /**
      * The card's target audience, if known.
      */
-    public Details withCardAudition(JsonNullable<? extends CardAudition> cardAudition) {
+    public Details withCardAudition(JsonNullable<? extends PaymentDetailsCardAuditionResponse> cardAudition) {
         Utils.checkNotNull(cardAudition, "cardAudition");
         this.cardAudition = cardAudition;
         return this;
@@ -1268,7 +1268,7 @@ public class Details {
     /**
      * The card's label, if known.
      */
-    public Details withCardLabel(CardLabel cardLabel) {
+    public Details withCardLabel(PaymentDetailsCardLabelResponse cardLabel) {
         Utils.checkNotNull(cardLabel, "cardLabel");
         this.cardLabel = JsonNullable.of(cardLabel);
         return this;
@@ -1277,7 +1277,7 @@ public class Details {
     /**
      * The card's label, if known.
      */
-    public Details withCardLabel(JsonNullable<? extends CardLabel> cardLabel) {
+    public Details withCardLabel(JsonNullable<? extends PaymentDetailsCardLabelResponse> cardLabel) {
         Utils.checkNotNull(cardLabel, "cardLabel");
         this.cardLabel = cardLabel;
         return this;
@@ -1322,7 +1322,7 @@ public class Details {
     /**
      * The card type.
      */
-    public Details withCardFunding(CardFunding cardFunding) {
+    public Details withCardFunding(PaymentDetailsCardFundingResponse cardFunding) {
         Utils.checkNotNull(cardFunding, "cardFunding");
         this.cardFunding = JsonNullable.of(cardFunding);
         return this;
@@ -1331,7 +1331,7 @@ public class Details {
     /**
      * The card type.
      */
-    public Details withCardFunding(JsonNullable<? extends CardFunding> cardFunding) {
+    public Details withCardFunding(JsonNullable<? extends PaymentDetailsCardFundingResponse> cardFunding) {
         Utils.checkNotNull(cardFunding, "cardFunding");
         this.cardFunding = cardFunding;
         return this;
@@ -1340,7 +1340,7 @@ public class Details {
     /**
      * The level of security applied during card processing.
      */
-    public Details withCardSecurity(CardSecurity cardSecurity) {
+    public Details withCardSecurity(PaymentDetailsCardSecurityResponse cardSecurity) {
         Utils.checkNotNull(cardSecurity, "cardSecurity");
         this.cardSecurity = JsonNullable.of(cardSecurity);
         return this;
@@ -1349,7 +1349,7 @@ public class Details {
     /**
      * The level of security applied during card processing.
      */
-    public Details withCardSecurity(JsonNullable<? extends CardSecurity> cardSecurity) {
+    public Details withCardSecurity(JsonNullable<? extends PaymentDetailsCardSecurityResponse> cardSecurity) {
         Utils.checkNotNull(cardSecurity, "cardSecurity");
         this.cardSecurity = cardSecurity;
         return this;
@@ -1358,7 +1358,7 @@ public class Details {
     /**
      * The applicable card fee region.
      */
-    public Details withFeeRegion(FeeRegion feeRegion) {
+    public Details withFeeRegion(PaymentDetailsFeeRegionResponse feeRegion) {
         Utils.checkNotNull(feeRegion, "feeRegion");
         this.feeRegion = JsonNullable.of(feeRegion);
         return this;
@@ -1367,7 +1367,7 @@ public class Details {
     /**
      * The applicable card fee region.
      */
-    public Details withFeeRegion(JsonNullable<? extends FeeRegion> feeRegion) {
+    public Details withFeeRegion(JsonNullable<? extends PaymentDetailsFeeRegionResponse> feeRegion) {
         Utils.checkNotNull(feeRegion, "feeRegion");
         this.feeRegion = feeRegion;
         return this;
@@ -1448,7 +1448,7 @@ public class Details {
     /**
      * A failure code to help understand why the payment failed.
      */
-    public Details withFailureReason(FailureReason failureReason) {
+    public Details withFailureReason(PaymentDetailsFailureReasonResponse failureReason) {
         Utils.checkNotNull(failureReason, "failureReason");
         this.failureReason = JsonNullable.of(failureReason);
         return this;
@@ -1457,7 +1457,7 @@ public class Details {
     /**
      * A failure code to help understand why the payment failed.
      */
-    public Details withFailureReason(JsonNullable<? extends FailureReason> failureReason) {
+    public Details withFailureReason(JsonNullable<? extends PaymentDetailsFailureReasonResponse> failureReason) {
         Utils.checkNotNull(failureReason, "failureReason");
         this.failureReason = failureReason;
         return this;
@@ -1486,7 +1486,7 @@ public class Details {
     /**
      * The wallet used when creating the payment.
      */
-    public Details withWallet(Wallet wallet) {
+    public Details withWallet(PaymentDetailsWalletResponse wallet) {
         Utils.checkNotNull(wallet, "wallet");
         this.wallet = JsonNullable.of(wallet);
         return this;
@@ -1495,7 +1495,7 @@ public class Details {
     /**
      * The wallet used when creating the payment.
      */
-    public Details withWallet(JsonNullable<? extends Wallet> wallet) {
+    public Details withWallet(JsonNullable<? extends PaymentDetailsWalletResponse> wallet) {
         Utils.checkNotNull(wallet, "wallet");
         this.wallet = wallet;
         return this;
@@ -1541,7 +1541,7 @@ public class Details {
      * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
      * payments, and if the information is made available by PayPal.
      */
-    public Details withSellerProtection(SellerProtection sellerProtection) {
+    public Details withSellerProtection(PaymentDetailsSellerProtectionResponse sellerProtection) {
         Utils.checkNotNull(sellerProtection, "sellerProtection");
         this.sellerProtection = JsonNullable.of(sellerProtection);
         return this;
@@ -1551,7 +1551,7 @@ public class Details {
      * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
      * payments, and if the information is made available by PayPal.
      */
-    public Details withSellerProtection(JsonNullable<? extends SellerProtection> sellerProtection) {
+    public Details withSellerProtection(JsonNullable<? extends PaymentDetailsSellerProtectionResponse> sellerProtection) {
         Utils.checkNotNull(sellerProtection, "sellerProtection");
         this.sellerProtection = sellerProtection;
         return this;
@@ -2142,19 +2142,19 @@ public class Details {
 
         private JsonNullable<String> cardHolder = JsonNullable.undefined();
 
-        private JsonNullable<? extends CardAudition> cardAudition = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetailsCardAuditionResponse> cardAudition = JsonNullable.undefined();
 
-        private JsonNullable<? extends CardLabel> cardLabel = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetailsCardLabelResponse> cardLabel = JsonNullable.undefined();
 
         private JsonNullable<String> cardCountryCode = JsonNullable.undefined();
 
         private JsonNullable<String> cardExpiryDate = JsonNullable.undefined();
 
-        private JsonNullable<? extends CardFunding> cardFunding = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetailsCardFundingResponse> cardFunding = JsonNullable.undefined();
 
-        private JsonNullable<? extends CardSecurity> cardSecurity = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetailsCardSecurityResponse> cardSecurity = JsonNullable.undefined();
 
-        private JsonNullable<? extends FeeRegion> feeRegion = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetailsFeeRegionResponse> feeRegion = JsonNullable.undefined();
 
         private JsonNullable<String> cardMaskedNumber = JsonNullable.undefined();
 
@@ -2164,17 +2164,17 @@ public class Details {
 
         private JsonNullable<String> cardIssuer = JsonNullable.undefined();
 
-        private JsonNullable<? extends FailureReason> failureReason = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetailsFailureReasonResponse> failureReason = JsonNullable.undefined();
 
         private JsonNullable<String> failureMessage = JsonNullable.undefined();
 
-        private JsonNullable<? extends Wallet> wallet = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetailsWalletResponse> wallet = JsonNullable.undefined();
 
         private JsonNullable<String> paypalReference = JsonNullable.undefined();
 
         private JsonNullable<String> paypalPayerId = JsonNullable.undefined();
 
-        private JsonNullable<? extends SellerProtection> sellerProtection = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetailsSellerProtectionResponse> sellerProtection = JsonNullable.undefined();
 
         private JsonNullable<? extends AmountNullable> paypalFee = JsonNullable.undefined();
 
@@ -2465,7 +2465,7 @@ public class Details {
         /**
          * The card's target audience, if known.
          */
-        public Builder cardAudition(CardAudition cardAudition) {
+        public Builder cardAudition(PaymentDetailsCardAuditionResponse cardAudition) {
             Utils.checkNotNull(cardAudition, "cardAudition");
             this.cardAudition = JsonNullable.of(cardAudition);
             return this;
@@ -2474,7 +2474,7 @@ public class Details {
         /**
          * The card's target audience, if known.
          */
-        public Builder cardAudition(JsonNullable<? extends CardAudition> cardAudition) {
+        public Builder cardAudition(JsonNullable<? extends PaymentDetailsCardAuditionResponse> cardAudition) {
             Utils.checkNotNull(cardAudition, "cardAudition");
             this.cardAudition = cardAudition;
             return this;
@@ -2484,7 +2484,7 @@ public class Details {
         /**
          * The card's label, if known.
          */
-        public Builder cardLabel(CardLabel cardLabel) {
+        public Builder cardLabel(PaymentDetailsCardLabelResponse cardLabel) {
             Utils.checkNotNull(cardLabel, "cardLabel");
             this.cardLabel = JsonNullable.of(cardLabel);
             return this;
@@ -2493,7 +2493,7 @@ public class Details {
         /**
          * The card's label, if known.
          */
-        public Builder cardLabel(JsonNullable<? extends CardLabel> cardLabel) {
+        public Builder cardLabel(JsonNullable<? extends PaymentDetailsCardLabelResponse> cardLabel) {
             Utils.checkNotNull(cardLabel, "cardLabel");
             this.cardLabel = cardLabel;
             return this;
@@ -2541,7 +2541,7 @@ public class Details {
         /**
          * The card type.
          */
-        public Builder cardFunding(CardFunding cardFunding) {
+        public Builder cardFunding(PaymentDetailsCardFundingResponse cardFunding) {
             Utils.checkNotNull(cardFunding, "cardFunding");
             this.cardFunding = JsonNullable.of(cardFunding);
             return this;
@@ -2550,7 +2550,7 @@ public class Details {
         /**
          * The card type.
          */
-        public Builder cardFunding(JsonNullable<? extends CardFunding> cardFunding) {
+        public Builder cardFunding(JsonNullable<? extends PaymentDetailsCardFundingResponse> cardFunding) {
             Utils.checkNotNull(cardFunding, "cardFunding");
             this.cardFunding = cardFunding;
             return this;
@@ -2560,7 +2560,7 @@ public class Details {
         /**
          * The level of security applied during card processing.
          */
-        public Builder cardSecurity(CardSecurity cardSecurity) {
+        public Builder cardSecurity(PaymentDetailsCardSecurityResponse cardSecurity) {
             Utils.checkNotNull(cardSecurity, "cardSecurity");
             this.cardSecurity = JsonNullable.of(cardSecurity);
             return this;
@@ -2569,7 +2569,7 @@ public class Details {
         /**
          * The level of security applied during card processing.
          */
-        public Builder cardSecurity(JsonNullable<? extends CardSecurity> cardSecurity) {
+        public Builder cardSecurity(JsonNullable<? extends PaymentDetailsCardSecurityResponse> cardSecurity) {
             Utils.checkNotNull(cardSecurity, "cardSecurity");
             this.cardSecurity = cardSecurity;
             return this;
@@ -2579,7 +2579,7 @@ public class Details {
         /**
          * The applicable card fee region.
          */
-        public Builder feeRegion(FeeRegion feeRegion) {
+        public Builder feeRegion(PaymentDetailsFeeRegionResponse feeRegion) {
             Utils.checkNotNull(feeRegion, "feeRegion");
             this.feeRegion = JsonNullable.of(feeRegion);
             return this;
@@ -2588,7 +2588,7 @@ public class Details {
         /**
          * The applicable card fee region.
          */
-        public Builder feeRegion(JsonNullable<? extends FeeRegion> feeRegion) {
+        public Builder feeRegion(JsonNullable<? extends PaymentDetailsFeeRegionResponse> feeRegion) {
             Utils.checkNotNull(feeRegion, "feeRegion");
             this.feeRegion = feeRegion;
             return this;
@@ -2674,7 +2674,7 @@ public class Details {
         /**
          * A failure code to help understand why the payment failed.
          */
-        public Builder failureReason(FailureReason failureReason) {
+        public Builder failureReason(PaymentDetailsFailureReasonResponse failureReason) {
             Utils.checkNotNull(failureReason, "failureReason");
             this.failureReason = JsonNullable.of(failureReason);
             return this;
@@ -2683,7 +2683,7 @@ public class Details {
         /**
          * A failure code to help understand why the payment failed.
          */
-        public Builder failureReason(JsonNullable<? extends FailureReason> failureReason) {
+        public Builder failureReason(JsonNullable<? extends PaymentDetailsFailureReasonResponse> failureReason) {
             Utils.checkNotNull(failureReason, "failureReason");
             this.failureReason = failureReason;
             return this;
@@ -2714,7 +2714,7 @@ public class Details {
         /**
          * The wallet used when creating the payment.
          */
-        public Builder wallet(Wallet wallet) {
+        public Builder wallet(PaymentDetailsWalletResponse wallet) {
             Utils.checkNotNull(wallet, "wallet");
             this.wallet = JsonNullable.of(wallet);
             return this;
@@ -2723,7 +2723,7 @@ public class Details {
         /**
          * The wallet used when creating the payment.
          */
-        public Builder wallet(JsonNullable<? extends Wallet> wallet) {
+        public Builder wallet(JsonNullable<? extends PaymentDetailsWalletResponse> wallet) {
             Utils.checkNotNull(wallet, "wallet");
             this.wallet = wallet;
             return this;
@@ -2772,7 +2772,7 @@ public class Details {
          * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
          * payments, and if the information is made available by PayPal.
          */
-        public Builder sellerProtection(SellerProtection sellerProtection) {
+        public Builder sellerProtection(PaymentDetailsSellerProtectionResponse sellerProtection) {
             Utils.checkNotNull(sellerProtection, "sellerProtection");
             this.sellerProtection = JsonNullable.of(sellerProtection);
             return this;
@@ -2782,7 +2782,7 @@ public class Details {
          * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
          * payments, and if the information is made available by PayPal.
          */
-        public Builder sellerProtection(JsonNullable<? extends SellerProtection> sellerProtection) {
+        public Builder sellerProtection(JsonNullable<? extends PaymentDetailsSellerProtectionResponse> sellerProtection) {
             Utils.checkNotNull(sellerProtection, "sellerProtection");
             this.sellerProtection = sellerProtection;
             return this;

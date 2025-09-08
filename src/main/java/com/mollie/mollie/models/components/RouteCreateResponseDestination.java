@@ -20,7 +20,7 @@ public class RouteCreateResponseDestination {
      * The type of destination. Currently only the destination type `organization` is supported.
      */
     @JsonProperty("type")
-    private RouteCreateResponseType type;
+    private RouteDestinationTypeResponse type;
 
 
     @JsonProperty("organizationId")
@@ -28,7 +28,7 @@ public class RouteCreateResponseDestination {
 
     @JsonCreator
     public RouteCreateResponseDestination(
-            @JsonProperty("type") RouteCreateResponseType type,
+            @JsonProperty("type") RouteDestinationTypeResponse type,
             @JsonProperty("organizationId") String organizationId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(organizationId, "organizationId");
@@ -40,7 +40,7 @@ public class RouteCreateResponseDestination {
      * The type of destination. Currently only the destination type `organization` is supported.
      */
     @JsonIgnore
-    public RouteCreateResponseType type() {
+    public RouteDestinationTypeResponse type() {
         return type;
     }
 
@@ -57,7 +57,7 @@ public class RouteCreateResponseDestination {
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
      */
-    public RouteCreateResponseDestination withType(RouteCreateResponseType type) {
+    public RouteCreateResponseDestination withType(RouteDestinationTypeResponse type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -99,7 +99,7 @@ public class RouteCreateResponseDestination {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private RouteCreateResponseType type;
+        private RouteDestinationTypeResponse type;
 
         private String organizationId;
 
@@ -111,7 +111,7 @@ public class RouteCreateResponseDestination {
         /**
          * The type of destination. Currently only the destination type `organization` is supported.
          */
-        public Builder type(RouteCreateResponseType type) {
+        public Builder type(RouteDestinationTypeResponse type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

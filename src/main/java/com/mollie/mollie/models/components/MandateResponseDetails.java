@@ -63,7 +63,7 @@ public class MandateResponseDetails {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardLabel")
-    private JsonNullable<? extends MandateResponseCardLabel> cardLabel;
+    private JsonNullable<? extends MandateDetailsCardLabelResponse> cardLabel;
 
     /**
      * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
@@ -81,7 +81,7 @@ public class MandateResponseDetails {
             @JsonProperty("cardHolder") JsonNullable<String> cardHolder,
             @JsonProperty("cardNumber") JsonNullable<String> cardNumber,
             @JsonProperty("cardExpiryDate") JsonNullable<String> cardExpiryDate,
-            @JsonProperty("cardLabel") JsonNullable<? extends MandateResponseCardLabel> cardLabel,
+            @JsonProperty("cardLabel") JsonNullable<? extends MandateDetailsCardLabelResponse> cardLabel,
             @JsonProperty("cardFingerprint") JsonNullable<String> cardFingerprint) {
         Utils.checkNotNull(consumerName, "consumerName");
         Utils.checkNotNull(consumerAccount, "consumerAccount");
@@ -160,8 +160,8 @@ public class MandateResponseDetails {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<MandateResponseCardLabel> cardLabel() {
-        return (JsonNullable<MandateResponseCardLabel>) cardLabel;
+    public JsonNullable<MandateDetailsCardLabelResponse> cardLabel() {
+        return (JsonNullable<MandateDetailsCardLabelResponse>) cardLabel;
     }
 
     /**
@@ -289,7 +289,7 @@ public class MandateResponseDetails {
     /**
      * The card's label. Available for card mandates, if the card label could be detected.
      */
-    public MandateResponseDetails withCardLabel(MandateResponseCardLabel cardLabel) {
+    public MandateResponseDetails withCardLabel(MandateDetailsCardLabelResponse cardLabel) {
         Utils.checkNotNull(cardLabel, "cardLabel");
         this.cardLabel = JsonNullable.of(cardLabel);
         return this;
@@ -298,7 +298,7 @@ public class MandateResponseDetails {
     /**
      * The card's label. Available for card mandates, if the card label could be detected.
      */
-    public MandateResponseDetails withCardLabel(JsonNullable<? extends MandateResponseCardLabel> cardLabel) {
+    public MandateResponseDetails withCardLabel(JsonNullable<? extends MandateDetailsCardLabelResponse> cardLabel) {
         Utils.checkNotNull(cardLabel, "cardLabel");
         this.cardLabel = cardLabel;
         return this;
@@ -380,7 +380,7 @@ public class MandateResponseDetails {
 
         private JsonNullable<String> cardExpiryDate = JsonNullable.undefined();
 
-        private JsonNullable<? extends MandateResponseCardLabel> cardLabel = JsonNullable.undefined();
+        private JsonNullable<? extends MandateDetailsCardLabelResponse> cardLabel = JsonNullable.undefined();
 
         private JsonNullable<String> cardFingerprint = JsonNullable.undefined();
 
@@ -506,7 +506,7 @@ public class MandateResponseDetails {
         /**
          * The card's label. Available for card mandates, if the card label could be detected.
          */
-        public Builder cardLabel(MandateResponseCardLabel cardLabel) {
+        public Builder cardLabel(MandateDetailsCardLabelResponse cardLabel) {
             Utils.checkNotNull(cardLabel, "cardLabel");
             this.cardLabel = JsonNullable.of(cardLabel);
             return this;
@@ -515,7 +515,7 @@ public class MandateResponseDetails {
         /**
          * The card's label. Available for card mandates, if the card label could be detected.
          */
-        public Builder cardLabel(JsonNullable<? extends MandateResponseCardLabel> cardLabel) {
+        public Builder cardLabel(JsonNullable<? extends MandateDetailsCardLabelResponse> cardLabel) {
             Utils.checkNotNull(cardLabel, "cardLabel");
             this.cardLabel = cardLabel;
             return this;

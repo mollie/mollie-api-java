@@ -1,9 +1,0 @@
-# EntityRefundResponseRoutingReversals
-
-
-## Fields
-
-| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
-| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `amount`                                                                                          | [Optional\<Amount>](../../models/components/Amount.md)                                            | :heavy_minus_sign:                                                                                | In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field. |
-| `source`                                                                                          | [Optional\<EntityRefundResponseSource>](../../models/components/EntityRefundResponseSource.md)    | :heavy_minus_sign:                                                                                | Where the funds will be pulled back from.                                                         |

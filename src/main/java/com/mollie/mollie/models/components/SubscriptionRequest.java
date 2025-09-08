@@ -25,6 +25,14 @@ public class SubscriptionRequest {
     private Optional<String> id;
 
     /**
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends SubscriptionStatus> status;
+
+    /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -74,7 +82,7 @@ public class SubscriptionRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<? extends SubscriptionRequestMethod> method;
+    private JsonNullable<? extends SubscriptionMethod> method;
 
     /**
      * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
@@ -131,12 +139,13 @@ public class SubscriptionRequest {
     @JsonCreator
     public SubscriptionRequest(
             @JsonProperty("id") Optional<String> id,
+            @JsonProperty("status") Optional<? extends SubscriptionStatus> status,
             @JsonProperty("amount") Optional<? extends Amount> amount,
             @JsonProperty("times") JsonNullable<Long> times,
             @JsonProperty("interval") Optional<String> interval,
             @JsonProperty("startDate") Optional<String> startDate,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("method") JsonNullable<? extends SubscriptionRequestMethod> method,
+            @JsonProperty("method") JsonNullable<? extends SubscriptionMethod> method,
             @JsonProperty("applicationFee") Optional<? extends SubscriptionRequestApplicationFee> applicationFee,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("webhookUrl") Optional<String> webhookUrl,
@@ -144,6 +153,7 @@ public class SubscriptionRequest {
             @JsonProperty("mandateId") Optional<String> mandateId,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(times, "times");
         Utils.checkNotNull(interval, "interval");
@@ -157,6 +167,7 @@ public class SubscriptionRequest {
         Utils.checkNotNull(mandateId, "mandateId");
         Utils.checkNotNull(testmode, "testmode");
         this.id = id;
+        this.status = status;
         this.amount = amount;
         this.times = times;
         this.interval = interval;
@@ -172,16 +183,26 @@ public class SubscriptionRequest {
     }
     
     public SubscriptionRequest() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     @JsonIgnore
     public Optional<String> id() {
         return id;
+    }
+
+    /**
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<SubscriptionStatus> status() {
+        return (Optional<SubscriptionStatus>) status;
     }
 
     /**
@@ -240,8 +261,8 @@ public class SubscriptionRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<SubscriptionRequestMethod> method() {
-        return (JsonNullable<SubscriptionRequestMethod>) method;
+    public JsonNullable<SubscriptionMethod> method() {
+        return (JsonNullable<SubscriptionMethod>) method;
     }
 
     /**
@@ -317,6 +338,27 @@ public class SubscriptionRequest {
     public SubscriptionRequest withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    /**
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
+     */
+    public SubscriptionRequest withStatus(SubscriptionStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * enabling the subscription.
+     */
+    public SubscriptionRequest withStatus(Optional<? extends SubscriptionStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
         return this;
     }
 
@@ -437,7 +479,7 @@ public class SubscriptionRequest {
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
      */
-    public SubscriptionRequest withMethod(SubscriptionRequestMethod method) {
+    public SubscriptionRequest withMethod(SubscriptionMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -446,7 +488,7 @@ public class SubscriptionRequest {
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
      */
-    public SubscriptionRequest withMethod(JsonNullable<? extends SubscriptionRequestMethod> method) {
+    public SubscriptionRequest withMethod(JsonNullable<? extends SubscriptionMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -591,6 +633,7 @@ public class SubscriptionRequest {
         SubscriptionRequest other = (SubscriptionRequest) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.times, other.times) &&
             Utils.enhancedDeepEquals(this.interval, other.interval) &&
@@ -608,17 +651,18 @@ public class SubscriptionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, amount, times,
-            interval, startDate, description,
-            method, applicationFee, metadata,
-            webhookUrl, customerId, mandateId,
-            testmode);
+            id, status, amount,
+            times, interval, startDate,
+            description, method, applicationFee,
+            metadata, webhookUrl, customerId,
+            mandateId, testmode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(SubscriptionRequest.class,
                 "id", id,
+                "status", status,
                 "amount", amount,
                 "times", times,
                 "interval", interval,
@@ -638,6 +682,8 @@ public class SubscriptionRequest {
 
         private Optional<String> id = Optional.empty();
 
+        private Optional<? extends SubscriptionStatus> status = Optional.empty();
+
         private Optional<? extends Amount> amount = Optional.empty();
 
         private JsonNullable<Long> times = JsonNullable.undefined();
@@ -648,7 +694,7 @@ public class SubscriptionRequest {
 
         private Optional<String> description = Optional.empty();
 
-        private JsonNullable<? extends SubscriptionRequestMethod> method = JsonNullable.undefined();
+        private JsonNullable<? extends SubscriptionMethod> method = JsonNullable.undefined();
 
         private Optional<? extends SubscriptionRequestApplicationFee> applicationFee = Optional.empty();
 
@@ -676,6 +722,27 @@ public class SubscriptionRequest {
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+
+        /**
+         * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+         * enabling the subscription.
+         */
+        public Builder status(SubscriptionStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+         * enabling the subscription.
+         */
+        public Builder status(Optional<? extends SubscriptionStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
             return this;
         }
 
@@ -798,7 +865,7 @@ public class SubscriptionRequest {
         /**
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
          */
-        public Builder method(SubscriptionRequestMethod method) {
+        public Builder method(SubscriptionMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -807,7 +874,7 @@ public class SubscriptionRequest {
         /**
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
          */
-        public Builder method(JsonNullable<? extends SubscriptionRequestMethod> method) {
+        public Builder method(JsonNullable<? extends SubscriptionMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -946,11 +1013,11 @@ public class SubscriptionRequest {
         public SubscriptionRequest build() {
 
             return new SubscriptionRequest(
-                id, amount, times,
-                interval, startDate, description,
-                method, applicationFee, metadata,
-                webhookUrl, customerId, mandateId,
-                testmode);
+                id, status, amount,
+                times, interval, startDate,
+                description, method, applicationFee,
+                metadata, webhookUrl, customerId,
+                mandateId, testmode);
         }
 
     }

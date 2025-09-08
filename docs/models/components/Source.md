@@ -1,12 +1,11 @@
 # Source
 
-The way through which the invoice is to be set to paid.
+Where the funds will be pulled back from.
 
 
-## Values
+## Fields
 
-| Name           | Value          |
-| -------------- | -------------- |
-| `MANUAL`       | manual         |
-| `PAYMENT_LINK` | payment-link   |
-| `PAYMENT`      | payment        |
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                | Example                                                                                                    |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `type`                                                                                                     | [Optional\<RefundRoutingReversalsSourceType>](../../models/components/RefundRoutingReversalsSourceType.md) | :heavy_minus_sign:                                                                                         | The type of source. Currently only the source type `organization` is supported.                            | organization                                                                                               |
+| `organizationId`                                                                                           | *Optional\<String>*                                                                                        | :heavy_minus_sign:                                                                                         | N/A                                                                                                        | org_1234567                                                                                                |

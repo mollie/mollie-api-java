@@ -43,7 +43,7 @@ public class MandateResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private Optional<? extends MandateResponseMethod> method;
+    private Optional<? extends MandateMethodResponse> method;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -71,7 +71,7 @@ public class MandateResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends MandateResponseStatus> status;
+    private Optional<? extends MandateStatus> status;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -97,11 +97,11 @@ public class MandateResponse {
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("mode") Optional<? extends Mode> mode,
-            @JsonProperty("method") Optional<? extends MandateResponseMethod> method,
+            @JsonProperty("method") Optional<? extends MandateMethodResponse> method,
             @JsonProperty("details") Optional<? extends MandateResponseDetails> details,
             @JsonProperty("signatureDate") JsonNullable<String> signatureDate,
             @JsonProperty("mandateReference") JsonNullable<String> mandateReference,
-            @JsonProperty("status") Optional<? extends MandateResponseStatus> status,
+            @JsonProperty("status") Optional<? extends MandateStatus> status,
             @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("_links") Optional<? extends MandateResponseLinks> links) {
@@ -165,8 +165,8 @@ public class MandateResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<MandateResponseMethod> method() {
-        return (Optional<MandateResponseMethod>) method;
+    public Optional<MandateMethodResponse> method() {
+        return (Optional<MandateMethodResponse>) method;
     }
 
     @SuppressWarnings("unchecked")
@@ -198,8 +198,8 @@ public class MandateResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<MandateResponseStatus> status() {
-        return (Optional<MandateResponseStatus>) status;
+    public Optional<MandateStatus> status() {
+        return (Optional<MandateStatus>) status;
     }
 
     @JsonIgnore
@@ -285,7 +285,7 @@ public class MandateResponse {
      * 
      * <p>SEPA Direct Debit and PayPal mandates can be created directly.
      */
-    public MandateResponse withMethod(MandateResponseMethod method) {
+    public MandateResponse withMethod(MandateMethodResponse method) {
         Utils.checkNotNull(method, "method");
         this.method = Optional.ofNullable(method);
         return this;
@@ -297,7 +297,7 @@ public class MandateResponse {
      * 
      * <p>SEPA Direct Debit and PayPal mandates can be created directly.
      */
-    public MandateResponse withMethod(Optional<? extends MandateResponseMethod> method) {
+    public MandateResponse withMethod(Optional<? extends MandateMethodResponse> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -358,7 +358,7 @@ public class MandateResponse {
      * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
-    public MandateResponse withStatus(MandateResponseStatus status) {
+    public MandateResponse withStatus(MandateStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -369,7 +369,7 @@ public class MandateResponse {
      * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
-    public MandateResponse withStatus(Optional<? extends MandateResponseStatus> status) {
+    public MandateResponse withStatus(Optional<? extends MandateStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -483,7 +483,7 @@ public class MandateResponse {
 
         private Optional<? extends Mode> mode = Optional.empty();
 
-        private Optional<? extends MandateResponseMethod> method = Optional.empty();
+        private Optional<? extends MandateMethodResponse> method = Optional.empty();
 
         private Optional<? extends MandateResponseDetails> details = Optional.empty();
 
@@ -491,7 +491,7 @@ public class MandateResponse {
 
         private JsonNullable<String> mandateReference = JsonNullable.undefined();
 
-        private Optional<? extends MandateResponseStatus> status = Optional.empty();
+        private Optional<? extends MandateStatus> status = Optional.empty();
 
         private Optional<String> customerId = Optional.empty();
 
@@ -560,7 +560,7 @@ public class MandateResponse {
          * 
          * <p>SEPA Direct Debit and PayPal mandates can be created directly.
          */
-        public Builder method(MandateResponseMethod method) {
+        public Builder method(MandateMethodResponse method) {
             Utils.checkNotNull(method, "method");
             this.method = Optional.ofNullable(method);
             return this;
@@ -571,7 +571,7 @@ public class MandateResponse {
          * 
          * <p>SEPA Direct Debit and PayPal mandates can be created directly.
          */
-        public Builder method(Optional<? extends MandateResponseMethod> method) {
+        public Builder method(Optional<? extends MandateMethodResponse> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -635,7 +635,7 @@ public class MandateResponse {
          * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
          * when we did not received the IBAN yet from the first payment.
          */
-        public Builder status(MandateResponseStatus status) {
+        public Builder status(MandateStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -645,7 +645,7 @@ public class MandateResponse {
          * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
          * when we did not received the IBAN yet from the first payment.
          */
-        public Builder status(Optional<? extends MandateResponseStatus> status) {
+        public Builder status(Optional<? extends MandateStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

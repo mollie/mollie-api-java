@@ -21,7 +21,7 @@ public class EntityRefundExternalReference {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends EntityRefundType> type;
+    private Optional<? extends RefundExternalReferenceType> type;
 
     /**
      * Unique reference from the payment provider
@@ -32,7 +32,7 @@ public class EntityRefundExternalReference {
 
     @JsonCreator
     public EntityRefundExternalReference(
-            @JsonProperty("type") Optional<? extends EntityRefundType> type,
+            @JsonProperty("type") Optional<? extends RefundExternalReferenceType> type,
             @JsonProperty("id") Optional<String> id) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(id, "id");
@@ -49,8 +49,8 @@ public class EntityRefundExternalReference {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityRefundType> type() {
-        return (Optional<EntityRefundType>) type;
+    public Optional<RefundExternalReferenceType> type() {
+        return (Optional<RefundExternalReferenceType>) type;
     }
 
     /**
@@ -69,7 +69,7 @@ public class EntityRefundExternalReference {
     /**
      * Specifies the reference type
      */
-    public EntityRefundExternalReference withType(EntityRefundType type) {
+    public EntityRefundExternalReference withType(RefundExternalReferenceType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -79,7 +79,7 @@ public class EntityRefundExternalReference {
     /**
      * Specifies the reference type
      */
-    public EntityRefundExternalReference withType(Optional<? extends EntityRefundType> type) {
+    public EntityRefundExternalReference withType(Optional<? extends RefundExternalReferenceType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -134,7 +134,7 @@ public class EntityRefundExternalReference {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends EntityRefundType> type = Optional.empty();
+        private Optional<? extends RefundExternalReferenceType> type = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -146,7 +146,7 @@ public class EntityRefundExternalReference {
         /**
          * Specifies the reference type
          */
-        public Builder type(EntityRefundType type) {
+        public Builder type(RefundExternalReferenceType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -155,7 +155,7 @@ public class EntityRefundExternalReference {
         /**
          * Specifies the reference type
          */
-        public Builder type(Optional<? extends EntityRefundType> type) {
+        public Builder type(Optional<? extends RefundExternalReferenceType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

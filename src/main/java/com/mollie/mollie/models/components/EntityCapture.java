@@ -44,6 +44,13 @@ public class EntityCapture {
     private JsonNullable<? extends AmountNullable> settlementAmount;
 
     /**
+     * The capture's status.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private Optional<? extends CaptureStatus> status;
+
+    /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
@@ -72,6 +79,7 @@ public class EntityCapture {
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") JsonNullable<? extends AmountNullable> amount,
             @JsonProperty("settlementAmount") JsonNullable<? extends AmountNullable> settlementAmount,
+            @JsonProperty("status") Optional<? extends CaptureStatus> status,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("paymentId") Optional<String> paymentId,
             @JsonProperty("shipmentId") Optional<String> shipmentId,
@@ -80,6 +88,7 @@ public class EntityCapture {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(settlementAmount, "settlementAmount");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(shipmentId, "shipmentId");
@@ -88,6 +97,7 @@ public class EntityCapture {
         this.description = description;
         this.amount = amount;
         this.settlementAmount = settlementAmount;
+        this.status = status;
         this.metadata = metadata;
         this.paymentId = paymentId;
         this.shipmentId = shipmentId;
@@ -96,8 +106,8 @@ public class EntityCapture {
     
     public EntityCapture() {
         this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -129,6 +139,15 @@ public class EntityCapture {
     @JsonIgnore
     public JsonNullable<AmountNullable> settlementAmount() {
         return (JsonNullable<AmountNullable>) settlementAmount;
+    }
+
+    /**
+     * The capture's status.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CaptureStatus> status() {
+        return (Optional<CaptureStatus>) status;
     }
 
     /**
@@ -230,6 +249,25 @@ public class EntityCapture {
     }
 
     /**
+     * The capture's status.
+     */
+    public EntityCapture withStatus(CaptureStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * The capture's status.
+     */
+    public EntityCapture withStatus(Optional<? extends CaptureStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
+        return this;
+    }
+
+    /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
      */
@@ -302,6 +340,7 @@ public class EntityCapture {
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.shipmentId, other.shipmentId) &&
@@ -312,8 +351,8 @@ public class EntityCapture {
     public int hashCode() {
         return Utils.enhancedHash(
             id, description, amount,
-            settlementAmount, metadata, paymentId,
-            shipmentId, settlementId);
+            settlementAmount, status, metadata,
+            paymentId, shipmentId, settlementId);
     }
     
     @Override
@@ -323,6 +362,7 @@ public class EntityCapture {
                 "description", description,
                 "amount", amount,
                 "settlementAmount", settlementAmount,
+                "status", status,
                 "metadata", metadata,
                 "paymentId", paymentId,
                 "shipmentId", shipmentId,
@@ -339,6 +379,8 @@ public class EntityCapture {
         private JsonNullable<? extends AmountNullable> amount = JsonNullable.undefined();
 
         private JsonNullable<? extends AmountNullable> settlementAmount = JsonNullable.undefined();
+
+        private Optional<? extends CaptureStatus> status = Optional.empty();
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
@@ -424,6 +466,25 @@ public class EntityCapture {
 
 
         /**
+         * The capture's status.
+         */
+        public Builder status(CaptureStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * The capture's status.
+         */
+        public Builder status(Optional<? extends CaptureStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
+            return this;
+        }
+
+
+        /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
          * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
          */
@@ -486,8 +547,8 @@ public class EntityCapture {
 
             return new EntityCapture(
                 id, description, amount,
-                settlementAmount, metadata, paymentId,
-                shipmentId, settlementId);
+                settlementAmount, status, metadata,
+                paymentId, shipmentId, settlementId);
         }
 
     }

@@ -25,7 +25,7 @@ public class EntityRefundSource {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends EntityRefundRoutingReversalsType> type;
+    private Optional<? extends RefundRoutingReversalsSourceType> type;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -34,7 +34,7 @@ public class EntityRefundSource {
 
     @JsonCreator
     public EntityRefundSource(
-            @JsonProperty("type") Optional<? extends EntityRefundRoutingReversalsType> type,
+            @JsonProperty("type") Optional<? extends RefundRoutingReversalsSourceType> type,
             @JsonProperty("organizationId") Optional<String> organizationId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(organizationId, "organizationId");
@@ -51,8 +51,8 @@ public class EntityRefundSource {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityRefundRoutingReversalsType> type() {
-        return (Optional<EntityRefundRoutingReversalsType>) type;
+    public Optional<RefundRoutingReversalsSourceType> type() {
+        return (Optional<RefundRoutingReversalsSourceType>) type;
     }
 
     @JsonIgnore
@@ -68,7 +68,7 @@ public class EntityRefundSource {
     /**
      * The type of source. Currently only the source type `organization` is supported.
      */
-    public EntityRefundSource withType(EntityRefundRoutingReversalsType type) {
+    public EntityRefundSource withType(RefundRoutingReversalsSourceType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -78,7 +78,7 @@ public class EntityRefundSource {
     /**
      * The type of source. Currently only the source type `organization` is supported.
      */
-    public EntityRefundSource withType(Optional<? extends EntityRefundRoutingReversalsType> type) {
+    public EntityRefundSource withType(Optional<? extends RefundRoutingReversalsSourceType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -127,7 +127,7 @@ public class EntityRefundSource {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends EntityRefundRoutingReversalsType> type = Optional.empty();
+        private Optional<? extends RefundRoutingReversalsSourceType> type = Optional.empty();
 
         private Optional<String> organizationId = Optional.empty();
 
@@ -139,7 +139,7 @@ public class EntityRefundSource {
         /**
          * The type of source. Currently only the source type `organization` is supported.
          */
-        public Builder type(EntityRefundRoutingReversalsType type) {
+        public Builder type(RefundRoutingReversalsSourceType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
@@ -148,7 +148,7 @@ public class EntityRefundSource {
         /**
          * The type of source. Currently only the source type `organization` is supported.
          */
-        public Builder type(Optional<? extends EntityRefundRoutingReversalsType> type) {
+        public Builder type(Optional<? extends RefundRoutingReversalsSourceType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

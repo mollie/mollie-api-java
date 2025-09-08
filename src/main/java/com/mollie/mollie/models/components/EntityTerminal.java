@@ -44,14 +44,14 @@ public class EntityTerminal {
      * The status of the terminal.
      */
     @JsonProperty("status")
-    private EntityTerminalStatus status;
+    private TerminalStatus status;
 
     /**
      * The brand of the terminal.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("brand")
-    private Optional<? extends Brand> brand;
+    private Optional<? extends TerminalBrand> brand;
 
     /**
      * The model of the terminal. For example for a PAX A920, this field's value will be `A920`.
@@ -108,8 +108,8 @@ public class EntityTerminal {
             @JsonProperty("id") String id,
             @JsonProperty("mode") Mode mode,
             @JsonProperty("description") String description,
-            @JsonProperty("status") EntityTerminalStatus status,
-            @JsonProperty("brand") Optional<? extends Brand> brand,
+            @JsonProperty("status") TerminalStatus status,
+            @JsonProperty("brand") Optional<? extends TerminalBrand> brand,
             @JsonProperty("model") Optional<? extends TerminalModel> model,
             @JsonProperty("serialNumber") Optional<String> serialNumber,
             @JsonProperty("currency") String currency,
@@ -150,7 +150,7 @@ public class EntityTerminal {
             String id,
             Mode mode,
             String description,
-            EntityTerminalStatus status,
+            TerminalStatus status,
             String currency,
             String profileId,
             String createdAt,
@@ -198,7 +198,7 @@ public class EntityTerminal {
      * The status of the terminal.
      */
     @JsonIgnore
-    public EntityTerminalStatus status() {
+    public TerminalStatus status() {
         return status;
     }
 
@@ -207,8 +207,8 @@ public class EntityTerminal {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Brand> brand() {
-        return (Optional<Brand>) brand;
+    public Optional<TerminalBrand> brand() {
+        return (Optional<TerminalBrand>) brand;
     }
 
     /**
@@ -316,7 +316,7 @@ public class EntityTerminal {
     /**
      * The status of the terminal.
      */
-    public EntityTerminal withStatus(EntityTerminalStatus status) {
+    public EntityTerminal withStatus(TerminalStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -325,7 +325,7 @@ public class EntityTerminal {
     /**
      * The brand of the terminal.
      */
-    public EntityTerminal withBrand(Brand brand) {
+    public EntityTerminal withBrand(TerminalBrand brand) {
         Utils.checkNotNull(brand, "brand");
         this.brand = Optional.ofNullable(brand);
         return this;
@@ -335,7 +335,7 @@ public class EntityTerminal {
     /**
      * The brand of the terminal.
      */
-    public EntityTerminal withBrand(Optional<? extends Brand> brand) {
+    public EntityTerminal withBrand(Optional<? extends TerminalBrand> brand) {
         Utils.checkNotNull(brand, "brand");
         this.brand = brand;
         return this;
@@ -493,9 +493,9 @@ public class EntityTerminal {
 
         private String description;
 
-        private EntityTerminalStatus status;
+        private TerminalStatus status;
 
-        private Optional<? extends Brand> brand = Optional.empty();
+        private Optional<? extends TerminalBrand> brand = Optional.empty();
 
         private Optional<? extends TerminalModel> model = Optional.empty();
 
@@ -558,7 +558,7 @@ public class EntityTerminal {
         /**
          * The status of the terminal.
          */
-        public Builder status(EntityTerminalStatus status) {
+        public Builder status(TerminalStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -568,7 +568,7 @@ public class EntityTerminal {
         /**
          * The brand of the terminal.
          */
-        public Builder brand(Brand brand) {
+        public Builder brand(TerminalBrand brand) {
             Utils.checkNotNull(brand, "brand");
             this.brand = Optional.ofNullable(brand);
             return this;
@@ -577,7 +577,7 @@ public class EntityTerminal {
         /**
          * The brand of the terminal.
          */
-        public Builder brand(Optional<? extends Brand> brand) {
+        public Builder brand(Optional<? extends TerminalBrand> brand) {
             Utils.checkNotNull(brand, "brand");
             this.brand = brand;
             return this;

@@ -64,7 +64,7 @@ public class EntityWebhook {
      * The subscription's current status.
      */
     @JsonProperty("status")
-    private EntityWebhookStatus status;
+    private WebhookStatus status;
 
     /**
      * Whether this entity was created in live mode or in test mode.
@@ -87,7 +87,7 @@ public class EntityWebhook {
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("name") String name,
             @JsonProperty("eventTypes") List<WebhookEventTypes> eventTypes,
-            @JsonProperty("status") EntityWebhookStatus status,
+            @JsonProperty("status") WebhookStatus status,
             @JsonProperty("mode") Mode mode,
             @JsonProperty("_links") EntityWebhookLinks links) {
         Utils.checkNotNull(resource, "resource");
@@ -119,7 +119,7 @@ public class EntityWebhook {
             String createdAt,
             String name,
             List<WebhookEventTypes> eventTypes,
-            EntityWebhookStatus status,
+            WebhookStatus status,
             Mode mode,
             EntityWebhookLinks links) {
         this(resource, id, url,
@@ -189,7 +189,7 @@ public class EntityWebhook {
      * The subscription's current status.
      */
     @JsonIgnore
-    public EntityWebhookStatus status() {
+    public WebhookStatus status() {
         return status;
     }
 
@@ -291,7 +291,7 @@ public class EntityWebhook {
     /**
      * The subscription's current status.
      */
-    public EntityWebhook withStatus(EntityWebhookStatus status) {
+    public EntityWebhook withStatus(WebhookStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -378,7 +378,7 @@ public class EntityWebhook {
 
         private List<WebhookEventTypes> eventTypes;
 
-        private EntityWebhookStatus status;
+        private WebhookStatus status;
 
         private Mode mode;
 
@@ -472,7 +472,7 @@ public class EntityWebhook {
         /**
          * The subscription's current status.
          */
-        public Builder status(EntityWebhookStatus status) {
+        public Builder status(WebhookStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

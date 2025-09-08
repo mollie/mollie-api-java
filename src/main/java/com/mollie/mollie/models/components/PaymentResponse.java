@@ -327,7 +327,7 @@ public class PaymentResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends PaymentResponseStatus> status;
+    private Optional<? extends PaymentStatus> status;
 
     /**
      * This object offers details about the status of a payment. Currently it is only available for point-of-sale
@@ -453,7 +453,7 @@ public class PaymentResponse {
             @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("settlementId") Optional<String> settlementId,
             @JsonProperty("orderId") Optional<String> orderId,
-            @JsonProperty("status") Optional<? extends PaymentResponseStatus> status,
+            @JsonProperty("status") Optional<? extends PaymentStatus> status,
             @JsonProperty("statusReason") JsonNullable<? extends StatusReason> statusReason,
             @JsonProperty("isCancelable") JsonNullable<Boolean> isCancelable,
             @JsonProperty("details") JsonNullable<? extends Details> details,
@@ -924,8 +924,8 @@ public class PaymentResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentResponseStatus> status() {
-        return (Optional<PaymentResponseStatus>) status;
+    public Optional<PaymentStatus> status() {
+        return (Optional<PaymentStatus>) status;
     }
 
     /**
@@ -1777,7 +1777,7 @@ public class PaymentResponse {
      * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
      * statuses occur at what point.
      */
-    public PaymentResponse withStatus(PaymentResponseStatus status) {
+    public PaymentResponse withStatus(PaymentStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -1788,7 +1788,7 @@ public class PaymentResponse {
      * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
      * statuses occur at what point.
      */
-    public PaymentResponse withStatus(Optional<? extends PaymentResponseStatus> status) {
+    public PaymentResponse withStatus(Optional<? extends PaymentStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -2214,7 +2214,7 @@ public class PaymentResponse {
 
         private Optional<String> orderId = Optional.empty();
 
-        private Optional<? extends PaymentResponseStatus> status = Optional.empty();
+        private Optional<? extends PaymentStatus> status = Optional.empty();
 
         private JsonNullable<? extends StatusReason> statusReason = JsonNullable.undefined();
 
@@ -2998,7 +2998,7 @@ public class PaymentResponse {
          * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
          * statuses occur at what point.
          */
-        public Builder status(PaymentResponseStatus status) {
+        public Builder status(PaymentStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -3008,7 +3008,7 @@ public class PaymentResponse {
          * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
          * statuses occur at what point.
          */
-        public Builder status(Optional<? extends PaymentResponseStatus> status) {
+        public Builder status(Optional<? extends PaymentStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
