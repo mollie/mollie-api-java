@@ -27,6 +27,7 @@ This documentation is for the new Mollie's SDK. You can find more details on how
   * [SDK Example Usage](#sdk-example-usage)
   * [Asynchronous Support](#asynchronous-support)
   * [Authentication](#authentication)
+  * [Idempotency Key](#idempotency-key)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
@@ -284,6 +285,74 @@ public class Application {
 }
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Idempotency Key -->
+## Idempotency Key
+
+This SDK supports the usage of Idempotency Keys. See our [documentation](https://docs.mollie.com/reference/api-idempotency) on how to use it.
+
+```java
+package com.example.app;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.operations.*;
+import java.lang.Exception;
+import java.lang.RuntimeException;
+
+public class App 
+{
+    public static void main(String[] args) throws ErrorResponse, Exception {
+        try {
+            Client sdk = Client.builder()
+                    .security(Security.builder()
+                        .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                        .build())
+                .build();
+
+            String idempotencyKey = "<some-idempotency-key>";
+
+            CreatePaymentResponse res = sdk.payments().create()
+                .idempotencyKey(idempotencyKey)
+                .paymentRequest(PaymentRequest.builder()
+                    .description("My first payment")
+                    .redirectUrl("https://example.org/redirect")
+                    .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .build())
+                .call();
+
+            CreatePaymentResponse res2 = sdk.payments().create()
+                .idempotencyKey(idempotencyKey)
+                .paymentRequest(PaymentRequest.builder()
+                    .description("My first payment")
+                    .redirectUrl("https://example.org/redirect")
+                    .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .build())
+                .call();
+
+            String paymentId1 = res.paymentResponse().orElseThrow().id().orElseThrow();
+            String paymentId2 = res2.paymentResponse().orElseThrow().id().orElseThrow();
+            System.out.println(paymentId1);
+            System.out.println(paymentId2);
+            if (paymentId1.equals(paymentId2)) {
+                System.out.println("Payments are the same");
+            } else {
+                System.out.println("Payments are different");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+```
+<!-- End Idempotency Key -->
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
