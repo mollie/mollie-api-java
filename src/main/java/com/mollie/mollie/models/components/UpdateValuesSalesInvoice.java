@@ -101,6 +101,16 @@ public class UpdateValuesSalesInvoice {
     @JsonProperty("discount")
     private JsonNullable<? extends SalesInvoiceDiscount> discount;
 
+    /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+     * after the invoice has been issued.
+     * 
+     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("isEInvoice")
+    private Optional<Boolean> isEInvoice;
+
     @JsonCreator
     public UpdateValuesSalesInvoice(
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
@@ -112,7 +122,8 @@ public class UpdateValuesSalesInvoice {
             @JsonProperty("recipientIdentifier") Optional<String> recipientIdentifier,
             @JsonProperty("recipient") JsonNullable<? extends SalesInvoiceRecipient> recipient,
             @JsonProperty("lines") JsonNullable<? extends List<SalesInvoiceLineItem>> lines,
-            @JsonProperty("discount") JsonNullable<? extends SalesInvoiceDiscount> discount) {
+            @JsonProperty("discount") JsonNullable<? extends SalesInvoiceDiscount> discount,
+            @JsonProperty("isEInvoice") Optional<Boolean> isEInvoice) {
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(memo, "memo");
@@ -123,6 +134,7 @@ public class UpdateValuesSalesInvoice {
         Utils.checkNotNull(recipient, "recipient");
         Utils.checkNotNull(lines, "lines");
         Utils.checkNotNull(discount, "discount");
+        Utils.checkNotNull(isEInvoice, "isEInvoice");
         this.testmode = testmode;
         this.status = status;
         this.memo = memo;
@@ -133,13 +145,14 @@ public class UpdateValuesSalesInvoice {
         this.recipient = recipient;
         this.lines = lines;
         this.discount = discount;
+        this.isEInvoice = isEInvoice;
     }
     
     public UpdateValuesSalesInvoice() {
         this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -235,6 +248,17 @@ public class UpdateValuesSalesInvoice {
     @JsonIgnore
     public JsonNullable<SalesInvoiceDiscount> discount() {
         return (JsonNullable<SalesInvoiceDiscount>) discount;
+    }
+
+    /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+     * after the invoice has been issued.
+     * 
+     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     */
+    @JsonIgnore
+    public Optional<Boolean> isEInvoice() {
+        return isEInvoice;
     }
 
     public static Builder builder() {
@@ -440,6 +464,31 @@ public class UpdateValuesSalesInvoice {
         return this;
     }
 
+    /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+     * after the invoice has been issued.
+     * 
+     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     */
+    public UpdateValuesSalesInvoice withIsEInvoice(boolean isEInvoice) {
+        Utils.checkNotNull(isEInvoice, "isEInvoice");
+        this.isEInvoice = Optional.ofNullable(isEInvoice);
+        return this;
+    }
+
+
+    /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+     * after the invoice has been issued.
+     * 
+     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     */
+    public UpdateValuesSalesInvoice withIsEInvoice(Optional<Boolean> isEInvoice) {
+        Utils.checkNotNull(isEInvoice, "isEInvoice");
+        this.isEInvoice = isEInvoice;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -459,7 +508,8 @@ public class UpdateValuesSalesInvoice {
             Utils.enhancedDeepEquals(this.recipientIdentifier, other.recipientIdentifier) &&
             Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
             Utils.enhancedDeepEquals(this.lines, other.lines) &&
-            Utils.enhancedDeepEquals(this.discount, other.discount);
+            Utils.enhancedDeepEquals(this.discount, other.discount) &&
+            Utils.enhancedDeepEquals(this.isEInvoice, other.isEInvoice);
     }
     
     @Override
@@ -468,7 +518,7 @@ public class UpdateValuesSalesInvoice {
             testmode, status, memo,
             paymentTerm, paymentDetails, emailDetails,
             recipientIdentifier, recipient, lines,
-            discount);
+            discount, isEInvoice);
     }
     
     @Override
@@ -483,7 +533,8 @@ public class UpdateValuesSalesInvoice {
                 "recipientIdentifier", recipientIdentifier,
                 "recipient", recipient,
                 "lines", lines,
-                "discount", discount);
+                "discount", discount,
+                "isEInvoice", isEInvoice);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -508,6 +559,8 @@ public class UpdateValuesSalesInvoice {
         private JsonNullable<? extends List<SalesInvoiceLineItem>> lines = JsonNullable.undefined();
 
         private JsonNullable<? extends SalesInvoiceDiscount> discount = JsonNullable.undefined();
+
+        private Optional<Boolean> isEInvoice = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -719,13 +772,38 @@ public class UpdateValuesSalesInvoice {
             return this;
         }
 
+
+        /**
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+         * after the invoice has been issued.
+         * 
+         * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+         */
+        public Builder isEInvoice(boolean isEInvoice) {
+            Utils.checkNotNull(isEInvoice, "isEInvoice");
+            this.isEInvoice = Optional.ofNullable(isEInvoice);
+            return this;
+        }
+
+        /**
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+         * after the invoice has been issued.
+         * 
+         * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+         */
+        public Builder isEInvoice(Optional<Boolean> isEInvoice) {
+            Utils.checkNotNull(isEInvoice, "isEInvoice");
+            this.isEInvoice = isEInvoice;
+            return this;
+        }
+
         public UpdateValuesSalesInvoice build() {
 
             return new UpdateValuesSalesInvoice(
                 testmode, status, memo,
                 paymentTerm, paymentDetails, emailDetails,
                 recipientIdentifier, recipient, lines,
-                discount);
+                discount, isEInvoice);
         }
 
     }

@@ -87,6 +87,7 @@ public class Application {
                         .type(SalesInvoiceDiscountType.AMOUNT)
                         .value("10.00")
                         .build())
+                    .isEInvoice(false)
                     .amountDue(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
@@ -349,6 +350,7 @@ public class Application {
                         .type(SalesInvoiceDiscountType.AMOUNT)
                         .value("10.00")
                         .build())
+                    .isEInvoice(false)
                     .build())
                 .call();
 

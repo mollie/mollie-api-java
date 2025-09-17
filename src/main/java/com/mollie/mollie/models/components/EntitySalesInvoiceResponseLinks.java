@@ -48,25 +48,45 @@ public class EntitySalesInvoiceResponseLinks {
     @JsonProperty("documentation")
     private Optional<? extends Url> documentation;
 
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("next")
+    private Optional<? extends Url> next;
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("previous")
+    private Optional<? extends Url> previous;
+
     @JsonCreator
     public EntitySalesInvoiceResponseLinks(
             @JsonProperty("self") Optional<? extends Url> self,
             @JsonProperty("invoicePayment") Optional<? extends Url> invoicePayment,
             @JsonProperty("pdfLink") Optional<? extends Url> pdfLink,
-            @JsonProperty("documentation") Optional<? extends Url> documentation) {
+            @JsonProperty("documentation") Optional<? extends Url> documentation,
+            @JsonProperty("next") Optional<? extends Url> next,
+            @JsonProperty("previous") Optional<? extends Url> previous) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(invoicePayment, "invoicePayment");
         Utils.checkNotNull(pdfLink, "pdfLink");
         Utils.checkNotNull(documentation, "documentation");
+        Utils.checkNotNull(next, "next");
+        Utils.checkNotNull(previous, "previous");
         this.self = self;
         this.invoicePayment = invoicePayment;
         this.pdfLink = pdfLink;
         this.documentation = documentation;
+        this.next = next;
+        this.previous = previous;
     }
     
     public EntitySalesInvoiceResponseLinks() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -103,6 +123,24 @@ public class EntitySalesInvoiceResponseLinks {
     @JsonIgnore
     public Optional<Url> documentation() {
         return (Optional<Url>) documentation;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Url> next() {
+        return (Optional<Url>) next;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Url> previous() {
+        return (Optional<Url>) previous;
     }
 
     public static Builder builder() {
@@ -186,6 +224,44 @@ public class EntitySalesInvoiceResponseLinks {
         return this;
     }
 
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public EntitySalesInvoiceResponseLinks withNext(Url next) {
+        Utils.checkNotNull(next, "next");
+        this.next = Optional.ofNullable(next);
+        return this;
+    }
+
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public EntitySalesInvoiceResponseLinks withNext(Optional<? extends Url> next) {
+        Utils.checkNotNull(next, "next");
+        this.next = next;
+        return this;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public EntitySalesInvoiceResponseLinks withPrevious(Url previous) {
+        Utils.checkNotNull(previous, "previous");
+        this.previous = Optional.ofNullable(previous);
+        return this;
+    }
+
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public EntitySalesInvoiceResponseLinks withPrevious(Optional<? extends Url> previous) {
+        Utils.checkNotNull(previous, "previous");
+        this.previous = previous;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -199,14 +275,16 @@ public class EntitySalesInvoiceResponseLinks {
             Utils.enhancedDeepEquals(this.self, other.self) &&
             Utils.enhancedDeepEquals(this.invoicePayment, other.invoicePayment) &&
             Utils.enhancedDeepEquals(this.pdfLink, other.pdfLink) &&
-            Utils.enhancedDeepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.documentation, other.documentation) &&
+            Utils.enhancedDeepEquals(this.next, other.next) &&
+            Utils.enhancedDeepEquals(this.previous, other.previous);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             self, invoicePayment, pdfLink,
-            documentation);
+            documentation, next, previous);
     }
     
     @Override
@@ -215,7 +293,9 @@ public class EntitySalesInvoiceResponseLinks {
                 "self", self,
                 "invoicePayment", invoicePayment,
                 "pdfLink", pdfLink,
-                "documentation", documentation);
+                "documentation", documentation,
+                "next", next,
+                "previous", previous);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -228,6 +308,10 @@ public class EntitySalesInvoiceResponseLinks {
         private Optional<? extends Url> pdfLink = Optional.empty();
 
         private Optional<? extends Url> documentation = Optional.empty();
+
+        private Optional<? extends Url> next = Optional.empty();
+
+        private Optional<? extends Url> previous = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -309,11 +393,49 @@ public class EntitySalesInvoiceResponseLinks {
             return this;
         }
 
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder next(Url next) {
+            Utils.checkNotNull(next, "next");
+            this.next = Optional.ofNullable(next);
+            return this;
+        }
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder next(Optional<? extends Url> next) {
+            Utils.checkNotNull(next, "next");
+            this.next = next;
+            return this;
+        }
+
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder previous(Url previous) {
+            Utils.checkNotNull(previous, "previous");
+            this.previous = Optional.ofNullable(previous);
+            return this;
+        }
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder previous(Optional<? extends Url> previous) {
+            Utils.checkNotNull(previous, "previous");
+            this.previous = previous;
+            return this;
+        }
+
         public EntitySalesInvoiceResponseLinks build() {
 
             return new EntitySalesInvoiceResponseLinks(
                 self, invoicePayment, pdfLink,
-                documentation);
+                documentation, next, previous);
         }
 
     }
