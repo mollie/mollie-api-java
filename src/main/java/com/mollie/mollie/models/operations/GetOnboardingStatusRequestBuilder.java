@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.GetOnboardingStatus;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -19,6 +20,7 @@ public class GetOnboardingStatusRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetOnboardingStatusRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -62,7 +64,7 @@ public class GetOnboardingStatusRequestBuilder {
             .build());
 
         RequestOperation<GetOnboardingStatusRequest, GetOnboardingStatusResponse> operation
-              = new GetOnboardingStatus.Sync(sdkConfiguration, options);
+              = new GetOnboardingStatus.Sync(sdkConfiguration, options, _headers);
         GetOnboardingStatusRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

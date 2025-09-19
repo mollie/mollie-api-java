@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.ListBalanceTransactions;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -18,6 +19,7 @@ public class ListBalanceTransactionsRequestBuilder {
     private ListBalanceTransactionsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListBalanceTransactionsRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -47,7 +49,7 @@ public class ListBalanceTransactionsRequestBuilder {
             .build());
 
         RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
-              = new ListBalanceTransactions.Sync(sdkConfiguration, options);
+              = new ListBalanceTransactions.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }

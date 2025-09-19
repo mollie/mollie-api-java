@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.GetSettlement;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -20,6 +21,7 @@ public class GetSettlementRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetSettlementRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -70,7 +72,7 @@ public class GetSettlementRequestBuilder {
             .build());
 
         RequestOperation<GetSettlementRequest, GetSettlementResponse> operation
-              = new GetSettlement.Sync(sdkConfiguration, options);
+              = new GetSettlement.Sync(sdkConfiguration, options, _headers);
         GetSettlementRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

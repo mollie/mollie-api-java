@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -94,7 +93,7 @@ public class EntitySettlement {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("periods")
-    private Optional<? extends Map<String, Object>> periods;
+    private Optional<? extends Map<String, Map<String, Periods>>> periods;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -114,7 +113,7 @@ public class EntitySettlement {
             @JsonProperty("amount") Optional<? extends Amount> amount,
             @JsonProperty("balanceId") Optional<String> balanceId,
             @JsonProperty("invoiceId") Optional<String> invoiceId,
-            @JsonProperty("periods") Optional<? extends Map<String, Object>> periods,
+            @JsonProperty("periods") Optional<? extends Map<String, Map<String, Periods>>> periods,
             @JsonProperty("_links") Optional<? extends EntitySettlementLinks> links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -230,8 +229,8 @@ public class EntitySettlement {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Object>> periods() {
-        return (Optional<Map<String, Object>>) periods;
+    public Optional<Map<String, Map<String, Periods>>> periods() {
+        return (Optional<Map<String, Map<String, Periods>>>) periods;
     }
 
     /**
@@ -419,7 +418,7 @@ public class EntitySettlement {
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
-    public EntitySettlement withPeriods(Map<String, Object> periods) {
+    public EntitySettlement withPeriods(Map<String, Map<String, Periods>> periods) {
         Utils.checkNotNull(periods, "periods");
         this.periods = Optional.ofNullable(periods);
         return this;
@@ -438,7 +437,7 @@ public class EntitySettlement {
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
-    public EntitySettlement withPeriods(Optional<? extends Map<String, Object>> periods) {
+    public EntitySettlement withPeriods(Optional<? extends Map<String, Map<String, Periods>>> periods) {
         Utils.checkNotNull(periods, "periods");
         this.periods = periods;
         return this;
@@ -532,7 +531,7 @@ public class EntitySettlement {
 
         private Optional<String> invoiceId = Optional.empty();
 
-        private Optional<? extends Map<String, Object>> periods = Optional.empty();
+        private Optional<? extends Map<String, Map<String, Periods>>> periods = Optional.empty();
 
         private Optional<? extends EntitySettlementLinks> links = Optional.empty();
 
@@ -714,7 +713,7 @@ public class EntitySettlement {
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */
-        public Builder periods(Map<String, Object> periods) {
+        public Builder periods(Map<String, Map<String, Periods>> periods) {
             Utils.checkNotNull(periods, "periods");
             this.periods = Optional.ofNullable(periods);
             return this;
@@ -732,7 +731,7 @@ public class EntitySettlement {
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */
-        public Builder periods(Optional<? extends Map<String, Object>> periods) {
+        public Builder periods(Optional<? extends Map<String, Map<String, Periods>>> periods) {
             Utils.checkNotNull(periods, "periods");
             this.periods = periods;
             return this;

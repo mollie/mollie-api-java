@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.GetWebhook;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -23,6 +24,7 @@ public class GetWebhookRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetWebhookRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -86,7 +88,7 @@ public class GetWebhookRequestBuilder {
             .build());
 
         RequestOperation<GetWebhookRequest, GetWebhookResponse> operation
-              = new GetWebhook.Sync(sdkConfiguration, options);
+              = new GetWebhook.Sync(sdkConfiguration, options, _headers);
         GetWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

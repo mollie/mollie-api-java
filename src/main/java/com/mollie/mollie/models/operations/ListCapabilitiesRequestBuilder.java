@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.ListCapabilities;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -19,6 +20,7 @@ public class ListCapabilitiesRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListCapabilitiesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -62,7 +64,7 @@ public class ListCapabilitiesRequestBuilder {
             .build());
 
         RequestOperation<ListCapabilitiesRequest, ListCapabilitiesResponse> operation
-              = new ListCapabilities.Sync(sdkConfiguration, options);
+              = new ListCapabilities.Sync(sdkConfiguration, options, _headers);
         ListCapabilitiesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

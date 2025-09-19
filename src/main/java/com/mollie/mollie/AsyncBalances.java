@@ -25,6 +25,7 @@ import com.mollie.mollie.operations.GetBalanceReport;
 import com.mollie.mollie.operations.GetPrimaryBalance;
 import com.mollie.mollie.operations.ListBalanceTransactions;
 import com.mollie.mollie.operations.ListBalances;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
@@ -34,6 +35,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncBalances {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Balances syncSDK;
 
@@ -92,7 +94,9 @@ public class AsyncBalances {
      */
     public CompletableFuture<ListBalancesResponse> list(ListBalancesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBalancesRequest, ListBalancesResponse> operation
-              = new ListBalances.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListBalances.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -191,7 +195,9 @@ public class AsyncBalances {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalance.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetBalance.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -247,7 +253,9 @@ public class AsyncBalances {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetPrimaryBalanceRequest, GetPrimaryBalanceResponse> operation
-              = new GetPrimaryBalance.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPrimaryBalance.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -305,7 +313,9 @@ public class AsyncBalances {
      */
     public CompletableFuture<GetBalanceReportResponse> getReport(GetBalanceReportRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetBalanceReportRequest, GetBalanceReportResponse> operation
-              = new GetBalanceReport.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetBalanceReport.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -372,7 +382,9 @@ public class AsyncBalances {
      */
     public CompletableFuture<ListBalanceTransactionsResponse> listTransactions(ListBalanceTransactionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
-              = new ListBalanceTransactions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListBalanceTransactions.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

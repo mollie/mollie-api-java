@@ -18,6 +18,7 @@ import com.mollie.mollie.models.operations.async.ListCapturesResponse;
 import com.mollie.mollie.operations.CreateCapture;
 import com.mollie.mollie.operations.GetCapture;
 import com.mollie.mollie.operations.ListCaptures;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -25,6 +26,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncCaptures {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Captures syncSDK;
 
@@ -111,7 +113,9 @@ public class AsyncCaptures {
                 .entityCapture(entityCapture)
                 .build();
         AsyncRequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
-              = new CreateCapture.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateCapture.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -157,7 +161,9 @@ public class AsyncCaptures {
      */
     public CompletableFuture<ListCapturesResponse> list(ListCapturesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListCapturesRequest, ListCapturesResponse> operation
-              = new ListCaptures.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListCaptures.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -200,7 +206,9 @@ public class AsyncCaptures {
      */
     public CompletableFuture<GetCaptureResponse> get(GetCaptureRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetCaptureRequest, GetCaptureResponse> operation
-              = new GetCapture.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetCapture.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

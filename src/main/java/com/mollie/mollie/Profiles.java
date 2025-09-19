@@ -31,6 +31,7 @@ import com.mollie.mollie.operations.GetCurrentProfile;
 import com.mollie.mollie.operations.GetProfile;
 import com.mollie.mollie.operations.ListProfiles;
 import com.mollie.mollie.operations.UpdateProfile;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -41,6 +42,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Profiles {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncProfiles asyncSDK;
 
@@ -112,7 +114,7 @@ public class Profiles {
                 .entityProfile(entityProfile)
                 .build();
         RequestOperation<CreateProfileRequest, CreateProfileResponse> operation
-              = new CreateProfile.Sync(sdkConfiguration, options);
+              = new CreateProfile.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -170,7 +172,7 @@ public class Profiles {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
-              = new ListProfiles.Sync(sdkConfiguration, options);
+              = new ListProfiles.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -226,7 +228,7 @@ public class Profiles {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetProfileRequest, GetProfileResponse> operation
-              = new GetProfile.Sync(sdkConfiguration, options);
+              = new GetProfile.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -288,7 +290,7 @@ public class Profiles {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
-              = new UpdateProfile.Sync(sdkConfiguration, options);
+              = new UpdateProfile.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -337,7 +339,7 @@ public class Profiles {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
-              = new DeleteProfile.Sync(sdkConfiguration, options);
+              = new DeleteProfile.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -393,7 +395,7 @@ public class Profiles {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetCurrentProfileRequest, GetCurrentProfileResponse> operation
-              = new GetCurrentProfile.Sync(sdkConfiguration, options);
+              = new GetCurrentProfile.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

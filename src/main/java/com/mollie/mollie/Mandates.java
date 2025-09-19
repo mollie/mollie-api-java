@@ -23,6 +23,7 @@ import com.mollie.mollie.operations.CreateMandate;
 import com.mollie.mollie.operations.GetMandate;
 import com.mollie.mollie.operations.ListMandates;
 import com.mollie.mollie.operations.RevokeMandate;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -32,6 +33,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Mandates {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncMandates asyncSDK;
 
@@ -109,7 +111,7 @@ public class Mandates {
                 .entityMandate(entityMandate)
                 .build();
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
-              = new CreateMandate.Sync(sdkConfiguration, options);
+              = new CreateMandate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -155,7 +157,7 @@ public class Mandates {
      */
     public ListMandatesResponse list(ListMandatesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListMandatesRequest, ListMandatesResponse> operation
-              = new ListMandates.Sync(sdkConfiguration, options);
+              = new ListMandates.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -218,7 +220,7 @@ public class Mandates {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetMandateRequest, GetMandateResponse> operation
-              = new GetMandate.Sync(sdkConfiguration, options);
+              = new GetMandate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -277,7 +279,7 @@ public class Mandates {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
-              = new RevokeMandate.Sync(sdkConfiguration, options);
+              = new RevokeMandate.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

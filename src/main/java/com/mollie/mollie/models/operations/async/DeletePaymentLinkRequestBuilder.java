@@ -9,6 +9,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequest;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequestBody;
 import com.mollie.mollie.operations.DeletePaymentLink;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -24,6 +25,7 @@ public class DeletePaymentLinkRequestBuilder {
     private Optional<? extends DeletePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeletePaymentLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -87,7 +89,9 @@ public class DeletePaymentLinkRequestBuilder {
             .build());
 
         AsyncRequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
-              = new DeletePaymentLink.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new DeletePaymentLink.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         DeletePaymentLinkRequest request = buildRequest();
 
         return operation.doRequest(request)

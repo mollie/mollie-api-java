@@ -14,6 +14,7 @@ import com.mollie.mollie.models.operations.async.SubmitOnboardingDataRequestBuil
 import com.mollie.mollie.models.operations.async.SubmitOnboardingDataResponse;
 import com.mollie.mollie.operations.GetOnboardingStatus;
 import com.mollie.mollie.operations.SubmitOnboardingData;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -21,6 +22,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncOnboarding {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Onboarding syncSDK;
 
@@ -77,7 +79,9 @@ public class AsyncOnboarding {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetOnboardingStatusRequest, GetOnboardingStatusResponse> operation
-              = new GetOnboardingStatus.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetOnboardingStatus.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -140,7 +144,9 @@ public class AsyncOnboarding {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<SubmitOnboardingDataRequest, SubmitOnboardingDataResponse> operation
-              = new SubmitOnboardingData.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new SubmitOnboardingData.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

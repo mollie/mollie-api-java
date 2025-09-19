@@ -9,6 +9,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataRequest;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBody;
 import com.mollie.mollie.operations.SubmitOnboardingData;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -23,6 +24,7 @@ public class SubmitOnboardingDataRequestBuilder {
     private Optional<? extends SubmitOnboardingDataRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public SubmitOnboardingDataRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -79,7 +81,9 @@ public class SubmitOnboardingDataRequestBuilder {
             .build());
 
         AsyncRequestOperation<SubmitOnboardingDataRequest, SubmitOnboardingDataResponse> operation
-              = new SubmitOnboardingData.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new SubmitOnboardingData.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         SubmitOnboardingDataRequest request = buildRequest();
 
         return operation.doRequest(request)

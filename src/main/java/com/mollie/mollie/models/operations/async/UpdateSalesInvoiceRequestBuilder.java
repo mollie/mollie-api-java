@@ -9,6 +9,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequest;
 import com.mollie.mollie.operations.UpdateSalesInvoice;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -24,6 +25,7 @@ public class UpdateSalesInvoiceRequestBuilder {
     private Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateSalesInvoiceRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -87,7 +89,9 @@ public class UpdateSalesInvoiceRequestBuilder {
             .build());
 
         AsyncRequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
-              = new UpdateSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new UpdateSalesInvoice.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         UpdateSalesInvoiceRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -9,6 +9,7 @@ import com.mollie.mollie.models.operations.GetWebhookEventRequest;
 import com.mollie.mollie.models.operations.GetWebhookEventRequestBuilder;
 import com.mollie.mollie.models.operations.GetWebhookEventResponse;
 import com.mollie.mollie.operations.GetWebhookEvent;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -18,6 +19,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class WebhookEvents {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncWebhookEvents asyncSDK;
 
@@ -87,7 +89,7 @@ public class WebhookEvents {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
-              = new GetWebhookEvent.Sync(sdkConfiguration, options);
+              = new GetWebhookEvent.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

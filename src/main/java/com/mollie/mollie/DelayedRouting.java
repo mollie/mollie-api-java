@@ -14,6 +14,7 @@ import com.mollie.mollie.models.operations.PaymentListRoutesRequestBuilder;
 import com.mollie.mollie.models.operations.PaymentListRoutesResponse;
 import com.mollie.mollie.operations.PaymentCreateRoute;
 import com.mollie.mollie.operations.PaymentListRoutes;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -23,6 +24,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class DelayedRouting {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncDelayedRouting asyncSDK;
 
@@ -91,7 +93,7 @@ public class DelayedRouting {
                 .routeCreateRequest(routeCreateRequest)
                 .build();
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
-              = new PaymentCreateRoute.Sync(sdkConfiguration, options);
+              = new PaymentCreateRoute.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -147,7 +149,7 @@ public class DelayedRouting {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<PaymentListRoutesRequest, PaymentListRoutesResponse> operation
-              = new PaymentListRoutes.Sync(sdkConfiguration, options);
+              = new PaymentListRoutes.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

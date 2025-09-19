@@ -37,6 +37,7 @@ import com.mollie.mollie.operations.ListSettlementChargebacks;
 import com.mollie.mollie.operations.ListSettlementPayments;
 import com.mollie.mollie.operations.ListSettlementRefunds;
 import com.mollie.mollie.operations.ListSettlements;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -44,6 +45,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncSettlements {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Settlements syncSDK;
 
@@ -102,7 +104,9 @@ public class AsyncSettlements {
      */
     public CompletableFuture<ListSettlementsResponse> list(ListSettlementsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSettlementsRequest, ListSettlementsResponse> operation
-              = new ListSettlements.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListSettlements.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -184,7 +188,9 @@ public class AsyncSettlements {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetSettlementRequest, GetSettlementResponse> operation
-              = new GetSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetSettlement.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -249,7 +255,9 @@ public class AsyncSettlements {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetOpenSettlementRequest, GetOpenSettlementResponse> operation
-              = new GetOpenSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetOpenSettlement.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -311,7 +319,9 @@ public class AsyncSettlements {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetNextSettlementRequest, GetNextSettlementResponse> operation
-              = new GetNextSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetNextSettlement.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -366,7 +376,9 @@ public class AsyncSettlements {
      */
     public CompletableFuture<ListSettlementPaymentsResponse> listPayments(ListSettlementPaymentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSettlementPaymentsRequest, ListSettlementPaymentsResponse> operation
-              = new ListSettlementPayments.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListSettlementPayments.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -412,7 +424,9 @@ public class AsyncSettlements {
      */
     public CompletableFuture<ListSettlementCapturesResponse> listCaptures(ListSettlementCapturesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSettlementCapturesRequest, ListSettlementCapturesResponse> operation
-              = new ListSettlementCaptures.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListSettlementCaptures.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -458,7 +472,9 @@ public class AsyncSettlements {
      */
     public CompletableFuture<ListSettlementRefundsResponse> listRefunds(ListSettlementRefundsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSettlementRefundsRequest, ListSettlementRefundsResponse> operation
-              = new ListSettlementRefunds.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListSettlementRefunds.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -504,7 +520,9 @@ public class AsyncSettlements {
      */
     public CompletableFuture<ListSettlementChargebacksResponse> listChargebacks(ListSettlementChargebacksRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSettlementChargebacksRequest, ListSettlementChargebacksResponse> operation
-              = new ListSettlementChargebacks.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListSettlementChargebacks.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -17,12 +17,14 @@ import com.mollie.mollie.models.operations.async.ListChargebacksResponse;
 import com.mollie.mollie.operations.GetChargeback;
 import com.mollie.mollie.operations.ListAllChargebacks;
 import com.mollie.mollie.operations.ListChargebacks;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncChargebacks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Chargebacks syncSDK;
 
@@ -81,7 +83,9 @@ public class AsyncChargebacks {
      */
     public CompletableFuture<ListChargebacksResponse> list(ListChargebacksRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
-              = new ListChargebacks.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListChargebacks.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -121,7 +125,9 @@ public class AsyncChargebacks {
      */
     public CompletableFuture<GetChargebackResponse> get(GetChargebackRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetChargebackRequest, GetChargebackResponse> operation
-              = new GetChargeback.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetChargeback.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -167,7 +173,9 @@ public class AsyncChargebacks {
      */
     public CompletableFuture<ListAllChargebacksResponse> all(ListAllChargebacksRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllChargebacksRequest, ListAllChargebacksResponse> operation
-              = new ListAllChargebacks.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListAllChargebacks.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

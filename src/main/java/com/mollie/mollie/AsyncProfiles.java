@@ -31,6 +31,7 @@ import com.mollie.mollie.operations.GetCurrentProfile;
 import com.mollie.mollie.operations.GetProfile;
 import com.mollie.mollie.operations.ListProfiles;
 import com.mollie.mollie.operations.UpdateProfile;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -41,6 +42,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncProfiles {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Profiles syncSDK;
 
@@ -111,7 +113,9 @@ public class AsyncProfiles {
                 .entityProfile(entityProfile)
                 .build();
         AsyncRequestOperation<CreateProfileRequest, CreateProfileResponse> operation
-              = new CreateProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateProfile.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -170,7 +174,9 @@ public class AsyncProfiles {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<ListProfilesRequest, ListProfilesResponse> operation
-              = new ListProfiles.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListProfiles.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -227,7 +233,9 @@ public class AsyncProfiles {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetProfileRequest, GetProfileResponse> operation
-              = new GetProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetProfile.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -290,7 +298,9 @@ public class AsyncProfiles {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
-              = new UpdateProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new UpdateProfile.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -339,7 +349,9 @@ public class AsyncProfiles {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
-              = new DeleteProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new DeleteProfile.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -395,7 +407,9 @@ public class AsyncProfiles {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetCurrentProfileRequest, GetCurrentProfileResponse> operation
-              = new GetCurrentProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetCurrentProfile.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

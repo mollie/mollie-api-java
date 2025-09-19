@@ -33,6 +33,7 @@ import com.mollie.mollie.operations.GetPayment;
 import com.mollie.mollie.operations.ListPayments;
 import com.mollie.mollie.operations.ReleaseAuthorization;
 import com.mollie.mollie.operations.UpdatePayment;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -41,6 +42,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPayments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Payments syncSDK;
 
@@ -138,7 +140,9 @@ public class AsyncPayments {
                 .paymentRequest(paymentRequest)
                 .build();
         AsyncRequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
-              = new CreatePayment.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreatePayment.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -184,7 +188,9 @@ public class AsyncPayments {
      */
     public CompletableFuture<ListPaymentsResponse> list(ListPaymentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
-              = new ListPayments.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPayments.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -224,7 +230,9 @@ public class AsyncPayments {
      */
     public CompletableFuture<GetPaymentResponse> get(GetPaymentRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetPaymentRequest, GetPaymentResponse> operation
-              = new GetPayment.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPayment.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -283,7 +291,9 @@ public class AsyncPayments {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<UpdatePaymentRequest, UpdatePaymentResponse> operation
-              = new UpdatePayment.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new UpdatePayment.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -351,7 +361,9 @@ public class AsyncPayments {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
-              = new CancelPayment.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CancelPayment.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -425,7 +437,9 @@ public class AsyncPayments {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
-              = new ReleaseAuthorization.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ReleaseAuthorization.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

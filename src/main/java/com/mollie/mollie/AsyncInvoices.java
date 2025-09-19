@@ -13,6 +13,7 @@ import com.mollie.mollie.models.operations.async.ListInvoicesRequestBuilder;
 import com.mollie.mollie.models.operations.async.ListInvoicesResponse;
 import com.mollie.mollie.operations.GetInvoice;
 import com.mollie.mollie.operations.ListInvoices;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -20,6 +21,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncInvoices {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Invoices syncSDK;
 
@@ -81,7 +83,9 @@ public class AsyncInvoices {
      */
     public CompletableFuture<ListInvoicesResponse> list(ListInvoicesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
-              = new ListInvoices.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListInvoices.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -139,7 +143,9 @@ public class AsyncInvoices {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
-              = new GetInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetInvoice.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

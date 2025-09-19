@@ -17,12 +17,14 @@ import com.mollie.mollie.models.operations.ListMethodsResponse;
 import com.mollie.mollie.operations.GetMethod;
 import com.mollie.mollie.operations.ListAllMethods;
 import com.mollie.mollie.operations.ListMethods;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Methods {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncMethods asyncSDK;
 
@@ -121,7 +123,7 @@ public class Methods {
      */
     public ListMethodsResponse list(ListMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListMethodsRequest, ListMethodsResponse> operation
-              = new ListMethods.Sync(sdkConfiguration, options);
+              = new ListMethods.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -170,7 +172,7 @@ public class Methods {
      */
     public ListAllMethodsResponse all(ListAllMethodsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllMethodsRequest, ListAllMethodsResponse> operation
-              = new ListAllMethods.Sync(sdkConfiguration, options);
+              = new ListAllMethods.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -243,7 +245,7 @@ public class Methods {
      */
     public GetMethodResponse get(GetMethodRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetMethodRequest, GetMethodResponse> operation
-              = new GetMethod.Sync(sdkConfiguration, options);
+              = new GetMethod.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

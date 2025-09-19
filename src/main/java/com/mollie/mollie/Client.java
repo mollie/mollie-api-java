@@ -4,6 +4,7 @@
 package com.mollie.mollie;
 
 import com.mollie.mollie.utils.HTTPClient;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Hook.SdkInitData;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.SpeakeasyHTTPClient;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 public class Client {
+    private static final Headers _headers = Headers.EMPTY;
 
 
     /**
@@ -347,7 +349,7 @@ public class Client {
             consumer.accept(sdkConfiguration.hooks());
             return this;    
         }
-        
+
         /**
          * Builds a new instance of the SDK.
          *
@@ -362,7 +364,7 @@ public class Client {
             return new Client(sdkConfiguration);
         }
     }
-    
+
     /**
      * Get a new instance of the SDK builder to configure a new instance of the SDK.
      *
@@ -372,7 +374,7 @@ public class Client {
         return new Builder();
     }
 
-    private Client(SDKConfiguration sdkConfiguration) {
+    public Client(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.sdkConfiguration.initialize();
         this.balances = new Balances(sdkConfiguration);

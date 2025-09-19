@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.ListChargebacksRequest;
 import com.mollie.mollie.operations.ListChargebacks;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -20,6 +21,7 @@ public class ListChargebacksRequestBuilder {
     private ListChargebacksRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListChargebacksRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -49,7 +51,9 @@ public class ListChargebacksRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
-              = new ListChargebacks.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListChargebacks.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

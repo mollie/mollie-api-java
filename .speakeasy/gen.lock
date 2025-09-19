@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: c89a3239745eaaa2f84504581a5cfd21
+  docChecksum: 8e749df2a96fb731257c3e9bf0bd02f4
   docVersion: 1.0.0
-  speakeasyVersion: 1.617.1
-  generationVersion: 2.701.8
-  releaseVersion: 0.18.4
-  configChecksum: 8af1ce956c45a066eec3b2eaeba72ec7
+  speakeasyVersion: 1.621.0
+  generationVersion: 2.707.0
+  releaseVersion: 0.19.0
+  configChecksum: 1c257d37c39c323bc75ef07c8e7de111
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.47.2
+    core: 3.50.0
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.83.1
@@ -73,6 +73,7 @@ generatedFiles:
   - docs/models/components/ComponentsSubTotalsTransactionType.md
   - docs/models/components/Context.md
   - docs/models/components/Corrections.md
+  - docs/models/components/Costs.md
   - docs/models/components/CreateWebhook.md
   - docs/models/components/CreateWebhookLinks.md
   - docs/models/components/Currencies.md
@@ -217,6 +218,7 @@ generatedFiles:
   - docs/models/components/PaymentStatus.md
   - docs/models/components/Payments.md
   - docs/models/components/PendingBalance.md
+  - docs/models/components/Periods.md
   - docs/models/components/PlatformPaymentChargeback.md
   - docs/models/components/PlatformPaymentRefund.md
   - docs/models/components/PostPaymentSplitPayment.md
@@ -225,6 +227,7 @@ generatedFiles:
   - docs/models/components/ProfileReviewStatusResponse.md
   - docs/models/components/ProfileStatus.md
   - docs/models/components/QrCode.md
+  - docs/models/components/Rate.md
   - docs/models/components/Reason.md
   - docs/models/components/Receipt.md
   - docs/models/components/RecurringLineItem.md
@@ -241,6 +244,7 @@ generatedFiles:
   - docs/models/components/ReturnedRefund.md
   - docs/models/components/ReturnedRefundCompensation.md
   - docs/models/components/ReturnedTransfer.md
+  - docs/models/components/Revenue.md
   - docs/models/components/ReversedChargebackCompensation.md
   - docs/models/components/ReversedPlatformPaymentChargeback.md
   - docs/models/components/Review.md
@@ -642,7 +646,15 @@ generatedFiles:
   - gradle/wrapper/gradle-wrapper.properties
   - gradlew
   - gradlew.bat
+  - publishing.gradle
   - settings.gradle
+  - spring/mollie-spring-boot-autoconfigure/build.gradle
+  - spring/mollie-spring-boot-autoconfigure/src/main/java/com/mollie/mollie/ConditionalOnPropertyPrefix.java
+  - spring/mollie-spring-boot-autoconfigure/src/main/java/com/mollie/mollie/MollieAutoConfig.java
+  - spring/mollie-spring-boot-autoconfigure/src/main/java/com/mollie/mollie/MollieAutoConfigProperties.java
+  - spring/mollie-spring-boot-autoconfigure/src/main/java/com/mollie/mollie/OnPropertyPrefixCondition.java
+  - spring/mollie-spring-boot-autoconfigure/src/main/resources/META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports
+  - spring/mollie-spring-boot-starter/build.gradle
   - src/main/java/com/mollie/mollie/AsyncBalances.java
   - src/main/java/com/mollie/mollie/AsyncCapabilities.java
   - src/main/java/com/mollie/mollie/AsyncCaptures.java
@@ -740,6 +752,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/ComponentsSubTotalsTransactionType.java
   - src/main/java/com/mollie/mollie/models/components/Context.java
   - src/main/java/com/mollie/mollie/models/components/Corrections.java
+  - src/main/java/com/mollie/mollie/models/components/Costs.java
   - src/main/java/com/mollie/mollie/models/components/CreateWebhook.java
   - src/main/java/com/mollie/mollie/models/components/CreateWebhookLinks.java
   - src/main/java/com/mollie/mollie/models/components/Currencies.java
@@ -884,6 +897,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/PaymentStatus.java
   - src/main/java/com/mollie/mollie/models/components/Payments.java
   - src/main/java/com/mollie/mollie/models/components/PendingBalance.java
+  - src/main/java/com/mollie/mollie/models/components/Periods.java
   - src/main/java/com/mollie/mollie/models/components/PlatformPaymentChargeback.java
   - src/main/java/com/mollie/mollie/models/components/PlatformPaymentRefund.java
   - src/main/java/com/mollie/mollie/models/components/PostPaymentSplitPayment.java
@@ -892,6 +906,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/ProfileReviewStatusResponse.java
   - src/main/java/com/mollie/mollie/models/components/ProfileStatus.java
   - src/main/java/com/mollie/mollie/models/components/QrCode.java
+  - src/main/java/com/mollie/mollie/models/components/Rate.java
   - src/main/java/com/mollie/mollie/models/components/Reason.java
   - src/main/java/com/mollie/mollie/models/components/Receipt.java
   - src/main/java/com/mollie/mollie/models/components/RecurringLineItem.java
@@ -908,6 +923,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/ReturnedRefund.java
   - src/main/java/com/mollie/mollie/models/components/ReturnedRefundCompensation.java
   - src/main/java/com/mollie/mollie/models/components/ReturnedTransfer.java
+  - src/main/java/com/mollie/mollie/models/components/Revenue.java
   - src/main/java/com/mollie/mollie/models/components/ReversedChargebackCompensation.java
   - src/main/java/com/mollie/mollie/models/components/ReversedPlatformPaymentChargeback.java
   - src/main/java/com/mollie/mollie/models/components/Review.java
@@ -1676,6 +1692,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/utils/HTTPRequest.java
   - src/main/java/com/mollie/mollie/utils/HasSecurity.java
   - src/main/java/com/mollie/mollie/utils/HeaderMetadata.java
+  - src/main/java/com/mollie/mollie/utils/Headers.java
   - src/main/java/com/mollie/mollie/utils/Helpers.java
   - src/main/java/com/mollie/mollie/utils/Hook.java
   - src/main/java/com/mollie/mollie/utils/HookAdapters.java
@@ -5177,7 +5194,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "settlement", "id": "stl_jDk30akdN", "createdAt": "2024-04-06T09:41:44+00:00", "reference": "1234567.2404.03", "settledAt": "2024-04-06T09:41:44.0Z", "status": "paidout", "amount": {"currency": "EUR", "value": "39.75"}, "balanceId": "bal_3kUf4yU2nT", "invoiceId": "inv_FrvewDA3Pr", "periods": {"2024": {"04": {"revenue": [{"description": "iDEAL", "method": "ideal", "count": 6, "amountNet": {"currency": "EUR", "value": "86.1000"}, "amountVat": null, "amountGross": {"currency": "EUR", "value": "86.1000"}}, {"description": "Refunds iDEAL", "method": "refund", "count": 2, "amountNet": {"currency": "EUR", "value": "-43.2000"}, "amountVat": null, "amountGross": {"currency": "EUR", "value": "-43.2000"}}], "costs": [{"description": "iDEAL", "method": "ideal", "count": 6, "rate": {"fixed": {"currency": "EUR", "value": "0.3500"}, "percentage": null}, "amountNet": {"currency": "EUR", "value": "2.1000"}, "amountVat": {"currency": "EUR", "value": "0.4410"}, "amountGross": {"currency": "EUR", "value": "2.5410"}}, {"description": "Refunds iDEAL", "method": "refund", "count": 2, "rate": {"fixed": {"currency": "EUR", "value": "0.2500"}, "percentage": null}, "amountNet": {"currency": "EUR", "value": "0.5000"}, "amountVat": {"currency": "EUR", "value": "0.1050"}, "amountGross": {"currency": "EUR", "value": "0.6050"}}], "invoiceId": "inv_FrvewDA3Pr"}}}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/payments", "type": "application/hal+json"}, "captures": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/refunds", "type": "application/hal+json"}, "chargebacks": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/chargebacks", "type": "application/hal+json"}, "invoice": {"href": "https://api.mollie.com/v2/invoices/inv_FrvewDA3Pr", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"resource": "settlement", "id": "stl_jDk30akdN", "createdAt": "2024-04-06T09:41:44+00:00", "reference": "1234567.2404.03", "settledAt": "2024-04-06T09:41:44.0Z", "status": "paidout", "amount": {"currency": "EUR", "value": "39.75"}, "balanceId": "bal_3kUf4yU2nT", "invoiceId": "inv_FrvewDA3Pr", "periods": {"2024": {"04": {"costs": [{"description": "iDEAL", "method": "ideal", "count": 6, "rate": {"fixed": {"currency": "EUR", "value": "0.3500"}, "percentage": {"currency": "EUR", "value": "10.00"}}, "amountNet": {"currency": "EUR", "value": "2.1000"}, "amountVat": {"currency": "EUR", "value": "0.4410"}, "amountGross": {"currency": "EUR", "value": "2.5410"}}, {"description": "Refunds iDEAL", "method": "twint", "count": 2, "rate": {"fixed": {"currency": "EUR", "value": "0.2500"}, "percentage": {"currency": "EUR", "value": "10.00"}}, "amountNet": {"currency": "EUR", "value": "0.5000"}, "amountVat": {"currency": "EUR", "value": "0.1050"}, "amountGross": {"currency": "EUR", "value": "0.6050"}}], "revenue": [{"description": "iDEAL", "method": "ideal", "count": 6, "amountNet": {"currency": "EUR", "value": "86.1000"}, "amountVat": {"currency": "EUR", "value": "10.00"}, "amountGross": {"currency": "EUR", "value": "86.1000"}}, {"description": "Refunds iDEAL", "method": "mybank", "count": 2, "amountNet": {"currency": "EUR", "value": "-43.2000"}, "amountVat": {"currency": "EUR", "value": "10.00"}, "amountGross": {"currency": "EUR", "value": "-43.2000"}}], "invoiceId": "inv_FrvewDA3Pr"}}}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/payments", "type": "application/hal+json"}, "captures": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/refunds", "type": "application/hal+json"}, "chargebacks": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/chargebacks", "type": "application/hal+json"}, "invoice": {"href": "https://api.mollie.com/v2/invoices/inv_FrvewDA3Pr", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
     "":
       parameters:
         path:
@@ -5193,7 +5210,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "settlement", "id": "stl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "reference": "07049691.2406.01", "settledAt": "2025-03-31T12:54:39Z", "status": "paidout", "amount": {"currency": "EUR", "value": "10.00"}, "balanceId": "bal_gVMhHKqSSRYJyPsuoPNFH", "invoiceId": "inv_aHbjjdrUdm", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "captures": {"href": "https://...", "type": "application/hal+json"}, "refunds": {"href": "https://...", "type": "application/hal+json"}, "chargebacks": {"href": "https://...", "type": "application/hal+json"}, "invoice": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "settlement", "id": "stl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37.0Z", "reference": "07049691.2406.01", "settledAt": "2025-03-31T12:54:39Z", "status": "paidout", "amount": {"currency": "EUR", "value": "10.00"}, "balanceId": "bal_gVMhHKqSSRYJyPsuoPNFH", "invoiceId": "inv_aHbjjdrUdm", "periods": {"key": {}, "key1": {"key": {"costs": [{"description": "Credit card - Visa debit consumer domestic", "method": "creditcard", "count": 10, "rate": {"fixed": {"currency": "EUR", "value": "10.00"}, "percentage": {"currency": "EUR", "value": "10.00"}}, "amountNet": {"currency": "EUR", "value": "10.00"}, "amountVat": {"currency": "EUR", "value": "10.00"}, "amountGross": {"currency": "EUR", "value": "10.00"}}], "revenue": [{"description": "Credit card", "method": "creditcard", "count": 10, "amountNet": {"currency": "EUR", "value": "10.00"}, "amountVat": {"currency": "EUR", "value": "10.00"}, "amountGross": {"currency": "EUR", "value": "10.00"}}], "invoiceId": "inv_aHbjjdrUdm", "invoiceReference": "MOLR2021.0001399669"}}, "key2": {"key": {"costs": [{"description": "Credit card - Visa debit consumer domestic", "method": "creditcard", "count": 10, "rate": {"fixed": {"currency": "EUR", "value": "10.00"}, "percentage": {"currency": "EUR", "value": "10.00"}}, "amountNet": {"currency": "EUR", "value": "10.00"}, "amountVat": {"currency": "EUR", "value": "10.00"}, "amountGross": {"currency": "EUR", "value": "10.00"}}], "revenue": [{"description": "Credit card", "method": "creditcard", "count": 10, "amountNet": {"currency": "EUR", "value": "10.00"}, "amountVat": {"currency": "EUR", "value": "10.00"}, "amountGross": {"currency": "EUR", "value": "10.00"}}], "invoiceId": "inv_aHbjjdrUdm", "invoiceReference": "MOLR2021.0001399669"}}}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://...", "type": "application/hal+json"}, "captures": {"href": "https://...", "type": "application/hal+json"}, "refunds": {"href": "https://...", "type": "application/hal+json"}, "chargebacks": {"href": "https://...", "type": "application/hal+json"}, "invoice": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   get-open-settlement:
@@ -5207,7 +5224,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "settlement", "id": "stl_jDk30akdN", "createdAt": "2024-04-06T09:41:44+00:00", "reference": "1234567.2404.03", "settledAt": "2024-04-06T09:41:44.0Z", "status": "paidout", "amount": {"currency": "EUR", "value": "39.75"}, "balanceId": "bal_3kUf4yU2nT", "invoiceId": "inv_FrvewDA3Pr", "periods": {"2024": {"04": {"revenue": [{"description": "iDEAL", "method": "ideal", "count": 6, "amountNet": {"currency": "EUR", "value": "86.1000"}, "amountVat": null, "amountGross": {"currency": "EUR", "value": "86.1000"}}, {"description": "Refunds iDEAL", "method": "refund", "count": 2, "amountNet": {"currency": "EUR", "value": "-43.2000"}, "amountVat": null, "amountGross": {"currency": "EUR", "value": "-43.2000"}}], "costs": [{"description": "iDEAL", "method": "ideal", "count": 6, "rate": {"fixed": {"currency": "EUR", "value": "0.3500"}, "percentage": null}, "amountNet": {"currency": "EUR", "value": "2.1000"}, "amountVat": {"currency": "EUR", "value": "0.4410"}, "amountGross": {"currency": "EUR", "value": "2.5410"}}, {"description": "Refunds iDEAL", "method": "refund", "count": 2, "rate": {"fixed": {"currency": "EUR", "value": "0.2500"}, "percentage": null}, "amountNet": {"currency": "EUR", "value": "0.5000"}, "amountVat": {"currency": "EUR", "value": "0.1050"}, "amountGross": {"currency": "EUR", "value": "0.6050"}}], "invoiceId": "inv_FrvewDA3Pr"}}}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/payments", "type": "application/hal+json"}, "captures": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/refunds", "type": "application/hal+json"}, "chargebacks": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/chargebacks", "type": "application/hal+json"}, "invoice": {"href": "https://api.mollie.com/v2/invoices/inv_FrvewDA3Pr", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"resource": "settlement", "id": "stl_jDk30akdN", "createdAt": "2024-04-06T09:41:44+00:00", "reference": "1234567.2404.03", "settledAt": "2024-04-06T09:41:44.0Z", "status": "paidout", "amount": {"currency": "EUR", "value": "39.75"}, "balanceId": "bal_3kUf4yU2nT", "invoiceId": "inv_FrvewDA3Pr", "periods": {"2024": {"04": {"costs": [{"description": "iDEAL", "method": "ideal", "count": 6, "rate": {"fixed": {"currency": "EUR", "value": "0.3500"}, "percentage": {"currency": "EUR", "value": "10.00"}}, "amountNet": {"currency": "EUR", "value": "2.1000"}, "amountVat": {"currency": "EUR", "value": "0.4410"}, "amountGross": {"currency": "EUR", "value": "2.5410"}}, {"description": "Refunds iDEAL", "method": "podiumcadeaukaart", "count": 2, "rate": {"fixed": {"currency": "EUR", "value": "0.2500"}, "percentage": {"currency": "EUR", "value": "10.00"}}, "amountNet": {"currency": "EUR", "value": "0.5000"}, "amountVat": {"currency": "EUR", "value": "0.1050"}, "amountGross": {"currency": "EUR", "value": "0.6050"}}], "revenue": [{"description": "iDEAL", "method": "ideal", "count": 6, "amountNet": {"currency": "EUR", "value": "86.1000"}, "amountVat": {"currency": "EUR", "value": "10.00"}, "amountGross": {"currency": "EUR", "value": "86.1000"}}, {"description": "Refunds iDEAL", "method": "billie", "count": 2, "amountNet": {"currency": "EUR", "value": "-43.2000"}, "amountVat": {"currency": "EUR", "value": "10.00"}, "amountGross": {"currency": "EUR", "value": "-43.2000"}}], "invoiceId": "inv_FrvewDA3Pr"}}}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/payments", "type": "application/hal+json"}, "captures": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/refunds", "type": "application/hal+json"}, "chargebacks": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/chargebacks", "type": "application/hal+json"}, "invoice": {"href": "https://api.mollie.com/v2/invoices/inv_FrvewDA3Pr", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
   get-next-settlement:
     "":
       responses:
@@ -5219,7 +5236,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "settlement", "id": "stl_jDk30akdN", "createdAt": "2024-04-06T09:41:44+00:00", "reference": "1234567.2404.03", "settledAt": "2024-04-06T09:41:44.0Z", "status": "paidout", "amount": {"currency": "EUR", "value": "39.75"}, "balanceId": "bal_3kUf4yU2nT", "invoiceId": "inv_FrvewDA3Pr", "periods": {"2024": {"04": {"revenue": [{"description": "iDEAL", "method": "ideal", "count": 6, "amountNet": {"currency": "EUR", "value": "86.1000"}, "amountVat": null, "amountGross": {"currency": "EUR", "value": "86.1000"}}, {"description": "Refunds iDEAL", "method": "refund", "count": 2, "amountNet": {"currency": "EUR", "value": "-43.2000"}, "amountVat": null, "amountGross": {"currency": "EUR", "value": "-43.2000"}}], "costs": [{"description": "iDEAL", "method": "ideal", "count": 6, "rate": {"fixed": {"currency": "EUR", "value": "0.3500"}, "percentage": null}, "amountNet": {"currency": "EUR", "value": "2.1000"}, "amountVat": {"currency": "EUR", "value": "0.4410"}, "amountGross": {"currency": "EUR", "value": "2.5410"}}, {"description": "Refunds iDEAL", "method": "refund", "count": 2, "rate": {"fixed": {"currency": "EUR", "value": "0.2500"}, "percentage": null}, "amountNet": {"currency": "EUR", "value": "0.5000"}, "amountVat": {"currency": "EUR", "value": "0.1050"}, "amountGross": {"currency": "EUR", "value": "0.6050"}}], "invoiceId": "inv_FrvewDA3Pr"}}}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/payments", "type": "application/hal+json"}, "captures": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/refunds", "type": "application/hal+json"}, "chargebacks": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/chargebacks", "type": "application/hal+json"}, "invoice": {"href": "https://api.mollie.com/v2/invoices/inv_FrvewDA3Pr", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
+          application/hal+json: {"resource": "settlement", "id": "stl_jDk30akdN", "createdAt": "2024-04-06T09:41:44+00:00", "reference": "1234567.2404.03", "settledAt": "2024-04-06T09:41:44.0Z", "status": "paidout", "amount": {"currency": "EUR", "value": "39.75"}, "balanceId": "bal_3kUf4yU2nT", "invoiceId": "inv_FrvewDA3Pr", "periods": {"2024": {"04": {"costs": [{"description": "iDEAL", "method": "ideal", "count": 6, "rate": {"fixed": {"currency": "EUR", "value": "0.3500"}, "percentage": {"currency": "EUR", "value": "10.00"}}, "amountNet": {"currency": "EUR", "value": "2.1000"}, "amountVat": {"currency": "EUR", "value": "0.4410"}, "amountGross": {"currency": "EUR", "value": "2.5410"}}, {"description": "Refunds iDEAL", "method": "bancomatpay", "count": 2, "rate": {"fixed": {"currency": "EUR", "value": "0.2500"}, "percentage": {"currency": "EUR", "value": "10.00"}}, "amountNet": {"currency": "EUR", "value": "0.5000"}, "amountVat": {"currency": "EUR", "value": "0.1050"}, "amountGross": {"currency": "EUR", "value": "0.6050"}}], "revenue": [{"description": "iDEAL", "method": "ideal", "count": 6, "amountNet": {"currency": "EUR", "value": "86.1000"}, "amountVat": {"currency": "EUR", "value": "10.00"}, "amountGross": {"currency": "EUR", "value": "86.1000"}}, {"description": "Refunds iDEAL", "method": "kbc", "count": 2, "amountNet": {"currency": "EUR", "value": "-43.2000"}, "amountVat": {"currency": "EUR", "value": "10.00"}, "amountGross": {"currency": "EUR", "value": "-43.2000"}}], "invoiceId": "inv_FrvewDA3Pr"}}}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payments": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/payments", "type": "application/hal+json"}, "captures": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/captures", "type": "application/hal+json"}, "refunds": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/refunds", "type": "application/hal+json"}, "chargebacks": {"href": "https://api.mollie.com/v2/settlements/stl_jDk30akdN/chargebacks", "type": "application/hal+json"}, "invoice": {"href": "https://api.mollie.com/v2/invoices/inv_FrvewDA3Pr", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
   get-settlement-payments:
     list-payments-200-1:
       parameters:
@@ -6097,4 +6114,9 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `client.salesInvoices.create()`: \n  *  `request.entity-sales-invoice.isEInvoice` **Added**\n  *  `response` **Changed**\n* `client.salesInvoices.list()`:  `response._embedded.salesInvoices.[]` **Changed**\n* `client.salesInvoices.get()`:  `response` **Changed**\n* `client.salesInvoices.update()`: \n  *  `request.update-values-sales-invoice.isEInvoice` **Added**\n  *  `response` **Changed**\n"
+releaseNotes: |
+  ## Java SDK Changes Detected:
+  * `client.settlements.list()`:  `response._embedded.settlements.[].periods.{}` **Changed** **Breaking** :warning:
+  * `client.settlements.get()`:  `response.periods.{}` **Changed** **Breaking** :warning:
+  * `client.settlements.getOpen()`:  `response.periods.{}` **Changed** **Breaking** :warning:
+  * `client.settlements.getNext()`:  `response.periods.{}` **Changed** **Breaking** :warning:

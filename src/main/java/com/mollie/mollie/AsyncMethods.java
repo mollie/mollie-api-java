@@ -17,12 +17,14 @@ import com.mollie.mollie.models.operations.async.ListMethodsResponse;
 import com.mollie.mollie.operations.GetMethod;
 import com.mollie.mollie.operations.ListAllMethods;
 import com.mollie.mollie.operations.ListMethods;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncMethods {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Methods syncSDK;
 
@@ -120,7 +122,9 @@ public class AsyncMethods {
      */
     public CompletableFuture<ListMethodsResponse> list(ListMethodsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListMethodsRequest, ListMethodsResponse> operation
-              = new ListMethods.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListMethods.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -169,7 +173,9 @@ public class AsyncMethods {
      */
     public CompletableFuture<ListAllMethodsResponse> all(ListAllMethodsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllMethodsRequest, ListAllMethodsResponse> operation
-              = new ListAllMethods.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListAllMethods.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -242,7 +248,9 @@ public class AsyncMethods {
      */
     public CompletableFuture<GetMethodResponse> get(GetMethodRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetMethodRequest, GetMethodResponse> operation
-              = new GetMethod.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetMethod.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

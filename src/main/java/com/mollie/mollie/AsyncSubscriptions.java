@@ -36,6 +36,7 @@ import com.mollie.mollie.operations.ListAllSubscriptions;
 import com.mollie.mollie.operations.ListSubscriptionPayments;
 import com.mollie.mollie.operations.ListSubscriptions;
 import com.mollie.mollie.operations.UpdateSubscription;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
@@ -45,6 +46,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncSubscriptions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Subscriptions syncSDK;
 
@@ -164,7 +166,9 @@ public class AsyncSubscriptions {
                 .subscriptionRequest(subscriptionRequest)
                 .build();
         AsyncRequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
-              = new CreateSubscription.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateSubscription.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -210,7 +214,9 @@ public class AsyncSubscriptions {
      */
     public CompletableFuture<ListSubscriptionsResponse> list(ListSubscriptionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSubscriptionsRequest, ListSubscriptionsResponse> operation
-              = new ListSubscriptions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListSubscriptions.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -271,7 +277,9 @@ public class AsyncSubscriptions {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetSubscriptionRequest, GetSubscriptionResponse> operation
-              = new GetSubscription.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetSubscription.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -340,7 +348,9 @@ public class AsyncSubscriptions {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<UpdateSubscriptionRequest, UpdateSubscriptionResponse> operation
-              = new UpdateSubscription.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new UpdateSubscription.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -397,7 +407,9 @@ public class AsyncSubscriptions {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CancelSubscriptionRequest, CancelSubscriptionResponse> operation
-              = new CancelSubscription.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CancelSubscription.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -443,7 +455,9 @@ public class AsyncSubscriptions {
      */
     public CompletableFuture<ListAllSubscriptionsResponse> all(ListAllSubscriptionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
-              = new ListAllSubscriptions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListAllSubscriptions.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -489,7 +503,9 @@ public class AsyncSubscriptions {
      */
     public CompletableFuture<ListSubscriptionPaymentsResponse> listPayments(ListSubscriptionPaymentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation
-              = new ListSubscriptionPayments.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListSubscriptionPayments.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

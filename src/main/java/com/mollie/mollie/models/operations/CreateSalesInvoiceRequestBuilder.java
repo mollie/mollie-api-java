@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.EntitySalesInvoice;
 import com.mollie.mollie.operations.CreateSalesInvoice;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -21,6 +22,7 @@ public class CreateSalesInvoiceRequestBuilder {
     private Optional<? extends EntitySalesInvoice> entitySalesInvoice = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateSalesInvoiceRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -77,7 +79,7 @@ public class CreateSalesInvoiceRequestBuilder {
             .build());
 
         RequestOperation<CreateSalesInvoiceRequest, CreateSalesInvoiceResponse> operation
-              = new CreateSalesInvoice.Sync(sdkConfiguration, options);
+              = new CreateSalesInvoice.Sync(sdkConfiguration, options, _headers);
         CreateSalesInvoiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

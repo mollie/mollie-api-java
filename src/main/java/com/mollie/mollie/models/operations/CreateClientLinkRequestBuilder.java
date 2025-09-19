@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.EntityClientLink;
 import com.mollie.mollie.operations.CreateClientLink;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -21,6 +22,7 @@ public class CreateClientLinkRequestBuilder {
     private Optional<? extends EntityClientLink> entityClientLink = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateClientLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -77,7 +79,7 @@ public class CreateClientLinkRequestBuilder {
             .build());
 
         RequestOperation<CreateClientLinkRequest, CreateClientLinkResponse> operation
-              = new CreateClientLink.Sync(sdkConfiguration, options);
+              = new CreateClientLink.Sync(sdkConfiguration, options, _headers);
         CreateClientLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

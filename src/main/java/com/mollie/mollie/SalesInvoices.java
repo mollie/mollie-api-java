@@ -28,6 +28,7 @@ import com.mollie.mollie.operations.DeleteSalesInvoice;
 import com.mollie.mollie.operations.GetSalesInvoice;
 import com.mollie.mollie.operations.ListSalesInvoices;
 import com.mollie.mollie.operations.UpdateSalesInvoice;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -38,6 +39,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class SalesInvoices {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncSalesInvoices asyncSDK;
 
@@ -111,7 +113,7 @@ public class SalesInvoices {
                 .entitySalesInvoice(entitySalesInvoice)
                 .build();
         RequestOperation<CreateSalesInvoiceRequest, CreateSalesInvoiceResponse> operation
-              = new CreateSalesInvoice.Sync(sdkConfiguration, options);
+              = new CreateSalesInvoice.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -188,7 +190,7 @@ public class SalesInvoices {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
-              = new ListSalesInvoices.Sync(sdkConfiguration, options);
+              = new ListSalesInvoices.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -256,7 +258,7 @@ public class SalesInvoices {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetSalesInvoiceRequest, GetSalesInvoiceResponse> operation
-              = new GetSalesInvoice.Sync(sdkConfiguration, options);
+              = new GetSalesInvoice.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -326,7 +328,7 @@ public class SalesInvoices {
                 .updateValuesSalesInvoice(updateValuesSalesInvoice)
                 .build();
         RequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
-              = new UpdateSalesInvoice.Sync(sdkConfiguration, options);
+              = new UpdateSalesInvoice.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -393,7 +395,7 @@ public class SalesInvoices {
                 .deleteValuesSalesInvoice(deleteValuesSalesInvoice)
                 .build();
         RequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
-              = new DeleteSalesInvoice.Sync(sdkConfiguration, options);
+              = new DeleteSalesInvoice.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

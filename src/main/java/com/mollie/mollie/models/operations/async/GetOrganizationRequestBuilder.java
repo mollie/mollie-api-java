@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.GetOrganizationRequest;
 import com.mollie.mollie.operations.GetOrganization;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -25,6 +26,7 @@ public class GetOrganizationRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetOrganizationRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -88,7 +90,9 @@ public class GetOrganizationRequestBuilder {
             .build());
 
         AsyncRequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
-              = new GetOrganization.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetOrganization.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         GetOrganizationRequest request = buildRequest();
 
         return operation.doRequest(request)

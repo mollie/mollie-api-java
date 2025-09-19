@@ -13,6 +13,7 @@ import com.mollie.mollie.models.operations.async.ListPermissionsRequestBuilder;
 import com.mollie.mollie.models.operations.async.ListPermissionsResponse;
 import com.mollie.mollie.operations.GetPermission;
 import com.mollie.mollie.operations.ListPermissions;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
@@ -22,6 +23,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPermissions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Permissions syncSDK;
 
@@ -84,7 +86,9 @@ public class AsyncPermissions {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<ListPermissionsRequest, ListPermissionsResponse> operation
-              = new ListPermissions.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPermissions.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -141,7 +145,9 @@ public class AsyncPermissions {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetPermissionRequest, GetPermissionResponse> operation
-              = new GetPermission.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPermission.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

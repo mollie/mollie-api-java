@@ -10,6 +10,7 @@ import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionRequestB
 import com.mollie.mollie.models.operations.async.RequestApplePayPaymentSessionRequestBuilder;
 import com.mollie.mollie.models.operations.async.RequestApplePayPaymentSessionResponse;
 import com.mollie.mollie.operations.RequestApplePayPaymentSession;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.String;
 import java.util.Optional;
@@ -17,6 +18,7 @@ import java.util.concurrent.CompletableFuture;
 
 
 public class AsyncWallets {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Wallets syncSDK;
 
@@ -131,7 +133,9 @@ public class AsyncWallets {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<RequestApplePayPaymentSessionRequest, RequestApplePayPaymentSessionResponse> operation
-              = new RequestApplePayPaymentSession.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new RequestApplePayPaymentSession.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

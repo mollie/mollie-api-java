@@ -26,6 +26,7 @@ import com.mollie.mollie.operations.CreateRefund;
 import com.mollie.mollie.operations.GetRefund;
 import com.mollie.mollie.operations.ListAllRefunds;
 import com.mollie.mollie.operations.ListRefunds;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -35,6 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Refunds {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncRefunds asyncSDK;
 
@@ -103,7 +105,7 @@ public class Refunds {
                 .entityRefund(entityRefund)
                 .build();
         RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
-              = new CreateRefund.Sync(sdkConfiguration, options);
+              = new CreateRefund.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -149,7 +151,7 @@ public class Refunds {
      */
     public ListRefundsResponse list(ListRefundsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListRefundsRequest, ListRefundsResponse> operation
-              = new ListRefunds.Sync(sdkConfiguration, options);
+              = new ListRefunds.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -189,7 +191,7 @@ public class Refunds {
      */
     public GetRefundResponse get(GetRefundRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
-              = new GetRefund.Sync(sdkConfiguration, options);
+              = new GetRefund.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -261,7 +263,7 @@ public class Refunds {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
-              = new CancelRefund.Sync(sdkConfiguration, options);
+              = new CancelRefund.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -307,7 +309,7 @@ public class Refunds {
      */
     public ListAllRefundsResponse all(ListAllRefundsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation
-              = new ListAllRefunds.Sync(sdkConfiguration, options);
+              = new ListAllRefunds.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

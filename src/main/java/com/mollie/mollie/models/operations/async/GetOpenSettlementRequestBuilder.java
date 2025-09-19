@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.GetOpenSettlementRequest;
 import com.mollie.mollie.operations.GetOpenSettlement;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -21,6 +22,7 @@ public class GetOpenSettlementRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetOpenSettlementRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -64,7 +66,9 @@ public class GetOpenSettlementRequestBuilder {
             .build());
 
         AsyncRequestOperation<GetOpenSettlementRequest, GetOpenSettlementResponse> operation
-              = new GetOpenSettlement.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetOpenSettlement.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         GetOpenSettlementRequest request = buildRequest();
 
         return operation.doRequest(request)

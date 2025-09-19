@@ -17,6 +17,7 @@ import com.mollie.mollie.models.operations.async.GetPartnerStatusResponse;
 import com.mollie.mollie.operations.GetCurrentOrganization;
 import com.mollie.mollie.operations.GetOrganization;
 import com.mollie.mollie.operations.GetPartnerStatus;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
@@ -26,6 +27,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncOrganizations {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Organizations syncSDK;
 
@@ -110,7 +112,9 @@ public class AsyncOrganizations {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
-              = new GetOrganization.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetOrganization.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -166,7 +170,9 @@ public class AsyncOrganizations {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetCurrentOrganizationRequest, GetCurrentOrganizationResponse> operation
-              = new GetCurrentOrganization.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetCurrentOrganization.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -213,7 +219,9 @@ public class AsyncOrganizations {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetPartnerStatusRequest, GetPartnerStatusResponse> operation
-              = new GetPartnerStatus.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPartnerStatus.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -13,6 +13,7 @@ import com.mollie.mollie.models.operations.async.ListClientsRequestBuilder;
 import com.mollie.mollie.models.operations.async.ListClientsResponse;
 import com.mollie.mollie.operations.GetClient;
 import com.mollie.mollie.operations.ListClients;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Long;
 import java.lang.String;
@@ -22,6 +23,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncClients {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Clients syncSDK;
 
@@ -97,7 +99,9 @@ public class AsyncClients {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<ListClientsRequest, ListClientsResponse> operation
-              = new ListClients.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListClients.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -151,7 +155,9 @@ public class AsyncClients {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetClientRequest, GetClientResponse> operation
-              = new GetClient.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetClient.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

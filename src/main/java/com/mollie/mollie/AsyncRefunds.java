@@ -26,6 +26,7 @@ import com.mollie.mollie.operations.CreateRefund;
 import com.mollie.mollie.operations.GetRefund;
 import com.mollie.mollie.operations.ListAllRefunds;
 import com.mollie.mollie.operations.ListRefunds;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
@@ -35,6 +36,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncRefunds {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Refunds syncSDK;
 
@@ -103,7 +105,9 @@ public class AsyncRefunds {
                 .entityRefund(entityRefund)
                 .build();
         AsyncRequestOperation<CreateRefundRequest, CreateRefundResponse> operation
-              = new CreateRefund.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateRefund.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -149,7 +153,9 @@ public class AsyncRefunds {
      */
     public CompletableFuture<ListRefundsResponse> list(ListRefundsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListRefundsRequest, ListRefundsResponse> operation
-              = new ListRefunds.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListRefunds.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -189,7 +195,9 @@ public class AsyncRefunds {
      */
     public CompletableFuture<GetRefundResponse> get(GetRefundRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetRefundRequest, GetRefundResponse> operation
-              = new GetRefund.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetRefund.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -262,7 +270,9 @@ public class AsyncRefunds {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<CancelRefundRequest, CancelRefundResponse> operation
-              = new CancelRefund.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CancelRefund.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -308,7 +318,9 @@ public class AsyncRefunds {
      */
     public CompletableFuture<ListAllRefundsResponse> all(ListAllRefundsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation
-              = new ListAllRefunds.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListAllRefunds.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

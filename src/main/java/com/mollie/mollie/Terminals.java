@@ -13,6 +13,7 @@ import com.mollie.mollie.models.operations.ListTerminalsRequestBuilder;
 import com.mollie.mollie.models.operations.ListTerminalsResponse;
 import com.mollie.mollie.operations.GetTerminal;
 import com.mollie.mollie.operations.ListTerminals;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -22,6 +23,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Terminals {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncTerminals asyncSDK;
 
@@ -81,7 +83,7 @@ public class Terminals {
      */
     public ListTerminalsResponse list(ListTerminalsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
-              = new ListTerminals.Sync(sdkConfiguration, options);
+              = new ListTerminals.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -137,7 +139,7 @@ public class Terminals {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
-              = new GetTerminal.Sync(sdkConfiguration, options);
+              = new GetTerminal.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

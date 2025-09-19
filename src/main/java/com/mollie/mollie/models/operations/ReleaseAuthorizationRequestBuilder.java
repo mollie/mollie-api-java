@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.ReleaseAuthorization;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -21,6 +22,7 @@ public class ReleaseAuthorizationRequestBuilder {
     private Optional<? extends ReleaseAuthorizationRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ReleaseAuthorizationRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -84,7 +86,7 @@ public class ReleaseAuthorizationRequestBuilder {
             .build());
 
         RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
-              = new ReleaseAuthorization.Sync(sdkConfiguration, options);
+              = new ReleaseAuthorization.Sync(sdkConfiguration, options, _headers);
         ReleaseAuthorizationRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

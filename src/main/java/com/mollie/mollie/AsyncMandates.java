@@ -23,6 +23,7 @@ import com.mollie.mollie.operations.CreateMandate;
 import com.mollie.mollie.operations.GetMandate;
 import com.mollie.mollie.operations.ListMandates;
 import com.mollie.mollie.operations.RevokeMandate;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
@@ -32,6 +33,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncMandates {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Mandates syncSDK;
 
@@ -109,7 +111,9 @@ public class AsyncMandates {
                 .entityMandate(entityMandate)
                 .build();
         AsyncRequestOperation<CreateMandateRequest, CreateMandateResponse> operation
-              = new CreateMandate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateMandate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -155,7 +159,9 @@ public class AsyncMandates {
      */
     public CompletableFuture<ListMandatesResponse> list(ListMandatesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListMandatesRequest, ListMandatesResponse> operation
-              = new ListMandates.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListMandates.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -219,7 +225,9 @@ public class AsyncMandates {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetMandateRequest, GetMandateResponse> operation
-              = new GetMandate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetMandate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -279,7 +287,9 @@ public class AsyncMandates {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
-              = new RevokeMandate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new RevokeMandate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

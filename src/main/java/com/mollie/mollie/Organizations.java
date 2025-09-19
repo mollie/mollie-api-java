@@ -17,6 +17,7 @@ import com.mollie.mollie.models.operations.GetPartnerStatusResponse;
 import com.mollie.mollie.operations.GetCurrentOrganization;
 import com.mollie.mollie.operations.GetOrganization;
 import com.mollie.mollie.operations.GetPartnerStatus;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -26,6 +27,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Organizations {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncOrganizations asyncSDK;
 
@@ -110,7 +112,7 @@ public class Organizations {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
-              = new GetOrganization.Sync(sdkConfiguration, options);
+              = new GetOrganization.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -166,7 +168,7 @@ public class Organizations {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetCurrentOrganizationRequest, GetCurrentOrganizationResponse> operation
-              = new GetCurrentOrganization.Sync(sdkConfiguration, options);
+              = new GetCurrentOrganization.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -213,7 +215,7 @@ public class Organizations {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetPartnerStatusRequest, GetPartnerStatusResponse> operation
-              = new GetPartnerStatus.Sync(sdkConfiguration, options);
+              = new GetPartnerStatus.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

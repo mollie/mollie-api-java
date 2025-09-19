@@ -22,7 +22,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.18.4
+  version: 0.19.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
@@ -36,6 +36,7 @@ java:
   enableCustomCodeRegions: false
   enableStreamingUploads: false
   flattenGlobalSecurity: true
+  generateSpringBootStarter: true
   githubURL: https://github.com/mollie/mollie-api-java
   groupID: com.mollie
   imports:

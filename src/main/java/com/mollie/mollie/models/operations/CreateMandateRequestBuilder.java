@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.EntityMandate;
 import com.mollie.mollie.operations.CreateMandate;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -22,6 +23,7 @@ public class CreateMandateRequestBuilder {
     private Optional<? extends EntityMandate> entityMandate = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateMandateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -85,7 +87,7 @@ public class CreateMandateRequestBuilder {
             .build());
 
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
-              = new CreateMandate.Sync(sdkConfiguration, options);
+              = new CreateMandate.Sync(sdkConfiguration, options, _headers);
         CreateMandateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

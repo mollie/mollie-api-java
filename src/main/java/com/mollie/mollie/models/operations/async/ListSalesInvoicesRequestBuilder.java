@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.ListSalesInvoicesRequest;
 import com.mollie.mollie.operations.ListSalesInvoices;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -27,6 +28,7 @@ public class ListSalesInvoicesRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListSalesInvoicesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -109,7 +111,9 @@ public class ListSalesInvoicesRequestBuilder {
             .build());
 
         AsyncRequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
-              = new ListSalesInvoices.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListSalesInvoices.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         ListSalesInvoicesRequest request = buildRequest();
 
         return operation.doRequest(request)

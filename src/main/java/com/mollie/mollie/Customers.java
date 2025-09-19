@@ -36,6 +36,7 @@ import com.mollie.mollie.operations.GetCustomer;
 import com.mollie.mollie.operations.ListCustomerPayments;
 import com.mollie.mollie.operations.ListCustomers;
 import com.mollie.mollie.operations.UpdateCustomer;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -45,6 +46,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Customers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCustomers asyncSDK;
 
@@ -115,7 +117,7 @@ public class Customers {
                 .entityCustomer(entityCustomer)
                 .build();
         RequestOperation<CreateCustomerRequest, CreateCustomerResponse> operation
-              = new CreateCustomer.Sync(sdkConfiguration, options);
+              = new CreateCustomer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -161,7 +163,7 @@ public class Customers {
      */
     public ListCustomersResponse list(ListCustomersRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListCustomersRequest, ListCustomersResponse> operation
-              = new ListCustomers.Sync(sdkConfiguration, options);
+              = new ListCustomers.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -220,7 +222,7 @@ public class Customers {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetCustomerRequest, GetCustomerResponse> operation
-              = new GetCustomer.Sync(sdkConfiguration, options);
+              = new GetCustomer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -278,7 +280,7 @@ public class Customers {
                 .entityCustomer(entityCustomer)
                 .build();
         RequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
-              = new UpdateCustomer.Sync(sdkConfiguration, options);
+              = new UpdateCustomer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -330,7 +332,7 @@ public class Customers {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
-              = new DeleteCustomer.Sync(sdkConfiguration, options);
+              = new DeleteCustomer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -412,7 +414,7 @@ public class Customers {
                 .paymentRequest(paymentRequest)
                 .build();
         RequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation
-              = new CreateCustomerPayment.Sync(sdkConfiguration, options);
+              = new CreateCustomerPayment.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -452,7 +454,7 @@ public class Customers {
      */
     public ListCustomerPaymentsResponse listPayments(ListCustomerPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListCustomerPaymentsRequest, ListCustomerPaymentsResponse> operation
-              = new ListCustomerPayments.Sync(sdkConfiguration, options);
+              = new ListCustomerPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

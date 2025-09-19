@@ -14,6 +14,7 @@ import com.mollie.mollie.models.operations.SubmitOnboardingDataRequestBuilder;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataResponse;
 import com.mollie.mollie.operations.GetOnboardingStatus;
 import com.mollie.mollie.operations.SubmitOnboardingData;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -21,6 +22,7 @@ import java.util.Optional;
 
 
 public class Onboarding {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncOnboarding asyncSDK;
 
@@ -78,7 +80,7 @@ public class Onboarding {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetOnboardingStatusRequest, GetOnboardingStatusResponse> operation
-              = new GetOnboardingStatus.Sync(sdkConfiguration, options);
+              = new GetOnboardingStatus.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -141,7 +143,7 @@ public class Onboarding {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<SubmitOnboardingDataRequest, SubmitOnboardingDataResponse> operation
-              = new SubmitOnboardingData.Sync(sdkConfiguration, options);
+              = new SubmitOnboardingData.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

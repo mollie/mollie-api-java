@@ -18,6 +18,7 @@ import com.mollie.mollie.models.operations.ListCapturesResponse;
 import com.mollie.mollie.operations.CreateCapture;
 import com.mollie.mollie.operations.GetCapture;
 import com.mollie.mollie.operations.ListCaptures;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -25,6 +26,7 @@ import java.util.Optional;
 
 
 public class Captures {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCaptures asyncSDK;
 
@@ -111,7 +113,7 @@ public class Captures {
                 .entityCapture(entityCapture)
                 .build();
         RequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
-              = new CreateCapture.Sync(sdkConfiguration, options);
+              = new CreateCapture.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -157,7 +159,7 @@ public class Captures {
      */
     public ListCapturesResponse list(ListCapturesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListCapturesRequest, ListCapturesResponse> operation
-              = new ListCaptures.Sync(sdkConfiguration, options);
+              = new ListCaptures.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -200,7 +202,7 @@ public class Captures {
      */
     public GetCaptureResponse get(GetCaptureRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetCaptureRequest, GetCaptureResponse> operation
-              = new GetCapture.Sync(sdkConfiguration, options);
+              = new GetCapture.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

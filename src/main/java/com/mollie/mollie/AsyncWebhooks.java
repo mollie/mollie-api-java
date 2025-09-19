@@ -33,6 +33,7 @@ import com.mollie.mollie.operations.GetWebhook;
 import com.mollie.mollie.operations.ListWebhooks;
 import com.mollie.mollie.operations.TestWebhook;
 import com.mollie.mollie.operations.UpdateWebhook;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
@@ -42,6 +43,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncWebhooks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Webhooks syncSDK;
 
@@ -102,7 +104,9 @@ public class AsyncWebhooks {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CreateWebhookRequest, CreateWebhookResponse> operation
-              = new CreateWebhook.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateWebhook.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -142,7 +146,9 @@ public class AsyncWebhooks {
      */
     public CompletableFuture<ListWebhooksResponse> list(ListWebhooksRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
-              = new ListWebhooks.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListWebhooks.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -195,7 +201,9 @@ public class AsyncWebhooks {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
-              = new UpdateWebhook.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new UpdateWebhook.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -252,7 +260,9 @@ public class AsyncWebhooks {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetWebhookRequest, GetWebhookResponse> operation
-              = new GetWebhook.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetWebhook.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -305,7 +315,9 @@ public class AsyncWebhooks {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
-              = new DeleteWebhook.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new DeleteWebhook.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -358,7 +370,9 @@ public class AsyncWebhooks {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<TestWebhookRequest, TestWebhookResponse> operation
-              = new TestWebhook.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new TestWebhook.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -37,6 +37,7 @@ import com.mollie.mollie.operations.ListSettlementChargebacks;
 import com.mollie.mollie.operations.ListSettlementPayments;
 import com.mollie.mollie.operations.ListSettlementRefunds;
 import com.mollie.mollie.operations.ListSettlements;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -44,6 +45,7 @@ import java.util.Optional;
 
 
 public class Settlements {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncSettlements asyncSDK;
 
@@ -103,7 +105,7 @@ public class Settlements {
      */
     public ListSettlementsResponse list(ListSettlementsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementsRequest, ListSettlementsResponse> operation
-              = new ListSettlements.Sync(sdkConfiguration, options);
+              = new ListSettlements.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -185,7 +187,7 @@ public class Settlements {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetSettlementRequest, GetSettlementResponse> operation
-              = new GetSettlement.Sync(sdkConfiguration, options);
+              = new GetSettlement.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -250,7 +252,7 @@ public class Settlements {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetOpenSettlementRequest, GetOpenSettlementResponse> operation
-              = new GetOpenSettlement.Sync(sdkConfiguration, options);
+              = new GetOpenSettlement.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -312,7 +314,7 @@ public class Settlements {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetNextSettlementRequest, GetNextSettlementResponse> operation
-              = new GetNextSettlement.Sync(sdkConfiguration, options);
+              = new GetNextSettlement.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -367,7 +369,7 @@ public class Settlements {
      */
     public ListSettlementPaymentsResponse listPayments(ListSettlementPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementPaymentsRequest, ListSettlementPaymentsResponse> operation
-              = new ListSettlementPayments.Sync(sdkConfiguration, options);
+              = new ListSettlementPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -413,7 +415,7 @@ public class Settlements {
      */
     public ListSettlementCapturesResponse listCaptures(ListSettlementCapturesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementCapturesRequest, ListSettlementCapturesResponse> operation
-              = new ListSettlementCaptures.Sync(sdkConfiguration, options);
+              = new ListSettlementCaptures.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -459,7 +461,7 @@ public class Settlements {
      */
     public ListSettlementRefundsResponse listRefunds(ListSettlementRefundsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementRefundsRequest, ListSettlementRefundsResponse> operation
-              = new ListSettlementRefunds.Sync(sdkConfiguration, options);
+              = new ListSettlementRefunds.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -505,7 +507,7 @@ public class Settlements {
      */
     public ListSettlementChargebacksResponse listChargebacks(ListSettlementChargebacksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSettlementChargebacksRequest, ListSettlementChargebacksResponse> operation
-              = new ListSettlementChargebacks.Sync(sdkConfiguration, options);
+              = new ListSettlementChargebacks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -9,6 +9,7 @@ import com.mollie.mollie.models.operations.ListCapabilitiesRequest;
 import com.mollie.mollie.models.operations.ListCapabilitiesRequestBuilder;
 import com.mollie.mollie.models.operations.ListCapabilitiesResponse;
 import com.mollie.mollie.operations.ListCapabilities;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 
 public class Capabilities {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncCapabilities asyncSDK;
 
@@ -109,7 +111,7 @@ public class Capabilities {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<ListCapabilitiesRequest, ListCapabilitiesResponse> operation
-              = new ListCapabilities.Sync(sdkConfiguration, options);
+              = new ListCapabilities.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

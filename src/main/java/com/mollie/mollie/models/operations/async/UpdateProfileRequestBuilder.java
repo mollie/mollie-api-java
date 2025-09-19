@@ -9,6 +9,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.UpdateProfileRequest;
 import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
 import com.mollie.mollie.operations.UpdateProfile;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -24,6 +25,7 @@ public class UpdateProfileRequestBuilder {
     private UpdateProfileRequestBody requestBody;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateProfileRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -81,7 +83,9 @@ public class UpdateProfileRequestBuilder {
             .build());
 
         AsyncRequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
-              = new UpdateProfile.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new UpdateProfile.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         UpdateProfileRequest request = buildRequest();
 
         return operation.doRequest(request)

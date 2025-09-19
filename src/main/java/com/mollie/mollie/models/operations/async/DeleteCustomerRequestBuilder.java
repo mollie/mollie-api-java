@@ -9,6 +9,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.DeleteCustomerRequest;
 import com.mollie.mollie.models.operations.DeleteCustomerRequestBody;
 import com.mollie.mollie.operations.DeleteCustomer;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -24,6 +25,7 @@ public class DeleteCustomerRequestBuilder {
     private Optional<? extends DeleteCustomerRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeleteCustomerRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -87,7 +89,9 @@ public class DeleteCustomerRequestBuilder {
             .build());
 
         AsyncRequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
-              = new DeleteCustomer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new DeleteCustomer.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         DeleteCustomerRequest request = buildRequest();
 
         return operation.doRequest(request)

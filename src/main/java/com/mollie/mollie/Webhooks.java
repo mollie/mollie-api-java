@@ -33,6 +33,7 @@ import com.mollie.mollie.operations.GetWebhook;
 import com.mollie.mollie.operations.ListWebhooks;
 import com.mollie.mollie.operations.TestWebhook;
 import com.mollie.mollie.operations.UpdateWebhook;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -42,6 +43,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Webhooks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncWebhooks asyncSDK;
 
@@ -103,7 +105,7 @@ public class Webhooks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateWebhookRequest, CreateWebhookResponse> operation
-              = new CreateWebhook.Sync(sdkConfiguration, options);
+              = new CreateWebhook.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -143,7 +145,7 @@ public class Webhooks {
      */
     public ListWebhooksResponse list(ListWebhooksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
-              = new ListWebhooks.Sync(sdkConfiguration, options);
+              = new ListWebhooks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -195,7 +197,7 @@ public class Webhooks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
-              = new UpdateWebhook.Sync(sdkConfiguration, options);
+              = new UpdateWebhook.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -251,7 +253,7 @@ public class Webhooks {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetWebhookRequest, GetWebhookResponse> operation
-              = new GetWebhook.Sync(sdkConfiguration, options);
+              = new GetWebhook.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -303,7 +305,7 @@ public class Webhooks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
-              = new DeleteWebhook.Sync(sdkConfiguration, options);
+              = new DeleteWebhook.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -355,7 +357,7 @@ public class Webhooks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<TestWebhookRequest, TestWebhookResponse> operation
-              = new TestWebhook.Sync(sdkConfiguration, options);
+              = new TestWebhook.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

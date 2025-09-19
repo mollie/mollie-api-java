@@ -9,6 +9,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.EntityCustomer;
 import com.mollie.mollie.models.operations.CreateCustomerRequest;
 import com.mollie.mollie.operations.CreateCustomer;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -23,6 +24,7 @@ public class CreateCustomerRequestBuilder {
     private Optional<? extends EntityCustomer> entityCustomer = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateCustomerRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -79,7 +81,9 @@ public class CreateCustomerRequestBuilder {
             .build());
 
         AsyncRequestOperation<CreateCustomerRequest, CreateCustomerResponse> operation
-              = new CreateCustomer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateCustomer.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         CreateCustomerRequest request = buildRequest();
 
         return operation.doRequest(request)

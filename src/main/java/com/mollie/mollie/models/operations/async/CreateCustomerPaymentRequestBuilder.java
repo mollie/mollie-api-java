@@ -9,6 +9,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.operations.CreateCustomerPayment;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -24,6 +25,7 @@ public class CreateCustomerPaymentRequestBuilder {
     private Optional<? extends PaymentRequest> paymentRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateCustomerPaymentRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -87,7 +89,9 @@ public class CreateCustomerPaymentRequestBuilder {
             .build());
 
         AsyncRequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation
-              = new CreateCustomerPayment.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateCustomerPayment.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         CreateCustomerPaymentRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -17,12 +17,14 @@ import com.mollie.mollie.models.operations.ListChargebacksResponse;
 import com.mollie.mollie.operations.GetChargeback;
 import com.mollie.mollie.operations.ListAllChargebacks;
 import com.mollie.mollie.operations.ListChargebacks;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
 
 
 public class Chargebacks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncChargebacks asyncSDK;
 
@@ -82,7 +84,7 @@ public class Chargebacks {
      */
     public ListChargebacksResponse list(ListChargebacksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
-              = new ListChargebacks.Sync(sdkConfiguration, options);
+              = new ListChargebacks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -122,7 +124,7 @@ public class Chargebacks {
      */
     public GetChargebackResponse get(GetChargebackRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetChargebackRequest, GetChargebackResponse> operation
-              = new GetChargeback.Sync(sdkConfiguration, options);
+              = new GetChargeback.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -168,7 +170,7 @@ public class Chargebacks {
      */
     public ListAllChargebacksResponse all(ListAllChargebacksRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllChargebacksRequest, ListAllChargebacksResponse> operation
-              = new ListAllChargebacks.Sync(sdkConfiguration, options);
+              = new ListAllChargebacks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

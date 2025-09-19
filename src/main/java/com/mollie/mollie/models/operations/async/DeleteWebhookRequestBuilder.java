@@ -9,6 +9,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.DeleteWebhookRequest;
 import com.mollie.mollie.models.operations.DeleteWebhookRequestBody;
 import com.mollie.mollie.operations.DeleteWebhook;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -24,6 +25,7 @@ public class DeleteWebhookRequestBuilder {
     private Optional<? extends DeleteWebhookRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeleteWebhookRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -87,7 +89,9 @@ public class DeleteWebhookRequestBuilder {
             .build());
 
         AsyncRequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
-              = new DeleteWebhook.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new DeleteWebhook.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         DeleteWebhookRequest request = buildRequest();
 
         return operation.doRequest(request)

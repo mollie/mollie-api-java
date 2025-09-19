@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.GetSubscription;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -24,6 +25,7 @@ public class GetSubscriptionRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetSubscriptionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -94,7 +96,7 @@ public class GetSubscriptionRequestBuilder {
             .build());
 
         RequestOperation<GetSubscriptionRequest, GetSubscriptionResponse> operation
-              = new GetSubscription.Sync(sdkConfiguration, options);
+              = new GetSubscription.Sync(sdkConfiguration, options, _headers);
         GetSubscriptionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

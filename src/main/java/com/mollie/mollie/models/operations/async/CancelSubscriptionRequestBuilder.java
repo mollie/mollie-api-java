@@ -9,6 +9,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequest;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequestBody;
 import com.mollie.mollie.operations.CancelSubscription;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -25,6 +26,7 @@ public class CancelSubscriptionRequestBuilder {
     private Optional<? extends CancelSubscriptionRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CancelSubscriptionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -95,7 +97,9 @@ public class CancelSubscriptionRequestBuilder {
             .build());
 
         AsyncRequestOperation<CancelSubscriptionRequest, CancelSubscriptionResponse> operation
-              = new CancelSubscription.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CancelSubscription.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         CancelSubscriptionRequest request = buildRequest();
 
         return operation.doRequest(request)

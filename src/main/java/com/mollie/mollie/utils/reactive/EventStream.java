@@ -129,10 +129,10 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
             throw new NullPointerException("Subscriber cannot be null");
         }
 
-        EventStreamSubscription subscription = new EventStreamSubscription(
-                rawResponse(), subscriber
-        );
+        EventStreamSubscription subscription = new EventStreamSubscription(subscriber);
         subscriber.onSubscribe(subscription);
+        // Start the async operation only after onSubscribe has been called
+        subscription.start(rawResponse());
     }
 
     private class EventStreamSubscription implements Subscription {
@@ -143,29 +143,36 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
         private Flow.Subscription upstreamSubscription;
         private volatile boolean cancelled = false;
         private volatile boolean completed = false;
-        private volatile Throwable pendingError;
 
         @SuppressWarnings("unchecked")
-        public EventStreamSubscription(CompletableFuture<HttpResponse<Blob>> httpResponseFuture,
-                                      Subscriber<? super ItemT> subscriber) {
+        public EventStreamSubscription(Subscriber<? super ItemT> subscriber) {
             this.subscriber = subscriber;
             this.parser = ((Protocol<Object, ItemT>) protocol).createParser();
+        }
 
+        public void start(CompletableFuture<HttpResponse<Blob>> httpResponseFuture) {
             // Wait for the CompletableFuture and then subscribe to the Blob
             httpResponseFuture.whenComplete((httpResponse, throwable) -> {
                 if (cancelled) {
                     return;
                 }
                 if (throwable != null) {
-                    // Store the error to signal when demand is requested
-                    pendingError = throwable;
+                    // Signal error immediately per Reactive Streams specification
+                    signalError(throwable);
                     return;
                 }
 
                 // Extract Blob from HttpResponse and subscribe to it
                 Blob blob = httpResponse.body();
                 // Blob.asPublisher() now returns Flow.Publisher directly
-                Flow.Publisher<ByteBuffer> flowPublisher = blob.asPublisher();
+                Flow.Publisher<ByteBuffer> flowPublisher;
+                try {
+                    flowPublisher = blob.asPublisher();
+                } catch (Exception e) {
+                    // Handle case where blob is already consumed or other errors
+                    signalError(e);
+                    return;
+                }
                 flowPublisher.subscribe(new Flow.Subscriber<>() {
                     @Override
                     public void onSubscribe(Flow.Subscription subscription) {
@@ -273,12 +280,6 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
 
         private void requestMoreIfNeeded() {
             if (cancelled || completed) {
-                return;
-            }
-
-            // Check for pending error first
-            if (pendingError != null && demand.get() > 0) {
-                signalError(pendingError);
                 return;
             }
 

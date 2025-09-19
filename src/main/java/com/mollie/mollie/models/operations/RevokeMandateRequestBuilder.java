@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.RevokeMandate;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -22,6 +23,7 @@ public class RevokeMandateRequestBuilder {
     private Optional<? extends RevokeMandateRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public RevokeMandateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -92,7 +94,7 @@ public class RevokeMandateRequestBuilder {
             .build());
 
         RequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
-              = new RevokeMandate.Sync(sdkConfiguration, options);
+              = new RevokeMandate.Sync(sdkConfiguration, options, _headers);
         RevokeMandateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

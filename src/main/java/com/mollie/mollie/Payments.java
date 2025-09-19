@@ -33,6 +33,7 @@ import com.mollie.mollie.operations.GetPayment;
 import com.mollie.mollie.operations.ListPayments;
 import com.mollie.mollie.operations.ReleaseAuthorization;
 import com.mollie.mollie.operations.UpdatePayment;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -41,6 +42,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Payments {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncPayments asyncSDK;
 
@@ -138,7 +140,7 @@ public class Payments {
                 .paymentRequest(paymentRequest)
                 .build();
         RequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
-              = new CreatePayment.Sync(sdkConfiguration, options);
+              = new CreatePayment.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -184,7 +186,7 @@ public class Payments {
      */
     public ListPaymentsResponse list(ListPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
-              = new ListPayments.Sync(sdkConfiguration, options);
+              = new ListPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -224,7 +226,7 @@ public class Payments {
      */
     public GetPaymentResponse get(GetPaymentRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
-              = new GetPayment.Sync(sdkConfiguration, options);
+              = new GetPayment.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -282,7 +284,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdatePaymentRequest, UpdatePaymentResponse> operation
-              = new UpdatePayment.Sync(sdkConfiguration, options);
+              = new UpdatePayment.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -349,7 +351,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
-              = new CancelPayment.Sync(sdkConfiguration, options);
+              = new CancelPayment.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -422,7 +424,7 @@ public class Payments {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
-              = new ReleaseAuthorization.Sync(sdkConfiguration, options);
+              = new ReleaseAuthorization.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

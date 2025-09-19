@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.SubscriptionRequest;
 import com.mollie.mollie.operations.CreateSubscription;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -22,6 +23,7 @@ public class CreateSubscriptionRequestBuilder {
     private Optional<? extends SubscriptionRequest> subscriptionRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateSubscriptionRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -85,7 +87,7 @@ public class CreateSubscriptionRequestBuilder {
             .build());
 
         RequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
-              = new CreateSubscription.Sync(sdkConfiguration, options);
+              = new CreateSubscription.Sync(sdkConfiguration, options, _headers);
         CreateSubscriptionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

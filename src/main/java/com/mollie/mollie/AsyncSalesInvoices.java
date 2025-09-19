@@ -28,6 +28,7 @@ import com.mollie.mollie.operations.DeleteSalesInvoice;
 import com.mollie.mollie.operations.GetSalesInvoice;
 import com.mollie.mollie.operations.ListSalesInvoices;
 import com.mollie.mollie.operations.UpdateSalesInvoice;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -38,6 +39,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncSalesInvoices {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final SalesInvoices syncSDK;
 
@@ -110,7 +112,9 @@ public class AsyncSalesInvoices {
                 .entitySalesInvoice(entitySalesInvoice)
                 .build();
         AsyncRequestOperation<CreateSalesInvoiceRequest, CreateSalesInvoiceResponse> operation
-              = new CreateSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateSalesInvoice.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -188,7 +192,9 @@ public class AsyncSalesInvoices {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
-              = new ListSalesInvoices.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListSalesInvoices.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -257,7 +263,9 @@ public class AsyncSalesInvoices {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetSalesInvoiceRequest, GetSalesInvoiceResponse> operation
-              = new GetSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetSalesInvoice.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -328,7 +336,9 @@ public class AsyncSalesInvoices {
                 .updateValuesSalesInvoice(updateValuesSalesInvoice)
                 .build();
         AsyncRequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
-              = new UpdateSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new UpdateSalesInvoice.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -396,7 +406,9 @@ public class AsyncSalesInvoices {
                 .deleteValuesSalesInvoice(deleteValuesSalesInvoice)
                 .build();
         AsyncRequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
-              = new DeleteSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new DeleteSalesInvoice.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

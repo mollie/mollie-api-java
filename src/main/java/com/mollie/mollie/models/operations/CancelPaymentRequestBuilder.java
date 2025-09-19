@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.CancelPayment;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -21,6 +22,7 @@ public class CancelPaymentRequestBuilder {
     private Optional<? extends CancelPaymentRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CancelPaymentRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -84,7 +86,7 @@ public class CancelPaymentRequestBuilder {
             .build());
 
         RequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
-              = new CancelPayment.Sync(sdkConfiguration, options);
+              = new CancelPayment.Sync(sdkConfiguration, options, _headers);
         CancelPaymentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

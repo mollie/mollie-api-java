@@ -36,6 +36,7 @@ import com.mollie.mollie.operations.GetCustomer;
 import com.mollie.mollie.operations.ListCustomerPayments;
 import com.mollie.mollie.operations.ListCustomers;
 import com.mollie.mollie.operations.UpdateCustomer;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
@@ -45,6 +46,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncCustomers {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Customers syncSDK;
 
@@ -114,7 +116,9 @@ public class AsyncCustomers {
                 .entityCustomer(entityCustomer)
                 .build();
         AsyncRequestOperation<CreateCustomerRequest, CreateCustomerResponse> operation
-              = new CreateCustomer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateCustomer.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -160,7 +164,9 @@ public class AsyncCustomers {
      */
     public CompletableFuture<ListCustomersResponse> list(ListCustomersRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListCustomersRequest, ListCustomersResponse> operation
-              = new ListCustomers.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListCustomers.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -220,7 +226,9 @@ public class AsyncCustomers {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetCustomerRequest, GetCustomerResponse> operation
-              = new GetCustomer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetCustomer.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -279,7 +287,9 @@ public class AsyncCustomers {
                 .entityCustomer(entityCustomer)
                 .build();
         AsyncRequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
-              = new UpdateCustomer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new UpdateCustomer.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -332,7 +342,9 @@ public class AsyncCustomers {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
-              = new DeleteCustomer.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new DeleteCustomer.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -415,7 +427,9 @@ public class AsyncCustomers {
                 .paymentRequest(paymentRequest)
                 .build();
         AsyncRequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation
-              = new CreateCustomerPayment.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreateCustomerPayment.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -455,7 +469,9 @@ public class AsyncCustomers {
      */
     public CompletableFuture<ListCustomerPaymentsResponse> listPayments(ListCustomerPaymentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListCustomerPaymentsRequest, ListCustomerPaymentsResponse> operation
-              = new ListCustomerPayments.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListCustomerPayments.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

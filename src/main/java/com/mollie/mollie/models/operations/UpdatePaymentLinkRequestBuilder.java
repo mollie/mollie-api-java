@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.UpdatePaymentLink;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -21,6 +22,7 @@ public class UpdatePaymentLinkRequestBuilder {
     private Optional<? extends UpdatePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdatePaymentLinkRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -84,7 +86,7 @@ public class UpdatePaymentLinkRequestBuilder {
             .build());
 
         RequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
-              = new UpdatePaymentLink.Sync(sdkConfiguration, options);
+              = new UpdatePaymentLink.Sync(sdkConfiguration, options, _headers);
         UpdatePaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

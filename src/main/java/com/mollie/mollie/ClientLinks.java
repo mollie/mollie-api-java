@@ -10,6 +10,7 @@ import com.mollie.mollie.models.operations.CreateClientLinkRequest;
 import com.mollie.mollie.models.operations.CreateClientLinkRequestBuilder;
 import com.mollie.mollie.models.operations.CreateClientLinkResponse;
 import com.mollie.mollie.operations.CreateClientLink;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 
 public class ClientLinks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncClientLinks asyncSDK;
 
@@ -234,7 +236,7 @@ public class ClientLinks {
                 .entityClientLink(entityClientLink)
                 .build();
         RequestOperation<CreateClientLinkRequest, CreateClientLinkResponse> operation
-              = new CreateClientLink.Sync(sdkConfiguration, options);
+              = new CreateClientLink.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

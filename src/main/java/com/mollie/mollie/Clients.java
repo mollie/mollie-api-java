@@ -13,6 +13,7 @@ import com.mollie.mollie.models.operations.ListClientsRequestBuilder;
 import com.mollie.mollie.models.operations.ListClientsResponse;
 import com.mollie.mollie.operations.GetClient;
 import com.mollie.mollie.operations.ListClients;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
@@ -22,6 +23,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Clients {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncClients asyncSDK;
 
@@ -97,7 +99,7 @@ public class Clients {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<ListClientsRequest, ListClientsResponse> operation
-              = new ListClients.Sync(sdkConfiguration, options);
+              = new ListClients.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -150,7 +152,7 @@ public class Clients {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetClientRequest, GetClientResponse> operation
-              = new GetClient.Sync(sdkConfiguration, options);
+              = new GetClient.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

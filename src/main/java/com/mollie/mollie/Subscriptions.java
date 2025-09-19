@@ -36,6 +36,7 @@ import com.mollie.mollie.operations.ListAllSubscriptions;
 import com.mollie.mollie.operations.ListSubscriptionPayments;
 import com.mollie.mollie.operations.ListSubscriptions;
 import com.mollie.mollie.operations.UpdateSubscription;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -45,6 +46,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Subscriptions {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncSubscriptions asyncSDK;
 
@@ -164,7 +166,7 @@ public class Subscriptions {
                 .subscriptionRequest(subscriptionRequest)
                 .build();
         RequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
-              = new CreateSubscription.Sync(sdkConfiguration, options);
+              = new CreateSubscription.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -210,7 +212,7 @@ public class Subscriptions {
      */
     public ListSubscriptionsResponse list(ListSubscriptionsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSubscriptionsRequest, ListSubscriptionsResponse> operation
-              = new ListSubscriptions.Sync(sdkConfiguration, options);
+              = new ListSubscriptions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -270,7 +272,7 @@ public class Subscriptions {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetSubscriptionRequest, GetSubscriptionResponse> operation
-              = new GetSubscription.Sync(sdkConfiguration, options);
+              = new GetSubscription.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -338,7 +340,7 @@ public class Subscriptions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateSubscriptionRequest, UpdateSubscriptionResponse> operation
-              = new UpdateSubscription.Sync(sdkConfiguration, options);
+              = new UpdateSubscription.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -394,7 +396,7 @@ public class Subscriptions {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CancelSubscriptionRequest, CancelSubscriptionResponse> operation
-              = new CancelSubscription.Sync(sdkConfiguration, options);
+              = new CancelSubscription.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -440,7 +442,7 @@ public class Subscriptions {
      */
     public ListAllSubscriptionsResponse all(ListAllSubscriptionsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
-              = new ListAllSubscriptions.Sync(sdkConfiguration, options);
+              = new ListAllSubscriptions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -486,7 +488,7 @@ public class Subscriptions {
      */
     public ListSubscriptionPaymentsResponse listPayments(ListSubscriptionPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation
-              = new ListSubscriptionPayments.Sync(sdkConfiguration, options);
+              = new ListSubscriptionPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

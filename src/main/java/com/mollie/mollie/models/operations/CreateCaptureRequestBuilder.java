@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.EntityCapture;
 import com.mollie.mollie.operations.CreateCapture;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -22,6 +23,7 @@ public class CreateCaptureRequestBuilder {
     private Optional<? extends EntityCapture> entityCapture = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateCaptureRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -85,7 +87,7 @@ public class CreateCaptureRequestBuilder {
             .build());
 
         RequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
-              = new CreateCapture.Sync(sdkConfiguration, options);
+              = new CreateCapture.Sync(sdkConfiguration, options, _headers);
         CreateCaptureRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

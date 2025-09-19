@@ -25,6 +25,7 @@ import com.mollie.mollie.operations.GetBalanceReport;
 import com.mollie.mollie.operations.GetPrimaryBalance;
 import com.mollie.mollie.operations.ListBalanceTransactions;
 import com.mollie.mollie.operations.ListBalances;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -34,6 +35,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Balances {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncBalances asyncSDK;
 
@@ -93,7 +95,7 @@ public class Balances {
      */
     public ListBalancesResponse list(ListBalancesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
-              = new ListBalances.Sync(sdkConfiguration, options);
+              = new ListBalances.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -191,7 +193,7 @@ public class Balances {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalance.Sync(sdkConfiguration, options);
+              = new GetBalance.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,7 +249,7 @@ public class Balances {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetPrimaryBalanceRequest, GetPrimaryBalanceResponse> operation
-              = new GetPrimaryBalance.Sync(sdkConfiguration, options);
+              = new GetPrimaryBalance.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -305,7 +307,7 @@ public class Balances {
      */
     public GetBalanceReportResponse getReport(GetBalanceReportRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetBalanceReportRequest, GetBalanceReportResponse> operation
-              = new GetBalanceReport.Sync(sdkConfiguration, options);
+              = new GetBalanceReport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -372,7 +374,7 @@ public class Balances {
      */
     public ListBalanceTransactionsResponse listTransactions(ListBalanceTransactionsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
-              = new ListBalanceTransactions.Sync(sdkConfiguration, options);
+              = new ListBalanceTransactions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

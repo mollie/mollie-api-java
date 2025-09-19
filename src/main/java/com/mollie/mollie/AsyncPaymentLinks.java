@@ -32,6 +32,7 @@ import com.mollie.mollie.operations.GetPaymentLink;
 import com.mollie.mollie.operations.GetPaymentLinkPayments;
 import com.mollie.mollie.operations.ListPaymentLinks;
 import com.mollie.mollie.operations.UpdatePaymentLink;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -42,6 +43,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPaymentLinks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final PaymentLinks syncSDK;
 
@@ -108,7 +110,9 @@ public class AsyncPaymentLinks {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CreatePaymentLinkRequest, CreatePaymentLinkResponse> operation
-              = new CreatePaymentLink.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new CreatePaymentLink.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -174,7 +178,9 @@ public class AsyncPaymentLinks {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
-              = new ListPaymentLinks.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListPaymentLinks.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -231,7 +237,9 @@ public class AsyncPaymentLinks {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
-              = new GetPaymentLink.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPaymentLink.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -284,7 +292,9 @@ public class AsyncPaymentLinks {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
-              = new UpdatePaymentLink.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new UpdatePaymentLink.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -355,7 +365,9 @@ public class AsyncPaymentLinks {
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
-              = new DeletePaymentLink.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new DeletePaymentLink.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -401,7 +413,9 @@ public class AsyncPaymentLinks {
      */
     public CompletableFuture<GetPaymentLinkPaymentsResponse> listPayments(GetPaymentLinkPaymentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
-              = new GetPaymentLinkPayments.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetPaymentLinkPayments.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

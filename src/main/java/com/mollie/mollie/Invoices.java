@@ -13,6 +13,7 @@ import com.mollie.mollie.models.operations.ListInvoicesRequestBuilder;
 import com.mollie.mollie.models.operations.ListInvoicesResponse;
 import com.mollie.mollie.operations.GetInvoice;
 import com.mollie.mollie.operations.ListInvoices;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
@@ -20,6 +21,7 @@ import java.util.Optional;
 
 
 public class Invoices {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncInvoices asyncSDK;
 
@@ -82,7 +84,7 @@ public class Invoices {
      */
     public ListInvoicesResponse list(ListInvoicesRequest request, Optional<Options> options) throws Exception {
         RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
-              = new ListInvoices.Sync(sdkConfiguration, options);
+              = new ListInvoices.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -140,7 +142,7 @@ public class Invoices {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
-              = new GetInvoice.Sync(sdkConfiguration, options);
+              = new GetInvoice.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

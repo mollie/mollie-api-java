@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.ListProfiles;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -23,6 +24,7 @@ public class ListProfilesRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public ListProfilesRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -92,7 +94,7 @@ public class ListProfilesRequestBuilder {
             .build());
 
         RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
-              = new ListProfiles.Sync(sdkConfiguration, options);
+              = new ListProfiles.Sync(sdkConfiguration, options, _headers);
         ListProfilesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

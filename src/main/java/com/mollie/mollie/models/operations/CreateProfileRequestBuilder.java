@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.EntityProfile;
 import com.mollie.mollie.operations.CreateProfile;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -21,6 +22,7 @@ public class CreateProfileRequestBuilder {
     private EntityProfile entityProfile;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateProfileRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -71,7 +73,7 @@ public class CreateProfileRequestBuilder {
             .build());
 
         RequestOperation<CreateProfileRequest, CreateProfileResponse> operation
-              = new CreateProfile.Sync(sdkConfiguration, options);
+              = new CreateProfile.Sync(sdkConfiguration, options, _headers);
         CreateProfileRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

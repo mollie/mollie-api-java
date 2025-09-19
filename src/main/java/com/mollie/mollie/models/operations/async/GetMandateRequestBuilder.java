@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.GetMandateRequest;
 import com.mollie.mollie.operations.GetMandate;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -26,6 +27,7 @@ public class GetMandateRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetMandateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -96,7 +98,9 @@ public class GetMandateRequestBuilder {
             .build());
 
         AsyncRequestOperation<GetMandateRequest, GetMandateResponse> operation
-              = new GetMandate.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetMandate.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         GetMandateRequest request = buildRequest();
 
         return operation.doRequest(request)

@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.UpdateWebhook;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -21,6 +22,7 @@ public class UpdateWebhookRequestBuilder {
     private Optional<? extends UpdateWebhookRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public UpdateWebhookRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -84,7 +86,7 @@ public class UpdateWebhookRequestBuilder {
             .build());
 
         RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
-              = new UpdateWebhook.Sync(sdkConfiguration, options);
+              = new UpdateWebhook.Sync(sdkConfiguration, options, _headers);
         UpdateWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -8,6 +8,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.EntityRefund;
 import com.mollie.mollie.operations.CreateRefund;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -22,6 +23,7 @@ public class CreateRefundRequestBuilder {
     private Optional<? extends EntityRefund> entityRefund = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public CreateRefundRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -85,7 +87,7 @@ public class CreateRefundRequestBuilder {
             .build());
 
         RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
-              = new CreateRefund.Sync(sdkConfiguration, options);
+              = new CreateRefund.Sync(sdkConfiguration, options, _headers);
         CreateRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

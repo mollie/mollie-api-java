@@ -7,6 +7,7 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.GetBalance;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -23,6 +24,7 @@ public class GetBalanceRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public GetBalanceRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -86,7 +88,7 @@ public class GetBalanceRequestBuilder {
             .build());
 
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
-              = new GetBalance.Sync(sdkConfiguration, options);
+              = new GetBalance.Sync(sdkConfiguration, options, _headers);
         GetBalanceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

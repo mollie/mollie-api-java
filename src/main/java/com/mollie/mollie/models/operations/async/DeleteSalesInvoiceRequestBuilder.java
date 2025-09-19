@@ -9,6 +9,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
 import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequest;
 import com.mollie.mollie.operations.DeleteSalesInvoice;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
@@ -24,6 +25,7 @@ public class DeleteSalesInvoiceRequestBuilder {
     private Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final Headers _headers = new Headers(); 
 
     public DeleteSalesInvoiceRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -87,7 +89,9 @@ public class DeleteSalesInvoiceRequestBuilder {
             .build());
 
         AsyncRequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
-              = new DeleteSalesInvoice.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new DeleteSalesInvoice.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         DeleteSalesInvoiceRequest request = buildRequest();
 
         return operation.doRequest(request)

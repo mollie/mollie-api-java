@@ -20,6 +20,7 @@ import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Exceptions;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Hook.AfterErrorContextImpl;
 import com.mollie.mollie.utils.Hook.AfterSuccessContextImpl;
 import com.mollie.mollie.utils.Hook.BeforeRequestContextImpl;
@@ -55,9 +56,13 @@ public class CreateProfile {
         final List<String> retryStatusCodes;
         final RetryConfig retryConfig;
         final HTTPClient client;
+        final Headers _headers;
 
-        public Base(SDKConfiguration sdkConfiguration, Optional<Options> options) {
+        public Base(
+                SDKConfiguration sdkConfiguration, Optional<Options> options,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
+            this._headers =_headers;
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             options
@@ -127,6 +132,7 @@ public class CreateProfile {
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
@@ -136,8 +142,12 @@ public class CreateProfile {
 
     public static class Sync extends Base
             implements RequestOperation<CreateProfileRequest, CreateProfileResponse> {
-        public Sync(SDKConfiguration sdkConfiguration, Optional<Options> options) {
-            super(sdkConfiguration, options);
+        public Sync(
+                SDKConfiguration sdkConfiguration, Optional<Options> options,
+                Headers _headers) {
+            super(
+                  sdkConfiguration, options,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(CreateProfileRequest request) throws Exception {
@@ -262,8 +272,10 @@ public class CreateProfile {
 
         public Async(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
-                ScheduledExecutorService retryScheduler) {
-            super(sdkConfiguration, options);
+                ScheduledExecutorService retryScheduler, Headers _headers) {
+            super(
+                  sdkConfiguration, options,
+                  _headers);
             this.retryScheduler = retryScheduler;
         }
 

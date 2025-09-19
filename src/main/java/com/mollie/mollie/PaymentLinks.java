@@ -32,6 +32,7 @@ import com.mollie.mollie.operations.GetPaymentLink;
 import com.mollie.mollie.operations.GetPaymentLinkPayments;
 import com.mollie.mollie.operations.ListPaymentLinks;
 import com.mollie.mollie.operations.UpdatePaymentLink;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
@@ -42,6 +43,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class PaymentLinks {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final AsyncPaymentLinks asyncSDK;
 
@@ -109,7 +111,7 @@ public class PaymentLinks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreatePaymentLinkRequest, CreatePaymentLinkResponse> operation
-              = new CreatePaymentLink.Sync(sdkConfiguration, options);
+              = new CreatePaymentLink.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -174,7 +176,7 @@ public class PaymentLinks {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
-              = new ListPaymentLinks.Sync(sdkConfiguration, options);
+              = new ListPaymentLinks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -230,7 +232,7 @@ public class PaymentLinks {
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
-              = new GetPaymentLink.Sync(sdkConfiguration, options);
+              = new GetPaymentLink.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -282,7 +284,7 @@ public class PaymentLinks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
-              = new UpdatePaymentLink.Sync(sdkConfiguration, options);
+              = new UpdatePaymentLink.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -352,7 +354,7 @@ public class PaymentLinks {
                 .requestBody(requestBody)
                 .build();
         RequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
-              = new DeletePaymentLink.Sync(sdkConfiguration, options);
+              = new DeletePaymentLink.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -398,7 +400,7 @@ public class PaymentLinks {
      */
     public GetPaymentLinkPaymentsResponse listPayments(GetPaymentLinkPaymentsRequest request, Optional<Options> options) throws Exception {
         RequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
-              = new GetPaymentLinkPayments.Sync(sdkConfiguration, options);
+              = new GetPaymentLinkPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

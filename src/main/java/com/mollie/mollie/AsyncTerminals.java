@@ -13,6 +13,7 @@ import com.mollie.mollie.models.operations.async.ListTerminalsRequestBuilder;
 import com.mollie.mollie.models.operations.async.ListTerminalsResponse;
 import com.mollie.mollie.operations.GetTerminal;
 import com.mollie.mollie.operations.ListTerminals;
+import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
@@ -22,6 +23,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncTerminals {
+    private static final Headers _headers = Headers.EMPTY;
     private final SDKConfiguration sdkConfiguration;
     private final Terminals syncSDK;
 
@@ -80,7 +82,9 @@ public class AsyncTerminals {
      */
     public CompletableFuture<ListTerminalsResponse> list(ListTerminalsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
-              = new ListTerminals.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new ListTerminals.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -137,7 +141,9 @@ public class AsyncTerminals {
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetTerminalRequest, GetTerminalResponse> operation
-              = new GetTerminal.Async(sdkConfiguration, options, sdkConfiguration.retryScheduler());
+              = new GetTerminal.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
