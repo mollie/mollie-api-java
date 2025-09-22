@@ -51,8 +51,9 @@ public class Costs {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("amountVat")
-    private Amount amountVat;
+    private Optional<? extends AmountNullable> amountVat;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -67,7 +68,7 @@ public class Costs {
             @JsonProperty("count") long count,
             @JsonProperty("rate") Rate rate,
             @JsonProperty("amountNet") Amount amountNet,
-            @JsonProperty("amountVat") Amount amountVat,
+            @JsonProperty("amountVat") Optional<? extends AmountNullable> amountVat,
             @JsonProperty("amountGross") Amount amountGross) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(method, "method");
@@ -90,10 +91,9 @@ public class Costs {
             long count,
             Rate rate,
             Amount amountNet,
-            Amount amountVat,
             Amount amountGross) {
         this(description, Optional.empty(), count,
-            rate, amountNet, amountVat,
+            rate, amountNet, Optional.empty(),
             amountGross);
     }
 
@@ -141,9 +141,10 @@ public class Costs {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Amount amountVat() {
-        return amountVat;
+    public Optional<AmountNullable> amountVat() {
+        return (Optional<AmountNullable>) amountVat;
     }
 
     /**
@@ -217,7 +218,17 @@ public class Costs {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public Costs withAmountVat(Amount amountVat) {
+    public Costs withAmountVat(AmountNullable amountVat) {
+        Utils.checkNotNull(amountVat, "amountVat");
+        this.amountVat = Optional.ofNullable(amountVat);
+        return this;
+    }
+
+
+    /**
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     */
+    public Costs withAmountVat(Optional<? extends AmountNullable> amountVat) {
         Utils.checkNotNull(amountVat, "amountVat");
         this.amountVat = amountVat;
         return this;
@@ -284,7 +295,7 @@ public class Costs {
 
         private Amount amountNet;
 
-        private Amount amountVat;
+        private Optional<? extends AmountNullable> amountVat = Optional.empty();
 
         private Amount amountGross;
 
@@ -355,7 +366,16 @@ public class Costs {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amountVat(Amount amountVat) {
+        public Builder amountVat(AmountNullable amountVat) {
+            Utils.checkNotNull(amountVat, "amountVat");
+            this.amountVat = Optional.ofNullable(amountVat);
+            return this;
+        }
+
+        /**
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         */
+        public Builder amountVat(Optional<? extends AmountNullable> amountVat) {
             Utils.checkNotNull(amountVat, "amountVat");
             this.amountVat = amountVat;
             return this;

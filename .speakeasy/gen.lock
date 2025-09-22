@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 5f770e879f4e0cd204315098145b861b
+  docChecksum: 843a5fcda17e62c6c7e2027ada861883
   docVersion: 1.0.0
   speakeasyVersion: 1.622.1
   generationVersion: 2.709.0
-  releaseVersion: 0.19.1
-  configChecksum: 505a3c7d195a5cc318fe28f1fe01cedc
+  releaseVersion: 0.19.2
+  configChecksum: 8523d1c3066316d0c2aa9908a5aa6120
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -6116,7 +6116,7 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes Detected:
-  * `client.settlements.list()`:  `response` **Changed** **Breaking** :warning:
-  * `client.settlements.get()`:  `response` **Changed** **Breaking** :warning:
-  * `client.settlements.getOpen()`:  `response` **Changed** **Breaking** :warning:
-  * `client.settlements.getNext()`:  `response` **Changed** **Breaking** :warning:
+  * `client.settlements.list()`:  `response._embedded.settlements.[].periods.{}.{}.costs.[].amountVat` **Changed** **Breaking** :warning:
+  * `client.settlements.get()`:  `response.periods.{}.{}.costs.[].amountVat` **Changed** **Breaking** :warning:
+  * `client.settlements.getOpen()`:  `response.periods.{}.{}.costs.[].amountVat` **Changed** **Breaking** :warning:
+  * `client.settlements.getNext()`:  `response.periods.{}.{}.costs.[].amountVat` **Changed** **Breaking** :warning:
