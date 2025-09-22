@@ -24,9 +24,8 @@ public class EntitySettlementLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends Url> self;
+    private Url self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -72,7 +71,7 @@ public class EntitySettlementLinks {
 
     @JsonCreator
     public EntitySettlementLinks(
-            @JsonProperty("self") Optional<? extends Url> self,
+            @JsonProperty("self") Url self,
             @JsonProperty("payments") Optional<? extends Url> payments,
             @JsonProperty("captures") Optional<? extends Url> captures,
             @JsonProperty("refunds") Optional<? extends Url> refunds,
@@ -95,8 +94,9 @@ public class EntitySettlementLinks {
         this.documentation = documentation;
     }
     
-    public EntitySettlementLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
+    public EntitySettlementLinks(
+            Url self) {
+        this(self, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty());
     }
@@ -104,10 +104,9 @@ public class EntitySettlementLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Url> self() {
-        return (Optional<Url>) self;
+    public Url self() {
+        return self;
     }
 
     /**
@@ -173,16 +172,6 @@ public class EntitySettlementLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public EntitySettlementLinks withSelf(Url self) {
-        Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public EntitySettlementLinks withSelf(Optional<? extends Url> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -343,7 +332,7 @@ public class EntitySettlementLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Url> self = Optional.empty();
+        private Url self;
 
         private Optional<? extends Url> payments = Optional.empty();
 
@@ -366,15 +355,6 @@ public class EntitySettlementLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder self(Url self) {
-            Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends Url> self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;

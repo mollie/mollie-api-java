@@ -22,14 +22,12 @@ public class EntitySettlement {
      * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -58,21 +56,18 @@ public class EntitySettlement {
     /**
      * The status of the settlement.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends SettlementStatus> status;
+    private SettlementStatus status;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends Amount> amount;
+    private Amount amount;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balanceId")
-    private Optional<String> balanceId;
+    private String balanceId;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -98,23 +93,22 @@ public class EntitySettlement {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends EntitySettlementLinks> links;
+    private EntitySettlementLinks links;
 
     @JsonCreator
     public EntitySettlement(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("settledAt") JsonNullable<String> settledAt,
-            @JsonProperty("status") Optional<? extends SettlementStatus> status,
-            @JsonProperty("amount") Optional<? extends Amount> amount,
-            @JsonProperty("balanceId") Optional<String> balanceId,
+            @JsonProperty("status") SettlementStatus status,
+            @JsonProperty("amount") Amount amount,
+            @JsonProperty("balanceId") String balanceId,
             @JsonProperty("invoiceId") Optional<String> invoiceId,
             @JsonProperty("periods") Optional<? extends Map<String, Map<String, Periods>>> periods,
-            @JsonProperty("_links") Optional<? extends EntitySettlementLinks> links) {
+            @JsonProperty("_links") EntitySettlementLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -139,11 +133,17 @@ public class EntitySettlement {
         this.links = links;
     }
     
-    public EntitySettlement() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+    public EntitySettlement(
+            String resource,
+            String id,
+            SettlementStatus status,
+            Amount amount,
+            String balanceId,
+            EntitySettlementLinks links) {
+        this(resource, id, Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), status,
+            amount, balanceId, Optional.empty(),
+            Optional.empty(), links);
     }
 
     /**
@@ -151,12 +151,12 @@ public class EntitySettlement {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -190,23 +190,21 @@ public class EntitySettlement {
     /**
      * The status of the settlement.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SettlementStatus> status() {
-        return (Optional<SettlementStatus>) status;
+    public SettlementStatus status() {
+        return status;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amount() {
-        return (Optional<Amount>) amount;
+    public Amount amount() {
+        return amount;
     }
 
     @JsonIgnore
-    public Optional<String> balanceId() {
+    public String balanceId() {
         return balanceId;
     }
 
@@ -236,10 +234,9 @@ public class EntitySettlement {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntitySettlementLinks> links() {
-        return (Optional<EntitySettlementLinks>) links;
+    public EntitySettlementLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -253,29 +250,11 @@ public class EntitySettlement {
      */
     public EntitySettlement withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
-     * endpoint.
-     */
-    public EntitySettlement withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     public EntitySettlement withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public EntitySettlement withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -347,16 +326,6 @@ public class EntitySettlement {
      */
     public EntitySettlement withStatus(SettlementStatus status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The status of the settlement.
-     */
-    public EntitySettlement withStatus(Optional<? extends SettlementStatus> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -366,28 +335,11 @@ public class EntitySettlement {
      */
     public EntitySettlement withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySettlement withAmount(Optional<? extends Amount> amount) {
-        Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
     public EntitySettlement withBalanceId(String balanceId) {
-        Utils.checkNotNull(balanceId, "balanceId");
-        this.balanceId = Optional.ofNullable(balanceId);
-        return this;
-    }
-
-
-    public EntitySettlement withBalanceId(Optional<String> balanceId) {
         Utils.checkNotNull(balanceId, "balanceId");
         this.balanceId = balanceId;
         return this;
@@ -448,16 +400,6 @@ public class EntitySettlement {
      */
     public EntitySettlement withLinks(EntitySettlementLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public EntitySettlement withLinks(Optional<? extends EntitySettlementLinks> links) {
-        Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
@@ -513,9 +455,9 @@ public class EntitySettlement {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
         private Optional<String> createdAt = Optional.empty();
 
@@ -523,17 +465,17 @@ public class EntitySettlement {
 
         private JsonNullable<String> settledAt = JsonNullable.undefined();
 
-        private Optional<? extends SettlementStatus> status = Optional.empty();
+        private SettlementStatus status;
 
-        private Optional<? extends Amount> amount = Optional.empty();
+        private Amount amount;
 
-        private Optional<String> balanceId = Optional.empty();
+        private String balanceId;
 
         private Optional<String> invoiceId = Optional.empty();
 
         private Optional<? extends Map<String, Map<String, Periods>>> periods = Optional.empty();
 
-        private Optional<? extends EntitySettlementLinks> links = Optional.empty();
+        private EntitySettlementLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -546,28 +488,12 @@ public class EntitySettlement {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a settlement object. Will always contain the string `settlement` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -642,15 +568,6 @@ public class EntitySettlement {
          */
         public Builder status(SettlementStatus status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status of the settlement.
-         */
-        public Builder status(Optional<? extends SettlementStatus> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -661,27 +578,12 @@ public class EntitySettlement {
          */
         public Builder amount(Amount amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amount(Optional<? extends Amount> amount) {
-            Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
 
 
         public Builder balanceId(String balanceId) {
-            Utils.checkNotNull(balanceId, "balanceId");
-            this.balanceId = Optional.ofNullable(balanceId);
-            return this;
-        }
-
-        public Builder balanceId(Optional<String> balanceId) {
             Utils.checkNotNull(balanceId, "balanceId");
             this.balanceId = balanceId;
             return this;
@@ -742,15 +644,6 @@ public class EntitySettlement {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(EntitySettlementLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends EntitySettlementLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

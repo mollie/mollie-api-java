@@ -14,60 +14,55 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Revenue {
     /**
      * A description of the revenue subtotal
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The payment method, if applicable
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("method")
-    private JsonNullable<? extends PaymentMethod> method;
+    private Optional<? extends PaymentMethod> method;
 
     /**
      * The number of payments
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
-    private Optional<Long> count;
+    private long count;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountNet")
-    private Optional<? extends Amount> amountNet;
+    private Amount amountNet;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("amountVat")
-    private Optional<? extends Amount> amountVat;
+    private Optional<? extends AmountNullable> amountVat;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountGross")
-    private Optional<? extends Amount> amountGross;
+    private Amount amountGross;
 
     @JsonCreator
     public Revenue(
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("method") JsonNullable<? extends PaymentMethod> method,
-            @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("amountNet") Optional<? extends Amount> amountNet,
-            @JsonProperty("amountVat") Optional<? extends Amount> amountVat,
-            @JsonProperty("amountGross") Optional<? extends Amount> amountGross) {
+            @JsonProperty("description") String description,
+            @JsonProperty("method") Optional<? extends PaymentMethod> method,
+            @JsonProperty("count") long count,
+            @JsonProperty("amountNet") Amount amountNet,
+            @JsonProperty("amountVat") Optional<? extends AmountNullable> amountVat,
+            @JsonProperty("amountGross") Amount amountGross) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(method, "method");
         Utils.checkNotNull(count, "count");
@@ -82,16 +77,20 @@ public class Revenue {
         this.amountGross = amountGross;
     }
     
-    public Revenue() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+    public Revenue(
+            String description,
+            long count,
+            Amount amountNet,
+            Amount amountGross) {
+        this(description, Optional.empty(), count,
+            amountNet, Optional.empty(), amountGross);
     }
 
     /**
      * A description of the revenue subtotal
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -100,25 +99,24 @@ public class Revenue {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<PaymentMethod> method() {
-        return (JsonNullable<PaymentMethod>) method;
+    public Optional<PaymentMethod> method() {
+        return (Optional<PaymentMethod>) method;
     }
 
     /**
      * The number of payments
      */
     @JsonIgnore
-    public Optional<Long> count() {
+    public long count() {
         return count;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amountNet() {
-        return (Optional<Amount>) amountNet;
+    public Amount amountNet() {
+        return amountNet;
     }
 
     /**
@@ -126,17 +124,16 @@ public class Revenue {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amountVat() {
-        return (Optional<Amount>) amountVat;
+    public Optional<AmountNullable> amountVat() {
+        return (Optional<AmountNullable>) amountVat;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amountGross() {
-        return (Optional<Amount>) amountGross;
+    public Amount amountGross() {
+        return amountGross;
     }
 
     public static Builder builder() {
@@ -149,16 +146,6 @@ public class Revenue {
      */
     public Revenue withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * A description of the revenue subtotal
-     */
-    public Revenue withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -168,14 +155,15 @@ public class Revenue {
      */
     public Revenue withMethod(PaymentMethod method) {
         Utils.checkNotNull(method, "method");
-        this.method = JsonNullable.of(method);
+        this.method = Optional.ofNullable(method);
         return this;
     }
+
 
     /**
      * The payment method, if applicable
      */
-    public Revenue withMethod(JsonNullable<? extends PaymentMethod> method) {
+    public Revenue withMethod(Optional<? extends PaymentMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -186,16 +174,6 @@ public class Revenue {
      */
     public Revenue withCount(long count) {
         Utils.checkNotNull(count, "count");
-        this.count = Optional.ofNullable(count);
-        return this;
-    }
-
-
-    /**
-     * The number of payments
-     */
-    public Revenue withCount(Optional<Long> count) {
-        Utils.checkNotNull(count, "count");
         this.count = count;
         return this;
     }
@@ -205,16 +183,6 @@ public class Revenue {
      */
     public Revenue withAmountNet(Amount amountNet) {
         Utils.checkNotNull(amountNet, "amountNet");
-        this.amountNet = Optional.ofNullable(amountNet);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public Revenue withAmountNet(Optional<? extends Amount> amountNet) {
-        Utils.checkNotNull(amountNet, "amountNet");
         this.amountNet = amountNet;
         return this;
     }
@@ -222,7 +190,7 @@ public class Revenue {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public Revenue withAmountVat(Amount amountVat) {
+    public Revenue withAmountVat(AmountNullable amountVat) {
         Utils.checkNotNull(amountVat, "amountVat");
         this.amountVat = Optional.ofNullable(amountVat);
         return this;
@@ -232,7 +200,7 @@ public class Revenue {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public Revenue withAmountVat(Optional<? extends Amount> amountVat) {
+    public Revenue withAmountVat(Optional<? extends AmountNullable> amountVat) {
         Utils.checkNotNull(amountVat, "amountVat");
         this.amountVat = amountVat;
         return this;
@@ -242,16 +210,6 @@ public class Revenue {
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public Revenue withAmountGross(Amount amountGross) {
-        Utils.checkNotNull(amountGross, "amountGross");
-        this.amountGross = Optional.ofNullable(amountGross);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public Revenue withAmountGross(Optional<? extends Amount> amountGross) {
         Utils.checkNotNull(amountGross, "amountGross");
         this.amountGross = amountGross;
         return this;
@@ -296,17 +254,17 @@ public class Revenue {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
-        private JsonNullable<? extends PaymentMethod> method = JsonNullable.undefined();
+        private Optional<? extends PaymentMethod> method = Optional.empty();
 
-        private Optional<Long> count = Optional.empty();
+        private Long count;
 
-        private Optional<? extends Amount> amountNet = Optional.empty();
+        private Amount amountNet;
 
-        private Optional<? extends Amount> amountVat = Optional.empty();
+        private Optional<? extends AmountNullable> amountVat = Optional.empty();
 
-        private Optional<? extends Amount> amountGross = Optional.empty();
+        private Amount amountGross;
 
         private Builder() {
           // force use of static builder() method
@@ -318,15 +276,6 @@ public class Revenue {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * A description of the revenue subtotal
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -337,14 +286,14 @@ public class Revenue {
          */
         public Builder method(PaymentMethod method) {
             Utils.checkNotNull(method, "method");
-            this.method = JsonNullable.of(method);
+            this.method = Optional.ofNullable(method);
             return this;
         }
 
         /**
          * The payment method, if applicable
          */
-        public Builder method(JsonNullable<? extends PaymentMethod> method) {
+        public Builder method(Optional<? extends PaymentMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -356,15 +305,6 @@ public class Revenue {
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");
-            this.count = Optional.ofNullable(count);
-            return this;
-        }
-
-        /**
-         * The number of payments
-         */
-        public Builder count(Optional<Long> count) {
-            Utils.checkNotNull(count, "count");
             this.count = count;
             return this;
         }
@@ -375,15 +315,6 @@ public class Revenue {
          */
         public Builder amountNet(Amount amountNet) {
             Utils.checkNotNull(amountNet, "amountNet");
-            this.amountNet = Optional.ofNullable(amountNet);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountNet(Optional<? extends Amount> amountNet) {
-            Utils.checkNotNull(amountNet, "amountNet");
             this.amountNet = amountNet;
             return this;
         }
@@ -392,7 +323,7 @@ public class Revenue {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amountVat(Amount amountVat) {
+        public Builder amountVat(AmountNullable amountVat) {
             Utils.checkNotNull(amountVat, "amountVat");
             this.amountVat = Optional.ofNullable(amountVat);
             return this;
@@ -401,7 +332,7 @@ public class Revenue {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amountVat(Optional<? extends Amount> amountVat) {
+        public Builder amountVat(Optional<? extends AmountNullable> amountVat) {
             Utils.checkNotNull(amountVat, "amountVat");
             this.amountVat = amountVat;
             return this;
@@ -412,15 +343,6 @@ public class Revenue {
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder amountGross(Amount amountGross) {
-            Utils.checkNotNull(amountGross, "amountGross");
-            this.amountGross = Optional.ofNullable(amountGross);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountGross(Optional<? extends Amount> amountGross) {
             Utils.checkNotNull(amountGross, "amountGross");
             this.amountGross = amountGross;
             return this;

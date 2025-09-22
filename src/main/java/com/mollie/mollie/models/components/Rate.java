@@ -27,17 +27,15 @@ public class Rate {
     @JsonProperty("fixed")
     private Optional<? extends Amount> fixed;
 
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("percentage")
-    private Optional<? extends Amount> percentage;
+    private Optional<String> percentage;
 
     @JsonCreator
     public Rate(
             @JsonProperty("fixed") Optional<? extends Amount> fixed,
-            @JsonProperty("percentage") Optional<? extends Amount> percentage) {
+            @JsonProperty("percentage") Optional<String> percentage) {
         Utils.checkNotNull(fixed, "fixed");
         Utils.checkNotNull(percentage, "percentage");
         this.fixed = fixed;
@@ -57,13 +55,9 @@ public class Rate {
         return (Optional<Amount>) fixed;
     }
 
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> percentage() {
-        return (Optional<Amount>) percentage;
+    public Optional<String> percentage() {
+        return percentage;
     }
 
     public static Builder builder() {
@@ -90,20 +84,14 @@ public class Rate {
         return this;
     }
 
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public Rate withPercentage(Amount percentage) {
+    public Rate withPercentage(String percentage) {
         Utils.checkNotNull(percentage, "percentage");
         this.percentage = Optional.ofNullable(percentage);
         return this;
     }
 
 
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public Rate withPercentage(Optional<? extends Amount> percentage) {
+    public Rate withPercentage(Optional<String> percentage) {
         Utils.checkNotNull(percentage, "percentage");
         this.percentage = percentage;
         return this;
@@ -141,7 +129,7 @@ public class Rate {
 
         private Optional<? extends Amount> fixed = Optional.empty();
 
-        private Optional<? extends Amount> percentage = Optional.empty();
+        private Optional<String> percentage = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -167,19 +155,13 @@ public class Rate {
         }
 
 
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder percentage(Amount percentage) {
+        public Builder percentage(String percentage) {
             Utils.checkNotNull(percentage, "percentage");
             this.percentage = Optional.ofNullable(percentage);
             return this;
         }
 
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder percentage(Optional<? extends Amount> percentage) {
+        public Builder percentage(Optional<String> percentage) {
             Utils.checkNotNull(percentage, "percentage");
             this.percentage = percentage;
             return this;
