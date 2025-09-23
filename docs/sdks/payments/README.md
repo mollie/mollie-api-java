@@ -109,8 +109,8 @@ public class Application {
                                 .build())
                             .sku("9780241661628")
                             .categories(List.of(
-                                PaymentRequestCategories.MEAL,
-                                PaymentRequestCategories.ECO))
+                                LineCategories.MEAL,
+                                LineCategories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(RecurringLineItem.builder()
@@ -148,8 +148,8 @@ public class Application {
                                 .build())
                             .sku("9780241661628")
                             .categories(List.of(
-                                PaymentRequestCategories.MEAL,
-                                PaymentRequestCategories.ECO))
+                                LineCategories.MEAL,
+                                LineCategories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(RecurringLineItem.builder()
@@ -187,8 +187,8 @@ public class Application {
                                 .build())
                             .sku("9780241661628")
                             .categories(List.of(
-                                PaymentRequestCategories.MEAL,
-                                PaymentRequestCategories.ECO))
+                                LineCategories.MEAL,
+                                LineCategories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .recurring(RecurringLineItem.builder()

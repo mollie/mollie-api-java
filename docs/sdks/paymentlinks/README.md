@@ -81,8 +81,8 @@ public class Application {
                                 .build())
                             .sku("9780241661628")
                             .categories(List.of(
-                                PaymentLineItemCategories.MEAL,
-                                PaymentLineItemCategories.ECO))
+                                LineCategories.MEAL,
+                                LineCategories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .build()))
@@ -342,8 +342,8 @@ public class Application {
                                 .build())
                             .sku("9780241661628")
                             .categories(List.of(
-                                PaymentLineItemCategories.MEAL,
-                                PaymentLineItemCategories.ECO))
+                                LineCategories.MEAL,
+                                LineCategories.ECO))
                             .imageUrl("https://...")
                             .productUrl("https://...")
                             .build()))

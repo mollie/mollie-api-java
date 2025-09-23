@@ -93,7 +93,7 @@ public class PaymentLineItem {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
-    private Optional<? extends List<PaymentLineItemCategories>> categories;
+    private Optional<? extends List<LineCategories>> categories;
 
     /**
      * A link pointing to an image of the product sold.
@@ -121,7 +121,7 @@ public class PaymentLineItem {
             @JsonProperty("vatRate") Optional<String> vatRate,
             @JsonProperty("vatAmount") Optional<? extends Amount> vatAmount,
             @JsonProperty("sku") Optional<String> sku,
-            @JsonProperty("categories") Optional<? extends List<PaymentLineItemCategories>> categories,
+            @JsonProperty("categories") Optional<? extends List<LineCategories>> categories,
             @JsonProperty("imageUrl") Optional<String> imageUrl,
             @JsonProperty("productUrl") Optional<String> productUrl) {
         Utils.checkNotNull(type, "type");
@@ -256,8 +256,8 @@ public class PaymentLineItem {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<PaymentLineItemCategories>> categories() {
-        return (Optional<List<PaymentLineItemCategories>>) categories;
+    public Optional<List<LineCategories>> categories() {
+        return (Optional<List<LineCategories>>) categories;
     }
 
     /**
@@ -441,7 +441,7 @@ public class PaymentLineItem {
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
      * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
      */
-    public PaymentLineItem withCategories(List<PaymentLineItemCategories> categories) {
+    public PaymentLineItem withCategories(List<LineCategories> categories) {
         Utils.checkNotNull(categories, "categories");
         this.categories = Optional.ofNullable(categories);
         return this;
@@ -452,7 +452,7 @@ public class PaymentLineItem {
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
      * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
      */
-    public PaymentLineItem withCategories(Optional<? extends List<PaymentLineItemCategories>> categories) {
+    public PaymentLineItem withCategories(Optional<? extends List<LineCategories>> categories) {
         Utils.checkNotNull(categories, "categories");
         this.categories = categories;
         return this;
@@ -572,7 +572,7 @@ public class PaymentLineItem {
 
         private Optional<String> sku = Optional.empty();
 
-        private Optional<? extends List<PaymentLineItemCategories>> categories = Optional.empty();
+        private Optional<? extends List<LineCategories>> categories = Optional.empty();
 
         private Optional<String> imageUrl = Optional.empty();
 
@@ -747,7 +747,7 @@ public class PaymentLineItem {
          * An array with the voucher categories, in case of a line eligible for a voucher. See the
          * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
          */
-        public Builder categories(List<PaymentLineItemCategories> categories) {
+        public Builder categories(List<LineCategories> categories) {
             Utils.checkNotNull(categories, "categories");
             this.categories = Optional.ofNullable(categories);
             return this;
@@ -757,7 +757,7 @@ public class PaymentLineItem {
          * An array with the voucher categories, in case of a line eligible for a voucher. See the
          * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
          */
-        public Builder categories(Optional<? extends List<PaymentLineItemCategories>> categories) {
+        public Builder categories(Optional<? extends List<LineCategories>> categories) {
             Utils.checkNotNull(categories, "categories");
             this.categories = categories;
             return this;

@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.models.components.Amount;
-import com.mollie.mollie.models.components.OrderLineCategories;
+import com.mollie.mollie.models.components.LineCategories;
 import com.mollie.mollie.models.components.ParameterLocale;
 import com.mollie.mollie.models.components.SequenceType;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
@@ -82,7 +82,7 @@ public class ListMethodsRequest {
      * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=orderLineCategories")
-    private Optional<? extends OrderLineCategories> orderLineCategories;
+    private Optional<? extends LineCategories> orderLineCategories;
 
     /**
      * The identifier referring to the [profile](get-profile) you wish to
@@ -124,7 +124,7 @@ public class ListMethodsRequest {
             Optional<? extends Resource> resource,
             Optional<String> billingCountry,
             Optional<? extends IncludeWallets> includeWallets,
-            Optional<? extends OrderLineCategories> orderLineCategories,
+            Optional<? extends LineCategories> orderLineCategories,
             Optional<String> profileId,
             JsonNullable<String> include,
             JsonNullable<Boolean> testmode,
@@ -239,8 +239,8 @@ public class ListMethodsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<OrderLineCategories> orderLineCategories() {
-        return (Optional<OrderLineCategories>) orderLineCategories;
+    public Optional<LineCategories> orderLineCategories() {
+        return (Optional<LineCategories>) orderLineCategories;
     }
 
     /**
@@ -445,7 +445,7 @@ public class ListMethodsRequest {
      * 
      * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
      */
-    public ListMethodsRequest withOrderLineCategories(OrderLineCategories orderLineCategories) {
+    public ListMethodsRequest withOrderLineCategories(LineCategories orderLineCategories) {
         Utils.checkNotNull(orderLineCategories, "orderLineCategories");
         this.orderLineCategories = Optional.ofNullable(orderLineCategories);
         return this;
@@ -457,7 +457,7 @@ public class ListMethodsRequest {
      * 
      * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
      */
-    public ListMethodsRequest withOrderLineCategories(Optional<? extends OrderLineCategories> orderLineCategories) {
+    public ListMethodsRequest withOrderLineCategories(Optional<? extends LineCategories> orderLineCategories) {
         Utils.checkNotNull(orderLineCategories, "orderLineCategories");
         this.orderLineCategories = orderLineCategories;
         return this;
@@ -617,7 +617,7 @@ public class ListMethodsRequest {
 
         private Optional<? extends IncludeWallets> includeWallets = Optional.empty();
 
-        private Optional<? extends OrderLineCategories> orderLineCategories = Optional.empty();
+        private Optional<? extends LineCategories> orderLineCategories = Optional.empty();
 
         private Optional<String> profileId = Optional.empty();
 
@@ -789,7 +789,7 @@ public class ListMethodsRequest {
          * 
          * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
          */
-        public Builder orderLineCategories(OrderLineCategories orderLineCategories) {
+        public Builder orderLineCategories(LineCategories orderLineCategories) {
             Utils.checkNotNull(orderLineCategories, "orderLineCategories");
             this.orderLineCategories = Optional.ofNullable(orderLineCategories);
             return this;
@@ -800,7 +800,7 @@ public class ListMethodsRequest {
          * 
          * <p>Example: `/v2/methods?orderLineCategories=eco,meal`
          */
-        public Builder orderLineCategories(Optional<? extends OrderLineCategories> orderLineCategories) {
+        public Builder orderLineCategories(Optional<? extends LineCategories> orderLineCategories) {
             Utils.checkNotNull(orderLineCategories, "orderLineCategories");
             this.orderLineCategories = orderLineCategories;
             return this;

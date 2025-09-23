@@ -93,7 +93,7 @@ public class PaymentLineItemResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
-    private Optional<? extends List<Categories>> categories;
+    private Optional<? extends List<LineCategoriesResponse>> categories;
 
     /**
      * A link pointing to an image of the product sold.
@@ -121,7 +121,7 @@ public class PaymentLineItemResponse {
             @JsonProperty("vatRate") Optional<String> vatRate,
             @JsonProperty("vatAmount") Optional<? extends Amount> vatAmount,
             @JsonProperty("sku") Optional<String> sku,
-            @JsonProperty("categories") Optional<? extends List<Categories>> categories,
+            @JsonProperty("categories") Optional<? extends List<LineCategoriesResponse>> categories,
             @JsonProperty("imageUrl") Optional<String> imageUrl,
             @JsonProperty("productUrl") Optional<String> productUrl) {
         Utils.checkNotNull(type, "type");
@@ -256,8 +256,8 @@ public class PaymentLineItemResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Categories>> categories() {
-        return (Optional<List<Categories>>) categories;
+    public Optional<List<LineCategoriesResponse>> categories() {
+        return (Optional<List<LineCategoriesResponse>>) categories;
     }
 
     /**
@@ -441,7 +441,7 @@ public class PaymentLineItemResponse {
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
      * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
      */
-    public PaymentLineItemResponse withCategories(List<Categories> categories) {
+    public PaymentLineItemResponse withCategories(List<LineCategoriesResponse> categories) {
         Utils.checkNotNull(categories, "categories");
         this.categories = Optional.ofNullable(categories);
         return this;
@@ -452,7 +452,7 @@ public class PaymentLineItemResponse {
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
      * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
      */
-    public PaymentLineItemResponse withCategories(Optional<? extends List<Categories>> categories) {
+    public PaymentLineItemResponse withCategories(Optional<? extends List<LineCategoriesResponse>> categories) {
         Utils.checkNotNull(categories, "categories");
         this.categories = categories;
         return this;
@@ -572,7 +572,7 @@ public class PaymentLineItemResponse {
 
         private Optional<String> sku = Optional.empty();
 
-        private Optional<? extends List<Categories>> categories = Optional.empty();
+        private Optional<? extends List<LineCategoriesResponse>> categories = Optional.empty();
 
         private Optional<String> imageUrl = Optional.empty();
 
@@ -747,7 +747,7 @@ public class PaymentLineItemResponse {
          * An array with the voucher categories, in case of a line eligible for a voucher. See the
          * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
          */
-        public Builder categories(List<Categories> categories) {
+        public Builder categories(List<LineCategoriesResponse> categories) {
             Utils.checkNotNull(categories, "categories");
             this.categories = Optional.ofNullable(categories);
             return this;
@@ -757,7 +757,7 @@ public class PaymentLineItemResponse {
          * An array with the voucher categories, in case of a line eligible for a voucher. See the
          * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
          */
-        public Builder categories(Optional<? extends List<Categories>> categories) {
+        public Builder categories(Optional<? extends List<LineCategoriesResponse>> categories) {
             Utils.checkNotNull(categories, "categories");
             this.categories = categories;
             return this;

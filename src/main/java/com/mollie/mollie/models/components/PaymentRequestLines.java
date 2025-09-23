@@ -93,7 +93,7 @@ public class PaymentRequestLines {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
-    private Optional<? extends List<PaymentRequestCategories>> categories;
+    private Optional<? extends List<LineCategories>> categories;
 
     /**
      * A link pointing to an image of the product sold.
@@ -126,7 +126,7 @@ public class PaymentRequestLines {
             @JsonProperty("vatRate") Optional<String> vatRate,
             @JsonProperty("vatAmount") Optional<? extends Amount> vatAmount,
             @JsonProperty("sku") Optional<String> sku,
-            @JsonProperty("categories") Optional<? extends List<PaymentRequestCategories>> categories,
+            @JsonProperty("categories") Optional<? extends List<LineCategories>> categories,
             @JsonProperty("imageUrl") Optional<String> imageUrl,
             @JsonProperty("productUrl") Optional<String> productUrl,
             @JsonProperty("recurring") Optional<? extends RecurringLineItem> recurring) {
@@ -264,8 +264,8 @@ public class PaymentRequestLines {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<PaymentRequestCategories>> categories() {
-        return (Optional<List<PaymentRequestCategories>>) categories;
+    public Optional<List<LineCategories>> categories() {
+        return (Optional<List<LineCategories>>) categories;
     }
 
     /**
@@ -455,7 +455,7 @@ public class PaymentRequestLines {
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
      * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
      */
-    public PaymentRequestLines withCategories(List<PaymentRequestCategories> categories) {
+    public PaymentRequestLines withCategories(List<LineCategories> categories) {
         Utils.checkNotNull(categories, "categories");
         this.categories = Optional.ofNullable(categories);
         return this;
@@ -466,7 +466,7 @@ public class PaymentRequestLines {
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
      * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
      */
-    public PaymentRequestLines withCategories(Optional<? extends List<PaymentRequestCategories>> categories) {
+    public PaymentRequestLines withCategories(Optional<? extends List<LineCategories>> categories) {
         Utils.checkNotNull(categories, "categories");
         this.categories = categories;
         return this;
@@ -601,7 +601,7 @@ public class PaymentRequestLines {
 
         private Optional<String> sku = Optional.empty();
 
-        private Optional<? extends List<PaymentRequestCategories>> categories = Optional.empty();
+        private Optional<? extends List<LineCategories>> categories = Optional.empty();
 
         private Optional<String> imageUrl = Optional.empty();
 
@@ -778,7 +778,7 @@ public class PaymentRequestLines {
          * An array with the voucher categories, in case of a line eligible for a voucher. See the
          * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
          */
-        public Builder categories(List<PaymentRequestCategories> categories) {
+        public Builder categories(List<LineCategories> categories) {
             Utils.checkNotNull(categories, "categories");
             this.categories = Optional.ofNullable(categories);
             return this;
@@ -788,7 +788,7 @@ public class PaymentRequestLines {
          * An array with the voucher categories, in case of a line eligible for a voucher. See the
          * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
          */
-        public Builder categories(Optional<? extends List<PaymentRequestCategories>> categories) {
+        public Builder categories(Optional<? extends List<LineCategories>> categories) {
             Utils.checkNotNull(categories, "categories");
             this.categories = categories;
             return this;

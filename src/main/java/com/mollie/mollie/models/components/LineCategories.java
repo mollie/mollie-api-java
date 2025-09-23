@@ -8,16 +8,18 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum Categories {
-    MEAL("meal"),
+public enum LineCategories {
     ECO("eco"),
     GIFT("gift"),
-    SPORT_CULTURE("sport_culture");
+    MEAL("meal"),
+    SPORT_CULTURE("sport_culture"),
+    ADDITIONAL("additional"),
+    CONSUME("consume");
 
     @JsonValue
     private final String value;
 
-    Categories(String value) {
+    LineCategories(String value) {
         this.value = value;
     }
     
@@ -25,8 +27,8 @@ public enum Categories {
         return value;
     }
     
-    public static Optional<Categories> fromValue(String value) {
-        for (Categories o: Categories.values()) {
+    public static Optional<LineCategories> fromValue(String value) {
+        for (LineCategories o: LineCategories.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

@@ -60,7 +60,7 @@ public class Application {
                 .resource(Resource.PAYMENTS)
                 .billingCountry("DE")
                 .includeWallets(IncludeWallets.APPLEPAY)
-                .orderLineCategories(OrderLineCategories.ECO)
+                .orderLineCategories(LineCategories.ECO)
                 .profileId("pfl_5B8cwPMGnU")
                 .include("issuers")
                 .testmode(false)
