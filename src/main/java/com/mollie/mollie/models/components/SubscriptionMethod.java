@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * SubscriptionMethod
  * 
- * <p>The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+ * <p>The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+ * be used.
  */
 public enum SubscriptionMethod {
     CREDITCARD("creditcard"),

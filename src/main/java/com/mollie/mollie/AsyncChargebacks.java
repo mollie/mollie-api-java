@@ -64,7 +64,7 @@ public class AsyncChargebacks {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListChargebacksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListChargebacksResponse>} - The async response
      */
     public CompletableFuture<ListChargebacksResponse> list(ListChargebacksRequest request) {
         return list(request, Optional.empty());
@@ -79,7 +79,7 @@ public class AsyncChargebacks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListChargebacksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListChargebacksResponse>} - The async response
      */
     public CompletableFuture<ListChargebacksResponse> list(ListChargebacksRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
@@ -108,7 +108,7 @@ public class AsyncChargebacks {
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetChargebackResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetChargebackResponse>} - The async response
      */
     public CompletableFuture<GetChargebackResponse> get(GetChargebackRequest request) {
         return get(request, Optional.empty());
@@ -121,7 +121,7 @@ public class AsyncChargebacks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;GetChargebackResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetChargebackResponse>} - The async response
      */
     public CompletableFuture<GetChargebackResponse> get(GetChargebackRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetChargebackRequest, GetChargebackResponse> operation
@@ -154,7 +154,7 @@ public class AsyncChargebacks {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListAllChargebacksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAllChargebacksResponse>} - The async response
      */
     public CompletableFuture<ListAllChargebacksResponse> all(ListAllChargebacksRequest request) {
         return all(request, Optional.empty());
@@ -169,7 +169,7 @@ public class AsyncChargebacks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListAllChargebacksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAllChargebacksResponse>} - The async response
      */
     public CompletableFuture<ListAllChargebacksResponse> all(ListAllChargebacksRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllChargebacksRequest, ListAllChargebacksResponse> operation

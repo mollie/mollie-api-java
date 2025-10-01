@@ -65,9 +65,12 @@ public class AsyncPaymentLinks {
     /**
      * Create payment link
      * 
-     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
-     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
-     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments,
+     * do not expire.
+     * The payment link can be shared with your customers and will redirect them to them the payment page
+     * where they can
+     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
+     * payment.
      * 
      * @return The async call builder
      */
@@ -78,11 +81,14 @@ public class AsyncPaymentLinks {
     /**
      * Create payment link
      * 
-     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
-     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
-     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments,
+     * do not expire.
+     * The payment link can be shared with your customers and will redirect them to them the payment page
+     * where they can
+     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
+     * payment.
      * 
-     * @return CompletableFuture&lt;CreatePaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentLinkResponse> createDirect() {
         return create(Optional.empty(), Optional.empty(), Optional.empty());
@@ -91,14 +97,17 @@ public class AsyncPaymentLinks {
     /**
      * Create payment link
      * 
-     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
-     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
-     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments,
+     * do not expire.
+     * The payment link can be shared with your customers and will redirect them to them the payment page
+     * where they can
+     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
+     * payment.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;CreatePaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentLinkResponse> create(
             Optional<String> idempotencyKey, Optional<? extends CreatePaymentLinkRequestBody> requestBody,
@@ -138,7 +147,7 @@ public class AsyncPaymentLinks {
      * 
      * <p>The results are paginated.
      * 
-     * @return CompletableFuture&lt;ListPaymentLinksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentLinksResponse>} - The async response
      */
     public CompletableFuture<ListPaymentLinksResponse> listDirect() {
         return list(
@@ -163,7 +172,7 @@ public class AsyncPaymentLinks {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;ListPaymentLinksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentLinksResponse>} - The async response
      */
     public CompletableFuture<ListPaymentLinksResponse> list(
             Optional<String> from, JsonNullable<Long> limit,
@@ -203,7 +212,7 @@ public class AsyncPaymentLinks {
      * <p>Retrieve a single payment link by its ID.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
-     * @return CompletableFuture&lt;GetPaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentLinkResponse>} - The async response
      */
     public CompletableFuture<GetPaymentLinkResponse> get(String paymentLinkId) {
         return get(
@@ -224,7 +233,7 @@ public class AsyncPaymentLinks {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetPaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentLinkResponse>} - The async response
      */
     public CompletableFuture<GetPaymentLinkResponse> get(
             String paymentLinkId, JsonNullable<Boolean> testmode,
@@ -262,7 +271,7 @@ public class AsyncPaymentLinks {
      * <p>Certain details of an existing payment link can be updated.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
-     * @return CompletableFuture&lt;UpdatePaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdatePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<UpdatePaymentLinkResponse> update(String paymentLinkId) {
         return update(
@@ -279,7 +288,7 @@ public class AsyncPaymentLinks {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;UpdatePaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdatePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<UpdatePaymentLinkResponse> update(
             String paymentLinkId, Optional<String> idempotencyKey,
@@ -304,11 +313,13 @@ public class AsyncPaymentLinks {
      * Delete payment link
      * 
      * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely.
-     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * This can be useful for removing payment links that have been incorrectly configured or that are no
+     * longer relevant.
      * 
      * <p>Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
+     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on
+     * the
      * [Update payment link](update-payment-link) endpoint instead.
      * 
      * @return The async call builder
@@ -321,15 +332,17 @@ public class AsyncPaymentLinks {
      * Delete payment link
      * 
      * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely.
-     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * This can be useful for removing payment links that have been incorrectly configured or that are no
+     * longer relevant.
      * 
      * <p>Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
+     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on
+     * the
      * [Update payment link](update-payment-link) endpoint instead.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
-     * @return CompletableFuture&lt;DeletePaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentLinkResponse> delete(String paymentLinkId) {
         return delete(
@@ -341,18 +354,20 @@ public class AsyncPaymentLinks {
      * Delete payment link
      * 
      * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely.
-     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * This can be useful for removing payment links that have been incorrectly configured or that are no
+     * longer relevant.
      * 
      * <p>Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
+     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on
+     * the
      * [Update payment link](update-payment-link) endpoint instead.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;DeletePaymentLinkResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeletePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<DeletePaymentLinkResponse> delete(
             String paymentLinkId, Optional<String> idempotencyKey,
@@ -394,7 +409,7 @@ public class AsyncPaymentLinks {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetPaymentLinkPaymentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentLinkPaymentsResponse>} - The async response
      */
     public CompletableFuture<GetPaymentLinkPaymentsResponse> listPayments(GetPaymentLinkPaymentsRequest request) {
         return listPayments(request, Optional.empty());
@@ -409,7 +424,7 @@ public class AsyncPaymentLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;GetPaymentLinkPaymentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentLinkPaymentsResponse>} - The async response
      */
     public CompletableFuture<GetPaymentLinkPaymentsResponse> listPayments(GetPaymentLinkPaymentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation

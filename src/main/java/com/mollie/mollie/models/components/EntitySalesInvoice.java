@@ -27,8 +27,10 @@ public class EntitySalesInvoice {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -38,8 +40,10 @@ public class EntitySalesInvoice {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -49,17 +53,20 @@ public class EntitySalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -73,8 +80,10 @@ public class EntitySalesInvoice {
     private Optional<? extends SalesInvoiceVatScheme> vatScheme;
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+     * top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+     * apply.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatMode")
@@ -89,7 +98,8 @@ public class EntitySalesInvoice {
 
     /**
      * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -113,7 +123,8 @@ public class EntitySalesInvoice {
     private JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails;
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+     * for. If
      * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -121,7 +132,8 @@ public class EntitySalesInvoice {
     private Optional<String> customerId;
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+     * provided,
      * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -129,8 +141,10 @@ public class EntitySalesInvoice {
     private Optional<String> mandateId;
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -158,10 +172,15 @@ public class EntitySalesInvoice {
     private JsonNullable<? extends SalesInvoiceDiscount> discount;
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-     * after the invoice has been issued.
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
      * 
-     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isEInvoice")
@@ -294,8 +313,10 @@ public class EntitySalesInvoice {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonIgnore
@@ -306,8 +327,10 @@ public class EntitySalesInvoice {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     @JsonIgnore
@@ -318,17 +341,20 @@ public class EntitySalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -346,8 +372,10 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+     * top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+     * apply.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -365,7 +393,8 @@ public class EntitySalesInvoice {
 
     /**
      * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -395,7 +424,8 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+     * for. If
      * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonIgnore
@@ -404,7 +434,8 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+     * provided,
      * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonIgnore
@@ -413,8 +444,10 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     @JsonIgnore
@@ -447,10 +480,15 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-     * after the invoice has been issued.
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
      * 
-     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
      */
     @JsonIgnore
     public Optional<Boolean> isEInvoice() {
@@ -523,8 +561,10 @@ public class EntitySalesInvoice {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public EntitySalesInvoice withTestmode(boolean testmode) {
@@ -536,8 +576,10 @@ public class EntitySalesInvoice {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public EntitySalesInvoice withTestmode(JsonNullable<Boolean> testmode) {
@@ -549,8 +591,10 @@ public class EntitySalesInvoice {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     public EntitySalesInvoice withProfileId(String profileId) {
@@ -562,8 +606,10 @@ public class EntitySalesInvoice {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     public EntitySalesInvoice withProfileId(JsonNullable<String> profileId) {
@@ -575,17 +621,20 @@ public class EntitySalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     public EntitySalesInvoice withStatus(SalesInvoiceStatus status) {
         Utils.checkNotNull(status, "status");
@@ -597,17 +646,20 @@ public class EntitySalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     public EntitySalesInvoice withStatus(Optional<? extends SalesInvoiceStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -635,8 +687,10 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+     * top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+     * apply.
      */
     public EntitySalesInvoice withVatMode(SalesInvoiceVatMode vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
@@ -646,8 +700,10 @@ public class EntitySalesInvoice {
 
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+     * top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+     * apply.
      */
     public EntitySalesInvoice withVatMode(Optional<? extends SalesInvoiceVatMode> vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
@@ -675,7 +731,8 @@ public class EntitySalesInvoice {
 
     /**
      * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public EntitySalesInvoice withMetadata(EntitySalesInvoiceMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -685,7 +742,8 @@ public class EntitySalesInvoice {
 
     /**
      * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public EntitySalesInvoice withMetadata(JsonNullable<? extends EntitySalesInvoiceMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -736,7 +794,8 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+     * for. If
      * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public EntitySalesInvoice withCustomerId(String customerId) {
@@ -747,7 +806,8 @@ public class EntitySalesInvoice {
 
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+     * for. If
      * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public EntitySalesInvoice withCustomerId(Optional<String> customerId) {
@@ -757,7 +817,8 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+     * provided,
      * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public EntitySalesInvoice withMandateId(String mandateId) {
@@ -768,7 +829,8 @@ public class EntitySalesInvoice {
 
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+     * provided,
      * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public EntitySalesInvoice withMandateId(Optional<String> mandateId) {
@@ -778,8 +840,10 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     public EntitySalesInvoice withRecipientIdentifier(String recipientIdentifier) {
@@ -790,8 +854,10 @@ public class EntitySalesInvoice {
 
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     public EntitySalesInvoice withRecipientIdentifier(Optional<String> recipientIdentifier) {
@@ -849,10 +915,15 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-     * after the invoice has been issued.
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
      * 
-     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
      */
     public EntitySalesInvoice withIsEInvoice(boolean isEInvoice) {
         Utils.checkNotNull(isEInvoice, "isEInvoice");
@@ -862,10 +933,15 @@ public class EntitySalesInvoice {
 
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-     * after the invoice has been issued.
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
      * 
-     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
      */
     public EntitySalesInvoice withIsEInvoice(Optional<Boolean> isEInvoice) {
         Utils.checkNotNull(isEInvoice, "isEInvoice");
@@ -1114,8 +1190,10 @@ public class EntitySalesInvoice {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
@@ -1127,8 +1205,10 @@ public class EntitySalesInvoice {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {
@@ -1141,8 +1221,10 @@ public class EntitySalesInvoice {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
          * required.
          */
         public Builder profileId(String profileId) {
@@ -1154,8 +1236,10 @@ public class EntitySalesInvoice {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
          * required.
          */
         public Builder profileId(JsonNullable<String> profileId) {
@@ -1168,17 +1252,20 @@ public class EntitySalesInvoice {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+         * sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this
+         * to `paid` to
          * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
          * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
          * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
          * 
          * <p>Dependent parameters:
-         *   - `paymentDetails` is required if invoice should be set directly to `paid`
-         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+         * - `paymentDetails` is required if invoice should be set directly to `paid`
+         * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+         * to `paid`
+         * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
         public Builder status(SalesInvoiceStatus status) {
             Utils.checkNotNull(status, "status");
@@ -1189,17 +1276,20 @@ public class EntitySalesInvoice {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+         * sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this
+         * to `paid` to
          * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
          * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
          * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
          * 
          * <p>Dependent parameters:
-         *   - `paymentDetails` is required if invoice should be set directly to `paid`
-         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+         * - `paymentDetails` is required if invoice should be set directly to `paid`
+         * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+         * to `paid`
+         * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
         public Builder status(Optional<? extends SalesInvoiceStatus> status) {
             Utils.checkNotNull(status, "status");
@@ -1228,8 +1318,10 @@ public class EntitySalesInvoice {
 
 
         /**
-         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+         * top of the
+         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+         * apply.
          */
         public Builder vatMode(SalesInvoiceVatMode vatMode) {
             Utils.checkNotNull(vatMode, "vatMode");
@@ -1238,8 +1330,10 @@ public class EntitySalesInvoice {
         }
 
         /**
-         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+         * top of the
+         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+         * apply.
          */
         public Builder vatMode(Optional<? extends SalesInvoiceVatMode> vatMode) {
             Utils.checkNotNull(vatMode, "vatMode");
@@ -1269,7 +1363,8 @@ public class EntitySalesInvoice {
 
         /**
          * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(EntitySalesInvoiceMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1279,7 +1374,8 @@ public class EntitySalesInvoice {
 
         /**
          * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends EntitySalesInvoiceMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1334,7 +1430,8 @@ public class EntitySalesInvoice {
 
 
         /**
-         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+         * for. If
          * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder customerId(String customerId) {
@@ -1344,7 +1441,8 @@ public class EntitySalesInvoice {
         }
 
         /**
-         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+         * for. If
          * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder customerId(Optional<String> customerId) {
@@ -1355,7 +1453,8 @@ public class EntitySalesInvoice {
 
 
         /**
-         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+         * provided,
          * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder mandateId(String mandateId) {
@@ -1365,7 +1464,8 @@ public class EntitySalesInvoice {
         }
 
         /**
-         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+         * provided,
          * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder mandateId(Optional<String> mandateId) {
@@ -1376,8 +1476,10 @@ public class EntitySalesInvoice {
 
 
         /**
-         * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-         * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+         * An identifier tied to the recipient data. This should be a unique value based on data your system
+         * contains,
+         * so that both you and us know who we're referring to. It is a value you provide to us so that
+         * recipient management
          * is not required to send a first invoice to a recipient.
          */
         public Builder recipientIdentifier(String recipientIdentifier) {
@@ -1387,8 +1489,10 @@ public class EntitySalesInvoice {
         }
 
         /**
-         * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-         * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+         * An identifier tied to the recipient data. This should be a unique value based on data your system
+         * contains,
+         * so that both you and us know who we're referring to. It is a value you provide to us so that
+         * recipient management
          * is not required to send a first invoice to a recipient.
          */
         public Builder recipientIdentifier(Optional<String> recipientIdentifier) {
@@ -1450,10 +1554,15 @@ public class EntitySalesInvoice {
 
 
         /**
-         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-         * after the invoice has been issued.
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+         * changed
+         * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+         * the
+         * recipient.
          * 
-         * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+         * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+         * when
+         * the recipient is also located in one of these countries.
          */
         public Builder isEInvoice(boolean isEInvoice) {
             Utils.checkNotNull(isEInvoice, "isEInvoice");
@@ -1462,10 +1571,15 @@ public class EntitySalesInvoice {
         }
 
         /**
-         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-         * after the invoice has been issued.
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+         * changed
+         * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+         * the
+         * recipient.
          * 
-         * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+         * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+         * when
+         * the recipient is also located in one of these countries.
          */
         public Builder isEInvoice(Optional<Boolean> isEInvoice) {
             Utils.checkNotNull(isEInvoice, "isEInvoice");

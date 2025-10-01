@@ -17,12 +17,14 @@ import java.util.Optional;
 /**
  * TransferDestination
  * 
- * <p>The destination where the available amount will be automatically transferred to according to the configured
+ * <p>The destination where the available amount will be automatically transferred to according to the
+ * configured
  * transfer frequency.
  */
 public class TransferDestination {
     /**
-     * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
+     * The default destination of automatic scheduled transfers. Currently only `bank-account` is
+     * supported.
      * 
      * <p>* `bank-account` — Transfer the balance amount to an external bank account
      */
@@ -62,7 +64,8 @@ public class TransferDestination {
     }
 
     /**
-     * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
+     * The default destination of automatic scheduled transfers. Currently only `bank-account` is
+     * supported.
      * 
      * <p>* `bank-account` — Transfer the balance amount to an external bank account
      */
@@ -94,7 +97,8 @@ public class TransferDestination {
 
 
     /**
-     * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
+     * The default destination of automatic scheduled transfers. Currently only `bank-account` is
+     * supported.
      * 
      * <p>* `bank-account` — Transfer the balance amount to an external bank account
      */
@@ -106,7 +110,8 @@ public class TransferDestination {
 
 
     /**
-     * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
+     * The default destination of automatic scheduled transfers. Currently only `bank-account` is
+     * supported.
      * 
      * <p>* `bank-account` — Transfer the balance amount to an external bank account
      */
@@ -198,7 +203,8 @@ public class TransferDestination {
 
 
         /**
-         * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
+         * The default destination of automatic scheduled transfers. Currently only `bank-account` is
+         * supported.
          * 
          * <p>* `bank-account` — Transfer the balance amount to an external bank account
          */
@@ -209,7 +215,8 @@ public class TransferDestination {
         }
 
         /**
-         * The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
+         * The default destination of automatic scheduled transfers. Currently only `bank-account` is
+         * supported.
          * 
          * <p>* `bank-account` — Transfer the balance amount to an external bank account
          */

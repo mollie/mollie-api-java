@@ -16,7 +16,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class EntityPaymentRouteResponse {
     /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+     * Indicates the response contains a route object. Will always contain the string `route` for this
+     * endpoint.
      */
     @JsonProperty("resource")
     private String resource;
@@ -50,10 +51,12 @@ public class EntityPaymentRouteResponse {
     private String createdAt;
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+     * date. The
      * date must be given in `YYYY-MM-DD` format.
      * 
-     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+     * succeeds.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("releaseDate")
@@ -107,7 +110,8 @@ public class EntityPaymentRouteResponse {
     }
 
     /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+     * Indicates the response contains a route object. Will always contain the string `route` for this
+     * endpoint.
      */
     @JsonIgnore
     public String resource() {
@@ -152,10 +156,12 @@ public class EntityPaymentRouteResponse {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+     * date. The
      * date must be given in `YYYY-MM-DD` format.
      * 
-     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+     * succeeds.
      */
     @JsonIgnore
     public JsonNullable<String> releaseDate() {
@@ -176,7 +182,8 @@ public class EntityPaymentRouteResponse {
 
 
     /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+     * Indicates the response contains a route object. Will always contain the string `route` for this
+     * endpoint.
      */
     public EntityPaymentRouteResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -227,10 +234,12 @@ public class EntityPaymentRouteResponse {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+     * date. The
      * date must be given in `YYYY-MM-DD` format.
      * 
-     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+     * succeeds.
      */
     public EntityPaymentRouteResponse withReleaseDate(String releaseDate) {
         Utils.checkNotNull(releaseDate, "releaseDate");
@@ -239,10 +248,12 @@ public class EntityPaymentRouteResponse {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+     * date. The
      * date must be given in `YYYY-MM-DD` format.
      * 
-     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+     * succeeds.
      */
     public EntityPaymentRouteResponse withReleaseDate(JsonNullable<String> releaseDate) {
         Utils.checkNotNull(releaseDate, "releaseDate");
@@ -325,7 +336,8 @@ public class EntityPaymentRouteResponse {
 
 
         /**
-         * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+         * Indicates the response contains a route object. Will always contain the string `route` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -382,10 +394,12 @@ public class EntityPaymentRouteResponse {
 
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+         * date. The
          * date must be given in `YYYY-MM-DD` format.
          * 
-         * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+         * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+         * succeeds.
          */
         public Builder releaseDate(String releaseDate) {
             Utils.checkNotNull(releaseDate, "releaseDate");
@@ -394,10 +408,12 @@ public class EntityPaymentRouteResponse {
         }
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+         * date. The
          * date must be given in `YYYY-MM-DD` format.
          * 
-         * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+         * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+         * succeeds.
          */
         public Builder releaseDate(JsonNullable<String> releaseDate) {
             Utils.checkNotNull(releaseDate, "releaseDate");

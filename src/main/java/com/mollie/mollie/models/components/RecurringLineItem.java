@@ -28,7 +28,9 @@ public class RecurringLineItem {
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     @JsonProperty("interval")
     private String interval;
@@ -90,7 +92,9 @@ public class RecurringLineItem {
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     @JsonIgnore
     public String interval() {
@@ -149,7 +153,9 @@ public class RecurringLineItem {
     /**
      * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     public RecurringLineItem withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
@@ -287,7 +293,9 @@ public class RecurringLineItem {
         /**
          * Cadence unit of the recurring item. For example: `12 months`, `52 weeks` or `365 days`.
          * 
-         * <p>Possible values: `... days`, `... weeks`, `... months`.
+         * <p>Possible values: `... days`, `... weeks`, `...
+         * 
+         * <p>months`.
          */
         public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");

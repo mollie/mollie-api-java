@@ -44,7 +44,8 @@ import java.util.Optional;
 /**
  * PaymentStatus
  * 
- * <p>The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+ * <p>The payment's status. Refer to the [documentation regarding
+ * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
  * statuses occur at what point.
  */
 @JsonDeserialize(using = PaymentStatus._Deserializer.class)

@@ -87,11 +87,13 @@ public class Onboarding {
     /**
      * Submit onboarding data
      * 
-     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
+     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead
+     * to kick off the
      * onboarding process for your merchants.**
      * 
-     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-     * onboarding status is `needs-data`.  
+     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be
+     * processed when the
+     * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
      * @return The call builder
@@ -103,11 +105,13 @@ public class Onboarding {
     /**
      * Submit onboarding data
      * 
-     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
+     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead
+     * to kick off the
      * onboarding process for your merchants.**
      * 
-     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-     * onboarding status is `needs-data`.  
+     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be
+     * processed when the
+     * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
      * @return The response from the API call
@@ -120,11 +124,13 @@ public class Onboarding {
     /**
      * Submit onboarding data
      * 
-     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
+     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead
+     * to kick off the
      * onboarding process for your merchants.**
      * 
-     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-     * onboarding status is `needs-data`.  
+     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be
+     * processed when the
+     * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

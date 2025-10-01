@@ -65,7 +65,8 @@ public class AsyncWebhooks {
     /**
      * Create a webhook
      * 
-     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
+     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
+     * webhooks settings section of the Dashboard.
      * 
      * @return The async call builder
      */
@@ -76,9 +77,10 @@ public class AsyncWebhooks {
     /**
      * Create a webhook
      * 
-     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
+     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
+     * webhooks settings section of the Dashboard.
      * 
-     * @return CompletableFuture&lt;CreateWebhookResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateWebhookResponse>} - The async response
      */
     public CompletableFuture<CreateWebhookResponse> createDirect() {
         return create(Optional.empty(), Optional.empty(), Optional.empty());
@@ -87,12 +89,13 @@ public class AsyncWebhooks {
     /**
      * Create a webhook
      * 
-     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
+     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
+     * webhooks settings section of the Dashboard.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;CreateWebhookResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateWebhookResponse>} - The async response
      */
     public CompletableFuture<CreateWebhookResponse> create(
             Optional<String> idempotencyKey, Optional<? extends CreateWebhookRequestBody> requestBody,
@@ -115,7 +118,8 @@ public class AsyncWebhooks {
     /**
      * List all webhooks
      * 
-     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
+     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
+     * array will be empty. This request should never throw an error.
      * 
      * @return The async call builder
      */
@@ -126,10 +130,11 @@ public class AsyncWebhooks {
     /**
      * List all webhooks
      * 
-     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
+     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
+     * array will be empty. This request should never throw an error.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListWebhooksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListWebhooksResponse>} - The async response
      */
     public CompletableFuture<ListWebhooksResponse> list(ListWebhooksRequest request) {
         return list(request, Optional.empty());
@@ -138,11 +143,12 @@ public class AsyncWebhooks {
     /**
      * List all webhooks
      * 
-     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
+     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
+     * array will be empty. This request should never throw an error.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListWebhooksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListWebhooksResponse>} - The async response
      */
     public CompletableFuture<ListWebhooksResponse> list(ListWebhooksRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
@@ -171,7 +177,7 @@ public class AsyncWebhooks {
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;UpdateWebhookResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateWebhookResponse>} - The async response
      */
     public CompletableFuture<UpdateWebhookResponse> update(String id) {
         return update(
@@ -188,7 +194,7 @@ public class AsyncWebhooks {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;UpdateWebhookResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateWebhookResponse>} - The async response
      */
     public CompletableFuture<UpdateWebhookResponse> update(
             String id, Optional<String> idempotencyKey,
@@ -226,7 +232,7 @@ public class AsyncWebhooks {
      * <p>Retrieve a single webhook object by its ID.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;GetWebhookResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetWebhookResponse>} - The async response
      */
     public CompletableFuture<GetWebhookResponse> get(String id) {
         return get(
@@ -247,7 +253,7 @@ public class AsyncWebhooks {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetWebhookResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetWebhookResponse>} - The async response
      */
     public CompletableFuture<GetWebhookResponse> get(
             String id, JsonNullable<Boolean> testmode,
@@ -285,7 +291,7 @@ public class AsyncWebhooks {
      * <p>Delete a single webhook object by its webhook ID.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;DeleteWebhookResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteWebhookResponse>} - The async response
      */
     public CompletableFuture<DeleteWebhookResponse> delete(String id) {
         return delete(
@@ -302,7 +308,7 @@ public class AsyncWebhooks {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;DeleteWebhookResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteWebhookResponse>} - The async response
      */
     public CompletableFuture<DeleteWebhookResponse> delete(
             String id, Optional<String> idempotencyKey,
@@ -340,7 +346,7 @@ public class AsyncWebhooks {
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;TestWebhookResponse&gt; - The async response
+     * @return {@code CompletableFuture<TestWebhookResponse>} - The async response
      */
     public CompletableFuture<TestWebhookResponse> test(String id) {
         return test(
@@ -357,7 +363,7 @@ public class AsyncWebhooks {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;TestWebhookResponse&gt; - The async response
+     * @return {@code CompletableFuture<TestWebhookResponse>} - The async response
      */
     public CompletableFuture<TestWebhookResponse> test(
             String id, Optional<String> idempotencyKey,

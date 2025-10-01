@@ -20,6 +20,13 @@ import java.util.Map;
  */
 public class OnPropertyPrefixCondition extends SpringBootCondition {
 
+    /**
+     * Default constructor for OnPropertyPrefixCondition.
+     */
+    public OnPropertyPrefixCondition() {
+        // Default constructor
+    }
+
     @Override
     public ConditionOutcome getMatchOutcome(ConditionContext context, AnnotatedTypeMetadata metadata) {
         Map<String, Object> attributes = metadata.getAnnotationAttributes(ConditionalOnPropertyPrefix.class.getName());

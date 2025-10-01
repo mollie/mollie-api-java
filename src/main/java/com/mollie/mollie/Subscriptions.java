@@ -69,10 +69,12 @@ public class Subscriptions {
      * 
      * <p>With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
+     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless
+     * subscription to charge a
      * monthly fee, until you cancel the subscription.
      * 
-     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big
+     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split
+     * a big
      * transaction in multiple parts.
      * 
      * <p>A few example usages:
@@ -98,10 +100,12 @@ public class Subscriptions {
      * 
      * <p>With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
+     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless
+     * subscription to charge a
      * monthly fee, until you cancel the subscription.
      * 
-     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big
+     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split
+     * a big
      * transaction in multiple parts.
      * 
      * <p>A few example usages:
@@ -130,10 +134,12 @@ public class Subscriptions {
      * 
      * <p>With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
+     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless
+     * subscription to charge a
      * monthly fee, until you cancel the subscription.
      * 
-     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big
+     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split
+     * a big
      * transaction in multiple parts.
      * 
      * <p>A few example usages:
@@ -283,7 +289,8 @@ public class Subscriptions {
      * 
      * <p>Canceled subscriptions cannot be updated.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create
+     * subscription](create-subscription) endpoint.
      * 
      * @return The call builder
      */
@@ -298,7 +305,8 @@ public class Subscriptions {
      * 
      * <p>Canceled subscriptions cannot be updated.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create
+     * subscription](create-subscription) endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -317,7 +325,8 @@ public class Subscriptions {
      * 
      * <p>Canceled subscriptions cannot be updated.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create
+     * subscription](create-subscription) endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -347,7 +356,8 @@ public class Subscriptions {
     /**
      * Cancel subscription
      * 
-     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
+     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the
+     * customer.
      * 
      * @return The call builder
      */
@@ -358,7 +368,8 @@ public class Subscriptions {
     /**
      * Cancel subscription
      * 
-     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
+     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the
+     * customer.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -373,7 +384,8 @@ public class Subscriptions {
     /**
      * Cancel subscription
      * 
-     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
+     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the
+     * customer.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.

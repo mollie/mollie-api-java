@@ -22,13 +22,16 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * Details
  * 
- * <p>An object containing payment details collected during the payment process. For example, details may include the
- * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+ * <p>An object containing payment details collected during the payment process. For example, details may
+ * include the
+ * customer's card or bank details and a payment reference. For the full list of details, please refer
+ * to the
  * [method-specific parameters](extra-payment-parameters) guide.
  */
 public class Details {
     /**
-     * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
+     * The customer's name, if made available by the payment method. For card payments, refer to
+     * details.cardHolder.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumerName")
@@ -37,7 +40,8 @@ public class Details {
     /**
      * The customer's account reference.
      * 
-     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic
+     * bank account
      * number.
      * 
      * <p>For PayPal, the account reference is an email address.
@@ -56,7 +60,8 @@ public class Details {
     private JsonNullable<String> consumerBic;
 
     /**
-     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already
+     * known by the
      * wallet provider. In these cases the shipping address may be available as a payment detail.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -64,7 +69,8 @@ public class Details {
     private JsonNullable<? extends Map<String, Object>> shippingAddress;
 
     /**
-     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit
+     * of the
      * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -93,7 +99,8 @@ public class Details {
     private Optional<String> bankBic;
 
     /**
-     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply
+     * any
      * formatting here; show it to the customer as-is.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -103,8 +110,10 @@ public class Details {
     /**
      * A unique fingerprint for a specific card. Can be used to identify returning customers.
      * 
-     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
-     * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment
+     * account,
+     * linking multiple transactions from wallets and physical card to a single account, also across
+     * payment methods
      * or when the card is reissued.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -175,7 +184,8 @@ public class Details {
     private JsonNullable<String> cardMaskedNumber;
 
     /**
-     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff
+     * and first).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("card3dsEci")
@@ -203,7 +213,8 @@ public class Details {
     private JsonNullable<? extends PaymentDetailsFailureReasonResponse> failureReason;
 
     /**
-     * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+     * A human-friendly failure message that can be shown to the customer. The message is translated in
+     * accordance
      * with the payment's locale setting.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -232,7 +243,8 @@ public class Details {
     private JsonNullable<String> paypalPayerId;
 
     /**
-     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for
+     * PayPal
      * payments, and if the information is made available by PayPal.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -247,7 +259,8 @@ public class Details {
     private JsonNullable<? extends AmountNullable> paypalFee;
 
     /**
-     * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+     * The paysafecard customer reference either provided via the API or otherwise auto-generated by
+     * Mollie.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customerReference")
@@ -290,7 +303,8 @@ public class Details {
     private JsonNullable<LocalDate> dueDate;
 
     /**
-     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the
+     * payment
      * has been signed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -298,7 +312,8 @@ public class Details {
     private JsonNullable<LocalDate> signatureDate;
 
     /**
-     * The official reason why this payment has failed. A detailed description of each reason is available on the
+     * The official reason why this payment has failed. A detailed description of each reason is available
+     * on the
      * website of the European Payments Council.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -341,10 +356,12 @@ public class Details {
     private JsonNullable<String> fileReference;
 
     /**
-     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment
+     * method,
      * the QR code details will be available in this object.
      * 
-     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For
+     * example,
      * Bancontact QR payments can be completed by the customer using the Bancontact app.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -352,7 +369,8 @@ public class Details {
     private Optional<? extends QrCode> qrCode;
 
     /**
-     * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+     * For payments with gift cards: the masked gift card number of the first gift card applied to the
+     * payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("voucherNumber")
@@ -575,7 +593,8 @@ public class Details {
     }
 
     /**
-     * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
+     * The customer's name, if made available by the payment method. For card payments, refer to
+     * details.cardHolder.
      */
     @JsonIgnore
     public JsonNullable<String> consumerName() {
@@ -585,7 +604,8 @@ public class Details {
     /**
      * The customer's account reference.
      * 
-     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic
+     * bank account
      * number.
      * 
      * <p>For PayPal, the account reference is an email address.
@@ -606,7 +626,8 @@ public class Details {
     }
 
     /**
-     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already
+     * known by the
      * wallet provider. In these cases the shipping address may be available as a payment detail.
      */
     @SuppressWarnings("unchecked")
@@ -616,7 +637,8 @@ public class Details {
     }
 
     /**
-     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit
+     * of the
      * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
      */
     @JsonIgnore
@@ -649,7 +671,8 @@ public class Details {
     }
 
     /**
-     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply
+     * any
      * formatting here; show it to the customer as-is.
      */
     @JsonIgnore
@@ -660,8 +683,10 @@ public class Details {
     /**
      * A unique fingerprint for a specific card. Can be used to identify returning customers.
      * 
-     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
-     * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment
+     * account,
+     * linking multiple transactions from wallets and physical card to a single account, also across
+     * payment methods
      * or when the card is reissued.
      */
     @JsonIgnore
@@ -747,7 +772,8 @@ public class Details {
     }
 
     /**
-     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff
+     * and first).
      */
     @JsonIgnore
     public JsonNullable<String> card3dsEci() {
@@ -780,7 +806,8 @@ public class Details {
     }
 
     /**
-     * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+     * A human-friendly failure message that can be shown to the customer. The message is translated in
+     * accordance
      * with the payment's locale setting.
      */
     @JsonIgnore
@@ -814,7 +841,8 @@ public class Details {
     }
 
     /**
-     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for
+     * PayPal
      * payments, and if the information is made available by PayPal.
      */
     @SuppressWarnings("unchecked")
@@ -833,7 +861,8 @@ public class Details {
     }
 
     /**
-     * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+     * The paysafecard customer reference either provided via the API or otherwise auto-generated by
+     * Mollie.
      */
     @JsonIgnore
     public Optional<String> customerReference() {
@@ -883,7 +912,8 @@ public class Details {
     }
 
     /**
-     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the
+     * payment
      * has been signed.
      */
     @JsonIgnore
@@ -892,7 +922,8 @@ public class Details {
     }
 
     /**
-     * The official reason why this payment has failed. A detailed description of each reason is available on the
+     * The official reason why this payment has failed. A detailed description of each reason is available
+     * on the
      * website of the European Payments Council.
      */
     @JsonIgnore
@@ -941,10 +972,12 @@ public class Details {
     }
 
     /**
-     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment
+     * method,
      * the QR code details will be available in this object.
      * 
-     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For
+     * example,
      * Bancontact QR payments can be completed by the customer using the Bancontact app.
      */
     @SuppressWarnings("unchecked")
@@ -954,7 +987,8 @@ public class Details {
     }
 
     /**
-     * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+     * For payments with gift cards: the masked gift card number of the first gift card applied to the
+     * payment.
      */
     @JsonIgnore
     public Optional<String> voucherNumber() {
@@ -1019,7 +1053,8 @@ public class Details {
 
 
     /**
-     * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
+     * The customer's name, if made available by the payment method. For card payments, refer to
+     * details.cardHolder.
      */
     public Details withConsumerName(String consumerName) {
         Utils.checkNotNull(consumerName, "consumerName");
@@ -1028,7 +1063,8 @@ public class Details {
     }
 
     /**
-     * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
+     * The customer's name, if made available by the payment method. For card payments, refer to
+     * details.cardHolder.
      */
     public Details withConsumerName(JsonNullable<String> consumerName) {
         Utils.checkNotNull(consumerName, "consumerName");
@@ -1039,7 +1075,8 @@ public class Details {
     /**
      * The customer's account reference.
      * 
-     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic
+     * bank account
      * number.
      * 
      * <p>For PayPal, the account reference is an email address.
@@ -1055,7 +1092,8 @@ public class Details {
     /**
      * The customer's account reference.
      * 
-     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+     * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic
+     * bank account
      * number.
      * 
      * <p>For PayPal, the account reference is an email address.
@@ -1087,7 +1125,8 @@ public class Details {
     }
 
     /**
-     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already
+     * known by the
      * wallet provider. In these cases the shipping address may be available as a payment detail.
      */
     public Details withShippingAddress(Map<String, Object> shippingAddress) {
@@ -1097,7 +1136,8 @@ public class Details {
     }
 
     /**
-     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+     * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already
+     * known by the
      * wallet provider. In these cases the shipping address may be available as a payment detail.
      */
     public Details withShippingAddress(JsonNullable<? extends Map<String, Object>> shippingAddress) {
@@ -1107,7 +1147,8 @@ public class Details {
     }
 
     /**
-     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit
+     * of the
      * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
      */
     public Details withCardNumber(String cardNumber) {
@@ -1117,7 +1158,8 @@ public class Details {
     }
 
     /**
-     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+     * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit
+     * of the
      * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
      */
     public Details withCardNumber(JsonNullable<String> cardNumber) {
@@ -1184,7 +1226,8 @@ public class Details {
     }
 
     /**
-     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply
+     * any
      * formatting here; show it to the customer as-is.
      */
     public Details withTransferReference(String transferReference) {
@@ -1194,7 +1237,8 @@ public class Details {
     }
 
     /**
-     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+     * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply
+     * any
      * formatting here; show it to the customer as-is.
      */
     public Details withTransferReference(JsonNullable<String> transferReference) {
@@ -1206,8 +1250,10 @@ public class Details {
     /**
      * A unique fingerprint for a specific card. Can be used to identify returning customers.
      * 
-     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
-     * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment
+     * account,
+     * linking multiple transactions from wallets and physical card to a single account, also across
+     * payment methods
      * or when the card is reissued.
      */
     public Details withCardFingerprint(String cardFingerprint) {
@@ -1219,8 +1265,10 @@ public class Details {
     /**
      * A unique fingerprint for a specific card. Can be used to identify returning customers.
      * 
-     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
-     * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+     * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment
+     * account,
+     * linking multiple transactions from wallets and physical card to a single account, also across
+     * payment methods
      * or when the card is reissued.
      */
     public Details withCardFingerprint(JsonNullable<String> cardFingerprint) {
@@ -1392,7 +1440,8 @@ public class Details {
     }
 
     /**
-     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff
+     * and first).
      */
     public Details withCard3dsEci(String card3dsEci) {
         Utils.checkNotNull(card3dsEci, "card3dsEci");
@@ -1401,7 +1450,8 @@ public class Details {
     }
 
     /**
-     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+     * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff
+     * and first).
      */
     public Details withCard3dsEci(JsonNullable<String> card3dsEci) {
         Utils.checkNotNull(card3dsEci, "card3dsEci");
@@ -1464,7 +1514,8 @@ public class Details {
     }
 
     /**
-     * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+     * A human-friendly failure message that can be shown to the customer. The message is translated in
+     * accordance
      * with the payment's locale setting.
      */
     public Details withFailureMessage(String failureMessage) {
@@ -1474,7 +1525,8 @@ public class Details {
     }
 
     /**
-     * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+     * A human-friendly failure message that can be shown to the customer. The message is translated in
+     * accordance
      * with the payment's locale setting.
      */
     public Details withFailureMessage(JsonNullable<String> failureMessage) {
@@ -1538,7 +1590,8 @@ public class Details {
     }
 
     /**
-     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for
+     * PayPal
      * payments, and if the information is made available by PayPal.
      */
     public Details withSellerProtection(PaymentDetailsSellerProtectionResponse sellerProtection) {
@@ -1548,7 +1601,8 @@ public class Details {
     }
 
     /**
-     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+     * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for
+     * PayPal
      * payments, and if the information is made available by PayPal.
      */
     public Details withSellerProtection(JsonNullable<? extends PaymentDetailsSellerProtectionResponse> sellerProtection) {
@@ -1576,7 +1630,8 @@ public class Details {
     }
 
     /**
-     * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+     * The paysafecard customer reference either provided via the API or otherwise auto-generated by
+     * Mollie.
      */
     public Details withCustomerReference(String customerReference) {
         Utils.checkNotNull(customerReference, "customerReference");
@@ -1586,7 +1641,8 @@ public class Details {
 
 
     /**
-     * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+     * The paysafecard customer reference either provided via the API or otherwise auto-generated by
+     * Mollie.
      */
     public Details withCustomerReference(Optional<String> customerReference) {
         Utils.checkNotNull(customerReference, "customerReference");
@@ -1689,7 +1745,8 @@ public class Details {
     }
 
     /**
-     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the
+     * payment
      * has been signed.
      */
     public Details withSignatureDate(LocalDate signatureDate) {
@@ -1699,7 +1756,8 @@ public class Details {
     }
 
     /**
-     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+     * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the
+     * payment
      * has been signed.
      */
     public Details withSignatureDate(JsonNullable<LocalDate> signatureDate) {
@@ -1709,7 +1767,8 @@ public class Details {
     }
 
     /**
-     * The official reason why this payment has failed. A detailed description of each reason is available on the
+     * The official reason why this payment has failed. A detailed description of each reason is available
+     * on the
      * website of the European Payments Council.
      */
     public Details withBankReasonCode(String bankReasonCode) {
@@ -1719,7 +1778,8 @@ public class Details {
     }
 
     /**
-     * The official reason why this payment has failed. A detailed description of each reason is available on the
+     * The official reason why this payment has failed. A detailed description of each reason is available
+     * on the
      * website of the European Payments Council.
      */
     public Details withBankReasonCode(JsonNullable<String> bankReasonCode) {
@@ -1819,10 +1879,12 @@ public class Details {
     }
 
     /**
-     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment
+     * method,
      * the QR code details will be available in this object.
      * 
-     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For
+     * example,
      * Bancontact QR payments can be completed by the customer using the Bancontact app.
      */
     public Details withQrCode(QrCode qrCode) {
@@ -1833,10 +1895,12 @@ public class Details {
 
 
     /**
-     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+     * Optional include. If a QR code was requested during payment creation for a QR-compatible payment
+     * method,
      * the QR code details will be available in this object.
      * 
-     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+     * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For
+     * example,
      * Bancontact QR payments can be completed by the customer using the Bancontact app.
      */
     public Details withQrCode(Optional<? extends QrCode> qrCode) {
@@ -1846,7 +1910,8 @@ public class Details {
     }
 
     /**
-     * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+     * For payments with gift cards: the masked gift card number of the first gift card applied to the
+     * payment.
      */
     public Details withVoucherNumber(String voucherNumber) {
         Utils.checkNotNull(voucherNumber, "voucherNumber");
@@ -1856,7 +1921,8 @@ public class Details {
 
 
     /**
-     * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+     * For payments with gift cards: the masked gift card number of the first gift card applied to the
+     * payment.
      */
     public Details withVoucherNumber(Optional<String> voucherNumber) {
         Utils.checkNotNull(voucherNumber, "voucherNumber");
@@ -2226,7 +2292,8 @@ public class Details {
 
 
         /**
-         * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
+         * The customer's name, if made available by the payment method. For card payments, refer to
+         * details.cardHolder.
          */
         public Builder consumerName(String consumerName) {
             Utils.checkNotNull(consumerName, "consumerName");
@@ -2235,7 +2302,8 @@ public class Details {
         }
 
         /**
-         * The customer's name, if made available by the payment method. For card payments, refer to details.cardHolder.
+         * The customer's name, if made available by the payment method. For card payments, refer to
+         * details.cardHolder.
          */
         public Builder consumerName(JsonNullable<String> consumerName) {
             Utils.checkNotNull(consumerName, "consumerName");
@@ -2247,7 +2315,8 @@ public class Details {
         /**
          * The customer's account reference.
          * 
-         * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+         * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic
+         * bank account
          * number.
          * 
          * <p>For PayPal, the account reference is an email address.
@@ -2263,7 +2332,8 @@ public class Details {
         /**
          * The customer's account reference.
          * 
-         * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic bank account
+         * <p>For banking-based payment methods — such as iDEAL — this is normally either an IBAN or a domestic
+         * bank account
          * number.
          * 
          * <p>For PayPal, the account reference is an email address.
@@ -2297,7 +2367,8 @@ public class Details {
 
 
         /**
-         * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+         * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already
+         * known by the
          * wallet provider. In these cases the shipping address may be available as a payment detail.
          */
         public Builder shippingAddress(Map<String, Object> shippingAddress) {
@@ -2307,7 +2378,8 @@ public class Details {
         }
 
         /**
-         * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already known by the
+         * For wallet payment methods — such as Apple Pay and PayPal — the shipping address is often already
+         * known by the
          * wallet provider. In these cases the shipping address may be available as a payment detail.
          */
         public Builder shippingAddress(JsonNullable<? extends Map<String, Object>> shippingAddress) {
@@ -2318,7 +2390,8 @@ public class Details {
 
 
         /**
-         * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+         * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit
+         * of the
          * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
          */
         public Builder cardNumber(String cardNumber) {
@@ -2328,7 +2401,8 @@ public class Details {
         }
 
         /**
-         * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit of the
+         * For bancontact, it will be the customer's masked card number. For cards, it will be the last 4-digit
+         * of the
          * PAN. For Point-of-sale, it will be the the last 4 digits of the customer's masked card number.
          */
         public Builder cardNumber(JsonNullable<String> cardNumber) {
@@ -2396,7 +2470,8 @@ public class Details {
 
 
         /**
-         * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+         * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply
+         * any
          * formatting here; show it to the customer as-is.
          */
         public Builder transferReference(String transferReference) {
@@ -2406,7 +2481,8 @@ public class Details {
         }
 
         /**
-         * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply any
+         * The Mollie-generated reference the customer needs to use when transfering the amount. Do not apply
+         * any
          * formatting here; show it to the customer as-is.
          */
         public Builder transferReference(JsonNullable<String> transferReference) {
@@ -2419,8 +2495,10 @@ public class Details {
         /**
          * A unique fingerprint for a specific card. Can be used to identify returning customers.
          * 
-         * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
-         * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+         * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment
+         * account,
+         * linking multiple transactions from wallets and physical card to a single account, also across
+         * payment methods
          * or when the card is reissued.
          */
         public Builder cardFingerprint(String cardFingerprint) {
@@ -2432,8 +2510,10 @@ public class Details {
         /**
          * A unique fingerprint for a specific card. Can be used to identify returning customers.
          * 
-         * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment account,
-         * linking multiple transactions from wallets and physical card to a single account, also across payment methods
+         * <p>In the case of Point-of-sale payments, it's a unique identifier assigned to a cardholder's payment
+         * account,
+         * linking multiple transactions from wallets and physical card to a single account, also across
+         * payment methods
          * or when the card is reissued.
          */
         public Builder cardFingerprint(JsonNullable<String> cardFingerprint) {
@@ -2615,7 +2695,8 @@ public class Details {
 
 
         /**
-         * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+         * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff
+         * and first).
          */
         public Builder card3dsEci(String card3dsEci) {
             Utils.checkNotNull(card3dsEci, "card3dsEci");
@@ -2624,7 +2705,8 @@ public class Details {
         }
 
         /**
-         * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff and first).
+         * The outcome of authentication attempted on transactions enforced by 3DS (ie valid only for oneoff
+         * and first).
          */
         public Builder card3dsEci(JsonNullable<String> card3dsEci) {
             Utils.checkNotNull(card3dsEci, "card3dsEci");
@@ -2691,7 +2773,8 @@ public class Details {
 
 
         /**
-         * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+         * A human-friendly failure message that can be shown to the customer. The message is translated in
+         * accordance
          * with the payment's locale setting.
          */
         public Builder failureMessage(String failureMessage) {
@@ -2701,7 +2784,8 @@ public class Details {
         }
 
         /**
-         * A human-friendly failure message that can be shown to the customer. The message is translated in accordance
+         * A human-friendly failure message that can be shown to the customer. The message is translated in
+         * accordance
          * with the payment's locale setting.
          */
         public Builder failureMessage(JsonNullable<String> failureMessage) {
@@ -2769,7 +2853,8 @@ public class Details {
 
 
         /**
-         * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+         * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for
+         * PayPal
          * payments, and if the information is made available by PayPal.
          */
         public Builder sellerProtection(PaymentDetailsSellerProtectionResponse sellerProtection) {
@@ -2779,7 +2864,8 @@ public class Details {
         }
 
         /**
-         * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+         * Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for
+         * PayPal
          * payments, and if the information is made available by PayPal.
          */
         public Builder sellerProtection(JsonNullable<? extends PaymentDetailsSellerProtectionResponse> sellerProtection) {
@@ -2809,7 +2895,8 @@ public class Details {
 
 
         /**
-         * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+         * The paysafecard customer reference either provided via the API or otherwise auto-generated by
+         * Mollie.
          */
         public Builder customerReference(String customerReference) {
             Utils.checkNotNull(customerReference, "customerReference");
@@ -2818,7 +2905,8 @@ public class Details {
         }
 
         /**
-         * The paysafecard customer reference either provided via the API or otherwise auto-generated by Mollie.
+         * The paysafecard customer reference either provided via the API or otherwise auto-generated by
+         * Mollie.
          */
         public Builder customerReference(Optional<String> customerReference) {
             Utils.checkNotNull(customerReference, "customerReference");
@@ -2925,7 +3013,8 @@ public class Details {
 
 
         /**
-         * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+         * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the
+         * payment
          * has been signed.
          */
         public Builder signatureDate(LocalDate signatureDate) {
@@ -2935,7 +3024,8 @@ public class Details {
         }
 
         /**
-         * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the payment
+         * Date the payment has been signed by the customer, in YYYY-MM-DD format. Only available if the
+         * payment
          * has been signed.
          */
         public Builder signatureDate(JsonNullable<LocalDate> signatureDate) {
@@ -2946,7 +3036,8 @@ public class Details {
 
 
         /**
-         * The official reason why this payment has failed. A detailed description of each reason is available on the
+         * The official reason why this payment has failed. A detailed description of each reason is available
+         * on the
          * website of the European Payments Council.
          */
         public Builder bankReasonCode(String bankReasonCode) {
@@ -2956,7 +3047,8 @@ public class Details {
         }
 
         /**
-         * The official reason why this payment has failed. A detailed description of each reason is available on the
+         * The official reason why this payment has failed. A detailed description of each reason is available
+         * on the
          * website of the European Payments Council.
          */
         public Builder bankReasonCode(JsonNullable<String> bankReasonCode) {
@@ -3062,10 +3154,12 @@ public class Details {
 
 
         /**
-         * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+         * Optional include. If a QR code was requested during payment creation for a QR-compatible payment
+         * method,
          * the QR code details will be available in this object.
          * 
-         * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+         * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For
+         * example,
          * Bancontact QR payments can be completed by the customer using the Bancontact app.
          */
         public Builder qrCode(QrCode qrCode) {
@@ -3075,10 +3169,12 @@ public class Details {
         }
 
         /**
-         * Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+         * Optional include. If a QR code was requested during payment creation for a QR-compatible payment
+         * method,
          * the QR code details will be available in this object.
          * 
-         * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+         * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For
+         * example,
          * Bancontact QR payments can be completed by the customer using the Bancontact app.
          */
         public Builder qrCode(Optional<? extends QrCode> qrCode) {
@@ -3089,7 +3185,8 @@ public class Details {
 
 
         /**
-         * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+         * For payments with gift cards: the masked gift card number of the first gift card applied to the
+         * payment.
          */
         public Builder voucherNumber(String voucherNumber) {
             Utils.checkNotNull(voucherNumber, "voucherNumber");
@@ -3098,7 +3195,8 @@ public class Details {
         }
 
         /**
-         * For payments with gift cards: the masked gift card number of the first gift card applied to the payment.
+         * For payments with gift cards: the masked gift card number of the first gift card applied to the
+         * payment.
          */
         public Builder voucherNumber(Optional<String> voucherNumber) {
             Utils.checkNotNull(voucherNumber, "voucherNumber");

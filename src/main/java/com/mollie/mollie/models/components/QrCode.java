@@ -17,10 +17,12 @@ import java.util.Optional;
 /**
  * QrCode
  * 
- * <p>Optional include. If a QR code was requested during payment creation for a QR-compatible payment method,
+ * <p>Optional include. If a QR code was requested during payment creation for a QR-compatible payment
+ * method,
  * the QR code details will be available in this object.
  * 
- * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For example,
+ * <p>The QR code can be scanned by the customer to complete the payment on their mobile device. For
+ * example,
  * Bancontact QR payments can be completed by the customer using the Bancontact app.
  */
 public class QrCode {
@@ -39,7 +41,8 @@ public class QrCode {
     private Optional<Long> width;
 
     /**
-     * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser or
+     * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser
+     * or
      * downloaded.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -80,7 +83,8 @@ public class QrCode {
     }
 
     /**
-     * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser or
+     * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser
+     * or
      * downloaded.
      */
     @JsonIgnore
@@ -132,7 +136,8 @@ public class QrCode {
     }
 
     /**
-     * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser or
+     * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser
+     * or
      * downloaded.
      */
     public QrCode withSrc(String src) {
@@ -143,7 +148,8 @@ public class QrCode {
 
 
     /**
-     * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser or
+     * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser
+     * or
      * downloaded.
      */
     public QrCode withSrc(Optional<String> src) {
@@ -234,7 +240,8 @@ public class QrCode {
 
 
         /**
-         * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser or
+         * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser
+         * or
          * downloaded.
          */
         public Builder src(String src) {
@@ -244,7 +251,8 @@ public class QrCode {
         }
 
         /**
-         * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser or
+         * The URL to the QR code image. The image is a PNG file, and can be displayed directly in the browser
+         * or
          * downloaded.
          */
         public Builder src(Optional<String> src) {

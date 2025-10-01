@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class EntityProfile {
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -26,7 +27,8 @@ public class EntityProfile {
     private Optional<String> name;
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are
      * allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -74,7 +76,8 @@ public class EntityProfile {
      * The profile status determines whether the profile is able to receive live payments.
      * 
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test
+     * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -116,7 +119,8 @@ public class EntityProfile {
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     @JsonIgnore
@@ -125,7 +129,8 @@ public class EntityProfile {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are
      * allowed.
      */
     @JsonIgnore
@@ -180,7 +185,8 @@ public class EntityProfile {
      * The profile status determines whether the profile is able to receive live payments.
      * 
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test
+     * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
     @SuppressWarnings("unchecked")
@@ -195,7 +201,8 @@ public class EntityProfile {
 
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     public EntityProfile withName(String name) {
@@ -206,7 +213,8 @@ public class EntityProfile {
 
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     public EntityProfile withName(Optional<String> name) {
@@ -216,7 +224,8 @@ public class EntityProfile {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are
      * allowed.
      */
     public EntityProfile withWebsite(String website) {
@@ -227,7 +236,8 @@ public class EntityProfile {
 
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are
      * allowed.
      */
     public EntityProfile withWebsite(Optional<String> website) {
@@ -339,7 +349,8 @@ public class EntityProfile {
      * The profile status determines whether the profile is able to receive live payments.
      * 
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test
+     * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
     public EntityProfile withStatus(ProfileStatus status) {
@@ -353,7 +364,8 @@ public class EntityProfile {
      * The profile status determines whether the profile is able to receive live payments.
      * 
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test
+     * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
     public EntityProfile withStatus(Optional<? extends ProfileStatus> status) {
@@ -428,7 +440,8 @@ public class EntityProfile {
 
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+         * or
          * application.
          */
         public Builder name(String name) {
@@ -438,7 +451,8 @@ public class EntityProfile {
         }
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+         * or
          * application.
          */
         public Builder name(Optional<String> name) {
@@ -449,7 +463,8 @@ public class EntityProfile {
 
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+         * signs are
          * allowed.
          */
         public Builder website(String website) {
@@ -459,7 +474,8 @@ public class EntityProfile {
         }
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+         * signs are
          * allowed.
          */
         public Builder website(Optional<String> website) {
@@ -572,7 +588,8 @@ public class EntityProfile {
          * The profile status determines whether the profile is able to receive live payments.
          * 
          * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-         * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+         * * `verified`: The profile has been verified and can be used to create live payments and test
+         * payments.
          * * `blocked`: The profile is blocked and can no longer be used or changed.
          */
         public Builder status(ProfileStatus status) {
@@ -585,7 +602,8 @@ public class EntityProfile {
          * The profile status determines whether the profile is able to receive live payments.
          * 
          * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-         * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+         * * `verified`: The profile has been verified and can be used to create live payments and test
+         * payments.
          * * `blocked`: The profile is blocked and can no longer be used or changed.
          */
         public Builder status(Optional<? extends ProfileStatus> status) {

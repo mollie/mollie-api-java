@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public class EntityBalanceReport {
     /**
-     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
+     * Indicates the response contains a balance report object. Will always contain the string
+     * `balance-report` for this
      * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -30,15 +31,18 @@ public class EntityBalanceReport {
     private Optional<String> balanceId;
 
     /**
-     * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is supported.
+     * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is
+     * supported.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timeZone")
     private Optional<String> timeZone;
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00 CET and
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central
+     * European Time.
+     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00
+     * CET and
      * onwards.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -46,8 +50,10 @@ public class EntityBalanceReport {
     private Optional<String> from;
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
+     * European Time.
+     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31
+     * 23:59:59 CET.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("until")
@@ -59,18 +65,21 @@ public class EntityBalanceReport {
     private Optional<? extends BalanceReportGrouping> grouping;
 
     /**
-     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
+     * Totals are grouped according to the chosen grouping rule. The example response should give a good
+     * idea of what a
      * typical grouping looks like.
      * 
      * <p>If grouping `status-balances` is chosen, the main grouping is as follows:
      * 
      * <p>* `pendingBalance` containing an `open`, `pending`, `movedToAvailable`, and `close` sub-group
-     * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close` sub-group
+     * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close`
+     * sub-group
      * 
      * <p>If grouping `transaction-categories` is chosen, the main grouping is as follows:
      * 
      * <p>* `open` and `close` groups, each containing a `pending` and `available` sub-group
-     * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`, `fee-prepayments`, `corrections`, `topups`
+     * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`,
+     * `fee-prepayments`, `corrections`, `topups`
      * each containing a `pending`, `movedToAvailable`, and
      * `immediatelyAvailable` sub-group
      * 
@@ -126,7 +135,8 @@ public class EntityBalanceReport {
     }
 
     /**
-     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
+     * Indicates the response contains a balance report object. Will always contain the string
+     * `balance-report` for this
      * endpoint.
      */
     @JsonIgnore
@@ -140,7 +150,8 @@ public class EntityBalanceReport {
     }
 
     /**
-     * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is supported.
+     * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is
+     * supported.
      */
     @JsonIgnore
     public Optional<String> timeZone() {
@@ -148,8 +159,10 @@ public class EntityBalanceReport {
     }
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00 CET and
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central
+     * European Time.
+     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00
+     * CET and
      * onwards.
      */
     @JsonIgnore
@@ -158,8 +171,10 @@ public class EntityBalanceReport {
     }
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
+     * European Time.
+     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31
+     * 23:59:59 CET.
      */
     @JsonIgnore
     public Optional<String> until() {
@@ -173,18 +188,21 @@ public class EntityBalanceReport {
     }
 
     /**
-     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
+     * Totals are grouped according to the chosen grouping rule. The example response should give a good
+     * idea of what a
      * typical grouping looks like.
      * 
      * <p>If grouping `status-balances` is chosen, the main grouping is as follows:
      * 
      * <p>* `pendingBalance` containing an `open`, `pending`, `movedToAvailable`, and `close` sub-group
-     * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close` sub-group
+     * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close`
+     * sub-group
      * 
      * <p>If grouping `transaction-categories` is chosen, the main grouping is as follows:
      * 
      * <p>* `open` and `close` groups, each containing a `pending` and `available` sub-group
-     * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`, `fee-prepayments`, `corrections`, `topups`
+     * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`,
+     * `fee-prepayments`, `corrections`, `topups`
      * each containing a `pending`, `movedToAvailable`, and
      * `immediatelyAvailable` sub-group
      * 
@@ -215,7 +233,8 @@ public class EntityBalanceReport {
 
 
     /**
-     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
+     * Indicates the response contains a balance report object. Will always contain the string
+     * `balance-report` for this
      * endpoint.
      */
     public EntityBalanceReport withResource(String resource) {
@@ -226,7 +245,8 @@ public class EntityBalanceReport {
 
 
     /**
-     * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
+     * Indicates the response contains a balance report object. Will always contain the string
+     * `balance-report` for this
      * endpoint.
      */
     public EntityBalanceReport withResource(Optional<String> resource) {
@@ -249,7 +269,8 @@ public class EntityBalanceReport {
     }
 
     /**
-     * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is supported.
+     * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is
+     * supported.
      */
     public EntityBalanceReport withTimeZone(String timeZone) {
         Utils.checkNotNull(timeZone, "timeZone");
@@ -259,7 +280,8 @@ public class EntityBalanceReport {
 
 
     /**
-     * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is supported.
+     * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is
+     * supported.
      */
     public EntityBalanceReport withTimeZone(Optional<String> timeZone) {
         Utils.checkNotNull(timeZone, "timeZone");
@@ -268,8 +290,10 @@ public class EntityBalanceReport {
     }
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00 CET and
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central
+     * European Time.
+     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00
+     * CET and
      * onwards.
      */
     public EntityBalanceReport withFrom(String from) {
@@ -280,8 +304,10 @@ public class EntityBalanceReport {
 
 
     /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00 CET and
+     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central
+     * European Time.
+     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00
+     * CET and
      * onwards.
      */
     public EntityBalanceReport withFrom(Optional<String> from) {
@@ -291,8 +317,10 @@ public class EntityBalanceReport {
     }
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
+     * European Time.
+     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31
+     * 23:59:59 CET.
      */
     public EntityBalanceReport withUntil(String until) {
         Utils.checkNotNull(until, "until");
@@ -302,8 +330,10 @@ public class EntityBalanceReport {
 
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
+     * European Time.
+     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31
+     * 23:59:59 CET.
      */
     public EntityBalanceReport withUntil(Optional<String> until) {
         Utils.checkNotNull(until, "until");
@@ -325,18 +355,21 @@ public class EntityBalanceReport {
     }
 
     /**
-     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
+     * Totals are grouped according to the chosen grouping rule. The example response should give a good
+     * idea of what a
      * typical grouping looks like.
      * 
      * <p>If grouping `status-balances` is chosen, the main grouping is as follows:
      * 
      * <p>* `pendingBalance` containing an `open`, `pending`, `movedToAvailable`, and `close` sub-group
-     * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close` sub-group
+     * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close`
+     * sub-group
      * 
      * <p>If grouping `transaction-categories` is chosen, the main grouping is as follows:
      * 
      * <p>* `open` and `close` groups, each containing a `pending` and `available` sub-group
-     * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`, `fee-prepayments`, `corrections`, `topups`
+     * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`,
+     * `fee-prepayments`, `corrections`, `topups`
      * each containing a `pending`, `movedToAvailable`, and
      * `immediatelyAvailable` sub-group
      * 
@@ -354,18 +387,21 @@ public class EntityBalanceReport {
 
 
     /**
-     * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
+     * Totals are grouped according to the chosen grouping rule. The example response should give a good
+     * idea of what a
      * typical grouping looks like.
      * 
      * <p>If grouping `status-balances` is chosen, the main grouping is as follows:
      * 
      * <p>* `pendingBalance` containing an `open`, `pending`, `movedToAvailable`, and `close` sub-group
-     * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close` sub-group
+     * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close`
+     * sub-group
      * 
      * <p>If grouping `transaction-categories` is chosen, the main grouping is as follows:
      * 
      * <p>* `open` and `close` groups, each containing a `pending` and `available` sub-group
-     * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`, `fee-prepayments`, `corrections`, `topups`
+     * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`,
+     * `fee-prepayments`, `corrections`, `topups`
      * each containing a `pending`, `movedToAvailable`, and
      * `immediatelyAvailable` sub-group
      * 
@@ -466,7 +502,8 @@ public class EntityBalanceReport {
 
 
         /**
-         * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
+         * Indicates the response contains a balance report object. Will always contain the string
+         * `balance-report` for this
          * endpoint.
          */
         public Builder resource(String resource) {
@@ -476,7 +513,8 @@ public class EntityBalanceReport {
         }
 
         /**
-         * Indicates the response contains a balance report object. Will always contain the string `balance-report` for this
+         * Indicates the response contains a balance report object. Will always contain the string
+         * `balance-report` for this
          * endpoint.
          */
         public Builder resource(Optional<String> resource) {
@@ -500,7 +538,8 @@ public class EntityBalanceReport {
 
 
         /**
-         * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is supported.
+         * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is
+         * supported.
          */
         public Builder timeZone(String timeZone) {
             Utils.checkNotNull(timeZone, "timeZone");
@@ -509,7 +548,8 @@ public class EntityBalanceReport {
         }
 
         /**
-         * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is supported.
+         * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is
+         * supported.
          */
         public Builder timeZone(Optional<String> timeZone) {
             Utils.checkNotNull(timeZone, "timeZone");
@@ -519,8 +559,10 @@ public class EntityBalanceReport {
 
 
         /**
-         * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-         * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00 CET and
+         * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central
+         * European Time.
+         * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00
+         * CET and
          * onwards.
          */
         public Builder from(String from) {
@@ -530,8 +572,10 @@ public class EntityBalanceReport {
         }
 
         /**
-         * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central European Time.
-         * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00 CET and
+         * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central
+         * European Time.
+         * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00
+         * CET and
          * onwards.
          */
         public Builder from(Optional<String> from) {
@@ -542,8 +586,10 @@ public class EntityBalanceReport {
 
 
         /**
-         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-         * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
+         * European Time.
+         * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31
+         * 23:59:59 CET.
          */
         public Builder until(String until) {
             Utils.checkNotNull(until, "until");
@@ -552,8 +598,10 @@ public class EntityBalanceReport {
         }
 
         /**
-         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
-         * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31 23:59:59 CET.
+         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
+         * European Time.
+         * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31
+         * 23:59:59 CET.
          */
         public Builder until(Optional<String> until) {
             Utils.checkNotNull(until, "until");
@@ -576,18 +624,21 @@ public class EntityBalanceReport {
 
 
         /**
-         * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
+         * Totals are grouped according to the chosen grouping rule. The example response should give a good
+         * idea of what a
          * typical grouping looks like.
          * 
          * <p>If grouping `status-balances` is chosen, the main grouping is as follows:
          * 
          * <p>* `pendingBalance` containing an `open`, `pending`, `movedToAvailable`, and `close` sub-group
-         * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close` sub-group
+         * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close`
+         * sub-group
          * 
          * <p>If grouping `transaction-categories` is chosen, the main grouping is as follows:
          * 
          * <p>* `open` and `close` groups, each containing a `pending` and `available` sub-group
-         * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`, `fee-prepayments`, `corrections`, `topups`
+         * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`,
+         * `fee-prepayments`, `corrections`, `topups`
          * each containing a `pending`, `movedToAvailable`, and
          * `immediatelyAvailable` sub-group
          * 
@@ -604,18 +655,21 @@ public class EntityBalanceReport {
         }
 
         /**
-         * Totals are grouped according to the chosen grouping rule. The example response should give a good idea of what a
+         * Totals are grouped according to the chosen grouping rule. The example response should give a good
+         * idea of what a
          * typical grouping looks like.
          * 
          * <p>If grouping `status-balances` is chosen, the main grouping is as follows:
          * 
          * <p>* `pendingBalance` containing an `open`, `pending`, `movedToAvailable`, and `close` sub-group
-         * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close` sub-group
+         * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close`
+         * sub-group
          * 
          * <p>If grouping `transaction-categories` is chosen, the main grouping is as follows:
          * 
          * <p>* `open` and `close` groups, each containing a `pending` and `available` sub-group
-         * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`, `fee-prepayments`, `corrections`, `topups`
+         * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`,
+         * `fee-prepayments`, `corrections`, `topups`
          * each containing a `pending`, `movedToAvailable`, and
          * `immediatelyAvailable` sub-group
          * 

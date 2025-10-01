@@ -46,7 +46,8 @@ public class EntityClientLink {
     private JsonNullable<String> registrationNumber;
 
     /**
-     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
+     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against
+     * the
      * international registry *VIES*.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -112,7 +113,8 @@ public class EntityClientLink {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
+     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against
+     * the
      * international registry *VIES*.
      */
     @JsonIgnore
@@ -201,7 +203,8 @@ public class EntityClientLink {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
+     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against
+     * the
      * international registry *VIES*.
      */
     public EntityClientLink withVatNumber(String vatNumber) {
@@ -211,7 +214,8 @@ public class EntityClientLink {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
+     * The VAT number of the organization, if based in the European Union. VAT numbers are verified against
+     * the
      * international registry *VIES*.
      */
     public EntityClientLink withVatNumber(JsonNullable<String> vatNumber) {
@@ -349,7 +353,8 @@ public class EntityClientLink {
 
 
         /**
-         * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
+         * The VAT number of the organization, if based in the European Union. VAT numbers are verified against
+         * the
          * international registry *VIES*.
          */
         public Builder vatNumber(String vatNumber) {
@@ -359,7 +364,8 @@ public class EntityClientLink {
         }
 
         /**
-         * The VAT number of the organization, if based in the European Union. VAT numbers are verified against the
+         * The VAT number of the organization, if based in the European Union. VAT numbers are verified against
+         * the
          * international registry *VIES*.
          */
         public Builder vatNumber(JsonNullable<String> vatNumber) {

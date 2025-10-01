@@ -29,9 +29,9 @@ public class Issuers {
     /**
      * URLs of images representing the issuer.
      * required:
-     *   - size1x
-     *   - size2x
-     *   - svg
+     * - size1x
+     * - size2x
+     * - svg
      */
     @JsonProperty("image")
     private EntityMethodImage image;
@@ -73,9 +73,9 @@ public class Issuers {
     /**
      * URLs of images representing the issuer.
      * required:
-     *   - size1x
-     *   - size2x
-     *   - svg
+     * - size1x
+     * - size2x
+     * - svg
      */
     @JsonIgnore
     public EntityMethodImage image() {
@@ -111,9 +111,9 @@ public class Issuers {
     /**
      * URLs of images representing the issuer.
      * required:
-     *   - size1x
-     *   - size2x
-     *   - svg
+     * - size1x
+     * - size2x
+     * - svg
      */
     public Issuers withImage(EntityMethodImage image) {
         Utils.checkNotNull(image, "image");
@@ -196,9 +196,9 @@ public class Issuers {
         /**
          * URLs of images representing the issuer.
          * required:
-         *   - size1x
-         *   - size2x
-         *   - svg
+         * - size1x
+         * - size2x
+         * - svg
          */
         public Builder image(EntityMethodImage image) {
             Utils.checkNotNull(image, "image");

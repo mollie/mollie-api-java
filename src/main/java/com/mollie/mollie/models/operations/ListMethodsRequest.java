@@ -25,7 +25,8 @@ public class ListMethodsRequest {
      * Set this parameter to `first` to only return the enabled methods that
      * can be used for the first payment of a recurring sequence.
      * 
-     * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+     * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or
+     * subscriptions.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sequenceType")
     private Optional<? extends SequenceType> sequenceType;
@@ -46,7 +47,8 @@ public class ListMethodsRequest {
     private Optional<? extends Amount> amount;
 
     /**
-     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api)
+     * instead.**
      * 
      * <p>Indicate if you will use the result for the [Create order](create-order)
      * or the [Create payment](create-payment) endpoint.
@@ -61,7 +63,8 @@ public class ListMethodsRequest {
     private Optional<? extends Resource> resource;
 
     /**
-     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
+     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter
+     * can be used
      * to check whether your customer is eligible for certain payment methods, for example for Klarna.
      * 
      * <p>Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
@@ -70,7 +73,8 @@ public class ListMethodsRequest {
     private Optional<String> billingCountry;
 
     /**
-     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
+     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet
+     * specific code
      * to check if they are available on the shoppers device, hence the need to indicate your support.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeWallets")
@@ -88,8 +92,10 @@ public class ListMethodsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private Optional<String> profileId;
@@ -101,8 +107,10 @@ public class ListMethodsRequest {
     private JsonNullable<String> include;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -164,7 +172,8 @@ public class ListMethodsRequest {
      * Set this parameter to `first` to only return the enabled methods that
      * can be used for the first payment of a recurring sequence.
      * 
-     * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+     * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or
+     * subscriptions.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -194,7 +203,8 @@ public class ListMethodsRequest {
     }
 
     /**
-     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api)
+     * instead.**
      * 
      * <p>Indicate if you will use the result for the [Create order](create-order)
      * or the [Create payment](create-payment) endpoint.
@@ -212,7 +222,8 @@ public class ListMethodsRequest {
     }
 
     /**
-     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
+     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter
+     * can be used
      * to check whether your customer is eligible for certain payment methods, for example for Klarna.
      * 
      * <p>Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
@@ -223,7 +234,8 @@ public class ListMethodsRequest {
     }
 
     /**
-     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
+     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet
+     * specific code
      * to check if they are available on the shoppers device, hence the need to indicate your support.
      */
     @SuppressWarnings("unchecked")
@@ -247,8 +259,10 @@ public class ListMethodsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonIgnore
     public Optional<String> profileId() {
@@ -264,8 +278,10 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -292,7 +308,8 @@ public class ListMethodsRequest {
      * Set this parameter to `first` to only return the enabled methods that
      * can be used for the first payment of a recurring sequence.
      * 
-     * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+     * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or
+     * subscriptions.
      */
     public ListMethodsRequest withSequenceType(SequenceType sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
@@ -305,7 +322,8 @@ public class ListMethodsRequest {
      * Set this parameter to `first` to only return the enabled methods that
      * can be used for the first payment of a recurring sequence.
      * 
-     * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+     * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or
+     * subscriptions.
      */
     public ListMethodsRequest withSequenceType(Optional<? extends SequenceType> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
@@ -358,7 +376,8 @@ public class ListMethodsRequest {
     }
 
     /**
-     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api)
+     * instead.**
      * 
      * <p>Indicate if you will use the result for the [Create order](create-order)
      * or the [Create payment](create-payment) endpoint.
@@ -377,7 +396,8 @@ public class ListMethodsRequest {
 
 
     /**
-     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+     * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api)
+     * instead.**
      * 
      * <p>Indicate if you will use the result for the [Create order](create-order)
      * or the [Create payment](create-payment) endpoint.
@@ -395,7 +415,8 @@ public class ListMethodsRequest {
     }
 
     /**
-     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
+     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter
+     * can be used
      * to check whether your customer is eligible for certain payment methods, for example for Klarna.
      * 
      * <p>Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
@@ -408,7 +429,8 @@ public class ListMethodsRequest {
 
 
     /**
-     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
+     * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter
+     * can be used
      * to check whether your customer is eligible for certain payment methods, for example for Klarna.
      * 
      * <p>Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
@@ -420,7 +442,8 @@ public class ListMethodsRequest {
     }
 
     /**
-     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
+     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet
+     * specific code
      * to check if they are available on the shoppers device, hence the need to indicate your support.
      */
     public ListMethodsRequest withIncludeWallets(IncludeWallets includeWallets) {
@@ -431,7 +454,8 @@ public class ListMethodsRequest {
 
 
     /**
-     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
+     * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet
+     * specific code
      * to check if they are available on the shoppers device, hence the need to indicate your support.
      */
     public ListMethodsRequest withIncludeWallets(Optional<? extends IncludeWallets> includeWallets) {
@@ -467,8 +491,10 @@ public class ListMethodsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public ListMethodsRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -481,8 +507,10 @@ public class ListMethodsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public ListMethodsRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -509,8 +537,10 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -522,8 +552,10 @@ public class ListMethodsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -636,7 +668,8 @@ public class ListMethodsRequest {
          * Set this parameter to `first` to only return the enabled methods that
          * can be used for the first payment of a recurring sequence.
          * 
-         * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+         * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or
+         * subscriptions.
          */
         public Builder sequenceType(SequenceType sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
@@ -648,7 +681,8 @@ public class ListMethodsRequest {
          * Set this parameter to `first` to only return the enabled methods that
          * can be used for the first payment of a recurring sequence.
          * 
-         * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or subscriptions.
+         * <p>Set it to `recurring` to only return enabled methods that can be used for recurring payments or
+         * subscriptions.
          */
         public Builder sequenceType(Optional<? extends SequenceType> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
@@ -702,7 +736,8 @@ public class ListMethodsRequest {
 
 
         /**
-         * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+         * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api)
+         * instead.**
          * 
          * <p>Indicate if you will use the result for the [Create order](create-order)
          * or the [Create payment](create-payment) endpoint.
@@ -720,7 +755,8 @@ public class ListMethodsRequest {
         }
 
         /**
-         * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+         * **⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api)
+         * instead.**
          * 
          * <p>Indicate if you will use the result for the [Create order](create-order)
          * or the [Create payment](create-payment) endpoint.
@@ -739,7 +775,8 @@ public class ListMethodsRequest {
 
 
         /**
-         * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
+         * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter
+         * can be used
          * to check whether your customer is eligible for certain payment methods, for example for Klarna.
          * 
          * <p>Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
@@ -751,7 +788,8 @@ public class ListMethodsRequest {
         }
 
         /**
-         * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter can be used
+         * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter
+         * can be used
          * to check whether your customer is eligible for certain payment methods, for example for Klarna.
          * 
          * <p>Example: `/v2/methods?resource=orders&amp;billingCountry=DE`
@@ -764,7 +802,8 @@ public class ListMethodsRequest {
 
 
         /**
-         * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
+         * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet
+         * specific code
          * to check if they are available on the shoppers device, hence the need to indicate your support.
          */
         public Builder includeWallets(IncludeWallets includeWallets) {
@@ -774,7 +813,8 @@ public class ListMethodsRequest {
         }
 
         /**
-         * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet specific code
+         * A comma-separated list of the wallets you support in your checkout. Wallets often require wallet
+         * specific code
          * to check if they are available on the shoppers device, hence the need to indicate your support.
          */
         public Builder includeWallets(Optional<? extends IncludeWallets> includeWallets) {
@@ -811,8 +851,10 @@ public class ListMethodsRequest {
          * The identifier referring to the [profile](get-profile) you wish to
          * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+         * For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -824,8 +866,10 @@ public class ListMethodsRequest {
          * The identifier referring to the [profile](get-profile) you wish to
          * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+         * For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -854,8 +898,10 @@ public class ListMethodsRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -867,8 +913,10 @@ public class ListMethodsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

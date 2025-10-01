@@ -33,7 +33,8 @@ public class PaymentAddress {
     private Optional<String> givenName;
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain only
+     * The given family name (surname) of the person should be at least two characters and cannot contain
+     * only
      * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
@@ -77,8 +78,10 @@ public class PaymentAddress {
     /**
      * A valid e-mail address.
      * 
-     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
-     * email upon payment creation. The language of the email will follow the locale parameter of the payment.
+     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the
+     * instructions
+     * email upon payment creation. The language of the email will follow the locale parameter of the
+     * payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -87,7 +90,8 @@ public class PaymentAddress {
     private Optional<String> email;
 
     /**
-     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
+     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
+     * +31208202070.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone")
@@ -185,7 +189,8 @@ public class PaymentAddress {
     }
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain only
+     * The given family name (surname) of the person should be at least two characters and cannot contain
+     * only
      * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
@@ -234,8 +239,10 @@ public class PaymentAddress {
     /**
      * A valid e-mail address.
      * 
-     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
-     * email upon payment creation. The language of the email will follow the locale parameter of the payment.
+     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the
+     * instructions
+     * email upon payment creation. The language of the email will follow the locale parameter of the
+     * payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -245,7 +252,8 @@ public class PaymentAddress {
     }
 
     /**
-     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
+     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
+     * +31208202070.
      */
     @JsonIgnore
     public Optional<String> phone() {
@@ -330,7 +338,8 @@ public class PaymentAddress {
     }
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain only
+     * The given family name (surname) of the person should be at least two characters and cannot contain
+     * only
      * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
@@ -343,7 +352,8 @@ public class PaymentAddress {
 
 
     /**
-     * The given family name (surname) of the person should be at least two characters and cannot contain only
+     * The given family name (surname) of the person should be at least two characters and cannot contain
+     * only
      * numbers.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
@@ -441,8 +451,10 @@ public class PaymentAddress {
     /**
      * A valid e-mail address.
      * 
-     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
-     * email upon payment creation. The language of the email will follow the locale parameter of the payment.
+     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the
+     * instructions
+     * email upon payment creation. The language of the email will follow the locale parameter of the
+     * payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -456,8 +468,10 @@ public class PaymentAddress {
     /**
      * A valid e-mail address.
      * 
-     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
-     * email upon payment creation. The language of the email will follow the locale parameter of the payment.
+     * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the
+     * instructions
+     * email upon payment creation. The language of the email will follow the locale parameter of the
+     * payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
      */
@@ -468,7 +482,8 @@ public class PaymentAddress {
     }
 
     /**
-     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
+     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
+     * +31208202070.
      */
     public PaymentAddress withPhone(String phone) {
         Utils.checkNotNull(phone, "phone");
@@ -478,7 +493,8 @@ public class PaymentAddress {
 
 
     /**
-     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
+     * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
+     * +31208202070.
      */
     public PaymentAddress withPhone(Optional<String> phone) {
         Utils.checkNotNull(phone, "phone");
@@ -678,7 +694,8 @@ public class PaymentAddress {
 
 
         /**
-         * The given family name (surname) of the person should be at least two characters and cannot contain only
+         * The given family name (surname) of the person should be at least two characters and cannot contain
+         * only
          * numbers.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
@@ -690,7 +707,8 @@ public class PaymentAddress {
         }
 
         /**
-         * The given family name (surname) of the person should be at least two characters and cannot contain only
+         * The given family name (surname) of the person should be at least two characters and cannot contain
+         * only
          * numbers.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
@@ -789,8 +807,10 @@ public class PaymentAddress {
         /**
          * A valid e-mail address.
          * 
-         * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
-         * email upon payment creation. The language of the email will follow the locale parameter of the payment.
+         * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the
+         * instructions
+         * email upon payment creation. The language of the email will follow the locale parameter of the
+         * payment.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
          */
@@ -803,8 +823,10 @@ public class PaymentAddress {
         /**
          * A valid e-mail address.
          * 
-         * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the instructions
-         * email upon payment creation. The language of the email will follow the locale parameter of the payment.
+         * <p>If you provide the email address for a `banktransfer` payment, we will automatically send the
+         * instructions
+         * email upon payment creation. The language of the email will follow the locale parameter of the
+         * payment.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
          */
@@ -816,7 +838,8 @@ public class PaymentAddress {
 
 
         /**
-         * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
+         * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
+         * +31208202070.
          */
         public Builder phone(String phone) {
             Utils.checkNotNull(phone, "phone");
@@ -825,7 +848,8 @@ public class PaymentAddress {
         }
 
         /**
-         * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example: +31208202070.
+         * If provided, it must be in the [E.164](https://en.wikipedia.org/wiki/E.164) format. For example:
+         * +31208202070.
          */
         public Builder phone(Optional<String> phone) {
             Utils.checkNotNull(phone, "phone");

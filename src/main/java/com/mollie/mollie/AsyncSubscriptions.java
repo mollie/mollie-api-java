@@ -70,10 +70,12 @@ public class AsyncSubscriptions {
      * 
      * <p>With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
+     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless
+     * subscription to charge a
      * monthly fee, until you cancel the subscription.
      * 
-     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big
+     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split
+     * a big
      * transaction in multiple parts.
      * 
      * <p>A few example usages:
@@ -99,10 +101,12 @@ public class AsyncSubscriptions {
      * 
      * <p>With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
+     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless
+     * subscription to charge a
      * monthly fee, until you cancel the subscription.
      * 
-     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big
+     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split
+     * a big
      * transaction in multiple parts.
      * 
      * <p>A few example usages:
@@ -118,7 +122,7 @@ public class AsyncSubscriptions {
      * Your customer will be charged €10 on the last day of each month, starting in April 2018.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @return CompletableFuture&lt;CreateSubscriptionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateSubscriptionResponse>} - The async response
      */
     public CompletableFuture<CreateSubscriptionResponse> create(String customerId) {
         return create(
@@ -131,10 +135,12 @@ public class AsyncSubscriptions {
      * 
      * <p>With subscriptions, you can schedule recurring payments to take place at regular intervals.
      * 
-     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless subscription to charge a
+     * <p>For example, by simply specifying an `amount` and an `interval`, you can create an endless
+     * subscription to charge a
      * monthly fee, until you cancel the subscription.
      * 
-     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split a big
+     * <p>Or, you could use the times parameter to only charge a limited number of times, for example to split
+     * a big
      * transaction in multiple parts.
      * 
      * <p>A few example usages:
@@ -153,7 +159,7 @@ public class AsyncSubscriptions {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param subscriptionRequest 
      * @param options additional options
-     * @return CompletableFuture&lt;CreateSubscriptionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateSubscriptionResponse>} - The async response
      */
     public CompletableFuture<CreateSubscriptionResponse> create(
             String customerId, Optional<String> idempotencyKey,
@@ -195,7 +201,7 @@ public class AsyncSubscriptions {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListSubscriptionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSubscriptionsResponse>} - The async response
      */
     public CompletableFuture<ListSubscriptionsResponse> list(ListSubscriptionsRequest request) {
         return list(request, Optional.empty());
@@ -210,7 +216,7 @@ public class AsyncSubscriptions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListSubscriptionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSubscriptionsResponse>} - The async response
      */
     public CompletableFuture<ListSubscriptionsResponse> list(ListSubscriptionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSubscriptionsRequest, ListSubscriptionsResponse> operation
@@ -240,7 +246,7 @@ public class AsyncSubscriptions {
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
-     * @return CompletableFuture&lt;GetSubscriptionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetSubscriptionResponse>} - The async response
      */
     public CompletableFuture<GetSubscriptionResponse> get(String customerId, String subscriptionId) {
         return get(
@@ -262,7 +268,7 @@ public class AsyncSubscriptions {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetSubscriptionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetSubscriptionResponse>} - The async response
      */
     public CompletableFuture<GetSubscriptionResponse> get(
             String customerId, String subscriptionId,
@@ -292,7 +298,8 @@ public class AsyncSubscriptions {
      * 
      * <p>Canceled subscriptions cannot be updated.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create
+     * subscription](create-subscription) endpoint.
      * 
      * @return The async call builder
      */
@@ -307,11 +314,12 @@ public class AsyncSubscriptions {
      * 
      * <p>Canceled subscriptions cannot be updated.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create
+     * subscription](create-subscription) endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
-     * @return CompletableFuture&lt;UpdateSubscriptionResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateSubscriptionResponse>} - The async response
      */
     public CompletableFuture<UpdateSubscriptionResponse> update(String customerId, String subscriptionId) {
         return update(
@@ -326,14 +334,15 @@ public class AsyncSubscriptions {
      * 
      * <p>Canceled subscriptions cannot be updated.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create
+     * subscription](create-subscription) endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;UpdateSubscriptionResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateSubscriptionResponse>} - The async response
      */
     public CompletableFuture<UpdateSubscriptionResponse> update(
             String customerId, String subscriptionId,
@@ -359,7 +368,8 @@ public class AsyncSubscriptions {
     /**
      * Cancel subscription
      * 
-     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
+     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the
+     * customer.
      * 
      * @return The async call builder
      */
@@ -370,11 +380,12 @@ public class AsyncSubscriptions {
     /**
      * Cancel subscription
      * 
-     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
+     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the
+     * customer.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
-     * @return CompletableFuture&lt;CancelSubscriptionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CancelSubscriptionResponse>} - The async response
      */
     public CompletableFuture<CancelSubscriptionResponse> cancel(String customerId, String subscriptionId) {
         return cancel(
@@ -385,14 +396,15 @@ public class AsyncSubscriptions {
     /**
      * Cancel subscription
      * 
-     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the customer.
+     * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the
+     * customer.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;CancelSubscriptionResponse&gt; - The async response
+     * @return {@code CompletableFuture<CancelSubscriptionResponse>} - The async response
      */
     public CompletableFuture<CancelSubscriptionResponse> cancel(
             String customerId, String subscriptionId,
@@ -436,7 +448,7 @@ public class AsyncSubscriptions {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListAllSubscriptionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAllSubscriptionsResponse>} - The async response
      */
     public CompletableFuture<ListAllSubscriptionsResponse> all(ListAllSubscriptionsRequest request) {
         return all(request, Optional.empty());
@@ -451,7 +463,7 @@ public class AsyncSubscriptions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListAllSubscriptionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAllSubscriptionsResponse>} - The async response
      */
     public CompletableFuture<ListAllSubscriptionsResponse> all(ListAllSubscriptionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
@@ -484,7 +496,7 @@ public class AsyncSubscriptions {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListSubscriptionPaymentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSubscriptionPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListSubscriptionPaymentsResponse> listPayments(ListSubscriptionPaymentsRequest request) {
         return listPayments(request, Optional.empty());
@@ -499,7 +511,7 @@ public class AsyncSubscriptions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListSubscriptionPaymentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSubscriptionPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListSubscriptionPaymentsResponse> listPayments(ListSubscriptionPaymentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation

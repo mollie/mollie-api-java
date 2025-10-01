@@ -44,7 +44,8 @@ import java.util.Optional;
 /**
  * SubscriptionMethodResponse
  * 
- * <p>The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+ * <p>The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+ * be used.
  */
 @JsonDeserialize(using = SubscriptionMethodResponse._Deserializer.class)
 @JsonSerialize(using = SubscriptionMethodResponse._Serializer.class)

@@ -103,7 +103,8 @@ public class Balances {
      * Get balance
      * 
      * <p>When processing payments with Mollie, we put all pending funds — usually
-     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
+     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can
+     * pay out your
      * balance towards this bank account.
      * 
      * <p>With the Balances API you can retrieve your current balance. The response
@@ -115,8 +116,10 @@ public class Balances {
      * your bank account, or use for refunds.
      * 
      * <p>With instant payment methods like iDEAL, payments are moved to the available
-     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
-     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * balance instantly. With slower payment methods, like credit card for example, it can take a few days
+     * before the
+     * funds are available on your balance. These funds will be shown under the *pending amount* in the
+     * meanwhile.
      * 
      * @return The call builder
      */
@@ -128,7 +131,8 @@ public class Balances {
      * Get balance
      * 
      * <p>When processing payments with Mollie, we put all pending funds — usually
-     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
+     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can
+     * pay out your
      * balance towards this bank account.
      * 
      * <p>With the Balances API you can retrieve your current balance. The response
@@ -140,8 +144,10 @@ public class Balances {
      * your bank account, or use for refunds.
      * 
      * <p>With instant payment methods like iDEAL, payments are moved to the available
-     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
-     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * balance instantly. With slower payment methods, like credit card for example, it can take a few days
+     * before the
+     * funds are available on your balance. These funds will be shown under the *pending amount* in the
+     * meanwhile.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -156,7 +162,8 @@ public class Balances {
      * Get balance
      * 
      * <p>When processing payments with Mollie, we put all pending funds — usually
-     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
+     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can
+     * pay out your
      * balance towards this bank account.
      * 
      * <p>With the Balances API you can retrieve your current balance. The response
@@ -168,8 +175,10 @@ public class Balances {
      * your bank account, or use for refunds.
      * 
      * <p>With instant payment methods like iDEAL, payments are moved to the available
-     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
-     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * balance instantly. With slower payment methods, like credit card for example, it can take a few days
+     * before the
+     * funds are available on your balance. These funds will be shown under the *pending amount* in the
+     * meanwhile.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -258,7 +267,8 @@ public class Balances {
      * 
      * <p>Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
+     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from
+     * your balance
      * during the reported period, ahead of your Mollie invoice.
      * 
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
@@ -275,7 +285,8 @@ public class Balances {
      * 
      * <p>Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
+     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from
+     * your balance
      * during the reported period, ahead of your Mollie invoice.
      * 
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
@@ -294,7 +305,8 @@ public class Balances {
      * 
      * <p>Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
+     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from
+     * your balance
      * during the reported period, ahead of your Mollie invoice.
      * 
      * <p>The alias `primary` can be used instead of the balance ID to refer to the

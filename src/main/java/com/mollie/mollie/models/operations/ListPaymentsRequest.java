@@ -19,7 +19,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListPaymentsRequest {
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate
      * the result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
@@ -32,7 +33,8 @@ public class ListPaymentsRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
@@ -42,15 +44,19 @@ public class ListPaymentsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private Optional<String> profileId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -92,7 +98,8 @@ public class ListPaymentsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate
      * the result set.
      */
     @JsonIgnore
@@ -109,7 +116,8 @@ public class ListPaymentsRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     @SuppressWarnings("unchecked")
@@ -122,8 +130,10 @@ public class ListPaymentsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonIgnore
     public Optional<String> profileId() {
@@ -131,8 +141,10 @@ public class ListPaymentsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -156,7 +168,8 @@ public class ListPaymentsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate
      * the result set.
      */
     public ListPaymentsRequest withFrom(String from) {
@@ -167,7 +180,8 @@ public class ListPaymentsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate
      * the result set.
      */
     public ListPaymentsRequest withFrom(Optional<String> from) {
@@ -195,7 +209,8 @@ public class ListPaymentsRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     public ListPaymentsRequest withSort(ListSort sort) {
@@ -205,7 +220,8 @@ public class ListPaymentsRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     public ListPaymentsRequest withSort(JsonNullable<? extends ListSort> sort) {
@@ -218,8 +234,10 @@ public class ListPaymentsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public ListPaymentsRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -232,8 +250,10 @@ public class ListPaymentsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public ListPaymentsRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -242,8 +262,10 @@ public class ListPaymentsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -255,8 +277,10 @@ public class ListPaymentsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -343,7 +367,8 @@ public class ListPaymentsRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate
          * the result set.
          */
         public Builder from(String from) {
@@ -353,7 +378,8 @@ public class ListPaymentsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate
          * the result set.
          */
         public Builder from(Optional<String> from) {
@@ -383,7 +409,8 @@ public class ListPaymentsRequest {
 
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+         * are ordered from
          * newest to oldest.
          */
         public Builder sort(ListSort sort) {
@@ -393,7 +420,8 @@ public class ListPaymentsRequest {
         }
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+         * are ordered from
          * newest to oldest.
          */
         public Builder sort(JsonNullable<? extends ListSort> sort) {
@@ -407,8 +435,10 @@ public class ListPaymentsRequest {
          * The identifier referring to the [profile](get-profile) you wish to
          * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+         * For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -420,8 +450,10 @@ public class ListPaymentsRequest {
          * The identifier referring to the [profile](get-profile) you wish to
          * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+         * For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -431,8 +463,10 @@ public class ListPaymentsRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -444,8 +478,10 @@ public class ListPaymentsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

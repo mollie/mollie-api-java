@@ -34,7 +34,8 @@ public class GetOpenSettlementResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+     * A settlement object describing your current balance. For a complete reference of the settlement
+     * object, refer to
      * the [Get settlement](get-settlement) endpoint documentation.
      */
     private Optional<? extends EntitySettlement> entitySettlement;
@@ -88,7 +89,8 @@ public class GetOpenSettlementResponse implements AsyncResponse {
     }
 
     /**
-     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+     * A settlement object describing your current balance. For a complete reference of the settlement
+     * object, refer to
      * the [Get settlement](get-settlement) endpoint documentation.
      */
     @SuppressWarnings("unchecked")
@@ -130,7 +132,8 @@ public class GetOpenSettlementResponse implements AsyncResponse {
     }
 
     /**
-     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+     * A settlement object describing your current balance. For a complete reference of the settlement
+     * object, refer to
      * the [Get settlement](get-settlement) endpoint documentation.
      */
     public GetOpenSettlementResponse withEntitySettlement(EntitySettlement entitySettlement) {
@@ -141,7 +144,8 @@ public class GetOpenSettlementResponse implements AsyncResponse {
 
 
     /**
-     * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+     * A settlement object describing your current balance. For a complete reference of the settlement
+     * object, refer to
      * the [Get settlement](get-settlement) endpoint documentation.
      */
     public GetOpenSettlementResponse withEntitySettlement(Optional<? extends EntitySettlement> entitySettlement) {
@@ -229,7 +233,8 @@ public class GetOpenSettlementResponse implements AsyncResponse {
 
 
         /**
-         * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+         * A settlement object describing your current balance. For a complete reference of the settlement
+         * object, refer to
          * the [Get settlement](get-settlement) endpoint documentation.
          */
         public Builder entitySettlement(EntitySettlement entitySettlement) {
@@ -239,7 +244,8 @@ public class GetOpenSettlementResponse implements AsyncResponse {
         }
 
         /**
-         * A settlement object describing your current balance. For a complete reference of the settlement object, refer to
+         * A settlement object describing your current balance. For a complete reference of the settlement
+         * object, refer to
          * the [Get settlement](get-settlement) endpoint documentation.
          */
         public Builder entitySettlement(Optional<? extends EntitySettlement> entitySettlement) {

@@ -54,10 +54,12 @@ public class Mandates {
     /**
      * Create mandate
      * 
-     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
+     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal
+     * account or bank
      * account recurrently.
      * 
-     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
+     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint.
+     * To create
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @return The call builder
@@ -69,10 +71,12 @@ public class Mandates {
     /**
      * Create mandate
      * 
-     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
+     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal
+     * account or bank
      * account recurrently.
      * 
-     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
+     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint.
+     * To create
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @param customerId Provide the ID of the related customer.
@@ -87,10 +91,12 @@ public class Mandates {
     /**
      * Create mandate
      * 
-     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
+     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal
+     * account or bank
      * account recurrently.
      * 
-     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
+     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint.
+     * To create
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @param customerId Provide the ID of the related customer.
@@ -164,7 +170,8 @@ public class Mandates {
     /**
      * Get mandate
      * 
-     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
+     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the
+     * customer's bank
      * account details, card details, or PayPal account details.
      * 
      * @return The call builder
@@ -176,7 +183,8 @@ public class Mandates {
     /**
      * Get mandate
      * 
-     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
+     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the
+     * customer's bank
      * account details, card details, or PayPal account details.
      * 
      * @param customerId Provide the ID of the related customer.
@@ -192,7 +200,8 @@ public class Mandates {
     /**
      * Get mandate
      * 
-     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
+     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the
+     * customer's bank
      * account details, card details, or PayPal account details.
      * 
      * @param customerId Provide the ID of the related customer.
@@ -227,7 +236,8 @@ public class Mandates {
     /**
      * Revoke mandate
      * 
-     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
+     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or
+     * card with this
      * mandate, and all connected subscriptions will be canceled.
      * 
      * @return The call builder
@@ -239,7 +249,8 @@ public class Mandates {
     /**
      * Revoke mandate
      * 
-     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
+     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or
+     * card with this
      * mandate, and all connected subscriptions will be canceled.
      * 
      * @param customerId Provide the ID of the related customer.
@@ -255,7 +266,8 @@ public class Mandates {
     /**
      * Revoke mandate
      * 
-     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
+     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or
+     * card with this
      * mandate, and all connected subscriptions will be canceled.
      * 
      * @param customerId Provide the ID of the related customer.

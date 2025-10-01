@@ -11,8 +11,10 @@ import java.util.Optional;
 /**
  * Grouping
  * 
- * <p>You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
- * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
+ * <p>You can retrieve reports in two different formats. With the `status-balances` format, transactions
+ * are grouped
+ * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings
+ * where
  * available (e.g. payment method).
  * 
  * <p>With the `transaction-categories` format, transactions are grouped by

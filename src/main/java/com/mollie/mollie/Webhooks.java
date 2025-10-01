@@ -64,7 +64,8 @@ public class Webhooks {
     /**
      * Create a webhook
      * 
-     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
+     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
+     * webhooks settings section of the Dashboard.
      * 
      * @return The call builder
      */
@@ -75,7 +76,8 @@ public class Webhooks {
     /**
      * Create a webhook
      * 
-     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
+     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
+     * webhooks settings section of the Dashboard.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -87,7 +89,8 @@ public class Webhooks {
     /**
      * Create a webhook
      * 
-     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the webhooks settings section of the Dashboard.
+     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
+     * webhooks settings section of the Dashboard.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
@@ -112,7 +115,8 @@ public class Webhooks {
     /**
      * List all webhooks
      * 
-     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
+     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
+     * array will be empty. This request should never throw an error.
      * 
      * @return The call builder
      */
@@ -123,7 +127,8 @@ public class Webhooks {
     /**
      * List all webhooks
      * 
-     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
+     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
+     * array will be empty. This request should never throw an error.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -136,7 +141,8 @@ public class Webhooks {
     /**
      * List all webhooks
      * 
-     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting array will be empty. This request should never throw an error.
+     * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
+     * array will be empty. This request should never throw an error.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

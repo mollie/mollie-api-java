@@ -13,12 +13,15 @@ import java.lang.String;
 /**
  * SubscriptionResponseApplicationFee
  * 
- * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+ * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+ * Mollie
  * merchants.
  * 
- * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+ * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+ * payment.
  * 
- * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+ * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+ * more
  * information.
  */
 public class SubscriptionResponseApplicationFee {

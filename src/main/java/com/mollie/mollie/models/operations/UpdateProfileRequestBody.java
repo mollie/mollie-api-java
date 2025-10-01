@@ -18,7 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateProfileRequestBody {
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -26,7 +27,8 @@ public class UpdateProfileRequestBody {
     private JsonNullable<String> name;
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs
      * are allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -71,7 +73,8 @@ public class UpdateProfileRequestBody {
     private JsonNullable<String> businessCategory;
 
     /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
+     * review
      * the profile before it can start accepting payments.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -113,7 +116,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     @JsonIgnore
@@ -122,7 +126,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs
      * are allowed.
      */
     @JsonIgnore
@@ -174,7 +179,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
+     * review
      * the profile before it can start accepting payments.
      */
     @SuppressWarnings("unchecked")
@@ -189,7 +195,8 @@ public class UpdateProfileRequestBody {
 
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     public UpdateProfileRequestBody withName(String name) {
@@ -199,7 +206,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     public UpdateProfileRequestBody withName(JsonNullable<String> name) {
@@ -209,7 +217,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs
      * are allowed.
      */
     public UpdateProfileRequestBody withWebsite(String website) {
@@ -219,7 +228,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs
      * are allowed.
      */
     public UpdateProfileRequestBody withWebsite(JsonNullable<String> website) {
@@ -323,7 +333,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
+     * review
      * the profile before it can start accepting payments.
      */
     public UpdateProfileRequestBody withMode(Mode mode) {
@@ -333,7 +344,8 @@ public class UpdateProfileRequestBody {
     }
 
     /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
+     * review
      * the profile before it can start accepting payments.
      */
     public UpdateProfileRequestBody withMode(JsonNullable<? extends Mode> mode) {
@@ -408,7 +420,8 @@ public class UpdateProfileRequestBody {
 
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+         * or
          * application.
          */
         public Builder name(String name) {
@@ -418,7 +431,8 @@ public class UpdateProfileRequestBody {
         }
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+         * or
          * application.
          */
         public Builder name(JsonNullable<String> name) {
@@ -429,7 +443,8 @@ public class UpdateProfileRequestBody {
 
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+         * signs
          * are allowed.
          */
         public Builder website(String website) {
@@ -439,7 +454,8 @@ public class UpdateProfileRequestBody {
         }
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+         * signs
          * are allowed.
          */
         public Builder website(JsonNullable<String> website) {
@@ -549,7 +565,8 @@ public class UpdateProfileRequestBody {
 
 
         /**
-         * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+         * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
+         * review
          * the profile before it can start accepting payments.
          */
         public Builder mode(Mode mode) {
@@ -559,7 +576,8 @@ public class UpdateProfileRequestBody {
         }
 
         /**
-         * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we review
+         * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
+         * review
          * the profile before it can start accepting payments.
          */
         public Builder mode(JsonNullable<? extends Mode> mode) {

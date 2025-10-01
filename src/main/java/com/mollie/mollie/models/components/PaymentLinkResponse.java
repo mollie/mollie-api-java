@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentLinkResponse {
     /**
-     * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
+     * Indicates the response contains a payment link object. Will always contain the string `payment-link`
+     * for this
      * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -40,7 +41,8 @@ public class PaymentLinkResponse {
     private Optional<? extends Mode> mode;
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+     * A short description of the payment link. The description is visible in the Dashboard and will be
+     * shown on the
      * customer's bank or card statement when possible.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -62,14 +64,16 @@ public class PaymentLinkResponse {
     private JsonNullable<? extends AmountNullable> minimumAmount;
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived
+     * payment links.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("archived")
     private Optional<Boolean> archived;
 
     /**
-     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL
+     * is provided,
      * the customer will be shown a generic message after completing the payment.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -79,11 +83,14 @@ public class PaymentLinkResponse {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * any payments
      * resulting from the payment link.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -91,7 +98,8 @@ public class PaymentLinkResponse {
     private JsonNullable<String> webhookUrl;
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -115,8 +123,10 @@ public class PaymentLinkResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -124,7 +134,8 @@ public class PaymentLinkResponse {
     private JsonNullable<String> profileId;
 
     /**
-     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make
+     * multiple
      * payments using the same link.
      * 
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
@@ -134,7 +145,8 @@ public class PaymentLinkResponse {
     private JsonNullable<Boolean> reusable;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
@@ -148,7 +160,8 @@ public class PaymentLinkResponse {
     private JsonNullable<String> paidAt;
 
     /**
-     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was
+     * provided up front,
      * the payment link will not expire automatically.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -156,11 +169,14 @@ public class PaymentLinkResponse {
     private JsonNullable<String> expiresAt;
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter
+     * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+     * 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+     * 'satispay', 'trustly', 'twint',
      * 'in3', 'riverty', 'klarna', 'billie'.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -168,11 +184,14 @@ public class PaymentLinkResponse {
     private JsonNullable<? extends List<String>> allowedMethods;
 
     /**
-     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of
+     * other Mollie
      * merchants.
      * 
-     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
-     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee
+     * using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from
+     * the merchant's balance and sent
      * to your own account balance.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -187,8 +206,10 @@ public class PaymentLinkResponse {
     /**
      * **Only relevant when `sequenceType` is set to `first`**
      * 
-     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
-     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not
+     * provided,
+     * the customer will be required to input relevant information which will be used to establish a
+     * mandate after
      * the payment is made.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -284,7 +305,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
+     * Indicates the response contains a payment link object. Will always contain the string `payment-link`
+     * for this
      * endpoint.
      */
     @JsonIgnore
@@ -307,7 +329,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+     * A short description of the payment link. The description is visible in the Dashboard and will be
+     * shown on the
      * customer's bank or card statement when possible.
      */
     @JsonIgnore
@@ -334,7 +357,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived
+     * payment links.
      */
     @JsonIgnore
     public Optional<Boolean> archived() {
@@ -342,7 +366,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL
+     * is provided,
      * the customer will be shown a generic message after completing the payment.
      */
     @JsonIgnore
@@ -353,11 +378,14 @@ public class PaymentLinkResponse {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * any payments
      * resulting from the payment link.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     @JsonIgnore
@@ -366,7 +394,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -394,8 +423,10 @@ public class PaymentLinkResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     @JsonIgnore
@@ -404,7 +435,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make
+     * multiple
      * payments using the same link.
      * 
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
@@ -415,7 +447,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public Optional<String> createdAt() {
@@ -431,7 +464,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was
+     * provided up front,
      * the payment link will not expire automatically.
      */
     @JsonIgnore
@@ -440,11 +474,14 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter
+     * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+     * 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+     * 'satispay', 'trustly', 'twint',
      * 'in3', 'riverty', 'klarna', 'billie'.
      */
     @SuppressWarnings("unchecked")
@@ -454,11 +491,14 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of
+     * other Mollie
      * merchants.
      * 
-     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
-     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee
+     * using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from
+     * the merchant's balance and sent
      * to your own account balance.
      */
     @SuppressWarnings("unchecked")
@@ -476,8 +516,10 @@ public class PaymentLinkResponse {
     /**
      * **Only relevant when `sequenceType` is set to `first`**
      * 
-     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
-     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not
+     * provided,
+     * the customer will be required to input relevant information which will be used to establish a
+     * mandate after
      * the payment is made.
      */
     @JsonIgnore
@@ -500,7 +542,8 @@ public class PaymentLinkResponse {
 
 
     /**
-     * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
+     * Indicates the response contains a payment link object. Will always contain the string `payment-link`
+     * for this
      * endpoint.
      */
     public PaymentLinkResponse withResource(String resource) {
@@ -511,7 +554,8 @@ public class PaymentLinkResponse {
 
 
     /**
-     * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
+     * Indicates the response contains a payment link object. Will always contain the string `payment-link`
+     * for this
      * endpoint.
      */
     public PaymentLinkResponse withResource(Optional<String> resource) {
@@ -553,7 +597,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+     * A short description of the payment link. The description is visible in the Dashboard and will be
+     * shown on the
      * customer's bank or card statement when possible.
      */
     public PaymentLinkResponse withDescription(String description) {
@@ -564,7 +609,8 @@ public class PaymentLinkResponse {
 
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+     * A short description of the payment link. The description is visible in the Dashboard and will be
+     * shown on the
      * customer's bank or card statement when possible.
      */
     public PaymentLinkResponse withDescription(Optional<String> description) {
@@ -610,7 +656,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived
+     * payment links.
      */
     public PaymentLinkResponse withArchived(boolean archived) {
         Utils.checkNotNull(archived, "archived");
@@ -620,7 +667,8 @@ public class PaymentLinkResponse {
 
 
     /**
-     * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+     * Whether the payment link is archived. Customers will not be able to complete payments on archived
+     * payment links.
      */
     public PaymentLinkResponse withArchived(Optional<Boolean> archived) {
         Utils.checkNotNull(archived, "archived");
@@ -629,7 +677,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL
+     * is provided,
      * the customer will be shown a generic message after completing the payment.
      */
     public PaymentLinkResponse withRedirectUrl(String redirectUrl) {
@@ -639,7 +688,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+     * The URL your customer will be redirected to after completing the payment process. If no redirect URL
+     * is provided,
      * the customer will be shown a generic message after completing the payment.
      */
     public PaymentLinkResponse withRedirectUrl(JsonNullable<String> redirectUrl) {
@@ -651,11 +701,14 @@ public class PaymentLinkResponse {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * any payments
      * resulting from the payment link.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     public PaymentLinkResponse withWebhookUrl(String webhookUrl) {
@@ -667,11 +720,14 @@ public class PaymentLinkResponse {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * any payments
      * resulting from the payment link.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     public PaymentLinkResponse withWebhookUrl(JsonNullable<String> webhookUrl) {
@@ -681,7 +737,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -695,7 +752,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -737,8 +795,10 @@ public class PaymentLinkResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     public PaymentLinkResponse withProfileId(String profileId) {
@@ -750,8 +810,10 @@ public class PaymentLinkResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     public PaymentLinkResponse withProfileId(JsonNullable<String> profileId) {
@@ -761,7 +823,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make
+     * multiple
      * payments using the same link.
      * 
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
@@ -773,7 +836,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+     * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make
+     * multiple
      * payments using the same link.
      * 
      * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
@@ -785,7 +849,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public PaymentLinkResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -795,7 +860,8 @@ public class PaymentLinkResponse {
 
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public PaymentLinkResponse withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -822,7 +888,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was
+     * provided up front,
      * the payment link will not expire automatically.
      */
     public PaymentLinkResponse withExpiresAt(String expiresAt) {
@@ -832,7 +899,8 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+     * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was
+     * provided up front,
      * the payment link will not expire automatically.
      */
     public PaymentLinkResponse withExpiresAt(JsonNullable<String> expiresAt) {
@@ -842,11 +910,14 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter
+     * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+     * 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+     * 'satispay', 'trustly', 'twint',
      * 'in3', 'riverty', 'klarna', 'billie'.
      */
     public PaymentLinkResponse withAllowedMethods(List<String> allowedMethods) {
@@ -856,11 +927,14 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter
+     * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+     * 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+     * 'satispay', 'trustly', 'twint',
      * 'in3', 'riverty', 'klarna', 'billie'.
      */
     public PaymentLinkResponse withAllowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
@@ -870,11 +944,14 @@ public class PaymentLinkResponse {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of
+     * other Mollie
      * merchants.
      * 
-     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
-     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee
+     * using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from
+     * the merchant's balance and sent
      * to your own account balance.
      */
     public PaymentLinkResponse withApplicationFee(PaymentLinkResponseApplicationFee applicationFee) {
@@ -885,11 +962,14 @@ public class PaymentLinkResponse {
 
 
     /**
-     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of
+     * other Mollie
      * merchants.
      * 
-     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
-     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+     * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee
+     * using this
+     * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from
+     * the merchant's balance and sent
      * to your own account balance.
      */
     public PaymentLinkResponse withApplicationFee(Optional<? extends PaymentLinkResponseApplicationFee> applicationFee) {
@@ -914,8 +994,10 @@ public class PaymentLinkResponse {
     /**
      * **Only relevant when `sequenceType` is set to `first`**
      * 
-     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
-     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not
+     * provided,
+     * the customer will be required to input relevant information which will be used to establish a
+     * mandate after
      * the payment is made.
      */
     public PaymentLinkResponse withCustomerId(String customerId) {
@@ -927,8 +1009,10 @@ public class PaymentLinkResponse {
     /**
      * **Only relevant when `sequenceType` is set to `first`**
      * 
-     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
-     * the customer will be required to input relevant information which will be used to establish a mandate after
+     * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not
+     * provided,
+     * the customer will be required to input relevant information which will be used to establish a
+     * mandate after
      * the payment is made.
      */
     public PaymentLinkResponse withCustomerId(JsonNullable<String> customerId) {
@@ -1083,7 +1167,8 @@ public class PaymentLinkResponse {
 
 
         /**
-         * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
+         * Indicates the response contains a payment link object. Will always contain the string `payment-link`
+         * for this
          * endpoint.
          */
         public Builder resource(String resource) {
@@ -1093,7 +1178,8 @@ public class PaymentLinkResponse {
         }
 
         /**
-         * Indicates the response contains a payment link object. Will always contain the string `payment-link` for this
+         * Indicates the response contains a payment link object. Will always contain the string `payment-link`
+         * for this
          * endpoint.
          */
         public Builder resource(Optional<String> resource) {
@@ -1136,7 +1222,8 @@ public class PaymentLinkResponse {
 
 
         /**
-         * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+         * A short description of the payment link. The description is visible in the Dashboard and will be
+         * shown on the
          * customer's bank or card statement when possible.
          */
         public Builder description(String description) {
@@ -1146,7 +1233,8 @@ public class PaymentLinkResponse {
         }
 
         /**
-         * A short description of the payment link. The description is visible in the Dashboard and will be shown on the
+         * A short description of the payment link. The description is visible in the Dashboard and will be
+         * shown on the
          * customer's bank or card statement when possible.
          */
         public Builder description(Optional<String> description) {
@@ -1195,7 +1283,8 @@ public class PaymentLinkResponse {
 
 
         /**
-         * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+         * Whether the payment link is archived. Customers will not be able to complete payments on archived
+         * payment links.
          */
         public Builder archived(boolean archived) {
             Utils.checkNotNull(archived, "archived");
@@ -1204,7 +1293,8 @@ public class PaymentLinkResponse {
         }
 
         /**
-         * Whether the payment link is archived. Customers will not be able to complete payments on archived payment links.
+         * Whether the payment link is archived. Customers will not be able to complete payments on archived
+         * payment links.
          */
         public Builder archived(Optional<Boolean> archived) {
             Utils.checkNotNull(archived, "archived");
@@ -1214,7 +1304,8 @@ public class PaymentLinkResponse {
 
 
         /**
-         * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+         * The URL your customer will be redirected to after completing the payment process. If no redirect URL
+         * is provided,
          * the customer will be shown a generic message after completing the payment.
          */
         public Builder redirectUrl(String redirectUrl) {
@@ -1224,7 +1315,8 @@ public class PaymentLinkResponse {
         }
 
         /**
-         * The URL your customer will be redirected to after completing the payment process. If no redirect URL is provided,
+         * The URL your customer will be redirected to after completing the payment process. If no redirect URL
+         * is provided,
          * the customer will be shown a generic message after completing the payment.
          */
         public Builder redirectUrl(JsonNullable<String> redirectUrl) {
@@ -1237,11 +1329,14 @@ public class PaymentLinkResponse {
         /**
          * The webhook URL where we will send payment status updates to.
          * 
-         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+         * any payments
          * resulting from the payment link.
          * 
-         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+         * want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+         * delivered to your
          * local machine.
          */
         public Builder webhookUrl(String webhookUrl) {
@@ -1253,11 +1348,14 @@ public class PaymentLinkResponse {
         /**
          * The webhook URL where we will send payment status updates to.
          * 
-         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to any payments
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+         * any payments
          * resulting from the payment link.
          * 
-         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+         * want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+         * delivered to your
          * local machine.
          */
         public Builder webhookUrl(JsonNullable<String> webhookUrl) {
@@ -1268,7 +1366,8 @@ public class PaymentLinkResponse {
 
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * Optionally provide the order lines for the payment. Each line contains details such as a description
+         * of the item
          * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
@@ -1282,7 +1381,8 @@ public class PaymentLinkResponse {
         }
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * Optionally provide the order lines for the payment. Each line contains details such as a description
+         * of the item
          * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
@@ -1325,8 +1425,10 @@ public class PaymentLinkResponse {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
          * required.
          */
         public Builder profileId(String profileId) {
@@ -1338,8 +1440,10 @@ public class PaymentLinkResponse {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
          * required.
          */
         public Builder profileId(JsonNullable<String> profileId) {
@@ -1350,7 +1454,8 @@ public class PaymentLinkResponse {
 
 
         /**
-         * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+         * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make
+         * multiple
          * payments using the same link.
          * 
          * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
@@ -1362,7 +1467,8 @@ public class PaymentLinkResponse {
         }
 
         /**
-         * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make multiple
+         * Indicates whether the payment link is reusable. If this field is set to `true`, customers can make
+         * multiple
          * payments using the same link.
          * 
          * <p>If no value is specified, the field defaults to `false`, allowing only a single payment per link.
@@ -1375,7 +1481,8 @@ public class PaymentLinkResponse {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -1384,7 +1491,8 @@ public class PaymentLinkResponse {
         }
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -1413,7 +1521,8 @@ public class PaymentLinkResponse {
 
 
         /**
-         * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+         * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was
+         * provided up front,
          * the payment link will not expire automatically.
          */
         public Builder expiresAt(String expiresAt) {
@@ -1423,7 +1532,8 @@ public class PaymentLinkResponse {
         }
 
         /**
-         * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was provided up front,
+         * The date and time the payment link is set to expire, in ISO 8601 format. If no expiry date was
+         * provided up front,
          * the payment link will not expire automatically.
          */
         public Builder expiresAt(JsonNullable<String> expiresAt) {
@@ -1434,11 +1544,14 @@ public class PaymentLinkResponse {
 
 
         /**
-         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter
+         * is
          * not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+         * 'eps', 'giftcard',
+         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+         * 'satispay', 'trustly', 'twint',
          * 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(List<String> allowedMethods) {
@@ -1448,11 +1561,14 @@ public class PaymentLinkResponse {
         }
 
         /**
-         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter
+         * is
          * not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+         * 'eps', 'giftcard',
+         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+         * 'satispay', 'trustly', 'twint',
          * 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
@@ -1463,11 +1579,14 @@ public class PaymentLinkResponse {
 
 
         /**
-         * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+         * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of
+         * other Mollie
          * merchants.
          * 
-         * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
-         * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+         * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee
+         * using this
+         * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from
+         * the merchant's balance and sent
          * to your own account balance.
          */
         public Builder applicationFee(PaymentLinkResponseApplicationFee applicationFee) {
@@ -1477,11 +1596,14 @@ public class PaymentLinkResponse {
         }
 
         /**
-         * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+         * With Mollie Connect you can charge fees on payment links that your app is processing on behalf of
+         * other Mollie
          * merchants.
          * 
-         * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
-         * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+         * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee
+         * using this
+         * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from
+         * the merchant's balance and sent
          * to your own account balance.
          */
         public Builder applicationFee(Optional<? extends PaymentLinkResponseApplicationFee> applicationFee) {
@@ -1507,8 +1629,10 @@ public class PaymentLinkResponse {
         /**
          * **Only relevant when `sequenceType` is set to `first`**
          * 
-         * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
-         * the customer will be required to input relevant information which will be used to establish a mandate after
+         * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not
+         * provided,
+         * the customer will be required to input relevant information which will be used to establish a
+         * mandate after
          * the payment is made.
          */
         public Builder customerId(String customerId) {
@@ -1520,8 +1644,10 @@ public class PaymentLinkResponse {
         /**
          * **Only relevant when `sequenceType` is set to `first`**
          * 
-         * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not provided,
-         * the customer will be required to input relevant information which will be used to establish a mandate after
+         * <p>The ID of the [customer](get-customer) the payment link is being created for. If a value is not
+         * provided,
+         * the customer will be required to input relevant information which will be used to establish a
+         * mandate after
          * the payment is made.
          */
         public Builder customerId(JsonNullable<String> customerId) {

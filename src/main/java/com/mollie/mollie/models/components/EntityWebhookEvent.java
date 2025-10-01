@@ -17,7 +17,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class EntityWebhookEvent {
     /**
-     * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
+     * Indicates the response contains a webhook event object. Will always contain the string `event` for
+     * this endpoint.
      */
     @JsonProperty("resource")
     private String resource;
@@ -97,7 +98,8 @@ public class EntityWebhookEvent {
     }
 
     /**
-     * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
+     * Indicates the response contains a webhook event object. Will always contain the string `event` for
+     * this endpoint.
      */
     @JsonIgnore
     public String resource() {
@@ -159,7 +161,8 @@ public class EntityWebhookEvent {
 
 
     /**
-     * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
+     * Indicates the response contains a webhook event object. Will always contain the string `event` for
+     * this endpoint.
      */
     public EntityWebhookEvent withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -292,7 +295,8 @@ public class EntityWebhookEvent {
 
 
         /**
-         * Indicates the response contains a webhook event object. Will always contain the string `event` for this endpoint.
+         * Indicates the response contains a webhook event object. Will always contain the string `event` for
+         * this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");

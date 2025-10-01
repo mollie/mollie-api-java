@@ -21,7 +21,8 @@ public class GetClientRequest {
     private String id;
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
@@ -60,7 +61,8 @@ public class GetClientRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     @JsonIgnore
@@ -91,7 +93,8 @@ public class GetClientRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     public GetClientRequest withEmbed(String embed) {
@@ -101,7 +104,8 @@ public class GetClientRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     public GetClientRequest withEmbed(JsonNullable<String> embed) {
@@ -183,7 +187,8 @@ public class GetClientRequest {
 
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * This endpoint allows embedding related API items by appending the following values via the `embed`
+         * query string
          * parameter.
          */
         public Builder embed(String embed) {
@@ -193,7 +198,8 @@ public class GetClientRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * This endpoint allows embedding related API items by appending the following values via the `embed`
+         * query string
          * parameter.
          */
         public Builder embed(JsonNullable<String> embed) {

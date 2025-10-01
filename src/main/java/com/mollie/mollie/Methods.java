@@ -49,7 +49,8 @@ public class Methods {
      * **not** paginated — unlike most other list endpoints in our API.
      * 
      * <p>For test mode, all pending and enabled payment methods are returned. If no
-     * payment methods are requested yet, the most popular payment methods are returned in the test mode. For live
+     * payment methods are requested yet, the most popular payment methods are returned in the test mode.
+     * For live
      * mode, only fully enabled payment methods are returned.
      * 
      * <p>Payment methods can be requested and enabled via the Mollie Dashboard, or
@@ -59,7 +60,8 @@ public class Methods {
      * below.
      * 
      * <p>By default, only payment methods for the Euro currency are returned. If you
-     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the
+     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need
+     * to use the
      * `amount` parameters.
      * 
      * @return The call builder
@@ -75,7 +77,8 @@ public class Methods {
      * **not** paginated — unlike most other list endpoints in our API.
      * 
      * <p>For test mode, all pending and enabled payment methods are returned. If no
-     * payment methods are requested yet, the most popular payment methods are returned in the test mode. For live
+     * payment methods are requested yet, the most popular payment methods are returned in the test mode.
+     * For live
      * mode, only fully enabled payment methods are returned.
      * 
      * <p>Payment methods can be requested and enabled via the Mollie Dashboard, or
@@ -85,7 +88,8 @@ public class Methods {
      * below.
      * 
      * <p>By default, only payment methods for the Euro currency are returned. If you
-     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the
+     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need
+     * to use the
      * `amount` parameters.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -103,7 +107,8 @@ public class Methods {
      * **not** paginated — unlike most other list endpoints in our API.
      * 
      * <p>For test mode, all pending and enabled payment methods are returned. If no
-     * payment methods are requested yet, the most popular payment methods are returned in the test mode. For live
+     * payment methods are requested yet, the most popular payment methods are returned in the test mode.
+     * For live
      * mode, only fully enabled payment methods are returned.
      * 
      * <p>Payment methods can be requested and enabled via the Mollie Dashboard, or
@@ -113,7 +118,8 @@ public class Methods {
      * below.
      * 
      * <p>By default, only payment methods for the Euro currency are returned. If you
-     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the
+     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need
+     * to use the
      * `amount` parameters.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -130,8 +136,10 @@ public class Methods {
     /**
      * List all payment methods
      * 
-     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific
-     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
+     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization
+     * for the specific
+     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our
+     * API.
      * 
      * <p>The list can optionally be filtered using a number of parameters described below.
      * 
@@ -144,8 +152,10 @@ public class Methods {
     /**
      * List all payment methods
      * 
-     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific
-     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
+     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization
+     * for the specific
+     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our
+     * API.
      * 
      * <p>The list can optionally be filtered using a number of parameters described below.
      * 
@@ -160,8 +170,10 @@ public class Methods {
     /**
      * List all payment methods
      * 
-     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific
-     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
+     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization
+     * for the specific
+     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our
+     * API.
      * 
      * <p>The list can optionally be filtered using a number of parameters described below.
      * 
@@ -182,7 +194,8 @@ public class Methods {
      * <p>Retrieve a single payment method by its ID.
      * 
      * <p>If a method is not available on this profile, a `404 Not Found` response is
-     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You can enable
+     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You
+     * can enable
      * payments methods via the [Enable payment method endpoint](enable-method) of the Profiles API, or via
      * the Mollie Dashboard.
      * 
@@ -204,7 +217,8 @@ public class Methods {
      * <p>Retrieve a single payment method by its ID.
      * 
      * <p>If a method is not available on this profile, a `404 Not Found` response is
-     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You can enable
+     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You
+     * can enable
      * payments methods via the [Enable payment method endpoint](enable-method) of the Profiles API, or via
      * the Mollie Dashboard.
      * 
@@ -228,7 +242,8 @@ public class Methods {
      * <p>Retrieve a single payment method by its ID.
      * 
      * <p>If a method is not available on this profile, a `404 Not Found` response is
-     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You can enable
+     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You
+     * can enable
      * payments methods via the [Enable payment method endpoint](enable-method) of the Profiles API, or via
      * the Mollie Dashboard.
      * 

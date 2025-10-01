@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class EntityProfileResponse {
     /**
-     * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
+     * Indicates the response contains a profile object. Will always contain the string `profile` for this
+     * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -39,7 +40,8 @@ public class EntityProfileResponse {
     private Optional<? extends Mode> mode;
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -47,7 +49,8 @@ public class EntityProfileResponse {
     private Optional<String> name;
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are
      * allowed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -95,7 +98,8 @@ public class EntityProfileResponse {
      * The profile status determines whether the profile is able to receive live payments.
      * 
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test
+     * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -103,8 +107,10 @@ public class EntityProfileResponse {
     private Optional<? extends ProfileStatus> status;
 
     /**
-     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
-     * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+     * Present if changes have been made that have not yet been approved by Mollie. Changes to test
+     * profiles are approved
+     * automatically, unless a switch to a live profile has been requested. The review object will
+     * therefore usually be
      * `null` in test mode.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -112,7 +118,8 @@ public class EntityProfileResponse {
     private Optional<? extends Review> review;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
@@ -180,7 +187,8 @@ public class EntityProfileResponse {
     }
 
     /**
-     * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
+     * Indicates the response contains a profile object. Will always contain the string `profile` for this
+     * endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -205,7 +213,8 @@ public class EntityProfileResponse {
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     @JsonIgnore
@@ -214,7 +223,8 @@ public class EntityProfileResponse {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are
      * allowed.
      */
     @JsonIgnore
@@ -269,7 +279,8 @@ public class EntityProfileResponse {
      * The profile status determines whether the profile is able to receive live payments.
      * 
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test
+     * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
     @SuppressWarnings("unchecked")
@@ -279,8 +290,10 @@ public class EntityProfileResponse {
     }
 
     /**
-     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
-     * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+     * Present if changes have been made that have not yet been approved by Mollie. Changes to test
+     * profiles are approved
+     * automatically, unless a switch to a live profile has been requested. The review object will
+     * therefore usually be
      * `null` in test mode.
      */
     @SuppressWarnings("unchecked")
@@ -290,7 +303,8 @@ public class EntityProfileResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public Optional<String> createdAt() {
@@ -312,7 +326,8 @@ public class EntityProfileResponse {
 
 
     /**
-     * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
+     * Indicates the response contains a profile object. Will always contain the string `profile` for this
+     * endpoint.
      */
     public EntityProfileResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -322,7 +337,8 @@ public class EntityProfileResponse {
 
 
     /**
-     * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
+     * Indicates the response contains a profile object. Will always contain the string `profile` for this
+     * endpoint.
      */
     public EntityProfileResponse withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -369,7 +385,8 @@ public class EntityProfileResponse {
     }
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     public EntityProfileResponse withName(String name) {
@@ -380,7 +397,8 @@ public class EntityProfileResponse {
 
 
     /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+     * or
      * application.
      */
     public EntityProfileResponse withName(Optional<String> name) {
@@ -390,7 +408,8 @@ public class EntityProfileResponse {
     }
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are
      * allowed.
      */
     public EntityProfileResponse withWebsite(String website) {
@@ -401,7 +420,8 @@ public class EntityProfileResponse {
 
 
     /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+     * signs are
      * allowed.
      */
     public EntityProfileResponse withWebsite(Optional<String> website) {
@@ -513,7 +533,8 @@ public class EntityProfileResponse {
      * The profile status determines whether the profile is able to receive live payments.
      * 
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test
+     * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
     public EntityProfileResponse withStatus(ProfileStatus status) {
@@ -527,7 +548,8 @@ public class EntityProfileResponse {
      * The profile status determines whether the profile is able to receive live payments.
      * 
      * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+     * * `verified`: The profile has been verified and can be used to create live payments and test
+     * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
     public EntityProfileResponse withStatus(Optional<? extends ProfileStatus> status) {
@@ -537,8 +559,10 @@ public class EntityProfileResponse {
     }
 
     /**
-     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
-     * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+     * Present if changes have been made that have not yet been approved by Mollie. Changes to test
+     * profiles are approved
+     * automatically, unless a switch to a live profile has been requested. The review object will
+     * therefore usually be
      * `null` in test mode.
      */
     public EntityProfileResponse withReview(Review review) {
@@ -549,8 +573,10 @@ public class EntityProfileResponse {
 
 
     /**
-     * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
-     * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+     * Present if changes have been made that have not yet been approved by Mollie. Changes to test
+     * profiles are approved
+     * automatically, unless a switch to a live profile has been requested. The review object will
+     * therefore usually be
      * `null` in test mode.
      */
     public EntityProfileResponse withReview(Optional<? extends Review> review) {
@@ -560,7 +586,8 @@ public class EntityProfileResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityProfileResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -570,7 +597,8 @@ public class EntityProfileResponse {
 
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityProfileResponse withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -689,7 +717,8 @@ public class EntityProfileResponse {
 
 
         /**
-         * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
+         * Indicates the response contains a profile object. Will always contain the string `profile` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -698,7 +727,8 @@ public class EntityProfileResponse {
         }
 
         /**
-         * Indicates the response contains a profile object. Will always contain the string `profile` for this endpoint.
+         * Indicates the response contains a profile object. Will always contain the string `profile` for this
+         * endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -746,7 +776,8 @@ public class EntityProfileResponse {
 
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+         * or
          * application.
          */
         public Builder name(String name) {
@@ -756,7 +787,8 @@ public class EntityProfileResponse {
         }
 
         /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website or
+         * The profile's name, this will usually reflect the trade name or brand name of the profile's website
+         * or
          * application.
          */
         public Builder name(Optional<String> name) {
@@ -767,7 +799,8 @@ public class EntityProfileResponse {
 
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+         * signs are
          * allowed.
          */
         public Builder website(String website) {
@@ -777,7 +810,8 @@ public class EntityProfileResponse {
         }
 
         /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@` signs are
+         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
+         * signs are
          * allowed.
          */
         public Builder website(Optional<String> website) {
@@ -890,7 +924,8 @@ public class EntityProfileResponse {
          * The profile status determines whether the profile is able to receive live payments.
          * 
          * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-         * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+         * * `verified`: The profile has been verified and can be used to create live payments and test
+         * payments.
          * * `blocked`: The profile is blocked and can no longer be used or changed.
          */
         public Builder status(ProfileStatus status) {
@@ -903,7 +938,8 @@ public class EntityProfileResponse {
          * The profile status determines whether the profile is able to receive live payments.
          * 
          * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-         * * `verified`: The profile has been verified and can be used to create live payments and test payments.
+         * * `verified`: The profile has been verified and can be used to create live payments and test
+         * payments.
          * * `blocked`: The profile is blocked and can no longer be used or changed.
          */
         public Builder status(Optional<? extends ProfileStatus> status) {
@@ -914,8 +950,10 @@ public class EntityProfileResponse {
 
 
         /**
-         * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
-         * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+         * Present if changes have been made that have not yet been approved by Mollie. Changes to test
+         * profiles are approved
+         * automatically, unless a switch to a live profile has been requested. The review object will
+         * therefore usually be
          * `null` in test mode.
          */
         public Builder review(Review review) {
@@ -925,8 +963,10 @@ public class EntityProfileResponse {
         }
 
         /**
-         * Present if changes have been made that have not yet been approved by Mollie. Changes to test profiles are approved
-         * automatically, unless a switch to a live profile has been requested. The review object will therefore usually be
+         * Present if changes have been made that have not yet been approved by Mollie. Changes to test
+         * profiles are approved
+         * automatically, unless a switch to a live profile has been requested. The review object will
+         * therefore usually be
          * `null` in test mode.
          */
         public Builder review(Optional<? extends Review> review) {
@@ -937,7 +977,8 @@ public class EntityProfileResponse {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -946,7 +987,8 @@ public class EntityProfileResponse {
         }
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");

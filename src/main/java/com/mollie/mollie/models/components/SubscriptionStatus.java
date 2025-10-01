@@ -44,7 +44,8 @@ import java.util.Optional;
 /**
  * SubscriptionStatus
  * 
- * <p>The subscription's current status is directly related to the status of the underlying customer or mandate that is
+ * <p>The subscription's current status is directly related to the status of the underlying customer or
+ * mandate that is
  * enabling the subscription.
  */
 @JsonDeserialize(using = SubscriptionStatus._Deserializer.class)

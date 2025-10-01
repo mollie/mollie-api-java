@@ -33,21 +33,18 @@ java {
     withJavadocJar()
 }
 
-model {
-    tasks.generatePomFileForMavenPublication {
-        destination = file(layout.buildDirectory.file("pom.xml"))
-    }
-}
-
 version = "${version}"
 group = "${groupId}"
 
 jar {
-    dependsOn(":generatePomFileForMavenPublication")
+    dependsOn 'generatePomFileForMavenPublication'
     archiveBaseName = "${artifactId}"
 
     into("META-INF/maven/com.mollie/mollie") {
-        from(layout.buildDirectory.file("pom.xml"))
+        from(layout.buildDirectory.file("pom.xml")) {
+            // Only include if it exists to avoid build ordering issues
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
     }
 }
 
@@ -92,40 +89,40 @@ ext {
 }
 
 subprojects {
-    // Ensure subprojects use the same group and version as root project
-    group = rootProject.group
-    version = rootProject.version
+    if (name in [
+            'mollie-spring-boot-autoconfigure',
+            'mollie-spring-boot-starter'
+    ]) {
+        // Ensure subprojects use the same group and version as root project
+        group = rootProject.group
+        version = rootProject.version
 
-    apply {
-        plugin "java-library"
-        plugin "io.spring.dependency-management"
-        plugin "maven-publish"
-        plugin "signing"
-        plugin "cl.franciscosolis.sonatype-central-upload"
-    }
-    dependencyManagement {
-        imports {
-            mavenBom "org.springframework.boot:spring-boot-dependencies:${rootProject.springBootVersion}"
+        apply {
+            plugin "java-library"
+            plugin "io.spring.dependency-management"
+            plugin "maven-publish"
+            plugin "signing"
+            plugin "cl.franciscosolis.sonatype-central-upload"
         }
-    }
-    repositories {
-        mavenCentral()
-    }
-    java {
-        withSourcesJar()
-        withJavadocJar()
-    }
-    tasks.withType(JavaCompile).configureEach {
-        options.release = 11
-    }
+        dependencyManagement {
+            imports {
+                mavenBom "org.springframework.boot:spring-boot-dependencies:${rootProject.springBootVersion}"
+            }
+        }
+        repositories {
+            mavenCentral()
+        }
+        java {
+            withSourcesJar()
+            withJavadocJar()
+        }
+        tasks.withType(JavaCompile).configureEach {
+            options.release = 11
+        }
 
-    model {
-        tasks.generatePomFileForMavenPublication {
-            destination = file(layout.buildDirectory.file("pom.xml"))
-        }
+        // Apply publishing configuration to all subprojects - they'll check for publishingConfig internally
+        apply from: rootProject.file('publishing.gradle')
     }
-    // Apply publishing configuration to all subprojects - they'll check for publishingConfig internally
-    apply from: rootProject.file('publishing.gradle')
 }
 
 ext {

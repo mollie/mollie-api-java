@@ -55,7 +55,7 @@ public class AsyncWebhookEvents {
      * <p>Retrieve a single webhook event object by its event ID.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;GetWebhookEventResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetWebhookEventResponse>} - The async response
      */
     public CompletableFuture<GetWebhookEventResponse> get(String id) {
         return get(
@@ -76,7 +76,7 @@ public class AsyncWebhookEvents {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetWebhookEventResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetWebhookEventResponse>} - The async response
      */
     public CompletableFuture<GetWebhookEventResponse> get(
             String id, JsonNullable<Boolean> testmode,

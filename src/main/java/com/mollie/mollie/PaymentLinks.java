@@ -64,9 +64,12 @@ public class PaymentLinks {
     /**
      * Create payment link
      * 
-     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
-     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
-     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments,
+     * do not expire.
+     * The payment link can be shared with your customers and will redirect them to them the payment page
+     * where they can
+     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
+     * payment.
      * 
      * @return The call builder
      */
@@ -77,9 +80,12 @@ public class PaymentLinks {
     /**
      * Create payment link
      * 
-     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
-     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
-     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments,
+     * do not expire.
+     * The payment link can be shared with your customers and will redirect them to them the payment page
+     * where they can
+     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
+     * payment.
      * 
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -91,9 +97,12 @@ public class PaymentLinks {
     /**
      * Create payment link
      * 
-     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments, do not expire.
-     * The payment link can be shared with your customers and will redirect them to them the payment page where they can
-     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
+     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments,
+     * do not expire.
+     * The payment link can be shared with your customers and will redirect them to them the payment page
+     * where they can
+     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
+     * payment.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
@@ -292,11 +301,13 @@ public class PaymentLinks {
      * Delete payment link
      * 
      * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely.
-     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * This can be useful for removing payment links that have been incorrectly configured or that are no
+     * longer relevant.
      * 
      * <p>Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
+     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on
+     * the
      * [Update payment link](update-payment-link) endpoint instead.
      * 
      * @return The call builder
@@ -309,11 +320,13 @@ public class PaymentLinks {
      * Delete payment link
      * 
      * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely.
-     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * This can be useful for removing payment links that have been incorrectly configured or that are no
+     * longer relevant.
      * 
      * <p>Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
+     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on
+     * the
      * [Update payment link](update-payment-link) endpoint instead.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
@@ -329,11 +342,13 @@ public class PaymentLinks {
      * Delete payment link
      * 
      * <p>Payment links which have not been opened and no payments have been made yet can be deleted entirely.
-     * This can be useful for removing payment links that have been incorrectly configured or that are no longer relevant.
+     * This can be useful for removing payment links that have been incorrectly configured or that are no
+     * longer relevant.
      * 
      * <p>Once deleted, the payment link will no longer show up in the API or Mollie dashboard.
      * 
-     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on the
+     * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on
+     * the
      * [Update payment link](update-payment-link) endpoint instead.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.

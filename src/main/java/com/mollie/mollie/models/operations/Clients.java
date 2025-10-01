@@ -18,7 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Clients {
     /**
-     * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+     * Indicates the response contains a client object. Will always contain the string `client` for this
+     * resource type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -39,7 +40,8 @@ public class Clients {
     private JsonNullable<? extends ListClientsCommission> commission;
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * The date and time the client organization was created, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -86,7 +88,8 @@ public class Clients {
     }
 
     /**
-     * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+     * Indicates the response contains a client object. Will always contain the string `client` for this
+     * resource type.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -111,7 +114,8 @@ public class Clients {
     }
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * The date and time the client organization was created, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     @JsonIgnore
@@ -140,7 +144,8 @@ public class Clients {
 
 
     /**
-     * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+     * Indicates the response contains a client object. Will always contain the string `client` for this
+     * resource type.
      */
     public Clients withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -150,7 +155,8 @@ public class Clients {
 
 
     /**
-     * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+     * Indicates the response contains a client object. Will always contain the string `client` for this
+     * resource type.
      */
     public Clients withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -196,7 +202,8 @@ public class Clients {
     }
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * The date and time the client organization was created, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     public Clients withOrganizationCreatedAt(String organizationCreatedAt) {
@@ -207,7 +214,8 @@ public class Clients {
 
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * The date and time the client organization was created, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     public Clients withOrganizationCreatedAt(Optional<String> organizationCreatedAt) {
@@ -305,7 +313,8 @@ public class Clients {
 
 
         /**
-         * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+         * Indicates the response contains a client object. Will always contain the string `client` for this
+         * resource type.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -314,7 +323,8 @@ public class Clients {
         }
 
         /**
-         * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+         * Indicates the response contains a client object. Will always contain the string `client` for this
+         * resource type.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -362,7 +372,8 @@ public class Clients {
 
 
         /**
-         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * The date and time the client organization was created, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
         public Builder organizationCreatedAt(String organizationCreatedAt) {
@@ -372,7 +383,8 @@ public class Clients {
         }
 
         /**
-         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * The date and time the client organization was created, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
         public Builder organizationCreatedAt(Optional<String> organizationCreatedAt) {

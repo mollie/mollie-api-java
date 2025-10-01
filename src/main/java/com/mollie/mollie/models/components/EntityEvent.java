@@ -26,7 +26,8 @@ public class EntityEvent {
     private long type;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonProperty("createdAt")
     private String createdAt;
@@ -81,7 +82,8 @@ public class EntityEvent {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public String createdAt() {
@@ -120,7 +122,8 @@ public class EntityEvent {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityEvent withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -220,7 +223,8 @@ public class EntityEvent {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");

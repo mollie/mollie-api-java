@@ -94,7 +94,8 @@ public class Permissions {
     /**
      * Get permission
      * 
-     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
+     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access
+     * token.
      * 
      * @return The call builder
      */
@@ -105,7 +106,8 @@ public class Permissions {
     /**
      * Get permission
      * 
-     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
+     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access
+     * token.
      * 
      * @param permissionId Provide the ID of the related permission.
      * @return The response from the API call
@@ -119,7 +121,8 @@ public class Permissions {
     /**
      * Get permission
      * 
-     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
+     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access
+     * token.
      * 
      * @param permissionId Provide the ID of the related permission.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query

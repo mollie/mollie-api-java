@@ -24,10 +24,12 @@ import java.util.Optional;
  */
 public class ListSalesInvoicesResponseBody {
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be
+     * present in the result
      * as well.
      * 
-     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
+     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
+     * request. The default
      * limit is 50 items.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -40,7 +42,8 @@ public class ListSalesInvoicesResponseBody {
     private Optional<? extends ListSalesInvoicesEmbedded> embedded;
 
     /**
-     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+     * `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
@@ -64,10 +67,12 @@ public class ListSalesInvoicesResponseBody {
     }
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be
+     * present in the result
      * as well.
      * 
-     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
+     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
+     * request. The default
      * limit is 50 items.
      */
     @JsonIgnore
@@ -82,7 +87,8 @@ public class ListSalesInvoicesResponseBody {
     }
 
     /**
-     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+     * `type` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -96,10 +102,12 @@ public class ListSalesInvoicesResponseBody {
 
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be
+     * present in the result
      * as well.
      * 
-     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
+     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
+     * request. The default
      * limit is 50 items.
      */
     public ListSalesInvoicesResponseBody withCount(long count) {
@@ -110,10 +118,12 @@ public class ListSalesInvoicesResponseBody {
 
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be
+     * present in the result
      * as well.
      * 
-     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
+     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
+     * request. The default
      * limit is 50 items.
      */
     public ListSalesInvoicesResponseBody withCount(Optional<Long> count) {
@@ -136,7 +146,8 @@ public class ListSalesInvoicesResponseBody {
     }
 
     /**
-     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+     * `type` field.
      */
     public ListSalesInvoicesResponseBody withLinks(ListLinks links) {
         Utils.checkNotNull(links, "links");
@@ -146,7 +157,8 @@ public class ListSalesInvoicesResponseBody {
 
 
     /**
-     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+     * `type` field.
      */
     public ListSalesInvoicesResponseBody withLinks(Optional<? extends ListLinks> links) {
         Utils.checkNotNull(links, "links");
@@ -198,10 +210,12 @@ public class ListSalesInvoicesResponseBody {
 
 
         /**
-         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
+         * The number of items in this result set. If more items are available, a `_links.next` URL will be
+         * present in the result
          * as well.
          * 
-         * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
+         * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
+         * request. The default
          * limit is 50 items.
          */
         public Builder count(long count) {
@@ -211,10 +225,12 @@ public class ListSalesInvoicesResponseBody {
         }
 
         /**
-         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
+         * The number of items in this result set. If more items are available, a `_links.next` URL will be
+         * present in the result
          * as well.
          * 
-         * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
+         * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
+         * request. The default
          * limit is 50 items.
          */
         public Builder count(Optional<Long> count) {
@@ -238,7 +254,8 @@ public class ListSalesInvoicesResponseBody {
 
 
         /**
-         * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+         * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+         * `type` field.
          */
         public Builder links(ListLinks links) {
             Utils.checkNotNull(links, "links");
@@ -247,7 +264,8 @@ public class ListSalesInvoicesResponseBody {
         }
 
         /**
-         * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+         * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+         * `type` field.
          */
         public Builder links(Optional<? extends ListLinks> links) {
             Utils.checkNotNull(links, "links");

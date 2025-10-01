@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentResponse {
     /**
-     * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
+     * Indicates the response contains a payment object. Will always contain the string `payment` for this
+     * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -39,15 +40,20 @@ public class PaymentResponse {
     private Optional<? extends Mode> mode;
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * The description of the payment. This will be shown to your customer on their card or bank statement
+     * when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The
+     * description is
      * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+     * your back office.
      * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+     * being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them
+     * to fit.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -98,10 +104,12 @@ public class PaymentResponse {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+     * can show the
      * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+     * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -109,11 +117,14 @@ public class PaymentResponse {
     private JsonNullable<String> redirectUrl;
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+     * this URL is not
      * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+     * parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+     * handle
      * payment cancellations.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -123,10 +134,13 @@ public class PaymentResponse {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -134,7 +148,8 @@ public class PaymentResponse {
     private JsonNullable<String> webhookUrl;
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -163,7 +178,8 @@ public class PaymentResponse {
     private JsonNullable<? extends LocaleResponse> locale;
 
     /**
-     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during
+     * checkout. This
      * field is omitted if the country code was not detected.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -171,12 +187,16 @@ public class PaymentResponse {
     private JsonNullable<String> countryCode;
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -184,12 +204,15 @@ public class PaymentResponse {
     private JsonNullable<? extends MethodResponse> method;
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+     * Choose the VAT
      * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
-     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+     * country.
      * 
-     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+     * are accepted.
      * 
      * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
      */
@@ -198,15 +221,18 @@ public class PaymentResponse {
     private JsonNullable<String> restrictPaymentMethodsToCountry;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Metadata> metadata;
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+     * Indicate if the funds should be captured immediately or if you want to [place a
+     * hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/)
      * and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
@@ -218,11 +244,14 @@ public class PaymentResponse {
     /**
      * **Only relevant if you wish to manage authorization and capturing separately.**
      * 
-     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization'
+     * can then at a
      * later point either be 'captured' or canceled.
      * 
-     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
-     * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+     * <p>By default, we charge the customer's card or bank account immediately when they complete the
+     * payment. If you set a
+     * capture delay however, we will delay the automatic capturing of the payment for the specified amount
+     * of time. For
      * example `8 hours` or `2 days`.
      * 
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
@@ -236,22 +265,28 @@ public class PaymentResponse {
     private JsonNullable<String> captureDelay;
 
     /**
-     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
-     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date
+     * onwards we
+     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not
+     * authorized (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("captureBefore")
     private JsonNullable<String> captureBefore;
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
-     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using
+     * this
+     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's
+     * balance and sent
      * to your own account balance.
      * 
-     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+     * <p>If instead you want to split a payment on your own account between yourself and a connected
+     * merchant, refer to the
      * `routing` parameter.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -259,21 +294,28 @@ public class PaymentResponse {
     private JsonNullable<? extends ApplicationFee> applicationFee;
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This functionality is not enabled by default. Reach out to our partner management team if you wish
+     * to use it.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+     * <p>If you create payments on your own account that you want to split between yourself and one or more
+     * connected
      * merchants, you can use this `routing` parameter to route the payment accordingly.
      * 
-     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+     * <p>The `routing` parameter should contain an array of objects, with each object describing the
+     * destination for a
      * specific portion of the payment.
      * 
-     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
-     * payment amount have been routed, the amount left will be routed to the current organization automatically.
+     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of
+     * the total
+     * payment amount have been routed, the amount left will be routed to the current organization
+     * automatically.
      * 
-     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the
+     * `applicationFee`
      * parameter.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -303,8 +345,10 @@ public class PaymentResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -322,7 +366,8 @@ public class PaymentResponse {
     private Optional<String> orderId;
 
     /**
-     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+     * The payment's status. Refer to the [documentation regarding
+     * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
      * statuses occur at what point.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -330,7 +375,8 @@ public class PaymentResponse {
     private Optional<? extends PaymentStatus> status;
 
     /**
-     * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+     * This object offers details about the status of a payment. Currently it is only available for
+     * point-of-sale
      * payments.
      * 
      * <p>You can find more information about the possible values of this object on
@@ -348,8 +394,10 @@ public class PaymentResponse {
     private JsonNullable<Boolean> isCancelable;
 
     /**
-     * An object containing payment details collected during the payment process. For example, details may include the
-     * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+     * An object containing payment details collected during the payment process. For example, details may
+     * include the
+     * customer's card or bank details and a payment reference. For the full list of details, please refer
+     * to the
      * [method-specific parameters](extra-payment-parameters) guide.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -357,14 +405,16 @@ public class PaymentResponse {
     private JsonNullable<? extends Details> details;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
     private Optional<String> createdAt;
 
     /**
-     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if
+     * the payment is
      * not authorized (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -372,7 +422,8 @@ public class PaymentResponse {
     private JsonNullable<String> authorizedAt;
 
     /**
-     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the
+     * payment is not
      * completed (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -380,7 +431,8 @@ public class PaymentResponse {
     private JsonNullable<String> paidAt;
 
     /**
-     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the
+     * payment is not
      * canceled (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -388,7 +440,8 @@ public class PaymentResponse {
     private JsonNullable<String> canceledAt;
 
     /**
-     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the
+     * payment can no
      * longer expire.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -396,7 +449,8 @@ public class PaymentResponse {
     private JsonNullable<String> expiresAt;
 
     /**
-     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the
+     * payment did not
      * expire (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -404,7 +458,8 @@ public class PaymentResponse {
     private JsonNullable<String> expiredAt;
 
     /**
-     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment
+     * did not fail
      * (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -576,7 +631,8 @@ public class PaymentResponse {
     }
 
     /**
-     * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
+     * Indicates the response contains a payment object. Will always contain the string `payment` for this
+     * endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -598,15 +654,20 @@ public class PaymentResponse {
     }
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * The description of the payment. This will be shown to your customer on their card or bank statement
+     * when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The
+     * description is
      * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+     * your back office.
      * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+     * being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them
+     * to fit.
      */
     @JsonIgnore
     public Optional<String> description() {
@@ -670,10 +731,12 @@ public class PaymentResponse {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+     * can show the
      * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+     * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
@@ -682,11 +745,14 @@ public class PaymentResponse {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+     * this URL is not
      * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+     * parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+     * handle
      * payment cancellations.
      */
     @JsonIgnore
@@ -697,10 +763,13 @@ public class PaymentResponse {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     @JsonIgnore
@@ -709,7 +778,8 @@ public class PaymentResponse {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -744,7 +814,8 @@ public class PaymentResponse {
     }
 
     /**
-     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during
+     * checkout. This
      * field is omitted if the country code was not detected.
      */
     @JsonIgnore
@@ -753,12 +824,16 @@ public class PaymentResponse {
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     @SuppressWarnings("unchecked")
@@ -768,12 +843,15 @@ public class PaymentResponse {
     }
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+     * Choose the VAT
      * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
-     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+     * country.
      * 
-     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+     * are accepted.
      * 
      * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
      */
@@ -783,8 +861,10 @@ public class PaymentResponse {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -793,7 +873,8 @@ public class PaymentResponse {
     }
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+     * Indicate if the funds should be captured immediately or if you want to [place a
+     * hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/)
      * and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
@@ -807,11 +888,14 @@ public class PaymentResponse {
     /**
      * **Only relevant if you wish to manage authorization and capturing separately.**
      * 
-     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization'
+     * can then at a
      * later point either be 'captured' or canceled.
      * 
-     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
-     * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+     * <p>By default, we charge the customer's card or bank account immediately when they complete the
+     * payment. If you set a
+     * capture delay however, we will delay the automatic capturing of the payment for the specified amount
+     * of time. For
      * example `8 hours` or `2 days`.
      * 
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
@@ -826,8 +910,10 @@ public class PaymentResponse {
     }
 
     /**
-     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
-     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date
+     * onwards we
+     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not
+     * authorized (yet).
      */
     @JsonIgnore
     public JsonNullable<String> captureBefore() {
@@ -835,14 +921,18 @@ public class PaymentResponse {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
-     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using
+     * this
+     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's
+     * balance and sent
      * to your own account balance.
      * 
-     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+     * <p>If instead you want to split a payment on your own account between yourself and a connected
+     * merchant, refer to the
      * `routing` parameter.
      */
     @SuppressWarnings("unchecked")
@@ -852,21 +942,28 @@ public class PaymentResponse {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This functionality is not enabled by default. Reach out to our partner management team if you wish
+     * to use it.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+     * <p>If you create payments on your own account that you want to split between yourself and one or more
+     * connected
      * merchants, you can use this `routing` parameter to route the payment accordingly.
      * 
-     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+     * <p>The `routing` parameter should contain an array of objects, with each object describing the
+     * destination for a
      * specific portion of the payment.
      * 
-     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
-     * payment amount have been routed, the amount left will be routed to the current organization automatically.
+     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of
+     * the total
+     * payment amount have been routed, the amount left will be routed to the current organization
+     * automatically.
      * 
-     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the
+     * `applicationFee`
      * parameter.
      */
     @SuppressWarnings("unchecked")
@@ -899,8 +996,10 @@ public class PaymentResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     @JsonIgnore
@@ -919,7 +1018,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+     * The payment's status. Refer to the [documentation regarding
+     * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
      * statuses occur at what point.
      */
     @SuppressWarnings("unchecked")
@@ -929,7 +1029,8 @@ public class PaymentResponse {
     }
 
     /**
-     * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+     * This object offers details about the status of a payment. Currently it is only available for
+     * point-of-sale
      * payments.
      * 
      * <p>You can find more information about the possible values of this object on
@@ -950,8 +1051,10 @@ public class PaymentResponse {
     }
 
     /**
-     * An object containing payment details collected during the payment process. For example, details may include the
-     * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+     * An object containing payment details collected during the payment process. For example, details may
+     * include the
+     * customer's card or bank details and a payment reference. For the full list of details, please refer
+     * to the
      * [method-specific parameters](extra-payment-parameters) guide.
      */
     @SuppressWarnings("unchecked")
@@ -961,7 +1064,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public Optional<String> createdAt() {
@@ -969,7 +1073,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if
+     * the payment is
      * not authorized (yet).
      */
     @JsonIgnore
@@ -978,7 +1083,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the
+     * payment is not
      * completed (yet).
      */
     @JsonIgnore
@@ -987,7 +1093,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the
+     * payment is not
      * canceled (yet).
      */
     @JsonIgnore
@@ -996,7 +1103,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the
+     * payment can no
      * longer expire.
      */
     @JsonIgnore
@@ -1005,7 +1113,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the
+     * payment did not
      * expire (yet).
      */
     @JsonIgnore
@@ -1014,7 +1123,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment
+     * did not fail
      * (yet).
      */
     @JsonIgnore
@@ -1037,7 +1147,8 @@ public class PaymentResponse {
 
 
     /**
-     * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
+     * Indicates the response contains a payment object. Will always contain the string `payment` for this
+     * endpoint.
      */
     public PaymentResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -1047,7 +1158,8 @@ public class PaymentResponse {
 
 
     /**
-     * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
+     * Indicates the response contains a payment object. Will always contain the string `payment` for this
+     * endpoint.
      */
     public PaymentResponse withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -1088,15 +1200,20 @@ public class PaymentResponse {
     }
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * The description of the payment. This will be shown to your customer on their card or bank statement
+     * when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The
+     * description is
      * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+     * your back office.
      * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+     * being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them
+     * to fit.
      */
     public PaymentResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -1106,15 +1223,20 @@ public class PaymentResponse {
 
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * The description of the payment. This will be shown to your customer on their card or bank statement
+     * when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The
+     * description is
      * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+     * your back office.
      * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+     * being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them
+     * to fit.
      */
     public PaymentResponse withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -1239,10 +1361,12 @@ public class PaymentResponse {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+     * can show the
      * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+     * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
     public PaymentResponse withRedirectUrl(String redirectUrl) {
@@ -1254,10 +1378,12 @@ public class PaymentResponse {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+     * can show the
      * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+     * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
     public PaymentResponse withRedirectUrl(JsonNullable<String> redirectUrl) {
@@ -1267,11 +1393,14 @@ public class PaymentResponse {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+     * this URL is not
      * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+     * parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+     * handle
      * payment cancellations.
      */
     public PaymentResponse withCancelUrl(String cancelUrl) {
@@ -1281,11 +1410,14 @@ public class PaymentResponse {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+     * this URL is not
      * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+     * parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+     * handle
      * payment cancellations.
      */
     public PaymentResponse withCancelUrl(JsonNullable<String> cancelUrl) {
@@ -1297,10 +1429,13 @@ public class PaymentResponse {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     public PaymentResponse withWebhookUrl(String webhookUrl) {
@@ -1312,10 +1447,13 @@ public class PaymentResponse {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     public PaymentResponse withWebhookUrl(JsonNullable<String> webhookUrl) {
@@ -1325,7 +1463,8 @@ public class PaymentResponse {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -1339,7 +1478,8 @@ public class PaymentResponse {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -1397,7 +1537,8 @@ public class PaymentResponse {
     }
 
     /**
-     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during
+     * checkout. This
      * field is omitted if the country code was not detected.
      */
     public PaymentResponse withCountryCode(String countryCode) {
@@ -1407,7 +1548,8 @@ public class PaymentResponse {
     }
 
     /**
-     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+     * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during
+     * checkout. This
      * field is omitted if the country code was not detected.
      */
     public PaymentResponse withCountryCode(JsonNullable<String> countryCode) {
@@ -1417,12 +1559,16 @@ public class PaymentResponse {
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     public PaymentResponse withMethod(MethodResponse method) {
@@ -1432,12 +1578,16 @@ public class PaymentResponse {
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     public PaymentResponse withMethod(JsonNullable<? extends MethodResponse> method) {
@@ -1447,12 +1597,15 @@ public class PaymentResponse {
     }
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+     * Choose the VAT
      * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
-     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+     * country.
      * 
-     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+     * are accepted.
      * 
      * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
      */
@@ -1463,12 +1616,15 @@ public class PaymentResponse {
     }
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+     * Choose the VAT
      * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
-     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+     * country.
      * 
-     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+     * are accepted.
      * 
      * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
      */
@@ -1479,8 +1635,10 @@ public class PaymentResponse {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public PaymentResponse withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -1489,8 +1647,10 @@ public class PaymentResponse {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public PaymentResponse withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -1499,7 +1659,8 @@ public class PaymentResponse {
     }
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+     * Indicate if the funds should be captured immediately or if you want to [place a
+     * hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/)
      * and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
@@ -1511,7 +1672,8 @@ public class PaymentResponse {
     }
 
     /**
-     * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+     * Indicate if the funds should be captured immediately or if you want to [place a
+     * hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/)
      * and capture at a later time.
      * 
      * <p>This field needs to be set to `manual` for method `riverty`.
@@ -1525,11 +1687,14 @@ public class PaymentResponse {
     /**
      * **Only relevant if you wish to manage authorization and capturing separately.**
      * 
-     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization'
+     * can then at a
      * later point either be 'captured' or canceled.
      * 
-     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
-     * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+     * <p>By default, we charge the customer's card or bank account immediately when they complete the
+     * payment. If you set a
+     * capture delay however, we will delay the automatic capturing of the payment for the specified amount
+     * of time. For
      * example `8 hours` or `2 days`.
      * 
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
@@ -1547,11 +1712,14 @@ public class PaymentResponse {
     /**
      * **Only relevant if you wish to manage authorization and capturing separately.**
      * 
-     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+     * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization'
+     * can then at a
      * later point either be 'captured' or canceled.
      * 
-     * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
-     * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+     * <p>By default, we charge the customer's card or bank account immediately when they complete the
+     * payment. If you set a
+     * capture delay however, we will delay the automatic capturing of the payment for the specified amount
+     * of time. For
      * example `8 hours` or `2 days`.
      * 
      * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
@@ -1567,8 +1735,10 @@ public class PaymentResponse {
     }
 
     /**
-     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
-     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date
+     * onwards we
+     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not
+     * authorized (yet).
      */
     public PaymentResponse withCaptureBefore(String captureBefore) {
         Utils.checkNotNull(captureBefore, "captureBefore");
@@ -1577,8 +1747,10 @@ public class PaymentResponse {
     }
 
     /**
-     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
-     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+     * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date
+     * onwards we
+     * can no longer guarantee a successful capture. The parameter is omitted if the payment is not
+     * authorized (yet).
      */
     public PaymentResponse withCaptureBefore(JsonNullable<String> captureBefore) {
         Utils.checkNotNull(captureBefore, "captureBefore");
@@ -1587,14 +1759,18 @@ public class PaymentResponse {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
-     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using
+     * this
+     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's
+     * balance and sent
      * to your own account balance.
      * 
-     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+     * <p>If instead you want to split a payment on your own account between yourself and a connected
+     * merchant, refer to the
      * `routing` parameter.
      */
     public PaymentResponse withApplicationFee(ApplicationFee applicationFee) {
@@ -1604,14 +1780,18 @@ public class PaymentResponse {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
-     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+     * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using
+     * this
+     * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's
+     * balance and sent
      * to your own account balance.
      * 
-     * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+     * <p>If instead you want to split a payment on your own account between yourself and a connected
+     * merchant, refer to the
      * `routing` parameter.
      */
     public PaymentResponse withApplicationFee(JsonNullable<? extends ApplicationFee> applicationFee) {
@@ -1621,21 +1801,28 @@ public class PaymentResponse {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This functionality is not enabled by default. Reach out to our partner management team if you wish
+     * to use it.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+     * <p>If you create payments on your own account that you want to split between yourself and one or more
+     * connected
      * merchants, you can use this `routing` parameter to route the payment accordingly.
      * 
-     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+     * <p>The `routing` parameter should contain an array of objects, with each object describing the
+     * destination for a
      * specific portion of the payment.
      * 
-     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
-     * payment amount have been routed, the amount left will be routed to the current organization automatically.
+     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of
+     * the total
+     * payment amount have been routed, the amount left will be routed to the current organization
+     * automatically.
      * 
-     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the
+     * `applicationFee`
      * parameter.
      */
     public PaymentResponse withRouting(List<EntityPaymentRouteResponse> routing) {
@@ -1645,21 +1832,28 @@ public class PaymentResponse {
     }
 
     /**
-     * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+     * *This functionality is not enabled by default. Reach out to our partner management team if you wish
+     * to use it.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+     * <p>If you create payments on your own account that you want to split between yourself and one or more
+     * connected
      * merchants, you can use this `routing` parameter to route the payment accordingly.
      * 
-     * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+     * <p>The `routing` parameter should contain an array of objects, with each object describing the
+     * destination for a
      * specific portion of the payment.
      * 
-     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
-     * payment amount have been routed, the amount left will be routed to the current organization automatically.
+     * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of
+     * the total
+     * payment amount have been routed, the amount left will be routed to the current organization
+     * automatically.
      * 
-     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+     * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the
+     * `applicationFee`
      * parameter.
      */
     public PaymentResponse withRouting(JsonNullable<? extends List<EntityPaymentRouteResponse>> routing) {
@@ -1723,8 +1917,10 @@ public class PaymentResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     public PaymentResponse withProfileId(String profileId) {
@@ -1737,8 +1933,10 @@ public class PaymentResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     public PaymentResponse withProfileId(Optional<String> profileId) {
@@ -1774,7 +1972,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+     * The payment's status. Refer to the [documentation regarding
+     * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
      * statuses occur at what point.
      */
     public PaymentResponse withStatus(PaymentStatus status) {
@@ -1785,7 +1984,8 @@ public class PaymentResponse {
 
 
     /**
-     * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+     * The payment's status. Refer to the [documentation regarding
+     * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
      * statuses occur at what point.
      */
     public PaymentResponse withStatus(Optional<? extends PaymentStatus> status) {
@@ -1795,7 +1995,8 @@ public class PaymentResponse {
     }
 
     /**
-     * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+     * This object offers details about the status of a payment. Currently it is only available for
+     * point-of-sale
      * payments.
      * 
      * <p>You can find more information about the possible values of this object on
@@ -1808,7 +2009,8 @@ public class PaymentResponse {
     }
 
     /**
-     * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+     * This object offers details about the status of a payment. Currently it is only available for
+     * point-of-sale
      * payments.
      * 
      * <p>You can find more information about the possible values of this object on
@@ -1839,8 +2041,10 @@ public class PaymentResponse {
     }
 
     /**
-     * An object containing payment details collected during the payment process. For example, details may include the
-     * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+     * An object containing payment details collected during the payment process. For example, details may
+     * include the
+     * customer's card or bank details and a payment reference. For the full list of details, please refer
+     * to the
      * [method-specific parameters](extra-payment-parameters) guide.
      */
     public PaymentResponse withDetails(Details details) {
@@ -1850,8 +2054,10 @@ public class PaymentResponse {
     }
 
     /**
-     * An object containing payment details collected during the payment process. For example, details may include the
-     * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+     * An object containing payment details collected during the payment process. For example, details may
+     * include the
+     * customer's card or bank details and a payment reference. For the full list of details, please refer
+     * to the
      * [method-specific parameters](extra-payment-parameters) guide.
      */
     public PaymentResponse withDetails(JsonNullable<? extends Details> details) {
@@ -1861,7 +2067,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public PaymentResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -1871,7 +2078,8 @@ public class PaymentResponse {
 
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public PaymentResponse withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -1880,7 +2088,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if
+     * the payment is
      * not authorized (yet).
      */
     public PaymentResponse withAuthorizedAt(String authorizedAt) {
@@ -1890,7 +2099,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+     * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if
+     * the payment is
      * not authorized (yet).
      */
     public PaymentResponse withAuthorizedAt(JsonNullable<String> authorizedAt) {
@@ -1900,7 +2110,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the
+     * payment is not
      * completed (yet).
      */
     public PaymentResponse withPaidAt(String paidAt) {
@@ -1910,7 +2121,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+     * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the
+     * payment is not
      * completed (yet).
      */
     public PaymentResponse withPaidAt(JsonNullable<String> paidAt) {
@@ -1920,7 +2132,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the
+     * payment is not
      * canceled (yet).
      */
     public PaymentResponse withCanceledAt(String canceledAt) {
@@ -1930,7 +2143,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+     * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the
+     * payment is not
      * canceled (yet).
      */
     public PaymentResponse withCanceledAt(JsonNullable<String> canceledAt) {
@@ -1940,7 +2154,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the
+     * payment can no
      * longer expire.
      */
     public PaymentResponse withExpiresAt(String expiresAt) {
@@ -1950,7 +2165,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+     * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the
+     * payment can no
      * longer expire.
      */
     public PaymentResponse withExpiresAt(JsonNullable<String> expiresAt) {
@@ -1960,7 +2176,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the
+     * payment did not
      * expire (yet).
      */
     public PaymentResponse withExpiredAt(String expiredAt) {
@@ -1970,7 +2187,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+     * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the
+     * payment did not
      * expire (yet).
      */
     public PaymentResponse withExpiredAt(JsonNullable<String> expiredAt) {
@@ -1980,7 +2198,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment
+     * did not fail
      * (yet).
      */
     public PaymentResponse withFailedAt(String failedAt) {
@@ -1990,7 +2209,8 @@ public class PaymentResponse {
     }
 
     /**
-     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+     * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment
+     * did not fail
      * (yet).
      */
     public PaymentResponse withFailedAt(JsonNullable<String> failedAt) {
@@ -2244,7 +2464,8 @@ public class PaymentResponse {
 
 
         /**
-         * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
+         * Indicates the response contains a payment object. Will always contain the string `payment` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -2253,7 +2474,8 @@ public class PaymentResponse {
         }
 
         /**
-         * Indicates the response contains a payment object. Will always contain the string `payment` for this endpoint.
+         * Indicates the response contains a payment object. Will always contain the string `payment` for this
+         * endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -2295,15 +2517,20 @@ public class PaymentResponse {
 
 
         /**
-         * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-         * We truncate the description automatically according to the limits of the used payment method. The description is
+         * The description of the payment. This will be shown to your customer on their card or bank statement
+         * when possible.
+         * We truncate the description automatically according to the limits of the used payment method. The
+         * description is
          * also visible in any exports you generate.
          * 
-         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+         * your back office.
          * This is particularly useful for bookkeeping.
          * 
-         * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-         * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+         * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+         * being 255
+         * characters. The API will not reject strings longer than the maximum length but it will truncate them
+         * to fit.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -2312,15 +2539,20 @@ public class PaymentResponse {
         }
 
         /**
-         * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-         * We truncate the description automatically according to the limits of the used payment method. The description is
+         * The description of the payment. This will be shown to your customer on their card or bank statement
+         * when possible.
+         * We truncate the description automatically according to the limits of the used payment method. The
+         * description is
          * also visible in any exports you generate.
          * 
-         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+         * your back office.
          * This is particularly useful for bookkeeping.
          * 
-         * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-         * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+         * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+         * being 255
+         * characters. The API will not reject strings longer than the maximum length but it will truncate them
+         * to fit.
          */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
@@ -2446,10 +2678,12 @@ public class PaymentResponse {
         /**
          * The URL your customer will be redirected to after the payment process.
          * 
-         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+         * can show the
          * right page referencing the order when your customer returns.
          * 
-         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+         * recurring`) and for
          * Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(String redirectUrl) {
@@ -2461,10 +2695,12 @@ public class PaymentResponse {
         /**
          * The URL your customer will be redirected to after the payment process.
          * 
-         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+         * can show the
          * right page referencing the order when your customer returns.
          * 
-         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+         * recurring`) and for
          * Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(JsonNullable<String> redirectUrl) {
@@ -2475,11 +2711,14 @@ public class PaymentResponse {
 
 
         /**
-         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+         * this URL is not
          * provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
-         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+         * parameter is
+         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+         * handle
          * payment cancellations.
          */
         public Builder cancelUrl(String cancelUrl) {
@@ -2489,11 +2728,14 @@ public class PaymentResponse {
         }
 
         /**
-         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+         * this URL is not
          * provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
-         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+         * parameter is
+         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+         * handle
          * payment cancellations.
          */
         public Builder cancelUrl(JsonNullable<String> cancelUrl) {
@@ -2506,10 +2748,13 @@ public class PaymentResponse {
         /**
          * The webhook URL where we will send payment status updates to.
          * 
-         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+         * your payment.
          * 
-         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+         * want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+         * delivered to your
          * local machine.
          */
         public Builder webhookUrl(String webhookUrl) {
@@ -2521,10 +2766,13 @@ public class PaymentResponse {
         /**
          * The webhook URL where we will send payment status updates to.
          * 
-         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+         * your payment.
          * 
-         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+         * want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+         * delivered to your
          * local machine.
          */
         public Builder webhookUrl(JsonNullable<String> webhookUrl) {
@@ -2535,7 +2783,8 @@ public class PaymentResponse {
 
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * Optionally provide the order lines for the payment. Each line contains details such as a description
+         * of the item
          * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
@@ -2549,7 +2798,8 @@ public class PaymentResponse {
         }
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * Optionally provide the order lines for the payment. Each line contains details such as a description
+         * of the item
          * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
@@ -2609,7 +2859,8 @@ public class PaymentResponse {
 
 
         /**
-         * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+         * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during
+         * checkout. This
          * field is omitted if the country code was not detected.
          */
         public Builder countryCode(String countryCode) {
@@ -2619,7 +2870,8 @@ public class PaymentResponse {
         }
 
         /**
-         * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during checkout. This
+         * This optional field contains your customer's ISO 3166-1 alpha-2 country code, detected by us during
+         * checkout. This
          * field is omitted if the country code was not detected.
          */
         public Builder countryCode(JsonNullable<String> countryCode) {
@@ -2630,12 +2882,16 @@ public class PaymentResponse {
 
 
         /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+         * specific payment
+         * method and your customer will skip the selection screen and is sent directly to the chosen payment
+         * method. The
          * parameter enables you to fully integrate the payment method selection into your website.
          * 
-         * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality to only show
+         * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+         * selection screen
+         * but will only show the methods specified in the array. For example, you can use this functionality
+         * to only show
          * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          */
         public Builder method(MethodResponse method) {
@@ -2645,12 +2901,16 @@ public class PaymentResponse {
         }
 
         /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+         * specific payment
+         * method and your customer will skip the selection screen and is sent directly to the chosen payment
+         * method. The
          * parameter enables you to fully integrate the payment method selection into your website.
          * 
-         * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality to only show
+         * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+         * selection screen
+         * but will only show the methods specified in the array. For example, you can use this functionality
+         * to only show
          * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          */
         public Builder method(JsonNullable<? extends MethodResponse> method) {
@@ -2661,12 +2921,15 @@ public class PaymentResponse {
 
 
         /**
-         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+         * Choose the VAT
          * rates you have used for the order to ensure your customer's country matches the VAT country.
          * 
-         * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+         * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+         * country.
          * 
-         * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+         * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+         * are accepted.
          * 
          * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
          */
@@ -2677,12 +2940,15 @@ public class PaymentResponse {
         }
 
         /**
-         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+         * Choose the VAT
          * rates you have used for the order to ensure your customer's country matches the VAT country.
          * 
-         * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+         * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+         * country.
          * 
-         * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+         * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+         * are accepted.
          * 
          * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
          */
@@ -2694,8 +2960,10 @@ public class PaymentResponse {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -2704,8 +2972,10 @@ public class PaymentResponse {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -2715,7 +2985,8 @@ public class PaymentResponse {
 
 
         /**
-         * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+         * Indicate if the funds should be captured immediately or if you want to [place a
+         * hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/)
          * and capture at a later time.
          * 
          * <p>This field needs to be set to `manual` for method `riverty`.
@@ -2727,7 +2998,8 @@ public class PaymentResponse {
         }
 
         /**
-         * Indicate if the funds should be captured immediately or if you want to [place a hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/) 
+         * Indicate if the funds should be captured immediately or if you want to [place a
+         * hold](https://docs.mollie.com/docs/place-a-hold-for-a-payment#/)
          * and capture at a later time.
          * 
          * <p>This field needs to be set to `manual` for method `riverty`.
@@ -2742,11 +3014,14 @@ public class PaymentResponse {
         /**
          * **Only relevant if you wish to manage authorization and capturing separately.**
          * 
-         * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+         * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization'
+         * can then at a
          * later point either be 'captured' or canceled.
          * 
-         * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
-         * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+         * <p>By default, we charge the customer's card or bank account immediately when they complete the
+         * payment. If you set a
+         * capture delay however, we will delay the automatic capturing of the payment for the specified amount
+         * of time. For
          * example `8 hours` or `2 days`.
          * 
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
@@ -2764,11 +3039,14 @@ public class PaymentResponse {
         /**
          * **Only relevant if you wish to manage authorization and capturing separately.**
          * 
-         * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization' can then at a
+         * <p>Some payment methods allow placing a hold on the card or bank account. This hold or 'authorization'
+         * can then at a
          * later point either be 'captured' or canceled.
          * 
-         * <p>By default, we charge the customer's card or bank account immediately when they complete the payment. If you set a
-         * capture delay however, we will delay the automatic capturing of the payment for the specified amount of time. For
+         * <p>By default, we charge the customer's card or bank account immediately when they complete the
+         * payment. If you set a
+         * capture delay however, we will delay the automatic capturing of the payment for the specified amount
+         * of time. For
          * example `8 hours` or `2 days`.
          * 
          * <p>To schedule an automatic capture, the `captureMode` must be set to `automatic`.
@@ -2785,8 +3063,10 @@ public class PaymentResponse {
 
 
         /**
-         * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
-         * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+         * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date
+         * onwards we
+         * can no longer guarantee a successful capture. The parameter is omitted if the payment is not
+         * authorized (yet).
          */
         public Builder captureBefore(String captureBefore) {
             Utils.checkNotNull(captureBefore, "captureBefore");
@@ -2795,8 +3075,10 @@ public class PaymentResponse {
         }
 
         /**
-         * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date onwards we
-         * can no longer guarantee a successful capture. The parameter is omitted if the payment is not authorized (yet).
+         * Indicates the date before which the payment needs to be captured, in ISO 8601 format. From this date
+         * onwards we
+         * can no longer guarantee a successful capture. The parameter is omitted if the payment is not
+         * authorized (yet).
          */
         public Builder captureBefore(JsonNullable<String> captureBefore) {
             Utils.checkNotNull(captureBefore, "captureBefore");
@@ -2806,14 +3088,18 @@ public class PaymentResponse {
 
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+         * Mollie
          * merchants.
          * 
-         * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
-         * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+         * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using
+         * this
+         * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's
+         * balance and sent
          * to your own account balance.
          * 
-         * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+         * <p>If instead you want to split a payment on your own account between yourself and a connected
+         * merchant, refer to the
          * `routing` parameter.
          */
         public Builder applicationFee(ApplicationFee applicationFee) {
@@ -2823,14 +3109,18 @@ public class PaymentResponse {
         }
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+         * Mollie
          * merchants.
          * 
-         * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
-         * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+         * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using
+         * this
+         * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's
+         * balance and sent
          * to your own account balance.
          * 
-         * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+         * <p>If instead you want to split a payment on your own account between yourself and a connected
+         * merchant, refer to the
          * `routing` parameter.
          */
         public Builder applicationFee(JsonNullable<? extends ApplicationFee> applicationFee) {
@@ -2841,21 +3131,28 @@ public class PaymentResponse {
 
 
         /**
-         * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+         * *This functionality is not enabled by default. Reach out to our partner management team if you wish
+         * to use it.*
          * 
-         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+         * Mollie
          * merchants.
          * 
-         * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+         * <p>If you create payments on your own account that you want to split between yourself and one or more
+         * connected
          * merchants, you can use this `routing` parameter to route the payment accordingly.
          * 
-         * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+         * <p>The `routing` parameter should contain an array of objects, with each object describing the
+         * destination for a
          * specific portion of the payment.
          * 
-         * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
-         * payment amount have been routed, the amount left will be routed to the current organization automatically.
+         * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of
+         * the total
+         * payment amount have been routed, the amount left will be routed to the current organization
+         * automatically.
          * 
-         * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+         * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the
+         * `applicationFee`
          * parameter.
          */
         public Builder routing(List<EntityPaymentRouteResponse> routing) {
@@ -2865,21 +3162,28 @@ public class PaymentResponse {
         }
 
         /**
-         * *This functionality is not enabled by default. Reach out to our partner management team if you wish to use it.*
+         * *This functionality is not enabled by default. Reach out to our partner management team if you wish
+         * to use it.*
          * 
-         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+         * Mollie
          * merchants.
          * 
-         * <p>If you create payments on your own account that you want to split between yourself and one or more connected
+         * <p>If you create payments on your own account that you want to split between yourself and one or more
+         * connected
          * merchants, you can use this `routing` parameter to route the payment accordingly.
          * 
-         * <p>The `routing` parameter should contain an array of objects, with each object describing the destination for a
+         * <p>The `routing` parameter should contain an array of objects, with each object describing the
+         * destination for a
          * specific portion of the payment.
          * 
-         * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of the total
-         * payment amount have been routed, the amount left will be routed to the current organization automatically.
+         * <p>It is not necessary to indicate in the array which portion goes to yourself. After all portions of
+         * the total
+         * payment amount have been routed, the amount left will be routed to the current organization
+         * automatically.
          * 
-         * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the `applicationFee`
+         * <p>If instead you use OAuth to create payments on a connected merchant's account, refer to the
+         * `applicationFee`
          * parameter.
          */
         public Builder routing(JsonNullable<? extends List<EntityPaymentRouteResponse>> routing) {
@@ -2944,8 +3248,10 @@ public class PaymentResponse {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
          * required.
          */
         public Builder profileId(String profileId) {
@@ -2957,8 +3263,10 @@ public class PaymentResponse {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
          * required.
          */
         public Builder profileId(Optional<String> profileId) {
@@ -2995,7 +3303,8 @@ public class PaymentResponse {
 
 
         /**
-         * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+         * The payment's status. Refer to the [documentation regarding
+         * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
          * statuses occur at what point.
          */
         public Builder status(PaymentStatus status) {
@@ -3005,7 +3314,8 @@ public class PaymentResponse {
         }
 
         /**
-         * The payment's status. Refer to the [documentation regarding statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+         * The payment's status. Refer to the [documentation regarding
+         * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
          * statuses occur at what point.
          */
         public Builder status(Optional<? extends PaymentStatus> status) {
@@ -3016,7 +3326,8 @@ public class PaymentResponse {
 
 
         /**
-         * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+         * This object offers details about the status of a payment. Currently it is only available for
+         * point-of-sale
          * payments.
          * 
          * <p>You can find more information about the possible values of this object on
@@ -3029,7 +3340,8 @@ public class PaymentResponse {
         }
 
         /**
-         * This object offers details about the status of a payment. Currently it is only available for point-of-sale
+         * This object offers details about the status of a payment. Currently it is only available for
+         * point-of-sale
          * payments.
          * 
          * <p>You can find more information about the possible values of this object on
@@ -3062,8 +3374,10 @@ public class PaymentResponse {
 
 
         /**
-         * An object containing payment details collected during the payment process. For example, details may include the
-         * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+         * An object containing payment details collected during the payment process. For example, details may
+         * include the
+         * customer's card or bank details and a payment reference. For the full list of details, please refer
+         * to the
          * [method-specific parameters](extra-payment-parameters) guide.
          */
         public Builder details(Details details) {
@@ -3073,8 +3387,10 @@ public class PaymentResponse {
         }
 
         /**
-         * An object containing payment details collected during the payment process. For example, details may include the
-         * customer's card or bank details and a payment reference. For the full list of details, please refer to the
+         * An object containing payment details collected during the payment process. For example, details may
+         * include the
+         * customer's card or bank details and a payment reference. For the full list of details, please refer
+         * to the
          * [method-specific parameters](extra-payment-parameters) guide.
          */
         public Builder details(JsonNullable<? extends Details> details) {
@@ -3085,7 +3401,8 @@ public class PaymentResponse {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -3094,7 +3411,8 @@ public class PaymentResponse {
         }
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -3104,7 +3422,8 @@ public class PaymentResponse {
 
 
         /**
-         * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+         * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if
+         * the payment is
          * not authorized (yet).
          */
         public Builder authorizedAt(String authorizedAt) {
@@ -3114,7 +3433,8 @@ public class PaymentResponse {
         }
 
         /**
-         * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if the payment is
+         * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if
+         * the payment is
          * not authorized (yet).
          */
         public Builder authorizedAt(JsonNullable<String> authorizedAt) {
@@ -3125,7 +3445,8 @@ public class PaymentResponse {
 
 
         /**
-         * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+         * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the
+         * payment is not
          * completed (yet).
          */
         public Builder paidAt(String paidAt) {
@@ -3135,7 +3456,8 @@ public class PaymentResponse {
         }
 
         /**
-         * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the payment is not
+         * The date and time the payment became paid, in ISO 8601 format. This parameter is omitted if the
+         * payment is not
          * completed (yet).
          */
         public Builder paidAt(JsonNullable<String> paidAt) {
@@ -3146,7 +3468,8 @@ public class PaymentResponse {
 
 
         /**
-         * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+         * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the
+         * payment is not
          * canceled (yet).
          */
         public Builder canceledAt(String canceledAt) {
@@ -3156,7 +3479,8 @@ public class PaymentResponse {
         }
 
         /**
-         * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the payment is not
+         * The date and time the payment was canceled, in ISO 8601 format. This parameter is omitted if the
+         * payment is not
          * canceled (yet).
          */
         public Builder canceledAt(JsonNullable<String> canceledAt) {
@@ -3167,7 +3491,8 @@ public class PaymentResponse {
 
 
         /**
-         * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+         * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the
+         * payment can no
          * longer expire.
          */
         public Builder expiresAt(String expiresAt) {
@@ -3177,7 +3502,8 @@ public class PaymentResponse {
         }
 
         /**
-         * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the payment can no
+         * The date and time the payment will expire, in ISO 8601 format. This parameter is omitted if the
+         * payment can no
          * longer expire.
          */
         public Builder expiresAt(JsonNullable<String> expiresAt) {
@@ -3188,7 +3514,8 @@ public class PaymentResponse {
 
 
         /**
-         * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+         * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the
+         * payment did not
          * expire (yet).
          */
         public Builder expiredAt(String expiredAt) {
@@ -3198,7 +3525,8 @@ public class PaymentResponse {
         }
 
         /**
-         * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the payment did not
+         * The date and time the payment was expired, in ISO 8601 format. This parameter is omitted if the
+         * payment did not
          * expire (yet).
          */
         public Builder expiredAt(JsonNullable<String> expiredAt) {
@@ -3209,7 +3537,8 @@ public class PaymentResponse {
 
 
         /**
-         * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+         * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment
+         * did not fail
          * (yet).
          */
         public Builder failedAt(String failedAt) {
@@ -3219,7 +3548,8 @@ public class PaymentResponse {
         }
 
         /**
-         * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment did not fail
+         * The date and time the payment failed, in ISO 8601 format. This parameter is omitted if the payment
+         * did not fail
          * (yet).
          */
         public Builder failedAt(JsonNullable<String> failedAt) {

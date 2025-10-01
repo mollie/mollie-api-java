@@ -22,7 +22,8 @@ public class SalesInvoicePaymentDetailsResponse {
     private SalesInvoicePaymentDetailsSourceResponse source;
 
     /**
-     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link`
+     * and
      * `payment`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -53,7 +54,8 @@ public class SalesInvoicePaymentDetailsResponse {
     }
 
     /**
-     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link`
+     * and
      * `payment`.
      */
     @JsonIgnore
@@ -76,7 +78,8 @@ public class SalesInvoicePaymentDetailsResponse {
     }
 
     /**
-     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link`
+     * and
      * `payment`.
      */
     public SalesInvoicePaymentDetailsResponse withSourceReference(String sourceReference) {
@@ -86,7 +89,8 @@ public class SalesInvoicePaymentDetailsResponse {
     }
 
     /**
-     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+     * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link`
+     * and
      * `payment`.
      */
     public SalesInvoicePaymentDetailsResponse withSourceReference(JsonNullable<String> sourceReference) {
@@ -145,7 +149,8 @@ public class SalesInvoicePaymentDetailsResponse {
 
 
         /**
-         * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+         * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link`
+         * and
          * `payment`.
          */
         public Builder sourceReference(String sourceReference) {
@@ -155,7 +160,8 @@ public class SalesInvoicePaymentDetailsResponse {
         }
 
         /**
-         * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link` and
+         * A reference to the payment the sales invoice is paid by. Required for `source` values `payment-link`
+         * and
          * `payment`.
          */
         public Builder sourceReference(JsonNullable<String> sourceReference) {

@@ -18,19 +18,24 @@ import java.util.Optional;
 
 public class EntityMethodAll {
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this
+     * Indicates the response contains a payment method object. Will always contain the string `method` for
+     * this
      * endpoint.
      */
     @JsonProperty("resource")
     private String resource;
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     @JsonInclude(Include.ALWAYS)
@@ -71,7 +76,8 @@ public class EntityMethodAll {
     private MethodStatus status;
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method.
+     * Only relevant
      * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -85,7 +91,8 @@ public class EntityMethodAll {
     private EntityMethodAllLinks links;
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this
+     * payment method on
      * your account.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -140,7 +147,8 @@ public class EntityMethodAll {
     }
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this
+     * Indicates the response contains a payment method object. Will always contain the string `method` for
+     * this
      * endpoint.
      */
     @JsonIgnore
@@ -149,12 +157,16 @@ public class EntityMethodAll {
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     @SuppressWarnings("unchecked")
@@ -207,7 +219,8 @@ public class EntityMethodAll {
     }
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method.
+     * Only relevant
      * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     @SuppressWarnings("unchecked")
@@ -225,7 +238,8 @@ public class EntityMethodAll {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this
+     * payment method on
      * your account.
      */
     @SuppressWarnings("unchecked")
@@ -240,7 +254,8 @@ public class EntityMethodAll {
 
 
     /**
-     * Indicates the response contains a payment method object. Will always contain the string `method` for this
+     * Indicates the response contains a payment method object. Will always contain the string `method` for
+     * this
      * endpoint.
      */
     public EntityMethodAll withResource(String resource) {
@@ -250,12 +265,16 @@ public class EntityMethodAll {
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     public EntityMethodAll withId(MethodResponse id) {
@@ -266,12 +285,16 @@ public class EntityMethodAll {
 
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     public EntityMethodAll withId(Optional<? extends MethodResponse> id) {
@@ -338,7 +361,8 @@ public class EntityMethodAll {
     }
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method.
+     * Only relevant
      * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     public EntityMethodAll withIssuers(List<EntityMethodAllIssuers> issuers) {
@@ -349,7 +373,8 @@ public class EntityMethodAll {
 
 
     /**
-     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+     * **Optional include.** Array of objects for each 'issuer' that is available for this payment method.
+     * Only relevant
      * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
     public EntityMethodAll withIssuers(Optional<? extends List<EntityMethodAllIssuers>> issuers) {
@@ -368,7 +393,8 @@ public class EntityMethodAll {
     }
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this
+     * payment method on
      * your account.
      */
     public EntityMethodAll withPricing(List<Pricing> pricing) {
@@ -379,7 +405,8 @@ public class EntityMethodAll {
 
 
     /**
-     * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+     * **Optional include.** Array of objects describing the pricing configuration applicable for this
+     * payment method on
      * your account.
      */
     public EntityMethodAll withPricing(Optional<? extends List<Pricing>> pricing) {
@@ -463,7 +490,8 @@ public class EntityMethodAll {
 
 
         /**
-         * Indicates the response contains a payment method object. Will always contain the string `method` for this
+         * Indicates the response contains a payment method object. Will always contain the string `method` for
+         * this
          * endpoint.
          */
         public Builder resource(String resource) {
@@ -474,12 +502,16 @@ public class EntityMethodAll {
 
 
         /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+         * specific payment
+         * method and your customer will skip the selection screen and is sent directly to the chosen payment
+         * method. The
          * parameter enables you to fully integrate the payment method selection into your website.
          * 
-         * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality to only show
+         * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+         * selection screen
+         * but will only show the methods specified in the array. For example, you can use this functionality
+         * to only show
          * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          */
         public Builder id(MethodResponse id) {
@@ -489,12 +521,16 @@ public class EntityMethodAll {
         }
 
         /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+         * specific payment
+         * method and your customer will skip the selection screen and is sent directly to the chosen payment
+         * method. The
          * parameter enables you to fully integrate the payment method selection into your website.
          * 
-         * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality to only show
+         * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+         * selection screen
+         * but will only show the methods specified in the array. For example, you can use this functionality
+         * to only show
          * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          */
         public Builder id(Optional<? extends MethodResponse> id) {
@@ -566,7 +602,8 @@ public class EntityMethodAll {
 
 
         /**
-         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method.
+         * Only relevant
          * for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
         public Builder issuers(List<EntityMethodAllIssuers> issuers) {
@@ -576,7 +613,8 @@ public class EntityMethodAll {
         }
 
         /**
-         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method. Only relevant
+         * **Optional include.** Array of objects for each 'issuer' that is available for this payment method.
+         * Only relevant
          * for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
         public Builder issuers(Optional<? extends List<EntityMethodAllIssuers>> issuers) {
@@ -597,7 +635,8 @@ public class EntityMethodAll {
 
 
         /**
-         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+         * **Optional include.** Array of objects describing the pricing configuration applicable for this
+         * payment method on
          * your account.
          */
         public Builder pricing(List<Pricing> pricing) {
@@ -607,7 +646,8 @@ public class EntityMethodAll {
         }
 
         /**
-         * **Optional include.** Array of objects describing the pricing configuration applicable for this payment method on
+         * **Optional include.** Array of objects describing the pricing configuration applicable for this
+         * payment method on
          * your account.
          */
         public Builder pricing(Optional<? extends List<Pricing>> pricing) {

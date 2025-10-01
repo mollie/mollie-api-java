@@ -13,7 +13,8 @@ import java.lang.String;
 
 public class RouteCreateResponse {
     /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+     * Indicates the response contains a route object. Will always contain the string `route` for this
+     * endpoint.
      */
     @JsonProperty("resource")
     private String resource;
@@ -76,7 +77,8 @@ public class RouteCreateResponse {
     }
 
     /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+     * Indicates the response contains a route object. Will always contain the string `route` for this
+     * endpoint.
      */
     @JsonIgnore
     public String resource() {
@@ -131,7 +133,8 @@ public class RouteCreateResponse {
 
 
     /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+     * Indicates the response contains a route object. Will always contain the string `route` for this
+     * endpoint.
      */
     public RouteCreateResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -249,7 +252,8 @@ public class RouteCreateResponse {
 
 
         /**
-         * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+         * Indicates the response contains a route object. Will always contain the string `route` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");

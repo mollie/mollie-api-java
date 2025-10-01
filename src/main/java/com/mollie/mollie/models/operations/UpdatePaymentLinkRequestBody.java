@@ -23,10 +23,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdatePaymentLinkRequestBody {
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown
+     * A short description of the payment link. The description is visible in the Dashboard and will be
+     * shown
      * on the customer's bank or card statement when possible.
      * 
-     * <p>Updating the description does not affect any previously existing payments created for this payment link.
+     * <p>Updating the description does not affect any previously existing payments created for this payment
+     * link.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -48,11 +50,14 @@ public class UpdatePaymentLinkRequestBody {
     private Optional<Boolean> archived;
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter
+     * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+     * 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+     * 'satispay', 'trustly', 'twint',
      * 'in3', 'riverty', 'klarna', 'billie'.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -60,7 +65,8 @@ public class UpdatePaymentLinkRequestBody {
     private JsonNullable<? extends List<String>> allowedMethods;
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -82,7 +88,8 @@ public class UpdatePaymentLinkRequestBody {
     private Optional<? extends PaymentAddress> shippingAddress;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -126,10 +133,12 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown
+     * A short description of the payment link. The description is visible in the Dashboard and will be
+     * shown
      * on the customer's bank or card statement when possible.
      * 
-     * <p>Updating the description does not affect any previously existing payments created for this payment link.
+     * <p>Updating the description does not affect any previously existing payments created for this payment
+     * link.
      */
     @JsonIgnore
     public Optional<String> description() {
@@ -155,11 +164,14 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter
+     * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+     * 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+     * 'satispay', 'trustly', 'twint',
      * 'in3', 'riverty', 'klarna', 'billie'.
      */
     @SuppressWarnings("unchecked")
@@ -169,7 +181,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -195,7 +208,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -211,10 +225,12 @@ public class UpdatePaymentLinkRequestBody {
 
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown
+     * A short description of the payment link. The description is visible in the Dashboard and will be
+     * shown
      * on the customer's bank or card statement when possible.
      * 
-     * <p>Updating the description does not affect any previously existing payments created for this payment link.
+     * <p>Updating the description does not affect any previously existing payments created for this payment
+     * link.
      */
     public UpdatePaymentLinkRequestBody withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -224,10 +240,12 @@ public class UpdatePaymentLinkRequestBody {
 
 
     /**
-     * A short description of the payment link. The description is visible in the Dashboard and will be shown
+     * A short description of the payment link. The description is visible in the Dashboard and will be
+     * shown
      * on the customer's bank or card statement when possible.
      * 
-     * <p>Updating the description does not affect any previously existing payments created for this payment link.
+     * <p>Updating the description does not affect any previously existing payments created for this payment
+     * link.
      */
     public UpdatePaymentLinkRequestBody withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -276,11 +294,14 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter
+     * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+     * 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+     * 'satispay', 'trustly', 'twint',
      * 'in3', 'riverty', 'klarna', 'billie'.
      */
     public UpdatePaymentLinkRequestBody withAllowedMethods(List<String> allowedMethods) {
@@ -290,11 +311,14 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+     * An array of payment methods that are allowed to be used for this payment link. When this parameter
+     * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+     * 'eps', 'giftcard',
+     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+     * 'satispay', 'trustly', 'twint',
      * 'in3', 'riverty', 'klarna', 'billie'.
      */
     public UpdatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
@@ -304,7 +328,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -318,7 +343,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+     * Optionally provide the order lines for the payment. Each line contains details such as a description
+     * of the item
      * ordered and its price.
      * 
      * <p>All lines must have the same currency as the payment.
@@ -358,7 +384,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -370,7 +397,8 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -447,10 +475,12 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * A short description of the payment link. The description is visible in the Dashboard and will be shown
+         * A short description of the payment link. The description is visible in the Dashboard and will be
+         * shown
          * on the customer's bank or card statement when possible.
          * 
-         * <p>Updating the description does not affect any previously existing payments created for this payment link.
+         * <p>Updating the description does not affect any previously existing payments created for this payment
+         * link.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -459,10 +489,12 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * A short description of the payment link. The description is visible in the Dashboard and will be shown
+         * A short description of the payment link. The description is visible in the Dashboard and will be
+         * shown
          * on the customer's bank or card statement when possible.
          * 
-         * <p>Updating the description does not affect any previously existing payments created for this payment link.
+         * <p>Updating the description does not affect any previously existing payments created for this payment
+         * link.
          */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
@@ -512,11 +544,14 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter
+         * is
          * not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+         * 'eps', 'giftcard',
+         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+         * 'satispay', 'trustly', 'twint',
          * 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(List<String> allowedMethods) {
@@ -526,11 +561,14 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * An array of payment methods that are allowed to be used for this payment link. When this parameter is
+         * An array of payment methods that are allowed to be used for this payment link. When this parameter
+         * is
          * not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard', 'eps', 'giftcard',
-         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24', 'satispay', 'trustly', 'twint',
+         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
+         * 'eps', 'giftcard',
+         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
+         * 'satispay', 'trustly', 'twint',
          * 'in3', 'riverty', 'klarna', 'billie'.
          */
         public Builder allowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
@@ -541,7 +579,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * Optionally provide the order lines for the payment. Each line contains details such as a description
+         * of the item
          * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
@@ -555,7 +594,8 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * Optionally provide the order lines for the payment. Each line contains details such as a description of the item
+         * Optionally provide the order lines for the payment. Each line contains details such as a description
+         * of the item
          * ordered and its price.
          * 
          * <p>All lines must have the same currency as the payment.
@@ -596,7 +636,8 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+         * Most API credentials are specifically created for either live mode or test mode. For
+         * organization-level credentials
          * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -608,7 +649,8 @@ public class UpdatePaymentLinkRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+         * Most API credentials are specifically created for either live mode or test mode. For
+         * organization-level credentials
          * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

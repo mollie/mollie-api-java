@@ -82,7 +82,7 @@ public class AsyncSalesInvoices {
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
-     * @return CompletableFuture&lt;CreateSalesInvoiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<CreateSalesInvoiceResponse> createDirect() {
         return create(Optional.empty(), Optional.empty(), Optional.empty());
@@ -100,7 +100,7 @@ public class AsyncSalesInvoices {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entitySalesInvoice 
      * @param options additional options
-     * @return CompletableFuture&lt;CreateSalesInvoiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<CreateSalesInvoiceResponse> create(
             Optional<String> idempotencyKey, Optional<? extends EntitySalesInvoice> entitySalesInvoice,
@@ -148,7 +148,7 @@ public class AsyncSalesInvoices {
      * 
      * <p>The results are paginated.
      * 
-     * @return CompletableFuture&lt;ListSalesInvoicesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSalesInvoicesResponse>} - The async response
      */
     public CompletableFuture<ListSalesInvoicesResponse> listDirect() {
         return list(
@@ -177,7 +177,7 @@ public class AsyncSalesInvoices {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;ListSalesInvoicesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSalesInvoicesResponse>} - The async response
      */
     public CompletableFuture<ListSalesInvoicesResponse> list(
             JsonNullable<String> from, JsonNullable<Long> limit,
@@ -225,7 +225,7 @@ public class AsyncSalesInvoices {
      * <p>Retrieve a single sales invoice by its ID.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;GetSalesInvoiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<GetSalesInvoiceResponse> get(String id) {
         return get(
@@ -250,7 +250,7 @@ public class AsyncSalesInvoices {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetSalesInvoiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<GetSalesInvoiceResponse> get(
             String id, JsonNullable<Boolean> testmode,
@@ -278,8 +278,10 @@ public class AsyncSalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
-     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
+     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed
+     * below, but for
+     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
+     * `emailDetails`,
      * respectively).
      * 
      * @return The async call builder
@@ -295,12 +297,14 @@ public class AsyncSalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
-     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
+     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed
+     * below, but for
+     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
+     * `emailDetails`,
      * respectively).
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;UpdateSalesInvoiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<UpdateSalesInvoiceResponse> update(String id) {
         return update(
@@ -315,15 +319,17 @@ public class AsyncSalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
-     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
+     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed
+     * below, but for
+     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
+     * `emailDetails`,
      * respectively).
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param updateValuesSalesInvoice 
      * @param options additional options
-     * @return CompletableFuture&lt;UpdateSalesInvoiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<UpdateSalesInvoiceResponse> update(
             String id, Optional<String> idempotencyKey,
@@ -371,7 +377,7 @@ public class AsyncSalesInvoices {
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;DeleteSalesInvoiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<DeleteSalesInvoiceResponse> delete(String id) {
         return delete(
@@ -393,7 +399,7 @@ public class AsyncSalesInvoices {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param deleteValuesSalesInvoice 
      * @param options additional options
-     * @return CompletableFuture&lt;DeleteSalesInvoiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<DeleteSalesInvoiceResponse> delete(
             String id, Optional<String> idempotencyKey,

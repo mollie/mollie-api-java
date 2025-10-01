@@ -45,8 +45,10 @@ public class EntityCustomer {
     private JsonNullable<? extends LocaleResponse> locale;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -55,8 +57,10 @@ public class EntityCustomer {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -121,8 +125,10 @@ public class EntityCustomer {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -133,8 +139,10 @@ public class EntityCustomer {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonIgnore
@@ -215,8 +223,10 @@ public class EntityCustomer {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public EntityCustomer withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -225,8 +235,10 @@ public class EntityCustomer {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public EntityCustomer withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -237,8 +249,10 @@ public class EntityCustomer {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public EntityCustomer withTestmode(boolean testmode) {
@@ -250,8 +264,10 @@ public class EntityCustomer {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public EntityCustomer withTestmode(JsonNullable<Boolean> testmode) {
@@ -387,8 +403,10 @@ public class EntityCustomer {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -397,8 +415,10 @@ public class EntityCustomer {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -410,8 +430,10 @@ public class EntityCustomer {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
@@ -423,8 +445,10 @@ public class EntityCustomer {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {

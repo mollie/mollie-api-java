@@ -11,7 +11,8 @@ import java.util.Optional;
 /**
  * Resource
  * 
- * <p>**⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api) instead.**
+ * <p>**⚠️ We no longer recommend using the Orders API. Please refer to the [Payments API](payments-api)
+ * instead.**
  * 
  * <p>Indicate if you will use the result for the [Create order](create-order)
  * or the [Create payment](create-payment) endpoint.

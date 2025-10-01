@@ -19,7 +19,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class SubscriptionResponse {
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * Indicates the response contains a subscription object. Will always contain the string `subscription`
+     * for this
      * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -39,7 +40,8 @@ public class SubscriptionResponse {
     private Optional<? extends Mode> mode;
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * The subscription's current status is directly related to the status of the underlying customer or
+     * mandate that is
      * enabling the subscription.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -54,7 +56,8 @@ public class SubscriptionResponse {
     private Optional<? extends Amount> amount;
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -75,7 +78,9 @@ public class SubscriptionResponse {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interval")
@@ -89,7 +94,8 @@ public class SubscriptionResponse {
     private Optional<String> startDate;
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been
+     * completed or canceled,
      * this parameter will not be returned.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -97,29 +103,35 @@ public class SubscriptionResponse {
     private JsonNullable<String> nextPaymentDate;
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private Optional<String> description;
 
     /**
-     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+     * be used.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
     private JsonNullable<? extends SubscriptionMethodResponse> method;
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+     * payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+     * more
      * information.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -127,8 +139,10 @@ public class SubscriptionResponse {
     private Optional<? extends SubscriptionResponseApplicationFee> applicationFee;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -137,7 +151,8 @@ public class SubscriptionResponse {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -155,14 +170,16 @@ public class SubscriptionResponse {
     private Optional<String> mandateId;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
     private Optional<String> createdAt;
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if
+     * the
      * subscription is not canceled (yet).
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -251,7 +268,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * Indicates the response contains a subscription object. Will always contain the string `subscription`
+     * for this
      * endpoint.
      */
     @JsonIgnore
@@ -274,7 +292,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * The subscription's current status is directly related to the status of the underlying customer or
+     * mandate that is
      * enabling the subscription.
      */
     @SuppressWarnings("unchecked")
@@ -293,7 +312,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -316,7 +336,9 @@ public class SubscriptionResponse {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     @JsonIgnore
     public Optional<String> interval() {
@@ -332,7 +354,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been
+     * completed or canceled,
      * this parameter will not be returned.
      */
     @JsonIgnore
@@ -341,10 +364,12 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     @JsonIgnore
     public Optional<String> description() {
@@ -352,7 +377,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+     * be used.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -361,12 +387,15 @@ public class SubscriptionResponse {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+     * payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+     * more
      * information.
      */
     @SuppressWarnings("unchecked")
@@ -376,8 +405,10 @@ public class SubscriptionResponse {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -388,7 +419,8 @@ public class SubscriptionResponse {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonIgnore
@@ -407,7 +439,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public Optional<String> createdAt() {
@@ -415,7 +448,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if
+     * the
      * subscription is not canceled (yet).
      */
     @JsonIgnore
@@ -438,7 +472,8 @@ public class SubscriptionResponse {
 
 
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * Indicates the response contains a subscription object. Will always contain the string `subscription`
+     * for this
      * endpoint.
      */
     public SubscriptionResponse withResource(String resource) {
@@ -449,7 +484,8 @@ public class SubscriptionResponse {
 
 
     /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+     * Indicates the response contains a subscription object. Will always contain the string `subscription`
+     * for this
      * endpoint.
      */
     public SubscriptionResponse withResource(Optional<String> resource) {
@@ -491,7 +527,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * The subscription's current status is directly related to the status of the underlying customer or
+     * mandate that is
      * enabling the subscription.
      */
     public SubscriptionResponse withStatus(SubscriptionStatus status) {
@@ -502,7 +539,8 @@ public class SubscriptionResponse {
 
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * The subscription's current status is directly related to the status of the underlying customer or
+     * mandate that is
      * enabling the subscription.
      */
     public SubscriptionResponse withStatus(Optional<? extends SubscriptionStatus> status) {
@@ -531,7 +569,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -543,7 +582,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -577,7 +617,9 @@ public class SubscriptionResponse {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     public SubscriptionResponse withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
@@ -591,7 +633,9 @@ public class SubscriptionResponse {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     public SubscriptionResponse withInterval(Optional<String> interval) {
         Utils.checkNotNull(interval, "interval");
@@ -619,7 +663,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been
+     * completed or canceled,
      * this parameter will not be returned.
      */
     public SubscriptionResponse withNextPaymentDate(String nextPaymentDate) {
@@ -629,7 +674,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+     * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been
+     * completed or canceled,
      * this parameter will not be returned.
      */
     public SubscriptionResponse withNextPaymentDate(JsonNullable<String> nextPaymentDate) {
@@ -639,10 +685,12 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     public SubscriptionResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -652,10 +700,12 @@ public class SubscriptionResponse {
 
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     public SubscriptionResponse withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -664,7 +714,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+     * be used.
      */
     public SubscriptionResponse withMethod(SubscriptionMethodResponse method) {
         Utils.checkNotNull(method, "method");
@@ -673,7 +724,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+     * be used.
      */
     public SubscriptionResponse withMethod(JsonNullable<? extends SubscriptionMethodResponse> method) {
         Utils.checkNotNull(method, "method");
@@ -682,12 +734,15 @@ public class SubscriptionResponse {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+     * payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+     * more
      * information.
      */
     public SubscriptionResponse withApplicationFee(SubscriptionResponseApplicationFee applicationFee) {
@@ -698,12 +753,15 @@ public class SubscriptionResponse {
 
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+     * payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+     * more
      * information.
      */
     public SubscriptionResponse withApplicationFee(Optional<? extends SubscriptionResponseApplicationFee> applicationFee) {
@@ -713,8 +771,10 @@ public class SubscriptionResponse {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public SubscriptionResponse withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -723,8 +783,10 @@ public class SubscriptionResponse {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public SubscriptionResponse withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -735,7 +797,8 @@ public class SubscriptionResponse {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     public SubscriptionResponse withWebhookUrl(String webhookUrl) {
@@ -748,7 +811,8 @@ public class SubscriptionResponse {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     public SubscriptionResponse withWebhookUrl(Optional<String> webhookUrl) {
@@ -784,7 +848,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public SubscriptionResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -794,7 +859,8 @@ public class SubscriptionResponse {
 
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public SubscriptionResponse withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -803,7 +869,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if
+     * the
      * subscription is not canceled (yet).
      */
     public SubscriptionResponse withCanceledAt(String canceledAt) {
@@ -813,7 +880,8 @@ public class SubscriptionResponse {
     }
 
     /**
-     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+     * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if
+     * the
      * subscription is not canceled (yet).
      */
     public SubscriptionResponse withCanceledAt(JsonNullable<String> canceledAt) {
@@ -959,7 +1027,8 @@ public class SubscriptionResponse {
 
 
         /**
-         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+         * Indicates the response contains a subscription object. Will always contain the string `subscription`
+         * for this
          * endpoint.
          */
         public Builder resource(String resource) {
@@ -969,7 +1038,8 @@ public class SubscriptionResponse {
         }
 
         /**
-         * Indicates the response contains a subscription object. Will always contain the string `subscription` for this
+         * Indicates the response contains a subscription object. Will always contain the string `subscription`
+         * for this
          * endpoint.
          */
         public Builder resource(Optional<String> resource) {
@@ -1012,7 +1082,8 @@ public class SubscriptionResponse {
 
 
         /**
-         * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+         * The subscription's current status is directly related to the status of the underlying customer or
+         * mandate that is
          * enabling the subscription.
          */
         public Builder status(SubscriptionStatus status) {
@@ -1022,7 +1093,8 @@ public class SubscriptionResponse {
         }
 
         /**
-         * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+         * The subscription's current status is directly related to the status of the underlying customer or
+         * mandate that is
          * enabling the subscription.
          */
         public Builder status(Optional<? extends SubscriptionStatus> status) {
@@ -1052,7 +1124,8 @@ public class SubscriptionResponse {
 
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * Total number of payments for the subscription. Once this number of payments is reached, the
+         * subscription is
          * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -1064,7 +1137,8 @@ public class SubscriptionResponse {
         }
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * Total number of payments for the subscription. Once this number of payments is reached, the
+         * subscription is
          * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -1100,7 +1174,9 @@ public class SubscriptionResponse {
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
          * 
-         * <p>Possible values: `... days`, `... weeks`, `... months`.
+         * <p>Possible values: `... days`, `... weeks`, `...
+         * 
+         * <p>months`.
          */
         public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
@@ -1113,7 +1189,9 @@ public class SubscriptionResponse {
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
          * 
-         * <p>Possible values: `... days`, `... weeks`, `... months`.
+         * <p>Possible values: `... days`, `... weeks`, `...
+         * 
+         * <p>months`.
          */
         public Builder interval(Optional<String> interval) {
             Utils.checkNotNull(interval, "interval");
@@ -1142,7 +1220,8 @@ public class SubscriptionResponse {
 
 
         /**
-         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been
+         * completed or canceled,
          * this parameter will not be returned.
          */
         public Builder nextPaymentDate(String nextPaymentDate) {
@@ -1152,7 +1231,8 @@ public class SubscriptionResponse {
         }
 
         /**
-         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been completed or canceled,
+         * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been
+         * completed or canceled,
          * this parameter will not be returned.
          */
         public Builder nextPaymentDate(JsonNullable<String> nextPaymentDate) {
@@ -1163,10 +1243,12 @@ public class SubscriptionResponse {
 
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * The subscription's description will be used as the description of the resulting individual payments
+         * and so showing
          * up on the bank statement of the consumer.
          * 
-         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+         * subscriptions.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -1175,10 +1257,12 @@ public class SubscriptionResponse {
         }
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * The subscription's description will be used as the description of the resulting individual payments
+         * and so showing
          * up on the bank statement of the consumer.
          * 
-         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+         * subscriptions.
          */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
@@ -1188,7 +1272,8 @@ public class SubscriptionResponse {
 
 
         /**
-         * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+         * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+         * be used.
          */
         public Builder method(SubscriptionMethodResponse method) {
             Utils.checkNotNull(method, "method");
@@ -1197,7 +1282,8 @@ public class SubscriptionResponse {
         }
 
         /**
-         * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+         * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+         * be used.
          */
         public Builder method(JsonNullable<? extends SubscriptionMethodResponse> method) {
             Utils.checkNotNull(method, "method");
@@ -1207,12 +1293,15 @@ public class SubscriptionResponse {
 
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+         * Mollie
          * merchants.
          * 
-         * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+         * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+         * payment.
          * 
-         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+         * more
          * information.
          */
         public Builder applicationFee(SubscriptionResponseApplicationFee applicationFee) {
@@ -1222,12 +1311,15 @@ public class SubscriptionResponse {
         }
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+         * Mollie
          * merchants.
          * 
-         * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+         * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+         * payment.
          * 
-         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+         * more
          * information.
          */
         public Builder applicationFee(Optional<? extends SubscriptionResponseApplicationFee> applicationFee) {
@@ -1238,8 +1330,10 @@ public class SubscriptionResponse {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1248,8 +1342,10 @@ public class SubscriptionResponse {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1261,7 +1357,8 @@ public class SubscriptionResponse {
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
          * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+         * failures as
          * well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(String webhookUrl) {
@@ -1273,7 +1370,8 @@ public class SubscriptionResponse {
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
          * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+         * failures as
          * well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(Optional<String> webhookUrl) {
@@ -1310,7 +1408,8 @@ public class SubscriptionResponse {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -1319,7 +1418,8 @@ public class SubscriptionResponse {
         }
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -1329,7 +1429,8 @@ public class SubscriptionResponse {
 
 
         /**
-         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if
+         * the
          * subscription is not canceled (yet).
          */
         public Builder canceledAt(String canceledAt) {
@@ -1339,7 +1440,8 @@ public class SubscriptionResponse {
         }
 
         /**
-         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if the
+         * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if
+         * the
          * subscription is not canceled (yet).
          */
         public Builder canceledAt(JsonNullable<String> canceledAt) {

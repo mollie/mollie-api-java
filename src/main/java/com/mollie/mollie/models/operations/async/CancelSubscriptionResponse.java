@@ -34,7 +34,8 @@ public class CancelSubscriptionResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+     * The updated subscription object with status `canceled`. For a complete reference of the subscription
+     * object,
      * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     private Optional<? extends SubscriptionResponse> subscriptionResponse;
@@ -88,7 +89,8 @@ public class CancelSubscriptionResponse implements AsyncResponse {
     }
 
     /**
-     * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+     * The updated subscription object with status `canceled`. For a complete reference of the subscription
+     * object,
      * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     @SuppressWarnings("unchecked")
@@ -130,7 +132,8 @@ public class CancelSubscriptionResponse implements AsyncResponse {
     }
 
     /**
-     * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+     * The updated subscription object with status `canceled`. For a complete reference of the subscription
+     * object,
      * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     public CancelSubscriptionResponse withSubscriptionResponse(SubscriptionResponse subscriptionResponse) {
@@ -141,7 +144,8 @@ public class CancelSubscriptionResponse implements AsyncResponse {
 
 
     /**
-     * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+     * The updated subscription object with status `canceled`. For a complete reference of the subscription
+     * object,
      * refer to the [Get subscription endpoint](get-subscription) documentation.
      */
     public CancelSubscriptionResponse withSubscriptionResponse(Optional<? extends SubscriptionResponse> subscriptionResponse) {
@@ -229,7 +233,8 @@ public class CancelSubscriptionResponse implements AsyncResponse {
 
 
         /**
-         * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+         * The updated subscription object with status `canceled`. For a complete reference of the subscription
+         * object,
          * refer to the [Get subscription endpoint](get-subscription) documentation.
          */
         public Builder subscriptionResponse(SubscriptionResponse subscriptionResponse) {
@@ -239,7 +244,8 @@ public class CancelSubscriptionResponse implements AsyncResponse {
         }
 
         /**
-         * The updated subscription object with status `canceled`. For a complete reference of the subscription object,
+         * The updated subscription object with status `canceled`. For a complete reference of the subscription
+         * object,
          * refer to the [Get subscription endpoint](get-subscription) documentation.
          */
         public Builder subscriptionResponse(Optional<? extends SubscriptionResponse> subscriptionResponse) {

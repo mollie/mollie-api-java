@@ -13,7 +13,8 @@ import java.lang.String;
 /**
  * Reason
  * 
- * <p>Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
+ * <p>Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
+ * payments.
  */
 public class Reason {
     /**

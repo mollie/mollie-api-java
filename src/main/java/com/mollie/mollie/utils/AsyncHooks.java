@@ -45,7 +45,7 @@ public class AsyncHooks implements BeforeRequest, AfterSuccess, AfterError {
     /**
      * Registers an async before-request hook. Hooks are chained in registration order.
      *
-     * @param beforeRequest async hook returning CompletableFuture&lt;HttpRequest&gt;
+     * @param beforeRequest async hook returning {@code CompletableFuture<HttpRequest>}
      * @return this
      */
     public AsyncHooks registerBeforeRequest(BeforeRequest beforeRequest) {
@@ -57,7 +57,7 @@ public class AsyncHooks implements BeforeRequest, AfterSuccess, AfterError {
     /**
      * Registers an async after-success hook. Hooks are chained in registration order.
      *
-     * @param afterSuccess async hook returning CompletableFuture&lt;HttpResponse&gt;
+     * @param afterSuccess async hook returning {@code CompletableFuture<HttpResponse>}
      * @return this
      */
     public AsyncHooks registerAfterSuccess(AfterSuccess afterSuccess) {

@@ -17,7 +17,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 /**
  * Context
  * 
- * <p>Depending on the type of the balance transaction, we will try to give more context about the specific event that
+ * <p>Depending on the type of the balance transaction, we will try to give more context about the
+ * specific event that
  * triggered it. For example, the context object for a payment transaction will look like
  * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
  * 
@@ -26,17 +27,22 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>* Type `payment`: `paymentId`, `paymentDescription`
  * * Type `capture`: `paymentId` `captureId`, `paymentDescription`, `captureDescription`
  * * Type `capture-commission`: `paymentId`, `paymentDescription`, `organizationId`
- * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`, `captureDescription`
+ * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`,
+ * `captureDescription`
  * * Type `unauthorized-direct-debit`: `paymentId`, `paymentDescription`
  * * Type `failed-payment`: `paymentId`, `paymentDescription`
  * * Type `refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
  * * Type `refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
  * * Type `returned-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
- * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
+ * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`,
+ * `refundDescription`
  * * Type `chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
- * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
- * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
- * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
+ * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`,
+ * `chargebackDescription`
+ * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+ * `chargebackDescription`
+ * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+ * `chargebackDescription`
  * * Type `outgoing-transfer`: `settlementId` `transferId`
  * * Type `canceled-outgoing-transfer`: `settlementId` `transferId`
  * * Type `returned-transfer`: `settlementId` `transferId`
@@ -45,9 +51,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * * Type `application-fee`: `paymentId`, `paymentDescription`, `payingOwner`
  * * Type `split-payment`: `paymentId`, `paymentDescription`, `paymentOwner`
  * * Type `platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
- * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
- * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
- * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
+ * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`,
+ * `refundDescription`
+ * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+ * `chargebackDescription`
+ * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+ * `chargebackDescription`
  * * Type `payment-commission`: `paymentId`, `paymentDescription`, `organizationId`
  * * Type `reimbursement-fee`: `paymentId`, `paymentDescription`
  * * Type `failed-payment-fee`: `paymentId`, `paymentDescription`

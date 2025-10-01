@@ -63,7 +63,7 @@ public class AsyncTerminals {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListTerminalsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListTerminalsResponse>} - The async response
      */
     public CompletableFuture<ListTerminalsResponse> list(ListTerminalsRequest request) {
         return list(request, Optional.empty());
@@ -78,7 +78,7 @@ public class AsyncTerminals {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListTerminalsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListTerminalsResponse>} - The async response
      */
     public CompletableFuture<ListTerminalsResponse> list(ListTerminalsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
@@ -107,7 +107,7 @@ public class AsyncTerminals {
      * <p>Retrieve a single terminal by its ID.
      * 
      * @param terminalId Provide the ID of the related terminal.
-     * @return CompletableFuture&lt;GetTerminalResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetTerminalResponse>} - The async response
      */
     public CompletableFuture<GetTerminalResponse> get(String terminalId) {
         return get(
@@ -128,7 +128,7 @@ public class AsyncTerminals {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetTerminalResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetTerminalResponse>} - The async response
      */
     public CompletableFuture<GetTerminalResponse> get(
             String terminalId, JsonNullable<Boolean> testmode,

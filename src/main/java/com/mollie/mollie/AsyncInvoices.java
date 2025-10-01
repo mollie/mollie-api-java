@@ -63,7 +63,7 @@ public class AsyncInvoices {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListInvoicesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListInvoicesResponse>} - The async response
      */
     public CompletableFuture<ListInvoicesResponse> list(ListInvoicesRequest request) {
         return list(request, Optional.empty());
@@ -79,7 +79,7 @@ public class AsyncInvoices {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListInvoicesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListInvoicesResponse>} - The async response
      */
     public CompletableFuture<ListInvoicesResponse> list(ListInvoicesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
@@ -114,7 +114,7 @@ public class AsyncInvoices {
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;GetInvoiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetInvoiceResponse>} - The async response
      */
     public CompletableFuture<GetInvoiceResponse> get(String id) {
         return get(id, Optional.empty(), Optional.empty());
@@ -131,7 +131,7 @@ public class AsyncInvoices {
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetInvoiceResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetInvoiceResponse>} - The async response
      */
     public CompletableFuture<GetInvoiceResponse> get(
             String id, Optional<String> idempotencyKey,

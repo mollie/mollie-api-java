@@ -24,14 +24,16 @@ public class GetBalanceReportRequest {
 
     /**
      * The start date of the report, in `YYYY-MM-DD` format. The from date is
-     * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will
+     * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01`
+     * will
      * include transactions from 2024-01-01 0:00:00 CET and onwards.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private String from;
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
+     * European Time.
      * This means a report with for example `until=2024-02-01` will include transactions up until
      * 2024-01-31 23:59:59 CET.
      */
@@ -39,8 +41,10 @@ public class GetBalanceReportRequest {
     private String until;
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions
+     * are grouped
+     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings
+     * where
      * available (e.g. payment method).
      * 
      * <p>With the `transaction-categories` format, transactions are grouped by
@@ -50,8 +54,10 @@ public class GetBalanceReportRequest {
     private JsonNullable<? extends Grouping> grouping;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -105,7 +111,8 @@ public class GetBalanceReportRequest {
 
     /**
      * The start date of the report, in `YYYY-MM-DD` format. The from date is
-     * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will
+     * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01`
+     * will
      * include transactions from 2024-01-01 0:00:00 CET and onwards.
      */
     @JsonIgnore
@@ -114,7 +121,8 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
+     * European Time.
      * This means a report with for example `until=2024-02-01` will include transactions up until
      * 2024-01-31 23:59:59 CET.
      */
@@ -124,8 +132,10 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions
+     * are grouped
+     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings
+     * where
      * available (e.g. payment method).
      * 
      * <p>With the `transaction-categories` format, transactions are grouped by
@@ -138,8 +148,10 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -173,7 +185,8 @@ public class GetBalanceReportRequest {
 
     /**
      * The start date of the report, in `YYYY-MM-DD` format. The from date is
-     * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will
+     * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01`
+     * will
      * include transactions from 2024-01-01 0:00:00 CET and onwards.
      */
     public GetBalanceReportRequest withFrom(String from) {
@@ -183,7 +196,8 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
+     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
+     * European Time.
      * This means a report with for example `until=2024-02-01` will include transactions up until
      * 2024-01-31 23:59:59 CET.
      */
@@ -194,8 +208,10 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions
+     * are grouped
+     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings
+     * where
      * available (e.g. payment method).
      * 
      * <p>With the `transaction-categories` format, transactions are grouped by
@@ -208,8 +224,10 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
+     * You can retrieve reports in two different formats. With the `status-balances` format, transactions
+     * are grouped
+     * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings
+     * where
      * available (e.g. payment method).
      * 
      * <p>With the `transaction-categories` format, transactions are grouped by
@@ -222,8 +240,10 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -235,8 +255,10 @@ public class GetBalanceReportRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -334,7 +356,8 @@ public class GetBalanceReportRequest {
 
         /**
          * The start date of the report, in `YYYY-MM-DD` format. The from date is
-         * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01` will
+         * 'inclusive', and in Central European Time. This means a report with for example `from=2024-01-01`
+         * will
          * include transactions from 2024-01-01 0:00:00 CET and onwards.
          */
         public Builder from(String from) {
@@ -345,7 +368,8 @@ public class GetBalanceReportRequest {
 
 
         /**
-         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central European Time.
+         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
+         * European Time.
          * This means a report with for example `until=2024-02-01` will include transactions up until
          * 2024-01-31 23:59:59 CET.
          */
@@ -357,8 +381,10 @@ public class GetBalanceReportRequest {
 
 
         /**
-         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-         * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
+         * You can retrieve reports in two different formats. With the `status-balances` format, transactions
+         * are grouped
+         * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings
+         * where
          * available (e.g. payment method).
          * 
          * <p>With the `transaction-categories` format, transactions are grouped by
@@ -371,8 +397,10 @@ public class GetBalanceReportRequest {
         }
 
         /**
-         * You can retrieve reports in two different formats. With the `status-balances` format, transactions are grouped
-         * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings where
+         * You can retrieve reports in two different formats. With the `status-balances` format, transactions
+         * are grouped
+         * by status (e.g. `pending`, `available`), then by transaction type, and then by other sub-groupings
+         * where
          * available (e.g. payment method).
          * 
          * <p>With the `transaction-categories` format, transactions are grouped by
@@ -386,8 +414,10 @@ public class GetBalanceReportRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -399,8 +429,10 @@ public class GetBalanceReportRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

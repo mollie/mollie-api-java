@@ -53,7 +53,8 @@ public class Captures {
      * and capture the amount at a later point.
      * 
      * <p>By default, Mollie captures payments automatically. If however you
-     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
+     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint
+     * after
      * having collected the customer's authorization.
      * 
      * @return The call builder
@@ -71,7 +72,8 @@ public class Captures {
      * and capture the amount at a later point.
      * 
      * <p>By default, Mollie captures payments automatically. If however you
-     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
+     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint
+     * after
      * having collected the customer's authorization.
      * 
      * @param paymentId Provide the ID of the related payment.
@@ -92,7 +94,8 @@ public class Captures {
      * and capture the amount at a later point.
      * 
      * <p>By default, Mollie captures payments automatically. If however you
-     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
+     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint
+     * after
      * having collected the customer's authorization.
      * 
      * @param paymentId Provide the ID of the related payment.

@@ -68,7 +68,8 @@ public class EntityMandate {
     private JsonNullable<String> signatureDate;
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+     * banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -76,7 +77,8 @@ public class EntityMandate {
     private JsonNullable<String> mandateReference;
 
     /**
-     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
+     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal
+     * mandates.
      * Must provide either this field or `payPalVaultId`, but not both.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -92,7 +94,8 @@ public class EntityMandate {
     private JsonNullable<String> payPalVaultId;
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+     * finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -107,8 +110,10 @@ public class EntityMandate {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -223,7 +228,8 @@ public class EntityMandate {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+     * banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
     @JsonIgnore
@@ -232,7 +238,8 @@ public class EntityMandate {
     }
 
     /**
-     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
+     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal
+     * mandates.
      * Must provide either this field or `payPalVaultId`, but not both.
      */
     @JsonIgnore
@@ -250,7 +257,8 @@ public class EntityMandate {
     }
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+     * finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
     @SuppressWarnings("unchecked")
@@ -267,8 +275,10 @@ public class EntityMandate {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonIgnore
@@ -409,7 +419,8 @@ public class EntityMandate {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+     * banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
     public EntityMandate withMandateReference(String mandateReference) {
@@ -419,7 +430,8 @@ public class EntityMandate {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+     * banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
     public EntityMandate withMandateReference(JsonNullable<String> mandateReference) {
@@ -429,7 +441,8 @@ public class EntityMandate {
     }
 
     /**
-     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
+     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal
+     * mandates.
      * Must provide either this field or `payPalVaultId`, but not both.
      */
     public EntityMandate withPaypalBillingAgreementId(String paypalBillingAgreementId) {
@@ -439,7 +452,8 @@ public class EntityMandate {
     }
 
     /**
-     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
+     * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal
+     * mandates.
      * Must provide either this field or `payPalVaultId`, but not both.
      */
     public EntityMandate withPaypalBillingAgreementId(JsonNullable<String> paypalBillingAgreementId) {
@@ -469,7 +483,8 @@ public class EntityMandate {
     }
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+     * finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
     public EntityMandate withStatus(MandateStatus status) {
@@ -480,7 +495,8 @@ public class EntityMandate {
 
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+     * finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
     public EntityMandate withStatus(Optional<? extends MandateStatus> status) {
@@ -505,8 +521,10 @@ public class EntityMandate {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public EntityMandate withTestmode(boolean testmode) {
@@ -518,8 +536,10 @@ public class EntityMandate {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public EntityMandate withTestmode(JsonNullable<Boolean> testmode) {
@@ -747,7 +767,8 @@ public class EntityMandate {
 
 
         /**
-         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+         * banks will
          * decline Direct Debit payments if the mandate reference is not unique.
          */
         public Builder mandateReference(String mandateReference) {
@@ -757,7 +778,8 @@ public class EntityMandate {
         }
 
         /**
-         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+         * banks will
          * decline Direct Debit payments if the mandate reference is not unique.
          */
         public Builder mandateReference(JsonNullable<String> mandateReference) {
@@ -768,7 +790,8 @@ public class EntityMandate {
 
 
         /**
-         * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
+         * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal
+         * mandates.
          * Must provide either this field or `payPalVaultId`, but not both.
          */
         public Builder paypalBillingAgreementId(String paypalBillingAgreementId) {
@@ -778,7 +801,8 @@ public class EntityMandate {
         }
 
         /**
-         * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal mandates.
+         * The billing agreement ID given by PayPal. For example: `B-12A34567B8901234CD`. Required for PayPal
+         * mandates.
          * Must provide either this field or `payPalVaultId`, but not both.
          */
         public Builder paypalBillingAgreementId(JsonNullable<String> paypalBillingAgreementId) {
@@ -810,7 +834,8 @@ public class EntityMandate {
 
 
         /**
-         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+         * finalized, or
          * when we did not received the IBAN yet from the first payment.
          */
         public Builder status(MandateStatus status) {
@@ -820,7 +845,8 @@ public class EntityMandate {
         }
 
         /**
-         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+         * finalized, or
          * when we did not received the IBAN yet from the first payment.
          */
         public Builder status(Optional<? extends MandateStatus> status) {
@@ -846,8 +872,10 @@ public class EntityMandate {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
@@ -859,8 +887,10 @@ public class EntityMandate {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {

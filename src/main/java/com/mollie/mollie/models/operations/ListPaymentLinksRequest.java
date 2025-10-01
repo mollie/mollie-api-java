@@ -17,7 +17,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListPaymentLinksRequest {
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
@@ -30,8 +31,10 @@ public class ListPaymentLinksRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -67,7 +70,8 @@ public class ListPaymentLinksRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @JsonIgnore
@@ -84,8 +88,10 @@ public class ListPaymentLinksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -109,7 +115,8 @@ public class ListPaymentLinksRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListPaymentLinksRequest withFrom(String from) {
@@ -120,7 +127,8 @@ public class ListPaymentLinksRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListPaymentLinksRequest withFrom(Optional<String> from) {
@@ -148,8 +156,10 @@ public class ListPaymentLinksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -161,8 +171,10 @@ public class ListPaymentLinksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -241,7 +253,8 @@ public class ListPaymentLinksRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(String from) {
@@ -251,7 +264,8 @@ public class ListPaymentLinksRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(Optional<String> from) {
@@ -281,8 +295,10 @@ public class ListPaymentLinksRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -294,8 +310,10 @@ public class ListPaymentLinksRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

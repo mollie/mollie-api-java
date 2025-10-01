@@ -55,10 +55,12 @@ public class AsyncMandates {
     /**
      * Create mandate
      * 
-     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
+     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal
+     * account or bank
      * account recurrently.
      * 
-     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
+     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint.
+     * To create
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @return The async call builder
@@ -70,14 +72,16 @@ public class AsyncMandates {
     /**
      * Create mandate
      * 
-     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
+     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal
+     * account or bank
      * account recurrently.
      * 
-     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
+     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint.
+     * To create
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @return CompletableFuture&lt;CreateMandateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateMandateResponse>} - The async response
      */
     public CompletableFuture<CreateMandateResponse> create(String customerId) {
         return create(
@@ -88,17 +92,19 @@ public class AsyncMandates {
     /**
      * Create mandate
      * 
-     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal account or bank
+     * <p>Create a mandate for a specific customer. Mandates allow you to charge a customer's card, PayPal
+     * account or bank
      * account recurrently.
      * 
-     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
+     * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint.
+     * To create
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityMandate 
      * @param options additional options
-     * @return CompletableFuture&lt;CreateMandateResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateMandateResponse>} - The async response
      */
     public CompletableFuture<CreateMandateResponse> create(
             String customerId, Optional<String> idempotencyKey,
@@ -140,7 +146,7 @@ public class AsyncMandates {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListMandatesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListMandatesResponse>} - The async response
      */
     public CompletableFuture<ListMandatesResponse> list(ListMandatesRequest request) {
         return list(request, Optional.empty());
@@ -155,7 +161,7 @@ public class AsyncMandates {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListMandatesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListMandatesResponse>} - The async response
      */
     public CompletableFuture<ListMandatesResponse> list(ListMandatesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListMandatesRequest, ListMandatesResponse> operation
@@ -170,7 +176,8 @@ public class AsyncMandates {
     /**
      * Get mandate
      * 
-     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
+     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the
+     * customer's bank
      * account details, card details, or PayPal account details.
      * 
      * @return The async call builder
@@ -182,12 +189,13 @@ public class AsyncMandates {
     /**
      * Get mandate
      * 
-     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
+     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the
+     * customer's bank
      * account details, card details, or PayPal account details.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
-     * @return CompletableFuture&lt;GetMandateResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetMandateResponse>} - The async response
      */
     public CompletableFuture<GetMandateResponse> get(String customerId, String mandateId) {
         return get(
@@ -198,7 +206,8 @@ public class AsyncMandates {
     /**
      * Get mandate
      * 
-     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the customer's bank
+     * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the
+     * customer's bank
      * account details, card details, or PayPal account details.
      * 
      * @param customerId Provide the ID of the related customer.
@@ -210,7 +219,7 @@ public class AsyncMandates {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetMandateResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetMandateResponse>} - The async response
      */
     public CompletableFuture<GetMandateResponse> get(
             String customerId, String mandateId,
@@ -236,7 +245,8 @@ public class AsyncMandates {
     /**
      * Revoke mandate
      * 
-     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
+     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or
+     * card with this
      * mandate, and all connected subscriptions will be canceled.
      * 
      * @return The async call builder
@@ -248,12 +258,13 @@ public class AsyncMandates {
     /**
      * Revoke mandate
      * 
-     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
+     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or
+     * card with this
      * mandate, and all connected subscriptions will be canceled.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
-     * @return CompletableFuture&lt;RevokeMandateResponse&gt; - The async response
+     * @return {@code CompletableFuture<RevokeMandateResponse>} - The async response
      */
     public CompletableFuture<RevokeMandateResponse> revoke(String customerId, String mandateId) {
         return revoke(
@@ -264,7 +275,8 @@ public class AsyncMandates {
     /**
      * Revoke mandate
      * 
-     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or card with this
+     * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or
+     * card with this
      * mandate, and all connected subscriptions will be canceled.
      * 
      * @param customerId Provide the ID of the related customer.
@@ -272,7 +284,7 @@ public class AsyncMandates {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;RevokeMandateResponse&gt; - The async response
+     * @return {@code CompletableFuture<RevokeMandateResponse>} - The async response
      */
     public CompletableFuture<RevokeMandateResponse> revoke(
             String customerId, String mandateId,

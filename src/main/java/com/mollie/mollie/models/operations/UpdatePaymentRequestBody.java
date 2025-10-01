@@ -23,15 +23,20 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdatePaymentRequestBody {
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * The description of the payment. This will be shown to your customer on their card or bank statement
+     * when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The
+     * description is
      * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+     * your back office.
      * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+     * being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them
+     * to fit.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -40,10 +45,12 @@ public class UpdatePaymentRequestBody {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+     * can show the
      * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+     * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -51,11 +58,14 @@ public class UpdatePaymentRequestBody {
     private JsonNullable<String> redirectUrl;
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+     * this URL is not
      * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+     * parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+     * handle
      * payment cancellations.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -65,10 +75,13 @@ public class UpdatePaymentRequestBody {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -76,20 +89,26 @@ public class UpdatePaymentRequestBody {
     private JsonNullable<String> webhookUrl;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Metadata> metadata;
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -111,12 +130,15 @@ public class UpdatePaymentRequestBody {
     private Optional<String> dueDate;
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+     * Choose the VAT
      * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
-     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+     * country.
      * 
-     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+     * are accepted.
      * 
      * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
      */
@@ -127,8 +149,10 @@ public class UpdatePaymentRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -138,16 +162,21 @@ public class UpdatePaymentRequestBody {
     /**
      * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
      * 
-     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information
-     * on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For
+     * more information
+     * on the migration, refer to our [help
+     * center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
      * 
-     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment
+     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after
+     * selecting the payment
      * method, the customer may still need to select the appropriate issuer before the payment can proceed.
      * 
-     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API
+     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the
+     * `issuer` via the API
      * up front.
      * 
-     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional
+     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the
+     * optional
      * `issuers` include.
      * 
      * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
@@ -226,15 +255,20 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * The description of the payment. This will be shown to your customer on their card or bank statement
+     * when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The
+     * description is
      * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+     * your back office.
      * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+     * being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them
+     * to fit.
      */
     @JsonIgnore
     public Optional<String> description() {
@@ -244,10 +278,12 @@ public class UpdatePaymentRequestBody {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+     * can show the
      * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+     * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
@@ -256,11 +292,14 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+     * this URL is not
      * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+     * parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+     * handle
      * payment cancellations.
      */
     @JsonIgnore
@@ -271,10 +310,13 @@ public class UpdatePaymentRequestBody {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     @JsonIgnore
@@ -283,8 +325,10 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -293,12 +337,16 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     @SuppressWarnings("unchecked")
@@ -325,12 +373,15 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+     * Choose the VAT
      * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
-     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+     * country.
      * 
-     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+     * are accepted.
      * 
      * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
      */
@@ -342,8 +393,10 @@ public class UpdatePaymentRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonIgnore
@@ -354,16 +407,21 @@ public class UpdatePaymentRequestBody {
     /**
      * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
      * 
-     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information
-     * on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For
+     * more information
+     * on the migration, refer to our [help
+     * center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
      * 
-     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment
+     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after
+     * selecting the payment
      * method, the customer may still need to select the appropriate issuer before the payment can proceed.
      * 
-     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API
+     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the
+     * `issuer` via the API
      * up front.
      * 
-     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional
+     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the
+     * optional
      * `issuers` include.
      * 
      * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
@@ -396,15 +454,20 @@ public class UpdatePaymentRequestBody {
 
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * The description of the payment. This will be shown to your customer on their card or bank statement
+     * when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The
+     * description is
      * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+     * your back office.
      * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+     * being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them
+     * to fit.
      */
     public UpdatePaymentRequestBody withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -414,15 +477,20 @@ public class UpdatePaymentRequestBody {
 
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-     * We truncate the description automatically according to the limits of the used payment method. The description is
+     * The description of the payment. This will be shown to your customer on their card or bank statement
+     * when possible.
+     * We truncate the description automatically according to the limits of the used payment method. The
+     * description is
      * also visible in any exports you generate.
      * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+     * your back office.
      * This is particularly useful for bookkeeping.
      * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-     * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+     * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+     * being 255
+     * characters. The API will not reject strings longer than the maximum length but it will truncate them
+     * to fit.
      */
     public UpdatePaymentRequestBody withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -433,10 +501,12 @@ public class UpdatePaymentRequestBody {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+     * can show the
      * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+     * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
     public UpdatePaymentRequestBody withRedirectUrl(String redirectUrl) {
@@ -448,10 +518,12 @@ public class UpdatePaymentRequestBody {
     /**
      * The URL your customer will be redirected to after the payment process.
      * 
-     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+     * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+     * can show the
      * right page referencing the order when your customer returns.
      * 
-     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+     * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+     * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
     public UpdatePaymentRequestBody withRedirectUrl(JsonNullable<String> redirectUrl) {
@@ -461,11 +533,14 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+     * this URL is not
      * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+     * parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+     * handle
      * payment cancellations.
      */
     public UpdatePaymentRequestBody withCancelUrl(String cancelUrl) {
@@ -475,11 +550,14 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+     * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+     * this URL is not
      * provided, the customer will be redirected to the `redirectUrl` instead — see above.
      * 
-     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+     * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+     * parameter is
+     * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+     * handle
      * payment cancellations.
      */
     public UpdatePaymentRequestBody withCancelUrl(JsonNullable<String> cancelUrl) {
@@ -491,10 +569,13 @@ public class UpdatePaymentRequestBody {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     public UpdatePaymentRequestBody withWebhookUrl(String webhookUrl) {
@@ -506,10 +587,13 @@ public class UpdatePaymentRequestBody {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+     * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+     * your payment.
      * 
-     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+     * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+     * want to use
+     * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+     * delivered to your
      * local machine.
      */
     public UpdatePaymentRequestBody withWebhookUrl(JsonNullable<String> webhookUrl) {
@@ -519,8 +603,10 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public UpdatePaymentRequestBody withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -529,8 +615,10 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public UpdatePaymentRequestBody withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -539,12 +627,16 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     public UpdatePaymentRequestBody withMethod(Method method) {
@@ -554,12 +646,16 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+     * specific payment
+     * method and your customer will skip the selection screen and is sent directly to the chosen payment
+     * method. The
      * parameter enables you to fully integrate the payment method selection into your website.
      * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality to only show
+     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+     * selection screen
+     * but will only show the methods specified in the array. For example, you can use this functionality
+     * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
     public UpdatePaymentRequestBody withMethod(JsonNullable<? extends Method> method) {
@@ -606,12 +702,15 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+     * Choose the VAT
      * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
-     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+     * country.
      * 
-     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+     * are accepted.
      * 
      * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
      */
@@ -622,12 +721,15 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+     * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+     * Choose the VAT
      * rates you have used for the order to ensure your customer's country matches the VAT country.
      * 
-     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+     * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+     * country.
      * 
-     * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+     * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+     * are accepted.
      * 
      * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
      */
@@ -640,8 +742,10 @@ public class UpdatePaymentRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public UpdatePaymentRequestBody withTestmode(boolean testmode) {
@@ -653,8 +757,10 @@ public class UpdatePaymentRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public UpdatePaymentRequestBody withTestmode(JsonNullable<Boolean> testmode) {
@@ -666,16 +772,21 @@ public class UpdatePaymentRequestBody {
     /**
      * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
      * 
-     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information
-     * on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For
+     * more information
+     * on the migration, refer to our [help
+     * center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
      * 
-     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment
+     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after
+     * selecting the payment
      * method, the customer may still need to select the appropriate issuer before the payment can proceed.
      * 
-     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API
+     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the
+     * `issuer` via the API
      * up front.
      * 
-     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional
+     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the
+     * optional
      * `issuers` include.
      * 
      * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
@@ -689,16 +800,21 @@ public class UpdatePaymentRequestBody {
     /**
      * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
      * 
-     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information
-     * on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+     * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For
+     * more information
+     * on the migration, refer to our [help
+     * center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
      * 
-     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment
+     * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after
+     * selecting the payment
      * method, the customer may still need to select the appropriate issuer before the payment can proceed.
      * 
-     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API
+     * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the
+     * `issuer` via the API
      * up front.
      * 
-     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional
+     * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the
+     * optional
      * `issuers` include.
      * 
      * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
@@ -840,15 +956,20 @@ public class UpdatePaymentRequestBody {
 
 
         /**
-         * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-         * We truncate the description automatically according to the limits of the used payment method. The description is
+         * The description of the payment. This will be shown to your customer on their card or bank statement
+         * when possible.
+         * We truncate the description automatically according to the limits of the used payment method. The
+         * description is
          * also visible in any exports you generate.
          * 
-         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+         * your back office.
          * This is particularly useful for bookkeeping.
          * 
-         * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-         * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+         * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+         * being 255
+         * characters. The API will not reject strings longer than the maximum length but it will truncate them
+         * to fit.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -857,15 +978,20 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * The description of the payment. This will be shown to your customer on their card or bank statement when possible.
-         * We truncate the description automatically according to the limits of the used payment method. The description is
+         * The description of the payment. This will be shown to your customer on their card or bank statement
+         * when possible.
+         * We truncate the description automatically according to the limits of the used payment method. The
+         * description is
          * also visible in any exports you generate.
          * 
-         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in your back office.
+         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
+         * your back office.
          * This is particularly useful for bookkeeping.
          * 
-         * <p>The maximum length of the description field differs per payment method, with the absolute maximum being 255
-         * characters. The API will not reject strings longer than the maximum length but it will truncate them to fit.
+         * <p>The maximum length of the description field differs per payment method, with the absolute maximum
+         * being 255
+         * characters. The API will not reject strings longer than the maximum length but it will truncate them
+         * to fit.
          */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
@@ -877,10 +1003,12 @@ public class UpdatePaymentRequestBody {
         /**
          * The URL your customer will be redirected to after the payment process.
          * 
-         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+         * can show the
          * right page referencing the order when your customer returns.
          * 
-         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+         * recurring`) and for
          * Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(String redirectUrl) {
@@ -892,10 +1020,12 @@ public class UpdatePaymentRequestBody {
         /**
          * The URL your customer will be redirected to after the payment process.
          * 
-         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you can show the
+         * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
+         * can show the
          * right page referencing the order when your customer returns.
          * 
-         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType: recurring`) and for
+         * <p>The parameter is normally required, but can be omitted for recurring payments (`sequenceType:
+         * recurring`) and for
          * Apple Pay payments with an `applePayPaymentToken`.
          */
         public Builder redirectUrl(JsonNullable<String> redirectUrl) {
@@ -906,11 +1036,14 @@ public class UpdatePaymentRequestBody {
 
 
         /**
-         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+         * this URL is not
          * provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
-         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+         * parameter is
+         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+         * handle
          * payment cancellations.
          */
         public Builder cancelUrl(String cancelUrl) {
@@ -920,11 +1053,14 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If this URL is not
+         * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
+         * this URL is not
          * provided, the customer will be redirected to the `redirectUrl` instead — see above.
          * 
-         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This parameter is
-         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to handle
+         * <p>Mollie will always give you status updates via webhooks, including for the canceled status. This
+         * parameter is
+         * therefore entirely optional, but can be useful when implementing a dedicated customer-facing flow to
+         * handle
          * payment cancellations.
          */
         public Builder cancelUrl(JsonNullable<String> cancelUrl) {
@@ -937,10 +1073,13 @@ public class UpdatePaymentRequestBody {
         /**
          * The webhook URL where we will send payment status updates to.
          * 
-         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+         * your payment.
          * 
-         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+         * want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+         * delivered to your
          * local machine.
          */
         public Builder webhookUrl(String webhookUrl) {
@@ -952,10 +1091,13 @@ public class UpdatePaymentRequestBody {
         /**
          * The webhook URL where we will send payment status updates to.
          * 
-         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to your payment.
+         * <p>The webhookUrl is optional, but without a webhook you will miss out on important status changes to
+         * your payment.
          * 
-         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you want to use
-         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks delivered to your
+         * <p>The webhookUrl must be reachable from Mollie's point of view, so you cannot use `localhost`. If you
+         * want to use
+         * webhook during development on `localhost`, you must use a tool like ngrok to have the webhooks
+         * delivered to your
          * local machine.
          */
         public Builder webhookUrl(JsonNullable<String> webhookUrl) {
@@ -966,8 +1108,10 @@ public class UpdatePaymentRequestBody {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -976,8 +1120,10 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -987,12 +1133,16 @@ public class UpdatePaymentRequestBody {
 
 
         /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+         * specific payment
+         * method and your customer will skip the selection screen and is sent directly to the chosen payment
+         * method. The
          * parameter enables you to fully integrate the payment method selection into your website.
          * 
-         * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality to only show
+         * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+         * selection screen
+         * but will only show the methods specified in the array. For example, you can use this functionality
+         * to only show
          * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          */
         public Builder method(Method method) {
@@ -1002,12 +1152,16 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
+         * specific payment
+         * method and your customer will skip the selection screen and is sent directly to the chosen payment
+         * method. The
          * parameter enables you to fully integrate the payment method selection into your website.
          * 
-         * <p>You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality to only show
+         * <p>You can also specify the methods in an array. By doing so we will still show the payment method
+         * selection screen
+         * but will only show the methods specified in the array. For example, you can use this functionality
+         * to only show
          * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          */
         public Builder method(JsonNullable<? extends Method> method) {
@@ -1056,12 +1210,15 @@ public class UpdatePaymentRequestBody {
 
 
         /**
-         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+         * Choose the VAT
          * rates you have used for the order to ensure your customer's country matches the VAT country.
          * 
-         * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+         * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+         * country.
          * 
-         * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+         * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+         * are accepted.
          * 
          * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
          */
@@ -1072,12 +1229,15 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country. Choose the VAT
+         * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
+         * Choose the VAT
          * rates you have used for the order to ensure your customer's country matches the VAT country.
          * 
-         * <p>Use this parameter to restrict the payment methods available to your customer to those from a single country.
+         * <p>Use this parameter to restrict the payment methods available to your customer to those from a single
+         * country.
          * 
-         * <p>If available, the credit card method will still be offered, but only cards from the allowed country are accepted.
+         * <p>If available, the credit card method will still be offered, but only cards from the allowed country
+         * are accepted.
          * 
          * <p>The field expects a country code in ISO 3166-1 alpha-2 format, for example `NL`.
          */
@@ -1091,8 +1251,10 @@ public class UpdatePaymentRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
@@ -1104,8 +1266,10 @@ public class UpdatePaymentRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {
@@ -1118,16 +1282,21 @@ public class UpdatePaymentRequestBody {
         /**
          * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
          * 
-         * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information
-         * on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+         * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For
+         * more information
+         * on the migration, refer to our [help
+         * center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
          * 
-         * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment
+         * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after
+         * selecting the payment
          * method, the customer may still need to select the appropriate issuer before the payment can proceed.
          * 
-         * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API
+         * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the
+         * `issuer` via the API
          * up front.
          * 
-         * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional
+         * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the
+         * optional
          * `issuers` include.
          * 
          * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).
@@ -1141,16 +1310,21 @@ public class UpdatePaymentRequestBody {
         /**
          * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
          * 
-         * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For more information
-         * on the migration, refer to our [help center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
+         * <p>**⚠️ With the introduction of iDEAL 2 in 2025, this field will be ignored for iDEAL payments. For
+         * more information
+         * on the migration, refer to our [help
+         * center](https://help.mollie.com/hc/articles/19100313768338-iDEAL-2-0).**
          * 
-         * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after selecting the payment
+         * <p>Some payment methods are a network of connected banks or card issuers. In these cases, after
+         * selecting the payment
          * method, the customer may still need to select the appropriate issuer before the payment can proceed.
          * 
-         * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the `issuer` via the API
+         * <p>We provide hosted issuer selection screens, but these screens can be skipped by providing the
+         * `issuer` via the API
          * up front.
          * 
-         * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the optional
+         * <p>The full list of issuers for a specific method can be retrieved via the Methods API by using the
+         * optional
          * `issuers` include.
          * 
          * <p>A valid issuer for iDEAL is for example `ideal_INGBNL2A` (for ING Bank).

@@ -18,5 +18,12 @@ dependencies {
 }
 
 jar {
+    dependsOn 'generatePomFileForMavenPublication'
     archiveBaseName = 'mollie-spring-boot-starter'
+    into("META-INF/maven/com.mollie/mollie-spring-boot-starter") {
+        from(layout.buildDirectory.file("pom.xml")) {
+            // Only include if it exists to avoid build ordering issues
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+    }
 }

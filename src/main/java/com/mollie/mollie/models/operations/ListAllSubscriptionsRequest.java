@@ -17,7 +17,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllSubscriptionsRequest {
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
@@ -32,17 +33,21 @@ public class ListAllSubscriptionsRequest {
     /**
      * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already
+     * implied.
      * 
-     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and
+     * omit the
      * `profileId` parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private JsonNullable<String> profileId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -81,7 +86,8 @@ public class ListAllSubscriptionsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @JsonIgnore
@@ -100,9 +106,11 @@ public class ListAllSubscriptionsRequest {
     /**
      * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already
+     * implied.
      * 
-     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and
+     * omit the
      * `profileId` parameter.
      */
     @JsonIgnore
@@ -111,8 +119,10 @@ public class ListAllSubscriptionsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -136,7 +146,8 @@ public class ListAllSubscriptionsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListAllSubscriptionsRequest withFrom(String from) {
@@ -146,7 +157,8 @@ public class ListAllSubscriptionsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListAllSubscriptionsRequest withFrom(JsonNullable<String> from) {
@@ -176,9 +188,11 @@ public class ListAllSubscriptionsRequest {
     /**
      * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already
+     * implied.
      * 
-     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and
+     * omit the
      * `profileId` parameter.
      */
     public ListAllSubscriptionsRequest withProfileId(String profileId) {
@@ -190,9 +204,11 @@ public class ListAllSubscriptionsRequest {
     /**
      * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already
+     * implied.
      * 
-     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+     * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and
+     * omit the
      * `profileId` parameter.
      */
     public ListAllSubscriptionsRequest withProfileId(JsonNullable<String> profileId) {
@@ -202,8 +218,10 @@ public class ListAllSubscriptionsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -215,8 +233,10 @@ public class ListAllSubscriptionsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -299,7 +319,8 @@ public class ListAllSubscriptionsRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(String from) {
@@ -309,7 +330,8 @@ public class ListAllSubscriptionsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(JsonNullable<String> from) {
@@ -341,9 +363,11 @@ public class ListAllSubscriptionsRequest {
         /**
          * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already
+         * implied.
          * 
-         * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+         * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and
+         * omit the
          * `profileId` parameter.
          */
         public Builder profileId(String profileId) {
@@ -355,9 +379,11 @@ public class ListAllSubscriptionsRequest {
         /**
          * The identifier referring to the [profile](get-profile) you wish to retrieve subscriptions for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already implied.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` is already
+         * implied.
          * 
-         * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and omit the
+         * <p>To retrieve all subscriptions across the organization, use an organization-level API credential and
+         * omit the
          * `profileId` parameter.
          */
         public Builder profileId(JsonNullable<String> profileId) {
@@ -368,8 +394,10 @@ public class ListAllSubscriptionsRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -381,8 +409,10 @@ public class ListAllSubscriptionsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

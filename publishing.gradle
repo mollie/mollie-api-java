@@ -86,6 +86,7 @@ afterEvaluate {
     // Configure POM file generation task after publishing is configured
     tasks.named("generatePomFileForMavenPublication") {
         destination = file(layout.buildDirectory.file("pom.xml"))
+        jar.dependsOn('generatePomFileForMavenPublication')
     }
 }
 

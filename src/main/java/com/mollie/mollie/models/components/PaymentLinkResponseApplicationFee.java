@@ -13,11 +13,14 @@ import java.lang.String;
 /**
  * PaymentLinkResponseApplicationFee
  * 
- * <p>With Mollie Connect you can charge fees on payment links that your app is processing on behalf of other Mollie
+ * <p>With Mollie Connect you can charge fees on payment links that your app is processing on behalf of
+ * other Mollie
  * merchants.
  * 
- * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee using this
- * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from the merchant's balance and sent
+ * <p>If you use OAuth to create payment links on a connected merchant's account, you can charge a fee
+ * using this
+ * `applicationFee` parameter. If a payment on the payment link succeeds, the fee will be deducted from
+ * the merchant's balance and sent
  * to your own account balance.
  */
 public class PaymentLinkResponseApplicationFee {
@@ -28,7 +31,8 @@ public class PaymentLinkResponseApplicationFee {
     private Amount amount;
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * The description of the application fee. This will appear on settlement reports towards both you and
+     * the
      * connected merchant.
      */
     @JsonProperty("description")
@@ -53,7 +57,8 @@ public class PaymentLinkResponseApplicationFee {
     }
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * The description of the application fee. This will appear on settlement reports towards both you and
+     * the
      * connected merchant.
      */
     @JsonIgnore
@@ -76,7 +81,8 @@ public class PaymentLinkResponseApplicationFee {
     }
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * The description of the application fee. This will appear on settlement reports towards both you and
+     * the
      * connected merchant.
      */
     public PaymentLinkResponseApplicationFee withDescription(String description) {
@@ -135,7 +141,8 @@ public class PaymentLinkResponseApplicationFee {
 
 
         /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the
+         * The description of the application fee. This will appear on settlement reports towards both you and
+         * the
          * connected merchant.
          */
         public Builder description(String description) {

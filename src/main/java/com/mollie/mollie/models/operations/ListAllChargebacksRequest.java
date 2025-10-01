@@ -19,7 +19,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllChargebacksRequest {
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
@@ -32,14 +33,16 @@ public class ListAllChargebacksRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private JsonNullable<String> embed;
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
@@ -59,8 +62,10 @@ public class ListAllChargebacksRequest {
     private Optional<String> profileId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -106,7 +111,8 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @JsonIgnore
@@ -123,7 +129,8 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     @JsonIgnore
@@ -132,7 +139,8 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     @SuppressWarnings("unchecked")
@@ -157,8 +165,10 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -182,7 +192,8 @@ public class ListAllChargebacksRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListAllChargebacksRequest withFrom(String from) {
@@ -193,7 +204,8 @@ public class ListAllChargebacksRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListAllChargebacksRequest withFrom(Optional<String> from) {
@@ -221,7 +233,8 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     public ListAllChargebacksRequest withEmbed(String embed) {
@@ -231,7 +244,8 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     public ListAllChargebacksRequest withEmbed(JsonNullable<String> embed) {
@@ -241,7 +255,8 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     public ListAllChargebacksRequest withSort(ListSort sort) {
@@ -251,7 +266,8 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     public ListAllChargebacksRequest withSort(JsonNullable<? extends ListSort> sort) {
@@ -294,8 +310,10 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -307,8 +325,10 @@ public class ListAllChargebacksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -400,7 +420,8 @@ public class ListAllChargebacksRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(String from) {
@@ -410,7 +431,8 @@ public class ListAllChargebacksRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(Optional<String> from) {
@@ -440,7 +462,8 @@ public class ListAllChargebacksRequest {
 
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * This endpoint allows embedding related API items by appending the following values via the `embed`
+         * query string
          * parameter.
          */
         public Builder embed(String embed) {
@@ -450,7 +473,8 @@ public class ListAllChargebacksRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * This endpoint allows embedding related API items by appending the following values via the `embed`
+         * query string
          * parameter.
          */
         public Builder embed(JsonNullable<String> embed) {
@@ -461,7 +485,8 @@ public class ListAllChargebacksRequest {
 
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+         * are ordered from
          * newest to oldest.
          */
         public Builder sort(ListSort sort) {
@@ -471,7 +496,8 @@ public class ListAllChargebacksRequest {
         }
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+         * are ordered from
          * newest to oldest.
          */
         public Builder sort(JsonNullable<? extends ListSort> sort) {
@@ -515,8 +541,10 @@ public class ListAllChargebacksRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -528,8 +556,10 @@ public class ListAllChargebacksRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

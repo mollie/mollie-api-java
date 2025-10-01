@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class EntityPermission {
     /**
-     * Indicates the response contains a permission object. Will always contain the string `permission` for this
+     * Indicates the response contains a permission object. Will always contain the string `permission` for
+     * this
      * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -76,7 +77,8 @@ public class EntityPermission {
     }
 
     /**
-     * Indicates the response contains a permission object. Will always contain the string `permission` for this
+     * Indicates the response contains a permission object. Will always contain the string `permission` for
+     * this
      * endpoint.
      */
     @JsonIgnore
@@ -120,7 +122,8 @@ public class EntityPermission {
 
 
     /**
-     * Indicates the response contains a permission object. Will always contain the string `permission` for this
+     * Indicates the response contains a permission object. Will always contain the string `permission` for
+     * this
      * endpoint.
      */
     public EntityPermission withResource(String resource) {
@@ -131,7 +134,8 @@ public class EntityPermission {
 
 
     /**
-     * Indicates the response contains a permission object. Will always contain the string `permission` for this
+     * Indicates the response contains a permission object. Will always contain the string `permission` for
+     * this
      * endpoint.
      */
     public EntityPermission withResource(Optional<String> resource) {
@@ -263,7 +267,8 @@ public class EntityPermission {
 
 
         /**
-         * Indicates the response contains a permission object. Will always contain the string `permission` for this
+         * Indicates the response contains a permission object. Will always contain the string `permission` for
+         * this
          * endpoint.
          */
         public Builder resource(String resource) {
@@ -273,7 +278,8 @@ public class EntityPermission {
         }
 
         /**
-         * Indicates the response contains a permission object. Will always contain the string `permission` for this
+         * Indicates the response contains a permission object. Will always contain the string `permission` for
+         * this
          * endpoint.
          */
         public Builder resource(Optional<String> resource) {

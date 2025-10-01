@@ -62,7 +62,7 @@ public class AsyncClients {
      * 
      * <p>The results are paginated.
      * 
-     * @return CompletableFuture&lt;ListClientsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListClientsResponse>} - The async response
      */
     public CompletableFuture<ListClientsResponse> listDirect() {
         return list(
@@ -84,7 +84,7 @@ public class AsyncClients {
      * @param limit The maximum number of items to return. Defaults to 50 items.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;ListClientsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListClientsResponse>} - The async response
      */
     public CompletableFuture<ListClientsResponse> list(
             JsonNullable<String> embed, JsonNullable<String> from,
@@ -124,7 +124,7 @@ public class AsyncClients {
      * <p>Retrieve a single client by its ID.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;GetClientResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetClientResponse>} - The async response
      */
     public CompletableFuture<GetClientResponse> get(String id) {
         return get(
@@ -142,7 +142,7 @@ public class AsyncClients {
      *         parameter.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetClientResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetClientResponse>} - The async response
      */
     public CompletableFuture<GetClientResponse> get(
             String id, JsonNullable<String> embed,

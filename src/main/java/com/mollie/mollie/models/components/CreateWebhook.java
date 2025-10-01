@@ -14,7 +14,8 @@ import java.util.List;
 
 public class CreateWebhook {
     /**
-     * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
+     * Indicates the response contains a webhook subscription object. Will always contain the string
+     * `webhook` for this endpoint.
      */
     @JsonProperty("resource")
     private String resource;
@@ -117,7 +118,8 @@ public class CreateWebhook {
     }
 
     /**
-     * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
+     * Indicates the response contains a webhook subscription object. Will always contain the string
+     * `webhook` for this endpoint.
      */
     @JsonIgnore
     public String resource() {
@@ -210,7 +212,8 @@ public class CreateWebhook {
 
 
     /**
-     * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
+     * Indicates the response contains a webhook subscription object. Will always contain the string
+     * `webhook` for this endpoint.
      */
     public CreateWebhook withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -387,7 +390,8 @@ public class CreateWebhook {
 
 
         /**
-         * Indicates the response contains a webhook subscription object. Will always contain the string `webhook` for this endpoint.
+         * Indicates the response contains a webhook subscription object. Will always contain the string
+         * `webhook` for this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");

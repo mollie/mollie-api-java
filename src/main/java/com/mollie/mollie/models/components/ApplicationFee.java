@@ -17,14 +17,18 @@ import java.util.Optional;
 /**
  * ApplicationFee
  * 
- * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+ * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+ * Mollie
  * merchants.
  * 
- * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using this
- * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's balance and sent
+ * <p>If you use OAuth to create payments on a connected merchant's account, you can charge a fee using
+ * this
+ * `applicationFee` parameter. If the payment succeeds, the fee will be deducted from the merchant's
+ * balance and sent
  * to your own account balance.
  * 
- * <p>If instead you want to split a payment on your own account between yourself and a connected merchant, refer to the
+ * <p>If instead you want to split a payment on your own account between yourself and a connected
+ * merchant, refer to the
  * `routing` parameter.
  */
 public class ApplicationFee {
@@ -36,7 +40,8 @@ public class ApplicationFee {
     private Optional<? extends Amount> amount;
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * The description of the application fee. This will appear on settlement reports towards both you and
+     * the
      * connected merchant.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -67,7 +72,8 @@ public class ApplicationFee {
     }
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * The description of the application fee. This will appear on settlement reports towards both you and
+     * the
      * connected merchant.
      */
     @JsonIgnore
@@ -100,7 +106,8 @@ public class ApplicationFee {
     }
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * The description of the application fee. This will appear on settlement reports towards both you and
+     * the
      * connected merchant.
      */
     public ApplicationFee withDescription(String description) {
@@ -111,7 +118,8 @@ public class ApplicationFee {
 
 
     /**
-     * The description of the application fee. This will appear on settlement reports towards both you and the
+     * The description of the application fee. This will appear on settlement reports towards both you and
+     * the
      * connected merchant.
      */
     public ApplicationFee withDescription(Optional<String> description) {
@@ -179,7 +187,8 @@ public class ApplicationFee {
 
 
         /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the
+         * The description of the application fee. This will appear on settlement reports towards both you and
+         * the
          * connected merchant.
          */
         public Builder description(String description) {
@@ -189,7 +198,8 @@ public class ApplicationFee {
         }
 
         /**
-         * The description of the application fee. This will appear on settlement reports towards both you and the
+         * The description of the application fee. This will appear on settlement reports towards both you and
+         * the
          * connected merchant.
          */
         public Builder description(Optional<String> description) {

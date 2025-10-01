@@ -41,8 +41,10 @@ public class GetMethodRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=profileId")
     private Optional<String> profileId;
@@ -57,14 +59,17 @@ public class GetMethodRequest {
      * Set this parameter to `first` to only return the methods that
      * can be used for the first payment of a recurring sequence.
      * 
-     * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
+     * <p>Set it to `recurring` to only return methods that can be used for recurring payments or
+     * subscriptions.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sequenceType")
     private Optional<? extends SequenceType> sequenceType;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -143,8 +148,10 @@ public class GetMethodRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     @JsonIgnore
     public Optional<String> profileId() {
@@ -163,7 +170,8 @@ public class GetMethodRequest {
      * Set this parameter to `first` to only return the methods that
      * can be used for the first payment of a recurring sequence.
      * 
-     * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
+     * <p>Set it to `recurring` to only return methods that can be used for recurring payments or
+     * subscriptions.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -172,8 +180,10 @@ public class GetMethodRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -249,8 +259,10 @@ public class GetMethodRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public GetMethodRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -263,8 +275,10 @@ public class GetMethodRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+     * For
+     * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * required.
      */
     public GetMethodRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
@@ -294,7 +308,8 @@ public class GetMethodRequest {
      * Set this parameter to `first` to only return the methods that
      * can be used for the first payment of a recurring sequence.
      * 
-     * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
+     * <p>Set it to `recurring` to only return methods that can be used for recurring payments or
+     * subscriptions.
      */
     public GetMethodRequest withSequenceType(SequenceType sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
@@ -307,7 +322,8 @@ public class GetMethodRequest {
      * Set this parameter to `first` to only return the methods that
      * can be used for the first payment of a recurring sequence.
      * 
-     * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
+     * <p>Set it to `recurring` to only return methods that can be used for recurring payments or
+     * subscriptions.
      */
     public GetMethodRequest withSequenceType(Optional<? extends SequenceType> sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
@@ -316,8 +332,10 @@ public class GetMethodRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -329,8 +347,10 @@ public class GetMethodRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -479,8 +499,10 @@ public class GetMethodRequest {
          * The identifier referring to the [profile](get-profile) you wish to
          * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+         * For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -492,8 +514,10 @@ public class GetMethodRequest {
          * The identifier referring to the [profile](get-profile) you wish to
          * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For
-         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+         * For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
          */
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
@@ -525,7 +549,8 @@ public class GetMethodRequest {
          * Set this parameter to `first` to only return the methods that
          * can be used for the first payment of a recurring sequence.
          * 
-         * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
+         * <p>Set it to `recurring` to only return methods that can be used for recurring payments or
+         * subscriptions.
          */
         public Builder sequenceType(SequenceType sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
@@ -537,7 +562,8 @@ public class GetMethodRequest {
          * Set this parameter to `first` to only return the methods that
          * can be used for the first payment of a recurring sequence.
          * 
-         * <p>Set it to `recurring` to only return methods that can be used for recurring payments or subscriptions.
+         * <p>Set it to `recurring` to only return methods that can be used for recurring payments or
+         * subscriptions.
          */
         public Builder sequenceType(Optional<? extends SequenceType> sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
@@ -547,8 +573,10 @@ public class GetMethodRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -560,8 +588,10 @@ public class GetMethodRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

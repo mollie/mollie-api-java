@@ -50,7 +50,8 @@ public class Organizations {
      * 
      * <p>Retrieve a single organization by its ID.
      * 
-     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
+     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is
+     * primarily useful
      * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
@@ -66,7 +67,8 @@ public class Organizations {
      * 
      * <p>Retrieve a single organization by its ID.
      * 
-     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
+     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is
+     * primarily useful
      * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
@@ -85,7 +87,8 @@ public class Organizations {
      * 
      * <p>Retrieve a single organization by its ID.
      * 
-     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
+     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is
+     * primarily useful
      * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
@@ -119,10 +122,12 @@ public class Organizations {
     /**
      * Get current organization
      * 
-     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
+     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get
+     * organization](get-organization)
      * endpoint.
      * 
-     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
+     * <p>For a complete reference of the organization object, refer to the [Get
+     * organization](get-organization) endpoint
      * documentation.
      * 
      * @return The call builder
@@ -134,10 +139,12 @@ public class Organizations {
     /**
      * Get current organization
      * 
-     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
+     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get
+     * organization](get-organization)
      * endpoint.
      * 
-     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
+     * <p>For a complete reference of the organization object, refer to the [Get
+     * organization](get-organization) endpoint
      * documentation.
      * 
      * @return The response from the API call
@@ -150,10 +157,12 @@ public class Organizations {
     /**
      * Get current organization
      * 
-     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
+     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get
+     * organization](get-organization)
      * endpoint.
      * 
-     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
+     * <p>For a complete reference of the organization object, refer to the [Get
+     * organization](get-organization) endpoint
      * documentation.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -175,7 +184,8 @@ public class Organizations {
     /**
      * Get partner status
      * 
-     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
+     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for
+     * so-called *partner
      * accounts*.
      * 
      * @return The call builder
@@ -187,7 +197,8 @@ public class Organizations {
     /**
      * Get partner status
      * 
-     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
+     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for
+     * so-called *partner
      * accounts*.
      * 
      * @return The response from the API call
@@ -200,7 +211,8 @@ public class Organizations {
     /**
      * Get partner status
      * 
-     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
+     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for
+     * so-called *partner
      * accounts*.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

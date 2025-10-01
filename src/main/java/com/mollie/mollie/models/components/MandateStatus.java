@@ -44,7 +44,8 @@ import java.util.Optional;
 /**
  * MandateStatus
  * 
- * <p>The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+ * <p>The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+ * finalized, or
  * when we did not received the IBAN yet from the first payment.
  */
 @JsonDeserialize(using = MandateStatus._Deserializer.class)

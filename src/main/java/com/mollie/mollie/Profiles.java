@@ -65,7 +65,8 @@ public class Profiles {
      * 
      * <p>Create a profile to process payments on.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
+     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard.
+     * Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
      * @return The call builder
@@ -79,7 +80,8 @@ public class Profiles {
      * 
      * <p>Create a profile to process payments on.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
+     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard.
+     * Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
      * @param entityProfile 
@@ -95,7 +97,8 @@ public class Profiles {
      * 
      * <p>Create a profile to process payments on.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
+     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard.
+     * Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -237,7 +240,8 @@ public class Profiles {
      * 
      * <p>Update an existing profile.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
+     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie
+     * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
      * @return The call builder
@@ -251,7 +255,8 @@ public class Profiles {
      * 
      * <p>Update an existing profile.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
+     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie
+     * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
@@ -269,7 +274,8 @@ public class Profiles {
      * 
      * <p>Update an existing profile.
      * 
-     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
+     * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie
+     * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
@@ -297,7 +303,8 @@ public class Profiles {
     /**
      * Delete profile
      * 
-     * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
+     * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
+     * payments.
      * 
      * @return The call builder
      */
@@ -308,7 +315,8 @@ public class Profiles {
     /**
      * Delete profile
      * 
-     * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
+     * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
+     * payments.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
@@ -321,7 +329,8 @@ public class Profiles {
     /**
      * Delete profile
      * 
-     * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
+     * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
+     * payments.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

@@ -269,8 +269,10 @@ public class SalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
-     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
+     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed
+     * below, but for
+     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
+     * `emailDetails`,
      * respectively).
      * 
      * @return The call builder
@@ -286,8 +288,10 @@ public class SalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
-     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
+     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed
+     * below, but for
+     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
+     * `emailDetails`,
      * respectively).
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
@@ -306,8 +310,10 @@ public class SalesInvoices {
      * &gt;
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
-     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed below, but for
-     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and `emailDetails`,
+     * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed
+     * below, but for
+     * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
+     * `emailDetails`,
      * respectively).
      * 
      * @param id Provide the ID of the item you want to perform this operation on.

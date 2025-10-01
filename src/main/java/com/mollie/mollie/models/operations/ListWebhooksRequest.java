@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListWebhooksRequest {
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
@@ -33,7 +34,8 @@ public class ListWebhooksRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
@@ -46,8 +48,10 @@ public class ListWebhooksRequest {
     private Optional<? extends WebhookEventTypes> eventTypes;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -89,7 +93,8 @@ public class ListWebhooksRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @JsonIgnore
@@ -106,7 +111,8 @@ public class ListWebhooksRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     @SuppressWarnings("unchecked")
@@ -125,8 +131,10 @@ public class ListWebhooksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -150,7 +158,8 @@ public class ListWebhooksRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListWebhooksRequest withFrom(String from) {
@@ -160,7 +169,8 @@ public class ListWebhooksRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListWebhooksRequest withFrom(JsonNullable<String> from) {
@@ -188,7 +198,8 @@ public class ListWebhooksRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     public ListWebhooksRequest withSort(ListSort sort) {
@@ -198,7 +209,8 @@ public class ListWebhooksRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     public ListWebhooksRequest withSort(JsonNullable<? extends ListSort> sort) {
@@ -227,8 +239,10 @@ public class ListWebhooksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -240,8 +254,10 @@ public class ListWebhooksRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -328,7 +344,8 @@ public class ListWebhooksRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(String from) {
@@ -338,7 +355,8 @@ public class ListWebhooksRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(JsonNullable<String> from) {
@@ -368,7 +386,8 @@ public class ListWebhooksRequest {
 
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+         * are ordered from
          * newest to oldest.
          */
         public Builder sort(ListSort sort) {
@@ -378,7 +397,8 @@ public class ListWebhooksRequest {
         }
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+         * are ordered from
          * newest to oldest.
          */
         public Builder sort(JsonNullable<? extends ListSort> sort) {
@@ -408,8 +428,10 @@ public class ListWebhooksRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -421,8 +443,10 @@ public class ListWebhooksRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

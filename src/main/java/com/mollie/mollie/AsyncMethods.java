@@ -50,7 +50,8 @@ public class AsyncMethods {
      * **not** paginated — unlike most other list endpoints in our API.
      * 
      * <p>For test mode, all pending and enabled payment methods are returned. If no
-     * payment methods are requested yet, the most popular payment methods are returned in the test mode. For live
+     * payment methods are requested yet, the most popular payment methods are returned in the test mode.
+     * For live
      * mode, only fully enabled payment methods are returned.
      * 
      * <p>Payment methods can be requested and enabled via the Mollie Dashboard, or
@@ -60,7 +61,8 @@ public class AsyncMethods {
      * below.
      * 
      * <p>By default, only payment methods for the Euro currency are returned. If you
-     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the
+     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need
+     * to use the
      * `amount` parameters.
      * 
      * @return The async call builder
@@ -76,7 +78,8 @@ public class AsyncMethods {
      * **not** paginated — unlike most other list endpoints in our API.
      * 
      * <p>For test mode, all pending and enabled payment methods are returned. If no
-     * payment methods are requested yet, the most popular payment methods are returned in the test mode. For live
+     * payment methods are requested yet, the most popular payment methods are returned in the test mode.
+     * For live
      * mode, only fully enabled payment methods are returned.
      * 
      * <p>Payment methods can be requested and enabled via the Mollie Dashboard, or
@@ -86,11 +89,12 @@ public class AsyncMethods {
      * below.
      * 
      * <p>By default, only payment methods for the Euro currency are returned. If you
-     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the
+     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need
+     * to use the
      * `amount` parameters.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListMethodsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListMethodsResponse>} - The async response
      */
     public CompletableFuture<ListMethodsResponse> list(ListMethodsRequest request) {
         return list(request, Optional.empty());
@@ -103,7 +107,8 @@ public class AsyncMethods {
      * **not** paginated — unlike most other list endpoints in our API.
      * 
      * <p>For test mode, all pending and enabled payment methods are returned. If no
-     * payment methods are requested yet, the most popular payment methods are returned in the test mode. For live
+     * payment methods are requested yet, the most popular payment methods are returned in the test mode.
+     * For live
      * mode, only fully enabled payment methods are returned.
      * 
      * <p>Payment methods can be requested and enabled via the Mollie Dashboard, or
@@ -113,12 +118,13 @@ public class AsyncMethods {
      * below.
      * 
      * <p>By default, only payment methods for the Euro currency are returned. If you
-     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need to use the
+     * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need
+     * to use the
      * `amount` parameters.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListMethodsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListMethodsResponse>} - The async response
      */
     public CompletableFuture<ListMethodsResponse> list(ListMethodsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListMethodsRequest, ListMethodsResponse> operation
@@ -133,8 +139,10 @@ public class AsyncMethods {
     /**
      * List all payment methods
      * 
-     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific
-     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
+     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization
+     * for the specific
+     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our
+     * API.
      * 
      * <p>The list can optionally be filtered using a number of parameters described below.
      * 
@@ -147,13 +155,15 @@ public class AsyncMethods {
     /**
      * List all payment methods
      * 
-     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific
-     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
+     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization
+     * for the specific
+     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our
+     * API.
      * 
      * <p>The list can optionally be filtered using a number of parameters described below.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListAllMethodsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAllMethodsResponse>} - The async response
      */
     public CompletableFuture<ListAllMethodsResponse> all(ListAllMethodsRequest request) {
         return all(request, Optional.empty());
@@ -162,14 +172,16 @@ public class AsyncMethods {
     /**
      * List all payment methods
      * 
-     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization for the specific
-     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our API.
+     * <p>Retrieve all payment methods that Mollie offers, regardless of the eligibility of the organization
+     * for the specific
+     * method. The results of this endpoint are **not** paginated — unlike most other list endpoints in our
+     * API.
      * 
      * <p>The list can optionally be filtered using a number of parameters described below.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListAllMethodsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAllMethodsResponse>} - The async response
      */
     public CompletableFuture<ListAllMethodsResponse> all(ListAllMethodsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllMethodsRequest, ListAllMethodsResponse> operation
@@ -187,7 +199,8 @@ public class AsyncMethods {
      * <p>Retrieve a single payment method by its ID.
      * 
      * <p>If a method is not available on this profile, a `404 Not Found` response is
-     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You can enable
+     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You
+     * can enable
      * payments methods via the [Enable payment method endpoint](enable-method) of the Profiles API, or via
      * the Mollie Dashboard.
      * 
@@ -209,7 +222,8 @@ public class AsyncMethods {
      * <p>Retrieve a single payment method by its ID.
      * 
      * <p>If a method is not available on this profile, a `404 Not Found` response is
-     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You can enable
+     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You
+     * can enable
      * payments methods via the [Enable payment method endpoint](enable-method) of the Profiles API, or via
      * the Mollie Dashboard.
      * 
@@ -220,7 +234,7 @@ public class AsyncMethods {
      * are enabled by passing the wallet ID (`applepay`) as the method ID.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetMethodResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetMethodResponse>} - The async response
      */
     public CompletableFuture<GetMethodResponse> get(GetMethodRequest request) {
         return get(request, Optional.empty());
@@ -232,7 +246,8 @@ public class AsyncMethods {
      * <p>Retrieve a single payment method by its ID.
      * 
      * <p>If a method is not available on this profile, a `404 Not Found` response is
-     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You can enable
+     * returned. If the method is available but not enabled yet, a status `403 Forbidden` is returned. You
+     * can enable
      * payments methods via the [Enable payment method endpoint](enable-method) of the Profiles API, or via
      * the Mollie Dashboard.
      * 
@@ -244,7 +259,7 @@ public class AsyncMethods {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;GetMethodResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetMethodResponse>} - The async response
      */
     public CompletableFuture<GetMethodResponse> get(GetMethodRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetMethodRequest, GetMethodResponse> operation

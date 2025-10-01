@@ -57,7 +57,8 @@ public class Refunds {
     /**
      * Create payment refund
      * 
-     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually
+     * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
      * 
      * @return The call builder
@@ -69,7 +70,8 @@ public class Refunds {
     /**
      * Create payment refund
      * 
-     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually
+     * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
      * 
      * @param paymentId Provide the ID of the related payment.
@@ -84,7 +86,8 @@ public class Refunds {
     /**
      * Create payment refund
      * 
-     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually
+     * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
      * 
      * @param paymentId Provide the ID of the related payment.
@@ -198,7 +201,8 @@ public class Refunds {
     /**
      * Cancel payment refund
      * 
-     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled
+     * manually via the
      * Mollie Dashboard, or by using this endpoint.
      * 
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
@@ -213,7 +217,8 @@ public class Refunds {
     /**
      * Cancel payment refund
      * 
-     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled
+     * manually via the
      * Mollie Dashboard, or by using this endpoint.
      * 
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
@@ -232,7 +237,8 @@ public class Refunds {
     /**
      * Cancel payment refund
      * 
-     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled
+     * manually via the
      * Mollie Dashboard, or by using this endpoint.
      * 
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the

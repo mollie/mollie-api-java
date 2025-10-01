@@ -62,7 +62,7 @@ public class AsyncPermissions {
      * 
      * <p>The results are **not** paginated.
      * 
-     * @return CompletableFuture&lt;ListPermissionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPermissionsResponse>} - The async response
      */
     public CompletableFuture<ListPermissionsResponse> listDirect() {
         return list(Optional.empty(), Optional.empty());
@@ -77,7 +77,7 @@ public class AsyncPermissions {
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;ListPermissionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPermissionsResponse>} - The async response
      */
     public CompletableFuture<ListPermissionsResponse> list(Optional<String> idempotencyKey, Optional<Options> options) {
         ListPermissionsRequest request =
@@ -97,7 +97,8 @@ public class AsyncPermissions {
     /**
      * Get permission
      * 
-     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
+     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access
+     * token.
      * 
      * @return The async call builder
      */
@@ -108,10 +109,11 @@ public class AsyncPermissions {
     /**
      * Get permission
      * 
-     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
+     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access
+     * token.
      * 
      * @param permissionId Provide the ID of the related permission.
-     * @return CompletableFuture&lt;GetPermissionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPermissionResponse>} - The async response
      */
     public CompletableFuture<GetPermissionResponse> get(String permissionId) {
         return get(
@@ -122,7 +124,8 @@ public class AsyncPermissions {
     /**
      * Get permission
      * 
-     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
+     * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access
+     * token.
      * 
      * @param permissionId Provide the ID of the related permission.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -132,7 +135,7 @@ public class AsyncPermissions {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetPermissionResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPermissionResponse>} - The async response
      */
     public CompletableFuture<GetPermissionResponse> get(
             String permissionId, JsonNullable<Boolean> testmode,

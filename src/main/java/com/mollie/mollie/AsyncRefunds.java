@@ -58,7 +58,8 @@ public class AsyncRefunds {
     /**
      * Create payment refund
      * 
-     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually
+     * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
      * 
      * @return The async call builder
@@ -70,11 +71,12 @@ public class AsyncRefunds {
     /**
      * Create payment refund
      * 
-     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually
+     * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @return CompletableFuture&lt;CreateRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateRefundResponse>} - The async response
      */
     public CompletableFuture<CreateRefundResponse> create(String paymentId) {
         return create(
@@ -85,14 +87,15 @@ public class AsyncRefunds {
     /**
      * Create payment refund
      * 
-     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+     * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually
+     * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityRefund 
      * @param options additional options
-     * @return CompletableFuture&lt;CreateRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateRefundResponse>} - The async response
      */
     public CompletableFuture<CreateRefundResponse> create(
             String paymentId, Optional<String> idempotencyKey,
@@ -134,7 +137,7 @@ public class AsyncRefunds {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListRefundsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListRefundsResponse>} - The async response
      */
     public CompletableFuture<ListRefundsResponse> list(ListRefundsRequest request) {
         return list(request, Optional.empty());
@@ -149,7 +152,7 @@ public class AsyncRefunds {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListRefundsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListRefundsResponse>} - The async response
      */
     public CompletableFuture<ListRefundsResponse> list(ListRefundsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListRefundsRequest, ListRefundsResponse> operation
@@ -178,7 +181,7 @@ public class AsyncRefunds {
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetRefundResponse>} - The async response
      */
     public CompletableFuture<GetRefundResponse> get(GetRefundRequest request) {
         return get(request, Optional.empty());
@@ -191,7 +194,7 @@ public class AsyncRefunds {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;GetRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetRefundResponse>} - The async response
      */
     public CompletableFuture<GetRefundResponse> get(GetRefundRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetRefundRequest, GetRefundResponse> operation
@@ -206,7 +209,8 @@ public class AsyncRefunds {
     /**
      * Cancel payment refund
      * 
-     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled
+     * manually via the
      * Mollie Dashboard, or by using this endpoint.
      * 
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
@@ -221,7 +225,8 @@ public class AsyncRefunds {
     /**
      * Cancel payment refund
      * 
-     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled
+     * manually via the
      * Mollie Dashboard, or by using this endpoint.
      * 
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
@@ -229,7 +234,7 @@ public class AsyncRefunds {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
-     * @return CompletableFuture&lt;CancelRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<CancelRefundResponse>} - The async response
      */
     public CompletableFuture<CancelRefundResponse> cancel(String paymentId, String refundId) {
         return cancel(
@@ -240,7 +245,8 @@ public class AsyncRefunds {
     /**
      * Cancel payment refund
      * 
-     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+     * <p>Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled
+     * manually via the
      * Mollie Dashboard, or by using this endpoint.
      * 
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
@@ -255,7 +261,7 @@ public class AsyncRefunds {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;CancelRefundResponse&gt; - The async response
+     * @return {@code CompletableFuture<CancelRefundResponse>} - The async response
      */
     public CompletableFuture<CancelRefundResponse> cancel(
             String paymentId, String refundId,
@@ -299,7 +305,7 @@ public class AsyncRefunds {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListAllRefundsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAllRefundsResponse>} - The async response
      */
     public CompletableFuture<ListAllRefundsResponse> all(ListAllRefundsRequest request) {
         return all(request, Optional.empty());
@@ -314,7 +320,7 @@ public class AsyncRefunds {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListAllRefundsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListAllRefundsResponse>} - The async response
      */
     public CompletableFuture<ListAllRefundsResponse> all(ListAllRefundsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation

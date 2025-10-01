@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public class EntityClientLinkResponse {
     /**
-     * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+     * Indicates the response contains a client link object. Will always contain the string `client-link`
+     * for this
      * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -56,7 +57,8 @@ public class EntityClientLinkResponse {
     }
 
     /**
-     * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+     * Indicates the response contains a client link object. Will always contain the string `client-link`
+     * for this
      * endpoint.
      */
     @JsonIgnore
@@ -87,7 +89,8 @@ public class EntityClientLinkResponse {
 
 
     /**
-     * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+     * Indicates the response contains a client link object. Will always contain the string `client-link`
+     * for this
      * endpoint.
      */
     public EntityClientLinkResponse withResource(String resource) {
@@ -98,7 +101,8 @@ public class EntityClientLinkResponse {
 
 
     /**
-     * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+     * Indicates the response contains a client link object. Will always contain the string `client-link`
+     * for this
      * endpoint.
      */
     public EntityClientLinkResponse withResource(Optional<String> resource) {
@@ -189,7 +193,8 @@ public class EntityClientLinkResponse {
 
 
         /**
-         * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+         * Indicates the response contains a client link object. Will always contain the string `client-link`
+         * for this
          * endpoint.
          */
         public Builder resource(String resource) {
@@ -199,7 +204,8 @@ public class EntityClientLinkResponse {
         }
 
         /**
-         * Indicates the response contains a client link object. Will always contain the string `client-link` for this
+         * Indicates the response contains a client link object. Will always contain the string `client-link`
+         * for this
          * endpoint.
          */
         public Builder resource(Optional<String> resource) {

@@ -24,7 +24,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class GetPartnerStatusResponseBody {
     /**
-     * Indicates the response contains a partner status object. Will always contain the string `partner` for
+     * Indicates the response contains a partner status object. Will always contain the string `partner`
+     * for
      * this endpoint.
      */
     @JsonProperty("resource")
@@ -46,7 +47,8 @@ public class GetPartnerStatusResponseBody {
     private Optional<Boolean> isCommissionPartner;
 
     /**
-     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
+     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or
+     * if
      * they were in the past.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -119,7 +121,8 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Indicates the response contains a partner status object. Will always contain the string `partner` for
+     * Indicates the response contains a partner status object. Will always contain the string `partner`
+     * for
      * this endpoint.
      */
     @JsonIgnore
@@ -146,7 +149,8 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
+     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or
+     * if
      * they were in the past.
      */
     @SuppressWarnings("unchecked")
@@ -196,7 +200,8 @@ public class GetPartnerStatusResponseBody {
 
 
     /**
-     * Indicates the response contains a partner status object. Will always contain the string `partner` for
+     * Indicates the response contains a partner status object. Will always contain the string `partner`
+     * for
      * this endpoint.
      */
     public GetPartnerStatusResponseBody withResource(String resource) {
@@ -246,7 +251,8 @@ public class GetPartnerStatusResponseBody {
     }
 
     /**
-     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
+     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or
+     * if
      * they were in the past.
      */
     public GetPartnerStatusResponseBody withUserAgentTokens(List<UserAgentTokens> userAgentTokens) {
@@ -257,7 +263,8 @@ public class GetPartnerStatusResponseBody {
 
 
     /**
-     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
+     * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or
+     * if
      * they were in the past.
      */
     public GetPartnerStatusResponseBody withUserAgentTokens(Optional<? extends List<UserAgentTokens>> userAgentTokens) {
@@ -411,7 +418,8 @@ public class GetPartnerStatusResponseBody {
 
 
         /**
-         * Indicates the response contains a partner status object. Will always contain the string `partner` for
+         * Indicates the response contains a partner status object. Will always contain the string `partner`
+         * for
          * this endpoint.
          */
         public Builder resource(String resource) {
@@ -462,7 +470,8 @@ public class GetPartnerStatusResponseBody {
 
 
         /**
-         * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
+         * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or
+         * if
          * they were in the past.
          */
         public Builder userAgentTokens(List<UserAgentTokens> userAgentTokens) {
@@ -472,7 +481,8 @@ public class GetPartnerStatusResponseBody {
         }
 
         /**
-         * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or if
+         * Array of User-Agent token objects. Present if the organization is a partner of type `useragent`, or
+         * if
          * they were in the past.
          */
         public Builder userAgentTokens(Optional<? extends List<UserAgentTokens>> userAgentTokens) {

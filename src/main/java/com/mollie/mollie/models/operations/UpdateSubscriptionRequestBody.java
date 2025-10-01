@@ -29,10 +29,12 @@ public class UpdateSubscriptionRequestBody {
     private Optional<? extends Amount> amount;
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -43,7 +45,9 @@ public class UpdateSubscriptionRequestBody {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interval")
@@ -57,7 +61,8 @@ public class UpdateSubscriptionRequestBody {
     private Optional<String> startDate;
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -67,8 +72,10 @@ public class UpdateSubscriptionRequestBody {
     private Optional<Long> times;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -90,7 +97,8 @@ public class UpdateSubscriptionRequestBody {
     private Optional<String> mandateId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -146,10 +154,12 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     @JsonIgnore
     public Optional<String> description() {
@@ -161,7 +171,9 @@ public class UpdateSubscriptionRequestBody {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     @JsonIgnore
     public Optional<String> interval() {
@@ -177,7 +189,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -188,8 +201,10 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -214,7 +229,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -249,10 +265,12 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     public UpdateSubscriptionRequestBody withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -262,10 +280,12 @@ public class UpdateSubscriptionRequestBody {
 
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     public UpdateSubscriptionRequestBody withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -278,7 +298,9 @@ public class UpdateSubscriptionRequestBody {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     public UpdateSubscriptionRequestBody withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
@@ -292,7 +314,9 @@ public class UpdateSubscriptionRequestBody {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     public UpdateSubscriptionRequestBody withInterval(Optional<String> interval) {
         Utils.checkNotNull(interval, "interval");
@@ -320,7 +344,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -333,7 +358,8 @@ public class UpdateSubscriptionRequestBody {
 
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -345,8 +371,10 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public UpdateSubscriptionRequestBody withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -355,8 +383,10 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public UpdateSubscriptionRequestBody withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -403,7 +433,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -415,7 +446,8 @@ public class UpdateSubscriptionRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -515,10 +547,12 @@ public class UpdateSubscriptionRequestBody {
 
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * The subscription's description will be used as the description of the resulting individual payments
+         * and so showing
          * up on the bank statement of the consumer.
          * 
-         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+         * subscriptions.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -527,10 +561,12 @@ public class UpdateSubscriptionRequestBody {
         }
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * The subscription's description will be used as the description of the resulting individual payments
+         * and so showing
          * up on the bank statement of the consumer.
          * 
-         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+         * subscriptions.
          */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
@@ -544,7 +580,9 @@ public class UpdateSubscriptionRequestBody {
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
          * 
-         * <p>Possible values: `... days`, `... weeks`, `... months`.
+         * <p>Possible values: `... days`, `... weeks`, `...
+         * 
+         * <p>months`.
          */
         public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
@@ -557,7 +595,9 @@ public class UpdateSubscriptionRequestBody {
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
          * 
-         * <p>Possible values: `... days`, `... weeks`, `... months`.
+         * <p>Possible values: `... days`, `... weeks`, `...
+         * 
+         * <p>months`.
          */
         public Builder interval(Optional<String> interval) {
             Utils.checkNotNull(interval, "interval");
@@ -586,7 +626,8 @@ public class UpdateSubscriptionRequestBody {
 
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * Total number of payments for the subscription. Once this number of payments is reached, the
+         * subscription is
          * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -598,7 +639,8 @@ public class UpdateSubscriptionRequestBody {
         }
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * Total number of payments for the subscription. Once this number of payments is reached, the
+         * subscription is
          * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -611,8 +653,10 @@ public class UpdateSubscriptionRequestBody {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -621,8 +665,10 @@ public class UpdateSubscriptionRequestBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -670,7 +716,8 @@ public class UpdateSubscriptionRequestBody {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+         * Most API credentials are specifically created for either live mode or test mode. For
+         * organization-level credentials
          * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -682,7 +729,8 @@ public class UpdateSubscriptionRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+         * Most API credentials are specifically created for either live mode or test mode. For
+         * organization-level credentials
          * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

@@ -25,13 +25,15 @@ import java.util.Optional;
 @SuppressWarnings("serial")
 public class ErrorResponse extends RuntimeException {
     /**
-     * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
+     * The status code of the error message. This is always the same code as the status code of the HTTP
+     * message itself.
      */
     @JsonProperty("status")
     private long status;
 
     /**
-     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
+     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
+     * Found`.
      */
     @JsonProperty("title")
     private String title;
@@ -43,7 +45,8 @@ public class ErrorResponse extends RuntimeException {
     private String detail;
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+     * If the error was caused by a value provided by you in a specific field, the `field` property will
+     * contain the name
      * of the field that caused the issue.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -84,7 +87,8 @@ public class ErrorResponse extends RuntimeException {
     }
 
     /**
-     * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
+     * The status code of the error message. This is always the same code as the status code of the HTTP
+     * message itself.
      */
     @JsonIgnore
     public long status() {
@@ -92,7 +96,8 @@ public class ErrorResponse extends RuntimeException {
     }
 
     /**
-     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
+     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
+     * Found`.
      */
     @JsonIgnore
     public String title() {
@@ -108,7 +113,8 @@ public class ErrorResponse extends RuntimeException {
     }
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+     * If the error was caused by a value provided by you in a specific field, the `field` property will
+     * contain the name
      * of the field that caused the issue.
      */
     @JsonIgnore
@@ -127,7 +133,8 @@ public class ErrorResponse extends RuntimeException {
 
 
     /**
-     * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
+     * The status code of the error message. This is always the same code as the status code of the HTTP
+     * message itself.
      */
     public ErrorResponse withStatus(long status) {
         Utils.checkNotNull(status, "status");
@@ -136,7 +143,8 @@ public class ErrorResponse extends RuntimeException {
     }
 
     /**
-     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
+     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
+     * Found`.
      */
     public ErrorResponse withTitle(String title) {
         Utils.checkNotNull(title, "title");
@@ -154,7 +162,8 @@ public class ErrorResponse extends RuntimeException {
     }
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+     * If the error was caused by a value provided by you in a specific field, the `field` property will
+     * contain the name
      * of the field that caused the issue.
      */
     public ErrorResponse withField(String field) {
@@ -165,7 +174,8 @@ public class ErrorResponse extends RuntimeException {
 
 
     /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+     * If the error was caused by a value provided by you in a specific field, the `field` property will
+     * contain the name
      * of the field that caused the issue.
      */
     public ErrorResponse withField(Optional<String> field) {
@@ -233,7 +243,8 @@ public class ErrorResponse extends RuntimeException {
 
 
         /**
-         * The status code of the error message. This is always the same code as the status code of the HTTP message itself.
+         * The status code of the error message. This is always the same code as the status code of the HTTP
+         * message itself.
          */
         public Builder status(long status) {
             Utils.checkNotNull(status, "status");
@@ -243,7 +254,8 @@ public class ErrorResponse extends RuntimeException {
 
 
         /**
-         * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not Found`.
+         * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
+         * Found`.
          */
         public Builder title(String title) {
             Utils.checkNotNull(title, "title");
@@ -263,7 +275,8 @@ public class ErrorResponse extends RuntimeException {
 
 
         /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+         * If the error was caused by a value provided by you in a specific field, the `field` property will
+         * contain the name
          * of the field that caused the issue.
          */
         public Builder field(String field) {
@@ -273,7 +286,8 @@ public class ErrorResponse extends RuntimeException {
         }
 
         /**
-         * If the error was caused by a value provided by you in a specific field, the `field` property will contain the name
+         * If the error was caused by a value provided by you in a specific field, the `field` property will
+         * contain the name
          * of the field that caused the issue.
          */
         public Builder field(Optional<String> field) {

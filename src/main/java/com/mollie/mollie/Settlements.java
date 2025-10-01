@@ -119,7 +119,8 @@ public class Settlements {
      * 
      * <p>A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * <p>Settlements will typically include a report that details what balance transactions have taken place between this
+     * <p>Settlements will typically include a report that details what balance transactions have taken place
+     * between this
      * settlement and the previous one.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -141,7 +142,8 @@ public class Settlements {
      * 
      * <p>A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * <p>Settlements will typically include a report that details what balance transactions have taken place between this
+     * <p>Settlements will typically include a report that details what balance transactions have taken place
+     * between this
      * settlement and the previous one.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -165,7 +167,8 @@ public class Settlements {
      * 
      * <p>A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * <p>Settlements will typically include a report that details what balance transactions have taken place between this
+     * <p>Settlements will typically include a report that details what balance transactions have taken place
+     * between this
      * settlement and the previous one.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -194,10 +197,12 @@ public class Settlements {
     /**
      * Get open settlement
      * 
-     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your
+     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object
+     * representing your
      * organization's balance.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -212,10 +217,12 @@ public class Settlements {
     /**
      * Get open settlement
      * 
-     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your
+     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object
+     * representing your
      * organization's balance.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -231,10 +238,12 @@ public class Settlements {
     /**
      * Get open settlement
      * 
-     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your
+     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object
+     * representing your
      * organization's balance.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -261,7 +270,8 @@ public class Settlements {
      * 
      * <p>Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -278,7 +288,8 @@ public class Settlements {
      * 
      * <p>Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -296,7 +307,8 @@ public class Settlements {
      * 
      * <p>Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -470,7 +482,8 @@ public class Settlements {
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
+     * <p>The response is in the same format as the response of the [List chargebacks
+     * endpoint](list-chargebacks).
      * 
      * @return The call builder
      */
@@ -483,7 +496,8 @@ public class Settlements {
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
+     * <p>The response is in the same format as the response of the [List chargebacks
+     * endpoint](list-chargebacks).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -498,7 +512,8 @@ public class Settlements {
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
+     * <p>The response is in the same format as the response of the [List chargebacks
+     * endpoint](list-chargebacks).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

@@ -67,7 +67,8 @@ public class Customers {
     /**
      * Create customer
      * 
-     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
+     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and
+     * subscriptions can be linked
      * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
@@ -81,7 +82,8 @@ public class Customers {
     /**
      * Create customer
      * 
-     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
+     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and
+     * subscriptions can be linked
      * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
@@ -96,7 +98,8 @@ public class Customers {
     /**
      * Create customer
      * 
-     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
+     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and
+     * subscriptions can be linked
      * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
@@ -231,7 +234,8 @@ public class Customers {
      * 
      * <p>Update an existing customer.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
+     * endpoint.
      * 
      * @return The call builder
      */
@@ -244,7 +248,8 @@ public class Customers {
      * 
      * <p>Update an existing customer.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
+     * endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -260,7 +265,8 @@ public class Customers {
      * 
      * <p>Update an existing customer.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
+     * endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -287,7 +293,8 @@ public class Customers {
     /**
      * Delete customer
      * 
-     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
+     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
+     * well.
      * 
      * @return The call builder
      */
@@ -298,7 +305,8 @@ public class Customers {
     /**
      * Delete customer
      * 
-     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
+     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
+     * well.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -312,7 +320,8 @@ public class Customers {
     /**
      * Delete customer
      * 
-     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
+     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
+     * well.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -344,11 +353,13 @@ public class Customers {
      * <p>Linking customers to payments enables you to:
      * 
      * <p>* Keep track of payment preferences for your customers
-     * * Allow your customers to charge a previously used credit card with a single click in our hosted checkout
+     * * Allow your customers to charge a previously used credit card with a single click in our hosted
+     * checkout
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
+     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the
+     * `customerId`
      * parameter predefined.
      * 
      * @return The call builder
@@ -365,11 +376,13 @@ public class Customers {
      * <p>Linking customers to payments enables you to:
      * 
      * <p>* Keep track of payment preferences for your customers
-     * * Allow your customers to charge a previously used credit card with a single click in our hosted checkout
+     * * Allow your customers to charge a previously used credit card with a single click in our hosted
+     * checkout
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
+     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the
+     * `customerId`
      * parameter predefined.
      * 
      * @param customerId Provide the ID of the related customer.
@@ -389,11 +402,13 @@ public class Customers {
      * <p>Linking customers to payments enables you to:
      * 
      * <p>* Keep track of payment preferences for your customers
-     * * Allow your customers to charge a previously used credit card with a single click in our hosted checkout
+     * * Allow your customers to charge a previously used credit card with a single click in our hosted
+     * checkout
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
+     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the
+     * `customerId`
      * parameter predefined.
      * 
      * @param customerId Provide the ID of the related customer.

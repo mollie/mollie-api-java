@@ -19,10 +19,12 @@ import java.lang.String;
  */
 public class ListSettlementCapturesResponseBody {
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be
+     * present in the result
      * as well.
      * 
-     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
+     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
+     * request. The default
      * limit is 50 items.
      */
     @JsonProperty("count")
@@ -33,7 +35,8 @@ public class ListSettlementCapturesResponseBody {
     private ListSettlementCapturesEmbedded embedded;
 
     /**
-     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+     * `type` field.
      */
     @JsonProperty("_links")
     private ListLinks links;
@@ -52,10 +55,12 @@ public class ListSettlementCapturesResponseBody {
     }
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be
+     * present in the result
      * as well.
      * 
-     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
+     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
+     * request. The default
      * limit is 50 items.
      */
     @JsonIgnore
@@ -69,7 +74,8 @@ public class ListSettlementCapturesResponseBody {
     }
 
     /**
-     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+     * `type` field.
      */
     @JsonIgnore
     public ListLinks links() {
@@ -82,10 +88,12 @@ public class ListSettlementCapturesResponseBody {
 
 
     /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
+     * The number of items in this result set. If more items are available, a `_links.next` URL will be
+     * present in the result
      * as well.
      * 
-     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
+     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
+     * request. The default
      * limit is 50 items.
      */
     public ListSettlementCapturesResponseBody withCount(long count) {
@@ -101,7 +109,8 @@ public class ListSettlementCapturesResponseBody {
     }
 
     /**
-     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+     * `type` field.
      */
     public ListSettlementCapturesResponseBody withLinks(ListLinks links) {
         Utils.checkNotNull(links, "links");
@@ -153,10 +162,12 @@ public class ListSettlementCapturesResponseBody {
 
 
         /**
-         * The number of items in this result set. If more items are available, a `_links.next` URL will be present in the result
+         * The number of items in this result set. If more items are available, a `_links.next` URL will be
+         * present in the result
          * as well.
          * 
-         * <p>The maximum number of items per result set is controlled by the `limit` property provided in the request. The default
+         * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
+         * request. The default
          * limit is 50 items.
          */
         public Builder count(long count) {
@@ -174,7 +185,8 @@ public class ListSettlementCapturesResponseBody {
 
 
         /**
-         * Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+         * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+         * `type` field.
          */
         public Builder links(ListLinks links) {
             Utils.checkNotNull(links, "links");

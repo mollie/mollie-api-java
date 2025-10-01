@@ -51,7 +51,8 @@ public class AsyncOrganizations {
      * 
      * <p>Retrieve a single organization by its ID.
      * 
-     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
+     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is
+     * primarily useful
      * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
@@ -67,13 +68,14 @@ public class AsyncOrganizations {
      * 
      * <p>Retrieve a single organization by its ID.
      * 
-     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
+     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is
+     * primarily useful
      * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;GetOrganizationResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetOrganizationResponse>} - The async response
      */
     public CompletableFuture<GetOrganizationResponse> get(String id) {
         return get(
@@ -86,7 +88,8 @@ public class AsyncOrganizations {
      * 
      * <p>Retrieve a single organization by its ID.
      * 
-     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is primarily useful
+     * <p>You can normally only retrieve the currently authenticated organization with this endpoint. This is
+     * primarily useful
      * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
@@ -99,7 +102,7 @@ public class AsyncOrganizations {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetOrganizationResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetOrganizationResponse>} - The async response
      */
     public CompletableFuture<GetOrganizationResponse> get(
             String id, JsonNullable<Boolean> testmode,
@@ -123,10 +126,12 @@ public class AsyncOrganizations {
     /**
      * Get current organization
      * 
-     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
+     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get
+     * organization](get-organization)
      * endpoint.
      * 
-     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
+     * <p>For a complete reference of the organization object, refer to the [Get
+     * organization](get-organization) endpoint
      * documentation.
      * 
      * @return The async call builder
@@ -138,13 +143,15 @@ public class AsyncOrganizations {
     /**
      * Get current organization
      * 
-     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
+     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get
+     * organization](get-organization)
      * endpoint.
      * 
-     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
+     * <p>For a complete reference of the organization object, refer to the [Get
+     * organization](get-organization) endpoint
      * documentation.
      * 
-     * @return CompletableFuture&lt;GetCurrentOrganizationResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetCurrentOrganizationResponse>} - The async response
      */
     public CompletableFuture<GetCurrentOrganizationResponse> getCurrentDirect() {
         return getCurrent(Optional.empty(), Optional.empty());
@@ -153,15 +160,17 @@ public class AsyncOrganizations {
     /**
      * Get current organization
      * 
-     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get organization](get-organization)
+     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get
+     * organization](get-organization)
      * endpoint.
      * 
-     * <p>For a complete reference of the organization object, refer to the [Get organization](get-organization) endpoint
+     * <p>For a complete reference of the organization object, refer to the [Get
+     * organization](get-organization) endpoint
      * documentation.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetCurrentOrganizationResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetCurrentOrganizationResponse>} - The async response
      */
     public CompletableFuture<GetCurrentOrganizationResponse> getCurrent(Optional<String> idempotencyKey, Optional<Options> options) {
         GetCurrentOrganizationRequest request =
@@ -181,7 +190,8 @@ public class AsyncOrganizations {
     /**
      * Get partner status
      * 
-     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
+     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for
+     * so-called *partner
      * accounts*.
      * 
      * @return The async call builder
@@ -193,10 +203,11 @@ public class AsyncOrganizations {
     /**
      * Get partner status
      * 
-     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
+     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for
+     * so-called *partner
      * accounts*.
      * 
-     * @return CompletableFuture&lt;GetPartnerStatusResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPartnerStatusResponse>} - The async response
      */
     public CompletableFuture<GetPartnerStatusResponse> getPartnerDirect() {
         return getPartner(Optional.empty(), Optional.empty());
@@ -205,12 +216,13 @@ public class AsyncOrganizations {
     /**
      * Get partner status
      * 
-     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for so-called *partner
+     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for
+     * so-called *partner
      * accounts*.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetPartnerStatusResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPartnerStatusResponse>} - The async response
      */
     public CompletableFuture<GetPartnerStatusResponse> getPartner(Optional<String> idempotencyKey, Optional<Options> options) {
         GetPartnerStatusRequest request =

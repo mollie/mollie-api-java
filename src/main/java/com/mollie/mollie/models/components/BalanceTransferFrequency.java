@@ -44,7 +44,8 @@ import java.util.Optional;
 /**
  * BalanceTransferFrequency
  * 
- * <p>The frequency with which the available amount on the balance will be settled to the configured transfer
+ * <p>The frequency with which the available amount on the balance will be settled to the configured
+ * transfer
  * destination.
  * 
  * <p>Settlements created during weekends or on bank holidays will take place on the next business day.

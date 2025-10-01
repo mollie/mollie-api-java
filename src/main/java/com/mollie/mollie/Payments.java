@@ -73,7 +73,8 @@ public class Payments {
      * can be found in the 'Accepting payments' guide.
      * 
      * <p>If you specify the `method` parameter when creating a payment, optional
-     * additional parameters may be available for the payment method that are not listed below. Please refer to the
+     * additional parameters may be available for the payment method that are not listed below. Please
+     * refer to the
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @return The call builder
@@ -95,7 +96,8 @@ public class Payments {
      * can be found in the 'Accepting payments' guide.
      * 
      * <p>If you specify the `method` parameter when creating a payment, optional
-     * additional parameters may be available for the payment method that are not listed below. Please refer to the
+     * additional parameters may be available for the payment method that are not listed below. Please
+     * refer to the
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @return The response from the API call
@@ -119,7 +121,8 @@ public class Payments {
      * can be found in the 'Accepting payments' guide.
      * 
      * <p>If you specify the `method` parameter when creating a payment, optional
-     * additional parameters may be available for the payment method that are not listed below. Please refer to the
+     * additional parameters may be available for the payment method that are not listed below. Please
+     * refer to the
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
@@ -291,12 +294,14 @@ public class Payments {
     /**
      * Cancel payment
      * 
-     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
+     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time —
+     * usually until
      * the next business day or as long as the payment status is open.
      * 
      * <p>Payments may also be canceled manually from the Mollie Dashboard.
      * 
-     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
+     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be
+     * canceled.
      * 
      * @return The call builder
      */
@@ -307,12 +312,14 @@ public class Payments {
     /**
      * Cancel payment
      * 
-     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
+     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time —
+     * usually until
      * the next business day or as long as the payment status is open.
      * 
      * <p>Payments may also be canceled manually from the Mollie Dashboard.
      * 
-     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
+     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be
+     * canceled.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -326,12 +333,14 @@ public class Payments {
     /**
      * Cancel payment
      * 
-     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
+     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time —
+     * usually until
      * the next business day or as long as the payment status is open.
      * 
      * <p>Payments may also be canceled manually from the Mollie Dashboard.
      * 
-     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
+     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be
+     * canceled.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -358,13 +367,16 @@ public class Payments {
     /**
      * Release payment authorization
      * 
-     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional
+     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any
+     * additional
      * captures. Payment authorizations may also be released manually from the Mollie Dashboard.
      * 
-     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to
+     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed.
+     * It is up to
      * the issuing bank if and when the hold will be released.
      * 
-     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures.
+     * <p>If the request does succeed, the payment status will change to `canceled` for payments without
+     * captures.
      * If there is a successful capture, the payment will transition to `paid`.
      * 
      * @return The call builder
@@ -376,13 +388,16 @@ public class Payments {
     /**
      * Release payment authorization
      * 
-     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional
+     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any
+     * additional
      * captures. Payment authorizations may also be released manually from the Mollie Dashboard.
      * 
-     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to
+     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed.
+     * It is up to
      * the issuing bank if and when the hold will be released.
      * 
-     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures.
+     * <p>If the request does succeed, the payment status will change to `canceled` for payments without
+     * captures.
      * If there is a successful capture, the payment will transition to `paid`.
      * 
      * @param paymentId Provide the ID of the related payment.
@@ -397,13 +412,16 @@ public class Payments {
     /**
      * Release payment authorization
      * 
-     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional
+     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any
+     * additional
      * captures. Payment authorizations may also be released manually from the Mollie Dashboard.
      * 
-     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to
+     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed.
+     * It is up to
      * the issuing bank if and when the hold will be released.
      * 
-     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures.
+     * <p>If the request does succeed, the payment status will change to `canceled` for payments without
+     * captures.
      * If there is a successful capture, the payment will transition to `paid`.
      * 
      * @param paymentId Provide the ID of the related payment.

@@ -62,7 +62,7 @@ public class AsyncDelayedRouting {
      * The routed amount is credited to the account of your customer.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @return CompletableFuture&lt;PaymentCreateRouteResponse&gt; - The async response
+     * @return {@code CompletableFuture<PaymentCreateRouteResponse>} - The async response
      */
     public CompletableFuture<PaymentCreateRouteResponse> create(String paymentId) {
         return create(
@@ -80,7 +80,7 @@ public class AsyncDelayedRouting {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param routeCreateRequest 
      * @param options additional options
-     * @return CompletableFuture&lt;PaymentCreateRouteResponse&gt; - The async response
+     * @return {@code CompletableFuture<PaymentCreateRouteResponse>} - The async response
      */
     public CompletableFuture<PaymentCreateRouteResponse> create(
             String paymentId, Optional<String> idempotencyKey,
@@ -118,7 +118,7 @@ public class AsyncDelayedRouting {
      * <p>Retrieve a list of all routes created for a specific payment.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @return CompletableFuture&lt;PaymentListRoutesResponse&gt; - The async response
+     * @return {@code CompletableFuture<PaymentListRoutesResponse>} - The async response
      */
     public CompletableFuture<PaymentListRoutesResponse> list(String paymentId) {
         return list(
@@ -139,7 +139,7 @@ public class AsyncDelayedRouting {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;PaymentListRoutesResponse&gt; - The async response
+     * @return {@code CompletableFuture<PaymentListRoutesResponse>} - The async response
      */
     public CompletableFuture<PaymentListRoutesResponse> list(
             String paymentId, JsonNullable<Boolean> testmode,

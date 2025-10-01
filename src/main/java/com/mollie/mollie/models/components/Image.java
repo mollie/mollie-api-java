@@ -29,7 +29,8 @@ public class Image {
     private String size2x;
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+     * can
      * scale to any desired size without compromising visual quality.
      */
     @JsonProperty("svg")
@@ -65,7 +66,8 @@ public class Image {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+     * can
      * scale to any desired size without compromising visual quality.
      */
     @JsonIgnore
@@ -97,7 +99,8 @@ public class Image {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+     * can
      * scale to any desired size without compromising visual quality.
      */
     public Image withSvg(String svg) {
@@ -170,7 +173,8 @@ public class Image {
 
 
         /**
-         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+         * can
          * scale to any desired size without compromising visual quality.
          */
         public Builder svg(String svg) {

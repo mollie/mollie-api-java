@@ -32,10 +32,12 @@ public class EntityPaymentRoute {
     private EntityPaymentRouteDestination destination;
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+     * date. The
      * date must be given in `YYYY-MM-DD` format.
      * 
-     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+     * succeeds.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("releaseDate")
@@ -97,10 +99,12 @@ public class EntityPaymentRoute {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+     * date. The
      * date must be given in `YYYY-MM-DD` format.
      * 
-     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+     * succeeds.
      */
     @JsonIgnore
     public JsonNullable<String> releaseDate() {
@@ -145,10 +149,12 @@ public class EntityPaymentRoute {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+     * date. The
      * date must be given in `YYYY-MM-DD` format.
      * 
-     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+     * succeeds.
      */
     public EntityPaymentRoute withReleaseDate(String releaseDate) {
         Utils.checkNotNull(releaseDate, "releaseDate");
@@ -157,10 +163,12 @@ public class EntityPaymentRoute {
     }
 
     /**
-     * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+     * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+     * date. The
      * date must be given in `YYYY-MM-DD` format.
      * 
-     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+     * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+     * succeeds.
      */
     public EntityPaymentRoute withReleaseDate(JsonNullable<String> releaseDate) {
         Utils.checkNotNull(releaseDate, "releaseDate");
@@ -257,10 +265,12 @@ public class EntityPaymentRoute {
 
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+         * date. The
          * date must be given in `YYYY-MM-DD` format.
          * 
-         * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+         * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+         * succeeds.
          */
         public Builder releaseDate(String releaseDate) {
             Utils.checkNotNull(releaseDate, "releaseDate");
@@ -269,10 +279,12 @@ public class EntityPaymentRoute {
         }
 
         /**
-         * Optionally, schedule this portion of the payment to be transferred to its destination on a later date. The
+         * Optionally, schedule this portion of the payment to be transferred to its destination on a later
+         * date. The
          * date must be given in `YYYY-MM-DD` format.
          * 
-         * <p>If no date is given, the funds become available to the connected merchant as soon as the payment succeeds.
+         * <p>If no date is given, the funds become available to the connected merchant as soon as the payment
+         * succeeds.
          */
         public Builder releaseDate(JsonNullable<String> releaseDate) {
             Utils.checkNotNull(releaseDate, "releaseDate");

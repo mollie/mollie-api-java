@@ -25,7 +25,8 @@ public class SubscriptionRequest {
     private Optional<String> id;
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * The subscription's current status is directly related to the status of the underlying customer or
+     * mandate that is
      * enabling the subscription.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -40,7 +41,8 @@ public class SubscriptionRequest {
     private Optional<? extends Amount> amount;
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -54,7 +56,9 @@ public class SubscriptionRequest {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interval")
@@ -68,29 +72,35 @@ public class SubscriptionRequest {
     private Optional<String> startDate;
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private Optional<String> description;
 
     /**
-     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+     * be used.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
     private JsonNullable<? extends SubscriptionMethod> method;
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+     * payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+     * more
      * information.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -98,8 +108,10 @@ public class SubscriptionRequest {
     private Optional<? extends SubscriptionRequestApplicationFee> applicationFee;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -108,7 +120,8 @@ public class SubscriptionRequest {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -128,8 +141,10 @@ public class SubscriptionRequest {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -196,7 +211,8 @@ public class SubscriptionRequest {
     }
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * The subscription's current status is directly related to the status of the underlying customer or
+     * mandate that is
      * enabling the subscription.
      */
     @SuppressWarnings("unchecked")
@@ -215,7 +231,8 @@ public class SubscriptionRequest {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -230,7 +247,9 @@ public class SubscriptionRequest {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     @JsonIgnore
     public Optional<String> interval() {
@@ -246,10 +265,12 @@ public class SubscriptionRequest {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     @JsonIgnore
     public Optional<String> description() {
@@ -257,7 +278,8 @@ public class SubscriptionRequest {
     }
 
     /**
-     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+     * be used.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -266,12 +288,15 @@ public class SubscriptionRequest {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+     * payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+     * more
      * information.
      */
     @SuppressWarnings("unchecked")
@@ -281,8 +306,10 @@ public class SubscriptionRequest {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -293,7 +320,8 @@ public class SubscriptionRequest {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonIgnore
@@ -314,8 +342,10 @@ public class SubscriptionRequest {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonIgnore
@@ -342,7 +372,8 @@ public class SubscriptionRequest {
     }
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * The subscription's current status is directly related to the status of the underlying customer or
+     * mandate that is
      * enabling the subscription.
      */
     public SubscriptionRequest withStatus(SubscriptionStatus status) {
@@ -353,7 +384,8 @@ public class SubscriptionRequest {
 
 
     /**
-     * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+     * The subscription's current status is directly related to the status of the underlying customer or
+     * mandate that is
      * enabling the subscription.
      */
     public SubscriptionRequest withStatus(Optional<? extends SubscriptionStatus> status) {
@@ -382,7 +414,8 @@ public class SubscriptionRequest {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -394,7 +427,8 @@ public class SubscriptionRequest {
     }
 
     /**
-     * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+     * Total number of payments for the subscription. Once this number of payments is reached, the
+     * subscription is
      * considered completed.
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -410,7 +444,9 @@ public class SubscriptionRequest {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     public SubscriptionRequest withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
@@ -424,7 +460,9 @@ public class SubscriptionRequest {
      * 
      * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
      * 
-     * <p>Possible values: `... days`, `... weeks`, `... months`.
+     * <p>Possible values: `... days`, `... weeks`, `...
+     * 
+     * <p>months`.
      */
     public SubscriptionRequest withInterval(Optional<String> interval) {
         Utils.checkNotNull(interval, "interval");
@@ -452,10 +490,12 @@ public class SubscriptionRequest {
     }
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     public SubscriptionRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -465,10 +505,12 @@ public class SubscriptionRequest {
 
 
     /**
-     * The subscription's description will be used as the description of the resulting individual payments and so showing
+     * The subscription's description will be used as the description of the resulting individual payments
+     * and so showing
      * up on the bank statement of the consumer.
      * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+     * subscriptions.
      */
     public SubscriptionRequest withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
@@ -477,7 +519,8 @@ public class SubscriptionRequest {
     }
 
     /**
-     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+     * be used.
      */
     public SubscriptionRequest withMethod(SubscriptionMethod method) {
         Utils.checkNotNull(method, "method");
@@ -486,7 +529,8 @@ public class SubscriptionRequest {
     }
 
     /**
-     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+     * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+     * be used.
      */
     public SubscriptionRequest withMethod(JsonNullable<? extends SubscriptionMethod> method) {
         Utils.checkNotNull(method, "method");
@@ -495,12 +539,15 @@ public class SubscriptionRequest {
     }
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+     * payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+     * more
      * information.
      */
     public SubscriptionRequest withApplicationFee(SubscriptionRequestApplicationFee applicationFee) {
@@ -511,12 +558,15 @@ public class SubscriptionRequest {
 
 
     /**
-     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants.
      * 
-     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+     * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+     * payment.
      * 
-     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+     * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+     * more
      * information.
      */
     public SubscriptionRequest withApplicationFee(Optional<? extends SubscriptionRequestApplicationFee> applicationFee) {
@@ -526,8 +576,10 @@ public class SubscriptionRequest {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public SubscriptionRequest withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -536,8 +588,10 @@ public class SubscriptionRequest {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public SubscriptionRequest withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -548,7 +602,8 @@ public class SubscriptionRequest {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     public SubscriptionRequest withWebhookUrl(String webhookUrl) {
@@ -561,7 +616,8 @@ public class SubscriptionRequest {
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
      * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     public SubscriptionRequest withWebhookUrl(Optional<String> webhookUrl) {
@@ -599,8 +655,10 @@ public class SubscriptionRequest {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public SubscriptionRequest withTestmode(boolean testmode) {
@@ -612,8 +670,10 @@ public class SubscriptionRequest {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public SubscriptionRequest withTestmode(JsonNullable<Boolean> testmode) {
@@ -727,7 +787,8 @@ public class SubscriptionRequest {
 
 
         /**
-         * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+         * The subscription's current status is directly related to the status of the underlying customer or
+         * mandate that is
          * enabling the subscription.
          */
         public Builder status(SubscriptionStatus status) {
@@ -737,7 +798,8 @@ public class SubscriptionRequest {
         }
 
         /**
-         * The subscription's current status is directly related to the status of the underlying customer or mandate that is
+         * The subscription's current status is directly related to the status of the underlying customer or
+         * mandate that is
          * enabling the subscription.
          */
         public Builder status(Optional<? extends SubscriptionStatus> status) {
@@ -767,7 +829,8 @@ public class SubscriptionRequest {
 
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * Total number of payments for the subscription. Once this number of payments is reached, the
+         * subscription is
          * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -779,7 +842,8 @@ public class SubscriptionRequest {
         }
 
         /**
-         * Total number of payments for the subscription. Once this number of payments is reached, the subscription is
+         * Total number of payments for the subscription. Once this number of payments is reached, the
+         * subscription is
          * considered completed.
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
@@ -796,7 +860,9 @@ public class SubscriptionRequest {
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
          * 
-         * <p>Possible values: `... days`, `... weeks`, `... months`.
+         * <p>Possible values: `... days`, `... weeks`, `...
+         * 
+         * <p>months`.
          */
         public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
@@ -809,7 +875,9 @@ public class SubscriptionRequest {
          * 
          * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
          * 
-         * <p>Possible values: `... days`, `... weeks`, `... months`.
+         * <p>Possible values: `... days`, `... weeks`, `...
+         * 
+         * <p>months`.
          */
         public Builder interval(Optional<String> interval) {
             Utils.checkNotNull(interval, "interval");
@@ -838,10 +906,12 @@ public class SubscriptionRequest {
 
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * The subscription's description will be used as the description of the resulting individual payments
+         * and so showing
          * up on the bank statement of the consumer.
          * 
-         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+         * subscriptions.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -850,10 +920,12 @@ public class SubscriptionRequest {
         }
 
         /**
-         * The subscription's description will be used as the description of the resulting individual payments and so showing
+         * The subscription's description will be used as the description of the resulting individual payments
+         * and so showing
          * up on the bank statement of the consumer.
          * 
-         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active subscriptions.
+         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
+         * subscriptions.
          */
         public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
@@ -863,7 +935,8 @@ public class SubscriptionRequest {
 
 
         /**
-         * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+         * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+         * be used.
          */
         public Builder method(SubscriptionMethod method) {
             Utils.checkNotNull(method, "method");
@@ -872,7 +945,8 @@ public class SubscriptionRequest {
         }
 
         /**
-         * The payment method used for this subscription. If omitted, any of the customer's valid mandates may be used.
+         * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
+         * be used.
          */
         public Builder method(JsonNullable<? extends SubscriptionMethod> method) {
             Utils.checkNotNull(method, "method");
@@ -882,12 +956,15 @@ public class SubscriptionRequest {
 
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+         * Mollie
          * merchants.
          * 
-         * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+         * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+         * payment.
          * 
-         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+         * more
          * information.
          */
         public Builder applicationFee(SubscriptionRequestApplicationFee applicationFee) {
@@ -897,12 +974,15 @@ public class SubscriptionRequest {
         }
 
         /**
-         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+         * Mollie
          * merchants.
          * 
-         * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual payment.
+         * <p>Setting an application fee on the subscription will ensure this fee is charged on each individual
+         * payment.
          * 
-         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for more
+         * <p>Refer to the `applicationFee` parameter on the [Get payment endpoint](get-payment) documentation for
+         * more
          * information.
          */
         public Builder applicationFee(Optional<? extends SubscriptionRequestApplicationFee> applicationFee) {
@@ -913,8 +993,10 @@ public class SubscriptionRequest {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -923,8 +1005,10 @@ public class SubscriptionRequest {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -936,7 +1020,8 @@ public class SubscriptionRequest {
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
          * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+         * failures as
          * well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(String webhookUrl) {
@@ -948,7 +1033,8 @@ public class SubscriptionRequest {
         /**
          * We will call this URL for any payment status changes of payments resulting from this subscription.
          * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment failures as
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+         * failures as
          * well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(Optional<String> webhookUrl) {
@@ -987,8 +1073,10 @@ public class SubscriptionRequest {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
@@ -1000,8 +1088,10 @@ public class SubscriptionRequest {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {

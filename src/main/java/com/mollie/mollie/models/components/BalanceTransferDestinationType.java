@@ -44,7 +44,8 @@ import java.util.Optional;
 /**
  * BalanceTransferDestinationType
  * 
- * <p>The default destination of automatic scheduled transfers. Currently only `bank-account` is supported.
+ * <p>The default destination of automatic scheduled transfers. Currently only `bank-account` is
+ * supported.
  * 
  * <p>* `bank-account` — Transfer the balance amount to an external bank account
  */

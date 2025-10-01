@@ -18,7 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class MandateResponse {
     /**
-     * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
+     * Indicates the response contains a mandate object. Will always contain the string `mandate` for this
+     * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -58,7 +59,8 @@ public class MandateResponse {
     private JsonNullable<String> signatureDate;
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+     * banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -66,7 +68,8 @@ public class MandateResponse {
     private JsonNullable<String> mandateReference;
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+     * finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -79,7 +82,8 @@ public class MandateResponse {
     private Optional<String> customerId;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
@@ -137,7 +141,8 @@ public class MandateResponse {
     }
 
     /**
-     * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
+     * Indicates the response contains a mandate object. Will always contain the string `mandate` for this
+     * endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -184,7 +189,8 @@ public class MandateResponse {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+     * banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
     @JsonIgnore
@@ -193,7 +199,8 @@ public class MandateResponse {
     }
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+     * finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
     @SuppressWarnings("unchecked")
@@ -208,7 +215,8 @@ public class MandateResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public Optional<String> createdAt() {
@@ -230,7 +238,8 @@ public class MandateResponse {
 
 
     /**
-     * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
+     * Indicates the response contains a mandate object. Will always contain the string `mandate` for this
+     * endpoint.
      */
     public MandateResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -240,7 +249,8 @@ public class MandateResponse {
 
 
     /**
-     * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
+     * Indicates the response contains a mandate object. Will always contain the string `mandate` for this
+     * endpoint.
      */
     public MandateResponse withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -335,7 +345,8 @@ public class MandateResponse {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+     * banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
     public MandateResponse withMandateReference(String mandateReference) {
@@ -345,7 +356,8 @@ public class MandateResponse {
     }
 
     /**
-     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+     * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+     * banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
     public MandateResponse withMandateReference(JsonNullable<String> mandateReference) {
@@ -355,7 +367,8 @@ public class MandateResponse {
     }
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+     * finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
     public MandateResponse withStatus(MandateStatus status) {
@@ -366,7 +379,8 @@ public class MandateResponse {
 
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+     * finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
     public MandateResponse withStatus(Optional<? extends MandateStatus> status) {
@@ -389,7 +403,8 @@ public class MandateResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public MandateResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -399,7 +414,8 @@ public class MandateResponse {
 
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public MandateResponse withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -505,7 +521,8 @@ public class MandateResponse {
 
 
         /**
-         * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
+         * Indicates the response contains a mandate object. Will always contain the string `mandate` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -514,7 +531,8 @@ public class MandateResponse {
         }
 
         /**
-         * Indicates the response contains a mandate object. Will always contain the string `mandate` for this endpoint.
+         * Indicates the response contains a mandate object. Will always contain the string `mandate` for this
+         * endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -611,7 +629,8 @@ public class MandateResponse {
 
 
         /**
-         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+         * banks will
          * decline Direct Debit payments if the mandate reference is not unique.
          */
         public Builder mandateReference(String mandateReference) {
@@ -621,7 +640,8 @@ public class MandateResponse {
         }
 
         /**
-         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some banks will
+         * A custom mandate reference. For SEPA Direct Debit, it is vital to provide a unique reference. Some
+         * banks will
          * decline Direct Debit payments if the mandate reference is not unique.
          */
         public Builder mandateReference(JsonNullable<String> mandateReference) {
@@ -632,7 +652,8 @@ public class MandateResponse {
 
 
         /**
-         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+         * finalized, or
          * when we did not received the IBAN yet from the first payment.
          */
         public Builder status(MandateStatus status) {
@@ -642,7 +663,8 @@ public class MandateResponse {
         }
 
         /**
-         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet finalized, or
+         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
+         * finalized, or
          * when we did not received the IBAN yet from the first payment.
          */
         public Builder status(Optional<? extends MandateStatus> status) {
@@ -666,7 +688,8 @@ public class MandateResponse {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -675,7 +698,8 @@ public class MandateResponse {
         }
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");

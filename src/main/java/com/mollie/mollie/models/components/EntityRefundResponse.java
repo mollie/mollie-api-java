@@ -19,7 +19,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class EntityRefundResponse {
     /**
-     * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
+     * Indicates the response contains a refund object. Will always contain the string `refund` for this
+     * endpoint.
      */
     @JsonProperty("resource")
     private String resource;
@@ -35,7 +36,8 @@ public class EntityRefundResponse {
     private Mode mode;
 
     /**
-     * The description of the refund that may be shown to your customer, depending on the payment method used.
+     * The description of the refund that may be shown to your customer, depending on the payment method
+     * used.
      */
     @JsonProperty("description")
     private String description;
@@ -54,8 +56,10 @@ public class EntityRefundResponse {
     private JsonNullable<? extends AmountNullable> settlementAmount;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
@@ -76,7 +80,8 @@ public class EntityRefundResponse {
     private RefundStatus status;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonProperty("createdAt")
     private String createdAt;
@@ -89,12 +94,15 @@ public class EntityRefundResponse {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+     * what amount
      * needs to be reversed from which merchant(s).
      * 
-     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+     * parameter instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("routingReversals")
@@ -169,7 +177,8 @@ public class EntityRefundResponse {
     }
 
     /**
-     * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
+     * Indicates the response contains a refund object. Will always contain the string `refund` for this
+     * endpoint.
      */
     @JsonIgnore
     public String resource() {
@@ -190,7 +199,8 @@ public class EntityRefundResponse {
     }
 
     /**
-     * The description of the refund that may be shown to your customer, depending on the payment method used.
+     * The description of the refund that may be shown to your customer, depending on the payment method
+     * used.
      */
     @JsonIgnore
     public String description() {
@@ -215,8 +225,10 @@ public class EntityRefundResponse {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -240,7 +252,8 @@ public class EntityRefundResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public String createdAt() {
@@ -256,12 +269,15 @@ public class EntityRefundResponse {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+     * what amount
      * needs to be reversed from which merchant(s).
      * 
-     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+     * parameter instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -283,7 +299,8 @@ public class EntityRefundResponse {
 
 
     /**
-     * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
+     * Indicates the response contains a refund object. Will always contain the string `refund` for this
+     * endpoint.
      */
     public EntityRefundResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -307,7 +324,8 @@ public class EntityRefundResponse {
     }
 
     /**
-     * The description of the refund that may be shown to your customer, depending on the payment method used.
+     * The description of the refund that may be shown to your customer, depending on the payment method
+     * used.
      */
     public EntityRefundResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -343,8 +361,10 @@ public class EntityRefundResponse {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public EntityRefundResponse withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -354,8 +374,10 @@ public class EntityRefundResponse {
 
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public EntityRefundResponse withMetadata(Optional<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -396,7 +418,8 @@ public class EntityRefundResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityRefundResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -420,12 +443,15 @@ public class EntityRefundResponse {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+     * what amount
      * needs to be reversed from which merchant(s).
      * 
-     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+     * parameter instead.
      */
     public EntityRefundResponse withRoutingReversals(List<RoutingReversals> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
@@ -436,12 +462,15 @@ public class EntityRefundResponse {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+     * what amount
      * needs to be reversed from which merchant(s).
      * 
-     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+     * parameter instead.
      */
     public EntityRefundResponse withRoutingReversals(JsonNullable<? extends List<RoutingReversals>> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
@@ -550,7 +579,8 @@ public class EntityRefundResponse {
 
 
         /**
-         * Indicates the response contains a refund object. Will always contain the string `refund` for this endpoint.
+         * Indicates the response contains a refund object. Will always contain the string `refund` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -577,7 +607,8 @@ public class EntityRefundResponse {
 
 
         /**
-         * The description of the refund that may be shown to your customer, depending on the payment method used.
+         * The description of the refund that may be shown to your customer, depending on the payment method
+         * used.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -616,8 +647,10 @@ public class EntityRefundResponse {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -626,8 +659,10 @@ public class EntityRefundResponse {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Optional<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -670,7 +705,8 @@ public class EntityRefundResponse {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -695,12 +731,15 @@ public class EntityRefundResponse {
         /**
          * *This feature is only available to marketplace operators.*
          * 
-         * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+         * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+         * balance.
          * 
-         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+         * what amount
          * needs to be reversed from which merchant(s).
          * 
-         * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+         * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+         * parameter instead.
          */
         public Builder routingReversals(List<RoutingReversals> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
@@ -711,12 +750,15 @@ public class EntityRefundResponse {
         /**
          * *This feature is only available to marketplace operators.*
          * 
-         * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+         * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+         * balance.
          * 
-         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+         * what amount
          * needs to be reversed from which merchant(s).
          * 
-         * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+         * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+         * parameter instead.
          */
         public Builder routingReversals(JsonNullable<? extends List<RoutingReversals>> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");

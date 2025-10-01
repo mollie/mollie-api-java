@@ -21,7 +21,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class Receipt {
     /**
-     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully approved.
+     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+     * approved.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("authorizationCode")
@@ -70,7 +71,8 @@ public class Receipt {
     }
 
     /**
-     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully approved.
+     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+     * approved.
      */
     @JsonIgnore
     public JsonNullable<String> authorizationCode() {
@@ -109,7 +111,8 @@ public class Receipt {
 
 
     /**
-     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully approved.
+     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+     * approved.
      */
     public Receipt withAuthorizationCode(String authorizationCode) {
         Utils.checkNotNull(authorizationCode, "authorizationCode");
@@ -118,7 +121,8 @@ public class Receipt {
     }
 
     /**
-     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully approved.
+     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+     * approved.
      */
     public Receipt withAuthorizationCode(JsonNullable<String> authorizationCode) {
         Utils.checkNotNull(authorizationCode, "authorizationCode");
@@ -229,7 +233,8 @@ public class Receipt {
 
 
         /**
-         * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully approved.
+         * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+         * approved.
          */
         public Builder authorizationCode(String authorizationCode) {
             Utils.checkNotNull(authorizationCode, "authorizationCode");
@@ -238,7 +243,8 @@ public class Receipt {
         }
 
         /**
-         * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully approved.
+         * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+         * approved.
          */
         public Builder authorizationCode(JsonNullable<String> authorizationCode) {
             Utils.checkNotNull(authorizationCode, "authorizationCode");

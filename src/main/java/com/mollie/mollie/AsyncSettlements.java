@@ -85,7 +85,7 @@ public class AsyncSettlements {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListSettlementsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSettlementsResponse>} - The async response
      */
     public CompletableFuture<ListSettlementsResponse> list(ListSettlementsRequest request) {
         return list(request, Optional.empty());
@@ -100,7 +100,7 @@ public class AsyncSettlements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListSettlementsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSettlementsResponse>} - The async response
      */
     public CompletableFuture<ListSettlementsResponse> list(ListSettlementsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSettlementsRequest, ListSettlementsResponse> operation
@@ -122,7 +122,8 @@ public class AsyncSettlements {
      * 
      * <p>A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * <p>Settlements will typically include a report that details what balance transactions have taken place between this
+     * <p>Settlements will typically include a report that details what balance transactions have taken place
+     * between this
      * settlement and the previous one.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -144,14 +145,15 @@ public class AsyncSettlements {
      * 
      * <p>A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * <p>Settlements will typically include a report that details what balance transactions have taken place between this
+     * <p>Settlements will typically include a report that details what balance transactions have taken place
+     * between this
      * settlement and the previous one.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;GetSettlementResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetSettlementResponse>} - The async response
      */
     public CompletableFuture<GetSettlementResponse> get(String id) {
         return get(id, Optional.empty(), Optional.empty());
@@ -167,7 +169,8 @@ public class AsyncSettlements {
      * 
      * <p>A settlement represents a transfer of your balance funds to your external bank account.
      * 
-     * <p>Settlements will typically include a report that details what balance transactions have taken place between this
+     * <p>Settlements will typically include a report that details what balance transactions have taken place
+     * between this
      * settlement and the previous one.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -176,7 +179,7 @@ public class AsyncSettlements {
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetSettlementResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetSettlementResponse>} - The async response
      */
     public CompletableFuture<GetSettlementResponse> get(
             String id, Optional<String> idempotencyKey,
@@ -199,10 +202,12 @@ public class AsyncSettlements {
     /**
      * Get open settlement
      * 
-     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your
+     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object
+     * representing your
      * organization's balance.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -217,16 +222,18 @@ public class AsyncSettlements {
     /**
      * Get open settlement
      * 
-     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your
+     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object
+     * representing your
      * organization's balance.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * @return CompletableFuture&lt;GetOpenSettlementResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetOpenSettlementResponse>} - The async response
      */
     public CompletableFuture<GetOpenSettlementResponse> getOpenDirect() {
         return getOpen(Optional.empty(), Optional.empty());
@@ -235,10 +242,12 @@ public class AsyncSettlements {
     /**
      * Get open settlement
      * 
-     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object representing your
+     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object
+     * representing your
      * organization's balance.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -246,7 +255,7 @@ public class AsyncSettlements {
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetOpenSettlementResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetOpenSettlementResponse>} - The async response
      */
     public CompletableFuture<GetOpenSettlementResponse> getOpen(Optional<String> idempotencyKey, Optional<Options> options) {
         GetOpenSettlementRequest request =
@@ -268,7 +277,8 @@ public class AsyncSettlements {
      * 
      * <p>Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -285,13 +295,14 @@ public class AsyncSettlements {
      * 
      * <p>Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * @return CompletableFuture&lt;GetNextSettlementResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetNextSettlementResponse>} - The async response
      */
     public CompletableFuture<GetNextSettlementResponse> getNextDirect() {
         return getNext(Optional.empty(), Optional.empty());
@@ -302,7 +313,8 @@ public class AsyncSettlements {
      * 
      * <p>Retrieve the details of the current settlement, that has not yet been paid out.
      * 
-     * <p>For a complete reference of the settlement object, refer to the [Get settlement endpoint](get-settlement)
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
      * documentation.
      * 
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
@@ -310,7 +322,7 @@ public class AsyncSettlements {
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetNextSettlementResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetNextSettlementResponse>} - The async response
      */
     public CompletableFuture<GetNextSettlementResponse> getNext(Optional<String> idempotencyKey, Optional<Options> options) {
         GetNextSettlementRequest request =
@@ -354,7 +366,7 @@ public class AsyncSettlements {
      * [List captures endpoint](list-captures) endpoint instead.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListSettlementPaymentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSettlementPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListSettlementPaymentsResponse> listPayments(ListSettlementPaymentsRequest request) {
         return listPayments(request, Optional.empty());
@@ -372,7 +384,7 @@ public class AsyncSettlements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListSettlementPaymentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSettlementPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListSettlementPaymentsResponse> listPayments(ListSettlementPaymentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSettlementPaymentsRequest, ListSettlementPaymentsResponse> operation
@@ -405,7 +417,7 @@ public class AsyncSettlements {
      * <p>The response is in the same format as the response of the [List captures endpoint](list-captures).
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListSettlementCapturesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSettlementCapturesResponse>} - The async response
      */
     public CompletableFuture<ListSettlementCapturesResponse> listCaptures(ListSettlementCapturesRequest request) {
         return listCaptures(request, Optional.empty());
@@ -420,7 +432,7 @@ public class AsyncSettlements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListSettlementCapturesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSettlementCapturesResponse>} - The async response
      */
     public CompletableFuture<ListSettlementCapturesResponse> listCaptures(ListSettlementCapturesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSettlementCapturesRequest, ListSettlementCapturesResponse> operation
@@ -453,7 +465,7 @@ public class AsyncSettlements {
      * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds).
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListSettlementRefundsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSettlementRefundsResponse>} - The async response
      */
     public CompletableFuture<ListSettlementRefundsResponse> listRefunds(ListSettlementRefundsRequest request) {
         return listRefunds(request, Optional.empty());
@@ -468,7 +480,7 @@ public class AsyncSettlements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListSettlementRefundsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSettlementRefundsResponse>} - The async response
      */
     public CompletableFuture<ListSettlementRefundsResponse> listRefunds(ListSettlementRefundsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSettlementRefundsRequest, ListSettlementRefundsResponse> operation
@@ -485,7 +497,8 @@ public class AsyncSettlements {
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
+     * <p>The response is in the same format as the response of the [List chargebacks
+     * endpoint](list-chargebacks).
      * 
      * @return The async call builder
      */
@@ -498,10 +511,11 @@ public class AsyncSettlements {
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
+     * <p>The response is in the same format as the response of the [List chargebacks
+     * endpoint](list-chargebacks).
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListSettlementChargebacksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSettlementChargebacksResponse>} - The async response
      */
     public CompletableFuture<ListSettlementChargebacksResponse> listChargebacks(ListSettlementChargebacksRequest request) {
         return listChargebacks(request, Optional.empty());
@@ -512,11 +526,12 @@ public class AsyncSettlements {
      * 
      * <p>Retrieve all chargebacks 'deducted' from the given settlement.
      * 
-     * <p>The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
+     * <p>The response is in the same format as the response of the [List chargebacks
+     * endpoint](list-chargebacks).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListSettlementChargebacksResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListSettlementChargebacksResponse>} - The async response
      */
     public CompletableFuture<ListSettlementChargebacksResponse> listChargebacks(ListSettlementChargebacksRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListSettlementChargebacksRequest, ListSettlementChargebacksResponse> operation

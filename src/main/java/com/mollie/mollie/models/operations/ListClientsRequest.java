@@ -16,14 +16,16 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListClientsRequest {
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private JsonNullable<String> embed;
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
@@ -63,7 +65,8 @@ public class ListClientsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     @JsonIgnore
@@ -72,7 +75,8 @@ public class ListClientsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @JsonIgnore
@@ -102,7 +106,8 @@ public class ListClientsRequest {
 
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     public ListClientsRequest withEmbed(String embed) {
@@ -112,7 +117,8 @@ public class ListClientsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     public ListClientsRequest withEmbed(JsonNullable<String> embed) {
@@ -122,7 +128,8 @@ public class ListClientsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListClientsRequest withFrom(String from) {
@@ -132,7 +139,8 @@ public class ListClientsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListClientsRequest withFrom(JsonNullable<String> from) {
@@ -227,7 +235,8 @@ public class ListClientsRequest {
 
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * This endpoint allows embedding related API items by appending the following values via the `embed`
+         * query string
          * parameter.
          */
         public Builder embed(String embed) {
@@ -237,7 +246,8 @@ public class ListClientsRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * This endpoint allows embedding related API items by appending the following values via the `embed`
+         * query string
          * parameter.
          */
         public Builder embed(JsonNullable<String> embed) {
@@ -248,7 +258,8 @@ public class ListClientsRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(String from) {
@@ -258,7 +269,8 @@ public class ListClientsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(JsonNullable<String> from) {

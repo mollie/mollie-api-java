@@ -74,7 +74,8 @@ public class AsyncPayments {
      * can be found in the 'Accepting payments' guide.
      * 
      * <p>If you specify the `method` parameter when creating a payment, optional
-     * additional parameters may be available for the payment method that are not listed below. Please refer to the
+     * additional parameters may be available for the payment method that are not listed below. Please
+     * refer to the
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @return The async call builder
@@ -96,10 +97,11 @@ public class AsyncPayments {
      * can be found in the 'Accepting payments' guide.
      * 
      * <p>If you specify the `method` parameter when creating a payment, optional
-     * additional parameters may be available for the payment method that are not listed below. Please refer to the
+     * additional parameters may be available for the payment method that are not listed below. Please
+     * refer to the
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
-     * @return CompletableFuture&lt;CreatePaymentResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentResponse> createDirect() {
         return create(
@@ -120,14 +122,15 @@ public class AsyncPayments {
      * can be found in the 'Accepting payments' guide.
      * 
      * <p>If you specify the `method` parameter when creating a payment, optional
-     * additional parameters may be available for the payment method that are not listed below. Please refer to the
+     * additional parameters may be available for the payment method that are not listed below. Please
+     * refer to the
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param paymentRequest 
      * @param options additional options
-     * @return CompletableFuture&lt;CreatePaymentResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreatePaymentResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentResponse> create(
             JsonNullable<String> include, Optional<String> idempotencyKey,
@@ -169,7 +172,7 @@ public class AsyncPayments {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListPaymentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentsResponse> list(ListPaymentsRequest request) {
         return list(request, Optional.empty());
@@ -184,7 +187,7 @@ public class AsyncPayments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListPaymentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentsResponse> list(ListPaymentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
@@ -213,7 +216,7 @@ public class AsyncPayments {
      * <p>Retrieve a single payment object by its payment ID.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetPaymentResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentResponse>} - The async response
      */
     public CompletableFuture<GetPaymentResponse> get(GetPaymentRequest request) {
         return get(request, Optional.empty());
@@ -226,7 +229,7 @@ public class AsyncPayments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;GetPaymentResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPaymentResponse>} - The async response
      */
     public CompletableFuture<GetPaymentResponse> get(GetPaymentRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetPaymentRequest, GetPaymentResponse> operation
@@ -259,7 +262,7 @@ public class AsyncPayments {
      * <p>Updating the payment details will not result in a webhook call.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @return CompletableFuture&lt;UpdatePaymentResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdatePaymentResponse>} - The async response
      */
     public CompletableFuture<UpdatePaymentResponse> update(String paymentId) {
         return update(
@@ -278,7 +281,7 @@ public class AsyncPayments {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;UpdatePaymentResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdatePaymentResponse>} - The async response
      */
     public CompletableFuture<UpdatePaymentResponse> update(
             String paymentId, Optional<String> idempotencyKey,
@@ -302,12 +305,14 @@ public class AsyncPayments {
     /**
      * Cancel payment
      * 
-     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
+     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time —
+     * usually until
      * the next business day or as long as the payment status is open.
      * 
      * <p>Payments may also be canceled manually from the Mollie Dashboard.
      * 
-     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
+     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be
+     * canceled.
      * 
      * @return The async call builder
      */
@@ -318,15 +323,17 @@ public class AsyncPayments {
     /**
      * Cancel payment
      * 
-     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
+     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time —
+     * usually until
      * the next business day or as long as the payment status is open.
      * 
      * <p>Payments may also be canceled manually from the Mollie Dashboard.
      * 
-     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
+     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be
+     * canceled.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @return CompletableFuture&lt;CancelPaymentResponse&gt; - The async response
+     * @return {@code CompletableFuture<CancelPaymentResponse>} - The async response
      */
     public CompletableFuture<CancelPaymentResponse> cancel(String paymentId) {
         return cancel(
@@ -337,18 +344,20 @@ public class AsyncPayments {
     /**
      * Cancel payment
      * 
-     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time — usually until
+     * <p>Depending on the payment method, you may be able to cancel a payment for a certain amount of time —
+     * usually until
      * the next business day or as long as the payment status is open.
      * 
      * <p>Payments may also be canceled manually from the Mollie Dashboard.
      * 
-     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be canceled.
+     * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be
+     * canceled.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;CancelPaymentResponse&gt; - The async response
+     * @return {@code CompletableFuture<CancelPaymentResponse>} - The async response
      */
     public CompletableFuture<CancelPaymentResponse> cancel(
             String paymentId, Optional<String> idempotencyKey,
@@ -372,13 +381,16 @@ public class AsyncPayments {
     /**
      * Release payment authorization
      * 
-     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional
+     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any
+     * additional
      * captures. Payment authorizations may also be released manually from the Mollie Dashboard.
      * 
-     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to
+     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed.
+     * It is up to
      * the issuing bank if and when the hold will be released.
      * 
-     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures.
+     * <p>If the request does succeed, the payment status will change to `canceled` for payments without
+     * captures.
      * If there is a successful capture, the payment will transition to `paid`.
      * 
      * @return The async call builder
@@ -390,17 +402,20 @@ public class AsyncPayments {
     /**
      * Release payment authorization
      * 
-     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional
+     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any
+     * additional
      * captures. Payment authorizations may also be released manually from the Mollie Dashboard.
      * 
-     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to
+     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed.
+     * It is up to
      * the issuing bank if and when the hold will be released.
      * 
-     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures.
+     * <p>If the request does succeed, the payment status will change to `canceled` for payments without
+     * captures.
      * If there is a successful capture, the payment will transition to `paid`.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @return CompletableFuture&lt;ReleaseAuthorizationResponse&gt; - The async response
+     * @return {@code CompletableFuture<ReleaseAuthorizationResponse>} - The async response
      */
     public CompletableFuture<ReleaseAuthorizationResponse> releaseAuthorization(String paymentId) {
         return releaseAuthorization(
@@ -411,20 +426,23 @@ public class AsyncPayments {
     /**
      * Release payment authorization
      * 
-     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any additional
+     * <p>Releases the full remaining authorized amount. Call this endpoint when you will not be making any
+     * additional
      * captures. Payment authorizations may also be released manually from the Mollie Dashboard.
      * 
-     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed. It is up to
+     * <p>Mollie will do its best to process release requests, but it is not guaranteed that it will succeed.
+     * It is up to
      * the issuing bank if and when the hold will be released.
      * 
-     * <p>If the request does succeed, the payment status will change to `canceled` for payments without captures.
+     * <p>If the request does succeed, the payment status will change to `canceled` for payments without
+     * captures.
      * If there is a successful capture, the payment will transition to `paid`.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;ReleaseAuthorizationResponse&gt; - The async response
+     * @return {@code CompletableFuture<ReleaseAuthorizationResponse>} - The async response
      */
     public CompletableFuture<ReleaseAuthorizationResponse> releaseAuthorization(
             String paymentId, Optional<String> idempotencyKey,

@@ -75,7 +75,7 @@ public class AsyncBalances {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListBalancesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBalancesResponse>} - The async response
      */
     public CompletableFuture<ListBalancesResponse> list(ListBalancesRequest request) {
         return list(request, Optional.empty());
@@ -90,7 +90,7 @@ public class AsyncBalances {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListBalancesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBalancesResponse>} - The async response
      */
     public CompletableFuture<ListBalancesResponse> list(ListBalancesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBalancesRequest, ListBalancesResponse> operation
@@ -106,7 +106,8 @@ public class AsyncBalances {
      * Get balance
      * 
      * <p>When processing payments with Mollie, we put all pending funds — usually
-     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
+     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can
+     * pay out your
      * balance towards this bank account.
      * 
      * <p>With the Balances API you can retrieve your current balance. The response
@@ -118,8 +119,10 @@ public class AsyncBalances {
      * your bank account, or use for refunds.
      * 
      * <p>With instant payment methods like iDEAL, payments are moved to the available
-     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
-     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * balance instantly. With slower payment methods, like credit card for example, it can take a few days
+     * before the
+     * funds are available on your balance. These funds will be shown under the *pending amount* in the
+     * meanwhile.
      * 
      * @return The async call builder
      */
@@ -131,7 +134,8 @@ public class AsyncBalances {
      * Get balance
      * 
      * <p>When processing payments with Mollie, we put all pending funds — usually
-     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
+     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can
+     * pay out your
      * balance towards this bank account.
      * 
      * <p>With the Balances API you can retrieve your current balance. The response
@@ -143,11 +147,13 @@ public class AsyncBalances {
      * your bank account, or use for refunds.
      * 
      * <p>With instant payment methods like iDEAL, payments are moved to the available
-     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
-     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * balance instantly. With slower payment methods, like credit card for example, it can take a few days
+     * before the
+     * funds are available on your balance. These funds will be shown under the *pending amount* in the
+     * meanwhile.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
-     * @return CompletableFuture&lt;GetBalanceResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetBalanceResponse>} - The async response
      */
     public CompletableFuture<GetBalanceResponse> get(String id) {
         return get(
@@ -159,7 +165,8 @@ public class AsyncBalances {
      * Get balance
      * 
      * <p>When processing payments with Mollie, we put all pending funds — usually
-     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can pay out your
+     * minus Mollie fees — on a balance. Once you have linked a bank account to your Mollie account, we can
+     * pay out your
      * balance towards this bank account.
      * 
      * <p>With the Balances API you can retrieve your current balance. The response
@@ -171,8 +178,10 @@ public class AsyncBalances {
      * your bank account, or use for refunds.
      * 
      * <p>With instant payment methods like iDEAL, payments are moved to the available
-     * balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
-     * funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
+     * balance instantly. With slower payment methods, like credit card for example, it can take a few days
+     * before the
+     * funds are available on your balance. These funds will be shown under the *pending amount* in the
+     * meanwhile.
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -182,7 +191,7 @@ public class AsyncBalances {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetBalanceResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetBalanceResponse>} - The async response
      */
     public CompletableFuture<GetBalanceResponse> get(
             String id, JsonNullable<Boolean> testmode,
@@ -227,7 +236,7 @@ public class AsyncBalances {
      * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
      * endpoint.
      * 
-     * @return CompletableFuture&lt;GetPrimaryBalanceResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPrimaryBalanceResponse>} - The async response
      */
     public CompletableFuture<GetPrimaryBalanceResponse> getPrimaryDirect() {
         return getPrimary(Optional.empty(), Optional.empty());
@@ -244,7 +253,7 @@ public class AsyncBalances {
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetPrimaryBalanceResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetPrimaryBalanceResponse>} - The async response
      */
     public CompletableFuture<GetPrimaryBalanceResponse> getPrimary(Optional<String> idempotencyKey, Optional<Options> options) {
         GetPrimaryBalanceRequest request =
@@ -266,7 +275,8 @@ public class AsyncBalances {
      * 
      * <p>Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
+     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from
+     * your balance
      * during the reported period, ahead of your Mollie invoice.
      * 
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
@@ -283,14 +293,15 @@ public class AsyncBalances {
      * 
      * <p>Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
+     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from
+     * your balance
      * during the reported period, ahead of your Mollie invoice.
      * 
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
      * organization's primary balance.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetBalanceReportResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetBalanceReportResponse>} - The async response
      */
     public CompletableFuture<GetBalanceReportResponse> getReport(GetBalanceReportRequest request) {
         return getReport(request, Optional.empty());
@@ -301,7 +312,8 @@ public class AsyncBalances {
      * 
      * <p>Retrieve a summarized report for all transactions on a given balance within a given timeframe.
      * 
-     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from your balance
+     * <p>The API also provides a detailed report on all 'prepayments' for Mollie fees that were deducted from
+     * your balance
      * during the reported period, ahead of your Mollie invoice.
      * 
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
@@ -309,7 +321,7 @@ public class AsyncBalances {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;GetBalanceReportResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetBalanceReportResponse>} - The async response
      */
     public CompletableFuture<GetBalanceReportResponse> getReport(GetBalanceReportRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetBalanceReportRequest, GetBalanceReportResponse> operation
@@ -356,7 +368,7 @@ public class AsyncBalances {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListBalanceTransactionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBalanceTransactionsResponse>} - The async response
      */
     public CompletableFuture<ListBalanceTransactionsResponse> listTransactions(ListBalanceTransactionsRequest request) {
         return listTransactions(request, Optional.empty());
@@ -378,7 +390,7 @@ public class AsyncBalances {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListBalanceTransactionsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListBalanceTransactionsResponse>} - The async response
      */
     public CompletableFuture<ListBalanceTransactionsResponse> listTransactions(ListBalanceTransactionsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation

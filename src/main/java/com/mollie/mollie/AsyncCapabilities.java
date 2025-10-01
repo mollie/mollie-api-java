@@ -45,11 +45,14 @@ public class AsyncCapabilities {
      * 
      * <p>Retrieve a list of capabilities for an organization.
      * 
-     * <p>This API provides detailed insights into the specific requirements and status of each client's onboarding journey.
+     * <p>This API provides detailed insights into the specific requirements and status of each client's
+     * onboarding journey.
      * 
-     * <p>Capabilities are at the organization level, indicating if the organization can perform a given capability.
+     * <p>Capabilities are at the organization level, indicating if the organization can perform a given
+     * capability.
      * 
-     * <p>For payments, regardless them being at the profile level, the capability is listed at the organization level.
+     * <p>For payments, regardless them being at the profile level, the capability is listed at the
+     * organization level.
      * This means that if at least one of the clients's profiles can receive payments,
      * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
@@ -68,15 +71,18 @@ public class AsyncCapabilities {
      * 
      * <p>Retrieve a list of capabilities for an organization.
      * 
-     * <p>This API provides detailed insights into the specific requirements and status of each client's onboarding journey.
+     * <p>This API provides detailed insights into the specific requirements and status of each client's
+     * onboarding journey.
      * 
-     * <p>Capabilities are at the organization level, indicating if the organization can perform a given capability.
+     * <p>Capabilities are at the organization level, indicating if the organization can perform a given
+     * capability.
      * 
-     * <p>For payments, regardless them being at the profile level, the capability is listed at the organization level.
+     * <p>For payments, regardless them being at the profile level, the capability is listed at the
+     * organization level.
      * This means that if at least one of the clients's profiles can receive payments,
      * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
-     * @return CompletableFuture&lt;ListCapabilitiesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListCapabilitiesResponse>} - The async response
      */
     public CompletableFuture<ListCapabilitiesResponse> listDirect() {
         return list(Optional.empty(), Optional.empty());
@@ -91,17 +97,20 @@ public class AsyncCapabilities {
      * 
      * <p>Retrieve a list of capabilities for an organization.
      * 
-     * <p>This API provides detailed insights into the specific requirements and status of each client's onboarding journey.
+     * <p>This API provides detailed insights into the specific requirements and status of each client's
+     * onboarding journey.
      * 
-     * <p>Capabilities are at the organization level, indicating if the organization can perform a given capability.
+     * <p>Capabilities are at the organization level, indicating if the organization can perform a given
+     * capability.
      * 
-     * <p>For payments, regardless them being at the profile level, the capability is listed at the organization level.
+     * <p>For payments, regardless them being at the profile level, the capability is listed at the
+     * organization level.
      * This means that if at least one of the clients's profiles can receive payments,
      * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;ListCapabilitiesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListCapabilitiesResponse>} - The async response
      */
     public CompletableFuture<ListCapabilitiesResponse> list(Optional<String> idempotencyKey, Optional<Options> options) {
         ListCapabilitiesRequest request =

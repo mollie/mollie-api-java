@@ -54,7 +54,8 @@ public class AsyncCaptures {
      * and capture the amount at a later point.
      * 
      * <p>By default, Mollie captures payments automatically. If however you
-     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
+     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint
+     * after
      * having collected the customer's authorization.
      * 
      * @return The async call builder
@@ -72,11 +73,12 @@ public class AsyncCaptures {
      * and capture the amount at a later point.
      * 
      * <p>By default, Mollie captures payments automatically. If however you
-     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
+     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint
+     * after
      * having collected the customer's authorization.
      * 
      * @param paymentId Provide the ID of the related payment.
-     * @return CompletableFuture&lt;CreateCaptureResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateCaptureResponse>} - The async response
      */
     public CompletableFuture<CreateCaptureResponse> create(String paymentId) {
         return create(
@@ -93,14 +95,15 @@ public class AsyncCaptures {
      * and capture the amount at a later point.
      * 
      * <p>By default, Mollie captures payments automatically. If however you
-     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
+     * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint
+     * after
      * having collected the customer's authorization.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityCapture 
      * @param options additional options
-     * @return CompletableFuture&lt;CreateCaptureResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateCaptureResponse>} - The async response
      */
     public CompletableFuture<CreateCaptureResponse> create(
             String paymentId, Optional<String> idempotencyKey,
@@ -142,7 +145,7 @@ public class AsyncCaptures {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListCapturesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListCapturesResponse>} - The async response
      */
     public CompletableFuture<ListCapturesResponse> list(ListCapturesRequest request) {
         return list(request, Optional.empty());
@@ -157,7 +160,7 @@ public class AsyncCaptures {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListCapturesResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListCapturesResponse>} - The async response
      */
     public CompletableFuture<ListCapturesResponse> list(ListCapturesRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListCapturesRequest, ListCapturesResponse> operation
@@ -188,7 +191,7 @@ public class AsyncCaptures {
      * payment.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;GetCaptureResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetCaptureResponse>} - The async response
      */
     public CompletableFuture<GetCaptureResponse> get(GetCaptureRequest request) {
         return get(request, Optional.empty());
@@ -202,7 +205,7 @@ public class AsyncCaptures {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;GetCaptureResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetCaptureResponse>} - The async response
      */
     public CompletableFuture<GetCaptureResponse> get(GetCaptureRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetCaptureRequest, GetCaptureResponse> operation

@@ -27,7 +27,8 @@ public class EntityClientLinkAddress {
     private JsonNullable<String> streetAndNumber;
 
     /**
-     * The postal code of the organization. Required if a street address is provided and if the country has a postal
+     * The postal code of the organization. Required if a street address is provided and if the country has
+     * a postal
      * code system.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -79,7 +80,8 @@ public class EntityClientLinkAddress {
     }
 
     /**
-     * The postal code of the organization. Required if a street address is provided and if the country has a postal
+     * The postal code of the organization. Required if a street address is provided and if the country has
+     * a postal
      * code system.
      */
     @JsonIgnore
@@ -128,7 +130,8 @@ public class EntityClientLinkAddress {
     }
 
     /**
-     * The postal code of the organization. Required if a street address is provided and if the country has a postal
+     * The postal code of the organization. Required if a street address is provided and if the country has
+     * a postal
      * code system.
      */
     public EntityClientLinkAddress withPostalCode(String postalCode) {
@@ -138,7 +141,8 @@ public class EntityClientLinkAddress {
     }
 
     /**
-     * The postal code of the organization. Required if a street address is provided and if the country has a postal
+     * The postal code of the organization. Required if a street address is provided and if the country has
+     * a postal
      * code system.
      */
     public EntityClientLinkAddress withPostalCode(JsonNullable<String> postalCode) {
@@ -243,7 +247,8 @@ public class EntityClientLinkAddress {
 
 
         /**
-         * The postal code of the organization. Required if a street address is provided and if the country has a postal
+         * The postal code of the organization. Required if a street address is provided and if the country has
+         * a postal
          * code system.
          */
         public Builder postalCode(String postalCode) {
@@ -253,7 +258,8 @@ public class EntityClientLinkAddress {
         }
 
         /**
-         * The postal code of the organization. Required if a street address is provided and if the country has a postal
+         * The postal code of the organization. Required if a street address is provided and if the country has
+         * a postal
          * code system.
          */
         public Builder postalCode(JsonNullable<String> postalCode) {

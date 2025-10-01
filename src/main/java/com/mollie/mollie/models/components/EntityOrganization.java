@@ -18,7 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class EntityOrganization {
     /**
-     * Indicates the response contains an organization object. Will always contain the string `organization` for this
+     * Indicates the response contains an organization object. Will always contain the string
+     * `organization` for this
      * resource type.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -66,7 +67,8 @@ public class EntityOrganization {
     private Optional<String> registrationNumber;
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
+     * numbers are
      * verified against the international registry *VIES*.
      * 
      * <p>The field is not present for merchants residing in other countries.
@@ -76,7 +78,8 @@ public class EntityOrganization {
     private JsonNullable<String> vatNumber;
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
+     * The United
      * Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * <p>The field is not present for merchants residing in other countries.
@@ -134,7 +137,8 @@ public class EntityOrganization {
     }
 
     /**
-     * Indicates the response contains an organization object. Will always contain the string `organization` for this
+     * Indicates the response contains an organization object. Will always contain the string
+     * `organization` for this
      * resource type.
      */
     @JsonIgnore
@@ -190,7 +194,8 @@ public class EntityOrganization {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
+     * numbers are
      * verified against the international registry *VIES*.
      * 
      * <p>The field is not present for merchants residing in other countries.
@@ -201,7 +206,8 @@ public class EntityOrganization {
     }
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
+     * The United
      * Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * <p>The field is not present for merchants residing in other countries.
@@ -227,7 +233,8 @@ public class EntityOrganization {
 
 
     /**
-     * Indicates the response contains an organization object. Will always contain the string `organization` for this
+     * Indicates the response contains an organization object. Will always contain the string
+     * `organization` for this
      * resource type.
      */
     public EntityOrganization withResource(String resource) {
@@ -238,7 +245,8 @@ public class EntityOrganization {
 
 
     /**
-     * Indicates the response contains an organization object. Will always contain the string `organization` for this
+     * Indicates the response contains an organization object. Will always contain the string
+     * `organization` for this
      * resource type.
      */
     public EntityOrganization withResource(Optional<String> resource) {
@@ -355,7 +363,8 @@ public class EntityOrganization {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
+     * numbers are
      * verified against the international registry *VIES*.
      * 
      * <p>The field is not present for merchants residing in other countries.
@@ -367,7 +376,8 @@ public class EntityOrganization {
     }
 
     /**
-     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+     * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
+     * numbers are
      * verified against the international registry *VIES*.
      * 
      * <p>The field is not present for merchants residing in other countries.
@@ -379,7 +389,8 @@ public class EntityOrganization {
     }
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
+     * The United
      * Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * <p>The field is not present for merchants residing in other countries.
@@ -391,7 +402,8 @@ public class EntityOrganization {
     }
 
     /**
-     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+     * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
+     * The United
      * Kingdom, and shifted VAT for merchants in the European Union.
      * 
      * <p>The field is not present for merchants residing in other countries.
@@ -496,7 +508,8 @@ public class EntityOrganization {
 
 
         /**
-         * Indicates the response contains an organization object. Will always contain the string `organization` for this
+         * Indicates the response contains an organization object. Will always contain the string
+         * `organization` for this
          * resource type.
          */
         public Builder resource(String resource) {
@@ -506,7 +519,8 @@ public class EntityOrganization {
         }
 
         /**
-         * Indicates the response contains an organization object. Will always contain the string `organization` for this
+         * Indicates the response contains an organization object. Will always contain the string
+         * `organization` for this
          * resource type.
          */
         public Builder resource(Optional<String> resource) {
@@ -625,7 +639,8 @@ public class EntityOrganization {
 
 
         /**
-         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
+         * numbers are
          * verified against the international registry *VIES*.
          * 
          * <p>The field is not present for merchants residing in other countries.
@@ -637,7 +652,8 @@ public class EntityOrganization {
         }
 
         /**
-         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT numbers are
+         * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
+         * numbers are
          * verified against the international registry *VIES*.
          * 
          * <p>The field is not present for merchants residing in other countries.
@@ -650,7 +666,8 @@ public class EntityOrganization {
 
 
         /**
-         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
+         * The United
          * Kingdom, and shifted VAT for merchants in the European Union.
          * 
          * <p>The field is not present for merchants residing in other countries.
@@ -662,7 +679,8 @@ public class EntityOrganization {
         }
 
         /**
-         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in The United
+         * Mollie applies Dutch VAT for merchants based in The Netherlands, British VAT for merchants based in
+         * The United
          * Kingdom, and shifted VAT for merchants in the European Union.
          * 
          * <p>The field is not present for merchants residing in other countries.

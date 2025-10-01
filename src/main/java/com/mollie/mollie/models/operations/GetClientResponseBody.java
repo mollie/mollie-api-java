@@ -22,7 +22,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class GetClientResponseBody {
     /**
-     * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+     * Indicates the response contains a client object. Will always contain the string `client` for this
+     * resource type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -43,7 +44,8 @@ public class GetClientResponseBody {
     private JsonNullable<? extends Commission> commission;
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * The date and time the client organization was created, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -90,7 +92,8 @@ public class GetClientResponseBody {
     }
 
     /**
-     * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+     * Indicates the response contains a client object. Will always contain the string `client` for this
+     * resource type.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -115,7 +118,8 @@ public class GetClientResponseBody {
     }
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * The date and time the client organization was created, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     @JsonIgnore
@@ -144,7 +148,8 @@ public class GetClientResponseBody {
 
 
     /**
-     * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+     * Indicates the response contains a client object. Will always contain the string `client` for this
+     * resource type.
      */
     public GetClientResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -154,7 +159,8 @@ public class GetClientResponseBody {
 
 
     /**
-     * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+     * Indicates the response contains a client object. Will always contain the string `client` for this
+     * resource type.
      */
     public GetClientResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -200,7 +206,8 @@ public class GetClientResponseBody {
     }
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * The date and time the client organization was created, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     public GetClientResponseBody withOrganizationCreatedAt(String organizationCreatedAt) {
@@ -211,7 +218,8 @@ public class GetClientResponseBody {
 
 
     /**
-     * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * The date and time the client organization was created, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     public GetClientResponseBody withOrganizationCreatedAt(Optional<String> organizationCreatedAt) {
@@ -309,7 +317,8 @@ public class GetClientResponseBody {
 
 
         /**
-         * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+         * Indicates the response contains a client object. Will always contain the string `client` for this
+         * resource type.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -318,7 +327,8 @@ public class GetClientResponseBody {
         }
 
         /**
-         * Indicates the response contains a client object. Will always contain the string `client` for this resource type.
+         * Indicates the response contains a client object. Will always contain the string `client` for this
+         * resource type.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -366,7 +376,8 @@ public class GetClientResponseBody {
 
 
         /**
-         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * The date and time the client organization was created, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
         public Builder organizationCreatedAt(String organizationCreatedAt) {
@@ -376,7 +387,8 @@ public class GetClientResponseBody {
         }
 
         /**
-         * The date and time the client organization was created, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * The date and time the client organization was created, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
         public Builder organizationCreatedAt(Optional<String> organizationCreatedAt) {

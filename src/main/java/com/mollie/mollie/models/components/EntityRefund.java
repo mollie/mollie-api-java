@@ -24,7 +24,8 @@ public class EntityRefund {
     private String id;
 
     /**
-     * The description of the refund that may be shown to your customer, depending on the payment method used.
+     * The description of the refund that may be shown to your customer, depending on the payment method
+     * used.
      */
     @JsonProperty("description")
     private String description;
@@ -43,8 +44,10 @@ public class EntityRefund {
     private JsonNullable<? extends AmountNullable> settlementAmount;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
@@ -72,12 +75,15 @@ public class EntityRefund {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
-     * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
+     * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this
+     * parameter to
      * `true` when issuing a full refund.
      * 
      * <p>For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
@@ -89,12 +95,15 @@ public class EntityRefund {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+     * what amount
      * needs to be reversed from which merchant(s).
      * 
-     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+     * parameter instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("routingReversals")
@@ -103,8 +112,10 @@ public class EntityRefund {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -168,7 +179,8 @@ public class EntityRefund {
     }
 
     /**
-     * The description of the refund that may be shown to your customer, depending on the payment method used.
+     * The description of the refund that may be shown to your customer, depending on the payment method
+     * used.
      */
     @JsonIgnore
     public String description() {
@@ -193,8 +205,10 @@ public class EntityRefund {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -226,12 +240,15 @@ public class EntityRefund {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
-     * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
+     * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this
+     * parameter to
      * `true` when issuing a full refund.
      * 
      * <p>For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
@@ -244,12 +261,15 @@ public class EntityRefund {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+     * what amount
      * needs to be reversed from which merchant(s).
      * 
-     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+     * parameter instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -260,8 +280,10 @@ public class EntityRefund {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     @JsonIgnore
@@ -281,7 +303,8 @@ public class EntityRefund {
     }
 
     /**
-     * The description of the refund that may be shown to your customer, depending on the payment method used.
+     * The description of the refund that may be shown to your customer, depending on the payment method
+     * used.
      */
     public EntityRefund withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -317,8 +340,10 @@ public class EntityRefund {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public EntityRefund withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -328,8 +353,10 @@ public class EntityRefund {
 
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public EntityRefund withMetadata(Optional<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -385,12 +412,15 @@ public class EntityRefund {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
-     * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
+     * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this
+     * parameter to
      * `true` when issuing a full refund.
      * 
      * <p>For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
@@ -404,12 +434,15 @@ public class EntityRefund {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+     * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+     * Mollie
      * merchants, by providing the `routing` object during [payment creation](create-payment).
      * 
-     * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
+     * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this
+     * parameter to
      * `true` when issuing a full refund.
      * 
      * <p>For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
@@ -423,12 +456,15 @@ public class EntityRefund {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+     * what amount
      * needs to be reversed from which merchant(s).
      * 
-     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+     * parameter instead.
      */
     public EntityRefund withRoutingReversals(List<EntityRefundRoutingReversals> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
@@ -439,12 +475,15 @@ public class EntityRefund {
     /**
      * *This feature is only available to marketplace operators.*
      * 
-     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+     * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+     * balance.
      * 
-     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+     * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+     * what amount
      * needs to be reversed from which merchant(s).
      * 
-     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+     * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+     * parameter instead.
      */
     public EntityRefund withRoutingReversals(JsonNullable<? extends List<EntityRefundRoutingReversals>> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
@@ -455,8 +494,10 @@ public class EntityRefund {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public EntityRefund withTestmode(boolean testmode) {
@@ -468,8 +509,10 @@ public class EntityRefund {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
      * `testmode` to `true`.
      */
     public EntityRefund withTestmode(JsonNullable<Boolean> testmode) {
@@ -568,7 +611,8 @@ public class EntityRefund {
 
 
         /**
-         * The description of the refund that may be shown to your customer, depending on the payment method used.
+         * The description of the refund that may be shown to your customer, depending on the payment method
+         * used.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -607,8 +651,10 @@ public class EntityRefund {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -617,8 +663,10 @@ public class EntityRefund {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Optional<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -676,12 +724,15 @@ public class EntityRefund {
         /**
          * *This feature is only available to marketplace operators.*
          * 
-         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+         * Mollie
          * merchants, by providing the `routing` object during [payment creation](create-payment).
          * 
-         * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
+         * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your
+         * balance.
          * 
-         * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
+         * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this
+         * parameter to
          * `true` when issuing a full refund.
          * 
          * <p>For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
@@ -695,12 +746,15 @@ public class EntityRefund {
         /**
          * *This feature is only available to marketplace operators.*
          * 
-         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other Mollie
+         * <p>With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
+         * Mollie
          * merchants, by providing the `routing` object during [payment creation](create-payment).
          * 
-         * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your balance.
+         * <p>When creating refunds for these *routed* payments, by default the full amount is deducted from your
+         * balance.
          * 
-         * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this parameter to
+         * <p>If you want to pull back the funds that were routed to the connected merchant(s), you can set this
+         * parameter to
          * `true` when issuing a full refund.
          * 
          * <p>For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
@@ -715,12 +769,15 @@ public class EntityRefund {
         /**
          * *This feature is only available to marketplace operators.*
          * 
-         * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+         * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+         * balance.
          * 
-         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+         * what amount
          * needs to be reversed from which merchant(s).
          * 
-         * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+         * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+         * parameter instead.
          */
         public Builder routingReversals(List<EntityRefundRoutingReversals> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
@@ -731,12 +788,15 @@ public class EntityRefund {
         /**
          * *This feature is only available to marketplace operators.*
          * 
-         * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your balance.
+         * <p>When creating refunds for *routed* payments, by default the full amount is deducted from your
+         * balance.
          * 
-         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify what amount
+         * <p>If you want to pull back funds from the connected merchant(s), you can use this parameter to specify
+         * what amount
          * needs to be reversed from which merchant(s).
          * 
-         * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting` parameter instead.
+         * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
+         * parameter instead.
          */
         public Builder routingReversals(JsonNullable<? extends List<EntityRefundRoutingReversals>> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
@@ -748,8 +808,10 @@ public class EntityRefund {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
@@ -761,8 +823,10 @@ public class EntityRefund {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by setting
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
          * `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {

@@ -18,7 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class EntityBalance {
     /**
-     * Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
+     * Indicates the response contains a balance object. Will always contain the string `balance` for this
+     * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -37,7 +38,8 @@ public class EntityBalance {
     private Optional<? extends Mode> mode;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
@@ -63,7 +65,8 @@ public class EntityBalance {
     private Optional<? extends BalanceStatus> status;
 
     /**
-     * The frequency with which the available amount on the balance will be settled to the configured transfer
+     * The frequency with which the available amount on the balance will be settled to the configured
+     * transfer
      * destination.
      * 
      * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
@@ -87,7 +90,8 @@ public class EntityBalance {
     private JsonNullable<String> transferReference;
 
     /**
-     * The destination where the available amount will be automatically transferred to according to the configured
+     * The destination where the available amount will be automatically transferred to according to the
+     * configured
      * transfer frequency.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -170,7 +174,8 @@ public class EntityBalance {
     }
 
     /**
-     * Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
+     * Indicates the response contains a balance object. Will always contain the string `balance` for this
+     * endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -192,7 +197,8 @@ public class EntityBalance {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public Optional<String> createdAt() {
@@ -223,7 +229,8 @@ public class EntityBalance {
     }
 
     /**
-     * The frequency with which the available amount on the balance will be settled to the configured transfer
+     * The frequency with which the available amount on the balance will be settled to the configured
+     * transfer
      * destination.
      * 
      * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
@@ -252,7 +259,8 @@ public class EntityBalance {
     }
 
     /**
-     * The destination where the available amount will be automatically transferred to according to the configured
+     * The destination where the available amount will be automatically transferred to according to the
+     * configured
      * transfer frequency.
      */
     @SuppressWarnings("unchecked")
@@ -294,7 +302,8 @@ public class EntityBalance {
 
 
     /**
-     * Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
+     * Indicates the response contains a balance object. Will always contain the string `balance` for this
+     * endpoint.
      */
     public EntityBalance withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -304,7 +313,8 @@ public class EntityBalance {
 
 
     /**
-     * Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
+     * Indicates the response contains a balance object. Will always contain the string `balance` for this
+     * endpoint.
      */
     public EntityBalance withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -345,7 +355,8 @@ public class EntityBalance {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityBalance withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -355,7 +366,8 @@ public class EntityBalance {
 
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityBalance withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -415,7 +427,8 @@ public class EntityBalance {
     }
 
     /**
-     * The frequency with which the available amount on the balance will be settled to the configured transfer
+     * The frequency with which the available amount on the balance will be settled to the configured
+     * transfer
      * destination.
      * 
      * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
@@ -428,7 +441,8 @@ public class EntityBalance {
 
 
     /**
-     * The frequency with which the available amount on the balance will be settled to the configured transfer
+     * The frequency with which the available amount on the balance will be settled to the configured
+     * transfer
      * destination.
      * 
      * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
@@ -477,7 +491,8 @@ public class EntityBalance {
     }
 
     /**
-     * The destination where the available amount will be automatically transferred to according to the configured
+     * The destination where the available amount will be automatically transferred to according to the
+     * configured
      * transfer frequency.
      */
     public EntityBalance withTransferDestination(TransferDestination transferDestination) {
@@ -487,7 +502,8 @@ public class EntityBalance {
     }
 
     /**
-     * The destination where the available amount will be automatically transferred to according to the configured
+     * The destination where the available amount will be automatically transferred to according to the
+     * configured
      * transfer frequency.
      */
     public EntityBalance withTransferDestination(JsonNullable<? extends TransferDestination> transferDestination) {
@@ -645,7 +661,8 @@ public class EntityBalance {
 
 
         /**
-         * Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
+         * Indicates the response contains a balance object. Will always contain the string `balance` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -654,7 +671,8 @@ public class EntityBalance {
         }
 
         /**
-         * Indicates the response contains a balance object. Will always contain the string `balance` for this endpoint.
+         * Indicates the response contains a balance object. Will always contain the string `balance` for this
+         * endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -696,7 +714,8 @@ public class EntityBalance {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -705,7 +724,8 @@ public class EntityBalance {
         }
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -766,7 +786,8 @@ public class EntityBalance {
 
 
         /**
-         * The frequency with which the available amount on the balance will be settled to the configured transfer
+         * The frequency with which the available amount on the balance will be settled to the configured
+         * transfer
          * destination.
          * 
          * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
@@ -778,7 +799,8 @@ public class EntityBalance {
         }
 
         /**
-         * The frequency with which the available amount on the balance will be settled to the configured transfer
+         * The frequency with which the available amount on the balance will be settled to the configured
+         * transfer
          * destination.
          * 
          * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
@@ -829,7 +851,8 @@ public class EntityBalance {
 
 
         /**
-         * The destination where the available amount will be automatically transferred to according to the configured
+         * The destination where the available amount will be automatically transferred to according to the
+         * configured
          * transfer frequency.
          */
         public Builder transferDestination(TransferDestination transferDestination) {
@@ -839,7 +862,8 @@ public class EntityBalance {
         }
 
         /**
-         * The destination where the available amount will be automatically transferred to according to the configured
+         * The destination where the available amount will be automatically transferred to according to the
+         * configured
          * transfer frequency.
          */
         public Builder transferDestination(JsonNullable<? extends TransferDestination> transferDestination) {

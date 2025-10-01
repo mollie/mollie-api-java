@@ -30,7 +30,8 @@ public class SalesInvoiceRecipientResponse {
     private JsonNullable<String> title;
 
     /**
-     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * The given name (first name) of the `consumer` type recipient should be at least two characters and
+     * cannot contain
      * only numbers.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -38,7 +39,8 @@ public class SalesInvoiceRecipientResponse {
     private JsonNullable<String> givenName;
 
     /**
-     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * The given name (last name) of the `consumer` type recipient should be at least two characters and
+     * cannot contain
      * only numbers.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -53,7 +55,8 @@ public class SalesInvoiceRecipientResponse {
     private JsonNullable<String> organizationName;
 
     /**
-     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or
+     * `vatNumber`
      * has to be provided.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -61,7 +64,8 @@ public class SalesInvoiceRecipientResponse {
     private JsonNullable<String> organizationNumber;
 
     /**
-     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+     * The VAT number of the organization for a `business` type recipient. Either this or
+     * `organizationNumber`
      * has to be provided.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -211,7 +215,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * The given name (first name) of the `consumer` type recipient should be at least two characters and
+     * cannot contain
      * only numbers.
      */
     @JsonIgnore
@@ -220,7 +225,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * The given name (last name) of the `consumer` type recipient should be at least two characters and
+     * cannot contain
      * only numbers.
      */
     @JsonIgnore
@@ -237,7 +243,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or
+     * `vatNumber`
      * has to be provided.
      */
     @JsonIgnore
@@ -246,7 +253,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+     * The VAT number of the organization for a `business` type recipient. Either this or
+     * `organizationNumber`
      * has to be provided.
      */
     @JsonIgnore
@@ -360,7 +368,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * The given name (first name) of the `consumer` type recipient should be at least two characters and
+     * cannot contain
      * only numbers.
      */
     public SalesInvoiceRecipientResponse withGivenName(String givenName) {
@@ -370,7 +379,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * The given name (first name) of the `consumer` type recipient should be at least two characters and
+     * cannot contain
      * only numbers.
      */
     public SalesInvoiceRecipientResponse withGivenName(JsonNullable<String> givenName) {
@@ -380,7 +390,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * The given name (last name) of the `consumer` type recipient should be at least two characters and
+     * cannot contain
      * only numbers.
      */
     public SalesInvoiceRecipientResponse withFamilyName(String familyName) {
@@ -390,7 +401,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+     * The given name (last name) of the `consumer` type recipient should be at least two characters and
+     * cannot contain
      * only numbers.
      */
     public SalesInvoiceRecipientResponse withFamilyName(JsonNullable<String> familyName) {
@@ -418,7 +430,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or
+     * `vatNumber`
      * has to be provided.
      */
     public SalesInvoiceRecipientResponse withOrganizationNumber(String organizationNumber) {
@@ -428,7 +441,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+     * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or
+     * `vatNumber`
      * has to be provided.
      */
     public SalesInvoiceRecipientResponse withOrganizationNumber(JsonNullable<String> organizationNumber) {
@@ -438,7 +452,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+     * The VAT number of the organization for a `business` type recipient. Either this or
+     * `organizationNumber`
      * has to be provided.
      */
     public SalesInvoiceRecipientResponse withVatNumber(String vatNumber) {
@@ -448,7 +463,8 @@ public class SalesInvoiceRecipientResponse {
     }
 
     /**
-     * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+     * The VAT number of the organization for a `business` type recipient. Either this or
+     * `organizationNumber`
      * has to be provided.
      */
     public SalesInvoiceRecipientResponse withVatNumber(JsonNullable<String> vatNumber) {
@@ -696,7 +712,8 @@ public class SalesInvoiceRecipientResponse {
 
 
         /**
-         * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+         * The given name (first name) of the `consumer` type recipient should be at least two characters and
+         * cannot contain
          * only numbers.
          */
         public Builder givenName(String givenName) {
@@ -706,7 +723,8 @@ public class SalesInvoiceRecipientResponse {
         }
 
         /**
-         * The given name (first name) of the `consumer` type recipient should be at least two characters and cannot contain
+         * The given name (first name) of the `consumer` type recipient should be at least two characters and
+         * cannot contain
          * only numbers.
          */
         public Builder givenName(JsonNullable<String> givenName) {
@@ -717,7 +735,8 @@ public class SalesInvoiceRecipientResponse {
 
 
         /**
-         * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+         * The given name (last name) of the `consumer` type recipient should be at least two characters and
+         * cannot contain
          * only numbers.
          */
         public Builder familyName(String familyName) {
@@ -727,7 +746,8 @@ public class SalesInvoiceRecipientResponse {
         }
 
         /**
-         * The given name (last name) of the `consumer` type recipient should be at least two characters and cannot contain
+         * The given name (last name) of the `consumer` type recipient should be at least two characters and
+         * cannot contain
          * only numbers.
          */
         public Builder familyName(JsonNullable<String> familyName) {
@@ -757,7 +777,8 @@ public class SalesInvoiceRecipientResponse {
 
 
         /**
-         * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+         * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or
+         * `vatNumber`
          * has to be provided.
          */
         public Builder organizationNumber(String organizationNumber) {
@@ -767,7 +788,8 @@ public class SalesInvoiceRecipientResponse {
         }
 
         /**
-         * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or `vatNumber`
+         * The Chamber of Commerce number of the organization for a `business` type recipient. Either this or
+         * `vatNumber`
          * has to be provided.
          */
         public Builder organizationNumber(JsonNullable<String> organizationNumber) {
@@ -778,7 +800,8 @@ public class SalesInvoiceRecipientResponse {
 
 
         /**
-         * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+         * The VAT number of the organization for a `business` type recipient. Either this or
+         * `organizationNumber`
          * has to be provided.
          */
         public Builder vatNumber(String vatNumber) {
@@ -788,7 +811,8 @@ public class SalesInvoiceRecipientResponse {
         }
 
         /**
-         * The VAT number of the organization for a `business` type recipient. Either this or `organizationNumber`
+         * The VAT number of the organization for a `business` type recipient. Either this or
+         * `organizationNumber`
          * has to be provided.
          */
         public Builder vatNumber(JsonNullable<String> vatNumber) {

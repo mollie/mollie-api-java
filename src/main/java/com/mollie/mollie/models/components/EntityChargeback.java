@@ -18,7 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class EntityChargeback {
     /**
-     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this
+     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for
+     * this
      * endpoint.
      */
     @JsonProperty("resource")
@@ -42,7 +43,8 @@ public class EntityChargeback {
     private JsonNullable<? extends AmountNullable> settlementAmount;
 
     /**
-     * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
+     * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
+     * payments.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reason")
@@ -58,7 +60,8 @@ public class EntityChargeback {
     private Optional<String> settlementId;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonProperty("createdAt")
     private String createdAt;
@@ -125,7 +128,8 @@ public class EntityChargeback {
     }
 
     /**
-     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this
+     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for
+     * this
      * endpoint.
      */
     @JsonIgnore
@@ -156,7 +160,8 @@ public class EntityChargeback {
     }
 
     /**
-     * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
+     * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
+     * payments.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -175,7 +180,8 @@ public class EntityChargeback {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public String createdAt() {
@@ -205,7 +211,8 @@ public class EntityChargeback {
 
 
     /**
-     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this
+     * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for
+     * this
      * endpoint.
      */
     public EntityChargeback withResource(String resource) {
@@ -248,7 +255,8 @@ public class EntityChargeback {
     }
 
     /**
-     * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
+     * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
+     * payments.
      */
     public EntityChargeback withReason(Reason reason) {
         Utils.checkNotNull(reason, "reason");
@@ -257,7 +265,8 @@ public class EntityChargeback {
     }
 
     /**
-     * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
+     * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
+     * payments.
      */
     public EntityChargeback withReason(JsonNullable<? extends Reason> reason) {
         Utils.checkNotNull(reason, "reason");
@@ -285,7 +294,8 @@ public class EntityChargeback {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityChargeback withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -397,7 +407,8 @@ public class EntityChargeback {
 
 
         /**
-         * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for this
+         * Indicates the response contains a chargeback object. Will always contain the string `chargeback` for
+         * this
          * endpoint.
          */
         public Builder resource(String resource) {
@@ -444,7 +455,8 @@ public class EntityChargeback {
 
 
         /**
-         * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
+         * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
+         * payments.
          */
         public Builder reason(Reason reason) {
             Utils.checkNotNull(reason, "reason");
@@ -453,7 +465,8 @@ public class EntityChargeback {
         }
 
         /**
-         * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit payments.
+         * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
+         * payments.
          */
         public Builder reason(JsonNullable<? extends Reason> reason) {
             Utils.checkNotNull(reason, "reason");
@@ -483,7 +496,8 @@ public class EntityChargeback {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");

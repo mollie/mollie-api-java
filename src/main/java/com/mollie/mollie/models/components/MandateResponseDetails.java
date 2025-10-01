@@ -66,7 +66,8 @@ public class MandateResponseDetails {
     private JsonNullable<? extends MandateDetailsCardLabelResponse> cardLabel;
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used
+     * to identify
      * returning customers.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -165,7 +166,8 @@ public class MandateResponseDetails {
     }
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used
+     * to identify
      * returning customers.
      */
     @JsonIgnore
@@ -305,7 +307,8 @@ public class MandateResponseDetails {
     }
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used
+     * to identify
      * returning customers.
      */
     public MandateResponseDetails withCardFingerprint(String cardFingerprint) {
@@ -315,7 +318,8 @@ public class MandateResponseDetails {
     }
 
     /**
-     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+     * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used
+     * to identify
      * returning customers.
      */
     public MandateResponseDetails withCardFingerprint(JsonNullable<String> cardFingerprint) {
@@ -523,7 +527,8 @@ public class MandateResponseDetails {
 
 
         /**
-         * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+         * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used
+         * to identify
          * returning customers.
          */
         public Builder cardFingerprint(String cardFingerprint) {
@@ -533,7 +538,8 @@ public class MandateResponseDetails {
         }
 
         /**
-         * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used to identify
+         * Unique alphanumeric representation of this specific card. Available for card mandates. Can be used
+         * to identify
          * returning customers.
          */
         public Builder cardFingerprint(JsonNullable<String> cardFingerprint) {

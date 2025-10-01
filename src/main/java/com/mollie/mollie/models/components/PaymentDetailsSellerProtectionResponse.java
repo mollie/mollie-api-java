@@ -44,7 +44,8 @@ import java.util.Optional;
 /**
  * PaymentDetailsSellerProtectionResponse
  * 
- * <p>Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for PayPal
+ * <p>Indicates to what extent the payment is eligible for PayPal's Seller Protection. Only available for
+ * PayPal
  * payments, and if the information is made available by PayPal.
  */
 @JsonDeserialize(using = PaymentDetailsSellerProtectionResponse._Deserializer.class)

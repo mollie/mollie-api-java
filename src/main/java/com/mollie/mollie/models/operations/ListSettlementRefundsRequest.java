@@ -23,7 +23,8 @@ public class ListSettlementRefundsRequest {
     private String settlementId;
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
@@ -36,15 +37,18 @@ public class ListSettlementRefundsRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private JsonNullable<String> embed;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -95,7 +99,8 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @JsonIgnore
@@ -112,7 +117,8 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     @JsonIgnore
@@ -121,8 +127,10 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -155,7 +163,8 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListSettlementRefundsRequest withFrom(String from) {
@@ -166,7 +175,8 @@ public class ListSettlementRefundsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListSettlementRefundsRequest withFrom(Optional<String> from) {
@@ -194,7 +204,8 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     public ListSettlementRefundsRequest withEmbed(String embed) {
@@ -204,7 +215,8 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+     * This endpoint allows embedding related API items by appending the following values via the `embed`
+     * query string
      * parameter.
      */
     public ListSettlementRefundsRequest withEmbed(JsonNullable<String> embed) {
@@ -214,8 +226,10 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -227,8 +241,10 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * Most API credentials are specifically created for either live mode or test mode. In those cases the
+     * `testmode` query
+     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -325,7 +341,8 @@ public class ListSettlementRefundsRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(String from) {
@@ -335,7 +352,8 @@ public class ListSettlementRefundsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(Optional<String> from) {
@@ -365,7 +383,8 @@ public class ListSettlementRefundsRequest {
 
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * This endpoint allows embedding related API items by appending the following values via the `embed`
+         * query string
          * parameter.
          */
         public Builder embed(String embed) {
@@ -375,7 +394,8 @@ public class ListSettlementRefundsRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed` query string
+         * This endpoint allows embedding related API items by appending the following values via the `embed`
+         * query string
          * parameter.
          */
         public Builder embed(JsonNullable<String> embed) {
@@ -386,8 +406,10 @@ public class ListSettlementRefundsRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -399,8 +421,10 @@ public class ListSettlementRefundsRequest {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.

@@ -68,7 +68,8 @@ public class AsyncCustomers {
     /**
      * Create customer
      * 
-     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
+     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and
+     * subscriptions can be linked
      * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
@@ -82,12 +83,13 @@ public class AsyncCustomers {
     /**
      * Create customer
      * 
-     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
+     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and
+     * subscriptions can be linked
      * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
      * 
-     * @return CompletableFuture&lt;CreateCustomerResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateCustomerResponse>} - The async response
      */
     public CompletableFuture<CreateCustomerResponse> createDirect() {
         return create(Optional.empty(), Optional.empty(), Optional.empty());
@@ -96,7 +98,8 @@ public class AsyncCustomers {
     /**
      * Create customer
      * 
-     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and subscriptions can be linked
+     * <p>Creates a simple minimal representation of a customer. Payments, recurring mandates, and
+     * subscriptions can be linked
      * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
@@ -104,7 +107,7 @@ public class AsyncCustomers {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityCustomer 
      * @param options additional options
-     * @return CompletableFuture&lt;CreateCustomerResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateCustomerResponse>} - The async response
      */
     public CompletableFuture<CreateCustomerResponse> create(
             Optional<String> idempotencyKey, Optional<? extends EntityCustomer> entityCustomer,
@@ -145,7 +148,7 @@ public class AsyncCustomers {
      * <p>The results are paginated.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListCustomersResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListCustomersResponse>} - The async response
      */
     public CompletableFuture<ListCustomersResponse> list(ListCustomersRequest request) {
         return list(request, Optional.empty());
@@ -160,7 +163,7 @@ public class AsyncCustomers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListCustomersResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListCustomersResponse>} - The async response
      */
     public CompletableFuture<ListCustomersResponse> list(ListCustomersRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListCustomersRequest, ListCustomersResponse> operation
@@ -189,7 +192,7 @@ public class AsyncCustomers {
      * <p>Retrieve a single customer by its ID.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @return CompletableFuture&lt;GetCustomerResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetCustomerResponse>} - The async response
      */
     public CompletableFuture<GetCustomerResponse> get(String customerId) {
         return get(
@@ -211,7 +214,7 @@ public class AsyncCustomers {
      *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetCustomerResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetCustomerResponse>} - The async response
      */
     public CompletableFuture<GetCustomerResponse> get(
             String customerId, JsonNullable<String> include,
@@ -239,7 +242,8 @@ public class AsyncCustomers {
      * 
      * <p>Update an existing customer.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
+     * endpoint.
      * 
      * @return The async call builder
      */
@@ -252,10 +256,11 @@ public class AsyncCustomers {
      * 
      * <p>Update an existing customer.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
+     * endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @return CompletableFuture&lt;UpdateCustomerResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateCustomerResponse>} - The async response
      */
     public CompletableFuture<UpdateCustomerResponse> update(String customerId) {
         return update(
@@ -268,13 +273,14 @@ public class AsyncCustomers {
      * 
      * <p>Update an existing customer.
      * 
-     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer) endpoint.
+     * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
+     * endpoint.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityCustomer 
      * @param options additional options
-     * @return CompletableFuture&lt;UpdateCustomerResponse&gt; - The async response
+     * @return {@code CompletableFuture<UpdateCustomerResponse>} - The async response
      */
     public CompletableFuture<UpdateCustomerResponse> update(
             String customerId, Optional<String> idempotencyKey,
@@ -298,7 +304,8 @@ public class AsyncCustomers {
     /**
      * Delete customer
      * 
-     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
+     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
+     * well.
      * 
      * @return The async call builder
      */
@@ -309,10 +316,11 @@ public class AsyncCustomers {
     /**
      * Delete customer
      * 
-     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
+     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
+     * well.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @return CompletableFuture&lt;DeleteCustomerResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteCustomerResponse>} - The async response
      */
     public CompletableFuture<DeleteCustomerResponse> delete(String customerId) {
         return delete(
@@ -323,13 +331,14 @@ public class AsyncCustomers {
     /**
      * Delete customer
      * 
-     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as well.
+     * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
+     * well.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;DeleteCustomerResponse&gt; - The async response
+     * @return {@code CompletableFuture<DeleteCustomerResponse>} - The async response
      */
     public CompletableFuture<DeleteCustomerResponse> delete(
             String customerId, Optional<String> idempotencyKey,
@@ -358,11 +367,13 @@ public class AsyncCustomers {
      * <p>Linking customers to payments enables you to:
      * 
      * <p>* Keep track of payment preferences for your customers
-     * * Allow your customers to charge a previously used credit card with a single click in our hosted checkout
+     * * Allow your customers to charge a previously used credit card with a single click in our hosted
+     * checkout
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
+     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the
+     * `customerId`
      * parameter predefined.
      * 
      * @return The async call builder
@@ -379,15 +390,17 @@ public class AsyncCustomers {
      * <p>Linking customers to payments enables you to:
      * 
      * <p>* Keep track of payment preferences for your customers
-     * * Allow your customers to charge a previously used credit card with a single click in our hosted checkout
+     * * Allow your customers to charge a previously used credit card with a single click in our hosted
+     * checkout
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
+     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the
+     * `customerId`
      * parameter predefined.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @return CompletableFuture&lt;CreateCustomerPaymentResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateCustomerPaymentResponse>} - The async response
      */
     public CompletableFuture<CreateCustomerPaymentResponse> createPayment(String customerId) {
         return createPayment(
@@ -403,18 +416,20 @@ public class AsyncCustomers {
      * <p>Linking customers to payments enables you to:
      * 
      * <p>* Keep track of payment preferences for your customers
-     * * Allow your customers to charge a previously used credit card with a single click in our hosted checkout
+     * * Allow your customers to charge a previously used credit card with a single click in our hosted
+     * checkout
      * * Improve payment insights in the Mollie dashboard
      * * Use recurring payments
      * 
-     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the `customerId`
+     * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the
+     * `customerId`
      * parameter predefined.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param paymentRequest 
      * @param options additional options
-     * @return CompletableFuture&lt;CreateCustomerPaymentResponse&gt; - The async response
+     * @return {@code CompletableFuture<CreateCustomerPaymentResponse>} - The async response
      */
     public CompletableFuture<CreateCustomerPaymentResponse> createPayment(
             String customerId, Optional<String> idempotencyKey,
@@ -452,7 +467,7 @@ public class AsyncCustomers {
      * <p>Retrieve all payments linked to the customer.
      * 
      * @param request The request object containing all the parameters for the API call.
-     * @return CompletableFuture&lt;ListCustomerPaymentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListCustomerPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListCustomerPaymentsResponse> listPayments(ListCustomerPaymentsRequest request) {
         return listPayments(request, Optional.empty());
@@ -465,7 +480,7 @@ public class AsyncCustomers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
-     * @return CompletableFuture&lt;ListCustomerPaymentsResponse&gt; - The async response
+     * @return {@code CompletableFuture<ListCustomerPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListCustomerPaymentsResponse> listPayments(ListCustomerPaymentsRequest request, Optional<Options> options) {
         AsyncRequestOperation<ListCustomerPaymentsRequest, ListCustomerPaymentsResponse> operation

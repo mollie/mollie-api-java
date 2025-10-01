@@ -66,7 +66,8 @@ public class PaymentRequestLines {
     private Amount totalAmount;
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a
+     * string and
      * not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -89,7 +90,8 @@ public class PaymentRequestLines {
 
     /**
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
+     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more
+     * information.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
@@ -233,7 +235,8 @@ public class PaymentRequestLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a
+     * string and
      * not as a float, to ensure the correct number of decimals are passed.
      */
     @JsonIgnore
@@ -260,7 +263,8 @@ public class PaymentRequestLines {
 
     /**
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
+     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more
+     * information.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -393,7 +397,8 @@ public class PaymentRequestLines {
     }
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a
+     * string and
      * not as a float, to ensure the correct number of decimals are passed.
      */
     public PaymentRequestLines withVatRate(String vatRate) {
@@ -404,7 +409,8 @@ public class PaymentRequestLines {
 
 
     /**
-     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+     * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a
+     * string and
      * not as a float, to ensure the correct number of decimals are passed.
      */
     public PaymentRequestLines withVatRate(Optional<String> vatRate) {
@@ -453,7 +459,8 @@ public class PaymentRequestLines {
 
     /**
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
+     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more
+     * information.
      */
     public PaymentRequestLines withCategories(List<LineCategories> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -464,7 +471,8 @@ public class PaymentRequestLines {
 
     /**
      * An array with the voucher categories, in case of a line eligible for a voucher. See the
-     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
+     * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more
+     * information.
      */
     public PaymentRequestLines withCategories(Optional<? extends List<LineCategories>> categories) {
         Utils.checkNotNull(categories, "categories");
@@ -716,7 +724,8 @@ public class PaymentRequestLines {
 
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a
+         * string and
          * not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(String vatRate) {
@@ -726,7 +735,8 @@ public class PaymentRequestLines {
         }
 
         /**
-         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a string and
+         * The VAT rate applied to the line, for example `21.00` for 21%. The vatRate should be passed as a
+         * string and
          * not as a float, to ensure the correct number of decimals are passed.
          */
         public Builder vatRate(Optional<String> vatRate) {
@@ -776,7 +786,8 @@ public class PaymentRequestLines {
 
         /**
          * An array with the voucher categories, in case of a line eligible for a voucher. See the
-         * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
+         * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more
+         * information.
          */
         public Builder categories(List<LineCategories> categories) {
             Utils.checkNotNull(categories, "categories");
@@ -786,7 +797,8 @@ public class PaymentRequestLines {
 
         /**
          * An array with the voucher categories, in case of a line eligible for a voucher. See the
-         * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more information.
+         * [Integrating Vouchers](https://docs.mollie.com/docs/integrating-vouchers/) guide for more
+         * information.
          */
         public Builder categories(Optional<? extends List<LineCategories>> categories) {
             Utils.checkNotNull(categories, "categories");

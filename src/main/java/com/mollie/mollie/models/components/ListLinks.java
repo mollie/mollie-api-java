@@ -17,7 +17,8 @@ import java.util.Optional;
 /**
  * ListLinks
  * 
- * <p>Links to help navigate through the lists of items. Every URL object will contain an `href` and a `type` field.
+ * <p>Links to help navigate through the lists of items. Every URL object will contain an `href` and a
+ * `type` field.
  */
 public class ListLinks {
     /**

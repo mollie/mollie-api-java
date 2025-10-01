@@ -37,7 +37,8 @@ public class ListInvoicesRequest {
     private JsonNullable<String> month;
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
@@ -50,7 +51,8 @@ public class ListInvoicesRequest {
     private JsonNullable<Long> limit;
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
@@ -119,7 +121,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @JsonIgnore
@@ -136,7 +139,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     @SuppressWarnings("unchecked")
@@ -215,7 +219,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListInvoicesRequest withFrom(String from) {
@@ -225,7 +230,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListInvoicesRequest withFrom(JsonNullable<String> from) {
@@ -253,7 +259,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     public ListInvoicesRequest withSort(ListSort sort) {
@@ -263,7 +270,8 @@ public class ListInvoicesRequest {
     }
 
     /**
-     * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+     * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+     * are ordered from
      * newest to oldest.
      */
     public ListInvoicesRequest withSort(JsonNullable<? extends ListSort> sort) {
@@ -412,7 +420,8 @@ public class ListInvoicesRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(String from) {
@@ -422,7 +431,8 @@ public class ListInvoicesRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(JsonNullable<String> from) {
@@ -452,7 +462,8 @@ public class ListInvoicesRequest {
 
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+         * are ordered from
          * newest to oldest.
          */
         public Builder sort(ListSort sort) {
@@ -462,7 +473,8 @@ public class ListInvoicesRequest {
         }
 
         /**
-         * Used for setting the direction of the result set. Defaults to descending order, meaning the results are ordered from
+         * Used for setting the direction of the result set. Defaults to descending order, meaning the results
+         * are ordered from
          * newest to oldest.
          */
         public Builder sort(JsonNullable<? extends ListSort> sort) {

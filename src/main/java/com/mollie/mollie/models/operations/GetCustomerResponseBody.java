@@ -27,7 +27,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 public class GetCustomerResponseBody {
     /**
-     * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
+     * Indicates the response contains a customer object. Will always contain the string `customer` for
+     * this endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
@@ -67,15 +68,18 @@ public class GetCustomerResponseBody {
     private JsonNullable<? extends LocaleResponse> locale;
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Metadata> metadata;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
@@ -135,7 +139,8 @@ public class GetCustomerResponseBody {
     }
 
     /**
-     * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
+     * Indicates the response contains a customer object. Will always contain the string `customer` for
+     * this endpoint.
      */
     @JsonIgnore
     public Optional<String> resource() {
@@ -182,8 +187,10 @@ public class GetCustomerResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -192,7 +199,8 @@ public class GetCustomerResponseBody {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public Optional<String> createdAt() {
@@ -220,7 +228,8 @@ public class GetCustomerResponseBody {
 
 
     /**
-     * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
+     * Indicates the response contains a customer object. Will always contain the string `customer` for
+     * this endpoint.
      */
     public GetCustomerResponseBody withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -230,7 +239,8 @@ public class GetCustomerResponseBody {
 
 
     /**
-     * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
+     * Indicates the response contains a customer object. Will always contain the string `customer` for
+     * this endpoint.
      */
     public GetCustomerResponseBody withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -325,8 +335,10 @@ public class GetCustomerResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public GetCustomerResponseBody withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -335,8 +347,10 @@ public class GetCustomerResponseBody {
     }
 
     /**
-     * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+     * the entity. Whenever
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public GetCustomerResponseBody withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -345,7 +359,8 @@ public class GetCustomerResponseBody {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public GetCustomerResponseBody withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -355,7 +370,8 @@ public class GetCustomerResponseBody {
 
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public GetCustomerResponseBody withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -470,7 +486,8 @@ public class GetCustomerResponseBody {
 
 
         /**
-         * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
+         * Indicates the response contains a customer object. Will always contain the string `customer` for
+         * this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -479,7 +496,8 @@ public class GetCustomerResponseBody {
         }
 
         /**
-         * Indicates the response contains a customer object. Will always contain the string `customer` for this endpoint.
+         * Indicates the response contains a customer object. Will always contain the string `customer` for
+         * this endpoint.
          */
         public Builder resource(Optional<String> resource) {
             Utils.checkNotNull(resource, "resource");
@@ -578,8 +596,10 @@ public class GetCustomerResponseBody {
 
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -588,8 +608,10 @@ public class GetCustomerResponseBody {
         }
 
         /**
-         * Provide any data you like, for example a string or a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * Provide any data you like, for example a string or a JSON object. We will save the data alongside
+         * the entity. Whenever
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -599,7 +621,8 @@ public class GetCustomerResponseBody {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -608,7 +631,8 @@ public class GetCustomerResponseBody {
         }
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");

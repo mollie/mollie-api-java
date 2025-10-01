@@ -17,10 +17,12 @@ import java.util.Optional;
 public class RequestApplePayPaymentSessionRequestBody {
     /**
      * The validationUrl you got from the
-     * [ApplePayValidateMerchant event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
+     * [ApplePayValidateMerchant
+     * event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
      * 
      * <p>A list of all
-     * [valid host names](https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server)
+     * [valid host
+     * names](https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server)
      * for merchant validation is available. You should white list these in your application and reject any
      * `validationUrl`s that have a host name not in the list.
      */
@@ -37,8 +39,10 @@ public class RequestApplePayPaymentSessionRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -66,10 +70,12 @@ public class RequestApplePayPaymentSessionRequestBody {
 
     /**
      * The validationUrl you got from the
-     * [ApplePayValidateMerchant event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
+     * [ApplePayValidateMerchant
+     * event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
      * 
      * <p>A list of all
-     * [valid host names](https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server)
+     * [valid host
+     * names](https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server)
      * for merchant validation is available. You should white list these in your application and reject any
      * `validationUrl`s that have a host name not in the list.
      */
@@ -90,8 +96,10 @@ public class RequestApplePayPaymentSessionRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     @JsonIgnore
@@ -106,10 +114,12 @@ public class RequestApplePayPaymentSessionRequestBody {
 
     /**
      * The validationUrl you got from the
-     * [ApplePayValidateMerchant event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
+     * [ApplePayValidateMerchant
+     * event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
      * 
      * <p>A list of all
-     * [valid host names](https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server)
+     * [valid host
+     * names](https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server)
      * for merchant validation is available. You should white list these in your application and reject any
      * `validationUrl`s that have a host name not in the list.
      */
@@ -132,8 +142,10 @@ public class RequestApplePayPaymentSessionRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     public RequestApplePayPaymentSessionRequestBody withProfileId(String profileId) {
@@ -146,8 +158,10 @@ public class RequestApplePayPaymentSessionRequestBody {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     public RequestApplePayPaymentSessionRequestBody withProfileId(Optional<String> profileId) {
@@ -201,10 +215,12 @@ public class RequestApplePayPaymentSessionRequestBody {
 
         /**
          * The validationUrl you got from the
-         * [ApplePayValidateMerchant event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
+         * [ApplePayValidateMerchant
+         * event](https://developer.apple.com/documentation/apple_pay_on_the_web/applepayvalidatemerchantevent).
          * 
          * <p>A list of all
-         * [valid host names](https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server)
+         * [valid host
+         * names](https://developer.apple.com/documentation/apple_pay_on_the_web/setting_up_your_server)
          * for merchant validation is available. You should white list these in your application and reject any
          * `validationUrl`s that have a host name not in the list.
          */
@@ -229,8 +245,10 @@ public class RequestApplePayPaymentSessionRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
          * required.
          */
         public Builder profileId(String profileId) {
@@ -242,8 +260,10 @@ public class RequestApplePayPaymentSessionRequestBody {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
          * required.
          */
         public Builder profileId(Optional<String> profileId) {

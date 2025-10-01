@@ -18,7 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListSettlementsRequest {
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
@@ -50,7 +51,8 @@ public class ListSettlementsRequest {
     private JsonNullable<String> month;
 
     /**
-     * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
+     * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a
+     * comma-separated format.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=currencies")
     private Optional<? extends Currencies> currencies;
@@ -93,7 +95,8 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     @JsonIgnore
@@ -135,7 +138,8 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
+     * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a
+     * comma-separated format.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -157,7 +161,8 @@ public class ListSettlementsRequest {
 
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListSettlementsRequest withFrom(String from) {
@@ -167,7 +172,8 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+     * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+     * to paginate the
      * result set.
      */
     public ListSettlementsRequest withFrom(JsonNullable<String> from) {
@@ -252,7 +258,8 @@ public class ListSettlementsRequest {
     }
 
     /**
-     * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
+     * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a
+     * comma-separated format.
      */
     public ListSettlementsRequest withCurrencies(Currencies currencies) {
         Utils.checkNotNull(currencies, "currencies");
@@ -262,7 +269,8 @@ public class ListSettlementsRequest {
 
 
     /**
-     * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
+     * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a
+     * comma-separated format.
      */
     public ListSettlementsRequest withCurrencies(Optional<? extends Currencies> currencies) {
         Utils.checkNotNull(currencies, "currencies");
@@ -351,7 +359,8 @@ public class ListSettlementsRequest {
 
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(String from) {
@@ -361,7 +370,8 @@ public class ListSettlementsRequest {
         }
 
         /**
-         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
+         * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
+         * to paginate the
          * result set.
          */
         public Builder from(JsonNullable<String> from) {
@@ -450,7 +460,8 @@ public class ListSettlementsRequest {
 
 
         /**
-         * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
+         * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a
+         * comma-separated format.
          */
         public Builder currencies(Currencies currencies) {
             Utils.checkNotNull(currencies, "currencies");
@@ -459,7 +470,8 @@ public class ListSettlementsRequest {
         }
 
         /**
-         * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a comma-separated format.
+         * Provides the currencies to retrieve the settlements. It accepts multiple currencies in a
+         * comma-separated format.
          */
         public Builder currencies(Optional<? extends Currencies> currencies) {
             Utils.checkNotNull(currencies, "currencies");

@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class UpdateValuesSalesInvoice {
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -32,17 +33,20 @@ public class UpdateValuesSalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -73,8 +77,10 @@ public class UpdateValuesSalesInvoice {
     private JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails;
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -102,7 +108,8 @@ public class UpdateValuesSalesInvoice {
     private JsonNullable<? extends SalesInvoiceDiscount> discount;
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
      * after the invoice has been issued.
      * 
      * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
@@ -156,7 +163,8 @@ public class UpdateValuesSalesInvoice {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -169,17 +177,20 @@ public class UpdateValuesSalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -217,8 +228,10 @@ public class UpdateValuesSalesInvoice {
     }
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     @JsonIgnore
@@ -251,7 +264,8 @@ public class UpdateValuesSalesInvoice {
     }
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
      * after the invoice has been issued.
      * 
      * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
@@ -267,7 +281,8 @@ public class UpdateValuesSalesInvoice {
 
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -279,7 +294,8 @@ public class UpdateValuesSalesInvoice {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+     * Most API credentials are specifically created for either live mode or test mode. For
+     * organization-level credentials
      * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -293,17 +309,20 @@ public class UpdateValuesSalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     public UpdateValuesSalesInvoice withStatus(SalesInvoiceStatus status) {
         Utils.checkNotNull(status, "status");
@@ -315,17 +334,20 @@ public class UpdateValuesSalesInvoice {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     public UpdateValuesSalesInvoice withStatus(Optional<? extends SalesInvoiceStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -394,8 +416,10 @@ public class UpdateValuesSalesInvoice {
     }
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     public UpdateValuesSalesInvoice withRecipientIdentifier(String recipientIdentifier) {
@@ -406,8 +430,10 @@ public class UpdateValuesSalesInvoice {
 
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     public UpdateValuesSalesInvoice withRecipientIdentifier(Optional<String> recipientIdentifier) {
@@ -465,7 +491,8 @@ public class UpdateValuesSalesInvoice {
     }
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
      * after the invoice has been issued.
      * 
      * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
@@ -478,7 +505,8 @@ public class UpdateValuesSalesInvoice {
 
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
      * after the invoice has been issued.
      * 
      * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
@@ -568,7 +596,8 @@ public class UpdateValuesSalesInvoice {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+         * Most API credentials are specifically created for either live mode or test mode. For
+         * organization-level credentials
          * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -580,7 +609,8 @@ public class UpdateValuesSalesInvoice {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For organization-level credentials
+         * Most API credentials are specifically created for either live mode or test mode. For
+         * organization-level credentials
          * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
@@ -595,17 +625,20 @@ public class UpdateValuesSalesInvoice {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+         * sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this
+         * to `paid` to
          * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
          * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
          * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
          * 
          * <p>Dependent parameters:
-         *   - `paymentDetails` is required if invoice should be set directly to `paid`
-         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+         * - `paymentDetails` is required if invoice should be set directly to `paid`
+         * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+         * to `paid`
+         * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
         public Builder status(SalesInvoiceStatus status) {
             Utils.checkNotNull(status, "status");
@@ -616,17 +649,20 @@ public class UpdateValuesSalesInvoice {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+         * sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this
+         * to `paid` to
          * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
          * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
          * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
          * 
          * <p>Dependent parameters:
-         *   - `paymentDetails` is required if invoice should be set directly to `paid`
-         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+         * - `paymentDetails` is required if invoice should be set directly to `paid`
+         * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+         * to `paid`
+         * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
         public Builder status(Optional<? extends SalesInvoiceStatus> status) {
             Utils.checkNotNull(status, "status");
@@ -700,8 +736,10 @@ public class UpdateValuesSalesInvoice {
 
 
         /**
-         * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-         * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+         * An identifier tied to the recipient data. This should be a unique value based on data your system
+         * contains,
+         * so that both you and us know who we're referring to. It is a value you provide to us so that
+         * recipient management
          * is not required to send a first invoice to a recipient.
          */
         public Builder recipientIdentifier(String recipientIdentifier) {
@@ -711,8 +749,10 @@ public class UpdateValuesSalesInvoice {
         }
 
         /**
-         * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-         * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+         * An identifier tied to the recipient data. This should be a unique value based on data your system
+         * contains,
+         * so that both you and us know who we're referring to. It is a value you provide to us so that
+         * recipient management
          * is not required to send a first invoice to a recipient.
          */
         public Builder recipientIdentifier(Optional<String> recipientIdentifier) {
@@ -774,7 +814,8 @@ public class UpdateValuesSalesInvoice {
 
 
         /**
-         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+         * changed
          * after the invoice has been issued.
          * 
          * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
@@ -786,7 +827,8 @@ public class UpdateValuesSalesInvoice {
         }
 
         /**
-         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+         * changed
          * after the invoice has been issued.
          * 
          * <p>When `emailDetails` is provided, an additional email is sent to the recipient.

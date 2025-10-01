@@ -57,7 +57,7 @@ public class AsyncOnboarding {
      * 
      * <p>Retrieve the onboarding status of the currently authenticated organization.
      * 
-     * @return CompletableFuture&lt;GetOnboardingStatusResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetOnboardingStatusResponse>} - The async response
      */
     public CompletableFuture<GetOnboardingStatusResponse> getDirect() {
         return get(Optional.empty(), Optional.empty());
@@ -70,7 +70,7 @@ public class AsyncOnboarding {
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
-     * @return CompletableFuture&lt;GetOnboardingStatusResponse&gt; - The async response
+     * @return {@code CompletableFuture<GetOnboardingStatusResponse>} - The async response
      */
     public CompletableFuture<GetOnboardingStatusResponse> get(Optional<String> idempotencyKey, Optional<Options> options) {
         GetOnboardingStatusRequest request =
@@ -90,11 +90,13 @@ public class AsyncOnboarding {
     /**
      * Submit onboarding data
      * 
-     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
+     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead
+     * to kick off the
      * onboarding process for your merchants.**
      * 
-     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-     * onboarding status is `needs-data`.  
+     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be
+     * processed when the
+     * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
      * @return The async call builder
@@ -106,14 +108,16 @@ public class AsyncOnboarding {
     /**
      * Submit onboarding data
      * 
-     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
+     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead
+     * to kick off the
      * onboarding process for your merchants.**
      * 
-     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-     * onboarding status is `needs-data`.  
+     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be
+     * processed when the
+     * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
-     * @return CompletableFuture&lt;SubmitOnboardingDataResponse&gt; - The async response
+     * @return {@code CompletableFuture<SubmitOnboardingDataResponse>} - The async response
      */
     public CompletableFuture<SubmitOnboardingDataResponse> submitDirect() {
         return submit(Optional.empty(), Optional.empty(), Optional.empty());
@@ -122,17 +126,19 @@ public class AsyncOnboarding {
     /**
      * Submit onboarding data
      * 
-     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead to kick off the
+     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead
+     * to kick off the
      * onboarding process for your merchants.**
      * 
-     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be processed when the
-     * onboarding status is `needs-data`.  
+     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be
+     * processed when the
+     * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
-     * @return CompletableFuture&lt;SubmitOnboardingDataResponse&gt; - The async response
+     * @return {@code CompletableFuture<SubmitOnboardingDataResponse>} - The async response
      */
     public CompletableFuture<SubmitOnboardingDataResponse> submit(
             Optional<String> idempotencyKey, Optional<? extends SubmitOnboardingDataRequestBody> requestBody,

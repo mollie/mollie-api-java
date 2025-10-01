@@ -18,7 +18,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class EntityBalanceTransaction {
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+     * Indicates the response contains a balance transaction object. Will always contain the string
+     * `balance-transaction`
      * for this endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -57,7 +58,8 @@ public class EntityBalanceTransaction {
     private JsonNullable<? extends AmountNullable> deductions;
 
     /**
-     * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+     * Depending on the type of the balance transaction, we will try to give more context about the
+     * specific event that
      * triggered it. For example, the context object for a payment transaction will look like
      * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
      * 
@@ -66,17 +68,22 @@ public class EntityBalanceTransaction {
      * <p>* Type `payment`: `paymentId`, `paymentDescription`
      * * Type `capture`: `paymentId` `captureId`, `paymentDescription`, `captureDescription`
      * * Type `capture-commission`: `paymentId`, `paymentDescription`, `organizationId`
-     * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`, `captureDescription`
+     * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`,
+     * `captureDescription`
      * * Type `unauthorized-direct-debit`: `paymentId`, `paymentDescription`
      * * Type `failed-payment`: `paymentId`, `paymentDescription`
      * * Type `refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
      * * Type `refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
      * * Type `returned-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
+     * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`,
+     * `refundDescription`
      * * Type `chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
+     * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
      * * Type `outgoing-transfer`: `settlementId` `transferId`
      * * Type `canceled-outgoing-transfer`: `settlementId` `transferId`
      * * Type `returned-transfer`: `settlementId` `transferId`
@@ -85,9 +92,12 @@ public class EntityBalanceTransaction {
      * * Type `application-fee`: `paymentId`, `paymentDescription`, `payingOwner`
      * * Type `split-payment`: `paymentId`, `paymentDescription`, `paymentOwner`
      * * Type `platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
+     * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`,
+     * `refundDescription`
+     * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
      * * Type `payment-commission`: `paymentId`, `paymentDescription`, `organizationId`
      * * Type `reimbursement-fee`: `paymentId`, `paymentDescription`
      * * Type `failed-payment-fee`: `paymentId`, `paymentDescription`
@@ -109,7 +119,8 @@ public class EntityBalanceTransaction {
     private Optional<? extends Context> context;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
@@ -150,7 +161,8 @@ public class EntityBalanceTransaction {
     }
 
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+     * Indicates the response contains a balance transaction object. Will always contain the string
+     * `balance-transaction`
      * for this endpoint.
      */
     @JsonIgnore
@@ -197,7 +209,8 @@ public class EntityBalanceTransaction {
     }
 
     /**
-     * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+     * Depending on the type of the balance transaction, we will try to give more context about the
+     * specific event that
      * triggered it. For example, the context object for a payment transaction will look like
      * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
      * 
@@ -206,17 +219,22 @@ public class EntityBalanceTransaction {
      * <p>* Type `payment`: `paymentId`, `paymentDescription`
      * * Type `capture`: `paymentId` `captureId`, `paymentDescription`, `captureDescription`
      * * Type `capture-commission`: `paymentId`, `paymentDescription`, `organizationId`
-     * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`, `captureDescription`
+     * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`,
+     * `captureDescription`
      * * Type `unauthorized-direct-debit`: `paymentId`, `paymentDescription`
      * * Type `failed-payment`: `paymentId`, `paymentDescription`
      * * Type `refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
      * * Type `refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
      * * Type `returned-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
+     * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`,
+     * `refundDescription`
      * * Type `chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
+     * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
      * * Type `outgoing-transfer`: `settlementId` `transferId`
      * * Type `canceled-outgoing-transfer`: `settlementId` `transferId`
      * * Type `returned-transfer`: `settlementId` `transferId`
@@ -225,9 +243,12 @@ public class EntityBalanceTransaction {
      * * Type `application-fee`: `paymentId`, `paymentDescription`, `payingOwner`
      * * Type `split-payment`: `paymentId`, `paymentDescription`, `paymentOwner`
      * * Type `platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
+     * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`,
+     * `refundDescription`
+     * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
      * * Type `payment-commission`: `paymentId`, `paymentDescription`, `organizationId`
      * * Type `reimbursement-fee`: `paymentId`, `paymentDescription`
      * * Type `failed-payment-fee`: `paymentId`, `paymentDescription`
@@ -251,7 +272,8 @@ public class EntityBalanceTransaction {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public Optional<String> createdAt() {
@@ -264,7 +286,8 @@ public class EntityBalanceTransaction {
 
 
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+     * Indicates the response contains a balance transaction object. Will always contain the string
+     * `balance-transaction`
      * for this endpoint.
      */
     public EntityBalanceTransaction withResource(String resource) {
@@ -275,7 +298,8 @@ public class EntityBalanceTransaction {
 
 
     /**
-     * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+     * Indicates the response contains a balance transaction object. Will always contain the string
+     * `balance-transaction`
      * for this endpoint.
      */
     public EntityBalanceTransaction withResource(Optional<String> resource) {
@@ -367,7 +391,8 @@ public class EntityBalanceTransaction {
     }
 
     /**
-     * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+     * Depending on the type of the balance transaction, we will try to give more context about the
+     * specific event that
      * triggered it. For example, the context object for a payment transaction will look like
      * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
      * 
@@ -376,17 +401,22 @@ public class EntityBalanceTransaction {
      * <p>* Type `payment`: `paymentId`, `paymentDescription`
      * * Type `capture`: `paymentId` `captureId`, `paymentDescription`, `captureDescription`
      * * Type `capture-commission`: `paymentId`, `paymentDescription`, `organizationId`
-     * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`, `captureDescription`
+     * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`,
+     * `captureDescription`
      * * Type `unauthorized-direct-debit`: `paymentId`, `paymentDescription`
      * * Type `failed-payment`: `paymentId`, `paymentDescription`
      * * Type `refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
      * * Type `refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
      * * Type `returned-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
+     * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`,
+     * `refundDescription`
      * * Type `chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
+     * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
      * * Type `outgoing-transfer`: `settlementId` `transferId`
      * * Type `canceled-outgoing-transfer`: `settlementId` `transferId`
      * * Type `returned-transfer`: `settlementId` `transferId`
@@ -395,9 +425,12 @@ public class EntityBalanceTransaction {
      * * Type `application-fee`: `paymentId`, `paymentDescription`, `payingOwner`
      * * Type `split-payment`: `paymentId`, `paymentDescription`, `paymentOwner`
      * * Type `platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
+     * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`,
+     * `refundDescription`
+     * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
      * * Type `payment-commission`: `paymentId`, `paymentDescription`, `organizationId`
      * * Type `reimbursement-fee`: `paymentId`, `paymentDescription`
      * * Type `failed-payment-fee`: `paymentId`, `paymentDescription`
@@ -422,7 +455,8 @@ public class EntityBalanceTransaction {
 
 
     /**
-     * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+     * Depending on the type of the balance transaction, we will try to give more context about the
+     * specific event that
      * triggered it. For example, the context object for a payment transaction will look like
      * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
      * 
@@ -431,17 +465,22 @@ public class EntityBalanceTransaction {
      * <p>* Type `payment`: `paymentId`, `paymentDescription`
      * * Type `capture`: `paymentId` `captureId`, `paymentDescription`, `captureDescription`
      * * Type `capture-commission`: `paymentId`, `paymentDescription`, `organizationId`
-     * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`, `captureDescription`
+     * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`,
+     * `captureDescription`
      * * Type `unauthorized-direct-debit`: `paymentId`, `paymentDescription`
      * * Type `failed-payment`: `paymentId`, `paymentDescription`
      * * Type `refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
      * * Type `refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
      * * Type `returned-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
+     * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`,
+     * `refundDescription`
      * * Type `chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
+     * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
      * * Type `outgoing-transfer`: `settlementId` `transferId`
      * * Type `canceled-outgoing-transfer`: `settlementId` `transferId`
      * * Type `returned-transfer`: `settlementId` `transferId`
@@ -450,9 +489,12 @@ public class EntityBalanceTransaction {
      * * Type `application-fee`: `paymentId`, `paymentDescription`, `payingOwner`
      * * Type `split-payment`: `paymentId`, `paymentDescription`, `paymentOwner`
      * * Type `platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-     * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-     * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
+     * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`,
+     * `refundDescription`
+     * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
+     * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+     * `chargebackDescription`
      * * Type `payment-commission`: `paymentId`, `paymentDescription`, `organizationId`
      * * Type `reimbursement-fee`: `paymentId`, `paymentDescription`
      * * Type `failed-payment-fee`: `paymentId`, `paymentDescription`
@@ -476,7 +518,8 @@ public class EntityBalanceTransaction {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityBalanceTransaction withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -486,7 +529,8 @@ public class EntityBalanceTransaction {
 
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityBalanceTransaction withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -560,7 +604,8 @@ public class EntityBalanceTransaction {
 
 
         /**
-         * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+         * Indicates the response contains a balance transaction object. Will always contain the string
+         * `balance-transaction`
          * for this endpoint.
          */
         public Builder resource(String resource) {
@@ -570,7 +615,8 @@ public class EntityBalanceTransaction {
         }
 
         /**
-         * Indicates the response contains a balance transaction object. Will always contain the string `balance-transaction`
+         * Indicates the response contains a balance transaction object. Will always contain the string
+         * `balance-transaction`
          * for this endpoint.
          */
         public Builder resource(Optional<String> resource) {
@@ -664,7 +710,8 @@ public class EntityBalanceTransaction {
 
 
         /**
-         * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+         * Depending on the type of the balance transaction, we will try to give more context about the
+         * specific event that
          * triggered it. For example, the context object for a payment transaction will look like
          * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
          * 
@@ -673,17 +720,22 @@ public class EntityBalanceTransaction {
          * <p>* Type `payment`: `paymentId`, `paymentDescription`
          * * Type `capture`: `paymentId` `captureId`, `paymentDescription`, `captureDescription`
          * * Type `capture-commission`: `paymentId`, `paymentDescription`, `organizationId`
-         * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`, `captureDescription`
+         * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`,
+         * `captureDescription`
          * * Type `unauthorized-direct-debit`: `paymentId`, `paymentDescription`
          * * Type `failed-payment`: `paymentId`, `paymentDescription`
          * * Type `refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
          * * Type `refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
          * * Type `returned-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-         * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
+         * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`,
+         * `refundDescription`
          * * Type `chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-         * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-         * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-         * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
+         * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`,
+         * `chargebackDescription`
+         * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+         * `chargebackDescription`
+         * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+         * `chargebackDescription`
          * * Type `outgoing-transfer`: `settlementId` `transferId`
          * * Type `canceled-outgoing-transfer`: `settlementId` `transferId`
          * * Type `returned-transfer`: `settlementId` `transferId`
@@ -692,9 +744,12 @@ public class EntityBalanceTransaction {
          * * Type `application-fee`: `paymentId`, `paymentDescription`, `payingOwner`
          * * Type `split-payment`: `paymentId`, `paymentDescription`, `paymentOwner`
          * * Type `platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-         * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-         * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-         * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
+         * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`,
+         * `refundDescription`
+         * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+         * `chargebackDescription`
+         * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+         * `chargebackDescription`
          * * Type `payment-commission`: `paymentId`, `paymentDescription`, `organizationId`
          * * Type `reimbursement-fee`: `paymentId`, `paymentDescription`
          * * Type `failed-payment-fee`: `paymentId`, `paymentDescription`
@@ -718,7 +773,8 @@ public class EntityBalanceTransaction {
         }
 
         /**
-         * Depending on the type of the balance transaction, we will try to give more context about the specific event that
+         * Depending on the type of the balance transaction, we will try to give more context about the
+         * specific event that
          * triggered it. For example, the context object for a payment transaction will look like
          * `{"paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "paymentDescription": "Description"}`.
          * 
@@ -727,17 +783,22 @@ public class EntityBalanceTransaction {
          * <p>* Type `payment`: `paymentId`, `paymentDescription`
          * * Type `capture`: `paymentId` `captureId`, `paymentDescription`, `captureDescription`
          * * Type `capture-commission`: `paymentId`, `paymentDescription`, `organizationId`
-         * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`, `captureDescription`
+         * * Type `capture-rolling-reserve-release`: `paymentId`, `paymentDescription`, `captureId`,
+         * `captureDescription`
          * * Type `unauthorized-direct-debit`: `paymentId`, `paymentDescription`
          * * Type `failed-payment`: `paymentId`, `paymentDescription`
          * * Type `refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
          * * Type `refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
          * * Type `returned-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-         * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
+         * * Type `returned-refund-compensation`: `paymentId` `refundId`, `paymentDescription`,
+         * `refundDescription`
          * * Type `chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-         * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-         * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
-         * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`, `chargebackDescription`
+         * * Type `chargeback-reversal`: `paymentId`, `chargebackId`, `paymentDescription`,
+         * `chargebackDescription`
+         * * Type `chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+         * `chargebackDescription`
+         * * Type `reversed-chargeback-compensation`: `paymentId`, `chargebackId`, `paymentDescription`,
+         * `chargebackDescription`
          * * Type `outgoing-transfer`: `settlementId` `transferId`
          * * Type `canceled-outgoing-transfer`: `settlementId` `transferId`
          * * Type `returned-transfer`: `settlementId` `transferId`
@@ -746,9 +807,12 @@ public class EntityBalanceTransaction {
          * * Type `application-fee`: `paymentId`, `paymentDescription`, `payingOwner`
          * * Type `split-payment`: `paymentId`, `paymentDescription`, `paymentOwner`
          * * Type `platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-         * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`, `refundDescription`
-         * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
-         * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`, `chargebackDescription`
+         * * Type `returned-platform-payment-refund`: `paymentId` `refundId`, `paymentDescription`,
+         * `refundDescription`
+         * * Type `platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+         * `chargebackDescription`
+         * * Type `reversed-platform-payment-chargeback`: `paymentId` `chargebackId`, `paymentDescription`,
+         * `chargebackDescription`
          * * Type `payment-commission`: `paymentId`, `paymentDescription`, `organizationId`
          * * Type `reimbursement-fee`: `paymentId`, `paymentDescription`
          * * Type `failed-payment-fee`: `paymentId`, `paymentDescription`
@@ -773,7 +837,8 @@ public class EntityBalanceTransaction {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -782,7 +847,8 @@ public class EntityBalanceTransaction {
         }
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");

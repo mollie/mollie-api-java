@@ -18,7 +18,8 @@ import java.util.Optional;
 
 public class EntityOnboardingStatus {
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+     * Indicates the response contains an onboarding status object. Will always contain the string
+     * `onboarding` for this
      * resource type.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -54,7 +55,8 @@ public class EntityOnboardingStatus {
     private Optional<Boolean> canReceiveSettlements;
 
     /**
-     * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("signedUpAt")
@@ -99,7 +101,8 @@ public class EntityOnboardingStatus {
     }
 
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+     * Indicates the response contains an onboarding status object. Will always contain the string
+     * `onboarding` for this
      * resource type.
      */
     @JsonIgnore
@@ -141,7 +144,8 @@ public class EntityOnboardingStatus {
     }
 
     /**
-     * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public Optional<String> signedUpAt() {
@@ -163,7 +167,8 @@ public class EntityOnboardingStatus {
 
 
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+     * Indicates the response contains an onboarding status object. Will always contain the string
+     * `onboarding` for this
      * resource type.
      */
     public EntityOnboardingStatus withResource(String resource) {
@@ -174,7 +179,8 @@ public class EntityOnboardingStatus {
 
 
     /**
-     * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+     * Indicates the response contains an onboarding status object. Will always contain the string
+     * `onboarding` for this
      * resource type.
      */
     public EntityOnboardingStatus withResource(Optional<String> resource) {
@@ -260,7 +266,8 @@ public class EntityOnboardingStatus {
     }
 
     /**
-     * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityOnboardingStatus withSignedUpAt(String signedUpAt) {
         Utils.checkNotNull(signedUpAt, "signedUpAt");
@@ -270,7 +277,8 @@ public class EntityOnboardingStatus {
 
 
     /**
-     * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityOnboardingStatus withSignedUpAt(Optional<String> signedUpAt) {
         Utils.checkNotNull(signedUpAt, "signedUpAt");
@@ -359,7 +367,8 @@ public class EntityOnboardingStatus {
 
 
         /**
-         * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+         * Indicates the response contains an onboarding status object. Will always contain the string
+         * `onboarding` for this
          * resource type.
          */
         public Builder resource(String resource) {
@@ -369,7 +378,8 @@ public class EntityOnboardingStatus {
         }
 
         /**
-         * Indicates the response contains an onboarding status object. Will always contain the string `onboarding` for this
+         * Indicates the response contains an onboarding status object. Will always contain the string
+         * `onboarding` for this
          * resource type.
          */
         public Builder resource(Optional<String> resource) {
@@ -456,7 +466,8 @@ public class EntityOnboardingStatus {
 
 
         /**
-         * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder signedUpAt(String signedUpAt) {
             Utils.checkNotNull(signedUpAt, "signedUpAt");
@@ -465,7 +476,8 @@ public class EntityOnboardingStatus {
         }
 
         /**
-         * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder signedUpAt(Optional<String> signedUpAt) {
             Utils.checkNotNull(signedUpAt, "signedUpAt");

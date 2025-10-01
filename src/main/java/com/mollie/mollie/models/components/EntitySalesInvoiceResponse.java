@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class EntitySalesInvoiceResponse {
     /**
-     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+     * Indicates the response contains a sales invoice object. Will always contain the string
+     * `sales-invoice` for this
      * endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -42,17 +43,20 @@ public class EntitySalesInvoiceResponse {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -66,8 +70,10 @@ public class EntitySalesInvoiceResponse {
     private Optional<? extends SalesInvoiceVatSchemeResponse> vatScheme;
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+     * top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+     * apply.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatMode")
@@ -82,7 +88,8 @@ public class EntitySalesInvoiceResponse {
 
     /**
      * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -106,7 +113,8 @@ public class EntitySalesInvoiceResponse {
     private JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails;
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+     * for. If
      * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -114,7 +122,8 @@ public class EntitySalesInvoiceResponse {
     private Optional<String> customerId;
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+     * provided,
      * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -122,8 +131,10 @@ public class EntitySalesInvoiceResponse {
     private Optional<String> mandateId;
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -151,10 +162,15 @@ public class EntitySalesInvoiceResponse {
     private JsonNullable<? extends SalesInvoiceDiscountResponse> discount;
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-     * after the invoice has been issued.
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
      * 
-     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isEInvoice")
@@ -196,14 +212,16 @@ public class EntitySalesInvoiceResponse {
     private Optional<? extends Amount> discountedSubtotalAmount;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
     private Optional<String> createdAt;
 
     /**
-     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If issued, the date when the sales invoice was issued, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -211,7 +229,8 @@ public class EntitySalesInvoiceResponse {
     private JsonNullable<String> issuedAt;
 
     /**
-     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If paid, the date when the sales invoice was paid, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -219,7 +238,8 @@ public class EntitySalesInvoiceResponse {
     private JsonNullable<String> paidAt;
 
     /**
-     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If issued, the date when the sales invoice payment is due, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -335,7 +355,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+     * Indicates the response contains a sales invoice object. Will always contain the string
+     * `sales-invoice` for this
      * endpoint.
      */
     @JsonIgnore
@@ -359,17 +380,20 @@ public class EntitySalesInvoiceResponse {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -387,8 +411,10 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+     * top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+     * apply.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -406,7 +432,8 @@ public class EntitySalesInvoiceResponse {
 
     /**
      * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -436,7 +463,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+     * for. If
      * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonIgnore
@@ -445,7 +473,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+     * provided,
      * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     @JsonIgnore
@@ -454,8 +483,10 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     @JsonIgnore
@@ -488,10 +519,15 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-     * after the invoice has been issued.
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
      * 
-     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
      */
     @JsonIgnore
     public Optional<Boolean> isEInvoice() {
@@ -544,7 +580,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public Optional<String> createdAt() {
@@ -552,7 +589,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If issued, the date when the sales invoice was issued, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     @JsonIgnore
@@ -561,7 +599,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If paid, the date when the sales invoice was paid, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     @JsonIgnore
@@ -570,7 +609,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If issued, the date when the sales invoice payment is due, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     @JsonIgnore
@@ -593,7 +633,8 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+     * Indicates the response contains a sales invoice object. Will always contain the string
+     * `sales-invoice` for this
      * endpoint.
      */
     public EntitySalesInvoiceResponse withResource(String resource) {
@@ -604,7 +645,8 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+     * Indicates the response contains a sales invoice object. Will always contain the string
+     * `sales-invoice` for this
      * endpoint.
      */
     public EntitySalesInvoiceResponse withResource(Optional<String> resource) {
@@ -647,17 +689,20 @@ public class EntitySalesInvoiceResponse {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     public EntitySalesInvoiceResponse withStatus(SalesInvoiceStatusResponse status) {
         Utils.checkNotNull(status, "status");
@@ -669,17 +714,20 @@ public class EntitySalesInvoiceResponse {
     /**
      * The status for the invoice to end up in.
      * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+     * sends it to
+     * the recipient so they may then pay through our payment system. To skip our payment process, set this
+     * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
      * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
      * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
-     *   - `paymentDetails` is required if invoice should be set directly to `paid`
-     *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-     *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * - `paymentDetails` is required if invoice should be set directly to `paid`
+     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+     * to `paid`
+     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
     public EntitySalesInvoiceResponse withStatus(Optional<? extends SalesInvoiceStatusResponse> status) {
         Utils.checkNotNull(status, "status");
@@ -707,8 +755,10 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+     * top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+     * apply.
      */
     public EntitySalesInvoiceResponse withVatMode(SalesInvoiceVatModeResponse vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
@@ -718,8 +768,10 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+     * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+     * top of the
+     * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+     * apply.
      */
     public EntitySalesInvoiceResponse withVatMode(Optional<? extends SalesInvoiceVatModeResponse> vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
@@ -747,7 +799,8 @@ public class EntitySalesInvoiceResponse {
 
     /**
      * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public EntitySalesInvoiceResponse withMetadata(EntitySalesInvoiceResponseMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -757,7 +810,8 @@ public class EntitySalesInvoiceResponse {
 
     /**
      * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-     * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+     * you fetch the entity with our API, we will also include the metadata. You can use up to
+     * approximately 1kB.
      */
     public EntitySalesInvoiceResponse withMetadata(JsonNullable<? extends EntitySalesInvoiceResponseMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -808,7 +862,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+     * for. If
      * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public EntitySalesInvoiceResponse withCustomerId(String customerId) {
@@ -819,7 +874,8 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+     * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+     * for. If
      * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public EntitySalesInvoiceResponse withCustomerId(Optional<String> customerId) {
@@ -829,7 +885,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+     * provided,
      * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public EntitySalesInvoiceResponse withMandateId(String mandateId) {
@@ -840,7 +897,8 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+     * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+     * provided,
      * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
     public EntitySalesInvoiceResponse withMandateId(Optional<String> mandateId) {
@@ -850,8 +908,10 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     public EntitySalesInvoiceResponse withRecipientIdentifier(String recipientIdentifier) {
@@ -862,8 +922,10 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+     * An identifier tied to the recipient data. This should be a unique value based on data your system
+     * contains,
+     * so that both you and us know who we're referring to. It is a value you provide to us so that
+     * recipient management
      * is not required to send a first invoice to a recipient.
      */
     public EntitySalesInvoiceResponse withRecipientIdentifier(Optional<String> recipientIdentifier) {
@@ -921,10 +983,15 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-     * after the invoice has been issued.
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
      * 
-     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
      */
     public EntitySalesInvoiceResponse withIsEInvoice(boolean isEInvoice) {
         Utils.checkNotNull(isEInvoice, "isEInvoice");
@@ -934,10 +1001,15 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-     * after the invoice has been issued.
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
      * 
-     * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
      */
     public EntitySalesInvoiceResponse withIsEInvoice(Optional<Boolean> isEInvoice) {
         Utils.checkNotNull(isEInvoice, "isEInvoice");
@@ -1041,7 +1113,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntitySalesInvoiceResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -1051,7 +1124,8 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntitySalesInvoiceResponse withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -1060,7 +1134,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If issued, the date when the sales invoice was issued, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     public EntitySalesInvoiceResponse withIssuedAt(String issuedAt) {
@@ -1070,7 +1145,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If issued, the date when the sales invoice was issued, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     public EntitySalesInvoiceResponse withIssuedAt(JsonNullable<String> issuedAt) {
@@ -1080,7 +1156,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If paid, the date when the sales invoice was paid, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     public EntitySalesInvoiceResponse withPaidAt(String paidAt) {
@@ -1090,7 +1167,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If paid, the date when the sales invoice was paid, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     public EntitySalesInvoiceResponse withPaidAt(JsonNullable<String> paidAt) {
@@ -1100,7 +1178,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If issued, the date when the sales invoice payment is due, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     public EntitySalesInvoiceResponse withDueAt(String dueAt) {
@@ -1110,7 +1189,8 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * If issued, the date when the sales invoice payment is due, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
     public EntitySalesInvoiceResponse withDueAt(JsonNullable<String> dueAt) {
@@ -1291,7 +1371,8 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+         * Indicates the response contains a sales invoice object. Will always contain the string
+         * `sales-invoice` for this
          * endpoint.
          */
         public Builder resource(String resource) {
@@ -1301,7 +1382,8 @@ public class EntitySalesInvoiceResponse {
         }
 
         /**
-         * Indicates the response contains a sales invoice object. Will always contain the string `sales-invoice` for this
+         * Indicates the response contains a sales invoice object. Will always contain the string
+         * `sales-invoice` for this
          * endpoint.
          */
         public Builder resource(Optional<String> resource) {
@@ -1346,17 +1428,20 @@ public class EntitySalesInvoiceResponse {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+         * sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this
+         * to `paid` to
          * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
          * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
          * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
          * 
          * <p>Dependent parameters:
-         *   - `paymentDetails` is required if invoice should be set directly to `paid`
-         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+         * - `paymentDetails` is required if invoice should be set directly to `paid`
+         * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+         * to `paid`
+         * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
         public Builder status(SalesInvoiceStatusResponse status) {
             Utils.checkNotNull(status, "status");
@@ -1367,17 +1452,20 @@ public class EntitySalesInvoiceResponse {
         /**
          * The status for the invoice to end up in.
          * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued` sends it to
-         * the recipient so they may then pay through our payment system. To skip our payment process, set this to `paid` to
+         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
+         * sends it to
+         * the recipient so they may then pay through our payment system. To skip our payment process, set this
+         * to `paid` to
          * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
          * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
          * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
          * 
          * <p>Dependent parameters:
-         *   - `paymentDetails` is required if invoice should be set directly to `paid`
-         *   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
-         *   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+         * - `paymentDetails` is required if invoice should be set directly to `paid`
+         * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
+         * to `paid`
+         * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
         public Builder status(Optional<? extends SalesInvoiceStatusResponse> status) {
             Utils.checkNotNull(status, "status");
@@ -1406,8 +1494,10 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+         * top of the
+         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+         * apply.
          */
         public Builder vatMode(SalesInvoiceVatModeResponse vatMode) {
             Utils.checkNotNull(vatMode, "vatMode");
@@ -1416,8 +1506,10 @@ public class EntitySalesInvoiceResponse {
         }
 
         /**
-         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on top of the
-         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to apply.
+         * The VAT mode to use for VAT calculation. `exclusive` mode means we will apply the relevant VAT on
+         * top of the
+         * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
+         * apply.
          */
         public Builder vatMode(Optional<? extends SalesInvoiceVatModeResponse> vatMode) {
             Utils.checkNotNull(vatMode, "vatMode");
@@ -1447,7 +1539,8 @@ public class EntitySalesInvoiceResponse {
 
         /**
          * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(EntitySalesInvoiceResponseMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1457,7 +1550,8 @@ public class EntitySalesInvoiceResponse {
 
         /**
          * Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
-         * you fetch the entity with our API, we will also include the metadata. You can use up to approximately 1kB.
+         * you fetch the entity with our API, we will also include the metadata. You can use up to
+         * approximately 1kB.
          */
         public Builder metadata(JsonNullable<? extends EntitySalesInvoiceResponseMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1512,7 +1606,8 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+         * for. If
          * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder customerId(String customerId) {
@@ -1522,7 +1617,8 @@ public class EntitySalesInvoiceResponse {
         }
 
         /**
-         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment for. If
+         * The identifier referring to the [customer](get-customer) you want to attempt an automated payment
+         * for. If
          * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder customerId(Optional<String> customerId) {
@@ -1533,7 +1629,8 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+         * provided,
          * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder mandateId(String mandateId) {
@@ -1543,7 +1640,8 @@ public class EntitySalesInvoiceResponse {
         }
 
         /**
-         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If provided,
+         * The identifier referring to the [mandate](get-mandate) you want to use for the automated payment. If
+         * provided,
          * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
          */
         public Builder mandateId(Optional<String> mandateId) {
@@ -1554,8 +1652,10 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-         * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+         * An identifier tied to the recipient data. This should be a unique value based on data your system
+         * contains,
+         * so that both you and us know who we're referring to. It is a value you provide to us so that
+         * recipient management
          * is not required to send a first invoice to a recipient.
          */
         public Builder recipientIdentifier(String recipientIdentifier) {
@@ -1565,8 +1665,10 @@ public class EntitySalesInvoiceResponse {
         }
 
         /**
-         * An identifier tied to the recipient data. This should be a unique value based on data your system contains,
-         * so that both you and us know who we're referring to. It is a value you provide to us so that recipient management
+         * An identifier tied to the recipient data. This should be a unique value based on data your system
+         * contains,
+         * so that both you and us know who we're referring to. It is a value you provide to us so that
+         * recipient management
          * is not required to send a first invoice to a recipient.
          */
         public Builder recipientIdentifier(Optional<String> recipientIdentifier) {
@@ -1628,10 +1730,15 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-         * after the invoice has been issued.
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+         * changed
+         * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+         * the
+         * recipient.
          * 
-         * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+         * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+         * when
+         * the recipient is also located in one of these countries.
          */
         public Builder isEInvoice(boolean isEInvoice) {
             Utils.checkNotNull(isEInvoice, "isEInvoice");
@@ -1640,10 +1747,15 @@ public class EntitySalesInvoiceResponse {
         }
 
         /**
-         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be changed
-         * after the invoice has been issued.
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+         * changed
+         * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+         * the
+         * recipient.
          * 
-         * <p>When `emailDetails` is provided, an additional email is sent to the recipient.
+         * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+         * when
+         * the recipient is also located in one of these countries.
          */
         public Builder isEInvoice(Optional<Boolean> isEInvoice) {
             Utils.checkNotNull(isEInvoice, "isEInvoice");
@@ -1748,7 +1860,8 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -1757,7 +1870,8 @@ public class EntitySalesInvoiceResponse {
         }
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -1767,7 +1881,8 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * If issued, the date when the sales invoice was issued, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
         public Builder issuedAt(String issuedAt) {
@@ -1777,7 +1892,8 @@ public class EntitySalesInvoiceResponse {
         }
 
         /**
-         * If issued, the date when the sales invoice was issued, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * If issued, the date when the sales invoice was issued, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
         public Builder issuedAt(JsonNullable<String> issuedAt) {
@@ -1788,7 +1904,8 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * If paid, the date when the sales invoice was paid, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
         public Builder paidAt(String paidAt) {
@@ -1798,7 +1915,8 @@ public class EntitySalesInvoiceResponse {
         }
 
         /**
-         * If paid, the date when the sales invoice was paid, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * If paid, the date when the sales invoice was paid, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
         public Builder paidAt(JsonNullable<String> paidAt) {
@@ -1809,7 +1927,8 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * If issued, the date when the sales invoice payment is due, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
         public Builder dueAt(String dueAt) {
@@ -1819,7 +1938,8 @@ public class EntitySalesInvoiceResponse {
         }
 
         /**
-         * If issued, the date when the sales invoice payment is due, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * If issued, the date when the sales invoice payment is due, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
         public Builder dueAt(JsonNullable<String> dueAt) {

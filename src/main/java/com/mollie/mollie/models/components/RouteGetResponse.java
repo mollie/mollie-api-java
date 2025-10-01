@@ -13,7 +13,8 @@ import java.lang.String;
 
 public class RouteGetResponse {
     /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+     * Indicates the response contains a route object. Will always contain the string `route` for this
+     * endpoint.
      */
     @JsonProperty("resource")
     private String resource;
@@ -51,7 +52,8 @@ public class RouteGetResponse {
     private RouteGetResponseLinks links;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonProperty("createdAt")
     private String createdAt;
@@ -85,7 +87,8 @@ public class RouteGetResponse {
     }
 
     /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+     * Indicates the response contains a route object. Will always contain the string `route` for this
+     * endpoint.
      */
     @JsonIgnore
     public String resource() {
@@ -135,7 +138,8 @@ public class RouteGetResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public String createdAt() {
@@ -148,7 +152,8 @@ public class RouteGetResponse {
 
 
     /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+     * Indicates the response contains a route object. Will always contain the string `route` for this
+     * endpoint.
      */
     public RouteGetResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -205,7 +210,8 @@ public class RouteGetResponse {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public RouteGetResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -279,7 +285,8 @@ public class RouteGetResponse {
 
 
         /**
-         * Indicates the response contains a route object. Will always contain the string `route` for this endpoint.
+         * Indicates the response contains a route object. Will always contain the string `route` for this
+         * endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -343,7 +350,8 @@ public class RouteGetResponse {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");

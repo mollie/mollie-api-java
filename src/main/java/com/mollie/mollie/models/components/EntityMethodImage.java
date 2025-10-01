@@ -18,9 +18,9 @@ import java.util.Optional;
  * 
  * <p>URLs of images representing the issuer.
  * required:
- *   - size1x
- *   - size2x
- *   - svg
+ * - size1x
+ * - size2x
+ * - svg
  */
 public class EntityMethodImage {
     /**
@@ -38,7 +38,8 @@ public class EntityMethodImage {
     private Optional<String> size2x;
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+     * can
      * scale to any desired size without compromising visual quality.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -79,7 +80,8 @@ public class EntityMethodImage {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+     * can
      * scale to any desired size without compromising visual quality.
      */
     @JsonIgnore
@@ -131,7 +133,8 @@ public class EntityMethodImage {
     }
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+     * can
      * scale to any desired size without compromising visual quality.
      */
     public EntityMethodImage withSvg(String svg) {
@@ -142,7 +145,8 @@ public class EntityMethodImage {
 
 
     /**
-     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+     * can
      * scale to any desired size without compromising visual quality.
      */
     public EntityMethodImage withSvg(Optional<String> svg) {
@@ -233,7 +237,8 @@ public class EntityMethodImage {
 
 
         /**
-         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+         * can
          * scale to any desired size without compromising visual quality.
          */
         public Builder svg(String svg) {
@@ -243,7 +248,8 @@ public class EntityMethodImage {
         }
 
         /**
-         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon can
+         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+         * can
          * scale to any desired size without compromising visual quality.
          */
         public Builder svg(Optional<String> svg) {

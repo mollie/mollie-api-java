@@ -17,7 +17,8 @@ import java.util.Optional;
 
 public class EntityTerminal {
     /**
-     * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
+     * Indicates the response contains a terminal object. Will always contain the string `terminal` for
+     * this endpoint.
      */
     @JsonProperty("resource")
     private String resource;
@@ -33,8 +34,10 @@ public class EntityTerminal {
     private Mode mode;
 
     /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-     * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
+     * A short description of the terminal. The description can be used as an identifier for the terminal.
+     * Currently, the
+     * description is set when the terminal is initially configured. It will be visible in the Mollie
+     * Dashboard, and it
      * may be visible on the device itself depending on the device.
      */
     @JsonProperty("description")
@@ -68,7 +71,8 @@ public class EntityTerminal {
     private Optional<String> serialNumber;
 
     /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
+     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are
+     * bound to a
      * specific currency, chosen during setup.
      */
     @JsonProperty("currency")
@@ -77,21 +81,25 @@ public class EntityTerminal {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     @JsonProperty("profileId")
     private String profileId;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonProperty("createdAt")
     private String createdAt;
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonProperty("updatedAt")
     private String updatedAt;
@@ -164,7 +172,8 @@ public class EntityTerminal {
     }
 
     /**
-     * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
+     * Indicates the response contains a terminal object. Will always contain the string `terminal` for
+     * this endpoint.
      */
     @JsonIgnore
     public String resource() {
@@ -185,8 +194,10 @@ public class EntityTerminal {
     }
 
     /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-     * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
+     * A short description of the terminal. The description can be used as an identifier for the terminal.
+     * Currently, the
+     * description is set when the terminal is initially configured. It will be visible in the Mollie
+     * Dashboard, and it
      * may be visible on the device itself depending on the device.
      */
     @JsonIgnore
@@ -229,7 +240,8 @@ public class EntityTerminal {
     }
 
     /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
+     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are
+     * bound to a
      * specific currency, chosen during setup.
      */
     @JsonIgnore
@@ -240,8 +252,10 @@ public class EntityTerminal {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     @JsonIgnore
@@ -250,7 +264,8 @@ public class EntityTerminal {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public String createdAt() {
@@ -258,7 +273,8 @@ public class EntityTerminal {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     @JsonIgnore
     public String updatedAt() {
@@ -279,7 +295,8 @@ public class EntityTerminal {
 
 
     /**
-     * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
+     * Indicates the response contains a terminal object. Will always contain the string `terminal` for
+     * this endpoint.
      */
     public EntityTerminal withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
@@ -303,8 +320,10 @@ public class EntityTerminal {
     }
 
     /**
-     * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-     * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
+     * A short description of the terminal. The description can be used as an identifier for the terminal.
+     * Currently, the
+     * description is set when the terminal is initially configured. It will be visible in the Mollie
+     * Dashboard, and it
      * may be visible on the device itself depending on the device.
      */
     public EntityTerminal withDescription(String description) {
@@ -380,7 +399,8 @@ public class EntityTerminal {
     }
 
     /**
-     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
+     * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are
+     * bound to a
      * specific currency, chosen during setup.
      */
     public EntityTerminal withCurrency(String currency) {
@@ -392,8 +412,10 @@ public class EntityTerminal {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
      * required.
      */
     public EntityTerminal withProfileId(String profileId) {
@@ -403,7 +425,8 @@ public class EntityTerminal {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityTerminal withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
@@ -412,7 +435,8 @@ public class EntityTerminal {
     }
 
     /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
      */
     public EntityTerminal withUpdatedAt(String updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -517,7 +541,8 @@ public class EntityTerminal {
 
 
         /**
-         * Indicates the response contains a terminal object. Will always contain the string `terminal` for this endpoint.
+         * Indicates the response contains a terminal object. Will always contain the string `terminal` for
+         * this endpoint.
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -544,8 +569,10 @@ public class EntityTerminal {
 
 
         /**
-         * A short description of the terminal. The description can be used as an identifier for the terminal. Currently, the
-         * description is set when the terminal is initially configured. It will be visible in the Mollie Dashboard, and it
+         * A short description of the terminal. The description can be used as an identifier for the terminal.
+         * Currently, the
+         * description is set when the terminal is initially configured. It will be visible in the Mollie
+         * Dashboard, and it
          * may be visible on the device itself depending on the device.
          */
         public Builder description(String description) {
@@ -623,7 +650,8 @@ public class EntityTerminal {
 
 
         /**
-         * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are bound to a
+         * The currency configured on the terminal, in ISO 4217 format. Currently most of our terminals are
+         * bound to a
          * specific currency, chosen during setup.
          */
         public Builder currency(String currency) {
@@ -636,8 +664,10 @@ public class EntityTerminal {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
          * required.
          */
         public Builder profileId(String profileId) {
@@ -648,7 +678,8 @@ public class EntityTerminal {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
@@ -658,7 +689,8 @@ public class EntityTerminal {
 
 
         /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
          */
         public Builder updatedAt(String updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
