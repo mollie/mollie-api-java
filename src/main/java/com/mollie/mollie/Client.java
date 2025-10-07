@@ -64,6 +64,9 @@ public class Client {
     private final WebhookEvents webhookEvents;
 
 
+    private final BalanceTransfers balanceTransfers;
+
+
     private final Payments payments;
 
 
@@ -160,6 +163,11 @@ public class Client {
 
     public WebhookEvents webhookEvents() {
         return webhookEvents;
+    }
+
+
+    public BalanceTransfers balanceTransfers() {
+        return balanceTransfers;
     }
 
 
@@ -387,6 +395,7 @@ public class Client {
         this.clientLinks = new ClientLinks(sdkConfiguration);
         this.webhooks = new Webhooks(sdkConfiguration);
         this.webhookEvents = new WebhookEvents(sdkConfiguration);
+        this.balanceTransfers = new BalanceTransfers(sdkConfiguration);
         this.payments = new Payments(sdkConfiguration);
         this.methods = new Methods(sdkConfiguration);
         this.refunds = new Refunds(sdkConfiguration);

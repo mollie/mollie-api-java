@@ -19,14 +19,31 @@ public class CreateWebhookLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @JsonProperty("self")
+    private Url self;
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
     @JsonProperty("documentation")
     private Url documentation;
 
     @JsonCreator
     public CreateWebhookLinks(
+            @JsonProperty("self") Url self,
             @JsonProperty("documentation") Url documentation) {
+        Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
+        this.self = self;
         this.documentation = documentation;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonIgnore
+    public Url self() {
+        return self;
     }
 
     /**
@@ -41,6 +58,15 @@ public class CreateWebhookLinks {
         return new Builder();
     }
 
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public CreateWebhookLinks withSelf(Url self) {
+        Utils.checkNotNull(self, "self");
+        this.self = self;
+        return this;
+    }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -61,28 +87,42 @@ public class CreateWebhookLinks {
         }
         CreateWebhookLinks other = (CreateWebhookLinks) o;
         return 
+            Utils.enhancedDeepEquals(this.self, other.self) &&
             Utils.enhancedDeepEquals(this.documentation, other.documentation);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            documentation);
+            self, documentation);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateWebhookLinks.class,
+                "self", self,
                 "documentation", documentation);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
+        private Url self;
+
         private Url documentation;
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder self(Url self) {
+            Utils.checkNotNull(self, "self");
+            this.self = self;
+            return this;
         }
 
 
@@ -98,7 +138,7 @@ public class CreateWebhookLinks {
         public CreateWebhookLinks build() {
 
             return new CreateWebhookLinks(
-                documentation);
+                self, documentation);
         }
 
     }

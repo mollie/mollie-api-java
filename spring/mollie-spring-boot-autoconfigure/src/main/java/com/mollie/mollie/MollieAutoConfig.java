@@ -360,6 +360,17 @@ public class MollieAutoConfig {
         return client.webhookEvents();
     }
     /**
+     * Creates a BalanceTransfers sub-SDK bean if none exists.
+     *
+     * @param client the main SDK instance
+     * @return A configured BalanceTransfers instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public BalanceTransfers balanceTransfers(Client client) {
+        return client.balanceTransfers();
+    }
+    /**
      * Creates a Payments sub-SDK bean if none exists.
      *
      * @param client the main SDK instance
@@ -646,6 +657,17 @@ public class MollieAutoConfig {
     @ConditionalOnMissingBean
     public AsyncWebhookEvents asyncWebhookEvents(AsyncClient asyncClient) {
         return asyncClient.webhookEvents();
+    }
+    /**
+     * Creates an AsyncBalanceTransfers sub-SDK bean if none exists.
+     *
+     * @param asyncClient the async SDK instance
+     * @return A configured AsyncBalanceTransfers instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncBalanceTransfers asyncBalanceTransfers(AsyncClient asyncClient) {
+        return asyncClient.balanceTransfers();
     }
     /**
      * Creates an AsyncPayments sub-SDK bean if none exists.
