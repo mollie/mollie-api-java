@@ -21,7 +21,7 @@ public enum BalanceTransferCategory {
     SERVICE_PENALTY("service_penalty"),
     DISCOUNT_COMPENSATION("discount_compensation"),
     MANUAL_CORRECTION("manual_correction"),
-    FEE("fee");
+    OTHER_FEE("other_fee");
 
     @JsonValue
     private final String value;

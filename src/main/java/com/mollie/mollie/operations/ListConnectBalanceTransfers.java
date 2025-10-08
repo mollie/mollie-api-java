@@ -88,7 +88,7 @@ public class ListConnectBalanceTransfers {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list-connect-balance-transfers",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -97,7 +97,7 @@ public class ListConnectBalanceTransfers {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list-connect-balance-transfers",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -106,7 +106,7 @@ public class ListConnectBalanceTransfers {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list-connect-balance-transfers",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {

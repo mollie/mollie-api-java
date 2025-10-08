@@ -57,7 +57,7 @@ public class BalanceTransferCategoryResponse {
     public static final BalanceTransferCategoryResponse SERVICE_PENALTY = new BalanceTransferCategoryResponse("service_penalty");
     public static final BalanceTransferCategoryResponse DISCOUNT_COMPENSATION = new BalanceTransferCategoryResponse("discount_compensation");
     public static final BalanceTransferCategoryResponse MANUAL_CORRECTION = new BalanceTransferCategoryResponse("manual_correction");
-    public static final BalanceTransferCategoryResponse FEE = new BalanceTransferCategoryResponse("fee");
+    public static final BalanceTransferCategoryResponse OTHER_FEE = new BalanceTransferCategoryResponse("other_fee");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -136,7 +136,7 @@ public class BalanceTransferCategoryResponse {
         map.put("service_penalty", SERVICE_PENALTY);
         map.put("discount_compensation", DISCOUNT_COMPENSATION);
         map.put("manual_correction", MANUAL_CORRECTION);
-        map.put("fee", FEE);
+        map.put("other_fee", OTHER_FEE);
         return map;
     }
 
@@ -149,7 +149,7 @@ public class BalanceTransferCategoryResponse {
         map.put("service_penalty", BalanceTransferCategoryResponseEnum.SERVICE_PENALTY);
         map.put("discount_compensation", BalanceTransferCategoryResponseEnum.DISCOUNT_COMPENSATION);
         map.put("manual_correction", BalanceTransferCategoryResponseEnum.MANUAL_CORRECTION);
-        map.put("fee", BalanceTransferCategoryResponseEnum.FEE);
+        map.put("other_fee", BalanceTransferCategoryResponseEnum.OTHER_FEE);
         return map;
     }
     
@@ -192,7 +192,7 @@ public class BalanceTransferCategoryResponse {
         SERVICE_PENALTY("service_penalty"),
         DISCOUNT_COMPENSATION("discount_compensation"),
         MANUAL_CORRECTION("manual_correction"),
-        FEE("fee"),;
+        OTHER_FEE("other_fee"),;
 
         private final String value;
 

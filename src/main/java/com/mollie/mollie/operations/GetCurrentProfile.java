@@ -87,7 +87,7 @@ public class GetCurrentProfile {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "get-current-profile",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -96,7 +96,7 @@ public class GetCurrentProfile {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "get-current-profile",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -105,7 +105,7 @@ public class GetCurrentProfile {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "get-current-profile",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request) throws Exception {

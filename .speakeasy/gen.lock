@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 76f737bf3d711e5294198ae05444d97c
+  docChecksum: d4c86af0b942215e7a70f30230ce4fd7
   docVersion: 1.0.0
-  speakeasyVersion: 1.635.1
-  generationVersion: 2.722.2
-  releaseVersion: 0.20.1
-  configChecksum: 98a26f865374e3fbc26c21e880a6ac8f
+  speakeasyVersion: 1.636.0
+  generationVersion: 2.723.2
+  releaseVersion: 0.20.2
+  configChecksum: fe0de5dc15fc6c544d680114c6a2bf91
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -18,7 +18,7 @@ features:
     globalSecurity: 2.83.1
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.2
-    groups: 2.81.2
+    groups: 2.81.3
     inputOutputModels: 2.83.0
     nameOverrides: 2.81.3
     nullables: 0.1.0
@@ -635,7 +635,6 @@ generatedFiles:
   - docs/sdks/capabilities/README.md
   - docs/sdks/captures/README.md
   - docs/sdks/chargebacks/README.md
-  - docs/sdks/client/README.md
   - docs/sdks/clientlinks/README.md
   - docs/sdks/clients/README.md
   - docs/sdks/customers/README.md
@@ -6230,12 +6229,3 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes Detected:
-  * `client.balanceTransfers.create()`: **Added**
-  * `client.balanceTransfers.list()`: **Added**
-  * `client.balanceTransfers.get()`: **Added**
-  * `client.webhooks.create()`:  `response._links.self` **Added**
-  * `client.webhooks.list()`:  `response._embedded.webhooks.[].Links.self` **Added**
-  * `client.webhooks.update()`:  `response._links.self` **Added**
-  * `client.webhooks.get()`:  `response._links.self` **Added**

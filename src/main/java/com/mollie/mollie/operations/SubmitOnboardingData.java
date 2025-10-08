@@ -89,7 +89,7 @@ public class SubmitOnboardingData {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "submit-onboarding-data",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -98,7 +98,7 @@ public class SubmitOnboardingData {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "submit-onboarding-data",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -107,7 +107,7 @@ public class SubmitOnboardingData {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "submit-onboarding-data",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {

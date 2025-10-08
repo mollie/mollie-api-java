@@ -88,7 +88,7 @@ public class ListSubscriptions {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list-subscriptions",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -97,7 +97,7 @@ public class ListSubscriptions {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list-subscriptions",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -106,7 +106,7 @@ public class ListSubscriptions {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "list-subscriptions",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {

@@ -91,7 +91,7 @@ public class CancelPayment {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "cancel-payment",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -100,7 +100,7 @@ public class CancelPayment {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "cancel-payment",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
 
@@ -109,7 +109,7 @@ public class CancelPayment {
                     this.sdkConfiguration,
                     this.baseUrl,
                     "cancel-payment",
-                    java.util.Optional.of(java.util.List.of()),
+                    java.util.Optional.empty(),
                     securitySource());
         }
         <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
