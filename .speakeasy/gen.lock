@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: d4c86af0b942215e7a70f30230ce4fd7
+  docChecksum: 248ec6075df6729e0719102b6630ab61
   docVersion: 1.0.0
   speakeasyVersion: 1.636.0
   generationVersion: 2.723.2
-  releaseVersion: 0.20.2
-  configChecksum: fe0de5dc15fc6c544d680114c6a2bf91
+  releaseVersion: 0.20.3
+  configChecksum: 6a29686e586b2ccaabc4402735616e84
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -6229,3 +6229,6 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Java SDK Changes Detected:
+  * `client.webhooks.create()`:  `response.profileid` **Changed** **Breaking** :warning:

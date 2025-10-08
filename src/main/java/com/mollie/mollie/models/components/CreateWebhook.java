@@ -5,11 +5,14 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 
 
 public class CreateWebhook {
@@ -35,8 +38,9 @@ public class CreateWebhook {
     /**
      * The identifier uniquely referring to the profile that created the subscription.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("profileId")
-    private String profileId;
+    private Optional<String> profileId;
 
     /**
      * The subscription's date time of creation.
@@ -85,7 +89,7 @@ public class CreateWebhook {
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("url") String url,
-            @JsonProperty("profileId") String profileId,
+            @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("name") String name,
             @JsonProperty("eventTypes") List<WebhookEventTypes> eventTypes,
@@ -115,6 +119,23 @@ public class CreateWebhook {
         this.mode = mode;
         this.webhookSecret = webhookSecret;
         this.links = links;
+    }
+    
+    public CreateWebhook(
+            String resource,
+            String id,
+            String url,
+            String createdAt,
+            String name,
+            List<WebhookEventTypes> eventTypes,
+            WebhookStatus status,
+            Mode mode,
+            String webhookSecret,
+            CreateWebhookLinks links) {
+        this(resource, id, url,
+            Optional.empty(), createdAt, name,
+            eventTypes, status, mode,
+            webhookSecret, links);
     }
 
     /**
@@ -146,7 +167,7 @@ public class CreateWebhook {
      * The identifier uniquely referring to the profile that created the subscription.
      */
     @JsonIgnore
-    public String profileId() {
+    public Optional<String> profileId() {
         return profileId;
     }
 
@@ -243,6 +264,16 @@ public class CreateWebhook {
      * The identifier uniquely referring to the profile that created the subscription.
      */
     public CreateWebhook withProfileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = Optional.ofNullable(profileId);
+        return this;
+    }
+
+
+    /**
+     * The identifier uniquely referring to the profile that created the subscription.
+     */
+    public CreateWebhook withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
         return this;
@@ -368,7 +399,7 @@ public class CreateWebhook {
 
         private String url;
 
-        private String profileId;
+        private Optional<String> profileId = Optional.empty();
 
         private String createdAt;
 
@@ -424,6 +455,15 @@ public class CreateWebhook {
          * The identifier uniquely referring to the profile that created the subscription.
          */
         public Builder profileId(String profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = Optional.ofNullable(profileId);
+            return this;
+        }
+
+        /**
+         * The identifier uniquely referring to the profile that created the subscription.
+         */
+        public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
             this.profileId = profileId;
             return this;
