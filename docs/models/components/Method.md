@@ -35,6 +35,7 @@ payment methods from a specific country to your customer `['bancontact', 'belfiu
 | `KLARNAPAYNOW`   | klarnapaynow     |
 | `KLARNASLICEIT`  | klarnasliceit    |
 | `MBWAY`          | mbway            |
+| `MOBILEPAY`      | mobilepay        |
 | `MULTIBANCO`     | multibanco       |
 | `MYBANK`         | mybank           |
 | `PAYBYBANK`      | paybybank        |
@@ -48,4 +49,5 @@ payment methods from a specific country to your customer `['bancontact', 'belfiu
 | `SWISH`          | swish            |
 | `TRUSTLY`        | trustly          |
 | `TWINT`          | twint            |
+| `VIPPS`          | vipps            |
 | `VOUCHER`        | voucher          |

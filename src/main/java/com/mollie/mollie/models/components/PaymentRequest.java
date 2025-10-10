@@ -148,10 +148,20 @@ public class PaymentRequest {
     @JsonProperty("lines")
     private JsonNullable<? extends List<PaymentRequestLines>> lines;
 
-
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud
+     * protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+     * `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
-    private Optional<? extends PaymentAddress> billingAddress;
+    private Optional<? extends PaymentRequestBillingAddress> billingAddress;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -502,7 +512,7 @@ public class PaymentRequest {
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("lines") JsonNullable<? extends List<PaymentRequestLines>> lines,
-            @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
+            @JsonProperty("billingAddress") Optional<? extends PaymentRequestBillingAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
             @JsonProperty("locale") JsonNullable<? extends Locale> locale,
             @JsonProperty("method") JsonNullable<? extends Method> method,
@@ -783,10 +793,21 @@ public class PaymentRequest {
         return (JsonNullable<List<PaymentRequestLines>>) lines;
     }
 
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud
+     * protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+     * `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentAddress> billingAddress() {
-        return (Optional<PaymentAddress>) billingAddress;
+    public Optional<PaymentRequestBillingAddress> billingAddress() {
+        return (Optional<PaymentRequestBillingAddress>) billingAddress;
     }
 
     @SuppressWarnings("unchecked")
@@ -1468,14 +1489,36 @@ public class PaymentRequest {
         return this;
     }
 
-    public PaymentRequest withBillingAddress(PaymentAddress billingAddress) {
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud
+     * protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+     * `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    public PaymentRequest withBillingAddress(PaymentRequestBillingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
         return this;
     }
 
 
-    public PaymentRequest withBillingAddress(Optional<? extends PaymentAddress> billingAddress) {
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud
+     * protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+     * `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    public PaymentRequest withBillingAddress(Optional<? extends PaymentRequestBillingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
         return this;
@@ -2427,7 +2470,7 @@ public class PaymentRequest {
 
         private JsonNullable<? extends List<PaymentRequestLines>> lines = JsonNullable.undefined();
 
-        private Optional<? extends PaymentAddress> billingAddress = Optional.empty();
+        private Optional<? extends PaymentRequestBillingAddress> billingAddress = Optional.empty();
 
         private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
 
@@ -2804,13 +2847,35 @@ public class PaymentRequest {
         }
 
 
-        public Builder billingAddress(PaymentAddress billingAddress) {
+        /**
+         * The customer's billing address details. We advise to provide these details to improve fraud
+         * protection and
+         * conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+         * `city` and
+         * `country`.
+         * 
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         */
+        public Builder billingAddress(PaymentRequestBillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
             return this;
         }
 
-        public Builder billingAddress(Optional<? extends PaymentAddress> billingAddress) {
+        /**
+         * The customer's billing address details. We advise to provide these details to improve fraud
+         * protection and
+         * conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+         * `city` and
+         * `country`.
+         * 
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         */
+        public Builder billingAddress(Optional<? extends PaymentRequestBillingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = billingAddress;
             return this;

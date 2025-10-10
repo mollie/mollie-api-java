@@ -46,6 +46,7 @@ public enum Method {
     KLARNAPAYNOW("klarnapaynow"),
     KLARNASLICEIT("klarnasliceit"),
     MBWAY("mbway"),
+    MOBILEPAY("mobilepay"),
     MULTIBANCO("multibanco"),
     MYBANK("mybank"),
     PAYBYBANK("paybybank"),
@@ -59,6 +60,7 @@ public enum Method {
     SWISH("swish"),
     TRUSTLY("trustly"),
     TWINT("twint"),
+    VIPPS("vipps"),
     VOUCHER("voucher");
 
     @JsonValue

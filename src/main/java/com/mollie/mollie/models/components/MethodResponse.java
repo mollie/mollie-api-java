@@ -82,6 +82,7 @@ public class MethodResponse {
     public static final MethodResponse KLARNAPAYNOW = new MethodResponse("klarnapaynow");
     public static final MethodResponse KLARNASLICEIT = new MethodResponse("klarnasliceit");
     public static final MethodResponse MBWAY = new MethodResponse("mbway");
+    public static final MethodResponse MOBILEPAY = new MethodResponse("mobilepay");
     public static final MethodResponse MULTIBANCO = new MethodResponse("multibanco");
     public static final MethodResponse MYBANK = new MethodResponse("mybank");
     public static final MethodResponse PAYBYBANK = new MethodResponse("paybybank");
@@ -95,6 +96,7 @@ public class MethodResponse {
     public static final MethodResponse SWISH = new MethodResponse("swish");
     public static final MethodResponse TRUSTLY = new MethodResponse("trustly");
     public static final MethodResponse TWINT = new MethodResponse("twint");
+    public static final MethodResponse VIPPS = new MethodResponse("vipps");
     public static final MethodResponse VOUCHER = new MethodResponse("voucher");
 
     // This map will grow whenever a Color gets created with a new
@@ -189,6 +191,7 @@ public class MethodResponse {
         map.put("klarnapaynow", KLARNAPAYNOW);
         map.put("klarnasliceit", KLARNASLICEIT);
         map.put("mbway", MBWAY);
+        map.put("mobilepay", MOBILEPAY);
         map.put("multibanco", MULTIBANCO);
         map.put("mybank", MYBANK);
         map.put("paybybank", PAYBYBANK);
@@ -202,6 +205,7 @@ public class MethodResponse {
         map.put("swish", SWISH);
         map.put("trustly", TRUSTLY);
         map.put("twint", TWINT);
+        map.put("vipps", VIPPS);
         map.put("voucher", VOUCHER);
         return map;
     }
@@ -230,6 +234,7 @@ public class MethodResponse {
         map.put("klarnapaynow", MethodResponseEnum.KLARNAPAYNOW);
         map.put("klarnasliceit", MethodResponseEnum.KLARNASLICEIT);
         map.put("mbway", MethodResponseEnum.MBWAY);
+        map.put("mobilepay", MethodResponseEnum.MOBILEPAY);
         map.put("multibanco", MethodResponseEnum.MULTIBANCO);
         map.put("mybank", MethodResponseEnum.MYBANK);
         map.put("paybybank", MethodResponseEnum.PAYBYBANK);
@@ -243,6 +248,7 @@ public class MethodResponse {
         map.put("swish", MethodResponseEnum.SWISH);
         map.put("trustly", MethodResponseEnum.TRUSTLY);
         map.put("twint", MethodResponseEnum.TWINT);
+        map.put("vipps", MethodResponseEnum.VIPPS);
         map.put("voucher", MethodResponseEnum.VOUCHER);
         return map;
     }
@@ -301,6 +307,7 @@ public class MethodResponse {
         KLARNAPAYNOW("klarnapaynow"),
         KLARNASLICEIT("klarnasliceit"),
         MBWAY("mbway"),
+        MOBILEPAY("mobilepay"),
         MULTIBANCO("multibanco"),
         MYBANK("mybank"),
         PAYBYBANK("paybybank"),
@@ -314,6 +321,7 @@ public class MethodResponse {
         SWISH("swish"),
         TRUSTLY("trustly"),
         TWINT("twint"),
+        VIPPS("vipps"),
         VOUCHER("voucher"),;
 
         private final String value;

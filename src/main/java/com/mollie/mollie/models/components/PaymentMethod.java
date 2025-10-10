@@ -76,6 +76,7 @@ public class PaymentMethod {
     public static final PaymentMethod KLARNASLICEIT = new PaymentMethod("klarnasliceit");
     public static final PaymentMethod KLARNA = new PaymentMethod("klarna");
     public static final PaymentMethod MBWAY = new PaymentMethod("mbway");
+    public static final PaymentMethod MOBILEPAY = new PaymentMethod("mobilepay");
     public static final PaymentMethod MULTIBANCO = new PaymentMethod("multibanco");
     public static final PaymentMethod MYBANK = new PaymentMethod("mybank");
     public static final PaymentMethod PAYBYBANK = new PaymentMethod("paybybank");
@@ -91,6 +92,7 @@ public class PaymentMethod {
     public static final PaymentMethod SWISH = new PaymentMethod("swish");
     public static final PaymentMethod TRUSTLY = new PaymentMethod("trustly");
     public static final PaymentMethod TWINT = new PaymentMethod("twint");
+    public static final PaymentMethod VIPPS = new PaymentMethod("vipps");
     public static final PaymentMethod VOUCHER = new PaymentMethod("voucher");
 
     // This map will grow whenever a Color gets created with a new
@@ -189,6 +191,7 @@ public class PaymentMethod {
         map.put("klarnasliceit", KLARNASLICEIT);
         map.put("klarna", KLARNA);
         map.put("mbway", MBWAY);
+        map.put("mobilepay", MOBILEPAY);
         map.put("multibanco", MULTIBANCO);
         map.put("mybank", MYBANK);
         map.put("paybybank", PAYBYBANK);
@@ -204,6 +207,7 @@ public class PaymentMethod {
         map.put("swish", SWISH);
         map.put("trustly", TRUSTLY);
         map.put("twint", TWINT);
+        map.put("vipps", VIPPS);
         map.put("voucher", VOUCHER);
         return map;
     }
@@ -236,6 +240,7 @@ public class PaymentMethod {
         map.put("klarnasliceit", PaymentMethodEnum.KLARNASLICEIT);
         map.put("klarna", PaymentMethodEnum.KLARNA);
         map.put("mbway", PaymentMethodEnum.MBWAY);
+        map.put("mobilepay", PaymentMethodEnum.MOBILEPAY);
         map.put("multibanco", PaymentMethodEnum.MULTIBANCO);
         map.put("mybank", PaymentMethodEnum.MYBANK);
         map.put("paybybank", PaymentMethodEnum.PAYBYBANK);
@@ -251,6 +256,7 @@ public class PaymentMethod {
         map.put("swish", PaymentMethodEnum.SWISH);
         map.put("trustly", PaymentMethodEnum.TRUSTLY);
         map.put("twint", PaymentMethodEnum.TWINT);
+        map.put("vipps", PaymentMethodEnum.VIPPS);
         map.put("voucher", PaymentMethodEnum.VOUCHER);
         return map;
     }
@@ -313,6 +319,7 @@ public class PaymentMethod {
         KLARNASLICEIT("klarnasliceit"),
         KLARNA("klarna"),
         MBWAY("mbway"),
+        MOBILEPAY("mobilepay"),
         MULTIBANCO("multibanco"),
         MYBANK("mybank"),
         PAYBYBANK("paybybank"),
@@ -328,6 +335,7 @@ public class PaymentMethod {
         SWISH("swish"),
         TRUSTLY("trustly"),
         TWINT("twint"),
+        VIPPS("vipps"),
         VOUCHER("voucher"),;
 
         private final String value;

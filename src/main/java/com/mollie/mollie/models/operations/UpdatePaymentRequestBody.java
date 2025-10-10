@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.BillingAddress;
 import com.mollie.mollie.models.components.Locale;
 import com.mollie.mollie.models.components.Metadata;
 import com.mollie.mollie.models.components.Method;
@@ -185,10 +186,20 @@ public class UpdatePaymentRequestBody {
     @JsonProperty("issuer")
     private JsonNullable<String> issuer;
 
-
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud
+     * protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+     * `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
-    private Optional<? extends PaymentAddress> billingAddress;
+    private Optional<? extends BillingAddress> billingAddress;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -213,7 +224,7 @@ public class UpdatePaymentRequestBody {
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
             @JsonProperty("issuer") JsonNullable<String> issuer,
-            @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
+            @JsonProperty("billingAddress") Optional<? extends BillingAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
             @JsonProperty("billingEmail") Optional<String> billingEmail) {
         Utils.checkNotNull(description, "description");
@@ -431,10 +442,21 @@ public class UpdatePaymentRequestBody {
         return issuer;
     }
 
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud
+     * protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+     * `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentAddress> billingAddress() {
-        return (Optional<PaymentAddress>) billingAddress;
+    public Optional<BillingAddress> billingAddress() {
+        return (Optional<BillingAddress>) billingAddress;
     }
 
     @SuppressWarnings("unchecked")
@@ -825,14 +847,36 @@ public class UpdatePaymentRequestBody {
         return this;
     }
 
-    public UpdatePaymentRequestBody withBillingAddress(PaymentAddress billingAddress) {
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud
+     * protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+     * `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    public UpdatePaymentRequestBody withBillingAddress(BillingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
         return this;
     }
 
 
-    public UpdatePaymentRequestBody withBillingAddress(Optional<? extends PaymentAddress> billingAddress) {
+    /**
+     * The customer's billing address details. We advise to provide these details to improve fraud
+     * protection and
+     * conversion.
+     * 
+     * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+     * `city` and
+     * `country`.
+     * 
+     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     */
+    public UpdatePaymentRequestBody withBillingAddress(Optional<? extends BillingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
         return this;
@@ -944,7 +988,7 @@ public class UpdatePaymentRequestBody {
 
         private JsonNullable<String> issuer = JsonNullable.undefined();
 
-        private Optional<? extends PaymentAddress> billingAddress = Optional.empty();
+        private Optional<? extends BillingAddress> billingAddress = Optional.empty();
 
         private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
 
@@ -1336,13 +1380,35 @@ public class UpdatePaymentRequestBody {
         }
 
 
-        public Builder billingAddress(PaymentAddress billingAddress) {
+        /**
+         * The customer's billing address details. We advise to provide these details to improve fraud
+         * protection and
+         * conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+         * `city` and
+         * `country`.
+         * 
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         */
+        public Builder billingAddress(BillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
             return this;
         }
 
-        public Builder billingAddress(Optional<? extends PaymentAddress> billingAddress) {
+        /**
+         * The customer's billing address details. We advise to provide these details to improve fraud
+         * protection and
+         * conversion.
+         * 
+         * <p>Should include `email` or a valid postal address consisting of `streetAndNumber`, `postalCode`,
+         * `city` and
+         * `country`.
+         * 
+         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         */
+        public Builder billingAddress(Optional<? extends BillingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = billingAddress;
             return this;
