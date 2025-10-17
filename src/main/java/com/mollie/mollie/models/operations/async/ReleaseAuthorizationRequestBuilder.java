@@ -13,7 +13,6 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -83,7 +82,7 @@ public class ReleaseAuthorizationRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<ReleaseAuthorizationResponse> call() throws Exception {
+    public CompletableFuture<ReleaseAuthorizationResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

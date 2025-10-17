@@ -16,7 +16,6 @@ import com.mollie.mollie.operations.ListTerminals;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -63,9 +62,9 @@ public class Terminals {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListTerminalsResponse list(ListTerminalsRequest request) throws Exception {
+    public ListTerminalsResponse list(ListTerminalsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -79,9 +78,9 @@ public class Terminals {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListTerminalsResponse list(ListTerminalsRequest request, Optional<Options> options) throws Exception {
+    public ListTerminalsResponse list(ListTerminalsRequest request, Optional<Options> options) {
         RequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
               = new ListTerminals.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -105,9 +104,9 @@ public class Terminals {
      * 
      * @param terminalId Provide the ID of the related terminal.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetTerminalResponse get(String terminalId) throws Exception {
+    public GetTerminalResponse get(String terminalId) {
         return get(terminalId, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -126,11 +125,11 @@ public class Terminals {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetTerminalResponse get(
             String terminalId, JsonNullable<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetTerminalRequest request =
             GetTerminalRequest
                 .builder()

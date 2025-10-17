@@ -15,7 +15,6 @@ import com.mollie.mollie.operations.GetClient;
 import com.mollie.mollie.operations.ListClients;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -62,9 +61,9 @@ public class Clients {
      * <p>The results are paginated.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListClientsResponse listDirect() throws Exception {
+    public ListClientsResponse listDirect() {
         return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty());
     }
@@ -84,12 +83,12 @@ public class Clients {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListClientsResponse list(
             JsonNullable<String> embed, JsonNullable<String> from,
             JsonNullable<Long> limit, Optional<String> idempotencyKey,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListClientsRequest request =
             ListClientsRequest
                 .builder()
@@ -121,9 +120,9 @@ public class Clients {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetClientResponse get(String id) throws Exception {
+    public GetClientResponse get(String id) {
         return get(id, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -139,11 +138,11 @@ public class Clients {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetClientResponse get(
             String id, JsonNullable<String> embed,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetClientRequest request =
             GetClientRequest
                 .builder()

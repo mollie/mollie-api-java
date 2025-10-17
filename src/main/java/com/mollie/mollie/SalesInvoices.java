@@ -31,7 +31,6 @@ import com.mollie.mollie.operations.UpdateSalesInvoice;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -82,9 +81,9 @@ public class SalesInvoices {
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateSalesInvoiceResponse createDirect() throws Exception {
+    public CreateSalesInvoiceResponse createDirect() {
         return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -101,11 +100,11 @@ public class SalesInvoices {
      * @param entitySalesInvoice 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateSalesInvoiceResponse create(
             Optional<String> idempotencyKey, Optional<? extends EntitySalesInvoice> entitySalesInvoice,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         CreateSalesInvoiceRequest request =
             CreateSalesInvoiceRequest
                 .builder()
@@ -146,9 +145,9 @@ public class SalesInvoices {
      * <p>The results are paginated.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSalesInvoicesResponse listDirect() throws Exception {
+    public ListSalesInvoicesResponse listDirect() {
         return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty());
     }
@@ -175,12 +174,12 @@ public class SalesInvoices {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListSalesInvoicesResponse list(
             JsonNullable<String> from, JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListSalesInvoicesRequest request =
             ListSalesInvoicesRequest
                 .builder()
@@ -220,9 +219,9 @@ public class SalesInvoices {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetSalesInvoiceResponse get(String id) throws Exception {
+    public GetSalesInvoiceResponse get(String id) {
         return get(id, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -245,11 +244,11 @@ public class SalesInvoices {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetSalesInvoiceResponse get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetSalesInvoiceRequest request =
             GetSalesInvoiceRequest
                 .builder()
@@ -296,9 +295,9 @@ public class SalesInvoices {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateSalesInvoiceResponse update(String id) throws Exception {
+    public UpdateSalesInvoiceResponse update(String id) {
         return update(id, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -321,11 +320,11 @@ public class SalesInvoices {
      * @param updateValuesSalesInvoice 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateSalesInvoiceResponse update(
             String id, Optional<String> idempotencyKey,
-            Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice, Optional<Options> options) throws Exception {
+            Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice, Optional<Options> options) {
         UpdateSalesInvoiceRequest request =
             UpdateSalesInvoiceRequest
                 .builder()
@@ -366,9 +365,9 @@ public class SalesInvoices {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteSalesInvoiceResponse delete(String id) throws Exception {
+    public DeleteSalesInvoiceResponse delete(String id) {
         return delete(id, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -388,11 +387,11 @@ public class SalesInvoices {
      * @param deleteValuesSalesInvoice 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public DeleteSalesInvoiceResponse delete(
             String id, Optional<String> idempotencyKey,
-            Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice, Optional<Options> options) throws Exception {
+            Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice, Optional<Options> options) {
         DeleteSalesInvoiceRequest request =
             DeleteSalesInvoiceRequest
                 .builder()

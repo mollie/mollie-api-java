@@ -26,7 +26,6 @@ import com.mollie.mollie.operations.RevokeMandate;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -81,9 +80,9 @@ public class Mandates {
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateMandateResponse create(String customerId) throws Exception {
+    public CreateMandateResponse create(String customerId) {
         return create(customerId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -104,11 +103,11 @@ public class Mandates {
      * @param entityMandate 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateMandateResponse create(
             String customerId, Optional<String> idempotencyKey,
-            Optional<? extends EntityMandate> entityMandate, Optional<Options> options) throws Exception {
+            Optional<? extends EntityMandate> entityMandate, Optional<Options> options) {
         CreateMandateRequest request =
             CreateMandateRequest
                 .builder()
@@ -143,9 +142,9 @@ public class Mandates {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListMandatesResponse list(ListMandatesRequest request) throws Exception {
+    public ListMandatesResponse list(ListMandatesRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -159,9 +158,9 @@ public class Mandates {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListMandatesResponse list(ListMandatesRequest request, Optional<Options> options) throws Exception {
+    public ListMandatesResponse list(ListMandatesRequest request, Optional<Options> options) {
         RequestOperation<ListMandatesRequest, ListMandatesResponse> operation
               = new ListMandates.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -190,9 +189,9 @@ public class Mandates {
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetMandateResponse get(String customerId, String mandateId) throws Exception {
+    public GetMandateResponse get(String customerId, String mandateId) {
         return get(customerId, mandateId, JsonNullable.undefined(),
             Optional.empty(), Optional.empty());
     }
@@ -214,12 +213,12 @@ public class Mandates {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetMandateResponse get(
             String customerId, String mandateId,
             JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetMandateRequest request =
             GetMandateRequest
                 .builder()
@@ -256,9 +255,9 @@ public class Mandates {
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RevokeMandateResponse revoke(String customerId, String mandateId) throws Exception {
+    public RevokeMandateResponse revoke(String customerId, String mandateId) {
         return revoke(customerId, mandateId, Optional.empty(),
             Optional.empty(), Optional.empty());
     }
@@ -276,12 +275,12 @@ public class Mandates {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public RevokeMandateResponse revoke(
             String customerId, String mandateId,
             Optional<String> idempotencyKey, Optional<? extends RevokeMandateRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         RevokeMandateRequest request =
             RevokeMandateRequest
                 .builder()

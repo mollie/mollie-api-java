@@ -19,7 +19,6 @@ import com.mollie.mollie.operations.ListAllMethods;
 import com.mollie.mollie.operations.ListMethods;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -94,9 +93,9 @@ public class Methods {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListMethodsResponse list(ListMethodsRequest request) throws Exception {
+    public ListMethodsResponse list(ListMethodsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -125,9 +124,9 @@ public class Methods {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListMethodsResponse list(ListMethodsRequest request, Optional<Options> options) throws Exception {
+    public ListMethodsResponse list(ListMethodsRequest request, Optional<Options> options) {
         RequestOperation<ListMethodsRequest, ListMethodsResponse> operation
               = new ListMethods.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -161,9 +160,9 @@ public class Methods {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAllMethodsResponse all(ListAllMethodsRequest request) throws Exception {
+    public ListAllMethodsResponse all(ListAllMethodsRequest request) {
         return all(request, Optional.empty());
     }
 
@@ -180,9 +179,9 @@ public class Methods {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAllMethodsResponse all(ListAllMethodsRequest request, Optional<Options> options) throws Exception {
+    public ListAllMethodsResponse all(ListAllMethodsRequest request, Optional<Options> options) {
         RequestOperation<ListAllMethodsRequest, ListAllMethodsResponse> operation
               = new ListAllMethods.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -230,9 +229,9 @@ public class Methods {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetMethodResponse get(GetMethodRequest request) throws Exception {
+    public GetMethodResponse get(GetMethodRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -256,9 +255,9 @@ public class Methods {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetMethodResponse get(GetMethodRequest request, Optional<Options> options) throws Exception {
+    public GetMethodResponse get(GetMethodRequest request, Optional<Options> options) {
         RequestOperation<GetMethodRequest, GetMethodResponse> operation
               = new GetMethod.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

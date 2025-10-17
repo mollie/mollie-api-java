@@ -20,7 +20,6 @@ import com.mollie.mollie.operations.GetCapture;
 import com.mollie.mollie.operations.ListCaptures;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -78,9 +77,9 @@ public class Captures {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateCaptureResponse create(String paymentId) throws Exception {
+    public CreateCaptureResponse create(String paymentId) {
         return create(paymentId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -103,11 +102,11 @@ public class Captures {
      * @param entityCapture 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateCaptureResponse create(
             String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends EntityCapture> entityCapture, Optional<Options> options) throws Exception {
+            Optional<? extends EntityCapture> entityCapture, Optional<Options> options) {
         CreateCaptureRequest request =
             CreateCaptureRequest
                 .builder()
@@ -142,9 +141,9 @@ public class Captures {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListCapturesResponse list(ListCapturesRequest request) throws Exception {
+    public ListCapturesResponse list(ListCapturesRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -158,9 +157,9 @@ public class Captures {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListCapturesResponse list(ListCapturesRequest request, Optional<Options> options) throws Exception {
+    public ListCapturesResponse list(ListCapturesRequest request, Optional<Options> options) {
         RequestOperation<ListCapturesRequest, ListCapturesResponse> operation
               = new ListCaptures.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -186,9 +185,9 @@ public class Captures {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetCaptureResponse get(GetCaptureRequest request) throws Exception {
+    public GetCaptureResponse get(GetCaptureRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -201,9 +200,9 @@ public class Captures {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetCaptureResponse get(GetCaptureRequest request, Optional<Options> options) throws Exception {
+    public GetCaptureResponse get(GetCaptureRequest request, Optional<Options> options) {
         RequestOperation<GetCaptureRequest, GetCaptureResponse> operation
               = new GetCapture.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

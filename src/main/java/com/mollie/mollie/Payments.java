@@ -35,7 +35,6 @@ import com.mollie.mollie.operations.ReleaseAuthorization;
 import com.mollie.mollie.operations.UpdatePayment;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -101,9 +100,9 @@ public class Payments {
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePaymentResponse createDirect() throws Exception {
+    public CreatePaymentResponse createDirect() {
         return create(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -130,11 +129,11 @@ public class Payments {
      * @param paymentRequest 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentResponse create(
             JsonNullable<String> include, Optional<String> idempotencyKey,
-            Optional<? extends PaymentRequest> paymentRequest, Optional<Options> options) throws Exception {
+            Optional<? extends PaymentRequest> paymentRequest, Optional<Options> options) {
         CreatePaymentRequest request =
             CreatePaymentRequest
                 .builder()
@@ -169,9 +168,9 @@ public class Payments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentsResponse list(ListPaymentsRequest request) throws Exception {
+    public ListPaymentsResponse list(ListPaymentsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -185,9 +184,9 @@ public class Payments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentsResponse list(ListPaymentsRequest request, Optional<Options> options) throws Exception {
+    public ListPaymentsResponse list(ListPaymentsRequest request, Optional<Options> options) {
         RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
               = new ListPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -211,9 +210,9 @@ public class Payments {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentResponse get(GetPaymentRequest request) throws Exception {
+    public GetPaymentResponse get(GetPaymentRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -225,9 +224,9 @@ public class Payments {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentResponse get(GetPaymentRequest request, Optional<Options> options) throws Exception {
+    public GetPaymentResponse get(GetPaymentRequest request, Optional<Options> options) {
         RequestOperation<GetPaymentRequest, GetPaymentResponse> operation
               = new GetPayment.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -255,9 +254,9 @@ public class Payments {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdatePaymentResponse update(String paymentId) throws Exception {
+    public UpdatePaymentResponse update(String paymentId) {
         return update(paymentId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -274,11 +273,11 @@ public class Payments {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdatePaymentResponse update(
             String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends UpdatePaymentRequestBody> requestBody, Optional<Options> options) throws Exception {
+            Optional<? extends UpdatePaymentRequestBody> requestBody, Optional<Options> options) {
         UpdatePaymentRequest request =
             UpdatePaymentRequest
                 .builder()
@@ -323,9 +322,9 @@ public class Payments {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CancelPaymentResponse cancel(String paymentId) throws Exception {
+    public CancelPaymentResponse cancel(String paymentId) {
         return cancel(paymentId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -347,11 +346,11 @@ public class Payments {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CancelPaymentResponse cancel(
             String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends CancelPaymentRequestBody> requestBody, Optional<Options> options) throws Exception {
+            Optional<? extends CancelPaymentRequestBody> requestBody, Optional<Options> options) {
         CancelPaymentRequest request =
             CancelPaymentRequest
                 .builder()
@@ -402,9 +401,9 @@ public class Payments {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ReleaseAuthorizationResponse releaseAuthorization(String paymentId) throws Exception {
+    public ReleaseAuthorizationResponse releaseAuthorization(String paymentId) {
         return releaseAuthorization(paymentId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -429,11 +428,11 @@ public class Payments {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ReleaseAuthorizationResponse releaseAuthorization(
             String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends ReleaseAuthorizationRequestBody> requestBody, Optional<Options> options) throws Exception {
+            Optional<? extends ReleaseAuthorizationRequestBody> requestBody, Optional<Options> options) {
         ReleaseAuthorizationRequest request =
             ReleaseAuthorizationRequest
                 .builder()

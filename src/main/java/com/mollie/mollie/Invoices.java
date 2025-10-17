@@ -15,7 +15,6 @@ import com.mollie.mollie.operations.GetInvoice;
 import com.mollie.mollie.operations.ListInvoices;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -63,9 +62,9 @@ public class Invoices {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListInvoicesResponse list(ListInvoicesRequest request) throws Exception {
+    public ListInvoicesResponse list(ListInvoicesRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -80,9 +79,9 @@ public class Invoices {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListInvoicesResponse list(ListInvoicesRequest request, Optional<Options> options) throws Exception {
+    public ListInvoicesResponse list(ListInvoicesRequest request, Optional<Options> options) {
         RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
               = new ListInvoices.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -112,9 +111,9 @@ public class Invoices {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetInvoiceResponse get(String id) throws Exception {
+    public GetInvoiceResponse get(String id) {
         return get(id, Optional.empty(), Optional.empty());
     }
 
@@ -130,11 +129,11 @@ public class Invoices {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetInvoiceResponse get(
             String id, Optional<String> idempotencyKey,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetInvoiceRequest request =
             GetInvoiceRequest
                 .builder()

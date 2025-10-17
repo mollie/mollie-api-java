@@ -34,7 +34,6 @@ import com.mollie.mollie.operations.UpdateProfile;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -86,9 +85,9 @@ public class Profiles {
      * 
      * @param entityProfile 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateProfileResponse create(EntityProfile entityProfile) throws Exception {
+    public CreateProfileResponse create(EntityProfile entityProfile) {
         return create(Optional.empty(), entityProfile, Optional.empty());
     }
 
@@ -105,11 +104,11 @@ public class Profiles {
      * @param entityProfile 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateProfileResponse create(
             Optional<String> idempotencyKey, EntityProfile entityProfile,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         CreateProfileRequest request =
             CreateProfileRequest
                 .builder()
@@ -142,9 +141,9 @@ public class Profiles {
      * <p>The results are paginated.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListProfilesResponse listDirect() throws Exception {
+    public ListProfilesResponse listDirect() {
         return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -162,11 +161,11 @@ public class Profiles {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListProfilesResponse list(
             JsonNullable<String> from, JsonNullable<Long> limit,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         ListProfilesRequest request =
             ListProfilesRequest
                 .builder()
@@ -197,9 +196,9 @@ public class Profiles {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetProfileResponse get(String id) throws Exception {
+    public GetProfileResponse get(String id) {
         return get(id, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -218,11 +217,11 @@ public class Profiles {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetProfileResponse get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetProfileRequest request =
             GetProfileRequest
                 .builder()
@@ -262,9 +261,9 @@ public class Profiles {
      * @param id Provide the ID of the item you want to perform this operation on.
      * @param requestBody 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateProfileResponse update(String id, UpdateProfileRequestBody requestBody) throws Exception {
+    public UpdateProfileResponse update(String id, UpdateProfileRequestBody requestBody) {
         return update(id, Optional.empty(), requestBody,
             Optional.empty());
     }
@@ -283,11 +282,11 @@ public class Profiles {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateProfileResponse update(
             String id, Optional<String> idempotencyKey,
-            UpdateProfileRequestBody requestBody, Optional<Options> options) throws Exception {
+            UpdateProfileRequestBody requestBody, Optional<Options> options) {
         UpdateProfileRequest request =
             UpdateProfileRequest
                 .builder()
@@ -320,9 +319,9 @@ public class Profiles {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteProfileResponse delete(String id) throws Exception {
+    public DeleteProfileResponse delete(String id) {
         return delete(id, Optional.empty(), Optional.empty());
     }
 
@@ -336,11 +335,11 @@ public class Profiles {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public DeleteProfileResponse delete(
             String id, Optional<String> idempotencyKey,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         DeleteProfileRequest request =
             DeleteProfileRequest
                 .builder()
@@ -377,9 +376,9 @@ public class Profiles {
      * documentation.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetCurrentProfileResponse getCurrentDirect() throws Exception {
+    public GetCurrentProfileResponse getCurrentDirect() {
         return getCurrent(Optional.empty(), Optional.empty());
     }
 
@@ -395,9 +394,9 @@ public class Profiles {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetCurrentProfileResponse getCurrent(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+    public GetCurrentProfileResponse getCurrent(Optional<String> idempotencyKey, Optional<Options> options) {
         GetCurrentProfileRequest request =
             GetCurrentProfileRequest
                 .builder()

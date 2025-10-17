@@ -35,7 +35,6 @@ import com.mollie.mollie.operations.UpdatePaymentLink;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
@@ -88,9 +87,9 @@ public class PaymentLinks {
      * payment.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePaymentLinkResponse createDirect() throws Exception {
+    public CreatePaymentLinkResponse createDirect() {
         return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -108,11 +107,11 @@ public class PaymentLinks {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreatePaymentLinkResponse create(
             Optional<String> idempotencyKey, Optional<? extends CreatePaymentLinkRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         CreatePaymentLinkRequest request =
             CreatePaymentLinkRequest
                 .builder()
@@ -145,9 +144,9 @@ public class PaymentLinks {
      * <p>The results are paginated.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPaymentLinksResponse listDirect() throws Exception {
+    public ListPaymentLinksResponse listDirect() {
         return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty());
     }
@@ -170,12 +169,12 @@ public class PaymentLinks {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public ListPaymentLinksResponse list(
             Optional<String> from, JsonNullable<Long> limit,
             JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         ListPaymentLinksRequest request =
             ListPaymentLinksRequest
                 .builder()
@@ -207,9 +206,9 @@ public class PaymentLinks {
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentLinkResponse get(String paymentLinkId) throws Exception {
+    public GetPaymentLinkResponse get(String paymentLinkId) {
         return get(paymentLinkId, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -228,11 +227,11 @@ public class PaymentLinks {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetPaymentLinkResponse get(
             String paymentLinkId, JsonNullable<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetPaymentLinkRequest request =
             GetPaymentLinkRequest
                 .builder()
@@ -263,9 +262,9 @@ public class PaymentLinks {
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdatePaymentLinkResponse update(String paymentLinkId) throws Exception {
+    public UpdatePaymentLinkResponse update(String paymentLinkId) {
         return update(paymentLinkId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -280,11 +279,11 @@ public class PaymentLinks {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdatePaymentLinkResponse update(
             String paymentLinkId, Optional<String> idempotencyKey,
-            Optional<? extends UpdatePaymentLinkRequestBody> requestBody, Optional<Options> options) throws Exception {
+            Optional<? extends UpdatePaymentLinkRequestBody> requestBody, Optional<Options> options) {
         UpdatePaymentLinkRequest request =
             UpdatePaymentLinkRequest
                 .builder()
@@ -331,9 +330,9 @@ public class PaymentLinks {
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeletePaymentLinkResponse delete(String paymentLinkId) throws Exception {
+    public DeletePaymentLinkResponse delete(String paymentLinkId) {
         return delete(paymentLinkId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -356,11 +355,11 @@ public class PaymentLinks {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public DeletePaymentLinkResponse delete(
             String paymentLinkId, Optional<String> idempotencyKey,
-            Optional<? extends DeletePaymentLinkRequestBody> requestBody, Optional<Options> options) throws Exception {
+            Optional<? extends DeletePaymentLinkRequestBody> requestBody, Optional<Options> options) {
         DeletePaymentLinkRequest request =
             DeletePaymentLinkRequest
                 .builder()
@@ -395,9 +394,9 @@ public class PaymentLinks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentLinkPaymentsResponse listPayments(GetPaymentLinkPaymentsRequest request) throws Exception {
+    public GetPaymentLinkPaymentsResponse listPayments(GetPaymentLinkPaymentsRequest request) {
         return listPayments(request, Optional.empty());
     }
 
@@ -411,9 +410,9 @@ public class PaymentLinks {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPaymentLinkPaymentsResponse listPayments(GetPaymentLinkPaymentsRequest request, Optional<Options> options) throws Exception {
+    public GetPaymentLinkPaymentsResponse listPayments(GetPaymentLinkPaymentsRequest request, Optional<Options> options) {
         RequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
               = new GetPaymentLinkPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

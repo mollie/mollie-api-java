@@ -28,7 +28,6 @@ import com.mollie.mollie.operations.ListBalances;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -75,9 +74,9 @@ public class Balances {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBalancesResponse list(ListBalancesRequest request) throws Exception {
+    public ListBalancesResponse list(ListBalancesRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -91,9 +90,9 @@ public class Balances {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBalancesResponse list(ListBalancesRequest request, Optional<Options> options) throws Exception {
+    public ListBalancesResponse list(ListBalancesRequest request, Optional<Options> options) {
         RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
               = new ListBalances.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -151,9 +150,9 @@ public class Balances {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBalanceResponse get(String id) throws Exception {
+    public GetBalanceResponse get(String id) {
         return get(id, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -189,11 +188,11 @@ public class Balances {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetBalanceResponse get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetBalanceRequest request =
             GetBalanceRequest
                 .builder()
@@ -231,9 +230,9 @@ public class Balances {
      * endpoint.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPrimaryBalanceResponse getPrimaryDirect() throws Exception {
+    public GetPrimaryBalanceResponse getPrimaryDirect() {
         return getPrimary(Optional.empty(), Optional.empty());
     }
 
@@ -249,9 +248,9 @@ public class Balances {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPrimaryBalanceResponse getPrimary(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+    public GetPrimaryBalanceResponse getPrimary(Optional<String> idempotencyKey, Optional<Options> options) {
         GetPrimaryBalanceRequest request =
             GetPrimaryBalanceRequest
                 .builder()
@@ -294,9 +293,9 @@ public class Balances {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBalanceReportResponse getReport(GetBalanceReportRequest request) throws Exception {
+    public GetBalanceReportResponse getReport(GetBalanceReportRequest request) {
         return getReport(request, Optional.empty());
     }
 
@@ -315,9 +314,9 @@ public class Balances {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetBalanceReportResponse getReport(GetBalanceReportRequest request, Optional<Options> options) throws Exception {
+    public GetBalanceReportResponse getReport(GetBalanceReportRequest request, Optional<Options> options) {
         RequestOperation<GetBalanceReportRequest, GetBalanceReportResponse> operation
               = new GetBalanceReport.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -359,9 +358,9 @@ public class Balances {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBalanceTransactionsResponse listTransactions(ListBalanceTransactionsRequest request) throws Exception {
+    public ListBalanceTransactionsResponse listTransactions(ListBalanceTransactionsRequest request) {
         return listTransactions(request, Optional.empty());
     }
 
@@ -382,9 +381,9 @@ public class Balances {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListBalanceTransactionsResponse listTransactions(ListBalanceTransactionsRequest request, Optional<Options> options) throws Exception {
+    public ListBalanceTransactionsResponse listTransactions(ListBalanceTransactionsRequest request, Optional<Options> options) {
         RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
               = new ListBalanceTransactions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

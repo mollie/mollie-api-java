@@ -12,7 +12,6 @@ import com.mollie.mollie.models.operations.RequestApplePayPaymentSessionResponse
 import com.mollie.mollie.operations.RequestApplePayPaymentSession;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -107,9 +106,9 @@ public class Wallets {
      * documentation.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public RequestApplePayPaymentSessionResponse requestApplePaySessionDirect() throws Exception {
+    public RequestApplePayPaymentSessionResponse requestApplePaySessionDirect() {
         return requestApplePaySession(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -149,11 +148,11 @@ public class Wallets {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public RequestApplePayPaymentSessionResponse requestApplePaySession(
             Optional<String> idempotencyKey, Optional<? extends RequestApplePayPaymentSessionRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         RequestApplePayPaymentSessionRequest request =
             RequestApplePayPaymentSessionRequest
                 .builder()

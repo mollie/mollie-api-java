@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -81,7 +80,7 @@ public class CreateCustomerPaymentRequestBuilder {
         return request;
     }
 
-    public CreateCustomerPaymentResponse call() throws Exception {
+    public CreateCustomerPaymentResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

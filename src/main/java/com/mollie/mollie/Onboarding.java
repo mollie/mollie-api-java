@@ -16,7 +16,6 @@ import com.mollie.mollie.operations.GetOnboardingStatus;
 import com.mollie.mollie.operations.SubmitOnboardingData;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -57,9 +56,9 @@ public class Onboarding {
      * <p>Retrieve the onboarding status of the currently authenticated organization.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetOnboardingStatusResponse getDirect() throws Exception {
+    public GetOnboardingStatusResponse getDirect() {
         return get(Optional.empty(), Optional.empty());
     }
 
@@ -71,9 +70,9 @@ public class Onboarding {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetOnboardingStatusResponse get(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+    public GetOnboardingStatusResponse get(Optional<String> idempotencyKey, Optional<Options> options) {
         GetOnboardingStatusRequest request =
             GetOnboardingStatusRequest
                 .builder()
@@ -115,9 +114,9 @@ public class Onboarding {
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public SubmitOnboardingDataResponse submitDirect() throws Exception {
+    public SubmitOnboardingDataResponse submitDirect() {
         return submit(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -137,11 +136,11 @@ public class Onboarding {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public SubmitOnboardingDataResponse submit(
             Optional<String> idempotencyKey, Optional<? extends SubmitOnboardingDataRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         SubmitOnboardingDataRequest request =
             SubmitOnboardingDataRequest
                 .builder()

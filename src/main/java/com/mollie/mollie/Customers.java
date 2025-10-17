@@ -39,7 +39,6 @@ import com.mollie.mollie.operations.UpdateCustomer;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -89,9 +88,9 @@ public class Customers {
      * <p>Once registered, customers will also appear in your Mollie dashboard.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateCustomerResponse createDirect() throws Exception {
+    public CreateCustomerResponse createDirect() {
         return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -108,11 +107,11 @@ public class Customers {
      * @param entityCustomer 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateCustomerResponse create(
             Optional<String> idempotencyKey, Optional<? extends EntityCustomer> entityCustomer,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         CreateCustomerRequest request =
             CreateCustomerRequest
                 .builder()
@@ -146,9 +145,9 @@ public class Customers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListCustomersResponse list(ListCustomersRequest request) throws Exception {
+    public ListCustomersResponse list(ListCustomersRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -162,9 +161,9 @@ public class Customers {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListCustomersResponse list(ListCustomersRequest request, Optional<Options> options) throws Exception {
+    public ListCustomersResponse list(ListCustomersRequest request, Optional<Options> options) {
         RequestOperation<ListCustomersRequest, ListCustomersResponse> operation
               = new ListCustomers.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -188,9 +187,9 @@ public class Customers {
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetCustomerResponse get(String customerId) throws Exception {
+    public GetCustomerResponse get(String customerId) {
         return get(customerId, JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty());
     }
@@ -210,12 +209,12 @@ public class Customers {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetCustomerResponse get(
             String customerId, JsonNullable<String> include,
             JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetCustomerRequest request =
             GetCustomerRequest
                 .builder()
@@ -253,9 +252,9 @@ public class Customers {
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateCustomerResponse update(String customerId) throws Exception {
+    public UpdateCustomerResponse update(String customerId) {
         return update(customerId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -273,11 +272,11 @@ public class Customers {
      * @param entityCustomer 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateCustomerResponse update(
             String customerId, Optional<String> idempotencyKey,
-            Optional<? extends EntityCustomer> entityCustomer, Optional<Options> options) throws Exception {
+            Optional<? extends EntityCustomer> entityCustomer, Optional<Options> options) {
         UpdateCustomerRequest request =
             UpdateCustomerRequest
                 .builder()
@@ -310,9 +309,9 @@ public class Customers {
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteCustomerResponse delete(String customerId) throws Exception {
+    public DeleteCustomerResponse delete(String customerId) {
         return delete(customerId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -328,11 +327,11 @@ public class Customers {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public DeleteCustomerResponse delete(
             String customerId, Optional<String> idempotencyKey,
-            Optional<? extends DeleteCustomerRequestBody> requestBody, Optional<Options> options) throws Exception {
+            Optional<? extends DeleteCustomerRequestBody> requestBody, Optional<Options> options) {
         DeleteCustomerRequest request =
             DeleteCustomerRequest
                 .builder()
@@ -387,9 +386,9 @@ public class Customers {
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateCustomerPaymentResponse createPayment(String customerId) throws Exception {
+    public CreateCustomerPaymentResponse createPayment(String customerId) {
         return createPayment(customerId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -416,11 +415,11 @@ public class Customers {
      * @param paymentRequest 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateCustomerPaymentResponse createPayment(
             String customerId, Optional<String> idempotencyKey,
-            Optional<? extends PaymentRequest> paymentRequest, Optional<Options> options) throws Exception {
+            Optional<? extends PaymentRequest> paymentRequest, Optional<Options> options) {
         CreateCustomerPaymentRequest request =
             CreateCustomerPaymentRequest
                 .builder()
@@ -451,9 +450,9 @@ public class Customers {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListCustomerPaymentsResponse listPayments(ListCustomerPaymentsRequest request) throws Exception {
+    public ListCustomerPaymentsResponse listPayments(ListCustomerPaymentsRequest request) {
         return listPayments(request, Optional.empty());
     }
 
@@ -465,9 +464,9 @@ public class Customers {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListCustomerPaymentsResponse listPayments(ListCustomerPaymentsRequest request, Optional<Options> options) throws Exception {
+    public ListCustomerPaymentsResponse listPayments(ListCustomerPaymentsRequest request, Optional<Options> options) {
         RequestOperation<ListCustomerPaymentsRequest, ListCustomerPaymentsResponse> operation
               = new ListCustomerPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

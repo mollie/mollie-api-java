@@ -8,236 +8,257 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
+import java.io.InputStream;
+import java.lang.Deprecated;
+import java.lang.Exception;
 import java.lang.Long;
 import java.lang.Override;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.lang.Throwable;
+import java.net.http.HttpResponse;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
-/**
- * ErrorResponse
- * 
- * <p>An error response object.
- */
 @SuppressWarnings("serial")
-public class ErrorResponse extends RuntimeException {
+public class ErrorResponse extends ClientError {
+
+    @Nullable
+    private final Data data;
+
+    @Nullable
+    private final Throwable deserializationException;
+
+    public ErrorResponse(
+                int code,
+                byte[] body,
+                HttpResponse<?> rawResponse,
+                @Nullable Data data,
+                @Nullable Throwable deserializationException) {
+        super("API error occurred", code, body, rawResponse, null);
+        this.data = data;
+        this.deserializationException = deserializationException;
+    }
+
+    /**
+    * Parse a response into an instance of ErrorResponse. If deserialization of the response body fails,
+    * the resulting ErrorResponse instance will have a null data() value and a non-null deserializationException().
+    */
+    public static ErrorResponse from(HttpResponse<InputStream> response) {
+        try {
+            byte[] bytes = Utils.extractByteArrayFromBody(response);
+            Data data = Utils.mapper().readValue(bytes, Data.class);
+            return new ErrorResponse(response.statusCode(), bytes, response, data, null);
+        } catch (Exception e) {
+            return new ErrorResponse(response.statusCode(), null, response, null, e);
+        }
+    }
+
+    /**
+    * Parse a response into an instance of ErrorResponse asynchronously. If deserialization of the response body fails,
+    * the resulting ErrorResponse instance will have a null data() value and a non-null deserializationException().
+    */
+    public static CompletableFuture<ErrorResponse> fromAsync(HttpResponse<Blob> response) {
+        return response.body()
+                .toByteArray()
+                .handle((bytes, err) -> {
+                    // if a body read error occurs, we want to transform the exception
+                    if (err != null) {
+                        throw new AsyncAPIException(
+                                "Error reading response body: " + err.getMessage(),
+                                response.statusCode(),
+                                null,
+                                response,
+                                err);
+                    }
+
+                    try {
+                        return new ErrorResponse(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                Utils.mapper().readValue(
+                                        bytes,
+                                        new TypeReference<Data>() {
+                                        }),
+                                null);
+                    } catch (Exception e) {
+                        return new ErrorResponse(
+                                response.statusCode(),
+                                bytes,
+                                response,
+                                null,
+                                e);
+                    }
+                });
+    }
+
     /**
      * The status code of the error message. This is always the same code as the status code of the HTTP
      * message itself.
      */
-    @JsonProperty("status")
-    private long status;
+    @Deprecated
+    public Optional<Long> status() {
+        return data().map(Data::status);
+    }
 
     /**
      * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
      * Found`.
      */
-    @JsonProperty("title")
-    private String title;
+    @Deprecated
+    public Optional<String> title() {
+        return data().map(Data::title);
+    }
 
     /**
      * A detailed human-readable description of the error that occurred.
      */
-    @JsonProperty("detail")
-    private String detail;
+    @Deprecated
+    public Optional<String> detail() {
+        return data().map(Data::detail);
+    }
 
     /**
      * If the error was caused by a value provided by you in a specific field, the `field` property will
      * contain the name
      * of the field that caused the issue.
      */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("field")
-    private Optional<String> field;
-
-
-    @JsonProperty("_links")
-    private Links links;
-
-    @JsonCreator
-    public ErrorResponse(
-            @JsonProperty("status") long status,
-            @JsonProperty("title") String title,
-            @JsonProperty("detail") String detail,
-            @JsonProperty("field") Optional<String> field,
-            @JsonProperty("_links") Links links) {
-        super("API error occurred");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(detail, "detail");
-        Utils.checkNotNull(field, "field");
-        Utils.checkNotNull(links, "links");
-        this.status = status;
-        this.title = title;
-        this.detail = detail;
-        this.field = field;
-        this.links = links;
-    }
-    
-    public ErrorResponse(
-            long status,
-            String title,
-            String detail,
-            Links links) {
-        this(status, title, detail,
-            Optional.empty(), links);
-    }
-
-    /**
-     * The status code of the error message. This is always the same code as the status code of the HTTP
-     * message itself.
-     */
-    @JsonIgnore
-    public long status() {
-        return status;
-    }
-
-    /**
-     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
-     * Found`.
-     */
-    @JsonIgnore
-    public String title() {
-        return title;
-    }
-
-    /**
-     * A detailed human-readable description of the error that occurred.
-     */
-    @JsonIgnore
-    public String detail() {
-        return detail;
-    }
-
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will
-     * contain the name
-     * of the field that caused the issue.
-     */
-    @JsonIgnore
+    @Deprecated
     public Optional<String> field() {
-        return field;
+        return data().flatMap(Data::field);
     }
 
-    @JsonIgnore
-    public Links links() {
-        return links;
+    @Deprecated
+    public Optional<Links> links() {
+        return data().map(Data::links);
     }
 
-    public static Builder builder() {
-        return new Builder();
-    }
-
-
-    /**
-     * The status code of the error message. This is always the same code as the status code of the HTTP
-     * message itself.
-     */
-    public ErrorResponse withStatus(long status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
+    public Optional<Data> data() {
+        return Optional.ofNullable(data);
     }
 
     /**
-     * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
-     * Found`.
+     * Returns the exception if an error occurs while deserializing the response body.
      */
-    public ErrorResponse withTitle(String title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
-        return this;
+    public Optional<Throwable> deserializationException() {
+        return Optional.ofNullable(deserializationException);
     }
-
     /**
-     * A detailed human-readable description of the error that occurred.
+     * Data
+     * 
+     * <p>An error response object.
      */
-    public ErrorResponse withDetail(String detail) {
-        Utils.checkNotNull(detail, "detail");
-        this.detail = detail;
-        return this;
-    }
+    public static class Data {
+        /**
+         * The status code of the error message. This is always the same code as the status code of the HTTP
+         * message itself.
+         */
+        @JsonProperty("status")
+        private long status;
 
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will
-     * contain the name
-     * of the field that caused the issue.
-     */
-    public ErrorResponse withField(String field) {
-        Utils.checkNotNull(field, "field");
-        this.field = Optional.ofNullable(field);
-        return this;
-    }
-
-
-    /**
-     * If the error was caused by a value provided by you in a specific field, the `field` property will
-     * contain the name
-     * of the field that caused the issue.
-     */
-    public ErrorResponse withField(Optional<String> field) {
-        Utils.checkNotNull(field, "field");
-        this.field = field;
-        return this;
-    }
-
-    public ErrorResponse withLinks(Links links) {
-        Utils.checkNotNull(links, "links");
-        this.links = links;
-        return this;
-    }
-
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ErrorResponse other = (ErrorResponse) o;
-        return 
-            Utils.enhancedDeepEquals(this.status, other.status) &&
-            Utils.enhancedDeepEquals(this.title, other.title) &&
-            Utils.enhancedDeepEquals(this.detail, other.detail) &&
-            Utils.enhancedDeepEquals(this.field, other.field) &&
-            Utils.enhancedDeepEquals(this.links, other.links);
-    }
-    
-    @Override
-    public int hashCode() {
-        return Utils.enhancedHash(
-            status, title, detail,
-            field, links);
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(ErrorResponse.class,
-                "status", status,
-                "title", title,
-                "detail", detail,
-                "field", field,
-                "links", links);
-    }
-
-    @SuppressWarnings("UnusedReturnValue")
-    public final static class Builder {
-
-        private Long status;
-
+        /**
+         * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
+         * Found`.
+         */
+        @JsonProperty("title")
         private String title;
 
+        /**
+         * A detailed human-readable description of the error that occurred.
+         */
+        @JsonProperty("detail")
         private String detail;
 
-        private Optional<String> field = Optional.empty();
+        /**
+         * If the error was caused by a value provided by you in a specific field, the `field` property will
+         * contain the name
+         * of the field that caused the issue.
+         */
+        @JsonInclude(Include.NON_ABSENT)
+        @JsonProperty("field")
+        private Optional<String> field;
 
+
+        @JsonProperty("_links")
         private Links links;
 
-        private Builder() {
-          // force use of static builder() method
+        @JsonCreator
+        public Data(
+                @JsonProperty("status") long status,
+                @JsonProperty("title") String title,
+                @JsonProperty("detail") String detail,
+                @JsonProperty("field") Optional<String> field,
+                @JsonProperty("_links") Links links) {
+            Utils.checkNotNull(status, "status");
+            Utils.checkNotNull(title, "title");
+            Utils.checkNotNull(detail, "detail");
+            Utils.checkNotNull(field, "field");
+            Utils.checkNotNull(links, "links");
+            this.status = status;
+            this.title = title;
+            this.detail = detail;
+            this.field = field;
+            this.links = links;
+        }
+        
+        public Data(
+                long status,
+                String title,
+                String detail,
+                Links links) {
+            this(status, title, detail,
+                Optional.empty(), links);
+        }
+
+        /**
+         * The status code of the error message. This is always the same code as the status code of the HTTP
+         * message itself.
+         */
+        @JsonIgnore
+        public long status() {
+            return status;
+        }
+
+        /**
+         * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
+         * Found`.
+         */
+        @JsonIgnore
+        public String title() {
+            return title;
+        }
+
+        /**
+         * A detailed human-readable description of the error that occurred.
+         */
+        @JsonIgnore
+        public String detail() {
+            return detail;
+        }
+
+        /**
+         * If the error was caused by a value provided by you in a specific field, the `field` property will
+         * contain the name
+         * of the field that caused the issue.
+         */
+        @JsonIgnore
+        public Optional<String> field() {
+            return field;
+        }
+
+        @JsonIgnore
+        public Links links() {
+            return links;
+        }
+
+        public static Builder builder() {
+            return new Builder();
         }
 
 
@@ -245,70 +266,182 @@ public class ErrorResponse extends RuntimeException {
          * The status code of the error message. This is always the same code as the status code of the HTTP
          * message itself.
          */
-        public Builder status(long status) {
+        public Data withStatus(long status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
-
         /**
          * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
          * Found`.
          */
-        public Builder title(String title) {
+        public Data withTitle(String title) {
             Utils.checkNotNull(title, "title");
             this.title = title;
             return this;
         }
 
-
         /**
          * A detailed human-readable description of the error that occurred.
          */
-        public Builder detail(String detail) {
+        public Data withDetail(String detail) {
             Utils.checkNotNull(detail, "detail");
             this.detail = detail;
             return this;
         }
 
-
         /**
          * If the error was caused by a value provided by you in a specific field, the `field` property will
          * contain the name
          * of the field that caused the issue.
          */
-        public Builder field(String field) {
+        public Data withField(String field) {
             Utils.checkNotNull(field, "field");
             this.field = Optional.ofNullable(field);
             return this;
         }
 
+
         /**
          * If the error was caused by a value provided by you in a specific field, the `field` property will
          * contain the name
          * of the field that caused the issue.
          */
-        public Builder field(Optional<String> field) {
+        public Data withField(Optional<String> field) {
             Utils.checkNotNull(field, "field");
             this.field = field;
             return this;
         }
 
-
-        public Builder links(Links links) {
+        public Data withLinks(Links links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
 
-        public ErrorResponse build() {
-
-            return new ErrorResponse(
+        @Override
+        public boolean equals(java.lang.Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Data other = (Data) o;
+            return 
+                Utils.enhancedDeepEquals(this.status, other.status) &&
+                Utils.enhancedDeepEquals(this.title, other.title) &&
+                Utils.enhancedDeepEquals(this.detail, other.detail) &&
+                Utils.enhancedDeepEquals(this.field, other.field) &&
+                Utils.enhancedDeepEquals(this.links, other.links);
+        }
+        
+        @Override
+        public int hashCode() {
+            return Utils.enhancedHash(
                 status, title, detail,
                 field, links);
         }
+        
+        @Override
+        public String toString() {
+            return Utils.toString(Data.class,
+                    "status", status,
+                    "title", title,
+                    "detail", detail,
+                    "field", field,
+                    "links", links);
+        }
 
+        @SuppressWarnings("UnusedReturnValue")
+        public final static class Builder {
+
+            private Long status;
+
+            private String title;
+
+            private String detail;
+
+            private Optional<String> field = Optional.empty();
+
+            private Links links;
+
+            private Builder() {
+              // force use of static builder() method
+            }
+
+
+            /**
+             * The status code of the error message. This is always the same code as the status code of the HTTP
+             * message itself.
+             */
+            public Builder status(long status) {
+                Utils.checkNotNull(status, "status");
+                this.status = status;
+                return this;
+            }
+
+
+            /**
+             * The HTTP reason phrase of the error. For example, for a `404` error, the `title` will be `Not
+             * Found`.
+             */
+            public Builder title(String title) {
+                Utils.checkNotNull(title, "title");
+                this.title = title;
+                return this;
+            }
+
+
+            /**
+             * A detailed human-readable description of the error that occurred.
+             */
+            public Builder detail(String detail) {
+                Utils.checkNotNull(detail, "detail");
+                this.detail = detail;
+                return this;
+            }
+
+
+            /**
+             * If the error was caused by a value provided by you in a specific field, the `field` property will
+             * contain the name
+             * of the field that caused the issue.
+             */
+            public Builder field(String field) {
+                Utils.checkNotNull(field, "field");
+                this.field = Optional.ofNullable(field);
+                return this;
+            }
+
+            /**
+             * If the error was caused by a value provided by you in a specific field, the `field` property will
+             * contain the name
+             * of the field that caused the issue.
+             */
+            public Builder field(Optional<String> field) {
+                Utils.checkNotNull(field, "field");
+                this.field = field;
+                return this;
+            }
+
+
+            public Builder links(Links links) {
+                Utils.checkNotNull(links, "links");
+                this.links = links;
+                return this;
+            }
+
+            public Data build() {
+
+                return new Data(
+                    status, title, detail,
+                    field, links);
+            }
+
+        }
     }
+
 }
 

@@ -11,7 +11,6 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -72,7 +71,7 @@ public class CreateWebhookRequestBuilder {
         return request;
     }
 
-    public CreateWebhookResponse call() throws Exception {
+    public CreateWebhookResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

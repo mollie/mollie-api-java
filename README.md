@@ -50,7 +50,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.20.5'
+implementation 'com.mollie:mollie:0.21.0'
 ```
 
 Maven:
@@ -58,7 +58,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.20.5</version>
+    <version>0.21.0</version>
 </dependency>
 ```
 
@@ -654,15 +654,19 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/APIException` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `list` method throws the following exceptions:
 
-| Error Type                  | Status Code | Content Type         |
-| --------------------------- | ----------- | -------------------- |
-| models/errors/ErrorResponse | 400, 404    | application/hal+json |
-| models/errors/APIException  | 4XX, 5XX    | \*/\*                |
+[`ClientError`](./src/main/java/models/errors/ClientError.java) is the base class for all HTTP error responses. It has the following properties:
+
+| Method           | Type                        | Description                                                              |
+| ---------------- | --------------------------- | ------------------------------------------------------------------------ |
+| `message()`      | `String`                    | Error message                                                            |
+| `code()`         | `int`                       | HTTP response status code eg `404`                                       |
+| `headers`        | `Map<String, List<String>>` | HTTP response headers                                                    |
+| `body()`         | `byte[]`                    | HTTP body as a byte array. Can be empty array if no body is returned.    |
+| `bodyAsString()` | `String`                    | HTTP body as a UTF-8 string. Can be empty string if no body is returned. |
+| `rawResponse()`  | `HttpResponse<?>`           | Raw HTTP response (body already read and not available for re-read)      |
 
 ### Example
-
 ```java
 package hello.world;
 
@@ -701,6 +705,27 @@ public class Application {
     }
 }
 ```
+
+### Error Classes
+**Primary errors:**
+* [`ClientError`](./src/main/java/models/errors/ClientError.java): The base class for HTTP error responses.
+  * [`com.mollie.mollie.models.errors.ErrorResponse`](./src/main/java/models/errors/com.mollie.mollie.models.errors.ErrorResponse.java): An error response object. *
+
+<details><summary>Less common errors (6)</summary>
+
+<br />
+
+**Network errors:**
+* `java.io.IOException` (always wrapped by `java.io.UncheckedIOException`). Commonly encountered subclasses of
+`IOException` include `java.net.ConnectException`, `java.net.SocketTimeoutException`, `EOFException` (there are
+many more subclasses in the JDK platform).
+
+**Inherit from [`ClientError`](./src/main/java/models/errors/ClientError.java)**:
+
+
+</details>
+
+\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->

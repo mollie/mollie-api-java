@@ -11,7 +11,6 @@ import com.mollie.mollie.models.operations.ListCapabilitiesResponse;
 import com.mollie.mollie.operations.ListCapabilities;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -82,9 +81,9 @@ public class Capabilities {
      * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListCapabilitiesResponse listDirect() throws Exception {
+    public ListCapabilitiesResponse listDirect() {
         return list(Optional.empty(), Optional.empty());
     }
 
@@ -111,9 +110,9 @@ public class Capabilities {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListCapabilitiesResponse list(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+    public ListCapabilitiesResponse list(Optional<String> idempotencyKey, Optional<Options> options) {
         ListCapabilitiesRequest request =
             ListCapabilitiesRequest
                 .builder()

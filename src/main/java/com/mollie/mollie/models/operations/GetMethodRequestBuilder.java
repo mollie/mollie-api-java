@@ -11,7 +11,6 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class GetMethodRequestBuilder {
@@ -43,7 +42,7 @@ public class GetMethodRequestBuilder {
         return this;
     }
 
-    public GetMethodResponse call() throws Exception {
+    public GetMethodResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

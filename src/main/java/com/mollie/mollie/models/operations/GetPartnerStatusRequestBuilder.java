@@ -11,7 +11,6 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -58,7 +57,7 @@ public class GetPartnerStatusRequestBuilder {
         return request;
     }
 
-    public GetPartnerStatusResponse call() throws Exception {
+    public GetPartnerStatusResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

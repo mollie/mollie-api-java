@@ -12,7 +12,6 @@ import com.mollie.mollie.models.operations.CreateClientLinkResponse;
 import com.mollie.mollie.operations.CreateClientLink;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -181,9 +180,9 @@ public class ClientLinks {
      * you will need to create a new client link.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateClientLinkResponse createDirect() throws Exception {
+    public CreateClientLinkResponse createDirect() {
         return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -260,11 +259,11 @@ public class ClientLinks {
      * @param entityClientLink 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateClientLinkResponse create(
             Optional<String> idempotencyKey, Optional<? extends EntityClientLink> entityClientLink,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         CreateClientLinkRequest request =
             CreateClientLinkRequest
                 .builder()

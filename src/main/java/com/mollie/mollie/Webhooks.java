@@ -36,7 +36,6 @@ import com.mollie.mollie.operations.UpdateWebhook;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -80,9 +79,9 @@ public class Webhooks {
      * webhooks settings section of the Dashboard.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateWebhookResponse createDirect() throws Exception {
+    public CreateWebhookResponse createDirect() {
         return create(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -96,11 +95,11 @@ public class Webhooks {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateWebhookResponse create(
             Optional<String> idempotencyKey, Optional<? extends CreateWebhookRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         CreateWebhookRequest request =
             CreateWebhookRequest
                 .builder()
@@ -132,9 +131,9 @@ public class Webhooks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListWebhooksResponse list(ListWebhooksRequest request) throws Exception {
+    public ListWebhooksResponse list(ListWebhooksRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -147,9 +146,9 @@ public class Webhooks {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListWebhooksResponse list(ListWebhooksRequest request, Optional<Options> options) throws Exception {
+    public ListWebhooksResponse list(ListWebhooksRequest request, Optional<Options> options) {
         RequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
               = new ListWebhooks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -173,9 +172,9 @@ public class Webhooks {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateWebhookResponse update(String id) throws Exception {
+    public UpdateWebhookResponse update(String id) {
         return update(id, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -190,11 +189,11 @@ public class Webhooks {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateWebhookResponse update(
             String id, Optional<String> idempotencyKey,
-            Optional<? extends UpdateWebhookRequestBody> requestBody, Optional<Options> options) throws Exception {
+            Optional<? extends UpdateWebhookRequestBody> requestBody, Optional<Options> options) {
         UpdateWebhookRequest request =
             UpdateWebhookRequest
                 .builder()
@@ -225,9 +224,9 @@ public class Webhooks {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetWebhookResponse get(String id) throws Exception {
+    public GetWebhookResponse get(String id) {
         return get(id, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -246,11 +245,11 @@ public class Webhooks {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetWebhookResponse get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetWebhookRequest request =
             GetWebhookRequest
                 .builder()
@@ -281,9 +280,9 @@ public class Webhooks {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteWebhookResponse delete(String id) throws Exception {
+    public DeleteWebhookResponse delete(String id) {
         return delete(id, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -298,11 +297,11 @@ public class Webhooks {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public DeleteWebhookResponse delete(
             String id, Optional<String> idempotencyKey,
-            Optional<? extends DeleteWebhookRequestBody> requestBody, Optional<Options> options) throws Exception {
+            Optional<? extends DeleteWebhookRequestBody> requestBody, Optional<Options> options) {
         DeleteWebhookRequest request =
             DeleteWebhookRequest
                 .builder()
@@ -333,9 +332,9 @@ public class Webhooks {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public TestWebhookResponse test(String id) throws Exception {
+    public TestWebhookResponse test(String id) {
         return test(id, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -350,11 +349,11 @@ public class Webhooks {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public TestWebhookResponse test(
             String id, Optional<String> idempotencyKey,
-            Optional<? extends TestWebhookRequestBody> requestBody, Optional<Options> options) throws Exception {
+            Optional<? extends TestWebhookRequestBody> requestBody, Optional<Options> options) {
         TestWebhookRequest request =
             TestWebhookRequest
                 .builder()

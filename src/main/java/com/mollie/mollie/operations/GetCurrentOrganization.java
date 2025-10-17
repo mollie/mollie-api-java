@@ -4,6 +4,7 @@
 package com.mollie.mollie.operations;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
+import static com.mollie.mollie.utils.Exceptions.unchecked;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -16,7 +17,6 @@ import com.mollie.mollie.models.operations.GetCurrentOrganizationResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
-import com.mollie.mollie.utils.Exceptions;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Headers;
@@ -30,7 +30,6 @@ import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
@@ -150,7 +149,7 @@ public class GetCurrentOrganization {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(GetCurrentOrganizationRequest request) throws Exception {
+        public HttpResponse<InputStream> doRequest(GetCurrentOrganizationRequest request) {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -172,12 +171,12 @@ public class GetCurrentOrganization {
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)
                     .build();
-            return onSuccess(retries.run());
+            return unchecked(() -> onSuccess(retries.run())).get();
         }
 
 
         @Override
-        public GetCurrentOrganizationResponse handleResponse(HttpResponse<InputStream> response) throws Exception {
+        public GetCurrentOrganizationResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
@@ -193,44 +192,20 @@ public class GetCurrentOrganization {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    EntityOrganization out = Utils.mapper().readValue(
-                            response.body(),
-                            new TypeReference<>() {
-                            });
-                    res.withEntityOrganization(out);
-                    return res;
+                    return res.withEntityOrganization(Utils.unmarshal(response, new TypeReference<EntityOrganization>() {}));
                 } else {
-                    throw new APIException(
-                            response,
-                            response.statusCode(),
-                            "Unexpected content-type received: " + contentType,
-                            Utils.extractByteArrayFromBody(response));
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
                 // no content
-                throw new APIException(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw APIException.from("API error occurred", response);
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 // no content
-                throw new APIException(
-                        response,
-                        response.statusCode(),
-                        "API error occurred",
-                        Utils.extractByteArrayFromBody(response));
+                throw APIException.from("API error occurred", response);
             }
-            
-            throw new APIException(
-                    response,
-                    response.statusCode(),
-                    "Unexpected status code received: " + response.statusCode(),
-                    Utils.extractByteArrayFromBody(response));
+            throw APIException.from("Unexpected status code received: " + response.statusCode(), response);
         }
     }
     public static class Async extends Base
@@ -266,7 +241,7 @@ public class GetCurrentOrganization {
                     .statusCodes(retryStatusCodes)
                     .scheduler(retryScheduler)
                     .build();
-            return retries.retry(() -> Exceptions.unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
+            return retries.retry(() -> unchecked(() -> onBuildRequest(request)).get().thenCompose(client::sendAsync)
                             .handle((resp, err) -> {
                                 if (err != null) {
                                     return onError(null, err);
@@ -298,33 +273,20 @@ public class GetCurrentOrganization {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return response.body().toByteArray().thenApply(bodyBytes -> {
-                        try {
-                            EntityOrganization out = Utils.mapper().readValue(
-                                    bodyBytes,
-                                    new TypeReference<>() {
-                                    });
-                            res.withEntityOrganization(out);
-                            return res;
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
+                    return Utils.unmarshalAsync(response, new TypeReference<EntityOrganization>() {})
+                            .thenApply(res::withEntityOrganization);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
                 // no content
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
-            
             if (Utils.statusCodeMatches(response.statusCode(), "5XX")) {
                 // no content
                 return Utils.createAsyncApiError(response, "API error occurred");
             }
-            
             return Utils.createAsyncApiError(response, "Unexpected status code received: " + response.statusCode());
         }
     }

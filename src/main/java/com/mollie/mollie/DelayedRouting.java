@@ -17,7 +17,6 @@ import com.mollie.mollie.operations.PaymentListRoutes;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -62,9 +61,9 @@ public class DelayedRouting {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PaymentCreateRouteResponse create(String paymentId) throws Exception {
+    public PaymentCreateRouteResponse create(String paymentId) {
         return create(paymentId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -80,11 +79,11 @@ public class DelayedRouting {
      * @param routeCreateRequest 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public PaymentCreateRouteResponse create(
             String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends RouteCreateRequest> routeCreateRequest, Optional<Options> options) throws Exception {
+            Optional<? extends RouteCreateRequest> routeCreateRequest, Optional<Options> options) {
         PaymentCreateRouteRequest request =
             PaymentCreateRouteRequest
                 .builder()
@@ -115,9 +114,9 @@ public class DelayedRouting {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public PaymentListRoutesResponse list(String paymentId) throws Exception {
+    public PaymentListRoutesResponse list(String paymentId) {
         return list(paymentId, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -136,11 +135,11 @@ public class DelayedRouting {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public PaymentListRoutesResponse list(
             String paymentId, JsonNullable<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         PaymentListRoutesRequest request =
             PaymentListRoutesRequest
                 .builder()

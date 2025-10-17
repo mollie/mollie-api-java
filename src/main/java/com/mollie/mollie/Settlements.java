@@ -39,7 +39,6 @@ import com.mollie.mollie.operations.ListSettlementRefunds;
 import com.mollie.mollie.operations.ListSettlements;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -85,9 +84,9 @@ public class Settlements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSettlementsResponse list(ListSettlementsRequest request) throws Exception {
+    public ListSettlementsResponse list(ListSettlementsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -101,9 +100,9 @@ public class Settlements {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSettlementsResponse list(ListSettlementsRequest request, Optional<Options> options) throws Exception {
+    public ListSettlementsResponse list(ListSettlementsRequest request, Optional<Options> options) {
         RequestOperation<ListSettlementsRequest, ListSettlementsResponse> operation
               = new ListSettlements.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -151,9 +150,9 @@ public class Settlements {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetSettlementResponse get(String id) throws Exception {
+    public GetSettlementResponse get(String id) {
         return get(id, Optional.empty(), Optional.empty());
     }
 
@@ -178,11 +177,11 @@ public class Settlements {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetSettlementResponse get(
             String id, Optional<String> idempotencyKey,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetSettlementRequest request =
             GetSettlementRequest
                 .builder()
@@ -229,9 +228,9 @@ public class Settlements {
      * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetOpenSettlementResponse getOpenDirect() throws Exception {
+    public GetOpenSettlementResponse getOpenDirect() {
         return getOpen(Optional.empty(), Optional.empty());
     }
 
@@ -252,9 +251,9 @@ public class Settlements {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetOpenSettlementResponse getOpen(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+    public GetOpenSettlementResponse getOpen(Optional<String> idempotencyKey, Optional<Options> options) {
         GetOpenSettlementRequest request =
             GetOpenSettlementRequest
                 .builder()
@@ -296,9 +295,9 @@ public class Settlements {
      * [balance transactions](list-balance-transactions) endpoint.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetNextSettlementResponse getNextDirect() throws Exception {
+    public GetNextSettlementResponse getNextDirect() {
         return getNext(Optional.empty(), Optional.empty());
     }
 
@@ -317,9 +316,9 @@ public class Settlements {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetNextSettlementResponse getNext(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+    public GetNextSettlementResponse getNext(Optional<String> idempotencyKey, Optional<Options> options) {
         GetNextSettlementRequest request =
             GetNextSettlementRequest
                 .builder()
@@ -358,9 +357,9 @@ public class Settlements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSettlementPaymentsResponse listPayments(ListSettlementPaymentsRequest request) throws Exception {
+    public ListSettlementPaymentsResponse listPayments(ListSettlementPaymentsRequest request) {
         return listPayments(request, Optional.empty());
     }
 
@@ -377,9 +376,9 @@ public class Settlements {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSettlementPaymentsResponse listPayments(ListSettlementPaymentsRequest request, Optional<Options> options) throws Exception {
+    public ListSettlementPaymentsResponse listPayments(ListSettlementPaymentsRequest request, Optional<Options> options) {
         RequestOperation<ListSettlementPaymentsRequest, ListSettlementPaymentsResponse> operation
               = new ListSettlementPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -407,9 +406,9 @@ public class Settlements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSettlementCapturesResponse listCaptures(ListSettlementCapturesRequest request) throws Exception {
+    public ListSettlementCapturesResponse listCaptures(ListSettlementCapturesRequest request) {
         return listCaptures(request, Optional.empty());
     }
 
@@ -423,9 +422,9 @@ public class Settlements {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSettlementCapturesResponse listCaptures(ListSettlementCapturesRequest request, Optional<Options> options) throws Exception {
+    public ListSettlementCapturesResponse listCaptures(ListSettlementCapturesRequest request, Optional<Options> options) {
         RequestOperation<ListSettlementCapturesRequest, ListSettlementCapturesResponse> operation
               = new ListSettlementCaptures.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -453,9 +452,9 @@ public class Settlements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSettlementRefundsResponse listRefunds(ListSettlementRefundsRequest request) throws Exception {
+    public ListSettlementRefundsResponse listRefunds(ListSettlementRefundsRequest request) {
         return listRefunds(request, Optional.empty());
     }
 
@@ -469,9 +468,9 @@ public class Settlements {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSettlementRefundsResponse listRefunds(ListSettlementRefundsRequest request, Optional<Options> options) throws Exception {
+    public ListSettlementRefundsResponse listRefunds(ListSettlementRefundsRequest request, Optional<Options> options) {
         RequestOperation<ListSettlementRefundsRequest, ListSettlementRefundsResponse> operation
               = new ListSettlementRefunds.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -501,9 +500,9 @@ public class Settlements {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSettlementChargebacksResponse listChargebacks(ListSettlementChargebacksRequest request) throws Exception {
+    public ListSettlementChargebacksResponse listChargebacks(ListSettlementChargebacksRequest request) {
         return listChargebacks(request, Optional.empty());
     }
 
@@ -518,9 +517,9 @@ public class Settlements {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSettlementChargebacksResponse listChargebacks(ListSettlementChargebacksRequest request, Optional<Options> options) throws Exception {
+    public ListSettlementChargebacksResponse listChargebacks(ListSettlementChargebacksRequest request, Optional<Options> options) {
         RequestOperation<ListSettlementChargebacksRequest, ListSettlementChargebacksResponse> operation
               = new ListSettlementChargebacks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

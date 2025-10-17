@@ -39,7 +39,6 @@ import com.mollie.mollie.operations.UpdateSubscription;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -122,9 +121,9 @@ public class Subscriptions {
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateSubscriptionResponse create(String customerId) throws Exception {
+    public CreateSubscriptionResponse create(String customerId) {
         return create(customerId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -159,11 +158,11 @@ public class Subscriptions {
      * @param subscriptionRequest 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateSubscriptionResponse create(
             String customerId, Optional<String> idempotencyKey,
-            Optional<? extends SubscriptionRequest> subscriptionRequest, Optional<Options> options) throws Exception {
+            Optional<? extends SubscriptionRequest> subscriptionRequest, Optional<Options> options) {
         CreateSubscriptionRequest request =
             CreateSubscriptionRequest
                 .builder()
@@ -198,9 +197,9 @@ public class Subscriptions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSubscriptionsResponse list(ListSubscriptionsRequest request) throws Exception {
+    public ListSubscriptionsResponse list(ListSubscriptionsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -214,9 +213,9 @@ public class Subscriptions {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSubscriptionsResponse list(ListSubscriptionsRequest request, Optional<Options> options) throws Exception {
+    public ListSubscriptionsResponse list(ListSubscriptionsRequest request, Optional<Options> options) {
         RequestOperation<ListSubscriptionsRequest, ListSubscriptionsResponse> operation
               = new ListSubscriptions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -241,9 +240,9 @@ public class Subscriptions {
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetSubscriptionResponse get(String customerId, String subscriptionId) throws Exception {
+    public GetSubscriptionResponse get(String customerId, String subscriptionId) {
         return get(customerId, subscriptionId, JsonNullable.undefined(),
             Optional.empty(), Optional.empty());
     }
@@ -263,12 +262,12 @@ public class Subscriptions {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetSubscriptionResponse get(
             String customerId, String subscriptionId,
             JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         GetSubscriptionRequest request =
             GetSubscriptionRequest
                 .builder()
@@ -311,9 +310,9 @@ public class Subscriptions {
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateSubscriptionResponse update(String customerId, String subscriptionId) throws Exception {
+    public UpdateSubscriptionResponse update(String customerId, String subscriptionId) {
         return update(customerId, subscriptionId, Optional.empty(),
             Optional.empty(), Optional.empty());
     }
@@ -334,12 +333,12 @@ public class Subscriptions {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public UpdateSubscriptionResponse update(
             String customerId, String subscriptionId,
             Optional<String> idempotencyKey, Optional<? extends UpdateSubscriptionRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         UpdateSubscriptionRequest request =
             UpdateSubscriptionRequest
                 .builder()
@@ -374,9 +373,9 @@ public class Subscriptions {
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CancelSubscriptionResponse cancel(String customerId, String subscriptionId) throws Exception {
+    public CancelSubscriptionResponse cancel(String customerId, String subscriptionId) {
         return cancel(customerId, subscriptionId, Optional.empty(),
             Optional.empty(), Optional.empty());
     }
@@ -393,12 +392,12 @@ public class Subscriptions {
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CancelSubscriptionResponse cancel(
             String customerId, String subscriptionId,
             Optional<String> idempotencyKey, Optional<? extends CancelSubscriptionRequestBody> requestBody,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         CancelSubscriptionRequest request =
             CancelSubscriptionRequest
                 .builder()
@@ -434,9 +433,9 @@ public class Subscriptions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAllSubscriptionsResponse all(ListAllSubscriptionsRequest request) throws Exception {
+    public ListAllSubscriptionsResponse all(ListAllSubscriptionsRequest request) {
         return all(request, Optional.empty());
     }
 
@@ -450,9 +449,9 @@ public class Subscriptions {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAllSubscriptionsResponse all(ListAllSubscriptionsRequest request, Optional<Options> options) throws Exception {
+    public ListAllSubscriptionsResponse all(ListAllSubscriptionsRequest request, Optional<Options> options) {
         RequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
               = new ListAllSubscriptions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -480,9 +479,9 @@ public class Subscriptions {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSubscriptionPaymentsResponse listPayments(ListSubscriptionPaymentsRequest request) throws Exception {
+    public ListSubscriptionPaymentsResponse listPayments(ListSubscriptionPaymentsRequest request) {
         return listPayments(request, Optional.empty());
     }
 
@@ -496,9 +495,9 @@ public class Subscriptions {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListSubscriptionPaymentsResponse listPayments(ListSubscriptionPaymentsRequest request, Optional<Options> options) throws Exception {
+    public ListSubscriptionPaymentsResponse listPayments(ListSubscriptionPaymentsRequest request, Optional<Options> options) {
         RequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation
               = new ListSubscriptionPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

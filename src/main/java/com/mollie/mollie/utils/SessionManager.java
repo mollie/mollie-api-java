@@ -10,6 +10,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.time.OffsetDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -174,12 +175,19 @@ public final class SessionManager<T extends SessionManager.HasSessionKey> {
             HttpResponse<InputStream> response = client.send(request);
             if (response.statusCode() != HttpURLConnection.HTTP_OK) {
                 String responseBody = Utils.toUtf8AndClose(response.body());
-                throw new AuthException(response.statusCode(),
-                        "Unexpected status code " + response.statusCode() + ": " + responseBody);
+                throw new AuthException(
+                    "Unexpected status code " + response.statusCode() + ": " + responseBody,
+                    response.statusCode(),
+                    responseBody.getBytes(StandardCharsets.UTF_8),
+                    response);
             }
             TokenResponse t = Utils.mapper().readValue(response.body(), TokenResponse.class);
             if (!t.tokenType.orElse("").toLowerCase().equals("bearer")) {
-                throw new AuthException("Expected 'Bearer' token type but was '" + t.tokenType.orElse("") + "'");
+                throw new AuthException(
+                    "Expected 'Bearer' token type but was '" + t.tokenType.orElse("") + "'",
+                    response.statusCode(),
+                    Utils.readBytesAndClose(response.body()),
+                    response);
             }
             final Optional<OffsetDateTime> expiresAt = t.expiresInSeconds
                     .map(x -> OffsetDateTime.now().plus(x, ChronoUnit.SECONDS));

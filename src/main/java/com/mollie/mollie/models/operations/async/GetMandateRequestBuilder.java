@@ -13,7 +13,6 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -92,7 +91,7 @@ public class GetMandateRequestBuilder {
         return request;
     }
 
-    public CompletableFuture<GetMandateResponse> call() throws Exception {
+    public CompletableFuture<GetMandateResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

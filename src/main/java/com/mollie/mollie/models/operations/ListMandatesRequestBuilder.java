@@ -11,7 +11,6 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class ListMandatesRequestBuilder {
@@ -43,7 +42,7 @@ public class ListMandatesRequestBuilder {
         return this;
     }
 
-    public ListMandatesResponse call() throws Exception {
+    public ListMandatesResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

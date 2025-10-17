@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -82,7 +81,7 @@ public class GetTerminalRequestBuilder {
         return request;
     }
 
-    public GetTerminalResponse call() throws Exception {
+    public GetTerminalResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

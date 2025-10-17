@@ -172,21 +172,6 @@ public class EntitySalesInvoice {
     private JsonNullable<? extends SalesInvoiceDiscount> discount;
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
-     * changed
-     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
-     * the
-     * recipient.
-     * 
-     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
-     * when
-     * the recipient is also located in one of these countries.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("isEInvoice")
-    private Optional<Boolean> isEInvoice;
-
-    /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -240,7 +225,6 @@ public class EntitySalesInvoice {
             @JsonProperty("recipient") JsonNullable<? extends SalesInvoiceRecipient> recipient,
             @JsonProperty("lines") JsonNullable<? extends List<SalesInvoiceLineItem>> lines,
             @JsonProperty("discount") JsonNullable<? extends SalesInvoiceDiscount> discount,
-            @JsonProperty("isEInvoice") Optional<Boolean> isEInvoice,
             @JsonProperty("amountDue") Optional<? extends Amount> amountDue,
             @JsonProperty("subtotalAmount") Optional<? extends Amount> subtotalAmount,
             @JsonProperty("totalAmount") Optional<? extends Amount> totalAmount,
@@ -263,7 +247,6 @@ public class EntitySalesInvoice {
         Utils.checkNotNull(recipient, "recipient");
         Utils.checkNotNull(lines, "lines");
         Utils.checkNotNull(discount, "discount");
-        Utils.checkNotNull(isEInvoice, "isEInvoice");
         Utils.checkNotNull(amountDue, "amountDue");
         Utils.checkNotNull(subtotalAmount, "subtotalAmount");
         Utils.checkNotNull(totalAmount, "totalAmount");
@@ -286,7 +269,6 @@ public class EntitySalesInvoice {
         this.recipient = recipient;
         this.lines = lines;
         this.discount = discount;
-        this.isEInvoice = isEInvoice;
         this.amountDue = amountDue;
         this.subtotalAmount = subtotalAmount;
         this.totalAmount = totalAmount;
@@ -302,7 +284,7 @@ public class EntitySalesInvoice {
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -477,22 +459,6 @@ public class EntitySalesInvoice {
     @JsonIgnore
     public JsonNullable<SalesInvoiceDiscount> discount() {
         return (JsonNullable<SalesInvoiceDiscount>) discount;
-    }
-
-    /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
-     * changed
-     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
-     * the
-     * recipient.
-     * 
-     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
-     * when
-     * the recipient is also located in one of these countries.
-     */
-    @JsonIgnore
-    public Optional<Boolean> isEInvoice() {
-        return isEInvoice;
     }
 
     /**
@@ -915,41 +881,6 @@ public class EntitySalesInvoice {
     }
 
     /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
-     * changed
-     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
-     * the
-     * recipient.
-     * 
-     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
-     * when
-     * the recipient is also located in one of these countries.
-     */
-    public EntitySalesInvoice withIsEInvoice(boolean isEInvoice) {
-        Utils.checkNotNull(isEInvoice, "isEInvoice");
-        this.isEInvoice = Optional.ofNullable(isEInvoice);
-        return this;
-    }
-
-
-    /**
-     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
-     * changed
-     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
-     * the
-     * recipient.
-     * 
-     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
-     * when
-     * the recipient is also located in one of these countries.
-     */
-    public EntitySalesInvoice withIsEInvoice(Optional<Boolean> isEInvoice) {
-        Utils.checkNotNull(isEInvoice, "isEInvoice");
-        this.isEInvoice = isEInvoice;
-        return this;
-    }
-
-    /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public EntitySalesInvoice withAmountDue(Amount amountDue) {
@@ -1071,7 +1002,6 @@ public class EntitySalesInvoice {
             Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
             Utils.enhancedDeepEquals(this.lines, other.lines) &&
             Utils.enhancedDeepEquals(this.discount, other.discount) &&
-            Utils.enhancedDeepEquals(this.isEInvoice, other.isEInvoice) &&
             Utils.enhancedDeepEquals(this.amountDue, other.amountDue) &&
             Utils.enhancedDeepEquals(this.subtotalAmount, other.subtotalAmount) &&
             Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
@@ -1087,9 +1017,9 @@ public class EntitySalesInvoice {
             memo, metadata, paymentTerm,
             paymentDetails, emailDetails, customerId,
             mandateId, recipientIdentifier, recipient,
-            lines, discount, isEInvoice,
-            amountDue, subtotalAmount, totalAmount,
-            totalVatAmount, discountedSubtotalAmount);
+            lines, discount, amountDue,
+            subtotalAmount, totalAmount, totalVatAmount,
+            discountedSubtotalAmount);
     }
     
     @Override
@@ -1112,7 +1042,6 @@ public class EntitySalesInvoice {
                 "recipient", recipient,
                 "lines", lines,
                 "discount", discount,
-                "isEInvoice", isEInvoice,
                 "amountDue", amountDue,
                 "subtotalAmount", subtotalAmount,
                 "totalAmount", totalAmount,
@@ -1156,8 +1085,6 @@ public class EntitySalesInvoice {
         private JsonNullable<? extends List<SalesInvoiceLineItem>> lines = JsonNullable.undefined();
 
         private JsonNullable<? extends SalesInvoiceDiscount> discount = JsonNullable.undefined();
-
-        private Optional<Boolean> isEInvoice = Optional.empty();
 
         private Optional<? extends Amount> amountDue = Optional.empty();
 
@@ -1554,41 +1481,6 @@ public class EntitySalesInvoice {
 
 
         /**
-         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
-         * changed
-         * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
-         * the
-         * recipient.
-         * 
-         * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
-         * when
-         * the recipient is also located in one of these countries.
-         */
-        public Builder isEInvoice(boolean isEInvoice) {
-            Utils.checkNotNull(isEInvoice, "isEInvoice");
-            this.isEInvoice = Optional.ofNullable(isEInvoice);
-            return this;
-        }
-
-        /**
-         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
-         * changed
-         * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
-         * the
-         * recipient.
-         * 
-         * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
-         * when
-         * the recipient is also located in one of these countries.
-         */
-        public Builder isEInvoice(Optional<Boolean> isEInvoice) {
-            Utils.checkNotNull(isEInvoice, "isEInvoice");
-            this.isEInvoice = isEInvoice;
-            return this;
-        }
-
-
-        /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder amountDue(Amount amountDue) {
@@ -1690,9 +1582,9 @@ public class EntitySalesInvoice {
                 memo, metadata, paymentTerm,
                 paymentDetails, emailDetails, customerId,
                 mandateId, recipientIdentifier, recipient,
-                lines, discount, isEInvoice,
-                amountDue, subtotalAmount, totalAmount,
-                totalVatAmount, discountedSubtotalAmount);
+                lines, discount, amountDue,
+                subtotalAmount, totalAmount, totalVatAmount,
+                discountedSubtotalAmount);
         }
 
     }

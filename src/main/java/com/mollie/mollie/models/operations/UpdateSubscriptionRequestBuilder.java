@@ -11,7 +11,6 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 
@@ -88,7 +87,7 @@ public class UpdateSubscriptionRequestBuilder {
         return request;
     }
 
-    public UpdateSubscriptionResponse call() throws Exception {
+    public UpdateSubscriptionResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

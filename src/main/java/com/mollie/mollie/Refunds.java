@@ -29,7 +29,6 @@ import com.mollie.mollie.operations.ListRefunds;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -76,9 +75,9 @@ public class Refunds {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CreateRefundResponse create(String paymentId) throws Exception {
+    public CreateRefundResponse create(String paymentId) {
         return create(paymentId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
@@ -95,11 +94,11 @@ public class Refunds {
      * @param entityRefund 
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CreateRefundResponse create(
             String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends EntityRefund> entityRefund, Optional<Options> options) throws Exception {
+            Optional<? extends EntityRefund> entityRefund, Optional<Options> options) {
         CreateRefundRequest request =
             CreateRefundRequest
                 .builder()
@@ -134,9 +133,9 @@ public class Refunds {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListRefundsResponse list(ListRefundsRequest request) throws Exception {
+    public ListRefundsResponse list(ListRefundsRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -150,9 +149,9 @@ public class Refunds {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListRefundsResponse list(ListRefundsRequest request, Optional<Options> options) throws Exception {
+    public ListRefundsResponse list(ListRefundsRequest request, Optional<Options> options) {
         RequestOperation<ListRefundsRequest, ListRefundsResponse> operation
               = new ListRefunds.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -176,9 +175,9 @@ public class Refunds {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetRefundResponse get(GetRefundRequest request) throws Exception {
+    public GetRefundResponse get(GetRefundRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -190,9 +189,9 @@ public class Refunds {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetRefundResponse get(GetRefundRequest request, Optional<Options> options) throws Exception {
+    public GetRefundResponse get(GetRefundRequest request, Optional<Options> options) {
         RequestOperation<GetRefundRequest, GetRefundResponse> operation
               = new GetRefund.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -227,9 +226,9 @@ public class Refunds {
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public CancelRefundResponse cancel(String paymentId, String refundId) throws Exception {
+    public CancelRefundResponse cancel(String paymentId, String refundId) {
         return cancel(paymentId, refundId, JsonNullable.undefined(),
             Optional.empty(), Optional.empty());
     }
@@ -254,12 +253,12 @@ public class Refunds {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public CancelRefundResponse cancel(
             String paymentId, String refundId,
             JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) throws Exception {
+            Optional<Options> options) {
         CancelRefundRequest request =
             CancelRefundRequest
                 .builder()
@@ -295,9 +294,9 @@ public class Refunds {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAllRefundsResponse all(ListAllRefundsRequest request) throws Exception {
+    public ListAllRefundsResponse all(ListAllRefundsRequest request) {
         return all(request, Optional.empty());
     }
 
@@ -311,9 +310,9 @@ public class Refunds {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAllRefundsResponse all(ListAllRefundsRequest request, Optional<Options> options) throws Exception {
+    public ListAllRefundsResponse all(ListAllRefundsRequest request, Optional<Options> options) {
         RequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation
               = new ListAllRefunds.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

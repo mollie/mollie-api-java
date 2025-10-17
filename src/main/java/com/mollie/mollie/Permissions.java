@@ -16,7 +16,6 @@ import com.mollie.mollie.operations.ListPermissions;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -62,9 +61,9 @@ public class Permissions {
      * <p>The results are **not** paginated.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPermissionsResponse listDirect() throws Exception {
+    public ListPermissionsResponse listDirect() {
         return list(Optional.empty(), Optional.empty());
     }
 
@@ -78,9 +77,9 @@ public class Permissions {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListPermissionsResponse list(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+    public ListPermissionsResponse list(Optional<String> idempotencyKey, Optional<Options> options) {
         ListPermissionsRequest request =
             ListPermissionsRequest
                 .builder()
@@ -111,9 +110,9 @@ public class Permissions {
      * 
      * @param permissionId Provide the ID of the related permission.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPermissionResponse get(String permissionId) throws Exception {
+    public GetPermissionResponse get(String permissionId) {
         return get(permissionId, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -133,11 +132,11 @@ public class Permissions {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetPermissionResponse get(
             String permissionId, JsonNullable<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetPermissionRequest request =
             GetPermissionRequest
                 .builder()

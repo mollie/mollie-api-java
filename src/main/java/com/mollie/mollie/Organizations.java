@@ -20,7 +20,6 @@ import com.mollie.mollie.operations.GetPartnerStatus;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
-import java.lang.Exception;
 import java.lang.String;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -75,9 +74,9 @@ public class Organizations {
      * 
      * @param id Provide the ID of the item you want to perform this operation on.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetOrganizationResponse get(String id) throws Exception {
+    public GetOrganizationResponse get(String id) {
         return get(id, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
@@ -102,11 +101,11 @@ public class Organizations {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
     public GetOrganizationResponse get(
             String id, JsonNullable<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetOrganizationRequest request =
             GetOrganizationRequest
                 .builder()
@@ -148,9 +147,9 @@ public class Organizations {
      * documentation.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetCurrentOrganizationResponse getCurrentDirect() throws Exception {
+    public GetCurrentOrganizationResponse getCurrentDirect() {
         return getCurrent(Optional.empty(), Optional.empty());
     }
 
@@ -168,9 +167,9 @@ public class Organizations {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetCurrentOrganizationResponse getCurrent(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+    public GetCurrentOrganizationResponse getCurrent(Optional<String> idempotencyKey, Optional<Options> options) {
         GetCurrentOrganizationRequest request =
             GetCurrentOrganizationRequest
                 .builder()
@@ -202,9 +201,9 @@ public class Organizations {
      * accounts*.
      * 
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPartnerStatusResponse getPartnerDirect() throws Exception {
+    public GetPartnerStatusResponse getPartnerDirect() {
         return getPartner(Optional.empty(), Optional.empty());
     }
 
@@ -218,9 +217,9 @@ public class Organizations {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetPartnerStatusResponse getPartner(Optional<String> idempotencyKey, Optional<Options> options) throws Exception {
+    public GetPartnerStatusResponse getPartner(Optional<String> idempotencyKey, Optional<Options> options) {
         GetPartnerStatusRequest request =
             GetPartnerStatusRequest
                 .builder()

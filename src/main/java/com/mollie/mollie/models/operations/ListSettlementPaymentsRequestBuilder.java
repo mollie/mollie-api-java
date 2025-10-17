@@ -11,7 +11,6 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Exception;
 import java.util.Optional;
 
 public class ListSettlementPaymentsRequestBuilder {
@@ -43,7 +42,7 @@ public class ListSettlementPaymentsRequestBuilder {
         return this;
     }
 
-    public ListSettlementPaymentsResponse call() throws Exception {
+    public ListSettlementPaymentsResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

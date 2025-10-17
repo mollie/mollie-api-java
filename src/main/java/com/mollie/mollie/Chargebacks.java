@@ -19,7 +19,6 @@ import com.mollie.mollie.operations.ListAllChargebacks;
 import com.mollie.mollie.operations.ListChargebacks;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Exception;
 import java.util.Optional;
 
 
@@ -64,9 +63,9 @@ public class Chargebacks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListChargebacksResponse list(ListChargebacksRequest request) throws Exception {
+    public ListChargebacksResponse list(ListChargebacksRequest request) {
         return list(request, Optional.empty());
     }
 
@@ -80,9 +79,9 @@ public class Chargebacks {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListChargebacksResponse list(ListChargebacksRequest request, Optional<Options> options) throws Exception {
+    public ListChargebacksResponse list(ListChargebacksRequest request, Optional<Options> options) {
         RequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
               = new ListChargebacks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -106,9 +105,9 @@ public class Chargebacks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetChargebackResponse get(GetChargebackRequest request) throws Exception {
+    public GetChargebackResponse get(GetChargebackRequest request) {
         return get(request, Optional.empty());
     }
 
@@ -120,9 +119,9 @@ public class Chargebacks {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public GetChargebackResponse get(GetChargebackRequest request, Optional<Options> options) throws Exception {
+    public GetChargebackResponse get(GetChargebackRequest request, Optional<Options> options) {
         RequestOperation<GetChargebackRequest, GetChargebackResponse> operation
               = new GetChargeback.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -150,9 +149,9 @@ public class Chargebacks {
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAllChargebacksResponse all(ListAllChargebacksRequest request) throws Exception {
+    public ListAllChargebacksResponse all(ListAllChargebacksRequest request) {
         return all(request, Optional.empty());
     }
 
@@ -166,9 +165,9 @@ public class Chargebacks {
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
-     * @throws Exception if the API call fails
+     * @throws RuntimeException subclass if the API call fails
      */
-    public ListAllChargebacksResponse all(ListAllChargebacksRequest request, Optional<Options> options) throws Exception {
+    public ListAllChargebacksResponse all(ListAllChargebacksRequest request, Optional<Options> options) {
         RequestOperation<ListAllChargebacksRequest, ListAllChargebacksResponse> operation
               = new ListAllChargebacks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

@@ -81,6 +81,7 @@ dependencies {
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.2'
     api('org.openapitools:jackson-databind-nullable:0.2.6') {exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'}
     implementation 'commons-io:commons-io:2.18.0'
+    implementation 'jakarta.annotation:jakarta.annotation-api:3.0.0'
     api 'org.reactivestreams:reactive-streams:1.0.4'
 }
 
