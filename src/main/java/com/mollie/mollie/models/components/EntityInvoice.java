@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -22,72 +21,61 @@ public class EntityInvoice {
      * Indicates that the response contains an invoice object.
      * Will always contain the string `invoice` for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
-    /**
-     * The identifier uniquely referring to this invoice. Example: `inv_FrvewDA3Pr`.
-     */
-    @JsonInclude(Include.NON_ABSENT)
+
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The reference number of the invoice. An example value would be: `2024.10000`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
-    private Optional<String> reference;
+    private String reference;
 
     /**
      * The VAT number to which the invoice was issued to, if applicable.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("vatNumber")
-    private JsonNullable<String> vatNumber;
+    private Optional<String> vatNumber;
 
     /**
      * Status of the invoice.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends InvoiceStatus> status;
+    private InvoiceStatus status;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("netAmount")
-    private Optional<? extends Amount> netAmount;
+    private Amount netAmount;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatAmount")
-    private Optional<? extends Amount> vatAmount;
+    private Amount vatAmount;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("grossAmount")
-    private Optional<? extends Amount> grossAmount;
+    private Amount grossAmount;
 
     /**
      * The collection of products which make up the invoice.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
-    private Optional<? extends List<EntityInvoiceLines>> lines;
+    private List<EntityInvoiceLines> lines;
 
     /**
      * The invoice date in `YYYY-MM-DD` format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("issuedAt")
-    private Optional<String> issuedAt;
+    private String issuedAt;
 
     /**
      * The date on which the invoice was paid, if applicable, in `YYYY-MM-DD` format.
@@ -106,25 +94,24 @@ public class EntityInvoice {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends EntityInvoiceLinks> links;
+    private EntityInvoiceLinks links;
 
     @JsonCreator
     public EntityInvoice(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("reference") Optional<String> reference,
-            @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
-            @JsonProperty("status") Optional<? extends InvoiceStatus> status,
-            @JsonProperty("netAmount") Optional<? extends Amount> netAmount,
-            @JsonProperty("vatAmount") Optional<? extends Amount> vatAmount,
-            @JsonProperty("grossAmount") Optional<? extends Amount> grossAmount,
-            @JsonProperty("lines") Optional<? extends List<EntityInvoiceLines>> lines,
-            @JsonProperty("issuedAt") Optional<String> issuedAt,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("reference") String reference,
+            @JsonProperty("vatNumber") Optional<String> vatNumber,
+            @JsonProperty("status") InvoiceStatus status,
+            @JsonProperty("netAmount") Amount netAmount,
+            @JsonProperty("vatAmount") Amount vatAmount,
+            @JsonProperty("grossAmount") Amount grossAmount,
+            @JsonProperty("lines") List<EntityInvoiceLines> lines,
+            @JsonProperty("issuedAt") String issuedAt,
             @JsonProperty("paidAt") JsonNullable<String> paidAt,
             @JsonProperty("dueAt") JsonNullable<String> dueAt,
-            @JsonProperty("_links") Optional<? extends EntityInvoiceLinks> links) {
+            @JsonProperty("_links") EntityInvoiceLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(reference, "reference");
@@ -153,12 +140,22 @@ public class EntityInvoice {
         this.links = links;
     }
     
-    public EntityInvoice() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public EntityInvoice(
+            String resource,
+            String id,
+            String reference,
+            InvoiceStatus status,
+            Amount netAmount,
+            Amount vatAmount,
+            Amount grossAmount,
+            List<EntityInvoiceLines> lines,
+            String issuedAt,
+            EntityInvoiceLinks links) {
+        this(resource, id, reference,
+            Optional.empty(), status, netAmount,
+            vatAmount, grossAmount, lines,
+            issuedAt, JsonNullable.undefined(), JsonNullable.undefined(),
+            links);
     }
 
     /**
@@ -166,15 +163,12 @@ public class EntityInvoice {
      * Will always contain the string `invoice` for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
-    /**
-     * The identifier uniquely referring to this invoice. Example: `inv_FrvewDA3Pr`.
-     */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -182,7 +176,7 @@ public class EntityInvoice {
      * The reference number of the invoice. An example value would be: `2024.10000`.
      */
     @JsonIgnore
-    public Optional<String> reference() {
+    public String reference() {
         return reference;
     }
 
@@ -190,60 +184,55 @@ public class EntityInvoice {
      * The VAT number to which the invoice was issued to, if applicable.
      */
     @JsonIgnore
-    public JsonNullable<String> vatNumber() {
+    public Optional<String> vatNumber() {
         return vatNumber;
     }
 
     /**
      * Status of the invoice.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<InvoiceStatus> status() {
-        return (Optional<InvoiceStatus>) status;
+    public InvoiceStatus status() {
+        return status;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> netAmount() {
-        return (Optional<Amount>) netAmount;
+    public Amount netAmount() {
+        return netAmount;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> vatAmount() {
-        return (Optional<Amount>) vatAmount;
+    public Amount vatAmount() {
+        return vatAmount;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> grossAmount() {
-        return (Optional<Amount>) grossAmount;
+    public Amount grossAmount() {
+        return grossAmount;
     }
 
     /**
      * The collection of products which make up the invoice.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<EntityInvoiceLines>> lines() {
-        return (Optional<List<EntityInvoiceLines>>) lines;
+    public List<EntityInvoiceLines> lines() {
+        return lines;
     }
 
     /**
      * The invoice date in `YYYY-MM-DD` format.
      */
     @JsonIgnore
-    public Optional<String> issuedAt() {
+    public String issuedAt() {
         return issuedAt;
     }
 
@@ -266,10 +255,9 @@ public class EntityInvoice {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityInvoiceLinks> links() {
-        return (Optional<EntityInvoiceLinks>) links;
+    public EntityInvoiceLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -283,35 +271,11 @@ public class EntityInvoice {
      */
     public EntityInvoice withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates that the response contains an invoice object.
-     * Will always contain the string `invoice` for this endpoint.
-     */
-    public EntityInvoice withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
-    /**
-     * The identifier uniquely referring to this invoice. Example: `inv_FrvewDA3Pr`.
-     */
     public EntityInvoice withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to this invoice. Example: `inv_FrvewDA3Pr`.
-     */
-    public EntityInvoice withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -322,16 +286,6 @@ public class EntityInvoice {
      */
     public EntityInvoice withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
-        this.reference = Optional.ofNullable(reference);
-        return this;
-    }
-
-
-    /**
-     * The reference number of the invoice. An example value would be: `2024.10000`.
-     */
-    public EntityInvoice withReference(Optional<String> reference) {
-        Utils.checkNotNull(reference, "reference");
         this.reference = reference;
         return this;
     }
@@ -341,14 +295,15 @@ public class EntityInvoice {
      */
     public EntityInvoice withVatNumber(String vatNumber) {
         Utils.checkNotNull(vatNumber, "vatNumber");
-        this.vatNumber = JsonNullable.of(vatNumber);
+        this.vatNumber = Optional.ofNullable(vatNumber);
         return this;
     }
+
 
     /**
      * The VAT number to which the invoice was issued to, if applicable.
      */
-    public EntityInvoice withVatNumber(JsonNullable<String> vatNumber) {
+    public EntityInvoice withVatNumber(Optional<String> vatNumber) {
         Utils.checkNotNull(vatNumber, "vatNumber");
         this.vatNumber = vatNumber;
         return this;
@@ -359,16 +314,6 @@ public class EntityInvoice {
      */
     public EntityInvoice withStatus(InvoiceStatus status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * Status of the invoice.
-     */
-    public EntityInvoice withStatus(Optional<? extends InvoiceStatus> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -377,16 +322,6 @@ public class EntityInvoice {
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public EntityInvoice withNetAmount(Amount netAmount) {
-        Utils.checkNotNull(netAmount, "netAmount");
-        this.netAmount = Optional.ofNullable(netAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntityInvoice withNetAmount(Optional<? extends Amount> netAmount) {
         Utils.checkNotNull(netAmount, "netAmount");
         this.netAmount = netAmount;
         return this;
@@ -397,16 +332,6 @@ public class EntityInvoice {
      */
     public EntityInvoice withVatAmount(Amount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
-        this.vatAmount = Optional.ofNullable(vatAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntityInvoice withVatAmount(Optional<? extends Amount> vatAmount) {
-        Utils.checkNotNull(vatAmount, "vatAmount");
         this.vatAmount = vatAmount;
         return this;
     }
@@ -415,16 +340,6 @@ public class EntityInvoice {
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public EntityInvoice withGrossAmount(Amount grossAmount) {
-        Utils.checkNotNull(grossAmount, "grossAmount");
-        this.grossAmount = Optional.ofNullable(grossAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntityInvoice withGrossAmount(Optional<? extends Amount> grossAmount) {
         Utils.checkNotNull(grossAmount, "grossAmount");
         this.grossAmount = grossAmount;
         return this;
@@ -435,16 +350,6 @@ public class EntityInvoice {
      */
     public EntityInvoice withLines(List<EntityInvoiceLines> lines) {
         Utils.checkNotNull(lines, "lines");
-        this.lines = Optional.ofNullable(lines);
-        return this;
-    }
-
-
-    /**
-     * The collection of products which make up the invoice.
-     */
-    public EntityInvoice withLines(Optional<? extends List<EntityInvoiceLines>> lines) {
-        Utils.checkNotNull(lines, "lines");
         this.lines = lines;
         return this;
     }
@@ -453,16 +358,6 @@ public class EntityInvoice {
      * The invoice date in `YYYY-MM-DD` format.
      */
     public EntityInvoice withIssuedAt(String issuedAt) {
-        Utils.checkNotNull(issuedAt, "issuedAt");
-        this.issuedAt = Optional.ofNullable(issuedAt);
-        return this;
-    }
-
-
-    /**
-     * The invoice date in `YYYY-MM-DD` format.
-     */
-    public EntityInvoice withIssuedAt(Optional<String> issuedAt) {
         Utils.checkNotNull(issuedAt, "issuedAt");
         this.issuedAt = issuedAt;
         return this;
@@ -508,16 +403,6 @@ public class EntityInvoice {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public EntityInvoice withLinks(EntityInvoiceLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public EntityInvoice withLinks(Optional<? extends EntityInvoiceLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -579,31 +464,31 @@ public class EntityInvoice {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> reference = Optional.empty();
+        private String reference;
 
-        private JsonNullable<String> vatNumber = JsonNullable.undefined();
+        private Optional<String> vatNumber = Optional.empty();
 
-        private Optional<? extends InvoiceStatus> status = Optional.empty();
+        private InvoiceStatus status;
 
-        private Optional<? extends Amount> netAmount = Optional.empty();
+        private Amount netAmount;
 
-        private Optional<? extends Amount> vatAmount = Optional.empty();
+        private Amount vatAmount;
 
-        private Optional<? extends Amount> grossAmount = Optional.empty();
+        private Amount grossAmount;
 
-        private Optional<? extends List<EntityInvoiceLines>> lines = Optional.empty();
+        private List<EntityInvoiceLines> lines;
 
-        private Optional<String> issuedAt = Optional.empty();
+        private String issuedAt;
 
         private JsonNullable<String> paidAt = JsonNullable.undefined();
 
         private JsonNullable<String> dueAt = JsonNullable.undefined();
 
-        private Optional<? extends EntityInvoiceLinks> links = Optional.empty();
+        private EntityInvoiceLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -616,34 +501,12 @@ public class EntityInvoice {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates that the response contains an invoice object.
-         * Will always contain the string `invoice` for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
-        /**
-         * The identifier uniquely referring to this invoice. Example: `inv_FrvewDA3Pr`.
-         */
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this invoice. Example: `inv_FrvewDA3Pr`.
-         */
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -655,15 +518,6 @@ public class EntityInvoice {
          */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
-            this.reference = Optional.ofNullable(reference);
-            return this;
-        }
-
-        /**
-         * The reference number of the invoice. An example value would be: `2024.10000`.
-         */
-        public Builder reference(Optional<String> reference) {
-            Utils.checkNotNull(reference, "reference");
             this.reference = reference;
             return this;
         }
@@ -674,14 +528,14 @@ public class EntityInvoice {
          */
         public Builder vatNumber(String vatNumber) {
             Utils.checkNotNull(vatNumber, "vatNumber");
-            this.vatNumber = JsonNullable.of(vatNumber);
+            this.vatNumber = Optional.ofNullable(vatNumber);
             return this;
         }
 
         /**
          * The VAT number to which the invoice was issued to, if applicable.
          */
-        public Builder vatNumber(JsonNullable<String> vatNumber) {
+        public Builder vatNumber(Optional<String> vatNumber) {
             Utils.checkNotNull(vatNumber, "vatNumber");
             this.vatNumber = vatNumber;
             return this;
@@ -693,15 +547,6 @@ public class EntityInvoice {
          */
         public Builder status(InvoiceStatus status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status of the invoice.
-         */
-        public Builder status(Optional<? extends InvoiceStatus> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -711,15 +556,6 @@ public class EntityInvoice {
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder netAmount(Amount netAmount) {
-            Utils.checkNotNull(netAmount, "netAmount");
-            this.netAmount = Optional.ofNullable(netAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder netAmount(Optional<? extends Amount> netAmount) {
             Utils.checkNotNull(netAmount, "netAmount");
             this.netAmount = netAmount;
             return this;
@@ -731,15 +567,6 @@ public class EntityInvoice {
          */
         public Builder vatAmount(Amount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
-            this.vatAmount = Optional.ofNullable(vatAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder vatAmount(Optional<? extends Amount> vatAmount) {
-            Utils.checkNotNull(vatAmount, "vatAmount");
             this.vatAmount = vatAmount;
             return this;
         }
@@ -749,15 +576,6 @@ public class EntityInvoice {
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder grossAmount(Amount grossAmount) {
-            Utils.checkNotNull(grossAmount, "grossAmount");
-            this.grossAmount = Optional.ofNullable(grossAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder grossAmount(Optional<? extends Amount> grossAmount) {
             Utils.checkNotNull(grossAmount, "grossAmount");
             this.grossAmount = grossAmount;
             return this;
@@ -769,15 +587,6 @@ public class EntityInvoice {
          */
         public Builder lines(List<EntityInvoiceLines> lines) {
             Utils.checkNotNull(lines, "lines");
-            this.lines = Optional.ofNullable(lines);
-            return this;
-        }
-
-        /**
-         * The collection of products which make up the invoice.
-         */
-        public Builder lines(Optional<? extends List<EntityInvoiceLines>> lines) {
-            Utils.checkNotNull(lines, "lines");
             this.lines = lines;
             return this;
         }
@@ -787,15 +596,6 @@ public class EntityInvoice {
          * The invoice date in `YYYY-MM-DD` format.
          */
         public Builder issuedAt(String issuedAt) {
-            Utils.checkNotNull(issuedAt, "issuedAt");
-            this.issuedAt = Optional.ofNullable(issuedAt);
-            return this;
-        }
-
-        /**
-         * The invoice date in `YYYY-MM-DD` format.
-         */
-        public Builder issuedAt(Optional<String> issuedAt) {
             Utils.checkNotNull(issuedAt, "issuedAt");
             this.issuedAt = issuedAt;
             return this;
@@ -844,15 +644,6 @@ public class EntityInvoice {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(EntityInvoiceLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends EntityInvoiceLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

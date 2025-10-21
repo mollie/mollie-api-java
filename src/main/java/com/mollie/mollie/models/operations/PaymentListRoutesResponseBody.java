@@ -5,15 +5,11 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * PaymentListRoutesResponseBody
@@ -30,38 +26,31 @@ public class PaymentListRoutesResponseBody {
      * request. The default
      * limit is 50 items.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
-    private Optional<Long> count;
+    private long count;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
-    private Optional<? extends PaymentListRoutesEmbedded> embedded;
+    private PaymentListRoutesEmbedded embedded;
 
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
      * `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends PaymentListRoutesLinks> links;
+    private PaymentListRoutesLinks links;
 
     @JsonCreator
     public PaymentListRoutesResponseBody(
-            @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("_embedded") Optional<? extends PaymentListRoutesEmbedded> embedded,
-            @JsonProperty("_links") Optional<? extends PaymentListRoutesLinks> links) {
+            @JsonProperty("count") long count,
+            @JsonProperty("_embedded") PaymentListRoutesEmbedded embedded,
+            @JsonProperty("_links") PaymentListRoutesLinks links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
         this.count = count;
         this.embedded = embedded;
         this.links = links;
-    }
-    
-    public PaymentListRoutesResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -74,24 +63,22 @@ public class PaymentListRoutesResponseBody {
      * limit is 50 items.
      */
     @JsonIgnore
-    public Optional<Long> count() {
+    public long count() {
         return count;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentListRoutesEmbedded> embedded() {
-        return (Optional<PaymentListRoutesEmbedded>) embedded;
+    public PaymentListRoutesEmbedded embedded() {
+        return embedded;
     }
 
     /**
      * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
      * `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentListRoutesLinks> links() {
-        return (Optional<PaymentListRoutesLinks>) links;
+    public PaymentListRoutesLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -110,34 +97,11 @@ public class PaymentListRoutesResponseBody {
      */
     public PaymentListRoutesResponseBody withCount(long count) {
         Utils.checkNotNull(count, "count");
-        this.count = Optional.ofNullable(count);
-        return this;
-    }
-
-
-    /**
-     * The number of items in this result set. If more items are available, a `_links.next` URL will be
-     * present in the result
-     * as well.
-     * 
-     * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
-     * request. The default
-     * limit is 50 items.
-     */
-    public PaymentListRoutesResponseBody withCount(Optional<Long> count) {
-        Utils.checkNotNull(count, "count");
         this.count = count;
         return this;
     }
 
     public PaymentListRoutesResponseBody withEmbedded(PaymentListRoutesEmbedded embedded) {
-        Utils.checkNotNull(embedded, "embedded");
-        this.embedded = Optional.ofNullable(embedded);
-        return this;
-    }
-
-
-    public PaymentListRoutesResponseBody withEmbedded(Optional<? extends PaymentListRoutesEmbedded> embedded) {
         Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
         return this;
@@ -148,17 +112,6 @@ public class PaymentListRoutesResponseBody {
      * `type` field.
      */
     public PaymentListRoutesResponseBody withLinks(PaymentListRoutesLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
-     * `type` field.
-     */
-    public PaymentListRoutesResponseBody withLinks(Optional<? extends PaymentListRoutesLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -196,11 +149,11 @@ public class PaymentListRoutesResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Long> count = Optional.empty();
+        private Long count;
 
-        private Optional<? extends PaymentListRoutesEmbedded> embedded = Optional.empty();
+        private PaymentListRoutesEmbedded embedded;
 
-        private Optional<? extends PaymentListRoutesLinks> links = Optional.empty();
+        private PaymentListRoutesLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -218,33 +171,12 @@ public class PaymentListRoutesResponseBody {
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");
-            this.count = Optional.ofNullable(count);
-            return this;
-        }
-
-        /**
-         * The number of items in this result set. If more items are available, a `_links.next` URL will be
-         * present in the result
-         * as well.
-         * 
-         * <p>The maximum number of items per result set is controlled by the `limit` property provided in the
-         * request. The default
-         * limit is 50 items.
-         */
-        public Builder count(Optional<Long> count) {
-            Utils.checkNotNull(count, "count");
             this.count = count;
             return this;
         }
 
 
         public Builder embedded(PaymentListRoutesEmbedded embedded) {
-            Utils.checkNotNull(embedded, "embedded");
-            this.embedded = Optional.ofNullable(embedded);
-            return this;
-        }
-
-        public Builder embedded(Optional<? extends PaymentListRoutesEmbedded> embedded) {
             Utils.checkNotNull(embedded, "embedded");
             this.embedded = embedded;
             return this;
@@ -256,16 +188,6 @@ public class PaymentListRoutesResponseBody {
          * `type` field.
          */
         public Builder links(PaymentListRoutesLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * Links to help navigate through the lists of items. Every URL object will contain an `href` and a
-         * `type` field.
-         */
-        public Builder links(Optional<? extends PaymentListRoutesLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

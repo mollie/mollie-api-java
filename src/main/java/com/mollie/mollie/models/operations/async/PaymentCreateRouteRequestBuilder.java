@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.RouteCreateRequest;
+import com.mollie.mollie.models.components.EntityRoute;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequest;
 import com.mollie.mollie.operations.PaymentCreateRoute;
 import com.mollie.mollie.utils.Headers;
@@ -21,7 +21,7 @@ public class PaymentCreateRouteRequestBuilder {
 
     private String paymentId;
     private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends RouteCreateRequest> routeCreateRequest = Optional.empty();
+    private Optional<? extends EntityRoute> entityRoute = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -48,15 +48,15 @@ public class PaymentCreateRouteRequestBuilder {
         return this;
     }
                 
-    public PaymentCreateRouteRequestBuilder routeCreateRequest(RouteCreateRequest routeCreateRequest) {
-        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
-        this.routeCreateRequest = Optional.of(routeCreateRequest);
+    public PaymentCreateRouteRequestBuilder entityRoute(EntityRoute entityRoute) {
+        Utils.checkNotNull(entityRoute, "entityRoute");
+        this.entityRoute = Optional.of(entityRoute);
         return this;
     }
 
-    public PaymentCreateRouteRequestBuilder routeCreateRequest(Optional<? extends RouteCreateRequest> routeCreateRequest) {
-        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
-        this.routeCreateRequest = routeCreateRequest;
+    public PaymentCreateRouteRequestBuilder entityRoute(Optional<? extends EntityRoute> entityRoute) {
+        Utils.checkNotNull(entityRoute, "entityRoute");
+        this.entityRoute = entityRoute;
         return this;
     }
                 
@@ -77,7 +77,7 @@ public class PaymentCreateRouteRequestBuilder {
 
         PaymentCreateRouteRequest request = new PaymentCreateRouteRequest(paymentId,
             idempotencyKey,
-            routeCreateRequest);
+            entityRoute);
 
         return request;
     }

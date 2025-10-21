@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntityProfileResponse;
+import com.mollie.mollie.models.components.ProfileResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -36,22 +36,22 @@ public class GetProfileResponse implements AsyncResponse {
     /**
      * The profile object.
      */
-    private Optional<? extends EntityProfileResponse> entityProfileResponse;
+    private Optional<? extends ProfileResponse> profileResponse;
 
     @JsonCreator
     public GetProfileResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends EntityProfileResponse> entityProfileResponse) {
+            Optional<? extends ProfileResponse> profileResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+        Utils.checkNotNull(profileResponse, "profileResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.entityProfileResponse = entityProfileResponse;
+        this.profileResponse = profileResponse;
     }
     
     public GetProfileResponse(
@@ -91,8 +91,8 @@ public class GetProfileResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityProfileResponse> entityProfileResponse() {
-        return (Optional<EntityProfileResponse>) entityProfileResponse;
+    public Optional<ProfileResponse> profileResponse() {
+        return (Optional<ProfileResponse>) profileResponse;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class GetProfileResponse implements AsyncResponse {
     /**
      * The profile object.
      */
-    public GetProfileResponse withEntityProfileResponse(EntityProfileResponse entityProfileResponse) {
-        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-        this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
+    public GetProfileResponse withProfileResponse(ProfileResponse profileResponse) {
+        Utils.checkNotNull(profileResponse, "profileResponse");
+        this.profileResponse = Optional.ofNullable(profileResponse);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class GetProfileResponse implements AsyncResponse {
     /**
      * The profile object.
      */
-    public GetProfileResponse withEntityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
-        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-        this.entityProfileResponse = entityProfileResponse;
+    public GetProfileResponse withProfileResponse(Optional<? extends ProfileResponse> profileResponse) {
+        Utils.checkNotNull(profileResponse, "profileResponse");
+        this.profileResponse = profileResponse;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class GetProfileResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.entityProfileResponse, other.entityProfileResponse);
+            Utils.enhancedDeepEquals(this.profileResponse, other.profileResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            entityProfileResponse);
+            profileResponse);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class GetProfileResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "entityProfileResponse", entityProfileResponse);
+                "profileResponse", profileResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class GetProfileResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends EntityProfileResponse> entityProfileResponse = Optional.empty();
+        private Optional<? extends ProfileResponse> profileResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class GetProfileResponse implements AsyncResponse {
         /**
          * The profile object.
          */
-        public Builder entityProfileResponse(EntityProfileResponse entityProfileResponse) {
-            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-            this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
+        public Builder profileResponse(ProfileResponse profileResponse) {
+            Utils.checkNotNull(profileResponse, "profileResponse");
+            this.profileResponse = Optional.ofNullable(profileResponse);
             return this;
         }
 
         /**
          * The profile object.
          */
-        public Builder entityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
-            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-            this.entityProfileResponse = entityProfileResponse;
+        public Builder profileResponse(Optional<? extends ProfileResponse> profileResponse) {
+            Utils.checkNotNull(profileResponse, "profileResponse");
+            this.profileResponse = profileResponse;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class GetProfileResponse implements AsyncResponse {
 
             return new GetProfileResponse(
                 contentType, statusCode, rawResponse,
-                entityProfileResponse);
+                profileResponse);
         }
 
     }

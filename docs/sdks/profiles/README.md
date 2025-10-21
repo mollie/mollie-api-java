@@ -58,7 +58,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.entityProfileResponse().isPresent()) {
+        if (res.profileResponse().isPresent()) {
             // handle response
         }
     }
@@ -175,7 +175,7 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
-        if (res.entityProfileResponse().isPresent()) {
+        if (res.profileResponse().isPresent()) {
             // handle response
         }
     }
@@ -217,7 +217,8 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
+import com.mollie.mollie.models.operations.UpdateProfileResponse;
 import java.lang.Exception;
 import java.util.List;
 
@@ -244,11 +245,10 @@ public class Application {
                         "NL",
                         "GB"))
                     .businessCategory("OTHER_MERCHANDISE")
-                    .mode(Mode.LIVE)
                     .build())
                 .call();
 
-        if (res.entityProfileResponse().isPresent()) {
+        if (res.profileResponse().isPresent()) {
             // handle response
         }
     }
@@ -363,7 +363,7 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
-        if (res.entityProfileResponse().isPresent()) {
+        if (res.profileResponse().isPresent()) {
             // handle response
         }
     }

@@ -5,15 +5,11 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * ListCapabilitiesResponseBody
@@ -24,25 +20,22 @@ public class ListCapabilitiesResponseBody {
     /**
      * The number of items in this result set.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
-    private Optional<Long> count;
+    private long count;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_embedded")
-    private Optional<? extends ListCapabilitiesEmbedded> embedded;
+    private ListCapabilitiesEmbedded embedded;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListCapabilitiesLinks> links;
+    private ListCapabilitiesLinks links;
 
     @JsonCreator
     public ListCapabilitiesResponseBody(
-            @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("_embedded") Optional<? extends ListCapabilitiesEmbedded> embedded,
-            @JsonProperty("_links") Optional<? extends ListCapabilitiesLinks> links) {
+            @JsonProperty("count") long count,
+            @JsonProperty("_embedded") ListCapabilitiesEmbedded embedded,
+            @JsonProperty("_links") ListCapabilitiesLinks links) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(embedded, "embedded");
         Utils.checkNotNull(links, "links");
@@ -50,29 +43,23 @@ public class ListCapabilitiesResponseBody {
         this.embedded = embedded;
         this.links = links;
     }
-    
-    public ListCapabilitiesResponseBody() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
-    }
 
     /**
      * The number of items in this result set.
      */
     @JsonIgnore
-    public Optional<Long> count() {
+    public long count() {
         return count;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCapabilitiesEmbedded> embedded() {
-        return (Optional<ListCapabilitiesEmbedded>) embedded;
+    public ListCapabilitiesEmbedded embedded() {
+        return embedded;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListCapabilitiesLinks> links() {
-        return (Optional<ListCapabilitiesLinks>) links;
+    public ListCapabilitiesLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -85,41 +72,17 @@ public class ListCapabilitiesResponseBody {
      */
     public ListCapabilitiesResponseBody withCount(long count) {
         Utils.checkNotNull(count, "count");
-        this.count = Optional.ofNullable(count);
-        return this;
-    }
-
-
-    /**
-     * The number of items in this result set.
-     */
-    public ListCapabilitiesResponseBody withCount(Optional<Long> count) {
-        Utils.checkNotNull(count, "count");
         this.count = count;
         return this;
     }
 
     public ListCapabilitiesResponseBody withEmbedded(ListCapabilitiesEmbedded embedded) {
         Utils.checkNotNull(embedded, "embedded");
-        this.embedded = Optional.ofNullable(embedded);
-        return this;
-    }
-
-
-    public ListCapabilitiesResponseBody withEmbedded(Optional<? extends ListCapabilitiesEmbedded> embedded) {
-        Utils.checkNotNull(embedded, "embedded");
         this.embedded = embedded;
         return this;
     }
 
     public ListCapabilitiesResponseBody withLinks(ListCapabilitiesLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    public ListCapabilitiesResponseBody withLinks(Optional<? extends ListCapabilitiesLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -157,11 +120,11 @@ public class ListCapabilitiesResponseBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Long> count = Optional.empty();
+        private Long count;
 
-        private Optional<? extends ListCapabilitiesEmbedded> embedded = Optional.empty();
+        private ListCapabilitiesEmbedded embedded;
 
-        private Optional<? extends ListCapabilitiesLinks> links = Optional.empty();
+        private ListCapabilitiesLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -173,15 +136,6 @@ public class ListCapabilitiesResponseBody {
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");
-            this.count = Optional.ofNullable(count);
-            return this;
-        }
-
-        /**
-         * The number of items in this result set.
-         */
-        public Builder count(Optional<Long> count) {
-            Utils.checkNotNull(count, "count");
             this.count = count;
             return this;
         }
@@ -189,24 +143,12 @@ public class ListCapabilitiesResponseBody {
 
         public Builder embedded(ListCapabilitiesEmbedded embedded) {
             Utils.checkNotNull(embedded, "embedded");
-            this.embedded = Optional.ofNullable(embedded);
-            return this;
-        }
-
-        public Builder embedded(Optional<? extends ListCapabilitiesEmbedded> embedded) {
-            Utils.checkNotNull(embedded, "embedded");
             this.embedded = embedded;
             return this;
         }
 
 
         public Builder links(ListCapabilitiesLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        public Builder links(Optional<? extends ListCapabilitiesLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

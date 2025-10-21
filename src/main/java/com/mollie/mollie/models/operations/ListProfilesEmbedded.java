@@ -5,44 +5,34 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.EntityProfileResponse;
+import com.mollie.mollie.models.components.ProfileResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 
 
 public class ListProfilesEmbedded {
     /**
      * An array of profile objects.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profiles")
-    private Optional<? extends List<EntityProfileResponse>> profiles;
+    private List<ProfileResponse> profiles;
 
     @JsonCreator
     public ListProfilesEmbedded(
-            @JsonProperty("profiles") Optional<? extends List<EntityProfileResponse>> profiles) {
+            @JsonProperty("profiles") List<ProfileResponse> profiles) {
         Utils.checkNotNull(profiles, "profiles");
         this.profiles = profiles;
-    }
-    
-    public ListProfilesEmbedded() {
-        this(Optional.empty());
     }
 
     /**
      * An array of profile objects.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<EntityProfileResponse>> profiles() {
-        return (Optional<List<EntityProfileResponse>>) profiles;
+    public List<ProfileResponse> profiles() {
+        return profiles;
     }
 
     public static Builder builder() {
@@ -53,17 +43,7 @@ public class ListProfilesEmbedded {
     /**
      * An array of profile objects.
      */
-    public ListProfilesEmbedded withProfiles(List<EntityProfileResponse> profiles) {
-        Utils.checkNotNull(profiles, "profiles");
-        this.profiles = Optional.ofNullable(profiles);
-        return this;
-    }
-
-
-    /**
-     * An array of profile objects.
-     */
-    public ListProfilesEmbedded withProfiles(Optional<? extends List<EntityProfileResponse>> profiles) {
+    public ListProfilesEmbedded withProfiles(List<ProfileResponse> profiles) {
         Utils.checkNotNull(profiles, "profiles");
         this.profiles = profiles;
         return this;
@@ -97,7 +77,7 @@ public class ListProfilesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<EntityProfileResponse>> profiles = Optional.empty();
+        private List<ProfileResponse> profiles;
 
         private Builder() {
           // force use of static builder() method
@@ -107,16 +87,7 @@ public class ListProfilesEmbedded {
         /**
          * An array of profile objects.
          */
-        public Builder profiles(List<EntityProfileResponse> profiles) {
-            Utils.checkNotNull(profiles, "profiles");
-            this.profiles = Optional.ofNullable(profiles);
-            return this;
-        }
-
-        /**
-         * An array of profile objects.
-         */
-        public Builder profiles(Optional<? extends List<EntityProfileResponse>> profiles) {
+        public Builder profiles(List<ProfileResponse> profiles) {
             Utils.checkNotNull(profiles, "profiles");
             this.profiles = profiles;
             return this;

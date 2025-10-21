@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntityClientLinkResponse;
+import com.mollie.mollie.models.components.ClientLinkResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -36,22 +36,22 @@ public class CreateClientLinkResponse implements Response {
     /**
      * The newly created client link object.
      */
-    private Optional<? extends EntityClientLinkResponse> entityClientLinkResponse;
+    private Optional<? extends ClientLinkResponse> clientLinkResponse;
 
     @JsonCreator
     public CreateClientLinkResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends EntityClientLinkResponse> entityClientLinkResponse) {
+            Optional<? extends ClientLinkResponse> clientLinkResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(entityClientLinkResponse, "entityClientLinkResponse");
+        Utils.checkNotNull(clientLinkResponse, "clientLinkResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.entityClientLinkResponse = entityClientLinkResponse;
+        this.clientLinkResponse = clientLinkResponse;
     }
     
     public CreateClientLinkResponse(
@@ -91,8 +91,8 @@ public class CreateClientLinkResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityClientLinkResponse> entityClientLinkResponse() {
-        return (Optional<EntityClientLinkResponse>) entityClientLinkResponse;
+    public Optional<ClientLinkResponse> clientLinkResponse() {
+        return (Optional<ClientLinkResponse>) clientLinkResponse;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class CreateClientLinkResponse implements Response {
     /**
      * The newly created client link object.
      */
-    public CreateClientLinkResponse withEntityClientLinkResponse(EntityClientLinkResponse entityClientLinkResponse) {
-        Utils.checkNotNull(entityClientLinkResponse, "entityClientLinkResponse");
-        this.entityClientLinkResponse = Optional.ofNullable(entityClientLinkResponse);
+    public CreateClientLinkResponse withClientLinkResponse(ClientLinkResponse clientLinkResponse) {
+        Utils.checkNotNull(clientLinkResponse, "clientLinkResponse");
+        this.clientLinkResponse = Optional.ofNullable(clientLinkResponse);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class CreateClientLinkResponse implements Response {
     /**
      * The newly created client link object.
      */
-    public CreateClientLinkResponse withEntityClientLinkResponse(Optional<? extends EntityClientLinkResponse> entityClientLinkResponse) {
-        Utils.checkNotNull(entityClientLinkResponse, "entityClientLinkResponse");
-        this.entityClientLinkResponse = entityClientLinkResponse;
+    public CreateClientLinkResponse withClientLinkResponse(Optional<? extends ClientLinkResponse> clientLinkResponse) {
+        Utils.checkNotNull(clientLinkResponse, "clientLinkResponse");
+        this.clientLinkResponse = clientLinkResponse;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class CreateClientLinkResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.entityClientLinkResponse, other.entityClientLinkResponse);
+            Utils.enhancedDeepEquals(this.clientLinkResponse, other.clientLinkResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            entityClientLinkResponse);
+            clientLinkResponse);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class CreateClientLinkResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "entityClientLinkResponse", entityClientLinkResponse);
+                "clientLinkResponse", clientLinkResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class CreateClientLinkResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends EntityClientLinkResponse> entityClientLinkResponse = Optional.empty();
+        private Optional<? extends ClientLinkResponse> clientLinkResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class CreateClientLinkResponse implements Response {
         /**
          * The newly created client link object.
          */
-        public Builder entityClientLinkResponse(EntityClientLinkResponse entityClientLinkResponse) {
-            Utils.checkNotNull(entityClientLinkResponse, "entityClientLinkResponse");
-            this.entityClientLinkResponse = Optional.ofNullable(entityClientLinkResponse);
+        public Builder clientLinkResponse(ClientLinkResponse clientLinkResponse) {
+            Utils.checkNotNull(clientLinkResponse, "clientLinkResponse");
+            this.clientLinkResponse = Optional.ofNullable(clientLinkResponse);
             return this;
         }
 
         /**
          * The newly created client link object.
          */
-        public Builder entityClientLinkResponse(Optional<? extends EntityClientLinkResponse> entityClientLinkResponse) {
-            Utils.checkNotNull(entityClientLinkResponse, "entityClientLinkResponse");
-            this.entityClientLinkResponse = entityClientLinkResponse;
+        public Builder clientLinkResponse(Optional<? extends ClientLinkResponse> clientLinkResponse) {
+            Utils.checkNotNull(clientLinkResponse, "clientLinkResponse");
+            this.clientLinkResponse = clientLinkResponse;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class CreateClientLinkResponse implements Response {
 
             return new CreateClientLinkResponse(
                 contentType, statusCode, rawResponse,
-                entityClientLinkResponse);
+                clientLinkResponse);
         }
 
     }

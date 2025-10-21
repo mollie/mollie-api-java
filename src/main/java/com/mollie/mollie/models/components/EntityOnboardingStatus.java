@@ -5,15 +5,11 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 
 public class EntityOnboardingStatus {
@@ -22,62 +18,55 @@ public class EntityOnboardingStatus {
      * `onboarding` for this
      * resource type.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The name of the organization.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The current status of the organization's onboarding process.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends OnboardingStatus> status;
+    private OnboardingStatus status;
 
     /**
      * Whether the organization can receive payments.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canReceivePayments")
-    private Optional<Boolean> canReceivePayments;
+    private boolean canReceivePayments;
 
     /**
      * Whether the organization can receive settlements to their external bank account.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("canReceiveSettlements")
-    private Optional<Boolean> canReceiveSettlements;
+    private boolean canReceiveSettlements;
 
     /**
      * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("signedUpAt")
-    private Optional<String> signedUpAt;
+    private String signedUpAt;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends EntityOnboardingStatusLinks> links;
+    private EntityOnboardingStatusLinks links;
 
     @JsonCreator
     public EntityOnboardingStatus(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends OnboardingStatus> status,
-            @JsonProperty("canReceivePayments") Optional<Boolean> canReceivePayments,
-            @JsonProperty("canReceiveSettlements") Optional<Boolean> canReceiveSettlements,
-            @JsonProperty("signedUpAt") Optional<String> signedUpAt,
-            @JsonProperty("_links") Optional<? extends EntityOnboardingStatusLinks> links) {
+            @JsonProperty("resource") String resource,
+            @JsonProperty("name") String name,
+            @JsonProperty("status") OnboardingStatus status,
+            @JsonProperty("canReceivePayments") boolean canReceivePayments,
+            @JsonProperty("canReceiveSettlements") boolean canReceiveSettlements,
+            @JsonProperty("signedUpAt") String signedUpAt,
+            @JsonProperty("_links") EntityOnboardingStatusLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(status, "status");
@@ -93,12 +82,6 @@ public class EntityOnboardingStatus {
         this.signedUpAt = signedUpAt;
         this.links = links;
     }
-    
-    public EntityOnboardingStatus() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
-    }
 
     /**
      * Indicates the response contains an onboarding status object. Will always contain the string
@@ -106,7 +89,7 @@ public class EntityOnboardingStatus {
      * resource type.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -114,24 +97,23 @@ public class EntityOnboardingStatus {
      * The name of the organization.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
     /**
      * The current status of the organization's onboarding process.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<OnboardingStatus> status() {
-        return (Optional<OnboardingStatus>) status;
+    public OnboardingStatus status() {
+        return status;
     }
 
     /**
      * Whether the organization can receive payments.
      */
     @JsonIgnore
-    public Optional<Boolean> canReceivePayments() {
+    public boolean canReceivePayments() {
         return canReceivePayments;
     }
 
@@ -139,7 +121,7 @@ public class EntityOnboardingStatus {
      * Whether the organization can receive settlements to their external bank account.
      */
     @JsonIgnore
-    public Optional<Boolean> canReceiveSettlements() {
+    public boolean canReceiveSettlements() {
         return canReceiveSettlements;
     }
 
@@ -148,17 +130,16 @@ public class EntityOnboardingStatus {
      * format.
      */
     @JsonIgnore
-    public Optional<String> signedUpAt() {
+    public String signedUpAt() {
         return signedUpAt;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityOnboardingStatusLinks> links() {
-        return (Optional<EntityOnboardingStatusLinks>) links;
+    public EntityOnboardingStatusLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -173,18 +154,6 @@ public class EntityOnboardingStatus {
      */
     public EntityOnboardingStatus withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains an onboarding status object. Will always contain the string
-     * `onboarding` for this
-     * resource type.
-     */
-    public EntityOnboardingStatus withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -193,16 +162,6 @@ public class EntityOnboardingStatus {
      * The name of the organization.
      */
     public EntityOnboardingStatus withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The name of the organization.
-     */
-    public EntityOnboardingStatus withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -213,16 +172,6 @@ public class EntityOnboardingStatus {
      */
     public EntityOnboardingStatus withStatus(OnboardingStatus status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The current status of the organization's onboarding process.
-     */
-    public EntityOnboardingStatus withStatus(Optional<? extends OnboardingStatus> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -232,16 +181,6 @@ public class EntityOnboardingStatus {
      */
     public EntityOnboardingStatus withCanReceivePayments(boolean canReceivePayments) {
         Utils.checkNotNull(canReceivePayments, "canReceivePayments");
-        this.canReceivePayments = Optional.ofNullable(canReceivePayments);
-        return this;
-    }
-
-
-    /**
-     * Whether the organization can receive payments.
-     */
-    public EntityOnboardingStatus withCanReceivePayments(Optional<Boolean> canReceivePayments) {
-        Utils.checkNotNull(canReceivePayments, "canReceivePayments");
         this.canReceivePayments = canReceivePayments;
         return this;
     }
@@ -250,16 +189,6 @@ public class EntityOnboardingStatus {
      * Whether the organization can receive settlements to their external bank account.
      */
     public EntityOnboardingStatus withCanReceiveSettlements(boolean canReceiveSettlements) {
-        Utils.checkNotNull(canReceiveSettlements, "canReceiveSettlements");
-        this.canReceiveSettlements = Optional.ofNullable(canReceiveSettlements);
-        return this;
-    }
-
-
-    /**
-     * Whether the organization can receive settlements to their external bank account.
-     */
-    public EntityOnboardingStatus withCanReceiveSettlements(Optional<Boolean> canReceiveSettlements) {
         Utils.checkNotNull(canReceiveSettlements, "canReceiveSettlements");
         this.canReceiveSettlements = canReceiveSettlements;
         return this;
@@ -271,17 +200,6 @@ public class EntityOnboardingStatus {
      */
     public EntityOnboardingStatus withSignedUpAt(String signedUpAt) {
         Utils.checkNotNull(signedUpAt, "signedUpAt");
-        this.signedUpAt = Optional.ofNullable(signedUpAt);
-        return this;
-    }
-
-
-    /**
-     * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     */
-    public EntityOnboardingStatus withSignedUpAt(Optional<String> signedUpAt) {
-        Utils.checkNotNull(signedUpAt, "signedUpAt");
         this.signedUpAt = signedUpAt;
         return this;
     }
@@ -290,16 +208,6 @@ public class EntityOnboardingStatus {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public EntityOnboardingStatus withLinks(EntityOnboardingStatusLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public EntityOnboardingStatus withLinks(Optional<? extends EntityOnboardingStatusLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -347,19 +255,19 @@ public class EntityOnboardingStatus {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<? extends OnboardingStatus> status = Optional.empty();
+        private OnboardingStatus status;
 
-        private Optional<Boolean> canReceivePayments = Optional.empty();
+        private Boolean canReceivePayments;
 
-        private Optional<Boolean> canReceiveSettlements = Optional.empty();
+        private Boolean canReceiveSettlements;
 
-        private Optional<String> signedUpAt = Optional.empty();
+        private String signedUpAt;
 
-        private Optional<? extends EntityOnboardingStatusLinks> links = Optional.empty();
+        private EntityOnboardingStatusLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -373,17 +281,6 @@ public class EntityOnboardingStatus {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains an onboarding status object. Will always contain the string
-         * `onboarding` for this
-         * resource type.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -393,15 +290,6 @@ public class EntityOnboardingStatus {
          * The name of the organization.
          */
         public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the organization.
-         */
-        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -413,15 +301,6 @@ public class EntityOnboardingStatus {
          */
         public Builder status(OnboardingStatus status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The current status of the organization's onboarding process.
-         */
-        public Builder status(Optional<? extends OnboardingStatus> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -432,15 +311,6 @@ public class EntityOnboardingStatus {
          */
         public Builder canReceivePayments(boolean canReceivePayments) {
             Utils.checkNotNull(canReceivePayments, "canReceivePayments");
-            this.canReceivePayments = Optional.ofNullable(canReceivePayments);
-            return this;
-        }
-
-        /**
-         * Whether the organization can receive payments.
-         */
-        public Builder canReceivePayments(Optional<Boolean> canReceivePayments) {
-            Utils.checkNotNull(canReceivePayments, "canReceivePayments");
             this.canReceivePayments = canReceivePayments;
             return this;
         }
@@ -450,15 +320,6 @@ public class EntityOnboardingStatus {
          * Whether the organization can receive settlements to their external bank account.
          */
         public Builder canReceiveSettlements(boolean canReceiveSettlements) {
-            Utils.checkNotNull(canReceiveSettlements, "canReceiveSettlements");
-            this.canReceiveSettlements = Optional.ofNullable(canReceiveSettlements);
-            return this;
-        }
-
-        /**
-         * Whether the organization can receive settlements to their external bank account.
-         */
-        public Builder canReceiveSettlements(Optional<Boolean> canReceiveSettlements) {
             Utils.checkNotNull(canReceiveSettlements, "canReceiveSettlements");
             this.canReceiveSettlements = canReceiveSettlements;
             return this;
@@ -471,16 +332,6 @@ public class EntityOnboardingStatus {
          */
         public Builder signedUpAt(String signedUpAt) {
             Utils.checkNotNull(signedUpAt, "signedUpAt");
-            this.signedUpAt = Optional.ofNullable(signedUpAt);
-            return this;
-        }
-
-        /**
-         * The sign up date time of the organization in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
-         */
-        public Builder signedUpAt(Optional<String> signedUpAt) {
-            Utils.checkNotNull(signedUpAt, "signedUpAt");
             this.signedUpAt = signedUpAt;
             return this;
         }
@@ -490,15 +341,6 @@ public class EntityOnboardingStatus {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(EntityOnboardingStatusLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends EntityOnboardingStatusLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

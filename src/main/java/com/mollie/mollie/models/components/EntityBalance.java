@@ -21,48 +21,41 @@ public class EntityBalance {
      * Indicates the response contains a balance object. Will always contain the string `balance` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends Mode> mode;
+    private Mode mode;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private Optional<? extends Currencies> currency;
+    private Currencies currency;
 
     /**
      * The description or name of the balance. Can be used to denote the purpose of the balance.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The status of the balance.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends BalanceStatus> status;
+    private BalanceStatus status;
 
     /**
      * The frequency with which the available amount on the balance will be settled to the configured
@@ -101,40 +94,37 @@ public class EntityBalance {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("availableAmount")
-    private Optional<? extends Amount> availableAmount;
+    private Amount availableAmount;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pendingAmount")
-    private Optional<? extends Amount> pendingAmount;
+    private Amount pendingAmount;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends Links> links;
+    private Links links;
 
     @JsonCreator
     public EntityBalance(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends Mode> mode,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("currency") Optional<? extends Currencies> currency,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("status") Optional<? extends BalanceStatus> status,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") Mode mode,
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("currency") Currencies currency,
+            @JsonProperty("description") String description,
+            @JsonProperty("status") BalanceStatus status,
             @JsonProperty("transferFrequency") Optional<? extends BalanceTransferFrequency> transferFrequency,
             @JsonProperty("transferThreshold") Optional<? extends Amount> transferThreshold,
             @JsonProperty("transferReference") JsonNullable<String> transferReference,
             @JsonProperty("transferDestination") JsonNullable<? extends TransferDestination> transferDestination,
-            @JsonProperty("availableAmount") Optional<? extends Amount> availableAmount,
-            @JsonProperty("pendingAmount") Optional<? extends Amount> pendingAmount,
-            @JsonProperty("_links") Optional<? extends Links> links) {
+            @JsonProperty("availableAmount") Amount availableAmount,
+            @JsonProperty("pendingAmount") Amount pendingAmount,
+            @JsonProperty("_links") Links links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -165,12 +155,22 @@ public class EntityBalance {
         this.links = links;
     }
     
-    public EntityBalance() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+    public EntityBalance(
+            String resource,
+            String id,
+            Mode mode,
+            String createdAt,
+            Currencies currency,
+            String description,
+            BalanceStatus status,
+            Amount availableAmount,
+            Amount pendingAmount,
+            Links links) {
+        this(resource, id, mode,
+            createdAt, currency, description,
+            status, Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), availableAmount,
+            pendingAmount, links);
     }
 
     /**
@@ -178,22 +178,21 @@ public class EntityBalance {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Mode> mode() {
-        return (Optional<Mode>) mode;
+    public Mode mode() {
+        return mode;
     }
 
     /**
@@ -201,31 +200,29 @@ public class EntityBalance {
      * format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Currencies> currency() {
-        return (Optional<Currencies>) currency;
+    public Currencies currency() {
+        return currency;
     }
 
     /**
      * The description or name of the balance. Can be used to denote the purpose of the balance.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
     /**
      * The status of the balance.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<BalanceStatus> status() {
-        return (Optional<BalanceStatus>) status;
+    public BalanceStatus status() {
+        return status;
     }
 
     /**
@@ -272,28 +269,25 @@ public class EntityBalance {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> availableAmount() {
-        return (Optional<Amount>) availableAmount;
+    public Amount availableAmount() {
+        return availableAmount;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> pendingAmount() {
-        return (Optional<Amount>) pendingAmount;
+    public Amount pendingAmount() {
+        return pendingAmount;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Links> links() {
-        return (Optional<Links>) links;
+    public Links links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -307,29 +301,11 @@ public class EntityBalance {
      */
     public EntityBalance withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a balance object. Will always contain the string `balance` for this
-     * endpoint.
-     */
-    public EntityBalance withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     public EntityBalance withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public EntityBalance withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -339,16 +315,6 @@ public class EntityBalance {
      * Whether this entity was created in live mode or in test mode.
      */
     public EntityBalance withMode(Mode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     */
-    public EntityBalance withMode(Optional<? extends Mode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -360,29 +326,11 @@ public class EntityBalance {
      */
     public EntityBalance withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     */
-    public EntityBalance withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
     public EntityBalance withCurrency(Currencies currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = Optional.ofNullable(currency);
-        return this;
-    }
-
-
-    public EntityBalance withCurrency(Optional<? extends Currencies> currency) {
         Utils.checkNotNull(currency, "currency");
         this.currency = currency;
         return this;
@@ -393,16 +341,6 @@ public class EntityBalance {
      */
     public EntityBalance withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * The description or name of the balance. Can be used to denote the purpose of the balance.
-     */
-    public EntityBalance withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -411,16 +349,6 @@ public class EntityBalance {
      * The status of the balance.
      */
     public EntityBalance withStatus(BalanceStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The status of the balance.
-     */
-    public EntityBalance withStatus(Optional<? extends BalanceStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -517,16 +445,6 @@ public class EntityBalance {
      */
     public EntityBalance withAvailableAmount(Amount availableAmount) {
         Utils.checkNotNull(availableAmount, "availableAmount");
-        this.availableAmount = Optional.ofNullable(availableAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntityBalance withAvailableAmount(Optional<? extends Amount> availableAmount) {
-        Utils.checkNotNull(availableAmount, "availableAmount");
         this.availableAmount = availableAmount;
         return this;
     }
@@ -536,16 +454,6 @@ public class EntityBalance {
      */
     public EntityBalance withPendingAmount(Amount pendingAmount) {
         Utils.checkNotNull(pendingAmount, "pendingAmount");
-        this.pendingAmount = Optional.ofNullable(pendingAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntityBalance withPendingAmount(Optional<? extends Amount> pendingAmount) {
-        Utils.checkNotNull(pendingAmount, "pendingAmount");
         this.pendingAmount = pendingAmount;
         return this;
     }
@@ -554,16 +462,6 @@ public class EntityBalance {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public EntityBalance withLinks(Links links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public EntityBalance withLinks(Optional<? extends Links> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -627,19 +525,19 @@ public class EntityBalance {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends Mode> mode = Optional.empty();
+        private Mode mode;
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
-        private Optional<? extends Currencies> currency = Optional.empty();
+        private Currencies currency;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
-        private Optional<? extends BalanceStatus> status = Optional.empty();
+        private BalanceStatus status;
 
         private Optional<? extends BalanceTransferFrequency> transferFrequency = Optional.empty();
 
@@ -649,11 +547,11 @@ public class EntityBalance {
 
         private JsonNullable<? extends TransferDestination> transferDestination = JsonNullable.undefined();
 
-        private Optional<? extends Amount> availableAmount = Optional.empty();
+        private Amount availableAmount;
 
-        private Optional<? extends Amount> pendingAmount = Optional.empty();
+        private Amount pendingAmount;
 
-        private Optional<? extends Links> links = Optional.empty();
+        private Links links;
 
         private Builder() {
           // force use of static builder() method
@@ -666,28 +564,12 @@ public class EntityBalance {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a balance object. Will always contain the string `balance` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -698,15 +580,6 @@ public class EntityBalance {
          * Whether this entity was created in live mode or in test mode.
          */
         public Builder mode(Mode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         */
-        public Builder mode(Optional<? extends Mode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -719,28 +592,12 @@ public class EntityBalance {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
 
 
         public Builder currency(Currencies currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = Optional.ofNullable(currency);
-            return this;
-        }
-
-        public Builder currency(Optional<? extends Currencies> currency) {
             Utils.checkNotNull(currency, "currency");
             this.currency = currency;
             return this;
@@ -752,15 +609,6 @@ public class EntityBalance {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description or name of the balance. Can be used to denote the purpose of the balance.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -770,15 +618,6 @@ public class EntityBalance {
          * The status of the balance.
          */
         public Builder status(BalanceStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status of the balance.
-         */
-        public Builder status(Optional<? extends BalanceStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -878,15 +717,6 @@ public class EntityBalance {
          */
         public Builder availableAmount(Amount availableAmount) {
             Utils.checkNotNull(availableAmount, "availableAmount");
-            this.availableAmount = Optional.ofNullable(availableAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder availableAmount(Optional<? extends Amount> availableAmount) {
-            Utils.checkNotNull(availableAmount, "availableAmount");
             this.availableAmount = availableAmount;
             return this;
         }
@@ -897,15 +727,6 @@ public class EntityBalance {
          */
         public Builder pendingAmount(Amount pendingAmount) {
             Utils.checkNotNull(pendingAmount, "pendingAmount");
-            this.pendingAmount = Optional.ofNullable(pendingAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder pendingAmount(Optional<? extends Amount> pendingAmount) {
-            Utils.checkNotNull(pendingAmount, "pendingAmount");
             this.pendingAmount = pendingAmount;
             return this;
         }
@@ -915,15 +736,6 @@ public class EntityBalance {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(Links links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends Links> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

@@ -5,60 +5,51 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 
 public class EntityInvoiceLines {
     /**
      * The administrative period in `YYYY-MM` on which the line should be booked.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("period")
-    private Optional<String> period;
+    private String period;
 
     /**
      * Description of the product.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * Number of products invoiced. For example, the number of payments.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("count")
-    private Optional<Long> count;
+    private long count;
 
     /**
      * VAT percentage rate that applies to this product.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatPercentage")
-    private Optional<Long> vatPercentage;
+    private long vatPercentage;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends Amount> amount;
+    private Amount amount;
 
     @JsonCreator
     public EntityInvoiceLines(
-            @JsonProperty("period") Optional<String> period,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("count") Optional<Long> count,
-            @JsonProperty("vatPercentage") Optional<Long> vatPercentage,
-            @JsonProperty("amount") Optional<? extends Amount> amount) {
+            @JsonProperty("period") String period,
+            @JsonProperty("description") String description,
+            @JsonProperty("count") long count,
+            @JsonProperty("vatPercentage") long vatPercentage,
+            @JsonProperty("amount") Amount amount) {
         Utils.checkNotNull(period, "period");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(count, "count");
@@ -70,17 +61,12 @@ public class EntityInvoiceLines {
         this.vatPercentage = vatPercentage;
         this.amount = amount;
     }
-    
-    public EntityInvoiceLines() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
-    }
 
     /**
      * The administrative period in `YYYY-MM` on which the line should be booked.
      */
     @JsonIgnore
-    public Optional<String> period() {
+    public String period() {
         return period;
     }
 
@@ -88,7 +74,7 @@ public class EntityInvoiceLines {
      * Description of the product.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -96,7 +82,7 @@ public class EntityInvoiceLines {
      * Number of products invoiced. For example, the number of payments.
      */
     @JsonIgnore
-    public Optional<Long> count() {
+    public long count() {
         return count;
     }
 
@@ -104,17 +90,16 @@ public class EntityInvoiceLines {
      * VAT percentage rate that applies to this product.
      */
     @JsonIgnore
-    public Optional<Long> vatPercentage() {
+    public long vatPercentage() {
         return vatPercentage;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amount() {
-        return (Optional<Amount>) amount;
+    public Amount amount() {
+        return amount;
     }
 
     public static Builder builder() {
@@ -127,16 +112,6 @@ public class EntityInvoiceLines {
      */
     public EntityInvoiceLines withPeriod(String period) {
         Utils.checkNotNull(period, "period");
-        this.period = Optional.ofNullable(period);
-        return this;
-    }
-
-
-    /**
-     * The administrative period in `YYYY-MM` on which the line should be booked.
-     */
-    public EntityInvoiceLines withPeriod(Optional<String> period) {
-        Utils.checkNotNull(period, "period");
         this.period = period;
         return this;
     }
@@ -145,16 +120,6 @@ public class EntityInvoiceLines {
      * Description of the product.
      */
     public EntityInvoiceLines withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * Description of the product.
-     */
-    public EntityInvoiceLines withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -165,16 +130,6 @@ public class EntityInvoiceLines {
      */
     public EntityInvoiceLines withCount(long count) {
         Utils.checkNotNull(count, "count");
-        this.count = Optional.ofNullable(count);
-        return this;
-    }
-
-
-    /**
-     * Number of products invoiced. For example, the number of payments.
-     */
-    public EntityInvoiceLines withCount(Optional<Long> count) {
-        Utils.checkNotNull(count, "count");
         this.count = count;
         return this;
     }
@@ -184,16 +139,6 @@ public class EntityInvoiceLines {
      */
     public EntityInvoiceLines withVatPercentage(long vatPercentage) {
         Utils.checkNotNull(vatPercentage, "vatPercentage");
-        this.vatPercentage = Optional.ofNullable(vatPercentage);
-        return this;
-    }
-
-
-    /**
-     * VAT percentage rate that applies to this product.
-     */
-    public EntityInvoiceLines withVatPercentage(Optional<Long> vatPercentage) {
-        Utils.checkNotNull(vatPercentage, "vatPercentage");
         this.vatPercentage = vatPercentage;
         return this;
     }
@@ -202,16 +147,6 @@ public class EntityInvoiceLines {
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public EntityInvoiceLines withAmount(Amount amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntityInvoiceLines withAmount(Optional<? extends Amount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -254,15 +189,15 @@ public class EntityInvoiceLines {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> period = Optional.empty();
+        private String period;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
-        private Optional<Long> count = Optional.empty();
+        private Long count;
 
-        private Optional<Long> vatPercentage = Optional.empty();
+        private Long vatPercentage;
 
-        private Optional<? extends Amount> amount = Optional.empty();
+        private Amount amount;
 
         private Builder() {
           // force use of static builder() method
@@ -274,15 +209,6 @@ public class EntityInvoiceLines {
          */
         public Builder period(String period) {
             Utils.checkNotNull(period, "period");
-            this.period = Optional.ofNullable(period);
-            return this;
-        }
-
-        /**
-         * The administrative period in `YYYY-MM` on which the line should be booked.
-         */
-        public Builder period(Optional<String> period) {
-            Utils.checkNotNull(period, "period");
             this.period = period;
             return this;
         }
@@ -292,15 +218,6 @@ public class EntityInvoiceLines {
          * Description of the product.
          */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * Description of the product.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
@@ -312,15 +229,6 @@ public class EntityInvoiceLines {
          */
         public Builder count(long count) {
             Utils.checkNotNull(count, "count");
-            this.count = Optional.ofNullable(count);
-            return this;
-        }
-
-        /**
-         * Number of products invoiced. For example, the number of payments.
-         */
-        public Builder count(Optional<Long> count) {
-            Utils.checkNotNull(count, "count");
             this.count = count;
             return this;
         }
@@ -331,15 +239,6 @@ public class EntityInvoiceLines {
          */
         public Builder vatPercentage(long vatPercentage) {
             Utils.checkNotNull(vatPercentage, "vatPercentage");
-            this.vatPercentage = Optional.ofNullable(vatPercentage);
-            return this;
-        }
-
-        /**
-         * VAT percentage rate that applies to this product.
-         */
-        public Builder vatPercentage(Optional<Long> vatPercentage) {
-            Utils.checkNotNull(vatPercentage, "vatPercentage");
             this.vatPercentage = vatPercentage;
             return this;
         }
@@ -349,15 +248,6 @@ public class EntityInvoiceLines {
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder amount(Amount amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amount(Optional<? extends Amount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;

@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntityProfileResponse;
+import com.mollie.mollie.models.components.ProfileResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -37,22 +37,22 @@ public class GetCurrentProfileResponse implements AsyncResponse {
      * The current profile object. For a complete reference of the profile object, refer to the
      * [Get profile](get-profile) endpoint documentation.
      */
-    private Optional<? extends EntityProfileResponse> entityProfileResponse;
+    private Optional<? extends ProfileResponse> profileResponse;
 
     @JsonCreator
     public GetCurrentProfileResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends EntityProfileResponse> entityProfileResponse) {
+            Optional<? extends ProfileResponse> profileResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+        Utils.checkNotNull(profileResponse, "profileResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.entityProfileResponse = entityProfileResponse;
+        this.profileResponse = profileResponse;
     }
     
     public GetCurrentProfileResponse(
@@ -93,8 +93,8 @@ public class GetCurrentProfileResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityProfileResponse> entityProfileResponse() {
-        return (Optional<EntityProfileResponse>) entityProfileResponse;
+    public Optional<ProfileResponse> profileResponse() {
+        return (Optional<ProfileResponse>) profileResponse;
     }
 
     public static Builder builder() {
@@ -133,9 +133,9 @@ public class GetCurrentProfileResponse implements AsyncResponse {
      * The current profile object. For a complete reference of the profile object, refer to the
      * [Get profile](get-profile) endpoint documentation.
      */
-    public GetCurrentProfileResponse withEntityProfileResponse(EntityProfileResponse entityProfileResponse) {
-        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-        this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
+    public GetCurrentProfileResponse withProfileResponse(ProfileResponse profileResponse) {
+        Utils.checkNotNull(profileResponse, "profileResponse");
+        this.profileResponse = Optional.ofNullable(profileResponse);
         return this;
     }
 
@@ -144,9 +144,9 @@ public class GetCurrentProfileResponse implements AsyncResponse {
      * The current profile object. For a complete reference of the profile object, refer to the
      * [Get profile](get-profile) endpoint documentation.
      */
-    public GetCurrentProfileResponse withEntityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
-        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-        this.entityProfileResponse = entityProfileResponse;
+    public GetCurrentProfileResponse withProfileResponse(Optional<? extends ProfileResponse> profileResponse) {
+        Utils.checkNotNull(profileResponse, "profileResponse");
+        this.profileResponse = profileResponse;
         return this;
     }
 
@@ -163,14 +163,14 @@ public class GetCurrentProfileResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.entityProfileResponse, other.entityProfileResponse);
+            Utils.enhancedDeepEquals(this.profileResponse, other.profileResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            entityProfileResponse);
+            profileResponse);
     }
     
     @Override
@@ -179,7 +179,7 @@ public class GetCurrentProfileResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "entityProfileResponse", entityProfileResponse);
+                "profileResponse", profileResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -191,7 +191,7 @@ public class GetCurrentProfileResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends EntityProfileResponse> entityProfileResponse = Optional.empty();
+        private Optional<? extends ProfileResponse> profileResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -232,9 +232,9 @@ public class GetCurrentProfileResponse implements AsyncResponse {
          * The current profile object. For a complete reference of the profile object, refer to the
          * [Get profile](get-profile) endpoint documentation.
          */
-        public Builder entityProfileResponse(EntityProfileResponse entityProfileResponse) {
-            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-            this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
+        public Builder profileResponse(ProfileResponse profileResponse) {
+            Utils.checkNotNull(profileResponse, "profileResponse");
+            this.profileResponse = Optional.ofNullable(profileResponse);
             return this;
         }
 
@@ -242,9 +242,9 @@ public class GetCurrentProfileResponse implements AsyncResponse {
          * The current profile object. For a complete reference of the profile object, refer to the
          * [Get profile](get-profile) endpoint documentation.
          */
-        public Builder entityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
-            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-            this.entityProfileResponse = entityProfileResponse;
+        public Builder profileResponse(Optional<? extends ProfileResponse> profileResponse) {
+            Utils.checkNotNull(profileResponse, "profileResponse");
+            this.profileResponse = profileResponse;
             return this;
         }
 
@@ -252,7 +252,7 @@ public class GetCurrentProfileResponse implements AsyncResponse {
 
             return new GetCurrentProfileResponse(
                 contentType, statusCode, rawResponse,
-                entityProfileResponse);
+                profileResponse);
         }
 
     }

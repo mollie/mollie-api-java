@@ -5,48 +5,41 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
 
 
 public class Address {
     /**
      * A street and street number.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("streetAndNumber")
-    private Optional<String> streetAndNumber;
+    private String streetAndNumber;
 
     /**
      * A postal code. This field may be required if the provided country has a postal code system.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postalCode")
-    private Optional<String> postalCode;
+    private String postalCode;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("city")
-    private Optional<String> city;
+    private String city;
 
     /**
      * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
-    private Optional<String> country;
+    private String country;
 
     @JsonCreator
     public Address(
-            @JsonProperty("streetAndNumber") Optional<String> streetAndNumber,
-            @JsonProperty("postalCode") Optional<String> postalCode,
-            @JsonProperty("city") Optional<String> city,
-            @JsonProperty("country") Optional<String> country) {
+            @JsonProperty("streetAndNumber") String streetAndNumber,
+            @JsonProperty("postalCode") String postalCode,
+            @JsonProperty("city") String city,
+            @JsonProperty("country") String country) {
         Utils.checkNotNull(streetAndNumber, "streetAndNumber");
         Utils.checkNotNull(postalCode, "postalCode");
         Utils.checkNotNull(city, "city");
@@ -56,17 +49,12 @@ public class Address {
         this.city = city;
         this.country = country;
     }
-    
-    public Address() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
-    }
 
     /**
      * A street and street number.
      */
     @JsonIgnore
-    public Optional<String> streetAndNumber() {
+    public String streetAndNumber() {
         return streetAndNumber;
     }
 
@@ -74,12 +62,12 @@ public class Address {
      * A postal code. This field may be required if the provided country has a postal code system.
      */
     @JsonIgnore
-    public Optional<String> postalCode() {
+    public String postalCode() {
         return postalCode;
     }
 
     @JsonIgnore
-    public Optional<String> city() {
+    public String city() {
         return city;
     }
 
@@ -87,7 +75,7 @@ public class Address {
      * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     @JsonIgnore
-    public Optional<String> country() {
+    public String country() {
         return country;
     }
 
@@ -101,16 +89,6 @@ public class Address {
      */
     public Address withStreetAndNumber(String streetAndNumber) {
         Utils.checkNotNull(streetAndNumber, "streetAndNumber");
-        this.streetAndNumber = Optional.ofNullable(streetAndNumber);
-        return this;
-    }
-
-
-    /**
-     * A street and street number.
-     */
-    public Address withStreetAndNumber(Optional<String> streetAndNumber) {
-        Utils.checkNotNull(streetAndNumber, "streetAndNumber");
         this.streetAndNumber = streetAndNumber;
         return this;
     }
@@ -120,28 +98,11 @@ public class Address {
      */
     public Address withPostalCode(String postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
-        this.postalCode = Optional.ofNullable(postalCode);
-        return this;
-    }
-
-
-    /**
-     * A postal code. This field may be required if the provided country has a postal code system.
-     */
-    public Address withPostalCode(Optional<String> postalCode) {
-        Utils.checkNotNull(postalCode, "postalCode");
         this.postalCode = postalCode;
         return this;
     }
 
     public Address withCity(String city) {
-        Utils.checkNotNull(city, "city");
-        this.city = Optional.ofNullable(city);
-        return this;
-    }
-
-
-    public Address withCity(Optional<String> city) {
         Utils.checkNotNull(city, "city");
         this.city = city;
         return this;
@@ -151,16 +112,6 @@ public class Address {
      * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
     public Address withCountry(String country) {
-        Utils.checkNotNull(country, "country");
-        this.country = Optional.ofNullable(country);
-        return this;
-    }
-
-
-    /**
-     * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
-     */
-    public Address withCountry(Optional<String> country) {
         Utils.checkNotNull(country, "country");
         this.country = country;
         return this;
@@ -201,13 +152,13 @@ public class Address {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> streetAndNumber = Optional.empty();
+        private String streetAndNumber;
 
-        private Optional<String> postalCode = Optional.empty();
+        private String postalCode;
 
-        private Optional<String> city = Optional.empty();
+        private String city;
 
-        private Optional<String> country = Optional.empty();
+        private String country;
 
         private Builder() {
           // force use of static builder() method
@@ -219,15 +170,6 @@ public class Address {
          */
         public Builder streetAndNumber(String streetAndNumber) {
             Utils.checkNotNull(streetAndNumber, "streetAndNumber");
-            this.streetAndNumber = Optional.ofNullable(streetAndNumber);
-            return this;
-        }
-
-        /**
-         * A street and street number.
-         */
-        public Builder streetAndNumber(Optional<String> streetAndNumber) {
-            Utils.checkNotNull(streetAndNumber, "streetAndNumber");
             this.streetAndNumber = streetAndNumber;
             return this;
         }
@@ -238,27 +180,12 @@ public class Address {
          */
         public Builder postalCode(String postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
-            this.postalCode = Optional.ofNullable(postalCode);
-            return this;
-        }
-
-        /**
-         * A postal code. This field may be required if the provided country has a postal code system.
-         */
-        public Builder postalCode(Optional<String> postalCode) {
-            Utils.checkNotNull(postalCode, "postalCode");
             this.postalCode = postalCode;
             return this;
         }
 
 
         public Builder city(String city) {
-            Utils.checkNotNull(city, "city");
-            this.city = Optional.ofNullable(city);
-            return this;
-        }
-
-        public Builder city(Optional<String> city) {
             Utils.checkNotNull(city, "city");
             this.city = city;
             return this;
@@ -269,15 +196,6 @@ public class Address {
          * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          */
         public Builder country(String country) {
-            Utils.checkNotNull(country, "country");
-            this.country = Optional.ofNullable(country);
-            return this;
-        }
-
-        /**
-         * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
-         */
-        public Builder country(Optional<String> country) {
             Utils.checkNotNull(country, "country");
             this.country = country;
             return this;

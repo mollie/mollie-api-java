@@ -15,7 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
-public class EntityClientLinkResponse {
+public class ClientLinkResponse {
     /**
      * Indicates the response contains a client link object. Will always contain the string `client-link`
      * for this
@@ -37,13 +37,13 @@ public class EntityClientLinkResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends EntityClientLinkResponseLinks> links;
+    private Optional<? extends ClientLinkResponseLinks> links;
 
     @JsonCreator
-    public EntityClientLinkResponse(
+    public ClientLinkResponse(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("_links") Optional<? extends EntityClientLinkResponseLinks> links) {
+            @JsonProperty("_links") Optional<? extends ClientLinkResponseLinks> links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(links, "links");
@@ -52,7 +52,7 @@ public class EntityClientLinkResponse {
         this.links = links;
     }
     
-    public EntityClientLinkResponse() {
+    public ClientLinkResponse() {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -79,8 +79,8 @@ public class EntityClientLinkResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityClientLinkResponseLinks> links() {
-        return (Optional<EntityClientLinkResponseLinks>) links;
+    public Optional<ClientLinkResponseLinks> links() {
+        return (Optional<ClientLinkResponseLinks>) links;
     }
 
     public static Builder builder() {
@@ -93,7 +93,7 @@ public class EntityClientLinkResponse {
      * for this
      * endpoint.
      */
-    public EntityClientLinkResponse withResource(String resource) {
+    public ClientLinkResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
         return this;
@@ -105,7 +105,7 @@ public class EntityClientLinkResponse {
      * for this
      * endpoint.
      */
-    public EntityClientLinkResponse withResource(Optional<String> resource) {
+    public ClientLinkResponse withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -114,7 +114,7 @@ public class EntityClientLinkResponse {
     /**
      * The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.
      */
-    public EntityClientLinkResponse withId(String id) {
+    public ClientLinkResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
@@ -124,7 +124,7 @@ public class EntityClientLinkResponse {
     /**
      * The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.
      */
-    public EntityClientLinkResponse withId(Optional<String> id) {
+    public ClientLinkResponse withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -133,7 +133,7 @@ public class EntityClientLinkResponse {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public EntityClientLinkResponse withLinks(EntityClientLinkResponseLinks links) {
+    public ClientLinkResponse withLinks(ClientLinkResponseLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = Optional.ofNullable(links);
         return this;
@@ -143,7 +143,7 @@ public class EntityClientLinkResponse {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public EntityClientLinkResponse withLinks(Optional<? extends EntityClientLinkResponseLinks> links) {
+    public ClientLinkResponse withLinks(Optional<? extends ClientLinkResponseLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -157,7 +157,7 @@ public class EntityClientLinkResponse {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityClientLinkResponse other = (EntityClientLinkResponse) o;
+        ClientLinkResponse other = (ClientLinkResponse) o;
         return 
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
@@ -172,7 +172,7 @@ public class EntityClientLinkResponse {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityClientLinkResponse.class,
+        return Utils.toString(ClientLinkResponse.class,
                 "resource", resource,
                 "id", id,
                 "links", links);
@@ -185,7 +185,7 @@ public class EntityClientLinkResponse {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<? extends EntityClientLinkResponseLinks> links = Optional.empty();
+        private Optional<? extends ClientLinkResponseLinks> links = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -237,7 +237,7 @@ public class EntityClientLinkResponse {
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(EntityClientLinkResponseLinks links) {
+        public Builder links(ClientLinkResponseLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = Optional.ofNullable(links);
             return this;
@@ -246,15 +246,15 @@ public class EntityClientLinkResponse {
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(Optional<? extends EntityClientLinkResponseLinks> links) {
+        public Builder links(Optional<? extends ClientLinkResponseLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
 
-        public EntityClientLinkResponse build() {
+        public ClientLinkResponse build() {
 
-            return new EntityClientLinkResponse(
+            return new ClientLinkResponse(
                 resource, id, links);
         }
 

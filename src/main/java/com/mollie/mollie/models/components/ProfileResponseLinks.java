@@ -15,11 +15,11 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
- * EntityProfileResponseLinks
+ * ProfileResponseLinks
  * 
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
-public class EntityProfileResponseLinks {
+public class ProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -77,7 +77,7 @@ public class EntityProfileResponseLinks {
     private Optional<? extends Url> documentation;
 
     @JsonCreator
-    public EntityProfileResponseLinks(
+    public ProfileResponseLinks(
             @JsonProperty("self") Optional<? extends Url> self,
             @JsonProperty("dashboard") Optional<? extends Url> dashboard,
             @JsonProperty("chargebacks") Optional<? extends Url> chargebacks,
@@ -104,7 +104,7 @@ public class EntityProfileResponseLinks {
         this.documentation = documentation;
     }
     
-    public EntityProfileResponseLinks() {
+    public ProfileResponseLinks() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty());
@@ -190,7 +190,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withSelf(Url self) {
+    public ProfileResponseLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
         this.self = Optional.ofNullable(self);
         return this;
@@ -200,7 +200,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withSelf(Optional<? extends Url> self) {
+    public ProfileResponseLinks withSelf(Optional<? extends Url> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -209,7 +209,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withDashboard(Url dashboard) {
+    public ProfileResponseLinks withDashboard(Url dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = Optional.ofNullable(dashboard);
         return this;
@@ -219,7 +219,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withDashboard(Optional<? extends Url> dashboard) {
+    public ProfileResponseLinks withDashboard(Optional<? extends Url> dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = dashboard;
         return this;
@@ -228,7 +228,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withChargebacks(Url chargebacks) {
+    public ProfileResponseLinks withChargebacks(Url chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = Optional.ofNullable(chargebacks);
         return this;
@@ -238,7 +238,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withChargebacks(Optional<? extends Url> chargebacks) {
+    public ProfileResponseLinks withChargebacks(Optional<? extends Url> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = chargebacks;
         return this;
@@ -247,7 +247,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withMethods(Url methods) {
+    public ProfileResponseLinks withMethods(Url methods) {
         Utils.checkNotNull(methods, "methods");
         this.methods = Optional.ofNullable(methods);
         return this;
@@ -257,7 +257,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withMethods(Optional<? extends Url> methods) {
+    public ProfileResponseLinks withMethods(Optional<? extends Url> methods) {
         Utils.checkNotNull(methods, "methods");
         this.methods = methods;
         return this;
@@ -266,7 +266,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withPayments(Url payments) {
+    public ProfileResponseLinks withPayments(Url payments) {
         Utils.checkNotNull(payments, "payments");
         this.payments = Optional.ofNullable(payments);
         return this;
@@ -276,7 +276,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withPayments(Optional<? extends Url> payments) {
+    public ProfileResponseLinks withPayments(Optional<? extends Url> payments) {
         Utils.checkNotNull(payments, "payments");
         this.payments = payments;
         return this;
@@ -285,7 +285,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withRefunds(Url refunds) {
+    public ProfileResponseLinks withRefunds(Url refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = Optional.ofNullable(refunds);
         return this;
@@ -295,7 +295,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withRefunds(Optional<? extends Url> refunds) {
+    public ProfileResponseLinks withRefunds(Optional<? extends Url> refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = refunds;
         return this;
@@ -304,7 +304,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withCheckoutPreviewUrl(Url checkoutPreviewUrl) {
+    public ProfileResponseLinks withCheckoutPreviewUrl(Url checkoutPreviewUrl) {
         Utils.checkNotNull(checkoutPreviewUrl, "checkoutPreviewUrl");
         this.checkoutPreviewUrl = Optional.ofNullable(checkoutPreviewUrl);
         return this;
@@ -314,7 +314,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withCheckoutPreviewUrl(Optional<? extends Url> checkoutPreviewUrl) {
+    public ProfileResponseLinks withCheckoutPreviewUrl(Optional<? extends Url> checkoutPreviewUrl) {
         Utils.checkNotNull(checkoutPreviewUrl, "checkoutPreviewUrl");
         this.checkoutPreviewUrl = checkoutPreviewUrl;
         return this;
@@ -323,7 +323,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withDocumentation(Url documentation) {
+    public ProfileResponseLinks withDocumentation(Url documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
@@ -333,7 +333,7 @@ public class EntityProfileResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityProfileResponseLinks withDocumentation(Optional<? extends Url> documentation) {
+    public ProfileResponseLinks withDocumentation(Optional<? extends Url> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -347,7 +347,7 @@ public class EntityProfileResponseLinks {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityProfileResponseLinks other = (EntityProfileResponseLinks) o;
+        ProfileResponseLinks other = (ProfileResponseLinks) o;
         return 
             Utils.enhancedDeepEquals(this.self, other.self) &&
             Utils.enhancedDeepEquals(this.dashboard, other.dashboard) &&
@@ -369,7 +369,7 @@ public class EntityProfileResponseLinks {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityProfileResponseLinks.class,
+        return Utils.toString(ProfileResponseLinks.class,
                 "self", self,
                 "dashboard", dashboard,
                 "chargebacks", chargebacks,
@@ -555,9 +555,9 @@ public class EntityProfileResponseLinks {
             return this;
         }
 
-        public EntityProfileResponseLinks build() {
+        public ProfileResponseLinks build() {
 
-            return new EntityProfileResponseLinks(
+            return new ProfileResponseLinks(
                 self, dashboard, chargebacks,
                 methods, payments, refunds,
                 checkoutPreviewUrl, documentation);

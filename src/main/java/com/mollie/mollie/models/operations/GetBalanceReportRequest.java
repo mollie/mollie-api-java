@@ -5,6 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.BalanceReportGrouping;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -51,7 +52,7 @@ public class GetBalanceReportRequest {
      * transaction type, then by status, and then again by other sub-groupings where available.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=grouping")
-    private JsonNullable<? extends Grouping> grouping;
+    private Optional<? extends BalanceReportGrouping> grouping;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
@@ -76,7 +77,7 @@ public class GetBalanceReportRequest {
             String balanceId,
             String from,
             String until,
-            JsonNullable<? extends Grouping> grouping,
+            Optional<? extends BalanceReportGrouping> grouping,
             JsonNullable<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(balanceId, "balanceId");
@@ -98,7 +99,7 @@ public class GetBalanceReportRequest {
             String from,
             String until) {
         this(balanceId, from, until,
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -143,8 +144,8 @@ public class GetBalanceReportRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Grouping> grouping() {
-        return (JsonNullable<Grouping>) grouping;
+    public Optional<BalanceReportGrouping> grouping() {
+        return (Optional<BalanceReportGrouping>) grouping;
     }
 
     /**
@@ -217,11 +218,12 @@ public class GetBalanceReportRequest {
      * <p>With the `transaction-categories` format, transactions are grouped by
      * transaction type, then by status, and then again by other sub-groupings where available.
      */
-    public GetBalanceReportRequest withGrouping(Grouping grouping) {
+    public GetBalanceReportRequest withGrouping(BalanceReportGrouping grouping) {
         Utils.checkNotNull(grouping, "grouping");
-        this.grouping = JsonNullable.of(grouping);
+        this.grouping = Optional.ofNullable(grouping);
         return this;
     }
+
 
     /**
      * You can retrieve reports in two different formats. With the `status-balances` format, transactions
@@ -233,7 +235,7 @@ public class GetBalanceReportRequest {
      * <p>With the `transaction-categories` format, transactions are grouped by
      * transaction type, then by status, and then again by other sub-groupings where available.
      */
-    public GetBalanceReportRequest withGrouping(JsonNullable<? extends Grouping> grouping) {
+    public GetBalanceReportRequest withGrouping(Optional<? extends BalanceReportGrouping> grouping) {
         Utils.checkNotNull(grouping, "grouping");
         this.grouping = grouping;
         return this;
@@ -333,7 +335,7 @@ public class GetBalanceReportRequest {
 
         private String until;
 
-        private JsonNullable<? extends Grouping> grouping = JsonNullable.undefined();
+        private Optional<? extends BalanceReportGrouping> grouping = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -390,9 +392,9 @@ public class GetBalanceReportRequest {
          * <p>With the `transaction-categories` format, transactions are grouped by
          * transaction type, then by status, and then again by other sub-groupings where available.
          */
-        public Builder grouping(Grouping grouping) {
+        public Builder grouping(BalanceReportGrouping grouping) {
             Utils.checkNotNull(grouping, "grouping");
-            this.grouping = JsonNullable.of(grouping);
+            this.grouping = Optional.ofNullable(grouping);
             return this;
         }
 
@@ -406,7 +408,7 @@ public class GetBalanceReportRequest {
          * <p>With the `transaction-categories` format, transactions are grouped by
          * transaction type, then by status, and then again by other sub-groupings where available.
          */
-        public Builder grouping(JsonNullable<? extends Grouping> grouping) {
+        public Builder grouping(Optional<? extends BalanceReportGrouping> grouping) {
             Utils.checkNotNull(grouping, "grouping");
             this.grouping = grouping;
             return this;

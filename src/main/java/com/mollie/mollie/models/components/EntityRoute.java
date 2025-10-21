@@ -17,7 +17,7 @@ import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class RouteCreateRequest {
+public class EntityRoute {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -47,7 +47,7 @@ public class RouteCreateRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
-    private Optional<? extends RouteCreateRequestDestination> destination;
+    private Optional<? extends EntityRouteDestination> destination;
 
     /**
      * Whether to create the entity in test mode or live mode.
@@ -63,12 +63,12 @@ public class RouteCreateRequest {
     private JsonNullable<Boolean> testmode;
 
     @JsonCreator
-    public RouteCreateRequest(
+    public EntityRoute(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("paymentId") Optional<String> paymentId,
             @JsonProperty("amount") Optional<? extends Amount> amount,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("destination") Optional<? extends RouteCreateRequestDestination> destination,
+            @JsonProperty("destination") Optional<? extends EntityRouteDestination> destination,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(paymentId, "paymentId");
@@ -84,7 +84,7 @@ public class RouteCreateRequest {
         this.testmode = testmode;
     }
     
-    public RouteCreateRequest() {
+    public EntityRoute() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
@@ -121,8 +121,8 @@ public class RouteCreateRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<RouteCreateRequestDestination> destination() {
-        return (Optional<RouteCreateRequestDestination>) destination;
+    public Optional<EntityRouteDestination> destination() {
+        return (Optional<EntityRouteDestination>) destination;
     }
 
     /**
@@ -144,27 +144,27 @@ public class RouteCreateRequest {
     }
 
 
-    public RouteCreateRequest withId(String id) {
+    public EntityRoute withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
     }
 
 
-    public RouteCreateRequest withId(Optional<String> id) {
+    public EntityRoute withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
-    public RouteCreateRequest withPaymentId(String paymentId) {
+    public EntityRoute withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = Optional.ofNullable(paymentId);
         return this;
     }
 
 
-    public RouteCreateRequest withPaymentId(Optional<String> paymentId) {
+    public EntityRoute withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
@@ -173,7 +173,7 @@ public class RouteCreateRequest {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public RouteCreateRequest withAmount(Amount amount) {
+    public EntityRoute withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
@@ -183,7 +183,7 @@ public class RouteCreateRequest {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public RouteCreateRequest withAmount(Optional<? extends Amount> amount) {
+    public EntityRoute withAmount(Optional<? extends Amount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -192,7 +192,7 @@ public class RouteCreateRequest {
     /**
      * The description of the route. This description is shown in the reports.
      */
-    public RouteCreateRequest withDescription(String description) {
+    public EntityRoute withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = Optional.ofNullable(description);
         return this;
@@ -202,7 +202,7 @@ public class RouteCreateRequest {
     /**
      * The description of the route. This description is shown in the reports.
      */
-    public RouteCreateRequest withDescription(Optional<String> description) {
+    public EntityRoute withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -211,7 +211,7 @@ public class RouteCreateRequest {
     /**
      * The destination of the route.
      */
-    public RouteCreateRequest withDestination(RouteCreateRequestDestination destination) {
+    public EntityRoute withDestination(EntityRouteDestination destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = Optional.ofNullable(destination);
         return this;
@@ -221,7 +221,7 @@ public class RouteCreateRequest {
     /**
      * The destination of the route.
      */
-    public RouteCreateRequest withDestination(Optional<? extends RouteCreateRequestDestination> destination) {
+    public EntityRoute withDestination(Optional<? extends EntityRouteDestination> destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
@@ -236,7 +236,7 @@ public class RouteCreateRequest {
      * setting
      * `testmode` to `true`.
      */
-    public RouteCreateRequest withTestmode(boolean testmode) {
+    public EntityRoute withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = JsonNullable.of(testmode);
         return this;
@@ -251,7 +251,7 @@ public class RouteCreateRequest {
      * setting
      * `testmode` to `true`.
      */
-    public RouteCreateRequest withTestmode(JsonNullable<Boolean> testmode) {
+    public EntityRoute withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -265,7 +265,7 @@ public class RouteCreateRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        RouteCreateRequest other = (RouteCreateRequest) o;
+        EntityRoute other = (EntityRoute) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
@@ -284,7 +284,7 @@ public class RouteCreateRequest {
     
     @Override
     public String toString() {
-        return Utils.toString(RouteCreateRequest.class,
+        return Utils.toString(EntityRoute.class,
                 "id", id,
                 "paymentId", paymentId,
                 "amount", amount,
@@ -304,7 +304,7 @@ public class RouteCreateRequest {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<? extends RouteCreateRequestDestination> destination = Optional.empty();
+        private Optional<? extends EntityRouteDestination> destination = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -380,7 +380,7 @@ public class RouteCreateRequest {
         /**
          * The destination of the route.
          */
-        public Builder destination(RouteCreateRequestDestination destination) {
+        public Builder destination(EntityRouteDestination destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = Optional.ofNullable(destination);
             return this;
@@ -389,7 +389,7 @@ public class RouteCreateRequest {
         /**
          * The destination of the route.
          */
-        public Builder destination(Optional<? extends RouteCreateRequestDestination> destination) {
+        public Builder destination(Optional<? extends EntityRouteDestination> destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
             return this;
@@ -426,9 +426,9 @@ public class RouteCreateRequest {
             return this;
         }
 
-        public RouteCreateRequest build() {
+        public EntityRoute build() {
 
-            return new RouteCreateRequest(
+            return new EntityRoute(
                 id, paymentId, amount,
                 description, destination, testmode);
         }

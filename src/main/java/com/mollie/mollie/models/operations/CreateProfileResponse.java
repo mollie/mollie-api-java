@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntityProfileResponse;
+import com.mollie.mollie.models.components.ProfileResponse;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -36,22 +36,22 @@ public class CreateProfileResponse implements Response {
     /**
      * The newly created profile object.
      */
-    private Optional<? extends EntityProfileResponse> entityProfileResponse;
+    private Optional<? extends ProfileResponse> profileResponse;
 
     @JsonCreator
     public CreateProfileResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends EntityProfileResponse> entityProfileResponse) {
+            Optional<? extends ProfileResponse> profileResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
+        Utils.checkNotNull(profileResponse, "profileResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.entityProfileResponse = entityProfileResponse;
+        this.profileResponse = profileResponse;
     }
     
     public CreateProfileResponse(
@@ -91,8 +91,8 @@ public class CreateProfileResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityProfileResponse> entityProfileResponse() {
-        return (Optional<EntityProfileResponse>) entityProfileResponse;
+    public Optional<ProfileResponse> profileResponse() {
+        return (Optional<ProfileResponse>) profileResponse;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class CreateProfileResponse implements Response {
     /**
      * The newly created profile object.
      */
-    public CreateProfileResponse withEntityProfileResponse(EntityProfileResponse entityProfileResponse) {
-        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-        this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
+    public CreateProfileResponse withProfileResponse(ProfileResponse profileResponse) {
+        Utils.checkNotNull(profileResponse, "profileResponse");
+        this.profileResponse = Optional.ofNullable(profileResponse);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class CreateProfileResponse implements Response {
     /**
      * The newly created profile object.
      */
-    public CreateProfileResponse withEntityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
-        Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-        this.entityProfileResponse = entityProfileResponse;
+    public CreateProfileResponse withProfileResponse(Optional<? extends ProfileResponse> profileResponse) {
+        Utils.checkNotNull(profileResponse, "profileResponse");
+        this.profileResponse = profileResponse;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class CreateProfileResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.entityProfileResponse, other.entityProfileResponse);
+            Utils.enhancedDeepEquals(this.profileResponse, other.profileResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            entityProfileResponse);
+            profileResponse);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class CreateProfileResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "entityProfileResponse", entityProfileResponse);
+                "profileResponse", profileResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class CreateProfileResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends EntityProfileResponse> entityProfileResponse = Optional.empty();
+        private Optional<? extends ProfileResponse> profileResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class CreateProfileResponse implements Response {
         /**
          * The newly created profile object.
          */
-        public Builder entityProfileResponse(EntityProfileResponse entityProfileResponse) {
-            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-            this.entityProfileResponse = Optional.ofNullable(entityProfileResponse);
+        public Builder profileResponse(ProfileResponse profileResponse) {
+            Utils.checkNotNull(profileResponse, "profileResponse");
+            this.profileResponse = Optional.ofNullable(profileResponse);
             return this;
         }
 
         /**
          * The newly created profile object.
          */
-        public Builder entityProfileResponse(Optional<? extends EntityProfileResponse> entityProfileResponse) {
-            Utils.checkNotNull(entityProfileResponse, "entityProfileResponse");
-            this.entityProfileResponse = entityProfileResponse;
+        public Builder profileResponse(Optional<? extends ProfileResponse> profileResponse) {
+            Utils.checkNotNull(profileResponse, "profileResponse");
+            this.profileResponse = profileResponse;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class CreateProfileResponse implements Response {
 
             return new CreateProfileResponse(
                 contentType, statusCode, rawResponse,
-                entityProfileResponse);
+                profileResponse);
         }
 
     }

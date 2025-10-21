@@ -5,7 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.RouteCreateRequest;
+import com.mollie.mollie.models.components.EntityRoute;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequest;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequestBuilder;
 import com.mollie.mollie.models.operations.PaymentCreateRouteResponse;
@@ -76,20 +76,20 @@ public class DelayedRouting {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param routeCreateRequest 
+     * @param entityRoute 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public PaymentCreateRouteResponse create(
             String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends RouteCreateRequest> routeCreateRequest, Optional<Options> options) {
+            Optional<? extends EntityRoute> entityRoute, Optional<Options> options) {
         PaymentCreateRouteRequest request =
             PaymentCreateRouteRequest
                 .builder()
                 .paymentId(paymentId)
                 .idempotencyKey(idempotencyKey)
-                .routeCreateRequest(routeCreateRequest)
+                .entityRoute(entityRoute)
                 .build();
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
               = new PaymentCreateRoute.Sync(sdkConfiguration, options, _headers);

@@ -5,14 +5,10 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 
 public class EntityBalanceReport {
@@ -21,22 +17,19 @@ public class EntityBalanceReport {
      * `balance-report` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balanceId")
-    private Optional<String> balanceId;
+    private String balanceId;
 
     /**
      * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is
      * supported.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("timeZone")
-    private Optional<String> timeZone;
+    private String timeZone;
 
     /**
      * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central
@@ -45,9 +38,8 @@ public class EntityBalanceReport {
      * CET and
      * onwards.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("from")
-    private Optional<String> from;
+    private String from;
 
     /**
      * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
@@ -55,14 +47,12 @@ public class EntityBalanceReport {
      * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31
      * 23:59:59 CET.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("until")
-    private Optional<String> until;
+    private String until;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("grouping")
-    private Optional<? extends BalanceReportGrouping> grouping;
+    private BalanceReportGrouping grouping;
 
     /**
      * Totals are grouped according to the chosen grouping rule. The example response should give a good
@@ -89,27 +79,25 @@ public class EntityBalanceReport {
      * * A `count` integer if relevant (for example, counting the number of refunds)
      * * A `subtotals` array containing more sub-group objects if applicable
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totals")
-    private Optional<? extends Totals> totals;
+    private Totals totals;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends EntityBalanceReportLinks> links;
+    private EntityBalanceReportLinks links;
 
     @JsonCreator
     public EntityBalanceReport(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("balanceId") Optional<String> balanceId,
-            @JsonProperty("timeZone") Optional<String> timeZone,
-            @JsonProperty("from") Optional<String> from,
-            @JsonProperty("until") Optional<String> until,
-            @JsonProperty("grouping") Optional<? extends BalanceReportGrouping> grouping,
-            @JsonProperty("totals") Optional<? extends Totals> totals,
-            @JsonProperty("_links") Optional<? extends EntityBalanceReportLinks> links) {
+            @JsonProperty("resource") String resource,
+            @JsonProperty("balanceId") String balanceId,
+            @JsonProperty("timeZone") String timeZone,
+            @JsonProperty("from") String from,
+            @JsonProperty("until") String until,
+            @JsonProperty("grouping") BalanceReportGrouping grouping,
+            @JsonProperty("totals") Totals totals,
+            @JsonProperty("_links") EntityBalanceReportLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(balanceId, "balanceId");
         Utils.checkNotNull(timeZone, "timeZone");
@@ -127,12 +115,6 @@ public class EntityBalanceReport {
         this.totals = totals;
         this.links = links;
     }
-    
-    public EntityBalanceReport() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
-    }
 
     /**
      * Indicates the response contains a balance report object. Will always contain the string
@@ -140,12 +122,12 @@ public class EntityBalanceReport {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
     @JsonIgnore
-    public Optional<String> balanceId() {
+    public String balanceId() {
         return balanceId;
     }
 
@@ -154,7 +136,7 @@ public class EntityBalanceReport {
      * supported.
      */
     @JsonIgnore
-    public Optional<String> timeZone() {
+    public String timeZone() {
         return timeZone;
     }
 
@@ -166,7 +148,7 @@ public class EntityBalanceReport {
      * onwards.
      */
     @JsonIgnore
-    public Optional<String> from() {
+    public String from() {
         return from;
     }
 
@@ -177,14 +159,13 @@ public class EntityBalanceReport {
      * 23:59:59 CET.
      */
     @JsonIgnore
-    public Optional<String> until() {
+    public String until() {
         return until;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<BalanceReportGrouping> grouping() {
-        return (Optional<BalanceReportGrouping>) grouping;
+    public BalanceReportGrouping grouping() {
+        return grouping;
     }
 
     /**
@@ -212,19 +193,17 @@ public class EntityBalanceReport {
      * * A `count` integer if relevant (for example, counting the number of refunds)
      * * A `subtotals` array containing more sub-group objects if applicable
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Totals> totals() {
-        return (Optional<Totals>) totals;
+    public Totals totals() {
+        return totals;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityBalanceReportLinks> links() {
-        return (Optional<EntityBalanceReportLinks>) links;
+    public EntityBalanceReportLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -239,30 +218,11 @@ public class EntityBalanceReport {
      */
     public EntityBalanceReport withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a balance report object. Will always contain the string
-     * `balance-report` for this
-     * endpoint.
-     */
-    public EntityBalanceReport withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     public EntityBalanceReport withBalanceId(String balanceId) {
-        Utils.checkNotNull(balanceId, "balanceId");
-        this.balanceId = Optional.ofNullable(balanceId);
-        return this;
-    }
-
-
-    public EntityBalanceReport withBalanceId(Optional<String> balanceId) {
         Utils.checkNotNull(balanceId, "balanceId");
         this.balanceId = balanceId;
         return this;
@@ -273,17 +233,6 @@ public class EntityBalanceReport {
      * supported.
      */
     public EntityBalanceReport withTimeZone(String timeZone) {
-        Utils.checkNotNull(timeZone, "timeZone");
-        this.timeZone = Optional.ofNullable(timeZone);
-        return this;
-    }
-
-
-    /**
-     * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is
-     * supported.
-     */
-    public EntityBalanceReport withTimeZone(Optional<String> timeZone) {
         Utils.checkNotNull(timeZone, "timeZone");
         this.timeZone = timeZone;
         return this;
@@ -298,20 +247,6 @@ public class EntityBalanceReport {
      */
     public EntityBalanceReport withFrom(String from) {
         Utils.checkNotNull(from, "from");
-        this.from = Optional.ofNullable(from);
-        return this;
-    }
-
-
-    /**
-     * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central
-     * European Time.
-     * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00
-     * CET and
-     * onwards.
-     */
-    public EntityBalanceReport withFrom(Optional<String> from) {
-        Utils.checkNotNull(from, "from");
         this.from = from;
         return this;
     }
@@ -324,31 +259,11 @@ public class EntityBalanceReport {
      */
     public EntityBalanceReport withUntil(String until) {
         Utils.checkNotNull(until, "until");
-        this.until = Optional.ofNullable(until);
-        return this;
-    }
-
-
-    /**
-     * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
-     * European Time.
-     * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31
-     * 23:59:59 CET.
-     */
-    public EntityBalanceReport withUntil(Optional<String> until) {
-        Utils.checkNotNull(until, "until");
         this.until = until;
         return this;
     }
 
     public EntityBalanceReport withGrouping(BalanceReportGrouping grouping) {
-        Utils.checkNotNull(grouping, "grouping");
-        this.grouping = Optional.ofNullable(grouping);
-        return this;
-    }
-
-
-    public EntityBalanceReport withGrouping(Optional<? extends BalanceReportGrouping> grouping) {
         Utils.checkNotNull(grouping, "grouping");
         this.grouping = grouping;
         return this;
@@ -381,38 +296,6 @@ public class EntityBalanceReport {
      */
     public EntityBalanceReport withTotals(Totals totals) {
         Utils.checkNotNull(totals, "totals");
-        this.totals = Optional.ofNullable(totals);
-        return this;
-    }
-
-
-    /**
-     * Totals are grouped according to the chosen grouping rule. The example response should give a good
-     * idea of what a
-     * typical grouping looks like.
-     * 
-     * <p>If grouping `status-balances` is chosen, the main grouping is as follows:
-     * 
-     * <p>* `pendingBalance` containing an `open`, `pending`, `movedToAvailable`, and `close` sub-group
-     * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close`
-     * sub-group
-     * 
-     * <p>If grouping `transaction-categories` is chosen, the main grouping is as follows:
-     * 
-     * <p>* `open` and `close` groups, each containing a `pending` and `available` sub-group
-     * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`,
-     * `fee-prepayments`, `corrections`, `topups`
-     * each containing a `pending`, `movedToAvailable`, and
-     * `immediatelyAvailable` sub-group
-     * 
-     * <p>Each sub-group typically has:
-     * 
-     * <p>* An `amount` object containing the group's total amount
-     * * A `count` integer if relevant (for example, counting the number of refunds)
-     * * A `subtotals` array containing more sub-group objects if applicable
-     */
-    public EntityBalanceReport withTotals(Optional<? extends Totals> totals) {
-        Utils.checkNotNull(totals, "totals");
         this.totals = totals;
         return this;
     }
@@ -421,16 +304,6 @@ public class EntityBalanceReport {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public EntityBalanceReport withLinks(EntityBalanceReportLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public EntityBalanceReport withLinks(Optional<? extends EntityBalanceReportLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -480,21 +353,21 @@ public class EntityBalanceReport {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> balanceId = Optional.empty();
+        private String balanceId;
 
-        private Optional<String> timeZone = Optional.empty();
+        private String timeZone;
 
-        private Optional<String> from = Optional.empty();
+        private String from;
 
-        private Optional<String> until = Optional.empty();
+        private String until;
 
-        private Optional<? extends BalanceReportGrouping> grouping = Optional.empty();
+        private BalanceReportGrouping grouping;
 
-        private Optional<? extends Totals> totals = Optional.empty();
+        private Totals totals;
 
-        private Optional<? extends EntityBalanceReportLinks> links = Optional.empty();
+        private EntityBalanceReportLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -508,29 +381,12 @@ public class EntityBalanceReport {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a balance report object. Will always contain the string
-         * `balance-report` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
         public Builder balanceId(String balanceId) {
-            Utils.checkNotNull(balanceId, "balanceId");
-            this.balanceId = Optional.ofNullable(balanceId);
-            return this;
-        }
-
-        public Builder balanceId(Optional<String> balanceId) {
             Utils.checkNotNull(balanceId, "balanceId");
             this.balanceId = balanceId;
             return this;
@@ -542,16 +398,6 @@ public class EntityBalanceReport {
          * supported.
          */
         public Builder timeZone(String timeZone) {
-            Utils.checkNotNull(timeZone, "timeZone");
-            this.timeZone = Optional.ofNullable(timeZone);
-            return this;
-        }
-
-        /**
-         * The time zone used for the from and until parameters. Currently only time zone `Europe/Amsterdam` is
-         * supported.
-         */
-        public Builder timeZone(Optional<String> timeZone) {
             Utils.checkNotNull(timeZone, "timeZone");
             this.timeZone = timeZone;
             return this;
@@ -567,19 +413,6 @@ public class EntityBalanceReport {
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
-            this.from = Optional.ofNullable(from);
-            return this;
-        }
-
-        /**
-         * The start date of the report, in `YYYY-MM-DD` format. The from date is 'inclusive', and in Central
-         * European Time.
-         * This means a report with for example `from=2024-01-01` will include movements of 2024-01-01 00:00:00
-         * CET and
-         * onwards.
-         */
-        public Builder from(Optional<String> from) {
-            Utils.checkNotNull(from, "from");
             this.from = from;
             return this;
         }
@@ -593,30 +426,12 @@ public class EntityBalanceReport {
          */
         public Builder until(String until) {
             Utils.checkNotNull(until, "until");
-            this.until = Optional.ofNullable(until);
-            return this;
-        }
-
-        /**
-         * The end date of the report, in `YYYY-MM-DD` format. The until date is 'exclusive', and in Central
-         * European Time.
-         * This means a report with for example `until=2024-02-01` will include movements up until 2024-01-31
-         * 23:59:59 CET.
-         */
-        public Builder until(Optional<String> until) {
-            Utils.checkNotNull(until, "until");
             this.until = until;
             return this;
         }
 
 
         public Builder grouping(BalanceReportGrouping grouping) {
-            Utils.checkNotNull(grouping, "grouping");
-            this.grouping = Optional.ofNullable(grouping);
-            return this;
-        }
-
-        public Builder grouping(Optional<? extends BalanceReportGrouping> grouping) {
             Utils.checkNotNull(grouping, "grouping");
             this.grouping = grouping;
             return this;
@@ -650,37 +465,6 @@ public class EntityBalanceReport {
          */
         public Builder totals(Totals totals) {
             Utils.checkNotNull(totals, "totals");
-            this.totals = Optional.ofNullable(totals);
-            return this;
-        }
-
-        /**
-         * Totals are grouped according to the chosen grouping rule. The example response should give a good
-         * idea of what a
-         * typical grouping looks like.
-         * 
-         * <p>If grouping `status-balances` is chosen, the main grouping is as follows:
-         * 
-         * <p>* `pendingBalance` containing an `open`, `pending`, `movedToAvailable`, and `close` sub-group
-         * * `availableBalance` containing an `open`, `movedFromPending`, `immediatelyAvailable`, and `close`
-         * sub-group
-         * 
-         * <p>If grouping `transaction-categories` is chosen, the main grouping is as follows:
-         * 
-         * <p>* `open` and `close` groups, each containing a `pending` and `available` sub-group
-         * * Transaction type groups such as `payments`, `refunds`, `chargebacks`, `capital`, `transfers`,
-         * `fee-prepayments`, `corrections`, `topups`
-         * each containing a `pending`, `movedToAvailable`, and
-         * `immediatelyAvailable` sub-group
-         * 
-         * <p>Each sub-group typically has:
-         * 
-         * <p>* An `amount` object containing the group's total amount
-         * * A `count` integer if relevant (for example, counting the number of refunds)
-         * * A `subtotals` array containing more sub-group objects if applicable
-         */
-        public Builder totals(Optional<? extends Totals> totals) {
-            Utils.checkNotNull(totals, "totals");
             this.totals = totals;
             return this;
         }
@@ -690,15 +474,6 @@ public class EntityBalanceReport {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(EntityBalanceReportLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends EntityBalanceReportLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

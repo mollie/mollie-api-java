@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.models.components.Amount;
 import com.mollie.mollie.models.components.LineCategories;
+import com.mollie.mollie.models.components.MethodIncludeWalletsParameter;
+import com.mollie.mollie.models.components.MethodResourceParameter;
 import com.mollie.mollie.models.components.ParameterLocale;
 import com.mollie.mollie.models.components.SequenceType;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
@@ -60,7 +62,7 @@ public class ListMethodsRequest {
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=resource")
     @Deprecated
-    private Optional<? extends Resource> resource;
+    private Optional<? extends MethodResourceParameter> resource;
 
     /**
      * The country taken from your customer's billing address in ISO 3166-1 alpha-2 format. This parameter
@@ -78,7 +80,7 @@ public class ListMethodsRequest {
      * to check if they are available on the shoppers device, hence the need to indicate your support.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=includeWallets")
-    private Optional<? extends IncludeWallets> includeWallets;
+    private Optional<? extends MethodIncludeWalletsParameter> includeWallets;
 
     /**
      * A comma-separated list of the line categories you support in your checkout.
@@ -129,9 +131,9 @@ public class ListMethodsRequest {
             Optional<? extends SequenceType> sequenceType,
             Optional<? extends ParameterLocale> locale,
             Optional<? extends Amount> amount,
-            Optional<? extends Resource> resource,
+            Optional<? extends MethodResourceParameter> resource,
             Optional<String> billingCountry,
-            Optional<? extends IncludeWallets> includeWallets,
+            Optional<? extends MethodIncludeWalletsParameter> includeWallets,
             Optional<? extends LineCategories> orderLineCategories,
             Optional<String> profileId,
             JsonNullable<String> include,
@@ -217,8 +219,8 @@ public class ListMethodsRequest {
     @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Resource> resource() {
-        return (Optional<Resource>) resource;
+    public Optional<MethodResourceParameter> resource() {
+        return (Optional<MethodResourceParameter>) resource;
     }
 
     /**
@@ -240,8 +242,8 @@ public class ListMethodsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<IncludeWallets> includeWallets() {
-        return (Optional<IncludeWallets>) includeWallets;
+    public Optional<MethodIncludeWalletsParameter> includeWallets() {
+        return (Optional<MethodIncludeWalletsParameter>) includeWallets;
     }
 
     /**
@@ -388,7 +390,7 @@ public class ListMethodsRequest {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public ListMethodsRequest withResource(Resource resource) {
+    public ListMethodsRequest withResource(MethodResourceParameter resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
         return this;
@@ -408,7 +410,7 @@ public class ListMethodsRequest {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public ListMethodsRequest withResource(Optional<? extends Resource> resource) {
+    public ListMethodsRequest withResource(Optional<? extends MethodResourceParameter> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -446,7 +448,7 @@ public class ListMethodsRequest {
      * specific code
      * to check if they are available on the shoppers device, hence the need to indicate your support.
      */
-    public ListMethodsRequest withIncludeWallets(IncludeWallets includeWallets) {
+    public ListMethodsRequest withIncludeWallets(MethodIncludeWalletsParameter includeWallets) {
         Utils.checkNotNull(includeWallets, "includeWallets");
         this.includeWallets = Optional.ofNullable(includeWallets);
         return this;
@@ -458,7 +460,7 @@ public class ListMethodsRequest {
      * specific code
      * to check if they are available on the shoppers device, hence the need to indicate your support.
      */
-    public ListMethodsRequest withIncludeWallets(Optional<? extends IncludeWallets> includeWallets) {
+    public ListMethodsRequest withIncludeWallets(Optional<? extends MethodIncludeWalletsParameter> includeWallets) {
         Utils.checkNotNull(includeWallets, "includeWallets");
         this.includeWallets = includeWallets;
         return this;
@@ -643,11 +645,11 @@ public class ListMethodsRequest {
         private Optional<? extends Amount> amount = Optional.empty();
 
         @Deprecated
-        private Optional<? extends Resource> resource = Optional.empty();
+        private Optional<? extends MethodResourceParameter> resource = Optional.empty();
 
         private Optional<String> billingCountry = Optional.empty();
 
-        private Optional<? extends IncludeWallets> includeWallets = Optional.empty();
+        private Optional<? extends MethodIncludeWalletsParameter> includeWallets = Optional.empty();
 
         private Optional<? extends LineCategories> orderLineCategories = Optional.empty();
 
@@ -748,7 +750,7 @@ public class ListMethodsRequest {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder resource(Resource resource) {
+        public Builder resource(MethodResourceParameter resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = Optional.ofNullable(resource);
             return this;
@@ -767,7 +769,7 @@ public class ListMethodsRequest {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder resource(Optional<? extends Resource> resource) {
+        public Builder resource(Optional<? extends MethodResourceParameter> resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
@@ -806,7 +808,7 @@ public class ListMethodsRequest {
          * specific code
          * to check if they are available on the shoppers device, hence the need to indicate your support.
          */
-        public Builder includeWallets(IncludeWallets includeWallets) {
+        public Builder includeWallets(MethodIncludeWalletsParameter includeWallets) {
             Utils.checkNotNull(includeWallets, "includeWallets");
             this.includeWallets = Optional.ofNullable(includeWallets);
             return this;
@@ -817,7 +819,7 @@ public class ListMethodsRequest {
          * specific code
          * to check if they are available on the shoppers device, hence the need to indicate your support.
          */
-        public Builder includeWallets(Optional<? extends IncludeWallets> includeWallets) {
+        public Builder includeWallets(Optional<? extends MethodIncludeWalletsParameter> includeWallets) {
             Utils.checkNotNull(includeWallets, "includeWallets");
             this.includeWallets = includeWallets;
             return this;

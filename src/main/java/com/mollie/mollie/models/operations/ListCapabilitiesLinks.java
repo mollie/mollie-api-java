@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.Url;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -16,14 +17,16 @@ import java.util.Optional;
 
 
 public class ListCapabilitiesLinks {
-
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends Documentation> documentation;
+    private Optional<? extends Url> documentation;
 
     @JsonCreator
     public ListCapabilitiesLinks(
-            @JsonProperty("documentation") Optional<? extends Documentation> documentation) {
+            @JsonProperty("documentation") Optional<? extends Url> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
     }
@@ -32,10 +35,13 @@ public class ListCapabilitiesLinks {
         this(Optional.empty());
     }
 
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Documentation> documentation() {
-        return (Optional<Documentation>) documentation;
+    public Optional<Url> documentation() {
+        return (Optional<Url>) documentation;
     }
 
     public static Builder builder() {
@@ -43,14 +49,20 @@ public class ListCapabilitiesLinks {
     }
 
 
-    public ListCapabilitiesLinks withDocumentation(Documentation documentation) {
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public ListCapabilitiesLinks withDocumentation(Url documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
     }
 
 
-    public ListCapabilitiesLinks withDocumentation(Optional<? extends Documentation> documentation) {
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public ListCapabilitiesLinks withDocumentation(Optional<? extends Url> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -84,20 +96,26 @@ public class ListCapabilitiesLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Documentation> documentation = Optional.empty();
+        private Optional<? extends Url> documentation = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder documentation(Documentation documentation) {
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder documentation(Url documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = Optional.ofNullable(documentation);
             return this;
         }
 
-        public Builder documentation(Optional<? extends Documentation> documentation) {
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder documentation(Optional<? extends Url> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;

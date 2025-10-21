@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class EntityProfileResponse {
+public class ProfileResponse {
     /**
      * Indicates the response contains a profile object. Will always contain the string `profile` for this
      * endpoint.
@@ -130,10 +130,10 @@ public class EntityProfileResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends EntityProfileResponseLinks> links;
+    private Optional<? extends ProfileResponseLinks> links;
 
     @JsonCreator
-    public EntityProfileResponse(
+    public ProfileResponse(
             @JsonProperty("resource") Optional<String> resource,
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("mode") Optional<? extends Mode> mode,
@@ -147,7 +147,7 @@ public class EntityProfileResponse {
             @JsonProperty("status") Optional<? extends ProfileStatus> status,
             @JsonProperty("review") Optional<? extends Review> review,
             @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("_links") Optional<? extends EntityProfileResponseLinks> links) {
+            @JsonProperty("_links") Optional<? extends ProfileResponseLinks> links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -178,7 +178,7 @@ public class EntityProfileResponse {
         this.links = links;
     }
     
-    public EntityProfileResponse() {
+    public ProfileResponse() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
@@ -316,8 +316,8 @@ public class EntityProfileResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityProfileResponseLinks> links() {
-        return (Optional<EntityProfileResponseLinks>) links;
+    public Optional<ProfileResponseLinks> links() {
+        return (Optional<ProfileResponseLinks>) links;
     }
 
     public static Builder builder() {
@@ -329,7 +329,7 @@ public class EntityProfileResponse {
      * Indicates the response contains a profile object. Will always contain the string `profile` for this
      * endpoint.
      */
-    public EntityProfileResponse withResource(String resource) {
+    public ProfileResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
         return this;
@@ -340,7 +340,7 @@ public class EntityProfileResponse {
      * Indicates the response contains a profile object. Will always contain the string `profile` for this
      * endpoint.
      */
-    public EntityProfileResponse withResource(Optional<String> resource) {
+    public ProfileResponse withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -349,7 +349,7 @@ public class EntityProfileResponse {
     /**
      * The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
      */
-    public EntityProfileResponse withId(String id) {
+    public ProfileResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
@@ -359,7 +359,7 @@ public class EntityProfileResponse {
     /**
      * The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
      */
-    public EntityProfileResponse withId(Optional<String> id) {
+    public ProfileResponse withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -368,7 +368,7 @@ public class EntityProfileResponse {
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    public EntityProfileResponse withMode(Mode mode) {
+    public ProfileResponse withMode(Mode mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = Optional.ofNullable(mode);
         return this;
@@ -378,7 +378,7 @@ public class EntityProfileResponse {
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    public EntityProfileResponse withMode(Optional<? extends Mode> mode) {
+    public ProfileResponse withMode(Optional<? extends Mode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -389,7 +389,7 @@ public class EntityProfileResponse {
      * or
      * application.
      */
-    public EntityProfileResponse withName(String name) {
+    public ProfileResponse withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
         return this;
@@ -401,7 +401,7 @@ public class EntityProfileResponse {
      * or
      * application.
      */
-    public EntityProfileResponse withName(Optional<String> name) {
+    public ProfileResponse withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -412,7 +412,7 @@ public class EntityProfileResponse {
      * signs are
      * allowed.
      */
-    public EntityProfileResponse withWebsite(String website) {
+    public ProfileResponse withWebsite(String website) {
         Utils.checkNotNull(website, "website");
         this.website = Optional.ofNullable(website);
         return this;
@@ -424,7 +424,7 @@ public class EntityProfileResponse {
      * signs are
      * allowed.
      */
-    public EntityProfileResponse withWebsite(Optional<String> website) {
+    public ProfileResponse withWebsite(Optional<String> website) {
         Utils.checkNotNull(website, "website");
         this.website = website;
         return this;
@@ -433,7 +433,7 @@ public class EntityProfileResponse {
     /**
      * The email address associated with the profile's trade name or brand.
      */
-    public EntityProfileResponse withEmail(String email) {
+    public ProfileResponse withEmail(String email) {
         Utils.checkNotNull(email, "email");
         this.email = Optional.ofNullable(email);
         return this;
@@ -443,7 +443,7 @@ public class EntityProfileResponse {
     /**
      * The email address associated with the profile's trade name or brand.
      */
-    public EntityProfileResponse withEmail(Optional<String> email) {
+    public ProfileResponse withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
@@ -452,7 +452,7 @@ public class EntityProfileResponse {
     /**
      * The phone number associated with the profile's trade name or brand.
      */
-    public EntityProfileResponse withPhone(String phone) {
+    public ProfileResponse withPhone(String phone) {
         Utils.checkNotNull(phone, "phone");
         this.phone = Optional.ofNullable(phone);
         return this;
@@ -462,7 +462,7 @@ public class EntityProfileResponse {
     /**
      * The phone number associated with the profile's trade name or brand.
      */
-    public EntityProfileResponse withPhone(Optional<String> phone) {
+    public ProfileResponse withPhone(Optional<String> phone) {
         Utils.checkNotNull(phone, "phone");
         this.phone = phone;
         return this;
@@ -471,7 +471,7 @@ public class EntityProfileResponse {
     /**
      * The products or services offered by the profile's website or application.
      */
-    public EntityProfileResponse withDescription(String description) {
+    public ProfileResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = Optional.ofNullable(description);
         return this;
@@ -481,7 +481,7 @@ public class EntityProfileResponse {
     /**
      * The products or services offered by the profile's website or application.
      */
-    public EntityProfileResponse withDescription(Optional<String> description) {
+    public ProfileResponse withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -491,7 +491,7 @@ public class EntityProfileResponse {
      * A list of countries where you expect that the majority of the profile's customers reside,
      * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
-    public EntityProfileResponse withCountriesOfActivity(List<String> countriesOfActivity) {
+    public ProfileResponse withCountriesOfActivity(List<String> countriesOfActivity) {
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
         this.countriesOfActivity = Optional.ofNullable(countriesOfActivity);
         return this;
@@ -502,7 +502,7 @@ public class EntityProfileResponse {
      * A list of countries where you expect that the majority of the profile's customers reside,
      * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
-    public EntityProfileResponse withCountriesOfActivity(Optional<? extends List<String>> countriesOfActivity) {
+    public ProfileResponse withCountriesOfActivity(Optional<? extends List<String>> countriesOfActivity) {
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
         this.countriesOfActivity = countriesOfActivity;
         return this;
@@ -512,7 +512,7 @@ public class EntityProfileResponse {
      * The industry associated with the profile's trade name or brand. Please refer to the
      * [business category list](common-data-types#business-category) for all possible options.
      */
-    public EntityProfileResponse withBusinessCategory(String businessCategory) {
+    public ProfileResponse withBusinessCategory(String businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
         this.businessCategory = Optional.ofNullable(businessCategory);
         return this;
@@ -523,7 +523,7 @@ public class EntityProfileResponse {
      * The industry associated with the profile's trade name or brand. Please refer to the
      * [business category list](common-data-types#business-category) for all possible options.
      */
-    public EntityProfileResponse withBusinessCategory(Optional<String> businessCategory) {
+    public ProfileResponse withBusinessCategory(Optional<String> businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
         this.businessCategory = businessCategory;
         return this;
@@ -537,7 +537,7 @@ public class EntityProfileResponse {
      * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
-    public EntityProfileResponse withStatus(ProfileStatus status) {
+    public ProfileResponse withStatus(ProfileStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -552,7 +552,7 @@ public class EntityProfileResponse {
      * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
-    public EntityProfileResponse withStatus(Optional<? extends ProfileStatus> status) {
+    public ProfileResponse withStatus(Optional<? extends ProfileStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -565,7 +565,7 @@ public class EntityProfileResponse {
      * therefore usually be
      * `null` in test mode.
      */
-    public EntityProfileResponse withReview(Review review) {
+    public ProfileResponse withReview(Review review) {
         Utils.checkNotNull(review, "review");
         this.review = Optional.ofNullable(review);
         return this;
@@ -579,7 +579,7 @@ public class EntityProfileResponse {
      * therefore usually be
      * `null` in test mode.
      */
-    public EntityProfileResponse withReview(Optional<? extends Review> review) {
+    public ProfileResponse withReview(Optional<? extends Review> review) {
         Utils.checkNotNull(review, "review");
         this.review = review;
         return this;
@@ -589,7 +589,7 @@ public class EntityProfileResponse {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    public EntityProfileResponse withCreatedAt(String createdAt) {
+    public ProfileResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = Optional.ofNullable(createdAt);
         return this;
@@ -600,7 +600,7 @@ public class EntityProfileResponse {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    public EntityProfileResponse withCreatedAt(Optional<String> createdAt) {
+    public ProfileResponse withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
@@ -609,7 +609,7 @@ public class EntityProfileResponse {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public EntityProfileResponse withLinks(EntityProfileResponseLinks links) {
+    public ProfileResponse withLinks(ProfileResponseLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = Optional.ofNullable(links);
         return this;
@@ -619,7 +619,7 @@ public class EntityProfileResponse {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public EntityProfileResponse withLinks(Optional<? extends EntityProfileResponseLinks> links) {
+    public ProfileResponse withLinks(Optional<? extends ProfileResponseLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -633,7 +633,7 @@ public class EntityProfileResponse {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityProfileResponse other = (EntityProfileResponse) o;
+        ProfileResponse other = (ProfileResponse) o;
         return 
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
@@ -663,7 +663,7 @@ public class EntityProfileResponse {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityProfileResponse.class,
+        return Utils.toString(ProfileResponse.class,
                 "resource", resource,
                 "id", id,
                 "mode", mode,
@@ -709,7 +709,7 @@ public class EntityProfileResponse {
 
         private Optional<String> createdAt = Optional.empty();
 
-        private Optional<? extends EntityProfileResponseLinks> links = Optional.empty();
+        private Optional<? extends ProfileResponseLinks> links = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1000,7 +1000,7 @@ public class EntityProfileResponse {
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(EntityProfileResponseLinks links) {
+        public Builder links(ProfileResponseLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = Optional.ofNullable(links);
             return this;
@@ -1009,15 +1009,15 @@ public class EntityProfileResponse {
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(Optional<? extends EntityProfileResponseLinks> links) {
+        public Builder links(Optional<? extends ProfileResponseLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
 
-        public EntityProfileResponse build() {
+        public ProfileResponse build() {
 
-            return new EntityProfileResponse(
+            return new ProfileResponse(
                 resource, id, mode,
                 name, website, email,
                 phone, description, countriesOfActivity,

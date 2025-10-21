@@ -20,39 +20,35 @@ public class EntityCapability {
     /**
      * Always the word `capability` for this resource type.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * A unique name for this capability like `payments` / `settlements`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends CapabilityStatus> status;
+    private CapabilityStatus status;
 
 
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("statusReason")
     private Optional<? extends CapabilityStatusReason> statusReason;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requirements")
-    private Optional<? extends List<EntityCapabilityRequirement>> requirements;
+    private List<EntityCapabilityRequirement> requirements;
 
     @JsonCreator
     public EntityCapability(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends CapabilityStatus> status,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("name") String name,
+            @JsonProperty("status") CapabilityStatus status,
             @JsonProperty("statusReason") Optional<? extends CapabilityStatusReason> statusReason,
-            @JsonProperty("requirements") Optional<? extends List<EntityCapabilityRequirement>> requirements) {
+            @JsonProperty("requirements") List<EntityCapabilityRequirement> requirements) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(status, "status");
@@ -65,16 +61,20 @@ public class EntityCapability {
         this.requirements = requirements;
     }
     
-    public EntityCapability() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+    public EntityCapability(
+            String resource,
+            String name,
+            CapabilityStatus status,
+            List<EntityCapabilityRequirement> requirements) {
+        this(resource, name, status,
+            Optional.empty(), requirements);
     }
 
     /**
      * Always the word `capability` for this resource type.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -82,14 +82,13 @@ public class EntityCapability {
      * A unique name for this capability like `payments` / `settlements`.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CapabilityStatus> status() {
-        return (Optional<CapabilityStatus>) status;
+    public CapabilityStatus status() {
+        return status;
     }
 
     @SuppressWarnings("unchecked")
@@ -98,10 +97,9 @@ public class EntityCapability {
         return (Optional<CapabilityStatusReason>) statusReason;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<EntityCapabilityRequirement>> requirements() {
-        return (Optional<List<EntityCapabilityRequirement>>) requirements;
+    public List<EntityCapabilityRequirement> requirements() {
+        return requirements;
     }
 
     public static Builder builder() {
@@ -114,16 +112,6 @@ public class EntityCapability {
      */
     public EntityCapability withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Always the word `capability` for this resource type.
-     */
-    public EntityCapability withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -133,28 +121,11 @@ public class EntityCapability {
      */
     public EntityCapability withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * A unique name for this capability like `payments` / `settlements`.
-     */
-    public EntityCapability withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
 
     public EntityCapability withStatus(CapabilityStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    public EntityCapability withStatus(Optional<? extends CapabilityStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -174,13 +145,6 @@ public class EntityCapability {
     }
 
     public EntityCapability withRequirements(List<EntityCapabilityRequirement> requirements) {
-        Utils.checkNotNull(requirements, "requirements");
-        this.requirements = Optional.ofNullable(requirements);
-        return this;
-    }
-
-
-    public EntityCapability withRequirements(Optional<? extends List<EntityCapabilityRequirement>> requirements) {
         Utils.checkNotNull(requirements, "requirements");
         this.requirements = requirements;
         return this;
@@ -223,15 +187,15 @@ public class EntityCapability {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<? extends CapabilityStatus> status = Optional.empty();
+        private CapabilityStatus status;
 
         private Optional<? extends CapabilityStatusReason> statusReason = Optional.empty();
 
-        private Optional<? extends List<EntityCapabilityRequirement>> requirements = Optional.empty();
+        private List<EntityCapabilityRequirement> requirements;
 
         private Builder() {
           // force use of static builder() method
@@ -243,15 +207,6 @@ public class EntityCapability {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Always the word `capability` for this resource type.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -262,27 +217,12 @@ public class EntityCapability {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * A unique name for this capability like `payments` / `settlements`.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
 
 
         public Builder status(CapabilityStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        public Builder status(Optional<? extends CapabilityStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -303,12 +243,6 @@ public class EntityCapability {
 
 
         public Builder requirements(List<EntityCapabilityRequirement> requirements) {
-            Utils.checkNotNull(requirements, "requirements");
-            this.requirements = Optional.ofNullable(requirements);
-            return this;
-        }
-
-        public Builder requirements(Optional<? extends List<EntityCapabilityRequirement>> requirements) {
             Utils.checkNotNull(requirements, "requirements");
             this.requirements = requirements;
             return this;

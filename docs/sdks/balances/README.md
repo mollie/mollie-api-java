@@ -221,9 +221,11 @@ organization's primary balance.
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.BalanceReportGrouping;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.operations.GetBalanceReportRequest;
+import com.mollie.mollie.models.operations.GetBalanceReportResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -240,7 +242,7 @@ public class Application {
                 .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .from("2024-01-01")
                 .until("2024-02-01")
-                .grouping(Grouping.STATUS_BALANCES)
+                .grouping(BalanceReportGrouping.STATUS_BALANCES)
                 .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();

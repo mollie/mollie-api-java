@@ -5,15 +5,11 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 
 
 public class ListInvoicesEmbedded {
@@ -21,29 +17,23 @@ public class ListInvoicesEmbedded {
      * An array of invoice objects. For a complete reference of
      * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("invoices")
-    private Optional<? extends List<Invoices>> invoices;
+    private List<Invoices> invoices;
 
     @JsonCreator
     public ListInvoicesEmbedded(
-            @JsonProperty("invoices") Optional<? extends List<Invoices>> invoices) {
+            @JsonProperty("invoices") List<Invoices> invoices) {
         Utils.checkNotNull(invoices, "invoices");
         this.invoices = invoices;
-    }
-    
-    public ListInvoicesEmbedded() {
-        this(Optional.empty());
     }
 
     /**
      * An array of invoice objects. For a complete reference of
      * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Invoices>> invoices() {
-        return (Optional<List<Invoices>>) invoices;
+    public List<Invoices> invoices() {
+        return invoices;
     }
 
     public static Builder builder() {
@@ -56,17 +46,6 @@ public class ListInvoicesEmbedded {
      * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     public ListInvoicesEmbedded withInvoices(List<Invoices> invoices) {
-        Utils.checkNotNull(invoices, "invoices");
-        this.invoices = Optional.ofNullable(invoices);
-        return this;
-    }
-
-
-    /**
-     * An array of invoice objects. For a complete reference of
-     * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
-     */
-    public ListInvoicesEmbedded withInvoices(Optional<? extends List<Invoices>> invoices) {
         Utils.checkNotNull(invoices, "invoices");
         this.invoices = invoices;
         return this;
@@ -100,7 +79,7 @@ public class ListInvoicesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<Invoices>> invoices = Optional.empty();
+        private List<Invoices> invoices;
 
         private Builder() {
           // force use of static builder() method
@@ -112,16 +91,6 @@ public class ListInvoicesEmbedded {
          * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
          */
         public Builder invoices(List<Invoices> invoices) {
-            Utils.checkNotNull(invoices, "invoices");
-            this.invoices = Optional.ofNullable(invoices);
-            return this;
-        }
-
-        /**
-         * An array of invoice objects. For a complete reference of
-         * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
-         */
-        public Builder invoices(Optional<? extends List<Invoices>> invoices) {
             Utils.checkNotNull(invoices, "invoices");
             this.invoices = invoices;
             return this;

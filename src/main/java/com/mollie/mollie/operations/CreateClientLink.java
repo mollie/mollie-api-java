@@ -10,7 +10,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.EntityClientLinkResponse;
+import com.mollie.mollie.models.components.ClientLinkResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateClientLinkRequest;
@@ -206,7 +206,7 @@ public class CreateClientLink {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withEntityClientLinkResponse(Utils.unmarshal(response, new TypeReference<EntityClientLinkResponse>() {}));
+                    return res.withClientLinkResponse(Utils.unmarshal(response, new TypeReference<ClientLinkResponse>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -294,8 +294,8 @@ public class CreateClientLink {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<EntityClientLinkResponse>() {})
-                            .thenApply(res::withEntityClientLinkResponse);
+                    return Utils.unmarshalAsync(response, new TypeReference<ClientLinkResponse>() {})
+                            .thenApply(res::withClientLinkResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

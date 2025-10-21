@@ -76,6 +76,7 @@ Information that the merchant has entered in their dashboard will not be overwri
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.OnboardingVatRegulation;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
@@ -97,7 +98,7 @@ public class Application {
                         .name("Mollie B.V.")
                         .registrationNumber("30204462")
                         .vatNumber("NL815839091B01")
-                        .vatRegulation(VatRegulation.DUTCH)
+                        .vatRegulation(OnboardingVatRegulation.DUTCH)
                         .build())
                     .profile(Profile.builder()
                         .name("Mollie")

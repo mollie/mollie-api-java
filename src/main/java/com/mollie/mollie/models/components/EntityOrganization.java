@@ -22,49 +22,41 @@ public class EntityOrganization {
      * `organization` for this
      * resource type.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
-    /**
-     * The identifier uniquely referring to this organization. Example: `org_12345678`.
-     */
-    @JsonInclude(Include.NON_ABSENT)
+
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The name of the organization.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The email address associated with the organization.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
-    private Optional<String> email;
+    private String email;
 
     /**
      * Allows you to preset the language to be used.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("locale")
-    private JsonNullable<? extends LocaleResponse> locale;
+    private Optional<? extends LocaleResponse> locale;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
-    private Optional<? extends Address> address;
+    private Address address;
 
     /**
      * The registration number of the organization at their local chamber of commerce.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("registrationNumber")
-    private Optional<String> registrationNumber;
+    private String registrationNumber;
 
     /**
      * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
@@ -91,22 +83,21 @@ public class EntityOrganization {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends EntityOrganizationLinks> links;
+    private EntityOrganizationLinks links;
 
     @JsonCreator
     public EntityOrganization(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("email") Optional<String> email,
-            @JsonProperty("locale") JsonNullable<? extends LocaleResponse> locale,
-            @JsonProperty("address") Optional<? extends Address> address,
-            @JsonProperty("registrationNumber") Optional<String> registrationNumber,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("name") String name,
+            @JsonProperty("email") String email,
+            @JsonProperty("locale") Optional<? extends LocaleResponse> locale,
+            @JsonProperty("address") Address address,
+            @JsonProperty("registrationNumber") String registrationNumber,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
             @JsonProperty("vatRegulation") JsonNullable<? extends OrganizationVatRegulation> vatRegulation,
-            @JsonProperty("_links") Optional<? extends EntityOrganizationLinks> links) {
+            @JsonProperty("_links") EntityOrganizationLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
@@ -129,11 +120,18 @@ public class EntityOrganization {
         this.links = links;
     }
     
-    public EntityOrganization() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+    public EntityOrganization(
+            String resource,
+            String id,
+            String name,
+            String email,
+            Address address,
+            String registrationNumber,
+            EntityOrganizationLinks links) {
+        this(resource, id, name,
+            email, Optional.empty(), address,
+            registrationNumber, JsonNullable.undefined(), JsonNullable.undefined(),
+            links);
     }
 
     /**
@@ -142,15 +140,12 @@ public class EntityOrganization {
      * resource type.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
-    /**
-     * The identifier uniquely referring to this organization. Example: `org_12345678`.
-     */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -158,7 +153,7 @@ public class EntityOrganization {
      * The name of the organization.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
@@ -166,7 +161,7 @@ public class EntityOrganization {
      * The email address associated with the organization.
      */
     @JsonIgnore
-    public Optional<String> email() {
+    public String email() {
         return email;
     }
 
@@ -175,21 +170,20 @@ public class EntityOrganization {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LocaleResponse> locale() {
-        return (JsonNullable<LocaleResponse>) locale;
+    public Optional<LocaleResponse> locale() {
+        return (Optional<LocaleResponse>) locale;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Address> address() {
-        return (Optional<Address>) address;
+    public Address address() {
+        return address;
     }
 
     /**
      * The registration number of the organization at their local chamber of commerce.
      */
     @JsonIgnore
-    public Optional<String> registrationNumber() {
+    public String registrationNumber() {
         return registrationNumber;
     }
 
@@ -221,10 +215,9 @@ public class EntityOrganization {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityOrganizationLinks> links() {
-        return (Optional<EntityOrganizationLinks>) links;
+    public EntityOrganizationLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -239,36 +232,11 @@ public class EntityOrganization {
      */
     public EntityOrganization withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains an organization object. Will always contain the string
-     * `organization` for this
-     * resource type.
-     */
-    public EntityOrganization withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
-    /**
-     * The identifier uniquely referring to this organization. Example: `org_12345678`.
-     */
     public EntityOrganization withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to this organization. Example: `org_12345678`.
-     */
-    public EntityOrganization withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -279,16 +247,6 @@ public class EntityOrganization {
      */
     public EntityOrganization withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The name of the organization.
-     */
-    public EntityOrganization withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
@@ -297,16 +255,6 @@ public class EntityOrganization {
      * The email address associated with the organization.
      */
     public EntityOrganization withEmail(String email) {
-        Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
-        return this;
-    }
-
-
-    /**
-     * The email address associated with the organization.
-     */
-    public EntityOrganization withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
@@ -317,27 +265,21 @@ public class EntityOrganization {
      */
     public EntityOrganization withLocale(LocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = JsonNullable.of(locale);
+        this.locale = Optional.ofNullable(locale);
         return this;
     }
+
 
     /**
      * Allows you to preset the language to be used.
      */
-    public EntityOrganization withLocale(JsonNullable<? extends LocaleResponse> locale) {
+    public EntityOrganization withLocale(Optional<? extends LocaleResponse> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
     }
 
     public EntityOrganization withAddress(Address address) {
-        Utils.checkNotNull(address, "address");
-        this.address = Optional.ofNullable(address);
-        return this;
-    }
-
-
-    public EntityOrganization withAddress(Optional<? extends Address> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -347,16 +289,6 @@ public class EntityOrganization {
      * The registration number of the organization at their local chamber of commerce.
      */
     public EntityOrganization withRegistrationNumber(String registrationNumber) {
-        Utils.checkNotNull(registrationNumber, "registrationNumber");
-        this.registrationNumber = Optional.ofNullable(registrationNumber);
-        return this;
-    }
-
-
-    /**
-     * The registration number of the organization at their local chamber of commerce.
-     */
-    public EntityOrganization withRegistrationNumber(Optional<String> registrationNumber) {
         Utils.checkNotNull(registrationNumber, "registrationNumber");
         this.registrationNumber = registrationNumber;
         return this;
@@ -419,16 +351,6 @@ public class EntityOrganization {
      */
     public EntityOrganization withLinks(EntityOrganizationLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public EntityOrganization withLinks(Optional<? extends EntityOrganizationLinks> links) {
-        Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
@@ -482,25 +404,25 @@ public class EntityOrganization {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
-        private JsonNullable<? extends LocaleResponse> locale = JsonNullable.undefined();
+        private Optional<? extends LocaleResponse> locale = Optional.empty();
 
-        private Optional<? extends Address> address = Optional.empty();
+        private Address address;
 
-        private Optional<String> registrationNumber = Optional.empty();
+        private String registrationNumber;
 
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
 
         private JsonNullable<? extends OrganizationVatRegulation> vatRegulation = JsonNullable.undefined();
 
-        private Optional<? extends EntityOrganizationLinks> links = Optional.empty();
+        private EntityOrganizationLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -514,35 +436,12 @@ public class EntityOrganization {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains an organization object. Will always contain the string
-         * `organization` for this
-         * resource type.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
-        /**
-         * The identifier uniquely referring to this organization. Example: `org_12345678`.
-         */
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this organization. Example: `org_12345678`.
-         */
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -554,15 +453,6 @@ public class EntityOrganization {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the organization.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
@@ -572,15 +462,6 @@ public class EntityOrganization {
          * The email address associated with the organization.
          */
         public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * The email address associated with the organization.
-         */
-        public Builder email(Optional<String> email) {
             Utils.checkNotNull(email, "email");
             this.email = email;
             return this;
@@ -592,14 +473,14 @@ public class EntityOrganization {
          */
         public Builder locale(LocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = JsonNullable.of(locale);
+            this.locale = Optional.ofNullable(locale);
             return this;
         }
 
         /**
          * Allows you to preset the language to be used.
          */
-        public Builder locale(JsonNullable<? extends LocaleResponse> locale) {
+        public Builder locale(Optional<? extends LocaleResponse> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -607,12 +488,6 @@ public class EntityOrganization {
 
 
         public Builder address(Address address) {
-            Utils.checkNotNull(address, "address");
-            this.address = Optional.ofNullable(address);
-            return this;
-        }
-
-        public Builder address(Optional<? extends Address> address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
@@ -623,15 +498,6 @@ public class EntityOrganization {
          * The registration number of the organization at their local chamber of commerce.
          */
         public Builder registrationNumber(String registrationNumber) {
-            Utils.checkNotNull(registrationNumber, "registrationNumber");
-            this.registrationNumber = Optional.ofNullable(registrationNumber);
-            return this;
-        }
-
-        /**
-         * The registration number of the organization at their local chamber of commerce.
-         */
-        public Builder registrationNumber(Optional<String> registrationNumber) {
             Utils.checkNotNull(registrationNumber, "registrationNumber");
             this.registrationNumber = registrationNumber;
             return this;
@@ -696,15 +562,6 @@ public class EntityOrganization {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(EntityOrganizationLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends EntityOrganizationLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

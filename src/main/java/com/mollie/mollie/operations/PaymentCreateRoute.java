@@ -124,7 +124,7 @@ public class PaymentCreateRoute {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "routeCreateRequest",
+                    "entityRoute",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));

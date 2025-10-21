@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.RouteCreateRequest;
+import com.mollie.mollie.models.components.EntityRoute;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -29,19 +29,19 @@ public class PaymentCreateRouteRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends RouteCreateRequest> routeCreateRequest;
+    private Optional<? extends EntityRoute> entityRoute;
 
     @JsonCreator
     public PaymentCreateRouteRequest(
             String paymentId,
             Optional<String> idempotencyKey,
-            Optional<? extends RouteCreateRequest> routeCreateRequest) {
+            Optional<? extends EntityRoute> entityRoute) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
+        Utils.checkNotNull(entityRoute, "entityRoute");
         this.paymentId = paymentId;
         this.idempotencyKey = idempotencyKey;
-        this.routeCreateRequest = routeCreateRequest;
+        this.entityRoute = entityRoute;
     }
     
     public PaymentCreateRouteRequest(
@@ -67,8 +67,8 @@ public class PaymentCreateRouteRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<RouteCreateRequest> routeCreateRequest() {
-        return (Optional<RouteCreateRequest>) routeCreateRequest;
+    public Optional<EntityRoute> entityRoute() {
+        return (Optional<EntityRoute>) entityRoute;
     }
 
     public static Builder builder() {
@@ -104,16 +104,16 @@ public class PaymentCreateRouteRequest {
         return this;
     }
 
-    public PaymentCreateRouteRequest withRouteCreateRequest(RouteCreateRequest routeCreateRequest) {
-        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
-        this.routeCreateRequest = Optional.ofNullable(routeCreateRequest);
+    public PaymentCreateRouteRequest withEntityRoute(EntityRoute entityRoute) {
+        Utils.checkNotNull(entityRoute, "entityRoute");
+        this.entityRoute = Optional.ofNullable(entityRoute);
         return this;
     }
 
 
-    public PaymentCreateRouteRequest withRouteCreateRequest(Optional<? extends RouteCreateRequest> routeCreateRequest) {
-        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
-        this.routeCreateRequest = routeCreateRequest;
+    public PaymentCreateRouteRequest withEntityRoute(Optional<? extends EntityRoute> entityRoute) {
+        Utils.checkNotNull(entityRoute, "entityRoute");
+        this.entityRoute = entityRoute;
         return this;
     }
 
@@ -129,13 +129,13 @@ public class PaymentCreateRouteRequest {
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Utils.enhancedDeepEquals(this.routeCreateRequest, other.routeCreateRequest);
+            Utils.enhancedDeepEquals(this.entityRoute, other.entityRoute);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, idempotencyKey, routeCreateRequest);
+            paymentId, idempotencyKey, entityRoute);
     }
     
     @Override
@@ -143,7 +143,7 @@ public class PaymentCreateRouteRequest {
         return Utils.toString(PaymentCreateRouteRequest.class,
                 "paymentId", paymentId,
                 "idempotencyKey", idempotencyKey,
-                "routeCreateRequest", routeCreateRequest);
+                "entityRoute", entityRoute);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -153,7 +153,7 @@ public class PaymentCreateRouteRequest {
 
         private Optional<String> idempotencyKey = Optional.empty();
 
-        private Optional<? extends RouteCreateRequest> routeCreateRequest = Optional.empty();
+        private Optional<? extends EntityRoute> entityRoute = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -189,22 +189,22 @@ public class PaymentCreateRouteRequest {
         }
 
 
-        public Builder routeCreateRequest(RouteCreateRequest routeCreateRequest) {
-            Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
-            this.routeCreateRequest = Optional.ofNullable(routeCreateRequest);
+        public Builder entityRoute(EntityRoute entityRoute) {
+            Utils.checkNotNull(entityRoute, "entityRoute");
+            this.entityRoute = Optional.ofNullable(entityRoute);
             return this;
         }
 
-        public Builder routeCreateRequest(Optional<? extends RouteCreateRequest> routeCreateRequest) {
-            Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
-            this.routeCreateRequest = routeCreateRequest;
+        public Builder entityRoute(Optional<? extends EntityRoute> entityRoute) {
+            Utils.checkNotNull(entityRoute, "entityRoute");
+            this.entityRoute = entityRoute;
             return this;
         }
 
         public PaymentCreateRouteRequest build() {
 
             return new PaymentCreateRouteRequest(
-                paymentId, idempotencyKey, routeCreateRequest);
+                paymentId, idempotencyKey, entityRoute);
         }
 
     }

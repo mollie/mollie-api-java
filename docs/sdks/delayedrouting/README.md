@@ -38,7 +38,7 @@ public class Application {
         PaymentCreateRouteResponse res = sdk.delayedRouting().create()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .routeCreateRequest(RouteCreateRequest.builder()
+                .entityRoute(EntityRoute.builder()
                     .id("crt_dyARQ3JzCgtPDhU2Pbq3J")
                     .paymentId("tr_5B8cwPMGnU")
                     .amount(Amount.builder()
@@ -46,8 +46,8 @@ public class Application {
                         .value("10.00")
                         .build())
                     .description("Payment for Order #12345")
-                    .destination(RouteCreateRequestDestination.builder()
-                        .type(RouteDestinationType.ORGANIZATION)
+                    .destination(EntityRouteDestination.builder()
+                        .type(RouteDestinationTypeResponse.ORGANIZATION)
                         .organizationId("org_1234567")
                         .build())
                     .testmode(false)
@@ -67,7 +67,7 @@ public class Application {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `paymentId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `routeCreateRequest`                                                             | [Optional\<RouteCreateRequest>](../../models/components/RouteCreateRequest.md)   | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `entityRoute`                                                                    | [Optional\<EntityRoute>](../../models/components/EntityRoute.md)                 | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 

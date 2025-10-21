@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.models.components.Address;
+import com.mollie.mollie.models.components.OnboardingVatRegulation;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -55,7 +56,7 @@ public class Organization {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vatRegulation")
-    private JsonNullable<? extends VatRegulation> vatRegulation;
+    private JsonNullable<? extends OnboardingVatRegulation> vatRegulation;
 
     @JsonCreator
     public Organization(
@@ -63,7 +64,7 @@ public class Organization {
             @JsonProperty("address") Optional<? extends Address> address,
             @JsonProperty("registrationNumber") Optional<String> registrationNumber,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
-            @JsonProperty("vatRegulation") JsonNullable<? extends VatRegulation> vatRegulation) {
+            @JsonProperty("vatRegulation") JsonNullable<? extends OnboardingVatRegulation> vatRegulation) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(registrationNumber, "registrationNumber");
@@ -122,8 +123,8 @@ public class Organization {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<VatRegulation> vatRegulation() {
-        return (JsonNullable<VatRegulation>) vatRegulation;
+    public JsonNullable<OnboardingVatRegulation> vatRegulation() {
+        return (JsonNullable<OnboardingVatRegulation>) vatRegulation;
     }
 
     public static Builder builder() {
@@ -212,7 +213,7 @@ public class Organization {
      * 
      * <p>The field can be omitted for merchants residing in other countries.
      */
-    public Organization withVatRegulation(VatRegulation vatRegulation) {
+    public Organization withVatRegulation(OnboardingVatRegulation vatRegulation) {
         Utils.checkNotNull(vatRegulation, "vatRegulation");
         this.vatRegulation = JsonNullable.of(vatRegulation);
         return this;
@@ -224,7 +225,7 @@ public class Organization {
      * 
      * <p>The field can be omitted for merchants residing in other countries.
      */
-    public Organization withVatRegulation(JsonNullable<? extends VatRegulation> vatRegulation) {
+    public Organization withVatRegulation(JsonNullable<? extends OnboardingVatRegulation> vatRegulation) {
         Utils.checkNotNull(vatRegulation, "vatRegulation");
         this.vatRegulation = vatRegulation;
         return this;
@@ -275,7 +276,7 @@ public class Organization {
 
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
 
-        private JsonNullable<? extends VatRegulation> vatRegulation = JsonNullable.undefined();
+        private JsonNullable<? extends OnboardingVatRegulation> vatRegulation = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -364,7 +365,7 @@ public class Organization {
          * 
          * <p>The field can be omitted for merchants residing in other countries.
          */
-        public Builder vatRegulation(VatRegulation vatRegulation) {
+        public Builder vatRegulation(OnboardingVatRegulation vatRegulation) {
             Utils.checkNotNull(vatRegulation, "vatRegulation");
             this.vatRegulation = JsonNullable.of(vatRegulation);
             return this;
@@ -376,7 +377,7 @@ public class Organization {
          * 
          * <p>The field can be omitted for merchants residing in other countries.
          */
-        public Builder vatRegulation(JsonNullable<? extends VatRegulation> vatRegulation) {
+        public Builder vatRegulation(JsonNullable<? extends OnboardingVatRegulation> vatRegulation) {
             Utils.checkNotNull(vatRegulation, "vatRegulation");
             this.vatRegulation = vatRegulation;
             return this;

@@ -17,16 +17,15 @@ import java.util.Optional;
 
 public class EntityCapabilityRequirementLinks {
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-     * For example, where necessary documents are to be uploaded.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dashboard")
-    private Optional<? extends Dashboard> dashboard;
+    private Optional<? extends Url> dashboard;
 
     @JsonCreator
     public EntityCapabilityRequirementLinks(
-            @JsonProperty("dashboard") Optional<? extends Dashboard> dashboard) {
+            @JsonProperty("dashboard") Optional<? extends Url> dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = dashboard;
     }
@@ -36,13 +35,12 @@ public class EntityCapabilityRequirementLinks {
     }
 
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-     * For example, where necessary documents are to be uploaded.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Dashboard> dashboard() {
-        return (Optional<Dashboard>) dashboard;
+    public Optional<Url> dashboard() {
+        return (Optional<Url>) dashboard;
     }
 
     public static Builder builder() {
@@ -51,10 +49,9 @@ public class EntityCapabilityRequirementLinks {
 
 
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-     * For example, where necessary documents are to be uploaded.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityCapabilityRequirementLinks withDashboard(Dashboard dashboard) {
+    public EntityCapabilityRequirementLinks withDashboard(Url dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = Optional.ofNullable(dashboard);
         return this;
@@ -62,10 +59,9 @@ public class EntityCapabilityRequirementLinks {
 
 
     /**
-     * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-     * For example, where necessary documents are to be uploaded.
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityCapabilityRequirementLinks withDashboard(Optional<? extends Dashboard> dashboard) {
+    public EntityCapabilityRequirementLinks withDashboard(Optional<? extends Url> dashboard) {
         Utils.checkNotNull(dashboard, "dashboard");
         this.dashboard = dashboard;
         return this;
@@ -99,7 +95,7 @@ public class EntityCapabilityRequirementLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Dashboard> dashboard = Optional.empty();
+        private Optional<? extends Url> dashboard = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -107,20 +103,18 @@ public class EntityCapabilityRequirementLinks {
 
 
         /**
-         * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-         * For example, where necessary documents are to be uploaded.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder dashboard(Dashboard dashboard) {
+        public Builder dashboard(Url dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
             this.dashboard = Optional.ofNullable(dashboard);
             return this;
         }
 
         /**
-         * If known, a deep link to the Mollie dashboard of the client, where the requirement can be fulfilled.
-         * For example, where necessary documents are to be uploaded.
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder dashboard(Optional<? extends Dashboard> dashboard) {
+        public Builder dashboard(Optional<? extends Url> dashboard) {
             Utils.checkNotNull(dashboard, "dashboard");
             this.dashboard = dashboard;
             return this;

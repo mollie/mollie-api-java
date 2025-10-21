@@ -5,44 +5,34 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.models.components.EntityBalanceTransaction;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 
 
 public class ListBalanceTransactionsEmbedded {
     /**
      * An array of balance transaction objects.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balance_transactions")
-    private Optional<? extends List<EntityBalanceTransaction>> balanceTransactions;
+    private List<EntityBalanceTransaction> balanceTransactions;
 
     @JsonCreator
     public ListBalanceTransactionsEmbedded(
-            @JsonProperty("balance_transactions") Optional<? extends List<EntityBalanceTransaction>> balanceTransactions) {
+            @JsonProperty("balance_transactions") List<EntityBalanceTransaction> balanceTransactions) {
         Utils.checkNotNull(balanceTransactions, "balanceTransactions");
         this.balanceTransactions = balanceTransactions;
-    }
-    
-    public ListBalanceTransactionsEmbedded() {
-        this(Optional.empty());
     }
 
     /**
      * An array of balance transaction objects.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<EntityBalanceTransaction>> balanceTransactions() {
-        return (Optional<List<EntityBalanceTransaction>>) balanceTransactions;
+    public List<EntityBalanceTransaction> balanceTransactions() {
+        return balanceTransactions;
     }
 
     public static Builder builder() {
@@ -54,16 +44,6 @@ public class ListBalanceTransactionsEmbedded {
      * An array of balance transaction objects.
      */
     public ListBalanceTransactionsEmbedded withBalanceTransactions(List<EntityBalanceTransaction> balanceTransactions) {
-        Utils.checkNotNull(balanceTransactions, "balanceTransactions");
-        this.balanceTransactions = Optional.ofNullable(balanceTransactions);
-        return this;
-    }
-
-
-    /**
-     * An array of balance transaction objects.
-     */
-    public ListBalanceTransactionsEmbedded withBalanceTransactions(Optional<? extends List<EntityBalanceTransaction>> balanceTransactions) {
         Utils.checkNotNull(balanceTransactions, "balanceTransactions");
         this.balanceTransactions = balanceTransactions;
         return this;
@@ -97,7 +77,7 @@ public class ListBalanceTransactionsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<EntityBalanceTransaction>> balanceTransactions = Optional.empty();
+        private List<EntityBalanceTransaction> balanceTransactions;
 
         private Builder() {
           // force use of static builder() method
@@ -108,15 +88,6 @@ public class ListBalanceTransactionsEmbedded {
          * An array of balance transaction objects.
          */
         public Builder balanceTransactions(List<EntityBalanceTransaction> balanceTransactions) {
-            Utils.checkNotNull(balanceTransactions, "balanceTransactions");
-            this.balanceTransactions = Optional.ofNullable(balanceTransactions);
-            return this;
-        }
-
-        /**
-         * An array of balance transaction objects.
-         */
-        public Builder balanceTransactions(Optional<? extends List<EntityBalanceTransaction>> balanceTransactions) {
             Utils.checkNotNull(balanceTransactions, "balanceTransactions");
             this.balanceTransactions = balanceTransactions;
             return this;

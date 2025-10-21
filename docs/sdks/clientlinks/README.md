@@ -106,7 +106,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.entityClientLinkResponse().isPresent()) {
+        if (res.clientLinkResponse().isPresent()) {
             // handle response
         }
     }

@@ -37,7 +37,8 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.*;
+import com.mollie.mollie.models.operations.ListMethodsRequest;
+import com.mollie.mollie.models.operations.ListMethodsResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -57,9 +58,9 @@ public class Application {
                     .currency("EUR")
                     .value("10.00")
                     .build())
-                .resource(Resource.PAYMENTS)
+                .resource(MethodResourceParameter.PAYMENTS)
                 .billingCountry("DE")
-                .includeWallets(IncludeWallets.APPLEPAY)
+                .includeWallets(MethodIncludeWalletsParameter.APPLEPAY)
                 .orderLineCategories(LineCategories.ECO)
                 .profileId("pfl_5B8cwPMGnU")
                 .include("issuers")

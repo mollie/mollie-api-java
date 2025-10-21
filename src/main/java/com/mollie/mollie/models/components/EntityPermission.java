@@ -5,15 +5,11 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 
 public class EntityPermission {
@@ -22,43 +18,38 @@ public class EntityPermission {
      * this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * A short description of what kind of access the permission enables.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * Whether this permission is granted to the app by the organization.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("granted")
-    private Optional<Boolean> granted;
+    private boolean granted;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends EntityPermissionLinks> links;
+    private EntityPermissionLinks links;
 
     @JsonCreator
     public EntityPermission(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("granted") Optional<Boolean> granted,
-            @JsonProperty("_links") Optional<? extends EntityPermissionLinks> links) {
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("description") String description,
+            @JsonProperty("granted") boolean granted,
+            @JsonProperty("_links") EntityPermissionLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(description, "description");
@@ -70,11 +61,6 @@ public class EntityPermission {
         this.granted = granted;
         this.links = links;
     }
-    
-    public EntityPermission() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
-    }
 
     /**
      * Indicates the response contains a permission object. Will always contain the string `permission` for
@@ -82,12 +68,12 @@ public class EntityPermission {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -95,7 +81,7 @@ public class EntityPermission {
      * A short description of what kind of access the permission enables.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -103,17 +89,16 @@ public class EntityPermission {
      * Whether this permission is granted to the app by the organization.
      */
     @JsonIgnore
-    public Optional<Boolean> granted() {
+    public boolean granted() {
         return granted;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityPermissionLinks> links() {
-        return (Optional<EntityPermissionLinks>) links;
+    public EntityPermissionLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -128,30 +113,11 @@ public class EntityPermission {
      */
     public EntityPermission withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a permission object. Will always contain the string `permission` for
-     * this
-     * endpoint.
-     */
-    public EntityPermission withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     public EntityPermission withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public EntityPermission withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -162,16 +128,6 @@ public class EntityPermission {
      */
     public EntityPermission withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * A short description of what kind of access the permission enables.
-     */
-    public EntityPermission withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -181,16 +137,6 @@ public class EntityPermission {
      */
     public EntityPermission withGranted(boolean granted) {
         Utils.checkNotNull(granted, "granted");
-        this.granted = Optional.ofNullable(granted);
-        return this;
-    }
-
-
-    /**
-     * Whether this permission is granted to the app by the organization.
-     */
-    public EntityPermission withGranted(Optional<Boolean> granted) {
-        Utils.checkNotNull(granted, "granted");
         this.granted = granted;
         return this;
     }
@@ -199,16 +145,6 @@ public class EntityPermission {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public EntityPermission withLinks(EntityPermissionLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public EntityPermission withLinks(Optional<? extends EntityPermissionLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -251,15 +187,15 @@ public class EntityPermission {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
-        private Optional<Boolean> granted = Optional.empty();
+        private Boolean granted;
 
-        private Optional<? extends EntityPermissionLinks> links = Optional.empty();
+        private EntityPermissionLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -273,29 +209,12 @@ public class EntityPermission {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a permission object. Will always contain the string `permission` for
-         * this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -307,15 +226,6 @@ public class EntityPermission {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * A short description of what kind of access the permission enables.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -326,15 +236,6 @@ public class EntityPermission {
          */
         public Builder granted(boolean granted) {
             Utils.checkNotNull(granted, "granted");
-            this.granted = Optional.ofNullable(granted);
-            return this;
-        }
-
-        /**
-         * Whether this permission is granted to the app by the organization.
-         */
-        public Builder granted(Optional<Boolean> granted) {
-            Utils.checkNotNull(granted, "granted");
             this.granted = granted;
             return this;
         }
@@ -344,15 +245,6 @@ public class EntityPermission {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(EntityPermissionLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends EntityPermissionLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

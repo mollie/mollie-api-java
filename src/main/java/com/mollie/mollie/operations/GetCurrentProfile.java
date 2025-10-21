@@ -10,7 +10,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.EntityProfileResponse;
+import com.mollie.mollie.models.components.ProfileResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.operations.GetCurrentProfileRequest;
 import com.mollie.mollie.models.operations.GetCurrentProfileResponse;
@@ -192,7 +192,7 @@ public class GetCurrentProfile {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withEntityProfileResponse(Utils.unmarshal(response, new TypeReference<EntityProfileResponse>() {}));
+                    return res.withProfileResponse(Utils.unmarshal(response, new TypeReference<ProfileResponse>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -273,8 +273,8 @@ public class GetCurrentProfile {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<EntityProfileResponse>() {})
-                            .thenApply(res::withEntityProfileResponse);
+                    return Utils.unmarshalAsync(response, new TypeReference<ProfileResponse>() {})
+                            .thenApply(res::withProfileResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

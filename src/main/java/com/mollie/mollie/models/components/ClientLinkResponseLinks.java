@@ -15,11 +15,11 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
- * EntityClientLinkResponseLinks
+ * ClientLinkResponseLinks
  * 
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
-public class EntityClientLinkResponseLinks {
+public class ClientLinkResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -42,7 +42,7 @@ public class EntityClientLinkResponseLinks {
     private Optional<? extends Url> documentation;
 
     @JsonCreator
-    public EntityClientLinkResponseLinks(
+    public ClientLinkResponseLinks(
             @JsonProperty("self") Optional<? extends Url> self,
             @JsonProperty("clientLink") Optional<? extends Url> clientLink,
             @JsonProperty("documentation") Optional<? extends Url> documentation) {
@@ -54,7 +54,7 @@ public class EntityClientLinkResponseLinks {
         this.documentation = documentation;
     }
     
-    public EntityClientLinkResponseLinks() {
+    public ClientLinkResponseLinks() {
         this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -93,7 +93,7 @@ public class EntityClientLinkResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityClientLinkResponseLinks withSelf(Url self) {
+    public ClientLinkResponseLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
         this.self = Optional.ofNullable(self);
         return this;
@@ -103,7 +103,7 @@ public class EntityClientLinkResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityClientLinkResponseLinks withSelf(Optional<? extends Url> self) {
+    public ClientLinkResponseLinks withSelf(Optional<? extends Url> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -112,7 +112,7 @@ public class EntityClientLinkResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityClientLinkResponseLinks withClientLink(Url clientLink) {
+    public ClientLinkResponseLinks withClientLink(Url clientLink) {
         Utils.checkNotNull(clientLink, "clientLink");
         this.clientLink = Optional.ofNullable(clientLink);
         return this;
@@ -122,7 +122,7 @@ public class EntityClientLinkResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityClientLinkResponseLinks withClientLink(Optional<? extends Url> clientLink) {
+    public ClientLinkResponseLinks withClientLink(Optional<? extends Url> clientLink) {
         Utils.checkNotNull(clientLink, "clientLink");
         this.clientLink = clientLink;
         return this;
@@ -131,7 +131,7 @@ public class EntityClientLinkResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityClientLinkResponseLinks withDocumentation(Url documentation) {
+    public ClientLinkResponseLinks withDocumentation(Url documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
@@ -141,7 +141,7 @@ public class EntityClientLinkResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityClientLinkResponseLinks withDocumentation(Optional<? extends Url> documentation) {
+    public ClientLinkResponseLinks withDocumentation(Optional<? extends Url> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -155,7 +155,7 @@ public class EntityClientLinkResponseLinks {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityClientLinkResponseLinks other = (EntityClientLinkResponseLinks) o;
+        ClientLinkResponseLinks other = (ClientLinkResponseLinks) o;
         return 
             Utils.enhancedDeepEquals(this.self, other.self) &&
             Utils.enhancedDeepEquals(this.clientLink, other.clientLink) &&
@@ -170,7 +170,7 @@ public class EntityClientLinkResponseLinks {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityClientLinkResponseLinks.class,
+        return Utils.toString(ClientLinkResponseLinks.class,
                 "self", self,
                 "clientLink", clientLink,
                 "documentation", documentation);
@@ -246,9 +246,9 @@ public class EntityClientLinkResponseLinks {
             return this;
         }
 
-        public EntityClientLinkResponseLinks build() {
+        public ClientLinkResponseLinks build() {
 
-            return new EntityClientLinkResponseLinks(
+            return new ClientLinkResponseLinks(
                 self, clientLink, documentation);
         }
 

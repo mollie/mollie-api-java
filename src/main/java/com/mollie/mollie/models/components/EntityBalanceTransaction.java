@@ -22,33 +22,28 @@ public class EntityBalanceTransaction {
      * `balance-transaction`
      * for this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends BalanceTransactionType> type;
+    private BalanceTransactionType type;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resultAmount")
-    private Optional<? extends Amount> resultAmount;
+    private Amount resultAmount;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("initialAmount")
-    private Optional<? extends Amount> initialAmount;
+    private Amount initialAmount;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -122,20 +117,19 @@ public class EntityBalanceTransaction {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     @JsonCreator
     public EntityBalanceTransaction(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("type") Optional<? extends BalanceTransactionType> type,
-            @JsonProperty("resultAmount") Optional<? extends Amount> resultAmount,
-            @JsonProperty("initialAmount") Optional<? extends Amount> initialAmount,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("type") BalanceTransactionType type,
+            @JsonProperty("resultAmount") Amount resultAmount,
+            @JsonProperty("initialAmount") Amount initialAmount,
             @JsonProperty("deductions") JsonNullable<? extends AmountNullable> deductions,
             @JsonProperty("context") Optional<? extends Context> context,
-            @JsonProperty("createdAt") Optional<String> createdAt) {
+            @JsonProperty("createdAt") String createdAt) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(type, "type");
@@ -154,10 +148,16 @@ public class EntityBalanceTransaction {
         this.createdAt = createdAt;
     }
     
-    public EntityBalanceTransaction() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+    public EntityBalanceTransaction(
+            String resource,
+            String id,
+            BalanceTransactionType type,
+            Amount resultAmount,
+            Amount initialAmount,
+            String createdAt) {
+        this(resource, id, type,
+            resultAmount, initialAmount, JsonNullable.undefined(),
+            Optional.empty(), createdAt);
     }
 
     /**
@@ -166,37 +166,34 @@ public class EntityBalanceTransaction {
      * for this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<BalanceTransactionType> type() {
-        return (Optional<BalanceTransactionType>) type;
+    public BalanceTransactionType type() {
+        return type;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> resultAmount() {
-        return (Optional<Amount>) resultAmount;
+    public Amount resultAmount() {
+        return resultAmount;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> initialAmount() {
-        return (Optional<Amount>) initialAmount;
+    public Amount initialAmount() {
+        return initialAmount;
     }
 
     /**
@@ -276,7 +273,7 @@ public class EntityBalanceTransaction {
      * format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
@@ -292,43 +289,17 @@ public class EntityBalanceTransaction {
      */
     public EntityBalanceTransaction withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a balance transaction object. Will always contain the string
-     * `balance-transaction`
-     * for this endpoint.
-     */
-    public EntityBalanceTransaction withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     public EntityBalanceTransaction withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public EntityBalanceTransaction withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
     public EntityBalanceTransaction withType(BalanceTransactionType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-
-    public EntityBalanceTransaction withType(Optional<? extends BalanceTransactionType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -339,16 +310,6 @@ public class EntityBalanceTransaction {
      */
     public EntityBalanceTransaction withResultAmount(Amount resultAmount) {
         Utils.checkNotNull(resultAmount, "resultAmount");
-        this.resultAmount = Optional.ofNullable(resultAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntityBalanceTransaction withResultAmount(Optional<? extends Amount> resultAmount) {
-        Utils.checkNotNull(resultAmount, "resultAmount");
         this.resultAmount = resultAmount;
         return this;
     }
@@ -357,16 +318,6 @@ public class EntityBalanceTransaction {
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public EntityBalanceTransaction withInitialAmount(Amount initialAmount) {
-        Utils.checkNotNull(initialAmount, "initialAmount");
-        this.initialAmount = Optional.ofNullable(initialAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntityBalanceTransaction withInitialAmount(Optional<? extends Amount> initialAmount) {
         Utils.checkNotNull(initialAmount, "initialAmount");
         this.initialAmount = initialAmount;
         return this;
@@ -523,17 +474,6 @@ public class EntityBalanceTransaction {
      */
     public EntityBalanceTransaction withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     */
-    public EntityBalanceTransaction withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -582,21 +522,21 @@ public class EntityBalanceTransaction {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends BalanceTransactionType> type = Optional.empty();
+        private BalanceTransactionType type;
 
-        private Optional<? extends Amount> resultAmount = Optional.empty();
+        private Amount resultAmount;
 
-        private Optional<? extends Amount> initialAmount = Optional.empty();
+        private Amount initialAmount;
 
         private JsonNullable<? extends AmountNullable> deductions = JsonNullable.undefined();
 
         private Optional<? extends Context> context = Optional.empty();
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
         private Builder() {
           // force use of static builder() method
@@ -610,17 +550,6 @@ public class EntityBalanceTransaction {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a balance transaction object. Will always contain the string
-         * `balance-transaction`
-         * for this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -628,24 +557,12 @@ public class EntityBalanceTransaction {
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
 
 
         public Builder type(BalanceTransactionType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        public Builder type(Optional<? extends BalanceTransactionType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -657,15 +574,6 @@ public class EntityBalanceTransaction {
          */
         public Builder resultAmount(Amount resultAmount) {
             Utils.checkNotNull(resultAmount, "resultAmount");
-            this.resultAmount = Optional.ofNullable(resultAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder resultAmount(Optional<? extends Amount> resultAmount) {
-            Utils.checkNotNull(resultAmount, "resultAmount");
             this.resultAmount = resultAmount;
             return this;
         }
@@ -675,15 +583,6 @@ public class EntityBalanceTransaction {
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder initialAmount(Amount initialAmount) {
-            Utils.checkNotNull(initialAmount, "initialAmount");
-            this.initialAmount = Optional.ofNullable(initialAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder initialAmount(Optional<? extends Amount> initialAmount) {
             Utils.checkNotNull(initialAmount, "initialAmount");
             this.initialAmount = initialAmount;
             return this;
@@ -841,16 +740,6 @@ public class EntityBalanceTransaction {
          * format.
          */
         public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;

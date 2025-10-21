@@ -5,4 +5,4 @@
 
 | Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `permissions`                                                          | List\<[EntityPermission](../../models/components/EntityPermission.md)> | :heavy_minus_sign:                                                     | An array of permission objects.                                        |
+| `permissions`                                                          | List\<[EntityPermission](../../models/components/EntityPermission.md)> | :heavy_check_mark:                                                     | An array of permission objects.                                        |

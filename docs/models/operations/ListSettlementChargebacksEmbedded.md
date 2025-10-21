@@ -5,4 +5,4 @@
 
 | Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `chargebacks`                                                          | List\<[EntityChargeback](../../models/components/EntityChargeback.md)> | :heavy_minus_sign:                                                     | A list of chargeback objects.                                          |
+| `chargebacks`                                                          | List\<[EntityChargeback](../../models/components/EntityChargeback.md)> | :heavy_check_mark:                                                     | A list of chargeback objects.                                          |

@@ -72,15 +72,6 @@ public class UpdateProfileRequestBody {
     @JsonProperty("businessCategory")
     private JsonNullable<String> businessCategory;
 
-    /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
-     * review
-     * the profile before it can start accepting payments.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("mode")
-    private JsonNullable<? extends Mode> mode;
-
     @JsonCreator
     public UpdateProfileRequestBody(
             @JsonProperty("name") JsonNullable<String> name,
@@ -89,8 +80,7 @@ public class UpdateProfileRequestBody {
             @JsonProperty("phone") JsonNullable<String> phone,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("countriesOfActivity") JsonNullable<? extends List<String>> countriesOfActivity,
-            @JsonProperty("businessCategory") JsonNullable<String> businessCategory,
-            @JsonProperty("mode") JsonNullable<? extends Mode> mode) {
+            @JsonProperty("businessCategory") JsonNullable<String> businessCategory) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(website, "website");
         Utils.checkNotNull(email, "email");
@@ -98,7 +88,6 @@ public class UpdateProfileRequestBody {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
         Utils.checkNotNull(businessCategory, "businessCategory");
-        Utils.checkNotNull(mode, "mode");
         this.name = name;
         this.website = website;
         this.email = email;
@@ -106,13 +95,12 @@ public class UpdateProfileRequestBody {
         this.description = description;
         this.countriesOfActivity = countriesOfActivity;
         this.businessCategory = businessCategory;
-        this.mode = mode;
     }
     
     public UpdateProfileRequestBody() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined());
     }
 
     /**
@@ -176,17 +164,6 @@ public class UpdateProfileRequestBody {
     @JsonIgnore
     public JsonNullable<String> businessCategory() {
         return businessCategory;
-    }
-
-    /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
-     * review
-     * the profile before it can start accepting payments.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<Mode> mode() {
-        return (JsonNullable<Mode>) mode;
     }
 
     public static Builder builder() {
@@ -332,28 +309,6 @@ public class UpdateProfileRequestBody {
         return this;
     }
 
-    /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
-     * review
-     * the profile before it can start accepting payments.
-     */
-    public UpdateProfileRequestBody withMode(Mode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = JsonNullable.of(mode);
-        return this;
-    }
-
-    /**
-     * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
-     * review
-     * the profile before it can start accepting payments.
-     */
-    public UpdateProfileRequestBody withMode(JsonNullable<? extends Mode> mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = mode;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -370,8 +325,7 @@ public class UpdateProfileRequestBody {
             Utils.enhancedDeepEquals(this.phone, other.phone) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.countriesOfActivity, other.countriesOfActivity) &&
-            Utils.enhancedDeepEquals(this.businessCategory, other.businessCategory) &&
-            Utils.enhancedDeepEquals(this.mode, other.mode);
+            Utils.enhancedDeepEquals(this.businessCategory, other.businessCategory);
     }
     
     @Override
@@ -379,7 +333,7 @@ public class UpdateProfileRequestBody {
         return Utils.enhancedHash(
             name, website, email,
             phone, description, countriesOfActivity,
-            businessCategory, mode);
+            businessCategory);
     }
     
     @Override
@@ -391,8 +345,7 @@ public class UpdateProfileRequestBody {
                 "phone", phone,
                 "description", description,
                 "countriesOfActivity", countriesOfActivity,
-                "businessCategory", businessCategory,
-                "mode", mode);
+                "businessCategory", businessCategory);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -411,8 +364,6 @@ public class UpdateProfileRequestBody {
         private JsonNullable<? extends List<String>> countriesOfActivity = JsonNullable.undefined();
 
         private JsonNullable<String> businessCategory = JsonNullable.undefined();
-
-        private JsonNullable<? extends Mode> mode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -563,35 +514,12 @@ public class UpdateProfileRequestBody {
             return this;
         }
 
-
-        /**
-         * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
-         * review
-         * the profile before it can start accepting payments.
-         */
-        public Builder mode(Mode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = JsonNullable.of(mode);
-            return this;
-        }
-
-        /**
-         * Updating a profile from `test` mode to `live` mode will trigger a verification process, where we
-         * review
-         * the profile before it can start accepting payments.
-         */
-        public Builder mode(JsonNullable<? extends Mode> mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = mode;
-            return this;
-        }
-
         public UpdateProfileRequestBody build() {
 
             return new UpdateProfileRequestBody(
                 name, website, email,
                 phone, description, countriesOfActivity,
-                businessCategory, mode);
+                businessCategory);
         }
 
     }
