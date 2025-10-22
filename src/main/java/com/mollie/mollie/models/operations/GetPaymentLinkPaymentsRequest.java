@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.ListSort;
+import com.mollie.mollie.models.components.Sorting;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -44,7 +44,7 @@ public class GetPaymentLinkPaymentsRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListSort> sort;
+    private Optional<? extends Sorting> sort;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
@@ -69,7 +69,7 @@ public class GetPaymentLinkPaymentsRequest {
             String paymentLinkId,
             Optional<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListSort> sort,
+            Optional<? extends Sorting> sort,
             JsonNullable<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(paymentLinkId, "paymentLinkId");
@@ -89,7 +89,7 @@ public class GetPaymentLinkPaymentsRequest {
     public GetPaymentLinkPaymentsRequest(
             String paymentLinkId) {
         this(paymentLinkId, Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -125,8 +125,8 @@ public class GetPaymentLinkPaymentsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSort> sort() {
-        return (JsonNullable<ListSort>) sort;
+    public Optional<Sorting> sort() {
+        return (Optional<Sorting>) sort;
     }
 
     /**
@@ -211,18 +211,19 @@ public class GetPaymentLinkPaymentsRequest {
      * are ordered from
      * newest to oldest.
      */
-    public GetPaymentLinkPaymentsRequest withSort(ListSort sort) {
+    public GetPaymentLinkPaymentsRequest withSort(Sorting sort) {
         Utils.checkNotNull(sort, "sort");
-        this.sort = JsonNullable.of(sort);
+        this.sort = Optional.ofNullable(sort);
         return this;
     }
+
 
     /**
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results
      * are ordered from
      * newest to oldest.
      */
-    public GetPaymentLinkPaymentsRequest withSort(JsonNullable<? extends ListSort> sort) {
+    public GetPaymentLinkPaymentsRequest withSort(Optional<? extends Sorting> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -322,7 +323,7 @@ public class GetPaymentLinkPaymentsRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
+        private Optional<? extends Sorting> sort = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -390,9 +391,9 @@ public class GetPaymentLinkPaymentsRequest {
          * are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListSort sort) {
+        public Builder sort(Sorting sort) {
             Utils.checkNotNull(sort, "sort");
-            this.sort = JsonNullable.of(sort);
+            this.sort = Optional.ofNullable(sort);
             return this;
         }
 
@@ -401,7 +402,7 @@ public class GetPaymentLinkPaymentsRequest {
          * are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListSort> sort) {
+        public Builder sort(Optional<? extends Sorting> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

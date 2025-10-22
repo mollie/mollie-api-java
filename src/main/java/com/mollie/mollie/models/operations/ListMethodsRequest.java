@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.models.components.Amount;
 import com.mollie.mollie.models.components.LineCategories;
+import com.mollie.mollie.models.components.Locale;
 import com.mollie.mollie.models.components.MethodIncludeWalletsParameter;
 import com.mollie.mollie.models.components.MethodResourceParameter;
-import com.mollie.mollie.models.components.ParameterLocale;
 import com.mollie.mollie.models.components.SequenceType;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
@@ -37,7 +37,7 @@ public class ListMethodsRequest {
      * Response language
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
-    private Optional<? extends ParameterLocale> locale;
+    private JsonNullable<? extends Locale> locale;
 
     /**
      * If supplied, only payment methods that support the amount and currency
@@ -129,7 +129,7 @@ public class ListMethodsRequest {
     @JsonCreator
     public ListMethodsRequest(
             Optional<? extends SequenceType> sequenceType,
-            Optional<? extends ParameterLocale> locale,
+            JsonNullable<? extends Locale> locale,
             Optional<? extends Amount> amount,
             Optional<? extends MethodResourceParameter> resource,
             Optional<String> billingCountry,
@@ -164,7 +164,7 @@ public class ListMethodsRequest {
     }
     
     public ListMethodsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty());
@@ -188,8 +188,8 @@ public class ListMethodsRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ParameterLocale> locale() {
-        return (Optional<ParameterLocale>) locale;
+    public JsonNullable<Locale> locale() {
+        return (JsonNullable<Locale>) locale;
     }
 
     /**
@@ -336,17 +336,16 @@ public class ListMethodsRequest {
     /**
      * Response language
      */
-    public ListMethodsRequest withLocale(ParameterLocale locale) {
+    public ListMethodsRequest withLocale(Locale locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = Optional.ofNullable(locale);
+        this.locale = JsonNullable.of(locale);
         return this;
     }
-
 
     /**
      * Response language
      */
-    public ListMethodsRequest withLocale(Optional<? extends ParameterLocale> locale) {
+    public ListMethodsRequest withLocale(JsonNullable<? extends Locale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -640,7 +639,7 @@ public class ListMethodsRequest {
 
         private Optional<? extends SequenceType> sequenceType = Optional.empty();
 
-        private Optional<? extends ParameterLocale> locale = Optional.empty();
+        private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
 
         private Optional<? extends Amount> amount = Optional.empty();
 
@@ -696,16 +695,16 @@ public class ListMethodsRequest {
         /**
          * Response language
          */
-        public Builder locale(ParameterLocale locale) {
+        public Builder locale(Locale locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = Optional.ofNullable(locale);
+            this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
          * Response language
          */
-        public Builder locale(Optional<? extends ParameterLocale> locale) {
+        public Builder locale(JsonNullable<? extends Locale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

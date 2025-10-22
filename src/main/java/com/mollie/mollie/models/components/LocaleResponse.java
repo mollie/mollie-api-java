@@ -72,6 +72,7 @@ public class LocaleResponse {
     public static final LocaleResponse PLPL = new LocaleResponse("pl_PL");
     public static final LocaleResponse LVLV = new LocaleResponse("lv_LV");
     public static final LocaleResponse LTLT = new LocaleResponse("lt_LT");
+    public static final LocaleResponse NULL = new LocaleResponse("null");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -165,6 +166,7 @@ public class LocaleResponse {
         map.put("pl_PL", PLPL);
         map.put("lv_LV", LVLV);
         map.put("lt_LT", LTLT);
+        map.put("null", NULL);
         return map;
     }
 
@@ -192,6 +194,7 @@ public class LocaleResponse {
         map.put("pl_PL", LocaleResponseEnum.PLPL);
         map.put("lv_LV", LocaleResponseEnum.LVLV);
         map.put("lt_LT", LocaleResponseEnum.LTLT);
+        map.put("null", LocaleResponseEnum.NULL);
         return map;
     }
     
@@ -248,7 +251,8 @@ public class LocaleResponse {
         HUHU("hu_HU"),
         PLPL("pl_PL"),
         LVLV("lv_LV"),
-        LTLT("lt_LT"),;
+        LTLT("lt_LT"),
+        NULL("null"),;
 
         private final String value;
 

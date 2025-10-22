@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: a5dccf14f1e5388d77df2bf0465de0c1
+  docChecksum: 3326eaca21c1637f3b75a6c4f0058439
   docVersion: 1.0.0
-  speakeasyVersion: 1.637.3
-  generationVersion: 2.727.9
-  releaseVersion: 0.21.1
-  configChecksum: 62544a6e6c7117635a36f08e314c1031
+  speakeasyVersion: 1.638.0
+  generationVersion: 2.728.0
+  releaseVersion: 0.21.2
+  configChecksum: be1d258c775e51acbfd23afe51cdd2cb
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -172,7 +172,6 @@ generatedFiles:
   - docs/models/components/Lines.md
   - docs/models/components/Links.md
   - docs/models/components/ListLinks.md
-  - docs/models/components/ListSort.md
   - docs/models/components/Locale.md
   - docs/models/components/LocaleResponse.md
   - docs/models/components/ManagedFee.md
@@ -196,7 +195,6 @@ generatedFiles:
   - docs/models/components/OrganizationVatRegulation.md
   - docs/models/components/OutgoingTransfer.md
   - docs/models/components/Owner.md
-  - docs/models/components/ParameterLocale.md
   - docs/models/components/Payment.md
   - docs/models/components/PaymentAddress.md
   - docs/models/components/PaymentCommission.md
@@ -301,6 +299,7 @@ generatedFiles:
   - docs/models/components/SequenceType.md
   - docs/models/components/SequenceTypeResponse.md
   - docs/models/components/SettlementStatus.md
+  - docs/models/components/Sorting.md
   - docs/models/components/Source.md
   - docs/models/components/SplitPayment.md
   - docs/models/components/StatusReason.md
@@ -868,7 +867,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/Lines.java
   - src/main/java/com/mollie/mollie/models/components/Links.java
   - src/main/java/com/mollie/mollie/models/components/ListLinks.java
-  - src/main/java/com/mollie/mollie/models/components/ListSort.java
   - src/main/java/com/mollie/mollie/models/components/Locale.java
   - src/main/java/com/mollie/mollie/models/components/LocaleResponse.java
   - src/main/java/com/mollie/mollie/models/components/ManagedFee.java
@@ -892,7 +890,6 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/OrganizationVatRegulation.java
   - src/main/java/com/mollie/mollie/models/components/OutgoingTransfer.java
   - src/main/java/com/mollie/mollie/models/components/Owner.java
-  - src/main/java/com/mollie/mollie/models/components/ParameterLocale.java
   - src/main/java/com/mollie/mollie/models/components/Payment.java
   - src/main/java/com/mollie/mollie/models/components/PaymentAddress.java
   - src/main/java/com/mollie/mollie/models/components/PaymentCommission.java
@@ -997,6 +994,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/SequenceType.java
   - src/main/java/com/mollie/mollie/models/components/SequenceTypeResponse.java
   - src/main/java/com/mollie/mollie/models/components/SettlementStatus.java
+  - src/main/java/com/mollie/mollie/models/components/Sorting.java
   - src/main/java/com/mollie/mollie/models/components/Source.java
   - src/main/java/com/mollie/mollie/models/components/SplitPayment.java
   - src/main/java/com/mollie/mollie/models/components/StatusReason.java
@@ -4544,7 +4542,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "<value>", "postalCode": "18293", "city": "South Kaelyn", "country": "Tajikistan"}, "registrationNumber": "12345678", "vatNumber": "NL123456789B01", "vatRegulation": "dutch", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "Keizersgracht 126", "postalCode": "1015 CW", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "vatNumber": "NL123456789B01", "vatRegulation": "dutch", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   get-current-organization:
@@ -4774,7 +4772,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"organization": {"name": "Mollie B.V.", "registrationNumber": "30204462", "vatNumber": "NL815839091B01", "vatRegulation": "dutch"}, "profile": {"name": "Mollie", "url": "https://www.mollie.com", "email": "info@mollie.com", "phone": "+31208202070", "description": "Payment service provider", "businessCategory": "MONEY_SERVICES"}}
+        application/json: {"organization": {"name": "Mollie B.V.", "address": {"streetAndNumber": "Keizersgracht 126", "postalCode": "1015 CW", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "30204462", "vatNumber": "NL815839091B01", "vatRegulation": "dutch"}, "profile": {"name": "Mollie", "url": "https://www.mollie.com", "email": "info@mollie.com", "phone": "+31208202070", "description": "Payment service provider", "businessCategory": "MONEY_SERVICES"}}
       responses:
         "204":
           application/hal+json: "<value>"
@@ -4888,7 +4886,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "client", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "<value>", "postalCode": "72737", "city": "Fort Reece", "country": "Svalbard & Jan Mayen Islands"}, "registrationNumber": "12345678", "vatNumber": "NL123456789B01", "vatRegulation": "dutch", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": {"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}}}
+          application/hal+json: {"resource": "client", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "Keizersgracht 126", "postalCode": "1015 CW", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "vatNumber": "NL123456789B01", "vatRegulation": "dutch", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": {"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   create-client-link:
@@ -6227,4 +6225,4 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `client.profiles.update()`: \n  *  `requestbody.mode` **Removed** **Breaking** :warning:\n* `client.delayedRouting.create()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed**\n* `client.clients.get()`:  `response._embedded` **Changed** **Breaking** :warning:\n* `client.balances.getReport()`: \n  *  `request.grouping` **Changed** **Breaking** :warning:\n  *  `response` **Changed**\n* `client.clients.list()`:  `response._embedded.clients.[].Embedded` **Changed** **Breaking** :warning:\n* `client.capabilities.list()`:  `response` **Changed** **Breaking** :warning:\n* `client.onboarding.submit()`: \n  *  `requestbody.organization.address` **Changed** **Breaking** :warning:\n* `client.invoices.list()`:  `response` **Changed**\n* `client.settlements.listChargebacks()`:  `response` **Changed**\n* `client.permissions.get()`:  `response` **Changed**\n* `client.organizations.get()`:  `response` **Changed**\n* `client.organizations.getCurrent()`:  `response` **Changed**\n* `client.profiles.list()`:  `response` **Changed**\n* `client.invoices.get()`:  `response` **Changed**\n* `client.onboarding.get()`:  `response` **Changed**\n* `client.balances.list()`:  `response` **Changed**\n* `client.permissions.list()`:  `response` **Changed**\n* `client.balances.listTransactions()`:  `response` **Changed**\n* `client.balances.getPrimary()`:  `response` **Changed**\n* `client.webhookEvents.get()`:  `response._embedded.entity` **Changed**\n* `client.methods.list()`:  `request` **Changed**\n* `client.chargebacks.list()`:  `response` **Changed**\n* `client.chargebacks.all()`:  `response` **Changed**\n* `client.balances.get()`:  `response` **Changed**\n* `client.delayedRouting.list()`:  `response` **Changed**\n"
+releaseNotes: "## Java SDK Changes Detected:\n* `client.refunds.all()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.customers.listPayments()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.webhooks.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.balanceTransfers.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.payments.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.subscriptions.listPayments()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.subscriptions.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.mandates.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.invoices.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.chargebacks.all()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.settlements.listPayments()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.terminals.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.customers.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.paymentLinks.listPayments()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.methods.get()`: \n  *  `request.locale` **Changed**\n* `client.methods.all()`: \n  *  `request.locale` **Changed**\n* `client.methods.list()`: \n  *  `request.locale` **Changed**\n"

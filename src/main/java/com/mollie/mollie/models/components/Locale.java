@@ -35,7 +35,8 @@ public enum Locale {
     HUHU("hu_HU"),
     PLPL("pl_PL"),
     LVLV("lv_LV"),
-    LTLT("lt_LT");
+    LTLT("lt_LT"),
+    NULL("null");
 
     @JsonValue
     private final String value;

@@ -53,7 +53,7 @@ public class Application {
 
         ListMethodsRequest req = ListMethodsRequest.builder()
                 .sequenceType(SequenceType.ONEOFF)
-                .locale(ParameterLocale.EN_US)
+                .locale(Locale.EN_US)
                 .amount(Amount.builder()
                     .currency("EUR")
                     .value("10.00")
@@ -127,7 +127,7 @@ public class Application {
             .build();
 
         ListAllMethodsRequest req = ListAllMethodsRequest.builder()
-                .locale(ParameterLocale.EN_US)
+                .locale(Locale.EN_US)
                 .amount(Amount.builder()
                     .currency("EUR")
                     .value("10.00")
@@ -207,7 +207,7 @@ public class Application {
 
         GetMethodRequest req = GetMethodRequest.builder()
                 .id("ideal")
-                .locale(ParameterLocale.EN_US)
+                .locale(Locale.EN_US)
                 .currency("EUR")
                 .profileId("pfl_5B8cwPMGnU")
                 .include("issuers")

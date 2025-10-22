@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.ListSort;
+import com.mollie.mollie.models.components.Sorting;
 import com.mollie.mollie.models.components.WebhookEventTypes;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
@@ -39,7 +39,7 @@ public class ListWebhooksRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListSort> sort;
+    private Optional<? extends Sorting> sort;
 
     /**
      * Used to filter out only the webhooks that are subscribed to certain types of events.
@@ -69,7 +69,7 @@ public class ListWebhooksRequest {
     public ListWebhooksRequest(
             JsonNullable<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListSort> sort,
+            Optional<? extends Sorting> sort,
             Optional<? extends WebhookEventTypes> eventTypes,
             JsonNullable<Boolean> testmode,
             Optional<String> idempotencyKey) {
@@ -88,7 +88,7 @@ public class ListWebhooksRequest {
     }
     
     public ListWebhooksRequest() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
@@ -117,8 +117,8 @@ public class ListWebhooksRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSort> sort() {
-        return (JsonNullable<ListSort>) sort;
+    public Optional<Sorting> sort() {
+        return (Optional<Sorting>) sort;
     }
 
     /**
@@ -202,18 +202,19 @@ public class ListWebhooksRequest {
      * are ordered from
      * newest to oldest.
      */
-    public ListWebhooksRequest withSort(ListSort sort) {
+    public ListWebhooksRequest withSort(Sorting sort) {
         Utils.checkNotNull(sort, "sort");
-        this.sort = JsonNullable.of(sort);
+        this.sort = Optional.ofNullable(sort);
         return this;
     }
+
 
     /**
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results
      * are ordered from
      * newest to oldest.
      */
-    public ListWebhooksRequest withSort(JsonNullable<? extends ListSort> sort) {
+    public ListWebhooksRequest withSort(Optional<? extends Sorting> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -330,7 +331,7 @@ public class ListWebhooksRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
+        private Optional<? extends Sorting> sort = Optional.empty();
 
         private Optional<? extends WebhookEventTypes> eventTypes = Optional.empty();
 
@@ -390,9 +391,9 @@ public class ListWebhooksRequest {
          * are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListSort sort) {
+        public Builder sort(Sorting sort) {
             Utils.checkNotNull(sort, "sort");
-            this.sort = JsonNullable.of(sort);
+            this.sort = Optional.ofNullable(sort);
             return this;
         }
 
@@ -401,7 +402,7 @@ public class ListWebhooksRequest {
          * are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListSort> sort) {
+        public Builder sort(Optional<? extends Sorting> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

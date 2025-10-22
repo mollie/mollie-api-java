@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.ListSort;
+import com.mollie.mollie.models.components.Sorting;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
@@ -56,7 +56,7 @@ public class ListInvoicesRequest {
      * newest to oldest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=sort")
-    private JsonNullable<? extends ListSort> sort;
+    private Optional<? extends Sorting> sort;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -71,7 +71,7 @@ public class ListInvoicesRequest {
             JsonNullable<String> month,
             JsonNullable<String> from,
             JsonNullable<Long> limit,
-            JsonNullable<? extends ListSort> sort,
+            Optional<? extends Sorting> sort,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(year, "year");
@@ -91,7 +91,7 @@ public class ListInvoicesRequest {
     
     public ListInvoicesRequest() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
 
@@ -145,8 +145,8 @@ public class ListInvoicesRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ListSort> sort() {
-        return (JsonNullable<ListSort>) sort;
+    public Optional<Sorting> sort() {
+        return (Optional<Sorting>) sort;
     }
 
     /**
@@ -263,18 +263,19 @@ public class ListInvoicesRequest {
      * are ordered from
      * newest to oldest.
      */
-    public ListInvoicesRequest withSort(ListSort sort) {
+    public ListInvoicesRequest withSort(Sorting sort) {
         Utils.checkNotNull(sort, "sort");
-        this.sort = JsonNullable.of(sort);
+        this.sort = Optional.ofNullable(sort);
         return this;
     }
+
 
     /**
      * Used for setting the direction of the result set. Defaults to descending order, meaning the results
      * are ordered from
      * newest to oldest.
      */
-    public ListInvoicesRequest withSort(JsonNullable<? extends ListSort> sort) {
+    public ListInvoicesRequest withSort(Optional<? extends Sorting> sort) {
         Utils.checkNotNull(sort, "sort");
         this.sort = sort;
         return this;
@@ -351,7 +352,7 @@ public class ListInvoicesRequest {
 
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
-        private JsonNullable<? extends ListSort> sort = JsonNullable.undefined();
+        private Optional<? extends Sorting> sort = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -466,9 +467,9 @@ public class ListInvoicesRequest {
          * are ordered from
          * newest to oldest.
          */
-        public Builder sort(ListSort sort) {
+        public Builder sort(Sorting sort) {
             Utils.checkNotNull(sort, "sort");
-            this.sort = JsonNullable.of(sort);
+            this.sort = Optional.ofNullable(sort);
             return this;
         }
 
@@ -477,7 +478,7 @@ public class ListInvoicesRequest {
          * are ordered from
          * newest to oldest.
          */
-        public Builder sort(JsonNullable<? extends ListSort> sort) {
+        public Builder sort(Optional<? extends Sorting> sort) {
             Utils.checkNotNull(sort, "sort");
             this.sort = sort;
             return this;

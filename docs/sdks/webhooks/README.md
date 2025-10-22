@@ -105,7 +105,7 @@ public class Application {
         ListWebhooksRequest req = ListWebhooksRequest.builder()
                 .from("hook_B2EyhTH5N4KWUnoYPcgiH")
                 .limit(50L)
-                .sort(ListSort.DESC)
+                .sort(Sorting.DESC)
                 .eventTypes(WebhookEventTypes.PAYMENT_LINK_PAID)
                 .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")

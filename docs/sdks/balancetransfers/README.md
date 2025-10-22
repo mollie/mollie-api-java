@@ -98,8 +98,8 @@ Returns a paginated list of balance transfers associated with your organization.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListConnectBalanceTransfersRequest;
 import com.mollie.mollie.models.operations.ListConnectBalanceTransfersResponse;
@@ -117,7 +117,7 @@ public class Application {
 
         ListConnectBalanceTransfersRequest req = ListConnectBalanceTransfersRequest.builder()
                 .limit(50L)
-                .sort(ListSort.DESC)
+                .sort(Sorting.DESC)
                 .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();

@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.ParameterLocale;
+import com.mollie.mollie.models.components.Locale;
 import com.mollie.mollie.models.components.SequenceType;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
@@ -28,7 +28,7 @@ public class GetMethodRequest {
      * Response language
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
-    private Optional<? extends ParameterLocale> locale;
+    private JsonNullable<? extends Locale> locale;
 
     /**
      * If provided, the `minimumAmount` and `maximumAmount` will be converted
@@ -86,7 +86,7 @@ public class GetMethodRequest {
     @JsonCreator
     public GetMethodRequest(
             String id,
-            Optional<? extends ParameterLocale> locale,
+            JsonNullable<? extends Locale> locale,
             Optional<String> currency,
             Optional<String> profileId,
             JsonNullable<String> include,
@@ -113,7 +113,7 @@ public class GetMethodRequest {
     
     public GetMethodRequest(
             String id) {
-        this(id, Optional.empty(), Optional.empty(),
+        this(id, JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty());
     }
@@ -131,8 +131,8 @@ public class GetMethodRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ParameterLocale> locale() {
-        return (Optional<ParameterLocale>) locale;
+    public JsonNullable<Locale> locale() {
+        return (JsonNullable<Locale>) locale;
     }
 
     /**
@@ -218,17 +218,16 @@ public class GetMethodRequest {
     /**
      * Response language
      */
-    public GetMethodRequest withLocale(ParameterLocale locale) {
+    public GetMethodRequest withLocale(Locale locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = Optional.ofNullable(locale);
+        this.locale = JsonNullable.of(locale);
         return this;
     }
-
 
     /**
      * Response language
      */
-    public GetMethodRequest withLocale(Optional<? extends ParameterLocale> locale) {
+    public GetMethodRequest withLocale(JsonNullable<? extends Locale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -426,7 +425,7 @@ public class GetMethodRequest {
 
         private String id;
 
-        private Optional<? extends ParameterLocale> locale = Optional.empty();
+        private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
 
         private Optional<String> currency = Optional.empty();
 
@@ -458,16 +457,16 @@ public class GetMethodRequest {
         /**
          * Response language
          */
-        public Builder locale(ParameterLocale locale) {
+        public Builder locale(Locale locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = Optional.ofNullable(locale);
+            this.locale = JsonNullable.of(locale);
             return this;
         }
 
         /**
          * Response language
          */
-        public Builder locale(Optional<? extends ParameterLocale> locale) {
+        public Builder locale(JsonNullable<? extends Locale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

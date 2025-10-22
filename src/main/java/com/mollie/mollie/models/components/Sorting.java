@@ -8,14 +8,14 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public enum ListSort {
+public enum Sorting {
     ASC("asc"),
     DESC("desc");
 
     @JsonValue
     private final String value;
 
-    ListSort(String value) {
+    Sorting(String value) {
         this.value = value;
     }
     
@@ -23,8 +23,8 @@ public enum ListSort {
         return value;
     }
     
-    public static Optional<ListSort> fromValue(String value) {
-        for (ListSort o: ListSort.values()) {
+    public static Optional<Sorting> fromValue(String value) {
+        for (Sorting o: Sorting.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

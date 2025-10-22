@@ -311,8 +311,8 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.ListSort;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListAllRefundsRequest;
 import com.mollie.mollie.models.operations.ListAllRefundsResponse;
@@ -331,7 +331,7 @@ public class Application {
         ListAllRefundsRequest req = ListAllRefundsRequest.builder()
                 .from("re_5B8cwPMGnU")
                 .limit(50L)
-                .sort(ListSort.DESC)
+                .sort(Sorting.DESC)
                 .embed("payment")
                 .profileId("pfl_5B8cwPMGnU")
                 .testmode(false)
