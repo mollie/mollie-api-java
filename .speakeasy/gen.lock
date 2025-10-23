@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 3326eaca21c1637f3b75a6c4f0058439
+  docChecksum: 2dec71b80177f9595e3514414246ba59
   docVersion: 1.0.0
-  speakeasyVersion: 1.638.0
-  generationVersion: 2.728.0
-  releaseVersion: 0.21.2
-  configChecksum: be1d258c775e51acbfd23afe51cdd2cb
+  speakeasyVersion: 1.638.1
+  generationVersion: 2.729.2
+  releaseVersion: 0.21.3
+  configChecksum: 7eed613da16543a60a0bc307ec64744a
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -6225,4 +6225,3 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `client.refunds.all()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.customers.listPayments()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.webhooks.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.balanceTransfers.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.payments.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.subscriptions.listPayments()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.subscriptions.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.mandates.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.invoices.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.chargebacks.all()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.settlements.listPayments()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.terminals.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.customers.list()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.paymentLinks.listPayments()`: \n  *  `request.sort` **Changed** **Breaking** :warning:\n* `client.methods.get()`: \n  *  `request.locale` **Changed**\n* `client.methods.all()`: \n  *  `request.locale` **Changed**\n* `client.methods.list()`: \n  *  `request.locale` **Changed**\n"

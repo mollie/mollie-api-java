@@ -54,11 +54,11 @@ public class UpdatePaymentLinkRequestBody {
      * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
-     * 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
-     * 'satispay', 'trustly', 'twint',
-     * 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
+     * 'creditcard', 'eps',
+     * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
+     * 'paysafecard',
+     * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowedMethods")
@@ -168,11 +168,11 @@ public class UpdatePaymentLinkRequestBody {
      * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
-     * 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
-     * 'satispay', 'trustly', 'twint',
-     * 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
+     * 'creditcard', 'eps',
+     * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
+     * 'paysafecard',
+     * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -298,11 +298,11 @@ public class UpdatePaymentLinkRequestBody {
      * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
-     * 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
-     * 'satispay', 'trustly', 'twint',
-     * 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
+     * 'creditcard', 'eps',
+     * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
+     * 'paysafecard',
+     * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
      */
     public UpdatePaymentLinkRequestBody withAllowedMethods(List<String> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -315,11 +315,11 @@ public class UpdatePaymentLinkRequestBody {
      * is
      * not provided or is an empty array, all enabled payment methods will be available.
      * 
-     * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
-     * 'eps', 'giftcard',
-     * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
-     * 'satispay', 'trustly', 'twint',
-     * 'in3', 'riverty', 'klarna', 'billie'.
+     * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
+     * 'creditcard', 'eps',
+     * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
+     * 'paysafecard',
+     * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
      */
     public UpdatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -548,11 +548,11 @@ public class UpdatePaymentLinkRequestBody {
          * is
          * not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
-         * 'eps', 'giftcard',
-         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
-         * 'satispay', 'trustly', 'twint',
-         * 'in3', 'riverty', 'klarna', 'billie'.
+         * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
+         * 'creditcard', 'eps',
+         * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
+         * 'paysafecard',
+         * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
          */
         public Builder allowedMethods(List<String> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
@@ -565,11 +565,11 @@ public class UpdatePaymentLinkRequestBody {
          * is
          * not provided or is an empty array, all enabled payment methods will be available.
          * 
-         * <p>Enum: 'applepay', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'blik', 'creditcard',
-         * 'eps', 'giftcard',
-         * 'ideal', 'kbc', 'mybank', 'paybybank', 'paypal', 'paysafecard', 'pointofsale', 'przelewy24',
-         * 'satispay', 'trustly', 'twint',
-         * 'in3', 'riverty', 'klarna', 'billie'.
+         * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
+         * 'creditcard', 'eps',
+         * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
+         * 'paysafecard',
+         * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
          */
         public Builder allowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
