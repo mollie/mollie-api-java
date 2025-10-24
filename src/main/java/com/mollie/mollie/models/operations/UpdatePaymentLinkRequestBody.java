@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.models.components.Amount;
 import com.mollie.mollie.models.components.PaymentAddress;
 import com.mollie.mollie.models.components.PaymentLineItem;
+import com.mollie.mollie.models.components.PaymentLinkMethod;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -53,16 +54,10 @@ public class UpdatePaymentLinkRequestBody {
      * An array of payment methods that are allowed to be used for this payment link. When this parameter
      * is
      * not provided or is an empty array, all enabled payment methods will be available.
-     * 
-     * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
-     * 'creditcard', 'eps',
-     * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
-     * 'paysafecard',
-     * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allowedMethods")
-    private JsonNullable<? extends List<String>> allowedMethods;
+    private JsonNullable<? extends List<PaymentLinkMethod>> allowedMethods;
 
     /**
      * Optionally provide the order lines for the payment. Each line contains details such as a description
@@ -103,7 +98,7 @@ public class UpdatePaymentLinkRequestBody {
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("minimumAmount") Optional<? extends Amount> minimumAmount,
             @JsonProperty("archived") Optional<Boolean> archived,
-            @JsonProperty("allowedMethods") JsonNullable<? extends List<String>> allowedMethods,
+            @JsonProperty("allowedMethods") JsonNullable<? extends List<PaymentLinkMethod>> allowedMethods,
             @JsonProperty("lines") JsonNullable<? extends List<PaymentLineItem>> lines,
             @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
@@ -167,17 +162,11 @@ public class UpdatePaymentLinkRequestBody {
      * An array of payment methods that are allowed to be used for this payment link. When this parameter
      * is
      * not provided or is an empty array, all enabled payment methods will be available.
-     * 
-     * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
-     * 'creditcard', 'eps',
-     * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
-     * 'paysafecard',
-     * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<String>> allowedMethods() {
-        return (JsonNullable<List<String>>) allowedMethods;
+    public JsonNullable<List<PaymentLinkMethod>> allowedMethods() {
+        return (JsonNullable<List<PaymentLinkMethod>>) allowedMethods;
     }
 
     /**
@@ -297,14 +286,8 @@ public class UpdatePaymentLinkRequestBody {
      * An array of payment methods that are allowed to be used for this payment link. When this parameter
      * is
      * not provided or is an empty array, all enabled payment methods will be available.
-     * 
-     * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
-     * 'creditcard', 'eps',
-     * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
-     * 'paysafecard',
-     * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
      */
-    public UpdatePaymentLinkRequestBody withAllowedMethods(List<String> allowedMethods) {
+    public UpdatePaymentLinkRequestBody withAllowedMethods(List<PaymentLinkMethod> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
         this.allowedMethods = JsonNullable.of(allowedMethods);
         return this;
@@ -314,14 +297,8 @@ public class UpdatePaymentLinkRequestBody {
      * An array of payment methods that are allowed to be used for this payment link. When this parameter
      * is
      * not provided or is an empty array, all enabled payment methods will be available.
-     * 
-     * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
-     * 'creditcard', 'eps',
-     * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
-     * 'paysafecard',
-     * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
      */
-    public UpdatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
+    public UpdatePaymentLinkRequestBody withAllowedMethods(JsonNullable<? extends List<PaymentLinkMethod>> allowedMethods) {
         Utils.checkNotNull(allowedMethods, "allowedMethods");
         this.allowedMethods = allowedMethods;
         return this;
@@ -459,7 +436,7 @@ public class UpdatePaymentLinkRequestBody {
 
         private Optional<Boolean> archived = Optional.empty();
 
-        private JsonNullable<? extends List<String>> allowedMethods = JsonNullable.undefined();
+        private JsonNullable<? extends List<PaymentLinkMethod>> allowedMethods = JsonNullable.undefined();
 
         private JsonNullable<? extends List<PaymentLineItem>> lines = JsonNullable.undefined();
 
@@ -547,14 +524,8 @@ public class UpdatePaymentLinkRequestBody {
          * An array of payment methods that are allowed to be used for this payment link. When this parameter
          * is
          * not provided or is an empty array, all enabled payment methods will be available.
-         * 
-         * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
-         * 'creditcard', 'eps',
-         * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
-         * 'paysafecard',
-         * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
          */
-        public Builder allowedMethods(List<String> allowedMethods) {
+        public Builder allowedMethods(List<PaymentLinkMethod> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
             this.allowedMethods = JsonNullable.of(allowedMethods);
             return this;
@@ -564,14 +535,8 @@ public class UpdatePaymentLinkRequestBody {
          * An array of payment methods that are allowed to be used for this payment link. When this parameter
          * is
          * not provided or is an empty array, all enabled payment methods will be available.
-         * 
-         * <p>Enum: 'applepay', 'bacs', 'bancomatpay', 'bancontact', 'banktransfer', 'belfius', 'billie', 'blik',
-         * 'creditcard', 'eps',
-         * 'giftcard', 'ideal', 'in3', 'kbc', 'klarna', 'mbway', 'multibanco', 'mybank', 'paybybank', 'paypal',
-         * 'paysafecard',
-         * 'pointofsale', 'przelewy24', 'riverty', 'satispay', 'swish', 'trustly', 'twint', 'voucher'.
          */
-        public Builder allowedMethods(JsonNullable<? extends List<String>> allowedMethods) {
+        public Builder allowedMethods(JsonNullable<? extends List<PaymentLinkMethod>> allowedMethods) {
             Utils.checkNotNull(allowedMethods, "allowedMethods");
             this.allowedMethods = allowedMethods;
             return this;

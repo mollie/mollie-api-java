@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 2dec71b80177f9595e3514414246ba59
+  docChecksum: 0598dfa4879965fe4af6bb050f7b9d65
   docVersion: 1.0.0
-  speakeasyVersion: 1.638.1
-  generationVersion: 2.729.2
-  releaseVersion: 0.21.3
-  configChecksum: 7eed613da16543a60a0bc307ec64744a
+  speakeasyVersion: 1.639.1
+  generationVersion: 2.730.0
+  releaseVersion: 0.21.4
+  configChecksum: a295bf99adf9f2f1fddb11f974b745cd
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -213,6 +213,8 @@ generatedFiles:
   - docs/models/components/PaymentLineItemResponse.md
   - docs/models/components/PaymentLineType.md
   - docs/models/components/PaymentLineTypeResponse.md
+  - docs/models/components/PaymentLinkMethod.md
+  - docs/models/components/PaymentLinkMethodResponse.md
   - docs/models/components/PaymentLinkResponse.md
   - docs/models/components/PaymentLinkResponseApplicationFee.md
   - docs/models/components/PaymentLinkResponseLinks.md
@@ -908,6 +910,8 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/components/PaymentLineItemResponse.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLineType.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLineTypeResponse.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentLinkMethod.java
+  - src/main/java/com/mollie/mollie/models/components/PaymentLinkMethodResponse.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLinkResponse.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLinkResponseApplicationFee.java
   - src/main/java/com/mollie/mollie/models/components/PaymentLinkResponseLinks.java
@@ -6225,3 +6229,4 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes Detected:\n* `client.webhookEvents.get()`:  `response._embedded.entity.[payment-link-response].allowedMethods.[]` **Changed** **Breaking** :warning:\n* `client.paymentLinks.create()`: \n  *  `requestbody.allowedMethods.[]` **Changed** **Breaking** :warning:\n  *  `response.allowedmethods.[]` **Changed** **Breaking** :warning:\n* `client.paymentLinks.list()`:  `response._embedded.paymentLinks.[].allowedMethods.[]` **Changed** **Breaking** :warning:\n* `client.paymentLinks.get()`:  `response.allowedmethods.[]` **Changed** **Breaking** :warning:\n* `client.paymentLinks.update()`: \n  *  `requestbody.allowedMethods.[]` **Changed** **Breaking** :warning:\n  *  `response.allowedmethods.[]` **Changed** **Breaking** :warning:\n"
