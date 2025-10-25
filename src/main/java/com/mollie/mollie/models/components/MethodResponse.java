@@ -78,9 +78,6 @@ public class MethodResponse {
     public static final MethodResponse IN3 = new MethodResponse("in3");
     public static final MethodResponse KBC = new MethodResponse("kbc");
     public static final MethodResponse KLARNA = new MethodResponse("klarna");
-    public static final MethodResponse KLARNAPAYLATER = new MethodResponse("klarnapaylater");
-    public static final MethodResponse KLARNAPAYNOW = new MethodResponse("klarnapaynow");
-    public static final MethodResponse KLARNASLICEIT = new MethodResponse("klarnasliceit");
     public static final MethodResponse MBWAY = new MethodResponse("mbway");
     public static final MethodResponse MOBILEPAY = new MethodResponse("mobilepay");
     public static final MethodResponse MULTIBANCO = new MethodResponse("multibanco");
@@ -187,9 +184,6 @@ public class MethodResponse {
         map.put("in3", IN3);
         map.put("kbc", KBC);
         map.put("klarna", KLARNA);
-        map.put("klarnapaylater", KLARNAPAYLATER);
-        map.put("klarnapaynow", KLARNAPAYNOW);
-        map.put("klarnasliceit", KLARNASLICEIT);
         map.put("mbway", MBWAY);
         map.put("mobilepay", MOBILEPAY);
         map.put("multibanco", MULTIBANCO);
@@ -230,9 +224,6 @@ public class MethodResponse {
         map.put("in3", MethodResponseEnum.IN3);
         map.put("kbc", MethodResponseEnum.KBC);
         map.put("klarna", MethodResponseEnum.KLARNA);
-        map.put("klarnapaylater", MethodResponseEnum.KLARNAPAYLATER);
-        map.put("klarnapaynow", MethodResponseEnum.KLARNAPAYNOW);
-        map.put("klarnasliceit", MethodResponseEnum.KLARNASLICEIT);
         map.put("mbway", MethodResponseEnum.MBWAY);
         map.put("mobilepay", MethodResponseEnum.MOBILEPAY);
         map.put("multibanco", MethodResponseEnum.MULTIBANCO);
@@ -303,9 +294,6 @@ public class MethodResponse {
         IN3("in3"),
         KBC("kbc"),
         KLARNA("klarna"),
-        KLARNAPAYLATER("klarnapaylater"),
-        KLARNAPAYNOW("klarnapaynow"),
-        KLARNASLICEIT("klarnasliceit"),
         MBWAY("mbway"),
         MOBILEPAY("mobilepay"),
         MULTIBANCO("multibanco"),
