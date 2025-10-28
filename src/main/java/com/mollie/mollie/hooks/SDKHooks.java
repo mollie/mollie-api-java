@@ -14,7 +14,7 @@ public final class SDKHooks {
 
     public static void initialize(com.mollie.mollie.utils.Hooks hooks) {
         // register synchronous hooks here
-        // hooks.registerBeforeRequest(...);
+        hooks.registerBeforeRequest(new MollieHooks());
         // hooks.registerAfterSuccess(...);
         // hooks.registerAfterError(...);
 
@@ -24,7 +24,7 @@ public final class SDKHooks {
 
     public static void initialize(com.mollie.mollie.utils.AsyncHooks asyncHooks) {
         // register async hooks here
-        // asyncHooks.registerBeforeRequest(...);
+        asyncHooks.registerBeforeRequest(new MollieHooks());
         // asyncHooks.registerAfterSuccess(...);
         // asyncHooks.registerAfterError(...);
         
