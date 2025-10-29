@@ -7,7 +7,7 @@ import java.net.http.HttpRequest;
 import java.util.UUID;
 
 public class MollieHooks implements Hook.BeforeRequest {
-
+    
     @Override
     public HttpRequest beforeRequest(Hook.BeforeRequestContext context, HttpRequest request) throws Exception {
         // Copy the request for modification
@@ -40,8 +40,6 @@ public class MollieHooks implements Hook.BeforeRequest {
         String mollieUserAgent = String.format("Speakeasy/%s Java/%s %s/%s", 
             genVersion, javaVersion, packageName, sdkVersion);
         
-        // Note: Custom user agent support would need to be added to SDKConfiguration
-        // For now, just set the standard user agent
         builder.setHeader("User-Agent", mollieUserAgent);
     }
     
