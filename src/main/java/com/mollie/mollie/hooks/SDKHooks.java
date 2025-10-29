@@ -13,30 +13,12 @@ public final class SDKHooks {
     }
 
     public static void initialize(com.mollie.mollie.utils.Hooks hooks) {
-        // register synchronous hooks here
         hooks.registerBeforeRequest(new MollieHooks());
-        // hooks.registerAfterSuccess(...);
-        // hooks.registerAfterError(...);
-
-        // for more information see
-        // https://www.speakeasy.com/docs/additional-features/sdk-hooks
     }
 
     public static void initialize(com.mollie.mollie.utils.AsyncHooks asyncHooks) {
-        // register async hooks here
-        asyncHooks.registerBeforeRequest(new MollieHooks());
-        // asyncHooks.registerAfterSuccess(...);
-        // asyncHooks.registerAfterError(...);
-        
-        // NOTE: If you have existing synchronous hooks, you can adapt them using HookAdapters:
-        // asyncHooks.registerAfterError(com.mollie.mollie.utils.HookAdapters.adapt(mySyncHook));
-        
-        // PERFORMANCE TIP: For better performance, implement async hooks directly using
-        // non-blocking I/O (NIO) APIs instead of adapting synchronous hooks, as adapters
-        // offload execution to the ForkJoinPool which can introduce overhead.
-
-        // for more information see
-        // https://www.speakeasy.com/docs/additional-features/sdk-hooks
+        // Use the adapter to convert sync hook to async
+        asyncHooks.registerBeforeRequest(com.mollie.mollie.utils.HookAdapters.toAsync(new MollieHooks()));
     }
 
 }
