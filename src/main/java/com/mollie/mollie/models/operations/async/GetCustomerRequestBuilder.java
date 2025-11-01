@@ -22,7 +22,7 @@ public class GetCustomerRequestBuilder {
 
     private String customerId;
     private JsonNullable<String> include = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -49,14 +49,14 @@ public class GetCustomerRequestBuilder {
         this.include = include;
         return this;
     }
-
+                
     public GetCustomerRequestBuilder testmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.of(testmode);
         return this;
     }
 
-    public GetCustomerRequestBuilder testmode(JsonNullable<Boolean> testmode) {
+    public GetCustomerRequestBuilder testmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;

@@ -18,7 +18,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Permissions {
@@ -113,7 +112,7 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPermissionResponse get(String permissionId) {
-        return get(permissionId, JsonNullable.undefined(), Optional.empty(),
+        return get(permissionId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -135,7 +134,7 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPermissionResponse get(
-            String permissionId, JsonNullable<Boolean> testmode,
+            String permissionId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetPermissionRequest request =
             GetPermissionRequest

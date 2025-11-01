@@ -21,7 +21,7 @@ public class ListSalesInvoicesRequestBuilder {
 
     private JsonNullable<String> from = JsonNullable.undefined();
     private JsonNullable<Long> limit = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -54,14 +54,14 @@ public class ListSalesInvoicesRequestBuilder {
         this.limit = limit;
         return this;
     }
-
+                
     public ListSalesInvoicesRequestBuilder testmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.of(testmode);
         return this;
     }
 
-    public ListSalesInvoicesRequestBuilder testmode(JsonNullable<Boolean> testmode) {
+    public ListSalesInvoicesRequestBuilder testmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;

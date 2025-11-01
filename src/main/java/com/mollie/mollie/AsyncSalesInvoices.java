@@ -152,7 +152,7 @@ public class AsyncSalesInvoices {
      */
     public CompletableFuture<ListSalesInvoicesResponse> listDirect() {
         return list(
-                JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+                JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
                 Optional.empty(), Optional.empty());
     }
 
@@ -181,7 +181,7 @@ public class AsyncSalesInvoices {
      */
     public CompletableFuture<ListSalesInvoicesResponse> list(
             JsonNullable<String> from, JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         ListSalesInvoicesRequest request =
             ListSalesInvoicesRequest
@@ -229,7 +229,7 @@ public class AsyncSalesInvoices {
      */
     public CompletableFuture<GetSalesInvoiceResponse> get(String id) {
         return get(
-                id, JsonNullable.undefined(), Optional.empty(),
+                id, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -253,7 +253,7 @@ public class AsyncSalesInvoices {
      * @return {@code CompletableFuture<GetSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<GetSalesInvoiceResponse> get(
-            String id, JsonNullable<Boolean> testmode,
+            String id, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetSalesInvoiceRequest request =
             GetSalesInvoiceRequest

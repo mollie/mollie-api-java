@@ -196,7 +196,7 @@ public class AsyncCustomers {
      */
     public CompletableFuture<GetCustomerResponse> get(String customerId) {
         return get(
-                customerId, JsonNullable.undefined(), JsonNullable.undefined(),
+                customerId, JsonNullable.undefined(), Optional.empty(),
                 Optional.empty(), Optional.empty());
     }
 
@@ -218,7 +218,7 @@ public class AsyncCustomers {
      */
     public CompletableFuture<GetCustomerResponse> get(
             String customerId, JsonNullable<String> include,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         GetCustomerRequest request =
             GetCustomerRequest

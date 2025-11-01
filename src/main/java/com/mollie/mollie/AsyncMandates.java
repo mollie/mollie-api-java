@@ -29,7 +29,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncMandates {
@@ -199,7 +198,7 @@ public class AsyncMandates {
      */
     public CompletableFuture<GetMandateResponse> get(String customerId, String mandateId) {
         return get(
-                customerId, mandateId, JsonNullable.undefined(),
+                customerId, mandateId, Optional.empty(),
                 Optional.empty(), Optional.empty());
     }
 
@@ -223,7 +222,7 @@ public class AsyncMandates {
      */
     public CompletableFuture<GetMandateResponse> get(
             String customerId, String mandateId,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         GetMandateRequest request =
             GetMandateRequest

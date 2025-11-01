@@ -345,6 +345,39 @@ public class Client {
             return this;
         }
 
+
+        /**
+         * Allows setting the profileId parameter for all supported operations.
+         *
+         * @param profileId The value to set.
+         * @return The builder instance.
+         */
+        public Builder profileId(String profileId) {
+            this.sdkConfiguration.globals.putParam("queryParam", "profileId", profileId);
+            return this;
+        }
+
+        /**
+         * Allows setting the testmode parameter for all supported operations.
+         *
+         * @param testmode The value to set.
+         * @return The builder instance.
+         */
+        public Builder testmode(boolean testmode) {
+            this.sdkConfiguration.globals.putParam("queryParam", "testmode", testmode);
+            return this;
+        }
+
+        /**
+         * Allows setting the customUserAgent parameter for all supported operations.
+         *
+         * @param customUserAgent The value to set.
+         * @return The builder instance.
+         */
+        public Builder customUserAgent(String customUserAgent) {
+            this.sdkConfiguration.globals.putParam("header", "customUserAgent", customUserAgent);
+            return this;
+        }
         // Visible for testing, may be accessed via reflection in tests
         Builder _hooks(com.mollie.mollie.utils.Hooks hooks) {
             sdkConfiguration.setHooks(hooks);  

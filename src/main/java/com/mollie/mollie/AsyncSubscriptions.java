@@ -42,7 +42,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncSubscriptions {
@@ -250,7 +249,7 @@ public class AsyncSubscriptions {
      */
     public CompletableFuture<GetSubscriptionResponse> get(String customerId, String subscriptionId) {
         return get(
-                customerId, subscriptionId, JsonNullable.undefined(),
+                customerId, subscriptionId, Optional.empty(),
                 Optional.empty(), Optional.empty());
     }
 
@@ -272,7 +271,7 @@ public class AsyncSubscriptions {
      */
     public CompletableFuture<GetSubscriptionResponse> get(
             String customerId, String subscriptionId,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         GetSubscriptionRequest request =
             GetSubscriptionRequest

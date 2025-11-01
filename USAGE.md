@@ -14,6 +14,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -23,7 +24,6 @@ public class Application {
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 

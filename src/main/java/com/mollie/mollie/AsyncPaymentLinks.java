@@ -151,7 +151,7 @@ public class AsyncPaymentLinks {
      */
     public CompletableFuture<ListPaymentLinksResponse> listDirect() {
         return list(
-                Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+                Optional.empty(), JsonNullable.undefined(), Optional.empty(),
                 Optional.empty(), Optional.empty());
     }
 
@@ -176,7 +176,7 @@ public class AsyncPaymentLinks {
      */
     public CompletableFuture<ListPaymentLinksResponse> list(
             Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         ListPaymentLinksRequest request =
             ListPaymentLinksRequest
@@ -216,7 +216,7 @@ public class AsyncPaymentLinks {
      */
     public CompletableFuture<GetPaymentLinkResponse> get(String paymentLinkId) {
         return get(
-                paymentLinkId, JsonNullable.undefined(), Optional.empty(),
+                paymentLinkId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -236,7 +236,7 @@ public class AsyncPaymentLinks {
      * @return {@code CompletableFuture<GetPaymentLinkResponse>} - The async response
      */
     public CompletableFuture<GetPaymentLinkResponse> get(
-            String paymentLinkId, JsonNullable<Boolean> testmode,
+            String paymentLinkId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetPaymentLinkRequest request =
             GetPaymentLinkRequest

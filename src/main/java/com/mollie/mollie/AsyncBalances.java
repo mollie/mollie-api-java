@@ -31,7 +31,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncBalances {
@@ -157,7 +156,7 @@ public class AsyncBalances {
      */
     public CompletableFuture<GetBalanceResponse> get(String id) {
         return get(
-                id, JsonNullable.undefined(), Optional.empty(),
+                id, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -194,7 +193,7 @@ public class AsyncBalances {
      * @return {@code CompletableFuture<GetBalanceResponse>} - The async response
      */
     public CompletableFuture<GetBalanceResponse> get(
-            String id, JsonNullable<Boolean> testmode,
+            String id, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetBalanceRequest request =
             GetBalanceRequest

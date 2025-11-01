@@ -199,7 +199,7 @@ public class Profiles {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetProfileResponse get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty(),
+        return get(id, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -220,7 +220,7 @@ public class Profiles {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetProfileResponse get(
-            String id, JsonNullable<Boolean> testmode,
+            String id, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetProfileRequest request =
             GetProfileRequest

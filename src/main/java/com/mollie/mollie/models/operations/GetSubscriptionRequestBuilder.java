@@ -14,13 +14,12 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetSubscriptionRequestBuilder {
 
     private String customerId;
     private String subscriptionId;
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -41,14 +40,14 @@ public class GetSubscriptionRequestBuilder {
         this.subscriptionId = subscriptionId;
         return this;
     }
-
+                
     public GetSubscriptionRequestBuilder testmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.of(testmode);
         return this;
     }
 
-    public GetSubscriptionRequestBuilder testmode(JsonNullable<Boolean> testmode) {
+    public GetSubscriptionRequestBuilder testmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;

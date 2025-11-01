@@ -129,6 +129,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -139,7 +140,6 @@ public class Application {
                 .from("re_5B8cwPMGnU")
                 .limit(50L)
                 .embed("payment")
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -193,6 +193,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -202,7 +203,6 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .refundId("re_5B8cwPMGnU")
                 .embed("payment")
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -259,6 +259,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -267,7 +268,6 @@ public class Application {
         CancelRefundResponse res = sdk.refunds().cancel()
                 .paymentId("tr_5B8cwPMGnU")
                 .refundId("re_5B8cwPMGnU")
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
@@ -284,7 +284,7 @@ public class Application {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `paymentId`                                                                                                                                                                                                                                                                                                                                                                            | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                 | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
 | `refundId`                                                                                                                                                                                                                                                                                                                                                                             | *String*                                                                                                                                                                                                                                                                                                                                                                               | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                     | Provide the ID of the related refund.                                                                                                                                                                                                                                                                                                                                                  | re_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                          |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *JsonNullable\<Boolean>*                                                                                                                                                                                                                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. | false                                                                                                                                                                                                                                                                                                                                                                                  |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                             | *Optional\<Boolean>*                                                                                                                                                                                                                                                                                                                                                                   | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                        |
 | `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                       | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                            |
 
 ### Response
@@ -323,6 +323,8 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -333,8 +335,6 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .embed("payment")
-                .profileId("pfl_5B8cwPMGnU")
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 

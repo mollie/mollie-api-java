@@ -18,7 +18,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Terminals {
@@ -107,7 +106,7 @@ public class Terminals {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetTerminalResponse get(String terminalId) {
-        return get(terminalId, JsonNullable.undefined(), Optional.empty(),
+        return get(terminalId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -128,7 +127,7 @@ public class Terminals {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetTerminalResponse get(
-            String terminalId, JsonNullable<Boolean> testmode,
+            String terminalId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetTerminalRequest request =
             GetTerminalRequest

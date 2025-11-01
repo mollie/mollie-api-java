@@ -19,7 +19,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPermissions {
@@ -117,7 +116,7 @@ public class AsyncPermissions {
      */
     public CompletableFuture<GetPermissionResponse> get(String permissionId) {
         return get(
-                permissionId, JsonNullable.undefined(), Optional.empty(),
+                permissionId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -138,7 +137,7 @@ public class AsyncPermissions {
      * @return {@code CompletableFuture<GetPermissionResponse>} - The async response
      */
     public CompletableFuture<GetPermissionResponse> get(
-            String permissionId, JsonNullable<Boolean> testmode,
+            String permissionId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetPermissionRequest request =
             GetPermissionRequest

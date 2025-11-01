@@ -30,6 +30,7 @@ This documentation is for the new Mollie's SDK. You can find more details on how
   * [Idempotency Key](#idempotency-key)
   * [Add Custom User-Agent Header](#add-custom-user-agent-header)
   * [Available Resources and Operations](#available-resources-and-operations)
+  * [Global Parameters](#global-parameters)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
@@ -52,7 +53,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.21.6'
+implementation 'com.mollie:mollie:0.22.0'
 ```
 
 Maven:
@@ -60,7 +61,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.21.6</version>
+    <version>0.22.0</version>
 </dependency>
 ```
 
@@ -99,6 +100,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -108,7 +110,6 @@ public class Application {
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -139,6 +140,7 @@ public class Application {
     public static void main(String[] args) {
 
         AsyncClient sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -149,7 +151,6 @@ public class Application {
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -266,13 +267,13 @@ public class Application {
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
+                .testmode(false)
             .build();
 
         ListBalancesRequest req = ListBalancesRequest.builder()
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -557,6 +558,68 @@ Client sdk = Client.builder()
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
+<!-- Start Global Parameters [global-parameters] -->
+## Global Parameters
+
+Certain parameters are configured globally. These parameters may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
+
+For example, you can set `profileId` to `` at SDK initialization and then you do not have to pass the same value on calls to operations like `list`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+
+
+### Available Globals
+
+The following global parameters are available.
+
+| Name            | Type             | Description                                                                                                                                                                                                                                                                                                                                                                                            |
+| --------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| profileId       | java.lang.String | The identifier referring to the [profile](get-profile) you wish to<br/>retrieve the resources for.<br/><br/>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted. For<br/>organization-level credentials such as OAuth access tokens however, the `profileId` parameter is required.                                                                     |
+| testmode        | boolean          | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |
+| customUserAgent | java.lang.String | Custom user agent string to be appended to the default Mollie SDK user agent.                                                                                                                                                                                                                                                                                                                          |
+
+### Example
+
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .profileId("<id>")
+                .customUserAgent("<value>")
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListBalancesRequest req = ListBalancesRequest.builder()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListBalancesResponse res = sdk.balances().list()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+<!-- End Global Parameters [global-parameters] -->
+
 <!-- Start Retries [retries] -->
 ## Retries
 
@@ -581,6 +644,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -590,7 +654,6 @@ public class Application {
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -644,6 +707,7 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -653,7 +717,6 @@ public class Application {
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -702,6 +765,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -711,7 +775,6 @@ public class Application {
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -770,6 +833,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .serverURL("https://api.mollie.com/v2")
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -779,7 +843,6 @@ public class Application {
                 .currency("EUR")
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 

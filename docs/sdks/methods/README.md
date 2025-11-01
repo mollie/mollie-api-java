@@ -46,6 +46,8 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -62,9 +64,7 @@ public class Application {
                 .billingCountry("DE")
                 .includeWallets(MethodIncludeWalletsParameter.APPLEPAY)
                 .orderLineCategories(LineCategories.ECO)
-                .profileId("pfl_5B8cwPMGnU")
                 .include("issuers")
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -121,6 +121,8 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -134,8 +136,6 @@ public class Application {
                     .build())
                 .include("issuers")
                 .sequenceType(SequenceType.ONEOFF)
-                .profileId("pfl_5B8cwPMGnU")
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -200,6 +200,8 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -209,10 +211,8 @@ public class Application {
                 .id("ideal")
                 .locale(Locale.EN_US)
                 .currency("EUR")
-                .profileId("pfl_5B8cwPMGnU")
                 .include("issuers")
                 .sequenceType(SequenceType.ONEOFF)
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 

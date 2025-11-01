@@ -14,12 +14,11 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentListRoutesRequestBuilder {
 
     private String paymentId;
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -34,14 +33,14 @@ public class PaymentListRoutesRequestBuilder {
         this.paymentId = paymentId;
         return this;
     }
-
+                
     public PaymentListRoutesRequestBuilder testmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.of(testmode);
         return this;
     }
 
-    public PaymentListRoutesRequestBuilder testmode(JsonNullable<Boolean> testmode) {
+    public PaymentListRoutesRequestBuilder testmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;

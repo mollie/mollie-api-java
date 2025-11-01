@@ -206,7 +206,7 @@ public class AsyncProfiles {
      */
     public CompletableFuture<GetProfileResponse> get(String id) {
         return get(
-                id, JsonNullable.undefined(), Optional.empty(),
+                id, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -226,7 +226,7 @@ public class AsyncProfiles {
      * @return {@code CompletableFuture<GetProfileResponse>} - The async response
      */
     public CompletableFuture<GetProfileResponse> get(
-            String id, JsonNullable<Boolean> testmode,
+            String id, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetProfileRequest request =
             GetProfileRequest

@@ -363,6 +363,8 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -372,8 +374,6 @@ public class Application {
                 .from("tr_5B8cwPMGnU")
                 .limit(50L)
                 .sort(Sorting.DESC)
-                .profileId("pfl_5B8cwPMGnU")
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -427,6 +427,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -436,7 +437,6 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .include("details.qrCode")
                 .embed("captures")
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 

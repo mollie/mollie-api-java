@@ -152,6 +152,7 @@ public class MollieAutoConfig {
      * @param hooks the hooks bean
      * @param asyncHooks the async hooks bean
      * @param securitySource the security source bean (optional)
+     * @param globals the globals configuration bean
      * @param retryConfig the retry config bean (optional)
      * @return A configured SDKConfiguration instance
      */
@@ -163,6 +164,7 @@ public class MollieAutoConfig {
             com.mollie.mollie.utils.Hooks hooks,
             com.mollie.mollie.utils.AsyncHooks asyncHooks,
             SecuritySource securitySource,
+            com.mollie.mollie.utils.Globals globals,
             Optional<RetryConfig> retryConfig) {
         
         SDKConfiguration sdkConfiguration = new SDKConfiguration();
@@ -177,6 +179,7 @@ public class MollieAutoConfig {
             sdkConfiguration.setServerUrl(properties.getServerUrl());
         }
         sdkConfiguration.setServerIdx(properties.getServerIdx());
+        sdkConfiguration.setGlobals(globals);
         
         sdkConfiguration.setRetryConfig(retryConfig);
         
@@ -193,6 +196,32 @@ public class MollieAutoConfig {
     @ConditionalOnMissingBean
     public Client client(SDKConfiguration sdkConfiguration) {
         return new Client(sdkConfiguration);
+    }
+
+    /**
+     * Creates a Globals configuration bean if none exists, populated from properties.
+     *
+     * @param properties the configuration properties
+     * @return A configured Globals instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public com.mollie.mollie.utils.Globals globals(MollieAutoConfigProperties properties) {
+        com.mollie.mollie.utils.Globals globals = new com.mollie.mollie.utils.Globals();
+        
+        // Populate globals from properties
+        MollieAutoConfigProperties.Globals globalProps = properties.getGlobals();
+        if (globalProps.getProfileId() != null) {
+            globals.putParam("queryParam", "profileId", globalProps.getProfileId());
+        }
+        if (globalProps.getTestmode() != null) {
+            globals.putParam("queryParam", "testmode", globalProps.getTestmode());
+        }
+        if (globalProps.getCustomUserAgent() != null) {
+            globals.putParam("header", "customUserAgent", globalProps.getCustomUserAgent());
+        }
+        
+        return globals;
     }
 
     /**

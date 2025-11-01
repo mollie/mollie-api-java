@@ -31,7 +31,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Refunds {
@@ -229,7 +228,7 @@ public class Refunds {
      * @throws RuntimeException subclass if the API call fails
      */
     public CancelRefundResponse cancel(String paymentId, String refundId) {
-        return cancel(paymentId, refundId, JsonNullable.undefined(),
+        return cancel(paymentId, refundId, Optional.empty(),
             Optional.empty(), Optional.empty());
     }
 
@@ -257,7 +256,7 @@ public class Refunds {
      */
     public CancelRefundResponse cancel(
             String paymentId, String refundId,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         CancelRefundRequest request =
             CancelRefundRequest

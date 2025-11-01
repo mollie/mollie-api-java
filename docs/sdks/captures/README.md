@@ -113,6 +113,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -123,7 +124,6 @@ public class Application {
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
                 .limit(50L)
                 .embed("payment")
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
@@ -178,6 +178,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .testmode(false)
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
@@ -187,7 +188,6 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .captureId("cpt_gVMhHKqSSRYJyPsuoPNFH")
                 .embed("payment")
-                .testmode(false)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 

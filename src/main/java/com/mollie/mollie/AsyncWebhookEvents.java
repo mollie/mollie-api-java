@@ -15,7 +15,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncWebhookEvents {
@@ -59,7 +58,7 @@ public class AsyncWebhookEvents {
      */
     public CompletableFuture<GetWebhookEventResponse> get(String id) {
         return get(
-                id, JsonNullable.undefined(), Optional.empty(),
+                id, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -79,7 +78,7 @@ public class AsyncWebhookEvents {
      * @return {@code CompletableFuture<GetWebhookEventResponse>} - The async response
      */
     public CompletableFuture<GetWebhookEventResponse> get(
-            String id, JsonNullable<Boolean> testmode,
+            String id, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetWebhookEventRequest request =
             GetWebhookEventRequest

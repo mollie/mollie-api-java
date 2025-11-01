@@ -28,7 +28,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Mandates {
@@ -192,7 +191,7 @@ public class Mandates {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetMandateResponse get(String customerId, String mandateId) {
-        return get(customerId, mandateId, JsonNullable.undefined(),
+        return get(customerId, mandateId, Optional.empty(),
             Optional.empty(), Optional.empty());
     }
 
@@ -217,7 +216,7 @@ public class Mandates {
      */
     public GetMandateResponse get(
             String customerId, String mandateId,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         GetMandateRequest request =
             GetMandateRequest

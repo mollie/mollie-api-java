@@ -23,7 +23,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncOrganizations {
@@ -79,7 +78,7 @@ public class AsyncOrganizations {
      */
     public CompletableFuture<GetOrganizationResponse> get(String id) {
         return get(
-                id, JsonNullable.undefined(), Optional.empty(),
+                id, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -105,7 +104,7 @@ public class AsyncOrganizations {
      * @return {@code CompletableFuture<GetOrganizationResponse>} - The async response
      */
     public CompletableFuture<GetOrganizationResponse> get(
-            String id, JsonNullable<Boolean> testmode,
+            String id, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetOrganizationRequest request =
             GetOrganizationRequest

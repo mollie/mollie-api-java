@@ -113,12 +113,12 @@ public class GetInvoice {
                     klass,
                     this.baseUrl,
                     "/invoices/{id}",
-                    request, null);
+                    request, this.sdkConfiguration.globals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

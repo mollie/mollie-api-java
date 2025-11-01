@@ -5,12 +5,14 @@ package com.mollie.mollie;
 
 import com.mollie.mollie.hooks.SDKHooks;
 import com.mollie.mollie.utils.AsyncHooks;
+import com.mollie.mollie.utils.Globals;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.Hooks;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.SpeakeasyHTTPClient;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -19,8 +21,8 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "0.21.6";
-    public static final String GEN_VERSION = "2.730.5";
+    public static final String SDK_VERSION = "0.22.0";
+    public static final String GEN_VERSION = "2.735.1";
     private static final String BASE_PACKAGE = "com.mollie.mollie";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -107,7 +109,17 @@ public class SDKConfiguration {
         SDKHooks.initialize(_asyncHooks);
     }
 
-    
+    @SuppressWarnings("serial")
+    public Globals globals = new Globals();
+    /**
+     * Sets the globals configuration. Used by Spring Boot auto-configuration.
+     *
+     * @param globals The globals configuration to set.
+     */
+    public void setGlobals(Globals globals) {
+        Utils.checkNotNull(globals, "globals");
+        this.globals = globals;
+    }
     
     private Optional<RetryConfig> retryConfig = Optional.empty();
     

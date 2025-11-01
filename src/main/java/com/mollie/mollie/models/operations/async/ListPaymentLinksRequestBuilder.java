@@ -23,7 +23,7 @@ public class ListPaymentLinksRequestBuilder {
 
     private Optional<String> from = Optional.empty();
     private JsonNullable<Long> limit = JsonNullable.undefined();
-    private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+    private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -56,14 +56,14 @@ public class ListPaymentLinksRequestBuilder {
         this.limit = limit;
         return this;
     }
-
+                
     public ListPaymentLinksRequestBuilder testmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.of(testmode);
         return this;
     }
 
-    public ListPaymentLinksRequestBuilder testmode(JsonNullable<Boolean> testmode) {
+    public ListPaymentLinksRequestBuilder testmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;

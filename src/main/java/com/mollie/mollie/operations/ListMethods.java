@@ -120,8 +120,8 @@ public class ListMethods {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    null));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                    this.sdkConfiguration.globals));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

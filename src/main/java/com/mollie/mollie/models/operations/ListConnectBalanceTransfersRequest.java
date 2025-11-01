@@ -50,7 +50,7 @@ public class ListConnectBalanceTransfersRequest {
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private JsonNullable<Boolean> testmode;
+    private Optional<Boolean> testmode;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -63,7 +63,7 @@ public class ListConnectBalanceTransfersRequest {
             JsonNullable<String> from,
             JsonNullable<Long> limit,
             Optional<? extends Sorting> sort,
-            JsonNullable<Boolean> testmode,
+            Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
@@ -79,7 +79,7 @@ public class ListConnectBalanceTransfersRequest {
     
     public ListConnectBalanceTransfersRequest() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -121,7 +121,7 @@ public class ListConnectBalanceTransfersRequest {
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
+    public Optional<Boolean> testmode() {
         return testmode;
     }
 
@@ -212,9 +212,10 @@ public class ListConnectBalanceTransfersRequest {
      */
     public ListConnectBalanceTransfersRequest withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.ofNullable(testmode);
         return this;
     }
+
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
@@ -225,7 +226,7 @@ public class ListConnectBalanceTransfersRequest {
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
-    public ListConnectBalanceTransfersRequest withTestmode(JsonNullable<Boolean> testmode) {
+    public ListConnectBalanceTransfersRequest withTestmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -293,7 +294,7 @@ public class ListConnectBalanceTransfersRequest {
 
         private Optional<? extends Sorting> sort = Optional.empty();
 
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<Boolean> testmode = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -378,7 +379,7 @@ public class ListConnectBalanceTransfersRequest {
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+            this.testmode = Optional.ofNullable(testmode);
             return this;
         }
 
@@ -391,7 +392,7 @@ public class ListConnectBalanceTransfersRequest {
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
+        public Builder testmode(Optional<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
             this.testmode = testmode;
             return this;

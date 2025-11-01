@@ -190,7 +190,7 @@ public class Customers {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetCustomerResponse get(String customerId) {
-        return get(customerId, JsonNullable.undefined(), JsonNullable.undefined(),
+        return get(customerId, JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
 
@@ -213,7 +213,7 @@ public class Customers {
      */
     public GetCustomerResponse get(
             String customerId, JsonNullable<String> include,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         GetCustomerRequest request =
             GetCustomerRequest

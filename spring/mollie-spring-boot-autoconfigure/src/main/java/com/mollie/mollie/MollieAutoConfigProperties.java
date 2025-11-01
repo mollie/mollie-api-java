@@ -6,6 +6,7 @@ package com.mollie.mollie;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.time.Duration;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Collection;
 import java.util.Set;
@@ -41,6 +42,10 @@ public class MollieAutoConfigProperties {
      * The index of the server to use from the list of available servers (0-based). Defaults to the first server.
      */
     private int serverIdx = 0;
+    /**
+     * Global parameter configuration for all SDK operations.
+     */
+    private Globals globals = new Globals();
     /**
      * Security configuration for API authentication.
      */
@@ -115,6 +120,23 @@ public class MollieAutoConfigProperties {
      */
     public void setServerIdx(int serverIdx) {
         this.serverIdx = serverIdx;
+    }
+    /**
+     * Gets the global parameter configuration for all SDK operations.
+     *
+     * @return the global parameters configuration
+     */
+    public Globals getGlobals() {
+        return globals;
+    }
+
+    /**
+     * Sets the global parameter configuration for all SDK operations.
+     *
+     * @param globals the global parameters configuration to use
+     */
+    public void setGlobals(Globals globals) {
+        this.globals = globals;
     }
     /**
      * Gets the security configuration for API authentication.
@@ -421,6 +443,99 @@ public class MollieAutoConfigProperties {
          */
         public void setRedactedHeaders(Collection<String> redactedHeaders) {
             this.redactedHeaders = redactedHeaders;
+        }
+    }
+
+    /**
+     * Global parameters configuration properties
+     */
+    public static class Globals {
+        
+        /**
+         * Constructor.
+         */
+        public Globals() {
+        }
+        
+        /**
+         * The identifier referring to the [profile](get-profile) you wish to
+         * retrieve the resources for.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
+         * For
+         * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
+         * required.
+         */
+        private String profileId;
+
+        /**
+         * Gets the global profileId parameter.
+         *
+         * @return the profileId value
+         */
+        public String getProfileId() {
+            return profileId;
+        }
+
+        /**
+         * Sets the global profileId parameter.
+         *
+         * @param profileId the profileId value to use
+         */
+        public void setProfileId(String profileId) {
+            this.profileId = profileId;
+        }
+        
+        /**
+         * Most API credentials are specifically created for either live mode or test mode. In those cases the
+         * `testmode` query
+         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * enable test mode by
+         * setting the `testmode` query parameter to `true`.
+         * 
+         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         */
+        private Boolean testmode;
+
+        /**
+         * Gets the global testmode parameter.
+         *
+         * @return the testmode value
+         */
+        public Boolean getTestmode() {
+            return testmode;
+        }
+
+        /**
+         * Sets the global testmode parameter.
+         *
+         * @param testmode the testmode value to use
+         */
+        public void setTestmode(boolean testmode) {
+            this.testmode = testmode;
+        }
+        
+        /**
+         * Custom user agent string to be appended to the default Mollie SDK user agent.
+         */
+        private String customUserAgent;
+
+        /**
+         * Gets the global customUserAgent parameter.
+         *
+         * @return the customUserAgent value
+         */
+        public String getCustomUserAgent() {
+            return customUserAgent;
+        }
+
+        /**
+         * Sets the global customUserAgent parameter.
+         *
+         * @param customUserAgent the customUserAgent value to use
+         */
+        public void setCustomUserAgent(String customUserAgent) {
+            this.customUserAgent = customUserAgent;
         }
     }
 

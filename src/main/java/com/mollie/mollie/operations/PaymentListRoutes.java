@@ -113,7 +113,7 @@ public class PaymentListRoutes {
                     klass,
                     this.baseUrl,
                     "/payments/{paymentId}/routes",
-                    request, null);
+                    request, this.sdkConfiguration.globals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
@@ -122,8 +122,8 @@ public class PaymentListRoutes {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    null));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
+                    this.sdkConfiguration.globals));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

@@ -148,7 +148,7 @@ public class SalesInvoices {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListSalesInvoicesResponse listDirect() {
-        return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+        return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
 
@@ -178,7 +178,7 @@ public class SalesInvoices {
      */
     public ListSalesInvoicesResponse list(
             JsonNullable<String> from, JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         ListSalesInvoicesRequest request =
             ListSalesInvoicesRequest
@@ -222,7 +222,7 @@ public class SalesInvoices {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetSalesInvoiceResponse get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty(),
+        return get(id, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -247,7 +247,7 @@ public class SalesInvoices {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetSalesInvoiceResponse get(
-            String id, JsonNullable<Boolean> testmode,
+            String id, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetSalesInvoiceRequest request =
             GetSalesInvoiceRequest

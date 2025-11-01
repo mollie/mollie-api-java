@@ -20,7 +20,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncDelayedRouting {
@@ -122,7 +121,7 @@ public class AsyncDelayedRouting {
      */
     public CompletableFuture<PaymentListRoutesResponse> list(String paymentId) {
         return list(
-                paymentId, JsonNullable.undefined(), Optional.empty(),
+                paymentId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -142,7 +141,7 @@ public class AsyncDelayedRouting {
      * @return {@code CompletableFuture<PaymentListRoutesResponse>} - The async response
      */
     public CompletableFuture<PaymentListRoutesResponse> list(
-            String paymentId, JsonNullable<Boolean> testmode,
+            String paymentId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         PaymentListRoutesRequest request =
             PaymentListRoutesRequest

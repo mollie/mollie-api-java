@@ -14,7 +14,6 @@ import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class WebhookEvents {
@@ -57,7 +56,7 @@ public class WebhookEvents {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetWebhookEventResponse get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty(),
+        return get(id, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -78,7 +77,7 @@ public class WebhookEvents {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetWebhookEventResponse get(
-            String id, JsonNullable<Boolean> testmode,
+            String id, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetWebhookEventRequest request =
             GetWebhookEventRequest

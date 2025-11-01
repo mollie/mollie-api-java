@@ -19,7 +19,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncTerminals {
@@ -111,7 +110,7 @@ public class AsyncTerminals {
      */
     public CompletableFuture<GetTerminalResponse> get(String terminalId) {
         return get(
-                terminalId, JsonNullable.undefined(), Optional.empty(),
+                terminalId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -131,7 +130,7 @@ public class AsyncTerminals {
      * @return {@code CompletableFuture<GetTerminalResponse>} - The async response
      */
     public CompletableFuture<GetTerminalResponse> get(
-            String terminalId, JsonNullable<Boolean> testmode,
+            String terminalId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetTerminalRequest request =
             GetTerminalRequest

@@ -45,7 +45,7 @@ public class GetCaptureRequest {
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private JsonNullable<Boolean> testmode;
+    private Optional<Boolean> testmode;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -58,7 +58,7 @@ public class GetCaptureRequest {
             String paymentId,
             String captureId,
             JsonNullable<String> embed,
-            JsonNullable<Boolean> testmode,
+            Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(captureId, "captureId");
@@ -76,7 +76,7 @@ public class GetCaptureRequest {
             String paymentId,
             String captureId) {
         this(paymentId, captureId, JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -115,7 +115,7 @@ public class GetCaptureRequest {
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
+    public Optional<Boolean> testmode() {
         return testmode;
     }
 
@@ -183,9 +183,10 @@ public class GetCaptureRequest {
      */
     public GetCaptureRequest withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.ofNullable(testmode);
         return this;
     }
+
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
@@ -196,7 +197,7 @@ public class GetCaptureRequest {
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
-    public GetCaptureRequest withTestmode(JsonNullable<Boolean> testmode) {
+    public GetCaptureRequest withTestmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -264,7 +265,7 @@ public class GetCaptureRequest {
 
         private JsonNullable<String> embed = JsonNullable.undefined();
 
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<Boolean> testmode = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -327,7 +328,7 @@ public class GetCaptureRequest {
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+            this.testmode = Optional.ofNullable(testmode);
             return this;
         }
 
@@ -340,7 +341,7 @@ public class GetCaptureRequest {
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
+        public Builder testmode(Optional<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
             this.testmode = testmode;
             return this;

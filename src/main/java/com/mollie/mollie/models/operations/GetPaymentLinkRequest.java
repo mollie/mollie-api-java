@@ -11,7 +11,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class GetPaymentLinkRequest {
@@ -31,7 +30,7 @@ public class GetPaymentLinkRequest {
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private JsonNullable<Boolean> testmode;
+    private Optional<Boolean> testmode;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -42,7 +41,7 @@ public class GetPaymentLinkRequest {
     @JsonCreator
     public GetPaymentLinkRequest(
             String paymentLinkId,
-            JsonNullable<Boolean> testmode,
+            Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(paymentLinkId, "paymentLinkId");
         Utils.checkNotNull(testmode, "testmode");
@@ -54,7 +53,7 @@ public class GetPaymentLinkRequest {
     
     public GetPaymentLinkRequest(
             String paymentLinkId) {
-        this(paymentLinkId, JsonNullable.undefined(), Optional.empty());
+        this(paymentLinkId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -75,7 +74,7 @@ public class GetPaymentLinkRequest {
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
+    public Optional<Boolean> testmode() {
         return testmode;
     }
 
@@ -112,9 +111,10 @@ public class GetPaymentLinkRequest {
      */
     public GetPaymentLinkRequest withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.ofNullable(testmode);
         return this;
     }
+
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
@@ -125,7 +125,7 @@ public class GetPaymentLinkRequest {
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
-    public GetPaymentLinkRequest withTestmode(JsonNullable<Boolean> testmode) {
+    public GetPaymentLinkRequest withTestmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -184,7 +184,7 @@ public class GetPaymentLinkRequest {
 
         private String paymentLinkId;
 
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<Boolean> testmode = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -214,7 +214,7 @@ public class GetPaymentLinkRequest {
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+            this.testmode = Optional.ofNullable(testmode);
             return this;
         }
 
@@ -227,7 +227,7 @@ public class GetPaymentLinkRequest {
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
+        public Builder testmode(Optional<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
             this.testmode = testmode;
             return this;

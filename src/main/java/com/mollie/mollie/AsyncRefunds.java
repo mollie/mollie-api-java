@@ -32,7 +32,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncRefunds {
@@ -238,7 +237,7 @@ public class AsyncRefunds {
      */
     public CompletableFuture<CancelRefundResponse> cancel(String paymentId, String refundId) {
         return cancel(
-                paymentId, refundId, JsonNullable.undefined(),
+                paymentId, refundId, Optional.empty(),
                 Optional.empty(), Optional.empty());
     }
 
@@ -265,7 +264,7 @@ public class AsyncRefunds {
      */
     public CompletableFuture<CancelRefundResponse> cancel(
             String paymentId, String refundId,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         CancelRefundRequest request =
             CancelRefundRequest

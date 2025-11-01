@@ -1,23 +1,24 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: f7935b5b5d341c91ffbc2f74abfa5f97
+  docChecksum: 04af8e2301bc33abd357c925d77cd2d6
   docVersion: 1.0.0
-  speakeasyVersion: 1.640.0
-  generationVersion: 2.730.5
-  releaseVersion: 0.21.6
-  configChecksum: 8be2e46cdbb8dcbc9381cce65305f4e4
+  speakeasyVersion: 1.645.1
+  generationVersion: 2.735.1
+  releaseVersion: 0.22.0
+  configChecksum: 186e7883a1c28a2def161a64d11754aa
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.53.0
+    core: 3.53.1
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.83.1
     globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.82.2
+    globalServerURLs: 2.83.0
+    globals: 2.82.2
     groups: 2.81.3
     inputOutputModels: 2.83.0
     nameOverrides: 2.81.3
@@ -6229,3 +6230,4 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes Detected:\n* `client.balances.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.balances.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.balances.getReport()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.balances.listTransactions()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.settlements.listPayments()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.settlements.listCaptures()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.settlements.listRefunds()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.settlements.listChargebacks()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.permissions.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.organizations.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.profiles.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.webhooks.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.webhooks.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.webhookEvents.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.balanceTransfers.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.balanceTransfers.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.payments.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.payments.get()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.methods.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.methods.all()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.methods.get()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.refunds.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.refunds.get()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.refunds.cancel()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.refunds.all()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.chargebacks.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.chargebacks.get()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.chargebacks.all()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.captures.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.captures.get()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.paymentLinks.list()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.paymentLinks.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.paymentLinks.listPayments()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.terminals.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.terminals.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.delayedRouting.list()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.customers.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.customers.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.customers.listPayments()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.mandates.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.mandates.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.subscriptions.list()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.subscriptions.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.subscriptions.all()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.subscriptions.listPayments()`: \n  *  `request.testmode` **Changed** **Breaking** :warning:\n* `client.salesInvoices.list()`:  `request.testmode` **Changed** **Breaking** :warning:\n* `client.salesInvoices.get()`:  `request.testmode` **Changed** **Breaking** :warning:\n"

@@ -11,7 +11,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class GetMandateRequest {
@@ -37,7 +36,7 @@ public class GetMandateRequest {
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private JsonNullable<Boolean> testmode;
+    private Optional<Boolean> testmode;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -49,7 +48,7 @@ public class GetMandateRequest {
     public GetMandateRequest(
             String customerId,
             String mandateId,
-            JsonNullable<Boolean> testmode,
+            Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(mandateId, "mandateId");
@@ -64,7 +63,7 @@ public class GetMandateRequest {
     public GetMandateRequest(
             String customerId,
             String mandateId) {
-        this(customerId, mandateId, JsonNullable.undefined(),
+        this(customerId, mandateId, Optional.empty(),
             Optional.empty());
     }
 
@@ -94,7 +93,7 @@ public class GetMandateRequest {
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
+    public Optional<Boolean> testmode() {
         return testmode;
     }
 
@@ -140,9 +139,10 @@ public class GetMandateRequest {
      */
     public GetMandateRequest withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.ofNullable(testmode);
         return this;
     }
+
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
@@ -153,7 +153,7 @@ public class GetMandateRequest {
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
-    public GetMandateRequest withTestmode(JsonNullable<Boolean> testmode) {
+    public GetMandateRequest withTestmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -217,7 +217,7 @@ public class GetMandateRequest {
 
         private String mandateId;
 
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<Boolean> testmode = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -257,7 +257,7 @@ public class GetMandateRequest {
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+            this.testmode = Optional.ofNullable(testmode);
             return this;
         }
 
@@ -270,7 +270,7 @@ public class GetMandateRequest {
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
+        public Builder testmode(Optional<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
             this.testmode = testmode;
             return this;

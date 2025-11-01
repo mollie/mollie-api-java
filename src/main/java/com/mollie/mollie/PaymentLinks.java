@@ -147,7 +147,7 @@ public class PaymentLinks {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListPaymentLinksResponse listDirect() {
-        return list(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
 
@@ -173,7 +173,7 @@ public class PaymentLinks {
      */
     public ListPaymentLinksResponse list(
             Optional<String> from, JsonNullable<Long> limit,
-            JsonNullable<Boolean> testmode, Optional<String> idempotencyKey,
+            Optional<Boolean> testmode, Optional<String> idempotencyKey,
             Optional<Options> options) {
         ListPaymentLinksRequest request =
             ListPaymentLinksRequest
@@ -209,7 +209,7 @@ public class PaymentLinks {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPaymentLinkResponse get(String paymentLinkId) {
-        return get(paymentLinkId, JsonNullable.undefined(), Optional.empty(),
+        return get(paymentLinkId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -230,7 +230,7 @@ public class PaymentLinks {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPaymentLinkResponse get(
-            String paymentLinkId, JsonNullable<Boolean> testmode,
+            String paymentLinkId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetPaymentLinkRequest request =
             GetPaymentLinkRequest

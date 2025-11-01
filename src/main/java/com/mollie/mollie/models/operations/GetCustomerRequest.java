@@ -37,7 +37,7 @@ public class GetCustomerRequest {
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private JsonNullable<Boolean> testmode;
+    private Optional<Boolean> testmode;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -49,7 +49,7 @@ public class GetCustomerRequest {
     public GetCustomerRequest(
             String customerId,
             JsonNullable<String> include,
-            JsonNullable<Boolean> testmode,
+            Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(include, "include");
@@ -63,7 +63,7 @@ public class GetCustomerRequest {
     
     public GetCustomerRequest(
             String customerId) {
-        this(customerId, JsonNullable.undefined(), JsonNullable.undefined(),
+        this(customerId, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
 
@@ -93,7 +93,7 @@ public class GetCustomerRequest {
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
+    public Optional<Boolean> testmode() {
         return testmode;
     }
 
@@ -148,9 +148,10 @@ public class GetCustomerRequest {
      */
     public GetCustomerRequest withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.ofNullable(testmode);
         return this;
     }
+
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
@@ -161,7 +162,7 @@ public class GetCustomerRequest {
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
-    public GetCustomerRequest withTestmode(JsonNullable<Boolean> testmode) {
+    public GetCustomerRequest withTestmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -225,7 +226,7 @@ public class GetCustomerRequest {
 
         private JsonNullable<String> include = JsonNullable.undefined();
 
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<Boolean> testmode = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -274,7 +275,7 @@ public class GetCustomerRequest {
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+            this.testmode = Optional.ofNullable(testmode);
             return this;
         }
 
@@ -287,7 +288,7 @@ public class GetCustomerRequest {
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
+        public Builder testmode(Optional<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
             this.testmode = testmode;
             return this;
