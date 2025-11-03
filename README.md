@@ -29,6 +29,7 @@ This documentation is for the new Mollie's SDK. You can find more details on how
   * [Authentication](#authentication)
   * [Idempotency Key](#idempotency-key)
   * [Add Custom User-Agent Header](#add-custom-user-agent-header)
+  * [Add Profile ID and Testmode to Client](#add-profile-id-and-testmode-to-client)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Global Parameters](#global-parameters)
   * [Retries](#retries)
@@ -374,6 +375,25 @@ Client sdk = Client.builder()
 ```
 
 <!-- End Add Custom User-Agent Header -->
+
+<!-- Start Add Profile ID and Testmode to Client -->
+
+## Add Profile ID and Testmode to Client
+The SDK allows you to define the `profileId` and `testmode` in the client. This way, you don't need to add this
+information to the payload every time when using OAuth. This will not override the details provided in the individual
+requests.
+
+```java
+Client sdk = Client.builder()
+    .security(Security.builder()
+        .apiKey(System.getenv().getOrDefault("OAUTH_KEY", ""))
+        .build())
+    .testmode(true)
+    .profileId("pfl_...")
+.build();
+```
+
+<!-- End Add Profile ID and Testmode to Client -->
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
