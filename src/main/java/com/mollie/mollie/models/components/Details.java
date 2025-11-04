@@ -418,6 +418,20 @@ public class Details {
     @JsonProperty("remainderDetails")
     private Optional<? extends Map<String, Object>> remainderDetails;
 
+    /**
+     * Multibanco payment reference of the transaction
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("multibancoReference")
+    private JsonNullable<String> multibancoReference;
+
+    /**
+     * Multibanco entity reference of the transaction
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("multibancoEntity")
+    private JsonNullable<String> multibancoEntity;
+
     @JsonCreator
     public Details(
             @JsonProperty("consumerName") JsonNullable<String> consumerName,
@@ -469,7 +483,9 @@ public class Details {
             @JsonProperty("vouchers") Optional<? extends List<Map<String, Object>>> vouchers,
             @JsonProperty("remainderAmount") Optional<? extends Amount> remainderAmount,
             @JsonProperty("remainderMethod") Optional<String> remainderMethod,
-            @JsonProperty("remainderDetails") Optional<? extends Map<String, Object>> remainderDetails) {
+            @JsonProperty("remainderDetails") Optional<? extends Map<String, Object>> remainderDetails,
+            @JsonProperty("multibancoReference") JsonNullable<String> multibancoReference,
+            @JsonProperty("multibancoEntity") JsonNullable<String> multibancoEntity) {
         Utils.checkNotNull(consumerName, "consumerName");
         Utils.checkNotNull(consumerAccount, "consumerAccount");
         Utils.checkNotNull(consumerBic, "consumerBic");
@@ -520,6 +536,8 @@ public class Details {
         Utils.checkNotNull(remainderAmount, "remainderAmount");
         Utils.checkNotNull(remainderMethod, "remainderMethod");
         Utils.checkNotNull(remainderDetails, "remainderDetails");
+        Utils.checkNotNull(multibancoReference, "multibancoReference");
+        Utils.checkNotNull(multibancoEntity, "multibancoEntity");
         this.consumerName = consumerName;
         this.consumerAccount = consumerAccount;
         this.consumerBic = consumerBic;
@@ -570,6 +588,8 @@ public class Details {
         this.remainderAmount = remainderAmount;
         this.remainderMethod = remainderMethod;
         this.remainderDetails = remainderDetails;
+        this.multibancoReference = multibancoReference;
+        this.multibancoEntity = multibancoEntity;
     }
     
     public Details() {
@@ -589,7 +609,8 @@ public class Details {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -1045,6 +1066,22 @@ public class Details {
     @JsonIgnore
     public Optional<Map<String, Object>> remainderDetails() {
         return (Optional<Map<String, Object>>) remainderDetails;
+    }
+
+    /**
+     * Multibanco payment reference of the transaction
+     */
+    @JsonIgnore
+    public JsonNullable<String> multibancoReference() {
+        return multibancoReference;
+    }
+
+    /**
+     * Multibanco entity reference of the transaction
+     */
+    @JsonIgnore
+    public JsonNullable<String> multibancoEntity() {
+        return multibancoEntity;
     }
 
     public static Builder builder() {
@@ -2044,6 +2081,42 @@ public class Details {
         return this;
     }
 
+    /**
+     * Multibanco payment reference of the transaction
+     */
+    public Details withMultibancoReference(String multibancoReference) {
+        Utils.checkNotNull(multibancoReference, "multibancoReference");
+        this.multibancoReference = JsonNullable.of(multibancoReference);
+        return this;
+    }
+
+    /**
+     * Multibanco payment reference of the transaction
+     */
+    public Details withMultibancoReference(JsonNullable<String> multibancoReference) {
+        Utils.checkNotNull(multibancoReference, "multibancoReference");
+        this.multibancoReference = multibancoReference;
+        return this;
+    }
+
+    /**
+     * Multibanco entity reference of the transaction
+     */
+    public Details withMultibancoEntity(String multibancoEntity) {
+        Utils.checkNotNull(multibancoEntity, "multibancoEntity");
+        this.multibancoEntity = JsonNullable.of(multibancoEntity);
+        return this;
+    }
+
+    /**
+     * Multibanco entity reference of the transaction
+     */
+    public Details withMultibancoEntity(JsonNullable<String> multibancoEntity) {
+        Utils.checkNotNull(multibancoEntity, "multibancoEntity");
+        this.multibancoEntity = multibancoEntity;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -2103,7 +2176,9 @@ public class Details {
             Utils.enhancedDeepEquals(this.vouchers, other.vouchers) &&
             Utils.enhancedDeepEquals(this.remainderAmount, other.remainderAmount) &&
             Utils.enhancedDeepEquals(this.remainderMethod, other.remainderMethod) &&
-            Utils.enhancedDeepEquals(this.remainderDetails, other.remainderDetails);
+            Utils.enhancedDeepEquals(this.remainderDetails, other.remainderDetails) &&
+            Utils.enhancedDeepEquals(this.multibancoReference, other.multibancoReference) &&
+            Utils.enhancedDeepEquals(this.multibancoEntity, other.multibancoEntity);
     }
     
     @Override
@@ -2125,7 +2200,8 @@ public class Details {
             mandateReference, batchReference, fileReference,
             qrCode, voucherNumber, giftcards,
             issuer, vouchers, remainderAmount,
-            remainderMethod, remainderDetails);
+            remainderMethod, remainderDetails, multibancoReference,
+            multibancoEntity);
     }
     
     @Override
@@ -2180,7 +2256,9 @@ public class Details {
                 "vouchers", vouchers,
                 "remainderAmount", remainderAmount,
                 "remainderMethod", remainderMethod,
-                "remainderDetails", remainderDetails);
+                "remainderDetails", remainderDetails,
+                "multibancoReference", multibancoReference,
+                "multibancoEntity", multibancoEntity);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -2285,6 +2363,10 @@ public class Details {
         private Optional<String> remainderMethod = Optional.empty();
 
         private Optional<? extends Map<String, Object>> remainderDetails = Optional.empty();
+
+        private JsonNullable<String> multibancoReference = JsonNullable.undefined();
+
+        private JsonNullable<String> multibancoEntity = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -3318,6 +3400,44 @@ public class Details {
             return this;
         }
 
+
+        /**
+         * Multibanco payment reference of the transaction
+         */
+        public Builder multibancoReference(String multibancoReference) {
+            Utils.checkNotNull(multibancoReference, "multibancoReference");
+            this.multibancoReference = JsonNullable.of(multibancoReference);
+            return this;
+        }
+
+        /**
+         * Multibanco payment reference of the transaction
+         */
+        public Builder multibancoReference(JsonNullable<String> multibancoReference) {
+            Utils.checkNotNull(multibancoReference, "multibancoReference");
+            this.multibancoReference = multibancoReference;
+            return this;
+        }
+
+
+        /**
+         * Multibanco entity reference of the transaction
+         */
+        public Builder multibancoEntity(String multibancoEntity) {
+            Utils.checkNotNull(multibancoEntity, "multibancoEntity");
+            this.multibancoEntity = JsonNullable.of(multibancoEntity);
+            return this;
+        }
+
+        /**
+         * Multibanco entity reference of the transaction
+         */
+        public Builder multibancoEntity(JsonNullable<String> multibancoEntity) {
+            Utils.checkNotNull(multibancoEntity, "multibancoEntity");
+            this.multibancoEntity = multibancoEntity;
+            return this;
+        }
+
         public Details build() {
 
             return new Details(
@@ -3337,7 +3457,8 @@ public class Details {
                 mandateReference, batchReference, fileReference,
                 qrCode, voucherNumber, giftcards,
                 issuer, vouchers, remainderAmount,
-                remainderMethod, remainderDetails);
+                remainderMethod, remainderDetails, multibancoReference,
+                multibancoEntity);
         }
 
     }
