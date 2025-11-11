@@ -19,12 +19,13 @@ generation:
     hoistGlobalSecurity: true
   schemas:
     allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.22.1
+  version: 0.23.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
@@ -37,7 +38,9 @@ java:
   defaultErrorName: APIException
   enableCustomCodeRegions: false
   enableStreamingUploads: false
+  enhancedUnionMemberResolution: true
   flattenGlobalSecurity: true
+  generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: https://github.com/mollie/mollie-api-java
   groupID: com.mollie
@@ -57,6 +60,7 @@ java:
     url: https://mit-license.org/
   maxMethodParams: 4
   nullFriendlyParameters: false
+  openUnions: true
   outputModelSuffix: output
   projectName: openapi
   templateVersion: v2

@@ -19,7 +19,7 @@ import java.lang.SuppressWarnings;
 public class Entity {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Entity(TypedObject value) {
         this.value = value;
@@ -27,12 +27,12 @@ public class Entity {
 
     public static Entity of(PaymentLinkResponse value) {
         Utils.checkNotNull(value, "value");
-        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<PaymentLinkResponse>(){}));
+        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Entity of(ProfileResponse value) {
         Utils.checkNotNull(value, "value");
-        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<ProfileResponse>(){}));
+        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -55,7 +55,7 @@ public class Entity {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -66,7 +66,7 @@ public class Entity {
             return false;
         }
         Entity other = (Entity) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -89,6 +89,6 @@ public class Entity {
         return Utils.toString(Entity.class,
                 "value", value);
     }
- 
+
 }
 

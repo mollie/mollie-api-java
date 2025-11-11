@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 3aa14a6670ca743ca161fe3bee4d0251
+  docChecksum: 3101d53cbe06acbc04397305ff448453
   docVersion: 1.0.0
-  speakeasyVersion: 1.648.0
-  generationVersion: 2.737.0
-  releaseVersion: 0.22.1
-  configChecksum: 86411ed831029296d4b96a21a2d1c18a
+  speakeasyVersion: 1.653.0
+  generationVersion: 2.748.0
+  releaseVersion: 0.23.0
+  configChecksum: 5c96a762f2151d426b8a84997ea020e8
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.53.1
+    core: 3.55.1
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.83.1
@@ -26,7 +26,7 @@ features:
     openEnums: 0.2.0
     retries: 0.1.1
     sdkHooks: 1.1.0
-    unions: 0.0.6
+    unions: 0.3.0
 generatedFiles:
   - .gitattributes
   - USAGE.md
@@ -1734,6 +1734,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/utils/EventStreamMessage.java
   - src/main/java/com/mollie/mollie/utils/Exceptions.java
   - src/main/java/com/mollie/mollie/utils/FormMetadata.java
+  - src/main/java/com/mollie/mollie/utils/GenericTypeIdResolver.java
   - src/main/java/com/mollie/mollie/utils/Globals.java
   - src/main/java/com/mollie/mollie/utils/HTTPClient.java
   - src/main/java/com/mollie/mollie/utils/HTTPRequest.java
@@ -1776,6 +1777,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/utils/StreamingParser.java
   - src/main/java/com/mollie/mollie/utils/TypedObject.java
   - src/main/java/com/mollie/mollie/utils/Types.java
+  - src/main/java/com/mollie/mollie/utils/UnknownType.java
   - src/main/java/com/mollie/mollie/utils/Utf8UrlEncoder.java
   - src/main/java/com/mollie/mollie/utils/Utils.java
   - src/main/java/com/mollie/mollie/utils/reactive/EventStream.java
@@ -6230,15 +6232,3 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes Detected:
-  * `client.settlements.listPayments()`:  `response._embedded.payments.[].details` **Changed**
-  * `client.payments.create()`:  `response.details` **Changed**
-  * `client.payments.list()`:  `response._embedded.payments.[].details` **Changed**
-  * `client.payments.get()`:  `response.details` **Changed**
-  * `client.payments.update()`:  `response.details` **Changed**
-  * `client.payments.cancel()`:  `response.details` **Changed**
-  * `client.paymentLinks.listPayments()`:  `response._embedded.payments.[].details` **Changed**
-  * `client.customers.createPayment()`:  `response.details` **Changed**
-  * `client.customers.listPayments()`:  `response._embedded.payments.[].details` **Changed**
-  * `client.subscriptions.listPayments()`:  `response._embedded.payments.[].details` **Changed**

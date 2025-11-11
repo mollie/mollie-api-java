@@ -54,7 +54,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.22.1'
+implementation 'com.mollie:mollie:0.23.0'
 ```
 
 Maven:
@@ -62,7 +62,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.22.1</version>
+    <version>0.23.0</version>
 </dependency>
 ```
 
@@ -775,10 +775,14 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ClientError;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.ListBalancesResponse;
+import java.io.UncheckedIOException;
 import java.lang.Exception;
+import java.lang.String;
+import java.util.Optional;
 
 public class Application {
 
@@ -790,22 +794,56 @@ public class Application {
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
             .build();
+        try {
 
-        ListBalancesRequest req = ListBalancesRequest.builder()
-                .currency("EUR")
-                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .limit(50L)
-                .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .build();
+            ListBalancesRequest req = ListBalancesRequest.builder()
+                    .currency("EUR")
+                    .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                    .limit(50L)
+                    .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                    .build();
 
-        ListBalancesResponse res = sdk.balances().list()
-                .request(req)
-                .call();
+            ListBalancesResponse res = sdk.balances().list()
+                    .request(req)
+                    .call();
 
-        if (res.object().isPresent()) {
-            // handle response
-        }
-    }
+            if (res.object().isPresent()) {
+                // handle response
+            }
+        } catch (ClientError ex) { // all SDK exceptions inherit from ClientError
+
+            // ex.ToString() provides a detailed error message including
+            // HTTP status code, headers, and error payload (if any)
+            System.out.println(ex);
+
+            // Base exception fields
+            var rawResponse = ex.rawResponse();
+            var headers = ex.headers();
+            var contentType = headers.first("Content-Type");
+            int statusCode = ex.code();
+            Optional<byte[]> responseBody = ex.body();
+
+            // different error subclasses may be thrown 
+            // depending on the service call
+            if (ex instanceof ErrorResponse) {
+                var e = (ErrorResponse) ex;
+                // Check error data fields
+                e.data().ifPresent(payload -> {
+                      long status = payload.status();
+                      String title = payload.title();
+                      // ...
+                });
+            }
+
+            // An underlying cause may be provided. If the error payload 
+            // cannot be deserialized then the deserialization exception 
+            // will be set as the cause.
+            if (ex.getCause() != null) {
+                var cause = ex.getCause();
+            }
+        } catch (UncheckedIOException ex) {
+            // handle IO error (connection, timeout, etc)
+        }    }
 }
 ```
 

@@ -30,7 +30,7 @@ import java.util.Map;
 public class Metadata {
 
     @JsonValue
-    private TypedObject value;
+    private final TypedObject value;
     
     private Metadata(TypedObject value) {
         this.value = value;
@@ -38,17 +38,17 @@ public class Metadata {
 
     public static Metadata of(String value) {
         Utils.checkNotNull(value, "value");
-        return new Metadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new Metadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Metadata of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new Metadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
+        return new Metadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
     public static Metadata of(List<String> value) {
         Utils.checkNotNull(value, "value");
-        return new Metadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<String>>(){}));
+        return new Metadata(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
     
     /**
@@ -72,7 +72,7 @@ public class Metadata {
      **/ 
     public java.lang.Object value() {
         return value.value();
-    }    
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -83,7 +83,7 @@ public class Metadata {
             return false;
         }
         Metadata other = (Metadata) o;
-        return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
+        return Utils.enhancedDeepEquals(this.value.value(), other.value.value());
     }
     
     @Override
@@ -107,6 +107,6 @@ public class Metadata {
         return Utils.toString(Metadata.class,
                 "value", value);
     }
- 
+
 }
 
