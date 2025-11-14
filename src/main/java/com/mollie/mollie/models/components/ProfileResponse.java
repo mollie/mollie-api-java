@@ -21,55 +21,48 @@ public class ProfileResponse {
      * Indicates the response contains a profile object. Will always contain the string `profile` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends Mode> mode;
+    private Mode mode;
 
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website
      * or
      * application.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
      * signs are
      * allowed.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("website")
-    private Optional<String> website;
+    private String website;
 
     /**
      * The email address associated with the profile's trade name or brand.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
-    private Optional<String> email;
+    private String email;
 
     /**
      * The phone number associated with the profile's trade name or brand.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone")
-    private Optional<String> phone;
+    private String phone;
 
     /**
      * The products or services offered by the profile's website or application.
@@ -90,9 +83,8 @@ public class ProfileResponse {
      * The industry associated with the profile's trade name or brand. Please refer to the
      * [business category list](common-data-types#business-category) for all possible options.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessCategory")
-    private Optional<String> businessCategory;
+    private String businessCategory;
 
     /**
      * The profile status determines whether the profile is able to receive live payments.
@@ -102,9 +94,8 @@ public class ProfileResponse {
      * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends ProfileStatus> status;
+    private ProfileStatus status;
 
     /**
      * Present if changes have been made that have not yet been approved by Mollie. Changes to test
@@ -121,33 +112,31 @@ public class ProfileResponse {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ProfileResponseLinks> links;
+    private ProfileResponseLinks links;
 
     @JsonCreator
     public ProfileResponse(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends Mode> mode,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("website") Optional<String> website,
-            @JsonProperty("email") Optional<String> email,
-            @JsonProperty("phone") Optional<String> phone,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") Mode mode,
+            @JsonProperty("name") String name,
+            @JsonProperty("website") String website,
+            @JsonProperty("email") String email,
+            @JsonProperty("phone") String phone,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
-            @JsonProperty("businessCategory") Optional<String> businessCategory,
-            @JsonProperty("status") Optional<? extends ProfileStatus> status,
+            @JsonProperty("businessCategory") String businessCategory,
+            @JsonProperty("status") ProfileStatus status,
             @JsonProperty("review") Optional<? extends Review> review,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("_links") Optional<? extends ProfileResponseLinks> links) {
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("_links") ProfileResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -178,12 +167,23 @@ public class ProfileResponse {
         this.links = links;
     }
     
-    public ProfileResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+    public ProfileResponse(
+            String resource,
+            String id,
+            Mode mode,
+            String name,
+            String website,
+            String email,
+            String phone,
+            String businessCategory,
+            ProfileStatus status,
+            String createdAt,
+            ProfileResponseLinks links) {
+        this(resource, id, mode,
+            name, website, email,
+            phone, Optional.empty(), Optional.empty(),
+            businessCategory, status, Optional.empty(),
+            createdAt, links);
     }
 
     /**
@@ -191,7 +191,7 @@ public class ProfileResponse {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -199,17 +199,16 @@ public class ProfileResponse {
      * The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Mode> mode() {
-        return (Optional<Mode>) mode;
+    public Mode mode() {
+        return mode;
     }
 
     /**
@@ -218,7 +217,7 @@ public class ProfileResponse {
      * application.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
@@ -228,7 +227,7 @@ public class ProfileResponse {
      * allowed.
      */
     @JsonIgnore
-    public Optional<String> website() {
+    public String website() {
         return website;
     }
 
@@ -236,7 +235,7 @@ public class ProfileResponse {
      * The email address associated with the profile's trade name or brand.
      */
     @JsonIgnore
-    public Optional<String> email() {
+    public String email() {
         return email;
     }
 
@@ -244,7 +243,7 @@ public class ProfileResponse {
      * The phone number associated with the profile's trade name or brand.
      */
     @JsonIgnore
-    public Optional<String> phone() {
+    public String phone() {
         return phone;
     }
 
@@ -271,7 +270,7 @@ public class ProfileResponse {
      * [business category list](common-data-types#business-category) for all possible options.
      */
     @JsonIgnore
-    public Optional<String> businessCategory() {
+    public String businessCategory() {
         return businessCategory;
     }
 
@@ -283,10 +282,9 @@ public class ProfileResponse {
      * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ProfileStatus> status() {
-        return (Optional<ProfileStatus>) status;
+    public ProfileStatus status() {
+        return status;
     }
 
     /**
@@ -307,17 +305,16 @@ public class ProfileResponse {
      * format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ProfileResponseLinks> links() {
-        return (Optional<ProfileResponseLinks>) links;
+    public ProfileResponseLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -331,17 +328,6 @@ public class ProfileResponse {
      */
     public ProfileResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a profile object. Will always contain the string `profile` for this
-     * endpoint.
-     */
-    public ProfileResponse withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -351,16 +337,6 @@ public class ProfileResponse {
      */
     public ProfileResponse withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
-     */
-    public ProfileResponse withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -369,16 +345,6 @@ public class ProfileResponse {
      * Whether this entity was created in live mode or in test mode.
      */
     public ProfileResponse withMode(Mode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     */
-    public ProfileResponse withMode(Optional<? extends Mode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -391,18 +357,6 @@ public class ProfileResponse {
      */
     public ProfileResponse withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
-     * or
-     * application.
-     */
-    public ProfileResponse withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
     }
@@ -414,18 +368,6 @@ public class ProfileResponse {
      */
     public ProfileResponse withWebsite(String website) {
         Utils.checkNotNull(website, "website");
-        this.website = Optional.ofNullable(website);
-        return this;
-    }
-
-
-    /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
-     * signs are
-     * allowed.
-     */
-    public ProfileResponse withWebsite(Optional<String> website) {
-        Utils.checkNotNull(website, "website");
         this.website = website;
         return this;
     }
@@ -435,16 +377,6 @@ public class ProfileResponse {
      */
     public ProfileResponse withEmail(String email) {
         Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
-        return this;
-    }
-
-
-    /**
-     * The email address associated with the profile's trade name or brand.
-     */
-    public ProfileResponse withEmail(Optional<String> email) {
-        Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
     }
@@ -453,16 +385,6 @@ public class ProfileResponse {
      * The phone number associated with the profile's trade name or brand.
      */
     public ProfileResponse withPhone(String phone) {
-        Utils.checkNotNull(phone, "phone");
-        this.phone = Optional.ofNullable(phone);
-        return this;
-    }
-
-
-    /**
-     * The phone number associated with the profile's trade name or brand.
-     */
-    public ProfileResponse withPhone(Optional<String> phone) {
         Utils.checkNotNull(phone, "phone");
         this.phone = phone;
         return this;
@@ -514,17 +436,6 @@ public class ProfileResponse {
      */
     public ProfileResponse withBusinessCategory(String businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
-        this.businessCategory = Optional.ofNullable(businessCategory);
-        return this;
-    }
-
-
-    /**
-     * The industry associated with the profile's trade name or brand. Please refer to the
-     * [business category list](common-data-types#business-category) for all possible options.
-     */
-    public ProfileResponse withBusinessCategory(Optional<String> businessCategory) {
-        Utils.checkNotNull(businessCategory, "businessCategory");
         this.businessCategory = businessCategory;
         return this;
     }
@@ -538,21 +449,6 @@ public class ProfileResponse {
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
     public ProfileResponse withStatus(ProfileStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The profile status determines whether the profile is able to receive live payments.
-     * 
-     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test
-     * payments.
-     * * `blocked`: The profile is blocked and can no longer be used or changed.
-     */
-    public ProfileResponse withStatus(Optional<? extends ProfileStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -591,17 +487,6 @@ public class ProfileResponse {
      */
     public ProfileResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     */
-    public ProfileResponse withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -610,16 +495,6 @@ public class ProfileResponse {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public ProfileResponse withLinks(ProfileResponseLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public ProfileResponse withLinks(Optional<? extends ProfileResponseLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -683,33 +558,33 @@ public class ProfileResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends Mode> mode = Optional.empty();
+        private Mode mode;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> website = Optional.empty();
+        private String website;
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
-        private Optional<String> phone = Optional.empty();
+        private String phone;
 
         private Optional<String> description = Optional.empty();
 
         private Optional<? extends List<String>> countriesOfActivity = Optional.empty();
 
-        private Optional<String> businessCategory = Optional.empty();
+        private String businessCategory;
 
-        private Optional<? extends ProfileStatus> status = Optional.empty();
+        private ProfileStatus status;
 
         private Optional<? extends Review> review = Optional.empty();
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
-        private Optional<? extends ProfileResponseLinks> links = Optional.empty();
+        private ProfileResponseLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -722,16 +597,6 @@ public class ProfileResponse {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a profile object. Will always contain the string `profile` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -742,15 +607,6 @@ public class ProfileResponse {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this profile. Example: `pfl_v9hTwCvYqw`.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -760,15 +616,6 @@ public class ProfileResponse {
          * Whether this entity was created in live mode or in test mode.
          */
         public Builder mode(Mode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         */
-        public Builder mode(Optional<? extends Mode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -782,17 +629,6 @@ public class ProfileResponse {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website
-         * or
-         * application.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
@@ -805,17 +641,6 @@ public class ProfileResponse {
          */
         public Builder website(String website) {
             Utils.checkNotNull(website, "website");
-            this.website = Optional.ofNullable(website);
-            return this;
-        }
-
-        /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
-         * signs are
-         * allowed.
-         */
-        public Builder website(Optional<String> website) {
-            Utils.checkNotNull(website, "website");
             this.website = website;
             return this;
         }
@@ -826,15 +651,6 @@ public class ProfileResponse {
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * The email address associated with the profile's trade name or brand.
-         */
-        public Builder email(Optional<String> email) {
-            Utils.checkNotNull(email, "email");
             this.email = email;
             return this;
         }
@@ -844,15 +660,6 @@ public class ProfileResponse {
          * The phone number associated with the profile's trade name or brand.
          */
         public Builder phone(String phone) {
-            Utils.checkNotNull(phone, "phone");
-            this.phone = Optional.ofNullable(phone);
-            return this;
-        }
-
-        /**
-         * The phone number associated with the profile's trade name or brand.
-         */
-        public Builder phone(Optional<String> phone) {
             Utils.checkNotNull(phone, "phone");
             this.phone = phone;
             return this;
@@ -905,16 +712,6 @@ public class ProfileResponse {
          */
         public Builder businessCategory(String businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
-            this.businessCategory = Optional.ofNullable(businessCategory);
-            return this;
-        }
-
-        /**
-         * The industry associated with the profile's trade name or brand. Please refer to the
-         * [business category list](common-data-types#business-category) for all possible options.
-         */
-        public Builder businessCategory(Optional<String> businessCategory) {
-            Utils.checkNotNull(businessCategory, "businessCategory");
             this.businessCategory = businessCategory;
             return this;
         }
@@ -929,20 +726,6 @@ public class ProfileResponse {
          * * `blocked`: The profile is blocked and can no longer be used or changed.
          */
         public Builder status(ProfileStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The profile status determines whether the profile is able to receive live payments.
-         * 
-         * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-         * * `verified`: The profile has been verified and can be used to create live payments and test
-         * payments.
-         * * `blocked`: The profile is blocked and can no longer be used or changed.
-         */
-        public Builder status(Optional<? extends ProfileStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -982,16 +765,6 @@ public class ProfileResponse {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
@@ -1001,15 +774,6 @@ public class ProfileResponse {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(ProfileResponseLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ProfileResponseLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

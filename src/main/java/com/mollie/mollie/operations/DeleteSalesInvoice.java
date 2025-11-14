@@ -206,11 +206,8 @@ public class DeleteSalesInvoice {
             DeleteSalesInvoiceResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "204")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withAny(Utils.unmarshal(response, new TypeReference<Object>() {}));
-                } else {
-                    throw APIException.from("Unexpected content-type received: " + contentType, response);
-                }
+                // no content
+                return res;
             }
             if (Utils.statusCodeMatches(response.statusCode(), "404", "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
@@ -294,12 +291,8 @@ public class DeleteSalesInvoice {
             com.mollie.mollie.models.operations.async.DeleteSalesInvoiceResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "204")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<Object>() {})
-                            .thenApply(res::withAny);
-                } else {
-                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
-                }
+                // no content
+                return CompletableFuture.completedFuture(res);
             }
             if (Utils.statusCodeMatches(response.statusCode(), "404", "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {

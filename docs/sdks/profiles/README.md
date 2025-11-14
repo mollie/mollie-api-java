@@ -44,7 +44,7 @@ public class Application {
 
         CreateProfileResponse res = sdk.profiles().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .entityProfile(EntityProfile.builder()
+                .profileRequest(ProfileRequest.builder()
                     .name("My website name")
                     .website("https://example.com")
                     .email("test@mollie.com")
@@ -70,7 +70,7 @@ public class Application {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityProfile`                                                                  | [EntityProfile](../../models/components/EntityProfile.md)                        | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
+| `profileRequest`                                                                 | [ProfileRequest](../../models/components/ProfileRequest.md)                      | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 
@@ -305,9 +305,7 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```

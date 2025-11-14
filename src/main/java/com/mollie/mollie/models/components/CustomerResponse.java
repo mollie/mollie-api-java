@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class CustomerResponse {
@@ -21,42 +20,39 @@ public class CustomerResponse {
      * Indicates the response contains a customer object. Will always contain the string `customer` for
      * this endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends Mode> mode;
+    private Mode mode;
 
     /**
      * The full name of the customer.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("name")
-    private JsonNullable<String> name;
+    private Optional<String> name;
 
     /**
      * The email address of the customer.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("email")
-    private JsonNullable<String> email;
+    private Optional<String> email;
 
     /**
      * Allows you to preset the language to be used.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("locale")
-    private JsonNullable<? extends LocaleResponse> locale;
+    private Optional<? extends LocaleResponse> locale;
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
@@ -64,36 +60,34 @@ public class CustomerResponse {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
-    private JsonNullable<? extends Metadata> metadata;
+    private Optional<? extends Metadata> metadata;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends CustomerResponseLinks> links;
+    private CustomerResponseLinks links;
 
     @JsonCreator
     public CustomerResponse(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends Mode> mode,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("email") JsonNullable<String> email,
-            @JsonProperty("locale") JsonNullable<? extends LocaleResponse> locale,
-            @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("_links") Optional<? extends CustomerResponseLinks> links) {
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") Mode mode,
+            @JsonProperty("name") Optional<String> name,
+            @JsonProperty("email") Optional<String> email,
+            @JsonProperty("locale") Optional<? extends LocaleResponse> locale,
+            @JsonProperty("metadata") Optional<? extends Metadata> metadata,
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("_links") CustomerResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -114,10 +108,15 @@ public class CustomerResponse {
         this.links = links;
     }
     
-    public CustomerResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty());
+    public CustomerResponse(
+            String resource,
+            String id,
+            Mode mode,
+            String createdAt,
+            CustomerResponseLinks links) {
+        this(resource, id, mode,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), createdAt, links);
     }
 
     /**
@@ -125,29 +124,28 @@ public class CustomerResponse {
      * this endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Mode> mode() {
-        return (Optional<Mode>) mode;
+    public Mode mode() {
+        return mode;
     }
 
     /**
      * The full name of the customer.
      */
     @JsonIgnore
-    public JsonNullable<String> name() {
+    public Optional<String> name() {
         return name;
     }
 
@@ -155,7 +153,7 @@ public class CustomerResponse {
      * The email address of the customer.
      */
     @JsonIgnore
-    public JsonNullable<String> email() {
+    public Optional<String> email() {
         return email;
     }
 
@@ -164,8 +162,8 @@ public class CustomerResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<LocaleResponse> locale() {
-        return (JsonNullable<LocaleResponse>) locale;
+    public Optional<LocaleResponse> locale() {
+        return (Optional<LocaleResponse>) locale;
     }
 
     /**
@@ -176,8 +174,8 @@ public class CustomerResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Metadata> metadata() {
-        return (JsonNullable<Metadata>) metadata;
+    public Optional<Metadata> metadata() {
+        return (Optional<Metadata>) metadata;
     }
 
     /**
@@ -185,17 +183,16 @@ public class CustomerResponse {
      * format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CustomerResponseLinks> links() {
-        return (Optional<CustomerResponseLinks>) links;
+    public CustomerResponseLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -209,29 +206,11 @@ public class CustomerResponse {
      */
     public CustomerResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a customer object. Will always contain the string `customer` for
-     * this endpoint.
-     */
-    public CustomerResponse withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     public CustomerResponse withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public CustomerResponse withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -242,16 +221,6 @@ public class CustomerResponse {
      */
     public CustomerResponse withMode(Mode mode) {
         Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     */
-    public CustomerResponse withMode(Optional<? extends Mode> mode) {
-        Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
     }
@@ -261,14 +230,15 @@ public class CustomerResponse {
      */
     public CustomerResponse withName(String name) {
         Utils.checkNotNull(name, "name");
-        this.name = JsonNullable.of(name);
+        this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The full name of the customer.
      */
-    public CustomerResponse withName(JsonNullable<String> name) {
+    public CustomerResponse withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -279,14 +249,15 @@ public class CustomerResponse {
      */
     public CustomerResponse withEmail(String email) {
         Utils.checkNotNull(email, "email");
-        this.email = JsonNullable.of(email);
+        this.email = Optional.ofNullable(email);
         return this;
     }
+
 
     /**
      * The email address of the customer.
      */
-    public CustomerResponse withEmail(JsonNullable<String> email) {
+    public CustomerResponse withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
@@ -297,14 +268,15 @@ public class CustomerResponse {
      */
     public CustomerResponse withLocale(LocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
-        this.locale = JsonNullable.of(locale);
+        this.locale = Optional.ofNullable(locale);
         return this;
     }
+
 
     /**
      * Allows you to preset the language to be used.
      */
-    public CustomerResponse withLocale(JsonNullable<? extends LocaleResponse> locale) {
+    public CustomerResponse withLocale(Optional<? extends LocaleResponse> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -318,9 +290,10 @@ public class CustomerResponse {
      */
     public CustomerResponse withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
-        this.metadata = JsonNullable.of(metadata);
+        this.metadata = Optional.ofNullable(metadata);
         return this;
     }
+
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
@@ -328,7 +301,7 @@ public class CustomerResponse {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    public CustomerResponse withMetadata(JsonNullable<? extends Metadata> metadata) {
+    public CustomerResponse withMetadata(Optional<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -340,17 +313,6 @@ public class CustomerResponse {
      */
     public CustomerResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     */
-    public CustomerResponse withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -359,16 +321,6 @@ public class CustomerResponse {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public CustomerResponse withLinks(CustomerResponseLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public CustomerResponse withLinks(Optional<? extends CustomerResponseLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -420,23 +372,23 @@ public class CustomerResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends Mode> mode = Optional.empty();
+        private Mode mode;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private Optional<String> name = Optional.empty();
 
-        private JsonNullable<String> email = JsonNullable.undefined();
+        private Optional<String> email = Optional.empty();
 
-        private JsonNullable<? extends LocaleResponse> locale = JsonNullable.undefined();
+        private Optional<? extends LocaleResponse> locale = Optional.empty();
 
-        private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
+        private Optional<? extends Metadata> metadata = Optional.empty();
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
-        private Optional<? extends CustomerResponseLinks> links = Optional.empty();
+        private CustomerResponseLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -449,28 +401,12 @@ public class CustomerResponse {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a customer object. Will always contain the string `customer` for
-         * this endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -482,15 +418,6 @@ public class CustomerResponse {
          */
         public Builder mode(Mode mode) {
             Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         */
-        public Builder mode(Optional<? extends Mode> mode) {
-            Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
         }
@@ -501,14 +428,14 @@ public class CustomerResponse {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = JsonNullable.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
         /**
          * The full name of the customer.
          */
-        public Builder name(JsonNullable<String> name) {
+        public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
@@ -520,14 +447,14 @@ public class CustomerResponse {
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
-            this.email = JsonNullable.of(email);
+            this.email = Optional.ofNullable(email);
             return this;
         }
 
         /**
          * The email address of the customer.
          */
-        public Builder email(JsonNullable<String> email) {
+        public Builder email(Optional<String> email) {
             Utils.checkNotNull(email, "email");
             this.email = email;
             return this;
@@ -539,14 +466,14 @@ public class CustomerResponse {
          */
         public Builder locale(LocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
-            this.locale = JsonNullable.of(locale);
+            this.locale = Optional.ofNullable(locale);
             return this;
         }
 
         /**
          * Allows you to preset the language to be used.
          */
-        public Builder locale(JsonNullable<? extends LocaleResponse> locale) {
+        public Builder locale(Optional<? extends LocaleResponse> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -561,7 +488,7 @@ public class CustomerResponse {
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
-            this.metadata = JsonNullable.of(metadata);
+            this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
@@ -571,7 +498,7 @@ public class CustomerResponse {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          */
-        public Builder metadata(JsonNullable<? extends Metadata> metadata) {
+        public Builder metadata(Optional<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -584,16 +511,6 @@ public class CustomerResponse {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
@@ -603,15 +520,6 @@ public class CustomerResponse {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(CustomerResponseLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends CustomerResponseLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

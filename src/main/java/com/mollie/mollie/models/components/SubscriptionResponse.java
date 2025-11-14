@@ -23,37 +23,32 @@ public class SubscriptionResponse {
      * for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends Mode> mode;
+    private Mode mode;
 
     /**
      * The subscription's current status is directly related to the status of the underlying customer or
      * mandate that is
      * enabling the subscription.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends SubscriptionStatus> status;
+    private SubscriptionStatus status;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends Amount> amount;
+    private Amount amount;
 
     /**
      * Total number of payments for the subscription. Once this number of payments is reached, the
@@ -62,16 +57,16 @@ public class SubscriptionResponse {
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("times")
-    private JsonNullable<Long> times;
+    private Optional<Long> times;
 
     /**
      * Number of payments left for the subscription.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("timesRemaining")
-    private JsonNullable<Long> timesRemaining;
+    private Optional<Long> timesRemaining;
 
     /**
      * Interval to wait between payments, for example `1 month` or `14 days`.
@@ -82,16 +77,14 @@ public class SubscriptionResponse {
      * 
      * <p>months`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interval")
-    private Optional<String> interval;
+    private String interval;
 
     /**
      * The start date of the subscription in `YYYY-MM-DD` format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("startDate")
-    private Optional<String> startDate;
+    private String startDate;
 
     /**
      * The date of the next scheduled payment in `YYYY-MM-DD` format. If the subscription has been
@@ -110,17 +103,16 @@ public class SubscriptionResponse {
      * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
      * subscriptions.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
      * be used.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("method")
-    private JsonNullable<? extends SubscriptionMethodResponse> method;
+    private Optional<? extends SubscriptionMethodResponse> method;
 
     /**
      * With Mollie Connect you can charge fees on payments that your app is processing on behalf of other
@@ -144,9 +136,9 @@ public class SubscriptionResponse {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
-    private JsonNullable<? extends Metadata> metadata;
+    private Optional<? extends Metadata> metadata;
 
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
@@ -155,14 +147,12 @@ public class SubscriptionResponse {
      * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUrl")
-    private Optional<String> webhookUrl;
+    private String webhookUrl;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customerId")
-    private Optional<String> customerId;
+    private String customerId;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -173,9 +163,8 @@ public class SubscriptionResponse {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * The subscription's date and time of cancellation, in ISO 8601 format. This parameter is omitted if
@@ -189,32 +178,31 @@ public class SubscriptionResponse {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends SubscriptionResponseLinks> links;
+    private SubscriptionResponseLinks links;
 
     @JsonCreator
     public SubscriptionResponse(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends Mode> mode,
-            @JsonProperty("status") Optional<? extends SubscriptionStatus> status,
-            @JsonProperty("amount") Optional<? extends Amount> amount,
-            @JsonProperty("times") JsonNullable<Long> times,
-            @JsonProperty("timesRemaining") JsonNullable<Long> timesRemaining,
-            @JsonProperty("interval") Optional<String> interval,
-            @JsonProperty("startDate") Optional<String> startDate,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") Mode mode,
+            @JsonProperty("status") SubscriptionStatus status,
+            @JsonProperty("amount") Amount amount,
+            @JsonProperty("times") Optional<Long> times,
+            @JsonProperty("timesRemaining") Optional<Long> timesRemaining,
+            @JsonProperty("interval") String interval,
+            @JsonProperty("startDate") String startDate,
             @JsonProperty("nextPaymentDate") JsonNullable<String> nextPaymentDate,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("method") JsonNullable<? extends SubscriptionMethodResponse> method,
+            @JsonProperty("description") String description,
+            @JsonProperty("method") Optional<? extends SubscriptionMethodResponse> method,
             @JsonProperty("applicationFee") Optional<? extends SubscriptionResponseApplicationFee> applicationFee,
-            @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
-            @JsonProperty("webhookUrl") Optional<String> webhookUrl,
-            @JsonProperty("customerId") Optional<String> customerId,
+            @JsonProperty("metadata") Optional<? extends Metadata> metadata,
+            @JsonProperty("webhookUrl") String webhookUrl,
+            @JsonProperty("customerId") String customerId,
             @JsonProperty("mandateId") Optional<String> mandateId,
-            @JsonProperty("createdAt") Optional<String> createdAt,
+            @JsonProperty("createdAt") String createdAt,
             @JsonProperty("canceledAt") JsonNullable<String> canceledAt,
-            @JsonProperty("_links") Optional<? extends SubscriptionResponseLinks> links) {
+            @JsonProperty("_links") SubscriptionResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -257,14 +245,26 @@ public class SubscriptionResponse {
         this.links = links;
     }
     
-    public SubscriptionResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+    public SubscriptionResponse(
+            String resource,
+            String id,
+            Mode mode,
+            SubscriptionStatus status,
+            Amount amount,
+            String interval,
+            String startDate,
+            String description,
+            String webhookUrl,
+            String customerId,
+            String createdAt,
+            SubscriptionResponseLinks links) {
+        this(resource, id, mode,
+            status, amount, Optional.empty(),
+            Optional.empty(), interval, startDate,
+            JsonNullable.undefined(), description, Optional.empty(),
+            Optional.empty(), Optional.empty(), webhookUrl,
+            customerId, Optional.empty(), createdAt,
+            JsonNullable.undefined(), links);
     }
 
     /**
@@ -273,22 +273,21 @@ public class SubscriptionResponse {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Mode> mode() {
-        return (Optional<Mode>) mode;
+    public Mode mode() {
+        return mode;
     }
 
     /**
@@ -296,19 +295,17 @@ public class SubscriptionResponse {
      * mandate that is
      * enabling the subscription.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SubscriptionStatus> status() {
-        return (Optional<SubscriptionStatus>) status;
+    public SubscriptionStatus status() {
+        return status;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amount() {
-        return (Optional<Amount>) amount;
+    public Amount amount() {
+        return amount;
     }
 
     /**
@@ -319,7 +316,7 @@ public class SubscriptionResponse {
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
     @JsonIgnore
-    public JsonNullable<Long> times() {
+    public Optional<Long> times() {
         return times;
     }
 
@@ -327,7 +324,7 @@ public class SubscriptionResponse {
      * Number of payments left for the subscription.
      */
     @JsonIgnore
-    public JsonNullable<Long> timesRemaining() {
+    public Optional<Long> timesRemaining() {
         return timesRemaining;
     }
 
@@ -341,7 +338,7 @@ public class SubscriptionResponse {
      * <p>months`.
      */
     @JsonIgnore
-    public Optional<String> interval() {
+    public String interval() {
         return interval;
     }
 
@@ -349,7 +346,7 @@ public class SubscriptionResponse {
      * The start date of the subscription in `YYYY-MM-DD` format.
      */
     @JsonIgnore
-    public Optional<String> startDate() {
+    public String startDate() {
         return startDate;
     }
 
@@ -372,7 +369,7 @@ public class SubscriptionResponse {
      * subscriptions.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -382,8 +379,8 @@ public class SubscriptionResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<SubscriptionMethodResponse> method() {
-        return (JsonNullable<SubscriptionMethodResponse>) method;
+    public Optional<SubscriptionMethodResponse> method() {
+        return (Optional<SubscriptionMethodResponse>) method;
     }
 
     /**
@@ -412,8 +409,8 @@ public class SubscriptionResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Metadata> metadata() {
-        return (JsonNullable<Metadata>) metadata;
+    public Optional<Metadata> metadata() {
+        return (Optional<Metadata>) metadata;
     }
 
     /**
@@ -424,12 +421,12 @@ public class SubscriptionResponse {
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonIgnore
-    public Optional<String> webhookUrl() {
+    public String webhookUrl() {
         return webhookUrl;
     }
 
     @JsonIgnore
-    public Optional<String> customerId() {
+    public String customerId() {
         return customerId;
     }
 
@@ -443,7 +440,7 @@ public class SubscriptionResponse {
      * format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
@@ -460,10 +457,9 @@ public class SubscriptionResponse {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SubscriptionResponseLinks> links() {
-        return (Optional<SubscriptionResponseLinks>) links;
+    public SubscriptionResponseLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -478,30 +474,11 @@ public class SubscriptionResponse {
      */
     public SubscriptionResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a subscription object. Will always contain the string `subscription`
-     * for this
-     * endpoint.
-     */
-    public SubscriptionResponse withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     public SubscriptionResponse withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public SubscriptionResponse withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -511,16 +488,6 @@ public class SubscriptionResponse {
      * Whether this entity was created in live mode or in test mode.
      */
     public SubscriptionResponse withMode(Mode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     */
-    public SubscriptionResponse withMode(Optional<? extends Mode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -533,18 +500,6 @@ public class SubscriptionResponse {
      */
     public SubscriptionResponse withStatus(SubscriptionStatus status) {
         Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The subscription's current status is directly related to the status of the underlying customer or
-     * mandate that is
-     * enabling the subscription.
-     */
-    public SubscriptionResponse withStatus(Optional<? extends SubscriptionStatus> status) {
-        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -553,16 +508,6 @@ public class SubscriptionResponse {
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public SubscriptionResponse withAmount(Amount amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public SubscriptionResponse withAmount(Optional<? extends Amount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -577,9 +522,10 @@ public class SubscriptionResponse {
      */
     public SubscriptionResponse withTimes(long times) {
         Utils.checkNotNull(times, "times");
-        this.times = JsonNullable.of(times);
+        this.times = Optional.ofNullable(times);
         return this;
     }
+
 
     /**
      * Total number of payments for the subscription. Once this number of payments is reached, the
@@ -588,7 +534,7 @@ public class SubscriptionResponse {
      * 
      * <p>Test mode subscriptions will get canceled automatically after 10 payments.
      */
-    public SubscriptionResponse withTimes(JsonNullable<Long> times) {
+    public SubscriptionResponse withTimes(Optional<Long> times) {
         Utils.checkNotNull(times, "times");
         this.times = times;
         return this;
@@ -599,14 +545,15 @@ public class SubscriptionResponse {
      */
     public SubscriptionResponse withTimesRemaining(long timesRemaining) {
         Utils.checkNotNull(timesRemaining, "timesRemaining");
-        this.timesRemaining = JsonNullable.of(timesRemaining);
+        this.timesRemaining = Optional.ofNullable(timesRemaining);
         return this;
     }
+
 
     /**
      * Number of payments left for the subscription.
      */
-    public SubscriptionResponse withTimesRemaining(JsonNullable<Long> timesRemaining) {
+    public SubscriptionResponse withTimesRemaining(Optional<Long> timesRemaining) {
         Utils.checkNotNull(timesRemaining, "timesRemaining");
         this.timesRemaining = timesRemaining;
         return this;
@@ -623,22 +570,6 @@ public class SubscriptionResponse {
      */
     public SubscriptionResponse withInterval(String interval) {
         Utils.checkNotNull(interval, "interval");
-        this.interval = Optional.ofNullable(interval);
-        return this;
-    }
-
-
-    /**
-     * Interval to wait between payments, for example `1 month` or `14 days`.
-     * 
-     * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-     * 
-     * <p>Possible values: `... days`, `... weeks`, `...
-     * 
-     * <p>months`.
-     */
-    public SubscriptionResponse withInterval(Optional<String> interval) {
-        Utils.checkNotNull(interval, "interval");
         this.interval = interval;
         return this;
     }
@@ -647,16 +578,6 @@ public class SubscriptionResponse {
      * The start date of the subscription in `YYYY-MM-DD` format.
      */
     public SubscriptionResponse withStartDate(String startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
-        return this;
-    }
-
-
-    /**
-     * The start date of the subscription in `YYYY-MM-DD` format.
-     */
-    public SubscriptionResponse withStartDate(Optional<String> startDate) {
         Utils.checkNotNull(startDate, "startDate");
         this.startDate = startDate;
         return this;
@@ -694,21 +615,6 @@ public class SubscriptionResponse {
      */
     public SubscriptionResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * The subscription's description will be used as the description of the resulting individual payments
-     * and so showing
-     * up on the bank statement of the consumer.
-     * 
-     * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
-     * subscriptions.
-     */
-    public SubscriptionResponse withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -719,15 +625,16 @@ public class SubscriptionResponse {
      */
     public SubscriptionResponse withMethod(SubscriptionMethodResponse method) {
         Utils.checkNotNull(method, "method");
-        this.method = JsonNullable.of(method);
+        this.method = Optional.ofNullable(method);
         return this;
     }
+
 
     /**
      * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
      * be used.
      */
-    public SubscriptionResponse withMethod(JsonNullable<? extends SubscriptionMethodResponse> method) {
+    public SubscriptionResponse withMethod(Optional<? extends SubscriptionMethodResponse> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -778,9 +685,10 @@ public class SubscriptionResponse {
      */
     public SubscriptionResponse withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
-        this.metadata = JsonNullable.of(metadata);
+        this.metadata = Optional.ofNullable(metadata);
         return this;
     }
+
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
@@ -788,7 +696,7 @@ public class SubscriptionResponse {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    public SubscriptionResponse withMetadata(JsonNullable<? extends Metadata> metadata) {
+    public SubscriptionResponse withMetadata(Optional<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -803,32 +711,11 @@ public class SubscriptionResponse {
      */
     public SubscriptionResponse withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
-        this.webhookUrl = Optional.ofNullable(webhookUrl);
-        return this;
-    }
-
-
-    /**
-     * We will call this URL for any payment status changes of payments resulting from this subscription.
-     * 
-     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
-     * failures as
-     * well. Be sure to verify the payment's subscription ID and its status.
-     */
-    public SubscriptionResponse withWebhookUrl(Optional<String> webhookUrl) {
-        Utils.checkNotNull(webhookUrl, "webhookUrl");
         this.webhookUrl = webhookUrl;
         return this;
     }
 
     public SubscriptionResponse withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
-        return this;
-    }
-
-
-    public SubscriptionResponse withCustomerId(Optional<String> customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
         return this;
@@ -852,17 +739,6 @@ public class SubscriptionResponse {
      * format.
      */
     public SubscriptionResponse withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     */
-    public SubscriptionResponse withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
@@ -894,16 +770,6 @@ public class SubscriptionResponse {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public SubscriptionResponse withLinks(SubscriptionResponseLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public SubscriptionResponse withLinks(Optional<? extends SubscriptionResponseLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -981,45 +847,45 @@ public class SubscriptionResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends Mode> mode = Optional.empty();
+        private Mode mode;
 
-        private Optional<? extends SubscriptionStatus> status = Optional.empty();
+        private SubscriptionStatus status;
 
-        private Optional<? extends Amount> amount = Optional.empty();
+        private Amount amount;
 
-        private JsonNullable<Long> times = JsonNullable.undefined();
+        private Optional<Long> times = Optional.empty();
 
-        private JsonNullable<Long> timesRemaining = JsonNullable.undefined();
+        private Optional<Long> timesRemaining = Optional.empty();
 
-        private Optional<String> interval = Optional.empty();
+        private String interval;
 
-        private Optional<String> startDate = Optional.empty();
+        private String startDate;
 
         private JsonNullable<String> nextPaymentDate = JsonNullable.undefined();
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
-        private JsonNullable<? extends SubscriptionMethodResponse> method = JsonNullable.undefined();
+        private Optional<? extends SubscriptionMethodResponse> method = Optional.empty();
 
         private Optional<? extends SubscriptionResponseApplicationFee> applicationFee = Optional.empty();
 
-        private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
+        private Optional<? extends Metadata> metadata = Optional.empty();
 
-        private Optional<String> webhookUrl = Optional.empty();
+        private String webhookUrl;
 
-        private Optional<String> customerId = Optional.empty();
+        private String customerId;
 
         private Optional<String> mandateId = Optional.empty();
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
         private JsonNullable<String> canceledAt = JsonNullable.undefined();
 
-        private Optional<? extends SubscriptionResponseLinks> links = Optional.empty();
+        private SubscriptionResponseLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -1033,29 +899,12 @@ public class SubscriptionResponse {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a subscription object. Will always contain the string `subscription`
-         * for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -1066,15 +915,6 @@ public class SubscriptionResponse {
          * Whether this entity was created in live mode or in test mode.
          */
         public Builder mode(Mode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         */
-        public Builder mode(Optional<? extends Mode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -1088,17 +928,6 @@ public class SubscriptionResponse {
          */
         public Builder status(SubscriptionStatus status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The subscription's current status is directly related to the status of the underlying customer or
-         * mandate that is
-         * enabling the subscription.
-         */
-        public Builder status(Optional<? extends SubscriptionStatus> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -1108,15 +937,6 @@ public class SubscriptionResponse {
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder amount(Amount amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amount(Optional<? extends Amount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -1132,7 +952,7 @@ public class SubscriptionResponse {
          */
         public Builder times(long times) {
             Utils.checkNotNull(times, "times");
-            this.times = JsonNullable.of(times);
+            this.times = Optional.ofNullable(times);
             return this;
         }
 
@@ -1143,7 +963,7 @@ public class SubscriptionResponse {
          * 
          * <p>Test mode subscriptions will get canceled automatically after 10 payments.
          */
-        public Builder times(JsonNullable<Long> times) {
+        public Builder times(Optional<Long> times) {
             Utils.checkNotNull(times, "times");
             this.times = times;
             return this;
@@ -1155,14 +975,14 @@ public class SubscriptionResponse {
          */
         public Builder timesRemaining(long timesRemaining) {
             Utils.checkNotNull(timesRemaining, "timesRemaining");
-            this.timesRemaining = JsonNullable.of(timesRemaining);
+            this.timesRemaining = Optional.ofNullable(timesRemaining);
             return this;
         }
 
         /**
          * Number of payments left for the subscription.
          */
-        public Builder timesRemaining(JsonNullable<Long> timesRemaining) {
+        public Builder timesRemaining(Optional<Long> timesRemaining) {
             Utils.checkNotNull(timesRemaining, "timesRemaining");
             this.timesRemaining = timesRemaining;
             return this;
@@ -1180,21 +1000,6 @@ public class SubscriptionResponse {
          */
         public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
-            this.interval = Optional.ofNullable(interval);
-            return this;
-        }
-
-        /**
-         * Interval to wait between payments, for example `1 month` or `14 days`.
-         * 
-         * <p>The maximum interval is one year (`12 months`, `52 weeks`, or `365 days`).
-         * 
-         * <p>Possible values: `... days`, `... weeks`, `...
-         * 
-         * <p>months`.
-         */
-        public Builder interval(Optional<String> interval) {
-            Utils.checkNotNull(interval, "interval");
             this.interval = interval;
             return this;
         }
@@ -1204,15 +1009,6 @@ public class SubscriptionResponse {
          * The start date of the subscription in `YYYY-MM-DD` format.
          */
         public Builder startDate(String startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
-            return this;
-        }
-
-        /**
-         * The start date of the subscription in `YYYY-MM-DD` format.
-         */
-        public Builder startDate(Optional<String> startDate) {
             Utils.checkNotNull(startDate, "startDate");
             this.startDate = startDate;
             return this;
@@ -1252,20 +1048,6 @@ public class SubscriptionResponse {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The subscription's description will be used as the description of the resulting individual payments
-         * and so showing
-         * up on the bank statement of the consumer.
-         * 
-         * <p>**Please note:** the description needs to be unique for the Customer in case it has multiple active
-         * subscriptions.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -1277,7 +1059,7 @@ public class SubscriptionResponse {
          */
         public Builder method(SubscriptionMethodResponse method) {
             Utils.checkNotNull(method, "method");
-            this.method = JsonNullable.of(method);
+            this.method = Optional.ofNullable(method);
             return this;
         }
 
@@ -1285,7 +1067,7 @@ public class SubscriptionResponse {
          * The payment method used for this subscription. If omitted, any of the customer's valid mandates may
          * be used.
          */
-        public Builder method(JsonNullable<? extends SubscriptionMethodResponse> method) {
+        public Builder method(Optional<? extends SubscriptionMethodResponse> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
@@ -1337,7 +1119,7 @@ public class SubscriptionResponse {
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
-            this.metadata = JsonNullable.of(metadata);
+            this.metadata = Optional.ofNullable(metadata);
             return this;
         }
 
@@ -1347,7 +1129,7 @@ public class SubscriptionResponse {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          */
-        public Builder metadata(JsonNullable<? extends Metadata> metadata) {
+        public Builder metadata(Optional<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -1363,31 +1145,12 @@ public class SubscriptionResponse {
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
-            this.webhookUrl = Optional.ofNullable(webhookUrl);
-            return this;
-        }
-
-        /**
-         * We will call this URL for any payment status changes of payments resulting from this subscription.
-         * 
-         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
-         * failures as
-         * well. Be sure to verify the payment's subscription ID and its status.
-         */
-        public Builder webhookUrl(Optional<String> webhookUrl) {
-            Utils.checkNotNull(webhookUrl, "webhookUrl");
             this.webhookUrl = webhookUrl;
             return this;
         }
 
 
         public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
-            return this;
-        }
-
-        public Builder customerId(Optional<String> customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = customerId;
             return this;
@@ -1412,16 +1175,6 @@ public class SubscriptionResponse {
          * format.
          */
         public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
@@ -1455,15 +1208,6 @@ public class SubscriptionResponse {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(SubscriptionResponseLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends SubscriptionResponseLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

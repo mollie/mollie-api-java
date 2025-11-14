@@ -5,7 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.EntityProfile;
+import com.mollie.mollie.models.components.ProfileRequest;
 import com.mollie.mollie.models.operations.CreateProfileRequest;
 import com.mollie.mollie.models.operations.CreateProfileRequestBuilder;
 import com.mollie.mollie.models.operations.CreateProfileResponse;
@@ -83,12 +83,12 @@ public class Profiles {
      * Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
-     * @param entityProfile 
+     * @param profileRequest 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateProfileResponse create(EntityProfile entityProfile) {
-        return create(Optional.empty(), entityProfile, Optional.empty());
+    public CreateProfileResponse create(ProfileRequest profileRequest) {
+        return create(Optional.empty(), profileRequest, Optional.empty());
     }
 
     /**
@@ -101,19 +101,19 @@ public class Profiles {
      * can use this endpoint to automate profile creation.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityProfile 
+     * @param profileRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateProfileResponse create(
-            Optional<String> idempotencyKey, EntityProfile entityProfile,
+            Optional<String> idempotencyKey, ProfileRequest profileRequest,
             Optional<Options> options) {
         CreateProfileRequest request =
             CreateProfileRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
-                .entityProfile(entityProfile)
+                .profileRequest(profileRequest)
                 .build();
         RequestOperation<CreateProfileRequest, CreateProfileResponse> operation
               = new CreateProfile.Sync(sdkConfiguration, options, _headers);

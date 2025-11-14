@@ -43,16 +43,14 @@ public class PaymentRequest {
      * characters. The API will not reject strings longer than the maximum length but it will truncate them
      * to fit.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends Amount> amount;
+    private Amount amount;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -100,9 +98,9 @@ public class PaymentRequest {
      * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("redirectUrl")
-    private JsonNullable<String> redirectUrl;
+    private Optional<String> redirectUrl;
 
     /**
      * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
@@ -501,14 +499,14 @@ public class PaymentRequest {
     @JsonCreator
     public PaymentRequest(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("amount") Optional<? extends Amount> amount,
+            @JsonProperty("description") String description,
+            @JsonProperty("amount") Amount amount,
             @JsonProperty("amountRefunded") Optional<? extends Amount> amountRefunded,
             @JsonProperty("amountRemaining") Optional<? extends Amount> amountRemaining,
             @JsonProperty("amountCaptured") Optional<? extends Amount> amountCaptured,
             @JsonProperty("amountChargedBack") Optional<? extends Amount> amountChargedBack,
             @JsonProperty("settlementAmount") Optional<? extends Amount> settlementAmount,
-            @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
+            @JsonProperty("redirectUrl") Optional<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("lines") JsonNullable<? extends List<PaymentRequestLines>> lines,
@@ -631,10 +629,12 @@ public class PaymentRequest {
         this.terminalId = terminalId;
     }
     
-    public PaymentRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
+    public PaymentRequest(
+            String description,
+            Amount amount) {
+        this(Optional.empty(), description, amount,
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -671,17 +671,16 @@ public class PaymentRequest {
      * to fit.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amount() {
-        return (Optional<Amount>) amount;
+    public Amount amount() {
+        return amount;
     }
 
     /**
@@ -741,7 +740,7 @@ public class PaymentRequest {
      * Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
-    public JsonNullable<String> redirectUrl() {
+    public Optional<String> redirectUrl() {
         return redirectUrl;
     }
 
@@ -1214,29 +1213,6 @@ public class PaymentRequest {
      */
     public PaymentRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement
-     * when possible.
-     * We truncate the description automatically according to the limits of the used payment method. The
-     * description is
-     * also visible in any exports you generate.
-     * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
-     * your back office.
-     * This is particularly useful for bookkeeping.
-     * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum
-     * being 255
-     * characters. The API will not reject strings longer than the maximum length but it will truncate them
-     * to fit.
-     */
-    public PaymentRequest withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -1245,16 +1221,6 @@ public class PaymentRequest {
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public PaymentRequest withAmount(Amount amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withAmount(Optional<? extends Amount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -1368,9 +1334,10 @@ public class PaymentRequest {
      */
     public PaymentRequest withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
-        this.redirectUrl = JsonNullable.of(redirectUrl);
+        this.redirectUrl = Optional.ofNullable(redirectUrl);
         return this;
     }
+
 
     /**
      * The URL your customer will be redirected to after the payment process.
@@ -1383,7 +1350,7 @@ public class PaymentRequest {
      * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
-    public PaymentRequest withRedirectUrl(JsonNullable<String> redirectUrl) {
+    public PaymentRequest withRedirectUrl(Optional<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
         return this;
@@ -2448,9 +2415,9 @@ public class PaymentRequest {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
-        private Optional<? extends Amount> amount = Optional.empty();
+        private Amount amount;
 
         private Optional<? extends Amount> amountRefunded = Optional.empty();
 
@@ -2462,7 +2429,7 @@ public class PaymentRequest {
 
         private Optional<? extends Amount> settlementAmount = Optional.empty();
 
-        private JsonNullable<String> redirectUrl = JsonNullable.undefined();
+        private Optional<String> redirectUrl = Optional.empty();
 
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
 
@@ -2568,28 +2535,6 @@ public class PaymentRequest {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the payment. This will be shown to your customer on their card or bank statement
-         * when possible.
-         * We truncate the description automatically according to the limits of the used payment method. The
-         * description is
-         * also visible in any exports you generate.
-         * 
-         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
-         * your back office.
-         * This is particularly useful for bookkeeping.
-         * 
-         * <p>The maximum length of the description field differs per payment method, with the absolute maximum
-         * being 255
-         * characters. The API will not reject strings longer than the maximum length but it will truncate them
-         * to fit.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -2599,15 +2544,6 @@ public class PaymentRequest {
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder amount(Amount amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amount(Optional<? extends Amount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -2722,7 +2658,7 @@ public class PaymentRequest {
          */
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
-            this.redirectUrl = JsonNullable.of(redirectUrl);
+            this.redirectUrl = Optional.ofNullable(redirectUrl);
             return this;
         }
 
@@ -2737,7 +2673,7 @@ public class PaymentRequest {
          * recurring`) and for
          * Apple Pay payments with an `applePayPaymentToken`.
          */
-        public Builder redirectUrl(JsonNullable<String> redirectUrl) {
+        public Builder redirectUrl(Optional<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
             this.redirectUrl = redirectUrl;
             return this;

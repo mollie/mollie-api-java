@@ -9,12 +9,9 @@ import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Optional;
 
 
 public class TestWebhookResponse implements AsyncResponse {
@@ -33,33 +30,17 @@ public class TestWebhookResponse implements AsyncResponse {
      */
     private HttpResponse<Blob> rawResponse;
 
-    /**
-     * Accepted.
-     */
-    private Optional<? extends Object> any;
-
     @JsonCreator
     public TestWebhookResponse(
             String contentType,
             int statusCode,
-            HttpResponse<Blob> rawResponse,
-            Optional<? extends Object> any) {
+            HttpResponse<Blob> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(any, "any");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.any = any;
-    }
-    
-    public TestWebhookResponse(
-            String contentType,
-            int statusCode,
-            HttpResponse<Blob> rawResponse) {
-        this(contentType, statusCode, rawResponse,
-            Optional.empty());
     }
 
     /**
@@ -84,15 +65,6 @@ public class TestWebhookResponse implements AsyncResponse {
     @JsonIgnore
     public HttpResponse<Blob> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * Accepted.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Object> any() {
-        return (Optional<Object>) any;
     }
 
     public static Builder builder() {
@@ -127,25 +99,6 @@ public class TestWebhookResponse implements AsyncResponse {
         return this;
     }
 
-    /**
-     * Accepted.
-     */
-    public TestWebhookResponse withAny(Object any) {
-        Utils.checkNotNull(any, "any");
-        this.any = Optional.ofNullable(any);
-        return this;
-    }
-
-
-    /**
-     * Accepted.
-     */
-    public TestWebhookResponse withAny(Optional<? extends Object> any) {
-        Utils.checkNotNull(any, "any");
-        this.any = any;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -158,15 +111,13 @@ public class TestWebhookResponse implements AsyncResponse {
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
-            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.any, other.any);
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType, statusCode, rawResponse,
-            any);
+            contentType, statusCode, rawResponse);
     }
     
     @Override
@@ -174,8 +125,7 @@ public class TestWebhookResponse implements AsyncResponse {
         return Utils.toString(TestWebhookResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "any", any);
+                "rawResponse", rawResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,8 +136,6 @@ public class TestWebhookResponse implements AsyncResponse {
         private Integer statusCode;
 
         private HttpResponse<Blob> rawResponse;
-
-        private Optional<? extends Object> any = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -223,30 +171,10 @@ public class TestWebhookResponse implements AsyncResponse {
             return this;
         }
 
-
-        /**
-         * Accepted.
-         */
-        public Builder any(Object any) {
-            Utils.checkNotNull(any, "any");
-            this.any = Optional.ofNullable(any);
-            return this;
-        }
-
-        /**
-         * Accepted.
-         */
-        public Builder any(Optional<? extends Object> any) {
-            Utils.checkNotNull(any, "any");
-            this.any = any;
-            return this;
-        }
-
         public TestWebhookResponse build() {
 
             return new TestWebhookResponse(
-                contentType, statusCode, rawResponse,
-                any);
+                contentType, statusCode, rawResponse);
         }
 
     }

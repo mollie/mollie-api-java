@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntityProfile;
+import com.mollie.mollie.models.components.ProfileRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -22,21 +22,21 @@ public class CreateProfileRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private EntityProfile entityProfile;
+    private ProfileRequest profileRequest;
 
     @JsonCreator
     public CreateProfileRequest(
             Optional<String> idempotencyKey,
-            EntityProfile entityProfile) {
+            ProfileRequest profileRequest) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        Utils.checkNotNull(entityProfile, "entityProfile");
+        Utils.checkNotNull(profileRequest, "profileRequest");
         this.idempotencyKey = idempotencyKey;
-        this.entityProfile = entityProfile;
+        this.profileRequest = profileRequest;
     }
     
     public CreateProfileRequest(
-            EntityProfile entityProfile) {
-        this(Optional.empty(), entityProfile);
+            ProfileRequest profileRequest) {
+        this(Optional.empty(), profileRequest);
     }
 
     /**
@@ -48,8 +48,8 @@ public class CreateProfileRequest {
     }
 
     @JsonIgnore
-    public EntityProfile entityProfile() {
-        return entityProfile;
+    public ProfileRequest profileRequest() {
+        return profileRequest;
     }
 
     public static Builder builder() {
@@ -76,9 +76,9 @@ public class CreateProfileRequest {
         return this;
     }
 
-    public CreateProfileRequest withEntityProfile(EntityProfile entityProfile) {
-        Utils.checkNotNull(entityProfile, "entityProfile");
-        this.entityProfile = entityProfile;
+    public CreateProfileRequest withProfileRequest(ProfileRequest profileRequest) {
+        Utils.checkNotNull(profileRequest, "profileRequest");
+        this.profileRequest = profileRequest;
         return this;
     }
 
@@ -93,20 +93,20 @@ public class CreateProfileRequest {
         CreateProfileRequest other = (CreateProfileRequest) o;
         return 
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Utils.enhancedDeepEquals(this.entityProfile, other.entityProfile);
+            Utils.enhancedDeepEquals(this.profileRequest, other.profileRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idempotencyKey, entityProfile);
+            idempotencyKey, profileRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateProfileRequest.class,
                 "idempotencyKey", idempotencyKey,
-                "entityProfile", entityProfile);
+                "profileRequest", profileRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -114,7 +114,7 @@ public class CreateProfileRequest {
 
         private Optional<String> idempotencyKey = Optional.empty();
 
-        private EntityProfile entityProfile;
+        private ProfileRequest profileRequest;
 
         private Builder() {
           // force use of static builder() method
@@ -140,16 +140,16 @@ public class CreateProfileRequest {
         }
 
 
-        public Builder entityProfile(EntityProfile entityProfile) {
-            Utils.checkNotNull(entityProfile, "entityProfile");
-            this.entityProfile = entityProfile;
+        public Builder profileRequest(ProfileRequest profileRequest) {
+            Utils.checkNotNull(profileRequest, "profileRequest");
+            this.profileRequest = profileRequest;
             return this;
         }
 
         public CreateProfileRequest build() {
 
             return new CreateProfileRequest(
-                idempotencyKey, entityProfile);
+                idempotencyKey, profileRequest);
         }
 
     }

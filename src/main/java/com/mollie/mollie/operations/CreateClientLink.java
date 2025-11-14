@@ -122,7 +122,7 @@ public class CreateClientLink {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "entityClientLink",
+                    "clientLinkRequest",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));

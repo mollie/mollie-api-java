@@ -5,7 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.EntityClientLink;
+import com.mollie.mollie.models.components.ClientLinkRequest;
 import com.mollie.mollie.models.operations.CreateClientLinkRequest;
 import com.mollie.mollie.models.operations.async.CreateClientLinkRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreateClientLinkResponse;
@@ -257,18 +257,18 @@ public class AsyncClientLinks {
      * you will need to create a new client link.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityClientLink 
+     * @param clientLinkRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreateClientLinkResponse>} - The async response
      */
     public CompletableFuture<CreateClientLinkResponse> create(
-            Optional<String> idempotencyKey, Optional<? extends EntityClientLink> entityClientLink,
+            Optional<String> idempotencyKey, Optional<? extends ClientLinkRequest> clientLinkRequest,
             Optional<Options> options) {
         CreateClientLinkRequest request =
             CreateClientLinkRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
-                .entityClientLink(entityClientLink)
+                .clientLinkRequest(clientLinkRequest)
                 .build();
         AsyncRequestOperation<CreateClientLinkRequest, CreateClientLinkResponse> operation
               = new CreateClientLink.Async(

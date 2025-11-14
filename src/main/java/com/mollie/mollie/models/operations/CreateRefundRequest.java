@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntityRefund;
+import com.mollie.mollie.models.components.RefundRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -29,19 +29,19 @@ public class CreateRefundRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends EntityRefund> entityRefund;
+    private Optional<? extends RefundRequest> refundRequest;
 
     @JsonCreator
     public CreateRefundRequest(
             String paymentId,
             Optional<String> idempotencyKey,
-            Optional<? extends EntityRefund> entityRefund) {
+            Optional<? extends RefundRequest> refundRequest) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        Utils.checkNotNull(entityRefund, "entityRefund");
+        Utils.checkNotNull(refundRequest, "refundRequest");
         this.paymentId = paymentId;
         this.idempotencyKey = idempotencyKey;
-        this.entityRefund = entityRefund;
+        this.refundRequest = refundRequest;
     }
     
     public CreateRefundRequest(
@@ -67,8 +67,8 @@ public class CreateRefundRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityRefund> entityRefund() {
-        return (Optional<EntityRefund>) entityRefund;
+    public Optional<RefundRequest> refundRequest() {
+        return (Optional<RefundRequest>) refundRequest;
     }
 
     public static Builder builder() {
@@ -104,16 +104,16 @@ public class CreateRefundRequest {
         return this;
     }
 
-    public CreateRefundRequest withEntityRefund(EntityRefund entityRefund) {
-        Utils.checkNotNull(entityRefund, "entityRefund");
-        this.entityRefund = Optional.ofNullable(entityRefund);
+    public CreateRefundRequest withRefundRequest(RefundRequest refundRequest) {
+        Utils.checkNotNull(refundRequest, "refundRequest");
+        this.refundRequest = Optional.ofNullable(refundRequest);
         return this;
     }
 
 
-    public CreateRefundRequest withEntityRefund(Optional<? extends EntityRefund> entityRefund) {
-        Utils.checkNotNull(entityRefund, "entityRefund");
-        this.entityRefund = entityRefund;
+    public CreateRefundRequest withRefundRequest(Optional<? extends RefundRequest> refundRequest) {
+        Utils.checkNotNull(refundRequest, "refundRequest");
+        this.refundRequest = refundRequest;
         return this;
     }
 
@@ -129,13 +129,13 @@ public class CreateRefundRequest {
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Utils.enhancedDeepEquals(this.entityRefund, other.entityRefund);
+            Utils.enhancedDeepEquals(this.refundRequest, other.refundRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, idempotencyKey, entityRefund);
+            paymentId, idempotencyKey, refundRequest);
     }
     
     @Override
@@ -143,7 +143,7 @@ public class CreateRefundRequest {
         return Utils.toString(CreateRefundRequest.class,
                 "paymentId", paymentId,
                 "idempotencyKey", idempotencyKey,
-                "entityRefund", entityRefund);
+                "refundRequest", refundRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -153,7 +153,7 @@ public class CreateRefundRequest {
 
         private Optional<String> idempotencyKey = Optional.empty();
 
-        private Optional<? extends EntityRefund> entityRefund = Optional.empty();
+        private Optional<? extends RefundRequest> refundRequest = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -189,22 +189,22 @@ public class CreateRefundRequest {
         }
 
 
-        public Builder entityRefund(EntityRefund entityRefund) {
-            Utils.checkNotNull(entityRefund, "entityRefund");
-            this.entityRefund = Optional.ofNullable(entityRefund);
+        public Builder refundRequest(RefundRequest refundRequest) {
+            Utils.checkNotNull(refundRequest, "refundRequest");
+            this.refundRequest = Optional.ofNullable(refundRequest);
             return this;
         }
 
-        public Builder entityRefund(Optional<? extends EntityRefund> entityRefund) {
-            Utils.checkNotNull(entityRefund, "entityRefund");
-            this.entityRefund = entityRefund;
+        public Builder refundRequest(Optional<? extends RefundRequest> refundRequest) {
+            Utils.checkNotNull(refundRequest, "refundRequest");
+            this.refundRequest = refundRequest;
             return this;
         }
 
         public CreateRefundRequest build() {
 
             return new CreateRefundRequest(
-                paymentId, idempotencyKey, entityRefund);
+                paymentId, idempotencyKey, refundRequest);
         }
 
     }

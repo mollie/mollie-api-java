@@ -5,14 +5,10 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 
 public class ClientLinkResponse {
@@ -21,39 +17,32 @@ public class ClientLinkResponse {
      * for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
     /**
      * The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ClientLinkResponseLinks> links;
+    private ClientLinkResponseLinks links;
 
     @JsonCreator
     public ClientLinkResponse(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("_links") Optional<? extends ClientLinkResponseLinks> links) {
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("_links") ClientLinkResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(links, "links");
         this.resource = resource;
         this.id = id;
         this.links = links;
-    }
-    
-    public ClientLinkResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -62,7 +51,7 @@ public class ClientLinkResponse {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
@@ -70,17 +59,16 @@ public class ClientLinkResponse {
      * The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.
      */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ClientLinkResponseLinks> links() {
-        return (Optional<ClientLinkResponseLinks>) links;
+    public ClientLinkResponseLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -95,18 +83,6 @@ public class ClientLinkResponse {
      */
     public ClientLinkResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a client link object. Will always contain the string `client-link`
-     * for this
-     * endpoint.
-     */
-    public ClientLinkResponse withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
@@ -116,16 +92,6 @@ public class ClientLinkResponse {
      */
     public ClientLinkResponse withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.
-     */
-    public ClientLinkResponse withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
@@ -134,16 +100,6 @@ public class ClientLinkResponse {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public ClientLinkResponse withLinks(ClientLinkResponseLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public ClientLinkResponse withLinks(Optional<? extends ClientLinkResponseLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -181,11 +137,11 @@ public class ClientLinkResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends ClientLinkResponseLinks> links = Optional.empty();
+        private ClientLinkResponseLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -199,17 +155,6 @@ public class ClientLinkResponse {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a client link object. Will always contain the string `client-link`
-         * for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -220,15 +165,6 @@ public class ClientLinkResponse {
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this client link. Example: `cl_vZCnNQsV2UtfXxYifWKWH`.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
@@ -238,15 +174,6 @@ public class ClientLinkResponse {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(ClientLinkResponseLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ClientLinkResponseLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

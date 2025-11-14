@@ -123,7 +123,7 @@ public class CreateProfile {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "entityProfile",
+                    "profileRequest",
                     "json",
                     false);
             if (serializedRequestBody == null) {

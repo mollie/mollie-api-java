@@ -14,11 +14,11 @@ import java.lang.String;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
- * EntityClientLinkAddress
+ * ClientLinkRequestAddress
  * 
  * <p>Address of the organization.
  */
-public class EntityClientLinkAddress {
+public class ClientLinkRequestAddress {
     /**
      * The street name and house number of the organization.
      */
@@ -50,7 +50,7 @@ public class EntityClientLinkAddress {
     private String country;
 
     @JsonCreator
-    public EntityClientLinkAddress(
+    public ClientLinkRequestAddress(
             @JsonProperty("streetAndNumber") JsonNullable<String> streetAndNumber,
             @JsonProperty("postalCode") JsonNullable<String> postalCode,
             @JsonProperty("city") JsonNullable<String> city,
@@ -65,7 +65,7 @@ public class EntityClientLinkAddress {
         this.country = country;
     }
     
-    public EntityClientLinkAddress(
+    public ClientLinkRequestAddress(
             String country) {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             country);
@@ -114,7 +114,7 @@ public class EntityClientLinkAddress {
     /**
      * The street name and house number of the organization.
      */
-    public EntityClientLinkAddress withStreetAndNumber(String streetAndNumber) {
+    public ClientLinkRequestAddress withStreetAndNumber(String streetAndNumber) {
         Utils.checkNotNull(streetAndNumber, "streetAndNumber");
         this.streetAndNumber = JsonNullable.of(streetAndNumber);
         return this;
@@ -123,7 +123,7 @@ public class EntityClientLinkAddress {
     /**
      * The street name and house number of the organization.
      */
-    public EntityClientLinkAddress withStreetAndNumber(JsonNullable<String> streetAndNumber) {
+    public ClientLinkRequestAddress withStreetAndNumber(JsonNullable<String> streetAndNumber) {
         Utils.checkNotNull(streetAndNumber, "streetAndNumber");
         this.streetAndNumber = streetAndNumber;
         return this;
@@ -134,7 +134,7 @@ public class EntityClientLinkAddress {
      * a postal
      * code system.
      */
-    public EntityClientLinkAddress withPostalCode(String postalCode) {
+    public ClientLinkRequestAddress withPostalCode(String postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
         this.postalCode = JsonNullable.of(postalCode);
         return this;
@@ -145,7 +145,7 @@ public class EntityClientLinkAddress {
      * a postal
      * code system.
      */
-    public EntityClientLinkAddress withPostalCode(JsonNullable<String> postalCode) {
+    public ClientLinkRequestAddress withPostalCode(JsonNullable<String> postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
         this.postalCode = postalCode;
         return this;
@@ -154,7 +154,7 @@ public class EntityClientLinkAddress {
     /**
      * The city of the organization. Required if a street address is provided.
      */
-    public EntityClientLinkAddress withCity(String city) {
+    public ClientLinkRequestAddress withCity(String city) {
         Utils.checkNotNull(city, "city");
         this.city = JsonNullable.of(city);
         return this;
@@ -163,7 +163,7 @@ public class EntityClientLinkAddress {
     /**
      * The city of the organization. Required if a street address is provided.
      */
-    public EntityClientLinkAddress withCity(JsonNullable<String> city) {
+    public ClientLinkRequestAddress withCity(JsonNullable<String> city) {
         Utils.checkNotNull(city, "city");
         this.city = city;
         return this;
@@ -173,7 +173,7 @@ public class EntityClientLinkAddress {
      * The country of the address in
      * [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
-    public EntityClientLinkAddress withCountry(String country) {
+    public ClientLinkRequestAddress withCountry(String country) {
         Utils.checkNotNull(country, "country");
         this.country = country;
         return this;
@@ -187,7 +187,7 @@ public class EntityClientLinkAddress {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityClientLinkAddress other = (EntityClientLinkAddress) o;
+        ClientLinkRequestAddress other = (ClientLinkRequestAddress) o;
         return 
             Utils.enhancedDeepEquals(this.streetAndNumber, other.streetAndNumber) &&
             Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
@@ -204,7 +204,7 @@ public class EntityClientLinkAddress {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityClientLinkAddress.class,
+        return Utils.toString(ClientLinkRequestAddress.class,
                 "streetAndNumber", streetAndNumber,
                 "postalCode", postalCode,
                 "city", city,
@@ -298,9 +298,9 @@ public class EntityClientLinkAddress {
             return this;
         }
 
-        public EntityClientLinkAddress build() {
+        public ClientLinkRequestAddress build() {
 
-            return new EntityClientLinkAddress(
+            return new ClientLinkRequestAddress(
                 streetAndNumber, postalCode, city,
                 country);
         }

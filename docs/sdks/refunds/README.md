@@ -43,7 +43,7 @@ public class Application {
         CreateRefundResponse res = sdk.refunds().create()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .entityRefund(EntityRefund.builder()
+                .refundRequest(RefundRequest.builder()
                     .id("re_5B8cwPMGnU")
                     .description("Refunding a Chess Board")
                     .amount(Amount.builder()
@@ -59,18 +59,18 @@ public class Application {
                         .build())
                     .paymentId("tr_5B8cwPMGnU")
                     .settlementId("stl_5B8cwPMGnU")
-                    .externalReference(EntityRefundExternalReference.builder()
+                    .externalReference(RefundRequestExternalReference.builder()
                         .type(RefundExternalReferenceType.ACQUIRER_REFERENCE)
                         .id("123456789012345")
                         .build())
                     .reverseRouting(false)
                     .routingReversals(List.of(
-                        EntityRefundRoutingReversals.builder()
+                        RefundRequestRoutingReversals.builder()
                             .amount(Amount.builder()
                                 .currency("EUR")
                                 .value("10.00")
                                 .build())
-                            .source(EntityRefundSource.builder()
+                            .source(RefundRequestSource.builder()
                                 .type(RefundRoutingReversalsSourceType.ORGANIZATION)
                                 .organizationId("org_1234567")
                                 .build())
@@ -92,7 +92,7 @@ public class Application {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `paymentId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityRefund`                                                                   | [Optional\<EntityRefund>](../../models/components/EntityRefund.md)               | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `refundRequest`                                                                  | [Optional\<RefundRequest>](../../models/components/RefundRequest.md)             | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 
@@ -271,9 +271,7 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```

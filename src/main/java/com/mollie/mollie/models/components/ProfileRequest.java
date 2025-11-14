@@ -16,38 +16,34 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class EntityProfile {
+public class ProfileRequest {
     /**
      * The profile's name, this will usually reflect the trade name or brand name of the profile's website
      * or
      * application.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
      * signs are
      * allowed.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("website")
-    private Optional<String> website;
+    private String website;
 
     /**
      * The email address associated with the profile's trade name or brand.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
-    private Optional<String> email;
+    private String email;
 
     /**
      * The phone number associated with the profile's trade name or brand.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone")
-    private Optional<String> phone;
+    private String phone;
 
     /**
      * The products or services offered by the profile's website or application.
@@ -85,11 +81,11 @@ public class EntityProfile {
     private Optional<? extends ProfileStatus> status;
 
     @JsonCreator
-    public EntityProfile(
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("website") Optional<String> website,
-            @JsonProperty("email") Optional<String> email,
-            @JsonProperty("phone") Optional<String> phone,
+    public ProfileRequest(
+            @JsonProperty("name") String name,
+            @JsonProperty("website") String website,
+            @JsonProperty("email") String email,
+            @JsonProperty("phone") String phone,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
             @JsonProperty("businessCategory") Optional<String> businessCategory,
@@ -112,9 +108,13 @@ public class EntityProfile {
         this.status = status;
     }
     
-    public EntityProfile() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
+    public ProfileRequest(
+            String name,
+            String website,
+            String email,
+            String phone) {
+        this(name, website, email,
+            phone, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
 
@@ -124,7 +124,7 @@ public class EntityProfile {
      * application.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
@@ -134,7 +134,7 @@ public class EntityProfile {
      * allowed.
      */
     @JsonIgnore
-    public Optional<String> website() {
+    public String website() {
         return website;
     }
 
@@ -142,7 +142,7 @@ public class EntityProfile {
      * The email address associated with the profile's trade name or brand.
      */
     @JsonIgnore
-    public Optional<String> email() {
+    public String email() {
         return email;
     }
 
@@ -150,7 +150,7 @@ public class EntityProfile {
      * The phone number associated with the profile's trade name or brand.
      */
     @JsonIgnore
-    public Optional<String> phone() {
+    public String phone() {
         return phone;
     }
 
@@ -205,19 +205,7 @@ public class EntityProfile {
      * or
      * application.
      */
-    public EntityProfile withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The profile's name, this will usually reflect the trade name or brand name of the profile's website
-     * or
-     * application.
-     */
-    public EntityProfile withName(Optional<String> name) {
+    public ProfileRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -228,19 +216,7 @@ public class EntityProfile {
      * signs are
      * allowed.
      */
-    public EntityProfile withWebsite(String website) {
-        Utils.checkNotNull(website, "website");
-        this.website = Optional.ofNullable(website);
-        return this;
-    }
-
-
-    /**
-     * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
-     * signs are
-     * allowed.
-     */
-    public EntityProfile withWebsite(Optional<String> website) {
+    public ProfileRequest withWebsite(String website) {
         Utils.checkNotNull(website, "website");
         this.website = website;
         return this;
@@ -249,17 +225,7 @@ public class EntityProfile {
     /**
      * The email address associated with the profile's trade name or brand.
      */
-    public EntityProfile withEmail(String email) {
-        Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
-        return this;
-    }
-
-
-    /**
-     * The email address associated with the profile's trade name or brand.
-     */
-    public EntityProfile withEmail(Optional<String> email) {
+    public ProfileRequest withEmail(String email) {
         Utils.checkNotNull(email, "email");
         this.email = email;
         return this;
@@ -268,17 +234,7 @@ public class EntityProfile {
     /**
      * The phone number associated with the profile's trade name or brand.
      */
-    public EntityProfile withPhone(String phone) {
-        Utils.checkNotNull(phone, "phone");
-        this.phone = Optional.ofNullable(phone);
-        return this;
-    }
-
-
-    /**
-     * The phone number associated with the profile's trade name or brand.
-     */
-    public EntityProfile withPhone(Optional<String> phone) {
+    public ProfileRequest withPhone(String phone) {
         Utils.checkNotNull(phone, "phone");
         this.phone = phone;
         return this;
@@ -287,7 +243,7 @@ public class EntityProfile {
     /**
      * The products or services offered by the profile's website or application.
      */
-    public EntityProfile withDescription(String description) {
+    public ProfileRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = Optional.ofNullable(description);
         return this;
@@ -297,7 +253,7 @@ public class EntityProfile {
     /**
      * The products or services offered by the profile's website or application.
      */
-    public EntityProfile withDescription(Optional<String> description) {
+    public ProfileRequest withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -307,7 +263,7 @@ public class EntityProfile {
      * A list of countries where you expect that the majority of the profile's customers reside,
      * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
-    public EntityProfile withCountriesOfActivity(List<String> countriesOfActivity) {
+    public ProfileRequest withCountriesOfActivity(List<String> countriesOfActivity) {
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
         this.countriesOfActivity = Optional.ofNullable(countriesOfActivity);
         return this;
@@ -318,7 +274,7 @@ public class EntityProfile {
      * A list of countries where you expect that the majority of the profile's customers reside,
      * in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      */
-    public EntityProfile withCountriesOfActivity(Optional<? extends List<String>> countriesOfActivity) {
+    public ProfileRequest withCountriesOfActivity(Optional<? extends List<String>> countriesOfActivity) {
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
         this.countriesOfActivity = countriesOfActivity;
         return this;
@@ -328,7 +284,7 @@ public class EntityProfile {
      * The industry associated with the profile's trade name or brand. Please refer to the
      * [business category list](common-data-types#business-category) for all possible options.
      */
-    public EntityProfile withBusinessCategory(String businessCategory) {
+    public ProfileRequest withBusinessCategory(String businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
         this.businessCategory = Optional.ofNullable(businessCategory);
         return this;
@@ -339,7 +295,7 @@ public class EntityProfile {
      * The industry associated with the profile's trade name or brand. Please refer to the
      * [business category list](common-data-types#business-category) for all possible options.
      */
-    public EntityProfile withBusinessCategory(Optional<String> businessCategory) {
+    public ProfileRequest withBusinessCategory(Optional<String> businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
         this.businessCategory = businessCategory;
         return this;
@@ -353,7 +309,7 @@ public class EntityProfile {
      * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
-    public EntityProfile withStatus(ProfileStatus status) {
+    public ProfileRequest withStatus(ProfileStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -368,7 +324,7 @@ public class EntityProfile {
      * payments.
      * * `blocked`: The profile is blocked and can no longer be used or changed.
      */
-    public EntityProfile withStatus(Optional<? extends ProfileStatus> status) {
+    public ProfileRequest withStatus(Optional<? extends ProfileStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -382,7 +338,7 @@ public class EntityProfile {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityProfile other = (EntityProfile) o;
+        ProfileRequest other = (ProfileRequest) o;
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.website, other.website) &&
@@ -404,7 +360,7 @@ public class EntityProfile {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityProfile.class,
+        return Utils.toString(ProfileRequest.class,
                 "name", name,
                 "website", website,
                 "email", email,
@@ -418,13 +374,13 @@ public class EntityProfile {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> website = Optional.empty();
+        private String website;
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
-        private Optional<String> phone = Optional.empty();
+        private String phone;
 
         private Optional<String> description = Optional.empty();
 
@@ -446,17 +402,6 @@ public class EntityProfile {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The profile's name, this will usually reflect the trade name or brand name of the profile's website
-         * or
-         * application.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
@@ -469,17 +414,6 @@ public class EntityProfile {
          */
         public Builder website(String website) {
             Utils.checkNotNull(website, "website");
-            this.website = Optional.ofNullable(website);
-            return this;
-        }
-
-        /**
-         * The URL to the profile's website or application. Only `https` or `http` URLs are allowed. No `@`
-         * signs are
-         * allowed.
-         */
-        public Builder website(Optional<String> website) {
-            Utils.checkNotNull(website, "website");
             this.website = website;
             return this;
         }
@@ -490,15 +424,6 @@ public class EntityProfile {
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * The email address associated with the profile's trade name or brand.
-         */
-        public Builder email(Optional<String> email) {
-            Utils.checkNotNull(email, "email");
             this.email = email;
             return this;
         }
@@ -508,15 +433,6 @@ public class EntityProfile {
          * The phone number associated with the profile's trade name or brand.
          */
         public Builder phone(String phone) {
-            Utils.checkNotNull(phone, "phone");
-            this.phone = Optional.ofNullable(phone);
-            return this;
-        }
-
-        /**
-         * The phone number associated with the profile's trade name or brand.
-         */
-        public Builder phone(Optional<String> phone) {
             Utils.checkNotNull(phone, "phone");
             this.phone = phone;
             return this;
@@ -612,9 +528,9 @@ public class EntityProfile {
             return this;
         }
 
-        public EntityProfile build() {
+        public ProfileRequest build() {
 
-            return new EntityProfile(
+            return new ProfileRequest(
                 name, website, email,
                 phone, description, countriesOfActivity,
                 businessCategory, status);

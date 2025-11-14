@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.EntityProfile;
+import com.mollie.mollie.models.components.ProfileRequest;
 import com.mollie.mollie.operations.CreateProfile;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class CreateProfileRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
-    private EntityProfile entityProfile;
+    private ProfileRequest profileRequest;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -39,9 +39,9 @@ public class CreateProfileRequestBuilder {
         return this;
     }
 
-    public CreateProfileRequestBuilder entityProfile(EntityProfile entityProfile) {
-        Utils.checkNotNull(entityProfile, "entityProfile");
-        this.entityProfile = entityProfile;
+    public CreateProfileRequestBuilder profileRequest(ProfileRequest profileRequest) {
+        Utils.checkNotNull(profileRequest, "profileRequest");
+        this.profileRequest = profileRequest;
         return this;
     }
                 
@@ -61,7 +61,7 @@ public class CreateProfileRequestBuilder {
     private CreateProfileRequest buildRequest() {
 
         CreateProfileRequest request = new CreateProfileRequest(idempotencyKey,
-            entityProfile);
+            profileRequest);
 
         return request;
     }

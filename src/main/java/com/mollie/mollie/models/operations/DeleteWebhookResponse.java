@@ -9,12 +9,9 @@ import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Integer;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Optional;
 
 
 public class DeleteWebhookResponse implements Response {
@@ -33,33 +30,17 @@ public class DeleteWebhookResponse implements Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * No content.
-     */
-    private Optional<? extends Object> any;
-
     @JsonCreator
     public DeleteWebhookResponse(
             String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends Object> any) {
+            HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(any, "any");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.any = any;
-    }
-    
-    public DeleteWebhookResponse(
-            String contentType,
-            int statusCode,
-            HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse,
-            Optional.empty());
     }
 
     /**
@@ -84,15 +65,6 @@ public class DeleteWebhookResponse implements Response {
     @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
-    }
-
-    /**
-     * No content.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Object> any() {
-        return (Optional<Object>) any;
     }
 
     public static Builder builder() {
@@ -127,25 +99,6 @@ public class DeleteWebhookResponse implements Response {
         return this;
     }
 
-    /**
-     * No content.
-     */
-    public DeleteWebhookResponse withAny(Object any) {
-        Utils.checkNotNull(any, "any");
-        this.any = Optional.ofNullable(any);
-        return this;
-    }
-
-
-    /**
-     * No content.
-     */
-    public DeleteWebhookResponse withAny(Optional<? extends Object> any) {
-        Utils.checkNotNull(any, "any");
-        this.any = any;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -158,15 +111,13 @@ public class DeleteWebhookResponse implements Response {
         return 
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
-            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.any, other.any);
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            contentType, statusCode, rawResponse,
-            any);
+            contentType, statusCode, rawResponse);
     }
     
     @Override
@@ -174,8 +125,7 @@ public class DeleteWebhookResponse implements Response {
         return Utils.toString(DeleteWebhookResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "any", any);
+                "rawResponse", rawResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -186,8 +136,6 @@ public class DeleteWebhookResponse implements Response {
         private Integer statusCode;
 
         private HttpResponse<InputStream> rawResponse;
-
-        private Optional<? extends Object> any = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -223,30 +171,10 @@ public class DeleteWebhookResponse implements Response {
             return this;
         }
 
-
-        /**
-         * No content.
-         */
-        public Builder any(Object any) {
-            Utils.checkNotNull(any, "any");
-            this.any = Optional.ofNullable(any);
-            return this;
-        }
-
-        /**
-         * No content.
-         */
-        public Builder any(Optional<? extends Object> any) {
-            Utils.checkNotNull(any, "any");
-            this.any = any;
-            return this;
-        }
-
         public DeleteWebhookResponse build() {
 
             return new DeleteWebhookResponse(
-                contentType, statusCode, rawResponse,
-                any);
+                contentType, statusCode, rawResponse);
         }
 
     }

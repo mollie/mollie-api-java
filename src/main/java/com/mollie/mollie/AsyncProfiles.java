@@ -5,7 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.EntityProfile;
+import com.mollie.mollie.models.components.ProfileRequest;
 import com.mollie.mollie.models.operations.CreateProfileRequest;
 import com.mollie.mollie.models.operations.DeleteProfileRequest;
 import com.mollie.mollie.models.operations.GetCurrentProfileRequest;
@@ -85,11 +85,11 @@ public class AsyncProfiles {
      * Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
-     * @param entityProfile 
+     * @param profileRequest 
      * @return {@code CompletableFuture<CreateProfileResponse>} - The async response
      */
-    public CompletableFuture<CreateProfileResponse> create(EntityProfile entityProfile) {
-        return create(Optional.empty(), entityProfile, Optional.empty());
+    public CompletableFuture<CreateProfileResponse> create(ProfileRequest profileRequest) {
+        return create(Optional.empty(), profileRequest, Optional.empty());
     }
 
     /**
@@ -102,18 +102,18 @@ public class AsyncProfiles {
      * can use this endpoint to automate profile creation.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityProfile 
+     * @param profileRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreateProfileResponse>} - The async response
      */
     public CompletableFuture<CreateProfileResponse> create(
-            Optional<String> idempotencyKey, EntityProfile entityProfile,
+            Optional<String> idempotencyKey, ProfileRequest profileRequest,
             Optional<Options> options) {
         CreateProfileRequest request =
             CreateProfileRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
-                .entityProfile(entityProfile)
+                .profileRequest(profileRequest)
                 .build();
         AsyncRequestOperation<CreateProfileRequest, CreateProfileResponse> operation
               = new CreateProfile.Async(

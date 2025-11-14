@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.EntityClientLink;
+import com.mollie.mollie.models.components.ClientLinkRequest;
 import com.mollie.mollie.operations.CreateClientLink;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class CreateClientLinkRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends EntityClientLink> entityClientLink = Optional.empty();
+    private Optional<? extends ClientLinkRequest> clientLinkRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -39,15 +39,15 @@ public class CreateClientLinkRequestBuilder {
         return this;
     }
                 
-    public CreateClientLinkRequestBuilder entityClientLink(EntityClientLink entityClientLink) {
-        Utils.checkNotNull(entityClientLink, "entityClientLink");
-        this.entityClientLink = Optional.of(entityClientLink);
+    public CreateClientLinkRequestBuilder clientLinkRequest(ClientLinkRequest clientLinkRequest) {
+        Utils.checkNotNull(clientLinkRequest, "clientLinkRequest");
+        this.clientLinkRequest = Optional.of(clientLinkRequest);
         return this;
     }
 
-    public CreateClientLinkRequestBuilder entityClientLink(Optional<? extends EntityClientLink> entityClientLink) {
-        Utils.checkNotNull(entityClientLink, "entityClientLink");
-        this.entityClientLink = entityClientLink;
+    public CreateClientLinkRequestBuilder clientLinkRequest(Optional<? extends ClientLinkRequest> clientLinkRequest) {
+        Utils.checkNotNull(clientLinkRequest, "clientLinkRequest");
+        this.clientLinkRequest = clientLinkRequest;
         return this;
     }
                 
@@ -67,7 +67,7 @@ public class CreateClientLinkRequestBuilder {
     private CreateClientLinkRequest buildRequest() {
 
         CreateClientLinkRequest request = new CreateClientLinkRequest(idempotencyKey,
-            entityClientLink);
+            clientLinkRequest);
 
         return request;
     }

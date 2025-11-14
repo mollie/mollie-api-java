@@ -15,7 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
-public class EntityRefundExternalReference {
+public class RefundRequestExternalReference {
     /**
      * Specifies the reference type
      */
@@ -31,7 +31,7 @@ public class EntityRefundExternalReference {
     private Optional<String> id;
 
     @JsonCreator
-    public EntityRefundExternalReference(
+    public RefundRequestExternalReference(
             @JsonProperty("type") Optional<? extends RefundExternalReferenceType> type,
             @JsonProperty("id") Optional<String> id) {
         Utils.checkNotNull(type, "type");
@@ -40,7 +40,7 @@ public class EntityRefundExternalReference {
         this.id = id;
     }
     
-    public EntityRefundExternalReference() {
+    public RefundRequestExternalReference() {
         this(Optional.empty(), Optional.empty());
     }
 
@@ -69,7 +69,7 @@ public class EntityRefundExternalReference {
     /**
      * Specifies the reference type
      */
-    public EntityRefundExternalReference withType(RefundExternalReferenceType type) {
+    public RefundRequestExternalReference withType(RefundExternalReferenceType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -79,7 +79,7 @@ public class EntityRefundExternalReference {
     /**
      * Specifies the reference type
      */
-    public EntityRefundExternalReference withType(Optional<? extends RefundExternalReferenceType> type) {
+    public RefundRequestExternalReference withType(Optional<? extends RefundExternalReferenceType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -88,7 +88,7 @@ public class EntityRefundExternalReference {
     /**
      * Unique reference from the payment provider
      */
-    public EntityRefundExternalReference withId(String id) {
+    public RefundRequestExternalReference withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
@@ -98,7 +98,7 @@ public class EntityRefundExternalReference {
     /**
      * Unique reference from the payment provider
      */
-    public EntityRefundExternalReference withId(Optional<String> id) {
+    public RefundRequestExternalReference withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -112,7 +112,7 @@ public class EntityRefundExternalReference {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityRefundExternalReference other = (EntityRefundExternalReference) o;
+        RefundRequestExternalReference other = (RefundRequestExternalReference) o;
         return 
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.id, other.id);
@@ -126,7 +126,7 @@ public class EntityRefundExternalReference {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityRefundExternalReference.class,
+        return Utils.toString(RefundRequestExternalReference.class,
                 "type", type,
                 "id", id);
     }
@@ -180,9 +180,9 @@ public class EntityRefundExternalReference {
             return this;
         }
 
-        public EntityRefundExternalReference build() {
+        public RefundRequestExternalReference build() {
 
-            return new EntityRefundExternalReference(
+            return new RefundRequestExternalReference(
                 type, id);
         }
 

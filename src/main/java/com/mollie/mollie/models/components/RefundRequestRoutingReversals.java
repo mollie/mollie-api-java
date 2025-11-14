@@ -15,7 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
-public class EntityRefundRoutingReversals {
+public class RefundRequestRoutingReversals {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
@@ -28,19 +28,19 @@ public class EntityRefundRoutingReversals {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
-    private Optional<? extends EntityRefundSource> source;
+    private Optional<? extends RefundRequestSource> source;
 
     @JsonCreator
-    public EntityRefundRoutingReversals(
+    public RefundRequestRoutingReversals(
             @JsonProperty("amount") Optional<? extends Amount> amount,
-            @JsonProperty("source") Optional<? extends EntityRefundSource> source) {
+            @JsonProperty("source") Optional<? extends RefundRequestSource> source) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(source, "source");
         this.amount = amount;
         this.source = source;
     }
     
-    public EntityRefundRoutingReversals() {
+    public RefundRequestRoutingReversals() {
         this(Optional.empty(), Optional.empty());
     }
 
@@ -58,8 +58,8 @@ public class EntityRefundRoutingReversals {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityRefundSource> source() {
-        return (Optional<EntityRefundSource>) source;
+    public Optional<RefundRequestSource> source() {
+        return (Optional<RefundRequestSource>) source;
     }
 
     public static Builder builder() {
@@ -70,7 +70,7 @@ public class EntityRefundRoutingReversals {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public EntityRefundRoutingReversals withAmount(Amount amount) {
+    public RefundRequestRoutingReversals withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = Optional.ofNullable(amount);
         return this;
@@ -80,7 +80,7 @@ public class EntityRefundRoutingReversals {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public EntityRefundRoutingReversals withAmount(Optional<? extends Amount> amount) {
+    public RefundRequestRoutingReversals withAmount(Optional<? extends Amount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -89,7 +89,7 @@ public class EntityRefundRoutingReversals {
     /**
      * Where the funds will be pulled back from.
      */
-    public EntityRefundRoutingReversals withSource(EntityRefundSource source) {
+    public RefundRequestRoutingReversals withSource(RefundRequestSource source) {
         Utils.checkNotNull(source, "source");
         this.source = Optional.ofNullable(source);
         return this;
@@ -99,7 +99,7 @@ public class EntityRefundRoutingReversals {
     /**
      * Where the funds will be pulled back from.
      */
-    public EntityRefundRoutingReversals withSource(Optional<? extends EntityRefundSource> source) {
+    public RefundRequestRoutingReversals withSource(Optional<? extends RefundRequestSource> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
@@ -113,7 +113,7 @@ public class EntityRefundRoutingReversals {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityRefundRoutingReversals other = (EntityRefundRoutingReversals) o;
+        RefundRequestRoutingReversals other = (RefundRequestRoutingReversals) o;
         return 
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.source, other.source);
@@ -127,7 +127,7 @@ public class EntityRefundRoutingReversals {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityRefundRoutingReversals.class,
+        return Utils.toString(RefundRequestRoutingReversals.class,
                 "amount", amount,
                 "source", source);
     }
@@ -137,7 +137,7 @@ public class EntityRefundRoutingReversals {
 
         private Optional<? extends Amount> amount = Optional.empty();
 
-        private Optional<? extends EntityRefundSource> source = Optional.empty();
+        private Optional<? extends RefundRequestSource> source = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -166,7 +166,7 @@ public class EntityRefundRoutingReversals {
         /**
          * Where the funds will be pulled back from.
          */
-        public Builder source(EntityRefundSource source) {
+        public Builder source(RefundRequestSource source) {
             Utils.checkNotNull(source, "source");
             this.source = Optional.ofNullable(source);
             return this;
@@ -175,15 +175,15 @@ public class EntityRefundRoutingReversals {
         /**
          * Where the funds will be pulled back from.
          */
-        public Builder source(Optional<? extends EntityRefundSource> source) {
+        public Builder source(Optional<? extends RefundRequestSource> source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
             return this;
         }
 
-        public EntityRefundRoutingReversals build() {
+        public RefundRequestRoutingReversals build() {
 
-            return new EntityRefundRoutingReversals(
+            return new RefundRequestRoutingReversals(
                 amount, source);
         }
 

@@ -7,7 +7,6 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 import static com.mollie.mollie.utils.Exceptions.unchecked;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.errors.APIException;
@@ -30,7 +29,6 @@ import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
@@ -194,11 +192,8 @@ public class DeleteProfile {
             DeleteProfileResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "204")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withAny(Utils.unmarshal(response, new TypeReference<Object>() {}));
-                } else {
-                    throw APIException.from("Unexpected content-type received: " + contentType, response);
-                }
+                // no content
+                return res;
             }
             if (Utils.statusCodeMatches(response.statusCode(), "404", "410")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
@@ -282,12 +277,8 @@ public class DeleteProfile {
             com.mollie.mollie.models.operations.async.DeleteProfileResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "204")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<Object>() {})
-                            .thenApply(res::withAny);
-                } else {
-                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
-                }
+                // no content
+                return CompletableFuture.completedFuture(res);
             }
             if (Utils.statusCodeMatches(response.statusCode(), "404", "410")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {

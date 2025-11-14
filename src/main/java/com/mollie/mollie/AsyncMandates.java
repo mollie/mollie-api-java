@@ -5,7 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.EntityMandate;
+import com.mollie.mollie.models.components.MandateRequest;
 import com.mollie.mollie.models.operations.CreateMandateRequest;
 import com.mollie.mollie.models.operations.GetMandateRequest;
 import com.mollie.mollie.models.operations.ListMandatesRequest;
@@ -101,19 +101,19 @@ public class AsyncMandates {
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityMandate 
+     * @param mandateRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreateMandateResponse>} - The async response
      */
     public CompletableFuture<CreateMandateResponse> create(
             String customerId, Optional<String> idempotencyKey,
-            Optional<? extends EntityMandate> entityMandate, Optional<Options> options) {
+            Optional<? extends MandateRequest> mandateRequest, Optional<Options> options) {
         CreateMandateRequest request =
             CreateMandateRequest
                 .builder()
                 .customerId(customerId)
                 .idempotencyKey(idempotencyKey)
-                .entityMandate(entityMandate)
+                .mandateRequest(mandateRequest)
                 .build();
         AsyncRequestOperation<CreateMandateRequest, CreateMandateResponse> operation
               = new CreateMandate.Async(

@@ -18,7 +18,7 @@ import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class EntityRefund {
+public class RefundRequest {
 
     @JsonProperty("id")
     private String id;
@@ -70,7 +70,7 @@ public class EntityRefund {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("externalReference")
-    private Optional<? extends EntityRefundExternalReference> externalReference;
+    private Optional<? extends RefundRequestExternalReference> externalReference;
 
     /**
      * *This feature is only available to marketplace operators.*
@@ -107,7 +107,7 @@ public class EntityRefund {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("routingReversals")
-    private JsonNullable<? extends List<EntityRefundRoutingReversals>> routingReversals;
+    private JsonNullable<? extends List<RefundRequestRoutingReversals>> routingReversals;
 
     /**
      * Whether to create the entity in test mode or live mode.
@@ -123,7 +123,7 @@ public class EntityRefund {
     private JsonNullable<Boolean> testmode;
 
     @JsonCreator
-    public EntityRefund(
+    public RefundRequest(
             @JsonProperty("id") String id,
             @JsonProperty("description") String description,
             @JsonProperty("amount") Amount amount,
@@ -132,9 +132,9 @@ public class EntityRefund {
             @JsonProperty("paymentId") Optional<String> paymentId,
             @JsonProperty("settlementId") Optional<String> settlementId,
             @JsonProperty("status") RefundStatus status,
-            @JsonProperty("externalReference") Optional<? extends EntityRefundExternalReference> externalReference,
+            @JsonProperty("externalReference") Optional<? extends RefundRequestExternalReference> externalReference,
             @JsonProperty("reverseRouting") JsonNullable<Boolean> reverseRouting,
-            @JsonProperty("routingReversals") JsonNullable<? extends List<EntityRefundRoutingReversals>> routingReversals,
+            @JsonProperty("routingReversals") JsonNullable<? extends List<RefundRequestRoutingReversals>> routingReversals,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(description, "description");
@@ -162,7 +162,7 @@ public class EntityRefund {
         this.testmode = testmode;
     }
     
-    public EntityRefund(
+    public RefundRequest(
             String id,
             String description,
             Amount amount,
@@ -233,8 +233,8 @@ public class EntityRefund {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityRefundExternalReference> externalReference() {
-        return (Optional<EntityRefundExternalReference>) externalReference;
+    public Optional<RefundRequestExternalReference> externalReference() {
+        return (Optional<RefundRequestExternalReference>) externalReference;
     }
 
     /**
@@ -273,8 +273,8 @@ public class EntityRefund {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<EntityRefundRoutingReversals>> routingReversals() {
-        return (JsonNullable<List<EntityRefundRoutingReversals>>) routingReversals;
+    public JsonNullable<List<RefundRequestRoutingReversals>> routingReversals() {
+        return (JsonNullable<List<RefundRequestRoutingReversals>>) routingReversals;
     }
 
     /**
@@ -296,7 +296,7 @@ public class EntityRefund {
     }
 
 
-    public EntityRefund withId(String id) {
+    public RefundRequest withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -306,7 +306,7 @@ public class EntityRefund {
      * The description of the refund that may be shown to your customer, depending on the payment method
      * used.
      */
-    public EntityRefund withDescription(String description) {
+    public RefundRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -315,7 +315,7 @@ public class EntityRefund {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public EntityRefund withAmount(Amount amount) {
+    public RefundRequest withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -324,7 +324,7 @@ public class EntityRefund {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public EntityRefund withSettlementAmount(AmountNullable settlementAmount) {
+    public RefundRequest withSettlementAmount(AmountNullable settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = JsonNullable.of(settlementAmount);
         return this;
@@ -333,7 +333,7 @@ public class EntityRefund {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public EntityRefund withSettlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
+    public RefundRequest withSettlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
         return this;
@@ -345,7 +345,7 @@ public class EntityRefund {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    public EntityRefund withMetadata(Metadata metadata) {
+    public RefundRequest withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = Optional.ofNullable(metadata);
         return this;
@@ -358,52 +358,52 @@ public class EntityRefund {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    public EntityRefund withMetadata(Optional<? extends Metadata> metadata) {
+    public RefundRequest withMetadata(Optional<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
     }
 
-    public EntityRefund withPaymentId(String paymentId) {
+    public RefundRequest withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = Optional.ofNullable(paymentId);
         return this;
     }
 
 
-    public EntityRefund withPaymentId(Optional<String> paymentId) {
+    public RefundRequest withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
     }
 
-    public EntityRefund withSettlementId(String settlementId) {
+    public RefundRequest withSettlementId(String settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
         this.settlementId = Optional.ofNullable(settlementId);
         return this;
     }
 
 
-    public EntityRefund withSettlementId(Optional<String> settlementId) {
+    public RefundRequest withSettlementId(Optional<String> settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
         this.settlementId = settlementId;
         return this;
     }
 
-    public EntityRefund withStatus(RefundStatus status) {
+    public RefundRequest withStatus(RefundStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
-    public EntityRefund withExternalReference(EntityRefundExternalReference externalReference) {
+    public RefundRequest withExternalReference(RefundRequestExternalReference externalReference) {
         Utils.checkNotNull(externalReference, "externalReference");
         this.externalReference = Optional.ofNullable(externalReference);
         return this;
     }
 
 
-    public EntityRefund withExternalReference(Optional<? extends EntityRefundExternalReference> externalReference) {
+    public RefundRequest withExternalReference(Optional<? extends RefundRequestExternalReference> externalReference) {
         Utils.checkNotNull(externalReference, "externalReference");
         this.externalReference = externalReference;
         return this;
@@ -425,7 +425,7 @@ public class EntityRefund {
      * 
      * <p>For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
      */
-    public EntityRefund withReverseRouting(boolean reverseRouting) {
+    public RefundRequest withReverseRouting(boolean reverseRouting) {
         Utils.checkNotNull(reverseRouting, "reverseRouting");
         this.reverseRouting = JsonNullable.of(reverseRouting);
         return this;
@@ -447,7 +447,7 @@ public class EntityRefund {
      * 
      * <p>For more fine-grained control and for partial refunds, use the `routingReversals` parameter instead.
      */
-    public EntityRefund withReverseRouting(JsonNullable<Boolean> reverseRouting) {
+    public RefundRequest withReverseRouting(JsonNullable<Boolean> reverseRouting) {
         Utils.checkNotNull(reverseRouting, "reverseRouting");
         this.reverseRouting = reverseRouting;
         return this;
@@ -466,7 +466,7 @@ public class EntityRefund {
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
      * parameter instead.
      */
-    public EntityRefund withRoutingReversals(List<EntityRefundRoutingReversals> routingReversals) {
+    public RefundRequest withRoutingReversals(List<RefundRequestRoutingReversals> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
         this.routingReversals = JsonNullable.of(routingReversals);
         return this;
@@ -485,7 +485,7 @@ public class EntityRefund {
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
      * parameter instead.
      */
-    public EntityRefund withRoutingReversals(JsonNullable<? extends List<EntityRefundRoutingReversals>> routingReversals) {
+    public RefundRequest withRoutingReversals(JsonNullable<? extends List<RefundRequestRoutingReversals>> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
         this.routingReversals = routingReversals;
         return this;
@@ -500,7 +500,7 @@ public class EntityRefund {
      * setting
      * `testmode` to `true`.
      */
-    public EntityRefund withTestmode(boolean testmode) {
+    public RefundRequest withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = JsonNullable.of(testmode);
         return this;
@@ -515,7 +515,7 @@ public class EntityRefund {
      * setting
      * `testmode` to `true`.
      */
-    public EntityRefund withTestmode(JsonNullable<Boolean> testmode) {
+    public RefundRequest withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -529,7 +529,7 @@ public class EntityRefund {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityRefund other = (EntityRefund) o;
+        RefundRequest other = (RefundRequest) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
@@ -556,7 +556,7 @@ public class EntityRefund {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityRefund.class,
+        return Utils.toString(RefundRequest.class,
                 "id", id,
                 "description", description,
                 "amount", amount,
@@ -590,11 +590,11 @@ public class EntityRefund {
 
         private RefundStatus status;
 
-        private Optional<? extends EntityRefundExternalReference> externalReference = Optional.empty();
+        private Optional<? extends RefundRequestExternalReference> externalReference = Optional.empty();
 
         private JsonNullable<Boolean> reverseRouting = JsonNullable.undefined();
 
-        private JsonNullable<? extends List<EntityRefundRoutingReversals>> routingReversals = JsonNullable.undefined();
+        private JsonNullable<? extends List<RefundRequestRoutingReversals>> routingReversals = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -708,13 +708,13 @@ public class EntityRefund {
         }
 
 
-        public Builder externalReference(EntityRefundExternalReference externalReference) {
+        public Builder externalReference(RefundRequestExternalReference externalReference) {
             Utils.checkNotNull(externalReference, "externalReference");
             this.externalReference = Optional.ofNullable(externalReference);
             return this;
         }
 
-        public Builder externalReference(Optional<? extends EntityRefundExternalReference> externalReference) {
+        public Builder externalReference(Optional<? extends RefundRequestExternalReference> externalReference) {
             Utils.checkNotNull(externalReference, "externalReference");
             this.externalReference = externalReference;
             return this;
@@ -779,7 +779,7 @@ public class EntityRefund {
          * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
          * parameter instead.
          */
-        public Builder routingReversals(List<EntityRefundRoutingReversals> routingReversals) {
+        public Builder routingReversals(List<RefundRequestRoutingReversals> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
             this.routingReversals = JsonNullable.of(routingReversals);
             return this;
@@ -798,7 +798,7 @@ public class EntityRefund {
          * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
          * parameter instead.
          */
-        public Builder routingReversals(JsonNullable<? extends List<EntityRefundRoutingReversals>> routingReversals) {
+        public Builder routingReversals(JsonNullable<? extends List<RefundRequestRoutingReversals>> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
             this.routingReversals = routingReversals;
             return this;
@@ -835,9 +835,9 @@ public class EntityRefund {
             return this;
         }
 
-        public EntityRefund build() {
+        public RefundRequest build() {
 
-            return new EntityRefund(
+            return new RefundRequest(
                 id, description, amount,
                 settlementAmount, metadata, paymentId,
                 settlementId, status, externalReference,

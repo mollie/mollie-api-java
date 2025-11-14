@@ -297,9 +297,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
@@ -358,9 +356,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```

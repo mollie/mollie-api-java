@@ -124,7 +124,7 @@ public class SubmitOnboardingData {
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
-            req.addHeader("Accept", "application/hal+json")
+            req.addHeader("Accept", "*/*")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
@@ -203,11 +203,8 @@ public class SubmitOnboardingData {
             SubmitOnboardingDataResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "204")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withAny(Utils.unmarshal(response, new TypeReference<Object>() {}));
-                } else {
-                    throw APIException.from("Unexpected content-type received: " + contentType, response);
-                }
+                // no content
+                return res;
             }
             if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
                 // no content
@@ -284,12 +281,8 @@ public class SubmitOnboardingData {
             com.mollie.mollie.models.operations.async.SubmitOnboardingDataResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "204")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<Object>() {})
-                            .thenApply(res::withAny);
-                } else {
-                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
-                }
+                // no content
+                return CompletableFuture.completedFuture(res);
             }
             if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
                 // no content

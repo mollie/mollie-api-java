@@ -17,7 +17,7 @@ import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class EntityMandate {
+public class MandateRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
@@ -28,16 +28,14 @@ public class EntityMandate {
      * 
      * <p>SEPA Direct Debit and PayPal mandates can be created directly.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private Optional<? extends MandateMethod> method;
+    private MandateMethod method;
 
     /**
      * The customer's name.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumerName")
-    private Optional<String> consumerName;
+    private String consumerName;
 
     /**
      * The customer's IBAN. Required for SEPA Direct Debit mandates.
@@ -121,10 +119,10 @@ public class EntityMandate {
     private JsonNullable<Boolean> testmode;
 
     @JsonCreator
-    public EntityMandate(
+    public MandateRequest(
             @JsonProperty("id") Optional<String> id,
-            @JsonProperty("method") Optional<? extends MandateMethod> method,
-            @JsonProperty("consumerName") Optional<String> consumerName,
+            @JsonProperty("method") MandateMethod method,
+            @JsonProperty("consumerName") String consumerName,
             @JsonProperty("consumerAccount") JsonNullable<String> consumerAccount,
             @JsonProperty("consumerBic") JsonNullable<String> consumerBic,
             @JsonProperty("consumerEmail") JsonNullable<String> consumerEmail,
@@ -163,8 +161,10 @@ public class EntityMandate {
         this.testmode = testmode;
     }
     
-    public EntityMandate() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
+    public MandateRequest(
+            MandateMethod method,
+            String consumerName) {
+        this(Optional.empty(), method, consumerName,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
@@ -181,17 +181,16 @@ public class EntityMandate {
      * 
      * <p>SEPA Direct Debit and PayPal mandates can be created directly.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<MandateMethod> method() {
-        return (Optional<MandateMethod>) method;
+    public MandateMethod method() {
+        return method;
     }
 
     /**
      * The customer's name.
      */
     @JsonIgnore
-    public Optional<String> consumerName() {
+    public String consumerName() {
         return consumerName;
     }
 
@@ -291,14 +290,14 @@ public class EntityMandate {
     }
 
 
-    public EntityMandate withId(String id) {
+    public MandateRequest withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
     }
 
 
-    public EntityMandate withId(Optional<String> id) {
+    public MandateRequest withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -309,19 +308,7 @@ public class EntityMandate {
      * 
      * <p>SEPA Direct Debit and PayPal mandates can be created directly.
      */
-    public EntityMandate withMethod(MandateMethod method) {
-        Utils.checkNotNull(method, "method");
-        this.method = Optional.ofNullable(method);
-        return this;
-    }
-
-
-    /**
-     * Payment method of the mandate.
-     * 
-     * <p>SEPA Direct Debit and PayPal mandates can be created directly.
-     */
-    public EntityMandate withMethod(Optional<? extends MandateMethod> method) {
+    public MandateRequest withMethod(MandateMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -330,17 +317,7 @@ public class EntityMandate {
     /**
      * The customer's name.
      */
-    public EntityMandate withConsumerName(String consumerName) {
-        Utils.checkNotNull(consumerName, "consumerName");
-        this.consumerName = Optional.ofNullable(consumerName);
-        return this;
-    }
-
-
-    /**
-     * The customer's name.
-     */
-    public EntityMandate withConsumerName(Optional<String> consumerName) {
+    public MandateRequest withConsumerName(String consumerName) {
         Utils.checkNotNull(consumerName, "consumerName");
         this.consumerName = consumerName;
         return this;
@@ -349,7 +326,7 @@ public class EntityMandate {
     /**
      * The customer's IBAN. Required for SEPA Direct Debit mandates.
      */
-    public EntityMandate withConsumerAccount(String consumerAccount) {
+    public MandateRequest withConsumerAccount(String consumerAccount) {
         Utils.checkNotNull(consumerAccount, "consumerAccount");
         this.consumerAccount = JsonNullable.of(consumerAccount);
         return this;
@@ -358,7 +335,7 @@ public class EntityMandate {
     /**
      * The customer's IBAN. Required for SEPA Direct Debit mandates.
      */
-    public EntityMandate withConsumerAccount(JsonNullable<String> consumerAccount) {
+    public MandateRequest withConsumerAccount(JsonNullable<String> consumerAccount) {
         Utils.checkNotNull(consumerAccount, "consumerAccount");
         this.consumerAccount = consumerAccount;
         return this;
@@ -367,7 +344,7 @@ public class EntityMandate {
     /**
      * The BIC of the customer's bank.
      */
-    public EntityMandate withConsumerBic(String consumerBic) {
+    public MandateRequest withConsumerBic(String consumerBic) {
         Utils.checkNotNull(consumerBic, "consumerBic");
         this.consumerBic = JsonNullable.of(consumerBic);
         return this;
@@ -376,7 +353,7 @@ public class EntityMandate {
     /**
      * The BIC of the customer's bank.
      */
-    public EntityMandate withConsumerBic(JsonNullable<String> consumerBic) {
+    public MandateRequest withConsumerBic(JsonNullable<String> consumerBic) {
         Utils.checkNotNull(consumerBic, "consumerBic");
         this.consumerBic = consumerBic;
         return this;
@@ -385,7 +362,7 @@ public class EntityMandate {
     /**
      * The customer's email address. Required for PayPal mandates.
      */
-    public EntityMandate withConsumerEmail(String consumerEmail) {
+    public MandateRequest withConsumerEmail(String consumerEmail) {
         Utils.checkNotNull(consumerEmail, "consumerEmail");
         this.consumerEmail = JsonNullable.of(consumerEmail);
         return this;
@@ -394,7 +371,7 @@ public class EntityMandate {
     /**
      * The customer's email address. Required for PayPal mandates.
      */
-    public EntityMandate withConsumerEmail(JsonNullable<String> consumerEmail) {
+    public MandateRequest withConsumerEmail(JsonNullable<String> consumerEmail) {
         Utils.checkNotNull(consumerEmail, "consumerEmail");
         this.consumerEmail = consumerEmail;
         return this;
@@ -403,7 +380,7 @@ public class EntityMandate {
     /**
      * The date when the mandate was signed in `YYYY-MM-DD` format.
      */
-    public EntityMandate withSignatureDate(String signatureDate) {
+    public MandateRequest withSignatureDate(String signatureDate) {
         Utils.checkNotNull(signatureDate, "signatureDate");
         this.signatureDate = JsonNullable.of(signatureDate);
         return this;
@@ -412,7 +389,7 @@ public class EntityMandate {
     /**
      * The date when the mandate was signed in `YYYY-MM-DD` format.
      */
-    public EntityMandate withSignatureDate(JsonNullable<String> signatureDate) {
+    public MandateRequest withSignatureDate(JsonNullable<String> signatureDate) {
         Utils.checkNotNull(signatureDate, "signatureDate");
         this.signatureDate = signatureDate;
         return this;
@@ -423,7 +400,7 @@ public class EntityMandate {
      * banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
-    public EntityMandate withMandateReference(String mandateReference) {
+    public MandateRequest withMandateReference(String mandateReference) {
         Utils.checkNotNull(mandateReference, "mandateReference");
         this.mandateReference = JsonNullable.of(mandateReference);
         return this;
@@ -434,7 +411,7 @@ public class EntityMandate {
      * banks will
      * decline Direct Debit payments if the mandate reference is not unique.
      */
-    public EntityMandate withMandateReference(JsonNullable<String> mandateReference) {
+    public MandateRequest withMandateReference(JsonNullable<String> mandateReference) {
         Utils.checkNotNull(mandateReference, "mandateReference");
         this.mandateReference = mandateReference;
         return this;
@@ -445,7 +422,7 @@ public class EntityMandate {
      * mandates.
      * Must provide either this field or `payPalVaultId`, but not both.
      */
-    public EntityMandate withPaypalBillingAgreementId(String paypalBillingAgreementId) {
+    public MandateRequest withPaypalBillingAgreementId(String paypalBillingAgreementId) {
         Utils.checkNotNull(paypalBillingAgreementId, "paypalBillingAgreementId");
         this.paypalBillingAgreementId = JsonNullable.of(paypalBillingAgreementId);
         return this;
@@ -456,7 +433,7 @@ public class EntityMandate {
      * mandates.
      * Must provide either this field or `payPalVaultId`, but not both.
      */
-    public EntityMandate withPaypalBillingAgreementId(JsonNullable<String> paypalBillingAgreementId) {
+    public MandateRequest withPaypalBillingAgreementId(JsonNullable<String> paypalBillingAgreementId) {
         Utils.checkNotNull(paypalBillingAgreementId, "paypalBillingAgreementId");
         this.paypalBillingAgreementId = paypalBillingAgreementId;
         return this;
@@ -466,7 +443,7 @@ public class EntityMandate {
      * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates.
      * Must provide either this field or `paypalBillingAgreementId`, but not both.
      */
-    public EntityMandate withPayPalVaultId(String payPalVaultId) {
+    public MandateRequest withPayPalVaultId(String payPalVaultId) {
         Utils.checkNotNull(payPalVaultId, "payPalVaultId");
         this.payPalVaultId = JsonNullable.of(payPalVaultId);
         return this;
@@ -476,7 +453,7 @@ public class EntityMandate {
      * The Vault ID given by PayPal. For example: `8kk8451t`. Required for PayPal mandates.
      * Must provide either this field or `paypalBillingAgreementId`, but not both.
      */
-    public EntityMandate withPayPalVaultId(JsonNullable<String> payPalVaultId) {
+    public MandateRequest withPayPalVaultId(JsonNullable<String> payPalVaultId) {
         Utils.checkNotNull(payPalVaultId, "payPalVaultId");
         this.payPalVaultId = payPalVaultId;
         return this;
@@ -487,7 +464,7 @@ public class EntityMandate {
      * finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
-    public EntityMandate withStatus(MandateStatus status) {
+    public MandateRequest withStatus(MandateStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -499,20 +476,20 @@ public class EntityMandate {
      * finalized, or
      * when we did not received the IBAN yet from the first payment.
      */
-    public EntityMandate withStatus(Optional<? extends MandateStatus> status) {
+    public MandateRequest withStatus(Optional<? extends MandateStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
-    public EntityMandate withCustomerId(String customerId) {
+    public MandateRequest withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = Optional.ofNullable(customerId);
         return this;
     }
 
 
-    public EntityMandate withCustomerId(Optional<String> customerId) {
+    public MandateRequest withCustomerId(Optional<String> customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
         return this;
@@ -527,7 +504,7 @@ public class EntityMandate {
      * setting
      * `testmode` to `true`.
      */
-    public EntityMandate withTestmode(boolean testmode) {
+    public MandateRequest withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = JsonNullable.of(testmode);
         return this;
@@ -542,7 +519,7 @@ public class EntityMandate {
      * setting
      * `testmode` to `true`.
      */
-    public EntityMandate withTestmode(JsonNullable<Boolean> testmode) {
+    public MandateRequest withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -556,7 +533,7 @@ public class EntityMandate {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityMandate other = (EntityMandate) o;
+        MandateRequest other = (MandateRequest) o;
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.method, other.method) &&
@@ -585,7 +562,7 @@ public class EntityMandate {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityMandate.class,
+        return Utils.toString(MandateRequest.class,
                 "id", id,
                 "method", method,
                 "consumerName", consumerName,
@@ -606,9 +583,9 @@ public class EntityMandate {
 
         private Optional<String> id = Optional.empty();
 
-        private Optional<? extends MandateMethod> method = Optional.empty();
+        private MandateMethod method;
 
-        private Optional<String> consumerName = Optional.empty();
+        private String consumerName;
 
         private JsonNullable<String> consumerAccount = JsonNullable.undefined();
 
@@ -655,17 +632,6 @@ public class EntityMandate {
          */
         public Builder method(MandateMethod method) {
             Utils.checkNotNull(method, "method");
-            this.method = Optional.ofNullable(method);
-            return this;
-        }
-
-        /**
-         * Payment method of the mandate.
-         * 
-         * <p>SEPA Direct Debit and PayPal mandates can be created directly.
-         */
-        public Builder method(Optional<? extends MandateMethod> method) {
-            Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
         }
@@ -675,15 +641,6 @@ public class EntityMandate {
          * The customer's name.
          */
         public Builder consumerName(String consumerName) {
-            Utils.checkNotNull(consumerName, "consumerName");
-            this.consumerName = Optional.ofNullable(consumerName);
-            return this;
-        }
-
-        /**
-         * The customer's name.
-         */
-        public Builder consumerName(Optional<String> consumerName) {
             Utils.checkNotNull(consumerName, "consumerName");
             this.consumerName = consumerName;
             return this;
@@ -899,9 +856,9 @@ public class EntityMandate {
             return this;
         }
 
-        public EntityMandate build() {
+        public MandateRequest build() {
 
-            return new EntityMandate(
+            return new MandateRequest(
                 id, method, consumerName,
                 consumerAccount, consumerBic, consumerEmail,
                 signatureDate, mandateReference, paypalBillingAgreementId,

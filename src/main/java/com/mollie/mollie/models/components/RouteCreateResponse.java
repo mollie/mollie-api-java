@@ -5,14 +5,10 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 
 public class RouteCreateResponse {
@@ -20,57 +16,50 @@ public class RouteCreateResponse {
      * Indicates the response contains a route object. Will always contain the string `route` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
-    private Optional<String> paymentId;
+    private String paymentId;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends Amount> amount;
+    private Amount amount;
 
     /**
      * The description of the route. This description is shown in the reports.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The destination of the route.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("destination")
-    private Optional<? extends RouteCreateResponseDestination> destination;
+    private RouteCreateResponseDestination destination;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends RouteCreateResponseLinks> links;
+    private RouteCreateResponseLinks links;
 
     @JsonCreator
     public RouteCreateResponse(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("paymentId") Optional<String> paymentId,
-            @JsonProperty("amount") Optional<? extends Amount> amount,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("destination") Optional<? extends RouteCreateResponseDestination> destination,
-            @JsonProperty("_links") Optional<? extends RouteCreateResponseLinks> links) {
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("paymentId") String paymentId,
+            @JsonProperty("amount") Amount amount,
+            @JsonProperty("description") String description,
+            @JsonProperty("destination") RouteCreateResponseDestination destination,
+            @JsonProperty("_links") RouteCreateResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(paymentId, "paymentId");
@@ -86,65 +75,56 @@ public class RouteCreateResponse {
         this.destination = destination;
         this.links = links;
     }
-    
-    public RouteCreateResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
-    }
 
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     @JsonIgnore
-    public Optional<String> paymentId() {
+    public String paymentId() {
         return paymentId;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amount() {
-        return (Optional<Amount>) amount;
+    public Amount amount() {
+        return amount;
     }
 
     /**
      * The description of the route. This description is shown in the reports.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
     /**
      * The destination of the route.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<RouteCreateResponseDestination> destination() {
-        return (Optional<RouteCreateResponseDestination>) destination;
+    public RouteCreateResponseDestination destination() {
+        return destination;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<RouteCreateResponseLinks> links() {
-        return (Optional<RouteCreateResponseLinks>) links;
+    public RouteCreateResponseLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -158,42 +138,17 @@ public class RouteCreateResponse {
      */
     public RouteCreateResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a route object. Will always contain the string `route` for this
-     * endpoint.
-     */
-    public RouteCreateResponse withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     public RouteCreateResponse withId(String id) {
         Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public RouteCreateResponse withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
     public RouteCreateResponse withPaymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
-        return this;
-    }
-
-
-    public RouteCreateResponse withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
@@ -204,16 +159,6 @@ public class RouteCreateResponse {
      */
     public RouteCreateResponse withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public RouteCreateResponse withAmount(Optional<? extends Amount> amount) {
-        Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
@@ -222,16 +167,6 @@ public class RouteCreateResponse {
      * The description of the route. This description is shown in the reports.
      */
     public RouteCreateResponse withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * The description of the route. This description is shown in the reports.
-     */
-    public RouteCreateResponse withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -242,16 +177,6 @@ public class RouteCreateResponse {
      */
     public RouteCreateResponse withDestination(RouteCreateResponseDestination destination) {
         Utils.checkNotNull(destination, "destination");
-        this.destination = Optional.ofNullable(destination);
-        return this;
-    }
-
-
-    /**
-     * The destination of the route.
-     */
-    public RouteCreateResponse withDestination(Optional<? extends RouteCreateResponseDestination> destination) {
-        Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
     }
@@ -260,16 +185,6 @@ public class RouteCreateResponse {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public RouteCreateResponse withLinks(RouteCreateResponseLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public RouteCreateResponse withLinks(Optional<? extends RouteCreateResponseLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -317,19 +232,19 @@ public class RouteCreateResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> paymentId = Optional.empty();
+        private String paymentId;
 
-        private Optional<? extends Amount> amount = Optional.empty();
+        private Amount amount;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
-        private Optional<? extends RouteCreateResponseDestination> destination = Optional.empty();
+        private RouteCreateResponseDestination destination;
 
-        private Optional<? extends RouteCreateResponseLinks> links = Optional.empty();
+        private RouteCreateResponseLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -342,16 +257,6 @@ public class RouteCreateResponse {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a route object. Will always contain the string `route` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
@@ -359,24 +264,12 @@ public class RouteCreateResponse {
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
         }
 
 
         public Builder paymentId(String paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
-            return this;
-        }
-
-        public Builder paymentId(Optional<String> paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
             return this;
@@ -388,15 +281,6 @@ public class RouteCreateResponse {
          */
         public Builder amount(Amount amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amount(Optional<? extends Amount> amount) {
-            Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
@@ -406,15 +290,6 @@ public class RouteCreateResponse {
          * The description of the route. This description is shown in the reports.
          */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the route. This description is shown in the reports.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
@@ -426,15 +301,6 @@ public class RouteCreateResponse {
          */
         public Builder destination(RouteCreateResponseDestination destination) {
             Utils.checkNotNull(destination, "destination");
-            this.destination = Optional.ofNullable(destination);
-            return this;
-        }
-
-        /**
-         * The destination of the route.
-         */
-        public Builder destination(Optional<? extends RouteCreateResponseDestination> destination) {
-            Utils.checkNotNull(destination, "destination");
             this.destination = destination;
             return this;
         }
@@ -444,15 +310,6 @@ public class RouteCreateResponse {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(RouteCreateResponseLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends RouteCreateResponseLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

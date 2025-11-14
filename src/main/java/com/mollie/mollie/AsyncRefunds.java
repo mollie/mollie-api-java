@@ -5,7 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.EntityRefund;
+import com.mollie.mollie.models.components.RefundRequest;
 import com.mollie.mollie.models.operations.CancelRefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundRequest;
 import com.mollie.mollie.models.operations.GetRefundRequest;
@@ -92,19 +92,19 @@ public class AsyncRefunds {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityRefund 
+     * @param refundRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreateRefundResponse>} - The async response
      */
     public CompletableFuture<CreateRefundResponse> create(
             String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends EntityRefund> entityRefund, Optional<Options> options) {
+            Optional<? extends RefundRequest> refundRequest, Optional<Options> options) {
         CreateRefundRequest request =
             CreateRefundRequest
                 .builder()
                 .paymentId(paymentId)
                 .idempotencyKey(idempotencyKey)
-                .entityRefund(entityRefund)
+                .refundRequest(refundRequest)
                 .build();
         AsyncRequestOperation<CreateRefundRequest, CreateRefundResponse> operation
               = new CreateRefund.Async(

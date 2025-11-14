@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntityMandate;
+import com.mollie.mollie.models.components.MandateRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -29,19 +29,19 @@ public class CreateMandateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends EntityMandate> entityMandate;
+    private Optional<? extends MandateRequest> mandateRequest;
 
     @JsonCreator
     public CreateMandateRequest(
             String customerId,
             Optional<String> idempotencyKey,
-            Optional<? extends EntityMandate> entityMandate) {
+            Optional<? extends MandateRequest> mandateRequest) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        Utils.checkNotNull(entityMandate, "entityMandate");
+        Utils.checkNotNull(mandateRequest, "mandateRequest");
         this.customerId = customerId;
         this.idempotencyKey = idempotencyKey;
-        this.entityMandate = entityMandate;
+        this.mandateRequest = mandateRequest;
     }
     
     public CreateMandateRequest(
@@ -67,8 +67,8 @@ public class CreateMandateRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityMandate> entityMandate() {
-        return (Optional<EntityMandate>) entityMandate;
+    public Optional<MandateRequest> mandateRequest() {
+        return (Optional<MandateRequest>) mandateRequest;
     }
 
     public static Builder builder() {
@@ -104,16 +104,16 @@ public class CreateMandateRequest {
         return this;
     }
 
-    public CreateMandateRequest withEntityMandate(EntityMandate entityMandate) {
-        Utils.checkNotNull(entityMandate, "entityMandate");
-        this.entityMandate = Optional.ofNullable(entityMandate);
+    public CreateMandateRequest withMandateRequest(MandateRequest mandateRequest) {
+        Utils.checkNotNull(mandateRequest, "mandateRequest");
+        this.mandateRequest = Optional.ofNullable(mandateRequest);
         return this;
     }
 
 
-    public CreateMandateRequest withEntityMandate(Optional<? extends EntityMandate> entityMandate) {
-        Utils.checkNotNull(entityMandate, "entityMandate");
-        this.entityMandate = entityMandate;
+    public CreateMandateRequest withMandateRequest(Optional<? extends MandateRequest> mandateRequest) {
+        Utils.checkNotNull(mandateRequest, "mandateRequest");
+        this.mandateRequest = mandateRequest;
         return this;
     }
 
@@ -129,13 +129,13 @@ public class CreateMandateRequest {
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Utils.enhancedDeepEquals(this.entityMandate, other.entityMandate);
+            Utils.enhancedDeepEquals(this.mandateRequest, other.mandateRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, idempotencyKey, entityMandate);
+            customerId, idempotencyKey, mandateRequest);
     }
     
     @Override
@@ -143,7 +143,7 @@ public class CreateMandateRequest {
         return Utils.toString(CreateMandateRequest.class,
                 "customerId", customerId,
                 "idempotencyKey", idempotencyKey,
-                "entityMandate", entityMandate);
+                "mandateRequest", mandateRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -153,7 +153,7 @@ public class CreateMandateRequest {
 
         private Optional<String> idempotencyKey = Optional.empty();
 
-        private Optional<? extends EntityMandate> entityMandate = Optional.empty();
+        private Optional<? extends MandateRequest> mandateRequest = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -189,22 +189,22 @@ public class CreateMandateRequest {
         }
 
 
-        public Builder entityMandate(EntityMandate entityMandate) {
-            Utils.checkNotNull(entityMandate, "entityMandate");
-            this.entityMandate = Optional.ofNullable(entityMandate);
+        public Builder mandateRequest(MandateRequest mandateRequest) {
+            Utils.checkNotNull(mandateRequest, "mandateRequest");
+            this.mandateRequest = Optional.ofNullable(mandateRequest);
             return this;
         }
 
-        public Builder entityMandate(Optional<? extends EntityMandate> entityMandate) {
-            Utils.checkNotNull(entityMandate, "entityMandate");
-            this.entityMandate = entityMandate;
+        public Builder mandateRequest(Optional<? extends MandateRequest> mandateRequest) {
+            Utils.checkNotNull(mandateRequest, "mandateRequest");
+            this.mandateRequest = mandateRequest;
             return this;
         }
 
         public CreateMandateRequest build() {
 
             return new CreateMandateRequest(
-                customerId, idempotencyKey, entityMandate);
+                customerId, idempotencyKey, mandateRequest);
         }
 
     }

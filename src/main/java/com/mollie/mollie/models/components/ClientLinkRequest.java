@@ -11,32 +11,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class EntityClientLink {
+public class ClientLinkRequest {
     /**
      * Personal data of your customer.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("owner")
-    private Optional<? extends Owner> owner;
+    private Owner owner;
 
     /**
      * Name of the organization.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * Address of the organization.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
-    private Optional<? extends EntityClientLinkAddress> address;
+    private ClientLinkRequestAddress address;
 
     /**
      * The registration number of the organization at their local chamber of commerce.
@@ -55,10 +50,10 @@ public class EntityClientLink {
     private JsonNullable<String> vatNumber;
 
     @JsonCreator
-    public EntityClientLink(
-            @JsonProperty("owner") Optional<? extends Owner> owner,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("address") Optional<? extends EntityClientLinkAddress> address,
+    public ClientLinkRequest(
+            @JsonProperty("owner") Owner owner,
+            @JsonProperty("name") String name,
+            @JsonProperty("address") ClientLinkRequestAddress address,
             @JsonProperty("registrationNumber") JsonNullable<String> registrationNumber,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber) {
         Utils.checkNotNull(owner, "owner");
@@ -73,35 +68,36 @@ public class EntityClientLink {
         this.vatNumber = vatNumber;
     }
     
-    public EntityClientLink() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
+    public ClientLinkRequest(
+            Owner owner,
+            String name,
+            ClientLinkRequestAddress address) {
+        this(owner, name, address,
             JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
      * Personal data of your customer.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Owner> owner() {
-        return (Optional<Owner>) owner;
+    public Owner owner() {
+        return owner;
     }
 
     /**
      * Name of the organization.
      */
     @JsonIgnore
-    public Optional<String> name() {
+    public String name() {
         return name;
     }
 
     /**
      * Address of the organization.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityClientLinkAddress> address() {
-        return (Optional<EntityClientLinkAddress>) address;
+    public ClientLinkRequestAddress address() {
+        return address;
     }
 
     /**
@@ -130,17 +126,7 @@ public class EntityClientLink {
     /**
      * Personal data of your customer.
      */
-    public EntityClientLink withOwner(Owner owner) {
-        Utils.checkNotNull(owner, "owner");
-        this.owner = Optional.ofNullable(owner);
-        return this;
-    }
-
-
-    /**
-     * Personal data of your customer.
-     */
-    public EntityClientLink withOwner(Optional<? extends Owner> owner) {
+    public ClientLinkRequest withOwner(Owner owner) {
         Utils.checkNotNull(owner, "owner");
         this.owner = owner;
         return this;
@@ -149,17 +135,7 @@ public class EntityClientLink {
     /**
      * Name of the organization.
      */
-    public EntityClientLink withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * Name of the organization.
-     */
-    public EntityClientLink withName(Optional<String> name) {
+    public ClientLinkRequest withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -168,17 +144,7 @@ public class EntityClientLink {
     /**
      * Address of the organization.
      */
-    public EntityClientLink withAddress(EntityClientLinkAddress address) {
-        Utils.checkNotNull(address, "address");
-        this.address = Optional.ofNullable(address);
-        return this;
-    }
-
-
-    /**
-     * Address of the organization.
-     */
-    public EntityClientLink withAddress(Optional<? extends EntityClientLinkAddress> address) {
+    public ClientLinkRequest withAddress(ClientLinkRequestAddress address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
@@ -187,7 +153,7 @@ public class EntityClientLink {
     /**
      * The registration number of the organization at their local chamber of commerce.
      */
-    public EntityClientLink withRegistrationNumber(String registrationNumber) {
+    public ClientLinkRequest withRegistrationNumber(String registrationNumber) {
         Utils.checkNotNull(registrationNumber, "registrationNumber");
         this.registrationNumber = JsonNullable.of(registrationNumber);
         return this;
@@ -196,7 +162,7 @@ public class EntityClientLink {
     /**
      * The registration number of the organization at their local chamber of commerce.
      */
-    public EntityClientLink withRegistrationNumber(JsonNullable<String> registrationNumber) {
+    public ClientLinkRequest withRegistrationNumber(JsonNullable<String> registrationNumber) {
         Utils.checkNotNull(registrationNumber, "registrationNumber");
         this.registrationNumber = registrationNumber;
         return this;
@@ -207,7 +173,7 @@ public class EntityClientLink {
      * the
      * international registry *VIES*.
      */
-    public EntityClientLink withVatNumber(String vatNumber) {
+    public ClientLinkRequest withVatNumber(String vatNumber) {
         Utils.checkNotNull(vatNumber, "vatNumber");
         this.vatNumber = JsonNullable.of(vatNumber);
         return this;
@@ -218,7 +184,7 @@ public class EntityClientLink {
      * the
      * international registry *VIES*.
      */
-    public EntityClientLink withVatNumber(JsonNullable<String> vatNumber) {
+    public ClientLinkRequest withVatNumber(JsonNullable<String> vatNumber) {
         Utils.checkNotNull(vatNumber, "vatNumber");
         this.vatNumber = vatNumber;
         return this;
@@ -232,7 +198,7 @@ public class EntityClientLink {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityClientLink other = (EntityClientLink) o;
+        ClientLinkRequest other = (ClientLinkRequest) o;
         return 
             Utils.enhancedDeepEquals(this.owner, other.owner) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
@@ -250,7 +216,7 @@ public class EntityClientLink {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityClientLink.class,
+        return Utils.toString(ClientLinkRequest.class,
                 "owner", owner,
                 "name", name,
                 "address", address,
@@ -261,11 +227,11 @@ public class EntityClientLink {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Owner> owner = Optional.empty();
+        private Owner owner;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<? extends EntityClientLinkAddress> address = Optional.empty();
+        private ClientLinkRequestAddress address;
 
         private JsonNullable<String> registrationNumber = JsonNullable.undefined();
 
@@ -281,15 +247,6 @@ public class EntityClientLink {
          */
         public Builder owner(Owner owner) {
             Utils.checkNotNull(owner, "owner");
-            this.owner = Optional.ofNullable(owner);
-            return this;
-        }
-
-        /**
-         * Personal data of your customer.
-         */
-        public Builder owner(Optional<? extends Owner> owner) {
-            Utils.checkNotNull(owner, "owner");
             this.owner = owner;
             return this;
         }
@@ -300,15 +257,6 @@ public class EntityClientLink {
          */
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the organization.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
             this.name = name;
             return this;
         }
@@ -317,16 +265,7 @@ public class EntityClientLink {
         /**
          * Address of the organization.
          */
-        public Builder address(EntityClientLinkAddress address) {
-            Utils.checkNotNull(address, "address");
-            this.address = Optional.ofNullable(address);
-            return this;
-        }
-
-        /**
-         * Address of the organization.
-         */
-        public Builder address(Optional<? extends EntityClientLinkAddress> address) {
+        public Builder address(ClientLinkRequestAddress address) {
             Utils.checkNotNull(address, "address");
             this.address = address;
             return this;
@@ -374,9 +313,9 @@ public class EntityClientLink {
             return this;
         }
 
-        public EntityClientLink build() {
+        public ClientLinkRequest build() {
 
-            return new EntityClientLink(
+            return new ClientLinkRequest(
                 owner, name, address,
                 registrationNumber, vatNumber);
         }

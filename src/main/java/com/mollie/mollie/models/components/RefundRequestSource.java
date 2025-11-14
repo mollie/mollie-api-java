@@ -15,11 +15,11 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
- * EntityRefundSource
+ * RefundRequestSource
  * 
  * <p>Where the funds will be pulled back from.
  */
-public class EntityRefundSource {
+public class RefundRequestSource {
     /**
      * The type of source. Currently only the source type `organization` is supported.
      */
@@ -33,7 +33,7 @@ public class EntityRefundSource {
     private Optional<String> organizationId;
 
     @JsonCreator
-    public EntityRefundSource(
+    public RefundRequestSource(
             @JsonProperty("type") Optional<? extends RefundRoutingReversalsSourceType> type,
             @JsonProperty("organizationId") Optional<String> organizationId) {
         Utils.checkNotNull(type, "type");
@@ -42,7 +42,7 @@ public class EntityRefundSource {
         this.organizationId = organizationId;
     }
     
-    public EntityRefundSource() {
+    public RefundRequestSource() {
         this(Optional.empty(), Optional.empty());
     }
 
@@ -68,7 +68,7 @@ public class EntityRefundSource {
     /**
      * The type of source. Currently only the source type `organization` is supported.
      */
-    public EntityRefundSource withType(RefundRoutingReversalsSourceType type) {
+    public RefundRequestSource withType(RefundRoutingReversalsSourceType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
@@ -78,20 +78,20 @@ public class EntityRefundSource {
     /**
      * The type of source. Currently only the source type `organization` is supported.
      */
-    public EntityRefundSource withType(Optional<? extends RefundRoutingReversalsSourceType> type) {
+    public RefundRequestSource withType(Optional<? extends RefundRoutingReversalsSourceType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
-    public EntityRefundSource withOrganizationId(String organizationId) {
+    public RefundRequestSource withOrganizationId(String organizationId) {
         Utils.checkNotNull(organizationId, "organizationId");
         this.organizationId = Optional.ofNullable(organizationId);
         return this;
     }
 
 
-    public EntityRefundSource withOrganizationId(Optional<String> organizationId) {
+    public RefundRequestSource withOrganizationId(Optional<String> organizationId) {
         Utils.checkNotNull(organizationId, "organizationId");
         this.organizationId = organizationId;
         return this;
@@ -105,7 +105,7 @@ public class EntityRefundSource {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityRefundSource other = (EntityRefundSource) o;
+        RefundRequestSource other = (RefundRequestSource) o;
         return 
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.organizationId, other.organizationId);
@@ -119,7 +119,7 @@ public class EntityRefundSource {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityRefundSource.class,
+        return Utils.toString(RefundRequestSource.class,
                 "type", type,
                 "organizationId", organizationId);
     }
@@ -167,9 +167,9 @@ public class EntityRefundSource {
             return this;
         }
 
-        public EntityRefundSource build() {
+        public RefundRequestSource build() {
 
-            return new EntityRefundSource(
+            return new RefundRequestSource(
                 type, organizationId);
         }
 

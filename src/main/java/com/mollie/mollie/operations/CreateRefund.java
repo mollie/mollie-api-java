@@ -124,7 +124,7 @@ public class CreateRefund {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "entityRefund",
+                    "refundRequest",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));

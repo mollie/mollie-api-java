@@ -55,12 +55,13 @@ public class Application {
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .paymentRequest(PaymentRequest.builder()
-                    .id("tr_5B8cwPMGnU")
                     .description("Chess Board")
                     .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
+                    .redirectUrl("https://example.org/redirect")
+                    .id("tr_5B8cwPMGnU")
                     .amountRefunded(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
@@ -81,7 +82,6 @@ public class Application {
                         .currency("EUR")
                         .value("10.00")
                         .build())
-                    .redirectUrl("https://example.org/redirect")
                     .cancelUrl("https://example.org/cancel")
                     .webhookUrl("https://example.org/webhooks")
                     .lines(List.of(
@@ -677,9 +677,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```

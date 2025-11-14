@@ -23,21 +23,18 @@ public class PaymentResponse {
      * Indicates the response contains a payment object. Will always contain the string `payment` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends Mode> mode;
+    private Mode mode;
 
     /**
      * The description of the payment. This will be shown to your customer on their card or bank statement
@@ -55,16 +52,14 @@ public class PaymentResponse {
      * characters. The API will not reject strings longer than the maximum length but it will truncate them
      * to fit.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends Amount> amount;
+    private Amount amount;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -333,9 +328,8 @@ public class PaymentResponse {
     private JsonNullable<? extends List<EntityPaymentRouteResponse>> routing;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sequenceType")
-    private Optional<? extends SequenceTypeResponse> sequenceType;
+    private SequenceTypeResponse sequenceType;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -361,9 +355,8 @@ public class PaymentResponse {
      * parameter is
      * required.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
-    private Optional<String> profileId;
+    private String profileId;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -380,9 +373,8 @@ public class PaymentResponse {
      * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
      * statuses occur at what point.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends PaymentStatus> status;
+    private PaymentStatus status;
 
     /**
      * This object offers details about the status of a payment. Currently it is only available for
@@ -418,9 +410,8 @@ public class PaymentResponse {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * The date and time the payment became authorized, in ISO 8601 format. This parameter is omitted if
@@ -479,17 +470,16 @@ public class PaymentResponse {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends PaymentResponseLinks> links;
+    private PaymentResponseLinks links;
 
     @JsonCreator
     public PaymentResponse(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends Mode> mode,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("amount") Optional<? extends Amount> amount,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") Mode mode,
+            @JsonProperty("description") String description,
+            @JsonProperty("amount") Amount amount,
             @JsonProperty("amountRefunded") Optional<? extends Amount> amountRefunded,
             @JsonProperty("amountRemaining") Optional<? extends Amount> amountRemaining,
             @JsonProperty("amountCaptured") Optional<? extends Amount> amountCaptured,
@@ -511,25 +501,25 @@ public class PaymentResponse {
             @JsonProperty("captureBefore") JsonNullable<String> captureBefore,
             @JsonProperty("applicationFee") JsonNullable<? extends ApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<EntityPaymentRouteResponse>> routing,
-            @JsonProperty("sequenceType") Optional<? extends SequenceTypeResponse> sequenceType,
+            @JsonProperty("sequenceType") SequenceTypeResponse sequenceType,
             @JsonProperty("subscriptionId") Optional<String> subscriptionId,
             @JsonProperty("mandateId") Optional<String> mandateId,
             @JsonProperty("customerId") Optional<String> customerId,
-            @JsonProperty("profileId") Optional<String> profileId,
+            @JsonProperty("profileId") String profileId,
             @JsonProperty("settlementId") Optional<String> settlementId,
             @JsonProperty("orderId") Optional<String> orderId,
-            @JsonProperty("status") Optional<? extends PaymentStatus> status,
+            @JsonProperty("status") PaymentStatus status,
             @JsonProperty("statusReason") JsonNullable<? extends StatusReason> statusReason,
             @JsonProperty("isCancelable") JsonNullable<Boolean> isCancelable,
             @JsonProperty("details") JsonNullable<? extends Details> details,
-            @JsonProperty("createdAt") Optional<String> createdAt,
+            @JsonProperty("createdAt") String createdAt,
             @JsonProperty("authorizedAt") JsonNullable<String> authorizedAt,
             @JsonProperty("paidAt") JsonNullable<String> paidAt,
             @JsonProperty("canceledAt") JsonNullable<String> canceledAt,
             @JsonProperty("expiresAt") JsonNullable<String> expiresAt,
             @JsonProperty("expiredAt") JsonNullable<String> expiredAt,
             @JsonProperty("failedAt") JsonNullable<String> failedAt,
-            @JsonProperty("_links") Optional<? extends PaymentResponseLinks> links) {
+            @JsonProperty("_links") PaymentResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -622,22 +612,32 @@ public class PaymentResponse {
         this.links = links;
     }
     
-    public PaymentResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
+    public PaymentResponse(
+            String resource,
+            String id,
+            Mode mode,
+            String description,
+            Amount amount,
+            SequenceTypeResponse sequenceType,
+            String profileId,
+            PaymentStatus status,
+            String createdAt,
+            PaymentResponseLinks links) {
+        this(resource, id, mode,
+            description, amount, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), sequenceType,
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            profileId, Optional.empty(), Optional.empty(),
+            status, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), createdAt, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), links);
     }
 
     /**
@@ -645,22 +645,21 @@ public class PaymentResponse {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Mode> mode() {
-        return (Optional<Mode>) mode;
+    public Mode mode() {
+        return mode;
     }
 
     /**
@@ -680,17 +679,16 @@ public class PaymentResponse {
      * to fit.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amount() {
-        return (Optional<Amount>) amount;
+    public Amount amount() {
+        return amount;
     }
 
     /**
@@ -993,10 +991,9 @@ public class PaymentResponse {
         return (JsonNullable<List<EntityPaymentRouteResponse>>) routing;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SequenceTypeResponse> sequenceType() {
-        return (Optional<SequenceTypeResponse>) sequenceType;
+    public SequenceTypeResponse sequenceType() {
+        return sequenceType;
     }
 
     @JsonIgnore
@@ -1024,7 +1021,7 @@ public class PaymentResponse {
      * required.
      */
     @JsonIgnore
-    public Optional<String> profileId() {
+    public String profileId() {
         return profileId;
     }
 
@@ -1043,10 +1040,9 @@ public class PaymentResponse {
      * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
      * statuses occur at what point.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentStatus> status() {
-        return (Optional<PaymentStatus>) status;
+    public PaymentStatus status() {
+        return status;
     }
 
     /**
@@ -1089,7 +1085,7 @@ public class PaymentResponse {
      * format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
@@ -1156,10 +1152,9 @@ public class PaymentResponse {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentResponseLinks> links() {
-        return (Optional<PaymentResponseLinks>) links;
+    public PaymentResponseLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -1173,29 +1168,11 @@ public class PaymentResponse {
      */
     public PaymentResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a payment object. Will always contain the string `payment` for this
-     * endpoint.
-     */
-    public PaymentResponse withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     public PaymentResponse withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public PaymentResponse withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -1205,16 +1182,6 @@ public class PaymentResponse {
      * Whether this entity was created in live mode or in test mode.
      */
     public PaymentResponse withMode(Mode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     */
-    public PaymentResponse withMode(Optional<? extends Mode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -1238,29 +1205,6 @@ public class PaymentResponse {
      */
     public PaymentResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement
-     * when possible.
-     * We truncate the description automatically according to the limits of the used payment method. The
-     * description is
-     * also visible in any exports you generate.
-     * 
-     * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
-     * your back office.
-     * This is particularly useful for bookkeeping.
-     * 
-     * <p>The maximum length of the description field differs per payment method, with the absolute maximum
-     * being 255
-     * characters. The API will not reject strings longer than the maximum length but it will truncate them
-     * to fit.
-     */
-    public PaymentResponse withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -1269,16 +1213,6 @@ public class PaymentResponse {
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public PaymentResponse withAmount(Amount amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentResponse withAmount(Optional<? extends Amount> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -1907,13 +1841,6 @@ public class PaymentResponse {
 
     public PaymentResponse withSequenceType(SequenceTypeResponse sequenceType) {
         Utils.checkNotNull(sequenceType, "sequenceType");
-        this.sequenceType = Optional.ofNullable(sequenceType);
-        return this;
-    }
-
-
-    public PaymentResponse withSequenceType(Optional<? extends SequenceTypeResponse> sequenceType) {
-        Utils.checkNotNull(sequenceType, "sequenceType");
         this.sequenceType = sequenceType;
         return this;
     }
@@ -1968,22 +1895,6 @@ public class PaymentResponse {
      */
     public PaymentResponse withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
-        this.profileId = Optional.ofNullable(profileId);
-        return this;
-    }
-
-
-    /**
-     * The identifier referring to the [profile](get-profile) this entity belongs to.
-     * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
-     * in the creation
-     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
-     * parameter is
-     * required.
-     */
-    public PaymentResponse withProfileId(Optional<String> profileId) {
-        Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
         return this;
     }
@@ -2020,18 +1931,6 @@ public class PaymentResponse {
      * statuses occur at what point.
      */
     public PaymentResponse withStatus(PaymentStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The payment's status. Refer to the [documentation regarding
-     * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
-     * statuses occur at what point.
-     */
-    public PaymentResponse withStatus(Optional<? extends PaymentStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -2114,17 +2013,6 @@ public class PaymentResponse {
      * format.
      */
     public PaymentResponse withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     */
-    public PaymentResponse withCreatedAt(Optional<String> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
@@ -2267,16 +2155,6 @@ public class PaymentResponse {
      */
     public PaymentResponse withLinks(PaymentResponseLinks links) {
         Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public PaymentResponse withLinks(Optional<? extends PaymentResponseLinks> links) {
-        Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
     }
@@ -2411,15 +2289,15 @@ public class PaymentResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends Mode> mode = Optional.empty();
+        private Mode mode;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
-        private Optional<? extends Amount> amount = Optional.empty();
+        private Amount amount;
 
         private Optional<? extends Amount> amountRefunded = Optional.empty();
 
@@ -2463,7 +2341,7 @@ public class PaymentResponse {
 
         private JsonNullable<? extends List<EntityPaymentRouteResponse>> routing = JsonNullable.undefined();
 
-        private Optional<? extends SequenceTypeResponse> sequenceType = Optional.empty();
+        private SequenceTypeResponse sequenceType;
 
         private Optional<String> subscriptionId = Optional.empty();
 
@@ -2471,13 +2349,13 @@ public class PaymentResponse {
 
         private Optional<String> customerId = Optional.empty();
 
-        private Optional<String> profileId = Optional.empty();
+        private String profileId;
 
         private Optional<String> settlementId = Optional.empty();
 
         private Optional<String> orderId = Optional.empty();
 
-        private Optional<? extends PaymentStatus> status = Optional.empty();
+        private PaymentStatus status;
 
         private JsonNullable<? extends StatusReason> statusReason = JsonNullable.undefined();
 
@@ -2485,7 +2363,7 @@ public class PaymentResponse {
 
         private JsonNullable<? extends Details> details = JsonNullable.undefined();
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
         private JsonNullable<String> authorizedAt = JsonNullable.undefined();
 
@@ -2499,7 +2377,7 @@ public class PaymentResponse {
 
         private JsonNullable<String> failedAt = JsonNullable.undefined();
 
-        private Optional<? extends PaymentResponseLinks> links = Optional.empty();
+        private PaymentResponseLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -2512,28 +2390,12 @@ public class PaymentResponse {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a payment object. Will always contain the string `payment` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -2544,15 +2406,6 @@ public class PaymentResponse {
          * Whether this entity was created in live mode or in test mode.
          */
         public Builder mode(Mode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         */
-        public Builder mode(Optional<? extends Mode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -2577,28 +2430,6 @@ public class PaymentResponse {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the payment. This will be shown to your customer on their card or bank statement
-         * when possible.
-         * We truncate the description automatically according to the limits of the used payment method. The
-         * description is
-         * also visible in any exports you generate.
-         * 
-         * <p>We recommend you use a unique identifier so that you can always link the payment to the order in
-         * your back office.
-         * This is particularly useful for bookkeeping.
-         * 
-         * <p>The maximum length of the description field differs per payment method, with the absolute maximum
-         * being 255
-         * characters. The API will not reject strings longer than the maximum length but it will truncate them
-         * to fit.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -2608,15 +2439,6 @@ public class PaymentResponse {
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder amount(Amount amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amount(Optional<? extends Amount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -3260,12 +3082,6 @@ public class PaymentResponse {
 
         public Builder sequenceType(SequenceTypeResponse sequenceType) {
             Utils.checkNotNull(sequenceType, "sequenceType");
-            this.sequenceType = Optional.ofNullable(sequenceType);
-            return this;
-        }
-
-        public Builder sequenceType(Optional<? extends SequenceTypeResponse> sequenceType) {
-            Utils.checkNotNull(sequenceType, "sequenceType");
             this.sequenceType = sequenceType;
             return this;
         }
@@ -3321,21 +3137,6 @@ public class PaymentResponse {
          */
         public Builder profileId(String profileId) {
             Utils.checkNotNull(profileId, "profileId");
-            this.profileId = Optional.ofNullable(profileId);
-            return this;
-        }
-
-        /**
-         * The identifier referring to the [profile](get-profile) this entity belongs to.
-         * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
-         * in the creation
-         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
-         * parameter is
-         * required.
-         */
-        public Builder profileId(Optional<String> profileId) {
-            Utils.checkNotNull(profileId, "profileId");
             this.profileId = profileId;
             return this;
         }
@@ -3373,17 +3174,6 @@ public class PaymentResponse {
          * statuses occur at what point.
          */
         public Builder status(PaymentStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The payment's status. Refer to the [documentation regarding
-         * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
-         * statuses occur at what point.
-         */
-        public Builder status(Optional<? extends PaymentStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -3470,16 +3260,6 @@ public class PaymentResponse {
          * format.
          */
         public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
@@ -3628,15 +3408,6 @@ public class PaymentResponse {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(PaymentResponseLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends PaymentResponseLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

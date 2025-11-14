@@ -5,7 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.EntityMandate;
+import com.mollie.mollie.models.components.MandateRequest;
 import com.mollie.mollie.models.operations.CreateMandateRequest;
 import com.mollie.mollie.models.operations.CreateMandateRequestBuilder;
 import com.mollie.mollie.models.operations.CreateMandateResponse;
@@ -99,20 +99,20 @@ public class Mandates {
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityMandate 
+     * @param mandateRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateMandateResponse create(
             String customerId, Optional<String> idempotencyKey,
-            Optional<? extends EntityMandate> entityMandate, Optional<Options> options) {
+            Optional<? extends MandateRequest> mandateRequest, Optional<Options> options) {
         CreateMandateRequest request =
             CreateMandateRequest
                 .builder()
                 .customerId(customerId)
                 .idempotencyKey(idempotencyKey)
-                .entityMandate(entityMandate)
+                .mandateRequest(mandateRequest)
                 .build();
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
               = new CreateMandate.Sync(sdkConfiguration, options, _headers);

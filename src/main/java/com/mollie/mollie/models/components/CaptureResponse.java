@@ -21,21 +21,18 @@ public class CaptureResponse {
      * Indicates the response contains a capture object. Will always contain the string `capture` for this
      * endpoint.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends Mode> mode;
+    private Mode mode;
 
     /**
      * The description of the capture.
@@ -47,9 +44,9 @@ public class CaptureResponse {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("amount")
-    private JsonNullable<? extends AmountNullable> amount;
+    private Optional<? extends AmountNullable> amount;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -61,9 +58,8 @@ public class CaptureResponse {
     /**
      * The capture's status.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends CaptureStatus> status;
+    private CaptureStatus status;
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
@@ -76,9 +72,8 @@ public class CaptureResponse {
     private JsonNullable<? extends Metadata> metadata;
 
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
-    private Optional<String> paymentId;
+    private String paymentId;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -94,32 +89,30 @@ public class CaptureResponse {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("createdAt")
-    private Optional<String> createdAt;
+    private String createdAt;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends CaptureResponseLinks> links;
+    private CaptureResponseLinks links;
 
     @JsonCreator
     public CaptureResponse(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("mode") Optional<? extends Mode> mode,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
+            @JsonProperty("mode") Mode mode,
             @JsonProperty("description") Optional<String> description,
-            @JsonProperty("amount") JsonNullable<? extends AmountNullable> amount,
+            @JsonProperty("amount") Optional<? extends AmountNullable> amount,
             @JsonProperty("settlementAmount") JsonNullable<? extends AmountNullable> settlementAmount,
-            @JsonProperty("status") Optional<? extends CaptureStatus> status,
+            @JsonProperty("status") CaptureStatus status,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
-            @JsonProperty("paymentId") Optional<String> paymentId,
+            @JsonProperty("paymentId") String paymentId,
             @JsonProperty("shipmentId") Optional<String> shipmentId,
             @JsonProperty("settlementId") Optional<String> settlementId,
-            @JsonProperty("createdAt") Optional<String> createdAt,
-            @JsonProperty("_links") Optional<? extends CaptureResponseLinks> links) {
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("_links") CaptureResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -148,12 +141,19 @@ public class CaptureResponse {
         this.links = links;
     }
     
-    public CaptureResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public CaptureResponse(
+            String resource,
+            String id,
+            Mode mode,
+            CaptureStatus status,
+            String paymentId,
+            String createdAt,
+            CaptureResponseLinks links) {
+        this(resource, id, mode,
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            status, JsonNullable.undefined(), paymentId,
+            Optional.empty(), Optional.empty(), createdAt,
+            links);
     }
 
     /**
@@ -161,22 +161,21 @@ public class CaptureResponse {
      * endpoint.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
     /**
      * Whether this entity was created in live mode or in test mode.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Mode> mode() {
-        return (Optional<Mode>) mode;
+    public Mode mode() {
+        return mode;
     }
 
     /**
@@ -192,8 +191,8 @@ public class CaptureResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AmountNullable> amount() {
-        return (JsonNullable<AmountNullable>) amount;
+    public Optional<AmountNullable> amount() {
+        return (Optional<AmountNullable>) amount;
     }
 
     /**
@@ -208,10 +207,9 @@ public class CaptureResponse {
     /**
      * The capture's status.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CaptureStatus> status() {
-        return (Optional<CaptureStatus>) status;
+    public CaptureStatus status() {
+        return status;
     }
 
     /**
@@ -227,7 +225,7 @@ public class CaptureResponse {
     }
 
     @JsonIgnore
-    public Optional<String> paymentId() {
+    public String paymentId() {
         return paymentId;
     }
 
@@ -246,17 +244,16 @@ public class CaptureResponse {
      * format.
      */
     @JsonIgnore
-    public Optional<String> createdAt() {
+    public String createdAt() {
         return createdAt;
     }
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<CaptureResponseLinks> links() {
-        return (Optional<CaptureResponseLinks>) links;
+    public CaptureResponseLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -270,29 +267,11 @@ public class CaptureResponse {
      */
     public CaptureResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a capture object. Will always contain the string `capture` for this
-     * endpoint.
-     */
-    public CaptureResponse withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
     public CaptureResponse withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public CaptureResponse withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -302,16 +281,6 @@ public class CaptureResponse {
      * Whether this entity was created in live mode or in test mode.
      */
     public CaptureResponse withMode(Mode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * Whether this entity was created in live mode or in test mode.
-     */
-    public CaptureResponse withMode(Optional<? extends Mode> mode) {
         Utils.checkNotNull(mode, "mode");
         this.mode = mode;
         return this;
@@ -341,14 +310,15 @@ public class CaptureResponse {
      */
     public CaptureResponse withAmount(AmountNullable amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = JsonNullable.of(amount);
+        this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public CaptureResponse withAmount(JsonNullable<? extends AmountNullable> amount) {
+    public CaptureResponse withAmount(Optional<? extends AmountNullable> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -376,16 +346,6 @@ public class CaptureResponse {
      * The capture's status.
      */
     public CaptureResponse withStatus(CaptureStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The capture's status.
-     */
-    public CaptureResponse withStatus(Optional<? extends CaptureStatus> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -416,13 +376,6 @@ public class CaptureResponse {
     }
 
     public CaptureResponse withPaymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
-        return this;
-    }
-
-
-    public CaptureResponse withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
@@ -460,17 +413,6 @@ public class CaptureResponse {
      */
     public CaptureResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    /**
-     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     */
-    public CaptureResponse withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
@@ -479,16 +421,6 @@ public class CaptureResponse {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public CaptureResponse withLinks(CaptureResponseLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public CaptureResponse withLinks(Optional<? extends CaptureResponseLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -550,31 +482,31 @@ public class CaptureResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends Mode> mode = Optional.empty();
+        private Mode mode;
 
         private Optional<String> description = Optional.empty();
 
-        private JsonNullable<? extends AmountNullable> amount = JsonNullable.undefined();
+        private Optional<? extends AmountNullable> amount = Optional.empty();
 
         private JsonNullable<? extends AmountNullable> settlementAmount = JsonNullable.undefined();
 
-        private Optional<? extends CaptureStatus> status = Optional.empty();
+        private CaptureStatus status;
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
-        private Optional<String> paymentId = Optional.empty();
+        private String paymentId;
 
         private Optional<String> shipmentId = Optional.empty();
 
         private Optional<String> settlementId = Optional.empty();
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
-        private Optional<? extends CaptureResponseLinks> links = Optional.empty();
+        private CaptureResponseLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -587,28 +519,12 @@ public class CaptureResponse {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a capture object. Will always contain the string `capture` for this
-         * endpoint.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -619,15 +535,6 @@ public class CaptureResponse {
          * Whether this entity was created in live mode or in test mode.
          */
         public Builder mode(Mode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Whether this entity was created in live mode or in test mode.
-         */
-        public Builder mode(Optional<? extends Mode> mode) {
             Utils.checkNotNull(mode, "mode");
             this.mode = mode;
             return this;
@@ -658,14 +565,14 @@ public class CaptureResponse {
          */
         public Builder amount(AmountNullable amount) {
             Utils.checkNotNull(amount, "amount");
-            this.amount = JsonNullable.of(amount);
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder amount(JsonNullable<? extends AmountNullable> amount) {
+        public Builder amount(Optional<? extends AmountNullable> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -695,15 +602,6 @@ public class CaptureResponse {
          * The capture's status.
          */
         public Builder status(CaptureStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The capture's status.
-         */
-        public Builder status(Optional<? extends CaptureStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -736,12 +634,6 @@ public class CaptureResponse {
 
 
         public Builder paymentId(String paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
-            return this;
-        }
-
-        public Builder paymentId(Optional<String> paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
             return this;
@@ -780,16 +672,6 @@ public class CaptureResponse {
          */
         public Builder createdAt(String createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        /**
-         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
-         */
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
@@ -799,15 +681,6 @@ public class CaptureResponse {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(CaptureResponseLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends CaptureResponseLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

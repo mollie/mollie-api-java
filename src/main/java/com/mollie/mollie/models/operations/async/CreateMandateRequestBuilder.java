@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.EntityMandate;
+import com.mollie.mollie.models.components.MandateRequest;
 import com.mollie.mollie.models.operations.CreateMandateRequest;
 import com.mollie.mollie.operations.CreateMandate;
 import com.mollie.mollie.utils.Headers;
@@ -21,7 +21,7 @@ public class CreateMandateRequestBuilder {
 
     private String customerId;
     private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends EntityMandate> entityMandate = Optional.empty();
+    private Optional<? extends MandateRequest> mandateRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -48,15 +48,15 @@ public class CreateMandateRequestBuilder {
         return this;
     }
                 
-    public CreateMandateRequestBuilder entityMandate(EntityMandate entityMandate) {
-        Utils.checkNotNull(entityMandate, "entityMandate");
-        this.entityMandate = Optional.of(entityMandate);
+    public CreateMandateRequestBuilder mandateRequest(MandateRequest mandateRequest) {
+        Utils.checkNotNull(mandateRequest, "mandateRequest");
+        this.mandateRequest = Optional.of(mandateRequest);
         return this;
     }
 
-    public CreateMandateRequestBuilder entityMandate(Optional<? extends EntityMandate> entityMandate) {
-        Utils.checkNotNull(entityMandate, "entityMandate");
-        this.entityMandate = entityMandate;
+    public CreateMandateRequestBuilder mandateRequest(Optional<? extends MandateRequest> mandateRequest) {
+        Utils.checkNotNull(mandateRequest, "mandateRequest");
+        this.mandateRequest = mandateRequest;
         return this;
     }
                 
@@ -77,7 +77,7 @@ public class CreateMandateRequestBuilder {
 
         CreateMandateRequest request = new CreateMandateRequest(customerId,
             idempotencyKey,
-            entityMandate);
+            mandateRequest);
 
         return request;
     }

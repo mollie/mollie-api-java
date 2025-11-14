@@ -124,7 +124,7 @@ public class CreateMandate {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "entityMandate",
+                    "mandateRequest",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));

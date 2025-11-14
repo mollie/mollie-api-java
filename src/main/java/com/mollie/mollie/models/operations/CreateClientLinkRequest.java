@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntityClientLink;
+import com.mollie.mollie.models.components.ClientLinkRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -23,16 +23,16 @@ public class CreateClientLinkRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends EntityClientLink> entityClientLink;
+    private Optional<? extends ClientLinkRequest> clientLinkRequest;
 
     @JsonCreator
     public CreateClientLinkRequest(
             Optional<String> idempotencyKey,
-            Optional<? extends EntityClientLink> entityClientLink) {
+            Optional<? extends ClientLinkRequest> clientLinkRequest) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        Utils.checkNotNull(entityClientLink, "entityClientLink");
+        Utils.checkNotNull(clientLinkRequest, "clientLinkRequest");
         this.idempotencyKey = idempotencyKey;
-        this.entityClientLink = entityClientLink;
+        this.clientLinkRequest = clientLinkRequest;
     }
     
     public CreateClientLinkRequest() {
@@ -49,8 +49,8 @@ public class CreateClientLinkRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityClientLink> entityClientLink() {
-        return (Optional<EntityClientLink>) entityClientLink;
+    public Optional<ClientLinkRequest> clientLinkRequest() {
+        return (Optional<ClientLinkRequest>) clientLinkRequest;
     }
 
     public static Builder builder() {
@@ -77,16 +77,16 @@ public class CreateClientLinkRequest {
         return this;
     }
 
-    public CreateClientLinkRequest withEntityClientLink(EntityClientLink entityClientLink) {
-        Utils.checkNotNull(entityClientLink, "entityClientLink");
-        this.entityClientLink = Optional.ofNullable(entityClientLink);
+    public CreateClientLinkRequest withClientLinkRequest(ClientLinkRequest clientLinkRequest) {
+        Utils.checkNotNull(clientLinkRequest, "clientLinkRequest");
+        this.clientLinkRequest = Optional.ofNullable(clientLinkRequest);
         return this;
     }
 
 
-    public CreateClientLinkRequest withEntityClientLink(Optional<? extends EntityClientLink> entityClientLink) {
-        Utils.checkNotNull(entityClientLink, "entityClientLink");
-        this.entityClientLink = entityClientLink;
+    public CreateClientLinkRequest withClientLinkRequest(Optional<? extends ClientLinkRequest> clientLinkRequest) {
+        Utils.checkNotNull(clientLinkRequest, "clientLinkRequest");
+        this.clientLinkRequest = clientLinkRequest;
         return this;
     }
 
@@ -101,20 +101,20 @@ public class CreateClientLinkRequest {
         CreateClientLinkRequest other = (CreateClientLinkRequest) o;
         return 
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Utils.enhancedDeepEquals(this.entityClientLink, other.entityClientLink);
+            Utils.enhancedDeepEquals(this.clientLinkRequest, other.clientLinkRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idempotencyKey, entityClientLink);
+            idempotencyKey, clientLinkRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateClientLinkRequest.class,
                 "idempotencyKey", idempotencyKey,
-                "entityClientLink", entityClientLink);
+                "clientLinkRequest", clientLinkRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -122,7 +122,7 @@ public class CreateClientLinkRequest {
 
         private Optional<String> idempotencyKey = Optional.empty();
 
-        private Optional<? extends EntityClientLink> entityClientLink = Optional.empty();
+        private Optional<? extends ClientLinkRequest> clientLinkRequest = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -148,22 +148,22 @@ public class CreateClientLinkRequest {
         }
 
 
-        public Builder entityClientLink(EntityClientLink entityClientLink) {
-            Utils.checkNotNull(entityClientLink, "entityClientLink");
-            this.entityClientLink = Optional.ofNullable(entityClientLink);
+        public Builder clientLinkRequest(ClientLinkRequest clientLinkRequest) {
+            Utils.checkNotNull(clientLinkRequest, "clientLinkRequest");
+            this.clientLinkRequest = Optional.ofNullable(clientLinkRequest);
             return this;
         }
 
-        public Builder entityClientLink(Optional<? extends EntityClientLink> entityClientLink) {
-            Utils.checkNotNull(entityClientLink, "entityClientLink");
-            this.entityClientLink = entityClientLink;
+        public Builder clientLinkRequest(Optional<? extends ClientLinkRequest> clientLinkRequest) {
+            Utils.checkNotNull(clientLinkRequest, "clientLinkRequest");
+            this.clientLinkRequest = clientLinkRequest;
             return this;
         }
 
         public CreateClientLinkRequest build() {
 
             return new CreateClientLinkRequest(
-                idempotencyKey, entityClientLink);
+                idempotencyKey, clientLinkRequest);
         }
 
     }

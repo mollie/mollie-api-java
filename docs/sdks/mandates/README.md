@@ -43,10 +43,10 @@ public class Application {
         CreateMandateResponse res = sdk.mandates().create()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .entityMandate(EntityMandate.builder()
-                    .id("mdt_5B8cwPMGnU")
+                .mandateRequest(MandateRequest.builder()
                     .method(MandateMethod.DIRECTDEBIT)
                     .consumerName("John Doe")
+                    .id("mdt_5B8cwPMGnU")
                     .consumerAccount("NL55INGB0000000000")
                     .consumerBic("BANKBIC")
                     .consumerEmail("example@email.com")
@@ -73,7 +73,7 @@ public class Application {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `customerId`                                                                     | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related customer.                                          | cst_5B8cwPMGnU                                                                   |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityMandate`                                                                  | [Optional\<EntityMandate>](../../models/components/EntityMandate.md)             | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `mandateRequest`                                                                 | [Optional\<MandateRequest>](../../models/components/MandateRequest.md)           | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 
@@ -251,9 +251,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.any().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```

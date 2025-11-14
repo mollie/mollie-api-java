@@ -5,7 +5,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.EntityClientLink;
+import com.mollie.mollie.models.components.ClientLinkRequest;
 import com.mollie.mollie.models.operations.CreateClientLinkRequest;
 import com.mollie.mollie.models.operations.CreateClientLinkRequestBuilder;
 import com.mollie.mollie.models.operations.CreateClientLinkResponse;
@@ -256,19 +256,19 @@ public class ClientLinks {
      * you will need to create a new client link.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityClientLink 
+     * @param clientLinkRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateClientLinkResponse create(
-            Optional<String> idempotencyKey, Optional<? extends EntityClientLink> entityClientLink,
+            Optional<String> idempotencyKey, Optional<? extends ClientLinkRequest> clientLinkRequest,
             Optional<Options> options) {
         CreateClientLinkRequest request =
             CreateClientLinkRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
-                .entityClientLink(entityClientLink)
+                .clientLinkRequest(clientLinkRequest)
                 .build();
         RequestOperation<CreateClientLinkRequest, CreateClientLinkResponse> operation
               = new CreateClientLink.Sync(sdkConfiguration, options, _headers);

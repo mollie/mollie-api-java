@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.EntityRefund;
+import com.mollie.mollie.models.components.RefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundRequest;
 import com.mollie.mollie.operations.CreateRefund;
 import com.mollie.mollie.utils.Headers;
@@ -21,7 +21,7 @@ public class CreateRefundRequestBuilder {
 
     private String paymentId;
     private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends EntityRefund> entityRefund = Optional.empty();
+    private Optional<? extends RefundRequest> refundRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -48,15 +48,15 @@ public class CreateRefundRequestBuilder {
         return this;
     }
                 
-    public CreateRefundRequestBuilder entityRefund(EntityRefund entityRefund) {
-        Utils.checkNotNull(entityRefund, "entityRefund");
-        this.entityRefund = Optional.of(entityRefund);
+    public CreateRefundRequestBuilder refundRequest(RefundRequest refundRequest) {
+        Utils.checkNotNull(refundRequest, "refundRequest");
+        this.refundRequest = Optional.of(refundRequest);
         return this;
     }
 
-    public CreateRefundRequestBuilder entityRefund(Optional<? extends EntityRefund> entityRefund) {
-        Utils.checkNotNull(entityRefund, "entityRefund");
-        this.entityRefund = entityRefund;
+    public CreateRefundRequestBuilder refundRequest(Optional<? extends RefundRequest> refundRequest) {
+        Utils.checkNotNull(refundRequest, "refundRequest");
+        this.refundRequest = refundRequest;
         return this;
     }
                 
@@ -77,7 +77,7 @@ public class CreateRefundRequestBuilder {
 
         CreateRefundRequest request = new CreateRefundRequest(paymentId,
             idempotencyKey,
-            entityRefund);
+            refundRequest);
 
         return request;
     }
