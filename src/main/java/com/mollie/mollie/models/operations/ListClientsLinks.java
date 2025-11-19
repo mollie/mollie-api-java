@@ -24,9 +24,8 @@ public class ListClientsLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends Url> self;
+    private Url self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -51,7 +50,7 @@ public class ListClientsLinks {
 
     @JsonCreator
     public ListClientsLinks(
-            @JsonProperty("self") Optional<? extends Url> self,
+            @JsonProperty("self") Url self,
             @JsonProperty("organization") Optional<? extends Url> organization,
             @JsonProperty("onboarding") Optional<? extends Url> onboarding,
             @JsonProperty("documentation") Optional<? extends Url> documentation) {
@@ -65,18 +64,18 @@ public class ListClientsLinks {
         this.documentation = documentation;
     }
     
-    public ListClientsLinks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
+    public ListClientsLinks(
+            Url self) {
+        this(self, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Url> self() {
-        return (Optional<Url>) self;
+    public Url self() {
+        return self;
     }
 
     /**
@@ -115,16 +114,6 @@ public class ListClientsLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public ListClientsLinks withSelf(Url self) {
-        Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListClientsLinks withSelf(Optional<? extends Url> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -222,7 +211,7 @@ public class ListClientsLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Url> self = Optional.empty();
+        private Url self;
 
         private Optional<? extends Url> organization = Optional.empty();
 
@@ -239,15 +228,6 @@ public class ListClientsLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder self(Url self) {
-            Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends Url> self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;

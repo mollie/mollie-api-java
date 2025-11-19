@@ -21,16 +21,12 @@ public class Clients {
      * Indicates the response contains a client object. Will always contain the string `client` for this
      * resource type.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
-    /**
-     * The identifier uniquely referring to this client. Example: `org_12345678`.
-     */
-    @JsonInclude(Include.NON_ABSENT)
+
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The commission object.
@@ -51,9 +47,8 @@ public class Clients {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_links")
-    private Optional<? extends ListClientsLinks> links;
+    private ListClientsLinks links;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -62,11 +57,11 @@ public class Clients {
 
     @JsonCreator
     public Clients(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("id") Optional<String> id,
+            @JsonProperty("resource") String resource,
+            @JsonProperty("id") String id,
             @JsonProperty("commission") JsonNullable<? extends ListClientsCommission> commission,
             @JsonProperty("organizationCreatedAt") Optional<String> organizationCreatedAt,
-            @JsonProperty("_links") Optional<? extends ListClientsLinks> links,
+            @JsonProperty("_links") ListClientsLinks links,
             @JsonProperty("_embedded") Optional<? extends ListClientsClientsEmbedded> embedded) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -82,9 +77,12 @@ public class Clients {
         this.embedded = embedded;
     }
     
-    public Clients() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+    public Clients(
+            String resource,
+            String id,
+            ListClientsLinks links) {
+        this(resource, id, JsonNullable.undefined(),
+            Optional.empty(), links, Optional.empty());
     }
 
     /**
@@ -92,15 +90,12 @@ public class Clients {
      * resource type.
      */
     @JsonIgnore
-    public Optional<String> resource() {
+    public String resource() {
         return resource;
     }
 
-    /**
-     * The identifier uniquely referring to this client. Example: `org_12345678`.
-     */
     @JsonIgnore
-    public Optional<String> id() {
+    public String id() {
         return id;
     }
 
@@ -126,10 +121,9 @@ public class Clients {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ListClientsLinks> links() {
-        return (Optional<ListClientsLinks>) links;
+    public ListClientsLinks links() {
+        return links;
     }
 
     @SuppressWarnings("unchecked")
@@ -149,35 +143,11 @@ public class Clients {
      */
     public Clients withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    /**
-     * Indicates the response contains a client object. Will always contain the string `client` for this
-     * resource type.
-     */
-    public Clients withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
-    /**
-     * The identifier uniquely referring to this client. Example: `org_12345678`.
-     */
     public Clients withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The identifier uniquely referring to this client. Example: `org_12345678`.
-     */
-    public Clients withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -228,16 +198,6 @@ public class Clients {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public Clients withLinks(ListClientsLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public Clients withLinks(Optional<? extends ListClientsLinks> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -295,15 +255,15 @@ public class Clients {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
         private JsonNullable<? extends ListClientsCommission> commission = JsonNullable.undefined();
 
         private Optional<String> organizationCreatedAt = Optional.empty();
 
-        private Optional<? extends ListClientsLinks> links = Optional.empty();
+        private ListClientsLinks links;
 
         private Optional<? extends ListClientsClientsEmbedded> embedded = Optional.empty();
 
@@ -318,34 +278,12 @@ public class Clients {
          */
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        /**
-         * Indicates the response contains a client object. Will always contain the string `client` for this
-         * resource type.
-         */
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
             this.resource = resource;
             return this;
         }
 
 
-        /**
-         * The identifier uniquely referring to this client. Example: `org_12345678`.
-         */
         public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The identifier uniquely referring to this client. Example: `org_12345678`.
-         */
-        public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -398,15 +336,6 @@ public class Clients {
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(ListClientsLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(Optional<? extends ListClientsLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
