@@ -45,7 +45,6 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(CreatePaymentLinkRequestBody.builder()
                     .description("Chess Board")
-                    .id("pl_d9fQur83kFdhH8hIhaZfq")
                     .amount(AmountNullable.builder()
                         .currency("EUR")
                         .value("10.00")

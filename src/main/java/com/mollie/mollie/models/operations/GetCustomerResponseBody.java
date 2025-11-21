@@ -32,7 +32,9 @@ public class GetCustomerResponseBody {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -146,6 +148,9 @@ public class GetCustomerResponseBody {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -234,6 +239,9 @@ public class GetCustomerResponseBody {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
+     */
     public GetCustomerResponseBody withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -448,6 +456,9 @@ public class GetCustomerResponseBody {
         }
 
 
+        /**
+         * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

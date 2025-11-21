@@ -17,11 +17,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class EntityCapture {
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("id")
-    private Optional<String> id;
-
     /**
      * The description of the capture.
      */
@@ -37,20 +32,6 @@ public class EntityCapture {
     private JsonNullable<? extends AmountNullable> amount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementAmount")
-    private JsonNullable<? extends AmountNullable> settlementAmount;
-
-    /**
-     * The capture's status.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("status")
-    private Optional<? extends CaptureStatus> status;
-
-    /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
      * the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to
@@ -60,61 +41,21 @@ public class EntityCapture {
     @JsonProperty("metadata")
     private JsonNullable<? extends Metadata> metadata;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("paymentId")
-    private Optional<String> paymentId;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("shipmentId")
-    private Optional<String> shipmentId;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementId")
-    private Optional<String> settlementId;
-
     @JsonCreator
     public EntityCapture(
-            @JsonProperty("id") Optional<String> id,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") JsonNullable<? extends AmountNullable> amount,
-            @JsonProperty("settlementAmount") JsonNullable<? extends AmountNullable> settlementAmount,
-            @JsonProperty("status") Optional<? extends CaptureStatus> status,
-            @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
-            @JsonProperty("paymentId") Optional<String> paymentId,
-            @JsonProperty("shipmentId") Optional<String> shipmentId,
-            @JsonProperty("settlementId") Optional<String> settlementId) {
-        Utils.checkNotNull(id, "id");
+            @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(metadata, "metadata");
-        Utils.checkNotNull(paymentId, "paymentId");
-        Utils.checkNotNull(shipmentId, "shipmentId");
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.id = id;
         this.description = description;
         this.amount = amount;
-        this.settlementAmount = settlementAmount;
-        this.status = status;
         this.metadata = metadata;
-        this.paymentId = paymentId;
-        this.shipmentId = shipmentId;
-        this.settlementId = settlementId;
     }
     
     public EntityCapture() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty());
-    }
-
-    @JsonIgnore
-    public Optional<String> id() {
-        return id;
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -135,24 +76,6 @@ public class EntityCapture {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<AmountNullable> settlementAmount() {
-        return (JsonNullable<AmountNullable>) settlementAmount;
-    }
-
-    /**
-     * The capture's status.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<CaptureStatus> status() {
-        return (Optional<CaptureStatus>) status;
-    }
-
-    /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
      * the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to
@@ -164,38 +87,10 @@ public class EntityCapture {
         return (JsonNullable<Metadata>) metadata;
     }
 
-    @JsonIgnore
-    public Optional<String> paymentId() {
-        return paymentId;
-    }
-
-    @JsonIgnore
-    public Optional<String> shipmentId() {
-        return shipmentId;
-    }
-
-    @JsonIgnore
-    public Optional<String> settlementId() {
-        return settlementId;
-    }
-
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public EntityCapture withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public EntityCapture withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The description of the capture.
@@ -235,43 +130,6 @@ public class EntityCapture {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntityCapture withSettlementAmount(AmountNullable settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = JsonNullable.of(settlementAmount);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntityCapture withSettlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = settlementAmount;
-        return this;
-    }
-
-    /**
-     * The capture's status.
-     */
-    public EntityCapture withStatus(CaptureStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The capture's status.
-     */
-    public EntityCapture withStatus(Optional<? extends CaptureStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
-
-    /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
      * the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to
@@ -295,45 +153,6 @@ public class EntityCapture {
         return this;
     }
 
-    public EntityCapture withPaymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
-        return this;
-    }
-
-
-    public EntityCapture withPaymentId(Optional<String> paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-
-    public EntityCapture withShipmentId(String shipmentId) {
-        Utils.checkNotNull(shipmentId, "shipmentId");
-        this.shipmentId = Optional.ofNullable(shipmentId);
-        return this;
-    }
-
-
-    public EntityCapture withShipmentId(Optional<String> shipmentId) {
-        Utils.checkNotNull(shipmentId, "shipmentId");
-        this.shipmentId = shipmentId;
-        return this;
-    }
-
-    public EntityCapture withSettlementId(String settlementId) {
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = Optional.ofNullable(settlementId);
-        return this;
-    }
-
-
-    public EntityCapture withSettlementId(Optional<String> settlementId) {
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = settlementId;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -344,75 +163,36 @@ public class EntityCapture {
         }
         EntityCapture other = (EntityCapture) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
-            Utils.enhancedDeepEquals(this.status, other.status) &&
-            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
-            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
-            Utils.enhancedDeepEquals(this.shipmentId, other.shipmentId) &&
-            Utils.enhancedDeepEquals(this.settlementId, other.settlementId);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, description, amount,
-            settlementAmount, status, metadata,
-            paymentId, shipmentId, settlementId);
+            description, amount, metadata);
     }
     
     @Override
     public String toString() {
         return Utils.toString(EntityCapture.class,
-                "id", id,
                 "description", description,
                 "amount", amount,
-                "settlementAmount", settlementAmount,
-                "status", status,
-                "metadata", metadata,
-                "paymentId", paymentId,
-                "shipmentId", shipmentId,
-                "settlementId", settlementId);
+                "metadata", metadata);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
-
         private Optional<String> description = Optional.empty();
 
         private JsonNullable<? extends AmountNullable> amount = JsonNullable.undefined();
 
-        private JsonNullable<? extends AmountNullable> settlementAmount = JsonNullable.undefined();
-
-        private Optional<? extends CaptureStatus> status = Optional.empty();
-
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
-
-        private Optional<String> paymentId = Optional.empty();
-
-        private Optional<String> shipmentId = Optional.empty();
-
-        private Optional<String> settlementId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
         }
 
 
@@ -455,44 +235,6 @@ public class EntityCapture {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder settlementAmount(AmountNullable settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = JsonNullable.of(settlementAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder settlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = settlementAmount;
-            return this;
-        }
-
-
-        /**
-         * The capture's status.
-         */
-        public Builder status(CaptureStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The capture's status.
-         */
-        public Builder status(Optional<? extends CaptureStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside
          * the entity. Whenever
          * you fetch the entity with our API, we will also include the metadata. You can use up to
@@ -516,51 +258,10 @@ public class EntityCapture {
             return this;
         }
 
-
-        public Builder paymentId(String paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
-            return this;
-        }
-
-        public Builder paymentId(Optional<String> paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = paymentId;
-            return this;
-        }
-
-
-        public Builder shipmentId(String shipmentId) {
-            Utils.checkNotNull(shipmentId, "shipmentId");
-            this.shipmentId = Optional.ofNullable(shipmentId);
-            return this;
-        }
-
-        public Builder shipmentId(Optional<String> shipmentId) {
-            Utils.checkNotNull(shipmentId, "shipmentId");
-            this.shipmentId = shipmentId;
-            return this;
-        }
-
-
-        public Builder settlementId(String settlementId) {
-            Utils.checkNotNull(settlementId, "settlementId");
-            this.settlementId = Optional.ofNullable(settlementId);
-            return this;
-        }
-
-        public Builder settlementId(Optional<String> settlementId) {
-            Utils.checkNotNull(settlementId, "settlementId");
-            this.settlementId = settlementId;
-            return this;
-        }
-
         public EntityCapture build() {
 
             return new EntityCapture(
-                id, description, amount,
-                settlementAmount, status, metadata,
-                paymentId, shipmentId, settlementId);
+                description, amount, metadata);
         }
 
     }

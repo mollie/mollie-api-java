@@ -19,11 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class EntitySalesInvoice {
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("id")
-    private Optional<String> id;
-
     /**
      * Whether to create the entity in test mode or live mode.
      * 
@@ -171,44 +166,8 @@ public class EntitySalesInvoice {
     @JsonProperty("discount")
     private JsonNullable<? extends SalesInvoiceDiscount> discount;
 
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("amountDue")
-    private Optional<? extends Amount> amountDue;
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("subtotalAmount")
-    private Optional<? extends Amount> subtotalAmount;
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("totalAmount")
-    private Optional<? extends Amount> totalAmount;
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("totalVatAmount")
-    private Optional<? extends Amount> totalVatAmount;
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("discountedSubtotalAmount")
-    private Optional<? extends Amount> discountedSubtotalAmount;
-
     @JsonCreator
     public EntitySalesInvoice(
-            @JsonProperty("id") Optional<String> id,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
             @JsonProperty("profileId") JsonNullable<String> profileId,
             @JsonProperty("status") Optional<? extends SalesInvoiceStatus> status,
@@ -224,13 +183,7 @@ public class EntitySalesInvoice {
             @JsonProperty("recipientIdentifier") Optional<String> recipientIdentifier,
             @JsonProperty("recipient") JsonNullable<? extends SalesInvoiceRecipient> recipient,
             @JsonProperty("lines") JsonNullable<? extends List<SalesInvoiceLineItem>> lines,
-            @JsonProperty("discount") JsonNullable<? extends SalesInvoiceDiscount> discount,
-            @JsonProperty("amountDue") Optional<? extends Amount> amountDue,
-            @JsonProperty("subtotalAmount") Optional<? extends Amount> subtotalAmount,
-            @JsonProperty("totalAmount") Optional<? extends Amount> totalAmount,
-            @JsonProperty("totalVatAmount") Optional<? extends Amount> totalVatAmount,
-            @JsonProperty("discountedSubtotalAmount") Optional<? extends Amount> discountedSubtotalAmount) {
-        Utils.checkNotNull(id, "id");
+            @JsonProperty("discount") JsonNullable<? extends SalesInvoiceDiscount> discount) {
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(status, "status");
@@ -247,12 +200,6 @@ public class EntitySalesInvoice {
         Utils.checkNotNull(recipient, "recipient");
         Utils.checkNotNull(lines, "lines");
         Utils.checkNotNull(discount, "discount");
-        Utils.checkNotNull(amountDue, "amountDue");
-        Utils.checkNotNull(subtotalAmount, "subtotalAmount");
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        Utils.checkNotNull(totalVatAmount, "totalVatAmount");
-        Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
-        this.id = id;
         this.testmode = testmode;
         this.profileId = profileId;
         this.status = status;
@@ -269,27 +216,15 @@ public class EntitySalesInvoice {
         this.recipient = recipient;
         this.lines = lines;
         this.discount = discount;
-        this.amountDue = amountDue;
-        this.subtotalAmount = subtotalAmount;
-        this.totalAmount = totalAmount;
-        this.totalVatAmount = totalVatAmount;
-        this.discountedSubtotalAmount = discountedSubtotalAmount;
     }
     
     public EntitySalesInvoice() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
-    }
-
-    @JsonIgnore
-    public Optional<String> id() {
-        return id;
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -461,68 +396,10 @@ public class EntitySalesInvoice {
         return (JsonNullable<SalesInvoiceDiscount>) discount;
     }
 
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Amount> amountDue() {
-        return (Optional<Amount>) amountDue;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Amount> subtotalAmount() {
-        return (Optional<Amount>) subtotalAmount;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Amount> totalAmount() {
-        return (Optional<Amount>) totalAmount;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Amount> totalVatAmount() {
-        return (Optional<Amount>) totalVatAmount;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Amount> discountedSubtotalAmount() {
-        return (Optional<Amount>) discountedSubtotalAmount;
-    }
-
     public static Builder builder() {
         return new Builder();
     }
 
-
-    public EntitySalesInvoice withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public EntitySalesInvoice withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * Whether to create the entity in test mode or live mode.
@@ -880,101 +757,6 @@ public class EntitySalesInvoice {
         return this;
     }
 
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySalesInvoice withAmountDue(Amount amountDue) {
-        Utils.checkNotNull(amountDue, "amountDue");
-        this.amountDue = Optional.ofNullable(amountDue);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySalesInvoice withAmountDue(Optional<? extends Amount> amountDue) {
-        Utils.checkNotNull(amountDue, "amountDue");
-        this.amountDue = amountDue;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySalesInvoice withSubtotalAmount(Amount subtotalAmount) {
-        Utils.checkNotNull(subtotalAmount, "subtotalAmount");
-        this.subtotalAmount = Optional.ofNullable(subtotalAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySalesInvoice withSubtotalAmount(Optional<? extends Amount> subtotalAmount) {
-        Utils.checkNotNull(subtotalAmount, "subtotalAmount");
-        this.subtotalAmount = subtotalAmount;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySalesInvoice withTotalAmount(Amount totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = Optional.ofNullable(totalAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySalesInvoice withTotalAmount(Optional<? extends Amount> totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = totalAmount;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySalesInvoice withTotalVatAmount(Amount totalVatAmount) {
-        Utils.checkNotNull(totalVatAmount, "totalVatAmount");
-        this.totalVatAmount = Optional.ofNullable(totalVatAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySalesInvoice withTotalVatAmount(Optional<? extends Amount> totalVatAmount) {
-        Utils.checkNotNull(totalVatAmount, "totalVatAmount");
-        this.totalVatAmount = totalVatAmount;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySalesInvoice withDiscountedSubtotalAmount(Amount discountedSubtotalAmount) {
-        Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
-        this.discountedSubtotalAmount = Optional.ofNullable(discountedSubtotalAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public EntitySalesInvoice withDiscountedSubtotalAmount(Optional<? extends Amount> discountedSubtotalAmount) {
-        Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
-        this.discountedSubtotalAmount = discountedSubtotalAmount;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -985,7 +767,6 @@ public class EntitySalesInvoice {
         }
         EntitySalesInvoice other = (EntitySalesInvoice) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
@@ -1001,31 +782,23 @@ public class EntitySalesInvoice {
             Utils.enhancedDeepEquals(this.recipientIdentifier, other.recipientIdentifier) &&
             Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
             Utils.enhancedDeepEquals(this.lines, other.lines) &&
-            Utils.enhancedDeepEquals(this.discount, other.discount) &&
-            Utils.enhancedDeepEquals(this.amountDue, other.amountDue) &&
-            Utils.enhancedDeepEquals(this.subtotalAmount, other.subtotalAmount) &&
-            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
-            Utils.enhancedDeepEquals(this.totalVatAmount, other.totalVatAmount) &&
-            Utils.enhancedDeepEquals(this.discountedSubtotalAmount, other.discountedSubtotalAmount);
+            Utils.enhancedDeepEquals(this.discount, other.discount);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, testmode, profileId,
-            status, vatScheme, vatMode,
-            memo, metadata, paymentTerm,
-            paymentDetails, emailDetails, customerId,
-            mandateId, recipientIdentifier, recipient,
-            lines, discount, amountDue,
-            subtotalAmount, totalAmount, totalVatAmount,
-            discountedSubtotalAmount);
+            testmode, profileId, status,
+            vatScheme, vatMode, memo,
+            metadata, paymentTerm, paymentDetails,
+            emailDetails, customerId, mandateId,
+            recipientIdentifier, recipient, lines,
+            discount);
     }
     
     @Override
     public String toString() {
         return Utils.toString(EntitySalesInvoice.class,
-                "id", id,
                 "testmode", testmode,
                 "profileId", profileId,
                 "status", status,
@@ -1041,18 +814,11 @@ public class EntitySalesInvoice {
                 "recipientIdentifier", recipientIdentifier,
                 "recipient", recipient,
                 "lines", lines,
-                "discount", discount,
-                "amountDue", amountDue,
-                "subtotalAmount", subtotalAmount,
-                "totalAmount", totalAmount,
-                "totalVatAmount", totalVatAmount,
-                "discountedSubtotalAmount", discountedSubtotalAmount);
+                "discount", discount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<String> id = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -1086,31 +852,8 @@ public class EntitySalesInvoice {
 
         private JsonNullable<? extends SalesInvoiceDiscount> discount = JsonNullable.undefined();
 
-        private Optional<? extends Amount> amountDue = Optional.empty();
-
-        private Optional<? extends Amount> subtotalAmount = Optional.empty();
-
-        private Optional<? extends Amount> totalAmount = Optional.empty();
-
-        private Optional<? extends Amount> totalVatAmount = Optional.empty();
-
-        private Optional<? extends Amount> discountedSubtotalAmount = Optional.empty();
-
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
         }
 
 
@@ -1479,112 +1222,15 @@ public class EntitySalesInvoice {
             return this;
         }
 
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountDue(Amount amountDue) {
-            Utils.checkNotNull(amountDue, "amountDue");
-            this.amountDue = Optional.ofNullable(amountDue);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountDue(Optional<? extends Amount> amountDue) {
-            Utils.checkNotNull(amountDue, "amountDue");
-            this.amountDue = amountDue;
-            return this;
-        }
-
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder subtotalAmount(Amount subtotalAmount) {
-            Utils.checkNotNull(subtotalAmount, "subtotalAmount");
-            this.subtotalAmount = Optional.ofNullable(subtotalAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder subtotalAmount(Optional<? extends Amount> subtotalAmount) {
-            Utils.checkNotNull(subtotalAmount, "subtotalAmount");
-            this.subtotalAmount = subtotalAmount;
-            return this;
-        }
-
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder totalAmount(Amount totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = Optional.ofNullable(totalAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder totalAmount(Optional<? extends Amount> totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = totalAmount;
-            return this;
-        }
-
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder totalVatAmount(Amount totalVatAmount) {
-            Utils.checkNotNull(totalVatAmount, "totalVatAmount");
-            this.totalVatAmount = Optional.ofNullable(totalVatAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder totalVatAmount(Optional<? extends Amount> totalVatAmount) {
-            Utils.checkNotNull(totalVatAmount, "totalVatAmount");
-            this.totalVatAmount = totalVatAmount;
-            return this;
-        }
-
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder discountedSubtotalAmount(Amount discountedSubtotalAmount) {
-            Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
-            this.discountedSubtotalAmount = Optional.ofNullable(discountedSubtotalAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder discountedSubtotalAmount(Optional<? extends Amount> discountedSubtotalAmount) {
-            Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
-            this.discountedSubtotalAmount = discountedSubtotalAmount;
-            return this;
-        }
-
         public EntitySalesInvoice build() {
 
             return new EntitySalesInvoice(
-                id, testmode, profileId,
-                status, vatScheme, vatMode,
-                memo, metadata, paymentTerm,
-                paymentDetails, emailDetails, customerId,
-                mandateId, recipientIdentifier, recipient,
-                lines, discount, amountDue,
-                subtotalAmount, totalAmount, totalVatAmount,
-                discountedSubtotalAmount);
+                testmode, profileId, status,
+                vatScheme, vatMode, memo,
+                metadata, paymentTerm, paymentDetails,
+                emailDetails, customerId, mandateId,
+                recipientIdentifier, recipient, lines,
+                discount);
         }
 
     }

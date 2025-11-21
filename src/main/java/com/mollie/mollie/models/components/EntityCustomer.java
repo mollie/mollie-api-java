@@ -13,16 +13,10 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class EntityCustomer {
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("id")
-    private Optional<String> id;
-
     /**
      * The full name of the customer.
      */
@@ -69,19 +63,16 @@ public class EntityCustomer {
 
     @JsonCreator
     public EntityCustomer(
-            @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("email") JsonNullable<String> email,
             @JsonProperty("locale") JsonNullable<? extends LocaleResponse> locale,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(locale, "locale");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(testmode, "testmode");
-        this.id = id;
         this.name = name;
         this.email = email;
         this.locale = locale;
@@ -90,13 +81,8 @@ public class EntityCustomer {
     }
     
     public EntityCustomer() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
-    }
-
-    @JsonIgnore
-    public Optional<String> id() {
-        return id;
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -154,19 +140,6 @@ public class EntityCustomer {
         return new Builder();
     }
 
-
-    public EntityCustomer withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public EntityCustomer withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The full name of the customer.
@@ -286,7 +259,6 @@ public class EntityCustomer {
         }
         EntityCustomer other = (EntityCustomer) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.email, other.email) &&
             Utils.enhancedDeepEquals(this.locale, other.locale) &&
@@ -297,14 +269,13 @@ public class EntityCustomer {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name, email,
-            locale, metadata, testmode);
+            name, email, locale,
+            metadata, testmode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(EntityCustomer.class,
-                "id", id,
                 "name", name,
                 "email", email,
                 "locale", locale,
@@ -314,8 +285,6 @@ public class EntityCustomer {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<String> id = Optional.empty();
 
         private JsonNullable<String> name = JsonNullable.undefined();
 
@@ -329,19 +298,6 @@ public class EntityCustomer {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
         }
 
 
@@ -460,8 +416,8 @@ public class EntityCustomer {
         public EntityCustomer build() {
 
             return new EntityCustomer(
-                id, name, email,
-                locale, metadata, testmode);
+                name, email, locale,
+                metadata, testmode);
         }
 
     }

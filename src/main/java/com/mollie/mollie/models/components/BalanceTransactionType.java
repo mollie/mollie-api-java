@@ -45,52 +45,45 @@ import java.util.Optional;
 @JsonSerialize(using = BalanceTransactionType._Serializer.class)
 public class BalanceTransactionType {
 
-    public static final BalanceTransactionType APPLICATION_FEE = new BalanceTransactionType("application-fee");
-    public static final BalanceTransactionType CAPTURE = new BalanceTransactionType("capture");
-    public static final BalanceTransactionType CHARGEBACK = new BalanceTransactionType("chargeback");
-    public static final BalanceTransactionType CHARGEBACK_REVERSAL = new BalanceTransactionType("chargeback-reversal");
-    public static final BalanceTransactionType FAILED_PAYMENT_FEE = new BalanceTransactionType("failed-payment-fee");
-    public static final BalanceTransactionType FAILED_PAYMENT = new BalanceTransactionType("failed-payment");
-    public static final BalanceTransactionType INVOICE_COMPENSATION = new BalanceTransactionType("invoice-compensation");
     public static final BalanceTransactionType PAYMENT = new BalanceTransactionType("payment");
-    public static final BalanceTransactionType PAYMENT_FEE = new BalanceTransactionType("payment-fee");
-    public static final BalanceTransactionType PAYMENT_COMMISSION = new BalanceTransactionType("payment-commission");
-    public static final BalanceTransactionType REFUND = new BalanceTransactionType("refund");
-    public static final BalanceTransactionType RETURNED_REFUND = new BalanceTransactionType("returned-refund");
-    public static final BalanceTransactionType RETURNED_TRANSFER = new BalanceTransactionType("returned-transfer");
     public static final BalanceTransactionType SPLIT_PAYMENT = new BalanceTransactionType("split-payment");
-    public static final BalanceTransactionType OUTGOING_TRANSFER = new BalanceTransactionType("outgoing-transfer");
-    public static final BalanceTransactionType CAPTURE_COMMISSION = new BalanceTransactionType("capture-commission");
-    public static final BalanceTransactionType CANCELED_OUTGOING_TRANSFER = new BalanceTransactionType("canceled-outgoing-transfer");
-    public static final BalanceTransactionType INCOMING_TRANSFER = new BalanceTransactionType("incoming-transfer");
-    public static final BalanceTransactionType API_PAYMENT_ROLLING_RESERVE_RELEASE = new BalanceTransactionType("api-payment-rolling-reserve-release");
-    public static final BalanceTransactionType CAPTURE_ROLLING_RESERVE_RELEASE = new BalanceTransactionType("capture-rolling-reserve-release");
-    public static final BalanceTransactionType REIMBURSEMENT_FEE = new BalanceTransactionType("reimbursement-fee");
-    public static final BalanceTransactionType BALANCE_CORRECTION = new BalanceTransactionType("balance-correction");
-    public static final BalanceTransactionType UNAUTHORIZED_DIRECT_DEBIT = new BalanceTransactionType("unauthorized-direct-debit");
-    public static final BalanceTransactionType BANK_CHARGED_FAILURE_FEE = new BalanceTransactionType("bank-charged-failure-fee");
+    public static final BalanceTransactionType FAILED_PAYMENT = new BalanceTransactionType("failed-payment");
+    public static final BalanceTransactionType FAILED_PLATFORM_SPLIT_PAYMENT = new BalanceTransactionType("failed-platform-split-payment");
+    public static final BalanceTransactionType FAILED_SPLIT_PAYMENT_COMPENSATION = new BalanceTransactionType("failed-split-payment-compensation");
+    public static final BalanceTransactionType CAPTURE = new BalanceTransactionType("capture");
+    public static final BalanceTransactionType SPLIT_TRANSACTION = new BalanceTransactionType("split-transaction");
+    public static final BalanceTransactionType REFUND = new BalanceTransactionType("refund");
     public static final BalanceTransactionType PLATFORM_PAYMENT_REFUND = new BalanceTransactionType("platform-payment-refund");
+    public static final BalanceTransactionType RETURNED_PLATFORM_PAYMENT_REFUND = new BalanceTransactionType("returned-platform-payment-refund");
     public static final BalanceTransactionType REFUND_COMPENSATION = new BalanceTransactionType("refund-compensation");
     public static final BalanceTransactionType RETURNED_REFUND_COMPENSATION = new BalanceTransactionType("returned-refund-compensation");
-    public static final BalanceTransactionType RETURNED_PLATFORM_PAYMENT_REFUND = new BalanceTransactionType("returned-platform-payment-refund");
-    public static final BalanceTransactionType PLATFORM_PAYMENT_CHARGEBACK = new BalanceTransactionType("platform-payment-chargeback");
+    public static final BalanceTransactionType RETURNED_REFUND = new BalanceTransactionType("returned-refund");
+    public static final BalanceTransactionType CHARGEBACK = new BalanceTransactionType("chargeback");
+    public static final BalanceTransactionType CHARGEBACK_REVERSAL = new BalanceTransactionType("chargeback-reversal");
     public static final BalanceTransactionType CHARGEBACK_COMPENSATION = new BalanceTransactionType("chargeback-compensation");
-    public static final BalanceTransactionType REVERSED_PLATFORM_PAYMENT_CHARGEBACK = new BalanceTransactionType("reversed-platform-payment-chargeback");
     public static final BalanceTransactionType REVERSED_CHARGEBACK_COMPENSATION = new BalanceTransactionType("reversed-chargeback-compensation");
-    public static final BalanceTransactionType FAILED_SPLIT_PAYMENT_PLATFORM = new BalanceTransactionType("failed-split-payment-platform");
-    public static final BalanceTransactionType FAILED_SPLIT_PAYMENT_COMPENSATION = new BalanceTransactionType("failed-split-payment-compensation");
-    public static final BalanceTransactionType CASH_ADVANCE_LOAN = new BalanceTransactionType("cash-advance-loan");
-    public static final BalanceTransactionType PLATFORM_CONNECTED_ORGANIZATIONS_FEE = new BalanceTransactionType("platform-connected-organizations-fee");
-    public static final BalanceTransactionType SPLIT_TRANSACTION = new BalanceTransactionType("split-transaction");
-    public static final BalanceTransactionType MANAGED_FEE = new BalanceTransactionType("managed-fee");
-    public static final BalanceTransactionType RETURNED_MANAGED_FEE = new BalanceTransactionType("returned-managed-fee");
-    public static final BalanceTransactionType TOPUP = new BalanceTransactionType("topup");
+    public static final BalanceTransactionType PLATFORM_PAYMENT_CHARGEBACK = new BalanceTransactionType("platform-payment-chargeback");
+    public static final BalanceTransactionType REVERSED_PLATFORM_PAYMENT_CHARGEBACK = new BalanceTransactionType("reversed-platform-payment-chargeback");
+    public static final BalanceTransactionType FEE_PREPAYMENT = new BalanceTransactionType("fee-prepayment");
+    public static final BalanceTransactionType OUTGOING_TRANSFER = new BalanceTransactionType("outgoing-transfer");
+    public static final BalanceTransactionType INCOMING_TRANSFER = new BalanceTransactionType("incoming-transfer");
+    public static final BalanceTransactionType CANCELED_TRANSFER = new BalanceTransactionType("canceled-transfer");
+    public static final BalanceTransactionType RETURNED_TRANSFER = new BalanceTransactionType("returned-transfer");
     public static final BalanceTransactionType BALANCE_RESERVE = new BalanceTransactionType("balance-reserve");
     public static final BalanceTransactionType BALANCE_RESERVE_RETURN = new BalanceTransactionType("balance-reserve-return");
-    public static final BalanceTransactionType MOVEMENT = new BalanceTransactionType("movement");
-    public static final BalanceTransactionType POST_PAYMENT_SPLIT_PAYMENT = new BalanceTransactionType("post-payment-split-payment");
-    public static final BalanceTransactionType CASH_COLLATERAL_ISSUANCE = new BalanceTransactionType("cash-collateral-issuance");
+    public static final BalanceTransactionType INVOICE_ROUNDING_COMPENSATION = new BalanceTransactionType("invoice-rounding-compensation");
+    public static final BalanceTransactionType ROLLING_RESERVE_HOLD = new BalanceTransactionType("rolling-reserve-hold");
+    public static final BalanceTransactionType ROLLING_RESERVE_RELEASE = new BalanceTransactionType("rolling-reserve-release");
+    public static final BalanceTransactionType BALANCE_CORRECTION = new BalanceTransactionType("balance-correction");
+    public static final BalanceTransactionType REPAYMENT = new BalanceTransactionType("repayment");
+    public static final BalanceTransactionType LOAN = new BalanceTransactionType("loan");
+    public static final BalanceTransactionType BALANCE_TOPUP = new BalanceTransactionType("balance-topup");
+    public static final BalanceTransactionType CASH_COLLATERAL_ISSUANCE = new BalanceTransactionType("cash-collateral-issuance';");
     public static final BalanceTransactionType CASH_COLLATERAL_RELEASE = new BalanceTransactionType("cash-collateral-release");
+    public static final BalanceTransactionType PENDING_ROLLING_RESERVE = new BalanceTransactionType("pending-rolling-reserve");
+    public static final BalanceTransactionType TO_BE_RELEASED_ROLLING_RESERVE = new BalanceTransactionType("to-be-released-rolling-reserve");
+    public static final BalanceTransactionType HELD_ROLLING_RESERVE = new BalanceTransactionType("held-rolling-reserve");
+    public static final BalanceTransactionType RELEASED_ROLLING_RESERVE = new BalanceTransactionType("released-rolling-reserve");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -162,103 +155,89 @@ public class BalanceTransactionType {
 
     private static final Map<String, BalanceTransactionType> createValuesMap() {
         Map<String, BalanceTransactionType> map = new LinkedHashMap<>();
-        map.put("application-fee", APPLICATION_FEE);
-        map.put("capture", CAPTURE);
-        map.put("chargeback", CHARGEBACK);
-        map.put("chargeback-reversal", CHARGEBACK_REVERSAL);
-        map.put("failed-payment-fee", FAILED_PAYMENT_FEE);
-        map.put("failed-payment", FAILED_PAYMENT);
-        map.put("invoice-compensation", INVOICE_COMPENSATION);
         map.put("payment", PAYMENT);
-        map.put("payment-fee", PAYMENT_FEE);
-        map.put("payment-commission", PAYMENT_COMMISSION);
-        map.put("refund", REFUND);
-        map.put("returned-refund", RETURNED_REFUND);
-        map.put("returned-transfer", RETURNED_TRANSFER);
         map.put("split-payment", SPLIT_PAYMENT);
-        map.put("outgoing-transfer", OUTGOING_TRANSFER);
-        map.put("capture-commission", CAPTURE_COMMISSION);
-        map.put("canceled-outgoing-transfer", CANCELED_OUTGOING_TRANSFER);
-        map.put("incoming-transfer", INCOMING_TRANSFER);
-        map.put("api-payment-rolling-reserve-release", API_PAYMENT_ROLLING_RESERVE_RELEASE);
-        map.put("capture-rolling-reserve-release", CAPTURE_ROLLING_RESERVE_RELEASE);
-        map.put("reimbursement-fee", REIMBURSEMENT_FEE);
-        map.put("balance-correction", BALANCE_CORRECTION);
-        map.put("unauthorized-direct-debit", UNAUTHORIZED_DIRECT_DEBIT);
-        map.put("bank-charged-failure-fee", BANK_CHARGED_FAILURE_FEE);
+        map.put("failed-payment", FAILED_PAYMENT);
+        map.put("failed-platform-split-payment", FAILED_PLATFORM_SPLIT_PAYMENT);
+        map.put("failed-split-payment-compensation", FAILED_SPLIT_PAYMENT_COMPENSATION);
+        map.put("capture", CAPTURE);
+        map.put("split-transaction", SPLIT_TRANSACTION);
+        map.put("refund", REFUND);
         map.put("platform-payment-refund", PLATFORM_PAYMENT_REFUND);
+        map.put("returned-platform-payment-refund", RETURNED_PLATFORM_PAYMENT_REFUND);
         map.put("refund-compensation", REFUND_COMPENSATION);
         map.put("returned-refund-compensation", RETURNED_REFUND_COMPENSATION);
-        map.put("returned-platform-payment-refund", RETURNED_PLATFORM_PAYMENT_REFUND);
-        map.put("platform-payment-chargeback", PLATFORM_PAYMENT_CHARGEBACK);
+        map.put("returned-refund", RETURNED_REFUND);
+        map.put("chargeback", CHARGEBACK);
+        map.put("chargeback-reversal", CHARGEBACK_REVERSAL);
         map.put("chargeback-compensation", CHARGEBACK_COMPENSATION);
-        map.put("reversed-platform-payment-chargeback", REVERSED_PLATFORM_PAYMENT_CHARGEBACK);
         map.put("reversed-chargeback-compensation", REVERSED_CHARGEBACK_COMPENSATION);
-        map.put("failed-split-payment-platform", FAILED_SPLIT_PAYMENT_PLATFORM);
-        map.put("failed-split-payment-compensation", FAILED_SPLIT_PAYMENT_COMPENSATION);
-        map.put("cash-advance-loan", CASH_ADVANCE_LOAN);
-        map.put("platform-connected-organizations-fee", PLATFORM_CONNECTED_ORGANIZATIONS_FEE);
-        map.put("split-transaction", SPLIT_TRANSACTION);
-        map.put("managed-fee", MANAGED_FEE);
-        map.put("returned-managed-fee", RETURNED_MANAGED_FEE);
-        map.put("topup", TOPUP);
+        map.put("platform-payment-chargeback", PLATFORM_PAYMENT_CHARGEBACK);
+        map.put("reversed-platform-payment-chargeback", REVERSED_PLATFORM_PAYMENT_CHARGEBACK);
+        map.put("fee-prepayment", FEE_PREPAYMENT);
+        map.put("outgoing-transfer", OUTGOING_TRANSFER);
+        map.put("incoming-transfer", INCOMING_TRANSFER);
+        map.put("canceled-transfer", CANCELED_TRANSFER);
+        map.put("returned-transfer", RETURNED_TRANSFER);
         map.put("balance-reserve", BALANCE_RESERVE);
         map.put("balance-reserve-return", BALANCE_RESERVE_RETURN);
-        map.put("movement", MOVEMENT);
-        map.put("post-payment-split-payment", POST_PAYMENT_SPLIT_PAYMENT);
-        map.put("cash-collateral-issuance", CASH_COLLATERAL_ISSUANCE);
+        map.put("invoice-rounding-compensation", INVOICE_ROUNDING_COMPENSATION);
+        map.put("rolling-reserve-hold", ROLLING_RESERVE_HOLD);
+        map.put("rolling-reserve-release", ROLLING_RESERVE_RELEASE);
+        map.put("balance-correction", BALANCE_CORRECTION);
+        map.put("repayment", REPAYMENT);
+        map.put("loan", LOAN);
+        map.put("balance-topup", BALANCE_TOPUP);
+        map.put("cash-collateral-issuance';", CASH_COLLATERAL_ISSUANCE);
         map.put("cash-collateral-release", CASH_COLLATERAL_RELEASE);
+        map.put("pending-rolling-reserve", PENDING_ROLLING_RESERVE);
+        map.put("to-be-released-rolling-reserve", TO_BE_RELEASED_ROLLING_RESERVE);
+        map.put("held-rolling-reserve", HELD_ROLLING_RESERVE);
+        map.put("released-rolling-reserve", RELEASED_ROLLING_RESERVE);
         return map;
     }
 
     private static final Map<String, BalanceTransactionTypeEnum> createEnumsMap() {
         Map<String, BalanceTransactionTypeEnum> map = new HashMap<>();
-        map.put("application-fee", BalanceTransactionTypeEnum.APPLICATION_FEE);
-        map.put("capture", BalanceTransactionTypeEnum.CAPTURE);
-        map.put("chargeback", BalanceTransactionTypeEnum.CHARGEBACK);
-        map.put("chargeback-reversal", BalanceTransactionTypeEnum.CHARGEBACK_REVERSAL);
-        map.put("failed-payment-fee", BalanceTransactionTypeEnum.FAILED_PAYMENT_FEE);
-        map.put("failed-payment", BalanceTransactionTypeEnum.FAILED_PAYMENT);
-        map.put("invoice-compensation", BalanceTransactionTypeEnum.INVOICE_COMPENSATION);
         map.put("payment", BalanceTransactionTypeEnum.PAYMENT);
-        map.put("payment-fee", BalanceTransactionTypeEnum.PAYMENT_FEE);
-        map.put("payment-commission", BalanceTransactionTypeEnum.PAYMENT_COMMISSION);
-        map.put("refund", BalanceTransactionTypeEnum.REFUND);
-        map.put("returned-refund", BalanceTransactionTypeEnum.RETURNED_REFUND);
-        map.put("returned-transfer", BalanceTransactionTypeEnum.RETURNED_TRANSFER);
         map.put("split-payment", BalanceTransactionTypeEnum.SPLIT_PAYMENT);
-        map.put("outgoing-transfer", BalanceTransactionTypeEnum.OUTGOING_TRANSFER);
-        map.put("capture-commission", BalanceTransactionTypeEnum.CAPTURE_COMMISSION);
-        map.put("canceled-outgoing-transfer", BalanceTransactionTypeEnum.CANCELED_OUTGOING_TRANSFER);
-        map.put("incoming-transfer", BalanceTransactionTypeEnum.INCOMING_TRANSFER);
-        map.put("api-payment-rolling-reserve-release", BalanceTransactionTypeEnum.API_PAYMENT_ROLLING_RESERVE_RELEASE);
-        map.put("capture-rolling-reserve-release", BalanceTransactionTypeEnum.CAPTURE_ROLLING_RESERVE_RELEASE);
-        map.put("reimbursement-fee", BalanceTransactionTypeEnum.REIMBURSEMENT_FEE);
-        map.put("balance-correction", BalanceTransactionTypeEnum.BALANCE_CORRECTION);
-        map.put("unauthorized-direct-debit", BalanceTransactionTypeEnum.UNAUTHORIZED_DIRECT_DEBIT);
-        map.put("bank-charged-failure-fee", BalanceTransactionTypeEnum.BANK_CHARGED_FAILURE_FEE);
+        map.put("failed-payment", BalanceTransactionTypeEnum.FAILED_PAYMENT);
+        map.put("failed-platform-split-payment", BalanceTransactionTypeEnum.FAILED_PLATFORM_SPLIT_PAYMENT);
+        map.put("failed-split-payment-compensation", BalanceTransactionTypeEnum.FAILED_SPLIT_PAYMENT_COMPENSATION);
+        map.put("capture", BalanceTransactionTypeEnum.CAPTURE);
+        map.put("split-transaction", BalanceTransactionTypeEnum.SPLIT_TRANSACTION);
+        map.put("refund", BalanceTransactionTypeEnum.REFUND);
         map.put("platform-payment-refund", BalanceTransactionTypeEnum.PLATFORM_PAYMENT_REFUND);
+        map.put("returned-platform-payment-refund", BalanceTransactionTypeEnum.RETURNED_PLATFORM_PAYMENT_REFUND);
         map.put("refund-compensation", BalanceTransactionTypeEnum.REFUND_COMPENSATION);
         map.put("returned-refund-compensation", BalanceTransactionTypeEnum.RETURNED_REFUND_COMPENSATION);
-        map.put("returned-platform-payment-refund", BalanceTransactionTypeEnum.RETURNED_PLATFORM_PAYMENT_REFUND);
-        map.put("platform-payment-chargeback", BalanceTransactionTypeEnum.PLATFORM_PAYMENT_CHARGEBACK);
+        map.put("returned-refund", BalanceTransactionTypeEnum.RETURNED_REFUND);
+        map.put("chargeback", BalanceTransactionTypeEnum.CHARGEBACK);
+        map.put("chargeback-reversal", BalanceTransactionTypeEnum.CHARGEBACK_REVERSAL);
         map.put("chargeback-compensation", BalanceTransactionTypeEnum.CHARGEBACK_COMPENSATION);
-        map.put("reversed-platform-payment-chargeback", BalanceTransactionTypeEnum.REVERSED_PLATFORM_PAYMENT_CHARGEBACK);
         map.put("reversed-chargeback-compensation", BalanceTransactionTypeEnum.REVERSED_CHARGEBACK_COMPENSATION);
-        map.put("failed-split-payment-platform", BalanceTransactionTypeEnum.FAILED_SPLIT_PAYMENT_PLATFORM);
-        map.put("failed-split-payment-compensation", BalanceTransactionTypeEnum.FAILED_SPLIT_PAYMENT_COMPENSATION);
-        map.put("cash-advance-loan", BalanceTransactionTypeEnum.CASH_ADVANCE_LOAN);
-        map.put("platform-connected-organizations-fee", BalanceTransactionTypeEnum.PLATFORM_CONNECTED_ORGANIZATIONS_FEE);
-        map.put("split-transaction", BalanceTransactionTypeEnum.SPLIT_TRANSACTION);
-        map.put("managed-fee", BalanceTransactionTypeEnum.MANAGED_FEE);
-        map.put("returned-managed-fee", BalanceTransactionTypeEnum.RETURNED_MANAGED_FEE);
-        map.put("topup", BalanceTransactionTypeEnum.TOPUP);
+        map.put("platform-payment-chargeback", BalanceTransactionTypeEnum.PLATFORM_PAYMENT_CHARGEBACK);
+        map.put("reversed-platform-payment-chargeback", BalanceTransactionTypeEnum.REVERSED_PLATFORM_PAYMENT_CHARGEBACK);
+        map.put("fee-prepayment", BalanceTransactionTypeEnum.FEE_PREPAYMENT);
+        map.put("outgoing-transfer", BalanceTransactionTypeEnum.OUTGOING_TRANSFER);
+        map.put("incoming-transfer", BalanceTransactionTypeEnum.INCOMING_TRANSFER);
+        map.put("canceled-transfer", BalanceTransactionTypeEnum.CANCELED_TRANSFER);
+        map.put("returned-transfer", BalanceTransactionTypeEnum.RETURNED_TRANSFER);
         map.put("balance-reserve", BalanceTransactionTypeEnum.BALANCE_RESERVE);
         map.put("balance-reserve-return", BalanceTransactionTypeEnum.BALANCE_RESERVE_RETURN);
-        map.put("movement", BalanceTransactionTypeEnum.MOVEMENT);
-        map.put("post-payment-split-payment", BalanceTransactionTypeEnum.POST_PAYMENT_SPLIT_PAYMENT);
-        map.put("cash-collateral-issuance", BalanceTransactionTypeEnum.CASH_COLLATERAL_ISSUANCE);
+        map.put("invoice-rounding-compensation", BalanceTransactionTypeEnum.INVOICE_ROUNDING_COMPENSATION);
+        map.put("rolling-reserve-hold", BalanceTransactionTypeEnum.ROLLING_RESERVE_HOLD);
+        map.put("rolling-reserve-release", BalanceTransactionTypeEnum.ROLLING_RESERVE_RELEASE);
+        map.put("balance-correction", BalanceTransactionTypeEnum.BALANCE_CORRECTION);
+        map.put("repayment", BalanceTransactionTypeEnum.REPAYMENT);
+        map.put("loan", BalanceTransactionTypeEnum.LOAN);
+        map.put("balance-topup", BalanceTransactionTypeEnum.BALANCE_TOPUP);
+        map.put("cash-collateral-issuance';", BalanceTransactionTypeEnum.CASH_COLLATERAL_ISSUANCE);
         map.put("cash-collateral-release", BalanceTransactionTypeEnum.CASH_COLLATERAL_RELEASE);
+        map.put("pending-rolling-reserve", BalanceTransactionTypeEnum.PENDING_ROLLING_RESERVE);
+        map.put("to-be-released-rolling-reserve", BalanceTransactionTypeEnum.TO_BE_RELEASED_ROLLING_RESERVE);
+        map.put("held-rolling-reserve", BalanceTransactionTypeEnum.HELD_ROLLING_RESERVE);
+        map.put("released-rolling-reserve", BalanceTransactionTypeEnum.RELEASED_ROLLING_RESERVE);
         return map;
     }
     
@@ -294,52 +273,45 @@ public class BalanceTransactionType {
     
     public enum BalanceTransactionTypeEnum {
 
-        APPLICATION_FEE("application-fee"),
-        CAPTURE("capture"),
-        CHARGEBACK("chargeback"),
-        CHARGEBACK_REVERSAL("chargeback-reversal"),
-        FAILED_PAYMENT_FEE("failed-payment-fee"),
-        FAILED_PAYMENT("failed-payment"),
-        INVOICE_COMPENSATION("invoice-compensation"),
         PAYMENT("payment"),
-        PAYMENT_FEE("payment-fee"),
-        PAYMENT_COMMISSION("payment-commission"),
-        REFUND("refund"),
-        RETURNED_REFUND("returned-refund"),
-        RETURNED_TRANSFER("returned-transfer"),
         SPLIT_PAYMENT("split-payment"),
-        OUTGOING_TRANSFER("outgoing-transfer"),
-        CAPTURE_COMMISSION("capture-commission"),
-        CANCELED_OUTGOING_TRANSFER("canceled-outgoing-transfer"),
-        INCOMING_TRANSFER("incoming-transfer"),
-        API_PAYMENT_ROLLING_RESERVE_RELEASE("api-payment-rolling-reserve-release"),
-        CAPTURE_ROLLING_RESERVE_RELEASE("capture-rolling-reserve-release"),
-        REIMBURSEMENT_FEE("reimbursement-fee"),
-        BALANCE_CORRECTION("balance-correction"),
-        UNAUTHORIZED_DIRECT_DEBIT("unauthorized-direct-debit"),
-        BANK_CHARGED_FAILURE_FEE("bank-charged-failure-fee"),
+        FAILED_PAYMENT("failed-payment"),
+        FAILED_PLATFORM_SPLIT_PAYMENT("failed-platform-split-payment"),
+        FAILED_SPLIT_PAYMENT_COMPENSATION("failed-split-payment-compensation"),
+        CAPTURE("capture"),
+        SPLIT_TRANSACTION("split-transaction"),
+        REFUND("refund"),
         PLATFORM_PAYMENT_REFUND("platform-payment-refund"),
+        RETURNED_PLATFORM_PAYMENT_REFUND("returned-platform-payment-refund"),
         REFUND_COMPENSATION("refund-compensation"),
         RETURNED_REFUND_COMPENSATION("returned-refund-compensation"),
-        RETURNED_PLATFORM_PAYMENT_REFUND("returned-platform-payment-refund"),
-        PLATFORM_PAYMENT_CHARGEBACK("platform-payment-chargeback"),
+        RETURNED_REFUND("returned-refund"),
+        CHARGEBACK("chargeback"),
+        CHARGEBACK_REVERSAL("chargeback-reversal"),
         CHARGEBACK_COMPENSATION("chargeback-compensation"),
-        REVERSED_PLATFORM_PAYMENT_CHARGEBACK("reversed-platform-payment-chargeback"),
         REVERSED_CHARGEBACK_COMPENSATION("reversed-chargeback-compensation"),
-        FAILED_SPLIT_PAYMENT_PLATFORM("failed-split-payment-platform"),
-        FAILED_SPLIT_PAYMENT_COMPENSATION("failed-split-payment-compensation"),
-        CASH_ADVANCE_LOAN("cash-advance-loan"),
-        PLATFORM_CONNECTED_ORGANIZATIONS_FEE("platform-connected-organizations-fee"),
-        SPLIT_TRANSACTION("split-transaction"),
-        MANAGED_FEE("managed-fee"),
-        RETURNED_MANAGED_FEE("returned-managed-fee"),
-        TOPUP("topup"),
+        PLATFORM_PAYMENT_CHARGEBACK("platform-payment-chargeback"),
+        REVERSED_PLATFORM_PAYMENT_CHARGEBACK("reversed-platform-payment-chargeback"),
+        FEE_PREPAYMENT("fee-prepayment"),
+        OUTGOING_TRANSFER("outgoing-transfer"),
+        INCOMING_TRANSFER("incoming-transfer"),
+        CANCELED_TRANSFER("canceled-transfer"),
+        RETURNED_TRANSFER("returned-transfer"),
         BALANCE_RESERVE("balance-reserve"),
         BALANCE_RESERVE_RETURN("balance-reserve-return"),
-        MOVEMENT("movement"),
-        POST_PAYMENT_SPLIT_PAYMENT("post-payment-split-payment"),
-        CASH_COLLATERAL_ISSUANCE("cash-collateral-issuance"),
-        CASH_COLLATERAL_RELEASE("cash-collateral-release"),;
+        INVOICE_ROUNDING_COMPENSATION("invoice-rounding-compensation"),
+        ROLLING_RESERVE_HOLD("rolling-reserve-hold"),
+        ROLLING_RESERVE_RELEASE("rolling-reserve-release"),
+        BALANCE_CORRECTION("balance-correction"),
+        REPAYMENT("repayment"),
+        LOAN("loan"),
+        BALANCE_TOPUP("balance-topup"),
+        CASH_COLLATERAL_ISSUANCE("cash-collateral-issuance';"),
+        CASH_COLLATERAL_RELEASE("cash-collateral-release"),
+        PENDING_ROLLING_RESERVE("pending-rolling-reserve"),
+        TO_BE_RELEASED_ROLLING_RESERVE("to-be-released-rolling-reserve"),
+        HELD_ROLLING_RESERVE("held-rolling-reserve"),
+        RELEASED_ROLLING_RESERVE("released-rolling-reserve"),;
 
         private final String value;
 

@@ -24,7 +24,9 @@ public class CaptureResponse {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -49,17 +51,23 @@ public class CaptureResponse {
     private Optional<? extends AmountNullable> amount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be settled to your account,
+     * converted to the
+     * currency your account is settled in.
+     * 
+     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
+     * retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions
+     * endpoint](list-balance-transactions)
+     * instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
-    private JsonNullable<? extends AmountNullable> settlementAmount;
+    private JsonNullable<? extends CaptureResponseSettlementAmount> settlementAmount;
 
-    /**
-     * The capture's status.
-     */
+
     @JsonProperty("status")
-    private CaptureStatus status;
+    private CaptureResponseStatus status;
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
@@ -71,19 +79,31 @@ public class CaptureResponse {
     @JsonProperty("metadata")
     private JsonNullable<? extends Metadata> metadata;
 
-
+    /**
+     * The unique identifier of the payment this capture was created for. For example:
+     * `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     @JsonProperty("paymentId")
     private String paymentId;
 
-
+    /**
+     * The unique identifier of the shipment that triggered the creation of this capture, if applicable.
+     * For example:
+     * `shp_gNapNy9qQTUFZYnCrCF7J`.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipmentId")
-    private Optional<String> shipmentId;
+    private JsonNullable<String> shipmentId;
 
-
+    /**
+     * The identifier referring to the settlement this capture was settled with. For example,
+     * `stl_BkEjN2eBb`. This field
+     * is omitted if the capture is not settled (yet).
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementId")
-    private Optional<String> settlementId;
+    private JsonNullable<String> settlementId;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -105,12 +125,12 @@ public class CaptureResponse {
             @JsonProperty("mode") Mode mode,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") Optional<? extends AmountNullable> amount,
-            @JsonProperty("settlementAmount") JsonNullable<? extends AmountNullable> settlementAmount,
-            @JsonProperty("status") CaptureStatus status,
+            @JsonProperty("settlementAmount") JsonNullable<? extends CaptureResponseSettlementAmount> settlementAmount,
+            @JsonProperty("status") CaptureResponseStatus status,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("paymentId") String paymentId,
-            @JsonProperty("shipmentId") Optional<String> shipmentId,
-            @JsonProperty("settlementId") Optional<String> settlementId,
+            @JsonProperty("shipmentId") JsonNullable<String> shipmentId,
+            @JsonProperty("settlementId") JsonNullable<String> settlementId,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("_links") CaptureResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
@@ -145,14 +165,14 @@ public class CaptureResponse {
             String resource,
             String id,
             Mode mode,
-            CaptureStatus status,
+            CaptureResponseStatus status,
             String paymentId,
             String createdAt,
             CaptureResponseLinks links) {
         this(resource, id, mode,
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             status, JsonNullable.undefined(), paymentId,
-            Optional.empty(), Optional.empty(), createdAt,
+            JsonNullable.undefined(), JsonNullable.undefined(), createdAt,
             links);
     }
 
@@ -165,6 +185,9 @@ public class CaptureResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -196,19 +219,24 @@ public class CaptureResponse {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be settled to your account,
+     * converted to the
+     * currency your account is settled in.
+     * 
+     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
+     * retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions
+     * endpoint](list-balance-transactions)
+     * instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AmountNullable> settlementAmount() {
-        return (JsonNullable<AmountNullable>) settlementAmount;
+    public JsonNullable<CaptureResponseSettlementAmount> settlementAmount() {
+        return (JsonNullable<CaptureResponseSettlementAmount>) settlementAmount;
     }
 
-    /**
-     * The capture's status.
-     */
     @JsonIgnore
-    public CaptureStatus status() {
+    public CaptureResponseStatus status() {
         return status;
     }
 
@@ -224,18 +252,33 @@ public class CaptureResponse {
         return (JsonNullable<Metadata>) metadata;
     }
 
+    /**
+     * The unique identifier of the payment this capture was created for. For example:
+     * `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     @JsonIgnore
     public String paymentId() {
         return paymentId;
     }
 
+    /**
+     * The unique identifier of the shipment that triggered the creation of this capture, if applicable.
+     * For example:
+     * `shp_gNapNy9qQTUFZYnCrCF7J`.
+     */
     @JsonIgnore
-    public Optional<String> shipmentId() {
+    public JsonNullable<String> shipmentId() {
         return shipmentId;
     }
 
+    /**
+     * The identifier referring to the settlement this capture was settled with. For example,
+     * `stl_BkEjN2eBb`. This field
+     * is omitted if the capture is not settled (yet).
+     */
     @JsonIgnore
-    public Optional<String> settlementId() {
+    public JsonNullable<String> settlementId() {
         return settlementId;
     }
 
@@ -271,6 +314,9 @@ public class CaptureResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
+     */
     public CaptureResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -325,27 +371,40 @@ public class CaptureResponse {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be settled to your account,
+     * converted to the
+     * currency your account is settled in.
+     * 
+     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
+     * retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions
+     * endpoint](list-balance-transactions)
+     * instead.
      */
-    public CaptureResponse withSettlementAmount(AmountNullable settlementAmount) {
+    public CaptureResponse withSettlementAmount(CaptureResponseSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = JsonNullable.of(settlementAmount);
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be settled to your account,
+     * converted to the
+     * currency your account is settled in.
+     * 
+     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
+     * retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions
+     * endpoint](list-balance-transactions)
+     * instead.
      */
-    public CaptureResponse withSettlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
+    public CaptureResponse withSettlementAmount(JsonNullable<? extends CaptureResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
         return this;
     }
 
-    /**
-     * The capture's status.
-     */
-    public CaptureResponse withStatus(CaptureStatus status) {
+    public CaptureResponse withStatus(CaptureResponseStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -375,33 +434,56 @@ public class CaptureResponse {
         return this;
     }
 
+    /**
+     * The unique identifier of the payment this capture was created for. For example:
+     * `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     public CaptureResponse withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
     }
 
+    /**
+     * The unique identifier of the shipment that triggered the creation of this capture, if applicable.
+     * For example:
+     * `shp_gNapNy9qQTUFZYnCrCF7J`.
+     */
     public CaptureResponse withShipmentId(String shipmentId) {
         Utils.checkNotNull(shipmentId, "shipmentId");
-        this.shipmentId = Optional.ofNullable(shipmentId);
+        this.shipmentId = JsonNullable.of(shipmentId);
         return this;
     }
 
-
-    public CaptureResponse withShipmentId(Optional<String> shipmentId) {
+    /**
+     * The unique identifier of the shipment that triggered the creation of this capture, if applicable.
+     * For example:
+     * `shp_gNapNy9qQTUFZYnCrCF7J`.
+     */
+    public CaptureResponse withShipmentId(JsonNullable<String> shipmentId) {
         Utils.checkNotNull(shipmentId, "shipmentId");
         this.shipmentId = shipmentId;
         return this;
     }
 
+    /**
+     * The identifier referring to the settlement this capture was settled with. For example,
+     * `stl_BkEjN2eBb`. This field
+     * is omitted if the capture is not settled (yet).
+     */
     public CaptureResponse withSettlementId(String settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = Optional.ofNullable(settlementId);
+        this.settlementId = JsonNullable.of(settlementId);
         return this;
     }
 
-
-    public CaptureResponse withSettlementId(Optional<String> settlementId) {
+    /**
+     * The identifier referring to the settlement this capture was settled with. For example,
+     * `stl_BkEjN2eBb`. This field
+     * is omitted if the capture is not settled (yet).
+     */
+    public CaptureResponse withSettlementId(JsonNullable<String> settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
         this.settlementId = settlementId;
         return this;
@@ -492,17 +574,17 @@ public class CaptureResponse {
 
         private Optional<? extends AmountNullable> amount = Optional.empty();
 
-        private JsonNullable<? extends AmountNullable> settlementAmount = JsonNullable.undefined();
+        private JsonNullable<? extends CaptureResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
 
-        private CaptureStatus status;
+        private CaptureResponseStatus status;
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
         private String paymentId;
 
-        private Optional<String> shipmentId = Optional.empty();
+        private JsonNullable<String> shipmentId = JsonNullable.undefined();
 
-        private Optional<String> settlementId = Optional.empty();
+        private JsonNullable<String> settlementId = JsonNullable.undefined();
 
         private String createdAt;
 
@@ -524,6 +606,9 @@ public class CaptureResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this capture. Example: `cpt_mNepDkEtco6ah3QNPUGYH`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -580,28 +665,41 @@ public class CaptureResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * This optional field will contain the approximate amount that will be settled to your account,
+         * converted to the
+         * currency your account is settled in.
+         * 
+         * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
+         * retrieve
+         * accurate settlement amounts we recommend using the [List balance transactions
+         * endpoint](list-balance-transactions)
+         * instead.
          */
-        public Builder settlementAmount(AmountNullable settlementAmount) {
+        public Builder settlementAmount(CaptureResponseSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = JsonNullable.of(settlementAmount);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * This optional field will contain the approximate amount that will be settled to your account,
+         * converted to the
+         * currency your account is settled in.
+         * 
+         * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
+         * retrieve
+         * accurate settlement amounts we recommend using the [List balance transactions
+         * endpoint](list-balance-transactions)
+         * instead.
          */
-        public Builder settlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
+        public Builder settlementAmount(JsonNullable<? extends CaptureResponseSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;
             return this;
         }
 
 
-        /**
-         * The capture's status.
-         */
-        public Builder status(CaptureStatus status) {
+        public Builder status(CaptureResponseStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -633,6 +731,11 @@ public class CaptureResponse {
         }
 
 
+        /**
+         * The unique identifier of the payment this capture was created for. For example:
+         * `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The full payment object can be retrieved via the payment URL in the `_links` object.
+         */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
@@ -640,26 +743,46 @@ public class CaptureResponse {
         }
 
 
+        /**
+         * The unique identifier of the shipment that triggered the creation of this capture, if applicable.
+         * For example:
+         * `shp_gNapNy9qQTUFZYnCrCF7J`.
+         */
         public Builder shipmentId(String shipmentId) {
             Utils.checkNotNull(shipmentId, "shipmentId");
-            this.shipmentId = Optional.ofNullable(shipmentId);
+            this.shipmentId = JsonNullable.of(shipmentId);
             return this;
         }
 
-        public Builder shipmentId(Optional<String> shipmentId) {
+        /**
+         * The unique identifier of the shipment that triggered the creation of this capture, if applicable.
+         * For example:
+         * `shp_gNapNy9qQTUFZYnCrCF7J`.
+         */
+        public Builder shipmentId(JsonNullable<String> shipmentId) {
             Utils.checkNotNull(shipmentId, "shipmentId");
             this.shipmentId = shipmentId;
             return this;
         }
 
 
+        /**
+         * The identifier referring to the settlement this capture was settled with. For example,
+         * `stl_BkEjN2eBb`. This field
+         * is omitted if the capture is not settled (yet).
+         */
         public Builder settlementId(String settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
-            this.settlementId = Optional.ofNullable(settlementId);
+            this.settlementId = JsonNullable.of(settlementId);
             return this;
         }
 
-        public Builder settlementId(Optional<String> settlementId) {
+        /**
+         * The identifier referring to the settlement this capture was settled with. For example,
+         * `stl_BkEjN2eBb`. This field
+         * is omitted if the capture is not settled (yet).
+         */
+        public Builder settlementId(JsonNullable<String> settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
             this.settlementId = settlementId;
             return this;

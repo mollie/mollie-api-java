@@ -39,8 +39,6 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .entityRoute(EntityRoute.builder()
-                    .id("crt_dyARQ3JzCgtPDhU2Pbq3J")
-                    .paymentId("tr_5B8cwPMGnU")
                     .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")

@@ -26,7 +26,9 @@ public class EntitySettlement {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this settlement.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -56,26 +58,28 @@ public class EntitySettlement {
     @JsonProperty("settledAt")
     private JsonNullable<String> settledAt;
 
-    /**
-     * The status of the settlement.
-     */
+
     @JsonProperty("status")
-    private SettlementStatus status;
+    private EntitySettlementStatus status;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount of the settlement.
      */
     @JsonProperty("amount")
-    private Amount amount;
+    private EntitySettlementAmount amount;
 
-
+    /**
+     * The balance token that the settlement was settled to.
+     */
     @JsonProperty("balanceId")
     private String balanceId;
 
-
+    /**
+     * The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("invoiceId")
-    private Optional<String> invoiceId;
+    private JsonNullable<String> invoiceId;
 
     /**
      * For bookkeeping purposes, the settlement includes an overview of transactions included in the
@@ -111,10 +115,10 @@ public class EntitySettlement {
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("settledAt") JsonNullable<String> settledAt,
-            @JsonProperty("status") SettlementStatus status,
-            @JsonProperty("amount") Amount amount,
+            @JsonProperty("status") EntitySettlementStatus status,
+            @JsonProperty("amount") EntitySettlementAmount amount,
             @JsonProperty("balanceId") String balanceId,
-            @JsonProperty("invoiceId") Optional<String> invoiceId,
+            @JsonProperty("invoiceId") JsonNullable<String> invoiceId,
             @JsonProperty("periods") Optional<? extends Map<String, Map<String, Periods>>> periods,
             @JsonProperty("_links") EntitySettlementLinks links) {
         Utils.checkNotNull(resource, "resource");
@@ -144,13 +148,13 @@ public class EntitySettlement {
     public EntitySettlement(
             String resource,
             String id,
-            SettlementStatus status,
-            Amount amount,
+            EntitySettlementStatus status,
+            EntitySettlementAmount amount,
             String balanceId,
             EntitySettlementLinks links) {
         this(resource, id, Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), status,
-            amount, balanceId, Optional.empty(),
+            amount, balanceId, JsonNullable.undefined(),
             Optional.empty(), links);
     }
 
@@ -164,6 +168,9 @@ public class EntitySettlement {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this settlement.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -198,29 +205,32 @@ public class EntitySettlement {
         return settledAt;
     }
 
-    /**
-     * The status of the settlement.
-     */
     @JsonIgnore
-    public SettlementStatus status() {
+    public EntitySettlementStatus status() {
         return status;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount of the settlement.
      */
     @JsonIgnore
-    public Amount amount() {
+    public EntitySettlementAmount amount() {
         return amount;
     }
 
+    /**
+     * The balance token that the settlement was settled to.
+     */
     @JsonIgnore
     public String balanceId() {
         return balanceId;
     }
 
+    /**
+     * The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
+     */
     @JsonIgnore
-    public Optional<String> invoiceId() {
+    public JsonNullable<String> invoiceId() {
         return invoiceId;
     }
 
@@ -271,6 +281,9 @@ public class EntitySettlement {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this settlement.
+     */
     public EntitySettlement withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -342,38 +355,43 @@ public class EntitySettlement {
         return this;
     }
 
-    /**
-     * The status of the settlement.
-     */
-    public EntitySettlement withStatus(SettlementStatus status) {
+    public EntitySettlement withStatus(EntitySettlementStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount of the settlement.
      */
-    public EntitySettlement withAmount(Amount amount) {
+    public EntitySettlement withAmount(EntitySettlementAmount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+    /**
+     * The balance token that the settlement was settled to.
+     */
     public EntitySettlement withBalanceId(String balanceId) {
         Utils.checkNotNull(balanceId, "balanceId");
         this.balanceId = balanceId;
         return this;
     }
 
+    /**
+     * The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
+     */
     public EntitySettlement withInvoiceId(String invoiceId) {
         Utils.checkNotNull(invoiceId, "invoiceId");
-        this.invoiceId = Optional.ofNullable(invoiceId);
+        this.invoiceId = JsonNullable.of(invoiceId);
         return this;
     }
 
-
-    public EntitySettlement withInvoiceId(Optional<String> invoiceId) {
+    /**
+     * The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
+     */
+    public EntitySettlement withInvoiceId(JsonNullable<String> invoiceId) {
         Utils.checkNotNull(invoiceId, "invoiceId");
         this.invoiceId = invoiceId;
         return this;
@@ -496,13 +514,13 @@ public class EntitySettlement {
 
         private JsonNullable<String> settledAt = JsonNullable.undefined();
 
-        private SettlementStatus status;
+        private EntitySettlementStatus status;
 
-        private Amount amount;
+        private EntitySettlementAmount amount;
 
         private String balanceId;
 
-        private Optional<String> invoiceId = Optional.empty();
+        private JsonNullable<String> invoiceId = JsonNullable.undefined();
 
         private Optional<? extends Map<String, Map<String, Periods>>> periods = Optional.empty();
 
@@ -525,6 +543,9 @@ public class EntitySettlement {
         }
 
 
+        /**
+         * The identifier uniquely referring to this settlement.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -599,10 +620,7 @@ public class EntitySettlement {
         }
 
 
-        /**
-         * The status of the settlement.
-         */
-        public Builder status(SettlementStatus status) {
+        public Builder status(EntitySettlementStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -610,15 +628,18 @@ public class EntitySettlement {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount of the settlement.
          */
-        public Builder amount(Amount amount) {
+        public Builder amount(EntitySettlementAmount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
 
 
+        /**
+         * The balance token that the settlement was settled to.
+         */
         public Builder balanceId(String balanceId) {
             Utils.checkNotNull(balanceId, "balanceId");
             this.balanceId = balanceId;
@@ -626,13 +647,19 @@ public class EntitySettlement {
         }
 
 
+        /**
+         * The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
+         */
         public Builder invoiceId(String invoiceId) {
             Utils.checkNotNull(invoiceId, "invoiceId");
-            this.invoiceId = Optional.ofNullable(invoiceId);
+            this.invoiceId = JsonNullable.of(invoiceId);
             return this;
         }
 
-        public Builder invoiceId(Optional<String> invoiceId) {
+        /**
+         * The ID of the oldest invoice created for all the periods, if the invoice has been created yet.
+         */
+        public Builder invoiceId(JsonNullable<String> invoiceId) {
             Utils.checkNotNull(invoiceId, "invoiceId");
             this.invoiceId = invoiceId;
             return this;

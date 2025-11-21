@@ -22,7 +22,9 @@ public class MandateResponse {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -60,15 +62,13 @@ public class MandateResponse {
     @JsonProperty("mandateReference")
     private Optional<String> mandateReference;
 
-    /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
-     * finalized, or
-     * when we did not received the IBAN yet from the first payment.
-     */
+
     @JsonProperty("status")
-    private MandateStatus status;
+    private MandateResponseStatus status;
 
-
+    /**
+     * The identifier referring to the [customer](get-customer) this mandate was linked to.
+     */
     @JsonProperty("customerId")
     private String customerId;
 
@@ -94,7 +94,7 @@ public class MandateResponse {
             @JsonProperty("details") MandateResponseDetails details,
             @JsonProperty("signatureDate") Optional<String> signatureDate,
             @JsonProperty("mandateReference") Optional<String> mandateReference,
-            @JsonProperty("status") MandateStatus status,
+            @JsonProperty("status") MandateResponseStatus status,
             @JsonProperty("customerId") String customerId,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("_links") MandateResponseLinks links) {
@@ -128,7 +128,7 @@ public class MandateResponse {
             Mode mode,
             MandateMethodResponse method,
             MandateResponseDetails details,
-            MandateStatus status,
+            MandateResponseStatus status,
             String customerId,
             String createdAt,
             MandateResponseLinks links) {
@@ -147,6 +147,9 @@ public class MandateResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -193,16 +196,14 @@ public class MandateResponse {
         return mandateReference;
     }
 
-    /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
-     * finalized, or
-     * when we did not received the IBAN yet from the first payment.
-     */
     @JsonIgnore
-    public MandateStatus status() {
+    public MandateResponseStatus status() {
         return status;
     }
 
+    /**
+     * The identifier referring to the [customer](get-customer) this mandate was linked to.
+     */
     @JsonIgnore
     public String customerId() {
         return customerId;
@@ -240,6 +241,9 @@ public class MandateResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+     */
     public MandateResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -314,17 +318,15 @@ public class MandateResponse {
         return this;
     }
 
-    /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
-     * finalized, or
-     * when we did not received the IBAN yet from the first payment.
-     */
-    public MandateResponse withStatus(MandateStatus status) {
+    public MandateResponse withStatus(MandateResponseStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
+    /**
+     * The identifier referring to the [customer](get-customer) this mandate was linked to.
+     */
     public MandateResponse withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
@@ -415,7 +417,7 @@ public class MandateResponse {
 
         private Optional<String> mandateReference = Optional.empty();
 
-        private MandateStatus status;
+        private MandateResponseStatus status;
 
         private String customerId;
 
@@ -439,6 +441,9 @@ public class MandateResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -517,18 +522,16 @@ public class MandateResponse {
         }
 
 
-        /**
-         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
-         * finalized, or
-         * when we did not received the IBAN yet from the first payment.
-         */
-        public Builder status(MandateStatus status) {
+        public Builder status(MandateResponseStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
 
+        /**
+         * The identifier referring to the [customer](get-customer) this mandate was linked to.
+         */
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = customerId;

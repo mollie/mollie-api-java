@@ -86,16 +86,9 @@ public class ProfileResponse {
     @JsonProperty("businessCategory")
     private String businessCategory;
 
-    /**
-     * The profile status determines whether the profile is able to receive live payments.
-     * 
-     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test
-     * payments.
-     * * `blocked`: The profile is blocked and can no longer be used or changed.
-     */
+
     @JsonProperty("status")
-    private ProfileStatus status;
+    private ProfileResponseStatus status;
 
     /**
      * Present if changes have been made that have not yet been approved by Mollie. Changes to test
@@ -133,7 +126,7 @@ public class ProfileResponse {
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
             @JsonProperty("businessCategory") String businessCategory,
-            @JsonProperty("status") ProfileStatus status,
+            @JsonProperty("status") ProfileResponseStatus status,
             @JsonProperty("review") Optional<? extends Review> review,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("_links") ProfileResponseLinks links) {
@@ -176,7 +169,7 @@ public class ProfileResponse {
             String email,
             String phone,
             String businessCategory,
-            ProfileStatus status,
+            ProfileResponseStatus status,
             String createdAt,
             ProfileResponseLinks links) {
         this(resource, id, mode,
@@ -274,16 +267,8 @@ public class ProfileResponse {
         return businessCategory;
     }
 
-    /**
-     * The profile status determines whether the profile is able to receive live payments.
-     * 
-     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test
-     * payments.
-     * * `blocked`: The profile is blocked and can no longer be used or changed.
-     */
     @JsonIgnore
-    public ProfileStatus status() {
+    public ProfileResponseStatus status() {
         return status;
     }
 
@@ -440,15 +425,7 @@ public class ProfileResponse {
         return this;
     }
 
-    /**
-     * The profile status determines whether the profile is able to receive live payments.
-     * 
-     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test
-     * payments.
-     * * `blocked`: The profile is blocked and can no longer be used or changed.
-     */
-    public ProfileResponse withStatus(ProfileStatus status) {
+    public ProfileResponse withStatus(ProfileResponseStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -578,7 +555,7 @@ public class ProfileResponse {
 
         private String businessCategory;
 
-        private ProfileStatus status;
+        private ProfileResponseStatus status;
 
         private Optional<? extends Review> review = Optional.empty();
 
@@ -717,15 +694,7 @@ public class ProfileResponse {
         }
 
 
-        /**
-         * The profile status determines whether the profile is able to receive live payments.
-         * 
-         * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-         * * `verified`: The profile has been verified and can be used to create live payments and test
-         * payments.
-         * * `blocked`: The profile is blocked and can no longer be used or changed.
-         */
-        public Builder status(ProfileStatus status) {
+        public Builder status(ProfileResponseStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

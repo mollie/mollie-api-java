@@ -24,7 +24,9 @@ public class EntityBalance {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this balance.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -41,9 +43,11 @@ public class EntityBalance {
     @JsonProperty("createdAt")
     private String createdAt;
 
-
+    /**
+     * The balance's ISO 4217 currency code.
+     */
     @JsonProperty("currency")
-    private Currencies currency;
+    private Currency currency;
 
     /**
      * The description or name of the balance. Can be used to denote the purpose of the balance.
@@ -51,29 +55,25 @@ public class EntityBalance {
     @JsonProperty("description")
     private String description;
 
-    /**
-     * The status of the balance.
-     */
-    @JsonProperty("status")
-    private BalanceStatus status;
 
-    /**
-     * The frequency with which the available amount on the balance will be settled to the configured
-     * transfer
-     * destination.
-     * 
-     * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-     */
+    @JsonProperty("status")
+    private Status status;
+
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferFrequency")
-    private Optional<? extends BalanceTransferFrequency> transferFrequency;
+    private Optional<? extends TransferFrequency> transferFrequency;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
+     * balance exceeds
+     * this threshold, the complete balance will be paid out to the transfer destination according to the
+     * configured
+     * frequency.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferThreshold")
-    private Optional<? extends Amount> transferThreshold;
+    private Optional<? extends TransferThreshold> transferThreshold;
 
     /**
      * The transfer reference set to be included in all the transfers for this balance.
@@ -92,16 +92,18 @@ public class EntityBalance {
     private JsonNullable<? extends TransferDestination> transferDestination;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
      */
     @JsonProperty("availableAmount")
-    private Amount availableAmount;
+    private AvailableAmount availableAmount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is queued to be transferred to your balance. For example, a credit card
+     * payment can take a
+     * few days to clear.
      */
     @JsonProperty("pendingAmount")
-    private Amount pendingAmount;
+    private PendingAmount pendingAmount;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -115,15 +117,15 @@ public class EntityBalance {
             @JsonProperty("id") String id,
             @JsonProperty("mode") Mode mode,
             @JsonProperty("createdAt") String createdAt,
-            @JsonProperty("currency") Currencies currency,
+            @JsonProperty("currency") Currency currency,
             @JsonProperty("description") String description,
-            @JsonProperty("status") BalanceStatus status,
-            @JsonProperty("transferFrequency") Optional<? extends BalanceTransferFrequency> transferFrequency,
-            @JsonProperty("transferThreshold") Optional<? extends Amount> transferThreshold,
+            @JsonProperty("status") Status status,
+            @JsonProperty("transferFrequency") Optional<? extends TransferFrequency> transferFrequency,
+            @JsonProperty("transferThreshold") Optional<? extends TransferThreshold> transferThreshold,
             @JsonProperty("transferReference") JsonNullable<String> transferReference,
             @JsonProperty("transferDestination") JsonNullable<? extends TransferDestination> transferDestination,
-            @JsonProperty("availableAmount") Amount availableAmount,
-            @JsonProperty("pendingAmount") Amount pendingAmount,
+            @JsonProperty("availableAmount") AvailableAmount availableAmount,
+            @JsonProperty("pendingAmount") PendingAmount pendingAmount,
             @JsonProperty("_links") Links links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -160,11 +162,11 @@ public class EntityBalance {
             String id,
             Mode mode,
             String createdAt,
-            Currencies currency,
+            Currency currency,
             String description,
-            BalanceStatus status,
-            Amount availableAmount,
-            Amount pendingAmount,
+            Status status,
+            AvailableAmount availableAmount,
+            PendingAmount pendingAmount,
             Links links) {
         this(resource, id, mode,
             createdAt, currency, description,
@@ -182,6 +184,9 @@ public class EntityBalance {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this balance.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -204,8 +209,11 @@ public class EntityBalance {
         return createdAt;
     }
 
+    /**
+     * The balance's ISO 4217 currency code.
+     */
     @JsonIgnore
-    public Currencies currency() {
+    public Currency currency() {
         return currency;
     }
 
@@ -217,34 +225,28 @@ public class EntityBalance {
         return description;
     }
 
-    /**
-     * The status of the balance.
-     */
     @JsonIgnore
-    public BalanceStatus status() {
+    public Status status() {
         return status;
     }
 
-    /**
-     * The frequency with which the available amount on the balance will be settled to the configured
-     * transfer
-     * destination.
-     * 
-     * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<BalanceTransferFrequency> transferFrequency() {
-        return (Optional<BalanceTransferFrequency>) transferFrequency;
+    public Optional<TransferFrequency> transferFrequency() {
+        return (Optional<TransferFrequency>) transferFrequency;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
+     * balance exceeds
+     * this threshold, the complete balance will be paid out to the transfer destination according to the
+     * configured
+     * frequency.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> transferThreshold() {
-        return (Optional<Amount>) transferThreshold;
+    public Optional<TransferThreshold> transferThreshold() {
+        return (Optional<TransferThreshold>) transferThreshold;
     }
 
     /**
@@ -267,18 +269,20 @@ public class EntityBalance {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
      */
     @JsonIgnore
-    public Amount availableAmount() {
+    public AvailableAmount availableAmount() {
         return availableAmount;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is queued to be transferred to your balance. For example, a credit card
+     * payment can take a
+     * few days to clear.
      */
     @JsonIgnore
-    public Amount pendingAmount() {
+    public PendingAmount pendingAmount() {
         return pendingAmount;
     }
 
@@ -305,6 +309,9 @@ public class EntityBalance {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this balance.
+     */
     public EntityBalance withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -330,7 +337,10 @@ public class EntityBalance {
         return this;
     }
 
-    public EntityBalance withCurrency(Currencies currency) {
+    /**
+     * The balance's ISO 4217 currency code.
+     */
+    public EntityBalance withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
         this.currency = currency;
         return this;
@@ -345,46 +355,33 @@ public class EntityBalance {
         return this;
     }
 
-    /**
-     * The status of the balance.
-     */
-    public EntityBalance withStatus(BalanceStatus status) {
+    public EntityBalance withStatus(Status status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
-    /**
-     * The frequency with which the available amount on the balance will be settled to the configured
-     * transfer
-     * destination.
-     * 
-     * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-     */
-    public EntityBalance withTransferFrequency(BalanceTransferFrequency transferFrequency) {
+    public EntityBalance withTransferFrequency(TransferFrequency transferFrequency) {
         Utils.checkNotNull(transferFrequency, "transferFrequency");
         this.transferFrequency = Optional.ofNullable(transferFrequency);
         return this;
     }
 
 
-    /**
-     * The frequency with which the available amount on the balance will be settled to the configured
-     * transfer
-     * destination.
-     * 
-     * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-     */
-    public EntityBalance withTransferFrequency(Optional<? extends BalanceTransferFrequency> transferFrequency) {
+    public EntityBalance withTransferFrequency(Optional<? extends TransferFrequency> transferFrequency) {
         Utils.checkNotNull(transferFrequency, "transferFrequency");
         this.transferFrequency = transferFrequency;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
+     * balance exceeds
+     * this threshold, the complete balance will be paid out to the transfer destination according to the
+     * configured
+     * frequency.
      */
-    public EntityBalance withTransferThreshold(Amount transferThreshold) {
+    public EntityBalance withTransferThreshold(TransferThreshold transferThreshold) {
         Utils.checkNotNull(transferThreshold, "transferThreshold");
         this.transferThreshold = Optional.ofNullable(transferThreshold);
         return this;
@@ -392,9 +389,13 @@ public class EntityBalance {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
+     * balance exceeds
+     * this threshold, the complete balance will be paid out to the transfer destination according to the
+     * configured
+     * frequency.
      */
-    public EntityBalance withTransferThreshold(Optional<? extends Amount> transferThreshold) {
+    public EntityBalance withTransferThreshold(Optional<? extends TransferThreshold> transferThreshold) {
         Utils.checkNotNull(transferThreshold, "transferThreshold");
         this.transferThreshold = transferThreshold;
         return this;
@@ -441,18 +442,20 @@ public class EntityBalance {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
      */
-    public EntityBalance withAvailableAmount(Amount availableAmount) {
+    public EntityBalance withAvailableAmount(AvailableAmount availableAmount) {
         Utils.checkNotNull(availableAmount, "availableAmount");
         this.availableAmount = availableAmount;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is queued to be transferred to your balance. For example, a credit card
+     * payment can take a
+     * few days to clear.
      */
-    public EntityBalance withPendingAmount(Amount pendingAmount) {
+    public EntityBalance withPendingAmount(PendingAmount pendingAmount) {
         Utils.checkNotNull(pendingAmount, "pendingAmount");
         this.pendingAmount = pendingAmount;
         return this;
@@ -533,23 +536,23 @@ public class EntityBalance {
 
         private String createdAt;
 
-        private Currencies currency;
+        private Currency currency;
 
         private String description;
 
-        private BalanceStatus status;
+        private Status status;
 
-        private Optional<? extends BalanceTransferFrequency> transferFrequency = Optional.empty();
+        private Optional<? extends TransferFrequency> transferFrequency = Optional.empty();
 
-        private Optional<? extends Amount> transferThreshold = Optional.empty();
+        private Optional<? extends TransferThreshold> transferThreshold = Optional.empty();
 
         private JsonNullable<String> transferReference = JsonNullable.undefined();
 
         private JsonNullable<? extends TransferDestination> transferDestination = JsonNullable.undefined();
 
-        private Amount availableAmount;
+        private AvailableAmount availableAmount;
 
-        private Amount pendingAmount;
+        private PendingAmount pendingAmount;
 
         private Links links;
 
@@ -569,6 +572,9 @@ public class EntityBalance {
         }
 
 
+        /**
+         * The identifier uniquely referring to this balance.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -597,7 +603,10 @@ public class EntityBalance {
         }
 
 
-        public Builder currency(Currencies currency) {
+        /**
+         * The balance's ISO 4217 currency code.
+         */
+        public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
             this.currency = currency;
             return this;
@@ -614,37 +623,20 @@ public class EntityBalance {
         }
 
 
-        /**
-         * The status of the balance.
-         */
-        public Builder status(BalanceStatus status) {
+        public Builder status(Status status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
 
-        /**
-         * The frequency with which the available amount on the balance will be settled to the configured
-         * transfer
-         * destination.
-         * 
-         * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-         */
-        public Builder transferFrequency(BalanceTransferFrequency transferFrequency) {
+        public Builder transferFrequency(TransferFrequency transferFrequency) {
             Utils.checkNotNull(transferFrequency, "transferFrequency");
             this.transferFrequency = Optional.ofNullable(transferFrequency);
             return this;
         }
 
-        /**
-         * The frequency with which the available amount on the balance will be settled to the configured
-         * transfer
-         * destination.
-         * 
-         * <p>Settlements created during weekends or on bank holidays will take place on the next business day.
-         */
-        public Builder transferFrequency(Optional<? extends BalanceTransferFrequency> transferFrequency) {
+        public Builder transferFrequency(Optional<? extends TransferFrequency> transferFrequency) {
             Utils.checkNotNull(transferFrequency, "transferFrequency");
             this.transferFrequency = transferFrequency;
             return this;
@@ -652,18 +644,26 @@ public class EntityBalance {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
+         * balance exceeds
+         * this threshold, the complete balance will be paid out to the transfer destination according to the
+         * configured
+         * frequency.
          */
-        public Builder transferThreshold(Amount transferThreshold) {
+        public Builder transferThreshold(TransferThreshold transferThreshold) {
             Utils.checkNotNull(transferThreshold, "transferThreshold");
             this.transferThreshold = Optional.ofNullable(transferThreshold);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
+         * balance exceeds
+         * this threshold, the complete balance will be paid out to the transfer destination according to the
+         * configured
+         * frequency.
          */
-        public Builder transferThreshold(Optional<? extends Amount> transferThreshold) {
+        public Builder transferThreshold(Optional<? extends TransferThreshold> transferThreshold) {
             Utils.checkNotNull(transferThreshold, "transferThreshold");
             this.transferThreshold = transferThreshold;
             return this;
@@ -713,9 +713,9 @@ public class EntityBalance {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
          */
-        public Builder availableAmount(Amount availableAmount) {
+        public Builder availableAmount(AvailableAmount availableAmount) {
             Utils.checkNotNull(availableAmount, "availableAmount");
             this.availableAmount = availableAmount;
             return this;
@@ -723,9 +723,11 @@ public class EntityBalance {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount that is queued to be transferred to your balance. For example, a credit card
+         * payment can take a
+         * few days to clear.
          */
-        public Builder pendingAmount(Amount pendingAmount) {
+        public Builder pendingAmount(PendingAmount pendingAmount) {
             Utils.checkNotNull(pendingAmount, "pendingAmount");
             this.pendingAmount = pendingAmount;
             return this;

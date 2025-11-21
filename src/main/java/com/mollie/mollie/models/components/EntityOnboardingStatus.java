@@ -27,11 +27,9 @@ public class EntityOnboardingStatus {
     @JsonProperty("name")
     private String name;
 
-    /**
-     * The current status of the organization's onboarding process.
-     */
+
     @JsonProperty("status")
-    private OnboardingStatus status;
+    private EntityOnboardingStatusStatus status;
 
     /**
      * Whether the organization can receive payments.
@@ -62,7 +60,7 @@ public class EntityOnboardingStatus {
     public EntityOnboardingStatus(
             @JsonProperty("resource") String resource,
             @JsonProperty("name") String name,
-            @JsonProperty("status") OnboardingStatus status,
+            @JsonProperty("status") EntityOnboardingStatusStatus status,
             @JsonProperty("canReceivePayments") boolean canReceivePayments,
             @JsonProperty("canReceiveSettlements") boolean canReceiveSettlements,
             @JsonProperty("signedUpAt") String signedUpAt,
@@ -101,11 +99,8 @@ public class EntityOnboardingStatus {
         return name;
     }
 
-    /**
-     * The current status of the organization's onboarding process.
-     */
     @JsonIgnore
-    public OnboardingStatus status() {
+    public EntityOnboardingStatusStatus status() {
         return status;
     }
 
@@ -167,10 +162,7 @@ public class EntityOnboardingStatus {
         return this;
     }
 
-    /**
-     * The current status of the organization's onboarding process.
-     */
-    public EntityOnboardingStatus withStatus(OnboardingStatus status) {
+    public EntityOnboardingStatus withStatus(EntityOnboardingStatusStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -259,7 +251,7 @@ public class EntityOnboardingStatus {
 
         private String name;
 
-        private OnboardingStatus status;
+        private EntityOnboardingStatusStatus status;
 
         private Boolean canReceivePayments;
 
@@ -296,10 +288,7 @@ public class EntityOnboardingStatus {
         }
 
 
-        /**
-         * The current status of the organization's onboarding process.
-         */
-        public Builder status(OnboardingStatus status) {
+        public Builder status(EntityOnboardingStatusStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

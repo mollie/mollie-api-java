@@ -25,7 +25,9 @@ public class EntityBalanceTransaction {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this balance transaction.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -170,6 +172,9 @@ public class EntityBalanceTransaction {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this balance transaction.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -293,6 +298,9 @@ public class EntityBalanceTransaction {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this balance transaction.
+     */
     public EntityBalanceTransaction withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -555,6 +563,9 @@ public class EntityBalanceTransaction {
         }
 
 
+        /**
+         * The identifier uniquely referring to this balance transaction.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

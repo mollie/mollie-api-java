@@ -24,11 +24,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class CreatePaymentLinkRequestBody {
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("id")
-    private Optional<String> id;
-
     /**
      * A short description of the payment link. The description is visible in the Dashboard and will be
      * shown on the
@@ -190,7 +185,6 @@ public class CreatePaymentLinkRequestBody {
 
     @JsonCreator
     public CreatePaymentLinkRequestBody(
-            @JsonProperty("id") Optional<String> id,
             @JsonProperty("description") String description,
             @JsonProperty("amount") JsonNullable<? extends AmountNullable> amount,
             @JsonProperty("minimumAmount") JsonNullable<? extends AmountNullable> minimumAmount,
@@ -207,7 +201,6 @@ public class CreatePaymentLinkRequestBody {
             @JsonProperty("sequenceType") Optional<? extends PaymentLinkSequenceType> sequenceType,
             @JsonProperty("customerId") JsonNullable<String> customerId,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(id, "id");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(minimumAmount, "minimumAmount");
@@ -224,7 +217,6 @@ public class CreatePaymentLinkRequestBody {
         Utils.checkNotNull(sequenceType, "sequenceType");
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(testmode, "testmode");
-        this.id = id;
         this.description = description;
         this.amount = amount;
         this.minimumAmount = minimumAmount;
@@ -245,17 +237,12 @@ public class CreatePaymentLinkRequestBody {
     
     public CreatePaymentLinkRequestBody(
             String description) {
-        this(Optional.empty(), description, JsonNullable.undefined(),
+        this(description, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined());
-    }
-
-    @JsonIgnore
-    public Optional<String> id() {
-        return id;
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -443,19 +430,6 @@ public class CreatePaymentLinkRequestBody {
         return new Builder();
     }
 
-
-    public CreatePaymentLinkRequestBody withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public CreatePaymentLinkRequestBody withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * A short description of the payment link. The description is visible in the Dashboard and will be
@@ -838,7 +812,6 @@ public class CreatePaymentLinkRequestBody {
         }
         CreatePaymentLinkRequestBody other = (CreatePaymentLinkRequestBody) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.minimumAmount, other.minimumAmount) &&
@@ -860,18 +833,17 @@ public class CreatePaymentLinkRequestBody {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, description, amount,
-            minimumAmount, redirectUrl, webhookUrl,
-            lines, billingAddress, shippingAddress,
-            profileId, reusable, expiresAt,
-            allowedMethods, applicationFee, sequenceType,
-            customerId, testmode);
+            description, amount, minimumAmount,
+            redirectUrl, webhookUrl, lines,
+            billingAddress, shippingAddress, profileId,
+            reusable, expiresAt, allowedMethods,
+            applicationFee, sequenceType, customerId,
+            testmode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreatePaymentLinkRequestBody.class,
-                "id", id,
                 "description", description,
                 "amount", amount,
                 "minimumAmount", minimumAmount,
@@ -892,8 +864,6 @@ public class CreatePaymentLinkRequestBody {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<String> id = Optional.empty();
 
         private String description;
 
@@ -929,19 +899,6 @@ public class CreatePaymentLinkRequestBody {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
         }
 
 
@@ -1330,12 +1287,12 @@ public class CreatePaymentLinkRequestBody {
         public CreatePaymentLinkRequestBody build() {
 
             return new CreatePaymentLinkRequestBody(
-                id, description, amount,
-                minimumAmount, redirectUrl, webhookUrl,
-                lines, billingAddress, shippingAddress,
-                profileId, reusable, expiresAt,
-                allowedMethods, applicationFee, sequenceType,
-                customerId, testmode);
+                description, amount, minimumAmount,
+                redirectUrl, webhookUrl, lines,
+                billingAddress, shippingAddress, profileId,
+                reusable, expiresAt, allowedMethods,
+                applicationFee, sequenceType, customerId,
+                testmode);
         }
 
     }

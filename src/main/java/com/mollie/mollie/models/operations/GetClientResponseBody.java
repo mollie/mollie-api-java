@@ -28,7 +28,9 @@ public class GetClientResponseBody {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this client. Example: `org_12345678`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -98,6 +100,9 @@ public class GetClientResponseBody {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this client. Example: `org_12345678`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -151,6 +156,9 @@ public class GetClientResponseBody {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this client. Example: `org_12345678`.
+     */
     public GetClientResponseBody withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -287,6 +295,9 @@ public class GetClientResponseBody {
         }
 
 
+        /**
+         * The identifier uniquely referring to this client. Example: `org_12345678`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

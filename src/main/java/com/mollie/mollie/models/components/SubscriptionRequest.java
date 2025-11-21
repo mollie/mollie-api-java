@@ -19,20 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class SubscriptionRequest {
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("id")
-    private Optional<String> id;
-
-    /**
-     * The subscription's current status is directly related to the status of the underlying customer or
-     * mandate that is
-     * enabling the subscription.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("status")
-    private Optional<? extends SubscriptionStatus> status;
-
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
@@ -130,11 +116,6 @@ public class SubscriptionRequest {
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("customerId")
-    private Optional<String> customerId;
-
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateId")
     private Optional<String> mandateId;
 
@@ -153,8 +134,6 @@ public class SubscriptionRequest {
 
     @JsonCreator
     public SubscriptionRequest(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("status") Optional<? extends SubscriptionStatus> status,
             @JsonProperty("amount") Optional<? extends Amount> amount,
             @JsonProperty("times") JsonNullable<Long> times,
             @JsonProperty("interval") Optional<String> interval,
@@ -164,11 +143,8 @@ public class SubscriptionRequest {
             @JsonProperty("applicationFee") Optional<? extends SubscriptionRequestApplicationFee> applicationFee,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("webhookUrl") Optional<String> webhookUrl,
-            @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("mandateId") Optional<String> mandateId,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(times, "times");
         Utils.checkNotNull(interval, "interval");
@@ -178,11 +154,8 @@ public class SubscriptionRequest {
         Utils.checkNotNull(applicationFee, "applicationFee");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(webhookUrl, "webhookUrl");
-        Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(mandateId, "mandateId");
         Utils.checkNotNull(testmode, "testmode");
-        this.id = id;
-        this.status = status;
         this.amount = amount;
         this.times = times;
         this.interval = interval;
@@ -192,33 +165,15 @@ public class SubscriptionRequest {
         this.applicationFee = applicationFee;
         this.metadata = metadata;
         this.webhookUrl = webhookUrl;
-        this.customerId = customerId;
         this.mandateId = mandateId;
         this.testmode = testmode;
     }
     
     public SubscriptionRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined());
-    }
-
-    @JsonIgnore
-    public Optional<String> id() {
-        return id;
-    }
-
-    /**
-     * The subscription's current status is directly related to the status of the underlying customer or
-     * mandate that is
-     * enabling the subscription.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<SubscriptionStatus> status() {
-        return (Optional<SubscriptionStatus>) status;
     }
 
     /**
@@ -330,11 +285,6 @@ public class SubscriptionRequest {
     }
 
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
-    }
-
-    @JsonIgnore
     public Optional<String> mandateId() {
         return mandateId;
     }
@@ -357,42 +307,6 @@ public class SubscriptionRequest {
         return new Builder();
     }
 
-
-    public SubscriptionRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public SubscriptionRequest withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * The subscription's current status is directly related to the status of the underlying customer or
-     * mandate that is
-     * enabling the subscription.
-     */
-    public SubscriptionRequest withStatus(SubscriptionStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The subscription's current status is directly related to the status of the underlying customer or
-     * mandate that is
-     * enabling the subscription.
-     */
-    public SubscriptionRequest withStatus(Optional<? extends SubscriptionStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -626,19 +540,6 @@ public class SubscriptionRequest {
         return this;
     }
 
-    public SubscriptionRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
-        return this;
-    }
-
-
-    public SubscriptionRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
-        return this;
-    }
-
     public SubscriptionRequest withMandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
         this.mandateId = Optional.ofNullable(mandateId);
@@ -692,8 +593,6 @@ public class SubscriptionRequest {
         }
         SubscriptionRequest other = (SubscriptionRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.times, other.times) &&
             Utils.enhancedDeepEquals(this.interval, other.interval) &&
@@ -703,7 +602,6 @@ public class SubscriptionRequest {
             Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
-            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.mandateId, other.mandateId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
@@ -711,18 +609,15 @@ public class SubscriptionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, status, amount,
-            times, interval, startDate,
-            description, method, applicationFee,
-            metadata, webhookUrl, customerId,
+            amount, times, interval,
+            startDate, description, method,
+            applicationFee, metadata, webhookUrl,
             mandateId, testmode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(SubscriptionRequest.class,
-                "id", id,
-                "status", status,
                 "amount", amount,
                 "times", times,
                 "interval", interval,
@@ -732,17 +627,12 @@ public class SubscriptionRequest {
                 "applicationFee", applicationFee,
                 "metadata", metadata,
                 "webhookUrl", webhookUrl,
-                "customerId", customerId,
                 "mandateId", mandateId,
                 "testmode", testmode);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<String> id = Optional.empty();
-
-        private Optional<? extends SubscriptionStatus> status = Optional.empty();
 
         private Optional<? extends Amount> amount = Optional.empty();
 
@@ -762,50 +652,12 @@ public class SubscriptionRequest {
 
         private Optional<String> webhookUrl = Optional.empty();
 
-        private Optional<String> customerId = Optional.empty();
-
         private Optional<String> mandateId = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
-         * The subscription's current status is directly related to the status of the underlying customer or
-         * mandate that is
-         * enabling the subscription.
-         */
-        public Builder status(SubscriptionStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The subscription's current status is directly related to the status of the underlying customer or
-         * mandate that is
-         * enabling the subscription.
-         */
-        public Builder status(Optional<? extends SubscriptionStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
         }
 
 
@@ -1044,19 +896,6 @@ public class SubscriptionRequest {
         }
 
 
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
-            return this;
-        }
-
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
-            return this;
-        }
-
-
         public Builder mandateId(String mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
             this.mandateId = Optional.ofNullable(mandateId);
@@ -1103,10 +942,9 @@ public class SubscriptionRequest {
         public SubscriptionRequest build() {
 
             return new SubscriptionRequest(
-                id, status, amount,
-                times, interval, startDate,
-                description, method, applicationFee,
-                metadata, webhookUrl, customerId,
+                amount, times, interval,
+                startDate, description, method,
+                applicationFee, metadata, webhookUrl,
                 mandateId, testmode);
         }
 

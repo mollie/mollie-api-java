@@ -29,11 +29,9 @@ public class EntityWebhookEvent {
     @JsonProperty("id")
     private String id;
 
-    /**
-     * The event's type
-     */
+
     @JsonProperty("type")
-    private WebhookEventTypes webhookEventTypes;
+    private EntityWebhookEventWebhookEventTypes webhookEventTypes;
 
     /**
      * The entity token that triggered the event
@@ -64,7 +62,7 @@ public class EntityWebhookEvent {
     public EntityWebhookEvent(
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
-            @JsonProperty("type") WebhookEventTypes webhookEventTypes,
+            @JsonProperty("type") EntityWebhookEventWebhookEventTypes webhookEventTypes,
             @JsonProperty("entityId") String entityId,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("_embedded") JsonNullable<? extends Embedded> embedded,
@@ -88,7 +86,7 @@ public class EntityWebhookEvent {
     public EntityWebhookEvent(
             String resource,
             String id,
-            WebhookEventTypes webhookEventTypes,
+            EntityWebhookEventWebhookEventTypes webhookEventTypes,
             String entityId,
             String createdAt,
             EntityWebhookEventLinks links) {
@@ -114,11 +112,8 @@ public class EntityWebhookEvent {
         return id;
     }
 
-    /**
-     * The event's type
-     */
     @JsonIgnore
-    public WebhookEventTypes webhookEventTypes() {
+    public EntityWebhookEventWebhookEventTypes webhookEventTypes() {
         return webhookEventTypes;
     }
 
@@ -179,10 +174,7 @@ public class EntityWebhookEvent {
         return this;
     }
 
-    /**
-     * The event's type
-     */
-    public EntityWebhookEvent withWebhookEventTypes(WebhookEventTypes webhookEventTypes) {
+    public EntityWebhookEvent withWebhookEventTypes(EntityWebhookEventWebhookEventTypes webhookEventTypes) {
         Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
         this.webhookEventTypes = webhookEventTypes;
         return this;
@@ -279,7 +271,7 @@ public class EntityWebhookEvent {
 
         private String id;
 
-        private WebhookEventTypes webhookEventTypes;
+        private EntityWebhookEventWebhookEventTypes webhookEventTypes;
 
         private String entityId;
 
@@ -315,10 +307,7 @@ public class EntityWebhookEvent {
         }
 
 
-        /**
-         * The event's type
-         */
-        public Builder webhookEventTypes(WebhookEventTypes webhookEventTypes) {
+        public Builder webhookEventTypes(EntityWebhookEventWebhookEventTypes webhookEventTypes) {
             Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
             this.webhookEventTypes = webhookEventTypes;
             return this;

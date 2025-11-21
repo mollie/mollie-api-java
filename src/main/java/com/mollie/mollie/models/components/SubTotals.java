@@ -32,58 +32,46 @@ public class SubTotals {
     @JsonProperty("method")
     private JsonNullable<? extends PaymentMethod> method;
 
-    /**
-     * In case of payments transactions with card, the card issuer will be available
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardIssuer")
-    private JsonNullable<? extends CardIssuer> cardIssuer;
+    private Optional<? extends BalanceCardIssuer> cardIssuer;
 
-    /**
-     * In case of payments trnsactions with card, the card audience will be available.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardAudience")
-    private JsonNullable<? extends CardAudience> cardAudience;
+    private Optional<? extends BalanceCardAudience> cardAudience;
 
-    /**
-     * In case of payments transactions with card, the card region will be available.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardRegion")
-    private JsonNullable<? extends CardRegion> cardRegion;
+    private Optional<? extends BalanceCardRegion> cardRegion;
 
-    /**
-     * Present when the transaction represents a fee.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("feeType")
-    private JsonNullable<? extends FeeType> feeType;
+    private Optional<? extends BalanceFeeType> feeType;
 
-    /**
-     * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("prepaymentPartType")
-    private JsonNullable<? extends PrepaymentPartType> prepaymentPartType;
+    private Optional<? extends BalancePrepaymentPartType> prepaymentPartType;
 
-    /**
-     * Represents the transaction type
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transactionType")
-    private JsonNullable<? extends TransactionType> transactionType;
+    private Optional<? extends BalanceTransactionType> transactionType;
 
     @JsonCreator
     public SubTotals(
             @JsonProperty("count") Optional<Long> count,
             @JsonProperty("method") JsonNullable<? extends PaymentMethod> method,
-            @JsonProperty("cardIssuer") JsonNullable<? extends CardIssuer> cardIssuer,
-            @JsonProperty("cardAudience") JsonNullable<? extends CardAudience> cardAudience,
-            @JsonProperty("cardRegion") JsonNullable<? extends CardRegion> cardRegion,
-            @JsonProperty("feeType") JsonNullable<? extends FeeType> feeType,
-            @JsonProperty("prepaymentPartType") JsonNullable<? extends PrepaymentPartType> prepaymentPartType,
-            @JsonProperty("transactionType") JsonNullable<? extends TransactionType> transactionType) {
+            @JsonProperty("cardIssuer") Optional<? extends BalanceCardIssuer> cardIssuer,
+            @JsonProperty("cardAudience") Optional<? extends BalanceCardAudience> cardAudience,
+            @JsonProperty("cardRegion") Optional<? extends BalanceCardRegion> cardRegion,
+            @JsonProperty("feeType") Optional<? extends BalanceFeeType> feeType,
+            @JsonProperty("prepaymentPartType") Optional<? extends BalancePrepaymentPartType> prepaymentPartType,
+            @JsonProperty("transactionType") Optional<? extends BalanceTransactionType> transactionType) {
         Utils.checkNotNull(count, "count");
         Utils.checkNotNull(method, "method");
         Utils.checkNotNull(cardIssuer, "cardIssuer");
@@ -103,9 +91,9 @@ public class SubTotals {
     }
     
     public SubTotals() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -125,58 +113,40 @@ public class SubTotals {
         return (JsonNullable<PaymentMethod>) method;
     }
 
-    /**
-     * In case of payments transactions with card, the card issuer will be available
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CardIssuer> cardIssuer() {
-        return (JsonNullable<CardIssuer>) cardIssuer;
+    public Optional<BalanceCardIssuer> cardIssuer() {
+        return (Optional<BalanceCardIssuer>) cardIssuer;
     }
 
-    /**
-     * In case of payments trnsactions with card, the card audience will be available.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CardAudience> cardAudience() {
-        return (JsonNullable<CardAudience>) cardAudience;
+    public Optional<BalanceCardAudience> cardAudience() {
+        return (Optional<BalanceCardAudience>) cardAudience;
     }
 
-    /**
-     * In case of payments transactions with card, the card region will be available.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CardRegion> cardRegion() {
-        return (JsonNullable<CardRegion>) cardRegion;
+    public Optional<BalanceCardRegion> cardRegion() {
+        return (Optional<BalanceCardRegion>) cardRegion;
     }
 
-    /**
-     * Present when the transaction represents a fee.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<FeeType> feeType() {
-        return (JsonNullable<FeeType>) feeType;
+    public Optional<BalanceFeeType> feeType() {
+        return (Optional<BalanceFeeType>) feeType;
     }
 
-    /**
-     * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<PrepaymentPartType> prepaymentPartType() {
-        return (JsonNullable<PrepaymentPartType>) prepaymentPartType;
+    public Optional<BalancePrepaymentPartType> prepaymentPartType() {
+        return (Optional<BalancePrepaymentPartType>) prepaymentPartType;
     }
 
-    /**
-     * Represents the transaction type
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<TransactionType> transactionType() {
-        return (JsonNullable<TransactionType>) transactionType;
+    public Optional<BalanceTransactionType> transactionType() {
+        return (Optional<BalanceTransactionType>) transactionType;
     }
 
     public static Builder builder() {
@@ -221,109 +191,79 @@ public class SubTotals {
         return this;
     }
 
-    /**
-     * In case of payments transactions with card, the card issuer will be available
-     */
-    public SubTotals withCardIssuer(CardIssuer cardIssuer) {
+    public SubTotals withCardIssuer(BalanceCardIssuer cardIssuer) {
         Utils.checkNotNull(cardIssuer, "cardIssuer");
-        this.cardIssuer = JsonNullable.of(cardIssuer);
+        this.cardIssuer = Optional.ofNullable(cardIssuer);
         return this;
     }
 
-    /**
-     * In case of payments transactions with card, the card issuer will be available
-     */
-    public SubTotals withCardIssuer(JsonNullable<? extends CardIssuer> cardIssuer) {
+
+    public SubTotals withCardIssuer(Optional<? extends BalanceCardIssuer> cardIssuer) {
         Utils.checkNotNull(cardIssuer, "cardIssuer");
         this.cardIssuer = cardIssuer;
         return this;
     }
 
-    /**
-     * In case of payments trnsactions with card, the card audience will be available.
-     */
-    public SubTotals withCardAudience(CardAudience cardAudience) {
+    public SubTotals withCardAudience(BalanceCardAudience cardAudience) {
         Utils.checkNotNull(cardAudience, "cardAudience");
-        this.cardAudience = JsonNullable.of(cardAudience);
+        this.cardAudience = Optional.ofNullable(cardAudience);
         return this;
     }
 
-    /**
-     * In case of payments trnsactions with card, the card audience will be available.
-     */
-    public SubTotals withCardAudience(JsonNullable<? extends CardAudience> cardAudience) {
+
+    public SubTotals withCardAudience(Optional<? extends BalanceCardAudience> cardAudience) {
         Utils.checkNotNull(cardAudience, "cardAudience");
         this.cardAudience = cardAudience;
         return this;
     }
 
-    /**
-     * In case of payments transactions with card, the card region will be available.
-     */
-    public SubTotals withCardRegion(CardRegion cardRegion) {
+    public SubTotals withCardRegion(BalanceCardRegion cardRegion) {
         Utils.checkNotNull(cardRegion, "cardRegion");
-        this.cardRegion = JsonNullable.of(cardRegion);
+        this.cardRegion = Optional.ofNullable(cardRegion);
         return this;
     }
 
-    /**
-     * In case of payments transactions with card, the card region will be available.
-     */
-    public SubTotals withCardRegion(JsonNullable<? extends CardRegion> cardRegion) {
+
+    public SubTotals withCardRegion(Optional<? extends BalanceCardRegion> cardRegion) {
         Utils.checkNotNull(cardRegion, "cardRegion");
         this.cardRegion = cardRegion;
         return this;
     }
 
-    /**
-     * Present when the transaction represents a fee.
-     */
-    public SubTotals withFeeType(FeeType feeType) {
+    public SubTotals withFeeType(BalanceFeeType feeType) {
         Utils.checkNotNull(feeType, "feeType");
-        this.feeType = JsonNullable.of(feeType);
+        this.feeType = Optional.ofNullable(feeType);
         return this;
     }
 
-    /**
-     * Present when the transaction represents a fee.
-     */
-    public SubTotals withFeeType(JsonNullable<? extends FeeType> feeType) {
+
+    public SubTotals withFeeType(Optional<? extends BalanceFeeType> feeType) {
         Utils.checkNotNull(feeType, "feeType");
         this.feeType = feeType;
         return this;
     }
 
-    /**
-     * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     */
-    public SubTotals withPrepaymentPartType(PrepaymentPartType prepaymentPartType) {
+    public SubTotals withPrepaymentPartType(BalancePrepaymentPartType prepaymentPartType) {
         Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
-        this.prepaymentPartType = JsonNullable.of(prepaymentPartType);
+        this.prepaymentPartType = Optional.ofNullable(prepaymentPartType);
         return this;
     }
 
-    /**
-     * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-     */
-    public SubTotals withPrepaymentPartType(JsonNullable<? extends PrepaymentPartType> prepaymentPartType) {
+
+    public SubTotals withPrepaymentPartType(Optional<? extends BalancePrepaymentPartType> prepaymentPartType) {
         Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
         this.prepaymentPartType = prepaymentPartType;
         return this;
     }
 
-    /**
-     * Represents the transaction type
-     */
-    public SubTotals withTransactionType(TransactionType transactionType) {
+    public SubTotals withTransactionType(BalanceTransactionType transactionType) {
         Utils.checkNotNull(transactionType, "transactionType");
-        this.transactionType = JsonNullable.of(transactionType);
+        this.transactionType = Optional.ofNullable(transactionType);
         return this;
     }
 
-    /**
-     * Represents the transaction type
-     */
-    public SubTotals withTransactionType(JsonNullable<? extends TransactionType> transactionType) {
+
+    public SubTotals withTransactionType(Optional<? extends BalanceTransactionType> transactionType) {
         Utils.checkNotNull(transactionType, "transactionType");
         this.transactionType = transactionType;
         return this;
@@ -377,17 +317,17 @@ public class SubTotals {
 
         private JsonNullable<? extends PaymentMethod> method = JsonNullable.undefined();
 
-        private JsonNullable<? extends CardIssuer> cardIssuer = JsonNullable.undefined();
+        private Optional<? extends BalanceCardIssuer> cardIssuer = Optional.empty();
 
-        private JsonNullable<? extends CardAudience> cardAudience = JsonNullable.undefined();
+        private Optional<? extends BalanceCardAudience> cardAudience = Optional.empty();
 
-        private JsonNullable<? extends CardRegion> cardRegion = JsonNullable.undefined();
+        private Optional<? extends BalanceCardRegion> cardRegion = Optional.empty();
 
-        private JsonNullable<? extends FeeType> feeType = JsonNullable.undefined();
+        private Optional<? extends BalanceFeeType> feeType = Optional.empty();
 
-        private JsonNullable<? extends PrepaymentPartType> prepaymentPartType = JsonNullable.undefined();
+        private Optional<? extends BalancePrepaymentPartType> prepaymentPartType = Optional.empty();
 
-        private JsonNullable<? extends TransactionType> transactionType = JsonNullable.undefined();
+        private Optional<? extends BalanceTransactionType> transactionType = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -432,114 +372,78 @@ public class SubTotals {
         }
 
 
-        /**
-         * In case of payments transactions with card, the card issuer will be available
-         */
-        public Builder cardIssuer(CardIssuer cardIssuer) {
+        public Builder cardIssuer(BalanceCardIssuer cardIssuer) {
             Utils.checkNotNull(cardIssuer, "cardIssuer");
-            this.cardIssuer = JsonNullable.of(cardIssuer);
+            this.cardIssuer = Optional.ofNullable(cardIssuer);
             return this;
         }
 
-        /**
-         * In case of payments transactions with card, the card issuer will be available
-         */
-        public Builder cardIssuer(JsonNullable<? extends CardIssuer> cardIssuer) {
+        public Builder cardIssuer(Optional<? extends BalanceCardIssuer> cardIssuer) {
             Utils.checkNotNull(cardIssuer, "cardIssuer");
             this.cardIssuer = cardIssuer;
             return this;
         }
 
 
-        /**
-         * In case of payments trnsactions with card, the card audience will be available.
-         */
-        public Builder cardAudience(CardAudience cardAudience) {
+        public Builder cardAudience(BalanceCardAudience cardAudience) {
             Utils.checkNotNull(cardAudience, "cardAudience");
-            this.cardAudience = JsonNullable.of(cardAudience);
+            this.cardAudience = Optional.ofNullable(cardAudience);
             return this;
         }
 
-        /**
-         * In case of payments trnsactions with card, the card audience will be available.
-         */
-        public Builder cardAudience(JsonNullable<? extends CardAudience> cardAudience) {
+        public Builder cardAudience(Optional<? extends BalanceCardAudience> cardAudience) {
             Utils.checkNotNull(cardAudience, "cardAudience");
             this.cardAudience = cardAudience;
             return this;
         }
 
 
-        /**
-         * In case of payments transactions with card, the card region will be available.
-         */
-        public Builder cardRegion(CardRegion cardRegion) {
+        public Builder cardRegion(BalanceCardRegion cardRegion) {
             Utils.checkNotNull(cardRegion, "cardRegion");
-            this.cardRegion = JsonNullable.of(cardRegion);
+            this.cardRegion = Optional.ofNullable(cardRegion);
             return this;
         }
 
-        /**
-         * In case of payments transactions with card, the card region will be available.
-         */
-        public Builder cardRegion(JsonNullable<? extends CardRegion> cardRegion) {
+        public Builder cardRegion(Optional<? extends BalanceCardRegion> cardRegion) {
             Utils.checkNotNull(cardRegion, "cardRegion");
             this.cardRegion = cardRegion;
             return this;
         }
 
 
-        /**
-         * Present when the transaction represents a fee.
-         */
-        public Builder feeType(FeeType feeType) {
+        public Builder feeType(BalanceFeeType feeType) {
             Utils.checkNotNull(feeType, "feeType");
-            this.feeType = JsonNullable.of(feeType);
+            this.feeType = Optional.ofNullable(feeType);
             return this;
         }
 
-        /**
-         * Present when the transaction represents a fee.
-         */
-        public Builder feeType(JsonNullable<? extends FeeType> feeType) {
+        public Builder feeType(Optional<? extends BalanceFeeType> feeType) {
             Utils.checkNotNull(feeType, "feeType");
             this.feeType = feeType;
             return this;
         }
 
 
-        /**
-         * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-         */
-        public Builder prepaymentPartType(PrepaymentPartType prepaymentPartType) {
+        public Builder prepaymentPartType(BalancePrepaymentPartType prepaymentPartType) {
             Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
-            this.prepaymentPartType = JsonNullable.of(prepaymentPartType);
+            this.prepaymentPartType = Optional.ofNullable(prepaymentPartType);
             return this;
         }
 
-        /**
-         * Prepayment part: fee itself, reimbursement, discount, VAT or rounding compensation.
-         */
-        public Builder prepaymentPartType(JsonNullable<? extends PrepaymentPartType> prepaymentPartType) {
+        public Builder prepaymentPartType(Optional<? extends BalancePrepaymentPartType> prepaymentPartType) {
             Utils.checkNotNull(prepaymentPartType, "prepaymentPartType");
             this.prepaymentPartType = prepaymentPartType;
             return this;
         }
 
 
-        /**
-         * Represents the transaction type
-         */
-        public Builder transactionType(TransactionType transactionType) {
+        public Builder transactionType(BalanceTransactionType transactionType) {
             Utils.checkNotNull(transactionType, "transactionType");
-            this.transactionType = JsonNullable.of(transactionType);
+            this.transactionType = Optional.ofNullable(transactionType);
             return this;
         }
 
-        /**
-         * Represents the transaction type
-         */
-        public Builder transactionType(JsonNullable<? extends TransactionType> transactionType) {
+        public Builder transactionType(Optional<? extends BalanceTransactionType> transactionType) {
             Utils.checkNotNull(transactionType, "transactionType");
             this.transactionType = transactionType;
             return this;

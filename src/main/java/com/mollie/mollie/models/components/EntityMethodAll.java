@@ -26,21 +26,13 @@ public class EntityMethodAll {
     private String resource;
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-     * specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment
-     * method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
-     * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-     * selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality
-     * to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * The unique identifier of the payment method. When used during [payment creation](create-payment),
+     * the payment
+     * method selection screen will be skipped.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("id")
-    private Optional<? extends MethodResponse> id;
+    private Optional<? extends EntityMethodAllId> id;
 
     /**
      * The full name of the payment method.
@@ -51,17 +43,19 @@ public class EntityMethodAll {
     private String description;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The minimum payment amount required to use this payment method.
      */
     @JsonProperty("minimumAmount")
-    private Amount minimumAmount;
+    private EntityMethodAllMinimumAmount minimumAmount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific
+     * maximum, `null`
+     * is returned instead.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("maximumAmount")
-    private Optional<? extends AmountNullable> maximumAmount;
+    private Optional<? extends EntityMethodAllMaximumAmount> maximumAmount;
 
     /**
      * URLs of images representing the payment method.
@@ -102,10 +96,10 @@ public class EntityMethodAll {
     @JsonCreator
     public EntityMethodAll(
             @JsonProperty("resource") String resource,
-            @JsonProperty("id") Optional<? extends MethodResponse> id,
+            @JsonProperty("id") Optional<? extends EntityMethodAllId> id,
             @JsonProperty("description") String description,
-            @JsonProperty("minimumAmount") Amount minimumAmount,
-            @JsonProperty("maximumAmount") Optional<? extends AmountNullable> maximumAmount,
+            @JsonProperty("minimumAmount") EntityMethodAllMinimumAmount minimumAmount,
+            @JsonProperty("maximumAmount") Optional<? extends EntityMethodAllMaximumAmount> maximumAmount,
             @JsonProperty("image") EntityMethodAllImage image,
             @JsonProperty("status") MethodStatus status,
             @JsonProperty("issuers") Optional<? extends List<EntityMethodAllIssuers>> issuers,
@@ -136,7 +130,7 @@ public class EntityMethodAll {
     public EntityMethodAll(
             String resource,
             String description,
-            Amount minimumAmount,
+            EntityMethodAllMinimumAmount minimumAmount,
             EntityMethodAllImage image,
             MethodStatus status,
             EntityMethodAllLinks links) {
@@ -157,22 +151,14 @@ public class EntityMethodAll {
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-     * specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment
-     * method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
-     * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-     * selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality
-     * to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * The unique identifier of the payment method. When used during [payment creation](create-payment),
+     * the payment
+     * method selection screen will be skipped.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<MethodResponse> id() {
-        return (Optional<MethodResponse>) id;
+    public Optional<EntityMethodAllId> id() {
+        return (Optional<EntityMethodAllId>) id;
     }
 
     /**
@@ -186,20 +172,22 @@ public class EntityMethodAll {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The minimum payment amount required to use this payment method.
      */
     @JsonIgnore
-    public Amount minimumAmount() {
+    public EntityMethodAllMinimumAmount minimumAmount() {
         return minimumAmount;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific
+     * maximum, `null`
+     * is returned instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AmountNullable> maximumAmount() {
-        return (Optional<AmountNullable>) maximumAmount;
+    public Optional<EntityMethodAllMaximumAmount> maximumAmount() {
+        return (Optional<EntityMethodAllMaximumAmount>) maximumAmount;
     }
 
     /**
@@ -265,19 +253,11 @@ public class EntityMethodAll {
     }
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-     * specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment
-     * method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
-     * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-     * selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality
-     * to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * The unique identifier of the payment method. When used during [payment creation](create-payment),
+     * the payment
+     * method selection screen will be skipped.
      */
-    public EntityMethodAll withId(MethodResponse id) {
+    public EntityMethodAll withId(EntityMethodAllId id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
@@ -285,19 +265,11 @@ public class EntityMethodAll {
 
 
     /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-     * specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment
-     * method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
-     * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-     * selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality
-     * to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+     * The unique identifier of the payment method. When used during [payment creation](create-payment),
+     * the payment
+     * method selection screen will be skipped.
      */
-    public EntityMethodAll withId(Optional<? extends MethodResponse> id) {
+    public EntityMethodAll withId(Optional<? extends EntityMethodAllId> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -315,18 +287,20 @@ public class EntityMethodAll {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The minimum payment amount required to use this payment method.
      */
-    public EntityMethodAll withMinimumAmount(Amount minimumAmount) {
+    public EntityMethodAll withMinimumAmount(EntityMethodAllMinimumAmount minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         this.minimumAmount = minimumAmount;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific
+     * maximum, `null`
+     * is returned instead.
      */
-    public EntityMethodAll withMaximumAmount(AmountNullable maximumAmount) {
+    public EntityMethodAll withMaximumAmount(EntityMethodAllMaximumAmount maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
         this.maximumAmount = Optional.ofNullable(maximumAmount);
         return this;
@@ -334,9 +308,11 @@ public class EntityMethodAll {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The maximum payment amount allowed when using this payment method. If there is no method-specific
+     * maximum, `null`
+     * is returned instead.
      */
-    public EntityMethodAll withMaximumAmount(Optional<? extends AmountNullable> maximumAmount) {
+    public EntityMethodAll withMaximumAmount(Optional<? extends EntityMethodAllMaximumAmount> maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
         this.maximumAmount = maximumAmount;
         return this;
@@ -466,13 +442,13 @@ public class EntityMethodAll {
 
         private String resource;
 
-        private Optional<? extends MethodResponse> id = Optional.empty();
+        private Optional<? extends EntityMethodAllId> id = Optional.empty();
 
         private String description;
 
-        private Amount minimumAmount;
+        private EntityMethodAllMinimumAmount minimumAmount;
 
-        private Optional<? extends AmountNullable> maximumAmount = Optional.empty();
+        private Optional<? extends EntityMethodAllMaximumAmount> maximumAmount = Optional.empty();
 
         private EntityMethodAllImage image;
 
@@ -502,38 +478,22 @@ public class EntityMethodAll {
 
 
         /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-         * specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment
-         * method. The
-         * parameter enables you to fully integrate the payment method selection into your website.
-         * 
-         * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-         * selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality
-         * to only show
-         * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+         * The unique identifier of the payment method. When used during [payment creation](create-payment),
+         * the payment
+         * method selection screen will be skipped.
          */
-        public Builder id(MethodResponse id) {
+        public Builder id(EntityMethodAllId id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
             return this;
         }
 
         /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-         * specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment
-         * method. The
-         * parameter enables you to fully integrate the payment method selection into your website.
-         * 
-         * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-         * selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality
-         * to only show
-         * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
+         * The unique identifier of the payment method. When used during [payment creation](create-payment),
+         * the payment
+         * method selection screen will be skipped.
          */
-        public Builder id(Optional<? extends MethodResponse> id) {
+        public Builder id(Optional<? extends EntityMethodAllId> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -553,9 +513,9 @@ public class EntityMethodAll {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The minimum payment amount required to use this payment method.
          */
-        public Builder minimumAmount(Amount minimumAmount) {
+        public Builder minimumAmount(EntityMethodAllMinimumAmount minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
             this.minimumAmount = minimumAmount;
             return this;
@@ -563,18 +523,22 @@ public class EntityMethodAll {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The maximum payment amount allowed when using this payment method. If there is no method-specific
+         * maximum, `null`
+         * is returned instead.
          */
-        public Builder maximumAmount(AmountNullable maximumAmount) {
+        public Builder maximumAmount(EntityMethodAllMaximumAmount maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
             this.maximumAmount = Optional.ofNullable(maximumAmount);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The maximum payment amount allowed when using this payment method. If there is no method-specific
+         * maximum, `null`
+         * is returned instead.
          */
-        public Builder maximumAmount(Optional<? extends AmountNullable> maximumAmount) {
+        public Builder maximumAmount(Optional<? extends EntityMethodAllMaximumAmount> maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
             this.maximumAmount = maximumAmount;
             return this;

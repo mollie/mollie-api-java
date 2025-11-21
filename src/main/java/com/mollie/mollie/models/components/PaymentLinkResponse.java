@@ -27,7 +27,9 @@ public class PaymentLinkResponse {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -308,6 +310,9 @@ public class PaymentLinkResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -538,6 +543,9 @@ public class PaymentLinkResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
+     */
     public PaymentLinkResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -1087,6 +1095,9 @@ public class PaymentLinkResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this payment link. Example: `pl_4Y0eZitmBnQ6IDoMqZQKh`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

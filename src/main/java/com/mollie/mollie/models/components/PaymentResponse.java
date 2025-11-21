@@ -26,7 +26,11 @@ public class PaymentResponse {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment
+     * creation time. Mollie
+     * will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -62,39 +66,58 @@ public class PaymentResponse {
     private Amount amount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is already refunded. Only available when refunds are available for this
+     * payment. For some
+     * payment methods, this amount may be higher than the payment amount, for example to allow
+     * reimbursement of the
+     * costs for a return shipment to the customer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRefunded")
-    private Optional<? extends Amount> amountRefunded;
+    private Optional<? extends AmountRefunded> amountRefunded;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The remaining amount that can be refunded. Only available when refunds are available for this
+     * payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRemaining")
-    private Optional<? extends Amount> amountRemaining;
+    private Optional<? extends AmountRemaining> amountRemaining;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is already captured for this payment. Only available when this payment
+     * supports captures.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountCaptured")
-    private Optional<? extends Amount> amountCaptured;
+    private Optional<? extends AmountCaptured> amountCaptured;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that was charged back for this payment. Only available when the total charged back
+     * amount is not
+     * zero.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountChargedBack")
-    private Optional<? extends Amount> amountChargedBack;
+    private Optional<? extends AmountChargedBack> amountChargedBack;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be settled to your account,
+     * converted to the
+     * currency your account is settled in.
+     * 
+     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
+     * If no amount is
+     * settled by Mollie the `settlementAmount` is omitted from the response.
+     * 
+     * <p>Please note that this amount might be recalculated and changed when the status of the payment
+     * changes. We suggest
+     * using the List balance transactions endpoint instead to get more accurate settlement amounts for
+     * your payments.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
-    private Optional<? extends Amount> settlementAmount;
+    private Optional<? extends SettlementAmount> settlementAmount;
 
     /**
      * The URL your customer will be redirected to after the payment process.
@@ -331,15 +354,25 @@ public class PaymentResponse {
     @JsonProperty("sequenceType")
     private SequenceTypeResponse sequenceType;
 
-
+    /**
+     * If the payment was automatically created via a subscription, the ID of the
+     * [subscription](get-subscription) will
+     * be added to the response.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subscriptionId")
-    private Optional<String> subscriptionId;
+    private JsonNullable<String> subscriptionId;
 
-
+    /**
+     * **Only relevant for recurring payments.**
+     * 
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+     * indicate which of
+     * the customer's accounts should be credited.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateId")
-    private Optional<String> mandateId;
+    private JsonNullable<String> mandateId;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -358,23 +391,24 @@ public class PaymentResponse {
     @JsonProperty("profileId")
     private String profileId;
 
-
+    /**
+     * The identifier referring to the [settlement](get-settlement) this payment was settled with.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementId")
-    private Optional<String> settlementId;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("orderId")
-    private Optional<String> orderId;
+    private JsonNullable<String> settlementId;
 
     /**
-     * The payment's status. Refer to the [documentation regarding
-     * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
-     * statuses occur at what point.
+     * If the payment was created for an [order](get-order), the ID of that order will be part of the
+     * response.
      */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("orderId")
+    private JsonNullable<String> orderId;
+
+
     @JsonProperty("status")
-    private PaymentStatus status;
+    private PaymentResponseStatus status;
 
     /**
      * This object offers details about the status of a payment. Currently it is only available for
@@ -480,11 +514,11 @@ public class PaymentResponse {
             @JsonProperty("mode") Mode mode,
             @JsonProperty("description") String description,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("amountRefunded") Optional<? extends Amount> amountRefunded,
-            @JsonProperty("amountRemaining") Optional<? extends Amount> amountRemaining,
-            @JsonProperty("amountCaptured") Optional<? extends Amount> amountCaptured,
-            @JsonProperty("amountChargedBack") Optional<? extends Amount> amountChargedBack,
-            @JsonProperty("settlementAmount") Optional<? extends Amount> settlementAmount,
+            @JsonProperty("amountRefunded") Optional<? extends AmountRefunded> amountRefunded,
+            @JsonProperty("amountRemaining") Optional<? extends AmountRemaining> amountRemaining,
+            @JsonProperty("amountCaptured") Optional<? extends AmountCaptured> amountCaptured,
+            @JsonProperty("amountChargedBack") Optional<? extends AmountChargedBack> amountChargedBack,
+            @JsonProperty("settlementAmount") Optional<? extends SettlementAmount> settlementAmount,
             @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
@@ -502,13 +536,13 @@ public class PaymentResponse {
             @JsonProperty("applicationFee") JsonNullable<? extends ApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<EntityPaymentRouteResponse>> routing,
             @JsonProperty("sequenceType") SequenceTypeResponse sequenceType,
-            @JsonProperty("subscriptionId") Optional<String> subscriptionId,
-            @JsonProperty("mandateId") Optional<String> mandateId,
+            @JsonProperty("subscriptionId") JsonNullable<String> subscriptionId,
+            @JsonProperty("mandateId") JsonNullable<String> mandateId,
             @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("profileId") String profileId,
-            @JsonProperty("settlementId") Optional<String> settlementId,
-            @JsonProperty("orderId") Optional<String> orderId,
-            @JsonProperty("status") PaymentStatus status,
+            @JsonProperty("settlementId") JsonNullable<String> settlementId,
+            @JsonProperty("orderId") JsonNullable<String> orderId,
+            @JsonProperty("status") PaymentResponseStatus status,
             @JsonProperty("statusReason") JsonNullable<? extends StatusReason> statusReason,
             @JsonProperty("isCancelable") JsonNullable<Boolean> isCancelable,
             @JsonProperty("details") JsonNullable<? extends Details> details,
@@ -620,7 +654,7 @@ public class PaymentResponse {
             Amount amount,
             SequenceTypeResponse sequenceType,
             String profileId,
-            PaymentStatus status,
+            PaymentResponseStatus status,
             String createdAt,
             PaymentResponseLinks links) {
         this(resource, id, mode,
@@ -632,8 +666,8 @@ public class PaymentResponse {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), sequenceType,
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            profileId, Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            profileId, JsonNullable.undefined(), JsonNullable.undefined(),
             status, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), createdAt, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -649,6 +683,11 @@ public class PaymentResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment
+     * creation time. Mollie
+     * will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -692,48 +731,67 @@ public class PaymentResponse {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is already refunded. Only available when refunds are available for this
+     * payment. For some
+     * payment methods, this amount may be higher than the payment amount, for example to allow
+     * reimbursement of the
+     * costs for a return shipment to the customer.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amountRefunded() {
-        return (Optional<Amount>) amountRefunded;
+    public Optional<AmountRefunded> amountRefunded() {
+        return (Optional<AmountRefunded>) amountRefunded;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The remaining amount that can be refunded. Only available when refunds are available for this
+     * payment.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amountRemaining() {
-        return (Optional<Amount>) amountRemaining;
+    public Optional<AmountRemaining> amountRemaining() {
+        return (Optional<AmountRemaining>) amountRemaining;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is already captured for this payment. Only available when this payment
+     * supports captures.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amountCaptured() {
-        return (Optional<Amount>) amountCaptured;
+    public Optional<AmountCaptured> amountCaptured() {
+        return (Optional<AmountCaptured>) amountCaptured;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that was charged back for this payment. Only available when the total charged back
+     * amount is not
+     * zero.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amountChargedBack() {
-        return (Optional<Amount>) amountChargedBack;
+    public Optional<AmountChargedBack> amountChargedBack() {
+        return (Optional<AmountChargedBack>) amountChargedBack;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be settled to your account,
+     * converted to the
+     * currency your account is settled in.
+     * 
+     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
+     * If no amount is
+     * settled by Mollie the `settlementAmount` is omitted from the response.
+     * 
+     * <p>Please note that this amount might be recalculated and changed when the status of the payment
+     * changes. We suggest
+     * using the List balance transactions endpoint instead to get more accurate settlement amounts for
+     * your payments.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> settlementAmount() {
-        return (Optional<Amount>) settlementAmount;
+    public Optional<SettlementAmount> settlementAmount() {
+        return (Optional<SettlementAmount>) settlementAmount;
     }
 
     /**
@@ -996,13 +1054,25 @@ public class PaymentResponse {
         return sequenceType;
     }
 
+    /**
+     * If the payment was automatically created via a subscription, the ID of the
+     * [subscription](get-subscription) will
+     * be added to the response.
+     */
     @JsonIgnore
-    public Optional<String> subscriptionId() {
+    public JsonNullable<String> subscriptionId() {
         return subscriptionId;
     }
 
+    /**
+     * **Only relevant for recurring payments.**
+     * 
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+     * indicate which of
+     * the customer's accounts should be credited.
+     */
     @JsonIgnore
-    public Optional<String> mandateId() {
+    public JsonNullable<String> mandateId() {
         return mandateId;
     }
 
@@ -1025,23 +1095,25 @@ public class PaymentResponse {
         return profileId;
     }
 
+    /**
+     * The identifier referring to the [settlement](get-settlement) this payment was settled with.
+     */
     @JsonIgnore
-    public Optional<String> settlementId() {
+    public JsonNullable<String> settlementId() {
         return settlementId;
     }
 
+    /**
+     * If the payment was created for an [order](get-order), the ID of that order will be part of the
+     * response.
+     */
     @JsonIgnore
-    public Optional<String> orderId() {
+    public JsonNullable<String> orderId() {
         return orderId;
     }
 
-    /**
-     * The payment's status. Refer to the [documentation regarding
-     * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
-     * statuses occur at what point.
-     */
     @JsonIgnore
-    public PaymentStatus status() {
+    public PaymentResponseStatus status() {
         return status;
     }
 
@@ -1172,6 +1244,11 @@ public class PaymentResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment
+     * creation time. Mollie
+     * will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     */
     public PaymentResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -1219,9 +1296,13 @@ public class PaymentResponse {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is already refunded. Only available when refunds are available for this
+     * payment. For some
+     * payment methods, this amount may be higher than the payment amount, for example to allow
+     * reimbursement of the
+     * costs for a return shipment to the customer.
      */
-    public PaymentResponse withAmountRefunded(Amount amountRefunded) {
+    public PaymentResponse withAmountRefunded(AmountRefunded amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = Optional.ofNullable(amountRefunded);
         return this;
@@ -1229,18 +1310,23 @@ public class PaymentResponse {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is already refunded. Only available when refunds are available for this
+     * payment. For some
+     * payment methods, this amount may be higher than the payment amount, for example to allow
+     * reimbursement of the
+     * costs for a return shipment to the customer.
      */
-    public PaymentResponse withAmountRefunded(Optional<? extends Amount> amountRefunded) {
+    public PaymentResponse withAmountRefunded(Optional<? extends AmountRefunded> amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = amountRefunded;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The remaining amount that can be refunded. Only available when refunds are available for this
+     * payment.
      */
-    public PaymentResponse withAmountRemaining(Amount amountRemaining) {
+    public PaymentResponse withAmountRemaining(AmountRemaining amountRemaining) {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
         this.amountRemaining = Optional.ofNullable(amountRemaining);
         return this;
@@ -1248,18 +1334,20 @@ public class PaymentResponse {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The remaining amount that can be refunded. Only available when refunds are available for this
+     * payment.
      */
-    public PaymentResponse withAmountRemaining(Optional<? extends Amount> amountRemaining) {
+    public PaymentResponse withAmountRemaining(Optional<? extends AmountRemaining> amountRemaining) {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
         this.amountRemaining = amountRemaining;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is already captured for this payment. Only available when this payment
+     * supports captures.
      */
-    public PaymentResponse withAmountCaptured(Amount amountCaptured) {
+    public PaymentResponse withAmountCaptured(AmountCaptured amountCaptured) {
         Utils.checkNotNull(amountCaptured, "amountCaptured");
         this.amountCaptured = Optional.ofNullable(amountCaptured);
         return this;
@@ -1267,18 +1355,21 @@ public class PaymentResponse {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that is already captured for this payment. Only available when this payment
+     * supports captures.
      */
-    public PaymentResponse withAmountCaptured(Optional<? extends Amount> amountCaptured) {
+    public PaymentResponse withAmountCaptured(Optional<? extends AmountCaptured> amountCaptured) {
         Utils.checkNotNull(amountCaptured, "amountCaptured");
         this.amountCaptured = amountCaptured;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that was charged back for this payment. Only available when the total charged back
+     * amount is not
+     * zero.
      */
-    public PaymentResponse withAmountChargedBack(Amount amountChargedBack) {
+    public PaymentResponse withAmountChargedBack(AmountChargedBack amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
         this.amountChargedBack = Optional.ofNullable(amountChargedBack);
         return this;
@@ -1286,18 +1377,31 @@ public class PaymentResponse {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount that was charged back for this payment. Only available when the total charged back
+     * amount is not
+     * zero.
      */
-    public PaymentResponse withAmountChargedBack(Optional<? extends Amount> amountChargedBack) {
+    public PaymentResponse withAmountChargedBack(Optional<? extends AmountChargedBack> amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
         this.amountChargedBack = amountChargedBack;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be settled to your account,
+     * converted to the
+     * currency your account is settled in.
+     * 
+     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
+     * If no amount is
+     * settled by Mollie the `settlementAmount` is omitted from the response.
+     * 
+     * <p>Please note that this amount might be recalculated and changed when the status of the payment
+     * changes. We suggest
+     * using the List balance transactions endpoint instead to get more accurate settlement amounts for
+     * your payments.
      */
-    public PaymentResponse withSettlementAmount(Amount settlementAmount) {
+    public PaymentResponse withSettlementAmount(SettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = Optional.ofNullable(settlementAmount);
         return this;
@@ -1305,9 +1409,20 @@ public class PaymentResponse {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be settled to your account,
+     * converted to the
+     * currency your account is settled in.
+     * 
+     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
+     * If no amount is
+     * settled by Mollie the `settlementAmount` is omitted from the response.
+     * 
+     * <p>Please note that this amount might be recalculated and changed when the status of the payment
+     * changes. We suggest
+     * using the List balance transactions endpoint instead to get more accurate settlement amounts for
+     * your payments.
      */
-    public PaymentResponse withSettlementAmount(Optional<? extends Amount> settlementAmount) {
+    public PaymentResponse withSettlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
         return this;
@@ -1845,27 +1960,49 @@ public class PaymentResponse {
         return this;
     }
 
+    /**
+     * If the payment was automatically created via a subscription, the ID of the
+     * [subscription](get-subscription) will
+     * be added to the response.
+     */
     public PaymentResponse withSubscriptionId(String subscriptionId) {
         Utils.checkNotNull(subscriptionId, "subscriptionId");
-        this.subscriptionId = Optional.ofNullable(subscriptionId);
+        this.subscriptionId = JsonNullable.of(subscriptionId);
         return this;
     }
 
-
-    public PaymentResponse withSubscriptionId(Optional<String> subscriptionId) {
+    /**
+     * If the payment was automatically created via a subscription, the ID of the
+     * [subscription](get-subscription) will
+     * be added to the response.
+     */
+    public PaymentResponse withSubscriptionId(JsonNullable<String> subscriptionId) {
         Utils.checkNotNull(subscriptionId, "subscriptionId");
         this.subscriptionId = subscriptionId;
         return this;
     }
 
+    /**
+     * **Only relevant for recurring payments.**
+     * 
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+     * indicate which of
+     * the customer's accounts should be credited.
+     */
     public PaymentResponse withMandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
-        this.mandateId = Optional.ofNullable(mandateId);
+        this.mandateId = JsonNullable.of(mandateId);
         return this;
     }
 
-
-    public PaymentResponse withMandateId(Optional<String> mandateId) {
+    /**
+     * **Only relevant for recurring payments.**
+     * 
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+     * indicate which of
+     * the customer's accounts should be credited.
+     */
+    public PaymentResponse withMandateId(JsonNullable<String> mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
         this.mandateId = mandateId;
         return this;
@@ -1899,38 +2036,45 @@ public class PaymentResponse {
         return this;
     }
 
+    /**
+     * The identifier referring to the [settlement](get-settlement) this payment was settled with.
+     */
     public PaymentResponse withSettlementId(String settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = Optional.ofNullable(settlementId);
+        this.settlementId = JsonNullable.of(settlementId);
         return this;
     }
 
-
-    public PaymentResponse withSettlementId(Optional<String> settlementId) {
+    /**
+     * The identifier referring to the [settlement](get-settlement) this payment was settled with.
+     */
+    public PaymentResponse withSettlementId(JsonNullable<String> settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
         this.settlementId = settlementId;
         return this;
     }
 
+    /**
+     * If the payment was created for an [order](get-order), the ID of that order will be part of the
+     * response.
+     */
     public PaymentResponse withOrderId(String orderId) {
         Utils.checkNotNull(orderId, "orderId");
-        this.orderId = Optional.ofNullable(orderId);
+        this.orderId = JsonNullable.of(orderId);
         return this;
     }
 
-
-    public PaymentResponse withOrderId(Optional<String> orderId) {
+    /**
+     * If the payment was created for an [order](get-order), the ID of that order will be part of the
+     * response.
+     */
+    public PaymentResponse withOrderId(JsonNullable<String> orderId) {
         Utils.checkNotNull(orderId, "orderId");
         this.orderId = orderId;
         return this;
     }
 
-    /**
-     * The payment's status. Refer to the [documentation regarding
-     * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
-     * statuses occur at what point.
-     */
-    public PaymentResponse withStatus(PaymentStatus status) {
+    public PaymentResponse withStatus(PaymentResponseStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -2299,15 +2443,15 @@ public class PaymentResponse {
 
         private Amount amount;
 
-        private Optional<? extends Amount> amountRefunded = Optional.empty();
+        private Optional<? extends AmountRefunded> amountRefunded = Optional.empty();
 
-        private Optional<? extends Amount> amountRemaining = Optional.empty();
+        private Optional<? extends AmountRemaining> amountRemaining = Optional.empty();
 
-        private Optional<? extends Amount> amountCaptured = Optional.empty();
+        private Optional<? extends AmountCaptured> amountCaptured = Optional.empty();
 
-        private Optional<? extends Amount> amountChargedBack = Optional.empty();
+        private Optional<? extends AmountChargedBack> amountChargedBack = Optional.empty();
 
-        private Optional<? extends Amount> settlementAmount = Optional.empty();
+        private Optional<? extends SettlementAmount> settlementAmount = Optional.empty();
 
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
 
@@ -2343,19 +2487,19 @@ public class PaymentResponse {
 
         private SequenceTypeResponse sequenceType;
 
-        private Optional<String> subscriptionId = Optional.empty();
+        private JsonNullable<String> subscriptionId = JsonNullable.undefined();
 
-        private Optional<String> mandateId = Optional.empty();
+        private JsonNullable<String> mandateId = JsonNullable.undefined();
 
         private Optional<String> customerId = Optional.empty();
 
         private String profileId;
 
-        private Optional<String> settlementId = Optional.empty();
+        private JsonNullable<String> settlementId = JsonNullable.undefined();
 
-        private Optional<String> orderId = Optional.empty();
+        private JsonNullable<String> orderId = JsonNullable.undefined();
 
-        private PaymentStatus status;
+        private PaymentResponseStatus status;
 
         private JsonNullable<? extends StatusReason> statusReason = JsonNullable.undefined();
 
@@ -2395,6 +2539,11 @@ public class PaymentResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this payment. Mollie assigns this identifier at payment
+         * creation time. Mollie
+         * will always refer to the payment by this ID. Example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -2446,18 +2595,26 @@ public class PaymentResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount that is already refunded. Only available when refunds are available for this
+         * payment. For some
+         * payment methods, this amount may be higher than the payment amount, for example to allow
+         * reimbursement of the
+         * costs for a return shipment to the customer.
          */
-        public Builder amountRefunded(Amount amountRefunded) {
+        public Builder amountRefunded(AmountRefunded amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = Optional.ofNullable(amountRefunded);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount that is already refunded. Only available when refunds are available for this
+         * payment. For some
+         * payment methods, this amount may be higher than the payment amount, for example to allow
+         * reimbursement of the
+         * costs for a return shipment to the customer.
          */
-        public Builder amountRefunded(Optional<? extends Amount> amountRefunded) {
+        public Builder amountRefunded(Optional<? extends AmountRefunded> amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = amountRefunded;
             return this;
@@ -2465,18 +2622,20 @@ public class PaymentResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The remaining amount that can be refunded. Only available when refunds are available for this
+         * payment.
          */
-        public Builder amountRemaining(Amount amountRemaining) {
+        public Builder amountRemaining(AmountRemaining amountRemaining) {
             Utils.checkNotNull(amountRemaining, "amountRemaining");
             this.amountRemaining = Optional.ofNullable(amountRemaining);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The remaining amount that can be refunded. Only available when refunds are available for this
+         * payment.
          */
-        public Builder amountRemaining(Optional<? extends Amount> amountRemaining) {
+        public Builder amountRemaining(Optional<? extends AmountRemaining> amountRemaining) {
             Utils.checkNotNull(amountRemaining, "amountRemaining");
             this.amountRemaining = amountRemaining;
             return this;
@@ -2484,18 +2643,20 @@ public class PaymentResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount that is already captured for this payment. Only available when this payment
+         * supports captures.
          */
-        public Builder amountCaptured(Amount amountCaptured) {
+        public Builder amountCaptured(AmountCaptured amountCaptured) {
             Utils.checkNotNull(amountCaptured, "amountCaptured");
             this.amountCaptured = Optional.ofNullable(amountCaptured);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount that is already captured for this payment. Only available when this payment
+         * supports captures.
          */
-        public Builder amountCaptured(Optional<? extends Amount> amountCaptured) {
+        public Builder amountCaptured(Optional<? extends AmountCaptured> amountCaptured) {
             Utils.checkNotNull(amountCaptured, "amountCaptured");
             this.amountCaptured = amountCaptured;
             return this;
@@ -2503,18 +2664,22 @@ public class PaymentResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount that was charged back for this payment. Only available when the total charged back
+         * amount is not
+         * zero.
          */
-        public Builder amountChargedBack(Amount amountChargedBack) {
+        public Builder amountChargedBack(AmountChargedBack amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
             this.amountChargedBack = Optional.ofNullable(amountChargedBack);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount that was charged back for this payment. Only available when the total charged back
+         * amount is not
+         * zero.
          */
-        public Builder amountChargedBack(Optional<? extends Amount> amountChargedBack) {
+        public Builder amountChargedBack(Optional<? extends AmountChargedBack> amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
             this.amountChargedBack = amountChargedBack;
             return this;
@@ -2522,18 +2687,40 @@ public class PaymentResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * This optional field will contain the approximate amount that will be settled to your account,
+         * converted to the
+         * currency your account is settled in.
+         * 
+         * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
+         * If no amount is
+         * settled by Mollie the `settlementAmount` is omitted from the response.
+         * 
+         * <p>Please note that this amount might be recalculated and changed when the status of the payment
+         * changes. We suggest
+         * using the List balance transactions endpoint instead to get more accurate settlement amounts for
+         * your payments.
          */
-        public Builder settlementAmount(Amount settlementAmount) {
+        public Builder settlementAmount(SettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = Optional.ofNullable(settlementAmount);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * This optional field will contain the approximate amount that will be settled to your account,
+         * converted to the
+         * currency your account is settled in.
+         * 
+         * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
+         * If no amount is
+         * settled by Mollie the `settlementAmount` is omitted from the response.
+         * 
+         * <p>Please note that this amount might be recalculated and changed when the status of the payment
+         * changes. We suggest
+         * using the List balance transactions endpoint instead to get more accurate settlement amounts for
+         * your payments.
          */
-        public Builder settlementAmount(Optional<? extends Amount> settlementAmount) {
+        public Builder settlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;
             return this;
@@ -3087,26 +3274,50 @@ public class PaymentResponse {
         }
 
 
+        /**
+         * If the payment was automatically created via a subscription, the ID of the
+         * [subscription](get-subscription) will
+         * be added to the response.
+         */
         public Builder subscriptionId(String subscriptionId) {
             Utils.checkNotNull(subscriptionId, "subscriptionId");
-            this.subscriptionId = Optional.ofNullable(subscriptionId);
+            this.subscriptionId = JsonNullable.of(subscriptionId);
             return this;
         }
 
-        public Builder subscriptionId(Optional<String> subscriptionId) {
+        /**
+         * If the payment was automatically created via a subscription, the ID of the
+         * [subscription](get-subscription) will
+         * be added to the response.
+         */
+        public Builder subscriptionId(JsonNullable<String> subscriptionId) {
             Utils.checkNotNull(subscriptionId, "subscriptionId");
             this.subscriptionId = subscriptionId;
             return this;
         }
 
 
+        /**
+         * **Only relevant for recurring payments.**
+         * 
+         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+         * indicate which of
+         * the customer's accounts should be credited.
+         */
         public Builder mandateId(String mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
-            this.mandateId = Optional.ofNullable(mandateId);
+            this.mandateId = JsonNullable.of(mandateId);
             return this;
         }
 
-        public Builder mandateId(Optional<String> mandateId) {
+        /**
+         * **Only relevant for recurring payments.**
+         * 
+         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+         * indicate which of
+         * the customer's accounts should be credited.
+         */
+        public Builder mandateId(JsonNullable<String> mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
             this.mandateId = mandateId;
             return this;
@@ -3142,38 +3353,47 @@ public class PaymentResponse {
         }
 
 
+        /**
+         * The identifier referring to the [settlement](get-settlement) this payment was settled with.
+         */
         public Builder settlementId(String settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
-            this.settlementId = Optional.ofNullable(settlementId);
+            this.settlementId = JsonNullable.of(settlementId);
             return this;
         }
 
-        public Builder settlementId(Optional<String> settlementId) {
+        /**
+         * The identifier referring to the [settlement](get-settlement) this payment was settled with.
+         */
+        public Builder settlementId(JsonNullable<String> settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
             this.settlementId = settlementId;
             return this;
         }
 
 
+        /**
+         * If the payment was created for an [order](get-order), the ID of that order will be part of the
+         * response.
+         */
         public Builder orderId(String orderId) {
             Utils.checkNotNull(orderId, "orderId");
-            this.orderId = Optional.ofNullable(orderId);
+            this.orderId = JsonNullable.of(orderId);
             return this;
         }
 
-        public Builder orderId(Optional<String> orderId) {
+        /**
+         * If the payment was created for an [order](get-order), the ID of that order will be part of the
+         * response.
+         */
+        public Builder orderId(JsonNullable<String> orderId) {
             Utils.checkNotNull(orderId, "orderId");
             this.orderId = orderId;
             return this;
         }
 
 
-        /**
-         * The payment's status. Refer to the [documentation regarding
-         * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
-         * statuses occur at what point.
-         */
-        public Builder status(PaymentStatus status) {
+        public Builder status(PaymentResponseStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

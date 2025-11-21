@@ -27,7 +27,9 @@ public class EntitySalesInvoiceResponse {
     @JsonProperty("resource")
     private Optional<String> resource;
 
-
+    /**
+     * The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
@@ -161,39 +163,39 @@ public class EntitySalesInvoiceResponse {
     private JsonNullable<? extends SalesInvoiceDiscountResponse> discount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The amount that is left to be paid.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountDue")
-    private Optional<? extends Amount> amountDue;
+    private Optional<? extends AmountDue> amountDue;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount without VAT before discounts.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subtotalAmount")
-    private Optional<? extends Amount> subtotalAmount;
+    private Optional<? extends SubtotalAmount> subtotalAmount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount with VAT.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totalAmount")
-    private Optional<? extends Amount> totalAmount;
+    private Optional<? extends TotalAmount> totalAmount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total VAT amount.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totalVatAmount")
-    private Optional<? extends Amount> totalVatAmount;
+    private Optional<? extends TotalVatAmount> totalVatAmount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount without VAT after discounts.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discountedSubtotalAmount")
-    private Optional<? extends Amount> discountedSubtotalAmount;
+    private Optional<? extends DiscountedSubtotalAmount> discountedSubtotalAmount;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -256,11 +258,11 @@ public class EntitySalesInvoiceResponse {
             @JsonProperty("recipient") JsonNullable<? extends SalesInvoiceRecipientResponse> recipient,
             @JsonProperty("lines") JsonNullable<? extends List<SalesInvoiceLineItemResponse>> lines,
             @JsonProperty("discount") JsonNullable<? extends SalesInvoiceDiscountResponse> discount,
-            @JsonProperty("amountDue") Optional<? extends Amount> amountDue,
-            @JsonProperty("subtotalAmount") Optional<? extends Amount> subtotalAmount,
-            @JsonProperty("totalAmount") Optional<? extends Amount> totalAmount,
-            @JsonProperty("totalVatAmount") Optional<? extends Amount> totalVatAmount,
-            @JsonProperty("discountedSubtotalAmount") Optional<? extends Amount> discountedSubtotalAmount,
+            @JsonProperty("amountDue") Optional<? extends AmountDue> amountDue,
+            @JsonProperty("subtotalAmount") Optional<? extends SubtotalAmount> subtotalAmount,
+            @JsonProperty("totalAmount") Optional<? extends TotalAmount> totalAmount,
+            @JsonProperty("totalVatAmount") Optional<? extends TotalVatAmount> totalVatAmount,
+            @JsonProperty("discountedSubtotalAmount") Optional<? extends DiscountedSubtotalAmount> discountedSubtotalAmount,
             @JsonProperty("createdAt") Optional<String> createdAt,
             @JsonProperty("issuedAt") JsonNullable<String> issuedAt,
             @JsonProperty("paidAt") JsonNullable<String> paidAt,
@@ -344,6 +346,9 @@ public class EntitySalesInvoiceResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.
+     */
     @JsonIgnore
     public Optional<String> id() {
         return id;
@@ -499,48 +504,48 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The amount that is left to be paid.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amountDue() {
-        return (Optional<Amount>) amountDue;
+    public Optional<AmountDue> amountDue() {
+        return (Optional<AmountDue>) amountDue;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount without VAT before discounts.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> subtotalAmount() {
-        return (Optional<Amount>) subtotalAmount;
+    public Optional<SubtotalAmount> subtotalAmount() {
+        return (Optional<SubtotalAmount>) subtotalAmount;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount with VAT.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> totalAmount() {
-        return (Optional<Amount>) totalAmount;
+    public Optional<TotalAmount> totalAmount() {
+        return (Optional<TotalAmount>) totalAmount;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total VAT amount.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> totalVatAmount() {
-        return (Optional<Amount>) totalVatAmount;
+    public Optional<TotalVatAmount> totalVatAmount() {
+        return (Optional<TotalVatAmount>) totalVatAmount;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount without VAT after discounts.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> discountedSubtotalAmount() {
-        return (Optional<Amount>) discountedSubtotalAmount;
+    public Optional<DiscountedSubtotalAmount> discountedSubtotalAmount() {
+        return (Optional<DiscountedSubtotalAmount>) discountedSubtotalAmount;
     }
 
     /**
@@ -619,6 +624,9 @@ public class EntitySalesInvoiceResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.
+     */
     public EntitySalesInvoiceResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
@@ -626,6 +634,9 @@ public class EntitySalesInvoiceResponse {
     }
 
 
+    /**
+     * The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.
+     */
     public EntitySalesInvoiceResponse withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -947,9 +958,9 @@ public class EntitySalesInvoiceResponse {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The amount that is left to be paid.
      */
-    public EntitySalesInvoiceResponse withAmountDue(Amount amountDue) {
+    public EntitySalesInvoiceResponse withAmountDue(AmountDue amountDue) {
         Utils.checkNotNull(amountDue, "amountDue");
         this.amountDue = Optional.ofNullable(amountDue);
         return this;
@@ -957,18 +968,18 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The amount that is left to be paid.
      */
-    public EntitySalesInvoiceResponse withAmountDue(Optional<? extends Amount> amountDue) {
+    public EntitySalesInvoiceResponse withAmountDue(Optional<? extends AmountDue> amountDue) {
         Utils.checkNotNull(amountDue, "amountDue");
         this.amountDue = amountDue;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount without VAT before discounts.
      */
-    public EntitySalesInvoiceResponse withSubtotalAmount(Amount subtotalAmount) {
+    public EntitySalesInvoiceResponse withSubtotalAmount(SubtotalAmount subtotalAmount) {
         Utils.checkNotNull(subtotalAmount, "subtotalAmount");
         this.subtotalAmount = Optional.ofNullable(subtotalAmount);
         return this;
@@ -976,18 +987,18 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount without VAT before discounts.
      */
-    public EntitySalesInvoiceResponse withSubtotalAmount(Optional<? extends Amount> subtotalAmount) {
+    public EntitySalesInvoiceResponse withSubtotalAmount(Optional<? extends SubtotalAmount> subtotalAmount) {
         Utils.checkNotNull(subtotalAmount, "subtotalAmount");
         this.subtotalAmount = subtotalAmount;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount with VAT.
      */
-    public EntitySalesInvoiceResponse withTotalAmount(Amount totalAmount) {
+    public EntitySalesInvoiceResponse withTotalAmount(TotalAmount totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = Optional.ofNullable(totalAmount);
         return this;
@@ -995,18 +1006,18 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount with VAT.
      */
-    public EntitySalesInvoiceResponse withTotalAmount(Optional<? extends Amount> totalAmount) {
+    public EntitySalesInvoiceResponse withTotalAmount(Optional<? extends TotalAmount> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = totalAmount;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total VAT amount.
      */
-    public EntitySalesInvoiceResponse withTotalVatAmount(Amount totalVatAmount) {
+    public EntitySalesInvoiceResponse withTotalVatAmount(TotalVatAmount totalVatAmount) {
         Utils.checkNotNull(totalVatAmount, "totalVatAmount");
         this.totalVatAmount = Optional.ofNullable(totalVatAmount);
         return this;
@@ -1014,18 +1025,18 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total VAT amount.
      */
-    public EntitySalesInvoiceResponse withTotalVatAmount(Optional<? extends Amount> totalVatAmount) {
+    public EntitySalesInvoiceResponse withTotalVatAmount(Optional<? extends TotalVatAmount> totalVatAmount) {
         Utils.checkNotNull(totalVatAmount, "totalVatAmount");
         this.totalVatAmount = totalVatAmount;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount without VAT after discounts.
      */
-    public EntitySalesInvoiceResponse withDiscountedSubtotalAmount(Amount discountedSubtotalAmount) {
+    public EntitySalesInvoiceResponse withDiscountedSubtotalAmount(DiscountedSubtotalAmount discountedSubtotalAmount) {
         Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
         this.discountedSubtotalAmount = Optional.ofNullable(discountedSubtotalAmount);
         return this;
@@ -1033,9 +1044,9 @@ public class EntitySalesInvoiceResponse {
 
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * The total amount without VAT after discounts.
      */
-    public EntitySalesInvoiceResponse withDiscountedSubtotalAmount(Optional<? extends Amount> discountedSubtotalAmount) {
+    public EntitySalesInvoiceResponse withDiscountedSubtotalAmount(Optional<? extends DiscountedSubtotalAmount> discountedSubtotalAmount) {
         Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
         this.discountedSubtotalAmount = discountedSubtotalAmount;
         return this;
@@ -1269,15 +1280,15 @@ public class EntitySalesInvoiceResponse {
 
         private JsonNullable<? extends SalesInvoiceDiscountResponse> discount = JsonNullable.undefined();
 
-        private Optional<? extends Amount> amountDue = Optional.empty();
+        private Optional<? extends AmountDue> amountDue = Optional.empty();
 
-        private Optional<? extends Amount> subtotalAmount = Optional.empty();
+        private Optional<? extends SubtotalAmount> subtotalAmount = Optional.empty();
 
-        private Optional<? extends Amount> totalAmount = Optional.empty();
+        private Optional<? extends TotalAmount> totalAmount = Optional.empty();
 
-        private Optional<? extends Amount> totalVatAmount = Optional.empty();
+        private Optional<? extends TotalVatAmount> totalVatAmount = Optional.empty();
 
-        private Optional<? extends Amount> discountedSubtotalAmount = Optional.empty();
+        private Optional<? extends DiscountedSubtotalAmount> discountedSubtotalAmount = Optional.empty();
 
         private Optional<String> createdAt = Optional.empty();
 
@@ -1317,12 +1328,18 @@ public class EntitySalesInvoiceResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
             return this;
         }
 
+        /**
+         * The identifier uniquely referring to this invoice. Example: `invoice_4Y0eZitmBnQ6IDoMqZQKh`.
+         */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -1654,18 +1671,18 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The amount that is left to be paid.
          */
-        public Builder amountDue(Amount amountDue) {
+        public Builder amountDue(AmountDue amountDue) {
             Utils.checkNotNull(amountDue, "amountDue");
             this.amountDue = Optional.ofNullable(amountDue);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The amount that is left to be paid.
          */
-        public Builder amountDue(Optional<? extends Amount> amountDue) {
+        public Builder amountDue(Optional<? extends AmountDue> amountDue) {
             Utils.checkNotNull(amountDue, "amountDue");
             this.amountDue = amountDue;
             return this;
@@ -1673,18 +1690,18 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount without VAT before discounts.
          */
-        public Builder subtotalAmount(Amount subtotalAmount) {
+        public Builder subtotalAmount(SubtotalAmount subtotalAmount) {
             Utils.checkNotNull(subtotalAmount, "subtotalAmount");
             this.subtotalAmount = Optional.ofNullable(subtotalAmount);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount without VAT before discounts.
          */
-        public Builder subtotalAmount(Optional<? extends Amount> subtotalAmount) {
+        public Builder subtotalAmount(Optional<? extends SubtotalAmount> subtotalAmount) {
             Utils.checkNotNull(subtotalAmount, "subtotalAmount");
             this.subtotalAmount = subtotalAmount;
             return this;
@@ -1692,18 +1709,18 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount with VAT.
          */
-        public Builder totalAmount(Amount totalAmount) {
+        public Builder totalAmount(TotalAmount totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = Optional.ofNullable(totalAmount);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount with VAT.
          */
-        public Builder totalAmount(Optional<? extends Amount> totalAmount) {
+        public Builder totalAmount(Optional<? extends TotalAmount> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = totalAmount;
             return this;
@@ -1711,18 +1728,18 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total VAT amount.
          */
-        public Builder totalVatAmount(Amount totalVatAmount) {
+        public Builder totalVatAmount(TotalVatAmount totalVatAmount) {
             Utils.checkNotNull(totalVatAmount, "totalVatAmount");
             this.totalVatAmount = Optional.ofNullable(totalVatAmount);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total VAT amount.
          */
-        public Builder totalVatAmount(Optional<? extends Amount> totalVatAmount) {
+        public Builder totalVatAmount(Optional<? extends TotalVatAmount> totalVatAmount) {
             Utils.checkNotNull(totalVatAmount, "totalVatAmount");
             this.totalVatAmount = totalVatAmount;
             return this;
@@ -1730,18 +1747,18 @@ public class EntitySalesInvoiceResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount without VAT after discounts.
          */
-        public Builder discountedSubtotalAmount(Amount discountedSubtotalAmount) {
+        public Builder discountedSubtotalAmount(DiscountedSubtotalAmount discountedSubtotalAmount) {
             Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
             this.discountedSubtotalAmount = Optional.ofNullable(discountedSubtotalAmount);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * The total amount without VAT after discounts.
          */
-        public Builder discountedSubtotalAmount(Optional<? extends Amount> discountedSubtotalAmount) {
+        public Builder discountedSubtotalAmount(Optional<? extends DiscountedSubtotalAmount> discountedSubtotalAmount) {
             Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
             this.discountedSubtotalAmount = discountedSubtotalAmount;
             return this;

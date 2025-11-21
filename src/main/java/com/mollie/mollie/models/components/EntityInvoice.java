@@ -41,29 +41,31 @@ public class EntityInvoice {
     @JsonProperty("vatNumber")
     private Optional<String> vatNumber;
 
-    /**
-     * Status of the invoice.
-     */
+
     @JsonProperty("status")
-    private InvoiceStatus status;
+    private EntityInvoiceStatus status;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * Total amount of the invoice, excluding VAT.
      */
     @JsonProperty("netAmount")
-    private Amount netAmount;
+    private NetAmount netAmount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU
+     * merchants, VAT will
+     * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For
+     * merchants outside
+     * the EU, no VAT will be charged.
      */
     @JsonProperty("vatAmount")
-    private Amount vatAmount;
+    private VatAmount vatAmount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * Total amount of the invoice, including VAT.
      */
     @JsonProperty("grossAmount")
-    private Amount grossAmount;
+    private GrossAmount grossAmount;
 
     /**
      * The collection of products which make up the invoice.
@@ -103,10 +105,10 @@ public class EntityInvoice {
             @JsonProperty("id") String id,
             @JsonProperty("reference") String reference,
             @JsonProperty("vatNumber") Optional<String> vatNumber,
-            @JsonProperty("status") InvoiceStatus status,
-            @JsonProperty("netAmount") Amount netAmount,
-            @JsonProperty("vatAmount") Amount vatAmount,
-            @JsonProperty("grossAmount") Amount grossAmount,
+            @JsonProperty("status") EntityInvoiceStatus status,
+            @JsonProperty("netAmount") NetAmount netAmount,
+            @JsonProperty("vatAmount") VatAmount vatAmount,
+            @JsonProperty("grossAmount") GrossAmount grossAmount,
             @JsonProperty("lines") List<EntityInvoiceLines> lines,
             @JsonProperty("issuedAt") String issuedAt,
             @JsonProperty("paidAt") JsonNullable<String> paidAt,
@@ -144,10 +146,10 @@ public class EntityInvoice {
             String resource,
             String id,
             String reference,
-            InvoiceStatus status,
-            Amount netAmount,
-            Amount vatAmount,
-            Amount grossAmount,
+            EntityInvoiceStatus status,
+            NetAmount netAmount,
+            VatAmount vatAmount,
+            GrossAmount grossAmount,
             List<EntityInvoiceLines> lines,
             String issuedAt,
             EntityInvoiceLinks links) {
@@ -188,35 +190,36 @@ public class EntityInvoice {
         return vatNumber;
     }
 
-    /**
-     * Status of the invoice.
-     */
     @JsonIgnore
-    public InvoiceStatus status() {
+    public EntityInvoiceStatus status() {
         return status;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * Total amount of the invoice, excluding VAT.
      */
     @JsonIgnore
-    public Amount netAmount() {
+    public NetAmount netAmount() {
         return netAmount;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU
+     * merchants, VAT will
+     * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For
+     * merchants outside
+     * the EU, no VAT will be charged.
      */
     @JsonIgnore
-    public Amount vatAmount() {
+    public VatAmount vatAmount() {
         return vatAmount;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * Total amount of the invoice, including VAT.
      */
     @JsonIgnore
-    public Amount grossAmount() {
+    public GrossAmount grossAmount() {
         return grossAmount;
     }
 
@@ -309,37 +312,38 @@ public class EntityInvoice {
         return this;
     }
 
-    /**
-     * Status of the invoice.
-     */
-    public EntityInvoice withStatus(InvoiceStatus status) {
+    public EntityInvoice withStatus(EntityInvoiceStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * Total amount of the invoice, excluding VAT.
      */
-    public EntityInvoice withNetAmount(Amount netAmount) {
+    public EntityInvoice withNetAmount(NetAmount netAmount) {
         Utils.checkNotNull(netAmount, "netAmount");
         this.netAmount = netAmount;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU
+     * merchants, VAT will
+     * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For
+     * merchants outside
+     * the EU, no VAT will be charged.
      */
-    public EntityInvoice withVatAmount(Amount vatAmount) {
+    public EntityInvoice withVatAmount(VatAmount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
         this.vatAmount = vatAmount;
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * Total amount of the invoice, including VAT.
      */
-    public EntityInvoice withGrossAmount(Amount grossAmount) {
+    public EntityInvoice withGrossAmount(GrossAmount grossAmount) {
         Utils.checkNotNull(grossAmount, "grossAmount");
         this.grossAmount = grossAmount;
         return this;
@@ -472,13 +476,13 @@ public class EntityInvoice {
 
         private Optional<String> vatNumber = Optional.empty();
 
-        private InvoiceStatus status;
+        private EntityInvoiceStatus status;
 
-        private Amount netAmount;
+        private NetAmount netAmount;
 
-        private Amount vatAmount;
+        private VatAmount vatAmount;
 
-        private Amount grossAmount;
+        private GrossAmount grossAmount;
 
         private List<EntityInvoiceLines> lines;
 
@@ -542,10 +546,7 @@ public class EntityInvoice {
         }
 
 
-        /**
-         * Status of the invoice.
-         */
-        public Builder status(InvoiceStatus status) {
+        public Builder status(EntityInvoiceStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -553,9 +554,9 @@ public class EntityInvoice {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * Total amount of the invoice, excluding VAT.
          */
-        public Builder netAmount(Amount netAmount) {
+        public Builder netAmount(NetAmount netAmount) {
             Utils.checkNotNull(netAmount, "netAmount");
             this.netAmount = netAmount;
             return this;
@@ -563,9 +564,13 @@ public class EntityInvoice {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU
+         * merchants, VAT will
+         * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For
+         * merchants outside
+         * the EU, no VAT will be charged.
          */
-        public Builder vatAmount(Amount vatAmount) {
+        public Builder vatAmount(VatAmount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
             this.vatAmount = vatAmount;
             return this;
@@ -573,9 +578,9 @@ public class EntityInvoice {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * Total amount of the invoice, including VAT.
          */
-        public Builder grossAmount(Amount grossAmount) {
+        public Builder grossAmount(GrossAmount grossAmount) {
             Utils.checkNotNull(grossAmount, "grossAmount");
             this.grossAmount = grossAmount;
             return this;

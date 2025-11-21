@@ -18,16 +18,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class EntityRoute {
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("id")
-    private Optional<String> id;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("paymentId")
-    private Optional<String> paymentId;
-
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
@@ -64,20 +54,14 @@ public class EntityRoute {
 
     @JsonCreator
     public EntityRoute(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("paymentId") Optional<String> paymentId,
             @JsonProperty("amount") Optional<? extends Amount> amount,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("destination") Optional<? extends EntityRouteDestination> destination,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(testmode, "testmode");
-        this.id = id;
-        this.paymentId = paymentId;
         this.amount = amount;
         this.description = description;
         this.destination = destination;
@@ -86,17 +70,7 @@ public class EntityRoute {
     
     public EntityRoute() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined());
-    }
-
-    @JsonIgnore
-    public Optional<String> id() {
-        return id;
-    }
-
-    @JsonIgnore
-    public Optional<String> paymentId() {
-        return paymentId;
+            JsonNullable.undefined());
     }
 
     /**
@@ -143,32 +117,6 @@ public class EntityRoute {
         return new Builder();
     }
 
-
-    public EntityRoute withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public EntityRoute withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    public EntityRoute withPaymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
-        return this;
-    }
-
-
-    public EntityRoute withPaymentId(Optional<String> paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -267,8 +215,6 @@ public class EntityRoute {
         }
         EntityRoute other = (EntityRoute) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
-            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.destination, other.destination) &&
@@ -278,15 +224,13 @@ public class EntityRoute {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, paymentId, amount,
-            description, destination, testmode);
+            amount, description, destination,
+            testmode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(EntityRoute.class,
-                "id", id,
-                "paymentId", paymentId,
                 "amount", amount,
                 "description", description,
                 "destination", destination,
@@ -295,10 +239,6 @@ public class EntityRoute {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private Optional<String> id = Optional.empty();
-
-        private Optional<String> paymentId = Optional.empty();
 
         private Optional<? extends Amount> amount = Optional.empty();
 
@@ -310,32 +250,6 @@ public class EntityRoute {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        public Builder paymentId(String paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
-            return this;
-        }
-
-        public Builder paymentId(Optional<String> paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = paymentId;
-            return this;
         }
 
 
@@ -429,8 +343,8 @@ public class EntityRoute {
         public EntityRoute build() {
 
             return new EntityRoute(
-                id, paymentId, amount,
-                description, destination, testmode);
+                amount, description, destination,
+                testmode);
         }
 
     }

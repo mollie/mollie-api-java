@@ -22,11 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class PaymentRequest {
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("id")
-    private Optional<String> id;
-
     /**
      * The description of the payment. This will be shown to your customer on their card or bank statement
      * when possible.
@@ -51,41 +46,6 @@ public class PaymentRequest {
      */
     @JsonProperty("amount")
     private Amount amount;
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("amountRefunded")
-    private Optional<? extends Amount> amountRefunded;
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("amountRemaining")
-    private Optional<? extends Amount> amountRemaining;
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("amountCaptured")
-    private Optional<? extends Amount> amountCaptured;
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("amountChargedBack")
-    private Optional<? extends Amount> amountChargedBack;
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementAmount")
-    private Optional<? extends Amount> settlementAmount;
 
     /**
      * The URL your customer will be redirected to after the payment process.
@@ -330,15 +290,16 @@ public class PaymentRequest {
     @JsonProperty("sequenceType")
     private Optional<? extends SequenceType> sequenceType;
 
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("subscriptionId")
-    private Optional<String> subscriptionId;
-
-
+    /**
+     * **Only relevant for recurring payments.**
+     * 
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+     * indicate which of
+     * the customer's accounts should be credited.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateId")
-    private Optional<String> mandateId;
+    private JsonNullable<String> mandateId;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -357,16 +318,6 @@ public class PaymentRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("profileId")
     private Optional<String> profileId;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementId")
-    private Optional<String> settlementId;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("orderId")
-    private Optional<String> orderId;
 
     /**
      * The date by which the payment should be completed in `YYYY-MM-DD` format
@@ -498,14 +449,8 @@ public class PaymentRequest {
 
     @JsonCreator
     public PaymentRequest(
-            @JsonProperty("id") Optional<String> id,
             @JsonProperty("description") String description,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("amountRefunded") Optional<? extends Amount> amountRefunded,
-            @JsonProperty("amountRemaining") Optional<? extends Amount> amountRemaining,
-            @JsonProperty("amountCaptured") Optional<? extends Amount> amountCaptured,
-            @JsonProperty("amountChargedBack") Optional<? extends Amount> amountChargedBack,
-            @JsonProperty("settlementAmount") Optional<? extends Amount> settlementAmount,
             @JsonProperty("redirectUrl") Optional<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
@@ -522,12 +467,9 @@ public class PaymentRequest {
             @JsonProperty("applicationFee") JsonNullable<? extends PaymentRequestApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<EntityPaymentRoute>> routing,
             @JsonProperty("sequenceType") Optional<? extends SequenceType> sequenceType,
-            @JsonProperty("subscriptionId") Optional<String> subscriptionId,
-            @JsonProperty("mandateId") Optional<String> mandateId,
+            @JsonProperty("mandateId") JsonNullable<String> mandateId,
             @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("profileId") Optional<String> profileId,
-            @JsonProperty("settlementId") Optional<String> settlementId,
-            @JsonProperty("orderId") Optional<String> orderId,
             @JsonProperty("dueDate") Optional<String> dueDate,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
             @JsonProperty("applePayPaymentToken") Optional<String> applePayPaymentToken,
@@ -541,14 +483,8 @@ public class PaymentRequest {
             @JsonProperty("digitalGoods") Optional<Boolean> digitalGoods,
             @JsonProperty("customerReference") Optional<String> customerReference,
             @JsonProperty("terminalId") Optional<String> terminalId) {
-        Utils.checkNotNull(id, "id");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(amountRefunded, "amountRefunded");
-        Utils.checkNotNull(amountRemaining, "amountRemaining");
-        Utils.checkNotNull(amountCaptured, "amountCaptured");
-        Utils.checkNotNull(amountChargedBack, "amountChargedBack");
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         Utils.checkNotNull(cancelUrl, "cancelUrl");
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -565,12 +501,9 @@ public class PaymentRequest {
         Utils.checkNotNull(applicationFee, "applicationFee");
         Utils.checkNotNull(routing, "routing");
         Utils.checkNotNull(sequenceType, "sequenceType");
-        Utils.checkNotNull(subscriptionId, "subscriptionId");
         Utils.checkNotNull(mandateId, "mandateId");
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(profileId, "profileId");
-        Utils.checkNotNull(settlementId, "settlementId");
-        Utils.checkNotNull(orderId, "orderId");
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
@@ -584,14 +517,8 @@ public class PaymentRequest {
         Utils.checkNotNull(digitalGoods, "digitalGoods");
         Utils.checkNotNull(customerReference, "customerReference");
         Utils.checkNotNull(terminalId, "terminalId");
-        this.id = id;
         this.description = description;
         this.amount = amount;
-        this.amountRefunded = amountRefunded;
-        this.amountRemaining = amountRemaining;
-        this.amountCaptured = amountCaptured;
-        this.amountChargedBack = amountChargedBack;
-        this.settlementAmount = settlementAmount;
         this.redirectUrl = redirectUrl;
         this.cancelUrl = cancelUrl;
         this.webhookUrl = webhookUrl;
@@ -608,12 +535,9 @@ public class PaymentRequest {
         this.applicationFee = applicationFee;
         this.routing = routing;
         this.sequenceType = sequenceType;
-        this.subscriptionId = subscriptionId;
         this.mandateId = mandateId;
         this.customerId = customerId;
         this.profileId = profileId;
-        this.settlementId = settlementId;
-        this.orderId = orderId;
         this.dueDate = dueDate;
         this.testmode = testmode;
         this.applePayPaymentToken = applePayPaymentToken;
@@ -632,26 +556,18 @@ public class PaymentRequest {
     public PaymentRequest(
             String description,
             Amount amount) {
-        this(Optional.empty(), description, amount,
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
+        this(description, amount, Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty());
-    }
-
-    @JsonIgnore
-    public Optional<String> id() {
-        return id;
     }
 
     /**
@@ -681,51 +597,6 @@ public class PaymentRequest {
     @JsonIgnore
     public Amount amount() {
         return amount;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Amount> amountRefunded() {
-        return (Optional<Amount>) amountRefunded;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Amount> amountRemaining() {
-        return (Optional<Amount>) amountRemaining;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Amount> amountCaptured() {
-        return (Optional<Amount>) amountCaptured;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Amount> amountChargedBack() {
-        return (Optional<Amount>) amountChargedBack;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Amount> settlementAmount() {
-        return (Optional<Amount>) settlementAmount;
     }
 
     /**
@@ -995,13 +866,15 @@ public class PaymentRequest {
         return (Optional<SequenceType>) sequenceType;
     }
 
+    /**
+     * **Only relevant for recurring payments.**
+     * 
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+     * indicate which of
+     * the customer's accounts should be credited.
+     */
     @JsonIgnore
-    public Optional<String> subscriptionId() {
-        return subscriptionId;
-    }
-
-    @JsonIgnore
-    public Optional<String> mandateId() {
+    public JsonNullable<String> mandateId() {
         return mandateId;
     }
 
@@ -1022,16 +895,6 @@ public class PaymentRequest {
     @JsonIgnore
     public Optional<String> profileId() {
         return profileId;
-    }
-
-    @JsonIgnore
-    public Optional<String> settlementId() {
-        return settlementId;
-    }
-
-    @JsonIgnore
-    public Optional<String> orderId() {
-        return orderId;
     }
 
     /**
@@ -1182,19 +1045,6 @@ public class PaymentRequest {
     }
 
 
-    public PaymentRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public PaymentRequest withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
     /**
      * The description of the payment. This will be shown to your customer on their card or bank statement
      * when possible.
@@ -1223,101 +1073,6 @@ public class PaymentRequest {
     public PaymentRequest withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withAmountRefunded(Amount amountRefunded) {
-        Utils.checkNotNull(amountRefunded, "amountRefunded");
-        this.amountRefunded = Optional.ofNullable(amountRefunded);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withAmountRefunded(Optional<? extends Amount> amountRefunded) {
-        Utils.checkNotNull(amountRefunded, "amountRefunded");
-        this.amountRefunded = amountRefunded;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withAmountRemaining(Amount amountRemaining) {
-        Utils.checkNotNull(amountRemaining, "amountRemaining");
-        this.amountRemaining = Optional.ofNullable(amountRemaining);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withAmountRemaining(Optional<? extends Amount> amountRemaining) {
-        Utils.checkNotNull(amountRemaining, "amountRemaining");
-        this.amountRemaining = amountRemaining;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withAmountCaptured(Amount amountCaptured) {
-        Utils.checkNotNull(amountCaptured, "amountCaptured");
-        this.amountCaptured = Optional.ofNullable(amountCaptured);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withAmountCaptured(Optional<? extends Amount> amountCaptured) {
-        Utils.checkNotNull(amountCaptured, "amountCaptured");
-        this.amountCaptured = amountCaptured;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withAmountChargedBack(Amount amountChargedBack) {
-        Utils.checkNotNull(amountChargedBack, "amountChargedBack");
-        this.amountChargedBack = Optional.ofNullable(amountChargedBack);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withAmountChargedBack(Optional<? extends Amount> amountChargedBack) {
-        Utils.checkNotNull(amountChargedBack, "amountChargedBack");
-        this.amountChargedBack = amountChargedBack;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withSettlementAmount(Amount settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = Optional.ofNullable(settlementAmount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentRequest withSettlementAmount(Optional<? extends Amount> settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = settlementAmount;
         return this;
     }
 
@@ -1871,27 +1626,27 @@ public class PaymentRequest {
         return this;
     }
 
-    public PaymentRequest withSubscriptionId(String subscriptionId) {
-        Utils.checkNotNull(subscriptionId, "subscriptionId");
-        this.subscriptionId = Optional.ofNullable(subscriptionId);
-        return this;
-    }
-
-
-    public PaymentRequest withSubscriptionId(Optional<String> subscriptionId) {
-        Utils.checkNotNull(subscriptionId, "subscriptionId");
-        this.subscriptionId = subscriptionId;
-        return this;
-    }
-
+    /**
+     * **Only relevant for recurring payments.**
+     * 
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+     * indicate which of
+     * the customer's accounts should be credited.
+     */
     public PaymentRequest withMandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
-        this.mandateId = Optional.ofNullable(mandateId);
+        this.mandateId = JsonNullable.of(mandateId);
         return this;
     }
 
-
-    public PaymentRequest withMandateId(Optional<String> mandateId) {
+    /**
+     * **Only relevant for recurring payments.**
+     * 
+     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+     * indicate which of
+     * the customer's accounts should be credited.
+     */
+    public PaymentRequest withMandateId(JsonNullable<String> mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
         this.mandateId = mandateId;
         return this;
@@ -1938,32 +1693,6 @@ public class PaymentRequest {
     public PaymentRequest withProfileId(Optional<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
-        return this;
-    }
-
-    public PaymentRequest withSettlementId(String settlementId) {
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = Optional.ofNullable(settlementId);
-        return this;
-    }
-
-
-    public PaymentRequest withSettlementId(Optional<String> settlementId) {
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = settlementId;
-        return this;
-    }
-
-    public PaymentRequest withOrderId(String orderId) {
-        Utils.checkNotNull(orderId, "orderId");
-        this.orderId = Optional.ofNullable(orderId);
-        return this;
-    }
-
-
-    public PaymentRequest withOrderId(Optional<String> orderId) {
-        Utils.checkNotNull(orderId, "orderId");
-        this.orderId = orderId;
         return this;
     }
 
@@ -2297,14 +2026,8 @@ public class PaymentRequest {
         }
         PaymentRequest other = (PaymentRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.amountRefunded, other.amountRefunded) &&
-            Utils.enhancedDeepEquals(this.amountRemaining, other.amountRemaining) &&
-            Utils.enhancedDeepEquals(this.amountCaptured, other.amountCaptured) &&
-            Utils.enhancedDeepEquals(this.amountChargedBack, other.amountChargedBack) &&
-            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
             Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
             Utils.enhancedDeepEquals(this.cancelUrl, other.cancelUrl) &&
             Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
@@ -2321,12 +2044,9 @@ public class PaymentRequest {
             Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee) &&
             Utils.enhancedDeepEquals(this.routing, other.routing) &&
             Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
-            Utils.enhancedDeepEquals(this.subscriptionId, other.subscriptionId) &&
             Utils.enhancedDeepEquals(this.mandateId, other.mandateId) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
-            Utils.enhancedDeepEquals(this.settlementId, other.settlementId) &&
-            Utils.enhancedDeepEquals(this.orderId, other.orderId) &&
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.applePayPaymentToken, other.applePayPaymentToken) &&
@@ -2345,16 +2065,13 @@ public class PaymentRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, description, amount,
-            amountRefunded, amountRemaining, amountCaptured,
-            amountChargedBack, settlementAmount, redirectUrl,
+            description, amount, redirectUrl,
             cancelUrl, webhookUrl, lines,
             billingAddress, shippingAddress, locale,
             method, issuer, restrictPaymentMethodsToCountry,
             metadata, captureMode, captureDelay,
             applicationFee, routing, sequenceType,
-            subscriptionId, mandateId, customerId,
-            profileId, settlementId, orderId,
+            mandateId, customerId, profileId,
             dueDate, testmode, applePayPaymentToken,
             company, cardToken, voucherNumber,
             voucherPin, consumerDateOfBirth, extraMerchantData,
@@ -2365,14 +2082,8 @@ public class PaymentRequest {
     @Override
     public String toString() {
         return Utils.toString(PaymentRequest.class,
-                "id", id,
                 "description", description,
                 "amount", amount,
-                "amountRefunded", amountRefunded,
-                "amountRemaining", amountRemaining,
-                "amountCaptured", amountCaptured,
-                "amountChargedBack", amountChargedBack,
-                "settlementAmount", settlementAmount,
                 "redirectUrl", redirectUrl,
                 "cancelUrl", cancelUrl,
                 "webhookUrl", webhookUrl,
@@ -2389,12 +2100,9 @@ public class PaymentRequest {
                 "applicationFee", applicationFee,
                 "routing", routing,
                 "sequenceType", sequenceType,
-                "subscriptionId", subscriptionId,
                 "mandateId", mandateId,
                 "customerId", customerId,
                 "profileId", profileId,
-                "settlementId", settlementId,
-                "orderId", orderId,
                 "dueDate", dueDate,
                 "testmode", testmode,
                 "applePayPaymentToken", applePayPaymentToken,
@@ -2413,21 +2121,9 @@ public class PaymentRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
-
         private String description;
 
         private Amount amount;
-
-        private Optional<? extends Amount> amountRefunded = Optional.empty();
-
-        private Optional<? extends Amount> amountRemaining = Optional.empty();
-
-        private Optional<? extends Amount> amountCaptured = Optional.empty();
-
-        private Optional<? extends Amount> amountChargedBack = Optional.empty();
-
-        private Optional<? extends Amount> settlementAmount = Optional.empty();
 
         private Optional<String> redirectUrl = Optional.empty();
 
@@ -2461,17 +2157,11 @@ public class PaymentRequest {
 
         private Optional<? extends SequenceType> sequenceType = Optional.empty();
 
-        private Optional<String> subscriptionId = Optional.empty();
-
-        private Optional<String> mandateId = Optional.empty();
+        private JsonNullable<String> mandateId = JsonNullable.undefined();
 
         private Optional<String> customerId = Optional.empty();
 
         private Optional<String> profileId = Optional.empty();
-
-        private Optional<String> settlementId = Optional.empty();
-
-        private Optional<String> orderId = Optional.empty();
 
         private Optional<String> dueDate = Optional.empty();
 
@@ -2504,19 +2194,6 @@ public class PaymentRequest {
         }
 
 
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
         /**
          * The description of the payment. This will be shown to your customer on their card or bank statement
          * when possible.
@@ -2546,101 +2223,6 @@ public class PaymentRequest {
         public Builder amount(Amount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
-            return this;
-        }
-
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountRefunded(Amount amountRefunded) {
-            Utils.checkNotNull(amountRefunded, "amountRefunded");
-            this.amountRefunded = Optional.ofNullable(amountRefunded);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountRefunded(Optional<? extends Amount> amountRefunded) {
-            Utils.checkNotNull(amountRefunded, "amountRefunded");
-            this.amountRefunded = amountRefunded;
-            return this;
-        }
-
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountRemaining(Amount amountRemaining) {
-            Utils.checkNotNull(amountRemaining, "amountRemaining");
-            this.amountRemaining = Optional.ofNullable(amountRemaining);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountRemaining(Optional<? extends Amount> amountRemaining) {
-            Utils.checkNotNull(amountRemaining, "amountRemaining");
-            this.amountRemaining = amountRemaining;
-            return this;
-        }
-
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountCaptured(Amount amountCaptured) {
-            Utils.checkNotNull(amountCaptured, "amountCaptured");
-            this.amountCaptured = Optional.ofNullable(amountCaptured);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountCaptured(Optional<? extends Amount> amountCaptured) {
-            Utils.checkNotNull(amountCaptured, "amountCaptured");
-            this.amountCaptured = amountCaptured;
-            return this;
-        }
-
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountChargedBack(Amount amountChargedBack) {
-            Utils.checkNotNull(amountChargedBack, "amountChargedBack");
-            this.amountChargedBack = Optional.ofNullable(amountChargedBack);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amountChargedBack(Optional<? extends Amount> amountChargedBack) {
-            Utils.checkNotNull(amountChargedBack, "amountChargedBack");
-            this.amountChargedBack = amountChargedBack;
-            return this;
-        }
-
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder settlementAmount(Amount settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = Optional.ofNullable(settlementAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder settlementAmount(Optional<? extends Amount> settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = settlementAmount;
             return this;
         }
 
@@ -3207,26 +2789,27 @@ public class PaymentRequest {
         }
 
 
-        public Builder subscriptionId(String subscriptionId) {
-            Utils.checkNotNull(subscriptionId, "subscriptionId");
-            this.subscriptionId = Optional.ofNullable(subscriptionId);
-            return this;
-        }
-
-        public Builder subscriptionId(Optional<String> subscriptionId) {
-            Utils.checkNotNull(subscriptionId, "subscriptionId");
-            this.subscriptionId = subscriptionId;
-            return this;
-        }
-
-
+        /**
+         * **Only relevant for recurring payments.**
+         * 
+         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+         * indicate which of
+         * the customer's accounts should be credited.
+         */
         public Builder mandateId(String mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
-            this.mandateId = Optional.ofNullable(mandateId);
+            this.mandateId = JsonNullable.of(mandateId);
             return this;
         }
 
-        public Builder mandateId(Optional<String> mandateId) {
+        /**
+         * **Only relevant for recurring payments.**
+         * 
+         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
+         * indicate which of
+         * the customer's accounts should be credited.
+         */
+        public Builder mandateId(JsonNullable<String> mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
             this.mandateId = mandateId;
             return this;
@@ -3273,32 +2856,6 @@ public class PaymentRequest {
         public Builder profileId(Optional<String> profileId) {
             Utils.checkNotNull(profileId, "profileId");
             this.profileId = profileId;
-            return this;
-        }
-
-
-        public Builder settlementId(String settlementId) {
-            Utils.checkNotNull(settlementId, "settlementId");
-            this.settlementId = Optional.ofNullable(settlementId);
-            return this;
-        }
-
-        public Builder settlementId(Optional<String> settlementId) {
-            Utils.checkNotNull(settlementId, "settlementId");
-            this.settlementId = settlementId;
-            return this;
-        }
-
-
-        public Builder orderId(String orderId) {
-            Utils.checkNotNull(orderId, "orderId");
-            this.orderId = Optional.ofNullable(orderId);
-            return this;
-        }
-
-        public Builder orderId(Optional<String> orderId) {
-            Utils.checkNotNull(orderId, "orderId");
-            this.orderId = orderId;
             return this;
         }
 
@@ -3626,16 +3183,13 @@ public class PaymentRequest {
         public PaymentRequest build() {
 
             return new PaymentRequest(
-                id, description, amount,
-                amountRefunded, amountRemaining, amountCaptured,
-                amountChargedBack, settlementAmount, redirectUrl,
+                description, amount, redirectUrl,
                 cancelUrl, webhookUrl, lines,
                 billingAddress, shippingAddress, locale,
                 method, issuer, restrictPaymentMethodsToCountry,
                 metadata, captureMode, captureDelay,
                 applicationFee, routing, sequenceType,
-                subscriptionId, mandateId, customerId,
-                profileId, settlementId, orderId,
+                mandateId, customerId, profileId,
                 dueDate, testmode, applePayPaymentToken,
                 company, cardToken, voucherNumber,
                 voucherPin, consumerDateOfBirth, extraMerchantData,

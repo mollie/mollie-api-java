@@ -15,10 +15,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class EntityPaymentRoute {
-
-    @JsonProperty("id")
-    private String id;
-
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
@@ -51,17 +47,14 @@ public class EntityPaymentRoute {
 
     @JsonCreator
     public EntityPaymentRoute(
-            @JsonProperty("id") String id,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("destination") EntityPaymentRouteDestination destination,
             @JsonProperty("releaseDate") JsonNullable<String> releaseDate,
             @JsonProperty("_links") EntityPaymentRouteLinks links) {
-        Utils.checkNotNull(id, "id");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(releaseDate, "releaseDate");
         Utils.checkNotNull(links, "links");
-        this.id = id;
         this.amount = amount;
         this.destination = destination;
         this.releaseDate = releaseDate;
@@ -69,17 +62,11 @@ public class EntityPaymentRoute {
     }
     
     public EntityPaymentRoute(
-            String id,
             Amount amount,
             EntityPaymentRouteDestination destination,
             EntityPaymentRouteLinks links) {
-        this(id, amount, destination,
-            JsonNullable.undefined(), links);
-    }
-
-    @JsonIgnore
-    public String id() {
-        return id;
+        this(amount, destination, JsonNullable.undefined(),
+            links);
     }
 
     /**
@@ -123,12 +110,6 @@ public class EntityPaymentRoute {
         return new Builder();
     }
 
-
-    public EntityPaymentRoute withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -195,7 +176,6 @@ public class EntityPaymentRoute {
         }
         EntityPaymentRoute other = (EntityPaymentRoute) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.destination, other.destination) &&
             Utils.enhancedDeepEquals(this.releaseDate, other.releaseDate) &&
@@ -205,14 +185,13 @@ public class EntityPaymentRoute {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, amount, destination,
-            releaseDate, links);
+            amount, destination, releaseDate,
+            links);
     }
     
     @Override
     public String toString() {
         return Utils.toString(EntityPaymentRoute.class,
-                "id", id,
                 "amount", amount,
                 "destination", destination,
                 "releaseDate", releaseDate,
@@ -221,8 +200,6 @@ public class EntityPaymentRoute {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private String id;
 
         private Amount amount;
 
@@ -234,13 +211,6 @@ public class EntityPaymentRoute {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
         }
 
 
@@ -305,8 +275,8 @@ public class EntityPaymentRoute {
         public EntityPaymentRoute build() {
 
             return new EntityPaymentRoute(
-                id, amount, destination,
-                releaseDate, links);
+                amount, destination, releaseDate,
+                links);
         }
 
     }

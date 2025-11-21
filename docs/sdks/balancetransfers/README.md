@@ -41,7 +41,6 @@ public class Application {
         CreateConnectBalanceTransferResponse res = sdk.balanceTransfers().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .entityBalanceTransfer(EntityBalanceTransfer.builder()
-                    .id("cbtr_j8NvRAM2WNZtsykpLEX8J")
                     .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")

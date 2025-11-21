@@ -12,13 +12,14 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class MandateRequest {
-
+    /**
+     * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
@@ -92,20 +93,6 @@ public class MandateRequest {
     private JsonNullable<String> payPalVaultId;
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
-     * finalized, or
-     * when we did not received the IBAN yet from the first payment.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("status")
-    private Optional<? extends MandateStatus> status;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("customerId")
-    private Optional<String> customerId;
-
-    /**
      * Whether to create the entity in test mode or live mode.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
@@ -130,8 +117,6 @@ public class MandateRequest {
             @JsonProperty("mandateReference") JsonNullable<String> mandateReference,
             @JsonProperty("paypalBillingAgreementId") JsonNullable<String> paypalBillingAgreementId,
             @JsonProperty("payPalVaultId") JsonNullable<String> payPalVaultId,
-            @JsonProperty("status") Optional<? extends MandateStatus> status,
-            @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(method, "method");
@@ -143,8 +128,6 @@ public class MandateRequest {
         Utils.checkNotNull(mandateReference, "mandateReference");
         Utils.checkNotNull(paypalBillingAgreementId, "paypalBillingAgreementId");
         Utils.checkNotNull(payPalVaultId, "payPalVaultId");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(testmode, "testmode");
         this.id = id;
         this.method = method;
@@ -156,8 +139,6 @@ public class MandateRequest {
         this.mandateReference = mandateReference;
         this.paypalBillingAgreementId = paypalBillingAgreementId;
         this.payPalVaultId = payPalVaultId;
-        this.status = status;
-        this.customerId = customerId;
         this.testmode = testmode;
     }
     
@@ -167,10 +148,12 @@ public class MandateRequest {
         this(Optional.empty(), method, consumerName,
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
+    /**
+     * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+     */
     @JsonIgnore
     public Optional<String> id() {
         return id;
@@ -256,22 +239,6 @@ public class MandateRequest {
     }
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
-     * finalized, or
-     * when we did not received the IBAN yet from the first payment.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<MandateStatus> status() {
-        return (Optional<MandateStatus>) status;
-    }
-
-    @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
-    }
-
-    /**
      * Whether to create the entity in test mode or live mode.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
@@ -290,6 +257,9 @@ public class MandateRequest {
     }
 
 
+    /**
+     * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+     */
     public MandateRequest withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
@@ -297,6 +267,9 @@ public class MandateRequest {
     }
 
 
+    /**
+     * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+     */
     public MandateRequest withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -460,42 +433,6 @@ public class MandateRequest {
     }
 
     /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
-     * finalized, or
-     * when we did not received the IBAN yet from the first payment.
-     */
-    public MandateRequest withStatus(MandateStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
-     * finalized, or
-     * when we did not received the IBAN yet from the first payment.
-     */
-    public MandateRequest withStatus(Optional<? extends MandateStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
-
-    public MandateRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
-        return this;
-    }
-
-
-    public MandateRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
-        return this;
-    }
-
-    /**
      * Whether to create the entity in test mode or live mode.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
@@ -545,8 +482,6 @@ public class MandateRequest {
             Utils.enhancedDeepEquals(this.mandateReference, other.mandateReference) &&
             Utils.enhancedDeepEquals(this.paypalBillingAgreementId, other.paypalBillingAgreementId) &&
             Utils.enhancedDeepEquals(this.payPalVaultId, other.payPalVaultId) &&
-            Utils.enhancedDeepEquals(this.status, other.status) &&
-            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
@@ -556,8 +491,7 @@ public class MandateRequest {
             id, method, consumerName,
             consumerAccount, consumerBic, consumerEmail,
             signatureDate, mandateReference, paypalBillingAgreementId,
-            payPalVaultId, status, customerId,
-            testmode);
+            payPalVaultId, testmode);
     }
     
     @Override
@@ -573,8 +507,6 @@ public class MandateRequest {
                 "mandateReference", mandateReference,
                 "paypalBillingAgreementId", paypalBillingAgreementId,
                 "payPalVaultId", payPalVaultId,
-                "status", status,
-                "customerId", customerId,
                 "testmode", testmode);
     }
 
@@ -601,10 +533,6 @@ public class MandateRequest {
 
         private JsonNullable<String> payPalVaultId = JsonNullable.undefined();
 
-        private Optional<? extends MandateStatus> status = Optional.empty();
-
-        private Optional<String> customerId = Optional.empty();
-
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
         private Builder() {
@@ -612,12 +540,18 @@ public class MandateRequest {
         }
 
 
+        /**
+         * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
             return this;
         }
 
+        /**
+         * The identifier uniquely referring to this mandate. Example: `mdt_pWUnw6pkBN`.
+         */
         public Builder id(Optional<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -791,42 +725,6 @@ public class MandateRequest {
 
 
         /**
-         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
-         * finalized, or
-         * when we did not received the IBAN yet from the first payment.
-         */
-        public Builder status(MandateStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status of the mandate. A status can be `pending` for mandates when the first payment is not yet
-         * finalized, or
-         * when we did not received the IBAN yet from the first payment.
-         */
-        public Builder status(Optional<? extends MandateStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
-            return this;
-        }
-
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
-            return this;
-        }
-
-
-        /**
          * Whether to create the entity in test mode or live mode.
          * 
          * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
@@ -862,8 +760,7 @@ public class MandateRequest {
                 id, method, consumerName,
                 consumerAccount, consumerBic, consumerEmail,
                 signatureDate, mandateReference, paypalBillingAgreementId,
-                payPalVaultId, status, customerId,
-                testmode);
+                payPalVaultId, testmode);
         }
 
     }

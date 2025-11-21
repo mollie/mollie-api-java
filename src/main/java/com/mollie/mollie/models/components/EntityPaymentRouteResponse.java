@@ -22,7 +22,10 @@ public class EntityPaymentRouteResponse {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -118,6 +121,10 @@ public class EntityPaymentRouteResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -191,6 +198,10 @@ public class EntityPaymentRouteResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+     * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+     */
     public EntityPaymentRouteResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -346,6 +357,10 @@ public class EntityPaymentRouteResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this route. Mollie will always refer to the route by this ID.
+         * Example: `rt_5B8cwPMGnU6qLbRvo7qEZo`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

@@ -18,10 +18,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class EntityBalanceTransfer {
-
-    @JsonProperty("id")
-    private String id;
-
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
@@ -68,21 +64,18 @@ public class EntityBalanceTransfer {
 
     @JsonCreator
     public EntityBalanceTransfer(
-            @JsonProperty("id") String id,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("source") EntityBalanceTransferParty source,
             @JsonProperty("destination") EntityBalanceTransferParty destination,
             @JsonProperty("description") String description,
             @JsonProperty("category") Optional<? extends BalanceTransferCategory> category,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(id, "id");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(source, "source");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(category, "category");
         Utils.checkNotNull(testmode, "testmode");
-        this.id = id;
         this.amount = amount;
         this.source = source;
         this.destination = destination;
@@ -92,19 +85,12 @@ public class EntityBalanceTransfer {
     }
     
     public EntityBalanceTransfer(
-            String id,
             Amount amount,
             EntityBalanceTransferParty source,
             EntityBalanceTransferParty destination,
             String description) {
-        this(id, amount, source,
-            destination, description, Optional.empty(),
-            JsonNullable.undefined());
-    }
-
-    @JsonIgnore
-    public String id() {
-        return id;
+        this(amount, source, destination,
+            description, Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -166,12 +152,6 @@ public class EntityBalanceTransfer {
         return new Builder();
     }
 
-
-    public EntityBalanceTransfer withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -268,7 +248,6 @@ public class EntityBalanceTransfer {
         }
         EntityBalanceTransfer other = (EntityBalanceTransfer) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.source, other.source) &&
             Utils.enhancedDeepEquals(this.destination, other.destination) &&
@@ -280,15 +259,13 @@ public class EntityBalanceTransfer {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, amount, source,
-            destination, description, category,
-            testmode);
+            amount, source, destination,
+            description, category, testmode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(EntityBalanceTransfer.class,
-                "id", id,
                 "amount", amount,
                 "source", source,
                 "destination", destination,
@@ -299,8 +276,6 @@ public class EntityBalanceTransfer {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-
-        private String id;
 
         private Amount amount;
 
@@ -316,13 +291,6 @@ public class EntityBalanceTransfer {
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
         }
 
 
@@ -418,9 +386,8 @@ public class EntityBalanceTransfer {
         public EntityBalanceTransfer build() {
 
             return new EntityBalanceTransfer(
-                id, amount, source,
-                destination, description, category,
-                testmode);
+                amount, source, destination,
+                description, category, testmode);
         }
 
     }

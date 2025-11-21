@@ -24,7 +24,11 @@ public class EntityBalanceTransferResponse {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this balance transfer. Mollie assigns this identifier at
+     * balance transfer creation time. Mollie
+     * will always refer to the balance transfer by this ID. Example: `cbtr_j8NvRAM2WNZtsykpLEX8J`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -159,6 +163,11 @@ public class EntityBalanceTransferResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this balance transfer. Mollie assigns this identifier at
+     * balance transfer creation time. Mollie
+     * will always refer to the balance transfer by this ID. Example: `cbtr_j8NvRAM2WNZtsykpLEX8J`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -263,6 +272,11 @@ public class EntityBalanceTransferResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this balance transfer. Mollie assigns this identifier at
+     * balance transfer creation time. Mollie
+     * will always refer to the balance transfer by this ID. Example: `cbtr_j8NvRAM2WNZtsykpLEX8J`.
+     */
     public EntityBalanceTransferResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -476,6 +490,11 @@ public class EntityBalanceTransferResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this balance transfer. Mollie assigns this identifier at
+         * balance transfer creation time. Mollie
+         * will always refer to the balance transfer by this ID. Example: `cbtr_j8NvRAM2WNZtsykpLEX8J`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

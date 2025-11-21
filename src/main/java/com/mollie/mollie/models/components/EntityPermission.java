@@ -21,7 +21,9 @@ public class EntityPermission {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this permission. Example: `payments.read`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -72,6 +74,9 @@ public class EntityPermission {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this permission. Example: `payments.read`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -117,6 +122,9 @@ public class EntityPermission {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this permission. Example: `payments.read`.
+     */
     public EntityPermission withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -214,6 +222,9 @@ public class EntityPermission {
         }
 
 
+        /**
+         * The identifier uniquely referring to this permission. Example: `payments.read`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

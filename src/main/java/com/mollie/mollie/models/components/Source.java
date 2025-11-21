@@ -20,12 +20,10 @@ import java.util.Optional;
  * <p>Where the funds will be pulled back from.
  */
 public class Source {
-    /**
-     * The type of source. Currently only the source type `organization` is supported.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends RefundRoutingReversalsSourceType> type;
+    private Optional<? extends Type> type;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -34,7 +32,7 @@ public class Source {
 
     @JsonCreator
     public Source(
-            @JsonProperty("type") Optional<? extends RefundRoutingReversalsSourceType> type,
+            @JsonProperty("type") Optional<? extends Type> type,
             @JsonProperty("organizationId") Optional<String> organizationId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(organizationId, "organizationId");
@@ -46,13 +44,10 @@ public class Source {
         this(Optional.empty(), Optional.empty());
     }
 
-    /**
-     * The type of source. Currently only the source type `organization` is supported.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<RefundRoutingReversalsSourceType> type() {
-        return (Optional<RefundRoutingReversalsSourceType>) type;
+    public Optional<Type> type() {
+        return (Optional<Type>) type;
     }
 
     @JsonIgnore
@@ -65,20 +60,14 @@ public class Source {
     }
 
 
-    /**
-     * The type of source. Currently only the source type `organization` is supported.
-     */
-    public Source withType(RefundRoutingReversalsSourceType type) {
+    public Source withType(Type type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
     }
 
 
-    /**
-     * The type of source. Currently only the source type `organization` is supported.
-     */
-    public Source withType(Optional<? extends RefundRoutingReversalsSourceType> type) {
+    public Source withType(Optional<? extends Type> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -127,7 +116,7 @@ public class Source {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends RefundRoutingReversalsSourceType> type = Optional.empty();
+        private Optional<? extends Type> type = Optional.empty();
 
         private Optional<String> organizationId = Optional.empty();
 
@@ -136,19 +125,13 @@ public class Source {
         }
 
 
-        /**
-         * The type of source. Currently only the source type `organization` is supported.
-         */
-        public Builder type(RefundRoutingReversalsSourceType type) {
+        public Builder type(Type type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
             return this;
         }
 
-        /**
-         * The type of source. Currently only the source type `organization` is supported.
-         */
-        public Builder type(Optional<? extends RefundRoutingReversalsSourceType> type) {
+        public Builder type(Optional<? extends Type> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

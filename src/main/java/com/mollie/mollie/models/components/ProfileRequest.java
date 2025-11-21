@@ -68,18 +68,6 @@ public class ProfileRequest {
     @JsonProperty("businessCategory")
     private Optional<String> businessCategory;
 
-    /**
-     * The profile status determines whether the profile is able to receive live payments.
-     * 
-     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test
-     * payments.
-     * * `blocked`: The profile is blocked and can no longer be used or changed.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("status")
-    private Optional<? extends ProfileStatus> status;
-
     @JsonCreator
     public ProfileRequest(
             @JsonProperty("name") String name,
@@ -88,8 +76,7 @@ public class ProfileRequest {
             @JsonProperty("phone") String phone,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
-            @JsonProperty("businessCategory") Optional<String> businessCategory,
-            @JsonProperty("status") Optional<? extends ProfileStatus> status) {
+            @JsonProperty("businessCategory") Optional<String> businessCategory) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(website, "website");
         Utils.checkNotNull(email, "email");
@@ -97,7 +84,6 @@ public class ProfileRequest {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(countriesOfActivity, "countriesOfActivity");
         Utils.checkNotNull(businessCategory, "businessCategory");
-        Utils.checkNotNull(status, "status");
         this.name = name;
         this.website = website;
         this.email = email;
@@ -105,7 +91,6 @@ public class ProfileRequest {
         this.description = description;
         this.countriesOfActivity = countriesOfActivity;
         this.businessCategory = businessCategory;
-        this.status = status;
     }
     
     public ProfileRequest(
@@ -115,7 +100,7 @@ public class ProfileRequest {
             String phone) {
         this(name, website, email,
             phone, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -179,20 +164,6 @@ public class ProfileRequest {
     @JsonIgnore
     public Optional<String> businessCategory() {
         return businessCategory;
-    }
-
-    /**
-     * The profile status determines whether the profile is able to receive live payments.
-     * 
-     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test
-     * payments.
-     * * `blocked`: The profile is blocked and can no longer be used or changed.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ProfileStatus> status() {
-        return (Optional<ProfileStatus>) status;
     }
 
     public static Builder builder() {
@@ -301,35 +272,6 @@ public class ProfileRequest {
         return this;
     }
 
-    /**
-     * The profile status determines whether the profile is able to receive live payments.
-     * 
-     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test
-     * payments.
-     * * `blocked`: The profile is blocked and can no longer be used or changed.
-     */
-    public ProfileRequest withStatus(ProfileStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The profile status determines whether the profile is able to receive live payments.
-     * 
-     * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-     * * `verified`: The profile has been verified and can be used to create live payments and test
-     * payments.
-     * * `blocked`: The profile is blocked and can no longer be used or changed.
-     */
-    public ProfileRequest withStatus(Optional<? extends ProfileStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -346,8 +288,7 @@ public class ProfileRequest {
             Utils.enhancedDeepEquals(this.phone, other.phone) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.countriesOfActivity, other.countriesOfActivity) &&
-            Utils.enhancedDeepEquals(this.businessCategory, other.businessCategory) &&
-            Utils.enhancedDeepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.businessCategory, other.businessCategory);
     }
     
     @Override
@@ -355,7 +296,7 @@ public class ProfileRequest {
         return Utils.enhancedHash(
             name, website, email,
             phone, description, countriesOfActivity,
-            businessCategory, status);
+            businessCategory);
     }
     
     @Override
@@ -367,8 +308,7 @@ public class ProfileRequest {
                 "phone", phone,
                 "description", description,
                 "countriesOfActivity", countriesOfActivity,
-                "businessCategory", businessCategory,
-                "status", status);
+                "businessCategory", businessCategory);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -387,8 +327,6 @@ public class ProfileRequest {
         private Optional<? extends List<String>> countriesOfActivity = Optional.empty();
 
         private Optional<String> businessCategory = Optional.empty();
-
-        private Optional<? extends ProfileStatus> status = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -499,41 +437,12 @@ public class ProfileRequest {
             return this;
         }
 
-
-        /**
-         * The profile status determines whether the profile is able to receive live payments.
-         * 
-         * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-         * * `verified`: The profile has been verified and can be used to create live payments and test
-         * payments.
-         * * `blocked`: The profile is blocked and can no longer be used or changed.
-         */
-        public Builder status(ProfileStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The profile status determines whether the profile is able to receive live payments.
-         * 
-         * <p>* `unverified`: The profile has not been verified yet and can only be used to create test payments.
-         * * `verified`: The profile has been verified and can be used to create live payments and test
-         * payments.
-         * * `blocked`: The profile is blocked and can no longer be used or changed.
-         */
-        public Builder status(Optional<? extends ProfileStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
         public ProfileRequest build() {
 
             return new ProfileRequest(
                 name, website, email,
                 phone, description, countriesOfActivity,
-                businessCategory, status);
+                businessCategory);
         }
 
     }

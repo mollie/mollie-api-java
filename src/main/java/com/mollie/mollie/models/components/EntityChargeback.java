@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -25,7 +24,9 @@ public class EntityChargeback {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -36,11 +37,21 @@ public class EntityChargeback {
     private Amount amount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be deducted from your account
+     * balance, converted
+     * to the currency your account is settled in.
+     * 
+     * <p>The amount is a **negative** amount.
+     * 
+     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
+     * To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions
+     * endpoint](list-balance-transactions)
+     * instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
-    private JsonNullable<? extends AmountNullable> settlementAmount;
+    private JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount;
 
     /**
      * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
@@ -50,14 +61,22 @@ public class EntityChargeback {
     @JsonProperty("reason")
     private JsonNullable<? extends Reason> reason;
 
-
+    /**
+     * The unique identifier of the payment this chargeback was created for. For example:
+     * `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     @JsonProperty("paymentId")
     private String paymentId;
 
-
+    /**
+     * The identifier referring to the settlement this payment was settled with. For example,
+     * `stl_BkEjN2eBb`. This field
+     * is omitted if the refund is not settled (yet).
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementId")
-    private Optional<String> settlementId;
+    private JsonNullable<String> settlementId;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -85,10 +104,10 @@ public class EntityChargeback {
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("settlementAmount") JsonNullable<? extends AmountNullable> settlementAmount,
+            @JsonProperty("settlementAmount") JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount,
             @JsonProperty("reason") JsonNullable<? extends Reason> reason,
             @JsonProperty("paymentId") String paymentId,
-            @JsonProperty("settlementId") Optional<String> settlementId,
+            @JsonProperty("settlementId") JsonNullable<String> settlementId,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("reversedAt") JsonNullable<String> reversedAt,
             @JsonProperty("_links") EntityChargebackLinks links) {
@@ -123,7 +142,7 @@ public class EntityChargeback {
             EntityChargebackLinks links) {
         this(resource, id, amount,
             JsonNullable.undefined(), JsonNullable.undefined(), paymentId,
-            Optional.empty(), createdAt, JsonNullable.undefined(),
+            JsonNullable.undefined(), createdAt, JsonNullable.undefined(),
             links);
     }
 
@@ -137,6 +156,9 @@ public class EntityChargeback {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -151,12 +173,22 @@ public class EntityChargeback {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be deducted from your account
+     * balance, converted
+     * to the currency your account is settled in.
+     * 
+     * <p>The amount is a **negative** amount.
+     * 
+     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
+     * To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions
+     * endpoint](list-balance-transactions)
+     * instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AmountNullable> settlementAmount() {
-        return (JsonNullable<AmountNullable>) settlementAmount;
+    public JsonNullable<EntityChargebackSettlementAmount> settlementAmount() {
+        return (JsonNullable<EntityChargebackSettlementAmount>) settlementAmount;
     }
 
     /**
@@ -169,13 +201,23 @@ public class EntityChargeback {
         return (JsonNullable<Reason>) reason;
     }
 
+    /**
+     * The unique identifier of the payment this chargeback was created for. For example:
+     * `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     @JsonIgnore
     public String paymentId() {
         return paymentId;
     }
 
+    /**
+     * The identifier referring to the settlement this payment was settled with. For example,
+     * `stl_BkEjN2eBb`. This field
+     * is omitted if the refund is not settled (yet).
+     */
     @JsonIgnore
-    public Optional<String> settlementId() {
+    public JsonNullable<String> settlementId() {
         return settlementId;
     }
 
@@ -221,6 +263,9 @@ public class EntityChargeback {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.
+     */
     public EntityChargeback withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -237,18 +282,38 @@ public class EntityChargeback {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be deducted from your account
+     * balance, converted
+     * to the currency your account is settled in.
+     * 
+     * <p>The amount is a **negative** amount.
+     * 
+     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
+     * To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions
+     * endpoint](list-balance-transactions)
+     * instead.
      */
-    public EntityChargeback withSettlementAmount(AmountNullable settlementAmount) {
+    public EntityChargeback withSettlementAmount(EntityChargebackSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = JsonNullable.of(settlementAmount);
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be deducted from your account
+     * balance, converted
+     * to the currency your account is settled in.
+     * 
+     * <p>The amount is a **negative** amount.
+     * 
+     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
+     * To retrieve
+     * accurate settlement amounts we recommend using the [List balance transactions
+     * endpoint](list-balance-transactions)
+     * instead.
      */
-    public EntityChargeback withSettlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
+    public EntityChargeback withSettlementAmount(JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
         return this;
@@ -274,20 +339,34 @@ public class EntityChargeback {
         return this;
     }
 
+    /**
+     * The unique identifier of the payment this chargeback was created for. For example:
+     * `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     public EntityChargeback withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
     }
 
+    /**
+     * The identifier referring to the settlement this payment was settled with. For example,
+     * `stl_BkEjN2eBb`. This field
+     * is omitted if the refund is not settled (yet).
+     */
     public EntityChargeback withSettlementId(String settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = Optional.ofNullable(settlementId);
+        this.settlementId = JsonNullable.of(settlementId);
         return this;
     }
 
-
-    public EntityChargeback withSettlementId(Optional<String> settlementId) {
+    /**
+     * The identifier referring to the settlement this payment was settled with. For example,
+     * `stl_BkEjN2eBb`. This field
+     * is omitted if the refund is not settled (yet).
+     */
+    public EntityChargeback withSettlementId(JsonNullable<String> settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
         this.settlementId = settlementId;
         return this;
@@ -387,13 +466,13 @@ public class EntityChargeback {
 
         private Amount amount;
 
-        private JsonNullable<? extends AmountNullable> settlementAmount = JsonNullable.undefined();
+        private JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private JsonNullable<? extends Reason> reason = JsonNullable.undefined();
 
         private String paymentId;
 
-        private Optional<String> settlementId = Optional.empty();
+        private JsonNullable<String> settlementId = JsonNullable.undefined();
 
         private String createdAt;
 
@@ -418,6 +497,9 @@ public class EntityChargeback {
         }
 
 
+        /**
+         * The identifier uniquely referring to this chargeback. Example: `chb_n9z0tp`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -436,18 +518,38 @@ public class EntityChargeback {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * This optional field will contain the approximate amount that will be deducted from your account
+         * balance, converted
+         * to the currency your account is settled in.
+         * 
+         * <p>The amount is a **negative** amount.
+         * 
+         * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
+         * To retrieve
+         * accurate settlement amounts we recommend using the [List balance transactions
+         * endpoint](list-balance-transactions)
+         * instead.
          */
-        public Builder settlementAmount(AmountNullable settlementAmount) {
+        public Builder settlementAmount(EntityChargebackSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = JsonNullable.of(settlementAmount);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * This optional field will contain the approximate amount that will be deducted from your account
+         * balance, converted
+         * to the currency your account is settled in.
+         * 
+         * <p>The amount is a **negative** amount.
+         * 
+         * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
+         * To retrieve
+         * accurate settlement amounts we recommend using the [List balance transactions
+         * endpoint](list-balance-transactions)
+         * instead.
          */
-        public Builder settlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
+        public Builder settlementAmount(JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;
             return this;
@@ -475,6 +577,11 @@ public class EntityChargeback {
         }
 
 
+        /**
+         * The unique identifier of the payment this chargeback was created for. For example:
+         * `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The full payment object can be retrieved via the payment URL in the `_links` object.
+         */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
@@ -482,13 +589,23 @@ public class EntityChargeback {
         }
 
 
+        /**
+         * The identifier referring to the settlement this payment was settled with. For example,
+         * `stl_BkEjN2eBb`. This field
+         * is omitted if the refund is not settled (yet).
+         */
         public Builder settlementId(String settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
-            this.settlementId = Optional.ofNullable(settlementId);
+            this.settlementId = JsonNullable.of(settlementId);
             return this;
         }
 
-        public Builder settlementId(Optional<String> settlementId) {
+        /**
+         * The identifier referring to the settlement this payment was settled with. For example,
+         * `stl_BkEjN2eBb`. This field
+         * is omitted if the refund is not settled (yet).
+         */
+        public Builder settlementId(JsonNullable<String> settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
             this.settlementId = settlementId;
             return this;

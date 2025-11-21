@@ -42,11 +42,11 @@ public class EntityOrganization {
     private String email;
 
     /**
-     * Allows you to preset the language to be used.
+     * The preferred locale of the merchant, as set in their Mollie dashboard.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("locale")
-    private Optional<? extends LocaleResponse> locale;
+    private Optional<? extends EntityOrganizationLocale> locale;
 
 
     @JsonProperty("address")
@@ -92,7 +92,7 @@ public class EntityOrganization {
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("email") String email,
-            @JsonProperty("locale") Optional<? extends LocaleResponse> locale,
+            @JsonProperty("locale") Optional<? extends EntityOrganizationLocale> locale,
             @JsonProperty("address") Address address,
             @JsonProperty("registrationNumber") String registrationNumber,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
@@ -166,12 +166,12 @@ public class EntityOrganization {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * The preferred locale of the merchant, as set in their Mollie dashboard.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<LocaleResponse> locale() {
-        return (Optional<LocaleResponse>) locale;
+    public Optional<EntityOrganizationLocale> locale() {
+        return (Optional<EntityOrganizationLocale>) locale;
     }
 
     @JsonIgnore
@@ -261,9 +261,9 @@ public class EntityOrganization {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * The preferred locale of the merchant, as set in their Mollie dashboard.
      */
-    public EntityOrganization withLocale(LocaleResponse locale) {
+    public EntityOrganization withLocale(EntityOrganizationLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = Optional.ofNullable(locale);
         return this;
@@ -271,9 +271,9 @@ public class EntityOrganization {
 
 
     /**
-     * Allows you to preset the language to be used.
+     * The preferred locale of the merchant, as set in their Mollie dashboard.
      */
-    public EntityOrganization withLocale(Optional<? extends LocaleResponse> locale) {
+    public EntityOrganization withLocale(Optional<? extends EntityOrganizationLocale> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -412,7 +412,7 @@ public class EntityOrganization {
 
         private String email;
 
-        private Optional<? extends LocaleResponse> locale = Optional.empty();
+        private Optional<? extends EntityOrganizationLocale> locale = Optional.empty();
 
         private Address address;
 
@@ -469,18 +469,18 @@ public class EntityOrganization {
 
 
         /**
-         * Allows you to preset the language to be used.
+         * The preferred locale of the merchant, as set in their Mollie dashboard.
          */
-        public Builder locale(LocaleResponse locale) {
+        public Builder locale(EntityOrganizationLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = Optional.ofNullable(locale);
             return this;
         }
 
         /**
-         * Allows you to preset the language to be used.
+         * The preferred locale of the merchant, as set in their Mollie dashboard.
          */
-        public Builder locale(Optional<? extends LocaleResponse> locale) {
+        public Builder locale(Optional<? extends EntityOrganizationLocale> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;

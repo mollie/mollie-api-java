@@ -23,7 +23,9 @@ public class CustomerResponse {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -128,6 +130,9 @@ public class CustomerResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -210,6 +215,9 @@ public class CustomerResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
+     */
     public CustomerResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -406,6 +414,9 @@ public class CustomerResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this customer. Example: `cst_vsKJpSsabw`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

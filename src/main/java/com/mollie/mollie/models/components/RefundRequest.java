@@ -19,10 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class RefundRequest {
-
-    @JsonProperty("id")
-    private String id;
-
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method
      * used.
@@ -37,13 +33,6 @@ public class RefundRequest {
     private Amount amount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementAmount")
-    private JsonNullable<? extends AmountNullable> settlementAmount;
-
-    /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
      * the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to
@@ -52,20 +41,6 @@ public class RefundRequest {
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("metadata")
     private Optional<? extends Metadata> metadata;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("paymentId")
-    private Optional<String> paymentId;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementId")
-    private Optional<String> settlementId;
-
-
-    @JsonProperty("status")
-    private RefundStatus status;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -107,7 +82,7 @@ public class RefundRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("routingReversals")
-    private JsonNullable<? extends List<RefundRequestRoutingReversals>> routingReversals;
+    private JsonNullable<? extends List<RoutingReversals>> routingReversals;
 
     /**
      * Whether to create the entity in test mode or live mode.
@@ -124,38 +99,23 @@ public class RefundRequest {
 
     @JsonCreator
     public RefundRequest(
-            @JsonProperty("id") String id,
             @JsonProperty("description") String description,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("settlementAmount") JsonNullable<? extends AmountNullable> settlementAmount,
             @JsonProperty("metadata") Optional<? extends Metadata> metadata,
-            @JsonProperty("paymentId") Optional<String> paymentId,
-            @JsonProperty("settlementId") Optional<String> settlementId,
-            @JsonProperty("status") RefundStatus status,
             @JsonProperty("externalReference") Optional<? extends RefundRequestExternalReference> externalReference,
             @JsonProperty("reverseRouting") JsonNullable<Boolean> reverseRouting,
-            @JsonProperty("routingReversals") JsonNullable<? extends List<RefundRequestRoutingReversals>> routingReversals,
+            @JsonProperty("routingReversals") JsonNullable<? extends List<RoutingReversals>> routingReversals,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
-        Utils.checkNotNull(id, "id");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
         Utils.checkNotNull(metadata, "metadata");
-        Utils.checkNotNull(paymentId, "paymentId");
-        Utils.checkNotNull(settlementId, "settlementId");
-        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(externalReference, "externalReference");
         Utils.checkNotNull(reverseRouting, "reverseRouting");
         Utils.checkNotNull(routingReversals, "routingReversals");
         Utils.checkNotNull(testmode, "testmode");
-        this.id = id;
         this.description = description;
         this.amount = amount;
-        this.settlementAmount = settlementAmount;
         this.metadata = metadata;
-        this.paymentId = paymentId;
-        this.settlementId = settlementId;
-        this.status = status;
         this.externalReference = externalReference;
         this.reverseRouting = reverseRouting;
         this.routingReversals = routingReversals;
@@ -163,19 +123,11 @@ public class RefundRequest {
     }
     
     public RefundRequest(
-            String id,
             String description,
-            Amount amount,
-            RefundStatus status) {
-        this(id, description, amount,
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), status, Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
-    }
-
-    @JsonIgnore
-    public String id() {
-        return id;
+            Amount amount) {
+        this(description, amount, Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -196,15 +148,6 @@ public class RefundRequest {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<AmountNullable> settlementAmount() {
-        return (JsonNullable<AmountNullable>) settlementAmount;
-    }
-
-    /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
      * the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to
@@ -214,21 +157,6 @@ public class RefundRequest {
     @JsonIgnore
     public Optional<Metadata> metadata() {
         return (Optional<Metadata>) metadata;
-    }
-
-    @JsonIgnore
-    public Optional<String> paymentId() {
-        return paymentId;
-    }
-
-    @JsonIgnore
-    public Optional<String> settlementId() {
-        return settlementId;
-    }
-
-    @JsonIgnore
-    public RefundStatus status() {
-        return status;
     }
 
     @SuppressWarnings("unchecked")
@@ -273,8 +201,8 @@ public class RefundRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<RefundRequestRoutingReversals>> routingReversals() {
-        return (JsonNullable<List<RefundRequestRoutingReversals>>) routingReversals;
+    public JsonNullable<List<RoutingReversals>> routingReversals() {
+        return (JsonNullable<List<RoutingReversals>>) routingReversals;
     }
 
     /**
@@ -296,12 +224,6 @@ public class RefundRequest {
     }
 
 
-    public RefundRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method
      * used.
@@ -318,24 +240,6 @@ public class RefundRequest {
     public RefundRequest withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public RefundRequest withSettlementAmount(AmountNullable settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = JsonNullable.of(settlementAmount);
-        return this;
-    }
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public RefundRequest withSettlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = settlementAmount;
         return this;
     }
 
@@ -361,38 +265,6 @@ public class RefundRequest {
     public RefundRequest withMetadata(Optional<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
-        return this;
-    }
-
-    public RefundRequest withPaymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
-        return this;
-    }
-
-
-    public RefundRequest withPaymentId(Optional<String> paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-
-    public RefundRequest withSettlementId(String settlementId) {
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = Optional.ofNullable(settlementId);
-        return this;
-    }
-
-
-    public RefundRequest withSettlementId(Optional<String> settlementId) {
-        Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = settlementId;
-        return this;
-    }
-
-    public RefundRequest withStatus(RefundStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
         return this;
     }
 
@@ -466,7 +338,7 @@ public class RefundRequest {
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
      * parameter instead.
      */
-    public RefundRequest withRoutingReversals(List<RefundRequestRoutingReversals> routingReversals) {
+    public RefundRequest withRoutingReversals(List<RoutingReversals> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
         this.routingReversals = JsonNullable.of(routingReversals);
         return this;
@@ -485,7 +357,7 @@ public class RefundRequest {
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
      * parameter instead.
      */
-    public RefundRequest withRoutingReversals(JsonNullable<? extends List<RefundRequestRoutingReversals>> routingReversals) {
+    public RefundRequest withRoutingReversals(JsonNullable<? extends List<RoutingReversals>> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
         this.routingReversals = routingReversals;
         return this;
@@ -531,14 +403,9 @@ public class RefundRequest {
         }
         RefundRequest other = (RefundRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
-            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
-            Utils.enhancedDeepEquals(this.settlementId, other.settlementId) &&
-            Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.externalReference, other.externalReference) &&
             Utils.enhancedDeepEquals(this.reverseRouting, other.reverseRouting) &&
             Utils.enhancedDeepEquals(this.routingReversals, other.routingReversals) &&
@@ -548,23 +415,17 @@ public class RefundRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, description, amount,
-            settlementAmount, metadata, paymentId,
-            settlementId, status, externalReference,
-            reverseRouting, routingReversals, testmode);
+            description, amount, metadata,
+            externalReference, reverseRouting, routingReversals,
+            testmode);
     }
     
     @Override
     public String toString() {
         return Utils.toString(RefundRequest.class,
-                "id", id,
                 "description", description,
                 "amount", amount,
-                "settlementAmount", settlementAmount,
                 "metadata", metadata,
-                "paymentId", paymentId,
-                "settlementId", settlementId,
-                "status", status,
                 "externalReference", externalReference,
                 "reverseRouting", reverseRouting,
                 "routingReversals", routingReversals,
@@ -574,39 +435,22 @@ public class RefundRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
-
         private String description;
 
         private Amount amount;
 
-        private JsonNullable<? extends AmountNullable> settlementAmount = JsonNullable.undefined();
-
         private Optional<? extends Metadata> metadata = Optional.empty();
-
-        private Optional<String> paymentId = Optional.empty();
-
-        private Optional<String> settlementId = Optional.empty();
-
-        private RefundStatus status;
 
         private Optional<? extends RefundRequestExternalReference> externalReference = Optional.empty();
 
         private JsonNullable<Boolean> reverseRouting = JsonNullable.undefined();
 
-        private JsonNullable<? extends List<RefundRequestRoutingReversals>> routingReversals = JsonNullable.undefined();
+        private JsonNullable<? extends List<RoutingReversals>> routingReversals = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
         }
 
 
@@ -632,25 +476,6 @@ public class RefundRequest {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder settlementAmount(AmountNullable settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = JsonNullable.of(settlementAmount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder settlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = settlementAmount;
-            return this;
-        }
-
-
-        /**
          * Provide any data you like, for example a string or a JSON object. We will save the data alongside
          * the entity. Whenever
          * you fetch the entity with our API, we will also include the metadata. You can use up to
@@ -671,39 +496,6 @@ public class RefundRequest {
         public Builder metadata(Optional<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
-            return this;
-        }
-
-
-        public Builder paymentId(String paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
-            return this;
-        }
-
-        public Builder paymentId(Optional<String> paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = paymentId;
-            return this;
-        }
-
-
-        public Builder settlementId(String settlementId) {
-            Utils.checkNotNull(settlementId, "settlementId");
-            this.settlementId = Optional.ofNullable(settlementId);
-            return this;
-        }
-
-        public Builder settlementId(Optional<String> settlementId) {
-            Utils.checkNotNull(settlementId, "settlementId");
-            this.settlementId = settlementId;
-            return this;
-        }
-
-
-        public Builder status(RefundStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
             return this;
         }
 
@@ -779,7 +571,7 @@ public class RefundRequest {
          * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
          * parameter instead.
          */
-        public Builder routingReversals(List<RefundRequestRoutingReversals> routingReversals) {
+        public Builder routingReversals(List<RoutingReversals> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
             this.routingReversals = JsonNullable.of(routingReversals);
             return this;
@@ -798,7 +590,7 @@ public class RefundRequest {
          * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
          * parameter instead.
          */
-        public Builder routingReversals(JsonNullable<? extends List<RefundRequestRoutingReversals>> routingReversals) {
+        public Builder routingReversals(JsonNullable<? extends List<RoutingReversals>> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
             this.routingReversals = routingReversals;
             return this;
@@ -838,10 +630,9 @@ public class RefundRequest {
         public RefundRequest build() {
 
             return new RefundRequest(
-                id, description, amount,
-                settlementAmount, metadata, paymentId,
-                settlementId, status, externalReference,
-                reverseRouting, routingReversals, testmode);
+                description, amount, metadata,
+                externalReference, reverseRouting, routingReversals,
+                testmode);
         }
 
     }

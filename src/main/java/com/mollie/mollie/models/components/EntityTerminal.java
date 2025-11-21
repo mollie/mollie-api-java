@@ -23,7 +23,9 @@ public class EntityTerminal {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -43,11 +45,9 @@ public class EntityTerminal {
     @JsonProperty("description")
     private String description;
 
-    /**
-     * The status of the terminal.
-     */
+
     @JsonProperty("status")
-    private TerminalStatus status;
+    private EntityTerminalStatus status;
 
     /**
      * The brand of the terminal.
@@ -116,7 +116,7 @@ public class EntityTerminal {
             @JsonProperty("id") String id,
             @JsonProperty("mode") Mode mode,
             @JsonProperty("description") String description,
-            @JsonProperty("status") TerminalStatus status,
+            @JsonProperty("status") EntityTerminalStatus status,
             @JsonProperty("brand") Optional<? extends TerminalBrand> brand,
             @JsonProperty("model") Optional<? extends TerminalModel> model,
             @JsonProperty("serialNumber") Optional<String> serialNumber,
@@ -158,7 +158,7 @@ public class EntityTerminal {
             String id,
             Mode mode,
             String description,
-            TerminalStatus status,
+            EntityTerminalStatus status,
             String currency,
             String profileId,
             String createdAt,
@@ -180,6 +180,9 @@ public class EntityTerminal {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -205,11 +208,8 @@ public class EntityTerminal {
         return description;
     }
 
-    /**
-     * The status of the terminal.
-     */
     @JsonIgnore
-    public TerminalStatus status() {
+    public EntityTerminalStatus status() {
         return status;
     }
 
@@ -304,6 +304,9 @@ public class EntityTerminal {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
+     */
     public EntityTerminal withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -332,10 +335,7 @@ public class EntityTerminal {
         return this;
     }
 
-    /**
-     * The status of the terminal.
-     */
-    public EntityTerminal withStatus(TerminalStatus status) {
+    public EntityTerminal withStatus(EntityTerminalStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -517,7 +517,7 @@ public class EntityTerminal {
 
         private String description;
 
-        private TerminalStatus status;
+        private EntityTerminalStatus status;
 
         private Optional<? extends TerminalBrand> brand = Optional.empty();
 
@@ -551,6 +551,9 @@ public class EntityTerminal {
         }
 
 
+        /**
+         * The identifier uniquely referring to this terminal. Example: `term_7MgL4wea46qkRcoTZjWEH`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -582,10 +585,7 @@ public class EntityTerminal {
         }
 
 
-        /**
-         * The status of the terminal.
-         */
-        public Builder status(TerminalStatus status) {
+        public Builder status(EntityTerminalStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

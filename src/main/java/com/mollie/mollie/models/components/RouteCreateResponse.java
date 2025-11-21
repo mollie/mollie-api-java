@@ -19,11 +19,18 @@ public class RouteCreateResponse {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation
+     * time. Mollie
+     * will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
+     */
     @JsonProperty("id")
     private String id;
 
-
+    /**
+     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     @JsonProperty("paymentId")
     private String paymentId;
 
@@ -85,11 +92,20 @@ public class RouteCreateResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation
+     * time. Mollie
+     * will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
+     */
     @JsonIgnore
     public String id() {
         return id;
     }
 
+    /**
+     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     @JsonIgnore
     public String paymentId() {
         return paymentId;
@@ -142,12 +158,21 @@ public class RouteCreateResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation
+     * time. Mollie
+     * will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
+     */
     public RouteCreateResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
     }
 
+    /**
+     * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     public RouteCreateResponse withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
@@ -262,6 +287,11 @@ public class RouteCreateResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this route. Mollie assigns this identifier at route creation
+         * time. Mollie
+         * will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -269,6 +299,10 @@ public class RouteCreateResponse {
         }
 
 
+        /**
+         * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The full payment object can be retrieved via the payment URL in the `_links` object.
+         */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;

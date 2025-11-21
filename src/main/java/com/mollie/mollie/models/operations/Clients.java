@@ -24,7 +24,9 @@ public class Clients {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this client. Example: `org_12345678`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -94,6 +96,9 @@ public class Clients {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this client. Example: `org_12345678`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -147,6 +152,9 @@ public class Clients {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this client. Example: `org_12345678`.
+     */
     public Clients withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -283,6 +291,9 @@ public class Clients {
         }
 
 
+        /**
+         * The identifier uniquely referring to this client. Example: `org_12345678`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;

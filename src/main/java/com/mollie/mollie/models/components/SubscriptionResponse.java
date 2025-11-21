@@ -26,7 +26,9 @@ public class SubscriptionResponse {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -36,13 +38,9 @@ public class SubscriptionResponse {
     @JsonProperty("mode")
     private Mode mode;
 
-    /**
-     * The subscription's current status is directly related to the status of the underlying customer or
-     * mandate that is
-     * enabling the subscription.
-     */
+
     @JsonProperty("status")
-    private SubscriptionStatus status;
+    private SubscriptionResponseStatus status;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -150,7 +148,9 @@ public class SubscriptionResponse {
     @JsonProperty("webhookUrl")
     private String webhookUrl;
 
-
+    /**
+     * The customer this subscription belongs to.
+     */
     @JsonProperty("customerId")
     private String customerId;
 
@@ -186,7 +186,7 @@ public class SubscriptionResponse {
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") Mode mode,
-            @JsonProperty("status") SubscriptionStatus status,
+            @JsonProperty("status") SubscriptionResponseStatus status,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("times") Optional<Long> times,
             @JsonProperty("timesRemaining") Optional<Long> timesRemaining,
@@ -249,7 +249,7 @@ public class SubscriptionResponse {
             String resource,
             String id,
             Mode mode,
-            SubscriptionStatus status,
+            SubscriptionResponseStatus status,
             Amount amount,
             String interval,
             String startDate,
@@ -277,6 +277,9 @@ public class SubscriptionResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -290,13 +293,8 @@ public class SubscriptionResponse {
         return mode;
     }
 
-    /**
-     * The subscription's current status is directly related to the status of the underlying customer or
-     * mandate that is
-     * enabling the subscription.
-     */
     @JsonIgnore
-    public SubscriptionStatus status() {
+    public SubscriptionResponseStatus status() {
         return status;
     }
 
@@ -425,6 +423,9 @@ public class SubscriptionResponse {
         return webhookUrl;
     }
 
+    /**
+     * The customer this subscription belongs to.
+     */
     @JsonIgnore
     public String customerId() {
         return customerId;
@@ -478,6 +479,9 @@ public class SubscriptionResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.
+     */
     public SubscriptionResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -493,12 +497,7 @@ public class SubscriptionResponse {
         return this;
     }
 
-    /**
-     * The subscription's current status is directly related to the status of the underlying customer or
-     * mandate that is
-     * enabling the subscription.
-     */
-    public SubscriptionResponse withStatus(SubscriptionStatus status) {
+    public SubscriptionResponse withStatus(SubscriptionResponseStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -715,6 +714,9 @@ public class SubscriptionResponse {
         return this;
     }
 
+    /**
+     * The customer this subscription belongs to.
+     */
     public SubscriptionResponse withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
@@ -853,7 +855,7 @@ public class SubscriptionResponse {
 
         private Mode mode;
 
-        private SubscriptionStatus status;
+        private SubscriptionResponseStatus status;
 
         private Amount amount;
 
@@ -904,6 +906,9 @@ public class SubscriptionResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this subscription. Example: `sub_rVKGtNd6s3`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -921,12 +926,7 @@ public class SubscriptionResponse {
         }
 
 
-        /**
-         * The subscription's current status is directly related to the status of the underlying customer or
-         * mandate that is
-         * enabling the subscription.
-         */
-        public Builder status(SubscriptionStatus status) {
+        public Builder status(SubscriptionResponseStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -1150,6 +1150,9 @@ public class SubscriptionResponse {
         }
 
 
+        /**
+         * The customer this subscription belongs to.
+         */
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = customerId;

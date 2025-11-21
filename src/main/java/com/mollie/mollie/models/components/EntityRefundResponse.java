@@ -25,7 +25,11 @@ public class EntityRefundResponse {
     @JsonProperty("resource")
     private String resource;
 
-
+    /**
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation
+     * time. Mollie
+     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     */
     @JsonProperty("id")
     private String id;
 
@@ -49,11 +53,26 @@ public class EntityRefundResponse {
     private Amount amount;
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be deducted from your account
+     * balance, converted
+     * to the currency your account is settled in.
+     * 
+     * <p>The amount is a **negative** amount.
+     * 
+     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
+     * amount will be
+     * zero.
+     * 
+     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
+     * example, while
+     * the refund is queued the settlement amount is likely not yet available.
+     * 
+     * <p>To retrieve accurate settlement amounts we recommend using the
+     * [List balance transactions endpoint](list-balance-transactions) instead.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
-    private JsonNullable<? extends AmountNullable> settlementAmount;
+    private JsonNullable<? extends EntityRefundResponseSettlementAmount> settlementAmount;
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
@@ -65,19 +84,25 @@ public class EntityRefundResponse {
     @JsonProperty("metadata")
     private Optional<? extends Metadata> metadata;
 
-
+    /**
+     * The unique identifier of the payment this refund was created for.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
     private Optional<String> paymentId;
 
-
+    /**
+     * The identifier referring to the settlement this refund was settled with. This field is omitted if
+     * the refund is not settled (yet).
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementId")
-    private Optional<String> settlementId;
+    private JsonNullable<String> settlementId;
 
 
     @JsonProperty("status")
-    private RefundStatus status;
+    private EntityRefundResponseStatus status;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -106,7 +131,7 @@ public class EntityRefundResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("routingReversals")
-    private JsonNullable<? extends List<RoutingReversals>> routingReversals;
+    private JsonNullable<? extends List<EntityRefundResponseRoutingReversals>> routingReversals;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -121,14 +146,14 @@ public class EntityRefundResponse {
             @JsonProperty("mode") Mode mode,
             @JsonProperty("description") String description,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("settlementAmount") JsonNullable<? extends AmountNullable> settlementAmount,
+            @JsonProperty("settlementAmount") JsonNullable<? extends EntityRefundResponseSettlementAmount> settlementAmount,
             @JsonProperty("metadata") Optional<? extends Metadata> metadata,
             @JsonProperty("paymentId") Optional<String> paymentId,
-            @JsonProperty("settlementId") Optional<String> settlementId,
-            @JsonProperty("status") RefundStatus status,
+            @JsonProperty("settlementId") JsonNullable<String> settlementId,
+            @JsonProperty("status") EntityRefundResponseStatus status,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("externalReference") Optional<? extends ExternalReference> externalReference,
-            @JsonProperty("routingReversals") JsonNullable<? extends List<RoutingReversals>> routingReversals,
+            @JsonProperty("routingReversals") JsonNullable<? extends List<EntityRefundResponseRoutingReversals>> routingReversals,
             @JsonProperty("_links") EntityRefundResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -166,12 +191,12 @@ public class EntityRefundResponse {
             Mode mode,
             String description,
             Amount amount,
-            RefundStatus status,
+            EntityRefundResponseStatus status,
             String createdAt,
             EntityRefundResponseLinks links) {
         this(resource, id, mode,
             description, amount, JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             status, createdAt, Optional.empty(),
             JsonNullable.undefined(), links);
     }
@@ -185,6 +210,11 @@ public class EntityRefundResponse {
         return resource;
     }
 
+    /**
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation
+     * time. Mollie
+     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     */
     @JsonIgnore
     public String id() {
         return id;
@@ -216,12 +246,27 @@ public class EntityRefundResponse {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be deducted from your account
+     * balance, converted
+     * to the currency your account is settled in.
+     * 
+     * <p>The amount is a **negative** amount.
+     * 
+     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
+     * amount will be
+     * zero.
+     * 
+     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
+     * example, while
+     * the refund is queued the settlement amount is likely not yet available.
+     * 
+     * <p>To retrieve accurate settlement amounts we recommend using the
+     * [List balance transactions endpoint](list-balance-transactions) instead.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AmountNullable> settlementAmount() {
-        return (JsonNullable<AmountNullable>) settlementAmount;
+    public JsonNullable<EntityRefundResponseSettlementAmount> settlementAmount() {
+        return (JsonNullable<EntityRefundResponseSettlementAmount>) settlementAmount;
     }
 
     /**
@@ -236,18 +281,26 @@ public class EntityRefundResponse {
         return (Optional<Metadata>) metadata;
     }
 
+    /**
+     * The unique identifier of the payment this refund was created for.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     @JsonIgnore
     public Optional<String> paymentId() {
         return paymentId;
     }
 
+    /**
+     * The identifier referring to the settlement this refund was settled with. This field is omitted if
+     * the refund is not settled (yet).
+     */
     @JsonIgnore
-    public Optional<String> settlementId() {
+    public JsonNullable<String> settlementId() {
         return settlementId;
     }
 
     @JsonIgnore
-    public RefundStatus status() {
+    public EntityRefundResponseStatus status() {
         return status;
     }
 
@@ -281,8 +334,8 @@ public class EntityRefundResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<RoutingReversals>> routingReversals() {
-        return (JsonNullable<List<RoutingReversals>>) routingReversals;
+    public JsonNullable<List<EntityRefundResponseRoutingReversals>> routingReversals() {
+        return (JsonNullable<List<EntityRefundResponseRoutingReversals>>) routingReversals;
     }
 
     /**
@@ -308,6 +361,11 @@ public class EntityRefundResponse {
         return this;
     }
 
+    /**
+     * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation
+     * time. Mollie
+     * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+     */
     public EntityRefundResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -343,18 +401,48 @@ public class EntityRefundResponse {
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be deducted from your account
+     * balance, converted
+     * to the currency your account is settled in.
+     * 
+     * <p>The amount is a **negative** amount.
+     * 
+     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
+     * amount will be
+     * zero.
+     * 
+     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
+     * example, while
+     * the refund is queued the settlement amount is likely not yet available.
+     * 
+     * <p>To retrieve accurate settlement amounts we recommend using the
+     * [List balance transactions endpoint](list-balance-transactions) instead.
      */
-    public EntityRefundResponse withSettlementAmount(AmountNullable settlementAmount) {
+    public EntityRefundResponse withSettlementAmount(EntityRefundResponseSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = JsonNullable.of(settlementAmount);
         return this;
     }
 
     /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+     * This optional field will contain the approximate amount that will be deducted from your account
+     * balance, converted
+     * to the currency your account is settled in.
+     * 
+     * <p>The amount is a **negative** amount.
+     * 
+     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
+     * amount will be
+     * zero.
+     * 
+     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
+     * example, while
+     * the refund is queued the settlement amount is likely not yet available.
+     * 
+     * <p>To retrieve accurate settlement amounts we recommend using the
+     * [List balance transactions endpoint](list-balance-transactions) instead.
      */
-    public EntityRefundResponse withSettlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
+    public EntityRefundResponse withSettlementAmount(JsonNullable<? extends EntityRefundResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
         return this;
@@ -385,6 +473,10 @@ public class EntityRefundResponse {
         return this;
     }
 
+    /**
+     * The unique identifier of the payment this refund was created for.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     public EntityRefundResponse withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = Optional.ofNullable(paymentId);
@@ -392,26 +484,37 @@ public class EntityRefundResponse {
     }
 
 
+    /**
+     * The unique identifier of the payment this refund was created for.
+     * The full payment object can be retrieved via the payment URL in the `_links` object.
+     */
     public EntityRefundResponse withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
     }
 
+    /**
+     * The identifier referring to the settlement this refund was settled with. This field is omitted if
+     * the refund is not settled (yet).
+     */
     public EntityRefundResponse withSettlementId(String settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
-        this.settlementId = Optional.ofNullable(settlementId);
+        this.settlementId = JsonNullable.of(settlementId);
         return this;
     }
 
-
-    public EntityRefundResponse withSettlementId(Optional<String> settlementId) {
+    /**
+     * The identifier referring to the settlement this refund was settled with. This field is omitted if
+     * the refund is not settled (yet).
+     */
+    public EntityRefundResponse withSettlementId(JsonNullable<String> settlementId) {
         Utils.checkNotNull(settlementId, "settlementId");
         this.settlementId = settlementId;
         return this;
     }
 
-    public EntityRefundResponse withStatus(RefundStatus status) {
+    public EntityRefundResponse withStatus(EntityRefundResponseStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -453,7 +556,7 @@ public class EntityRefundResponse {
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
      * parameter instead.
      */
-    public EntityRefundResponse withRoutingReversals(List<RoutingReversals> routingReversals) {
+    public EntityRefundResponse withRoutingReversals(List<EntityRefundResponseRoutingReversals> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
         this.routingReversals = JsonNullable.of(routingReversals);
         return this;
@@ -472,7 +575,7 @@ public class EntityRefundResponse {
      * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
      * parameter instead.
      */
-    public EntityRefundResponse withRoutingReversals(JsonNullable<? extends List<RoutingReversals>> routingReversals) {
+    public EntityRefundResponse withRoutingReversals(JsonNullable<? extends List<EntityRefundResponseRoutingReversals>> routingReversals) {
         Utils.checkNotNull(routingReversals, "routingReversals");
         this.routingReversals = routingReversals;
         return this;
@@ -555,21 +658,21 @@ public class EntityRefundResponse {
 
         private Amount amount;
 
-        private JsonNullable<? extends AmountNullable> settlementAmount = JsonNullable.undefined();
+        private JsonNullable<? extends EntityRefundResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private Optional<? extends Metadata> metadata = Optional.empty();
 
         private Optional<String> paymentId = Optional.empty();
 
-        private Optional<String> settlementId = Optional.empty();
+        private JsonNullable<String> settlementId = JsonNullable.undefined();
 
-        private RefundStatus status;
+        private EntityRefundResponseStatus status;
 
         private String createdAt;
 
         private Optional<? extends ExternalReference> externalReference = Optional.empty();
 
-        private JsonNullable<? extends List<RoutingReversals>> routingReversals = JsonNullable.undefined();
+        private JsonNullable<? extends List<EntityRefundResponseRoutingReversals>> routingReversals = JsonNullable.undefined();
 
         private EntityRefundResponseLinks links;
 
@@ -589,6 +692,11 @@ public class EntityRefundResponse {
         }
 
 
+        /**
+         * The identifier uniquely referring to this refund. Mollie assigns this identifier at refund creation
+         * time. Mollie
+         * will always refer to the refund by this ID. Example: `re_4qqhO89gsT`.
+         */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
@@ -628,18 +736,48 @@ public class EntityRefundResponse {
 
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * This optional field will contain the approximate amount that will be deducted from your account
+         * balance, converted
+         * to the currency your account is settled in.
+         * 
+         * <p>The amount is a **negative** amount.
+         * 
+         * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
+         * amount will be
+         * zero.
+         * 
+         * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
+         * example, while
+         * the refund is queued the settlement amount is likely not yet available.
+         * 
+         * <p>To retrieve accurate settlement amounts we recommend using the
+         * [List balance transactions endpoint](list-balance-transactions) instead.
          */
-        public Builder settlementAmount(AmountNullable settlementAmount) {
+        public Builder settlementAmount(EntityRefundResponseSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = JsonNullable.of(settlementAmount);
             return this;
         }
 
         /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
+         * This optional field will contain the approximate amount that will be deducted from your account
+         * balance, converted
+         * to the currency your account is settled in.
+         * 
+         * <p>The amount is a **negative** amount.
+         * 
+         * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
+         * amount will be
+         * zero.
+         * 
+         * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
+         * example, while
+         * the refund is queued the settlement amount is likely not yet available.
+         * 
+         * <p>To retrieve accurate settlement amounts we recommend using the
+         * [List balance transactions endpoint](list-balance-transactions) instead.
          */
-        public Builder settlementAmount(JsonNullable<? extends AmountNullable> settlementAmount) {
+        public Builder settlementAmount(JsonNullable<? extends EntityRefundResponseSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;
             return this;
@@ -671,12 +809,20 @@ public class EntityRefundResponse {
         }
 
 
+        /**
+         * The unique identifier of the payment this refund was created for.
+         * The full payment object can be retrieved via the payment URL in the `_links` object.
+         */
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = Optional.ofNullable(paymentId);
             return this;
         }
 
+        /**
+         * The unique identifier of the payment this refund was created for.
+         * The full payment object can be retrieved via the payment URL in the `_links` object.
+         */
         public Builder paymentId(Optional<String> paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
@@ -684,20 +830,28 @@ public class EntityRefundResponse {
         }
 
 
+        /**
+         * The identifier referring to the settlement this refund was settled with. This field is omitted if
+         * the refund is not settled (yet).
+         */
         public Builder settlementId(String settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
-            this.settlementId = Optional.ofNullable(settlementId);
+            this.settlementId = JsonNullable.of(settlementId);
             return this;
         }
 
-        public Builder settlementId(Optional<String> settlementId) {
+        /**
+         * The identifier referring to the settlement this refund was settled with. This field is omitted if
+         * the refund is not settled (yet).
+         */
+        public Builder settlementId(JsonNullable<String> settlementId) {
             Utils.checkNotNull(settlementId, "settlementId");
             this.settlementId = settlementId;
             return this;
         }
 
 
-        public Builder status(RefundStatus status) {
+        public Builder status(EntityRefundResponseStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
@@ -741,7 +895,7 @@ public class EntityRefundResponse {
          * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
          * parameter instead.
          */
-        public Builder routingReversals(List<RoutingReversals> routingReversals) {
+        public Builder routingReversals(List<EntityRefundResponseRoutingReversals> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
             this.routingReversals = JsonNullable.of(routingReversals);
             return this;
@@ -760,7 +914,7 @@ public class EntityRefundResponse {
          * <p>If you simply want to fully reverse the routed funds, you can also use the `reverseRouting`
          * parameter instead.
          */
-        public Builder routingReversals(JsonNullable<? extends List<RoutingReversals>> routingReversals) {
+        public Builder routingReversals(JsonNullable<? extends List<EntityRefundResponseRoutingReversals>> routingReversals) {
             Utils.checkNotNull(routingReversals, "routingReversals");
             this.routingReversals = routingReversals;
             return this;

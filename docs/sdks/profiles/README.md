@@ -26,7 +26,8 @@ can use this endpoint to automate profile creation.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.components.ProfileRequest;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateProfileResponse;
 import java.lang.Exception;
@@ -54,7 +55,6 @@ public class Application {
                         "NL",
                         "GB"))
                     .businessCategory("OTHER_MERCHANDISE")
-                    .status(ProfileStatus.UNVERIFIED)
                     .build())
                 .call();
 
