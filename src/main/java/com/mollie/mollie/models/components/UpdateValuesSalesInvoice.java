@@ -69,7 +69,7 @@ public class UpdateValuesSalesInvoice {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentDetails")
-    private JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails;
+    private Optional<? extends SalesInvoicePaymentDetails> paymentDetails;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -113,7 +113,7 @@ public class UpdateValuesSalesInvoice {
             @JsonProperty("status") Optional<? extends SalesInvoiceStatus> status,
             @JsonProperty("memo") JsonNullable<String> memo,
             @JsonProperty("paymentTerm") JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm,
-            @JsonProperty("paymentDetails") JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails,
+            @JsonProperty("paymentDetails") Optional<? extends SalesInvoicePaymentDetails> paymentDetails,
             @JsonProperty("emailDetails") JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails,
             @JsonProperty("recipientIdentifier") Optional<String> recipientIdentifier,
             @JsonProperty("recipient") JsonNullable<? extends SalesInvoiceRecipient> recipient,
@@ -143,7 +143,7 @@ public class UpdateValuesSalesInvoice {
     
     public UpdateValuesSalesInvoice() {
         this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
@@ -203,8 +203,8 @@ public class UpdateValuesSalesInvoice {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<SalesInvoicePaymentDetails> paymentDetails() {
-        return (JsonNullable<SalesInvoicePaymentDetails>) paymentDetails;
+    public Optional<SalesInvoicePaymentDetails> paymentDetails() {
+        return (Optional<SalesInvoicePaymentDetails>) paymentDetails;
     }
 
     @SuppressWarnings("unchecked")
@@ -367,11 +367,12 @@ public class UpdateValuesSalesInvoice {
 
     public UpdateValuesSalesInvoice withPaymentDetails(SalesInvoicePaymentDetails paymentDetails) {
         Utils.checkNotNull(paymentDetails, "paymentDetails");
-        this.paymentDetails = JsonNullable.of(paymentDetails);
+        this.paymentDetails = Optional.ofNullable(paymentDetails);
         return this;
     }
 
-    public UpdateValuesSalesInvoice withPaymentDetails(JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails) {
+
+    public UpdateValuesSalesInvoice withPaymentDetails(Optional<? extends SalesInvoicePaymentDetails> paymentDetails) {
         Utils.checkNotNull(paymentDetails, "paymentDetails");
         this.paymentDetails = paymentDetails;
         return this;
@@ -521,7 +522,7 @@ public class UpdateValuesSalesInvoice {
 
         private JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm = JsonNullable.undefined();
 
-        private JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails = JsonNullable.undefined();
+        private Optional<? extends SalesInvoicePaymentDetails> paymentDetails = Optional.empty();
 
         private JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails = JsonNullable.undefined();
 
@@ -654,11 +655,11 @@ public class UpdateValuesSalesInvoice {
 
         public Builder paymentDetails(SalesInvoicePaymentDetails paymentDetails) {
             Utils.checkNotNull(paymentDetails, "paymentDetails");
-            this.paymentDetails = JsonNullable.of(paymentDetails);
+            this.paymentDetails = Optional.ofNullable(paymentDetails);
             return this;
         }
 
-        public Builder paymentDetails(JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails) {
+        public Builder paymentDetails(Optional<? extends SalesInvoicePaymentDetails> paymentDetails) {
             Utils.checkNotNull(paymentDetails, "paymentDetails");
             this.paymentDetails = paymentDetails;
             return this;

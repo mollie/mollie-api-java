@@ -116,7 +116,7 @@ public class UpdatePaymentLink {
                     klass,
                     this.baseUrl,
                     "/payment-links/{paymentLinkId}",
-                    request, this.sdkConfiguration.globals);
+                    request, null);
             HTTPRequest req = new HTTPRequest(url, "PATCH");
             Object convertedRequest = Utils.convertToShape(
                     request,
@@ -131,7 +131,7 @@ public class UpdatePaymentLink {
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

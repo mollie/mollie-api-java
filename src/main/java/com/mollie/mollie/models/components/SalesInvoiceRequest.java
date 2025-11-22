@@ -18,7 +18,7 @@ import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class EntitySalesInvoice {
+public class SalesInvoiceRequest {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
@@ -63,9 +63,8 @@ public class EntitySalesInvoice {
      * to `paid`
      * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends SalesInvoiceStatus> status;
+    private SalesInvoiceStatus status;
 
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
@@ -98,7 +97,7 @@ public class EntitySalesInvoice {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends EntitySalesInvoiceMetadata> metadata;
+    private JsonNullable<? extends SalesInvoiceRequestMetadata> metadata;
 
     /**
      * The payment term to be set on the invoice.
@@ -110,7 +109,7 @@ public class EntitySalesInvoice {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentDetails")
-    private JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails;
+    private Optional<? extends SalesInvoicePaymentDetails> paymentDetails;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -142,14 +141,13 @@ public class EntitySalesInvoice {
      * recipient management
      * is not required to send a first invoice to a recipient.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recipientIdentifier")
-    private Optional<String> recipientIdentifier;
+    private String recipientIdentifier;
 
 
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("recipient")
-    private JsonNullable<? extends SalesInvoiceRecipient> recipient;
+    private Optional<? extends SalesInvoiceRecipient> recipient;
 
     /**
      * Provide the line items for the invoice. Each line contains details such as a description of the item
@@ -157,9 +155,9 @@ public class EntitySalesInvoice {
      * 
      * <p>All lines must have the same currency as the invoice.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("lines")
-    private JsonNullable<? extends List<SalesInvoiceLineItem>> lines;
+    private Optional<? extends List<SalesInvoiceLineItem>> lines;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -167,22 +165,22 @@ public class EntitySalesInvoice {
     private JsonNullable<? extends SalesInvoiceDiscount> discount;
 
     @JsonCreator
-    public EntitySalesInvoice(
+    public SalesInvoiceRequest(
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
             @JsonProperty("profileId") JsonNullable<String> profileId,
-            @JsonProperty("status") Optional<? extends SalesInvoiceStatus> status,
+            @JsonProperty("status") SalesInvoiceStatus status,
             @JsonProperty("vatScheme") Optional<? extends SalesInvoiceVatScheme> vatScheme,
             @JsonProperty("vatMode") Optional<? extends SalesInvoiceVatMode> vatMode,
             @JsonProperty("memo") JsonNullable<String> memo,
-            @JsonProperty("metadata") JsonNullable<? extends EntitySalesInvoiceMetadata> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends SalesInvoiceRequestMetadata> metadata,
             @JsonProperty("paymentTerm") JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm,
-            @JsonProperty("paymentDetails") JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails,
+            @JsonProperty("paymentDetails") Optional<? extends SalesInvoicePaymentDetails> paymentDetails,
             @JsonProperty("emailDetails") JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails,
             @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("mandateId") Optional<String> mandateId,
-            @JsonProperty("recipientIdentifier") Optional<String> recipientIdentifier,
-            @JsonProperty("recipient") JsonNullable<? extends SalesInvoiceRecipient> recipient,
-            @JsonProperty("lines") JsonNullable<? extends List<SalesInvoiceLineItem>> lines,
+            @JsonProperty("recipientIdentifier") String recipientIdentifier,
+            @JsonProperty("recipient") Optional<? extends SalesInvoiceRecipient> recipient,
+            @JsonProperty("lines") Optional<? extends List<SalesInvoiceLineItem>> lines,
             @JsonProperty("discount") JsonNullable<? extends SalesInvoiceDiscount> discount) {
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(profileId, "profileId");
@@ -218,12 +216,14 @@ public class EntitySalesInvoice {
         this.discount = discount;
     }
     
-    public EntitySalesInvoice() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+    public SalesInvoiceRequest(
+            SalesInvoiceStatus status,
+            String recipientIdentifier) {
+        this(JsonNullable.undefined(), JsonNullable.undefined(), status,
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            recipientIdentifier, Optional.empty(), Optional.empty(),
             JsonNullable.undefined());
     }
 
@@ -273,10 +273,9 @@ public class EntitySalesInvoice {
      * to `paid`
      * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SalesInvoiceStatus> status() {
-        return (Optional<SalesInvoiceStatus>) status;
+    public SalesInvoiceStatus status() {
+        return status;
     }
 
     /**
@@ -315,8 +314,8 @@ public class EntitySalesInvoice {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<EntitySalesInvoiceMetadata> metadata() {
-        return (JsonNullable<EntitySalesInvoiceMetadata>) metadata;
+    public JsonNullable<SalesInvoiceRequestMetadata> metadata() {
+        return (JsonNullable<SalesInvoiceRequestMetadata>) metadata;
     }
 
     /**
@@ -330,8 +329,8 @@ public class EntitySalesInvoice {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<SalesInvoicePaymentDetails> paymentDetails() {
-        return (JsonNullable<SalesInvoicePaymentDetails>) paymentDetails;
+    public Optional<SalesInvoicePaymentDetails> paymentDetails() {
+        return (Optional<SalesInvoicePaymentDetails>) paymentDetails;
     }
 
     @SuppressWarnings("unchecked")
@@ -368,14 +367,14 @@ public class EntitySalesInvoice {
      * is not required to send a first invoice to a recipient.
      */
     @JsonIgnore
-    public Optional<String> recipientIdentifier() {
+    public String recipientIdentifier() {
         return recipientIdentifier;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<SalesInvoiceRecipient> recipient() {
-        return (JsonNullable<SalesInvoiceRecipient>) recipient;
+    public Optional<SalesInvoiceRecipient> recipient() {
+        return (Optional<SalesInvoiceRecipient>) recipient;
     }
 
     /**
@@ -386,8 +385,8 @@ public class EntitySalesInvoice {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<SalesInvoiceLineItem>> lines() {
-        return (JsonNullable<List<SalesInvoiceLineItem>>) lines;
+    public Optional<List<SalesInvoiceLineItem>> lines() {
+        return (Optional<List<SalesInvoiceLineItem>>) lines;
     }
 
     @SuppressWarnings("unchecked")
@@ -410,7 +409,7 @@ public class EntitySalesInvoice {
      * setting
      * `testmode` to `true`.
      */
-    public EntitySalesInvoice withTestmode(boolean testmode) {
+    public SalesInvoiceRequest withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = JsonNullable.of(testmode);
         return this;
@@ -425,7 +424,7 @@ public class EntitySalesInvoice {
      * setting
      * `testmode` to `true`.
      */
-    public EntitySalesInvoice withTestmode(JsonNullable<Boolean> testmode) {
+    public SalesInvoiceRequest withTestmode(JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -440,7 +439,7 @@ public class EntitySalesInvoice {
      * parameter is
      * required.
      */
-    public EntitySalesInvoice withProfileId(String profileId) {
+    public SalesInvoiceRequest withProfileId(String profileId) {
         Utils.checkNotNull(profileId, "profileId");
         this.profileId = JsonNullable.of(profileId);
         return this;
@@ -455,7 +454,7 @@ public class EntitySalesInvoice {
      * parameter is
      * required.
      */
-    public EntitySalesInvoice withProfileId(JsonNullable<String> profileId) {
+    public SalesInvoiceRequest withProfileId(JsonNullable<String> profileId) {
         Utils.checkNotNull(profileId, "profileId");
         this.profileId = profileId;
         return this;
@@ -479,32 +478,7 @@ public class EntitySalesInvoice {
      * to `paid`
      * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    public EntitySalesInvoice withStatus(SalesInvoiceStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The status for the invoice to end up in.
-     * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
-     * sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this
-     * to `paid` to
-     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-     * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-     * 
-     * <p>Dependent parameters:
-     * - `paymentDetails` is required if invoice should be set directly to `paid`
-     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
-     * to `paid`
-     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-     */
-    public EntitySalesInvoice withStatus(Optional<? extends SalesInvoiceStatus> status) {
+    public SalesInvoiceRequest withStatus(SalesInvoiceStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -513,7 +487,7 @@ public class EntitySalesInvoice {
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
      */
-    public EntitySalesInvoice withVatScheme(SalesInvoiceVatScheme vatScheme) {
+    public SalesInvoiceRequest withVatScheme(SalesInvoiceVatScheme vatScheme) {
         Utils.checkNotNull(vatScheme, "vatScheme");
         this.vatScheme = Optional.ofNullable(vatScheme);
         return this;
@@ -523,7 +497,7 @@ public class EntitySalesInvoice {
     /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
      */
-    public EntitySalesInvoice withVatScheme(Optional<? extends SalesInvoiceVatScheme> vatScheme) {
+    public SalesInvoiceRequest withVatScheme(Optional<? extends SalesInvoiceVatScheme> vatScheme) {
         Utils.checkNotNull(vatScheme, "vatScheme");
         this.vatScheme = vatScheme;
         return this;
@@ -535,7 +509,7 @@ public class EntitySalesInvoice {
      * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
      * apply.
      */
-    public EntitySalesInvoice withVatMode(SalesInvoiceVatMode vatMode) {
+    public SalesInvoiceRequest withVatMode(SalesInvoiceVatMode vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
         this.vatMode = Optional.ofNullable(vatMode);
         return this;
@@ -548,7 +522,7 @@ public class EntitySalesInvoice {
      * price. `inclusive` means the prices you are providing to us already contain the VAT you want to
      * apply.
      */
-    public EntitySalesInvoice withVatMode(Optional<? extends SalesInvoiceVatMode> vatMode) {
+    public SalesInvoiceRequest withVatMode(Optional<? extends SalesInvoiceVatMode> vatMode) {
         Utils.checkNotNull(vatMode, "vatMode");
         this.vatMode = vatMode;
         return this;
@@ -557,7 +531,7 @@ public class EntitySalesInvoice {
     /**
      * A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
      */
-    public EntitySalesInvoice withMemo(String memo) {
+    public SalesInvoiceRequest withMemo(String memo) {
         Utils.checkNotNull(memo, "memo");
         this.memo = JsonNullable.of(memo);
         return this;
@@ -566,7 +540,7 @@ public class EntitySalesInvoice {
     /**
      * A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
      */
-    public EntitySalesInvoice withMemo(JsonNullable<String> memo) {
+    public SalesInvoiceRequest withMemo(JsonNullable<String> memo) {
         Utils.checkNotNull(memo, "memo");
         this.memo = memo;
         return this;
@@ -577,7 +551,7 @@ public class EntitySalesInvoice {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    public EntitySalesInvoice withMetadata(EntitySalesInvoiceMetadata metadata) {
+    public SalesInvoiceRequest withMetadata(SalesInvoiceRequestMetadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
@@ -588,7 +562,7 @@ public class EntitySalesInvoice {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    public EntitySalesInvoice withMetadata(JsonNullable<? extends EntitySalesInvoiceMetadata> metadata) {
+    public SalesInvoiceRequest withMetadata(JsonNullable<? extends SalesInvoiceRequestMetadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -597,7 +571,7 @@ public class EntitySalesInvoice {
     /**
      * The payment term to be set on the invoice.
      */
-    public EntitySalesInvoice withPaymentTerm(SalesInvoicePaymentTerm paymentTerm) {
+    public SalesInvoiceRequest withPaymentTerm(SalesInvoicePaymentTerm paymentTerm) {
         Utils.checkNotNull(paymentTerm, "paymentTerm");
         this.paymentTerm = JsonNullable.of(paymentTerm);
         return this;
@@ -606,31 +580,32 @@ public class EntitySalesInvoice {
     /**
      * The payment term to be set on the invoice.
      */
-    public EntitySalesInvoice withPaymentTerm(JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm) {
+    public SalesInvoiceRequest withPaymentTerm(JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm) {
         Utils.checkNotNull(paymentTerm, "paymentTerm");
         this.paymentTerm = paymentTerm;
         return this;
     }
 
-    public EntitySalesInvoice withPaymentDetails(SalesInvoicePaymentDetails paymentDetails) {
+    public SalesInvoiceRequest withPaymentDetails(SalesInvoicePaymentDetails paymentDetails) {
         Utils.checkNotNull(paymentDetails, "paymentDetails");
-        this.paymentDetails = JsonNullable.of(paymentDetails);
+        this.paymentDetails = Optional.ofNullable(paymentDetails);
         return this;
     }
 
-    public EntitySalesInvoice withPaymentDetails(JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails) {
+
+    public SalesInvoiceRequest withPaymentDetails(Optional<? extends SalesInvoicePaymentDetails> paymentDetails) {
         Utils.checkNotNull(paymentDetails, "paymentDetails");
         this.paymentDetails = paymentDetails;
         return this;
     }
 
-    public EntitySalesInvoice withEmailDetails(SalesInvoiceEmailDetails emailDetails) {
+    public SalesInvoiceRequest withEmailDetails(SalesInvoiceEmailDetails emailDetails) {
         Utils.checkNotNull(emailDetails, "emailDetails");
         this.emailDetails = JsonNullable.of(emailDetails);
         return this;
     }
 
-    public EntitySalesInvoice withEmailDetails(JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails) {
+    public SalesInvoiceRequest withEmailDetails(JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails) {
         Utils.checkNotNull(emailDetails, "emailDetails");
         this.emailDetails = emailDetails;
         return this;
@@ -641,7 +616,7 @@ public class EntitySalesInvoice {
      * for. If
      * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
-    public EntitySalesInvoice withCustomerId(String customerId) {
+    public SalesInvoiceRequest withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = Optional.ofNullable(customerId);
         return this;
@@ -653,7 +628,7 @@ public class EntitySalesInvoice {
      * for. If
      * provided, `mandateId` becomes required as well. Only allowed for invoices with status `paid`.
      */
-    public EntitySalesInvoice withCustomerId(Optional<String> customerId) {
+    public SalesInvoiceRequest withCustomerId(Optional<String> customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
         return this;
@@ -664,7 +639,7 @@ public class EntitySalesInvoice {
      * provided,
      * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
-    public EntitySalesInvoice withMandateId(String mandateId) {
+    public SalesInvoiceRequest withMandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
         this.mandateId = Optional.ofNullable(mandateId);
         return this;
@@ -676,7 +651,7 @@ public class EntitySalesInvoice {
      * provided,
      * `customerId` becomes required as well. Only allowed for invoices with status `paid`.
      */
-    public EntitySalesInvoice withMandateId(Optional<String> mandateId) {
+    public SalesInvoiceRequest withMandateId(Optional<String> mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
         this.mandateId = mandateId;
         return this;
@@ -689,33 +664,20 @@ public class EntitySalesInvoice {
      * recipient management
      * is not required to send a first invoice to a recipient.
      */
-    public EntitySalesInvoice withRecipientIdentifier(String recipientIdentifier) {
-        Utils.checkNotNull(recipientIdentifier, "recipientIdentifier");
-        this.recipientIdentifier = Optional.ofNullable(recipientIdentifier);
-        return this;
-    }
-
-
-    /**
-     * An identifier tied to the recipient data. This should be a unique value based on data your system
-     * contains,
-     * so that both you and us know who we're referring to. It is a value you provide to us so that
-     * recipient management
-     * is not required to send a first invoice to a recipient.
-     */
-    public EntitySalesInvoice withRecipientIdentifier(Optional<String> recipientIdentifier) {
+    public SalesInvoiceRequest withRecipientIdentifier(String recipientIdentifier) {
         Utils.checkNotNull(recipientIdentifier, "recipientIdentifier");
         this.recipientIdentifier = recipientIdentifier;
         return this;
     }
 
-    public EntitySalesInvoice withRecipient(SalesInvoiceRecipient recipient) {
+    public SalesInvoiceRequest withRecipient(SalesInvoiceRecipient recipient) {
         Utils.checkNotNull(recipient, "recipient");
-        this.recipient = JsonNullable.of(recipient);
+        this.recipient = Optional.ofNullable(recipient);
         return this;
     }
 
-    public EntitySalesInvoice withRecipient(JsonNullable<? extends SalesInvoiceRecipient> recipient) {
+
+    public SalesInvoiceRequest withRecipient(Optional<? extends SalesInvoiceRecipient> recipient) {
         Utils.checkNotNull(recipient, "recipient");
         this.recipient = recipient;
         return this;
@@ -727,11 +689,12 @@ public class EntitySalesInvoice {
      * 
      * <p>All lines must have the same currency as the invoice.
      */
-    public EntitySalesInvoice withLines(List<SalesInvoiceLineItem> lines) {
+    public SalesInvoiceRequest withLines(List<SalesInvoiceLineItem> lines) {
         Utils.checkNotNull(lines, "lines");
-        this.lines = JsonNullable.of(lines);
+        this.lines = Optional.ofNullable(lines);
         return this;
     }
+
 
     /**
      * Provide the line items for the invoice. Each line contains details such as a description of the item
@@ -739,19 +702,19 @@ public class EntitySalesInvoice {
      * 
      * <p>All lines must have the same currency as the invoice.
      */
-    public EntitySalesInvoice withLines(JsonNullable<? extends List<SalesInvoiceLineItem>> lines) {
+    public SalesInvoiceRequest withLines(Optional<? extends List<SalesInvoiceLineItem>> lines) {
         Utils.checkNotNull(lines, "lines");
         this.lines = lines;
         return this;
     }
 
-    public EntitySalesInvoice withDiscount(SalesInvoiceDiscount discount) {
+    public SalesInvoiceRequest withDiscount(SalesInvoiceDiscount discount) {
         Utils.checkNotNull(discount, "discount");
         this.discount = JsonNullable.of(discount);
         return this;
     }
 
-    public EntitySalesInvoice withDiscount(JsonNullable<? extends SalesInvoiceDiscount> discount) {
+    public SalesInvoiceRequest withDiscount(JsonNullable<? extends SalesInvoiceDiscount> discount) {
         Utils.checkNotNull(discount, "discount");
         this.discount = discount;
         return this;
@@ -765,7 +728,7 @@ public class EntitySalesInvoice {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntitySalesInvoice other = (EntitySalesInvoice) o;
+        SalesInvoiceRequest other = (SalesInvoiceRequest) o;
         return 
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
@@ -798,7 +761,7 @@ public class EntitySalesInvoice {
     
     @Override
     public String toString() {
-        return Utils.toString(EntitySalesInvoice.class,
+        return Utils.toString(SalesInvoiceRequest.class,
                 "testmode", testmode,
                 "profileId", profileId,
                 "status", status,
@@ -824,7 +787,7 @@ public class EntitySalesInvoice {
 
         private JsonNullable<String> profileId = JsonNullable.undefined();
 
-        private Optional<? extends SalesInvoiceStatus> status = Optional.empty();
+        private SalesInvoiceStatus status;
 
         private Optional<? extends SalesInvoiceVatScheme> vatScheme = Optional.empty();
 
@@ -832,11 +795,11 @@ public class EntitySalesInvoice {
 
         private JsonNullable<String> memo = JsonNullable.undefined();
 
-        private JsonNullable<? extends EntitySalesInvoiceMetadata> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends SalesInvoiceRequestMetadata> metadata = JsonNullable.undefined();
 
         private JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm = JsonNullable.undefined();
 
-        private JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails = JsonNullable.undefined();
+        private Optional<? extends SalesInvoicePaymentDetails> paymentDetails = Optional.empty();
 
         private JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails = JsonNullable.undefined();
 
@@ -844,11 +807,11 @@ public class EntitySalesInvoice {
 
         private Optional<String> mandateId = Optional.empty();
 
-        private Optional<String> recipientIdentifier = Optional.empty();
+        private String recipientIdentifier;
 
-        private JsonNullable<? extends SalesInvoiceRecipient> recipient = JsonNullable.undefined();
+        private Optional<? extends SalesInvoiceRecipient> recipient = Optional.empty();
 
-        private JsonNullable<? extends List<SalesInvoiceLineItem>> lines = JsonNullable.undefined();
+        private Optional<? extends List<SalesInvoiceLineItem>> lines = Optional.empty();
 
         private JsonNullable<? extends SalesInvoiceDiscount> discount = JsonNullable.undefined();
 
@@ -939,30 +902,6 @@ public class EntitySalesInvoice {
          */
         public Builder status(SalesInvoiceStatus status) {
             Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status for the invoice to end up in.
-         * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
-         * sends it to
-         * the recipient so they may then pay through our payment system. To skip our payment process, set this
-         * to `paid` to
-         * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-         * 
-         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-         * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-         * 
-         * <p>Dependent parameters:
-         * - `paymentDetails` is required if invoice should be set directly to `paid`
-         * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
-         * to `paid`
-         * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
-         */
-        public Builder status(Optional<? extends SalesInvoiceStatus> status) {
-            Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
@@ -1036,7 +975,7 @@ public class EntitySalesInvoice {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          */
-        public Builder metadata(EntitySalesInvoiceMetadata metadata) {
+        public Builder metadata(SalesInvoiceRequestMetadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
@@ -1047,7 +986,7 @@ public class EntitySalesInvoice {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          */
-        public Builder metadata(JsonNullable<? extends EntitySalesInvoiceMetadata> metadata) {
+        public Builder metadata(JsonNullable<? extends SalesInvoiceRequestMetadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
@@ -1075,11 +1014,11 @@ public class EntitySalesInvoice {
 
         public Builder paymentDetails(SalesInvoicePaymentDetails paymentDetails) {
             Utils.checkNotNull(paymentDetails, "paymentDetails");
-            this.paymentDetails = JsonNullable.of(paymentDetails);
+            this.paymentDetails = Optional.ofNullable(paymentDetails);
             return this;
         }
 
-        public Builder paymentDetails(JsonNullable<? extends SalesInvoicePaymentDetails> paymentDetails) {
+        public Builder paymentDetails(Optional<? extends SalesInvoicePaymentDetails> paymentDetails) {
             Utils.checkNotNull(paymentDetails, "paymentDetails");
             this.paymentDetails = paymentDetails;
             return this;
@@ -1154,19 +1093,6 @@ public class EntitySalesInvoice {
          */
         public Builder recipientIdentifier(String recipientIdentifier) {
             Utils.checkNotNull(recipientIdentifier, "recipientIdentifier");
-            this.recipientIdentifier = Optional.ofNullable(recipientIdentifier);
-            return this;
-        }
-
-        /**
-         * An identifier tied to the recipient data. This should be a unique value based on data your system
-         * contains,
-         * so that both you and us know who we're referring to. It is a value you provide to us so that
-         * recipient management
-         * is not required to send a first invoice to a recipient.
-         */
-        public Builder recipientIdentifier(Optional<String> recipientIdentifier) {
-            Utils.checkNotNull(recipientIdentifier, "recipientIdentifier");
             this.recipientIdentifier = recipientIdentifier;
             return this;
         }
@@ -1174,11 +1100,11 @@ public class EntitySalesInvoice {
 
         public Builder recipient(SalesInvoiceRecipient recipient) {
             Utils.checkNotNull(recipient, "recipient");
-            this.recipient = JsonNullable.of(recipient);
+            this.recipient = Optional.ofNullable(recipient);
             return this;
         }
 
-        public Builder recipient(JsonNullable<? extends SalesInvoiceRecipient> recipient) {
+        public Builder recipient(Optional<? extends SalesInvoiceRecipient> recipient) {
             Utils.checkNotNull(recipient, "recipient");
             this.recipient = recipient;
             return this;
@@ -1193,7 +1119,7 @@ public class EntitySalesInvoice {
          */
         public Builder lines(List<SalesInvoiceLineItem> lines) {
             Utils.checkNotNull(lines, "lines");
-            this.lines = JsonNullable.of(lines);
+            this.lines = Optional.ofNullable(lines);
             return this;
         }
 
@@ -1203,7 +1129,7 @@ public class EntitySalesInvoice {
          * 
          * <p>All lines must have the same currency as the invoice.
          */
-        public Builder lines(JsonNullable<? extends List<SalesInvoiceLineItem>> lines) {
+        public Builder lines(Optional<? extends List<SalesInvoiceLineItem>> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = lines;
             return this;
@@ -1222,9 +1148,9 @@ public class EntitySalesInvoice {
             return this;
         }
 
-        public EntitySalesInvoice build() {
+        public SalesInvoiceRequest build() {
 
-            return new EntitySalesInvoice(
+            return new SalesInvoiceRequest(
                 testmode, profileId, status,
                 vatScheme, vatMode, memo,
                 metadata, paymentTerm, paymentDetails,

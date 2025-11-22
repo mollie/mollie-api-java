@@ -15,11 +15,11 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
- * EntitySalesInvoiceResponseLinks
+ * SalesInvoiceResponseLinks
  * 
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
-public class EntitySalesInvoiceResponseLinks {
+public class SalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -63,7 +63,7 @@ public class EntitySalesInvoiceResponseLinks {
     private Optional<? extends Url> previous;
 
     @JsonCreator
-    public EntitySalesInvoiceResponseLinks(
+    public SalesInvoiceResponseLinks(
             @JsonProperty("self") Optional<? extends Url> self,
             @JsonProperty("invoicePayment") Optional<? extends Url> invoicePayment,
             @JsonProperty("pdfLink") Optional<? extends Url> pdfLink,
@@ -84,7 +84,7 @@ public class EntitySalesInvoiceResponseLinks {
         this.previous = previous;
     }
     
-    public EntitySalesInvoiceResponseLinks() {
+    public SalesInvoiceResponseLinks() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty());
     }
@@ -151,7 +151,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withSelf(Url self) {
+    public SalesInvoiceResponseLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
         this.self = Optional.ofNullable(self);
         return this;
@@ -161,7 +161,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withSelf(Optional<? extends Url> self) {
+    public SalesInvoiceResponseLinks withSelf(Optional<? extends Url> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -170,7 +170,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withInvoicePayment(Url invoicePayment) {
+    public SalesInvoiceResponseLinks withInvoicePayment(Url invoicePayment) {
         Utils.checkNotNull(invoicePayment, "invoicePayment");
         this.invoicePayment = Optional.ofNullable(invoicePayment);
         return this;
@@ -180,7 +180,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withInvoicePayment(Optional<? extends Url> invoicePayment) {
+    public SalesInvoiceResponseLinks withInvoicePayment(Optional<? extends Url> invoicePayment) {
         Utils.checkNotNull(invoicePayment, "invoicePayment");
         this.invoicePayment = invoicePayment;
         return this;
@@ -189,7 +189,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withPdfLink(Url pdfLink) {
+    public SalesInvoiceResponseLinks withPdfLink(Url pdfLink) {
         Utils.checkNotNull(pdfLink, "pdfLink");
         this.pdfLink = Optional.ofNullable(pdfLink);
         return this;
@@ -199,7 +199,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withPdfLink(Optional<? extends Url> pdfLink) {
+    public SalesInvoiceResponseLinks withPdfLink(Optional<? extends Url> pdfLink) {
         Utils.checkNotNull(pdfLink, "pdfLink");
         this.pdfLink = pdfLink;
         return this;
@@ -208,7 +208,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withDocumentation(Url documentation) {
+    public SalesInvoiceResponseLinks withDocumentation(Url documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
@@ -218,7 +218,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withDocumentation(Optional<? extends Url> documentation) {
+    public SalesInvoiceResponseLinks withDocumentation(Optional<? extends Url> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -227,7 +227,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withNext(Url next) {
+    public SalesInvoiceResponseLinks withNext(Url next) {
         Utils.checkNotNull(next, "next");
         this.next = Optional.ofNullable(next);
         return this;
@@ -237,7 +237,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withNext(Optional<? extends Url> next) {
+    public SalesInvoiceResponseLinks withNext(Optional<? extends Url> next) {
         Utils.checkNotNull(next, "next");
         this.next = next;
         return this;
@@ -246,7 +246,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withPrevious(Url previous) {
+    public SalesInvoiceResponseLinks withPrevious(Url previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = Optional.ofNullable(previous);
         return this;
@@ -256,7 +256,7 @@ public class EntitySalesInvoiceResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntitySalesInvoiceResponseLinks withPrevious(Optional<? extends Url> previous) {
+    public SalesInvoiceResponseLinks withPrevious(Optional<? extends Url> previous) {
         Utils.checkNotNull(previous, "previous");
         this.previous = previous;
         return this;
@@ -270,7 +270,7 @@ public class EntitySalesInvoiceResponseLinks {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntitySalesInvoiceResponseLinks other = (EntitySalesInvoiceResponseLinks) o;
+        SalesInvoiceResponseLinks other = (SalesInvoiceResponseLinks) o;
         return 
             Utils.enhancedDeepEquals(this.self, other.self) &&
             Utils.enhancedDeepEquals(this.invoicePayment, other.invoicePayment) &&
@@ -289,7 +289,7 @@ public class EntitySalesInvoiceResponseLinks {
     
     @Override
     public String toString() {
-        return Utils.toString(EntitySalesInvoiceResponseLinks.class,
+        return Utils.toString(SalesInvoiceResponseLinks.class,
                 "self", self,
                 "invoicePayment", invoicePayment,
                 "pdfLink", pdfLink,
@@ -431,9 +431,9 @@ public class EntitySalesInvoiceResponseLinks {
             return this;
         }
 
-        public EntitySalesInvoiceResponseLinks build() {
+        public SalesInvoiceResponseLinks build() {
 
-            return new EntitySalesInvoiceResponseLinks(
+            return new SalesInvoiceResponseLinks(
                 self, invoicePayment, pdfLink,
                 documentation, next, previous);
         }

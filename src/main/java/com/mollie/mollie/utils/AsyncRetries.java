@@ -15,6 +15,8 @@ import com.mollie.mollie.utils.Blob;
 
 public class AsyncRetries {
 
+    private static final SpeakeasyLogger logger = SpeakeasyLogger.getLogger(AsyncRetries.class);
+
     private final RetryConfig retryConfig;
     private final List<String> retriableStatusCodes;
     private final ScheduledExecutorService scheduler;
@@ -54,6 +56,9 @@ public class AsyncRetries {
                              CompletableFuture<HttpResponse<Blob>> result,
                              BackoffStrategy backoff,
                              State state) {
+        if (state.count() > 0) {
+            logger.debug("Async retry attempt {} after backoff", state.count());
+        }
         task.get().whenComplete((response, throwable) -> {
             if (throwable == null) {
                 boolean matched = retriableStatusCodes.stream()
@@ -77,6 +82,7 @@ public class AsyncRetries {
                     return;
                 }
             }
+            logger.debug("Non-retryable exception encountered: {}", e.getClass().getSimpleName());
             result.completeExceptionally(new NonRetryableException(e));
         });
     }
@@ -97,6 +103,7 @@ public class AsyncRetries {
         Duration timeSinceStart = Duration.between(state.startedAt(), Instant.now());
         if (timeSinceStart.toMillis() > backoff.maxElapsedTimeMs()) {
             // retry exhausted
+            logger.debug("Async retry exhausted after {}ms, {} attempts", timeSinceStart.toMillis(), state.count() + 1);
             if (e instanceof AsyncRetryableException) {
                 result.complete(((AsyncRetryableException) e).response());
                 return;
@@ -109,6 +116,13 @@ public class AsyncRetries {
         double jitterMs = backoff.jitterFactor() * intervalMs;
         intervalMs = intervalMs - jitterMs + Math.random() * (2 * jitterMs + 1);
         intervalMs = Math.min(intervalMs, backoff.maxIntervalMs());
+
+        if (logger.isTraceEnabled()) {
+            String reason = e instanceof AsyncRetryableException
+                ? "status " + ((AsyncRetryableException) e).response().statusCode()
+                : e.getClass().getSimpleName();
+            logger.trace("Async retrying due to {} - waiting {}ms before attempt {}", reason, (long) intervalMs, state.count() + 1);
+        }
 
         scheduler.schedule(
                 () -> attempt(task, result, backoff, state.countAttempt()),

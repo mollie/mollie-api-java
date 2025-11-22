@@ -6,7 +6,7 @@ package com.mollie.mollie;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
-import com.mollie.mollie.models.components.EntitySalesInvoice;
+import com.mollie.mollie.models.components.SalesInvoiceRequest;
 import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceRequestBuilder;
@@ -97,19 +97,19 @@ public class SalesInvoices {
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entitySalesInvoice 
+     * @param salesInvoiceRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateSalesInvoiceResponse create(
-            Optional<String> idempotencyKey, Optional<? extends EntitySalesInvoice> entitySalesInvoice,
+            Optional<String> idempotencyKey, Optional<? extends SalesInvoiceRequest> salesInvoiceRequest,
             Optional<Options> options) {
         CreateSalesInvoiceRequest request =
             CreateSalesInvoiceRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
-                .entitySalesInvoice(entitySalesInvoice)
+                .salesInvoiceRequest(salesInvoiceRequest)
                 .build();
         RequestOperation<CreateSalesInvoiceRequest, CreateSalesInvoiceResponse> operation
               = new CreateSalesInvoice.Sync(sdkConfiguration, options, _headers);

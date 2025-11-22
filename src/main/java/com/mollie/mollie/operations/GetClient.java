@@ -113,7 +113,7 @@ public class GetClient {
                     klass,
                     this.baseUrl,
                     "/clients/{id}",
-                    request, this.sdkConfiguration.globals);
+                    request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
@@ -122,8 +122,8 @@ public class GetClient {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
+                    null));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

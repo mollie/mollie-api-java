@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.EntitySalesInvoice;
+import com.mollie.mollie.models.components.SalesInvoiceRequest;
 import com.mollie.mollie.operations.CreateSalesInvoice;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
@@ -18,7 +18,7 @@ import java.util.Optional;
 public class CreateSalesInvoiceRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends EntitySalesInvoice> entitySalesInvoice = Optional.empty();
+    private Optional<? extends SalesInvoiceRequest> salesInvoiceRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -39,15 +39,15 @@ public class CreateSalesInvoiceRequestBuilder {
         return this;
     }
                 
-    public CreateSalesInvoiceRequestBuilder entitySalesInvoice(EntitySalesInvoice entitySalesInvoice) {
-        Utils.checkNotNull(entitySalesInvoice, "entitySalesInvoice");
-        this.entitySalesInvoice = Optional.of(entitySalesInvoice);
+    public CreateSalesInvoiceRequestBuilder salesInvoiceRequest(SalesInvoiceRequest salesInvoiceRequest) {
+        Utils.checkNotNull(salesInvoiceRequest, "salesInvoiceRequest");
+        this.salesInvoiceRequest = Optional.of(salesInvoiceRequest);
         return this;
     }
 
-    public CreateSalesInvoiceRequestBuilder entitySalesInvoice(Optional<? extends EntitySalesInvoice> entitySalesInvoice) {
-        Utils.checkNotNull(entitySalesInvoice, "entitySalesInvoice");
-        this.entitySalesInvoice = entitySalesInvoice;
+    public CreateSalesInvoiceRequestBuilder salesInvoiceRequest(Optional<? extends SalesInvoiceRequest> salesInvoiceRequest) {
+        Utils.checkNotNull(salesInvoiceRequest, "salesInvoiceRequest");
+        this.salesInvoiceRequest = salesInvoiceRequest;
         return this;
     }
                 
@@ -67,7 +67,7 @@ public class CreateSalesInvoiceRequestBuilder {
     private CreateSalesInvoiceRequest buildRequest() {
 
         CreateSalesInvoiceRequest request = new CreateSalesInvoiceRequest(idempotencyKey,
-            entitySalesInvoice);
+            salesInvoiceRequest);
 
         return request;
     }

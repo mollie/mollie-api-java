@@ -25,7 +25,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.23.4
+  version: 0.23.5
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
@@ -37,8 +37,8 @@ java:
   companyURL: https://www.mollie.com/
   defaultErrorName: APIException
   enableCustomCodeRegions: false
+  enableSlf4jLogging: false
   enableStreamingUploads: false
-  enhancedUnionMemberResolution: true
   flattenGlobalSecurity: true
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
@@ -61,6 +61,8 @@ java:
   maxMethodParams: 4
   nullFriendlyParameters: false
   openUnions: true
+  operationScopedParams: true
   outputModelSuffix: output
   projectName: openapi
   templateVersion: v2
+  unionStrategy: populated-fields

@@ -9,15 +9,15 @@ import java.lang.Override;
 import java.lang.String;
 
 /**
- * EntitySalesInvoiceMetadata
+ * SalesInvoiceRequestMetadata
  * 
  * <p>Provide any data you like as a JSON object. We will save the data alongside the entity. Whenever
  * you fetch the entity with our API, we will also include the metadata. You can use up to
  * approximately 1kB.
  */
-public class EntitySalesInvoiceMetadata {
+public class SalesInvoiceRequestMetadata {
     @JsonCreator
-    public EntitySalesInvoiceMetadata() {
+    public SalesInvoiceRequestMetadata() {
     }
 
     public static Builder builder() {
@@ -44,7 +44,7 @@ public class EntitySalesInvoiceMetadata {
     
     @Override
     public String toString() {
-        return Utils.toString(EntitySalesInvoiceMetadata.class);
+        return Utils.toString(SalesInvoiceRequestMetadata.class);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -54,9 +54,9 @@ public class EntitySalesInvoiceMetadata {
           // force use of static builder() method
         }
 
-        public EntitySalesInvoiceMetadata build() {
+        public SalesInvoiceRequestMetadata build() {
 
-            return new EntitySalesInvoiceMetadata(
+            return new SalesInvoiceRequestMetadata(
                 );
         }
 

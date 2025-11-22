@@ -44,24 +44,8 @@ public class Application {
 
         CreateSalesInvoiceResponse res = sdk.salesInvoices().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .entitySalesInvoice(EntitySalesInvoice.builder()
-                    .testmode(false)
-                    .profileId("pfl_QkEhN94Ba")
+                .salesInvoiceRequest(SalesInvoiceRequest.builder()
                     .status(SalesInvoiceStatus.DRAFT)
-                    .vatScheme(SalesInvoiceVatScheme.STANDARD)
-                    .vatMode(SalesInvoiceVatMode.EXCLUSIVE)
-                    .memo("This is a memo!")
-                    .paymentTerm(SalesInvoicePaymentTerm.THIRTYDAYS)
-                    .paymentDetails(SalesInvoicePaymentDetails.builder()
-                        .source(SalesInvoicePaymentDetailsSource.PAYMENT_LINK)
-                        .sourceReference("pl_d9fQur83kFdhH8hIhaZfq")
-                        .build())
-                    .emailDetails(SalesInvoiceEmailDetails.builder()
-                        .subject("Your invoice is available")
-                        .body("Please find your invoice enclosed.")
-                        .build())
-                    .customerId("cst_8wmqcHMN4U")
-                    .mandateId("mdt_pWUnw6pkBN")
                     .recipientIdentifier("customer-xyz-0123")
                     .recipient(SalesInvoiceRecipient.builder()
                         .type(SalesInvoiceRecipientType.CONSUMER)
@@ -82,6 +66,22 @@ public class Application {
                         .region("Noord-Holland")
                         .build())
                     .lines(List.of())
+                    .testmode(false)
+                    .profileId("pfl_QkEhN94Ba")
+                    .vatScheme(SalesInvoiceVatScheme.STANDARD)
+                    .vatMode(SalesInvoiceVatMode.EXCLUSIVE)
+                    .memo("This is a memo!")
+                    .paymentTerm(SalesInvoicePaymentTerm.THIRTYDAYS)
+                    .paymentDetails(SalesInvoicePaymentDetails.builder()
+                        .source(SalesInvoicePaymentDetailsSource.PAYMENT_LINK)
+                        .sourceReference("pl_d9fQur83kFdhH8hIhaZfq")
+                        .build())
+                    .emailDetails(SalesInvoiceEmailDetails.builder()
+                        .subject("Your invoice is available")
+                        .body("Please find your invoice enclosed.")
+                        .build())
+                    .customerId("cst_8wmqcHMN4U")
+                    .mandateId("mdt_pWUnw6pkBN")
                     .discount(SalesInvoiceDiscount.builder()
                         .type(SalesInvoiceDiscountType.AMOUNT)
                         .value("10.00")
@@ -89,7 +89,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.entitySalesInvoiceResponse().isPresent()) {
+        if (res.salesInvoiceResponse().isPresent()) {
             // handle response
         }
     }
@@ -101,7 +101,7 @@ public class Application {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entitySalesInvoice`                                                             | [Optional\<EntitySalesInvoice>](../../models/components/EntitySalesInvoice.md)   | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `salesInvoiceRequest`                                                            | [Optional\<SalesInvoiceRequest>](../../models/components/SalesInvoiceRequest.md) | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 
@@ -216,7 +216,7 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
-        if (res.entitySalesInvoiceResponse().isPresent()) {
+        if (res.salesInvoiceResponse().isPresent()) {
             // handle response
         }
     }
@@ -331,7 +331,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.entitySalesInvoiceResponse().isPresent()) {
+        if (res.salesInvoiceResponse().isPresent()) {
             // handle response
         }
     }

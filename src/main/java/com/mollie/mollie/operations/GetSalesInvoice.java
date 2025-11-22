@@ -10,7 +10,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.EntitySalesInvoiceResponse;
+import com.mollie.mollie.models.components.SalesInvoiceResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetSalesInvoiceRequest;
@@ -18,6 +18,7 @@ import com.mollie.mollie.models.operations.GetSalesInvoiceResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
+import com.mollie.mollie.utils.Globals;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Headers;
@@ -53,6 +54,7 @@ public class GetSalesInvoice {
         final RetryConfig retryConfig;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
@@ -76,6 +78,9 @@ public class GetSalesInvoice {
                                     .build())
                             .build());
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("queryParam", "testmode")
+                .ifPresent(param -> operationGlobals.putParam("queryParam", "testmode", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -113,7 +118,7 @@ public class GetSalesInvoice {
                     klass,
                     this.baseUrl,
                     "/sales-invoices/{id}",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
@@ -122,8 +127,8 @@ public class GetSalesInvoice {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
+                    this.operationGlobals));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -200,7 +205,7 @@ public class GetSalesInvoice {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withEntitySalesInvoiceResponse(Utils.unmarshal(response, new TypeReference<EntitySalesInvoiceResponse>() {}));
+                    return res.withSalesInvoiceResponse(Utils.unmarshal(response, new TypeReference<SalesInvoiceResponse>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -288,8 +293,8 @@ public class GetSalesInvoice {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<EntitySalesInvoiceResponse>() {})
-                            .thenApply(res::withEntitySalesInvoiceResponse);
+                    return Utils.unmarshalAsync(response, new TypeReference<SalesInvoiceResponse>() {})
+                            .thenApply(res::withSalesInvoiceResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

@@ -34,6 +34,8 @@ import com.mollie.mollie.utils.Blob;
 // ThreadSafe
 public class AsyncHooks implements BeforeRequest, AfterSuccess, AfterError {
 
+    private static final SpeakeasyLogger logger = SpeakeasyLogger.getLogger(AsyncHooks.class);
+
     // we use CopyOnWriteArrayList for thread safety
     private final List<BeforeRequest> beforeRequestHooks = new CopyOnWriteArrayList<>();
     private final List<AfterSuccess> afterSuccessHooks = new CopyOnWriteArrayList<>();
@@ -51,6 +53,7 @@ public class AsyncHooks implements BeforeRequest, AfterSuccess, AfterError {
     public AsyncHooks registerBeforeRequest(BeforeRequest beforeRequest) {
         Utils.checkNotNull(beforeRequest, "beforeRequest");
         this.beforeRequestHooks.add(beforeRequest);
+        logger.debug("Registered async BeforeRequest hook: {} (total: {})", beforeRequest.getClass().getSimpleName(), beforeRequestHooks.size());
         return this;
     }
 
@@ -63,6 +66,7 @@ public class AsyncHooks implements BeforeRequest, AfterSuccess, AfterError {
     public AsyncHooks registerAfterSuccess(AfterSuccess afterSuccess) {
         Utils.checkNotNull(afterSuccess, "afterSuccess");
         this.afterSuccessHooks.add(afterSuccess);
+        logger.debug("Registered async AfterSuccess hook: {} (total: {})", afterSuccess.getClass().getSimpleName(), afterSuccessHooks.size());
         return this;
     }
 
@@ -75,6 +79,7 @@ public class AsyncHooks implements BeforeRequest, AfterSuccess, AfterError {
     public AsyncHooks registerAfterError(AfterError afterError) {
         Utils.checkNotNull(afterError, "afterError");
         this.afterErrorHooks.add(afterError);
+        logger.debug("Registered async AfterError hook: {} (total: {})", afterError.getClass().getSimpleName(), afterErrorHooks.size());
         return this;
     }
 
@@ -82,6 +87,10 @@ public class AsyncHooks implements BeforeRequest, AfterSuccess, AfterError {
     public CompletableFuture<HttpRequest> beforeRequest(BeforeRequestContext context, HttpRequest request) {
         Utils.checkNotNull(context, "context");
         Utils.checkNotNull(request, "request");
+
+        if (logger.isTraceEnabled() && !beforeRequestHooks.isEmpty()) {
+            logger.trace("Executing {} async beforeRequest hook(s) for operation: {}", beforeRequestHooks.size(), context.operationId());
+        }
 
         CompletableFuture<HttpRequest> result = CompletableFuture.completedFuture(request);
 
@@ -98,6 +107,10 @@ public class AsyncHooks implements BeforeRequest, AfterSuccess, AfterError {
             HttpResponse<Blob> response) {
         Utils.checkNotNull(context, "context");
         Utils.checkNotNull(response, "response");
+
+        if (logger.isTraceEnabled() && !afterSuccessHooks.isEmpty()) {
+            logger.trace("Executing {} async afterSuccess hook(s) for operation: {}", afterSuccessHooks.size(), context.operationId());
+        }
 
         CompletableFuture<HttpResponse<Blob>> result = CompletableFuture.completedFuture(response);
 
@@ -127,6 +140,10 @@ public class AsyncHooks implements BeforeRequest, AfterSuccess, AfterError {
                 (response != null) ^ (error != null),
                 "one and only one of response or error must be present");
 
+        if (logger.isTraceEnabled() && !afterErrorHooks.isEmpty()) {
+            logger.trace("Executing {} async afterError hook(s) for operation: {}", afterErrorHooks.size(), context.operationId());
+        }
+
         CompletableFuture<HttpResponse<Blob>> result;
         if (response != null) {
             result = CompletableFuture.completedFuture(response);
@@ -147,6 +164,7 @@ public class AsyncHooks implements BeforeRequest, AfterSuccess, AfterError {
                                             failedEarly.set(true);
                                             throw (FailEarlyException) hookErr;
                                         }
+                                        logger.debug("Async hook threw exception: {}", hookErr.getClass().getSimpleName());
                                         throw  Exceptions.unchecked(hookErr);
                                     }
                                     if (hookResp == null) {

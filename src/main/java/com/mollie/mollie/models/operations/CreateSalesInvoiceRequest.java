@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntitySalesInvoice;
+import com.mollie.mollie.models.components.SalesInvoiceRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -23,16 +23,16 @@ public class CreateSalesInvoiceRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends EntitySalesInvoice> entitySalesInvoice;
+    private Optional<? extends SalesInvoiceRequest> salesInvoiceRequest;
 
     @JsonCreator
     public CreateSalesInvoiceRequest(
             Optional<String> idempotencyKey,
-            Optional<? extends EntitySalesInvoice> entitySalesInvoice) {
+            Optional<? extends SalesInvoiceRequest> salesInvoiceRequest) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        Utils.checkNotNull(entitySalesInvoice, "entitySalesInvoice");
+        Utils.checkNotNull(salesInvoiceRequest, "salesInvoiceRequest");
         this.idempotencyKey = idempotencyKey;
-        this.entitySalesInvoice = entitySalesInvoice;
+        this.salesInvoiceRequest = salesInvoiceRequest;
     }
     
     public CreateSalesInvoiceRequest() {
@@ -49,8 +49,8 @@ public class CreateSalesInvoiceRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntitySalesInvoice> entitySalesInvoice() {
-        return (Optional<EntitySalesInvoice>) entitySalesInvoice;
+    public Optional<SalesInvoiceRequest> salesInvoiceRequest() {
+        return (Optional<SalesInvoiceRequest>) salesInvoiceRequest;
     }
 
     public static Builder builder() {
@@ -77,16 +77,16 @@ public class CreateSalesInvoiceRequest {
         return this;
     }
 
-    public CreateSalesInvoiceRequest withEntitySalesInvoice(EntitySalesInvoice entitySalesInvoice) {
-        Utils.checkNotNull(entitySalesInvoice, "entitySalesInvoice");
-        this.entitySalesInvoice = Optional.ofNullable(entitySalesInvoice);
+    public CreateSalesInvoiceRequest withSalesInvoiceRequest(SalesInvoiceRequest salesInvoiceRequest) {
+        Utils.checkNotNull(salesInvoiceRequest, "salesInvoiceRequest");
+        this.salesInvoiceRequest = Optional.ofNullable(salesInvoiceRequest);
         return this;
     }
 
 
-    public CreateSalesInvoiceRequest withEntitySalesInvoice(Optional<? extends EntitySalesInvoice> entitySalesInvoice) {
-        Utils.checkNotNull(entitySalesInvoice, "entitySalesInvoice");
-        this.entitySalesInvoice = entitySalesInvoice;
+    public CreateSalesInvoiceRequest withSalesInvoiceRequest(Optional<? extends SalesInvoiceRequest> salesInvoiceRequest) {
+        Utils.checkNotNull(salesInvoiceRequest, "salesInvoiceRequest");
+        this.salesInvoiceRequest = salesInvoiceRequest;
         return this;
     }
 
@@ -101,20 +101,20 @@ public class CreateSalesInvoiceRequest {
         CreateSalesInvoiceRequest other = (CreateSalesInvoiceRequest) o;
         return 
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Utils.enhancedDeepEquals(this.entitySalesInvoice, other.entitySalesInvoice);
+            Utils.enhancedDeepEquals(this.salesInvoiceRequest, other.salesInvoiceRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idempotencyKey, entitySalesInvoice);
+            idempotencyKey, salesInvoiceRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateSalesInvoiceRequest.class,
                 "idempotencyKey", idempotencyKey,
-                "entitySalesInvoice", entitySalesInvoice);
+                "salesInvoiceRequest", salesInvoiceRequest);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -122,7 +122,7 @@ public class CreateSalesInvoiceRequest {
 
         private Optional<String> idempotencyKey = Optional.empty();
 
-        private Optional<? extends EntitySalesInvoice> entitySalesInvoice = Optional.empty();
+        private Optional<? extends SalesInvoiceRequest> salesInvoiceRequest = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -148,22 +148,22 @@ public class CreateSalesInvoiceRequest {
         }
 
 
-        public Builder entitySalesInvoice(EntitySalesInvoice entitySalesInvoice) {
-            Utils.checkNotNull(entitySalesInvoice, "entitySalesInvoice");
-            this.entitySalesInvoice = Optional.ofNullable(entitySalesInvoice);
+        public Builder salesInvoiceRequest(SalesInvoiceRequest salesInvoiceRequest) {
+            Utils.checkNotNull(salesInvoiceRequest, "salesInvoiceRequest");
+            this.salesInvoiceRequest = Optional.ofNullable(salesInvoiceRequest);
             return this;
         }
 
-        public Builder entitySalesInvoice(Optional<? extends EntitySalesInvoice> entitySalesInvoice) {
-            Utils.checkNotNull(entitySalesInvoice, "entitySalesInvoice");
-            this.entitySalesInvoice = entitySalesInvoice;
+        public Builder salesInvoiceRequest(Optional<? extends SalesInvoiceRequest> salesInvoiceRequest) {
+            Utils.checkNotNull(salesInvoiceRequest, "salesInvoiceRequest");
+            this.salesInvoiceRequest = salesInvoiceRequest;
             return this;
         }
 
         public CreateSalesInvoiceRequest build() {
 
             return new CreateSalesInvoiceRequest(
-                idempotencyKey, entitySalesInvoice);
+                idempotencyKey, salesInvoiceRequest);
         }
 
     }

@@ -10,7 +10,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.EntitySalesInvoiceResponse;
+import com.mollie.mollie.models.components.SalesInvoiceResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceRequest;
@@ -122,14 +122,14 @@ public class CreateSalesInvoice {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "entitySalesInvoice",
+                    "salesInvoiceRequest",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -206,7 +206,7 @@ public class CreateSalesInvoice {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withEntitySalesInvoiceResponse(Utils.unmarshal(response, new TypeReference<EntitySalesInvoiceResponse>() {}));
+                    return res.withSalesInvoiceResponse(Utils.unmarshal(response, new TypeReference<SalesInvoiceResponse>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -294,8 +294,8 @@ public class CreateSalesInvoice {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<EntitySalesInvoiceResponse>() {})
-                            .thenApply(res::withEntitySalesInvoiceResponse);
+                    return Utils.unmarshalAsync(response, new TypeReference<SalesInvoiceResponse>() {})
+                            .thenApply(res::withSalesInvoiceResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

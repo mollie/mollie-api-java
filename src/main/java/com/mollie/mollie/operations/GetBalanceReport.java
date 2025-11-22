@@ -18,6 +18,7 @@ import com.mollie.mollie.models.operations.GetBalanceReportResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
+import com.mollie.mollie.utils.Globals;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Headers;
@@ -53,6 +54,7 @@ public class GetBalanceReport {
         final RetryConfig retryConfig;
         final HTTPClient client;
         final Headers _headers;
+        final Globals operationGlobals;
 
         public Base(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
@@ -76,6 +78,9 @@ public class GetBalanceReport {
                                     .build())
                             .build());
             this.client = this.sdkConfiguration.client();
+            this.operationGlobals = new Globals();
+            this.sdkConfiguration.globals.getParam("queryParam", "testmode")
+                .ifPresent(param -> operationGlobals.putParam("queryParam", "testmode", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -113,7 +118,7 @@ public class GetBalanceReport {
                     klass,
                     this.baseUrl,
                     "/balances/{balanceId}/report",
-                    request, this.sdkConfiguration.globals);
+                    request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
@@ -122,8 +127,8 @@ public class GetBalanceReport {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.sdkConfiguration.globals));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
+                    this.operationGlobals));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();

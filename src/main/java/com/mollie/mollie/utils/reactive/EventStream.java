@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.EventStreamMessage;
+import com.mollie.mollie.utils.SpeakeasyLogger;
 import com.mollie.mollie.utils.StreamingParser;
 import com.mollie.mollie.utils.Utils;
 
@@ -29,6 +30,8 @@ import org.reactivestreams.Subscription;
  * @param <ItemT> the type that events are deserialized into
  */
 public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publisher<ItemT> {
+
+    private static final SpeakeasyLogger logger = SpeakeasyLogger.getLogger(EventStream.class);
     
     /**
      * Protocol interface that defines how to parse and process different event stream formats
@@ -70,6 +73,7 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
         this.typeReference = typeReference;
         this.objectMapper = objectMapper;
         this.protocol = protocol;
+        logger.debug("Reactive EventStream initialized for type: {}", typeReference.getType().getTypeName());
     }
 
     /**
@@ -268,9 +272,13 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
                     ItemT item = typedProtocol.processItem(parsed, objectMapper, typeReference);
                     if (item != null) {
                         demand.decrementAndGet();
+                        if (logger.isTraceEnabled()) {
+                            logger.trace("Reactive EventStream item emitted");
+                        }
                         subscriber.onNext(item);
                     }
                 } catch (Exception e) {
+                    logger.debug("Error processing reactive EventStream item: {}", e.getMessage());
                     signalError(e);
                     return false; // Signal to stop processing on error
                 }
@@ -303,6 +311,7 @@ public class EventStream<ResponseT extends AsyncResponse, ItemT> implements Publ
         private void signalComplete() {
             if (!cancelled && !completed) {
                 completed = true;
+                logger.debug("Reactive EventStream completed");
                 subscriber.onComplete();
             }
         }
