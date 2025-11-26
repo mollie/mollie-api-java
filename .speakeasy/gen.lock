@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: fa1f0bfe5102df558a145f4fc3dcb13f
+  docChecksum: abf5679d9e5ca6fc4d6dcb98d239a410
   docVersion: 1.0.0
-  speakeasyVersion: 1.660.0
-  generationVersion: 2.760.2
-  releaseVersion: 0.23.5
-  configChecksum: 316c9cb76eb86ca6bcdd9b2da8203488
+  speakeasyVersion: 1.661.2
+  generationVersion: 2.763.3
+  releaseVersion: 0.23.6
+  configChecksum: 8115e1389bd206d420f47418543ef1b6
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.55.3
+    core: 3.55.5
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.83.1
@@ -6277,4 +6277,3 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes Detected:\n* `client.salesInvoices.create()`: \n  *  `request` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n* `client.salesInvoices.list()`:  `response._embedded.salesInvoices.[]` **Changed** **Breaking** :warning:\n* `client.salesInvoices.get()`:  `response` **Changed** **Breaking** :warning:\n* `client.salesInvoices.update()`: \n  *  `request.update-values-sales-invoice.paymentDetails` **Changed** **Breaking** :warning:\n  *  `response` **Changed** **Breaking** :warning:\n"

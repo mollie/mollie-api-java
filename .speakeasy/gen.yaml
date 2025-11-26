@@ -25,7 +25,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.23.5
+  version: 0.23.6
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
@@ -52,6 +52,7 @@ java:
       operations: models/operations
       shared: models/components
       webhooks: models/webhooks
+  inferUnionDiscriminators: false
   inputModelSuffix: input
   languageVersion: 11
   license:
