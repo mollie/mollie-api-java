@@ -59,7 +59,7 @@ public class EntityChargeback {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reason")
-    private JsonNullable<? extends Reason> reason;
+    private JsonNullable<? extends EntityChargebackReason> reason;
 
     /**
      * The unique identifier of the payment this chargeback was created for. For example:
@@ -105,7 +105,7 @@ public class EntityChargeback {
             @JsonProperty("id") String id,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("settlementAmount") JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount,
-            @JsonProperty("reason") JsonNullable<? extends Reason> reason,
+            @JsonProperty("reason") JsonNullable<? extends EntityChargebackReason> reason,
             @JsonProperty("paymentId") String paymentId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
             @JsonProperty("createdAt") String createdAt,
@@ -197,8 +197,8 @@ public class EntityChargeback {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Reason> reason() {
-        return (JsonNullable<Reason>) reason;
+    public JsonNullable<EntityChargebackReason> reason() {
+        return (JsonNullable<EntityChargebackReason>) reason;
     }
 
     /**
@@ -323,7 +323,7 @@ public class EntityChargeback {
      * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
      * payments.
      */
-    public EntityChargeback withReason(Reason reason) {
+    public EntityChargeback withReason(EntityChargebackReason reason) {
         Utils.checkNotNull(reason, "reason");
         this.reason = JsonNullable.of(reason);
         return this;
@@ -333,7 +333,7 @@ public class EntityChargeback {
      * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
      * payments.
      */
-    public EntityChargeback withReason(JsonNullable<? extends Reason> reason) {
+    public EntityChargeback withReason(JsonNullable<? extends EntityChargebackReason> reason) {
         Utils.checkNotNull(reason, "reason");
         this.reason = reason;
         return this;
@@ -468,7 +468,7 @@ public class EntityChargeback {
 
         private JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount = JsonNullable.undefined();
 
-        private JsonNullable<? extends Reason> reason = JsonNullable.undefined();
+        private JsonNullable<? extends EntityChargebackReason> reason = JsonNullable.undefined();
 
         private String paymentId;
 
@@ -560,7 +560,7 @@ public class EntityChargeback {
          * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
          * payments.
          */
-        public Builder reason(Reason reason) {
+        public Builder reason(EntityChargebackReason reason) {
             Utils.checkNotNull(reason, "reason");
             this.reason = JsonNullable.of(reason);
             return this;
@@ -570,7 +570,7 @@ public class EntityChargeback {
          * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
          * payments.
          */
-        public Builder reason(JsonNullable<? extends Reason> reason) {
+        public Builder reason(JsonNullable<? extends EntityChargebackReason> reason) {
             Utils.checkNotNull(reason, "reason");
             this.reason = reason;
             return this;

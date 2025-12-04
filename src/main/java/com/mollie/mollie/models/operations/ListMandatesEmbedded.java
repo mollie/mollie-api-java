@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.MandateResponse;
+import com.mollie.mollie.models.components.ListMandateResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -18,11 +18,11 @@ public class ListMandatesEmbedded {
      * An array of mandate objects.
      */
     @JsonProperty("mandates")
-    private List<MandateResponse> mandates;
+    private List<ListMandateResponse> mandates;
 
     @JsonCreator
     public ListMandatesEmbedded(
-            @JsonProperty("mandates") List<MandateResponse> mandates) {
+            @JsonProperty("mandates") List<ListMandateResponse> mandates) {
         Utils.checkNotNull(mandates, "mandates");
         this.mandates = mandates;
     }
@@ -31,7 +31,7 @@ public class ListMandatesEmbedded {
      * An array of mandate objects.
      */
     @JsonIgnore
-    public List<MandateResponse> mandates() {
+    public List<ListMandateResponse> mandates() {
         return mandates;
     }
 
@@ -43,7 +43,7 @@ public class ListMandatesEmbedded {
     /**
      * An array of mandate objects.
      */
-    public ListMandatesEmbedded withMandates(List<MandateResponse> mandates) {
+    public ListMandatesEmbedded withMandates(List<ListMandateResponse> mandates) {
         Utils.checkNotNull(mandates, "mandates");
         this.mandates = mandates;
         return this;
@@ -77,7 +77,7 @@ public class ListMandatesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<MandateResponse> mandates;
+        private List<ListMandateResponse> mandates;
 
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class ListMandatesEmbedded {
         /**
          * An array of mandate objects.
          */
-        public Builder mandates(List<MandateResponse> mandates) {
+        public Builder mandates(List<ListMandateResponse> mandates) {
             Utils.checkNotNull(mandates, "mandates");
             this.mandates = mandates;
             return this;

@@ -27,6 +27,7 @@ import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateConnectBalanceTransferResponse;
 import java.lang.Exception;
+import java.util.Map;
 
 public class Application {
 
@@ -57,6 +58,9 @@ public class Application {
                         .build())
                     .description("Invoice fee")
                     .category(BalanceTransferCategory.INVOICE_COLLECTION)
+                    .metadata(Map.ofEntries(
+                        Map.entry("order_id", 12345L),
+                        Map.entry("customer_id", 9876L)))
                     .testmode(false)
                     .build())
                 .call();

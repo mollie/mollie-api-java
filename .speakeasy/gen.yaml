@@ -25,7 +25,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.23.6
+  version: 0.24.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
@@ -60,6 +60,7 @@ java:
     shortName: MIT
     url: https://mit-license.org/
   maxMethodParams: 4
+  multipartArrayFormat: legacy
   nullFriendlyParameters: false
   openUnions: true
   operationScopedParams: true

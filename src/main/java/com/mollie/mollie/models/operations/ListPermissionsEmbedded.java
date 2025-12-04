@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.EntityPermission;
+import com.mollie.mollie.models.components.ListEntityPermission;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -18,11 +18,11 @@ public class ListPermissionsEmbedded {
      * An array of permission objects.
      */
     @JsonProperty("permissions")
-    private List<EntityPermission> permissions;
+    private List<ListEntityPermission> permissions;
 
     @JsonCreator
     public ListPermissionsEmbedded(
-            @JsonProperty("permissions") List<EntityPermission> permissions) {
+            @JsonProperty("permissions") List<ListEntityPermission> permissions) {
         Utils.checkNotNull(permissions, "permissions");
         this.permissions = permissions;
     }
@@ -31,7 +31,7 @@ public class ListPermissionsEmbedded {
      * An array of permission objects.
      */
     @JsonIgnore
-    public List<EntityPermission> permissions() {
+    public List<ListEntityPermission> permissions() {
         return permissions;
     }
 
@@ -43,7 +43,7 @@ public class ListPermissionsEmbedded {
     /**
      * An array of permission objects.
      */
-    public ListPermissionsEmbedded withPermissions(List<EntityPermission> permissions) {
+    public ListPermissionsEmbedded withPermissions(List<ListEntityPermission> permissions) {
         Utils.checkNotNull(permissions, "permissions");
         this.permissions = permissions;
         return this;
@@ -77,7 +77,7 @@ public class ListPermissionsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<EntityPermission> permissions;
+        private List<ListEntityPermission> permissions;
 
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class ListPermissionsEmbedded {
         /**
          * An array of permission objects.
          */
-        public Builder permissions(List<EntityPermission> permissions) {
+        public Builder permissions(List<ListEntityPermission> permissions) {
             Utils.checkNotNull(permissions, "permissions");
             this.permissions = permissions;
             return this;

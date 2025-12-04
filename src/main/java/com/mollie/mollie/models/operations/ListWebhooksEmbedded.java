@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.EntityWebhook;
+import com.mollie.mollie.models.components.ListEntityWebhook;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -18,11 +18,11 @@ public class ListWebhooksEmbedded {
      * A list of webhooks.
      */
     @JsonProperty("webhooks")
-    private List<EntityWebhook> webhooks;
+    private List<ListEntityWebhook> webhooks;
 
     @JsonCreator
     public ListWebhooksEmbedded(
-            @JsonProperty("webhooks") List<EntityWebhook> webhooks) {
+            @JsonProperty("webhooks") List<ListEntityWebhook> webhooks) {
         Utils.checkNotNull(webhooks, "webhooks");
         this.webhooks = webhooks;
     }
@@ -31,7 +31,7 @@ public class ListWebhooksEmbedded {
      * A list of webhooks.
      */
     @JsonIgnore
-    public List<EntityWebhook> webhooks() {
+    public List<ListEntityWebhook> webhooks() {
         return webhooks;
     }
 
@@ -43,7 +43,7 @@ public class ListWebhooksEmbedded {
     /**
      * A list of webhooks.
      */
-    public ListWebhooksEmbedded withWebhooks(List<EntityWebhook> webhooks) {
+    public ListWebhooksEmbedded withWebhooks(List<ListEntityWebhook> webhooks) {
         Utils.checkNotNull(webhooks, "webhooks");
         this.webhooks = webhooks;
         return this;
@@ -77,7 +77,7 @@ public class ListWebhooksEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<EntityWebhook> webhooks;
+        private List<ListEntityWebhook> webhooks;
 
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class ListWebhooksEmbedded {
         /**
          * A list of webhooks.
          */
-        public Builder webhooks(List<EntityWebhook> webhooks) {
+        public Builder webhooks(List<ListEntityWebhook> webhooks) {
             Utils.checkNotNull(webhooks, "webhooks");
             this.webhooks = webhooks;
             return this;

@@ -10,6 +10,7 @@ Settlements created during weekends or on bank holidays will take place on the n
 
 | Name              | Value             |
 | ----------------- | ----------------- |
+| `EVERY_DAY`       | every-day         |
 | `DAILY`           | daily             |
 | `EVERY_MONDAY`    | every-monday      |
 | `EVERY_TUESDAY`   | every-tuesday     |
@@ -17,4 +18,5 @@ Settlements created during weekends or on bank holidays will take place on the n
 | `EVERY_THURSDAY`  | every-thursday    |
 | `EVERY_FRIDAY`    | every-friday      |
 | `MONTHLY`         | monthly           |
+| `REVENUE_DAY`     | revenue-day       |
 | `NEVER`           | never             |

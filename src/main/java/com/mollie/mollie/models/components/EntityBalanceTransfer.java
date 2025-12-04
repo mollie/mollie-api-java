@@ -10,9 +10,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -50,6 +52,15 @@ public class EntityBalanceTransfer {
     private Optional<? extends BalanceTransferCategory> category;
 
     /**
+     * A JSON object that you can attach to a balance transfer.
+     * This can be useful for storing additional information about the transfer in a structured format.
+     * Maximum size is approximately 1KB.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private Optional<? extends Map<String, Object>> metadata;
+
+    /**
      * Whether to create the entity in test mode or live mode.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
@@ -69,18 +80,21 @@ public class EntityBalanceTransfer {
             @JsonProperty("destination") EntityBalanceTransferParty destination,
             @JsonProperty("description") String description,
             @JsonProperty("category") Optional<? extends BalanceTransferCategory> category,
+            @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(source, "source");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(category, "category");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(testmode, "testmode");
         this.amount = amount;
         this.source = source;
         this.destination = destination;
         this.description = description;
         this.category = category;
+        this.metadata = metadata;
         this.testmode = testmode;
     }
     
@@ -90,7 +104,8 @@ public class EntityBalanceTransfer {
             EntityBalanceTransferParty destination,
             String description) {
         this(amount, source, destination,
-            description, Optional.empty(), JsonNullable.undefined());
+            description, Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -132,6 +147,17 @@ public class EntityBalanceTransfer {
     @JsonIgnore
     public Optional<BalanceTransferCategory> category() {
         return (Optional<BalanceTransferCategory>) category;
+    }
+
+    /**
+     * A JSON object that you can attach to a balance transfer.
+     * This can be useful for storing additional information about the transfer in a structured format.
+     * Maximum size is approximately 1KB.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> metadata() {
+        return (Optional<Map<String, Object>>) metadata;
     }
 
     /**
@@ -209,6 +235,29 @@ public class EntityBalanceTransfer {
     }
 
     /**
+     * A JSON object that you can attach to a balance transfer.
+     * This can be useful for storing additional information about the transfer in a structured format.
+     * Maximum size is approximately 1KB.
+     */
+    public EntityBalanceTransfer withMetadata(Map<String, Object> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+
+    /**
+     * A JSON object that you can attach to a balance transfer.
+     * This can be useful for storing additional information about the transfer in a structured format.
+     * Maximum size is approximately 1KB.
+     */
+    public EntityBalanceTransfer withMetadata(Optional<? extends Map<String, Object>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
+    /**
      * Whether to create the entity in test mode or live mode.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
@@ -253,6 +302,7 @@ public class EntityBalanceTransfer {
             Utils.enhancedDeepEquals(this.destination, other.destination) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.category, other.category) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
@@ -260,7 +310,8 @@ public class EntityBalanceTransfer {
     public int hashCode() {
         return Utils.enhancedHash(
             amount, source, destination,
-            description, category, testmode);
+            description, category, metadata,
+            testmode);
     }
     
     @Override
@@ -271,6 +322,7 @@ public class EntityBalanceTransfer {
                 "destination", destination,
                 "description", description,
                 "category", category,
+                "metadata", metadata,
                 "testmode", testmode);
     }
 
@@ -286,6 +338,8 @@ public class EntityBalanceTransfer {
         private String description;
 
         private Optional<? extends BalanceTransferCategory> category = Optional.empty();
+
+        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -354,6 +408,29 @@ public class EntityBalanceTransfer {
 
 
         /**
+         * A JSON object that you can attach to a balance transfer.
+         * This can be useful for storing additional information about the transfer in a structured format.
+         * Maximum size is approximately 1KB.
+         */
+        public Builder metadata(Map<String, Object> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        /**
+         * A JSON object that you can attach to a balance transfer.
+         * This can be useful for storing additional information about the transfer in a structured format.
+         * Maximum size is approximately 1KB.
+         */
+        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
+        /**
          * Whether to create the entity in test mode or live mode.
          * 
          * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
@@ -387,7 +464,8 @@ public class EntityBalanceTransfer {
 
             return new EntityBalanceTransfer(
                 amount, source, destination,
-                description, category, testmode);
+                description, category, metadata,
+                testmode);
         }
 
     }

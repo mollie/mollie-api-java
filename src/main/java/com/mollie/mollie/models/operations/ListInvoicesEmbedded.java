@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.ListEntityInvoice;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -18,11 +19,11 @@ public class ListInvoicesEmbedded {
      * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     @JsonProperty("invoices")
-    private List<Invoices> invoices;
+    private List<ListEntityInvoice> invoices;
 
     @JsonCreator
     public ListInvoicesEmbedded(
-            @JsonProperty("invoices") List<Invoices> invoices) {
+            @JsonProperty("invoices") List<ListEntityInvoice> invoices) {
         Utils.checkNotNull(invoices, "invoices");
         this.invoices = invoices;
     }
@@ -32,7 +33,7 @@ public class ListInvoicesEmbedded {
      * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
     @JsonIgnore
-    public List<Invoices> invoices() {
+    public List<ListEntityInvoice> invoices() {
         return invoices;
     }
 
@@ -45,7 +46,7 @@ public class ListInvoicesEmbedded {
      * An array of invoice objects. For a complete reference of
      * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
      */
-    public ListInvoicesEmbedded withInvoices(List<Invoices> invoices) {
+    public ListInvoicesEmbedded withInvoices(List<ListEntityInvoice> invoices) {
         Utils.checkNotNull(invoices, "invoices");
         this.invoices = invoices;
         return this;
@@ -79,7 +80,7 @@ public class ListInvoicesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<Invoices> invoices;
+        private List<ListEntityInvoice> invoices;
 
         private Builder() {
           // force use of static builder() method
@@ -90,7 +91,7 @@ public class ListInvoicesEmbedded {
          * An array of invoice objects. For a complete reference of
          * the invoice object, refer to the [Get invoice endpoint](get-invoice) documentation.
          */
-        public Builder invoices(List<Invoices> invoices) {
+        public Builder invoices(List<ListEntityInvoice> invoices) {
             Utils.checkNotNull(invoices, "invoices");
             this.invoices = invoices;
             return this;

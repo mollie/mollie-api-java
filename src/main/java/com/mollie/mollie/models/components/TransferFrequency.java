@@ -54,6 +54,7 @@ import java.util.Optional;
 @JsonSerialize(using = TransferFrequency._Serializer.class)
 public class TransferFrequency {
 
+    public static final TransferFrequency EVERY_DAY = new TransferFrequency("every-day");
     public static final TransferFrequency DAILY = new TransferFrequency("daily");
     public static final TransferFrequency EVERY_MONDAY = new TransferFrequency("every-monday");
     public static final TransferFrequency EVERY_TUESDAY = new TransferFrequency("every-tuesday");
@@ -61,6 +62,7 @@ public class TransferFrequency {
     public static final TransferFrequency EVERY_THURSDAY = new TransferFrequency("every-thursday");
     public static final TransferFrequency EVERY_FRIDAY = new TransferFrequency("every-friday");
     public static final TransferFrequency MONTHLY = new TransferFrequency("monthly");
+    public static final TransferFrequency REVENUE_DAY = new TransferFrequency("revenue-day");
     public static final TransferFrequency NEVER = new TransferFrequency("never");
 
     // This map will grow whenever a Color gets created with a new
@@ -133,6 +135,7 @@ public class TransferFrequency {
 
     private static final Map<String, TransferFrequency> createValuesMap() {
         Map<String, TransferFrequency> map = new LinkedHashMap<>();
+        map.put("every-day", EVERY_DAY);
         map.put("daily", DAILY);
         map.put("every-monday", EVERY_MONDAY);
         map.put("every-tuesday", EVERY_TUESDAY);
@@ -140,12 +143,14 @@ public class TransferFrequency {
         map.put("every-thursday", EVERY_THURSDAY);
         map.put("every-friday", EVERY_FRIDAY);
         map.put("monthly", MONTHLY);
+        map.put("revenue-day", REVENUE_DAY);
         map.put("never", NEVER);
         return map;
     }
 
     private static final Map<String, TransferFrequencyEnum> createEnumsMap() {
         Map<String, TransferFrequencyEnum> map = new HashMap<>();
+        map.put("every-day", TransferFrequencyEnum.EVERY_DAY);
         map.put("daily", TransferFrequencyEnum.DAILY);
         map.put("every-monday", TransferFrequencyEnum.EVERY_MONDAY);
         map.put("every-tuesday", TransferFrequencyEnum.EVERY_TUESDAY);
@@ -153,6 +158,7 @@ public class TransferFrequency {
         map.put("every-thursday", TransferFrequencyEnum.EVERY_THURSDAY);
         map.put("every-friday", TransferFrequencyEnum.EVERY_FRIDAY);
         map.put("monthly", TransferFrequencyEnum.MONTHLY);
+        map.put("revenue-day", TransferFrequencyEnum.REVENUE_DAY);
         map.put("never", TransferFrequencyEnum.NEVER);
         return map;
     }
@@ -189,6 +195,7 @@ public class TransferFrequency {
     
     public enum TransferFrequencyEnum {
 
+        EVERY_DAY("every-day"),
         DAILY("daily"),
         EVERY_MONDAY("every-monday"),
         EVERY_TUESDAY("every-tuesday"),
@@ -196,6 +203,7 @@ public class TransferFrequency {
         EVERY_THURSDAY("every-thursday"),
         EVERY_FRIDAY("every-friday"),
         MONTHLY("monthly"),
+        REVENUE_DAY("revenue-day"),
         NEVER("never"),;
 
         private final String value;

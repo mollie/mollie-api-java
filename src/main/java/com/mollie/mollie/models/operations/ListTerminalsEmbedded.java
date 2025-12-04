@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.EntityTerminal;
+import com.mollie.mollie.models.components.ListEntityTerminal;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -23,11 +23,11 @@ public class ListTerminalsEmbedded {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminals")
-    private Optional<? extends List<EntityTerminal>> terminals;
+    private Optional<? extends List<ListEntityTerminal>> terminals;
 
     @JsonCreator
     public ListTerminalsEmbedded(
-            @JsonProperty("terminals") Optional<? extends List<EntityTerminal>> terminals) {
+            @JsonProperty("terminals") Optional<? extends List<ListEntityTerminal>> terminals) {
         Utils.checkNotNull(terminals, "terminals");
         this.terminals = terminals;
     }
@@ -41,8 +41,8 @@ public class ListTerminalsEmbedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<EntityTerminal>> terminals() {
-        return (Optional<List<EntityTerminal>>) terminals;
+    public Optional<List<ListEntityTerminal>> terminals() {
+        return (Optional<List<ListEntityTerminal>>) terminals;
     }
 
     public static Builder builder() {
@@ -53,7 +53,7 @@ public class ListTerminalsEmbedded {
     /**
      * An array of terminal objects.
      */
-    public ListTerminalsEmbedded withTerminals(List<EntityTerminal> terminals) {
+    public ListTerminalsEmbedded withTerminals(List<ListEntityTerminal> terminals) {
         Utils.checkNotNull(terminals, "terminals");
         this.terminals = Optional.ofNullable(terminals);
         return this;
@@ -63,7 +63,7 @@ public class ListTerminalsEmbedded {
     /**
      * An array of terminal objects.
      */
-    public ListTerminalsEmbedded withTerminals(Optional<? extends List<EntityTerminal>> terminals) {
+    public ListTerminalsEmbedded withTerminals(Optional<? extends List<ListEntityTerminal>> terminals) {
         Utils.checkNotNull(terminals, "terminals");
         this.terminals = terminals;
         return this;
@@ -97,7 +97,7 @@ public class ListTerminalsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<EntityTerminal>> terminals = Optional.empty();
+        private Optional<? extends List<ListEntityTerminal>> terminals = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -107,7 +107,7 @@ public class ListTerminalsEmbedded {
         /**
          * An array of terminal objects.
          */
-        public Builder terminals(List<EntityTerminal> terminals) {
+        public Builder terminals(List<ListEntityTerminal> terminals) {
             Utils.checkNotNull(terminals, "terminals");
             this.terminals = Optional.ofNullable(terminals);
             return this;
@@ -116,7 +116,7 @@ public class ListTerminalsEmbedded {
         /**
          * An array of terminal objects.
          */
-        public Builder terminals(Optional<? extends List<EntityTerminal>> terminals) {
+        public Builder terminals(Optional<? extends List<ListEntityTerminal>> terminals) {
             Utils.checkNotNull(terminals, "terminals");
             this.terminals = terminals;
             return this;

@@ -47,7 +47,7 @@ public class EntityBalance {
      * The balance's ISO 4217 currency code.
      */
     @JsonProperty("currency")
-    private Currency currency;
+    private EntityBalanceCurrency currency;
 
     /**
      * The description or name of the balance. Can be used to denote the purpose of the balance.
@@ -57,12 +57,12 @@ public class EntityBalance {
 
 
     @JsonProperty("status")
-    private Status status;
+    private EntityBalanceStatus status;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferFrequency")
-    private Optional<? extends TransferFrequency> transferFrequency;
+    private Optional<? extends EntityBalanceTransferFrequency> transferFrequency;
 
     /**
      * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
@@ -73,7 +73,7 @@ public class EntityBalance {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferThreshold")
-    private Optional<? extends TransferThreshold> transferThreshold;
+    private Optional<? extends EntityBalanceTransferThreshold> transferThreshold;
 
     /**
      * The transfer reference set to be included in all the transfers for this balance.
@@ -89,13 +89,13 @@ public class EntityBalance {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferDestination")
-    private JsonNullable<? extends TransferDestination> transferDestination;
+    private JsonNullable<? extends EntityBalanceTransferDestination> transferDestination;
 
     /**
      * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
      */
     @JsonProperty("availableAmount")
-    private AvailableAmount availableAmount;
+    private EntityBalanceAvailableAmount availableAmount;
 
     /**
      * The total amount that is queued to be transferred to your balance. For example, a credit card
@@ -103,13 +103,13 @@ public class EntityBalance {
      * few days to clear.
      */
     @JsonProperty("pendingAmount")
-    private PendingAmount pendingAmount;
+    private EntityBalancePendingAmount pendingAmount;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     @JsonProperty("_links")
-    private Links links;
+    private EntityBalanceLinks links;
 
     @JsonCreator
     public EntityBalance(
@@ -117,16 +117,16 @@ public class EntityBalance {
             @JsonProperty("id") String id,
             @JsonProperty("mode") Mode mode,
             @JsonProperty("createdAt") String createdAt,
-            @JsonProperty("currency") Currency currency,
+            @JsonProperty("currency") EntityBalanceCurrency currency,
             @JsonProperty("description") String description,
-            @JsonProperty("status") Status status,
-            @JsonProperty("transferFrequency") Optional<? extends TransferFrequency> transferFrequency,
-            @JsonProperty("transferThreshold") Optional<? extends TransferThreshold> transferThreshold,
+            @JsonProperty("status") EntityBalanceStatus status,
+            @JsonProperty("transferFrequency") Optional<? extends EntityBalanceTransferFrequency> transferFrequency,
+            @JsonProperty("transferThreshold") Optional<? extends EntityBalanceTransferThreshold> transferThreshold,
             @JsonProperty("transferReference") JsonNullable<String> transferReference,
-            @JsonProperty("transferDestination") JsonNullable<? extends TransferDestination> transferDestination,
-            @JsonProperty("availableAmount") AvailableAmount availableAmount,
-            @JsonProperty("pendingAmount") PendingAmount pendingAmount,
-            @JsonProperty("_links") Links links) {
+            @JsonProperty("transferDestination") JsonNullable<? extends EntityBalanceTransferDestination> transferDestination,
+            @JsonProperty("availableAmount") EntityBalanceAvailableAmount availableAmount,
+            @JsonProperty("pendingAmount") EntityBalancePendingAmount pendingAmount,
+            @JsonProperty("_links") EntityBalanceLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -162,12 +162,12 @@ public class EntityBalance {
             String id,
             Mode mode,
             String createdAt,
-            Currency currency,
+            EntityBalanceCurrency currency,
             String description,
-            Status status,
-            AvailableAmount availableAmount,
-            PendingAmount pendingAmount,
-            Links links) {
+            EntityBalanceStatus status,
+            EntityBalanceAvailableAmount availableAmount,
+            EntityBalancePendingAmount pendingAmount,
+            EntityBalanceLinks links) {
         this(resource, id, mode,
             createdAt, currency, description,
             status, Optional.empty(), Optional.empty(),
@@ -213,7 +213,7 @@ public class EntityBalance {
      * The balance's ISO 4217 currency code.
      */
     @JsonIgnore
-    public Currency currency() {
+    public EntityBalanceCurrency currency() {
         return currency;
     }
 
@@ -226,14 +226,14 @@ public class EntityBalance {
     }
 
     @JsonIgnore
-    public Status status() {
+    public EntityBalanceStatus status() {
         return status;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<TransferFrequency> transferFrequency() {
-        return (Optional<TransferFrequency>) transferFrequency;
+    public Optional<EntityBalanceTransferFrequency> transferFrequency() {
+        return (Optional<EntityBalanceTransferFrequency>) transferFrequency;
     }
 
     /**
@@ -245,8 +245,8 @@ public class EntityBalance {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<TransferThreshold> transferThreshold() {
-        return (Optional<TransferThreshold>) transferThreshold;
+    public Optional<EntityBalanceTransferThreshold> transferThreshold() {
+        return (Optional<EntityBalanceTransferThreshold>) transferThreshold;
     }
 
     /**
@@ -264,15 +264,15 @@ public class EntityBalance {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<TransferDestination> transferDestination() {
-        return (JsonNullable<TransferDestination>) transferDestination;
+    public JsonNullable<EntityBalanceTransferDestination> transferDestination() {
+        return (JsonNullable<EntityBalanceTransferDestination>) transferDestination;
     }
 
     /**
      * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
      */
     @JsonIgnore
-    public AvailableAmount availableAmount() {
+    public EntityBalanceAvailableAmount availableAmount() {
         return availableAmount;
     }
 
@@ -282,7 +282,7 @@ public class EntityBalance {
      * few days to clear.
      */
     @JsonIgnore
-    public PendingAmount pendingAmount() {
+    public EntityBalancePendingAmount pendingAmount() {
         return pendingAmount;
     }
 
@@ -290,7 +290,7 @@ public class EntityBalance {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     @JsonIgnore
-    public Links links() {
+    public EntityBalanceLinks links() {
         return links;
     }
 
@@ -340,7 +340,7 @@ public class EntityBalance {
     /**
      * The balance's ISO 4217 currency code.
      */
-    public EntityBalance withCurrency(Currency currency) {
+    public EntityBalance withCurrency(EntityBalanceCurrency currency) {
         Utils.checkNotNull(currency, "currency");
         this.currency = currency;
         return this;
@@ -355,20 +355,20 @@ public class EntityBalance {
         return this;
     }
 
-    public EntityBalance withStatus(Status status) {
+    public EntityBalance withStatus(EntityBalanceStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
 
-    public EntityBalance withTransferFrequency(TransferFrequency transferFrequency) {
+    public EntityBalance withTransferFrequency(EntityBalanceTransferFrequency transferFrequency) {
         Utils.checkNotNull(transferFrequency, "transferFrequency");
         this.transferFrequency = Optional.ofNullable(transferFrequency);
         return this;
     }
 
 
-    public EntityBalance withTransferFrequency(Optional<? extends TransferFrequency> transferFrequency) {
+    public EntityBalance withTransferFrequency(Optional<? extends EntityBalanceTransferFrequency> transferFrequency) {
         Utils.checkNotNull(transferFrequency, "transferFrequency");
         this.transferFrequency = transferFrequency;
         return this;
@@ -381,7 +381,7 @@ public class EntityBalance {
      * configured
      * frequency.
      */
-    public EntityBalance withTransferThreshold(TransferThreshold transferThreshold) {
+    public EntityBalance withTransferThreshold(EntityBalanceTransferThreshold transferThreshold) {
         Utils.checkNotNull(transferThreshold, "transferThreshold");
         this.transferThreshold = Optional.ofNullable(transferThreshold);
         return this;
@@ -395,7 +395,7 @@ public class EntityBalance {
      * configured
      * frequency.
      */
-    public EntityBalance withTransferThreshold(Optional<? extends TransferThreshold> transferThreshold) {
+    public EntityBalance withTransferThreshold(Optional<? extends EntityBalanceTransferThreshold> transferThreshold) {
         Utils.checkNotNull(transferThreshold, "transferThreshold");
         this.transferThreshold = transferThreshold;
         return this;
@@ -424,7 +424,7 @@ public class EntityBalance {
      * configured
      * transfer frequency.
      */
-    public EntityBalance withTransferDestination(TransferDestination transferDestination) {
+    public EntityBalance withTransferDestination(EntityBalanceTransferDestination transferDestination) {
         Utils.checkNotNull(transferDestination, "transferDestination");
         this.transferDestination = JsonNullable.of(transferDestination);
         return this;
@@ -435,7 +435,7 @@ public class EntityBalance {
      * configured
      * transfer frequency.
      */
-    public EntityBalance withTransferDestination(JsonNullable<? extends TransferDestination> transferDestination) {
+    public EntityBalance withTransferDestination(JsonNullable<? extends EntityBalanceTransferDestination> transferDestination) {
         Utils.checkNotNull(transferDestination, "transferDestination");
         this.transferDestination = transferDestination;
         return this;
@@ -444,7 +444,7 @@ public class EntityBalance {
     /**
      * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
      */
-    public EntityBalance withAvailableAmount(AvailableAmount availableAmount) {
+    public EntityBalance withAvailableAmount(EntityBalanceAvailableAmount availableAmount) {
         Utils.checkNotNull(availableAmount, "availableAmount");
         this.availableAmount = availableAmount;
         return this;
@@ -455,7 +455,7 @@ public class EntityBalance {
      * payment can take a
      * few days to clear.
      */
-    public EntityBalance withPendingAmount(PendingAmount pendingAmount) {
+    public EntityBalance withPendingAmount(EntityBalancePendingAmount pendingAmount) {
         Utils.checkNotNull(pendingAmount, "pendingAmount");
         this.pendingAmount = pendingAmount;
         return this;
@@ -464,7 +464,7 @@ public class EntityBalance {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public EntityBalance withLinks(Links links) {
+    public EntityBalance withLinks(EntityBalanceLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -536,25 +536,25 @@ public class EntityBalance {
 
         private String createdAt;
 
-        private Currency currency;
+        private EntityBalanceCurrency currency;
 
         private String description;
 
-        private Status status;
+        private EntityBalanceStatus status;
 
-        private Optional<? extends TransferFrequency> transferFrequency = Optional.empty();
+        private Optional<? extends EntityBalanceTransferFrequency> transferFrequency = Optional.empty();
 
-        private Optional<? extends TransferThreshold> transferThreshold = Optional.empty();
+        private Optional<? extends EntityBalanceTransferThreshold> transferThreshold = Optional.empty();
 
         private JsonNullable<String> transferReference = JsonNullable.undefined();
 
-        private JsonNullable<? extends TransferDestination> transferDestination = JsonNullable.undefined();
+        private JsonNullable<? extends EntityBalanceTransferDestination> transferDestination = JsonNullable.undefined();
 
-        private AvailableAmount availableAmount;
+        private EntityBalanceAvailableAmount availableAmount;
 
-        private PendingAmount pendingAmount;
+        private EntityBalancePendingAmount pendingAmount;
 
-        private Links links;
+        private EntityBalanceLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -606,7 +606,7 @@ public class EntityBalance {
         /**
          * The balance's ISO 4217 currency code.
          */
-        public Builder currency(Currency currency) {
+        public Builder currency(EntityBalanceCurrency currency) {
             Utils.checkNotNull(currency, "currency");
             this.currency = currency;
             return this;
@@ -623,20 +623,20 @@ public class EntityBalance {
         }
 
 
-        public Builder status(Status status) {
+        public Builder status(EntityBalanceStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
         }
 
 
-        public Builder transferFrequency(TransferFrequency transferFrequency) {
+        public Builder transferFrequency(EntityBalanceTransferFrequency transferFrequency) {
             Utils.checkNotNull(transferFrequency, "transferFrequency");
             this.transferFrequency = Optional.ofNullable(transferFrequency);
             return this;
         }
 
-        public Builder transferFrequency(Optional<? extends TransferFrequency> transferFrequency) {
+        public Builder transferFrequency(Optional<? extends EntityBalanceTransferFrequency> transferFrequency) {
             Utils.checkNotNull(transferFrequency, "transferFrequency");
             this.transferFrequency = transferFrequency;
             return this;
@@ -650,7 +650,7 @@ public class EntityBalance {
          * configured
          * frequency.
          */
-        public Builder transferThreshold(TransferThreshold transferThreshold) {
+        public Builder transferThreshold(EntityBalanceTransferThreshold transferThreshold) {
             Utils.checkNotNull(transferThreshold, "transferThreshold");
             this.transferThreshold = Optional.ofNullable(transferThreshold);
             return this;
@@ -663,7 +663,7 @@ public class EntityBalance {
          * configured
          * frequency.
          */
-        public Builder transferThreshold(Optional<? extends TransferThreshold> transferThreshold) {
+        public Builder transferThreshold(Optional<? extends EntityBalanceTransferThreshold> transferThreshold) {
             Utils.checkNotNull(transferThreshold, "transferThreshold");
             this.transferThreshold = transferThreshold;
             return this;
@@ -694,7 +694,7 @@ public class EntityBalance {
          * configured
          * transfer frequency.
          */
-        public Builder transferDestination(TransferDestination transferDestination) {
+        public Builder transferDestination(EntityBalanceTransferDestination transferDestination) {
             Utils.checkNotNull(transferDestination, "transferDestination");
             this.transferDestination = JsonNullable.of(transferDestination);
             return this;
@@ -705,7 +705,7 @@ public class EntityBalance {
          * configured
          * transfer frequency.
          */
-        public Builder transferDestination(JsonNullable<? extends TransferDestination> transferDestination) {
+        public Builder transferDestination(JsonNullable<? extends EntityBalanceTransferDestination> transferDestination) {
             Utils.checkNotNull(transferDestination, "transferDestination");
             this.transferDestination = transferDestination;
             return this;
@@ -715,7 +715,7 @@ public class EntityBalance {
         /**
          * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
          */
-        public Builder availableAmount(AvailableAmount availableAmount) {
+        public Builder availableAmount(EntityBalanceAvailableAmount availableAmount) {
             Utils.checkNotNull(availableAmount, "availableAmount");
             this.availableAmount = availableAmount;
             return this;
@@ -727,7 +727,7 @@ public class EntityBalance {
          * payment can take a
          * few days to clear.
          */
-        public Builder pendingAmount(PendingAmount pendingAmount) {
+        public Builder pendingAmount(EntityBalancePendingAmount pendingAmount) {
             Utils.checkNotNull(pendingAmount, "pendingAmount");
             this.pendingAmount = pendingAmount;
             return this;
@@ -737,7 +737,7 @@ public class EntityBalance {
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(Links links) {
+        public Builder links(EntityBalanceLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;

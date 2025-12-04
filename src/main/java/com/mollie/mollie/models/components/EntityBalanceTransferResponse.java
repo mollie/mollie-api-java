@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -76,6 +78,15 @@ public class EntityBalanceTransferResponse {
     private Optional<? extends BalanceTransferCategoryResponse> category;
 
     /**
+     * A JSON object that you can attach to a balance transfer.
+     * This can be useful for storing additional information about the transfer in a structured format.
+     * Maximum size is approximately 1KB.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("metadata")
+    private Optional<? extends Map<String, Object>> metadata;
+
+    /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
@@ -108,6 +119,7 @@ public class EntityBalanceTransferResponse {
             @JsonProperty("status") BalanceTransferStatus status,
             @JsonProperty("statusReason") EntityBalanceTransferResponseStatusReason statusReason,
             @JsonProperty("category") Optional<? extends BalanceTransferCategoryResponse> category,
+            @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("executedAt") JsonNullable<String> executedAt,
             @JsonProperty("mode") Mode mode) {
@@ -120,6 +132,7 @@ public class EntityBalanceTransferResponse {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(statusReason, "statusReason");
         Utils.checkNotNull(category, "category");
+        Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(executedAt, "executedAt");
         Utils.checkNotNull(mode, "mode");
@@ -132,6 +145,7 @@ public class EntityBalanceTransferResponse {
         this.status = status;
         this.statusReason = statusReason;
         this.category = category;
+        this.metadata = metadata;
         this.createdAt = createdAt;
         this.executedAt = executedAt;
         this.mode = mode;
@@ -151,7 +165,8 @@ public class EntityBalanceTransferResponse {
         this(resource, id, amount,
             source, destination, description,
             status, statusReason, Optional.empty(),
-            createdAt, JsonNullable.undefined(), mode);
+            Optional.empty(), createdAt, JsonNullable.undefined(),
+            mode);
     }
 
     /**
@@ -228,6 +243,17 @@ public class EntityBalanceTransferResponse {
     @JsonIgnore
     public Optional<BalanceTransferCategoryResponse> category() {
         return (Optional<BalanceTransferCategoryResponse>) category;
+    }
+
+    /**
+     * A JSON object that you can attach to a balance transfer.
+     * This can be useful for storing additional information about the transfer in a structured format.
+     * Maximum size is approximately 1KB.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Map<String, Object>> metadata() {
+        return (Optional<Map<String, Object>>) metadata;
     }
 
     /**
@@ -357,6 +383,29 @@ public class EntityBalanceTransferResponse {
     }
 
     /**
+     * A JSON object that you can attach to a balance transfer.
+     * This can be useful for storing additional information about the transfer in a structured format.
+     * Maximum size is approximately 1KB.
+     */
+    public EntityBalanceTransferResponse withMetadata(Map<String, Object> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = Optional.ofNullable(metadata);
+        return this;
+    }
+
+
+    /**
+     * A JSON object that you can attach to a balance transfer.
+     * This can be useful for storing additional information about the transfer in a structured format.
+     * Maximum size is approximately 1KB.
+     */
+    public EntityBalanceTransferResponse withMetadata(Optional<? extends Map<String, Object>> metadata) {
+        Utils.checkNotNull(metadata, "metadata");
+        this.metadata = metadata;
+        return this;
+    }
+
+    /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
@@ -416,6 +465,7 @@ public class EntityBalanceTransferResponse {
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.statusReason, other.statusReason) &&
             Utils.enhancedDeepEquals(this.category, other.category) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.executedAt, other.executedAt) &&
             Utils.enhancedDeepEquals(this.mode, other.mode);
@@ -427,7 +477,8 @@ public class EntityBalanceTransferResponse {
             resource, id, amount,
             source, destination, description,
             status, statusReason, category,
-            createdAt, executedAt, mode);
+            metadata, createdAt, executedAt,
+            mode);
     }
     
     @Override
@@ -442,6 +493,7 @@ public class EntityBalanceTransferResponse {
                 "status", status,
                 "statusReason", statusReason,
                 "category", category,
+                "metadata", metadata,
                 "createdAt", createdAt,
                 "executedAt", executedAt,
                 "mode", mode);
@@ -467,6 +519,8 @@ public class EntityBalanceTransferResponse {
         private EntityBalanceTransferResponseStatusReason statusReason;
 
         private Optional<? extends BalanceTransferCategoryResponse> category = Optional.empty();
+
+        private Optional<? extends Map<String, Object>> metadata = Optional.empty();
 
         private String createdAt;
 
@@ -582,6 +636,29 @@ public class EntityBalanceTransferResponse {
 
 
         /**
+         * A JSON object that you can attach to a balance transfer.
+         * This can be useful for storing additional information about the transfer in a structured format.
+         * Maximum size is approximately 1KB.
+         */
+        public Builder metadata(Map<String, Object> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = Optional.ofNullable(metadata);
+            return this;
+        }
+
+        /**
+         * A JSON object that you can attach to a balance transfer.
+         * This can be useful for storing additional information about the transfer in a structured format.
+         * Maximum size is approximately 1KB.
+         */
+        public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
+            Utils.checkNotNull(metadata, "metadata");
+            this.metadata = metadata;
+            return this;
+        }
+
+
+        /**
          * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format.
          */
@@ -630,7 +707,8 @@ public class EntityBalanceTransferResponse {
                 resource, id, amount,
                 source, destination, description,
                 status, statusReason, category,
-                createdAt, executedAt, mode);
+                metadata, createdAt, executedAt,
+                mode);
         }
 
     }

@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.CustomerResponse;
+import com.mollie.mollie.models.components.ListCustomerResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -18,11 +18,11 @@ public class ListCustomersEmbedded {
      * An array of customer objects.
      */
     @JsonProperty("customers")
-    private List<CustomerResponse> customers;
+    private List<ListCustomerResponse> customers;
 
     @JsonCreator
     public ListCustomersEmbedded(
-            @JsonProperty("customers") List<CustomerResponse> customers) {
+            @JsonProperty("customers") List<ListCustomerResponse> customers) {
         Utils.checkNotNull(customers, "customers");
         this.customers = customers;
     }
@@ -31,7 +31,7 @@ public class ListCustomersEmbedded {
      * An array of customer objects.
      */
     @JsonIgnore
-    public List<CustomerResponse> customers() {
+    public List<ListCustomerResponse> customers() {
         return customers;
     }
 
@@ -43,7 +43,7 @@ public class ListCustomersEmbedded {
     /**
      * An array of customer objects.
      */
-    public ListCustomersEmbedded withCustomers(List<CustomerResponse> customers) {
+    public ListCustomersEmbedded withCustomers(List<ListCustomerResponse> customers) {
         Utils.checkNotNull(customers, "customers");
         this.customers = customers;
         return this;
@@ -77,7 +77,7 @@ public class ListCustomersEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<CustomerResponse> customers;
+        private List<ListCustomerResponse> customers;
 
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class ListCustomersEmbedded {
         /**
          * An array of customer objects.
          */
-        public Builder customers(List<CustomerResponse> customers) {
+        public Builder customers(List<ListCustomerResponse> customers) {
             Utils.checkNotNull(customers, "customers");
             this.customers = customers;
             return this;
