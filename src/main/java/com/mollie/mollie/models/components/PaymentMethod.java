@@ -80,7 +80,6 @@ public class PaymentMethod {
     public static final PaymentMethod MULTIBANCO = new PaymentMethod("multibanco");
     public static final PaymentMethod MYBANK = new PaymentMethod("mybank");
     public static final PaymentMethod PAYBYBANK = new PaymentMethod("paybybank");
-    public static final PaymentMethod PAYCONIQ = new PaymentMethod("payconiq");
     public static final PaymentMethod PAYPAL = new PaymentMethod("paypal");
     public static final PaymentMethod PAYSAFECARD = new PaymentMethod("paysafecard");
     public static final PaymentMethod PRZELEWY24 = new PaymentMethod("przelewy24");
@@ -195,7 +194,6 @@ public class PaymentMethod {
         map.put("multibanco", MULTIBANCO);
         map.put("mybank", MYBANK);
         map.put("paybybank", PAYBYBANK);
-        map.put("payconiq", PAYCONIQ);
         map.put("paypal", PAYPAL);
         map.put("paysafecard", PAYSAFECARD);
         map.put("przelewy24", PRZELEWY24);
@@ -244,7 +242,6 @@ public class PaymentMethod {
         map.put("multibanco", PaymentMethodEnum.MULTIBANCO);
         map.put("mybank", PaymentMethodEnum.MYBANK);
         map.put("paybybank", PaymentMethodEnum.PAYBYBANK);
-        map.put("payconiq", PaymentMethodEnum.PAYCONIQ);
         map.put("paypal", PaymentMethodEnum.PAYPAL);
         map.put("paysafecard", PaymentMethodEnum.PAYSAFECARD);
         map.put("przelewy24", PaymentMethodEnum.PRZELEWY24);
@@ -323,7 +320,6 @@ public class PaymentMethod {
         MULTIBANCO("multibanco"),
         MYBANK("mybank"),
         PAYBYBANK("paybybank"),
-        PAYCONIQ("payconiq"),
         PAYPAL("paypal"),
         PAYSAFECARD("paysafecard"),
         PRZELEWY24("przelewy24"),

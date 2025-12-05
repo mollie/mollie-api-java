@@ -75,7 +75,6 @@ public class Id {
     public static final Id MULTIBANCO = new Id("multibanco");
     public static final Id MYBANK = new Id("mybank");
     public static final Id PAYBYBANK = new Id("paybybank");
-    public static final Id PAYCONIQ = new Id("payconiq");
     public static final Id PAYPAL = new Id("paypal");
     public static final Id PAYSAFECARD = new Id("paysafecard");
     public static final Id POINTOFSALE = new Id("pointofsale");
@@ -90,6 +89,7 @@ public class Id {
     public static final Id KLARNAPAYLATER = new Id("klarnapaylater");
     public static final Id KLARNAPAYNOW = new Id("klarnapaynow");
     public static final Id KLARNASLICEIT = new Id("klarnasliceit");
+    public static final Id PAYCONIQ = new Id("payconiq");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -184,7 +184,6 @@ public class Id {
         map.put("multibanco", MULTIBANCO);
         map.put("mybank", MYBANK);
         map.put("paybybank", PAYBYBANK);
-        map.put("payconiq", PAYCONIQ);
         map.put("paypal", PAYPAL);
         map.put("paysafecard", PAYSAFECARD);
         map.put("pointofsale", POINTOFSALE);
@@ -199,6 +198,7 @@ public class Id {
         map.put("klarnapaylater", KLARNAPAYLATER);
         map.put("klarnapaynow", KLARNAPAYNOW);
         map.put("klarnasliceit", KLARNASLICEIT);
+        map.put("payconiq", PAYCONIQ);
         return map;
     }
 
@@ -227,7 +227,6 @@ public class Id {
         map.put("multibanco", IdEnum.MULTIBANCO);
         map.put("mybank", IdEnum.MYBANK);
         map.put("paybybank", IdEnum.PAYBYBANK);
-        map.put("payconiq", IdEnum.PAYCONIQ);
         map.put("paypal", IdEnum.PAYPAL);
         map.put("paysafecard", IdEnum.PAYSAFECARD);
         map.put("pointofsale", IdEnum.POINTOFSALE);
@@ -242,6 +241,7 @@ public class Id {
         map.put("klarnapaylater", IdEnum.KLARNAPAYLATER);
         map.put("klarnapaynow", IdEnum.KLARNAPAYNOW);
         map.put("klarnasliceit", IdEnum.KLARNASLICEIT);
+        map.put("payconiq", IdEnum.PAYCONIQ);
         return map;
     }
     
@@ -300,7 +300,6 @@ public class Id {
         MULTIBANCO("multibanco"),
         MYBANK("mybank"),
         PAYBYBANK("paybybank"),
-        PAYCONIQ("payconiq"),
         PAYPAL("paypal"),
         PAYSAFECARD("paysafecard"),
         POINTOFSALE("pointofsale"),
@@ -314,7 +313,8 @@ public class Id {
         VOUCHER("voucher"),
         KLARNAPAYLATER("klarnapaylater"),
         KLARNAPAYNOW("klarnapaynow"),
-        KLARNASLICEIT("klarnasliceit"),;
+        KLARNASLICEIT("klarnasliceit"),
+        PAYCONIQ("payconiq"),;
 
         private final String value;
 

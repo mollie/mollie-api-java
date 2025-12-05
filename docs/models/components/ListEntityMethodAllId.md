@@ -31,7 +31,6 @@ method selection screen will be skipped.
 | `MULTIBANCO`     | multibanco       |
 | `MYBANK`         | mybank           |
 | `PAYBYBANK`      | paybybank        |
-| `PAYCONIQ`       | payconiq         |
 | `PAYPAL`         | paypal           |
 | `PAYSAFECARD`    | paysafecard      |
 | `POINTOFSALE`    | pointofsale      |
@@ -46,3 +45,4 @@ method selection screen will be skipped.
 | `KLARNAPAYLATER` | klarnapaylater   |
 | `KLARNAPAYNOW`   | klarnapaynow     |
 | `KLARNASLICEIT`  | klarnasliceit    |
+| `PAYCONIQ`       | payconiq         |

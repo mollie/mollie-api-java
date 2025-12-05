@@ -47,7 +47,6 @@ public enum Method {
     MULTIBANCO("multibanco"),
     MYBANK("mybank"),
     PAYBYBANK("paybybank"),
-    PAYCONIQ("payconiq"),
     PAYPAL("paypal"),
     PAYSAFECARD("paysafecard"),
     POINTOFSALE("pointofsale"),

@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.WebhookEventTypes;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -33,12 +32,10 @@ public class UpdateWebhookRequestBody {
     @JsonProperty("url")
     private Optional<String> url;
 
-    /**
-     * The event's type
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("eventTypes")
-    private Optional<? extends WebhookEventTypes> webhookEventTypes;
+    private Optional<? extends UpdateWebhookEventTypes> eventTypes;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. For
@@ -55,15 +52,15 @@ public class UpdateWebhookRequestBody {
     public UpdateWebhookRequestBody(
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("url") Optional<String> url,
-            @JsonProperty("eventTypes") Optional<? extends WebhookEventTypes> webhookEventTypes,
+            @JsonProperty("eventTypes") Optional<? extends UpdateWebhookEventTypes> eventTypes,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(url, "url");
-        Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
+        Utils.checkNotNull(eventTypes, "eventTypes");
         Utils.checkNotNull(testmode, "testmode");
         this.name = name;
         this.url = url;
-        this.webhookEventTypes = webhookEventTypes;
+        this.eventTypes = eventTypes;
         this.testmode = testmode;
     }
     
@@ -88,13 +85,10 @@ public class UpdateWebhookRequestBody {
         return url;
     }
 
-    /**
-     * The event's type
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<WebhookEventTypes> webhookEventTypes() {
-        return (Optional<WebhookEventTypes>) webhookEventTypes;
+    public Optional<UpdateWebhookEventTypes> eventTypes() {
+        return (Optional<UpdateWebhookEventTypes>) eventTypes;
     }
 
     /**
@@ -152,22 +146,16 @@ public class UpdateWebhookRequestBody {
         return this;
     }
 
-    /**
-     * The event's type
-     */
-    public UpdateWebhookRequestBody withWebhookEventTypes(WebhookEventTypes webhookEventTypes) {
-        Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
-        this.webhookEventTypes = Optional.ofNullable(webhookEventTypes);
+    public UpdateWebhookRequestBody withEventTypes(UpdateWebhookEventTypes eventTypes) {
+        Utils.checkNotNull(eventTypes, "eventTypes");
+        this.eventTypes = Optional.ofNullable(eventTypes);
         return this;
     }
 
 
-    /**
-     * The event's type
-     */
-    public UpdateWebhookRequestBody withWebhookEventTypes(Optional<? extends WebhookEventTypes> webhookEventTypes) {
-        Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
-        this.webhookEventTypes = webhookEventTypes;
+    public UpdateWebhookRequestBody withEventTypes(Optional<? extends UpdateWebhookEventTypes> eventTypes) {
+        Utils.checkNotNull(eventTypes, "eventTypes");
+        this.eventTypes = eventTypes;
         return this;
     }
 
@@ -209,14 +197,14 @@ public class UpdateWebhookRequestBody {
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.url, other.url) &&
-            Utils.enhancedDeepEquals(this.webhookEventTypes, other.webhookEventTypes) &&
+            Utils.enhancedDeepEquals(this.eventTypes, other.eventTypes) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, url, webhookEventTypes,
+            name, url, eventTypes,
             testmode);
     }
     
@@ -225,7 +213,7 @@ public class UpdateWebhookRequestBody {
         return Utils.toString(UpdateWebhookRequestBody.class,
                 "name", name,
                 "url", url,
-                "webhookEventTypes", webhookEventTypes,
+                "eventTypes", eventTypes,
                 "testmode", testmode);
     }
 
@@ -236,7 +224,7 @@ public class UpdateWebhookRequestBody {
 
         private Optional<String> url = Optional.empty();
 
-        private Optional<? extends WebhookEventTypes> webhookEventTypes = Optional.empty();
+        private Optional<? extends UpdateWebhookEventTypes> eventTypes = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -283,21 +271,15 @@ public class UpdateWebhookRequestBody {
         }
 
 
-        /**
-         * The event's type
-         */
-        public Builder webhookEventTypes(WebhookEventTypes webhookEventTypes) {
-            Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
-            this.webhookEventTypes = Optional.ofNullable(webhookEventTypes);
+        public Builder eventTypes(UpdateWebhookEventTypes eventTypes) {
+            Utils.checkNotNull(eventTypes, "eventTypes");
+            this.eventTypes = Optional.ofNullable(eventTypes);
             return this;
         }
 
-        /**
-         * The event's type
-         */
-        public Builder webhookEventTypes(Optional<? extends WebhookEventTypes> webhookEventTypes) {
-            Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
-            this.webhookEventTypes = webhookEventTypes;
+        public Builder eventTypes(Optional<? extends UpdateWebhookEventTypes> eventTypes) {
+            Utils.checkNotNull(eventTypes, "eventTypes");
+            this.eventTypes = eventTypes;
             return this;
         }
 
@@ -331,7 +313,7 @@ public class UpdateWebhookRequestBody {
         public UpdateWebhookRequestBody build() {
 
             return new UpdateWebhookRequestBody(
-                name, url, webhookEventTypes,
+                name, url, eventTypes,
                 testmode);
         }
 

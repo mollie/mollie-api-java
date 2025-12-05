@@ -26,8 +26,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.components.WebhookEventTypes;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.CreateWebhookRequestBody;
-import com.mollie.mollie.models.operations.CreateWebhookResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -45,7 +44,7 @@ public class Application {
                 .requestBody(CreateWebhookRequestBody.builder()
                     .name("Webhook #1")
                     .url("https://mollie.com/")
-                    .webhookEventTypes(WebhookEventTypes.PAYMENT_LINK_PAID)
+                    .eventTypes(EventTypes.of(WebhookEventTypes.PAYMENT_LINK_PAID))
                     .testmode(false)
                     .build())
                 .call();
@@ -153,8 +152,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.components.WebhookEventTypes;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.UpdateWebhookRequestBody;
-import com.mollie.mollie.models.operations.UpdateWebhookResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -173,7 +171,7 @@ public class Application {
                 .requestBody(UpdateWebhookRequestBody.builder()
                     .name("Webhook #1")
                     .url("https://mollie.com/")
-                    .webhookEventTypes(WebhookEventTypes.PAYMENT_LINK_PAID)
+                    .eventTypes(UpdateWebhookEventTypes.of(WebhookEventTypes.PAYMENT_LINK_PAID))
                     .testmode(false)
                     .build())
                 .call();

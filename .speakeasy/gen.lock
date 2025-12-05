@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: adc1359a5f53bfc67f09961b0725e6f9
+  docChecksum: 1d2641433a69902c38d579ef00824956
   docVersion: 1.0.0
-  speakeasyVersion: 1.668.0
+  speakeasyVersion: 1.668.1
   generationVersion: 2.770.0
-  releaseVersion: 0.24.0
-  configChecksum: a58483074041f4507e281c64b1df1587
+  releaseVersion: 0.24.1
+  configChecksum: e3e83348ee5fdb1c5f07361146d29cbc
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 features:
@@ -498,6 +498,7 @@ generatedFiles:
   - docs/models/operations/DeleteWebhookRequestBody.md
   - docs/models/operations/DeleteWebhookResponse.md
   - docs/models/operations/Embedded.md
+  - docs/models/operations/EventTypes.md
   - docs/models/operations/GetBalanceReportRequest.md
   - docs/models/operations/GetBalanceReportResponse.md
   - docs/models/operations/GetBalanceRequest.md
@@ -738,6 +739,7 @@ generatedFiles:
   - docs/models/operations/UpdateSubscriptionRequest.md
   - docs/models/operations/UpdateSubscriptionRequestBody.md
   - docs/models/operations/UpdateSubscriptionResponse.md
+  - docs/models/operations/UpdateWebhookEventTypes.md
   - docs/models/operations/UpdateWebhookRequest.md
   - docs/models/operations/UpdateWebhookRequestBody.md
   - docs/models/operations/UpdateWebhookResponse.md
@@ -1427,6 +1429,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/DeleteWebhookRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/DeleteWebhookResponse.java
   - src/main/java/com/mollie/mollie/models/operations/Embedded.java
+  - src/main/java/com/mollie/mollie/models/operations/EventTypes.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportRequest.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/GetBalanceReportResponse.java
@@ -1741,6 +1744,7 @@ generatedFiles:
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionRequestBuilder.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateSubscriptionResponse.java
+  - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookEventTypes.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookRequest.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookRequestBody.java
   - src/main/java/com/mollie/mollie/models/operations/UpdateWebhookRequestBuilder.java
@@ -6455,4 +6459,7 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `client.webhooks.list()`:  `response._embedded.webhooks.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.clients.list()`:  `response._embedded.clients.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.settlements.listPayments()`:  `response._embedded.payments.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.settlements.listCaptures()`:  `response._embedded.captures.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.settlements.listRefunds()`:  `response._embedded.refunds.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.settlements.listChargebacks()`:  `response._embedded.chargebacks.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.salesInvoices.list()`:  `response._embedded.salesInvoices.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.permissions.list()`:  `response._embedded.permissions.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.profiles.list()`:  `response._embedded.profiles.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.customers.list()`:  `response._embedded.customers.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.settlements.list()`:  `response._embedded.settlements.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.subscriptions.list()`:  `response._embedded.subscriptions.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.balances.list()`:  `response._embedded.balances.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.mandates.list()`:  `response._embedded.mandates.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.methods.list()`:  `response._embedded.methods.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.terminals.list()`:  `response._embedded.terminals.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.delayedRouting.list()`:  `response._embedded.routes.[].Links.documentation` **Removed** **Breaking** :warning:\n* `client.invoices.list()`:  `response._embedded.invoices.[]` **Changed**\n* `client.balanceTransfers.get()`:  `response.metadata` **Added**\n* `client.balanceTransfers.create()`: \n  *  `request.entity-balance-transfer.metadata` **Added**\n  *  `response.metadata` **Added**\n* `client.balanceTransfers.list()`:  `response._embedded.connectBalanceTransfers.[].metadata` **Added**\n"
+releaseNotes: |
+  ## Java SDK Changes:
+  * `client.webhooks.create()`:  `requestbody` **Changed** **Breaking** :warning:
+  * `client.webhooks.update()`:  `requestbody` **Changed** **Breaking** :warning:

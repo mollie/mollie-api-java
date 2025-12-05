@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.WebhookEventTypes;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -29,11 +28,9 @@ public class CreateWebhookRequestBody {
     @JsonProperty("url")
     private String url;
 
-    /**
-     * The event's type
-     */
+
     @JsonProperty("eventTypes")
-    private WebhookEventTypes webhookEventTypes;
+    private EventTypes eventTypes;
 
     /**
      * Whether to create the entity in test mode or live mode.
@@ -52,23 +49,23 @@ public class CreateWebhookRequestBody {
     public CreateWebhookRequestBody(
             @JsonProperty("name") String name,
             @JsonProperty("url") String url,
-            @JsonProperty("eventTypes") WebhookEventTypes webhookEventTypes,
+            @JsonProperty("eventTypes") EventTypes eventTypes,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(url, "url");
-        Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
+        Utils.checkNotNull(eventTypes, "eventTypes");
         Utils.checkNotNull(testmode, "testmode");
         this.name = name;
         this.url = url;
-        this.webhookEventTypes = webhookEventTypes;
+        this.eventTypes = eventTypes;
         this.testmode = testmode;
     }
     
     public CreateWebhookRequestBody(
             String name,
             String url,
-            WebhookEventTypes webhookEventTypes) {
-        this(name, url, webhookEventTypes,
+            EventTypes eventTypes) {
+        this(name, url, eventTypes,
             JsonNullable.undefined());
     }
 
@@ -88,12 +85,9 @@ public class CreateWebhookRequestBody {
         return url;
     }
 
-    /**
-     * The event's type
-     */
     @JsonIgnore
-    public WebhookEventTypes webhookEventTypes() {
-        return webhookEventTypes;
+    public EventTypes eventTypes() {
+        return eventTypes;
     }
 
     /**
@@ -133,12 +127,9 @@ public class CreateWebhookRequestBody {
         return this;
     }
 
-    /**
-     * The event's type
-     */
-    public CreateWebhookRequestBody withWebhookEventTypes(WebhookEventTypes webhookEventTypes) {
-        Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
-        this.webhookEventTypes = webhookEventTypes;
+    public CreateWebhookRequestBody withEventTypes(EventTypes eventTypes) {
+        Utils.checkNotNull(eventTypes, "eventTypes");
+        this.eventTypes = eventTypes;
         return this;
     }
 
@@ -184,14 +175,14 @@ public class CreateWebhookRequestBody {
         return 
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.url, other.url) &&
-            Utils.enhancedDeepEquals(this.webhookEventTypes, other.webhookEventTypes) &&
+            Utils.enhancedDeepEquals(this.eventTypes, other.eventTypes) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            name, url, webhookEventTypes,
+            name, url, eventTypes,
             testmode);
     }
     
@@ -200,7 +191,7 @@ public class CreateWebhookRequestBody {
         return Utils.toString(CreateWebhookRequestBody.class,
                 "name", name,
                 "url", url,
-                "webhookEventTypes", webhookEventTypes,
+                "eventTypes", eventTypes,
                 "testmode", testmode);
     }
 
@@ -211,7 +202,7 @@ public class CreateWebhookRequestBody {
 
         private String url;
 
-        private WebhookEventTypes webhookEventTypes;
+        private EventTypes eventTypes;
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -240,12 +231,9 @@ public class CreateWebhookRequestBody {
         }
 
 
-        /**
-         * The event's type
-         */
-        public Builder webhookEventTypes(WebhookEventTypes webhookEventTypes) {
-            Utils.checkNotNull(webhookEventTypes, "webhookEventTypes");
-            this.webhookEventTypes = webhookEventTypes;
+        public Builder eventTypes(EventTypes eventTypes) {
+            Utils.checkNotNull(eventTypes, "eventTypes");
+            this.eventTypes = eventTypes;
             return this;
         }
 
@@ -283,7 +271,7 @@ public class CreateWebhookRequestBody {
         public CreateWebhookRequestBody build() {
 
             return new CreateWebhookRequestBody(
-                name, url, webhookEventTypes,
+                name, url, eventTypes,
                 testmode);
         }
 

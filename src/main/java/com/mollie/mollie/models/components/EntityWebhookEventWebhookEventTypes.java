@@ -44,7 +44,8 @@ import java.util.Optional;
 /**
  * EntityWebhookEventWebhookEventTypes
  * 
- * <p>The event's type
+ * <p>The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
+ * that require explicit selection.
  */
 @JsonDeserialize(using = EntityWebhookEventWebhookEventTypes._Deserializer.class)
 @JsonSerialize(using = EntityWebhookEventWebhookEventTypes._Serializer.class)

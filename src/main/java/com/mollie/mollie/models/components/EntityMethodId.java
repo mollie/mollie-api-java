@@ -75,7 +75,6 @@ public class EntityMethodId {
     public static final EntityMethodId MULTIBANCO = new EntityMethodId("multibanco");
     public static final EntityMethodId MYBANK = new EntityMethodId("mybank");
     public static final EntityMethodId PAYBYBANK = new EntityMethodId("paybybank");
-    public static final EntityMethodId PAYCONIQ = new EntityMethodId("payconiq");
     public static final EntityMethodId PAYPAL = new EntityMethodId("paypal");
     public static final EntityMethodId PAYSAFECARD = new EntityMethodId("paysafecard");
     public static final EntityMethodId POINTOFSALE = new EntityMethodId("pointofsale");
@@ -90,6 +89,7 @@ public class EntityMethodId {
     public static final EntityMethodId KLARNAPAYLATER = new EntityMethodId("klarnapaylater");
     public static final EntityMethodId KLARNAPAYNOW = new EntityMethodId("klarnapaynow");
     public static final EntityMethodId KLARNASLICEIT = new EntityMethodId("klarnasliceit");
+    public static final EntityMethodId PAYCONIQ = new EntityMethodId("payconiq");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -184,7 +184,6 @@ public class EntityMethodId {
         map.put("multibanco", MULTIBANCO);
         map.put("mybank", MYBANK);
         map.put("paybybank", PAYBYBANK);
-        map.put("payconiq", PAYCONIQ);
         map.put("paypal", PAYPAL);
         map.put("paysafecard", PAYSAFECARD);
         map.put("pointofsale", POINTOFSALE);
@@ -199,6 +198,7 @@ public class EntityMethodId {
         map.put("klarnapaylater", KLARNAPAYLATER);
         map.put("klarnapaynow", KLARNAPAYNOW);
         map.put("klarnasliceit", KLARNASLICEIT);
+        map.put("payconiq", PAYCONIQ);
         return map;
     }
 
@@ -227,7 +227,6 @@ public class EntityMethodId {
         map.put("multibanco", EntityMethodIdEnum.MULTIBANCO);
         map.put("mybank", EntityMethodIdEnum.MYBANK);
         map.put("paybybank", EntityMethodIdEnum.PAYBYBANK);
-        map.put("payconiq", EntityMethodIdEnum.PAYCONIQ);
         map.put("paypal", EntityMethodIdEnum.PAYPAL);
         map.put("paysafecard", EntityMethodIdEnum.PAYSAFECARD);
         map.put("pointofsale", EntityMethodIdEnum.POINTOFSALE);
@@ -242,6 +241,7 @@ public class EntityMethodId {
         map.put("klarnapaylater", EntityMethodIdEnum.KLARNAPAYLATER);
         map.put("klarnapaynow", EntityMethodIdEnum.KLARNAPAYNOW);
         map.put("klarnasliceit", EntityMethodIdEnum.KLARNASLICEIT);
+        map.put("payconiq", EntityMethodIdEnum.PAYCONIQ);
         return map;
     }
     
@@ -300,7 +300,6 @@ public class EntityMethodId {
         MULTIBANCO("multibanco"),
         MYBANK("mybank"),
         PAYBYBANK("paybybank"),
-        PAYCONIQ("payconiq"),
         PAYPAL("paypal"),
         PAYSAFECARD("paysafecard"),
         POINTOFSALE("pointofsale"),
@@ -314,7 +313,8 @@ public class EntityMethodId {
         VOUCHER("voucher"),
         KLARNAPAYLATER("klarnapaylater"),
         KLARNAPAYNOW("klarnapaynow"),
-        KLARNASLICEIT("klarnasliceit"),;
+        KLARNASLICEIT("klarnasliceit"),
+        PAYCONIQ("payconiq"),;
 
         private final String value;
 

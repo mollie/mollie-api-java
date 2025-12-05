@@ -83,7 +83,6 @@ public class MethodResponse {
     public static final MethodResponse MULTIBANCO = new MethodResponse("multibanco");
     public static final MethodResponse MYBANK = new MethodResponse("mybank");
     public static final MethodResponse PAYBYBANK = new MethodResponse("paybybank");
-    public static final MethodResponse PAYCONIQ = new MethodResponse("payconiq");
     public static final MethodResponse PAYPAL = new MethodResponse("paypal");
     public static final MethodResponse PAYSAFECARD = new MethodResponse("paysafecard");
     public static final MethodResponse POINTOFSALE = new MethodResponse("pointofsale");
@@ -98,6 +97,7 @@ public class MethodResponse {
     public static final MethodResponse KLARNAPAYLATER = new MethodResponse("klarnapaylater");
     public static final MethodResponse KLARNAPAYNOW = new MethodResponse("klarnapaynow");
     public static final MethodResponse KLARNASLICEIT = new MethodResponse("klarnasliceit");
+    public static final MethodResponse PAYCONIQ = new MethodResponse("payconiq");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -192,7 +192,6 @@ public class MethodResponse {
         map.put("multibanco", MULTIBANCO);
         map.put("mybank", MYBANK);
         map.put("paybybank", PAYBYBANK);
-        map.put("payconiq", PAYCONIQ);
         map.put("paypal", PAYPAL);
         map.put("paysafecard", PAYSAFECARD);
         map.put("pointofsale", POINTOFSALE);
@@ -207,6 +206,7 @@ public class MethodResponse {
         map.put("klarnapaylater", KLARNAPAYLATER);
         map.put("klarnapaynow", KLARNAPAYNOW);
         map.put("klarnasliceit", KLARNASLICEIT);
+        map.put("payconiq", PAYCONIQ);
         return map;
     }
 
@@ -235,7 +235,6 @@ public class MethodResponse {
         map.put("multibanco", MethodResponseEnum.MULTIBANCO);
         map.put("mybank", MethodResponseEnum.MYBANK);
         map.put("paybybank", MethodResponseEnum.PAYBYBANK);
-        map.put("payconiq", MethodResponseEnum.PAYCONIQ);
         map.put("paypal", MethodResponseEnum.PAYPAL);
         map.put("paysafecard", MethodResponseEnum.PAYSAFECARD);
         map.put("pointofsale", MethodResponseEnum.POINTOFSALE);
@@ -250,6 +249,7 @@ public class MethodResponse {
         map.put("klarnapaylater", MethodResponseEnum.KLARNAPAYLATER);
         map.put("klarnapaynow", MethodResponseEnum.KLARNAPAYNOW);
         map.put("klarnasliceit", MethodResponseEnum.KLARNASLICEIT);
+        map.put("payconiq", MethodResponseEnum.PAYCONIQ);
         return map;
     }
     
@@ -308,7 +308,6 @@ public class MethodResponse {
         MULTIBANCO("multibanco"),
         MYBANK("mybank"),
         PAYBYBANK("paybybank"),
-        PAYCONIQ("payconiq"),
         PAYPAL("paypal"),
         PAYSAFECARD("paysafecard"),
         POINTOFSALE("pointofsale"),
@@ -322,7 +321,8 @@ public class MethodResponse {
         VOUCHER("voucher"),
         KLARNAPAYLATER("klarnapaylater"),
         KLARNAPAYNOW("klarnapaynow"),
-        KLARNASLICEIT("klarnasliceit"),;
+        KLARNASLICEIT("klarnasliceit"),
+        PAYCONIQ("payconiq"),;
 
         private final String value;
 
