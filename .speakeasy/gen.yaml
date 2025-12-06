@@ -20,12 +20,13 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
   requestBodyFieldName: ""
+  persistentEdits: {}
   tests:
     generateTests: true
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.24.1
+  version: 0.24.2
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie

@@ -54,7 +54,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:0.24.1'
+implementation 'com.mollie:mollie:0.24.2'
 ```
 
 Maven:
@@ -62,7 +62,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>0.24.1</version>
+    <version>0.24.2</version>
 </dependency>
 ```
 
@@ -401,7 +401,13 @@ Client sdk = Client.builder()
 <details open>
 <summary>Available methods</summary>
 
-### [balances()](docs/sdks/balances/README.md)
+### [BalanceTransfers](docs/sdks/balancetransfers/README.md)
+
+* [create](docs/sdks/balancetransfers/README.md#create) - Create a Connect balance transfer
+* [list](docs/sdks/balancetransfers/README.md#list) - List all Connect balance transfers
+* [get](docs/sdks/balancetransfers/README.md#get) - Get a Connect balance transfer
+
+### [Balances](docs/sdks/balances/README.md)
 
 * [list](docs/sdks/balances/README.md#list) - List balances
 * [get](docs/sdks/balances/README.md#get) - Get balance
@@ -409,38 +415,32 @@ Client sdk = Client.builder()
 * [getReport](docs/sdks/balances/README.md#getreport) - Get balance report
 * [listTransactions](docs/sdks/balances/README.md#listtransactions) - List balance transactions
 
-### [balanceTransfers()](docs/sdks/balancetransfers/README.md)
-
-* [create](docs/sdks/balancetransfers/README.md#create) - Create a Connect balance transfer
-* [list](docs/sdks/balancetransfers/README.md#list) - List all Connect balance transfers
-* [get](docs/sdks/balancetransfers/README.md#get) - Get a Connect balance transfer
-
-### [capabilities()](docs/sdks/capabilities/README.md)
+### [Capabilities](docs/sdks/capabilities/README.md)
 
 * [list](docs/sdks/capabilities/README.md#list) - List capabilities
 
-### [captures()](docs/sdks/captures/README.md)
+### [Captures](docs/sdks/captures/README.md)
 
 * [create](docs/sdks/captures/README.md#create) - Create capture
 * [list](docs/sdks/captures/README.md#list) - List captures
 * [get](docs/sdks/captures/README.md#get) - Get capture
 
-### [chargebacks()](docs/sdks/chargebacks/README.md)
+### [Chargebacks](docs/sdks/chargebacks/README.md)
 
 * [list](docs/sdks/chargebacks/README.md#list) - List payment chargebacks
 * [get](docs/sdks/chargebacks/README.md#get) - Get payment chargeback
 * [all](docs/sdks/chargebacks/README.md#all) - List all chargebacks
 
-### [clientLinks()](docs/sdks/clientlinks/README.md)
+### [ClientLinks](docs/sdks/clientlinks/README.md)
 
 * [create](docs/sdks/clientlinks/README.md#create) - Create client link
 
-### [clients()](docs/sdks/clients/README.md)
+### [Clients](docs/sdks/clients/README.md)
 
 * [list](docs/sdks/clients/README.md#list) - List clients
 * [get](docs/sdks/clients/README.md#get) - Get client
 
-### [customers()](docs/sdks/customers/README.md)
+### [Customers](docs/sdks/customers/README.md)
 
 * [create](docs/sdks/customers/README.md#create) - Create customer
 * [list](docs/sdks/customers/README.md#list) - List customers
@@ -450,41 +450,41 @@ Client sdk = Client.builder()
 * [createPayment](docs/sdks/customers/README.md#createpayment) - Create customer payment
 * [listPayments](docs/sdks/customers/README.md#listpayments) - List customer payments
 
-### [delayedRouting()](docs/sdks/delayedrouting/README.md)
+### [DelayedRouting](docs/sdks/delayedrouting/README.md)
 
 * [create](docs/sdks/delayedrouting/README.md#create) - Create a delayed route
 * [list](docs/sdks/delayedrouting/README.md#list) - List payment routes
 
-### [invoices()](docs/sdks/invoices/README.md)
+### [Invoices](docs/sdks/invoices/README.md)
 
 * [list](docs/sdks/invoices/README.md#list) - List invoices
 * [get](docs/sdks/invoices/README.md#get) - Get invoice
 
-### [mandates()](docs/sdks/mandates/README.md)
+### [Mandates](docs/sdks/mandates/README.md)
 
 * [create](docs/sdks/mandates/README.md#create) - Create mandate
 * [list](docs/sdks/mandates/README.md#list) - List mandates
 * [get](docs/sdks/mandates/README.md#get) - Get mandate
 * [revoke](docs/sdks/mandates/README.md#revoke) - Revoke mandate
 
-### [methods()](docs/sdks/methods/README.md)
+### [Methods](docs/sdks/methods/README.md)
 
 * [list](docs/sdks/methods/README.md#list) - List payment methods
 * [all](docs/sdks/methods/README.md#all) - List all payment methods
 * [get](docs/sdks/methods/README.md#get) - Get payment method
 
-### [onboarding()](docs/sdks/onboarding/README.md)
+### [Onboarding](docs/sdks/onboarding/README.md)
 
 * [get](docs/sdks/onboarding/README.md#get) - Get onboarding status
 * [submit](docs/sdks/onboarding/README.md#submit) - Submit onboarding data
 
-### [organizations()](docs/sdks/organizations/README.md)
+### [Organizations](docs/sdks/organizations/README.md)
 
 * [get](docs/sdks/organizations/README.md#get) - Get organization
 * [getCurrent](docs/sdks/organizations/README.md#getcurrent) - Get current organization
 * [getPartner](docs/sdks/organizations/README.md#getpartner) - Get partner status
 
-### [paymentLinks()](docs/sdks/paymentlinks/README.md)
+### [PaymentLinks](docs/sdks/paymentlinks/README.md)
 
 * [create](docs/sdks/paymentlinks/README.md#create) - Create payment link
 * [list](docs/sdks/paymentlinks/README.md#list) - List payment links
@@ -493,7 +493,7 @@ Client sdk = Client.builder()
 * [delete](docs/sdks/paymentlinks/README.md#delete) - Delete payment link
 * [listPayments](docs/sdks/paymentlinks/README.md#listpayments) - Get payment link payments
 
-### [payments()](docs/sdks/payments/README.md)
+### [Payments](docs/sdks/payments/README.md)
 
 * [create](docs/sdks/payments/README.md#create) - Create payment
 * [list](docs/sdks/payments/README.md#list) - List payments
@@ -502,12 +502,12 @@ Client sdk = Client.builder()
 * [cancel](docs/sdks/payments/README.md#cancel) - Cancel payment
 * [releaseAuthorization](docs/sdks/payments/README.md#releaseauthorization) - Release payment authorization
 
-### [permissions()](docs/sdks/permissions/README.md)
+### [Permissions](docs/sdks/permissions/README.md)
 
 * [list](docs/sdks/permissions/README.md#list) - List permissions
 * [get](docs/sdks/permissions/README.md#get) - Get permission
 
-### [profiles()](docs/sdks/profiles/README.md)
+### [Profiles](docs/sdks/profiles/README.md)
 
 * [create](docs/sdks/profiles/README.md#create) - Create profile
 * [list](docs/sdks/profiles/README.md#list) - List profiles
@@ -516,7 +516,7 @@ Client sdk = Client.builder()
 * [delete](docs/sdks/profiles/README.md#delete) - Delete profile
 * [getCurrent](docs/sdks/profiles/README.md#getcurrent) - Get current profile
 
-### [refunds()](docs/sdks/refunds/README.md)
+### [Refunds](docs/sdks/refunds/README.md)
 
 * [create](docs/sdks/refunds/README.md#create) - Create payment refund
 * [list](docs/sdks/refunds/README.md#list) - List payment refunds
@@ -524,7 +524,7 @@ Client sdk = Client.builder()
 * [cancel](docs/sdks/refunds/README.md#cancel) - Cancel payment refund
 * [all](docs/sdks/refunds/README.md#all) - List all refunds
 
-### [salesInvoices()](docs/sdks/salesinvoices/README.md)
+### [SalesInvoices](docs/sdks/salesinvoices/README.md)
 
 * [create](docs/sdks/salesinvoices/README.md#create) - Create sales invoice
 * [list](docs/sdks/salesinvoices/README.md#list) - List sales invoices
@@ -532,7 +532,7 @@ Client sdk = Client.builder()
 * [update](docs/sdks/salesinvoices/README.md#update) - Update sales invoice
 * [delete](docs/sdks/salesinvoices/README.md#delete) - Delete sales invoice
 
-### [settlements()](docs/sdks/settlements/README.md)
+### [Settlements](docs/sdks/settlements/README.md)
 
 * [list](docs/sdks/settlements/README.md#list) - List settlements
 * [get](docs/sdks/settlements/README.md#get) - Get settlement
@@ -543,7 +543,7 @@ Client sdk = Client.builder()
 * [listRefunds](docs/sdks/settlements/README.md#listrefunds) - List settlement refunds
 * [listChargebacks](docs/sdks/settlements/README.md#listchargebacks) - List settlement chargebacks
 
-### [subscriptions()](docs/sdks/subscriptions/README.md)
+### [Subscriptions](docs/sdks/subscriptions/README.md)
 
 * [create](docs/sdks/subscriptions/README.md#create) - Create subscription
 * [list](docs/sdks/subscriptions/README.md#list) - List customer subscriptions
@@ -553,20 +553,20 @@ Client sdk = Client.builder()
 * [all](docs/sdks/subscriptions/README.md#all) - List all subscriptions
 * [listPayments](docs/sdks/subscriptions/README.md#listpayments) - List subscription payments
 
-### [terminals()](docs/sdks/terminals/README.md)
+### [Terminals](docs/sdks/terminals/README.md)
 
 * [list](docs/sdks/terminals/README.md#list) - List terminals
 * [get](docs/sdks/terminals/README.md#get) - Get terminal
 
-### [wallets()](docs/sdks/wallets/README.md)
+### [Wallets](docs/sdks/wallets/README.md)
 
 * [requestApplePaySession](docs/sdks/wallets/README.md#requestapplepaysession) - Request Apple Pay payment session
 
-### [webhookEvents()](docs/sdks/webhookevents/README.md)
+### [WebhookEvents](docs/sdks/webhookevents/README.md)
 
 * [get](docs/sdks/webhookevents/README.md#get) - Get a Webhook Event
 
-### [webhooks()](docs/sdks/webhooks/README.md)
+### [Webhooks](docs/sdks/webhooks/README.md)
 
 * [create](docs/sdks/webhooks/README.md#create) - Create a webhook
 * [list](docs/sdks/webhooks/README.md#list) - List all webhooks

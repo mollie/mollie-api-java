@@ -12,7 +12,7 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.Optional;
 
 
 public class CreateWebhookRequestBody {
@@ -35,22 +35,18 @@ public class CreateWebhookRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
-     * `testmode` to `true`.
+     * <p>You can enable test mode by setting `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
-    private JsonNullable<Boolean> testmode;
+    private Optional<Boolean> testmode;
 
     @JsonCreator
     public CreateWebhookRequestBody(
             @JsonProperty("name") String name,
             @JsonProperty("url") String url,
             @JsonProperty("eventTypes") EventTypes eventTypes,
-            @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
+            @JsonProperty("testmode") Optional<Boolean> testmode) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(url, "url");
         Utils.checkNotNull(eventTypes, "eventTypes");
@@ -66,7 +62,7 @@ public class CreateWebhookRequestBody {
             String url,
             EventTypes eventTypes) {
         this(name, url, eventTypes,
-            JsonNullable.undefined());
+            Optional.empty());
     }
 
     /**
@@ -93,14 +89,10 @@ public class CreateWebhookRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
-     * `testmode` to `true`.
+     * <p>You can enable test mode by setting `testmode` to `true`.
      */
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
+    public Optional<Boolean> testmode() {
         return testmode;
     }
 
@@ -136,28 +128,21 @@ public class CreateWebhookRequestBody {
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
-     * `testmode` to `true`.
+     * <p>You can enable test mode by setting `testmode` to `true`.
      */
     public CreateWebhookRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.ofNullable(testmode);
         return this;
     }
+
 
     /**
      * Whether to create the entity in test mode or live mode.
      * 
-     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
-     * `testmode` to `true`.
+     * <p>You can enable test mode by setting `testmode` to `true`.
      */
-    public CreateWebhookRequestBody withTestmode(JsonNullable<Boolean> testmode) {
+    public CreateWebhookRequestBody withTestmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -204,7 +189,7 @@ public class CreateWebhookRequestBody {
 
         private EventTypes eventTypes;
 
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<Boolean> testmode = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -241,28 +226,20 @@ public class CreateWebhookRequestBody {
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-         * parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting
-         * `testmode` to `true`.
+         * <p>You can enable test mode by setting `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+            this.testmode = Optional.ofNullable(testmode);
             return this;
         }
 
         /**
          * Whether to create the entity in test mode or live mode.
          * 
-         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-         * parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting
-         * `testmode` to `true`.
+         * <p>You can enable test mode by setting `testmode` to `true`.
          */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
+        public Builder testmode(Optional<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
             this.testmode = testmode;
             return this;
