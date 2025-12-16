@@ -66,8 +66,9 @@ public class ListEntityMethod {
     /**
      * The payment method's activation status for this profile.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("status")
-    private MethodStatus status;
+    private Optional<? extends MethodStatus> status;
 
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method.
@@ -92,7 +93,7 @@ public class ListEntityMethod {
             @JsonProperty("minimumAmount") MinimumAmount minimumAmount,
             @JsonProperty("maximumAmount") Optional<? extends MaximumAmount> maximumAmount,
             @JsonProperty("image") Image image,
-            @JsonProperty("status") MethodStatus status,
+            @JsonProperty("status") Optional<? extends MethodStatus> status,
             @JsonProperty("issuers") Optional<? extends List<Issuers>> issuers,
             @JsonProperty("_links") ListEntityMethodLinks links) {
         Utils.checkNotNull(resource, "resource");
@@ -120,11 +121,10 @@ public class ListEntityMethod {
             String description,
             MinimumAmount minimumAmount,
             Image image,
-            MethodStatus status,
             ListEntityMethodLinks links) {
         this(resource, Optional.empty(), description,
             minimumAmount, Optional.empty(), image,
-            status, Optional.empty(), links);
+            Optional.empty(), Optional.empty(), links);
     }
 
     /**
@@ -188,9 +188,10 @@ public class ListEntityMethod {
     /**
      * The payment method's activation status for this profile.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public MethodStatus status() {
-        return status;
+    public Optional<MethodStatus> status() {
+        return (Optional<MethodStatus>) status;
     }
 
     /**
@@ -308,6 +309,16 @@ public class ListEntityMethod {
      */
     public ListEntityMethod withStatus(MethodStatus status) {
         Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * The payment method's activation status for this profile.
+     */
+    public ListEntityMethod withStatus(Optional<? extends MethodStatus> status) {
+        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -402,7 +413,7 @@ public class ListEntityMethod {
 
         private Image image;
 
-        private MethodStatus status;
+        private Optional<? extends MethodStatus> status = Optional.empty();
 
         private Optional<? extends List<Issuers>> issuers = Optional.empty();
 
@@ -507,6 +518,15 @@ public class ListEntityMethod {
          * The payment method's activation status for this profile.
          */
         public Builder status(MethodStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * The payment method's activation status for this profile.
+         */
+        public Builder status(Optional<? extends MethodStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

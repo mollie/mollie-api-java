@@ -66,8 +66,9 @@ public class ListEntityMethodAll {
     /**
      * The payment method's activation status for this profile.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("status")
-    private MethodStatus status;
+    private Optional<? extends MethodStatus> status;
 
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method.
@@ -101,7 +102,7 @@ public class ListEntityMethodAll {
             @JsonProperty("minimumAmount") ListEntityMethodAllMinimumAmount minimumAmount,
             @JsonProperty("maximumAmount") Optional<? extends ListEntityMethodAllMaximumAmount> maximumAmount,
             @JsonProperty("image") ListEntityMethodAllImage image,
-            @JsonProperty("status") MethodStatus status,
+            @JsonProperty("status") Optional<? extends MethodStatus> status,
             @JsonProperty("issuers") Optional<? extends List<ListEntityMethodAllIssuers>> issuers,
             @JsonProperty("_links") ListEntityMethodAllLinks links,
             @JsonProperty("pricing") Optional<? extends List<Pricing>> pricing) {
@@ -132,11 +133,10 @@ public class ListEntityMethodAll {
             String description,
             ListEntityMethodAllMinimumAmount minimumAmount,
             ListEntityMethodAllImage image,
-            MethodStatus status,
             ListEntityMethodAllLinks links) {
         this(resource, Optional.empty(), description,
             minimumAmount, Optional.empty(), image,
-            status, Optional.empty(), links,
+            Optional.empty(), Optional.empty(), links,
             Optional.empty());
     }
 
@@ -201,9 +201,10 @@ public class ListEntityMethodAll {
     /**
      * The payment method's activation status for this profile.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public MethodStatus status() {
-        return status;
+    public Optional<MethodStatus> status() {
+        return (Optional<MethodStatus>) status;
     }
 
     /**
@@ -332,6 +333,16 @@ public class ListEntityMethodAll {
      */
     public ListEntityMethodAll withStatus(MethodStatus status) {
         Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * The payment method's activation status for this profile.
+     */
+    public ListEntityMethodAll withStatus(Optional<? extends MethodStatus> status) {
+        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -452,7 +463,7 @@ public class ListEntityMethodAll {
 
         private ListEntityMethodAllImage image;
 
-        private MethodStatus status;
+        private Optional<? extends MethodStatus> status = Optional.empty();
 
         private Optional<? extends List<ListEntityMethodAllIssuers>> issuers = Optional.empty();
 
@@ -559,6 +570,15 @@ public class ListEntityMethodAll {
          * The payment method's activation status for this profile.
          */
         public Builder status(MethodStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * The payment method's activation status for this profile.
+         */
+        public Builder status(Optional<? extends MethodStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

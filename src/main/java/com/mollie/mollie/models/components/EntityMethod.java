@@ -66,8 +66,9 @@ public class EntityMethod {
     /**
      * The payment method's activation status for this profile.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("status")
-    private MethodStatus status;
+    private Optional<? extends MethodStatus> status;
 
     /**
      * **Optional include.** Array of objects for each 'issuer' that is available for this payment method.
@@ -92,7 +93,7 @@ public class EntityMethod {
             @JsonProperty("minimumAmount") EntityMethodMinimumAmount minimumAmount,
             @JsonProperty("maximumAmount") Optional<? extends EntityMethodMaximumAmount> maximumAmount,
             @JsonProperty("image") EntityMethodImage image,
-            @JsonProperty("status") MethodStatus status,
+            @JsonProperty("status") Optional<? extends MethodStatus> status,
             @JsonProperty("issuers") Optional<? extends List<EntityMethodIssuers>> issuers,
             @JsonProperty("_links") EntityMethodLinks links) {
         Utils.checkNotNull(resource, "resource");
@@ -120,11 +121,10 @@ public class EntityMethod {
             String description,
             EntityMethodMinimumAmount minimumAmount,
             EntityMethodImage image,
-            MethodStatus status,
             EntityMethodLinks links) {
         this(resource, Optional.empty(), description,
             minimumAmount, Optional.empty(), image,
-            status, Optional.empty(), links);
+            Optional.empty(), Optional.empty(), links);
     }
 
     /**
@@ -188,9 +188,10 @@ public class EntityMethod {
     /**
      * The payment method's activation status for this profile.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public MethodStatus status() {
-        return status;
+    public Optional<MethodStatus> status() {
+        return (Optional<MethodStatus>) status;
     }
 
     /**
@@ -308,6 +309,16 @@ public class EntityMethod {
      */
     public EntityMethod withStatus(MethodStatus status) {
         Utils.checkNotNull(status, "status");
+        this.status = Optional.ofNullable(status);
+        return this;
+    }
+
+
+    /**
+     * The payment method's activation status for this profile.
+     */
+    public EntityMethod withStatus(Optional<? extends MethodStatus> status) {
+        Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
     }
@@ -402,7 +413,7 @@ public class EntityMethod {
 
         private EntityMethodImage image;
 
-        private MethodStatus status;
+        private Optional<? extends MethodStatus> status = Optional.empty();
 
         private Optional<? extends List<EntityMethodIssuers>> issuers = Optional.empty();
 
@@ -507,6 +518,15 @@ public class EntityMethod {
          * The payment method's activation status for this profile.
          */
         public Builder status(MethodStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        /**
+         * The payment method's activation status for this profile.
+         */
+        public Builder status(Optional<? extends MethodStatus> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;

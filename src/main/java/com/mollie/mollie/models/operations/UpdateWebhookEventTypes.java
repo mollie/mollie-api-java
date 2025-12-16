@@ -81,8 +81,8 @@ public class UpdateWebhookEventTypes {
 
         public _Deserializer() {
             super(UpdateWebhookEventTypes.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<WebhookEventTypes>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<List<WebhookEventTypes>>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<List<WebhookEventTypes>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<WebhookEventTypes>() {}, JsonShape.DEFAULT));
         }
     }
     
