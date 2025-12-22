@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.EntityChargeback;
+import com.mollie.mollie.models.components.ListEntityChargeback;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -18,11 +18,11 @@ public class ListSettlementChargebacksEmbedded {
      * A list of chargeback objects.
      */
     @JsonProperty("chargebacks")
-    private List<EntityChargeback> chargebacks;
+    private List<ListEntityChargeback> chargebacks;
 
     @JsonCreator
     public ListSettlementChargebacksEmbedded(
-            @JsonProperty("chargebacks") List<EntityChargeback> chargebacks) {
+            @JsonProperty("chargebacks") List<ListEntityChargeback> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = chargebacks;
     }
@@ -31,7 +31,7 @@ public class ListSettlementChargebacksEmbedded {
      * A list of chargeback objects.
      */
     @JsonIgnore
-    public List<EntityChargeback> chargebacks() {
+    public List<ListEntityChargeback> chargebacks() {
         return chargebacks;
     }
 
@@ -43,7 +43,7 @@ public class ListSettlementChargebacksEmbedded {
     /**
      * A list of chargeback objects.
      */
-    public ListSettlementChargebacksEmbedded withChargebacks(List<EntityChargeback> chargebacks) {
+    public ListSettlementChargebacksEmbedded withChargebacks(List<ListEntityChargeback> chargebacks) {
         Utils.checkNotNull(chargebacks, "chargebacks");
         this.chargebacks = chargebacks;
         return this;
@@ -77,7 +77,7 @@ public class ListSettlementChargebacksEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<EntityChargeback> chargebacks;
+        private List<ListEntityChargeback> chargebacks;
 
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class ListSettlementChargebacksEmbedded {
         /**
          * A list of chargeback objects.
          */
-        public Builder chargebacks(List<EntityChargeback> chargebacks) {
+        public Builder chargebacks(List<ListEntityChargeback> chargebacks) {
             Utils.checkNotNull(chargebacks, "chargebacks");
             this.chargebacks = chargebacks;
             return this;

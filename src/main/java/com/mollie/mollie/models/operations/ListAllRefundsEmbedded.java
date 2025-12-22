@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.EntityRefundResponse;
+import com.mollie.mollie.models.components.ListEntityRefund;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -18,11 +18,11 @@ public class ListAllRefundsEmbedded {
      * An array of refund objects.
      */
     @JsonProperty("refunds")
-    private List<EntityRefundResponse> refunds;
+    private List<ListEntityRefund> refunds;
 
     @JsonCreator
     public ListAllRefundsEmbedded(
-            @JsonProperty("refunds") List<EntityRefundResponse> refunds) {
+            @JsonProperty("refunds") List<ListEntityRefund> refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = refunds;
     }
@@ -31,7 +31,7 @@ public class ListAllRefundsEmbedded {
      * An array of refund objects.
      */
     @JsonIgnore
-    public List<EntityRefundResponse> refunds() {
+    public List<ListEntityRefund> refunds() {
         return refunds;
     }
 
@@ -43,7 +43,7 @@ public class ListAllRefundsEmbedded {
     /**
      * An array of refund objects.
      */
-    public ListAllRefundsEmbedded withRefunds(List<EntityRefundResponse> refunds) {
+    public ListAllRefundsEmbedded withRefunds(List<ListEntityRefund> refunds) {
         Utils.checkNotNull(refunds, "refunds");
         this.refunds = refunds;
         return this;
@@ -77,7 +77,7 @@ public class ListAllRefundsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<EntityRefundResponse> refunds;
+        private List<ListEntityRefund> refunds;
 
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class ListAllRefundsEmbedded {
         /**
          * An array of refund objects.
          */
-        public Builder refunds(List<EntityRefundResponse> refunds) {
+        public Builder refunds(List<ListEntityRefund> refunds) {
             Utils.checkNotNull(refunds, "refunds");
             this.refunds = refunds;
             return this;

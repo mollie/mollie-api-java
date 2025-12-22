@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.EntityBalance;
+import com.mollie.mollie.models.components.ListEntityBalance;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -19,11 +19,11 @@ public class Embedded {
      * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
     @JsonProperty("balances")
-    private List<EntityBalance> balances;
+    private List<ListEntityBalance> balances;
 
     @JsonCreator
     public Embedded(
-            @JsonProperty("balances") List<EntityBalance> balances) {
+            @JsonProperty("balances") List<ListEntityBalance> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
     }
@@ -33,7 +33,7 @@ public class Embedded {
      * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
     @JsonIgnore
-    public List<EntityBalance> balances() {
+    public List<ListEntityBalance> balances() {
         return balances;
     }
 
@@ -46,7 +46,7 @@ public class Embedded {
      * An array of balance objects. For a complete reference of
      * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
      */
-    public Embedded withBalances(List<EntityBalance> balances) {
+    public Embedded withBalances(List<ListEntityBalance> balances) {
         Utils.checkNotNull(balances, "balances");
         this.balances = balances;
         return this;
@@ -80,7 +80,7 @@ public class Embedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<EntityBalance> balances;
+        private List<ListEntityBalance> balances;
 
         private Builder() {
           // force use of static builder() method
@@ -91,7 +91,7 @@ public class Embedded {
          * An array of balance objects. For a complete reference of
          * the balance object, refer to the [Get balance endpoint](get-balance) documentation.
          */
-        public Builder balances(List<EntityBalance> balances) {
+        public Builder balances(List<ListEntityBalance> balances) {
             Utils.checkNotNull(balances, "balances");
             this.balances = balances;
             return this;

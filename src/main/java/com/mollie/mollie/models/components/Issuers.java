@@ -34,14 +34,14 @@ public class Issuers {
      * - svg
      */
     @JsonProperty("image")
-    private EntityMethodImage image;
+    private ListEntityMethodImage image;
 
     @JsonCreator
     public Issuers(
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
-            @JsonProperty("image") EntityMethodImage image) {
+            @JsonProperty("image") ListEntityMethodImage image) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
@@ -78,7 +78,7 @@ public class Issuers {
      * - svg
      */
     @JsonIgnore
-    public EntityMethodImage image() {
+    public ListEntityMethodImage image() {
         return image;
     }
 
@@ -115,7 +115,7 @@ public class Issuers {
      * - size2x
      * - svg
      */
-    public Issuers withImage(EntityMethodImage image) {
+    public Issuers withImage(ListEntityMethodImage image) {
         Utils.checkNotNull(image, "image");
         this.image = image;
         return this;
@@ -162,7 +162,7 @@ public class Issuers {
 
         private String name;
 
-        private EntityMethodImage image;
+        private ListEntityMethodImage image;
 
         private Builder() {
           // force use of static builder() method
@@ -200,7 +200,7 @@ public class Issuers {
          * - size2x
          * - svg
          */
-        public Builder image(EntityMethodImage image) {
+        public Builder image(ListEntityMethodImage image) {
             Utils.checkNotNull(image, "image");
             this.image = image;
             return this;

@@ -27,25 +27,15 @@ public class Links {
     @JsonProperty("self")
     private Optional<? extends Url> self;
 
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("documentation")
-    private Optional<? extends Url> documentation;
-
     @JsonCreator
     public Links(
-            @JsonProperty("self") Optional<? extends Url> self,
-            @JsonProperty("documentation") Optional<? extends Url> documentation) {
+            @JsonProperty("self") Optional<? extends Url> self) {
         Utils.checkNotNull(self, "self");
-        Utils.checkNotNull(documentation, "documentation");
         this.self = self;
-        this.documentation = documentation;
     }
     
     public Links() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty());
     }
 
     /**
@@ -55,15 +45,6 @@ public class Links {
     @JsonIgnore
     public Optional<Url> self() {
         return (Optional<Url>) self;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Url> documentation() {
-        return (Optional<Url>) documentation;
     }
 
     public static Builder builder() {
@@ -90,25 +71,6 @@ public class Links {
         return this;
     }
 
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public Links withDocumentation(Url documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public Links withDocumentation(Optional<? extends Url> documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = documentation;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,29 +81,25 @@ public class Links {
         }
         Links other = (Links) o;
         return 
-            Utils.enhancedDeepEquals(this.self, other.self) &&
-            Utils.enhancedDeepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.self, other.self);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self, documentation);
+            self);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Links.class,
-                "self", self,
-                "documentation", documentation);
+                "self", self);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         private Optional<? extends Url> self = Optional.empty();
-
-        private Optional<? extends Url> documentation = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -166,29 +124,10 @@ public class Links {
             return this;
         }
 
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Url documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends Url> documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = documentation;
-            return this;
-        }
-
         public Links build() {
 
             return new Links(
-                self, documentation);
+                self);
         }
 
     }
