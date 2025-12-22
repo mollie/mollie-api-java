@@ -100,7 +100,7 @@ public class EntitySettlement {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("periods")
-    private Optional<? extends Map<String, Map<String, EntitySettlementPeriods>>> periods;
+    private Optional<? extends Map<String, Map<String, Periods>>> periods;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -119,7 +119,7 @@ public class EntitySettlement {
             @JsonProperty("amount") EntitySettlementAmount amount,
             @JsonProperty("balanceId") String balanceId,
             @JsonProperty("invoiceId") JsonNullable<String> invoiceId,
-            @JsonProperty("periods") Optional<? extends Map<String, Map<String, EntitySettlementPeriods>>> periods,
+            @JsonProperty("periods") Optional<? extends Map<String, Map<String, Periods>>> periods,
             @JsonProperty("_links") EntitySettlementLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -253,8 +253,8 @@ public class EntitySettlement {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Map<String, EntitySettlementPeriods>>> periods() {
-        return (Optional<Map<String, Map<String, EntitySettlementPeriods>>>) periods;
+    public Optional<Map<String, Map<String, Periods>>> periods() {
+        return (Optional<Map<String, Map<String, Periods>>>) periods;
     }
 
     /**
@@ -414,7 +414,7 @@ public class EntitySettlement {
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
-    public EntitySettlement withPeriods(Map<String, Map<String, EntitySettlementPeriods>> periods) {
+    public EntitySettlement withPeriods(Map<String, Map<String, Periods>> periods) {
         Utils.checkNotNull(periods, "periods");
         this.periods = Optional.ofNullable(periods);
         return this;
@@ -438,7 +438,7 @@ public class EntitySettlement {
      * 
      * <p>The example response should give a good idea of what this looks like in practise.
      */
-    public EntitySettlement withPeriods(Optional<? extends Map<String, Map<String, EntitySettlementPeriods>>> periods) {
+    public EntitySettlement withPeriods(Optional<? extends Map<String, Map<String, Periods>>> periods) {
         Utils.checkNotNull(periods, "periods");
         this.periods = periods;
         return this;
@@ -522,7 +522,7 @@ public class EntitySettlement {
 
         private JsonNullable<String> invoiceId = JsonNullable.undefined();
 
-        private Optional<? extends Map<String, Map<String, EntitySettlementPeriods>>> periods = Optional.empty();
+        private Optional<? extends Map<String, Map<String, Periods>>> periods = Optional.empty();
 
         private EntitySettlementLinks links;
 
@@ -683,7 +683,7 @@ public class EntitySettlement {
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */
-        public Builder periods(Map<String, Map<String, EntitySettlementPeriods>> periods) {
+        public Builder periods(Map<String, Map<String, Periods>> periods) {
             Utils.checkNotNull(periods, "periods");
             this.periods = Optional.ofNullable(periods);
             return this;
@@ -706,7 +706,7 @@ public class EntitySettlement {
          * 
          * <p>The example response should give a good idea of what this looks like in practise.
          */
-        public Builder periods(Optional<? extends Map<String, Map<String, EntitySettlementPeriods>>> periods) {
+        public Builder periods(Optional<? extends Map<String, Map<String, Periods>>> periods) {
             Utils.checkNotNull(periods, "periods");
             this.periods = periods;
             return this;

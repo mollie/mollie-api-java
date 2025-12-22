@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.ListEntityMethodAll;
+import com.mollie.mollie.models.components.EntityMethodAll;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -20,11 +20,11 @@ public class ListAllMethodsEmbedded {
      * documentation.
      */
     @JsonProperty("methods")
-    private List<ListEntityMethodAll> methods;
+    private List<EntityMethodAll> methods;
 
     @JsonCreator
     public ListAllMethodsEmbedded(
-            @JsonProperty("methods") List<ListEntityMethodAll> methods) {
+            @JsonProperty("methods") List<EntityMethodAll> methods) {
         Utils.checkNotNull(methods, "methods");
         this.methods = methods;
     }
@@ -35,7 +35,7 @@ public class ListAllMethodsEmbedded {
      * documentation.
      */
     @JsonIgnore
-    public List<ListEntityMethodAll> methods() {
+    public List<EntityMethodAll> methods() {
         return methods;
     }
 
@@ -49,7 +49,7 @@ public class ListAllMethodsEmbedded {
      * reference of the payment method object, refer to the [Get payment method endpoint](get-method)
      * documentation.
      */
-    public ListAllMethodsEmbedded withMethods(List<ListEntityMethodAll> methods) {
+    public ListAllMethodsEmbedded withMethods(List<EntityMethodAll> methods) {
         Utils.checkNotNull(methods, "methods");
         this.methods = methods;
         return this;
@@ -83,7 +83,7 @@ public class ListAllMethodsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<ListEntityMethodAll> methods;
+        private List<EntityMethodAll> methods;
 
         private Builder() {
           // force use of static builder() method
@@ -95,7 +95,7 @@ public class ListAllMethodsEmbedded {
          * reference of the payment method object, refer to the [Get payment method endpoint](get-method)
          * documentation.
          */
-        public Builder methods(List<ListEntityMethodAll> methods) {
+        public Builder methods(List<EntityMethodAll> methods) {
             Utils.checkNotNull(methods, "methods");
             this.methods = methods;
             return this;

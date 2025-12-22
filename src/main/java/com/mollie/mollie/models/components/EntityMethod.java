@@ -32,7 +32,7 @@ public class EntityMethod {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("id")
-    private Optional<? extends EntityMethodId> id;
+    private Optional<? extends Id> id;
 
     /**
      * The full name of the payment method.
@@ -46,7 +46,7 @@ public class EntityMethod {
      * The minimum payment amount required to use this payment method.
      */
     @JsonProperty("minimumAmount")
-    private EntityMethodMinimumAmount minimumAmount;
+    private MinimumAmount minimumAmount;
 
     /**
      * The maximum payment amount allowed when using this payment method. If there is no method-specific
@@ -55,13 +55,13 @@ public class EntityMethod {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("maximumAmount")
-    private Optional<? extends EntityMethodMaximumAmount> maximumAmount;
+    private Optional<? extends MaximumAmount> maximumAmount;
 
     /**
      * URLs of images representing the payment method.
      */
     @JsonProperty("image")
-    private EntityMethodImage image;
+    private Image image;
 
     /**
      * The payment method's activation status for this profile.
@@ -77,7 +77,7 @@ public class EntityMethod {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("issuers")
-    private Optional<? extends List<EntityMethodIssuers>> issuers;
+    private Optional<? extends List<Issuers>> issuers;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -88,13 +88,13 @@ public class EntityMethod {
     @JsonCreator
     public EntityMethod(
             @JsonProperty("resource") String resource,
-            @JsonProperty("id") Optional<? extends EntityMethodId> id,
+            @JsonProperty("id") Optional<? extends Id> id,
             @JsonProperty("description") String description,
-            @JsonProperty("minimumAmount") EntityMethodMinimumAmount minimumAmount,
-            @JsonProperty("maximumAmount") Optional<? extends EntityMethodMaximumAmount> maximumAmount,
-            @JsonProperty("image") EntityMethodImage image,
+            @JsonProperty("minimumAmount") MinimumAmount minimumAmount,
+            @JsonProperty("maximumAmount") Optional<? extends MaximumAmount> maximumAmount,
+            @JsonProperty("image") Image image,
             @JsonProperty("status") Optional<? extends MethodStatus> status,
-            @JsonProperty("issuers") Optional<? extends List<EntityMethodIssuers>> issuers,
+            @JsonProperty("issuers") Optional<? extends List<Issuers>> issuers,
             @JsonProperty("_links") EntityMethodLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -119,8 +119,8 @@ public class EntityMethod {
     public EntityMethod(
             String resource,
             String description,
-            EntityMethodMinimumAmount minimumAmount,
-            EntityMethodImage image,
+            MinimumAmount minimumAmount,
+            Image image,
             EntityMethodLinks links) {
         this(resource, Optional.empty(), description,
             minimumAmount, Optional.empty(), image,
@@ -144,8 +144,8 @@ public class EntityMethod {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityMethodId> id() {
-        return (Optional<EntityMethodId>) id;
+    public Optional<Id> id() {
+        return (Optional<Id>) id;
     }
 
     /**
@@ -162,7 +162,7 @@ public class EntityMethod {
      * The minimum payment amount required to use this payment method.
      */
     @JsonIgnore
-    public EntityMethodMinimumAmount minimumAmount() {
+    public MinimumAmount minimumAmount() {
         return minimumAmount;
     }
 
@@ -173,15 +173,15 @@ public class EntityMethod {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityMethodMaximumAmount> maximumAmount() {
-        return (Optional<EntityMethodMaximumAmount>) maximumAmount;
+    public Optional<MaximumAmount> maximumAmount() {
+        return (Optional<MaximumAmount>) maximumAmount;
     }
 
     /**
      * URLs of images representing the payment method.
      */
     @JsonIgnore
-    public EntityMethodImage image() {
+    public Image image() {
         return image;
     }
 
@@ -201,8 +201,8 @@ public class EntityMethod {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<EntityMethodIssuers>> issuers() {
-        return (Optional<List<EntityMethodIssuers>>) issuers;
+    public Optional<List<Issuers>> issuers() {
+        return (Optional<List<Issuers>>) issuers;
     }
 
     /**
@@ -234,7 +234,7 @@ public class EntityMethod {
      * the payment
      * method selection screen will be skipped.
      */
-    public EntityMethod withId(EntityMethodId id) {
+    public EntityMethod withId(Id id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
@@ -246,7 +246,7 @@ public class EntityMethod {
      * the payment
      * method selection screen will be skipped.
      */
-    public EntityMethod withId(Optional<? extends EntityMethodId> id) {
+    public EntityMethod withId(Optional<? extends Id> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -266,7 +266,7 @@ public class EntityMethod {
     /**
      * The minimum payment amount required to use this payment method.
      */
-    public EntityMethod withMinimumAmount(EntityMethodMinimumAmount minimumAmount) {
+    public EntityMethod withMinimumAmount(MinimumAmount minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         this.minimumAmount = minimumAmount;
         return this;
@@ -277,7 +277,7 @@ public class EntityMethod {
      * maximum, `null`
      * is returned instead.
      */
-    public EntityMethod withMaximumAmount(EntityMethodMaximumAmount maximumAmount) {
+    public EntityMethod withMaximumAmount(MaximumAmount maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
         this.maximumAmount = Optional.ofNullable(maximumAmount);
         return this;
@@ -289,7 +289,7 @@ public class EntityMethod {
      * maximum, `null`
      * is returned instead.
      */
-    public EntityMethod withMaximumAmount(Optional<? extends EntityMethodMaximumAmount> maximumAmount) {
+    public EntityMethod withMaximumAmount(Optional<? extends MaximumAmount> maximumAmount) {
         Utils.checkNotNull(maximumAmount, "maximumAmount");
         this.maximumAmount = maximumAmount;
         return this;
@@ -298,7 +298,7 @@ public class EntityMethod {
     /**
      * URLs of images representing the payment method.
      */
-    public EntityMethod withImage(EntityMethodImage image) {
+    public EntityMethod withImage(Image image) {
         Utils.checkNotNull(image, "image");
         this.image = image;
         return this;
@@ -328,7 +328,7 @@ public class EntityMethod {
      * Only relevant
      * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
-    public EntityMethod withIssuers(List<EntityMethodIssuers> issuers) {
+    public EntityMethod withIssuers(List<Issuers> issuers) {
         Utils.checkNotNull(issuers, "issuers");
         this.issuers = Optional.ofNullable(issuers);
         return this;
@@ -340,7 +340,7 @@ public class EntityMethod {
      * Only relevant
      * for iDEAL, KBC/CBC, gift cards, and vouchers.
      */
-    public EntityMethod withIssuers(Optional<? extends List<EntityMethodIssuers>> issuers) {
+    public EntityMethod withIssuers(Optional<? extends List<Issuers>> issuers) {
         Utils.checkNotNull(issuers, "issuers");
         this.issuers = issuers;
         return this;
@@ -403,19 +403,19 @@ public class EntityMethod {
 
         private String resource;
 
-        private Optional<? extends EntityMethodId> id = Optional.empty();
+        private Optional<? extends Id> id = Optional.empty();
 
         private String description;
 
-        private EntityMethodMinimumAmount minimumAmount;
+        private MinimumAmount minimumAmount;
 
-        private Optional<? extends EntityMethodMaximumAmount> maximumAmount = Optional.empty();
+        private Optional<? extends MaximumAmount> maximumAmount = Optional.empty();
 
-        private EntityMethodImage image;
+        private Image image;
 
         private Optional<? extends MethodStatus> status = Optional.empty();
 
-        private Optional<? extends List<EntityMethodIssuers>> issuers = Optional.empty();
+        private Optional<? extends List<Issuers>> issuers = Optional.empty();
 
         private EntityMethodLinks links;
 
@@ -441,7 +441,7 @@ public class EntityMethod {
          * the payment
          * method selection screen will be skipped.
          */
-        public Builder id(EntityMethodId id) {
+        public Builder id(Id id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
             return this;
@@ -452,7 +452,7 @@ public class EntityMethod {
          * the payment
          * method selection screen will be skipped.
          */
-        public Builder id(Optional<? extends EntityMethodId> id) {
+        public Builder id(Optional<? extends Id> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
             return this;
@@ -474,7 +474,7 @@ public class EntityMethod {
         /**
          * The minimum payment amount required to use this payment method.
          */
-        public Builder minimumAmount(EntityMethodMinimumAmount minimumAmount) {
+        public Builder minimumAmount(MinimumAmount minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
             this.minimumAmount = minimumAmount;
             return this;
@@ -486,7 +486,7 @@ public class EntityMethod {
          * maximum, `null`
          * is returned instead.
          */
-        public Builder maximumAmount(EntityMethodMaximumAmount maximumAmount) {
+        public Builder maximumAmount(MaximumAmount maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
             this.maximumAmount = Optional.ofNullable(maximumAmount);
             return this;
@@ -497,7 +497,7 @@ public class EntityMethod {
          * maximum, `null`
          * is returned instead.
          */
-        public Builder maximumAmount(Optional<? extends EntityMethodMaximumAmount> maximumAmount) {
+        public Builder maximumAmount(Optional<? extends MaximumAmount> maximumAmount) {
             Utils.checkNotNull(maximumAmount, "maximumAmount");
             this.maximumAmount = maximumAmount;
             return this;
@@ -507,7 +507,7 @@ public class EntityMethod {
         /**
          * URLs of images representing the payment method.
          */
-        public Builder image(EntityMethodImage image) {
+        public Builder image(Image image) {
             Utils.checkNotNull(image, "image");
             this.image = image;
             return this;
@@ -538,7 +538,7 @@ public class EntityMethod {
          * Only relevant
          * for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
-        public Builder issuers(List<EntityMethodIssuers> issuers) {
+        public Builder issuers(List<Issuers> issuers) {
             Utils.checkNotNull(issuers, "issuers");
             this.issuers = Optional.ofNullable(issuers);
             return this;
@@ -549,7 +549,7 @@ public class EntityMethod {
          * Only relevant
          * for iDEAL, KBC/CBC, gift cards, and vouchers.
          */
-        public Builder issuers(Optional<? extends List<EntityMethodIssuers>> issuers) {
+        public Builder issuers(Optional<? extends List<Issuers>> issuers) {
             Utils.checkNotNull(issuers, "issuers");
             this.issuers = issuers;
             return this;

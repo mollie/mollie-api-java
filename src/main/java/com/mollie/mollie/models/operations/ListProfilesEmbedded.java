@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.ListProfileResponse;
+import com.mollie.mollie.models.components.ProfileResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -18,11 +18,11 @@ public class ListProfilesEmbedded {
      * An array of profile objects.
      */
     @JsonProperty("profiles")
-    private List<ListProfileResponse> profiles;
+    private List<ProfileResponse> profiles;
 
     @JsonCreator
     public ListProfilesEmbedded(
-            @JsonProperty("profiles") List<ListProfileResponse> profiles) {
+            @JsonProperty("profiles") List<ProfileResponse> profiles) {
         Utils.checkNotNull(profiles, "profiles");
         this.profiles = profiles;
     }
@@ -31,7 +31,7 @@ public class ListProfilesEmbedded {
      * An array of profile objects.
      */
     @JsonIgnore
-    public List<ListProfileResponse> profiles() {
+    public List<ProfileResponse> profiles() {
         return profiles;
     }
 
@@ -43,7 +43,7 @@ public class ListProfilesEmbedded {
     /**
      * An array of profile objects.
      */
-    public ListProfilesEmbedded withProfiles(List<ListProfileResponse> profiles) {
+    public ListProfilesEmbedded withProfiles(List<ProfileResponse> profiles) {
         Utils.checkNotNull(profiles, "profiles");
         this.profiles = profiles;
         return this;
@@ -77,7 +77,7 @@ public class ListProfilesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<ListProfileResponse> profiles;
+        private List<ProfileResponse> profiles;
 
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class ListProfilesEmbedded {
         /**
          * An array of profile objects.
          */
-        public Builder profiles(List<ListProfileResponse> profiles) {
+        public Builder profiles(List<ProfileResponse> profiles) {
             Utils.checkNotNull(profiles, "profiles");
             this.profiles = profiles;
             return this;

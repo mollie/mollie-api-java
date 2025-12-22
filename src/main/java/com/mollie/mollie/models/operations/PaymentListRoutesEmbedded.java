@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.ListRouteGetResponse;
+import com.mollie.mollie.models.components.RouteGetResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -18,11 +18,11 @@ public class PaymentListRoutesEmbedded {
      * An array of route objects.
      */
     @JsonProperty("routes")
-    private List<ListRouteGetResponse> routes;
+    private List<RouteGetResponse> routes;
 
     @JsonCreator
     public PaymentListRoutesEmbedded(
-            @JsonProperty("routes") List<ListRouteGetResponse> routes) {
+            @JsonProperty("routes") List<RouteGetResponse> routes) {
         Utils.checkNotNull(routes, "routes");
         this.routes = routes;
     }
@@ -31,7 +31,7 @@ public class PaymentListRoutesEmbedded {
      * An array of route objects.
      */
     @JsonIgnore
-    public List<ListRouteGetResponse> routes() {
+    public List<RouteGetResponse> routes() {
         return routes;
     }
 
@@ -43,7 +43,7 @@ public class PaymentListRoutesEmbedded {
     /**
      * An array of route objects.
      */
-    public PaymentListRoutesEmbedded withRoutes(List<ListRouteGetResponse> routes) {
+    public PaymentListRoutesEmbedded withRoutes(List<RouteGetResponse> routes) {
         Utils.checkNotNull(routes, "routes");
         this.routes = routes;
         return this;
@@ -77,7 +77,7 @@ public class PaymentListRoutesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<ListRouteGetResponse> routes;
+        private List<RouteGetResponse> routes;
 
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class PaymentListRoutesEmbedded {
         /**
          * An array of route objects.
          */
-        public Builder routes(List<ListRouteGetResponse> routes) {
+        public Builder routes(List<RouteGetResponse> routes) {
             Utils.checkNotNull(routes, "routes");
             this.routes = routes;
             return this;

@@ -49,7 +49,7 @@ public class EntityInvoice {
      * Total amount of the invoice, excluding VAT.
      */
     @JsonProperty("netAmount")
-    private EntityInvoiceNetAmount netAmount;
+    private NetAmount netAmount;
 
     /**
      * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU
@@ -59,13 +59,13 @@ public class EntityInvoice {
      * the EU, no VAT will be charged.
      */
     @JsonProperty("vatAmount")
-    private EntityInvoiceVatAmount vatAmount;
+    private VatAmount vatAmount;
 
     /**
      * Total amount of the invoice, including VAT.
      */
     @JsonProperty("grossAmount")
-    private EntityInvoiceGrossAmount grossAmount;
+    private GrossAmount grossAmount;
 
     /**
      * The collection of products which make up the invoice.
@@ -106,9 +106,9 @@ public class EntityInvoice {
             @JsonProperty("reference") String reference,
             @JsonProperty("vatNumber") Optional<String> vatNumber,
             @JsonProperty("status") EntityInvoiceStatus status,
-            @JsonProperty("netAmount") EntityInvoiceNetAmount netAmount,
-            @JsonProperty("vatAmount") EntityInvoiceVatAmount vatAmount,
-            @JsonProperty("grossAmount") EntityInvoiceGrossAmount grossAmount,
+            @JsonProperty("netAmount") NetAmount netAmount,
+            @JsonProperty("vatAmount") VatAmount vatAmount,
+            @JsonProperty("grossAmount") GrossAmount grossAmount,
             @JsonProperty("lines") List<EntityInvoiceLines> lines,
             @JsonProperty("issuedAt") String issuedAt,
             @JsonProperty("paidAt") JsonNullable<String> paidAt,
@@ -147,9 +147,9 @@ public class EntityInvoice {
             String id,
             String reference,
             EntityInvoiceStatus status,
-            EntityInvoiceNetAmount netAmount,
-            EntityInvoiceVatAmount vatAmount,
-            EntityInvoiceGrossAmount grossAmount,
+            NetAmount netAmount,
+            VatAmount vatAmount,
+            GrossAmount grossAmount,
             List<EntityInvoiceLines> lines,
             String issuedAt,
             EntityInvoiceLinks links) {
@@ -199,7 +199,7 @@ public class EntityInvoice {
      * Total amount of the invoice, excluding VAT.
      */
     @JsonIgnore
-    public EntityInvoiceNetAmount netAmount() {
+    public NetAmount netAmount() {
         return netAmount;
     }
 
@@ -211,7 +211,7 @@ public class EntityInvoice {
      * the EU, no VAT will be charged.
      */
     @JsonIgnore
-    public EntityInvoiceVatAmount vatAmount() {
+    public VatAmount vatAmount() {
         return vatAmount;
     }
 
@@ -219,7 +219,7 @@ public class EntityInvoice {
      * Total amount of the invoice, including VAT.
      */
     @JsonIgnore
-    public EntityInvoiceGrossAmount grossAmount() {
+    public GrossAmount grossAmount() {
         return grossAmount;
     }
 
@@ -321,7 +321,7 @@ public class EntityInvoice {
     /**
      * Total amount of the invoice, excluding VAT.
      */
-    public EntityInvoice withNetAmount(EntityInvoiceNetAmount netAmount) {
+    public EntityInvoice withNetAmount(NetAmount netAmount) {
         Utils.checkNotNull(netAmount, "netAmount");
         this.netAmount = netAmount;
         return this;
@@ -334,7 +334,7 @@ public class EntityInvoice {
      * merchants outside
      * the EU, no VAT will be charged.
      */
-    public EntityInvoice withVatAmount(EntityInvoiceVatAmount vatAmount) {
+    public EntityInvoice withVatAmount(VatAmount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
         this.vatAmount = vatAmount;
         return this;
@@ -343,7 +343,7 @@ public class EntityInvoice {
     /**
      * Total amount of the invoice, including VAT.
      */
-    public EntityInvoice withGrossAmount(EntityInvoiceGrossAmount grossAmount) {
+    public EntityInvoice withGrossAmount(GrossAmount grossAmount) {
         Utils.checkNotNull(grossAmount, "grossAmount");
         this.grossAmount = grossAmount;
         return this;
@@ -478,11 +478,11 @@ public class EntityInvoice {
 
         private EntityInvoiceStatus status;
 
-        private EntityInvoiceNetAmount netAmount;
+        private NetAmount netAmount;
 
-        private EntityInvoiceVatAmount vatAmount;
+        private VatAmount vatAmount;
 
-        private EntityInvoiceGrossAmount grossAmount;
+        private GrossAmount grossAmount;
 
         private List<EntityInvoiceLines> lines;
 
@@ -556,7 +556,7 @@ public class EntityInvoice {
         /**
          * Total amount of the invoice, excluding VAT.
          */
-        public Builder netAmount(EntityInvoiceNetAmount netAmount) {
+        public Builder netAmount(NetAmount netAmount) {
             Utils.checkNotNull(netAmount, "netAmount");
             this.netAmount = netAmount;
             return this;
@@ -570,7 +570,7 @@ public class EntityInvoice {
          * merchants outside
          * the EU, no VAT will be charged.
          */
-        public Builder vatAmount(EntityInvoiceVatAmount vatAmount) {
+        public Builder vatAmount(VatAmount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
             this.vatAmount = vatAmount;
             return this;
@@ -580,7 +580,7 @@ public class EntityInvoice {
         /**
          * Total amount of the invoice, including VAT.
          */
-        public Builder grossAmount(EntityInvoiceGrossAmount grossAmount) {
+        public Builder grossAmount(GrossAmount grossAmount) {
             Utils.checkNotNull(grossAmount, "grossAmount");
             this.grossAmount = grossAmount;
             return this;

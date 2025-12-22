@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.ListEntityMethod;
+import com.mollie.mollie.models.components.EntityMethod;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -21,11 +21,11 @@ public class ListMethodsEmbedded {
      * documentation.
      */
     @JsonProperty("methods")
-    private List<ListEntityMethod> methods;
+    private List<EntityMethod> methods;
 
     @JsonCreator
     public ListMethodsEmbedded(
-            @JsonProperty("methods") List<ListEntityMethod> methods) {
+            @JsonProperty("methods") List<EntityMethod> methods) {
         Utils.checkNotNull(methods, "methods");
         this.methods = methods;
     }
@@ -37,7 +37,7 @@ public class ListMethodsEmbedded {
      * documentation.
      */
     @JsonIgnore
-    public List<ListEntityMethod> methods() {
+    public List<EntityMethod> methods() {
         return methods;
     }
 
@@ -52,7 +52,7 @@ public class ListMethodsEmbedded {
      * to the [Get payment method endpoint](get-method)
      * documentation.
      */
-    public ListMethodsEmbedded withMethods(List<ListEntityMethod> methods) {
+    public ListMethodsEmbedded withMethods(List<EntityMethod> methods) {
         Utils.checkNotNull(methods, "methods");
         this.methods = methods;
         return this;
@@ -86,7 +86,7 @@ public class ListMethodsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<ListEntityMethod> methods;
+        private List<EntityMethod> methods;
 
         private Builder() {
           // force use of static builder() method
@@ -99,7 +99,7 @@ public class ListMethodsEmbedded {
          * to the [Get payment method endpoint](get-method)
          * documentation.
          */
-        public Builder methods(List<ListEntityMethod> methods) {
+        public Builder methods(List<EntityMethod> methods) {
             Utils.checkNotNull(methods, "methods");
             this.methods = methods;
             return this;

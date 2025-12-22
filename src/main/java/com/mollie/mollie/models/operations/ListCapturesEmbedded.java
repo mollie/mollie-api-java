@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.CaptureResponse;
+import com.mollie.mollie.models.components.ListCaptureResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -18,11 +18,11 @@ public class ListCapturesEmbedded {
      * An array of capture objects.
      */
     @JsonProperty("captures")
-    private List<CaptureResponse> captures;
+    private List<ListCaptureResponse> captures;
 
     @JsonCreator
     public ListCapturesEmbedded(
-            @JsonProperty("captures") List<CaptureResponse> captures) {
+            @JsonProperty("captures") List<ListCaptureResponse> captures) {
         Utils.checkNotNull(captures, "captures");
         this.captures = captures;
     }
@@ -31,7 +31,7 @@ public class ListCapturesEmbedded {
      * An array of capture objects.
      */
     @JsonIgnore
-    public List<CaptureResponse> captures() {
+    public List<ListCaptureResponse> captures() {
         return captures;
     }
 
@@ -43,7 +43,7 @@ public class ListCapturesEmbedded {
     /**
      * An array of capture objects.
      */
-    public ListCapturesEmbedded withCaptures(List<CaptureResponse> captures) {
+    public ListCapturesEmbedded withCaptures(List<ListCaptureResponse> captures) {
         Utils.checkNotNull(captures, "captures");
         this.captures = captures;
         return this;
@@ -77,7 +77,7 @@ public class ListCapturesEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<CaptureResponse> captures;
+        private List<ListCaptureResponse> captures;
 
         private Builder() {
           // force use of static builder() method
@@ -87,7 +87,7 @@ public class ListCapturesEmbedded {
         /**
          * An array of capture objects.
          */
-        public Builder captures(List<CaptureResponse> captures) {
+        public Builder captures(List<ListCaptureResponse> captures) {
             Utils.checkNotNull(captures, "captures");
             this.captures = captures;
             return this;
