@@ -71,9 +71,9 @@ public class GetChargeback {
                     .or(sdkConfiguration::retryConfig)
                     .orElse(RetryConfig.builder().backoff(BackoffStrategy.builder()
                                     .initialInterval(500, TimeUnit.MILLISECONDS)
-                                    .maxInterval(60000, TimeUnit.MILLISECONDS)
-                                    .baseFactor((double) (1.5))
-                                    .maxElapsedTime(3600000, TimeUnit.MILLISECONDS)
+                                    .maxInterval(5000, TimeUnit.MILLISECONDS)
+                                    .baseFactor((double) (2))
+                                    .maxElapsedTime(7500, TimeUnit.MILLISECONDS)
                                     .retryConnectError(true)
                                     .build())
                             .build());

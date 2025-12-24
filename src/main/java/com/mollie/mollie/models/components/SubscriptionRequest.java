@@ -119,6 +119,11 @@ public class SubscriptionRequest {
     @JsonProperty("mandateId")
     private Optional<String> mandateId;
 
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("profileId")
+    private Optional<String> profileId;
+
     /**
      * Whether to create the entity in test mode or live mode.
      * 
@@ -144,6 +149,7 @@ public class SubscriptionRequest {
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("webhookUrl") Optional<String> webhookUrl,
             @JsonProperty("mandateId") Optional<String> mandateId,
+            @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(times, "times");
@@ -155,6 +161,7 @@ public class SubscriptionRequest {
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(webhookUrl, "webhookUrl");
         Utils.checkNotNull(mandateId, "mandateId");
+        Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(testmode, "testmode");
         this.amount = amount;
         this.times = times;
@@ -166,6 +173,7 @@ public class SubscriptionRequest {
         this.metadata = metadata;
         this.webhookUrl = webhookUrl;
         this.mandateId = mandateId;
+        this.profileId = profileId;
         this.testmode = testmode;
     }
     
@@ -173,7 +181,7 @@ public class SubscriptionRequest {
         this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -287,6 +295,11 @@ public class SubscriptionRequest {
     @JsonIgnore
     public Optional<String> mandateId() {
         return mandateId;
+    }
+
+    @JsonIgnore
+    public Optional<String> profileId() {
+        return profileId;
     }
 
     /**
@@ -553,6 +566,19 @@ public class SubscriptionRequest {
         return this;
     }
 
+    public SubscriptionRequest withProfileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = Optional.ofNullable(profileId);
+        return this;
+    }
+
+
+    public SubscriptionRequest withProfileId(Optional<String> profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = profileId;
+        return this;
+    }
+
     /**
      * Whether to create the entity in test mode or live mode.
      * 
@@ -603,6 +629,7 @@ public class SubscriptionRequest {
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
             Utils.enhancedDeepEquals(this.mandateId, other.mandateId) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
@@ -612,7 +639,7 @@ public class SubscriptionRequest {
             amount, times, interval,
             startDate, description, method,
             applicationFee, metadata, webhookUrl,
-            mandateId, testmode);
+            mandateId, profileId, testmode);
     }
     
     @Override
@@ -628,6 +655,7 @@ public class SubscriptionRequest {
                 "metadata", metadata,
                 "webhookUrl", webhookUrl,
                 "mandateId", mandateId,
+                "profileId", profileId,
                 "testmode", testmode);
     }
 
@@ -653,6 +681,8 @@ public class SubscriptionRequest {
         private Optional<String> webhookUrl = Optional.empty();
 
         private Optional<String> mandateId = Optional.empty();
+
+        private Optional<String> profileId = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -909,6 +939,19 @@ public class SubscriptionRequest {
         }
 
 
+        public Builder profileId(String profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = Optional.ofNullable(profileId);
+            return this;
+        }
+
+        public Builder profileId(Optional<String> profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = profileId;
+            return this;
+        }
+
+
         /**
          * Whether to create the entity in test mode or live mode.
          * 
@@ -945,7 +988,7 @@ public class SubscriptionRequest {
                 amount, times, interval,
                 startDate, description, method,
                 applicationFee, metadata, webhookUrl,
-                mandateId, testmode);
+                mandateId, profileId, testmode);
         }
 
     }
