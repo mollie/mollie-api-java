@@ -112,7 +112,7 @@ public class SubscriptionRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUrl")
-    private Optional<String> webhookUrl;
+    private JsonNullable<String> webhookUrl;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -147,7 +147,7 @@ public class SubscriptionRequest {
             @JsonProperty("method") JsonNullable<? extends SubscriptionMethod> method,
             @JsonProperty("applicationFee") Optional<? extends SubscriptionRequestApplicationFee> applicationFee,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
-            @JsonProperty("webhookUrl") Optional<String> webhookUrl,
+            @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("mandateId") Optional<String> mandateId,
             @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
@@ -180,7 +180,7 @@ public class SubscriptionRequest {
     public SubscriptionRequest() {
         this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
@@ -288,7 +288,7 @@ public class SubscriptionRequest {
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonIgnore
-    public Optional<String> webhookUrl() {
+    public JsonNullable<String> webhookUrl() {
         return webhookUrl;
     }
 
@@ -535,10 +535,9 @@ public class SubscriptionRequest {
      */
     public SubscriptionRequest withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
-        this.webhookUrl = Optional.ofNullable(webhookUrl);
+        this.webhookUrl = JsonNullable.of(webhookUrl);
         return this;
     }
-
 
     /**
      * We will call this URL for any payment status changes of payments resulting from this subscription.
@@ -547,7 +546,7 @@ public class SubscriptionRequest {
      * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
-    public SubscriptionRequest withWebhookUrl(Optional<String> webhookUrl) {
+    public SubscriptionRequest withWebhookUrl(JsonNullable<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
         this.webhookUrl = webhookUrl;
         return this;
@@ -678,7 +677,7 @@ public class SubscriptionRequest {
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
-        private Optional<String> webhookUrl = Optional.empty();
+        private JsonNullable<String> webhookUrl = JsonNullable.undefined();
 
         private Optional<String> mandateId = Optional.empty();
 
@@ -908,7 +907,7 @@ public class SubscriptionRequest {
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
-            this.webhookUrl = Optional.ofNullable(webhookUrl);
+            this.webhookUrl = JsonNullable.of(webhookUrl);
             return this;
         }
 
@@ -919,7 +918,7 @@ public class SubscriptionRequest {
          * failures as
          * well. Be sure to verify the payment's subscription ID and its status.
          */
-        public Builder webhookUrl(Optional<String> webhookUrl) {
+        public Builder webhookUrl(JsonNullable<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
             this.webhookUrl = webhookUrl;
             return this;

@@ -145,8 +145,9 @@ public class SubscriptionResponse {
      * failures as
      * well. Be sure to verify the payment's subscription ID and its status.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("webhookUrl")
-    private String webhookUrl;
+    private Optional<String> webhookUrl;
 
     /**
      * The customer this subscription belongs to.
@@ -197,7 +198,7 @@ public class SubscriptionResponse {
             @JsonProperty("method") Optional<? extends SubscriptionMethodResponse> method,
             @JsonProperty("applicationFee") Optional<? extends SubscriptionResponseApplicationFee> applicationFee,
             @JsonProperty("metadata") Optional<? extends Metadata> metadata,
-            @JsonProperty("webhookUrl") String webhookUrl,
+            @JsonProperty("webhookUrl") Optional<String> webhookUrl,
             @JsonProperty("customerId") String customerId,
             @JsonProperty("mandateId") Optional<String> mandateId,
             @JsonProperty("createdAt") String createdAt,
@@ -254,7 +255,6 @@ public class SubscriptionResponse {
             String interval,
             String startDate,
             String description,
-            String webhookUrl,
             String customerId,
             String createdAt,
             SubscriptionResponseLinks links) {
@@ -262,7 +262,7 @@ public class SubscriptionResponse {
             status, amount, Optional.empty(),
             Optional.empty(), interval, startDate,
             JsonNullable.undefined(), description, Optional.empty(),
-            Optional.empty(), Optional.empty(), webhookUrl,
+            Optional.empty(), Optional.empty(), Optional.empty(),
             customerId, Optional.empty(), createdAt,
             JsonNullable.undefined(), links);
     }
@@ -419,7 +419,7 @@ public class SubscriptionResponse {
      * well. Be sure to verify the payment's subscription ID and its status.
      */
     @JsonIgnore
-    public String webhookUrl() {
+    public Optional<String> webhookUrl() {
         return webhookUrl;
     }
 
@@ -710,6 +710,20 @@ public class SubscriptionResponse {
      */
     public SubscriptionResponse withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
+        this.webhookUrl = Optional.ofNullable(webhookUrl);
+        return this;
+    }
+
+
+    /**
+     * We will call this URL for any payment status changes of payments resulting from this subscription.
+     * 
+     * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+     * failures as
+     * well. Be sure to verify the payment's subscription ID and its status.
+     */
+    public SubscriptionResponse withWebhookUrl(Optional<String> webhookUrl) {
+        Utils.checkNotNull(webhookUrl, "webhookUrl");
         this.webhookUrl = webhookUrl;
         return this;
     }
@@ -877,7 +891,7 @@ public class SubscriptionResponse {
 
         private Optional<? extends Metadata> metadata = Optional.empty();
 
-        private String webhookUrl;
+        private Optional<String> webhookUrl = Optional.empty();
 
         private String customerId;
 
@@ -1144,6 +1158,19 @@ public class SubscriptionResponse {
          * well. Be sure to verify the payment's subscription ID and its status.
          */
         public Builder webhookUrl(String webhookUrl) {
+            Utils.checkNotNull(webhookUrl, "webhookUrl");
+            this.webhookUrl = Optional.ofNullable(webhookUrl);
+            return this;
+        }
+
+        /**
+         * We will call this URL for any payment status changes of payments resulting from this subscription.
+         * 
+         * <p>This webhook will receive **all** events for the subscription's payments. This may include payment
+         * failures as
+         * well. Be sure to verify the payment's subscription ID and its status.
+         */
+        public Builder webhookUrl(Optional<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
             this.webhookUrl = webhookUrl;
             return this;
