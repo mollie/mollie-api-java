@@ -5,42 +5,52 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 /**
- * EntityMethodImage
+ * EntityMethodGetIssuersImage
  * 
- * <p>URLs of images representing the payment method.
+ * <p>URLs of images representing the issuer.
+ * required:
+ * - size1x
+ * - size2x
+ * - svg
  */
-public class EntityMethodImage {
+public class EntityMethodGetIssuersImage {
     /**
      * The URL pointing to an icon of 32 by 24 pixels.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("size1x")
-    private String size1x;
+    private Optional<String> size1x;
 
     /**
      * The URL pointing to an icon of 64 by 48 pixels.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("size2x")
-    private String size2x;
+    private Optional<String> size2x;
 
     /**
      * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
      * can
      * scale to any desired size without compromising visual quality.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("svg")
-    private String svg;
+    private Optional<String> svg;
 
     @JsonCreator
-    public EntityMethodImage(
-            @JsonProperty("size1x") String size1x,
-            @JsonProperty("size2x") String size2x,
-            @JsonProperty("svg") String svg) {
+    public EntityMethodGetIssuersImage(
+            @JsonProperty("size1x") Optional<String> size1x,
+            @JsonProperty("size2x") Optional<String> size2x,
+            @JsonProperty("svg") Optional<String> svg) {
         Utils.checkNotNull(size1x, "size1x");
         Utils.checkNotNull(size2x, "size2x");
         Utils.checkNotNull(svg, "svg");
@@ -48,12 +58,16 @@ public class EntityMethodImage {
         this.size2x = size2x;
         this.svg = svg;
     }
+    
+    public EntityMethodGetIssuersImage() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * The URL pointing to an icon of 32 by 24 pixels.
      */
     @JsonIgnore
-    public String size1x() {
+    public Optional<String> size1x() {
         return size1x;
     }
 
@@ -61,7 +75,7 @@ public class EntityMethodImage {
      * The URL pointing to an icon of 64 by 48 pixels.
      */
     @JsonIgnore
-    public String size2x() {
+    public Optional<String> size2x() {
         return size2x;
     }
 
@@ -71,7 +85,7 @@ public class EntityMethodImage {
      * scale to any desired size without compromising visual quality.
      */
     @JsonIgnore
-    public String svg() {
+    public Optional<String> svg() {
         return svg;
     }
 
@@ -83,7 +97,17 @@ public class EntityMethodImage {
     /**
      * The URL pointing to an icon of 32 by 24 pixels.
      */
-    public EntityMethodImage withSize1x(String size1x) {
+    public EntityMethodGetIssuersImage withSize1x(String size1x) {
+        Utils.checkNotNull(size1x, "size1x");
+        this.size1x = Optional.ofNullable(size1x);
+        return this;
+    }
+
+
+    /**
+     * The URL pointing to an icon of 32 by 24 pixels.
+     */
+    public EntityMethodGetIssuersImage withSize1x(Optional<String> size1x) {
         Utils.checkNotNull(size1x, "size1x");
         this.size1x = size1x;
         return this;
@@ -92,7 +116,17 @@ public class EntityMethodImage {
     /**
      * The URL pointing to an icon of 64 by 48 pixels.
      */
-    public EntityMethodImage withSize2x(String size2x) {
+    public EntityMethodGetIssuersImage withSize2x(String size2x) {
+        Utils.checkNotNull(size2x, "size2x");
+        this.size2x = Optional.ofNullable(size2x);
+        return this;
+    }
+
+
+    /**
+     * The URL pointing to an icon of 64 by 48 pixels.
+     */
+    public EntityMethodGetIssuersImage withSize2x(Optional<String> size2x) {
         Utils.checkNotNull(size2x, "size2x");
         this.size2x = size2x;
         return this;
@@ -103,7 +137,19 @@ public class EntityMethodImage {
      * can
      * scale to any desired size without compromising visual quality.
      */
-    public EntityMethodImage withSvg(String svg) {
+    public EntityMethodGetIssuersImage withSvg(String svg) {
+        Utils.checkNotNull(svg, "svg");
+        this.svg = Optional.ofNullable(svg);
+        return this;
+    }
+
+
+    /**
+     * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+     * can
+     * scale to any desired size without compromising visual quality.
+     */
+    public EntityMethodGetIssuersImage withSvg(Optional<String> svg) {
         Utils.checkNotNull(svg, "svg");
         this.svg = svg;
         return this;
@@ -117,7 +163,7 @@ public class EntityMethodImage {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityMethodImage other = (EntityMethodImage) o;
+        EntityMethodGetIssuersImage other = (EntityMethodGetIssuersImage) o;
         return 
             Utils.enhancedDeepEquals(this.size1x, other.size1x) &&
             Utils.enhancedDeepEquals(this.size2x, other.size2x) &&
@@ -132,7 +178,7 @@ public class EntityMethodImage {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityMethodImage.class,
+        return Utils.toString(EntityMethodGetIssuersImage.class,
                 "size1x", size1x,
                 "size2x", size2x,
                 "svg", svg);
@@ -141,11 +187,11 @@ public class EntityMethodImage {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String size1x;
+        private Optional<String> size1x = Optional.empty();
 
-        private String size2x;
+        private Optional<String> size2x = Optional.empty();
 
-        private String svg;
+        private Optional<String> svg = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -157,6 +203,15 @@ public class EntityMethodImage {
          */
         public Builder size1x(String size1x) {
             Utils.checkNotNull(size1x, "size1x");
+            this.size1x = Optional.ofNullable(size1x);
+            return this;
+        }
+
+        /**
+         * The URL pointing to an icon of 32 by 24 pixels.
+         */
+        public Builder size1x(Optional<String> size1x) {
+            Utils.checkNotNull(size1x, "size1x");
             this.size1x = size1x;
             return this;
         }
@@ -166,6 +221,15 @@ public class EntityMethodImage {
          * The URL pointing to an icon of 64 by 48 pixels.
          */
         public Builder size2x(String size2x) {
+            Utils.checkNotNull(size2x, "size2x");
+            this.size2x = Optional.ofNullable(size2x);
+            return this;
+        }
+
+        /**
+         * The URL pointing to an icon of 64 by 48 pixels.
+         */
+        public Builder size2x(Optional<String> size2x) {
             Utils.checkNotNull(size2x, "size2x");
             this.size2x = size2x;
             return this;
@@ -179,13 +243,24 @@ public class EntityMethodImage {
          */
         public Builder svg(String svg) {
             Utils.checkNotNull(svg, "svg");
+            this.svg = Optional.ofNullable(svg);
+            return this;
+        }
+
+        /**
+         * The URL pointing to a vector version of the icon. Usage of this format is preferred, since the icon
+         * can
+         * scale to any desired size without compromising visual quality.
+         */
+        public Builder svg(Optional<String> svg) {
+            Utils.checkNotNull(svg, "svg");
             this.svg = svg;
             return this;
         }
 
-        public EntityMethodImage build() {
+        public EntityMethodGetIssuersImage build() {
 
-            return new EntityMethodImage(
+            return new EntityMethodGetIssuersImage(
                 size1x, size2x, svg);
         }
 

@@ -52,7 +52,6 @@ public class ListEntityMethodAllId {
     public static final ListEntityMethodAllId PAYBYBANK = new ListEntityMethodAllId("paybybank");
     public static final ListEntityMethodAllId PAYPAL = new ListEntityMethodAllId("paypal");
     public static final ListEntityMethodAllId PAYSAFECARD = new ListEntityMethodAllId("paysafecard");
-    public static final ListEntityMethodAllId POINTOFSALE = new ListEntityMethodAllId("pointofsale");
     public static final ListEntityMethodAllId PRZELEWY24 = new ListEntityMethodAllId("przelewy24");
     public static final ListEntityMethodAllId RIVERTY = new ListEntityMethodAllId("riverty");
     public static final ListEntityMethodAllId SATISPAY = new ListEntityMethodAllId("satispay");
@@ -61,10 +60,6 @@ public class ListEntityMethodAllId {
     public static final ListEntityMethodAllId TWINT = new ListEntityMethodAllId("twint");
     public static final ListEntityMethodAllId VIPPS = new ListEntityMethodAllId("vipps");
     public static final ListEntityMethodAllId VOUCHER = new ListEntityMethodAllId("voucher");
-    public static final ListEntityMethodAllId KLARNAPAYLATER = new ListEntityMethodAllId("klarnapaylater");
-    public static final ListEntityMethodAllId KLARNAPAYNOW = new ListEntityMethodAllId("klarnapaynow");
-    public static final ListEntityMethodAllId KLARNASLICEIT = new ListEntityMethodAllId("klarnasliceit");
-    public static final ListEntityMethodAllId PAYCONIQ = new ListEntityMethodAllId("payconiq");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -163,7 +158,6 @@ public class ListEntityMethodAllId {
         map.put("paybybank", PAYBYBANK);
         map.put("paypal", PAYPAL);
         map.put("paysafecard", PAYSAFECARD);
-        map.put("pointofsale", POINTOFSALE);
         map.put("przelewy24", PRZELEWY24);
         map.put("riverty", RIVERTY);
         map.put("satispay", SATISPAY);
@@ -172,10 +166,6 @@ public class ListEntityMethodAllId {
         map.put("twint", TWINT);
         map.put("vipps", VIPPS);
         map.put("voucher", VOUCHER);
-        map.put("klarnapaylater", KLARNAPAYLATER);
-        map.put("klarnapaynow", KLARNAPAYNOW);
-        map.put("klarnasliceit", KLARNASLICEIT);
-        map.put("payconiq", PAYCONIQ);
         return map;
     }
 
@@ -206,7 +196,6 @@ public class ListEntityMethodAllId {
         map.put("paybybank", ListEntityMethodAllIdEnum.PAYBYBANK);
         map.put("paypal", ListEntityMethodAllIdEnum.PAYPAL);
         map.put("paysafecard", ListEntityMethodAllIdEnum.PAYSAFECARD);
-        map.put("pointofsale", ListEntityMethodAllIdEnum.POINTOFSALE);
         map.put("przelewy24", ListEntityMethodAllIdEnum.PRZELEWY24);
         map.put("riverty", ListEntityMethodAllIdEnum.RIVERTY);
         map.put("satispay", ListEntityMethodAllIdEnum.SATISPAY);
@@ -215,10 +204,6 @@ public class ListEntityMethodAllId {
         map.put("twint", ListEntityMethodAllIdEnum.TWINT);
         map.put("vipps", ListEntityMethodAllIdEnum.VIPPS);
         map.put("voucher", ListEntityMethodAllIdEnum.VOUCHER);
-        map.put("klarnapaylater", ListEntityMethodAllIdEnum.KLARNAPAYLATER);
-        map.put("klarnapaynow", ListEntityMethodAllIdEnum.KLARNAPAYNOW);
-        map.put("klarnasliceit", ListEntityMethodAllIdEnum.KLARNASLICEIT);
-        map.put("payconiq", ListEntityMethodAllIdEnum.PAYCONIQ);
         return map;
     }
     
@@ -250,7 +235,6 @@ public class ListEntityMethodAllId {
         PAYBYBANK("paybybank"),
         PAYPAL("paypal"),
         PAYSAFECARD("paysafecard"),
-        POINTOFSALE("pointofsale"),
         PRZELEWY24("przelewy24"),
         RIVERTY("riverty"),
         SATISPAY("satispay"),
@@ -258,11 +242,7 @@ public class ListEntityMethodAllId {
         TRUSTLY("trustly"),
         TWINT("twint"),
         VIPPS("vipps"),
-        VOUCHER("voucher"),
-        KLARNAPAYLATER("klarnapaylater"),
-        KLARNAPAYNOW("klarnapaynow"),
-        KLARNASLICEIT("klarnasliceit"),
-        PAYCONIQ("payconiq"),;
+        VOUCHER("voucher"),;
 
         private final String value;
 

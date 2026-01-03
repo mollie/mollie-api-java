@@ -1,7 +1,6 @@
-# EntityMethodMaximumAmount
+# EntityMethodGetMinimumAmount
 
-The maximum payment amount allowed when using this payment method. If there is no method-specific maximum, `null`
-is returned instead.
+The minimum payment amount required to use this payment method.
 
 
 ## Fields

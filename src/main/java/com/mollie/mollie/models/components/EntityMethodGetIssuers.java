@@ -11,7 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 
 
-public class EntityMethodIssuers {
+public class EntityMethodGetIssuers {
 
     @JsonProperty("resource")
     private String resource;
@@ -34,14 +34,14 @@ public class EntityMethodIssuers {
      * - svg
      */
     @JsonProperty("image")
-    private EntityMethodIssuersImage image;
+    private EntityMethodGetIssuersImage image;
 
     @JsonCreator
-    public EntityMethodIssuers(
+    public EntityMethodGetIssuers(
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
-            @JsonProperty("image") EntityMethodIssuersImage image) {
+            @JsonProperty("image") EntityMethodGetIssuersImage image) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
@@ -78,7 +78,7 @@ public class EntityMethodIssuers {
      * - svg
      */
     @JsonIgnore
-    public EntityMethodIssuersImage image() {
+    public EntityMethodGetIssuersImage image() {
         return image;
     }
 
@@ -87,13 +87,13 @@ public class EntityMethodIssuers {
     }
 
 
-    public EntityMethodIssuers withResource(String resource) {
+    public EntityMethodGetIssuers withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
     }
 
-    public EntityMethodIssuers withId(String id) {
+    public EntityMethodGetIssuers withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -102,7 +102,7 @@ public class EntityMethodIssuers {
     /**
      * The full name of the issuer.
      */
-    public EntityMethodIssuers withName(String name) {
+    public EntityMethodGetIssuers withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
         return this;
@@ -115,7 +115,7 @@ public class EntityMethodIssuers {
      * - size2x
      * - svg
      */
-    public EntityMethodIssuers withImage(EntityMethodIssuersImage image) {
+    public EntityMethodGetIssuers withImage(EntityMethodGetIssuersImage image) {
         Utils.checkNotNull(image, "image");
         this.image = image;
         return this;
@@ -129,7 +129,7 @@ public class EntityMethodIssuers {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityMethodIssuers other = (EntityMethodIssuers) o;
+        EntityMethodGetIssuers other = (EntityMethodGetIssuers) o;
         return 
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
@@ -146,7 +146,7 @@ public class EntityMethodIssuers {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityMethodIssuers.class,
+        return Utils.toString(EntityMethodGetIssuers.class,
                 "resource", resource,
                 "id", id,
                 "name", name,
@@ -162,7 +162,7 @@ public class EntityMethodIssuers {
 
         private String name;
 
-        private EntityMethodIssuersImage image;
+        private EntityMethodGetIssuersImage image;
 
         private Builder() {
           // force use of static builder() method
@@ -200,15 +200,15 @@ public class EntityMethodIssuers {
          * - size2x
          * - svg
          */
-        public Builder image(EntityMethodIssuersImage image) {
+        public Builder image(EntityMethodGetIssuersImage image) {
             Utils.checkNotNull(image, "image");
             this.image = image;
             return this;
         }
 
-        public EntityMethodIssuers build() {
+        public EntityMethodGetIssuers build() {
 
-            return new EntityMethodIssuers(
+            return new EntityMethodGetIssuers(
                 resource, id, name,
                 image);
         }

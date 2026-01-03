@@ -15,11 +15,11 @@ import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
- * EntityMethodLinks
+ * EntityMethodGetLinks
  * 
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
-public class EntityMethodLinks {
+public class EntityMethodGetLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -34,7 +34,7 @@ public class EntityMethodLinks {
     private Optional<? extends Url> documentation;
 
     @JsonCreator
-    public EntityMethodLinks(
+    public EntityMethodGetLinks(
             @JsonProperty("self") Url self,
             @JsonProperty("documentation") Optional<? extends Url> documentation) {
         Utils.checkNotNull(self, "self");
@@ -43,7 +43,7 @@ public class EntityMethodLinks {
         this.documentation = documentation;
     }
     
-    public EntityMethodLinks(
+    public EntityMethodGetLinks(
             Url self) {
         this(self, Optional.empty());
     }
@@ -73,7 +73,7 @@ public class EntityMethodLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityMethodLinks withSelf(Url self) {
+    public EntityMethodGetLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -82,7 +82,7 @@ public class EntityMethodLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityMethodLinks withDocumentation(Url documentation) {
+    public EntityMethodGetLinks withDocumentation(Url documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = Optional.ofNullable(documentation);
         return this;
@@ -92,7 +92,7 @@ public class EntityMethodLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public EntityMethodLinks withDocumentation(Optional<? extends Url> documentation) {
+    public EntityMethodGetLinks withDocumentation(Optional<? extends Url> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -106,7 +106,7 @@ public class EntityMethodLinks {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityMethodLinks other = (EntityMethodLinks) o;
+        EntityMethodGetLinks other = (EntityMethodGetLinks) o;
         return 
             Utils.enhancedDeepEquals(this.self, other.self) &&
             Utils.enhancedDeepEquals(this.documentation, other.documentation);
@@ -120,7 +120,7 @@ public class EntityMethodLinks {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityMethodLinks.class,
+        return Utils.toString(EntityMethodGetLinks.class,
                 "self", self,
                 "documentation", documentation);
     }
@@ -165,9 +165,9 @@ public class EntityMethodLinks {
             return this;
         }
 
-        public EntityMethodLinks build() {
+        public EntityMethodGetLinks build() {
 
-            return new EntityMethodLinks(
+            return new EntityMethodGetLinks(
                 self, documentation);
         }
 

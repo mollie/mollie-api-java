@@ -10,7 +10,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.EntityMethod;
+import com.mollie.mollie.models.components.EntityMethodGet;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetMethodRequest;
@@ -207,7 +207,7 @@ public class GetMethod {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withEntityMethod(Utils.unmarshal(response, new TypeReference<EntityMethod>() {}));
+                    return res.withEntityMethodGet(Utils.unmarshal(response, new TypeReference<EntityMethodGet>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -295,8 +295,8 @@ public class GetMethod {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<EntityMethod>() {})
-                            .thenApply(res::withEntityMethod);
+                    return Utils.unmarshalAsync(response, new TypeReference<EntityMethodGet>() {})
+                            .thenApply(res::withEntityMethodGet);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

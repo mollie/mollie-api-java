@@ -5,7 +5,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntityMethod;
+import com.mollie.mollie.models.components.EntityMethodGet;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -36,22 +36,22 @@ public class GetMethodResponse implements Response {
     /**
      * The payment method object.
      */
-    private Optional<? extends EntityMethod> entityMethod;
+    private Optional<? extends EntityMethodGet> entityMethodGet;
 
     @JsonCreator
     public GetMethodResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends EntityMethod> entityMethod) {
+            Optional<? extends EntityMethodGet> entityMethodGet) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(entityMethod, "entityMethod");
+        Utils.checkNotNull(entityMethodGet, "entityMethodGet");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.entityMethod = entityMethod;
+        this.entityMethodGet = entityMethodGet;
     }
     
     public GetMethodResponse(
@@ -91,8 +91,8 @@ public class GetMethodResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityMethod> entityMethod() {
-        return (Optional<EntityMethod>) entityMethod;
+    public Optional<EntityMethodGet> entityMethodGet() {
+        return (Optional<EntityMethodGet>) entityMethodGet;
     }
 
     public static Builder builder() {
@@ -130,9 +130,9 @@ public class GetMethodResponse implements Response {
     /**
      * The payment method object.
      */
-    public GetMethodResponse withEntityMethod(EntityMethod entityMethod) {
-        Utils.checkNotNull(entityMethod, "entityMethod");
-        this.entityMethod = Optional.ofNullable(entityMethod);
+    public GetMethodResponse withEntityMethodGet(EntityMethodGet entityMethodGet) {
+        Utils.checkNotNull(entityMethodGet, "entityMethodGet");
+        this.entityMethodGet = Optional.ofNullable(entityMethodGet);
         return this;
     }
 
@@ -140,9 +140,9 @@ public class GetMethodResponse implements Response {
     /**
      * The payment method object.
      */
-    public GetMethodResponse withEntityMethod(Optional<? extends EntityMethod> entityMethod) {
-        Utils.checkNotNull(entityMethod, "entityMethod");
-        this.entityMethod = entityMethod;
+    public GetMethodResponse withEntityMethodGet(Optional<? extends EntityMethodGet> entityMethodGet) {
+        Utils.checkNotNull(entityMethodGet, "entityMethodGet");
+        this.entityMethodGet = entityMethodGet;
         return this;
     }
 
@@ -159,14 +159,14 @@ public class GetMethodResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.entityMethod, other.entityMethod);
+            Utils.enhancedDeepEquals(this.entityMethodGet, other.entityMethodGet);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            entityMethod);
+            entityMethodGet);
     }
     
     @Override
@@ -175,7 +175,7 @@ public class GetMethodResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "entityMethod", entityMethod);
+                "entityMethodGet", entityMethodGet);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -187,7 +187,7 @@ public class GetMethodResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends EntityMethod> entityMethod = Optional.empty();
+        private Optional<? extends EntityMethodGet> entityMethodGet = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -227,18 +227,18 @@ public class GetMethodResponse implements Response {
         /**
          * The payment method object.
          */
-        public Builder entityMethod(EntityMethod entityMethod) {
-            Utils.checkNotNull(entityMethod, "entityMethod");
-            this.entityMethod = Optional.ofNullable(entityMethod);
+        public Builder entityMethodGet(EntityMethodGet entityMethodGet) {
+            Utils.checkNotNull(entityMethodGet, "entityMethodGet");
+            this.entityMethodGet = Optional.ofNullable(entityMethodGet);
             return this;
         }
 
         /**
          * The payment method object.
          */
-        public Builder entityMethod(Optional<? extends EntityMethod> entityMethod) {
-            Utils.checkNotNull(entityMethod, "entityMethod");
-            this.entityMethod = entityMethod;
+        public Builder entityMethodGet(Optional<? extends EntityMethodGet> entityMethodGet) {
+            Utils.checkNotNull(entityMethodGet, "entityMethodGet");
+            this.entityMethodGet = entityMethodGet;
             return this;
         }
 
@@ -246,7 +246,7 @@ public class GetMethodResponse implements Response {
 
             return new GetMethodResponse(
                 contentType, statusCode, rawResponse,
-                entityMethod);
+                entityMethodGet);
         }
 
     }

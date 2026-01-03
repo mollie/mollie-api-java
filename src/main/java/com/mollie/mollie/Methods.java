@@ -63,6 +63,10 @@ public class Methods {
      * to use the
      * `amount` parameters.
      * 
+     * <p>ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the
+     * information about
+     * a non-online payment method, you can use the [Get payment method endpoint](get-method).
+     * 
      * @return The call builder
      */
     public ListMethodsRequestBuilder list() {
@@ -90,6 +94,10 @@ public class Methods {
      * wish to retrieve payment methods which exclusively support other currencies (e.g. Twint), you need
      * to use the
      * `amount` parameters.
+     * 
+     * <p>ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the
+     * information about
+     * a non-online payment method, you can use the [Get payment method endpoint](get-method).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -121,6 +129,10 @@ public class Methods {
      * to use the
      * `amount` parameters.
      * 
+     * <p>ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the
+     * information about
+     * a non-online payment method, you can use the [Get payment method endpoint](get-method).
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
@@ -142,6 +154,10 @@ public class Methods {
      * 
      * <p>The list can optionally be filtered using a number of parameters described below.
      * 
+     * <p>ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the
+     * information about
+     * a non-online payment method, you can use the [Get payment method endpoint](get-method).
+     * 
      * @return The call builder
      */
     public ListAllMethodsRequestBuilder all() {
@@ -157,6 +173,10 @@ public class Methods {
      * API.
      * 
      * <p>The list can optionally be filtered using a number of parameters described below.
+     * 
+     * <p>ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the
+     * information about
+     * a non-online payment method, you can use the [Get payment method endpoint](get-method).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -175,6 +195,10 @@ public class Methods {
      * API.
      * 
      * <p>The list can optionally be filtered using a number of parameters described below.
+     * 
+     * <p>ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the
+     * information about
+     * a non-online payment method, you can use the [Get payment method endpoint](get-method).
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

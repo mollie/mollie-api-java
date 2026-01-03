@@ -11,13 +11,11 @@ import java.lang.Override;
 import java.lang.String;
 
 /**
- * EntityMethodMaximumAmount
+ * EntityMethodGetMinimumAmount
  * 
- * <p>The maximum payment amount allowed when using this payment method. If there is no method-specific
- * maximum, `null`
- * is returned instead.
+ * <p>The minimum payment amount required to use this payment method.
  */
-public class EntityMethodMaximumAmount {
+public class EntityMethodGetMinimumAmount {
     /**
      * A three-character ISO 4217 currency code.
      */
@@ -31,7 +29,7 @@ public class EntityMethodMaximumAmount {
     private String value;
 
     @JsonCreator
-    public EntityMethodMaximumAmount(
+    public EntityMethodGetMinimumAmount(
             @JsonProperty("currency") String currency,
             @JsonProperty("value") String value) {
         Utils.checkNotNull(currency, "currency");
@@ -64,7 +62,7 @@ public class EntityMethodMaximumAmount {
     /**
      * A three-character ISO 4217 currency code.
      */
-    public EntityMethodMaximumAmount withCurrency(String currency) {
+    public EntityMethodGetMinimumAmount withCurrency(String currency) {
         Utils.checkNotNull(currency, "currency");
         this.currency = currency;
         return this;
@@ -73,7 +71,7 @@ public class EntityMethodMaximumAmount {
     /**
      * A string containing an exact monetary amount in the given currency.
      */
-    public EntityMethodMaximumAmount withValue(String value) {
+    public EntityMethodGetMinimumAmount withValue(String value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
@@ -87,7 +85,7 @@ public class EntityMethodMaximumAmount {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityMethodMaximumAmount other = (EntityMethodMaximumAmount) o;
+        EntityMethodGetMinimumAmount other = (EntityMethodGetMinimumAmount) o;
         return 
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.value, other.value);
@@ -101,7 +99,7 @@ public class EntityMethodMaximumAmount {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityMethodMaximumAmount.class,
+        return Utils.toString(EntityMethodGetMinimumAmount.class,
                 "currency", currency,
                 "value", value);
     }
@@ -137,9 +135,9 @@ public class EntityMethodMaximumAmount {
             return this;
         }
 
-        public EntityMethodMaximumAmount build() {
+        public EntityMethodGetMinimumAmount build() {
 
-            return new EntityMethodMaximumAmount(
+            return new EntityMethodGetMinimumAmount(
                 currency, value);
         }
 

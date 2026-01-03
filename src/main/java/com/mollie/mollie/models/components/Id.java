@@ -52,7 +52,6 @@ public class Id {
     public static final Id PAYBYBANK = new Id("paybybank");
     public static final Id PAYPAL = new Id("paypal");
     public static final Id PAYSAFECARD = new Id("paysafecard");
-    public static final Id POINTOFSALE = new Id("pointofsale");
     public static final Id PRZELEWY24 = new Id("przelewy24");
     public static final Id RIVERTY = new Id("riverty");
     public static final Id SATISPAY = new Id("satispay");
@@ -61,10 +60,6 @@ public class Id {
     public static final Id TWINT = new Id("twint");
     public static final Id VIPPS = new Id("vipps");
     public static final Id VOUCHER = new Id("voucher");
-    public static final Id KLARNAPAYLATER = new Id("klarnapaylater");
-    public static final Id KLARNAPAYNOW = new Id("klarnapaynow");
-    public static final Id KLARNASLICEIT = new Id("klarnasliceit");
-    public static final Id PAYCONIQ = new Id("payconiq");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -163,7 +158,6 @@ public class Id {
         map.put("paybybank", PAYBYBANK);
         map.put("paypal", PAYPAL);
         map.put("paysafecard", PAYSAFECARD);
-        map.put("pointofsale", POINTOFSALE);
         map.put("przelewy24", PRZELEWY24);
         map.put("riverty", RIVERTY);
         map.put("satispay", SATISPAY);
@@ -172,10 +166,6 @@ public class Id {
         map.put("twint", TWINT);
         map.put("vipps", VIPPS);
         map.put("voucher", VOUCHER);
-        map.put("klarnapaylater", KLARNAPAYLATER);
-        map.put("klarnapaynow", KLARNAPAYNOW);
-        map.put("klarnasliceit", KLARNASLICEIT);
-        map.put("payconiq", PAYCONIQ);
         return map;
     }
 
@@ -206,7 +196,6 @@ public class Id {
         map.put("paybybank", IdEnum.PAYBYBANK);
         map.put("paypal", IdEnum.PAYPAL);
         map.put("paysafecard", IdEnum.PAYSAFECARD);
-        map.put("pointofsale", IdEnum.POINTOFSALE);
         map.put("przelewy24", IdEnum.PRZELEWY24);
         map.put("riverty", IdEnum.RIVERTY);
         map.put("satispay", IdEnum.SATISPAY);
@@ -215,10 +204,6 @@ public class Id {
         map.put("twint", IdEnum.TWINT);
         map.put("vipps", IdEnum.VIPPS);
         map.put("voucher", IdEnum.VOUCHER);
-        map.put("klarnapaylater", IdEnum.KLARNAPAYLATER);
-        map.put("klarnapaynow", IdEnum.KLARNAPAYNOW);
-        map.put("klarnasliceit", IdEnum.KLARNASLICEIT);
-        map.put("payconiq", IdEnum.PAYCONIQ);
         return map;
     }
     
@@ -250,7 +235,6 @@ public class Id {
         PAYBYBANK("paybybank"),
         PAYPAL("paypal"),
         PAYSAFECARD("paysafecard"),
-        POINTOFSALE("pointofsale"),
         PRZELEWY24("przelewy24"),
         RIVERTY("riverty"),
         SATISPAY("satispay"),
@@ -258,11 +242,7 @@ public class Id {
         TRUSTLY("trustly"),
         TWINT("twint"),
         VIPPS("vipps"),
-        VOUCHER("voucher"),
-        KLARNAPAYLATER("klarnapaylater"),
-        KLARNAPAYNOW("klarnapaynow"),
-        KLARNASLICEIT("klarnasliceit"),
-        PAYCONIQ("payconiq"),;
+        VOUCHER("voucher"),;
 
         private final String value;
 
