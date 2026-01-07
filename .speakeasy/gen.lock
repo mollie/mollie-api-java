@@ -3,16 +3,16 @@ id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
   docChecksum: 7520bdcaa712c27ef1aeede01e77a556
   docVersion: 1.0.0
-  speakeasyVersion: 1.680.11
-  generationVersion: 2.788.15
-  releaseVersion: 0.24.8
-  configChecksum: 5cf7bb6c0f01570d9a42f9aec118a7d9
+  speakeasyVersion: 1.682.0
+  generationVersion: 2.791.1
+  releaseVersion: 1.0.0
+  configChecksum: a2e9389127b9c3aba2ea5c4fe1818ea0
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 persistentEdits:
-  generation_id: cbb22bba-c733-4a44-9883-ab3d3c61e897
-  pristine_commit_hash: 235da24970e4ad90de1fdaf6848b970c0dbf008f
-  pristine_tree_hash: 81b43ca67a5c4c182ffef2f17940b6803725ec92
+  generation_id: 2c5b7968-0235-4513-8040-29e9ffe6a90b
+  pristine_commit_hash: 9ffa833b1e5364f55154b2092f43fd96ddcbea8d
+  pristine_tree_hash: 1c7fe250f07b08c512669f3da4b2ac6a138d90ba
 features:
   java:
     additionalDependencies: 0.1.0
@@ -3006,8 +3006,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:4541ebe071d5ad847d547b28f42d6838e0559567
-    pristine_git_object: 80f260038d174538a8d634bc4edf462fc1c5695c
+    last_write_checksum: sha1:1b1e1fbcc5d4ba22e5e90703393094b65c3e3c45
+    pristine_git_object: 8da516c903bd1610b041f13d3c03c74a310a7b5d
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3250,8 +3250,8 @@ trackedFiles:
     pristine_git_object: 69c33730128d6e2735bd390f7b618f6e00657f48
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:c042e4277b99a8c7f0caa761d9475bccc2dd0e71
-    pristine_git_object: 29929165bd5dc128f5a8800ce49a5e9ade18a769
+    last_write_checksum: sha1:7ea21c4e57cd9df20cdc57c6168ed274465b5def
+    pristine_git_object: b7ee4aac64b14d0805d7f29cb890a7fd43497320
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:8e282d4a54b618e5b9fe3f09a99c95bdb5debc6f
