@@ -12,7 +12,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -113,7 +112,7 @@ public class EntityBalanceTransaction {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("context")
-    private Optional<? extends Context> context;
+    private JsonNullable<? extends Context> context;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -130,7 +129,7 @@ public class EntityBalanceTransaction {
             @JsonProperty("resultAmount") Amount resultAmount,
             @JsonProperty("initialAmount") Amount initialAmount,
             @JsonProperty("deductions") JsonNullable<? extends AmountNullable> deductions,
-            @JsonProperty("context") Optional<? extends Context> context,
+            @JsonProperty("context") JsonNullable<? extends Context> context,
             @JsonProperty("createdAt") String createdAt) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -159,7 +158,7 @@ public class EntityBalanceTransaction {
             String createdAt) {
         this(resource, id, type,
             resultAmount, initialAmount, JsonNullable.undefined(),
-            Optional.empty(), createdAt);
+            JsonNullable.undefined(), createdAt);
     }
 
     /**
@@ -269,8 +268,8 @@ public class EntityBalanceTransaction {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Context> context() {
-        return (Optional<Context>) context;
+    public JsonNullable<Context> context() {
+        return (JsonNullable<Context>) context;
     }
 
     /**
@@ -408,10 +407,9 @@ public class EntityBalanceTransaction {
      */
     public EntityBalanceTransaction withContext(Context context) {
         Utils.checkNotNull(context, "context");
-        this.context = Optional.ofNullable(context);
+        this.context = JsonNullable.of(context);
         return this;
     }
-
 
     /**
      * Depending on the type of the balance transaction, we will try to give more context about the
@@ -470,7 +468,7 @@ public class EntityBalanceTransaction {
      * * Type `cash-collateral-issuance`: none
      * * Type `cash-collateral-release`: none
      */
-    public EntityBalanceTransaction withContext(Optional<? extends Context> context) {
+    public EntityBalanceTransaction withContext(JsonNullable<? extends Context> context) {
         Utils.checkNotNull(context, "context");
         this.context = context;
         return this;
@@ -542,7 +540,7 @@ public class EntityBalanceTransaction {
 
         private JsonNullable<? extends AmountNullable> deductions = JsonNullable.undefined();
 
-        private Optional<? extends Context> context = Optional.empty();
+        private JsonNullable<? extends Context> context = JsonNullable.undefined();
 
         private String createdAt;
 
@@ -678,7 +676,7 @@ public class EntityBalanceTransaction {
          */
         public Builder context(Context context) {
             Utils.checkNotNull(context, "context");
-            this.context = Optional.ofNullable(context);
+            this.context = JsonNullable.of(context);
             return this;
         }
 
@@ -739,7 +737,7 @@ public class EntityBalanceTransaction {
          * * Type `cash-collateral-issuance`: none
          * * Type `cash-collateral-release`: none
          */
-        public Builder context(Optional<? extends Context> context) {
+        public Builder context(JsonNullable<? extends Context> context) {
             Utils.checkNotNull(context, "context");
             this.context = context;
             return this;

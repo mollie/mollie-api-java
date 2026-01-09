@@ -208,7 +208,6 @@ public class Application {
                         .country("NL")
                         .build())
                     .locale(Locale.EN_US)
-                    .method(Method.IDEAL)
                     .issuer("ideal_INGBNL2A")
                     .restrictPaymentMethodsToCountry("NL")
                     .captureMode(CaptureMode.MANUAL)
