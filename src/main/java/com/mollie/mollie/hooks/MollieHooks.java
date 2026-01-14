@@ -23,6 +23,9 @@ public class MollieHooks implements Hook.BeforeRequest {
     
     @Override
     public HttpRequest beforeRequest(Hook.BeforeRequestContext context, HttpRequest request) throws Exception {
+        // Validate path parameters
+        validatePathParameters(request);
+        
         // Copy the request for modification
         HttpRequest.Builder builder = Helpers.copy(request);
         
@@ -66,6 +69,23 @@ public class MollieHooks implements Hook.BeforeRequest {
     
     private String generateIdempotencyKey() {
         return UUID.randomUUID().toString();
+    }
+    
+    private void validatePathParameters(HttpRequest request) throws Exception {
+        String path = request.uri().getPath();
+        String[] pathSegments = path.split("/", -1); // Use -1 to keep trailing empty strings
+        
+        for (int i = 0; i < pathSegments.length; i++) {
+            if (i == 0 && pathSegments[i].isEmpty()) {
+                continue;
+            }
+            
+            if (pathSegments[i].isEmpty() || pathSegments[i].trim().isEmpty()) {
+                throw new IllegalArgumentException(
+                    String.format("Invalid request: empty path parameter detected in [%s] '%s'",
+                        request.method(), path));
+            }
+        }
     }
     
     private boolean isOAuthRequest(HttpRequest request, Hook.BeforeRequestContext context) {
