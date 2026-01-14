@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public class UpdateWebhookRequestBuilder {
 
-    private String id;
+    private String webhookId;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends UpdateWebhookRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -27,9 +27,9 @@ public class UpdateWebhookRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdateWebhookRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public UpdateWebhookRequestBuilder webhookId(String webhookId) {
+        Utils.checkNotNull(webhookId, "webhookId");
+        this.webhookId = webhookId;
         return this;
     }
                 
@@ -72,7 +72,7 @@ public class UpdateWebhookRequestBuilder {
 
     private UpdateWebhookRequest buildRequest() {
 
-        UpdateWebhookRequest request = new UpdateWebhookRequest(id,
+        UpdateWebhookRequest request = new UpdateWebhookRequest(webhookId,
             idempotencyKey,
             requestBody);
 

@@ -15,10 +15,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetClientRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related organization.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=organizationId")
+    private String organizationId;
 
     /**
      * This endpoint allows embedding related API items by appending the following values via the `embed`
@@ -36,28 +36,28 @@ public class GetClientRequest {
 
     @JsonCreator
     public GetClientRequest(
-            String id,
+            String organizationId,
             JsonNullable<String> embed,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(organizationId, "organizationId");
         Utils.checkNotNull(embed, "embed");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.organizationId = organizationId;
         this.embed = embed;
         this.idempotencyKey = idempotencyKey;
     }
     
     public GetClientRequest(
-            String id) {
-        this(id, JsonNullable.undefined(), Optional.empty());
+            String organizationId) {
+        this(organizationId, JsonNullable.undefined(), Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related organization.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String organizationId() {
+        return organizationId;
     }
 
     /**
@@ -84,11 +84,11 @@ public class GetClientRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related organization.
      */
-    public GetClientRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetClientRequest withOrganizationId(String organizationId) {
+        Utils.checkNotNull(organizationId, "organizationId");
+        this.organizationId = organizationId;
         return this;
     }
 
@@ -143,7 +143,7 @@ public class GetClientRequest {
         }
         GetClientRequest other = (GetClientRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.organizationId, other.organizationId) &&
             Utils.enhancedDeepEquals(this.embed, other.embed) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
@@ -151,13 +151,13 @@ public class GetClientRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, embed, idempotencyKey);
+            organizationId, embed, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetClientRequest.class,
-                "id", id,
+                "organizationId", organizationId,
                 "embed", embed,
                 "idempotencyKey", idempotencyKey);
     }
@@ -165,7 +165,7 @@ public class GetClientRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String organizationId;
 
         private JsonNullable<String> embed = JsonNullable.undefined();
 
@@ -177,11 +177,11 @@ public class GetClientRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related organization.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder organizationId(String organizationId) {
+            Utils.checkNotNull(organizationId, "organizationId");
+            this.organizationId = organizationId;
             return this;
         }
 
@@ -230,7 +230,7 @@ public class GetClientRequest {
         public GetClientRequest build() {
 
             return new GetClientRequest(
-                id, embed, idempotencyKey);
+                organizationId, embed, idempotencyKey);
         }
 
     }

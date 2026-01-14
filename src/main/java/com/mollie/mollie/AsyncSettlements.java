@@ -152,11 +152,11 @@ public class AsyncSettlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param settlementId Provide the ID of the related settlement.
      * @return {@code CompletableFuture<GetSettlementResponse>} - The async response
      */
-    public CompletableFuture<GetSettlementResponse> get(String id) {
-        return get(id, Optional.empty(), Optional.empty());
+    public CompletableFuture<GetSettlementResponse> get(String settlementId) {
+        return get(settlementId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -176,18 +176,18 @@ public class AsyncSettlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param settlementId Provide the ID of the related settlement.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return {@code CompletableFuture<GetSettlementResponse>} - The async response
      */
     public CompletableFuture<GetSettlementResponse> get(
-            String id, Optional<String> idempotencyKey,
+            String settlementId, Optional<String> idempotencyKey,
             Optional<Options> options) {
         GetSettlementRequest request =
             GetSettlementRequest
                 .builder()
-                .id(id)
+                .settlementId(settlementId)
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetSettlementRequest, GetSettlementResponse> operation

@@ -118,12 +118,12 @@ public class Clients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param organizationId Provide the ID of the related organization.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetClientResponse get(String id) {
-        return get(id, JsonNullable.undefined(), Optional.empty(),
+    public GetClientResponse get(String organizationId) {
+        return get(organizationId, JsonNullable.undefined(), Optional.empty(),
             Optional.empty());
     }
 
@@ -132,7 +132,7 @@ public class Clients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param organizationId Provide the ID of the related organization.
      * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
      *         parameter.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -141,12 +141,12 @@ public class Clients {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetClientResponse get(
-            String id, JsonNullable<String> embed,
+            String organizationId, JsonNullable<String> embed,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetClientRequest request =
             GetClientRequest
                 .builder()
-                .id(id)
+                .organizationId(organizationId)
                 .embed(embed)
                 .idempotencyKey(idempotencyKey)
                 .build();

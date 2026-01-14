@@ -73,12 +73,12 @@ public class AsyncOrganizations {
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param organizationId Provide the ID of the related organization.
      * @return {@code CompletableFuture<GetOrganizationResponse>} - The async response
      */
-    public CompletableFuture<GetOrganizationResponse> get(String id) {
+    public CompletableFuture<GetOrganizationResponse> get(String organizationId) {
         return get(
-                id, Optional.empty(), Optional.empty(),
+                organizationId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -93,7 +93,7 @@ public class AsyncOrganizations {
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param organizationId Provide the ID of the related organization.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -104,12 +104,12 @@ public class AsyncOrganizations {
      * @return {@code CompletableFuture<GetOrganizationResponse>} - The async response
      */
     public CompletableFuture<GetOrganizationResponse> get(
-            String id, Optional<Boolean> testmode,
+            String organizationId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetOrganizationRequest request =
             GetOrganizationRequest
                 .builder()
-                .id(id)
+                .organizationId(organizationId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();

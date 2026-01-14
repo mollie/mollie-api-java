@@ -98,7 +98,7 @@ For more accurate bookkeeping, refer to the [balance report](get-balance-report)
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-settlement" method="get" path="/settlements/{id}" -->
+<!-- UsageSnippet language="java" operationID="get-settlement" method="get" path="/settlements/{settlementId}" -->
 ```java
 package hello.world;
 
@@ -119,7 +119,7 @@ public class Application {
             .build();
 
         GetSettlementResponse res = sdk.settlements().get()
-                .id("stl_jDk30akdN")
+                .settlementId("stl_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
@@ -134,7 +134,7 @@ public class Application {
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `id`                                                                             | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `settlementId`                                                                   | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related settlement.                                        | stl_5B8cwPMGnU                                                                   |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
@@ -301,7 +301,7 @@ public class Application {
             .build();
 
         ListSettlementPaymentsRequest req = ListSettlementPaymentsRequest.builder()
-                .settlementId("stl_jDk30akdN")
+                .settlementId("stl_5B8cwPMGnU")
                 .from("tr_5B8cwPMGnU")
                 .limit(50L)
                 .sort(Sorting.DESC)
@@ -367,7 +367,7 @@ public class Application {
             .build();
 
         ListSettlementCapturesRequest req = ListSettlementCapturesRequest.builder()
-                .settlementId("stl_jDk30akdN")
+                .settlementId("stl_5B8cwPMGnU")
                 .from("cpt_vytxeTZskVKR7C7WgdSP3d")
                 .limit(50L)
                 .embed("payment")
@@ -433,7 +433,7 @@ public class Application {
             .build();
 
         ListSettlementRefundsRequest req = ListSettlementRefundsRequest.builder()
-                .settlementId("stl_jDk30akdN")
+                .settlementId("stl_5B8cwPMGnU")
                 .from("re_5B8cwPMGnU")
                 .limit(50L)
                 .embed("payment")
@@ -499,7 +499,7 @@ public class Application {
             .build();
 
         ListSettlementChargebacksRequest req = ListSettlementChargebacksRequest.builder()
-                .settlementId("stl_jDk30akdN")
+                .settlementId("stl_5B8cwPMGnU")
                 .from("chb_xFzwUN4ci8HAmSGUACS4J")
                 .limit(50L)
                 .embed("payment")

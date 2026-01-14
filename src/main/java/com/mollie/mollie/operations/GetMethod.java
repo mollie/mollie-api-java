@@ -119,7 +119,7 @@ public class GetMethod {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/methods/{id}",
+                    "/methods/{methodId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

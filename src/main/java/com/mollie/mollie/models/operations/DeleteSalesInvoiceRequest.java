@@ -16,10 +16,10 @@ import java.util.Optional;
 
 public class DeleteSalesInvoiceRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related sales invoice.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=salesInvoiceId")
+    private String salesInvoiceId;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -33,28 +33,28 @@ public class DeleteSalesInvoiceRequest {
 
     @JsonCreator
     public DeleteSalesInvoiceRequest(
-            String id,
+            String salesInvoiceId,
             Optional<String> idempotencyKey,
             Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
-        this.id = id;
+        this.salesInvoiceId = salesInvoiceId;
         this.idempotencyKey = idempotencyKey;
         this.deleteValuesSalesInvoice = deleteValuesSalesInvoice;
     }
     
     public DeleteSalesInvoiceRequest(
-            String id) {
-        this(id, Optional.empty(), Optional.empty());
+            String salesInvoiceId) {
+        this(salesInvoiceId, Optional.empty(), Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related sales invoice.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String salesInvoiceId() {
+        return salesInvoiceId;
     }
 
     /**
@@ -77,11 +77,11 @@ public class DeleteSalesInvoiceRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related sales invoice.
      */
-    public DeleteSalesInvoiceRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public DeleteSalesInvoiceRequest withSalesInvoiceId(String salesInvoiceId) {
+        Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
+        this.salesInvoiceId = salesInvoiceId;
         return this;
     }
 
@@ -127,7 +127,7 @@ public class DeleteSalesInvoiceRequest {
         }
         DeleteSalesInvoiceRequest other = (DeleteSalesInvoiceRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.salesInvoiceId, other.salesInvoiceId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.deleteValuesSalesInvoice, other.deleteValuesSalesInvoice);
     }
@@ -135,13 +135,13 @@ public class DeleteSalesInvoiceRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, idempotencyKey, deleteValuesSalesInvoice);
+            salesInvoiceId, idempotencyKey, deleteValuesSalesInvoice);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DeleteSalesInvoiceRequest.class,
-                "id", id,
+                "salesInvoiceId", salesInvoiceId,
                 "idempotencyKey", idempotencyKey,
                 "deleteValuesSalesInvoice", deleteValuesSalesInvoice);
     }
@@ -149,7 +149,7 @@ public class DeleteSalesInvoiceRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String salesInvoiceId;
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -161,11 +161,11 @@ public class DeleteSalesInvoiceRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related sales invoice.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder salesInvoiceId(String salesInvoiceId) {
+            Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
+            this.salesInvoiceId = salesInvoiceId;
             return this;
         }
 
@@ -204,7 +204,7 @@ public class DeleteSalesInvoiceRequest {
         public DeleteSalesInvoiceRequest build() {
 
             return new DeleteSalesInvoiceRequest(
-                id, idempotencyKey, deleteValuesSalesInvoice);
+                salesInvoiceId, idempotencyKey, deleteValuesSalesInvoice);
         }
 
     }

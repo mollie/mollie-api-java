@@ -76,10 +76,10 @@ public final class RequestBody {
 
     private static SerializedBody serializeContentType(String fieldName, String contentType, Object value)
             throws IllegalArgumentException, IllegalAccessException, UnsupportedOperationException, IOException {
-        Pattern jsonPattern = Pattern.compile("(application|text)\\/.*?\\+*json.*");
-        Pattern multipartPattern = Pattern.compile("multipart\\/.*");
-        Pattern formPattern = Pattern.compile("application\\/x-www-form-urlencoded.*");
-        Pattern textPattern = Pattern.compile("text\\/plain");
+        Pattern jsonPattern = Pattern.compile("^(application|text)\\/([^+]+\\+)*json.*");
+        Pattern multipartPattern = Pattern.compile("^multipart\\/.*");
+        Pattern formPattern = Pattern.compile("^application\\/x-www-form-urlencoded.*");
+        Pattern textPattern = Pattern.compile("^text\\/plain");
 
         final SerializedBody body;
 

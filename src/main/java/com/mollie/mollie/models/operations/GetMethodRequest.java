@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.models.components.Locale;
+import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.components.SequenceType;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
@@ -19,10 +20,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetMethodRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment method.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=methodId")
+    private Optional<? extends MethodId> methodId;
 
     /**
      * Response language
@@ -85,7 +86,7 @@ public class GetMethodRequest {
 
     @JsonCreator
     public GetMethodRequest(
-            String id,
+            Optional<? extends MethodId> methodId,
             JsonNullable<? extends Locale> locale,
             Optional<String> currency,
             Optional<String> profileId,
@@ -93,7 +94,7 @@ public class GetMethodRequest {
             Optional<? extends SequenceType> sequenceType,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(methodId, "methodId");
         Utils.checkNotNull(locale, "locale");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(profileId, "profileId");
@@ -101,7 +102,7 @@ public class GetMethodRequest {
         Utils.checkNotNull(sequenceType, "sequenceType");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.methodId = methodId;
         this.locale = locale;
         this.currency = currency;
         this.profileId = profileId;
@@ -111,19 +112,19 @@ public class GetMethodRequest {
         this.idempotencyKey = idempotencyKey;
     }
     
-    public GetMethodRequest(
-            String id) {
-        this(id, JsonNullable.undefined(), Optional.empty(),
+    public GetMethodRequest() {
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment method.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public String id() {
-        return id;
+    public Optional<MethodId> methodId() {
+        return (Optional<MethodId>) methodId;
     }
 
     /**
@@ -207,11 +208,21 @@ public class GetMethodRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related payment method.
      */
-    public GetMethodRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetMethodRequest withMethodId(MethodId methodId) {
+        Utils.checkNotNull(methodId, "methodId");
+        this.methodId = Optional.ofNullable(methodId);
+        return this;
+    }
+
+
+    /**
+     * Provide the ID of the related payment method.
+     */
+    public GetMethodRequest withMethodId(Optional<? extends MethodId> methodId) {
+        Utils.checkNotNull(methodId, "methodId");
+        this.methodId = methodId;
         return this;
     }
 
@@ -390,7 +401,7 @@ public class GetMethodRequest {
         }
         GetMethodRequest other = (GetMethodRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.methodId, other.methodId) &&
             Utils.enhancedDeepEquals(this.locale, other.locale) &&
             Utils.enhancedDeepEquals(this.currency, other.currency) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
@@ -403,7 +414,7 @@ public class GetMethodRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, locale, currency,
+            methodId, locale, currency,
             profileId, include, sequenceType,
             testmode, idempotencyKey);
     }
@@ -411,7 +422,7 @@ public class GetMethodRequest {
     @Override
     public String toString() {
         return Utils.toString(GetMethodRequest.class,
-                "id", id,
+                "methodId", methodId,
                 "locale", locale,
                 "currency", currency,
                 "profileId", profileId,
@@ -424,7 +435,7 @@ public class GetMethodRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private Optional<? extends MethodId> methodId = Optional.empty();
 
         private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
 
@@ -446,11 +457,20 @@ public class GetMethodRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related payment method.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder methodId(MethodId methodId) {
+            Utils.checkNotNull(methodId, "methodId");
+            this.methodId = Optional.ofNullable(methodId);
+            return this;
+        }
+
+        /**
+         * Provide the ID of the related payment method.
+         */
+        public Builder methodId(Optional<? extends MethodId> methodId) {
+            Utils.checkNotNull(methodId, "methodId");
+            this.methodId = methodId;
             return this;
         }
 
@@ -624,7 +644,7 @@ public class GetMethodRequest {
         public GetMethodRequest build() {
 
             return new GetMethodRequest(
-                id, locale, currency,
+                methodId, locale, currency,
                 profileId, include, sequenceType,
                 testmode, idempotencyKey);
         }

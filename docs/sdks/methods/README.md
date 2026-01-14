@@ -189,7 +189,7 @@ are enabled by passing the wallet ID (`applepay`) as the method ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-method" method="get" path="/methods/{id}" -->
+<!-- UsageSnippet language="java" operationID="get-method" method="get" path="/methods/{methodId}" -->
 ```java
 package hello.world;
 
@@ -213,7 +213,7 @@ public class Application {
             .build();
 
         GetMethodRequest req = GetMethodRequest.builder()
-                .id("ideal")
+                .methodId(MethodId.IDEAL)
                 .locale(Locale.EN_US)
                 .currency("EUR")
                 .include("issuers")

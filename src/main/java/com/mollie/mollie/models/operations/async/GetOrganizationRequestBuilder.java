@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class GetOrganizationRequestBuilder {
 
-    private String id;
+    private String organizationId;
     private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -30,9 +30,9 @@ public class GetOrganizationRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetOrganizationRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetOrganizationRequestBuilder organizationId(String organizationId) {
+        Utils.checkNotNull(organizationId, "organizationId");
+        this.organizationId = organizationId;
         return this;
     }
                 
@@ -75,7 +75,7 @@ public class GetOrganizationRequestBuilder {
 
     private GetOrganizationRequest buildRequest() {
 
-        GetOrganizationRequest request = new GetOrganizationRequest(id,
+        GetOrganizationRequest request = new GetOrganizationRequest(organizationId,
             testmode,
             idempotencyKey);
 

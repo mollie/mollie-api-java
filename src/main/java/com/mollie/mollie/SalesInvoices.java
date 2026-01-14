@@ -217,12 +217,12 @@ public class SalesInvoices {
      * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetSalesInvoiceResponse get(String id) {
-        return get(id, Optional.empty(), Optional.empty(),
+    public GetSalesInvoiceResponse get(String salesInvoiceId) {
+        return get(salesInvoiceId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -235,7 +235,7 @@ public class SalesInvoices {
      * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -247,12 +247,12 @@ public class SalesInvoices {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetSalesInvoiceResponse get(
-            String id, Optional<Boolean> testmode,
+            String salesInvoiceId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetSalesInvoiceRequest request =
             GetSalesInvoiceRequest
                 .builder()
-                .id(id)
+                .salesInvoiceId(salesInvoiceId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();
@@ -293,12 +293,12 @@ public class SalesInvoices {
      * `emailDetails`,
      * respectively).
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateSalesInvoiceResponse update(String id) {
-        return update(id, Optional.empty(), Optional.empty(),
+    public UpdateSalesInvoiceResponse update(String salesInvoiceId) {
+        return update(salesInvoiceId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -315,7 +315,7 @@ public class SalesInvoices {
      * `emailDetails`,
      * respectively).
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param updateValuesSalesInvoice 
      * @param options additional options
@@ -323,12 +323,12 @@ public class SalesInvoices {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateSalesInvoiceResponse update(
-            String id, Optional<String> idempotencyKey,
+            String salesInvoiceId, Optional<String> idempotencyKey,
             Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice, Optional<Options> options) {
         UpdateSalesInvoiceRequest request =
             UpdateSalesInvoiceRequest
                 .builder()
-                .id(id)
+                .salesInvoiceId(salesInvoiceId)
                 .idempotencyKey(idempotencyKey)
                 .updateValuesSalesInvoice(updateValuesSalesInvoice)
                 .build();
@@ -363,12 +363,12 @@ public class SalesInvoices {
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteSalesInvoiceResponse delete(String id) {
-        return delete(id, Optional.empty(), Optional.empty(),
+    public DeleteSalesInvoiceResponse delete(String salesInvoiceId) {
+        return delete(salesInvoiceId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -382,7 +382,7 @@ public class SalesInvoices {
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param deleteValuesSalesInvoice 
      * @param options additional options
@@ -390,12 +390,12 @@ public class SalesInvoices {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteSalesInvoiceResponse delete(
-            String id, Optional<String> idempotencyKey,
+            String salesInvoiceId, Optional<String> idempotencyKey,
             Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice, Optional<Options> options) {
         DeleteSalesInvoiceRequest request =
             DeleteSalesInvoiceRequest
                 .builder()
-                .id(id)
+                .salesInvoiceId(salesInvoiceId)
                 .idempotencyKey(idempotencyKey)
                 .deleteValuesSalesInvoice(deleteValuesSalesInvoice)
                 .build();

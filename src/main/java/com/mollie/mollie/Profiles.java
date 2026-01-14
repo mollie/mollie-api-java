@@ -194,12 +194,12 @@ public class Profiles {
      * 
      * <p>Retrieve a single profile by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetProfileResponse get(String id) {
-        return get(id, Optional.empty(), Optional.empty(),
+    public GetProfileResponse get(String profileId) {
+        return get(profileId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -208,7 +208,7 @@ public class Profiles {
      * 
      * <p>Retrieve a single profile by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -220,12 +220,12 @@ public class Profiles {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetProfileResponse get(
-            String id, Optional<Boolean> testmode,
+            String profileId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetProfileRequest request =
             GetProfileRequest
                 .builder()
-                .id(id)
+                .profileId(profileId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();
@@ -258,13 +258,13 @@ public class Profiles {
      * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @param requestBody 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateProfileResponse update(String id, UpdateProfileRequestBody requestBody) {
-        return update(id, Optional.empty(), requestBody,
+    public UpdateProfileResponse update(String profileId, UpdateProfileRequestBody requestBody) {
+        return update(profileId, Optional.empty(), requestBody,
             Optional.empty());
     }
 
@@ -277,7 +277,7 @@ public class Profiles {
      * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
@@ -285,12 +285,12 @@ public class Profiles {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateProfileResponse update(
-            String id, Optional<String> idempotencyKey,
+            String profileId, Optional<String> idempotencyKey,
             UpdateProfileRequestBody requestBody, Optional<Options> options) {
         UpdateProfileRequest request =
             UpdateProfileRequest
                 .builder()
-                .id(id)
+                .profileId(profileId)
                 .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
@@ -317,12 +317,12 @@ public class Profiles {
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
      * payments.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteProfileResponse delete(String id) {
-        return delete(id, Optional.empty(), Optional.empty());
+    public DeleteProfileResponse delete(String profileId) {
+        return delete(profileId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -331,19 +331,19 @@ public class Profiles {
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
      * payments.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteProfileResponse delete(
-            String id, Optional<String> idempotencyKey,
+            String profileId, Optional<String> idempotencyKey,
             Optional<Options> options) {
         DeleteProfileRequest request =
             DeleteProfileRequest
                 .builder()
-                .id(id)
+                .profileId(profileId)
                 .idempotencyKey(idempotencyKey)
                 .build();
         RequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation

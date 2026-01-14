@@ -14,10 +14,10 @@ import java.util.Optional;
 
 public class UpdateProfileRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related profile.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=profileId")
+    private String profileId;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -31,29 +31,29 @@ public class UpdateProfileRequest {
 
     @JsonCreator
     public UpdateProfileRequest(
-            String id,
+            String profileId,
             Optional<String> idempotencyKey,
             UpdateProfileRequestBody requestBody) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(requestBody, "requestBody");
-        this.id = id;
+        this.profileId = profileId;
         this.idempotencyKey = idempotencyKey;
         this.requestBody = requestBody;
     }
     
     public UpdateProfileRequest(
-            String id,
+            String profileId,
             UpdateProfileRequestBody requestBody) {
-        this(id, Optional.empty(), requestBody);
+        this(profileId, Optional.empty(), requestBody);
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related profile.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String profileId() {
+        return profileId;
     }
 
     /**
@@ -75,11 +75,11 @@ public class UpdateProfileRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related profile.
      */
-    public UpdateProfileRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public UpdateProfileRequest withProfileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = profileId;
         return this;
     }
 
@@ -118,7 +118,7 @@ public class UpdateProfileRequest {
         }
         UpdateProfileRequest other = (UpdateProfileRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
@@ -126,13 +126,13 @@ public class UpdateProfileRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, idempotencyKey, requestBody);
+            profileId, idempotencyKey, requestBody);
     }
     
     @Override
     public String toString() {
         return Utils.toString(UpdateProfileRequest.class,
-                "id", id,
+                "profileId", profileId,
                 "idempotencyKey", idempotencyKey,
                 "requestBody", requestBody);
     }
@@ -140,7 +140,7 @@ public class UpdateProfileRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String profileId;
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -152,11 +152,11 @@ public class UpdateProfileRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related profile.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder profileId(String profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = profileId;
             return this;
         }
 
@@ -189,7 +189,7 @@ public class UpdateProfileRequest {
         public UpdateProfileRequest build() {
 
             return new UpdateProfileRequest(
-                id, idempotencyKey, requestBody);
+                profileId, idempotencyKey, requestBody);
         }
 
     }

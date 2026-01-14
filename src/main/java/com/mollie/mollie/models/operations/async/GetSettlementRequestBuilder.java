@@ -18,7 +18,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class GetSettlementRequestBuilder {
 
-    private String id;
+    private String settlementId;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -28,9 +28,9 @@ public class GetSettlementRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetSettlementRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetSettlementRequestBuilder settlementId(String settlementId) {
+        Utils.checkNotNull(settlementId, "settlementId");
+        this.settlementId = settlementId;
         return this;
     }
                 
@@ -61,7 +61,7 @@ public class GetSettlementRequestBuilder {
 
     private GetSettlementRequest buildRequest() {
 
-        GetSettlementRequest request = new GetSettlementRequest(id,
+        GetSettlementRequest request = new GetSettlementRequest(settlementId,
             idempotencyKey);
 
         return request;

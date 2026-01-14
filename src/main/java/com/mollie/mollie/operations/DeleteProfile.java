@@ -110,7 +110,7 @@ public class DeleteProfile {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/profiles/{id}",
+                    "/profiles/{profileId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
             req.addHeader("Accept", "application/hal+json")

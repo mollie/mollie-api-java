@@ -112,7 +112,7 @@ public class GetSettlement {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/settlements/{id}",
+                    "/settlements/{settlementId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

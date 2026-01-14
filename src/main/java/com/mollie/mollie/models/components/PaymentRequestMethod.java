@@ -11,7 +11,6 @@ import com.mollie.mollie.utils.TypedObject;
 import com.mollie.mollie.utils.Utils.JsonShape;
 import com.mollie.mollie.utils.Utils.TypeReferenceWithShape;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -27,12 +26,12 @@ public class PaymentRequestMethod {
         this.value = value;
     }
 
-    public static PaymentRequestMethod of(One value) {
+    public static PaymentRequestMethod of(Method value) {
         Utils.checkNotNull(value, "value");
         return new PaymentRequestMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
-    public static PaymentRequestMethod of(List<Object> value) {
+    public static PaymentRequestMethod of(List<Method> value) {
         Utils.checkNotNull(value, "value");
         return new PaymentRequestMethod(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
@@ -40,8 +39,8 @@ public class PaymentRequestMethod {
     /**
      * Returns an instance of one of these types:
      * <ul>
-     * <li>{@code com.mollie.mollie.models.components.One}</li>
-     * <li>{@code java.util.List<java.lang.Object>}</li>
+     * <li>{@code com.mollie.mollie.models.components.Method}</li>
+     * <li>{@code java.util.List<com.mollie.mollie.models.components.Method>}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -81,8 +80,8 @@ public class PaymentRequestMethod {
 
         public _Deserializer() {
             super(PaymentRequestMethod.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<One>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<List<Object>>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Method>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<List<Method>>() {}, JsonShape.DEFAULT));
         }
     }
     

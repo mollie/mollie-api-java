@@ -14,10 +14,10 @@ import java.util.Optional;
 
 public class GetSettlementRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related settlement.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=settlementId")
+    private String settlementId;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -27,25 +27,25 @@ public class GetSettlementRequest {
 
     @JsonCreator
     public GetSettlementRequest(
-            String id,
+            String settlementId,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(settlementId, "settlementId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.settlementId = settlementId;
         this.idempotencyKey = idempotencyKey;
     }
     
     public GetSettlementRequest(
-            String id) {
-        this(id, Optional.empty());
+            String settlementId) {
+        this(settlementId, Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related settlement.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String settlementId() {
+        return settlementId;
     }
 
     /**
@@ -62,11 +62,11 @@ public class GetSettlementRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related settlement.
      */
-    public GetSettlementRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetSettlementRequest withSettlementId(String settlementId) {
+        Utils.checkNotNull(settlementId, "settlementId");
+        this.settlementId = settlementId;
         return this;
     }
 
@@ -99,27 +99,27 @@ public class GetSettlementRequest {
         }
         GetSettlementRequest other = (GetSettlementRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.settlementId, other.settlementId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, idempotencyKey);
+            settlementId, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetSettlementRequest.class,
-                "id", id,
+                "settlementId", settlementId,
                 "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String settlementId;
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -129,11 +129,11 @@ public class GetSettlementRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related settlement.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder settlementId(String settlementId) {
+            Utils.checkNotNull(settlementId, "settlementId");
+            this.settlementId = settlementId;
             return this;
         }
 
@@ -159,7 +159,7 @@ public class GetSettlementRequest {
         public GetSettlementRequest build() {
 
             return new GetSettlementRequest(
-                id, idempotencyKey);
+                settlementId, idempotencyKey);
         }
 
     }

@@ -75,7 +75,7 @@ Retrieve a single client by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{id}" -->
+<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{organizationId}" -->
 ```java
 package hello.world;
 
@@ -96,7 +96,7 @@ public class Application {
             .build();
 
         GetClientResponse res = sdk.clients().get()
-                .id("org_12345678")
+                .organizationId("org_1234567")
                 .embed("organization")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
@@ -112,7 +112,7 @@ public class Application {
 
 | Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                | Example                                                                                                                    |
 | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                                       | *String*                                                                                                                   | :heavy_check_mark:                                                                                                         | Provide the ID of the item you want to perform this operation on.                                                          |                                                                                                                            |
+| `organizationId`                                                                                                           | *String*                                                                                                                   | :heavy_check_mark:                                                                                                         | Provide the ID of the related organization.                                                                                | org_1234567                                                                                                                |
 | `embed`                                                                                                                    | *JsonNullable\<String>*                                                                                                    | :heavy_minus_sign:                                                                                                         | This endpoint allows embedding related API items by appending the following values via the `embed` query string<br/>parameter. |                                                                                                                            |
 | `idempotencyKey`                                                                                                           | *Optional\<String>*                                                                                                        | :heavy_minus_sign:                                                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                           | 123e4567-e89b-12d3-a456-426                                                                                                |
 

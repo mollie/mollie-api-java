@@ -112,7 +112,7 @@ public class GetInvoice {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/invoices/{id}",
+                    "/invoices/{invoiceId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

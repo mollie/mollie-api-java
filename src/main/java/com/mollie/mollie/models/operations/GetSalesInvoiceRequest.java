@@ -15,10 +15,10 @@ import java.util.Optional;
 
 public class GetSalesInvoiceRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related sales invoice.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=salesInvoiceId")
+    private String salesInvoiceId;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
@@ -40,28 +40,28 @@ public class GetSalesInvoiceRequest {
 
     @JsonCreator
     public GetSalesInvoiceRequest(
-            String id,
+            String salesInvoiceId,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.salesInvoiceId = salesInvoiceId;
         this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
     }
     
     public GetSalesInvoiceRequest(
-            String id) {
-        this(id, Optional.empty(), Optional.empty());
+            String salesInvoiceId) {
+        this(salesInvoiceId, Optional.empty(), Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related sales invoice.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String salesInvoiceId() {
+        return salesInvoiceId;
     }
 
     /**
@@ -92,11 +92,11 @@ public class GetSalesInvoiceRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related sales invoice.
      */
-    public GetSalesInvoiceRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetSalesInvoiceRequest withSalesInvoiceId(String salesInvoiceId) {
+        Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
+        this.salesInvoiceId = salesInvoiceId;
         return this;
     }
 
@@ -160,7 +160,7 @@ public class GetSalesInvoiceRequest {
         }
         GetSalesInvoiceRequest other = (GetSalesInvoiceRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.salesInvoiceId, other.salesInvoiceId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
@@ -168,13 +168,13 @@ public class GetSalesInvoiceRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, testmode, idempotencyKey);
+            salesInvoiceId, testmode, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetSalesInvoiceRequest.class,
-                "id", id,
+                "salesInvoiceId", salesInvoiceId,
                 "testmode", testmode,
                 "idempotencyKey", idempotencyKey);
     }
@@ -182,7 +182,7 @@ public class GetSalesInvoiceRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String salesInvoiceId;
 
         private Optional<Boolean> testmode = Optional.empty();
 
@@ -194,11 +194,11 @@ public class GetSalesInvoiceRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related sales invoice.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder salesInvoiceId(String salesInvoiceId) {
+            Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
+            this.salesInvoiceId = salesInvoiceId;
             return this;
         }
 
@@ -255,7 +255,7 @@ public class GetSalesInvoiceRequest {
         public GetSalesInvoiceRequest build() {
 
             return new GetSalesInvoiceRequest(
-                id, testmode, idempotencyKey);
+                salesInvoiceId, testmode, idempotencyKey);
         }
 
     }

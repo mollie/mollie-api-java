@@ -17,7 +17,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetClientRequestBuilder {
 
-    private String id;
+    private String organizationId;
     private JsonNullable<String> embed = JsonNullable.undefined();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -28,9 +28,9 @@ public class GetClientRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetClientRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetClientRequestBuilder organizationId(String organizationId) {
+        Utils.checkNotNull(organizationId, "organizationId");
+        this.organizationId = organizationId;
         return this;
     }
 
@@ -73,7 +73,7 @@ public class GetClientRequestBuilder {
 
     private GetClientRequest buildRequest() {
 
-        GetClientRequest request = new GetClientRequest(id,
+        GetClientRequest request = new GetClientRequest(organizationId,
             embed,
             idempotencyKey);
 

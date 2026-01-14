@@ -148,7 +148,7 @@ Retrieve a single profile by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-profile" method="get" path="/profiles/{id}" -->
+<!-- UsageSnippet language="java" operationID="get-profile" method="get" path="/profiles/{profileId}" -->
 ```java
 package hello.world;
 
@@ -170,7 +170,7 @@ public class Application {
             .build();
 
         GetProfileResponse res = sdk.profiles().get()
-                .id("pfl_QkEhN94Ba")
+                .profileId("pfl_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
@@ -185,7 +185,7 @@ public class Application {
 
 | Parameter                                                                                                                                                               | Type                                                                                                                                                                    | Required                                                                                                                                                                | Description                                                                                                                                                             | Example                                                                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                                                                                    | *String*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the item you want to perform this operation on.                                                                                                       |                                                                                                                                                                         |
+| `profileId`                                                                                                                                                             | *String*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the related profile.                                                                                                                                  | pfl_5B8cwPMGnU                                                                                                                                                          |
 | `testmode`                                                                                                                                                              | *Optional\<Boolean>*                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                      | You can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                         |
 | `idempotencyKey`                                                                                                                                                        | *Optional\<String>*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                             |
 
@@ -209,7 +209,7 @@ Alternatively, you can use this endpoint to automate profile management.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/profiles/{id}" -->
+<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/profiles/{profileId}" -->
 ```java
 package hello.world;
 
@@ -232,7 +232,7 @@ public class Application {
             .build();
 
         UpdateProfileResponse res = sdk.profiles().update()
-                .id("pfl_QkEhN94Ba")
+                .profileId("pfl_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(UpdateProfileRequestBody.builder()
                     .name("My new website name")
@@ -258,7 +258,7 @@ public class Application {
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `id`                                                                             | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `profileId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 | `requestBody`                                                                    | [UpdateProfileRequestBody](../../models/operations/UpdateProfileRequestBody.md)  | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
 
@@ -279,7 +279,7 @@ Delete a profile. A deleted profile and its related credentials can no longer be
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="delete-profile" method="delete" path="/profiles/{id}" -->
+<!-- UsageSnippet language="java" operationID="delete-profile" method="delete" path="/profiles/{profileId}" -->
 ```java
 package hello.world;
 
@@ -300,7 +300,7 @@ public class Application {
             .build();
 
         DeleteProfileResponse res = sdk.profiles().delete()
-                .id("pfl_QkEhN94Ba")
+                .profileId("pfl_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
@@ -313,7 +313,7 @@ public class Application {
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `id`                                                                             | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `profileId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response

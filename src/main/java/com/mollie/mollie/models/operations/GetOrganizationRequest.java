@@ -15,10 +15,10 @@ import java.util.Optional;
 
 public class GetOrganizationRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related organization.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=organizationId")
+    private String organizationId;
 
     /**
      * You can enable test mode by setting the `testmode` query parameter to `true`.
@@ -36,28 +36,28 @@ public class GetOrganizationRequest {
 
     @JsonCreator
     public GetOrganizationRequest(
-            String id,
+            String organizationId,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(organizationId, "organizationId");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.organizationId = organizationId;
         this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
     }
     
     public GetOrganizationRequest(
-            String id) {
-        this(id, Optional.empty(), Optional.empty());
+            String organizationId) {
+        this(organizationId, Optional.empty(), Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related organization.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String organizationId() {
+        return organizationId;
     }
 
     /**
@@ -84,11 +84,11 @@ public class GetOrganizationRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related organization.
      */
-    public GetOrganizationRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetOrganizationRequest withOrganizationId(String organizationId) {
+        Utils.checkNotNull(organizationId, "organizationId");
+        this.organizationId = organizationId;
         return this;
     }
 
@@ -144,7 +144,7 @@ public class GetOrganizationRequest {
         }
         GetOrganizationRequest other = (GetOrganizationRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.organizationId, other.organizationId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
@@ -152,13 +152,13 @@ public class GetOrganizationRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, testmode, idempotencyKey);
+            organizationId, testmode, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetOrganizationRequest.class,
-                "id", id,
+                "organizationId", organizationId,
                 "testmode", testmode,
                 "idempotencyKey", idempotencyKey);
     }
@@ -166,7 +166,7 @@ public class GetOrganizationRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String organizationId;
 
         private Optional<Boolean> testmode = Optional.empty();
 
@@ -178,11 +178,11 @@ public class GetOrganizationRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related organization.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder organizationId(String organizationId) {
+            Utils.checkNotNull(organizationId, "organizationId");
+            this.organizationId = organizationId;
             return this;
         }
 
@@ -231,7 +231,7 @@ public class GetOrganizationRequest {
         public GetOrganizationRequest build() {
 
             return new GetOrganizationRequest(
-                id, testmode, idempotencyKey);
+                organizationId, testmode, idempotencyKey);
         }
 
     }

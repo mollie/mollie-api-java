@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class TestWebhookRequestBuilder {
 
-    private String id;
+    private String webhookId;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends TestWebhookRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -30,9 +30,9 @@ public class TestWebhookRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public TestWebhookRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public TestWebhookRequestBuilder webhookId(String webhookId) {
+        Utils.checkNotNull(webhookId, "webhookId");
+        this.webhookId = webhookId;
         return this;
     }
                 
@@ -75,7 +75,7 @@ public class TestWebhookRequestBuilder {
 
     private TestWebhookRequest buildRequest() {
 
-        TestWebhookRequest request = new TestWebhookRequest(id,
+        TestWebhookRequest request = new TestWebhookRequest(webhookId,
             idempotencyKey,
             requestBody);
 

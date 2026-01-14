@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class GetBalanceRequestBuilder {
 
-    private String id;
+    private String balanceId;
     private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -30,9 +30,9 @@ public class GetBalanceRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetBalanceRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetBalanceRequestBuilder balanceId(String balanceId) {
+        Utils.checkNotNull(balanceId, "balanceId");
+        this.balanceId = balanceId;
         return this;
     }
                 
@@ -75,7 +75,7 @@ public class GetBalanceRequestBuilder {
 
     private GetBalanceRequest buildRequest() {
 
-        GetBalanceRequest request = new GetBalanceRequest(id,
+        GetBalanceRequest request = new GetBalanceRequest(balanceId,
             testmode,
             idempotencyKey);
 

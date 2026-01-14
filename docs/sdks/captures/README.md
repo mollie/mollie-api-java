@@ -176,7 +176,7 @@ public class Application {
 
         GetCaptureRequest req = GetCaptureRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
-                .captureId("cpt_gVMhHKqSSRYJyPsuoPNFH")
+                .captureId("cpt_vytxeTZskVKR7C7WgdSP3d")
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();

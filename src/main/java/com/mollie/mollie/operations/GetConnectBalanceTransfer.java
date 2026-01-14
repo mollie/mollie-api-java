@@ -117,7 +117,7 @@ public class GetConnectBalanceTransfer {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/connect/balance-transfers/{id}",
+                    "/connect/balance-transfers/{balanceTransferId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

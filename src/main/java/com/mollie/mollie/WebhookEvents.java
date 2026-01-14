@@ -51,12 +51,12 @@ public class WebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookEventId Provide the ID of the related webhook event.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetWebhookEventResponse get(String id) {
-        return get(id, Optional.empty(), Optional.empty(),
+    public GetWebhookEventResponse get(String webhookEventId) {
+        return get(webhookEventId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -65,7 +65,7 @@ public class WebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookEventId Provide the ID of the related webhook event.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -77,12 +77,12 @@ public class WebhookEvents {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetWebhookEventResponse get(
-            String id, Optional<Boolean> testmode,
+            String webhookEventId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetWebhookEventRequest request =
             GetWebhookEventRequest
                 .builder()
-                .id(id)
+                .webhookEventId(webhookEventId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();

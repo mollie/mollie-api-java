@@ -15,10 +15,10 @@ import java.util.Optional;
 
 public class GetWebhookRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related webhook.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=webhookId")
+    private String webhookId;
 
     /**
      * You can enable test mode by setting the `testmode` query parameter to `true`.
@@ -36,28 +36,28 @@ public class GetWebhookRequest {
 
     @JsonCreator
     public GetWebhookRequest(
-            String id,
+            String webhookId,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(webhookId, "webhookId");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.webhookId = webhookId;
         this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
     }
     
     public GetWebhookRequest(
-            String id) {
-        this(id, Optional.empty(), Optional.empty());
+            String webhookId) {
+        this(webhookId, Optional.empty(), Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related webhook.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String webhookId() {
+        return webhookId;
     }
 
     /**
@@ -84,11 +84,11 @@ public class GetWebhookRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related webhook.
      */
-    public GetWebhookRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetWebhookRequest withWebhookId(String webhookId) {
+        Utils.checkNotNull(webhookId, "webhookId");
+        this.webhookId = webhookId;
         return this;
     }
 
@@ -144,7 +144,7 @@ public class GetWebhookRequest {
         }
         GetWebhookRequest other = (GetWebhookRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.webhookId, other.webhookId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
@@ -152,13 +152,13 @@ public class GetWebhookRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, testmode, idempotencyKey);
+            webhookId, testmode, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWebhookRequest.class,
-                "id", id,
+                "webhookId", webhookId,
                 "testmode", testmode,
                 "idempotencyKey", idempotencyKey);
     }
@@ -166,7 +166,7 @@ public class GetWebhookRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String webhookId;
 
         private Optional<Boolean> testmode = Optional.empty();
 
@@ -178,11 +178,11 @@ public class GetWebhookRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related webhook.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder webhookId(String webhookId) {
+            Utils.checkNotNull(webhookId, "webhookId");
+            this.webhookId = webhookId;
             return this;
         }
 
@@ -231,7 +231,7 @@ public class GetWebhookRequest {
         public GetWebhookRequest build() {
 
             return new GetWebhookRequest(
-                id, testmode, idempotencyKey);
+                webhookId, testmode, idempotencyKey);
         }
 
     }

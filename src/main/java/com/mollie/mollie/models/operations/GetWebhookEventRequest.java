@@ -15,10 +15,10 @@ import java.util.Optional;
 
 public class GetWebhookEventRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related webhook event.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=webhookEventId")
+    private String webhookEventId;
 
     /**
      * You can enable test mode by setting the `testmode` query parameter to `true`.
@@ -36,28 +36,28 @@ public class GetWebhookEventRequest {
 
     @JsonCreator
     public GetWebhookEventRequest(
-            String id,
+            String webhookEventId,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(webhookEventId, "webhookEventId");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.webhookEventId = webhookEventId;
         this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
     }
     
     public GetWebhookEventRequest(
-            String id) {
-        this(id, Optional.empty(), Optional.empty());
+            String webhookEventId) {
+        this(webhookEventId, Optional.empty(), Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related webhook event.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String webhookEventId() {
+        return webhookEventId;
     }
 
     /**
@@ -84,11 +84,11 @@ public class GetWebhookEventRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related webhook event.
      */
-    public GetWebhookEventRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetWebhookEventRequest withWebhookEventId(String webhookEventId) {
+        Utils.checkNotNull(webhookEventId, "webhookEventId");
+        this.webhookEventId = webhookEventId;
         return this;
     }
 
@@ -144,7 +144,7 @@ public class GetWebhookEventRequest {
         }
         GetWebhookEventRequest other = (GetWebhookEventRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.webhookEventId, other.webhookEventId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
@@ -152,13 +152,13 @@ public class GetWebhookEventRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, testmode, idempotencyKey);
+            webhookEventId, testmode, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWebhookEventRequest.class,
-                "id", id,
+                "webhookEventId", webhookEventId,
                 "testmode", testmode,
                 "idempotencyKey", idempotencyKey);
     }
@@ -166,7 +166,7 @@ public class GetWebhookEventRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String webhookEventId;
 
         private Optional<Boolean> testmode = Optional.empty();
 
@@ -178,11 +178,11 @@ public class GetWebhookEventRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related webhook event.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder webhookEventId(String webhookEventId) {
+            Utils.checkNotNull(webhookEventId, "webhookEventId");
+            this.webhookEventId = webhookEventId;
             return this;
         }
 
@@ -231,7 +231,7 @@ public class GetWebhookEventRequest {
         public GetWebhookEventRequest build() {
 
             return new GetWebhookEventRequest(
-                id, testmode, idempotencyKey);
+                webhookEventId, testmode, idempotencyKey);
         }
 
     }

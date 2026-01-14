@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class GetProfileRequestBuilder {
 
-    private String id;
+    private String profileId;
     private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -28,9 +28,9 @@ public class GetProfileRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetProfileRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetProfileRequestBuilder profileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = profileId;
         return this;
     }
                 
@@ -73,7 +73,7 @@ public class GetProfileRequestBuilder {
 
     private GetProfileRequest buildRequest() {
 
-        GetProfileRequest request = new GetProfileRequest(id,
+        GetProfileRequest request = new GetProfileRequest(profileId,
             testmode,
             idempotencyKey);
 

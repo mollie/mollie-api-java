@@ -113,11 +113,11 @@ public class AsyncInvoices {
      * <p>If you want to retrieve the details of an invoice by its invoice number,
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param invoiceId Provide the ID of the related invoice.
      * @return {@code CompletableFuture<GetInvoiceResponse>} - The async response
      */
-    public CompletableFuture<GetInvoiceResponse> get(String id) {
-        return get(id, Optional.empty(), Optional.empty());
+    public CompletableFuture<GetInvoiceResponse> get(String invoiceId) {
+        return get(invoiceId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -128,18 +128,18 @@ public class AsyncInvoices {
      * <p>If you want to retrieve the details of an invoice by its invoice number,
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param invoiceId Provide the ID of the related invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return {@code CompletableFuture<GetInvoiceResponse>} - The async response
      */
     public CompletableFuture<GetInvoiceResponse> get(
-            String id, Optional<String> idempotencyKey,
+            String invoiceId, Optional<String> idempotencyKey,
             Optional<Options> options) {
         GetInvoiceRequest request =
             GetInvoiceRequest
                 .builder()
-                .id(id)
+                .invoiceId(invoiceId)
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation

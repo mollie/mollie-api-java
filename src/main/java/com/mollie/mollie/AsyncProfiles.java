@@ -201,12 +201,12 @@ public class AsyncProfiles {
      * 
      * <p>Retrieve a single profile by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @return {@code CompletableFuture<GetProfileResponse>} - The async response
      */
-    public CompletableFuture<GetProfileResponse> get(String id) {
+    public CompletableFuture<GetProfileResponse> get(String profileId) {
         return get(
-                id, Optional.empty(), Optional.empty(),
+                profileId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -215,7 +215,7 @@ public class AsyncProfiles {
      * 
      * <p>Retrieve a single profile by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -226,12 +226,12 @@ public class AsyncProfiles {
      * @return {@code CompletableFuture<GetProfileResponse>} - The async response
      */
     public CompletableFuture<GetProfileResponse> get(
-            String id, Optional<Boolean> testmode,
+            String profileId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetProfileRequest request =
             GetProfileRequest
                 .builder()
-                .id(id)
+                .profileId(profileId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();
@@ -268,13 +268,13 @@ public class AsyncProfiles {
      * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @param requestBody 
      * @return {@code CompletableFuture<UpdateProfileResponse>} - The async response
      */
-    public CompletableFuture<UpdateProfileResponse> update(String id, UpdateProfileRequestBody requestBody) {
+    public CompletableFuture<UpdateProfileResponse> update(String profileId, UpdateProfileRequestBody requestBody) {
         return update(
-                id, Optional.empty(), requestBody,
+                profileId, Optional.empty(), requestBody,
                 Optional.empty());
     }
 
@@ -287,19 +287,19 @@ public class AsyncProfiles {
      * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
      * @return {@code CompletableFuture<UpdateProfileResponse>} - The async response
      */
     public CompletableFuture<UpdateProfileResponse> update(
-            String id, Optional<String> idempotencyKey,
+            String profileId, Optional<String> idempotencyKey,
             UpdateProfileRequestBody requestBody, Optional<Options> options) {
         UpdateProfileRequest request =
             UpdateProfileRequest
                 .builder()
-                .id(id)
+                .profileId(profileId)
                 .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
@@ -330,11 +330,11 @@ public class AsyncProfiles {
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
      * payments.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @return {@code CompletableFuture<DeleteProfileResponse>} - The async response
      */
-    public CompletableFuture<DeleteProfileResponse> delete(String id) {
-        return delete(id, Optional.empty(), Optional.empty());
+    public CompletableFuture<DeleteProfileResponse> delete(String profileId) {
+        return delete(profileId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -343,18 +343,18 @@ public class AsyncProfiles {
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
      * payments.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param profileId Provide the ID of the related profile.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return {@code CompletableFuture<DeleteProfileResponse>} - The async response
      */
     public CompletableFuture<DeleteProfileResponse> delete(
-            String id, Optional<String> idempotencyKey,
+            String profileId, Optional<String> idempotencyKey,
             Optional<Options> options) {
         DeleteProfileRequest request =
             DeleteProfileRequest
                 .builder()
-                .id(id)
+                .profileId(profileId)
                 .idempotencyKey(idempotencyKey)
                 .build();
         AsyncRequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation

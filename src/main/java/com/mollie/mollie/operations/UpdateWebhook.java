@@ -115,7 +115,7 @@ public class UpdateWebhook {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/webhooks/{id}",
+                    "/webhooks/{webhookId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "PATCH");
             Object convertedRequest = Utils.convertToShape(

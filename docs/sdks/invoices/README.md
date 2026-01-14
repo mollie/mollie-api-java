@@ -85,7 +85,7 @@ call the [List invoices](list-invoices) endpoint with the `reference` parameter.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-invoice" method="get" path="/invoices/{id}" -->
+<!-- UsageSnippet language="java" operationID="get-invoice" method="get" path="/invoices/{invoiceId}" -->
 ```java
 package hello.world;
 
@@ -106,7 +106,7 @@ public class Application {
             .build();
 
         GetInvoiceResponse res = sdk.invoices().get()
-                .id("inv_FrvewDA3Pr")
+                .invoiceId("inv_aHbjjdrUdm")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
@@ -121,7 +121,7 @@ public class Application {
 
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `id`                                                                             | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the item you want to perform this operation on.                |                                                                                  |
+| `invoiceId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related invoice.                                           | inv_aHbjjdrUdm                                                                   |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response

@@ -117,7 +117,7 @@ public class GetWebhookEvent {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/events/{id}",
+                    "/events/{webhookEventId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

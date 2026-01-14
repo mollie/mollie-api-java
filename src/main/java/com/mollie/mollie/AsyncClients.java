@@ -123,12 +123,12 @@ public class AsyncClients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param organizationId Provide the ID of the related organization.
      * @return {@code CompletableFuture<GetClientResponse>} - The async response
      */
-    public CompletableFuture<GetClientResponse> get(String id) {
+    public CompletableFuture<GetClientResponse> get(String organizationId) {
         return get(
-                id, JsonNullable.undefined(), Optional.empty(),
+                organizationId, JsonNullable.undefined(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -137,7 +137,7 @@ public class AsyncClients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param organizationId Provide the ID of the related organization.
      * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
      *         parameter.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -145,12 +145,12 @@ public class AsyncClients {
      * @return {@code CompletableFuture<GetClientResponse>} - The async response
      */
     public CompletableFuture<GetClientResponse> get(
-            String id, JsonNullable<String> embed,
+            String organizationId, JsonNullable<String> embed,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetClientRequest request =
             GetClientRequest
                 .builder()
-                .id(id)
+                .organizationId(organizationId)
                 .embed(embed)
                 .idempotencyKey(idempotencyKey)
                 .build();

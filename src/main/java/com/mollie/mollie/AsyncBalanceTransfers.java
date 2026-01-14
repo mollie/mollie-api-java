@@ -184,12 +184,12 @@ public class AsyncBalanceTransfers {
      * 
      * <p>Retrieve a single Connect balance transfer object by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param balanceTransferId Provide the ID of the related balance transfer.
      * @return {@code CompletableFuture<GetConnectBalanceTransferResponse>} - The async response
      */
-    public CompletableFuture<GetConnectBalanceTransferResponse> get(String id) {
+    public CompletableFuture<GetConnectBalanceTransferResponse> get(String balanceTransferId) {
         return get(
-                id, Optional.empty(), Optional.empty(),
+                balanceTransferId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -198,7 +198,7 @@ public class AsyncBalanceTransfers {
      * 
      * <p>Retrieve a single Connect balance transfer object by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param balanceTransferId Provide the ID of the related balance transfer.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -209,12 +209,12 @@ public class AsyncBalanceTransfers {
      * @return {@code CompletableFuture<GetConnectBalanceTransferResponse>} - The async response
      */
     public CompletableFuture<GetConnectBalanceTransferResponse> get(
-            String id, Optional<Boolean> testmode,
+            String balanceTransferId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetConnectBalanceTransferRequest request =
             GetConnectBalanceTransferRequest
                 .builder()
-                .id(id)
+                .balanceTransferId(balanceTransferId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();

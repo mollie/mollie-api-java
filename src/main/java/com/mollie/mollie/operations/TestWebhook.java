@@ -114,7 +114,7 @@ public class TestWebhook {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/webhooks/{id}/ping",
+                    "/webhooks/{webhookId}/ping",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

@@ -112,7 +112,7 @@ public class GetClient {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/clients/{id}",
+                    "/clients/{organizationId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

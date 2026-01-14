@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class UpdateProfileRequestBuilder {
 
-    private String id;
+    private String profileId;
     private Optional<String> idempotencyKey = Optional.empty();
     private UpdateProfileRequestBody requestBody;
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -30,9 +30,9 @@ public class UpdateProfileRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdateProfileRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public UpdateProfileRequestBuilder profileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = profileId;
         return this;
     }
                 
@@ -69,7 +69,7 @@ public class UpdateProfileRequestBuilder {
 
     private UpdateProfileRequest buildRequest() {
 
-        UpdateProfileRequest request = new UpdateProfileRequest(id,
+        UpdateProfileRequest request = new UpdateProfileRequest(profileId,
             idempotencyKey,
             requestBody);
 

@@ -143,7 +143,7 @@ Updates the webhook. You may edit the name, url and the list of subscribed event
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="update-webhook" method="patch" path="/webhooks/{id}" -->
+<!-- UsageSnippet language="java" operationID="update-webhook" method="patch" path="/webhooks/{webhookId}" -->
 ```java
 package hello.world;
 
@@ -165,7 +165,7 @@ public class Application {
             .build();
 
         UpdateWebhookResponse res = sdk.webhooks().update()
-                .id("hook_B2EyhTH5N4KWUnoYPcgiH")
+                .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(UpdateWebhookRequestBody.builder()
                     .name("Webhook #1")
@@ -186,7 +186,7 @@ public class Application {
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |                                                                                            |
+| `webhookId`                                                                                | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related webhook.                                                     | hook_1234567890                                                                            |
 | `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
 | `requestBody`                                                                              | [Optional\<UpdateWebhookRequestBody>](../../models/operations/UpdateWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
 
@@ -207,7 +207,7 @@ Retrieve a single webhook object by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-webhook" method="get" path="/webhooks/{id}" -->
+<!-- UsageSnippet language="java" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" -->
 ```java
 package hello.world;
 
@@ -229,7 +229,7 @@ public class Application {
             .build();
 
         GetWebhookResponse res = sdk.webhooks().get()
-                .id("hook_B2EyhTH5N4KWUnoYPcgiH")
+                .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
@@ -244,7 +244,7 @@ public class Application {
 
 | Parameter                                                                                                                                                               | Type                                                                                                                                                                    | Required                                                                                                                                                                | Description                                                                                                                                                             | Example                                                                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                                                                                                                                                                    | *String*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the item you want to perform this operation on.                                                                                                       |                                                                                                                                                                         |
+| `webhookId`                                                                                                                                                             | *String*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the related webhook.                                                                                                                                  | hook_1234567890                                                                                                                                                         |
 | `testmode`                                                                                                                                                              | *Optional\<Boolean>*                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                      | You can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                         |
 | `idempotencyKey`                                                                                                                                                        | *Optional\<String>*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                             |
 
@@ -265,7 +265,7 @@ Delete a single webhook object by its webhook ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="delete-webhook" method="delete" path="/webhooks/{id}" -->
+<!-- UsageSnippet language="java" operationID="delete-webhook" method="delete" path="/webhooks/{webhookId}" -->
 ```java
 package hello.world;
 
@@ -287,7 +287,7 @@ public class Application {
             .build();
 
         DeleteWebhookResponse res = sdk.webhooks().delete()
-                .id("hook_B2EyhTH5N4KWUnoYPcgiH")
+                .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(DeleteWebhookRequestBody.builder()
                     .testmode(false)
@@ -303,7 +303,7 @@ public class Application {
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `id`                                                                                       | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the item you want to perform this operation on.                          |                                                                                            |
+| `webhookId`                                                                                | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related webhook.                                                     | hook_1234567890                                                                            |
 | `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
 | `requestBody`                                                                              | [Optional\<DeleteWebhookRequestBody>](../../models/operations/DeleteWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
 
@@ -324,7 +324,7 @@ Sends a test event to the webhook to verify the endpoint is working as expected.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="test-webhook" method="post" path="/webhooks/{id}/ping" -->
+<!-- UsageSnippet language="java" operationID="test-webhook" method="post" path="/webhooks/{webhookId}/ping" -->
 ```java
 package hello.world;
 
@@ -346,7 +346,7 @@ public class Application {
             .build();
 
         TestWebhookResponse res = sdk.webhooks().test()
-                .id("hook_B2EyhTH5N4KWUnoYPcgiH")
+                .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(TestWebhookRequestBody.builder()
                     .testmode(false)
@@ -362,7 +362,7 @@ public class Application {
 
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `id`                                                                                   | *String*                                                                               | :heavy_check_mark:                                                                     | Provide the ID of the item you want to perform this operation on.                      |                                                                                        |
+| `webhookId`                                                                            | *String*                                                                               | :heavy_check_mark:                                                                     | Provide the ID of the related webhook.                                                 | hook_1234567890                                                                        |
 | `idempotencyKey`                                                                       | *Optional\<String>*                                                                    | :heavy_minus_sign:                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.       | 123e4567-e89b-12d3-a456-426                                                            |
 | `requestBody`                                                                          | [Optional\<TestWebhookRequestBody>](../../models/operations/TestWebhookRequestBody.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |                                                                                        |
 

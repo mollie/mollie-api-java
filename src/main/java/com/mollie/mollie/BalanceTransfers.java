@@ -178,12 +178,12 @@ public class BalanceTransfers {
      * 
      * <p>Retrieve a single Connect balance transfer object by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param balanceTransferId Provide the ID of the related balance transfer.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetConnectBalanceTransferResponse get(String id) {
-        return get(id, Optional.empty(), Optional.empty(),
+    public GetConnectBalanceTransferResponse get(String balanceTransferId) {
+        return get(balanceTransferId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -192,7 +192,7 @@ public class BalanceTransfers {
      * 
      * <p>Retrieve a single Connect balance transfer object by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param balanceTransferId Provide the ID of the related balance transfer.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -204,12 +204,12 @@ public class BalanceTransfers {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetConnectBalanceTransferResponse get(
-            String id, Optional<Boolean> testmode,
+            String balanceTransferId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetConnectBalanceTransferRequest request =
             GetConnectBalanceTransferRequest
                 .builder()
-                .id(id)
+                .balanceTransferId(balanceTransferId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();

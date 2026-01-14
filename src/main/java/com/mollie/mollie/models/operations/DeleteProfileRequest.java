@@ -14,10 +14,10 @@ import java.util.Optional;
 
 public class DeleteProfileRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related profile.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=profileId")
+    private String profileId;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -27,25 +27,25 @@ public class DeleteProfileRequest {
 
     @JsonCreator
     public DeleteProfileRequest(
-            String id,
+            String profileId,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.profileId = profileId;
         this.idempotencyKey = idempotencyKey;
     }
     
     public DeleteProfileRequest(
-            String id) {
-        this(id, Optional.empty());
+            String profileId) {
+        this(profileId, Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related profile.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String profileId() {
+        return profileId;
     }
 
     /**
@@ -62,11 +62,11 @@ public class DeleteProfileRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related profile.
      */
-    public DeleteProfileRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public DeleteProfileRequest withProfileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = profileId;
         return this;
     }
 
@@ -99,27 +99,27 @@ public class DeleteProfileRequest {
         }
         DeleteProfileRequest other = (DeleteProfileRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, idempotencyKey);
+            profileId, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DeleteProfileRequest.class,
-                "id", id,
+                "profileId", profileId,
                 "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String profileId;
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -129,11 +129,11 @@ public class DeleteProfileRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related profile.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder profileId(String profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = profileId;
             return this;
         }
 
@@ -159,7 +159,7 @@ public class DeleteProfileRequest {
         public DeleteProfileRequest build() {
 
             return new DeleteProfileRequest(
-                id, idempotencyKey);
+                profileId, idempotencyKey);
         }
 
     }

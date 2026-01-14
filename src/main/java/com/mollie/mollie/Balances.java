@@ -147,12 +147,12 @@ public class Balances {
      * funds are available on your balance. These funds will be shown under the *pending amount* in the
      * meanwhile.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param balanceId Provide the ID of the related balance.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetBalanceResponse get(String id) {
-        return get(id, Optional.empty(), Optional.empty(),
+    public GetBalanceResponse get(String balanceId) {
+        return get(balanceId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -178,7 +178,7 @@ public class Balances {
      * funds are available on your balance. These funds will be shown under the *pending amount* in the
      * meanwhile.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param balanceId Provide the ID of the related balance.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -190,12 +190,12 @@ public class Balances {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetBalanceResponse get(
-            String id, Optional<Boolean> testmode,
+            String balanceId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetBalanceRequest request =
             GetBalanceRequest
                 .builder()
-                .id(id)
+                .balanceId(balanceId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();

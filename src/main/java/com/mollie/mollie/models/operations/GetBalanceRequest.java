@@ -15,10 +15,10 @@ import java.util.Optional;
 
 public class GetBalanceRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related balance.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=balanceId")
+    private String balanceId;
 
     /**
      * You can enable test mode by setting the `testmode` query parameter to `true`.
@@ -36,28 +36,28 @@ public class GetBalanceRequest {
 
     @JsonCreator
     public GetBalanceRequest(
-            String id,
+            String balanceId,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(balanceId, "balanceId");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.balanceId = balanceId;
         this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
     }
     
     public GetBalanceRequest(
-            String id) {
-        this(id, Optional.empty(), Optional.empty());
+            String balanceId) {
+        this(balanceId, Optional.empty(), Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related balance.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String balanceId() {
+        return balanceId;
     }
 
     /**
@@ -84,11 +84,11 @@ public class GetBalanceRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related balance.
      */
-    public GetBalanceRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetBalanceRequest withBalanceId(String balanceId) {
+        Utils.checkNotNull(balanceId, "balanceId");
+        this.balanceId = balanceId;
         return this;
     }
 
@@ -144,7 +144,7 @@ public class GetBalanceRequest {
         }
         GetBalanceRequest other = (GetBalanceRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.balanceId, other.balanceId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
@@ -152,13 +152,13 @@ public class GetBalanceRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, testmode, idempotencyKey);
+            balanceId, testmode, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetBalanceRequest.class,
-                "id", id,
+                "balanceId", balanceId,
                 "testmode", testmode,
                 "idempotencyKey", idempotencyKey);
     }
@@ -166,7 +166,7 @@ public class GetBalanceRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String balanceId;
 
         private Optional<Boolean> testmode = Optional.empty();
 
@@ -178,11 +178,11 @@ public class GetBalanceRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related balance.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder balanceId(String balanceId) {
+            Utils.checkNotNull(balanceId, "balanceId");
+            this.balanceId = balanceId;
             return this;
         }
 
@@ -231,7 +231,7 @@ public class GetBalanceRequest {
         public GetBalanceRequest build() {
 
             return new GetBalanceRequest(
-                id, testmode, idempotencyKey);
+                balanceId, testmode, idempotencyKey);
         }
 
     }

@@ -53,12 +53,12 @@ public class AsyncWebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookEventId Provide the ID of the related webhook event.
      * @return {@code CompletableFuture<GetWebhookEventResponse>} - The async response
      */
-    public CompletableFuture<GetWebhookEventResponse> get(String id) {
+    public CompletableFuture<GetWebhookEventResponse> get(String webhookEventId) {
         return get(
-                id, Optional.empty(), Optional.empty(),
+                webhookEventId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -67,7 +67,7 @@ public class AsyncWebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookEventId Provide the ID of the related webhook event.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -78,12 +78,12 @@ public class AsyncWebhookEvents {
      * @return {@code CompletableFuture<GetWebhookEventResponse>} - The async response
      */
     public CompletableFuture<GetWebhookEventResponse> get(
-            String id, Optional<Boolean> testmode,
+            String webhookEventId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetWebhookEventRequest request =
             GetWebhookEventRequest
                 .builder()
-                .id(id)
+                .webhookEventId(webhookEventId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();

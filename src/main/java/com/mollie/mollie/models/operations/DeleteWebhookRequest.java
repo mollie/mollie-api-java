@@ -15,10 +15,10 @@ import java.util.Optional;
 
 public class DeleteWebhookRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related webhook.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=webhookId")
+    private String webhookId;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -32,28 +32,28 @@ public class DeleteWebhookRequest {
 
     @JsonCreator
     public DeleteWebhookRequest(
-            String id,
+            String webhookId,
             Optional<String> idempotencyKey,
             Optional<? extends DeleteWebhookRequestBody> requestBody) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(webhookId, "webhookId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(requestBody, "requestBody");
-        this.id = id;
+        this.webhookId = webhookId;
         this.idempotencyKey = idempotencyKey;
         this.requestBody = requestBody;
     }
     
     public DeleteWebhookRequest(
-            String id) {
-        this(id, Optional.empty(), Optional.empty());
+            String webhookId) {
+        this(webhookId, Optional.empty(), Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related webhook.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String webhookId() {
+        return webhookId;
     }
 
     /**
@@ -76,11 +76,11 @@ public class DeleteWebhookRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related webhook.
      */
-    public DeleteWebhookRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public DeleteWebhookRequest withWebhookId(String webhookId) {
+        Utils.checkNotNull(webhookId, "webhookId");
+        this.webhookId = webhookId;
         return this;
     }
 
@@ -126,7 +126,7 @@ public class DeleteWebhookRequest {
         }
         DeleteWebhookRequest other = (DeleteWebhookRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.webhookId, other.webhookId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
@@ -134,13 +134,13 @@ public class DeleteWebhookRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, idempotencyKey, requestBody);
+            webhookId, idempotencyKey, requestBody);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DeleteWebhookRequest.class,
-                "id", id,
+                "webhookId", webhookId,
                 "idempotencyKey", idempotencyKey,
                 "requestBody", requestBody);
     }
@@ -148,7 +148,7 @@ public class DeleteWebhookRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String webhookId;
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -160,11 +160,11 @@ public class DeleteWebhookRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related webhook.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder webhookId(String webhookId) {
+            Utils.checkNotNull(webhookId, "webhookId");
+            this.webhookId = webhookId;
             return this;
         }
 
@@ -203,7 +203,7 @@ public class DeleteWebhookRequest {
         public DeleteWebhookRequest build() {
 
             return new DeleteWebhookRequest(
-                id, idempotencyKey, requestBody);
+                webhookId, idempotencyKey, requestBody);
         }
 
     }

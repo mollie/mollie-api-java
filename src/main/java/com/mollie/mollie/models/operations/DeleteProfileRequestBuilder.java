@@ -16,7 +16,7 @@ import java.util.Optional;
 
 public class DeleteProfileRequestBuilder {
 
-    private String id;
+    private String profileId;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -26,9 +26,9 @@ public class DeleteProfileRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public DeleteProfileRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public DeleteProfileRequestBuilder profileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = profileId;
         return this;
     }
                 
@@ -59,7 +59,7 @@ public class DeleteProfileRequestBuilder {
 
     private DeleteProfileRequest buildRequest() {
 
-        DeleteProfileRequest request = new DeleteProfileRequest(id,
+        DeleteProfileRequest request = new DeleteProfileRequest(profileId,
             idempotencyKey);
 
         return request;

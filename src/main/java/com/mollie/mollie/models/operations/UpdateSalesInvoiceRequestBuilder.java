@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class UpdateSalesInvoiceRequestBuilder {
 
-    private String id;
+    private String salesInvoiceId;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -28,9 +28,9 @@ public class UpdateSalesInvoiceRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdateSalesInvoiceRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public UpdateSalesInvoiceRequestBuilder salesInvoiceId(String salesInvoiceId) {
+        Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
+        this.salesInvoiceId = salesInvoiceId;
         return this;
     }
                 
@@ -73,7 +73,7 @@ public class UpdateSalesInvoiceRequestBuilder {
 
     private UpdateSalesInvoiceRequest buildRequest() {
 
-        UpdateSalesInvoiceRequest request = new UpdateSalesInvoiceRequest(id,
+        UpdateSalesInvoiceRequest request = new UpdateSalesInvoiceRequest(salesInvoiceId,
             idempotencyKey,
             updateValuesSalesInvoice);
 

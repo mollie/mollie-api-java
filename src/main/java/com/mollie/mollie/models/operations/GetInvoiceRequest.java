@@ -14,10 +14,10 @@ import java.util.Optional;
 
 public class GetInvoiceRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related invoice.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=invoiceId")
+    private String invoiceId;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -27,25 +27,25 @@ public class GetInvoiceRequest {
 
     @JsonCreator
     public GetInvoiceRequest(
-            String id,
+            String invoiceId,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(invoiceId, "invoiceId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.invoiceId = invoiceId;
         this.idempotencyKey = idempotencyKey;
     }
     
     public GetInvoiceRequest(
-            String id) {
-        this(id, Optional.empty());
+            String invoiceId) {
+        this(invoiceId, Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related invoice.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String invoiceId() {
+        return invoiceId;
     }
 
     /**
@@ -62,11 +62,11 @@ public class GetInvoiceRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related invoice.
      */
-    public GetInvoiceRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetInvoiceRequest withInvoiceId(String invoiceId) {
+        Utils.checkNotNull(invoiceId, "invoiceId");
+        this.invoiceId = invoiceId;
         return this;
     }
 
@@ -99,27 +99,27 @@ public class GetInvoiceRequest {
         }
         GetInvoiceRequest other = (GetInvoiceRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.invoiceId, other.invoiceId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, idempotencyKey);
+            invoiceId, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetInvoiceRequest.class,
-                "id", id,
+                "invoiceId", invoiceId,
                 "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String invoiceId;
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -129,11 +129,11 @@ public class GetInvoiceRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related invoice.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder invoiceId(String invoiceId) {
+            Utils.checkNotNull(invoiceId, "invoiceId");
+            this.invoiceId = invoiceId;
             return this;
         }
 
@@ -159,7 +159,7 @@ public class GetInvoiceRequest {
         public GetInvoiceRequest build() {
 
             return new GetInvoiceRequest(
-                id, idempotencyKey);
+                invoiceId, idempotencyKey);
         }
 
     }

@@ -15,10 +15,10 @@ import java.util.Optional;
 
 public class GetConnectBalanceTransferRequest {
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related balance transfer.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=id")
-    private String id;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=balanceTransferId")
+    private String balanceTransferId;
 
     /**
      * You can enable test mode by setting the `testmode` query parameter to `true`.
@@ -36,28 +36,28 @@ public class GetConnectBalanceTransferRequest {
 
     @JsonCreator
     public GetConnectBalanceTransferRequest(
-            String id,
+            String balanceTransferId,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
-        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(balanceTransferId, "balanceTransferId");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.id = id;
+        this.balanceTransferId = balanceTransferId;
         this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
     }
     
     public GetConnectBalanceTransferRequest(
-            String id) {
-        this(id, Optional.empty(), Optional.empty());
+            String balanceTransferId) {
+        this(balanceTransferId, Optional.empty(), Optional.empty());
     }
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related balance transfer.
      */
     @JsonIgnore
-    public String id() {
-        return id;
+    public String balanceTransferId() {
+        return balanceTransferId;
     }
 
     /**
@@ -84,11 +84,11 @@ public class GetConnectBalanceTransferRequest {
 
 
     /**
-     * Provide the ID of the item you want to perform this operation on.
+     * Provide the ID of the related balance transfer.
      */
-    public GetConnectBalanceTransferRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetConnectBalanceTransferRequest withBalanceTransferId(String balanceTransferId) {
+        Utils.checkNotNull(balanceTransferId, "balanceTransferId");
+        this.balanceTransferId = balanceTransferId;
         return this;
     }
 
@@ -144,7 +144,7 @@ public class GetConnectBalanceTransferRequest {
         }
         GetConnectBalanceTransferRequest other = (GetConnectBalanceTransferRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.balanceTransferId, other.balanceTransferId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
@@ -152,13 +152,13 @@ public class GetConnectBalanceTransferRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, testmode, idempotencyKey);
+            balanceTransferId, testmode, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetConnectBalanceTransferRequest.class,
-                "id", id,
+                "balanceTransferId", balanceTransferId,
                 "testmode", testmode,
                 "idempotencyKey", idempotencyKey);
     }
@@ -166,7 +166,7 @@ public class GetConnectBalanceTransferRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String id;
+        private String balanceTransferId;
 
         private Optional<Boolean> testmode = Optional.empty();
 
@@ -178,11 +178,11 @@ public class GetConnectBalanceTransferRequest {
 
 
         /**
-         * Provide the ID of the item you want to perform this operation on.
+         * Provide the ID of the related balance transfer.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder balanceTransferId(String balanceTransferId) {
+            Utils.checkNotNull(balanceTransferId, "balanceTransferId");
+            this.balanceTransferId = balanceTransferId;
             return this;
         }
 
@@ -231,7 +231,7 @@ public class GetConnectBalanceTransferRequest {
         public GetConnectBalanceTransferRequest build() {
 
             return new GetConnectBalanceTransferRequest(
-                id, testmode, idempotencyKey);
+                balanceTransferId, testmode, idempotencyKey);
         }
 
     }

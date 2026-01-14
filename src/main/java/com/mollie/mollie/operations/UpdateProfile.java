@@ -116,7 +116,7 @@ public class UpdateProfile {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/profiles/{id}",
+                    "/profiles/{profileId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "PATCH");
             Object convertedRequest = Utils.convertToShape(

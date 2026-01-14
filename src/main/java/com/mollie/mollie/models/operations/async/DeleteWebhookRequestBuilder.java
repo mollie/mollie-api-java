@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class DeleteWebhookRequestBuilder {
 
-    private String id;
+    private String webhookId;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends DeleteWebhookRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -30,9 +30,9 @@ public class DeleteWebhookRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public DeleteWebhookRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public DeleteWebhookRequestBuilder webhookId(String webhookId) {
+        Utils.checkNotNull(webhookId, "webhookId");
+        this.webhookId = webhookId;
         return this;
     }
                 
@@ -75,7 +75,7 @@ public class DeleteWebhookRequestBuilder {
 
     private DeleteWebhookRequest buildRequest() {
 
-        DeleteWebhookRequest request = new DeleteWebhookRequest(id,
+        DeleteWebhookRequest request = new DeleteWebhookRequest(webhookId,
             idempotencyKey,
             requestBody);
 

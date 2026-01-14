@@ -169,12 +169,12 @@ public class Webhooks {
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookId Provide the ID of the related webhook.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateWebhookResponse update(String id) {
-        return update(id, Optional.empty(), Optional.empty(),
+    public UpdateWebhookResponse update(String webhookId) {
+        return update(webhookId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -183,7 +183,7 @@ public class Webhooks {
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookId Provide the ID of the related webhook.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
@@ -191,12 +191,12 @@ public class Webhooks {
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateWebhookResponse update(
-            String id, Optional<String> idempotencyKey,
+            String webhookId, Optional<String> idempotencyKey,
             Optional<? extends UpdateWebhookRequestBody> requestBody, Optional<Options> options) {
         UpdateWebhookRequest request =
             UpdateWebhookRequest
                 .builder()
-                .id(id)
+                .webhookId(webhookId)
                 .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
@@ -221,12 +221,12 @@ public class Webhooks {
      * 
      * <p>Retrieve a single webhook object by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookId Provide the ID of the related webhook.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetWebhookResponse get(String id) {
-        return get(id, Optional.empty(), Optional.empty(),
+    public GetWebhookResponse get(String webhookId) {
+        return get(webhookId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -235,7 +235,7 @@ public class Webhooks {
      * 
      * <p>Retrieve a single webhook object by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookId Provide the ID of the related webhook.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -247,12 +247,12 @@ public class Webhooks {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetWebhookResponse get(
-            String id, Optional<Boolean> testmode,
+            String webhookId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetWebhookRequest request =
             GetWebhookRequest
                 .builder()
-                .id(id)
+                .webhookId(webhookId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();
@@ -277,12 +277,12 @@ public class Webhooks {
      * 
      * <p>Delete a single webhook object by its webhook ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookId Provide the ID of the related webhook.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteWebhookResponse delete(String id) {
-        return delete(id, Optional.empty(), Optional.empty(),
+    public DeleteWebhookResponse delete(String webhookId) {
+        return delete(webhookId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -291,7 +291,7 @@ public class Webhooks {
      * 
      * <p>Delete a single webhook object by its webhook ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookId Provide the ID of the related webhook.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
@@ -299,12 +299,12 @@ public class Webhooks {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteWebhookResponse delete(
-            String id, Optional<String> idempotencyKey,
+            String webhookId, Optional<String> idempotencyKey,
             Optional<? extends DeleteWebhookRequestBody> requestBody, Optional<Options> options) {
         DeleteWebhookRequest request =
             DeleteWebhookRequest
                 .builder()
-                .id(id)
+                .webhookId(webhookId)
                 .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();
@@ -329,12 +329,12 @@ public class Webhooks {
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookId Provide the ID of the related webhook.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public TestWebhookResponse test(String id) {
-        return test(id, Optional.empty(), Optional.empty(),
+    public TestWebhookResponse test(String webhookId) {
+        return test(webhookId, Optional.empty(), Optional.empty(),
             Optional.empty());
     }
 
@@ -343,7 +343,7 @@ public class Webhooks {
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param webhookId Provide the ID of the related webhook.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param options additional options
@@ -351,12 +351,12 @@ public class Webhooks {
      * @throws RuntimeException subclass if the API call fails
      */
     public TestWebhookResponse test(
-            String id, Optional<String> idempotencyKey,
+            String webhookId, Optional<String> idempotencyKey,
             Optional<? extends TestWebhookRequestBody> requestBody, Optional<Options> options) {
         TestWebhookRequest request =
             TestWebhookRequest
                 .builder()
-                .id(id)
+                .webhookId(webhookId)
                 .idempotencyKey(idempotencyKey)
                 .requestBody(requestBody)
                 .build();

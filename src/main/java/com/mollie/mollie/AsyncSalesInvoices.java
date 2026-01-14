@@ -224,12 +224,12 @@ public class AsyncSalesInvoices {
      * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return {@code CompletableFuture<GetSalesInvoiceResponse>} - The async response
      */
-    public CompletableFuture<GetSalesInvoiceResponse> get(String id) {
+    public CompletableFuture<GetSalesInvoiceResponse> get(String salesInvoiceId) {
         return get(
-                id, Optional.empty(), Optional.empty(),
+                salesInvoiceId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -242,7 +242,7 @@ public class AsyncSalesInvoices {
      * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -253,12 +253,12 @@ public class AsyncSalesInvoices {
      * @return {@code CompletableFuture<GetSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<GetSalesInvoiceResponse> get(
-            String id, Optional<Boolean> testmode,
+            String salesInvoiceId, Optional<Boolean> testmode,
             Optional<String> idempotencyKey, Optional<Options> options) {
         GetSalesInvoiceRequest request =
             GetSalesInvoiceRequest
                 .builder()
-                .id(id)
+                .salesInvoiceId(salesInvoiceId)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();
@@ -303,12 +303,12 @@ public class AsyncSalesInvoices {
      * `emailDetails`,
      * respectively).
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return {@code CompletableFuture<UpdateSalesInvoiceResponse>} - The async response
      */
-    public CompletableFuture<UpdateSalesInvoiceResponse> update(String id) {
+    public CompletableFuture<UpdateSalesInvoiceResponse> update(String salesInvoiceId) {
         return update(
-                id, Optional.empty(), Optional.empty(),
+                salesInvoiceId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -325,19 +325,19 @@ public class AsyncSalesInvoices {
      * `emailDetails`,
      * respectively).
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param updateValuesSalesInvoice 
      * @param options additional options
      * @return {@code CompletableFuture<UpdateSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<UpdateSalesInvoiceResponse> update(
-            String id, Optional<String> idempotencyKey,
+            String salesInvoiceId, Optional<String> idempotencyKey,
             Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice, Optional<Options> options) {
         UpdateSalesInvoiceRequest request =
             UpdateSalesInvoiceRequest
                 .builder()
-                .id(id)
+                .salesInvoiceId(salesInvoiceId)
                 .idempotencyKey(idempotencyKey)
                 .updateValuesSalesInvoice(updateValuesSalesInvoice)
                 .build();
@@ -376,12 +376,12 @@ public class AsyncSalesInvoices {
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return {@code CompletableFuture<DeleteSalesInvoiceResponse>} - The async response
      */
-    public CompletableFuture<DeleteSalesInvoiceResponse> delete(String id) {
+    public CompletableFuture<DeleteSalesInvoiceResponse> delete(String salesInvoiceId) {
         return delete(
-                id, Optional.empty(), Optional.empty(),
+                salesInvoiceId, Optional.empty(), Optional.empty(),
                 Optional.empty());
     }
 
@@ -395,19 +395,19 @@ public class AsyncSalesInvoices {
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
-     * @param id Provide the ID of the item you want to perform this operation on.
+     * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param deleteValuesSalesInvoice 
      * @param options additional options
      * @return {@code CompletableFuture<DeleteSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<DeleteSalesInvoiceResponse> delete(
-            String id, Optional<String> idempotencyKey,
+            String salesInvoiceId, Optional<String> idempotencyKey,
             Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice, Optional<Options> options) {
         DeleteSalesInvoiceRequest request =
             DeleteSalesInvoiceRequest
                 .builder()
-                .id(id)
+                .salesInvoiceId(salesInvoiceId)
                 .idempotencyKey(idempotencyKey)
                 .deleteValuesSalesInvoice(deleteValuesSalesInvoice)
                 .build();

@@ -19,7 +19,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class GetConnectBalanceTransferRequestBuilder {
 
-    private String id;
+    private String balanceTransferId;
     private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -30,9 +30,9 @@ public class GetConnectBalanceTransferRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetConnectBalanceTransferRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetConnectBalanceTransferRequestBuilder balanceTransferId(String balanceTransferId) {
+        Utils.checkNotNull(balanceTransferId, "balanceTransferId");
+        this.balanceTransferId = balanceTransferId;
         return this;
     }
                 
@@ -75,7 +75,7 @@ public class GetConnectBalanceTransferRequestBuilder {
 
     private GetConnectBalanceTransferRequest buildRequest() {
 
-        GetConnectBalanceTransferRequest request = new GetConnectBalanceTransferRequest(id,
+        GetConnectBalanceTransferRequest request = new GetConnectBalanceTransferRequest(balanceTransferId,
             testmode,
             idempotencyKey);
 

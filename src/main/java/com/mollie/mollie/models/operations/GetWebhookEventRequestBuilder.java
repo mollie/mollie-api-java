@@ -17,7 +17,7 @@ import java.util.Optional;
 
 public class GetWebhookEventRequestBuilder {
 
-    private String id;
+    private String webhookEventId;
     private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -28,9 +28,9 @@ public class GetWebhookEventRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetWebhookEventRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public GetWebhookEventRequestBuilder webhookEventId(String webhookEventId) {
+        Utils.checkNotNull(webhookEventId, "webhookEventId");
+        this.webhookEventId = webhookEventId;
         return this;
     }
                 
@@ -73,7 +73,7 @@ public class GetWebhookEventRequestBuilder {
 
     private GetWebhookEventRequest buildRequest() {
 
-        GetWebhookEventRequest request = new GetWebhookEventRequest(id,
+        GetWebhookEventRequest request = new GetWebhookEventRequest(webhookEventId,
             testmode,
             idempotencyKey);
 
