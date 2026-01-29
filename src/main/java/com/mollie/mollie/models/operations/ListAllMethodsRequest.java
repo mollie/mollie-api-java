@@ -20,7 +20,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListAllMethodsRequest {
     /**
-     * Response language
+     * Passing a locale will sort the payment methods in the preferred order
+     * for the country, and translate the payment method names in the corresponding language.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=locale")
     private JsonNullable<? extends Locale> locale;
@@ -35,7 +36,8 @@ public class ListAllMethodsRequest {
     private Optional<? extends Amount> amount;
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to include additional information via the
+     * `include` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
     private JsonNullable<String> include;
@@ -112,7 +114,8 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Response language
+     * Passing a locale will sort the payment methods in the preferred order
+     * for the country, and translate the payment method names in the corresponding language.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -133,7 +136,8 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to include additional information via the
+     * `include` query string parameter.
      */
     @JsonIgnore
     public JsonNullable<String> include() {
@@ -195,7 +199,8 @@ public class ListAllMethodsRequest {
 
 
     /**
-     * Response language
+     * Passing a locale will sort the payment methods in the preferred order
+     * for the country, and translate the payment method names in the corresponding language.
      */
     public ListAllMethodsRequest withLocale(Locale locale) {
         Utils.checkNotNull(locale, "locale");
@@ -204,7 +209,8 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * Response language
+     * Passing a locale will sort the payment methods in the preferred order
+     * for the country, and translate the payment method names in the corresponding language.
      */
     public ListAllMethodsRequest withLocale(JsonNullable<? extends Locale> locale) {
         Utils.checkNotNull(locale, "locale");
@@ -238,7 +244,8 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to include additional information via the
+     * `include` query string parameter.
      */
     public ListAllMethodsRequest withInclude(String include) {
         Utils.checkNotNull(include, "include");
@@ -247,7 +254,8 @@ public class ListAllMethodsRequest {
     }
 
     /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
+     * This endpoint allows you to include additional information via the
+     * `include` query string parameter.
      */
     public ListAllMethodsRequest withInclude(JsonNullable<String> include) {
         Utils.checkNotNull(include, "include");
@@ -425,7 +433,8 @@ public class ListAllMethodsRequest {
 
 
         /**
-         * Response language
+         * Passing a locale will sort the payment methods in the preferred order
+         * for the country, and translate the payment method names in the corresponding language.
          */
         public Builder locale(Locale locale) {
             Utils.checkNotNull(locale, "locale");
@@ -434,7 +443,8 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * Response language
+         * Passing a locale will sort the payment methods in the preferred order
+         * for the country, and translate the payment method names in the corresponding language.
          */
         public Builder locale(JsonNullable<? extends Locale> locale) {
             Utils.checkNotNull(locale, "locale");
@@ -469,7 +479,8 @@ public class ListAllMethodsRequest {
 
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows you to include additional information via the
+         * `include` query string parameter.
          */
         public Builder include(String include) {
             Utils.checkNotNull(include, "include");
@@ -478,7 +489,8 @@ public class ListAllMethodsRequest {
         }
 
         /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
+         * This endpoint allows you to include additional information via the
+         * `include` query string parameter.
          */
         public Builder include(JsonNullable<String> include) {
             Utils.checkNotNull(include, "include");

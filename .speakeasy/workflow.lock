@@ -1,21 +1,21 @@
-speakeasyVersion: 1.685.0
+speakeasyVersion: 1.700.2
 sources:
     Mollie API:
         sourceNamespace: mollie-api
-        sourceRevisionDigest: sha256:a66d4a66251dcc71e8d118cdb10af6a9df9f3fabccc1e899686199be37809d2b
-        sourceBlobDigest: sha256:23da53a2df993448d8984b5af87515eca3b908eae6c1666747760df1ecfed4b7
+        sourceRevisionDigest: sha256:a81b91635a9109166ee388009a8a2f728ac00af85e54f9503ee43e8d690c4e4b
+        sourceBlobDigest: sha256:9a13ef680235d8c18c521dc7513faab81121932680b121dc2c0afdc4996b51a2
         tags:
             - latest
-            - speakeasy-sdk-regen-1768401440
+            - speakeasy-sdk-regen-1769681559
             - 1.0.0
 targets:
     client:
         source: Mollie API
         sourceNamespace: mollie-api
-        sourceRevisionDigest: sha256:a66d4a66251dcc71e8d118cdb10af6a9df9f3fabccc1e899686199be37809d2b
-        sourceBlobDigest: sha256:23da53a2df993448d8984b5af87515eca3b908eae6c1666747760df1ecfed4b7
+        sourceRevisionDigest: sha256:a81b91635a9109166ee388009a8a2f728ac00af85e54f9503ee43e8d690c4e4b
+        sourceBlobDigest: sha256:9a13ef680235d8c18c521dc7513faab81121932680b121dc2c0afdc4996b51a2
         codeSamplesNamespace: mollie-api-java-code-samples
-        codeSamplesRevisionDigest: sha256:784791765ef44918ef5f292674075edd14e2c4dd4322a785c6a5316d286a85f4
+        codeSamplesRevisionDigest: sha256:0ec7a4dcc6e9fecf68687346924beafacc98925ba0a6d0281292299292a1f8f2
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

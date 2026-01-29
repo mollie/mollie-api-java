@@ -28,9 +28,8 @@ public class GetPaymentRequest {
     private JsonNullable<String> include;
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed`
-     * query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the
+     * following values via the `embed` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private JsonNullable<String> embed;
@@ -95,9 +94,8 @@ public class GetPaymentRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed`
-     * query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the
+     * following values via the `embed` query string parameter.
      */
     @JsonIgnore
     public JsonNullable<String> embed() {
@@ -159,9 +157,8 @@ public class GetPaymentRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed`
-     * query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the
+     * following values via the `embed` query string parameter.
      */
     public GetPaymentRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
@@ -170,9 +167,8 @@ public class GetPaymentRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed`
-     * query string
-     * parameter.
+     * This endpoint allows embedding related API items by appending the
+     * following values via the `embed` query string parameter.
      */
     public GetPaymentRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
@@ -312,9 +308,8 @@ public class GetPaymentRequest {
 
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed`
-         * query string
-         * parameter.
+         * This endpoint allows embedding related API items by appending the
+         * following values via the `embed` query string parameter.
          */
         public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
@@ -323,9 +318,8 @@ public class GetPaymentRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed`
-         * query string
-         * parameter.
+         * This endpoint allows embedding related API items by appending the
+         * following values via the `embed` query string parameter.
          */
         public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");

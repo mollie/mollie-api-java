@@ -28,9 +28,7 @@ public class GetChargebackRequest {
     private String chargebackId;
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed`
-     * query string
-     * parameter.
+     * This endpoint allows you to embed additional information via the `embed` query string parameter.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=embed")
     private JsonNullable<String> embed;
@@ -96,9 +94,7 @@ public class GetChargebackRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed`
-     * query string
-     * parameter.
+     * This endpoint allows you to embed additional information via the `embed` query string parameter.
      */
     @JsonIgnore
     public JsonNullable<String> embed() {
@@ -151,9 +147,7 @@ public class GetChargebackRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed`
-     * query string
-     * parameter.
+     * This endpoint allows you to embed additional information via the `embed` query string parameter.
      */
     public GetChargebackRequest withEmbed(String embed) {
         Utils.checkNotNull(embed, "embed");
@@ -162,9 +156,7 @@ public class GetChargebackRequest {
     }
 
     /**
-     * This endpoint allows embedding related API items by appending the following values via the `embed`
-     * query string
-     * parameter.
+     * This endpoint allows you to embed additional information via the `embed` query string parameter.
      */
     public GetChargebackRequest withEmbed(JsonNullable<String> embed) {
         Utils.checkNotNull(embed, "embed");
@@ -295,9 +287,7 @@ public class GetChargebackRequest {
 
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed`
-         * query string
-         * parameter.
+         * This endpoint allows you to embed additional information via the `embed` query string parameter.
          */
         public Builder embed(String embed) {
             Utils.checkNotNull(embed, "embed");
@@ -306,9 +296,7 @@ public class GetChargebackRequest {
         }
 
         /**
-         * This endpoint allows embedding related API items by appending the following values via the `embed`
-         * query string
-         * parameter.
+         * This endpoint allows you to embed additional information via the `embed` query string parameter.
          */
         public Builder embed(JsonNullable<String> embed) {
             Utils.checkNotNull(embed, "embed");

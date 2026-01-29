@@ -187,7 +187,7 @@ public class ListPaymentResponse {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
@@ -867,7 +867,7 @@ public class ListPaymentResponse {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1571,7 +1571,7 @@ public class ListPaymentResponse {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
      */
     public ListPaymentResponse withBillingAddress(ListPaymentResponseBillingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -1589,7 +1589,7 @@ public class ListPaymentResponse {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
      */
     public ListPaymentResponse withBillingAddress(Optional<? extends ListPaymentResponseBillingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -2874,7 +2874,7 @@ public class ListPaymentResponse {
          * `city` and
          * `country`.
          * 
-         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
          */
         public Builder billingAddress(ListPaymentResponseBillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
@@ -2891,7 +2891,7 @@ public class ListPaymentResponse {
          * `city` and
          * `country`.
          * 
-         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
          */
         public Builder billingAddress(Optional<? extends ListPaymentResponseBillingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");

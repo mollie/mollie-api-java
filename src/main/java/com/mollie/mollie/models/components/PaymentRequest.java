@@ -115,7 +115,7 @@ public class PaymentRequest {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
@@ -660,7 +660,7 @@ public class PaymentRequest {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1195,7 +1195,7 @@ public class PaymentRequest {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
      */
     public PaymentRequest withBillingAddress(PaymentRequestBillingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -1213,7 +1213,7 @@ public class PaymentRequest {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
      */
     public PaymentRequest withBillingAddress(Optional<? extends PaymentRequestBillingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -2323,7 +2323,7 @@ public class PaymentRequest {
          * `city` and
          * `country`.
          * 
-         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
          */
         public Builder billingAddress(PaymentRequestBillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
@@ -2340,7 +2340,7 @@ public class PaymentRequest {
          * `city` and
          * `country`.
          * 
-         * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+         * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
          */
         public Builder billingAddress(Optional<? extends PaymentRequestBillingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");

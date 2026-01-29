@@ -26,7 +26,7 @@ import java.util.Optional;
  * `city` and
  * `country`.
  * 
- * <p>Required for payment method `in3`, `klarna`, `billie` and `riverty`.
+ * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
  */
 public class PaymentResponseBillingAddress {
     /**
