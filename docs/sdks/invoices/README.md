@@ -41,7 +41,6 @@ public class Application {
         ListInvoicesRequest req = ListInvoicesRequest.builder()
                 .reference("2024.10000")
                 .year("2024")
-                .month("01")
                 .from("inv_xBEbP9rvAq")
                 .limit(50L)
                 .sort(Sorting.DESC)

@@ -31,12 +31,6 @@ public class ListInvoicesRequest {
     private JsonNullable<String> year;
 
     /**
-     * Filter for invoices of a specific month, for example `01`.
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=month")
-    private JsonNullable<String> month;
-
-    /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
      * to paginate the
      * result set.
@@ -68,21 +62,18 @@ public class ListInvoicesRequest {
     public ListInvoicesRequest(
             JsonNullable<String> reference,
             JsonNullable<String> year,
-            JsonNullable<String> month,
             JsonNullable<String> from,
             JsonNullable<Long> limit,
             Optional<? extends Sorting> sort,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(year, "year");
-        Utils.checkNotNull(month, "month");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.reference = reference;
         this.year = year;
-        this.month = month;
         this.from = from;
         this.limit = limit;
         this.sort = sort;
@@ -91,8 +82,7 @@ public class ListInvoicesRequest {
     
     public ListInvoicesRequest() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -110,14 +100,6 @@ public class ListInvoicesRequest {
     @JsonIgnore
     public JsonNullable<String> year() {
         return year;
-    }
-
-    /**
-     * Filter for invoices of a specific month, for example `01`.
-     */
-    @JsonIgnore
-    public JsonNullable<String> month() {
-        return month;
     }
 
     /**
@@ -197,24 +179,6 @@ public class ListInvoicesRequest {
     public ListInvoicesRequest withYear(JsonNullable<String> year) {
         Utils.checkNotNull(year, "year");
         this.year = year;
-        return this;
-    }
-
-    /**
-     * Filter for invoices of a specific month, for example `01`.
-     */
-    public ListInvoicesRequest withMonth(String month) {
-        Utils.checkNotNull(month, "month");
-        this.month = JsonNullable.of(month);
-        return this;
-    }
-
-    /**
-     * Filter for invoices of a specific month, for example `01`.
-     */
-    public ListInvoicesRequest withMonth(JsonNullable<String> month) {
-        Utils.checkNotNull(month, "month");
-        this.month = month;
         return this;
     }
 
@@ -312,7 +276,6 @@ public class ListInvoicesRequest {
         return 
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
             Utils.enhancedDeepEquals(this.year, other.year) &&
-            Utils.enhancedDeepEquals(this.month, other.month) &&
             Utils.enhancedDeepEquals(this.from, other.from) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.sort, other.sort) &&
@@ -322,9 +285,8 @@ public class ListInvoicesRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            reference, year, month,
-            from, limit, sort,
-            idempotencyKey);
+            reference, year, from,
+            limit, sort, idempotencyKey);
     }
     
     @Override
@@ -332,7 +294,6 @@ public class ListInvoicesRequest {
         return Utils.toString(ListInvoicesRequest.class,
                 "reference", reference,
                 "year", year,
-                "month", month,
                 "from", from,
                 "limit", limit,
                 "sort", sort,
@@ -345,8 +306,6 @@ public class ListInvoicesRequest {
         private JsonNullable<String> reference = JsonNullable.undefined();
 
         private JsonNullable<String> year = JsonNullable.undefined();
-
-        private JsonNullable<String> month = JsonNullable.undefined();
 
         private JsonNullable<String> from = JsonNullable.undefined();
 
@@ -397,25 +356,6 @@ public class ListInvoicesRequest {
         public Builder year(JsonNullable<String> year) {
             Utils.checkNotNull(year, "year");
             this.year = year;
-            return this;
-        }
-
-
-        /**
-         * Filter for invoices of a specific month, for example `01`.
-         */
-        public Builder month(String month) {
-            Utils.checkNotNull(month, "month");
-            this.month = JsonNullable.of(month);
-            return this;
-        }
-
-        /**
-         * Filter for invoices of a specific month, for example `01`.
-         */
-        public Builder month(JsonNullable<String> month) {
-            Utils.checkNotNull(month, "month");
-            this.month = month;
             return this;
         }
 
@@ -506,9 +446,8 @@ public class ListInvoicesRequest {
         public ListInvoicesRequest build() {
 
             return new ListInvoicesRequest(
-                reference, year, month,
-                from, limit, sort,
-                idempotencyKey);
+                reference, year, from,
+                limit, sort, idempotencyKey);
         }
 
     }

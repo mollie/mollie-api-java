@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 2dd6bbe6c8e37f09e44e3a6a74949722
+  docChecksum: 9f75aa3893b04629c033db9812989f12
   docVersion: 1.0.0
   speakeasyVersion: 1.700.2
   generationVersion: 2.801.2
-  releaseVersion: 1.0.3
-  configChecksum: 431ca77a918a4cc5cb9b59a62bba1ab8
+  releaseVersion: 1.0.4
+  configChecksum: a136889b1e4f5ba0877dee604d3af4f6
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 persistentEdits:
-  generation_id: f9054a9e-2a5d-467f-ab25-1c7c204cc488
-  pristine_commit_hash: 5d6087682832f80318b6f5ef8e854b7c8a4b44b6
-  pristine_tree_hash: eab3c1292482106155fd9fb991b2984cc0cee39a
+  generation_id: 553e9a58-8c1e-4661-9604-0b64b85b6ecd
+  pristine_commit_hash: 81ccdf7c59df722b5993e9c08859d7537ad8acd8
+  pristine_tree_hash: b5ac334bfcd00583529b2811f61dd15817357505
 features:
   java:
     additionalDependencies: 0.1.0
@@ -242,8 +242,8 @@ trackedFiles:
     pristine_git_object: 09235b2e09d4965358a280998f5d7ec006887744
   docs/models/components/Code.md:
     id: 46d3a54f7668
-    last_write_checksum: sha1:d68a43413346d15f99c357fba55891fa575ea2ce
-    pristine_git_object: 84c8814ceced825dfcbe6c3737621cc22726999c
+    last_write_checksum: sha1:0431926ad7a2e8cf55dbd5d1b7b3676ee5d5f9a9
+    pristine_git_object: f8213a6b1b6a4faf2e606f117cd4091dccad16c3
   docs/models/components/Company.md:
     id: a50352948c02
     last_write_checksum: sha1:a8ed5b70395f18ac3685b82867f993f6793ef92e
@@ -2434,8 +2434,8 @@ trackedFiles:
     pristine_git_object: 0b3c1fa3bbb8f18d3da4295c3f54bf38281fc1e1
   docs/models/operations/ListInvoicesRequest.md:
     id: 1ed1835c35f3
-    last_write_checksum: sha1:15670867aa8fe1d7a65fb4be3303524d34b3b189
-    pristine_git_object: f09632ce8634a52f494a87704d65be7673422d10
+    last_write_checksum: sha1:46d0fd66443e2cc75c96a78d5c0359fbd347ef5f
+    pristine_git_object: 79ea0fd9e459587ed8486f7ca9b82156c51086f4
   docs/models/operations/ListInvoicesResponse.md:
     id: cee609811316
     last_write_checksum: sha1:204907ab412d685a526035cf3446bee41b0b244d
@@ -2942,8 +2942,8 @@ trackedFiles:
     pristine_git_object: 6e22ad9ed9f340f95ab52e9eec421b009ea7e1ad
   docs/sdks/invoices/README.md:
     id: a3f76a06eded
-    last_write_checksum: sha1:8316c276392c378733cdae35ff0236fc82219452
-    pristine_git_object: 2b6d721d748a846abd368586fb90c23087b271be
+    last_write_checksum: sha1:881a4a3a39a44df323b4bbfaf310672c077c7815
+    pristine_git_object: 2ea3c7f7263a5bb1146339b3b1292effad225895
   docs/sdks/mandates/README.md:
     id: 5166fb580165
     last_write_checksum: sha1:c6ba08d553e9319893c8b6c437a8d2b9b84e3f39
@@ -3014,8 +3014,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:57f152da81bf8663b789dfd4a4ddf3b6265575c1
-    pristine_git_object: 512eb84e944a5d3724cde899b9fbae772e076809
+    last_write_checksum: sha1:20e4a80009cb0b9875e5225912553130b46eea73
+    pristine_git_object: 0e27e68d31aaf72da75849f87261aa88e7027628
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3258,8 +3258,8 @@ trackedFiles:
     pristine_git_object: 69c33730128d6e2735bd390f7b618f6e00657f48
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:e9bace403fa27db048cbdffb1d5cd383be96a5ca
-    pristine_git_object: a1eb7f2d0aaa7f72672f562ed4d120de2b4c1caa
+    last_write_checksum: sha1:e043b23bc11f323df12206666af16840d7b8c258
+    pristine_git_object: 52e4d35d731aeeb21087e018094a28359a2c7ee5
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:3021233594fc1949519ea3eb6226ca398ca322b4
@@ -3490,8 +3490,8 @@ trackedFiles:
     pristine_git_object: 94c56ddbd53ba1cadb967346b21752f52df57d84
   src/main/java/com/mollie/mollie/models/components/Code.java:
     id: a2adb66cf8ba
-    last_write_checksum: sha1:848dca3543588344e8a8e0b97d1723e88e20c26c
-    pristine_git_object: 44d150adb229764b3d432224feb25f932f7a507c
+    last_write_checksum: sha1:c8a17af6ff2fce49219f8d2870db64e385b673b5
+    pristine_git_object: 37092c4ceca141499939ba69f576e6ac2d90a0c9
   src/main/java/com/mollie/mollie/models/components/Company.java:
     id: 5a9a3e4fd0ea
     last_write_checksum: sha1:a797512dc876bfb6b1d22a6b664768a421cb3785
@@ -6338,8 +6338,8 @@ trackedFiles:
     pristine_git_object: 643d8b6f23093bd2bdf3766d3eb7ad8db04be4a9
   src/main/java/com/mollie/mollie/models/operations/ListInvoicesRequest.java:
     id: 42155ed9b6a8
-    last_write_checksum: sha1:72bc7fc4f9afb2343393d45de1a33a8ce2560c5b
-    pristine_git_object: 85545052e6d959cc8a2a55b0e42dfffce7988516
+    last_write_checksum: sha1:555a9e20d514e9e14ef91bce17b7ce0245a16310
+    pristine_git_object: a7e3eae372558e4959e86bc088218d0360a69e40
   src/main/java/com/mollie/mollie/models/operations/ListInvoicesRequestBuilder.java:
     id: b0e54a84509e
     last_write_checksum: sha1:785cd9523132866c404cc9a596b481907d61625d
@@ -12458,6 +12458,7 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `client.settlements.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.invoices.list()`: \n  *  `request.month` **Removed** **Breaking** ⚠️\n* `client.payments.create()`:  `response.statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.payments.list()`:  `response.Embedded.payments[].statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.payments.get()`:  `response.statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.payments.update()`:  `response.statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.payments.cancel()`:  `response.statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.paymentLinks.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.customers.createPayment()`:  `response.statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.customers.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.subscriptions.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
