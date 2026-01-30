@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 9f75aa3893b04629c033db9812989f12
+  docChecksum: 6c3e2fac7288f1a292fc3e02b30fe61a
   docVersion: 1.0.0
   speakeasyVersion: 1.700.2
   generationVersion: 2.801.2
-  releaseVersion: 1.0.4
-  configChecksum: a136889b1e4f5ba0877dee604d3af4f6
+  releaseVersion: 1.0.5
+  configChecksum: de24c2b22809a79b6a70647e01a9af0a
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 persistentEdits:
-  generation_id: 553e9a58-8c1e-4661-9604-0b64b85b6ecd
-  pristine_commit_hash: 81ccdf7c59df722b5993e9c08859d7537ad8acd8
-  pristine_tree_hash: b5ac334bfcd00583529b2811f61dd15817357505
+  generation_id: ca06fecc-0741-4707-80dc-adde9dbb542d
+  pristine_commit_hash: 0ef5994070aa12add4dc842835d654488f1fc9b0
+  pristine_tree_hash: 077834a4fd5f5a5ba1050ce02580206a8eb5a665
 features:
   java:
     additionalDependencies: 0.1.0
@@ -242,8 +242,8 @@ trackedFiles:
     pristine_git_object: 09235b2e09d4965358a280998f5d7ec006887744
   docs/models/components/Code.md:
     id: 46d3a54f7668
-    last_write_checksum: sha1:0431926ad7a2e8cf55dbd5d1b7b3676ee5d5f9a9
-    pristine_git_object: f8213a6b1b6a4faf2e606f117cd4091dccad16c3
+    last_write_checksum: sha1:adfc6d7b7fe4d82b2b1963facc9a7907069f35ea
+    pristine_git_object: 626e6be1f32412b162bd6cfb4bc6c7486ab7fd9c
   docs/models/components/Company.md:
     id: a50352948c02
     last_write_checksum: sha1:a8ed5b70395f18ac3685b82867f993f6793ef92e
@@ -3014,8 +3014,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:20e4a80009cb0b9875e5225912553130b46eea73
-    pristine_git_object: 0e27e68d31aaf72da75849f87261aa88e7027628
+    last_write_checksum: sha1:52bde3d4f5edcf4e9011372421ec1c748c4dcc42
+    pristine_git_object: a888a08df6d64dc36b6ad9aa04505a3efa78b249
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3258,8 +3258,8 @@ trackedFiles:
     pristine_git_object: 69c33730128d6e2735bd390f7b618f6e00657f48
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:e043b23bc11f323df12206666af16840d7b8c258
-    pristine_git_object: 52e4d35d731aeeb21087e018094a28359a2c7ee5
+    last_write_checksum: sha1:5f9da3a6eba750b6de181a7e4a0e1581e63bb71e
+    pristine_git_object: e7a2a0357d9847195ed06636f2287cea534f8cdc
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:3021233594fc1949519ea3eb6226ca398ca322b4
@@ -3490,8 +3490,8 @@ trackedFiles:
     pristine_git_object: 94c56ddbd53ba1cadb967346b21752f52df57d84
   src/main/java/com/mollie/mollie/models/components/Code.java:
     id: a2adb66cf8ba
-    last_write_checksum: sha1:c8a17af6ff2fce49219f8d2870db64e385b673b5
-    pristine_git_object: 37092c4ceca141499939ba69f576e6ac2d90a0c9
+    last_write_checksum: sha1:5080aaf9e0478e62b4104f5743d27754fa19f3e6
+    pristine_git_object: 1caeabcee45057d92303bbf9148235f2b0c72554
   src/main/java/com/mollie/mollie/models/components/Company.java:
     id: 5a9a3e4fd0ea
     last_write_checksum: sha1:a797512dc876bfb6b1d22a6b664768a421cb3785
@@ -12458,7 +12458,18 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `client.settlements.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.invoices.list()`: \n  *  `request.month` **Removed** **Breaking** ⚠️\n* `client.payments.create()`:  `response.statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.payments.list()`:  `response.Embedded.payments[].statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.payments.get()`:  `response.statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.payments.update()`:  `response.statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.payments.cancel()`:  `response.statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.paymentLinks.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.customers.createPayment()`:  `response.statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.customers.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n* `client.subscriptions.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(cardError)` **Added** **Breaking** ⚠️\n"
+releaseNotes: |
+  ## Java SDK Changes:
+  * `client.settlements.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `client.payments.create()`:  `response.statusReason.code.enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `client.payments.list()`:  `response.Embedded.payments[].statusReason.code.enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `client.payments.get()`:  `response.statusReason.code.enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `client.payments.update()`:  `response.statusReason.code.enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `client.payments.cancel()`:  `response.statusReason.code.enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `client.paymentLinks.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `client.customers.createPayment()`:  `response.statusReason.code.enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `client.customers.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
+  * `client.subscriptions.listPayments()`:  `response.Embedded.payments[].statusReason.code.enum(terminalConfigurationIssue)` **Added** **Breaking** ⚠️
 generatedFiles:
   - .gitattributes
   - USAGE.md
