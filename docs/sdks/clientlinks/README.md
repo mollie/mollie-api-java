@@ -101,7 +101,7 @@ public class Application {
                         .city("Amsterdam")
                         .build())
                     .registrationNumber("12345678")
-                    .vatNumber("123456789B01")
+                    .legalEntity(LegalEntity.of(Nl.NL_BV))
                     .build())
                 .call();
 

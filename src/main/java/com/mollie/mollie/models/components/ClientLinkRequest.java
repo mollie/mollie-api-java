@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -49,23 +51,33 @@ public class ClientLinkRequest {
     @JsonProperty("vatNumber")
     private JsonNullable<String> vatNumber;
 
+    /**
+     * The legal entity type of the organization, based on its country of origin.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("legalEntity")
+    private Optional<? extends LegalEntity> legalEntity;
+
     @JsonCreator
     public ClientLinkRequest(
             @JsonProperty("owner") Owner owner,
             @JsonProperty("name") String name,
             @JsonProperty("address") ClientLinkRequestAddress address,
             @JsonProperty("registrationNumber") JsonNullable<String> registrationNumber,
-            @JsonProperty("vatNumber") JsonNullable<String> vatNumber) {
+            @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
+            @JsonProperty("legalEntity") Optional<? extends LegalEntity> legalEntity) {
         Utils.checkNotNull(owner, "owner");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(registrationNumber, "registrationNumber");
         Utils.checkNotNull(vatNumber, "vatNumber");
+        Utils.checkNotNull(legalEntity, "legalEntity");
         this.owner = owner;
         this.name = name;
         this.address = address;
         this.registrationNumber = registrationNumber;
         this.vatNumber = vatNumber;
+        this.legalEntity = legalEntity;
     }
     
     public ClientLinkRequest(
@@ -73,7 +85,7 @@ public class ClientLinkRequest {
             String name,
             ClientLinkRequestAddress address) {
         this(owner, name, address,
-            JsonNullable.undefined(), JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -116,6 +128,15 @@ public class ClientLinkRequest {
     @JsonIgnore
     public JsonNullable<String> vatNumber() {
         return vatNumber;
+    }
+
+    /**
+     * The legal entity type of the organization, based on its country of origin.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<LegalEntity> legalEntity() {
+        return (Optional<LegalEntity>) legalEntity;
     }
 
     public static Builder builder() {
@@ -190,6 +211,25 @@ public class ClientLinkRequest {
         return this;
     }
 
+    /**
+     * The legal entity type of the organization, based on its country of origin.
+     */
+    public ClientLinkRequest withLegalEntity(LegalEntity legalEntity) {
+        Utils.checkNotNull(legalEntity, "legalEntity");
+        this.legalEntity = Optional.ofNullable(legalEntity);
+        return this;
+    }
+
+
+    /**
+     * The legal entity type of the organization, based on its country of origin.
+     */
+    public ClientLinkRequest withLegalEntity(Optional<? extends LegalEntity> legalEntity) {
+        Utils.checkNotNull(legalEntity, "legalEntity");
+        this.legalEntity = legalEntity;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -204,14 +244,15 @@ public class ClientLinkRequest {
             Utils.enhancedDeepEquals(this.name, other.name) &&
             Utils.enhancedDeepEquals(this.address, other.address) &&
             Utils.enhancedDeepEquals(this.registrationNumber, other.registrationNumber) &&
-            Utils.enhancedDeepEquals(this.vatNumber, other.vatNumber);
+            Utils.enhancedDeepEquals(this.vatNumber, other.vatNumber) &&
+            Utils.enhancedDeepEquals(this.legalEntity, other.legalEntity);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             owner, name, address,
-            registrationNumber, vatNumber);
+            registrationNumber, vatNumber, legalEntity);
     }
     
     @Override
@@ -221,7 +262,8 @@ public class ClientLinkRequest {
                 "name", name,
                 "address", address,
                 "registrationNumber", registrationNumber,
-                "vatNumber", vatNumber);
+                "vatNumber", vatNumber,
+                "legalEntity", legalEntity);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -236,6 +278,8 @@ public class ClientLinkRequest {
         private JsonNullable<String> registrationNumber = JsonNullable.undefined();
 
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
+
+        private Optional<? extends LegalEntity> legalEntity = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -313,11 +357,30 @@ public class ClientLinkRequest {
             return this;
         }
 
+
+        /**
+         * The legal entity type of the organization, based on its country of origin.
+         */
+        public Builder legalEntity(LegalEntity legalEntity) {
+            Utils.checkNotNull(legalEntity, "legalEntity");
+            this.legalEntity = Optional.ofNullable(legalEntity);
+            return this;
+        }
+
+        /**
+         * The legal entity type of the organization, based on its country of origin.
+         */
+        public Builder legalEntity(Optional<? extends LegalEntity> legalEntity) {
+            Utils.checkNotNull(legalEntity, "legalEntity");
+            this.legalEntity = legalEntity;
+            return this;
+        }
+
         public ClientLinkRequest build() {
 
             return new ClientLinkRequest(
                 owner, name, address,
-                registrationNumber, vatNumber);
+                registrationNumber, vatNumber, legalEntity);
         }
 
     }
