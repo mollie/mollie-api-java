@@ -101,7 +101,9 @@ public class Application {
                         .city("Amsterdam")
                         .build())
                     .registrationNumber("12345678")
-                    .legalEntity(LegalEntity.of(Nl.NL_BV))
+                    .legalEntity("nl-bv")
+                    .registrationOffice("aachen")
+                    .incorporationDate("2024-12-24")
                     .build())
                 .call();
 

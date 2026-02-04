@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -52,11 +51,27 @@ public class ClientLinkRequest {
     private JsonNullable<String> vatNumber;
 
     /**
-     * The legal entity type of the organization, based on its country of origin.
+     * The legal entity type of the organization, based on its country of origin. Please refer to the
+     * [legal entity list](common-data-types#legal-entity) for all possible options.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("legalEntity")
-    private Optional<? extends LegalEntity> legalEntity;
+    private Optional<String> legalEntity;
+
+    /**
+     * The registration office that the organization was registered at. Please refer to the
+     * [registration office list](common-data-types#registration-office) for all possible options.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("registrationOffice")
+    private Optional<String> registrationOffice;
+
+    /**
+     * The incorporation date of the organization (format `YYYY-MM-DD`)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("incorporationDate")
+    private JsonNullable<String> incorporationDate;
 
     @JsonCreator
     public ClientLinkRequest(
@@ -65,19 +80,25 @@ public class ClientLinkRequest {
             @JsonProperty("address") ClientLinkRequestAddress address,
             @JsonProperty("registrationNumber") JsonNullable<String> registrationNumber,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
-            @JsonProperty("legalEntity") Optional<? extends LegalEntity> legalEntity) {
+            @JsonProperty("legalEntity") Optional<String> legalEntity,
+            @JsonProperty("registrationOffice") Optional<String> registrationOffice,
+            @JsonProperty("incorporationDate") JsonNullable<String> incorporationDate) {
         Utils.checkNotNull(owner, "owner");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(address, "address");
         Utils.checkNotNull(registrationNumber, "registrationNumber");
         Utils.checkNotNull(vatNumber, "vatNumber");
         Utils.checkNotNull(legalEntity, "legalEntity");
+        Utils.checkNotNull(registrationOffice, "registrationOffice");
+        Utils.checkNotNull(incorporationDate, "incorporationDate");
         this.owner = owner;
         this.name = name;
         this.address = address;
         this.registrationNumber = registrationNumber;
         this.vatNumber = vatNumber;
         this.legalEntity = legalEntity;
+        this.registrationOffice = registrationOffice;
+        this.incorporationDate = incorporationDate;
     }
     
     public ClientLinkRequest(
@@ -85,7 +106,8 @@ public class ClientLinkRequest {
             String name,
             ClientLinkRequestAddress address) {
         this(owner, name, address,
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -131,12 +153,29 @@ public class ClientLinkRequest {
     }
 
     /**
-     * The legal entity type of the organization, based on its country of origin.
+     * The legal entity type of the organization, based on its country of origin. Please refer to the
+     * [legal entity list](common-data-types#legal-entity) for all possible options.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<LegalEntity> legalEntity() {
-        return (Optional<LegalEntity>) legalEntity;
+    public Optional<String> legalEntity() {
+        return legalEntity;
+    }
+
+    /**
+     * The registration office that the organization was registered at. Please refer to the
+     * [registration office list](common-data-types#registration-office) for all possible options.
+     */
+    @JsonIgnore
+    public Optional<String> registrationOffice() {
+        return registrationOffice;
+    }
+
+    /**
+     * The incorporation date of the organization (format `YYYY-MM-DD`)
+     */
+    @JsonIgnore
+    public JsonNullable<String> incorporationDate() {
+        return incorporationDate;
     }
 
     public static Builder builder() {
@@ -212,9 +251,10 @@ public class ClientLinkRequest {
     }
 
     /**
-     * The legal entity type of the organization, based on its country of origin.
+     * The legal entity type of the organization, based on its country of origin. Please refer to the
+     * [legal entity list](common-data-types#legal-entity) for all possible options.
      */
-    public ClientLinkRequest withLegalEntity(LegalEntity legalEntity) {
+    public ClientLinkRequest withLegalEntity(String legalEntity) {
         Utils.checkNotNull(legalEntity, "legalEntity");
         this.legalEntity = Optional.ofNullable(legalEntity);
         return this;
@@ -222,11 +262,51 @@ public class ClientLinkRequest {
 
 
     /**
-     * The legal entity type of the organization, based on its country of origin.
+     * The legal entity type of the organization, based on its country of origin. Please refer to the
+     * [legal entity list](common-data-types#legal-entity) for all possible options.
      */
-    public ClientLinkRequest withLegalEntity(Optional<? extends LegalEntity> legalEntity) {
+    public ClientLinkRequest withLegalEntity(Optional<String> legalEntity) {
         Utils.checkNotNull(legalEntity, "legalEntity");
         this.legalEntity = legalEntity;
+        return this;
+    }
+
+    /**
+     * The registration office that the organization was registered at. Please refer to the
+     * [registration office list](common-data-types#registration-office) for all possible options.
+     */
+    public ClientLinkRequest withRegistrationOffice(String registrationOffice) {
+        Utils.checkNotNull(registrationOffice, "registrationOffice");
+        this.registrationOffice = Optional.ofNullable(registrationOffice);
+        return this;
+    }
+
+
+    /**
+     * The registration office that the organization was registered at. Please refer to the
+     * [registration office list](common-data-types#registration-office) for all possible options.
+     */
+    public ClientLinkRequest withRegistrationOffice(Optional<String> registrationOffice) {
+        Utils.checkNotNull(registrationOffice, "registrationOffice");
+        this.registrationOffice = registrationOffice;
+        return this;
+    }
+
+    /**
+     * The incorporation date of the organization (format `YYYY-MM-DD`)
+     */
+    public ClientLinkRequest withIncorporationDate(String incorporationDate) {
+        Utils.checkNotNull(incorporationDate, "incorporationDate");
+        this.incorporationDate = JsonNullable.of(incorporationDate);
+        return this;
+    }
+
+    /**
+     * The incorporation date of the organization (format `YYYY-MM-DD`)
+     */
+    public ClientLinkRequest withIncorporationDate(JsonNullable<String> incorporationDate) {
+        Utils.checkNotNull(incorporationDate, "incorporationDate");
+        this.incorporationDate = incorporationDate;
         return this;
     }
 
@@ -245,14 +325,17 @@ public class ClientLinkRequest {
             Utils.enhancedDeepEquals(this.address, other.address) &&
             Utils.enhancedDeepEquals(this.registrationNumber, other.registrationNumber) &&
             Utils.enhancedDeepEquals(this.vatNumber, other.vatNumber) &&
-            Utils.enhancedDeepEquals(this.legalEntity, other.legalEntity);
+            Utils.enhancedDeepEquals(this.legalEntity, other.legalEntity) &&
+            Utils.enhancedDeepEquals(this.registrationOffice, other.registrationOffice) &&
+            Utils.enhancedDeepEquals(this.incorporationDate, other.incorporationDate);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             owner, name, address,
-            registrationNumber, vatNumber, legalEntity);
+            registrationNumber, vatNumber, legalEntity,
+            registrationOffice, incorporationDate);
     }
     
     @Override
@@ -263,7 +346,9 @@ public class ClientLinkRequest {
                 "address", address,
                 "registrationNumber", registrationNumber,
                 "vatNumber", vatNumber,
-                "legalEntity", legalEntity);
+                "legalEntity", legalEntity,
+                "registrationOffice", registrationOffice,
+                "incorporationDate", incorporationDate);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -279,7 +364,11 @@ public class ClientLinkRequest {
 
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
 
-        private Optional<? extends LegalEntity> legalEntity = Optional.empty();
+        private Optional<String> legalEntity = Optional.empty();
+
+        private Optional<String> registrationOffice = Optional.empty();
+
+        private JsonNullable<String> incorporationDate = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -359,20 +448,62 @@ public class ClientLinkRequest {
 
 
         /**
-         * The legal entity type of the organization, based on its country of origin.
+         * The legal entity type of the organization, based on its country of origin. Please refer to the
+         * [legal entity list](common-data-types#legal-entity) for all possible options.
          */
-        public Builder legalEntity(LegalEntity legalEntity) {
+        public Builder legalEntity(String legalEntity) {
             Utils.checkNotNull(legalEntity, "legalEntity");
             this.legalEntity = Optional.ofNullable(legalEntity);
             return this;
         }
 
         /**
-         * The legal entity type of the organization, based on its country of origin.
+         * The legal entity type of the organization, based on its country of origin. Please refer to the
+         * [legal entity list](common-data-types#legal-entity) for all possible options.
          */
-        public Builder legalEntity(Optional<? extends LegalEntity> legalEntity) {
+        public Builder legalEntity(Optional<String> legalEntity) {
             Utils.checkNotNull(legalEntity, "legalEntity");
             this.legalEntity = legalEntity;
+            return this;
+        }
+
+
+        /**
+         * The registration office that the organization was registered at. Please refer to the
+         * [registration office list](common-data-types#registration-office) for all possible options.
+         */
+        public Builder registrationOffice(String registrationOffice) {
+            Utils.checkNotNull(registrationOffice, "registrationOffice");
+            this.registrationOffice = Optional.ofNullable(registrationOffice);
+            return this;
+        }
+
+        /**
+         * The registration office that the organization was registered at. Please refer to the
+         * [registration office list](common-data-types#registration-office) for all possible options.
+         */
+        public Builder registrationOffice(Optional<String> registrationOffice) {
+            Utils.checkNotNull(registrationOffice, "registrationOffice");
+            this.registrationOffice = registrationOffice;
+            return this;
+        }
+
+
+        /**
+         * The incorporation date of the organization (format `YYYY-MM-DD`)
+         */
+        public Builder incorporationDate(String incorporationDate) {
+            Utils.checkNotNull(incorporationDate, "incorporationDate");
+            this.incorporationDate = JsonNullable.of(incorporationDate);
+            return this;
+        }
+
+        /**
+         * The incorporation date of the organization (format `YYYY-MM-DD`)
+         */
+        public Builder incorporationDate(JsonNullable<String> incorporationDate) {
+            Utils.checkNotNull(incorporationDate, "incorporationDate");
+            this.incorporationDate = incorporationDate;
             return this;
         }
 
@@ -380,7 +511,8 @@ public class ClientLinkRequest {
 
             return new ClientLinkRequest(
                 owner, name, address,
-                registrationNumber, vatNumber, legalEntity);
+                registrationNumber, vatNumber, legalEntity,
+                registrationOffice, incorporationDate);
         }
 
     }

@@ -22,7 +22,7 @@ import java.util.Optional;
  * ListPaymentResponseStatus
  * 
  * <p>The payment's status. Refer to the [documentation regarding
- * statuses](https://docs.mollie.com/docs/status-change#/) for more info about which
+ * statuses](https://docs.mollie.com/docs/handling-payment-status) for more info about which
  * statuses occur at what point.
  */
 public class ListPaymentResponseStatus {
