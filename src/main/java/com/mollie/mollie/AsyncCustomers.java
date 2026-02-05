@@ -15,6 +15,7 @@ import com.mollie.mollie.models.operations.GetCustomerRequest;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsRequest;
 import com.mollie.mollie.models.operations.ListCustomersRequest;
 import com.mollie.mollie.models.operations.UpdateCustomerRequest;
+import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
 import com.mollie.mollie.models.operations.async.CreateCustomerPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreateCustomerPaymentResponse;
 import com.mollie.mollie.models.operations.async.CreateCustomerRequestBuilder;
@@ -278,19 +279,19 @@ public class AsyncCustomers {
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityCustomer 
+     * @param requestBody 
      * @param options additional options
      * @return {@code CompletableFuture<UpdateCustomerResponse>} - The async response
      */
     public CompletableFuture<UpdateCustomerResponse> update(
             String customerId, Optional<String> idempotencyKey,
-            Optional<? extends EntityCustomer> entityCustomer, Optional<Options> options) {
+            Optional<? extends UpdateCustomerRequestBody> requestBody, Optional<Options> options) {
         UpdateCustomerRequest request =
             UpdateCustomerRequest
                 .builder()
                 .customerId(customerId)
                 .idempotencyKey(idempotencyKey)
-                .entityCustomer(entityCustomer)
+                .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
               = new UpdateCustomer.Async(

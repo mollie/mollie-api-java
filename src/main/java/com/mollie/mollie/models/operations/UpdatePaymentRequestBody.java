@@ -148,7 +148,8 @@ public class UpdatePaymentRequestBody {
     private JsonNullable<String> restrictPaymentMethodsToCountry;
 
     /**
-     * Whether to create the entity in test mode or live mode.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
      * parameter can be
@@ -158,7 +159,7 @@ public class UpdatePaymentRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
-    private JsonNullable<Boolean> testmode;
+    private Optional<Boolean> testmode;
 
     /**
      * **Only relevant for iDEAL, KBC/CBC, gift card, and voucher payments.**
@@ -222,7 +223,7 @@ public class UpdatePaymentRequestBody {
             @JsonProperty("locale") JsonNullable<? extends Locale> locale,
             @JsonProperty("dueDate") Optional<String> dueDate,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
-            @JsonProperty("testmode") JsonNullable<Boolean> testmode,
+            @JsonProperty("testmode") Optional<Boolean> testmode,
             @JsonProperty("issuer") JsonNullable<String> issuer,
             @JsonProperty("billingAddress") Optional<? extends BillingAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
@@ -261,7 +262,7 @@ public class UpdatePaymentRequestBody {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
 
@@ -402,7 +403,8 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Whether to create the entity in test mode or live mode.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
      * parameter can be
@@ -411,7 +413,7 @@ public class UpdatePaymentRequestBody {
      * `testmode` to `true`.
      */
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
+    public Optional<Boolean> testmode() {
         return testmode;
     }
 
@@ -762,7 +764,8 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Whether to create the entity in test mode or live mode.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
      * parameter can be
@@ -772,12 +775,14 @@ public class UpdatePaymentRequestBody {
      */
     public UpdatePaymentRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.ofNullable(testmode);
         return this;
     }
 
+
     /**
-     * Whether to create the entity in test mode or live mode.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
      * parameter can be
@@ -785,7 +790,7 @@ public class UpdatePaymentRequestBody {
      * setting
      * `testmode` to `true`.
      */
-    public UpdatePaymentRequestBody withTestmode(JsonNullable<Boolean> testmode) {
+    public UpdatePaymentRequestBody withTestmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -984,7 +989,7 @@ public class UpdatePaymentRequestBody {
 
         private JsonNullable<String> restrictPaymentMethodsToCountry = JsonNullable.undefined();
 
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<Boolean> testmode = Optional.empty();
 
         private JsonNullable<String> issuer = JsonNullable.undefined();
 
@@ -1293,7 +1298,8 @@ public class UpdatePaymentRequestBody {
 
 
         /**
-         * Whether to create the entity in test mode or live mode.
+         * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+         * entity.
          * 
          * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
          * parameter can be
@@ -1303,12 +1309,13 @@ public class UpdatePaymentRequestBody {
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+            this.testmode = Optional.ofNullable(testmode);
             return this;
         }
 
         /**
-         * Whether to create the entity in test mode or live mode.
+         * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+         * entity.
          * 
          * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
          * parameter can be
@@ -1316,7 +1323,7 @@ public class UpdatePaymentRequestBody {
          * setting
          * `testmode` to `true`.
          */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
+        public Builder testmode(Optional<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
             this.testmode = testmode;
             return this;

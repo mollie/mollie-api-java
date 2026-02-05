@@ -6,7 +6,6 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.EntityCustomer;
 import com.mollie.mollie.operations.UpdateCustomer;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
@@ -19,7 +18,7 @@ public class UpdateCustomerRequestBuilder {
 
     private String customerId;
     private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends EntityCustomer> entityCustomer = Optional.empty();
+    private Optional<? extends UpdateCustomerRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -46,15 +45,15 @@ public class UpdateCustomerRequestBuilder {
         return this;
     }
                 
-    public UpdateCustomerRequestBuilder entityCustomer(EntityCustomer entityCustomer) {
-        Utils.checkNotNull(entityCustomer, "entityCustomer");
-        this.entityCustomer = Optional.of(entityCustomer);
+    public UpdateCustomerRequestBuilder requestBody(UpdateCustomerRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
         return this;
     }
 
-    public UpdateCustomerRequestBuilder entityCustomer(Optional<? extends EntityCustomer> entityCustomer) {
-        Utils.checkNotNull(entityCustomer, "entityCustomer");
-        this.entityCustomer = entityCustomer;
+    public UpdateCustomerRequestBuilder requestBody(Optional<? extends UpdateCustomerRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -75,7 +74,7 @@ public class UpdateCustomerRequestBuilder {
 
         UpdateCustomerRequest request = new UpdateCustomerRequest(customerId,
             idempotencyKey,
-            entityCustomer);
+            requestBody);
 
         return request;
     }

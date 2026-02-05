@@ -6,8 +6,8 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequest;
+import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBody;
 import com.mollie.mollie.operations.UpdateSalesInvoice;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
@@ -21,7 +21,7 @@ public class UpdateSalesInvoiceRequestBuilder {
 
     private String salesInvoiceId;
     private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice = Optional.empty();
+    private Optional<? extends UpdateSalesInvoiceRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -48,15 +48,15 @@ public class UpdateSalesInvoiceRequestBuilder {
         return this;
     }
                 
-    public UpdateSalesInvoiceRequestBuilder updateValuesSalesInvoice(UpdateValuesSalesInvoice updateValuesSalesInvoice) {
-        Utils.checkNotNull(updateValuesSalesInvoice, "updateValuesSalesInvoice");
-        this.updateValuesSalesInvoice = Optional.of(updateValuesSalesInvoice);
+    public UpdateSalesInvoiceRequestBuilder requestBody(UpdateSalesInvoiceRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.of(requestBody);
         return this;
     }
 
-    public UpdateSalesInvoiceRequestBuilder updateValuesSalesInvoice(Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice) {
-        Utils.checkNotNull(updateValuesSalesInvoice, "updateValuesSalesInvoice");
-        this.updateValuesSalesInvoice = updateValuesSalesInvoice;
+    public UpdateSalesInvoiceRequestBuilder requestBody(Optional<? extends UpdateSalesInvoiceRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
                 
@@ -77,7 +77,7 @@ public class UpdateSalesInvoiceRequestBuilder {
 
         UpdateSalesInvoiceRequest request = new UpdateSalesInvoiceRequest(salesInvoiceId,
             idempotencyKey,
-            updateValuesSalesInvoice);
+            requestBody);
 
         return request;
     }

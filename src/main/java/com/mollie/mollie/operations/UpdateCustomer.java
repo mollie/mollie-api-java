@@ -124,7 +124,7 @@ public class UpdateCustomer {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "entityCustomer",
+                    "requestBody",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));

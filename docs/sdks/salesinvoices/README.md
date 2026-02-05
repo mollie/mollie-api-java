@@ -260,6 +260,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBody;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -277,7 +278,7 @@ public class Application {
         UpdateSalesInvoiceResponse res = sdk.salesInvoices().update()
                 .salesInvoiceId("invoice_4Y0eZitmBnQ6IDoMqZQKh")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .updateValuesSalesInvoice(UpdateValuesSalesInvoice.builder()
+                .requestBody(UpdateSalesInvoiceRequestBody.builder()
                     .testmode(false)
                     .status(SalesInvoiceStatus.DRAFT)
                     .memo("An updated memo!")
@@ -339,11 +340,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `salesInvoiceId`                                                                           | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related sales invoice.                                               | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                              |
-| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
-| `updateValuesSalesInvoice`                                                                 | [Optional\<UpdateValuesSalesInvoice>](../../models/components/UpdateValuesSalesInvoice.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `salesInvoiceId`                                                                                     | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related sales invoice.                                                         | invoice_4Y0eZitmBnQ6IDoMqZQKh                                                                        |
+| `idempotencyKey`                                                                                     | *Optional\<String>*                                                                                  | :heavy_minus_sign:                                                                                   | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                     | 123e4567-e89b-12d3-a456-426                                                                          |
+| `requestBody`                                                                                        | [Optional\<UpdateSalesInvoiceRequestBody>](../../models/operations/UpdateSalesInvoiceRequestBody.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
 
 ### Response
 

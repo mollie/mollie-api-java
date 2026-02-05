@@ -215,8 +215,10 @@ For an in-depth explanation of each parameter, refer to the [Create customer](cr
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.components.LocaleResponse;
+import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
 import com.mollie.mollie.models.operations.UpdateCustomerResponse;
 import java.lang.Exception;
 
@@ -233,7 +235,7 @@ public class Application {
         UpdateCustomerResponse res = sdk.customers().update()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .entityCustomer(EntityCustomer.builder()
+                .requestBody(UpdateCustomerRequestBody.builder()
                     .name("John Doe")
                     .email("example@email.com")
                     .locale(LocaleResponse.EN_US)
@@ -250,11 +252,11 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `customerId`                                                                     | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related customer.                                          | cst_5B8cwPMGnU                                                                   |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityCustomer`                                                                 | [Optional\<EntityCustomer>](../../models/components/EntityCustomer.md)           | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `customerId`                                                                                 | *String*                                                                                     | :heavy_check_mark:                                                                           | Provide the ID of the related customer.                                                      | cst_5B8cwPMGnU                                                                               |
+| `idempotencyKey`                                                                             | *Optional\<String>*                                                                          | :heavy_minus_sign:                                                                           | A unique key to ensure idempotent requests. This key should be a UUID v4 string.             | 123e4567-e89b-12d3-a456-426                                                                  |
+| `requestBody`                                                                                | [Optional\<UpdateCustomerRequestBody>](../../models/operations/UpdateCustomerRequestBody.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |                                                                                              |
 
 ### Response
 

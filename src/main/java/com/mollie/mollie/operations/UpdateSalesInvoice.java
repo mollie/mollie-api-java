@@ -124,7 +124,7 @@ public class UpdateSalesInvoice {
                     typeReference);
             SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                     convertedRequest,
-                    "updateValuesSalesInvoice",
+                    "requestBody",
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));

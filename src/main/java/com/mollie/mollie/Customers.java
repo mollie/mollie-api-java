@@ -27,6 +27,7 @@ import com.mollie.mollie.models.operations.ListCustomersRequest;
 import com.mollie.mollie.models.operations.ListCustomersRequestBuilder;
 import com.mollie.mollie.models.operations.ListCustomersResponse;
 import com.mollie.mollie.models.operations.UpdateCustomerRequest;
+import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
 import com.mollie.mollie.models.operations.UpdateCustomerRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateCustomerResponse;
 import com.mollie.mollie.operations.CreateCustomer;
@@ -269,20 +270,20 @@ public class Customers {
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityCustomer 
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateCustomerResponse update(
             String customerId, Optional<String> idempotencyKey,
-            Optional<? extends EntityCustomer> entityCustomer, Optional<Options> options) {
+            Optional<? extends UpdateCustomerRequestBody> requestBody, Optional<Options> options) {
         UpdateCustomerRequest request =
             UpdateCustomerRequest
                 .builder()
                 .customerId(customerId)
                 .idempotencyKey(idempotencyKey)
-                .entityCustomer(entityCustomer)
+                .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
               = new UpdateCustomer.Sync(sdkConfiguration, options, _headers);

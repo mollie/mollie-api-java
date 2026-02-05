@@ -28,7 +28,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 1.0.7
+  version: 1.0.8
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
@@ -70,5 +70,6 @@ java:
   operationScopedParams: true
   outputModelSuffix: output
   projectName: openapi
+  respectTitlesForPrimitiveUnionMembers: false
   templateVersion: v2
   unionStrategy: populated-fields

@@ -83,15 +83,18 @@ public class UpdatePaymentLinkRequestBody {
     private Optional<? extends PaymentAddress> shippingAddress;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For
-     * organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
+     * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
-    private JsonNullable<Boolean> testmode;
+    private Optional<Boolean> testmode;
 
     @JsonCreator
     public UpdatePaymentLinkRequestBody(
@@ -102,7 +105,7 @@ public class UpdatePaymentLinkRequestBody {
             @JsonProperty("lines") JsonNullable<? extends List<PaymentLineItem>> lines,
             @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
-            @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
+            @JsonProperty("testmode") Optional<Boolean> testmode) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         Utils.checkNotNull(archived, "archived");
@@ -124,7 +127,7 @@ public class UpdatePaymentLinkRequestBody {
     public UpdatePaymentLinkRequestBody() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -197,14 +200,17 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For
-     * organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
+     * `testmode` to `true`.
      */
     @JsonIgnore
-    public JsonNullable<Boolean> testmode() {
+    public Optional<Boolean> testmode() {
         return testmode;
     }
 
@@ -361,26 +367,33 @@ public class UpdatePaymentLinkRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For
-     * organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
+     * `testmode` to `true`.
      */
     public UpdatePaymentLinkRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
-        this.testmode = JsonNullable.of(testmode);
+        this.testmode = Optional.ofNullable(testmode);
         return this;
     }
 
+
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For
-     * organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
+     * `testmode` to `true`.
      */
-    public UpdatePaymentLinkRequestBody withTestmode(JsonNullable<Boolean> testmode) {
+    public UpdatePaymentLinkRequestBody withTestmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
         this.testmode = testmode;
         return this;
@@ -444,7 +457,7 @@ public class UpdatePaymentLinkRequestBody {
 
         private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
 
-        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
+        private Optional<Boolean> testmode = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -601,26 +614,32 @@ public class UpdatePaymentLinkRequestBody {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For
-         * organization-level credentials
-         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+         * entity.
          * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
+         * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
-            this.testmode = JsonNullable.of(testmode);
+            this.testmode = Optional.ofNullable(testmode);
             return this;
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For
-         * organization-level credentials
-         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+         * entity.
          * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
+         * `testmode` to `true`.
          */
-        public Builder testmode(JsonNullable<Boolean> testmode) {
+        public Builder testmode(Optional<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
             this.testmode = testmode;
             return this;

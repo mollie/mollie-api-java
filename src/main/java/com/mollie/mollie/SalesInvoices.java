@@ -7,7 +7,6 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
 import com.mollie.mollie.models.components.SalesInvoiceRequest;
-import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceRequestBuilder;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceResponse;
@@ -21,6 +20,7 @@ import com.mollie.mollie.models.operations.ListSalesInvoicesRequest;
 import com.mollie.mollie.models.operations.ListSalesInvoicesRequestBuilder;
 import com.mollie.mollie.models.operations.ListSalesInvoicesResponse;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequest;
+import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBody;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceResponse;
 import com.mollie.mollie.operations.CreateSalesInvoice;
@@ -317,20 +317,20 @@ public class SalesInvoices {
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param updateValuesSalesInvoice 
+     * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public UpdateSalesInvoiceResponse update(
             String salesInvoiceId, Optional<String> idempotencyKey,
-            Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice, Optional<Options> options) {
+            Optional<? extends UpdateSalesInvoiceRequestBody> requestBody, Optional<Options> options) {
         UpdateSalesInvoiceRequest request =
             UpdateSalesInvoiceRequest
                 .builder()
                 .salesInvoiceId(salesInvoiceId)
                 .idempotencyKey(idempotencyKey)
-                .updateValuesSalesInvoice(updateValuesSalesInvoice)
+                .requestBody(requestBody)
                 .build();
         RequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
               = new UpdateSalesInvoice.Sync(sdkConfiguration, options, _headers);

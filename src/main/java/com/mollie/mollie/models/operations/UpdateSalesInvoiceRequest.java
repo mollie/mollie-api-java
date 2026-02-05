@@ -5,7 +5,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -29,19 +28,19 @@ public class UpdateSalesInvoiceRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice;
+    private Optional<? extends UpdateSalesInvoiceRequestBody> requestBody;
 
     @JsonCreator
     public UpdateSalesInvoiceRequest(
             String salesInvoiceId,
             Optional<String> idempotencyKey,
-            Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice) {
+            Optional<? extends UpdateSalesInvoiceRequestBody> requestBody) {
         Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        Utils.checkNotNull(updateValuesSalesInvoice, "updateValuesSalesInvoice");
+        Utils.checkNotNull(requestBody, "requestBody");
         this.salesInvoiceId = salesInvoiceId;
         this.idempotencyKey = idempotencyKey;
-        this.updateValuesSalesInvoice = updateValuesSalesInvoice;
+        this.requestBody = requestBody;
     }
     
     public UpdateSalesInvoiceRequest(
@@ -67,8 +66,8 @@ public class UpdateSalesInvoiceRequest {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UpdateValuesSalesInvoice> updateValuesSalesInvoice() {
-        return (Optional<UpdateValuesSalesInvoice>) updateValuesSalesInvoice;
+    public Optional<UpdateSalesInvoiceRequestBody> requestBody() {
+        return (Optional<UpdateSalesInvoiceRequestBody>) requestBody;
     }
 
     public static Builder builder() {
@@ -104,16 +103,16 @@ public class UpdateSalesInvoiceRequest {
         return this;
     }
 
-    public UpdateSalesInvoiceRequest withUpdateValuesSalesInvoice(UpdateValuesSalesInvoice updateValuesSalesInvoice) {
-        Utils.checkNotNull(updateValuesSalesInvoice, "updateValuesSalesInvoice");
-        this.updateValuesSalesInvoice = Optional.ofNullable(updateValuesSalesInvoice);
+    public UpdateSalesInvoiceRequest withRequestBody(UpdateSalesInvoiceRequestBody requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = Optional.ofNullable(requestBody);
         return this;
     }
 
 
-    public UpdateSalesInvoiceRequest withUpdateValuesSalesInvoice(Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice) {
-        Utils.checkNotNull(updateValuesSalesInvoice, "updateValuesSalesInvoice");
-        this.updateValuesSalesInvoice = updateValuesSalesInvoice;
+    public UpdateSalesInvoiceRequest withRequestBody(Optional<? extends UpdateSalesInvoiceRequestBody> requestBody) {
+        Utils.checkNotNull(requestBody, "requestBody");
+        this.requestBody = requestBody;
         return this;
     }
 
@@ -129,13 +128,13 @@ public class UpdateSalesInvoiceRequest {
         return 
             Utils.enhancedDeepEquals(this.salesInvoiceId, other.salesInvoiceId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Utils.enhancedDeepEquals(this.updateValuesSalesInvoice, other.updateValuesSalesInvoice);
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            salesInvoiceId, idempotencyKey, updateValuesSalesInvoice);
+            salesInvoiceId, idempotencyKey, requestBody);
     }
     
     @Override
@@ -143,7 +142,7 @@ public class UpdateSalesInvoiceRequest {
         return Utils.toString(UpdateSalesInvoiceRequest.class,
                 "salesInvoiceId", salesInvoiceId,
                 "idempotencyKey", idempotencyKey,
-                "updateValuesSalesInvoice", updateValuesSalesInvoice);
+                "requestBody", requestBody);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -153,7 +152,7 @@ public class UpdateSalesInvoiceRequest {
 
         private Optional<String> idempotencyKey = Optional.empty();
 
-        private Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice = Optional.empty();
+        private Optional<? extends UpdateSalesInvoiceRequestBody> requestBody = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -189,22 +188,22 @@ public class UpdateSalesInvoiceRequest {
         }
 
 
-        public Builder updateValuesSalesInvoice(UpdateValuesSalesInvoice updateValuesSalesInvoice) {
-            Utils.checkNotNull(updateValuesSalesInvoice, "updateValuesSalesInvoice");
-            this.updateValuesSalesInvoice = Optional.ofNullable(updateValuesSalesInvoice);
+        public Builder requestBody(UpdateSalesInvoiceRequestBody requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = Optional.ofNullable(requestBody);
             return this;
         }
 
-        public Builder updateValuesSalesInvoice(Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice) {
-            Utils.checkNotNull(updateValuesSalesInvoice, "updateValuesSalesInvoice");
-            this.updateValuesSalesInvoice = updateValuesSalesInvoice;
+        public Builder requestBody(Optional<? extends UpdateSalesInvoiceRequestBody> requestBody) {
+            Utils.checkNotNull(requestBody, "requestBody");
+            this.requestBody = requestBody;
             return this;
         }
 
         public UpdateSalesInvoiceRequest build() {
 
             return new UpdateSalesInvoiceRequest(
-                salesInvoiceId, idempotencyKey, updateValuesSalesInvoice);
+                salesInvoiceId, idempotencyKey, requestBody);
         }
 
     }

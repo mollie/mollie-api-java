@@ -7,12 +7,12 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
 import com.mollie.mollie.models.components.SalesInvoiceRequest;
-import com.mollie.mollie.models.components.UpdateValuesSalesInvoice;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.GetSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.ListSalesInvoicesRequest;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequest;
+import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBody;
 import com.mollie.mollie.models.operations.async.CreateSalesInvoiceRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreateSalesInvoiceResponse;
 import com.mollie.mollie.models.operations.async.DeleteSalesInvoiceRequestBuilder;
@@ -327,19 +327,19 @@ public class AsyncSalesInvoices {
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param updateValuesSalesInvoice 
+     * @param requestBody 
      * @param options additional options
      * @return {@code CompletableFuture<UpdateSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<UpdateSalesInvoiceResponse> update(
             String salesInvoiceId, Optional<String> idempotencyKey,
-            Optional<? extends UpdateValuesSalesInvoice> updateValuesSalesInvoice, Optional<Options> options) {
+            Optional<? extends UpdateSalesInvoiceRequestBody> requestBody, Optional<Options> options) {
         UpdateSalesInvoiceRequest request =
             UpdateSalesInvoiceRequest
                 .builder()
                 .salesInvoiceId(salesInvoiceId)
                 .idempotencyKey(idempotencyKey)
-                .updateValuesSalesInvoice(updateValuesSalesInvoice)
+                .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
               = new UpdateSalesInvoice.Async(

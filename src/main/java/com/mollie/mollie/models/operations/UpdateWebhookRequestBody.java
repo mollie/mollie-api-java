@@ -37,9 +37,14 @@ public class UpdateWebhookRequestBody {
     private Optional<? extends UpdateWebhookEventTypes> eventTypes;
 
     /**
-     * You can enable test mode by setting `testmode` to `true`.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
+     * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("testmode")
@@ -89,9 +94,14 @@ public class UpdateWebhookRequestBody {
     }
 
     /**
-     * You can enable test mode by setting `testmode` to `true`.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
+     * `testmode` to `true`.
      */
     @JsonIgnore
     public Optional<Boolean> testmode() {
@@ -155,9 +165,14 @@ public class UpdateWebhookRequestBody {
     }
 
     /**
-     * You can enable test mode by setting `testmode` to `true`.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
+     * `testmode` to `true`.
      */
     public UpdateWebhookRequestBody withTestmode(boolean testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -167,9 +182,14 @@ public class UpdateWebhookRequestBody {
 
 
     /**
-     * You can enable test mode by setting `testmode` to `true`.
+     * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+     * entity.
      * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter can be
+     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+     * setting
+     * `testmode` to `true`.
      */
     public UpdateWebhookRequestBody withTestmode(Optional<Boolean> testmode) {
         Utils.checkNotNull(testmode, "testmode");
@@ -277,9 +297,14 @@ public class UpdateWebhookRequestBody {
 
 
         /**
-         * You can enable test mode by setting `testmode` to `true`.
+         * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+         * entity.
          * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
+         * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
             Utils.checkNotNull(testmode, "testmode");
@@ -288,9 +313,14 @@ public class UpdateWebhookRequestBody {
         }
 
         /**
-         * You can enable test mode by setting `testmode` to `true`.
+         * Whether the entity was created in test mode or live mode. This field does not update the mode of the
+         * entity.
          * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter can be
+         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
+         * setting
+         * `testmode` to `true`.
          */
         public Builder testmode(Optional<Boolean> testmode) {
             Utils.checkNotNull(testmode, "testmode");
