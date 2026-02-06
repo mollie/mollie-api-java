@@ -53,7 +53,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.0.8'
+implementation 'com.mollie:mollie:1.0.9'
 ```
 
 Maven:
@@ -61,7 +61,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.0.8</version>
+    <version>1.0.9</version>
 </dependency>
 ```
 
@@ -453,6 +453,7 @@ Client sdk = Client.builder()
 
 * [create](docs/sdks/delayedrouting/README.md#create) - Create a delayed route
 * [list](docs/sdks/delayedrouting/README.md#list) - List payment routes
+* [get](docs/sdks/delayedrouting/README.md#get) - Get a delayed route
 
 ### [Invoices](docs/sdks/invoices/README.md)
 

@@ -28,14 +28,23 @@ public class RouteCreateResponseLinks {
     @JsonProperty("documentation")
     private Url documentation;
 
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonProperty("payment")
+    private Url payment;
+
     @JsonCreator
     public RouteCreateResponseLinks(
             @JsonProperty("self") Url self,
-            @JsonProperty("documentation") Url documentation) {
+            @JsonProperty("documentation") Url documentation,
+            @JsonProperty("payment") Url payment) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
+        Utils.checkNotNull(payment, "payment");
         this.self = self;
         this.documentation = documentation;
+        this.payment = payment;
     }
 
     /**
@@ -52,6 +61,14 @@ public class RouteCreateResponseLinks {
     @JsonIgnore
     public Url documentation() {
         return documentation;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonIgnore
+    public Url payment() {
+        return payment;
     }
 
     public static Builder builder() {
@@ -77,6 +94,15 @@ public class RouteCreateResponseLinks {
         return this;
     }
 
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public RouteCreateResponseLinks withPayment(Url payment) {
+        Utils.checkNotNull(payment, "payment");
+        this.payment = payment;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -88,20 +114,22 @@ public class RouteCreateResponseLinks {
         RouteCreateResponseLinks other = (RouteCreateResponseLinks) o;
         return 
             Utils.enhancedDeepEquals(this.self, other.self) &&
-            Utils.enhancedDeepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.documentation, other.documentation) &&
+            Utils.enhancedDeepEquals(this.payment, other.payment);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self, documentation);
+            self, documentation, payment);
     }
     
     @Override
     public String toString() {
         return Utils.toString(RouteCreateResponseLinks.class,
                 "self", self,
-                "documentation", documentation);
+                "documentation", documentation,
+                "payment", payment);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -110,6 +138,8 @@ public class RouteCreateResponseLinks {
         private Url self;
 
         private Url documentation;
+
+        private Url payment;
 
         private Builder() {
           // force use of static builder() method
@@ -135,10 +165,20 @@ public class RouteCreateResponseLinks {
             return this;
         }
 
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
+        public Builder payment(Url payment) {
+            Utils.checkNotNull(payment, "payment");
+            this.payment = payment;
+            return this;
+        }
+
         public RouteCreateResponseLinks build() {
 
             return new RouteCreateResponseLinks(
-                self, documentation);
+                self, documentation, payment);
         }
 
     }

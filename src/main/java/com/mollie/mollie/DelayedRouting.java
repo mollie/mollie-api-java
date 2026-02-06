@@ -5,14 +5,18 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.EntityRoute;
+import com.mollie.mollie.models.components.RouteCreateRequest;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequest;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequestBuilder;
 import com.mollie.mollie.models.operations.PaymentCreateRouteResponse;
+import com.mollie.mollie.models.operations.PaymentGetRouteRequest;
+import com.mollie.mollie.models.operations.PaymentGetRouteRequestBuilder;
+import com.mollie.mollie.models.operations.PaymentGetRouteResponse;
 import com.mollie.mollie.models.operations.PaymentListRoutesRequest;
 import com.mollie.mollie.models.operations.PaymentListRoutesRequestBuilder;
 import com.mollie.mollie.models.operations.PaymentListRoutesResponse;
 import com.mollie.mollie.operations.PaymentCreateRoute;
+import com.mollie.mollie.operations.PaymentGetRoute;
 import com.mollie.mollie.operations.PaymentListRoutes;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
@@ -75,20 +79,20 @@ public class DelayedRouting {
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityRoute 
+     * @param routeCreateRequest Payload to create a new delayed route for a payment.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public PaymentCreateRouteResponse create(
             String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends EntityRoute> entityRoute, Optional<Options> options) {
+            Optional<? extends RouteCreateRequest> routeCreateRequest, Optional<Options> options) {
         PaymentCreateRouteRequest request =
             PaymentCreateRouteRequest
                 .builder()
                 .paymentId(paymentId)
                 .idempotencyKey(idempotencyKey)
-                .entityRoute(entityRoute)
+                .routeCreateRequest(routeCreateRequest)
                 .build();
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
               = new PaymentCreateRoute.Sync(sdkConfiguration, options, _headers);
@@ -148,6 +152,59 @@ public class DelayedRouting {
                 .build();
         RequestOperation<PaymentListRoutesRequest, PaymentListRoutesResponse> operation
               = new PaymentListRoutes.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get a delayed route
+     * 
+     * <p>Retrieve a single route created for a specific payment.
+     * 
+     * @return The call builder
+     */
+    public PaymentGetRouteRequestBuilder get() {
+        return new PaymentGetRouteRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get a delayed route
+     * 
+     * <p>Retrieve a single route created for a specific payment.
+     * 
+     * @param paymentId Provide the ID of the related payment.
+     * @param routeId Provide the ID of the route.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PaymentGetRouteResponse get(String paymentId, String routeId) {
+        return get(paymentId, routeId, Optional.empty(),
+            Optional.empty());
+    }
+
+    /**
+     * Get a delayed route
+     * 
+     * <p>Retrieve a single route created for a specific payment.
+     * 
+     * @param paymentId Provide the ID of the related payment.
+     * @param routeId Provide the ID of the route.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public PaymentGetRouteResponse get(
+            String paymentId, String routeId,
+            Optional<String> idempotencyKey, Optional<Options> options) {
+        PaymentGetRouteRequest request =
+            PaymentGetRouteRequest
+                .builder()
+                .paymentId(paymentId)
+                .routeId(routeId)
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<PaymentGetRouteRequest, PaymentGetRouteResponse> operation
+              = new PaymentGetRoute.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

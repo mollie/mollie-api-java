@@ -5,16 +5,14 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.RouteCreateRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
-public class PaymentCreateRouteRequest {
+public class PaymentGetRouteRequest {
     /**
      * Provide the ID of the related payment.
      */
@@ -22,31 +20,34 @@ public class PaymentCreateRouteRequest {
     private String paymentId;
 
     /**
+     * Provide the ID of the route.
+     */
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=routeId")
+    private String routeId;
+
+    /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private Optional<String> idempotencyKey;
 
-
-    @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends RouteCreateRequest> routeCreateRequest;
-
     @JsonCreator
-    public PaymentCreateRouteRequest(
+    public PaymentGetRouteRequest(
             String paymentId,
-            Optional<String> idempotencyKey,
-            Optional<? extends RouteCreateRequest> routeCreateRequest) {
+            String routeId,
+            Optional<String> idempotencyKey) {
         Utils.checkNotNull(paymentId, "paymentId");
+        Utils.checkNotNull(routeId, "routeId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
         this.paymentId = paymentId;
+        this.routeId = routeId;
         this.idempotencyKey = idempotencyKey;
-        this.routeCreateRequest = routeCreateRequest;
     }
     
-    public PaymentCreateRouteRequest(
-            String paymentId) {
-        this(paymentId, Optional.empty(), Optional.empty());
+    public PaymentGetRouteRequest(
+            String paymentId,
+            String routeId) {
+        this(paymentId, routeId, Optional.empty());
     }
 
     /**
@@ -58,17 +59,19 @@ public class PaymentCreateRouteRequest {
     }
 
     /**
+     * Provide the ID of the route.
+     */
+    @JsonIgnore
+    public String routeId() {
+        return routeId;
+    }
+
+    /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      */
     @JsonIgnore
     public Optional<String> idempotencyKey() {
         return idempotencyKey;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<RouteCreateRequest> routeCreateRequest() {
-        return (Optional<RouteCreateRequest>) routeCreateRequest;
     }
 
     public static Builder builder() {
@@ -79,16 +82,25 @@ public class PaymentCreateRouteRequest {
     /**
      * Provide the ID of the related payment.
      */
-    public PaymentCreateRouteRequest withPaymentId(String paymentId) {
+    public PaymentGetRouteRequest withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
     }
 
     /**
+     * Provide the ID of the route.
+     */
+    public PaymentGetRouteRequest withRouteId(String routeId) {
+        Utils.checkNotNull(routeId, "routeId");
+        this.routeId = routeId;
+        return this;
+    }
+
+    /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      */
-    public PaymentCreateRouteRequest withIdempotencyKey(String idempotencyKey) {
+    public PaymentGetRouteRequest withIdempotencyKey(String idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = Optional.ofNullable(idempotencyKey);
         return this;
@@ -98,22 +110,9 @@ public class PaymentCreateRouteRequest {
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      */
-    public PaymentCreateRouteRequest withIdempotencyKey(Optional<String> idempotencyKey) {
+    public PaymentGetRouteRequest withIdempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-
-    public PaymentCreateRouteRequest withRouteCreateRequest(RouteCreateRequest routeCreateRequest) {
-        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
-        this.routeCreateRequest = Optional.ofNullable(routeCreateRequest);
-        return this;
-    }
-
-
-    public PaymentCreateRouteRequest withRouteCreateRequest(Optional<? extends RouteCreateRequest> routeCreateRequest) {
-        Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
-        this.routeCreateRequest = routeCreateRequest;
         return this;
     }
 
@@ -125,25 +124,25 @@ public class PaymentCreateRouteRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PaymentCreateRouteRequest other = (PaymentCreateRouteRequest) o;
+        PaymentGetRouteRequest other = (PaymentGetRouteRequest) o;
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
-            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Utils.enhancedDeepEquals(this.routeCreateRequest, other.routeCreateRequest);
+            Utils.enhancedDeepEquals(this.routeId, other.routeId) &&
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, idempotencyKey, routeCreateRequest);
+            paymentId, routeId, idempotencyKey);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(PaymentCreateRouteRequest.class,
+        return Utils.toString(PaymentGetRouteRequest.class,
                 "paymentId", paymentId,
-                "idempotencyKey", idempotencyKey,
-                "routeCreateRequest", routeCreateRequest);
+                "routeId", routeId,
+                "idempotencyKey", idempotencyKey);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -151,9 +150,9 @@ public class PaymentCreateRouteRequest {
 
         private String paymentId;
 
-        private Optional<String> idempotencyKey = Optional.empty();
+        private String routeId;
 
-        private Optional<? extends RouteCreateRequest> routeCreateRequest = Optional.empty();
+        private Optional<String> idempotencyKey = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -166,6 +165,16 @@ public class PaymentCreateRouteRequest {
         public Builder paymentId(String paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
+            return this;
+        }
+
+
+        /**
+         * Provide the ID of the route.
+         */
+        public Builder routeId(String routeId) {
+            Utils.checkNotNull(routeId, "routeId");
+            this.routeId = routeId;
             return this;
         }
 
@@ -188,23 +197,10 @@ public class PaymentCreateRouteRequest {
             return this;
         }
 
+        public PaymentGetRouteRequest build() {
 
-        public Builder routeCreateRequest(RouteCreateRequest routeCreateRequest) {
-            Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
-            this.routeCreateRequest = Optional.ofNullable(routeCreateRequest);
-            return this;
-        }
-
-        public Builder routeCreateRequest(Optional<? extends RouteCreateRequest> routeCreateRequest) {
-            Utils.checkNotNull(routeCreateRequest, "routeCreateRequest");
-            this.routeCreateRequest = routeCreateRequest;
-            return this;
-        }
-
-        public PaymentCreateRouteRequest build() {
-
-            return new PaymentCreateRouteRequest(
-                paymentId, idempotencyKey, routeCreateRequest);
+            return new PaymentGetRouteRequest(
+                paymentId, routeId, idempotencyKey);
         }
 
     }

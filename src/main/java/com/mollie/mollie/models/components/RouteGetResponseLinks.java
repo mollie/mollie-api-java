@@ -11,11 +11,11 @@ import java.lang.Override;
 import java.lang.String;
 
 /**
- * ListRouteGetResponseLinks
+ * RouteGetResponseLinks
  * 
  * <p>An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
  */
-public class ListRouteGetResponseLinks {
+public class RouteGetResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
@@ -25,16 +25,25 @@ public class ListRouteGetResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
+    @JsonProperty("documentation")
+    private Url documentation;
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
     @JsonProperty("payment")
     private Url payment;
 
     @JsonCreator
-    public ListRouteGetResponseLinks(
+    public RouteGetResponseLinks(
             @JsonProperty("self") Url self,
+            @JsonProperty("documentation") Url documentation,
             @JsonProperty("payment") Url payment) {
         Utils.checkNotNull(self, "self");
+        Utils.checkNotNull(documentation, "documentation");
         Utils.checkNotNull(payment, "payment");
         this.self = self;
+        this.documentation = documentation;
         this.payment = payment;
     }
 
@@ -44,6 +53,14 @@ public class ListRouteGetResponseLinks {
     @JsonIgnore
     public Url self() {
         return self;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonIgnore
+    public Url documentation() {
+        return documentation;
     }
 
     /**
@@ -62,7 +79,7 @@ public class ListRouteGetResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListRouteGetResponseLinks withSelf(Url self) {
+    public RouteGetResponseLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -71,7 +88,16 @@ public class ListRouteGetResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListRouteGetResponseLinks withPayment(Url payment) {
+    public RouteGetResponseLinks withDocumentation(Url documentation) {
+        Utils.checkNotNull(documentation, "documentation");
+        this.documentation = documentation;
+        return this;
+    }
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    public RouteGetResponseLinks withPayment(Url payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
         return this;
@@ -85,22 +111,24 @@ public class ListRouteGetResponseLinks {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ListRouteGetResponseLinks other = (ListRouteGetResponseLinks) o;
+        RouteGetResponseLinks other = (RouteGetResponseLinks) o;
         return 
             Utils.enhancedDeepEquals(this.self, other.self) &&
+            Utils.enhancedDeepEquals(this.documentation, other.documentation) &&
             Utils.enhancedDeepEquals(this.payment, other.payment);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self, payment);
+            self, documentation, payment);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(ListRouteGetResponseLinks.class,
+        return Utils.toString(RouteGetResponseLinks.class,
                 "self", self,
+                "documentation", documentation,
                 "payment", payment);
     }
 
@@ -108,6 +136,8 @@ public class ListRouteGetResponseLinks {
     public final static class Builder {
 
         private Url self;
+
+        private Url documentation;
 
         private Url payment;
 
@@ -129,16 +159,26 @@ public class ListRouteGetResponseLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
+        public Builder documentation(Url documentation) {
+            Utils.checkNotNull(documentation, "documentation");
+            this.documentation = documentation;
+            return this;
+        }
+
+
+        /**
+         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+         */
         public Builder payment(Url payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = payment;
             return this;
         }
 
-        public ListRouteGetResponseLinks build() {
+        public RouteGetResponseLinks build() {
 
-            return new ListRouteGetResponseLinks(
-                self, payment);
+            return new RouteGetResponseLinks(
+                self, documentation, payment);
         }
 
     }

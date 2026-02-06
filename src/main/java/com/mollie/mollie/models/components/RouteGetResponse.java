@@ -11,7 +11,7 @@ import java.lang.Override;
 import java.lang.String;
 
 
-public class ListRouteGetResponse {
+public class RouteGetResponse {
     /**
      * Indicates the response contains a route object. Will always contain the string `route` for this
      * endpoint.
@@ -50,7 +50,7 @@ public class ListRouteGetResponse {
      * The destination of the route.
      */
     @JsonProperty("destination")
-    private ListRouteGetResponseDestination destination;
+    private RouteGetResponseDestination destination;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -63,18 +63,18 @@ public class ListRouteGetResponse {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     @JsonProperty("_links")
-    private ListRouteGetResponseLinks links;
+    private RouteGetResponseLinks links;
 
     @JsonCreator
-    public ListRouteGetResponse(
+    public RouteGetResponse(
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("paymentId") String paymentId,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("description") String description,
-            @JsonProperty("destination") ListRouteGetResponseDestination destination,
+            @JsonProperty("destination") RouteGetResponseDestination destination,
             @JsonProperty("createdAt") String createdAt,
-            @JsonProperty("_links") ListRouteGetResponseLinks links) {
+            @JsonProperty("_links") RouteGetResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(paymentId, "paymentId");
@@ -141,7 +141,7 @@ public class ListRouteGetResponse {
      * The destination of the route.
      */
     @JsonIgnore
-    public ListRouteGetResponseDestination destination() {
+    public RouteGetResponseDestination destination() {
         return destination;
     }
 
@@ -158,7 +158,7 @@ public class ListRouteGetResponse {
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     @JsonIgnore
-    public ListRouteGetResponseLinks links() {
+    public RouteGetResponseLinks links() {
         return links;
     }
 
@@ -171,7 +171,7 @@ public class ListRouteGetResponse {
      * Indicates the response contains a route object. Will always contain the string `route` for this
      * endpoint.
      */
-    public ListRouteGetResponse withResource(String resource) {
+    public RouteGetResponse withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = resource;
         return this;
@@ -182,7 +182,7 @@ public class ListRouteGetResponse {
      * time. Mollie
      * will always refer to the route by this ID. Example: `crt_dyARQ3JzCgtPDhU2Pbq3J`.
      */
-    public ListRouteGetResponse withId(String id) {
+    public RouteGetResponse withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -192,7 +192,7 @@ public class ListRouteGetResponse {
      * The unique identifier of the payment. For example: `tr_5B8cwPMGnU6qLbRvo7qEZo`.
      * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
-    public ListRouteGetResponse withPaymentId(String paymentId) {
+    public RouteGetResponse withPaymentId(String paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
@@ -201,7 +201,7 @@ public class ListRouteGetResponse {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public ListRouteGetResponse withAmount(Amount amount) {
+    public RouteGetResponse withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
@@ -210,7 +210,7 @@ public class ListRouteGetResponse {
     /**
      * The description of the route. This description is shown in the reports.
      */
-    public ListRouteGetResponse withDescription(String description) {
+    public RouteGetResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -219,7 +219,7 @@ public class ListRouteGetResponse {
     /**
      * The destination of the route.
      */
-    public ListRouteGetResponse withDestination(ListRouteGetResponseDestination destination) {
+    public RouteGetResponse withDestination(RouteGetResponseDestination destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
         return this;
@@ -229,7 +229,7 @@ public class ListRouteGetResponse {
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format.
      */
-    public ListRouteGetResponse withCreatedAt(String createdAt) {
+    public RouteGetResponse withCreatedAt(String createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
@@ -238,7 +238,7 @@ public class ListRouteGetResponse {
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
-    public ListRouteGetResponse withLinks(ListRouteGetResponseLinks links) {
+    public RouteGetResponse withLinks(RouteGetResponseLinks links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
         return this;
@@ -252,7 +252,7 @@ public class ListRouteGetResponse {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ListRouteGetResponse other = (ListRouteGetResponse) o;
+        RouteGetResponse other = (RouteGetResponse) o;
         return 
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
@@ -274,7 +274,7 @@ public class ListRouteGetResponse {
     
     @Override
     public String toString() {
-        return Utils.toString(ListRouteGetResponse.class,
+        return Utils.toString(RouteGetResponse.class,
                 "resource", resource,
                 "id", id,
                 "paymentId", paymentId,
@@ -298,11 +298,11 @@ public class ListRouteGetResponse {
 
         private String description;
 
-        private ListRouteGetResponseDestination destination;
+        private RouteGetResponseDestination destination;
 
         private String createdAt;
 
-        private ListRouteGetResponseLinks links;
+        private RouteGetResponseLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -366,7 +366,7 @@ public class ListRouteGetResponse {
         /**
          * The destination of the route.
          */
-        public Builder destination(ListRouteGetResponseDestination destination) {
+        public Builder destination(RouteGetResponseDestination destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
             return this;
@@ -387,15 +387,15 @@ public class ListRouteGetResponse {
         /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
-        public Builder links(ListRouteGetResponseLinks links) {
+        public Builder links(RouteGetResponseLinks links) {
             Utils.checkNotNull(links, "links");
             this.links = links;
             return this;
         }
 
-        public ListRouteGetResponse build() {
+        public RouteGetResponse build() {
 
-            return new ListRouteGetResponse(
+            return new RouteGetResponse(
                 resource, id, paymentId,
                 amount, description, destination,
                 createdAt, links);

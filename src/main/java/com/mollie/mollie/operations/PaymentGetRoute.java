@@ -10,11 +10,11 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.RouteCreateResponse;
+import com.mollie.mollie.models.components.RouteGetResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.PaymentCreateRouteRequest;
-import com.mollie.mollie.models.operations.PaymentCreateRouteResponse;
+import com.mollie.mollie.models.operations.PaymentGetRouteRequest;
+import com.mollie.mollie.models.operations.PaymentGetRouteResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -28,12 +28,9 @@ import com.mollie.mollie.utils.NonRetryableException;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.Retries;
 import com.mollie.mollie.utils.RetryConfig;
-import com.mollie.mollie.utils.SerializedBody;
-import com.mollie.mollie.utils.Utils.JsonShape;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
@@ -46,7 +43,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 
-public class PaymentCreateRoute {
+public class PaymentGetRoute {
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -89,7 +86,7 @@ public class PaymentCreateRoute {
             return new BeforeRequestContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "payment-create-route",
+                    "payment-get-route",
                     java.util.Optional.empty(),
                     securitySource());
         }
@@ -98,7 +95,7 @@ public class PaymentCreateRoute {
             return new AfterSuccessContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "payment-create-route",
+                    "payment-get-route",
                     java.util.Optional.empty(),
                     securitySource());
         }
@@ -107,27 +104,17 @@ public class PaymentCreateRoute {
             return new AfterErrorContextImpl(
                     this.sdkConfiguration,
                     this.baseUrl,
-                    "payment-create-route",
+                    "payment-get-route",
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
+        <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/routes",
+                    "/payments/{paymentId}/routes/{routeId}",
                     request, null);
-            HTTPRequest req = new HTTPRequest(url, "POST");
-            Object convertedRequest = Utils.convertToShape(
-                    request,
-                    JsonShape.DEFAULT,
-                    typeReference);
-            SerializedBody serializedRequestBody = Utils.serializeRequestBody(
-                    convertedRequest,
-                    "routeCreateRequest",
-                    "json",
-                    false);
-            req.setBody(Optional.ofNullable(serializedRequestBody));
+            HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -139,7 +126,7 @@ public class PaymentCreateRoute {
     }
 
     public static class Sync extends Base
-            implements RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> {
+            implements RequestOperation<PaymentGetRouteRequest, PaymentGetRouteResponse> {
         public Sync(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
                 Headers _headers) {
@@ -148,8 +135,8 @@ public class PaymentCreateRoute {
                   _headers);
         }
 
-        private HttpRequest onBuildRequest(PaymentCreateRouteRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, PaymentCreateRouteRequest.class, new TypeReference<PaymentCreateRouteRequest>() {});
+        private HttpRequest onBuildRequest(PaymentGetRouteRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, PaymentGetRouteRequest.class);
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -165,7 +152,7 @@ public class PaymentCreateRoute {
         }
 
         @Override
-        public HttpResponse<InputStream> doRequest(PaymentCreateRouteRequest request) {
+        public HttpResponse<InputStream> doRequest(PaymentGetRouteRequest request) {
             Retries retries = Retries.builder()
                     .action(() -> {
                         HttpRequest r;
@@ -192,23 +179,23 @@ public class PaymentCreateRoute {
 
 
         @Override
-        public PaymentCreateRouteResponse handleResponse(HttpResponse<InputStream> response) {
+        public PaymentGetRouteResponse handleResponse(HttpResponse<InputStream> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
                     .orElse("application/octet-stream");
-            PaymentCreateRouteResponse.Builder resBuilder =
-                    PaymentCreateRouteResponse
+            PaymentGetRouteResponse.Builder resBuilder =
+                    PaymentGetRouteResponse
                             .builder()
                             .contentType(contentType)
                             .statusCode(response.statusCode())
                             .rawResponse(response);
 
-            PaymentCreateRouteResponse res = resBuilder.build();
+            PaymentGetRouteResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withRouteCreateResponse(Utils.unmarshal(response, new TypeReference<RouteCreateResponse>() {}));
+                    return res.withRouteGetResponse(Utils.unmarshal(response, new TypeReference<RouteGetResponse>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -232,7 +219,7 @@ public class PaymentCreateRoute {
         }
     }
     public static class Async extends Base
-            implements AsyncRequestOperation<PaymentCreateRouteRequest, com.mollie.mollie.models.operations.async.PaymentCreateRouteResponse> {
+            implements AsyncRequestOperation<PaymentGetRouteRequest, com.mollie.mollie.models.operations.async.PaymentGetRouteResponse> {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
@@ -244,8 +231,8 @@ public class PaymentCreateRoute {
             this.retryScheduler = retryScheduler;
         }
 
-        private CompletableFuture<HttpRequest> onBuildRequest(PaymentCreateRouteRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, PaymentCreateRouteRequest.class, new TypeReference<PaymentCreateRouteRequest>() {});
+        private CompletableFuture<HttpRequest> onBuildRequest(PaymentGetRouteRequest request) throws Exception {
+            HttpRequest req = buildRequest(request, PaymentGetRouteRequest.class);
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -258,7 +245,7 @@ public class PaymentCreateRoute {
         }
 
         @Override
-        public CompletableFuture<HttpResponse<Blob>> doRequest(PaymentCreateRouteRequest request) {
+        public CompletableFuture<HttpResponse<Blob>> doRequest(PaymentGetRouteRequest request) {
             AsyncRetries retries = AsyncRetries.builder()
                     .retryConfig(retryConfig)
                     .statusCodes(retryStatusCodes)
@@ -279,25 +266,25 @@ public class PaymentCreateRoute {
         }
 
         @Override
-        public CompletableFuture<com.mollie.mollie.models.operations.async.PaymentCreateRouteResponse> handleResponse(
+        public CompletableFuture<com.mollie.mollie.models.operations.async.PaymentGetRouteResponse> handleResponse(
                 HttpResponse<Blob> response) {
             String contentType = response
                     .headers()
                     .firstValue("Content-Type")
                     .orElse("application/octet-stream");
-            com.mollie.mollie.models.operations.async.PaymentCreateRouteResponse.Builder resBuilder =
-                    com.mollie.mollie.models.operations.async.PaymentCreateRouteResponse
+            com.mollie.mollie.models.operations.async.PaymentGetRouteResponse.Builder resBuilder =
+                    com.mollie.mollie.models.operations.async.PaymentGetRouteResponse
                             .builder()
                             .contentType(contentType)
                             .statusCode(response.statusCode())
                             .rawResponse(response);
 
-            com.mollie.mollie.models.operations.async.PaymentCreateRouteResponse res = resBuilder.build();
+            com.mollie.mollie.models.operations.async.PaymentGetRouteResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<RouteCreateResponse>() {})
-                            .thenApply(res::withRouteCreateResponse);
+                    return Utils.unmarshalAsync(response, new TypeReference<RouteGetResponse>() {})
+                            .thenApply(res::withRouteGetResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

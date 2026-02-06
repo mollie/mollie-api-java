@@ -5,10 +5,13 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class RouteCreateResponse {
@@ -43,14 +46,22 @@ public class RouteCreateResponse {
     /**
      * The description of the route. This description is shown in the reports.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private String description;
+    private Optional<String> description;
 
     /**
      * The destination of the route.
      */
     @JsonProperty("destination")
     private RouteCreateResponseDestination destination;
+
+    /**
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
+     */
+    @JsonProperty("createdAt")
+    private String createdAt;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -64,8 +75,9 @@ public class RouteCreateResponse {
             @JsonProperty("id") String id,
             @JsonProperty("paymentId") String paymentId,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("description") String description,
+            @JsonProperty("description") Optional<String> description,
             @JsonProperty("destination") RouteCreateResponseDestination destination,
+            @JsonProperty("createdAt") String createdAt,
             @JsonProperty("_links") RouteCreateResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -73,6 +85,7 @@ public class RouteCreateResponse {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(destination, "destination");
+        Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(links, "links");
         this.resource = resource;
         this.id = id;
@@ -80,7 +93,21 @@ public class RouteCreateResponse {
         this.amount = amount;
         this.description = description;
         this.destination = destination;
+        this.createdAt = createdAt;
         this.links = links;
+    }
+    
+    public RouteCreateResponse(
+            String resource,
+            String id,
+            String paymentId,
+            Amount amount,
+            RouteCreateResponseDestination destination,
+            String createdAt,
+            RouteCreateResponseLinks links) {
+        this(resource, id, paymentId,
+            amount, Optional.empty(), destination,
+            createdAt, links);
     }
 
     /**
@@ -123,7 +150,7 @@ public class RouteCreateResponse {
      * The description of the route. This description is shown in the reports.
      */
     @JsonIgnore
-    public String description() {
+    public Optional<String> description() {
         return description;
     }
 
@@ -133,6 +160,15 @@ public class RouteCreateResponse {
     @JsonIgnore
     public RouteCreateResponseDestination destination() {
         return destination;
+    }
+
+    /**
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
+     */
+    @JsonIgnore
+    public String createdAt() {
+        return createdAt;
     }
 
     /**
@@ -193,6 +229,16 @@ public class RouteCreateResponse {
      */
     public RouteCreateResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
+        this.description = Optional.ofNullable(description);
+        return this;
+    }
+
+
+    /**
+     * The description of the route. This description is shown in the reports.
+     */
+    public RouteCreateResponse withDescription(Optional<String> description) {
+        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -203,6 +249,16 @@ public class RouteCreateResponse {
     public RouteCreateResponse withDestination(RouteCreateResponseDestination destination) {
         Utils.checkNotNull(destination, "destination");
         this.destination = destination;
+        return this;
+    }
+
+    /**
+     * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
+     */
+    public RouteCreateResponse withCreatedAt(String createdAt) {
+        Utils.checkNotNull(createdAt, "createdAt");
+        this.createdAt = createdAt;
         return this;
     }
 
@@ -231,6 +287,7 @@ public class RouteCreateResponse {
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.destination, other.destination) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.links, other.links);
     }
     
@@ -239,7 +296,7 @@ public class RouteCreateResponse {
         return Utils.enhancedHash(
             resource, id, paymentId,
             amount, description, destination,
-            links);
+            createdAt, links);
     }
     
     @Override
@@ -251,6 +308,7 @@ public class RouteCreateResponse {
                 "amount", amount,
                 "description", description,
                 "destination", destination,
+                "createdAt", createdAt,
                 "links", links);
     }
 
@@ -265,9 +323,11 @@ public class RouteCreateResponse {
 
         private Amount amount;
 
-        private String description;
+        private Optional<String> description = Optional.empty();
 
         private RouteCreateResponseDestination destination;
+
+        private String createdAt;
 
         private RouteCreateResponseLinks links;
 
@@ -325,6 +385,15 @@ public class RouteCreateResponse {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
+            this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        /**
+         * The description of the route. This description is shown in the reports.
+         */
+        public Builder description(Optional<String> description) {
+            Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
         }
@@ -336,6 +405,17 @@ public class RouteCreateResponse {
         public Builder destination(RouteCreateResponseDestination destination) {
             Utils.checkNotNull(destination, "destination");
             this.destination = destination;
+            return this;
+        }
+
+
+        /**
+         * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
+         */
+        public Builder createdAt(String createdAt) {
+            Utils.checkNotNull(createdAt, "createdAt");
+            this.createdAt = createdAt;
             return this;
         }
 
@@ -354,7 +434,7 @@ public class RouteCreateResponse {
             return new RouteCreateResponse(
                 resource, id, paymentId,
                 amount, description, destination,
-                links);
+                createdAt, links);
         }
 
     }

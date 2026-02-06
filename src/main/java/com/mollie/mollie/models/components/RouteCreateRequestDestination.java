@@ -11,24 +11,24 @@ import java.lang.Override;
 import java.lang.String;
 
 /**
- * EntityRouteDestination
+ * RouteCreateRequestDestination
  * 
  * <p>The destination of the route.
  */
-public class EntityRouteDestination {
+public class RouteCreateRequestDestination {
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
      */
     @JsonProperty("type")
-    private RouteDestinationTypeResponse type;
+    private RouteDestinationType type;
 
 
     @JsonProperty("organizationId")
     private String organizationId;
 
     @JsonCreator
-    public EntityRouteDestination(
-            @JsonProperty("type") RouteDestinationTypeResponse type,
+    public RouteCreateRequestDestination(
+            @JsonProperty("type") RouteDestinationType type,
             @JsonProperty("organizationId") String organizationId) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(organizationId, "organizationId");
@@ -40,7 +40,7 @@ public class EntityRouteDestination {
      * The type of destination. Currently only the destination type `organization` is supported.
      */
     @JsonIgnore
-    public RouteDestinationTypeResponse type() {
+    public RouteDestinationType type() {
         return type;
     }
 
@@ -57,13 +57,13 @@ public class EntityRouteDestination {
     /**
      * The type of destination. Currently only the destination type `organization` is supported.
      */
-    public EntityRouteDestination withType(RouteDestinationTypeResponse type) {
+    public RouteCreateRequestDestination withType(RouteDestinationType type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
-    public EntityRouteDestination withOrganizationId(String organizationId) {
+    public RouteCreateRequestDestination withOrganizationId(String organizationId) {
         Utils.checkNotNull(organizationId, "organizationId");
         this.organizationId = organizationId;
         return this;
@@ -77,7 +77,7 @@ public class EntityRouteDestination {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EntityRouteDestination other = (EntityRouteDestination) o;
+        RouteCreateRequestDestination other = (RouteCreateRequestDestination) o;
         return 
             Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.organizationId, other.organizationId);
@@ -91,7 +91,7 @@ public class EntityRouteDestination {
     
     @Override
     public String toString() {
-        return Utils.toString(EntityRouteDestination.class,
+        return Utils.toString(RouteCreateRequestDestination.class,
                 "type", type,
                 "organizationId", organizationId);
     }
@@ -99,7 +99,7 @@ public class EntityRouteDestination {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private RouteDestinationTypeResponse type;
+        private RouteDestinationType type;
 
         private String organizationId;
 
@@ -111,7 +111,7 @@ public class EntityRouteDestination {
         /**
          * The type of destination. Currently only the destination type `organization` is supported.
          */
-        public Builder type(RouteDestinationTypeResponse type) {
+        public Builder type(RouteDestinationType type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;
@@ -124,9 +124,9 @@ public class EntityRouteDestination {
             return this;
         }
 
-        public EntityRouteDestination build() {
+        public RouteCreateRequestDestination build() {
 
-            return new EntityRouteDestination(
+            return new RouteCreateRequestDestination(
                 type, organizationId);
         }
 

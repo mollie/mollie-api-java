@@ -6,6 +6,7 @@
 
 * [create](#create) - Create a delayed route
 * [list](#list) - List payment routes
+* [get](#get) - Get a delayed route
 
 ## create
 
@@ -37,17 +38,16 @@ public class Application {
         PaymentCreateRouteResponse res = sdk.delayedRouting().create()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .entityRoute(EntityRoute.builder()
+                .routeCreateRequest(RouteCreateRequest.builder()
                     .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
-                    .description("Payment for Order #12345")
-                    .destination(EntityRouteDestination.builder()
-                        .type(RouteDestinationTypeResponse.ORGANIZATION)
+                    .destination(RouteCreateRequestDestination.builder()
+                        .type(RouteDestinationType.ORGANIZATION)
                         .organizationId("org_1234567")
                         .build())
-                    .testmode(false)
+                    .description("Payment for Order #12345")
                     .build())
                 .call();
 
@@ -64,7 +64,7 @@ public class Application {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `paymentId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityRoute`                                                                    | [Optional\<EntityRoute>](../../models/components/EntityRoute.md)                 | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| `routeCreateRequest`                                                             | [Optional\<RouteCreateRequest>](../../models/components/RouteCreateRequest.md)   | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
 
 ### Response
 
@@ -127,6 +127,64 @@ public class Application {
 ### Response
 
 **[PaymentListRoutesResponse](../../models/operations/PaymentListRoutesResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## get
+
+Retrieve a single route created for a specific payment.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="payment-get-route" method="get" path="/payments/{paymentId}/routes/{routeId}" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.PaymentGetRouteResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        PaymentGetRouteResponse res = sdk.delayedRouting().get()
+                .paymentId("tr_5B8cwPMGnU")
+                .routeId("crt_dyARQ3JzCgtPDhU2Pbq3J")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.routeGetResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `paymentId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
+| `routeId`                                                                        | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the route.                                                     | crt_dyARQ3JzCgtPDhU2Pbq3J                                                        |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+
+### Response
+
+**[PaymentGetRouteResponse](../../models/operations/PaymentGetRouteResponse.md)**
 
 ### Errors
 
