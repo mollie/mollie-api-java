@@ -15,9 +15,64 @@ You can also create a balance transfer between two connected organizations.
 To create a balance transfer, you must be authenticated as the source organization, and the destination organization must be a connected organization
 that has authorized the `balance-transfers.write` scope for your organization.
 
-### Example Usage
+### Example Usage: create-balance-transfer-200-1
 
-<!-- UsageSnippet language="java" operationID="create-connect-balance-transfer" method="post" path="/connect/balance-transfers" -->
+<!-- UsageSnippet language="java" operationID="create-connect-balance-transfer" method="post" path="/connect/balance-transfers" example="create-balance-transfer-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateConnectBalanceTransferResponse;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreateConnectBalanceTransferResponse res = sdk.balanceTransfers().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .entityBalanceTransfer(EntityBalanceTransfer.builder()
+                    .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .source(EntityBalanceTransferParty.builder()
+                        .type(BalanceTransferPartyType.ORGANIZATION)
+                        .id("org_1234567")
+                        .description("Invoice fee")
+                        .build())
+                    .destination(EntityBalanceTransferParty.builder()
+                        .type(BalanceTransferPartyType.ORGANIZATION)
+                        .id("org_1234567")
+                        .description("Invoice fee")
+                        .build())
+                    .description("Invoice fee")
+                    .category(BalanceTransferCategory.INVOICE_COLLECTION)
+                    .metadata(Map.ofEntries(
+                        Map.entry("order_id", 12345L),
+                        Map.entry("customer_id", 9876L)))
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.entityBalanceTransferResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: create-balance-transfer-422-1
+
+<!-- UsageSnippet language="java" operationID="create-connect-balance-transfer" method="post" path="/connect/balance-transfers" example="create-balance-transfer-422-1" -->
 ```java
 package hello.world;
 
@@ -95,7 +150,7 @@ Returns a paginated list of balance transfers associated with your organization.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-connect-balance-transfers" method="get" path="/connect/balance-transfers" -->
+<!-- UsageSnippet language="java" operationID="list-connect-balance-transfers" method="get" path="/connect/balance-transfers" example="list-balance-transfer-200-1" -->
 ```java
 package hello.world;
 
@@ -158,7 +213,7 @@ Retrieve a single Connect balance transfer object by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-connect-balance-transfer" method="get" path="/connect/balance-transfers/{balanceTransferId}" -->
+<!-- UsageSnippet language="java" operationID="get-connect-balance-transfer" method="get" path="/connect/balance-transfers/{balanceTransferId}" example="get-balance-transfer-200-1" -->
 ```java
 package hello.world;
 

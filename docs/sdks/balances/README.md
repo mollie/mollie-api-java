@@ -16,9 +16,50 @@ Retrieve a list of the organization's balances, including the primary balance.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-balances-200-1
 
-<!-- UsageSnippet language="java" operationID="list-balances" method="get" path="/balances" -->
+<!-- UsageSnippet language="java" operationID="list-balances" method="get" path="/balances" example="list-balances-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListBalancesRequest req = ListBalancesRequest.builder()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListBalancesResponse res = sdk.balances().list()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-balances-200-2
+
+<!-- UsageSnippet language="java" operationID="list-balances" method="get" path="/balances" example="list-balances-200-2" -->
 ```java
 package hello.world;
 
@@ -93,9 +134,43 @@ With instant payment methods like iDEAL, payments are moved to the available
 balance instantly. With slower payment methods, like credit card for example, it can take a few days before the
 funds are available on your balance. These funds will be shown under the *pending amount* in the meanwhile.
 
-### Example Usage
+### Example Usage: get-balance-200-1
 
-<!-- UsageSnippet language="java" operationID="get-balance" method="get" path="/balances/{balanceId}" -->
+<!-- UsageSnippet language="java" operationID="get-balance" method="get" path="/balances/{balanceId}" example="get-balance-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetBalanceResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetBalanceResponse res = sdk.balances().get()
+                .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.entityBalance().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: get-balance-200-2
+
+<!-- UsageSnippet language="java" operationID="get-balance" method="get" path="/balances/{balanceId}" example="get-balance-200-2" -->
 ```java
 package hello.world;
 
@@ -157,7 +232,7 @@ endpoint.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-primary-balance" method="get" path="/balances/primary" -->
+<!-- UsageSnippet language="java" operationID="get-primary-balance" method="get" path="/balances/primary" example="get-primary-balance-200-1" -->
 ```java
 package hello.world;
 
@@ -213,9 +288,95 @@ during the reported period, ahead of your Mollie invoice.
 The alias `primary` can be used instead of the balance ID to refer to the
 organization's primary balance.
 
-### Example Usage
+### Example Usage: get-balance-report-200-1
 
-<!-- UsageSnippet language="java" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" -->
+<!-- UsageSnippet language="java" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" example="get-balance-report-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.BalanceReportGrouping;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetBalanceReportRequest;
+import com.mollie.mollie.models.operations.GetBalanceReportResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetBalanceReportRequest req = GetBalanceReportRequest.builder()
+                .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .from("2024-01-01")
+                .until("2024-02-01")
+                .grouping(BalanceReportGrouping.STATUS_BALANCES)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        GetBalanceReportResponse res = sdk.balances().getReport()
+                .request(req)
+                .call();
+
+        if (res.entityBalanceReport().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: get-balance-report-200-2
+
+<!-- UsageSnippet language="java" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" example="get-balance-report-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.BalanceReportGrouping;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetBalanceReportRequest;
+import com.mollie.mollie.models.operations.GetBalanceReportResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetBalanceReportRequest req = GetBalanceReportRequest.builder()
+                .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .from("2024-01-01")
+                .until("2024-02-01")
+                .grouping(BalanceReportGrouping.STATUS_BALANCES)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        GetBalanceReportResponse res = sdk.balances().getReport()
+                .request(req)
+                .call();
+
+        if (res.entityBalanceReport().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: get-balance-report-200-3
+
+<!-- UsageSnippet language="java" operationID="get-balance-report" method="get" path="/balances/{balanceId}/report" example="get-balance-report-200-3" -->
 ```java
 package hello.world;
 
@@ -287,9 +448,50 @@ organization's primary balance.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-balance-transactions-200-1
 
-<!-- UsageSnippet language="java" operationID="list-balance-transactions" method="get" path="/balances/{balanceId}/transactions" -->
+<!-- UsageSnippet language="java" operationID="list-balance-transactions" method="get" path="/balances/{balanceId}/transactions" example="list-balance-transactions-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalanceTransactionsRequest;
+import com.mollie.mollie.models.operations.ListBalanceTransactionsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListBalanceTransactionsRequest req = ListBalanceTransactionsRequest.builder()
+                .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .from("baltr_QM24QwzUWR4ev4Xfgyt29A")
+                .limit(50L)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListBalanceTransactionsResponse res = sdk.balances().listTransactions()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-balance-transactions-200-2
+
+<!-- UsageSnippet language="java" operationID="list-balance-transactions" method="get" path="/balances/{balanceId}/transactions" example="list-balance-transactions-200-2" -->
 ```java
 package hello.world;
 

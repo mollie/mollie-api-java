@@ -62,9 +62,111 @@ to the URL.
 >
 > A client link must be used within 30 days of creation. After that period, it will expire and you will need to create a new client link.
 
-### Example Usage
+### Example Usage: create-client-link-201-1
 
-<!-- UsageSnippet language="java" operationID="create-client-link" method="post" path="/client-links" -->
+<!-- UsageSnippet language="java" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateClientLinkResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreateClientLinkResponse res = sdk.clientLinks().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .clientLinkRequest(ClientLinkRequest.builder()
+                    .owner(Owner.builder()
+                        .email("john@example.org")
+                        .givenName("John")
+                        .familyName("Doe")
+                        .locale(LocaleResponse.EN_US)
+                        .build())
+                    .name("Acme Corporation")
+                    .address(ClientLinkRequestAddress.builder()
+                        .country("NL")
+                        .streetAndNumber("Main Street 123")
+                        .postalCode("1234AB")
+                        .city("Amsterdam")
+                        .build())
+                    .registrationNumber("12345678")
+                    .legalEntity("nl-bv")
+                    .registrationOffice("aachen")
+                    .incorporationDate("2024-12-24")
+                    .build())
+                .call();
+
+        if (res.clientLinkResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: create-client-link-201-2
+
+<!-- UsageSnippet language="java" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateClientLinkResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreateClientLinkResponse res = sdk.clientLinks().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .clientLinkRequest(ClientLinkRequest.builder()
+                    .owner(Owner.builder()
+                        .email("john@example.org")
+                        .givenName("John")
+                        .familyName("Doe")
+                        .locale(LocaleResponse.EN_US)
+                        .build())
+                    .name("Acme Corporation")
+                    .address(ClientLinkRequestAddress.builder()
+                        .country("NL")
+                        .streetAndNumber("Main Street 123")
+                        .postalCode("1234AB")
+                        .city("Amsterdam")
+                        .build())
+                    .registrationNumber("12345678")
+                    .legalEntity("nl-bv")
+                    .registrationOffice("aachen")
+                    .incorporationDate("2024-12-24")
+                    .build())
+                .call();
+
+        if (res.clientLinkResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: create-client-link-201-3
+
+<!-- UsageSnippet language="java" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-3" -->
 ```java
 package hello.world;
 

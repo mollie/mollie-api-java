@@ -14,9 +14,138 @@ invoice reference.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-invoices-200-1
 
-<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" -->
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListInvoicesRequest;
+import com.mollie.mollie.models.operations.ListInvoicesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListInvoicesRequest req = ListInvoicesRequest.builder()
+                .reference("2024.10000")
+                .year("2024")
+                .from("inv_xBEbP9rvAq")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListInvoicesResponse res = sdk.invoices().list()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-invoices-200-2
+
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListInvoicesRequest;
+import com.mollie.mollie.models.operations.ListInvoicesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListInvoicesRequest req = ListInvoicesRequest.builder()
+                .reference("2024.10000")
+                .year("2024")
+                .from("inv_xBEbP9rvAq")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListInvoicesResponse res = sdk.invoices().list()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-invoices-200-3
+
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-3" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListInvoicesRequest;
+import com.mollie.mollie.models.operations.ListInvoicesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListInvoicesRequest req = ListInvoicesRequest.builder()
+                .reference("2024.10000")
+                .year("2024")
+                .from("inv_xBEbP9rvAq")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListInvoicesResponse res = sdk.invoices().list()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-invoices-200-4
+
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-4" -->
 ```java
 package hello.world;
 
@@ -84,7 +213,7 @@ call the [List invoices](list-invoices) endpoint with the `reference` parameter.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-invoice" method="get" path="/invoices/{invoiceId}" -->
+<!-- UsageSnippet language="java" operationID="get-invoice" method="get" path="/invoices/{invoiceId}" example="get-invoice-200-1" -->
 ```java
 package hello.world;
 

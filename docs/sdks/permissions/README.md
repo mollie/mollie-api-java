@@ -13,9 +13,41 @@ Retrieve a list of all permissions available to the current access token.
 
 The results are **not** paginated.
 
-### Example Usage
+### Example Usage: list-permissions-200-1
 
-<!-- UsageSnippet language="java" operationID="list-permissions" method="get" path="/permissions" -->
+<!-- UsageSnippet language="java" operationID="list-permissions" method="get" path="/permissions" example="list-permissions-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListPermissionsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListPermissionsResponse res = sdk.permissions().list()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-permissions-200-2
+
+<!-- UsageSnippet language="java" operationID="list-permissions" method="get" path="/permissions" example="list-permissions-200-2" -->
 ```java
 package hello.world;
 
@@ -67,9 +99,43 @@ public class Application {
 
 Retrieve a single permission by its ID, and see if the permission is granted to the current access token.
 
-### Example Usage
+### Example Usage: get-permission-200-1
 
-<!-- UsageSnippet language="java" operationID="get-permission" method="get" path="/permissions/{permissionId}" -->
+<!-- UsageSnippet language="java" operationID="get-permission" method="get" path="/permissions/{permissionId}" example="get-permission-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetPermissionResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetPermissionResponse res = sdk.permissions().get()
+                .permissionId("payments.read")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.entityPermission().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: get-permission-200-2
+
+<!-- UsageSnippet language="java" operationID="get-permission" method="get" path="/permissions/{permissionId}" example="get-permission-200-2" -->
 ```java
 package hello.world;
 

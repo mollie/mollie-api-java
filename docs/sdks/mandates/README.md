@@ -17,9 +17,55 @@ account recurrently.
 It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint. To create
 mandates for cards, your customers need to perform a 'first payment' with their card.
 
-### Example Usage
+### Example Usage: create-mandate-201-1
 
-<!-- UsageSnippet language="java" operationID="create-mandate" method="post" path="/customers/{customerId}/mandates" -->
+<!-- UsageSnippet language="java" operationID="create-mandate" method="post" path="/customers/{customerId}/mandates" example="create-mandate-201-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateMandateResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreateMandateResponse res = sdk.mandates().create()
+                .customerId("cst_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .mandateRequest(MandateRequest.builder()
+                    .method(MandateMethod.DIRECTDEBIT)
+                    .consumerName("John Doe")
+                    .id("mdt_5B8cwPMGnU")
+                    .consumerAccount("NL55INGB0000000000")
+                    .consumerBic("BANKBIC")
+                    .consumerEmail("example@email.com")
+                    .signatureDate("2025-01-01")
+                    .mandateReference("ID-1023892")
+                    .paypalBillingAgreementId("B-12A34567B8901234CD")
+                    .payPalVaultId("8kk8451t")
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.mandateResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: create-mandate-201-2
+
+<!-- UsageSnippet language="java" operationID="create-mandate" method="post" path="/customers/{customerId}/mandates" example="create-mandate-201-2" -->
 ```java
 package hello.world;
 
@@ -91,7 +137,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-mandates" method="get" path="/customers/{customerId}/mandates" -->
+<!-- UsageSnippet language="java" operationID="list-mandates" method="get" path="/customers/{customerId}/mandates" example="list-mandates-200-1" -->
 ```java
 package hello.world;
 
@@ -157,7 +203,7 @@ account details, card details, or PayPal account details.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-mandate" method="get" path="/customers/{customerId}/mandates/{mandateId}" -->
+<!-- UsageSnippet language="java" operationID="get-mandate" method="get" path="/customers/{customerId}/mandates/{mandateId}" example="get-mandate-200-1" -->
 ```java
 package hello.world;
 

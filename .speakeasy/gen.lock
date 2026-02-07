@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 5fcb70ebf47af4276679439ec8d55fd1
+  docChecksum: 9aff82578b9acde76766df00847b5336
   docVersion: 1.0.0
-  speakeasyVersion: 1.706.1
-  generationVersion: 2.809.2
-  releaseVersion: 1.0.9
-  configChecksum: b387dd00deb41c1aa10dac4c2664656d
+  speakeasyVersion: 1.708.2
+  generationVersion: 2.811.4
+  releaseVersion: 1.0.10
+  configChecksum: fbfe452da7a424d06b075f67df3ad174
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 persistentEdits:
-  generation_id: 369448d7-260e-4d6e-896b-27769fee9fdc
-  pristine_commit_hash: b286bce298894c9ca8f287824b73c1736d06f52b
-  pristine_tree_hash: c231c49c990f41553493bf9548fa3bbc5d74c8a1
+  generation_id: ea39b10e-c68d-4420-b750-18fe7fd277a4
+  pristine_commit_hash: 76861a1fb2ecacec060158ac61f1a7fd9a8d9c79
+  pristine_tree_hash: be9fb635533a03a06491d8cadca48af0947a6172
 features:
   java:
     additionalDependencies: 0.1.0
@@ -890,8 +890,8 @@ trackedFiles:
     pristine_git_object: 77c58dfa7914e04b9dbc5f78abe3ed9b2e593afb
   docs/models/components/ListProfileResponse.md:
     id: 380112ee9c8c
-    last_write_checksum: sha1:c9ec9787bd7311e629214ebd2dbc529914ab8c5f
-    pristine_git_object: c36cba4f3dcb323e65f083f3056736f43c52f38f
+    last_write_checksum: sha1:7b3483383ee53b3ba3b9400fdd5b305e9777c83b
+    pristine_git_object: 1ff9e5e1e5046c5b8a5e8f723034ddfbe9de58b9
   docs/models/components/ListProfileResponseLinks.md:
     id: d820cc148ca2
     last_write_checksum: sha1:384ed53860fd0d31ba439f20629c26051253231c
@@ -1290,8 +1290,8 @@ trackedFiles:
     pristine_git_object: a4ae57ccb3e30f37e59787096ac3e534ec5e0073
   docs/models/components/ProfileResponse.md:
     id: 355833493e0b
-    last_write_checksum: sha1:87b802bd0591e90b5b2c58c8169a95b05763ab83
-    pristine_git_object: a3f3c68113ca9c9f7ee5be746f471efba6c98361
+    last_write_checksum: sha1:3e99e61fbf2f39e32d4c1fbcafd7cea0dd38068b
+    pristine_git_object: 266e86e8277b3a666e8b661d2c011cce0a14cb79
   docs/models/components/ProfileResponseLinks.md:
     id: 6567ff339be2
     last_write_checksum: sha1:69faf6b2992f47cf6d7738a4bcd233eeb0cb0108
@@ -2930,116 +2930,116 @@ trackedFiles:
     pristine_git_object: 9c6507b34bfdf95b158c9fd9765f9657b4e79e52
   docs/sdks/balances/README.md:
     id: 6ca85866f00d
-    last_write_checksum: sha1:6daae506d579451f3401490c5233ec6491638bd1
-    pristine_git_object: 6f852f632e18c9609c3bb42cdf01543b038ed125
+    last_write_checksum: sha1:09629438b866cf6af76d8c6379d232712d2249b6
+    pristine_git_object: fdc035b2d99ac049e5fc4e0c784d1b121a7382bf
   docs/sdks/balancetransfers/README.md:
     id: e851b2d39a14
-    last_write_checksum: sha1:2ddfe935d7f8ac884ad5d0ed52b9f4d1de528a57
-    pristine_git_object: 924f0879ac0226c7e7f719130799f94561043459
+    last_write_checksum: sha1:7771af806585f490106bd5f8b7f0beeaadf57cf1
+    pristine_git_object: 207d4e9db74f6baeb8474a4a650348353ebb1757
   docs/sdks/capabilities/README.md:
     id: 551490ea0d3d
-    last_write_checksum: sha1:4859f6af4741c7b1ada17e2244f0d9758e55422f
-    pristine_git_object: d123dd329b07ebcbff547c30e0edc0763d949cf5
+    last_write_checksum: sha1:0385af6da50b323892de283bedc7d8681344e8fd
+    pristine_git_object: a0d2966d9b0448d754f38abc2624da8882ad2f07
   docs/sdks/captures/README.md:
     id: 7598191d8c6a
-    last_write_checksum: sha1:6b17f24bfe36dc444bfebdb097cd03641052afd8
-    pristine_git_object: ad18091d1769654205f8877dc89d2dd31c7c6e38
+    last_write_checksum: sha1:de8316d98a79811c41212c36dac4c94fdb135ddc
+    pristine_git_object: d90157c9919b2d546e7672537462e42ada405ca7
   docs/sdks/chargebacks/README.md:
     id: 651e1876c61b
-    last_write_checksum: sha1:58d2c5ebddde4797827ccbb20b132886bfe4a089
-    pristine_git_object: eaff2bc9bc9c7232b32a41db429b018a428d345c
+    last_write_checksum: sha1:b4d8e1c0e297840062368930196ad1b8437a7a0f
+    pristine_git_object: ed10b97478d39b56ea4375192eaa2045937b7275
   docs/sdks/clientlinks/README.md:
     id: 74ba097043d3
-    last_write_checksum: sha1:038650cd65d877232e7c60289e89f378ddf62d8a
-    pristine_git_object: 3433548c3ab97a0793ca0cced4da1683fa5356d4
+    last_write_checksum: sha1:2cd1d201d77213051876756803d795cc549aa292
+    pristine_git_object: 65fbef2adc3de904fb01d49286abafdb4b30411b
   docs/sdks/clients/README.md:
     id: ba883fd0c1cf
-    last_write_checksum: sha1:a4cc86c3380a0d6e73ebc4e5802593f4b0070372
-    pristine_git_object: 865215b9806e1997bcea20fc37eecd7800b67e8e
+    last_write_checksum: sha1:5a8ebe454693b8806269b5d47c9d406cb46a8d0e
+    pristine_git_object: f8d7bcaa77f441a53e4869159121b81e51c8f440
   docs/sdks/customers/README.md:
     id: 9332759cffc2
-    last_write_checksum: sha1:ad77fc69371322f03b752390f33b301991fd7170
-    pristine_git_object: 423cacbaaaf2d020faf77d6c1d018d8539cf21d0
+    last_write_checksum: sha1:3a8556ea2fcdbcc262618f0e2ac45f049c212e07
+    pristine_git_object: 83c2677f4f2434ae2e31cd2655773011c8ee829a
   docs/sdks/delayedrouting/README.md:
     id: a720b5755911
-    last_write_checksum: sha1:a4e8bc2210afd4faa2943d4e23f94b5f1497c93c
-    pristine_git_object: 665d2214505badd2be271dd758dbe957e6aeaec3
+    last_write_checksum: sha1:9059685ddd53f6f17c95eb975455fedec01251e3
+    pristine_git_object: 3d07b1dc4284d5c097ca3d517ae7a7f0f8b458a1
   docs/sdks/invoices/README.md:
     id: a3f76a06eded
-    last_write_checksum: sha1:881a4a3a39a44df323b4bbfaf310672c077c7815
-    pristine_git_object: 2ea3c7f7263a5bb1146339b3b1292effad225895
+    last_write_checksum: sha1:37af2e1b0b91d9914169a62a4d187854949effa2
+    pristine_git_object: 92f8b08d3a1a48846fb63e82480b0f2eb4efdef2
   docs/sdks/mandates/README.md:
     id: 5166fb580165
-    last_write_checksum: sha1:c6ba08d553e9319893c8b6c437a8d2b9b84e3f39
-    pristine_git_object: 7bf3406cfd157f7ac7c658557a05d79854831816
+    last_write_checksum: sha1:1d22ff409f513cad90af9da965fee9ea2b0c6c61
+    pristine_git_object: 546ad0a68e2a06d2c88cb90a841af20806a41cfd
   docs/sdks/methods/README.md:
     id: 430c1db41d45
-    last_write_checksum: sha1:17fec55b283ae560f30a20abc98eebb2c6efa851
-    pristine_git_object: 863cdc666a8a5b6af3e1dba9b9eca94ed2cef3ab
+    last_write_checksum: sha1:289a3728ff140ff82fd6a437022f438df6030a89
+    pristine_git_object: e5b4e4c4b66ec213c0708e6752a78609d0cc2100
   docs/sdks/onboarding/README.md:
     id: 395b30e93e5f
-    last_write_checksum: sha1:afc7d1f012c95b9d9719f9fa91c45802ff9df597
-    pristine_git_object: 7d2450ffefb4ba59a5e0d7215d55ae847b865a03
+    last_write_checksum: sha1:fd5109fa7da3827a49d8fc37c3710c5f31d7bb48
+    pristine_git_object: 8caf1acc5ae1ad89c36dd80d06ea05b6e2d4df5e
   docs/sdks/organizations/README.md:
     id: 3425667a2db5
-    last_write_checksum: sha1:cc9b80fa453e7d74217d628e72fc1b2294a1619d
-    pristine_git_object: 42795c111111d6776686c5e34cae47f0a72e9178
+    last_write_checksum: sha1:6736a6b1b040172cd56139ed2a54e277ba08f5d0
+    pristine_git_object: 2fa4e6de91ed1f5e27e0d19c9524af4fb2b360ed
   docs/sdks/paymentlinks/README.md:
     id: 35777159619c
-    last_write_checksum: sha1:60db3ce44b9276930887b93b90776727fe409036
-    pristine_git_object: 6db2956b3a236bef0057189cc76d6758ac10dcd5
+    last_write_checksum: sha1:2212c11b3803609669269955dcc62fae3b0899fa
+    pristine_git_object: c83ca3acdfca914a31bd20672826b5ec2f204c58
   docs/sdks/payments/README.md:
     id: 0ddb15ec8c20
-    last_write_checksum: sha1:7777bba669f27094fafa970afe53323a78289177
-    pristine_git_object: b133f752917ccd1ec32922753f3487c15985268a
+    last_write_checksum: sha1:3543129842eb5144f139adf2312885192b193dba
+    pristine_git_object: f78d413f330602259a2fb2d098ce04c954ff527d
   docs/sdks/permissions/README.md:
     id: 2e4061ce50d4
-    last_write_checksum: sha1:4f467eaedb95e8dcb6aeed1a72333c6c6ef6d4a2
-    pristine_git_object: a47a6676534bb39df15ee42e81d0c9a464097d63
+    last_write_checksum: sha1:d1db005ead6bac26ab0078a27f4a34fc5e6c18b8
+    pristine_git_object: a655c3f850d63c94f85c18a479eabd16ca966cdc
   docs/sdks/profiles/README.md:
     id: 4079393d33e5
-    last_write_checksum: sha1:7190db65074d57885a21442232fe5e2bac585922
-    pristine_git_object: 8bd29d583efa8d931ce79132999e3e7deca239f3
+    last_write_checksum: sha1:a6d45d39a59d5e212d3b047280a151d206974cff
+    pristine_git_object: 3fc3371b755500947f580ef5ddfa883a4b8c6ed8
   docs/sdks/refunds/README.md:
     id: 451a9838a921
-    last_write_checksum: sha1:4afc844f8cd19d86b248e0abc6897ab9e54b155f
-    pristine_git_object: 9f3b1fd6bad0fc4be868c2d0e13d14e19e4a3fac
+    last_write_checksum: sha1:fe5cff26db5161084a9c945b38d1cad7ff932c39
+    pristine_git_object: 8f0a9adaed76bd95714d6a2257b2a24029216db9
   docs/sdks/salesinvoices/README.md:
     id: 7b2a80290a07
     last_write_checksum: sha1:179384ed67202183807edc584397992912dc5a04
     pristine_git_object: cadb501af0bdb746b797cbbecd8f2e6dc731b3ec
   docs/sdks/settlements/README.md:
     id: c0b0673bed80
-    last_write_checksum: sha1:168f20f884dadb922a157e6147104bb2b3669b1d
-    pristine_git_object: 910beb862626afaae94914362b08d72f32ea41b9
+    last_write_checksum: sha1:f046b89a2985c0921e2ca78790b7d285403ae0ac
+    pristine_git_object: 12f59321c4a6e91c13906fe87ff7daaf07f85efe
   docs/sdks/subscriptions/README.md:
     id: 298b9ab3c3e0
-    last_write_checksum: sha1:2728bd0348b28901c3cab3080ae072bad90e478b
-    pristine_git_object: 9f0e905d556917f82e31f9dfe9481b17e931f58b
+    last_write_checksum: sha1:5f619eb3b7487abee8176a57975819da3fed1865
+    pristine_git_object: 5a95c011ad9e44d1833ff0a9f17eab809af74684
   docs/sdks/terminals/README.md:
     id: 4b9f7986e224
-    last_write_checksum: sha1:9a0225daef4b9cfcafbb3b1e1a254f584a950b2d
-    pristine_git_object: e0e2b846a2c7e2cc5de8a522c1c9fcd359f6917b
+    last_write_checksum: sha1:aa75ab3e143f50ef0155864b1ca1654245e68514
+    pristine_git_object: 3494884d6cd1c610dd321487d77eb47e33983ac0
   docs/sdks/wallets/README.md:
     id: d9388c541e1a
-    last_write_checksum: sha1:bcbb035ddca384b286b8e7c842fd02aae45bdd4d
-    pristine_git_object: c2f29d5049199d070c1d0c2c42344131140f26cc
+    last_write_checksum: sha1:e592471215c592d83eda31e98db1449c6db80947
+    pristine_git_object: bba27c2e057fbb3691dc6e6cd3d6acaceb72a556
   docs/sdks/webhookevents/README.md:
     id: 558c274bf82a
-    last_write_checksum: sha1:0f5ed8cbf4dc54a874d891cfc320c2466c6e1518
-    pristine_git_object: 706f0f1fe49ac0b8547e95a8e638f844ab43881f
+    last_write_checksum: sha1:211e8ec12c849f4f1502da49b72f6190a77e9a1d
+    pristine_git_object: 6a287e60f1a3aef2225a0c054d3c307653361856
   docs/sdks/webhooks/README.md:
     id: e21b32d786a4
-    last_write_checksum: sha1:1d6cbc858e416d70f9e4017fd7e66d9cd4ac3b33
-    pristine_git_object: a2215741f1c1656bb9010d97d9588a57d20a9a57
+    last_write_checksum: sha1:a2a0081443a51e22b26c97ac32d0952273603e5f
+    pristine_git_object: 9cc3dd2f92c42c459604f6cde9e24a315bc9de3d
   docs/utils/Blob.md:
     id: 3d9a7c4ad67a
     last_write_checksum: sha1:c8c03bbd0c7ae8e70bd9c1d6cfca9ca401710b6a
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:5882fe33cf435263f2d777568707359536faf918
-    pristine_git_object: 8bdfd8b490362ef9a26c89e2ce267cdfdbc95581
+    last_write_checksum: sha1:44275e70b3aa5ab876ed0e99318522f456831f24
+    pristine_git_object: 8fd654b997c5a2100fb99a4005aa4e58a1ea74c6
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3282,8 +3282,8 @@ trackedFiles:
     pristine_git_object: 69c33730128d6e2735bd390f7b618f6e00657f48
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:2d5e2a30e80e97dbce0cc7dc8f45b75715a8cc50
-    pristine_git_object: 4bd1955be1639b6d229136723f21a804ec0bce0c
+    last_write_checksum: sha1:ee4c65e89993cae50ad9382aa7824c3de9f06c4f
+    pristine_git_object: d917c3fd211b5fc66770d960d8b63e0ae0fbe4d6
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:37198fc32cb2e931e8e8cf3ea5df20ef43aa72d5
@@ -4162,8 +4162,8 @@ trackedFiles:
     pristine_git_object: 890b80525affd8971255ff894a301dfbffc7c70c
   src/main/java/com/mollie/mollie/models/components/ListProfileResponse.java:
     id: 5608ddfc4f67
-    last_write_checksum: sha1:21af069b07c7e1b8686a86c875080527b1d39a9b
-    pristine_git_object: 1a80d52301212f3a2114e281402710620f490498
+    last_write_checksum: sha1:3b3086f2e3a4028fca2246de4ba66317c7b79e8e
+    pristine_git_object: bfbf3932dd6703df59d38c36b2606d0bba9713cb
   src/main/java/com/mollie/mollie/models/components/ListProfileResponseLinks.java:
     id: cb66faa3a7d4
     last_write_checksum: sha1:8b13a26a3e4563f47740597556fe691e6c34052b
@@ -4562,8 +4562,8 @@ trackedFiles:
     pristine_git_object: 1acbb71e77a3fbf0a3ae569eb2e46d604e2b353d
   src/main/java/com/mollie/mollie/models/components/ProfileResponse.java:
     id: 024b311f8617
-    last_write_checksum: sha1:5b8b69e54892cb03d4ff5fe479367f7a0febbaf3
-    pristine_git_object: 09731a4fa3e79abef5608f22c2c1e0366fc97e73
+    last_write_checksum: sha1:a6d358a2c7ea71bb398bfb43352760c3ba65bd2c
+    pristine_git_object: 0718578bac94a9ee1f0459e38c436acbaf562a39
   src/main/java/com/mollie/mollie/models/components/ProfileResponseLinks.java:
     id: 3f6a04d77d8c
     last_write_checksum: sha1:3d20f375806186f91d46ec9d7a48c353649d1e1f
@@ -12545,7 +12545,14 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `client.delayedRouting.create()`: \n  *  `request` **Changed** (Breaking ⚠️)\n  *  `response` **Changed**\n* `client.delayedRouting.get()`: **Added**\n* `client.delayedRouting.list()`:  `response.Embedded.routes[].Links.payment` **Added**\n"
+releaseNotes: |
+  ## Java SDK Changes:
+  * `client.profiles.create()`:  `response.businessCategory` **Changed** (Breaking ⚠️)
+  * `client.profiles.list()`:  `response.Embedded.profiles[].businessCategory` **Changed** (Breaking ⚠️)
+  * `client.profiles.get()`:  `response.businessCategory` **Changed** (Breaking ⚠️)
+  * `client.profiles.update()`:  `response.businessCategory` **Changed** (Breaking ⚠️)
+  * `client.profiles.getCurrent()`:  `response.businessCategory` **Changed** (Breaking ⚠️)
+  * `client.webhookEvents.get()`:  `response.Embedded.entity.union(profile-response).businessCategory` **Changed** (Breaking ⚠️)
 generatedFiles:
   - .gitattributes
   - USAGE.md

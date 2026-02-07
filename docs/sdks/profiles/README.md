@@ -18,9 +18,54 @@ Create a profile to process payments on.
 Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
 can use this endpoint to automate profile creation.
 
-### Example Usage
+### Example Usage: create-profile-201-1
 
-<!-- UsageSnippet language="java" operationID="create-profile" method="post" path="/profiles" -->
+<!-- UsageSnippet language="java" operationID="create-profile" method="post" path="/profiles" example="create-profile-201-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ProfileRequest;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateProfileResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreateProfileResponse res = sdk.profiles().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .profileRequest(ProfileRequest.builder()
+                    .name("My website name")
+                    .website("https://example.com")
+                    .email("test@mollie.com")
+                    .phone("+31208202070")
+                    .description("My website description")
+                    .countriesOfActivity(List.of(
+                        "NL",
+                        "GB"))
+                    .businessCategory("OTHER_MERCHANDISE")
+                    .build())
+                .call();
+
+        if (res.profileResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: create-profile-201-2
+
+<!-- UsageSnippet language="java" operationID="create-profile" method="post" path="/profiles" example="create-profile-201-2" -->
 ```java
 package hello.world;
 
@@ -90,7 +135,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-profiles" method="get" path="/profiles" -->
+<!-- UsageSnippet language="java" operationID="list-profiles" method="get" path="/profiles" example="list-profiles-200-1" -->
 ```java
 package hello.world;
 
@@ -148,7 +193,7 @@ Retrieve a single profile by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-profile" method="get" path="/profiles/{profileId}" -->
+<!-- UsageSnippet language="java" operationID="get-profile" method="get" path="/profiles/{profileId}" example="get-profile-200-1" -->
 ```java
 package hello.world;
 
@@ -207,9 +252,55 @@ Update an existing profile.
 Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
 Alternatively, you can use this endpoint to automate profile management.
 
-### Example Usage
+### Example Usage: update-profile-200-1
 
-<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/profiles/{profileId}" -->
+<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/profiles/{profileId}" example="update-profile-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
+import com.mollie.mollie.models.operations.UpdateProfileResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        UpdateProfileResponse res = sdk.profiles().update()
+                .profileId("pfl_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(UpdateProfileRequestBody.builder()
+                    .name("My new website name")
+                    .website("https://example.com")
+                    .email("test@mollie.com")
+                    .phone("+31208202071")
+                    .description("My website description")
+                    .countriesOfActivity(List.of(
+                        "NL",
+                        "GB"))
+                    .businessCategory("OTHER_MERCHANDISE")
+                    .build())
+                .call();
+
+        if (res.profileResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: update-profile-200-2
+
+<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/profiles/{profileId}" example="update-profile-200-2" -->
 ```java
 package hello.world;
 
@@ -337,7 +428,7 @@ documentation.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-current-profile" method="get" path="/profiles/me" -->
+<!-- UsageSnippet language="java" operationID="get-current-profile" method="get" path="/profiles/me" example="get-current-profile-200-1" -->
 ```java
 package hello.world;
 

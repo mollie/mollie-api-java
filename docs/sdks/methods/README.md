@@ -30,9 +30,109 @@ wish to retrieve payment methods which exclusively support other currencies (e.g
 ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the information about
 a non-online payment method, you can use the [Get payment method endpoint](get-method).
 
-### Example Usage
+### Example Usage: list-method-200-3
 
-<!-- UsageSnippet language="java" operationID="list-methods" method="get" path="/methods" -->
+<!-- UsageSnippet language="java" operationID="list-methods" method="get" path="/methods" example="list-method-200-3" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListMethodsRequest;
+import com.mollie.mollie.models.operations.ListMethodsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListMethodsRequest req = ListMethodsRequest.builder()
+                .sequenceType(SequenceType.ONEOFF)
+                .locale(Locale.EN_US)
+                .amount(Amount.builder()
+                    .currency("EUR")
+                    .value("10.00")
+                    .build())
+                .resource(MethodResourceParameter.PAYMENTS)
+                .billingCountry("DE")
+                .includeWallets(MethodIncludeWalletsParameter.APPLEPAY)
+                .orderLineCategories(LineCategories.ECO)
+                .include("issuers")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListMethodsResponse res = sdk.methods().list()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-methods-200-1
+
+<!-- UsageSnippet language="java" operationID="list-methods" method="get" path="/methods" example="list-methods-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListMethodsRequest;
+import com.mollie.mollie.models.operations.ListMethodsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListMethodsRequest req = ListMethodsRequest.builder()
+                .sequenceType(SequenceType.ONEOFF)
+                .locale(Locale.EN_US)
+                .amount(Amount.builder()
+                    .currency("EUR")
+                    .value("10.00")
+                    .build())
+                .resource(MethodResourceParameter.PAYMENTS)
+                .billingCountry("DE")
+                .includeWallets(MethodIncludeWalletsParameter.APPLEPAY)
+                .orderLineCategories(LineCategories.ECO)
+                .include("issuers")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListMethodsResponse res = sdk.methods().list()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-methods-200-2
+
+<!-- UsageSnippet language="java" operationID="list-methods" method="get" path="/methods" example="list-methods-200-2" -->
 ```java
 package hello.world;
 
@@ -108,9 +208,147 @@ The list can optionally be filtered using a number of parameters described below
 ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the information about
 a non-online payment method, you can use the [Get payment method endpoint](get-method).
 
-### Example Usage
+### Example Usage: list-all-methods-200-1
 
-<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/methods/all" -->
+<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllMethodsRequest;
+import com.mollie.mollie.models.operations.ListAllMethodsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListAllMethodsRequest req = ListAllMethodsRequest.builder()
+                .locale(Locale.EN_US)
+                .amount(Amount.builder()
+                    .currency("EUR")
+                    .value("10.00")
+                    .build())
+                .include("issuers")
+                .sequenceType(SequenceType.ONEOFF)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListAllMethodsResponse res = sdk.methods().all()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-all-methods-200-2
+
+<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllMethodsRequest;
+import com.mollie.mollie.models.operations.ListAllMethodsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListAllMethodsRequest req = ListAllMethodsRequest.builder()
+                .locale(Locale.EN_US)
+                .amount(Amount.builder()
+                    .currency("EUR")
+                    .value("10.00")
+                    .build())
+                .include("issuers")
+                .sequenceType(SequenceType.ONEOFF)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListAllMethodsResponse res = sdk.methods().all()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-all-methods-200-3
+
+<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-3" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllMethodsRequest;
+import com.mollie.mollie.models.operations.ListAllMethodsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListAllMethodsRequest req = ListAllMethodsRequest.builder()
+                .locale(Locale.EN_US)
+                .amount(Amount.builder()
+                    .currency("EUR")
+                    .value("10.00")
+                    .build())
+                .include("issuers")
+                .sequenceType(SequenceType.ONEOFF)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListAllMethodsResponse res = sdk.methods().all()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-all-methods-200-4
+
+<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-4" -->
 ```java
 package hello.world;
 
@@ -189,7 +427,7 @@ are enabled by passing the wallet ID (`applepay`) as the method ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-method" method="get" path="/methods/{methodId}" -->
+<!-- UsageSnippet language="java" operationID="get-method" method="get" path="/methods/{methodId}" example="get-method-200-1" -->
 ```java
 package hello.world;
 

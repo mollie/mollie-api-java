@@ -14,6 +14,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class ProfileResponse {
@@ -79,12 +80,10 @@ public class ProfileResponse {
     @JsonProperty("countriesOfActivity")
     private Optional<? extends List<String>> countriesOfActivity;
 
-    /**
-     * The industry associated with the profile's trade name or brand. Please refer to the
-     * [business category list](common-data-types#business-category) for all possible options.
-     */
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessCategory")
-    private String businessCategory;
+    private JsonNullable<String> businessCategory;
 
 
     @JsonProperty("status")
@@ -125,7 +124,7 @@ public class ProfileResponse {
             @JsonProperty("phone") String phone,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
-            @JsonProperty("businessCategory") String businessCategory,
+            @JsonProperty("businessCategory") JsonNullable<String> businessCategory,
             @JsonProperty("status") ProfileResponseStatus status,
             @JsonProperty("review") Optional<? extends Review> review,
             @JsonProperty("createdAt") String createdAt,
@@ -168,14 +167,13 @@ public class ProfileResponse {
             String website,
             String email,
             String phone,
-            String businessCategory,
             ProfileResponseStatus status,
             String createdAt,
             ProfileResponseLinks links) {
         this(resource, id, mode,
             name, website, email,
             phone, Optional.empty(), Optional.empty(),
-            businessCategory, status, Optional.empty(),
+            JsonNullable.undefined(), status, Optional.empty(),
             createdAt, links);
     }
 
@@ -258,12 +256,8 @@ public class ProfileResponse {
         return (Optional<List<String>>) countriesOfActivity;
     }
 
-    /**
-     * The industry associated with the profile's trade name or brand. Please refer to the
-     * [business category list](common-data-types#business-category) for all possible options.
-     */
     @JsonIgnore
-    public String businessCategory() {
+    public JsonNullable<String> businessCategory() {
         return businessCategory;
     }
 
@@ -415,11 +409,13 @@ public class ProfileResponse {
         return this;
     }
 
-    /**
-     * The industry associated with the profile's trade name or brand. Please refer to the
-     * [business category list](common-data-types#business-category) for all possible options.
-     */
     public ProfileResponse withBusinessCategory(String businessCategory) {
+        Utils.checkNotNull(businessCategory, "businessCategory");
+        this.businessCategory = JsonNullable.of(businessCategory);
+        return this;
+    }
+
+    public ProfileResponse withBusinessCategory(JsonNullable<String> businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
         this.businessCategory = businessCategory;
         return this;
@@ -553,7 +549,7 @@ public class ProfileResponse {
 
         private Optional<? extends List<String>> countriesOfActivity = Optional.empty();
 
-        private String businessCategory;
+        private JsonNullable<String> businessCategory = JsonNullable.undefined();
 
         private ProfileResponseStatus status;
 
@@ -683,11 +679,13 @@ public class ProfileResponse {
         }
 
 
-        /**
-         * The industry associated with the profile's trade name or brand. Please refer to the
-         * [business category list](common-data-types#business-category) for all possible options.
-         */
         public Builder businessCategory(String businessCategory) {
+            Utils.checkNotNull(businessCategory, "businessCategory");
+            this.businessCategory = JsonNullable.of(businessCategory);
+            return this;
+        }
+
+        public Builder businessCategory(JsonNullable<String> businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
             this.businessCategory = businessCategory;
             return this;

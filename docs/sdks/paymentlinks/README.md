@@ -17,9 +17,366 @@ With the Payment links API you can generate payment links that by default, unlik
 The payment link can be shared with your customers and will redirect them to them the payment page where they can
 complete the payment. A [payment](get-payment) will only be created once the customer initiates the payment.
 
-### Example Usage
+### Example Usage: create-payment-link-201-1
 
-<!-- UsageSnippet language="java" operationID="create-payment-link" method="post" path="/payment-links" -->
+<!-- UsageSnippet language="java" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreatePaymentLinkResponse res = sdk.paymentLinks().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(CreatePaymentLinkRequestBody.builder()
+                    .description("Chess Board")
+                    .amount(AmountNullable.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .minimumAmount(AmountNullable.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .redirectUrl("https://webshop.example.org/payment-links/redirect/")
+                    .webhookUrl("https://webshop.example.org/payment-links/webhook/")
+                    .lines(List.of(
+                        PaymentLineItem.builder()
+                            .description("LEGO 4440 Forest Police Station")
+                            .quantity(1L)
+                            .unitPrice(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .totalAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .type(PaymentLineType.PHYSICAL)
+                            .quantityUnit("pcs")
+                            .discountAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .vatRate("21.00")
+                            .vatAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .sku("9780241661628")
+                            .categories(List.of(
+                                LineCategories.MEAL,
+                                LineCategories.ECO))
+                            .imageUrl("https://...")
+                            .productUrl("https://...")
+                            .build()))
+                    .billingAddress(PaymentAddress.builder()
+                        .title("Mr.")
+                        .givenName("Piet")
+                        .familyName("Mondriaan")
+                        .organizationName("Mollie B.V.")
+                        .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
+                        .postalCode("1234AB")
+                        .email("piet@example.org")
+                        .phone("31208202070")
+                        .city("Amsterdam")
+                        .region("Noord-Holland")
+                        .country("NL")
+                        .build())
+                    .shippingAddress(PaymentAddress.builder()
+                        .title("Mr.")
+                        .givenName("Piet")
+                        .familyName("Mondriaan")
+                        .organizationName("Mollie B.V.")
+                        .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
+                        .postalCode("1234AB")
+                        .email("piet@example.org")
+                        .phone("31208202070")
+                        .city("Amsterdam")
+                        .region("Noord-Holland")
+                        .country("NL")
+                        .build())
+                    .profileId("pfl_QkEhN94Ba")
+                    .reusable(false)
+                    .expiresAt("2025-12-24T11:00:16+00:00")
+                    .allowedMethods(List.of(
+                        PaymentLinkMethod.IDEAL))
+                    .applicationFee(ApplicationFee.builder()
+                        .amount(Amount.builder()
+                            .currency("EUR")
+                            .value("10.00")
+                            .build())
+                        .description("Platform fee")
+                        .build())
+                    .sequenceType(PaymentLinkSequenceType.ONEOFF)
+                    .customerId("cst_XimFHuaEzd")
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.paymentLinkResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: create-payment-link-201-2
+
+<!-- UsageSnippet language="java" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreatePaymentLinkResponse res = sdk.paymentLinks().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(CreatePaymentLinkRequestBody.builder()
+                    .description("Chess Board")
+                    .amount(AmountNullable.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .minimumAmount(AmountNullable.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .redirectUrl("https://webshop.example.org/payment-links/redirect/")
+                    .webhookUrl("https://webshop.example.org/payment-links/webhook/")
+                    .lines(List.of(
+                        PaymentLineItem.builder()
+                            .description("LEGO 4440 Forest Police Station")
+                            .quantity(1L)
+                            .unitPrice(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .totalAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .type(PaymentLineType.PHYSICAL)
+                            .quantityUnit("pcs")
+                            .discountAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .vatRate("21.00")
+                            .vatAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .sku("9780241661628")
+                            .categories(List.of(
+                                LineCategories.MEAL,
+                                LineCategories.ECO))
+                            .imageUrl("https://...")
+                            .productUrl("https://...")
+                            .build()))
+                    .billingAddress(PaymentAddress.builder()
+                        .title("Mr.")
+                        .givenName("Piet")
+                        .familyName("Mondriaan")
+                        .organizationName("Mollie B.V.")
+                        .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
+                        .postalCode("1234AB")
+                        .email("piet@example.org")
+                        .phone("31208202070")
+                        .city("Amsterdam")
+                        .region("Noord-Holland")
+                        .country("NL")
+                        .build())
+                    .shippingAddress(PaymentAddress.builder()
+                        .title("Mr.")
+                        .givenName("Piet")
+                        .familyName("Mondriaan")
+                        .organizationName("Mollie B.V.")
+                        .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
+                        .postalCode("1234AB")
+                        .email("piet@example.org")
+                        .phone("31208202070")
+                        .city("Amsterdam")
+                        .region("Noord-Holland")
+                        .country("NL")
+                        .build())
+                    .profileId("pfl_QkEhN94Ba")
+                    .reusable(false)
+                    .expiresAt("2025-12-24T11:00:16+00:00")
+                    .allowedMethods(List.of(
+                        PaymentLinkMethod.IDEAL))
+                    .applicationFee(ApplicationFee.builder()
+                        .amount(Amount.builder()
+                            .currency("EUR")
+                            .value("10.00")
+                            .build())
+                        .description("Platform fee")
+                        .build())
+                    .sequenceType(PaymentLinkSequenceType.ONEOFF)
+                    .customerId("cst_XimFHuaEzd")
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.paymentLinkResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: create-payment-link-201-3
+
+<!-- UsageSnippet language="java" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-3" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreatePaymentLinkResponse res = sdk.paymentLinks().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(CreatePaymentLinkRequestBody.builder()
+                    .description("Chess Board")
+                    .amount(AmountNullable.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .minimumAmount(AmountNullable.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .redirectUrl("https://webshop.example.org/payment-links/redirect/")
+                    .webhookUrl("https://webshop.example.org/payment-links/webhook/")
+                    .lines(List.of(
+                        PaymentLineItem.builder()
+                            .description("LEGO 4440 Forest Police Station")
+                            .quantity(1L)
+                            .unitPrice(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .totalAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .type(PaymentLineType.PHYSICAL)
+                            .quantityUnit("pcs")
+                            .discountAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .vatRate("21.00")
+                            .vatAmount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .sku("9780241661628")
+                            .categories(List.of(
+                                LineCategories.MEAL,
+                                LineCategories.ECO))
+                            .imageUrl("https://...")
+                            .productUrl("https://...")
+                            .build()))
+                    .billingAddress(PaymentAddress.builder()
+                        .title("Mr.")
+                        .givenName("Piet")
+                        .familyName("Mondriaan")
+                        .organizationName("Mollie B.V.")
+                        .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
+                        .postalCode("1234AB")
+                        .email("piet@example.org")
+                        .phone("31208202070")
+                        .city("Amsterdam")
+                        .region("Noord-Holland")
+                        .country("NL")
+                        .build())
+                    .shippingAddress(PaymentAddress.builder()
+                        .title("Mr.")
+                        .givenName("Piet")
+                        .familyName("Mondriaan")
+                        .organizationName("Mollie B.V.")
+                        .streetAndNumber("Keizersgracht 126")
+                        .streetAdditional("Apt. 1")
+                        .postalCode("1234AB")
+                        .email("piet@example.org")
+                        .phone("31208202070")
+                        .city("Amsterdam")
+                        .region("Noord-Holland")
+                        .country("NL")
+                        .build())
+                    .profileId("pfl_QkEhN94Ba")
+                    .reusable(false)
+                    .expiresAt("2025-12-24T11:00:16+00:00")
+                    .allowedMethods(List.of(
+                        PaymentLinkMethod.IDEAL))
+                    .applicationFee(ApplicationFee.builder()
+                        .amount(Amount.builder()
+                            .currency("EUR")
+                            .value("10.00")
+                            .build())
+                        .description("Platform fee")
+                        .build())
+                    .sequenceType(PaymentLinkSequenceType.ONEOFF)
+                    .customerId("cst_XimFHuaEzd")
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.paymentLinkResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: create-payment-link-201-4
+
+<!-- UsageSnippet language="java" operationID="create-payment-link" method="post" path="/payment-links" example="create-payment-link-201-4" -->
 ```java
 package hello.world;
 
@@ -161,9 +518,44 @@ Retrieve a list of all payment links.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-payment-links-200-1
 
-<!-- UsageSnippet language="java" operationID="list-payment-links" method="get" path="/payment-links" -->
+<!-- UsageSnippet language="java" operationID="list-payment-links" method="get" path="/payment-links" example="list-payment-links-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListPaymentLinksResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListPaymentLinksResponse res = sdk.paymentLinks().list()
+                .from("pl_d9fQur83kFdhH8hIhaZfq")
+                .limit(50L)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-payment-links-200-2
+
+<!-- UsageSnippet language="java" operationID="list-payment-links" method="get" path="/payment-links" example="list-payment-links-200-2" -->
 ```java
 package hello.world;
 
@@ -223,7 +615,7 @@ Retrieve a single payment link by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-payment-link" method="get" path="/payment-links/{paymentLinkId}" -->
+<!-- UsageSnippet language="java" operationID="get-payment-link" method="get" path="/payment-links/{paymentLinkId}" example="get-payment-link-200-1" -->
 ```java
 package hello.world;
 
@@ -281,7 +673,7 @@ Certain details of an existing payment link can be updated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="update-payment-link" method="patch" path="/payment-links/{paymentLinkId}" -->
+<!-- UsageSnippet language="java" operationID="update-payment-link" method="patch" path="/payment-links/{paymentLinkId}" example="update-payment-link-200-1" -->
 ```java
 package hello.world;
 
@@ -476,7 +868,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-payment-link-payments" method="get" path="/payment-links/{paymentLinkId}/payments" -->
+<!-- UsageSnippet language="java" operationID="get-payment-link-payments" method="get" path="/payment-links/{paymentLinkId}/payments" example="get-payment-link-payments-200-1" -->
 ```java
 package hello.world;
 

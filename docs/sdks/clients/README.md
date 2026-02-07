@@ -15,7 +15,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-clients" method="get" path="/clients" -->
+<!-- UsageSnippet language="java" operationID="list-clients" method="get" path="/clients" example="list-clients-200-1" -->
 ```java
 package hello.world;
 
@@ -73,9 +73,111 @@ public class Application {
 
 Retrieve a single client by its ID.
 
-### Example Usage
+### Example Usage: get-client-200-1
 
-<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{organizationId}" -->
+<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetClientResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetClientResponse res = sdk.clients().get()
+                .organizationId("org_1234567")
+                .embed("organization")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: get-client-200-2
+
+<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetClientResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetClientResponse res = sdk.clients().get()
+                .organizationId("org_1234567")
+                .embed("organization")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: get-client-200-3
+
+<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-3" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetClientResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetClientResponse res = sdk.clients().get()
+                .organizationId("org_1234567")
+                .embed("organization")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: get-client-200-4
+
+<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-4" -->
 ```java
 package hello.world;
 

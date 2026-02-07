@@ -17,7 +17,7 @@ A webhook must have a name, an url and a list of event types. You can also creat
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="create-webhook" method="post" path="/webhooks" -->
+<!-- UsageSnippet language="java" operationID="create-webhook" method="post" path="/webhooks" example="create-webhook-200" -->
 ```java
 package hello.world;
 
@@ -79,7 +79,7 @@ Returns a paginated list of your webhooks. If no webhook endpoints are available
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-webhooks" method="get" path="/webhooks" -->
+<!-- UsageSnippet language="java" operationID="list-webhooks" method="get" path="/webhooks" example="list-webhook-200" -->
 ```java
 package hello.world;
 
@@ -143,7 +143,7 @@ Updates the webhook. You may edit the name, url and the list of subscribed event
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="update-webhook" method="patch" path="/webhooks/{webhookId}" -->
+<!-- UsageSnippet language="java" operationID="update-webhook" method="patch" path="/webhooks/{webhookId}" example="create-webhook-200" -->
 ```java
 package hello.world;
 
@@ -205,9 +205,43 @@ public class Application {
 
 Retrieve a single webhook object by its ID.
 
-### Example Usage
+### Example Usage: get-webhook-200
 
-<!-- UsageSnippet language="java" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" -->
+<!-- UsageSnippet language="java" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" example="get-webhook-200" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetWebhookResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetWebhookResponse res = sdk.webhooks().get()
+                .webhookId("hook_1234567890")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.entityWebhook().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: get-webhook-200-1
+
+<!-- UsageSnippet language="java" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" example="get-webhook-200-1" -->
 ```java
 package hello.world;
 

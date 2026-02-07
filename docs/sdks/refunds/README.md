@@ -15,9 +15,70 @@
 Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
 transfer or by refunding the amount to your customer's credit card.
 
-### Example Usage
+### Example Usage: create-refund-201-1
 
-<!-- UsageSnippet language="java" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" -->
+<!-- UsageSnippet language="java" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" example="create-refund-201-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateRefundResponse;
+import java.lang.Exception;
+import java.util.List;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreateRefundResponse res = sdk.refunds().create()
+                .paymentId("tr_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .refundRequest(RefundRequest.builder()
+                    .description("Refunding a Chess Board")
+                    .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .metadata(Metadata.of(Map.ofEntries(
+                    )))
+                    .externalReference(RefundRequestExternalReference.builder()
+                        .type(RefundExternalReferenceType.ACQUIRER_REFERENCE)
+                        .id("123456789012345")
+                        .build())
+                    .reverseRouting(false)
+                    .routingReversals(List.of(
+                        RoutingReversals.builder()
+                            .amount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .source(Source.builder()
+                                .type(Type.ORGANIZATION)
+                                .organizationId("org_1234567")
+                                .build())
+                            .build()))
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.entityRefundResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: create-refund-201-2
+
+<!-- UsageSnippet language="java" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" example="create-refund-201-2" -->
 ```java
 package hello.world;
 
@@ -104,7 +165,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-refunds" method="get" path="/payments/{paymentId}/refunds" -->
+<!-- UsageSnippet language="java" operationID="list-refunds" method="get" path="/payments/{paymentId}/refunds" example="list-refunds-200-1" -->
 ```java
 package hello.world;
 
@@ -168,7 +229,7 @@ Retrieve a single payment refund by its ID and the ID of its parent payment.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-refund" method="get" path="/payments/{paymentId}/refunds/{refundId}" -->
+<!-- UsageSnippet language="java" operationID="get-refund" method="get" path="/payments/{paymentId}/refunds/{refundId}" example="get-refund-200-1" -->
 ```java
 package hello.world;
 
@@ -295,7 +356,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-all-refunds" method="get" path="/refunds" -->
+<!-- UsageSnippet language="java" operationID="list-all-refunds" method="get" path="/refunds" example="list-refunds-200-1" -->
 ```java
 package hello.world;
 

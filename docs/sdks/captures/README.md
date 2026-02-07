@@ -19,9 +19,49 @@ By default, Mollie captures payments automatically. If however you
 configured your payment with `captureMode: manual`, you can capture the payment using this endpoint after
 having collected the customer's authorization.
 
-### Example Usage
+### Example Usage: get-capture-200-1
 
-<!-- UsageSnippet language="java" operationID="create-capture" method="post" path="/payments/{paymentId}/captures" -->
+<!-- UsageSnippet language="java" operationID="create-capture" method="post" path="/payments/{paymentId}/captures" example="get-capture-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCaptureResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreateCaptureResponse res = sdk.captures().create()
+                .paymentId("tr_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .entityCapture(EntityCapture.builder()
+                    .description("Capture for cart #12345")
+                    .amount(AmountNullable.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .build())
+                .call();
+
+        if (res.captureResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: get-capture-200-2
+
+<!-- UsageSnippet language="java" operationID="create-capture" method="post" path="/payments/{paymentId}/captures" example="get-capture-200-2" -->
 ```java
 package hello.world;
 
@@ -85,9 +125,51 @@ Retrieve a list of all captures created for a specific payment.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-captures-200-1
 
-<!-- UsageSnippet language="java" operationID="list-captures" method="get" path="/payments/{paymentId}/captures" -->
+<!-- UsageSnippet language="java" operationID="list-captures" method="get" path="/payments/{paymentId}/captures" example="list-captures-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListCapturesRequest;
+import com.mollie.mollie.models.operations.ListCapturesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListCapturesRequest req = ListCapturesRequest.builder()
+                .paymentId("tr_5B8cwPMGnU")
+                .from("cpt_vytxeTZskVKR7C7WgdSP3d")
+                .limit(50L)
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListCapturesResponse res = sdk.captures().list()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-captures-200-2
+
+<!-- UsageSnippet language="java" operationID="list-captures" method="get" path="/payments/{paymentId}/captures" example="list-captures-200-2" -->
 ```java
 package hello.world;
 
@@ -150,9 +232,50 @@ public class Application {
 Retrieve a single payment capture by its ID and the ID of its parent
 payment.
 
-### Example Usage
+### Example Usage: get-capture-200-1
 
-<!-- UsageSnippet language="java" operationID="get-capture" method="get" path="/payments/{paymentId}/captures/{captureId}" -->
+<!-- UsageSnippet language="java" operationID="get-capture" method="get" path="/payments/{paymentId}/captures/{captureId}" example="get-capture-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetCaptureRequest;
+import com.mollie.mollie.models.operations.GetCaptureResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetCaptureRequest req = GetCaptureRequest.builder()
+                .paymentId("tr_5B8cwPMGnU")
+                .captureId("cpt_vytxeTZskVKR7C7WgdSP3d")
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        GetCaptureResponse res = sdk.captures().get()
+                .request(req)
+                .call();
+
+        if (res.captureResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: get-capture-200-2
+
+<!-- UsageSnippet language="java" operationID="get-capture" method="get" path="/payments/{paymentId}/captures/{captureId}" example="get-capture-200-2" -->
 ```java
 package hello.world;
 

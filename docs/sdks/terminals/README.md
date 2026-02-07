@@ -13,9 +13,51 @@ Retrieve a list of all physical point-of-sale devices.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-terminals-200-1
 
-<!-- UsageSnippet language="java" operationID="list-terminals" method="get" path="/terminals" -->
+<!-- UsageSnippet language="java" operationID="list-terminals" method="get" path="/terminals" example="list-terminals-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListTerminalsRequest;
+import com.mollie.mollie.models.operations.ListTerminalsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListTerminalsRequest req = ListTerminalsRequest.builder()
+                .from("term_vytxeTZskVKR7C7WgdSP3d")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListTerminalsResponse res = sdk.terminals().list()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-terminals-200-2
+
+<!-- UsageSnippet language="java" operationID="list-terminals" method="get" path="/terminals" example="list-terminals-200-2" -->
 ```java
 package hello.world;
 
@@ -79,7 +121,7 @@ Retrieve a single terminal by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-terminal" method="get" path="/terminals/{terminalId}" -->
+<!-- UsageSnippet language="java" operationID="get-terminal" method="get" path="/terminals/{terminalId}" example="get-terminal-200-1" -->
 ```java
 package hello.world;
 

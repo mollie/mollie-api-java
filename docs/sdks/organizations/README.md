@@ -19,7 +19,7 @@ If you have a *partner account*', you can retrieve organization details of conne
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-organization" method="get" path="/organizations/{organizationId}" -->
+<!-- UsageSnippet language="java" operationID="get-organization" method="get" path="/organizations/{organizationId}" example="get-organization-200-1" -->
 ```java
 package hello.world;
 
@@ -81,7 +81,7 @@ documentation.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-current-organization" method="get" path="/organizations/me" -->
+<!-- UsageSnippet language="java" operationID="get-current-organization" method="get" path="/organizations/me" example="get-current-organization-200-1" -->
 ```java
 package hello.world;
 
@@ -134,7 +134,7 @@ accounts*.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-partner-status" method="get" path="/organizations/me/partner" -->
+<!-- UsageSnippet language="java" operationID="get-partner-status" method="get" path="/organizations/me/partner" example="get-partner-status-200-1" -->
 ```java
 package hello.world;
 

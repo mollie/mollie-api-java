@@ -30,7 +30,7 @@ full documentation, see the official
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="request-apple-pay-payment-session" method="post" path="/wallets/applepay/sessions" -->
+<!-- UsageSnippet language="java" operationID="request-apple-pay-payment-session" method="post" path="/wallets/applepay/sessions" example="request-apple-pay-payment-session-201-1" -->
 ```java
 package hello.world;
 

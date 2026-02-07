@@ -36,7 +36,7 @@ Your customer will be charged €10 on the last day of each month, starting in A
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="create-subscription" method="post" path="/customers/{customerId}/subscriptions" -->
+<!-- UsageSnippet language="java" operationID="create-subscription" method="post" path="/customers/{customerId}/subscriptions" example="get-subscription-200-1" -->
 ```java
 package hello.world;
 
@@ -117,7 +117,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-subscriptions" method="get" path="/customers/{customerId}/subscriptions" -->
+<!-- UsageSnippet language="java" operationID="list-subscriptions" method="get" path="/customers/{customerId}/subscriptions" example="list-subscriptions-200-1" -->
 ```java
 package hello.world;
 
@@ -182,7 +182,7 @@ Retrieve a single subscription by its ID and the ID of its parent customer.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-subscription" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}" -->
+<!-- UsageSnippet language="java" operationID="get-subscription" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="get-subscription-200-1" -->
 ```java
 package hello.world;
 
@@ -244,9 +244,58 @@ Canceled subscriptions cannot be updated.
 
 For an in-depth explanation of each parameter, refer to the [Create subscription](create-subscription) endpoint.
 
-### Example Usage
+### Example Usage: update-subscription-200-1
 
-<!-- UsageSnippet language="java" operationID="update-subscription" method="patch" path="/customers/{customerId}/subscriptions/{subscriptionId}" -->
+<!-- UsageSnippet language="java" operationID="update-subscription" method="patch" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="update-subscription-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Amount;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdateSubscriptionRequestBody;
+import com.mollie.mollie.models.operations.UpdateSubscriptionResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        UpdateSubscriptionResponse res = sdk.subscriptions().update()
+                .customerId("cst_5B8cwPMGnU")
+                .subscriptionId("sub_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(UpdateSubscriptionRequestBody.builder()
+                    .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .description("Subscription of streaming channel")
+                    .interval("1 months")
+                    .startDate("2025-01-01")
+                    .times(6L)
+                    .webhookUrl("https://example.com/webhook")
+                    .mandateId("mdt_5B8cwPMGnU")
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.subscriptionResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: update-subscription-200-2
+
+<!-- UsageSnippet language="java" operationID="update-subscription" method="patch" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="update-subscription-200-2" -->
 ```java
 package hello.world;
 
@@ -320,7 +369,7 @@ Cancel an existing subscription. Canceling a subscription has no effect on the m
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="cancel-subscription" method="delete" path="/customers/{customerId}/subscriptions/{subscriptionId}" -->
+<!-- UsageSnippet language="java" operationID="cancel-subscription" method="delete" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="cancel-subscription-200-1" -->
 ```java
 package hello.world;
 
@@ -383,9 +432,9 @@ Retrieve all subscriptions initiated across all your customers.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/subscriptions" -->
+<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/subscriptions" example="list-payments-200-1" -->
 ```java
 package hello.world;
 
@@ -410,6 +459,126 @@ public class Application {
 
         ListAllSubscriptionsRequest req = ListAllSubscriptionsRequest.builder()
                 .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .build();
+
+        ListAllSubscriptionsResponse res = sdk.subscriptions().all()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-payments-200-2
+
+<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/subscriptions" example="list-payments-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllSubscriptionsRequest;
+import com.mollie.mollie.models.operations.ListAllSubscriptionsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListAllSubscriptionsRequest req = ListAllSubscriptionsRequest.builder()
+                .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .build();
+
+        ListAllSubscriptionsResponse res = sdk.subscriptions().all()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-payments-200-3
+
+<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/subscriptions" example="list-payments-200-3" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllSubscriptionsRequest;
+import com.mollie.mollie.models.operations.ListAllSubscriptionsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListAllSubscriptionsRequest req = ListAllSubscriptionsRequest.builder()
+                .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .build();
+
+        ListAllSubscriptionsResponse res = sdk.subscriptions().all()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-subscriptions-200-1
+
+<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/subscriptions" example="list-subscriptions-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllSubscriptionsRequest;
+import com.mollie.mollie.models.operations.ListAllSubscriptionsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListAllSubscriptionsRequest req = ListAllSubscriptionsRequest.builder()
+                .from("sub_rVKGtNd6s3")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
@@ -448,9 +617,99 @@ Retrieve all payments of a specific subscription.
 
 The results are paginated.
 
-### Example Usage
+### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="java" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" -->
+<!-- UsageSnippet language="java" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSubscriptionPaymentsRequest;
+import com.mollie.mollie.models.operations.ListSubscriptionPaymentsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListSubscriptionPaymentsRequest req = ListSubscriptionPaymentsRequest.builder()
+                .customerId("cst_5B8cwPMGnU")
+                .subscriptionId("sub_5B8cwPMGnU")
+                .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListSubscriptionPaymentsResponse res = sdk.subscriptions().listPayments()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-payments-200-2
+
+<!-- UsageSnippet language="java" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSubscriptionPaymentsRequest;
+import com.mollie.mollie.models.operations.ListSubscriptionPaymentsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListSubscriptionPaymentsRequest req = ListSubscriptionPaymentsRequest.builder()
+                .customerId("cst_5B8cwPMGnU")
+                .subscriptionId("sub_5B8cwPMGnU")
+                .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListSubscriptionPaymentsResponse res = sdk.subscriptions().listPayments()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-payments-200-3
+
+<!-- UsageSnippet language="java" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-3" -->
 ```java
 package hello.world;
 

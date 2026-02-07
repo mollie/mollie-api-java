@@ -21,7 +21,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-settlements" method="get" path="/settlements" -->
+<!-- UsageSnippet language="java" operationID="list-settlements" method="get" path="/settlements" example="list-settlements-200-1" -->
 ```java
 package hello.world;
 
@@ -98,7 +98,7 @@ For more accurate bookkeeping, refer to the [balance report](get-balance-report)
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-settlement" method="get" path="/settlements/{settlementId}" -->
+<!-- UsageSnippet language="java" operationID="get-settlement" method="get" path="/settlements/{settlementId}" example="get-settlement-200-1" -->
 ```java
 package hello.world;
 
@@ -161,7 +161,7 @@ For more accurate bookkeeping, refer to the [balance report](get-balance-report)
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-open-settlement" method="get" path="/settlements/open" -->
+<!-- UsageSnippet language="java" operationID="get-open-settlement" method="get" path="/settlements/open" example="get-settlement-200-1" -->
 ```java
 package hello.world;
 
@@ -219,7 +219,7 @@ For more accurate bookkeeping, refer to the [balance report](get-balance-report)
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-next-settlement" method="get" path="/settlements/next" -->
+<!-- UsageSnippet language="java" operationID="get-next-settlement" method="get" path="/settlements/next" example="get-settlement-200-1" -->
 ```java
 package hello.world;
 
@@ -274,9 +274,97 @@ The response is in the same format as the response of the [List payments endpoin
 For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
 [List captures endpoint](list-captures) endpoint instead.
 
-### Example Usage
+### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="java" operationID="list-settlement-payments" method="get" path="/settlements/{settlementId}/payments" -->
+<!-- UsageSnippet language="java" operationID="list-settlement-payments" method="get" path="/settlements/{settlementId}/payments" example="list-payments-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsRequest;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListSettlementPaymentsRequest req = ListSettlementPaymentsRequest.builder()
+                .settlementId("stl_5B8cwPMGnU")
+                .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListSettlementPaymentsResponse res = sdk.settlements().listPayments()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-payments-200-2
+
+<!-- UsageSnippet language="java" operationID="list-settlement-payments" method="get" path="/settlements/{settlementId}/payments" example="list-payments-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsRequest;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListSettlementPaymentsRequest req = ListSettlementPaymentsRequest.builder()
+                .settlementId("stl_5B8cwPMGnU")
+                .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListSettlementPaymentsResponse res = sdk.settlements().listPayments()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-payments-200-3
+
+<!-- UsageSnippet language="java" operationID="list-settlement-payments" method="get" path="/settlements/{settlementId}/payments" example="list-payments-200-3" -->
 ```java
 package hello.world;
 
@@ -342,9 +430,51 @@ Retrieve all captures included in the given settlement.
 
 The response is in the same format as the response of the [List captures endpoint](list-captures).
 
-### Example Usage
+### Example Usage: list-captures-200-1
 
-<!-- UsageSnippet language="java" operationID="list-settlement-captures" method="get" path="/settlements/{settlementId}/captures" -->
+<!-- UsageSnippet language="java" operationID="list-settlement-captures" method="get" path="/settlements/{settlementId}/captures" example="list-captures-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementCapturesRequest;
+import com.mollie.mollie.models.operations.ListSettlementCapturesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListSettlementCapturesRequest req = ListSettlementCapturesRequest.builder()
+                .settlementId("stl_5B8cwPMGnU")
+                .from("cpt_vytxeTZskVKR7C7WgdSP3d")
+                .limit(50L)
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListSettlementCapturesResponse res = sdk.settlements().listCaptures()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-captures-200-2
+
+<!-- UsageSnippet language="java" operationID="list-settlement-captures" method="get" path="/settlements/{settlementId}/captures" example="list-captures-200-2" -->
 ```java
 package hello.world;
 
@@ -410,7 +540,7 @@ The response is in the same format as the response of the [List refunds endpoint
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-settlement-refunds" method="get" path="/settlements/{settlementId}/refunds" -->
+<!-- UsageSnippet language="java" operationID="list-settlement-refunds" method="get" path="/settlements/{settlementId}/refunds" example="list-refunds-200-1" -->
 ```java
 package hello.world;
 
@@ -474,9 +604,93 @@ Retrieve all chargebacks 'deducted' from the given settlement.
 
 The response is in the same format as the response of the [List chargebacks endpoint](list-chargebacks).
 
-### Example Usage
+### Example Usage: list-chargeback-200-1
 
-<!-- UsageSnippet language="java" operationID="list-settlement-chargebacks" method="get" path="/settlements/{settlementId}/chargebacks" -->
+<!-- UsageSnippet language="java" operationID="list-settlement-chargebacks" method="get" path="/settlements/{settlementId}/chargebacks" example="list-chargeback-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementChargebacksRequest;
+import com.mollie.mollie.models.operations.ListSettlementChargebacksResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListSettlementChargebacksRequest req = ListSettlementChargebacksRequest.builder()
+                .settlementId("stl_5B8cwPMGnU")
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListSettlementChargebacksResponse res = sdk.settlements().listChargebacks()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-chargeback-200-2
+
+<!-- UsageSnippet language="java" operationID="list-settlement-chargebacks" method="get" path="/settlements/{settlementId}/chargebacks" example="list-chargeback-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementChargebacksRequest;
+import com.mollie.mollie.models.operations.ListSettlementChargebacksResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListSettlementChargebacksRequest req = ListSettlementChargebacksRequest.builder()
+                .settlementId("stl_5B8cwPMGnU")
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        ListSettlementChargebacksResponse res = sdk.settlements().listChargebacks()
+                .request(req)
+                .call();
+
+        if (res.object().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+### Example Usage: list-chargeback-200-3
+
+<!-- UsageSnippet language="java" operationID="list-settlement-chargebacks" method="get" path="/settlements/{settlementId}/chargebacks" example="list-chargeback-200-3" -->
 ```java
 package hello.world;
 
