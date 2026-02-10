@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 9aff82578b9acde76766df00847b5336
+  docChecksum: 92f34d273917127bcde2ac571f79ac1a
   docVersion: 1.0.0
-  speakeasyVersion: 1.708.2
-  generationVersion: 2.811.4
-  releaseVersion: 1.0.10
-  configChecksum: fbfe452da7a424d06b075f67df3ad174
+  speakeasyVersion: 1.709.3
+  generationVersion: 2.814.0
+  releaseVersion: 1.0.11
+  configChecksum: 571e5f7290c32bbbb90eebfe0836b150
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 persistentEdits:
-  generation_id: ea39b10e-c68d-4420-b750-18fe7fd277a4
-  pristine_commit_hash: 76861a1fb2ecacec060158ac61f1a7fd9a8d9c79
-  pristine_tree_hash: be9fb635533a03a06491d8cadca48af0947a6172
+  generation_id: d1949d75-5cf7-411b-835f-150d443f8354
+  pristine_commit_hash: 094ccb2d845065ebe4955f8e3cb5f2405440c0ae
+  pristine_tree_hash: 67d51d87b33c01e12d6cae6be02f1b87a1ce9c10
 features:
   java:
     additionalDependencies: 0.1.0
@@ -890,8 +890,8 @@ trackedFiles:
     pristine_git_object: 77c58dfa7914e04b9dbc5f78abe3ed9b2e593afb
   docs/models/components/ListProfileResponse.md:
     id: 380112ee9c8c
-    last_write_checksum: sha1:7b3483383ee53b3ba3b9400fdd5b305e9777c83b
-    pristine_git_object: 1ff9e5e1e5046c5b8a5e8f723034ddfbe9de58b9
+    last_write_checksum: sha1:99441b51cb0f6a891ec3cabafce12f43be05ab92
+    pristine_git_object: 8689d9d5f719c77e21268d1f7764096ddbb7bcec
   docs/models/components/ListProfileResponseLinks.md:
     id: d820cc148ca2
     last_write_checksum: sha1:384ed53860fd0d31ba439f20629c26051253231c
@@ -1290,8 +1290,8 @@ trackedFiles:
     pristine_git_object: a4ae57ccb3e30f37e59787096ac3e534ec5e0073
   docs/models/components/ProfileResponse.md:
     id: 355833493e0b
-    last_write_checksum: sha1:3e99e61fbf2f39e32d4c1fbcafd7cea0dd38068b
-    pristine_git_object: 266e86e8277b3a666e8b661d2c011cce0a14cb79
+    last_write_checksum: sha1:ffda9c8301996137e6273880fa00bce9fab765c6
+    pristine_git_object: c17ffda765a7393c73bf2164277ff6005774e2b7
   docs/models/components/ProfileResponseLinks.md:
     id: 6567ff339be2
     last_write_checksum: sha1:69faf6b2992f47cf6d7738a4bcd233eeb0cb0108
@@ -3038,8 +3038,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:44275e70b3aa5ab876ed0e99318522f456831f24
-    pristine_git_object: 8fd654b997c5a2100fb99a4005aa4e58a1ea74c6
+    last_write_checksum: sha1:8f38238ec4f4da1f8fe74261b34772e5d3173cb7
+    pristine_git_object: b7a59c05c2e91be4ff4113598ffd123f137edf64
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3282,8 +3282,8 @@ trackedFiles:
     pristine_git_object: 69c33730128d6e2735bd390f7b618f6e00657f48
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:ee4c65e89993cae50ad9382aa7824c3de9f06c4f
-    pristine_git_object: d917c3fd211b5fc66770d960d8b63e0ae0fbe4d6
+    last_write_checksum: sha1:904b5447032056237805b90c334e74778673caeb
+    pristine_git_object: bb471f8e3c88c17d2658ee0856d19c196701168f
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:37198fc32cb2e931e8e8cf3ea5df20ef43aa72d5
@@ -4162,8 +4162,8 @@ trackedFiles:
     pristine_git_object: 890b80525affd8971255ff894a301dfbffc7c70c
   src/main/java/com/mollie/mollie/models/components/ListProfileResponse.java:
     id: 5608ddfc4f67
-    last_write_checksum: sha1:3b3086f2e3a4028fca2246de4ba66317c7b79e8e
-    pristine_git_object: bfbf3932dd6703df59d38c36b2606d0bba9713cb
+    last_write_checksum: sha1:4b28ce169cf90201a5bc151d002f123c051a5adb
+    pristine_git_object: 851e24a126bd9fc57f2e1290410960fcc46864f0
   src/main/java/com/mollie/mollie/models/components/ListProfileResponseLinks.java:
     id: cb66faa3a7d4
     last_write_checksum: sha1:8b13a26a3e4563f47740597556fe691e6c34052b
@@ -4562,8 +4562,8 @@ trackedFiles:
     pristine_git_object: 1acbb71e77a3fbf0a3ae569eb2e46d604e2b353d
   src/main/java/com/mollie/mollie/models/components/ProfileResponse.java:
     id: 024b311f8617
-    last_write_checksum: sha1:a6d358a2c7ea71bb398bfb43352760c3ba65bd2c
-    pristine_git_object: 0718578bac94a9ee1f0459e38c436acbaf562a39
+    last_write_checksum: sha1:bf9f82677042b3bfac0cfceb1592c064dcd33130
+    pristine_git_object: 7d4634dcfbaf5d3346bc3981a79d0c78eaac58f9
   src/main/java/com/mollie/mollie/models/components/ProfileResponseLinks.java:
     id: 3f6a04d77d8c
     last_write_checksum: sha1:3d20f375806186f91d46ec9d7a48c353649d1e1f
@@ -7950,8 +7950,8 @@ trackedFiles:
     pristine_git_object: 9d7d012ed3359366a730bb766ad1d1503d626930
   src/main/java/com/mollie/mollie/utils/RequestBody.java:
     id: 30627ba3b454
-    last_write_checksum: sha1:7176a77fac55dd265d61d34c795bf0d09bee0c0f
-    pristine_git_object: 1cff5ff2c11e1e8181e7e516883ced9ceadd4a26
+    last_write_checksum: sha1:50edc0bc372bfb92cbfefa08f836a930ff69cbf7
+    pristine_git_object: b90263458bbd86350b8c769d4e1c479cf4156e93
   src/main/java/com/mollie/mollie/utils/RequestMetadata.java:
     id: a546055c43e7
     last_write_checksum: sha1:bc2ec5a349121a472582057eb1f7435847429a23
@@ -12547,12 +12547,12 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `client.profiles.create()`:  `response.businessCategory` **Changed** (Breaking ⚠️)
-  * `client.profiles.list()`:  `response.Embedded.profiles[].businessCategory` **Changed** (Breaking ⚠️)
-  * `client.profiles.get()`:  `response.businessCategory` **Changed** (Breaking ⚠️)
-  * `client.profiles.update()`:  `response.businessCategory` **Changed** (Breaking ⚠️)
-  * `client.profiles.getCurrent()`:  `response.businessCategory` **Changed** (Breaking ⚠️)
-  * `client.webhookEvents.get()`:  `response.Embedded.entity.union(profile-response).businessCategory` **Changed** (Breaking ⚠️)
+  * `client.profiles.create()`:  `response.businessCategory` **Changed**
+  * `client.profiles.list()`:  `response.Embedded.profiles[].businessCategory` **Changed**
+  * `client.profiles.get()`:  `response.businessCategory` **Changed**
+  * `client.profiles.update()`:  `response.businessCategory` **Changed**
+  * `client.profiles.getCurrent()`:  `response.businessCategory` **Changed**
+  * `client.webhookEvents.get()`:  `response.Embedded.entity.union(profile-response).businessCategory` **Changed**
 generatedFiles:
   - .gitattributes
   - USAGE.md
