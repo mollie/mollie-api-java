@@ -88,9 +88,9 @@ public class RefundRequest {
      * Whether to create the entity in test mode or live mode.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
      * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -209,9 +209,9 @@ public class RefundRequest {
      * Whether to create the entity in test mode or live mode.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
      * `testmode` to `true`.
      */
     @JsonIgnore
@@ -367,9 +367,9 @@ public class RefundRequest {
      * Whether to create the entity in test mode or live mode.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
      * `testmode` to `true`.
      */
     public RefundRequest withTestmode(boolean testmode) {
@@ -382,9 +382,9 @@ public class RefundRequest {
      * Whether to create the entity in test mode or live mode.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
      * `testmode` to `true`.
      */
     public RefundRequest withTestmode(JsonNullable<Boolean> testmode) {
@@ -601,9 +601,9 @@ public class RefundRequest {
          * Whether to create the entity in test mode or live mode.
          * 
          * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-         * parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting
+         * parameter must
+         * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+         * mode by setting
          * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
@@ -616,9 +616,9 @@ public class RefundRequest {
          * Whether to create the entity in test mode or live mode.
          * 
          * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-         * parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting
+         * parameter must
+         * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+         * mode by setting
          * `testmode` to `true`.
          */
         public Builder testmode(JsonNullable<Boolean> testmode) {

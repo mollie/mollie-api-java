@@ -46,7 +46,7 @@ public class ListCapturesRequest {
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
      * `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
      * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
@@ -127,7 +127,7 @@ public class ListCapturesRequest {
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
      * `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
      * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
@@ -224,7 +224,7 @@ public class ListCapturesRequest {
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
      * `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
      * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
@@ -240,7 +240,7 @@ public class ListCapturesRequest {
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
      * `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
      * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
@@ -403,7 +403,7 @@ public class ListCapturesRequest {
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the
          * `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
          * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
@@ -418,7 +418,7 @@ public class ListCapturesRequest {
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the
          * `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
          * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 

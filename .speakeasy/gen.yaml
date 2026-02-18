@@ -28,7 +28,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 1.0.11
+  version: 1.0.12
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
@@ -40,10 +40,12 @@ java:
   companyURL: https://www.mollie.com/
   defaultErrorName: APIException
   enableCustomCodeRegions: false
+  enableFormatting: false
   enableSlf4jLogging: false
   enableStreamingUploads: false
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false
+  forwardCompatibleUnionsByDefault: "false"
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
   githubURL: https://github.com/mollie/mollie-api-java
@@ -66,7 +68,6 @@ java:
   maxMethodParams: 4
   multipartArrayFormat: legacy
   nullFriendlyParameters: false
-  openUnions: true
   operationScopedParams: true
   outputModelSuffix: output
   projectName: openapi

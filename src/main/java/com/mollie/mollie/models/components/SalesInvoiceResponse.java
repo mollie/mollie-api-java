@@ -46,6 +46,19 @@ public class SalesInvoiceResponse {
     private JsonNullable<String> invoiceNumber;
 
     /**
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
+     * required.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("profileId")
+    private JsonNullable<String> profileId;
+
+    /**
      * The status for the invoice to end up in.
      * 
      * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
@@ -249,6 +262,7 @@ public class SalesInvoiceResponse {
             @JsonProperty("id") String id,
             @JsonProperty("mode") Mode mode,
             @JsonProperty("invoiceNumber") JsonNullable<String> invoiceNumber,
+            @JsonProperty("profileId") JsonNullable<String> profileId,
             @JsonProperty("status") Optional<? extends SalesInvoiceStatusResponse> status,
             @JsonProperty("vatScheme") Optional<? extends SalesInvoiceVatSchemeResponse> vatScheme,
             @JsonProperty("vatMode") Optional<? extends SalesInvoiceVatModeResponse> vatMode,
@@ -277,6 +291,7 @@ public class SalesInvoiceResponse {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(invoiceNumber, "invoiceNumber");
+        Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(vatScheme, "vatScheme");
         Utils.checkNotNull(vatMode, "vatMode");
@@ -305,6 +320,7 @@ public class SalesInvoiceResponse {
         this.id = id;
         this.mode = mode;
         this.invoiceNumber = invoiceNumber;
+        this.profileId = profileId;
         this.status = status;
         this.vatScheme = vatScheme;
         this.vatMode = vatMode;
@@ -336,15 +352,15 @@ public class SalesInvoiceResponse {
             String id,
             Mode mode) {
         this(resource, id, mode,
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -379,6 +395,20 @@ public class SalesInvoiceResponse {
     @JsonIgnore
     public JsonNullable<String> invoiceNumber() {
         return invoiceNumber;
+    }
+
+    /**
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
+     * required.
+     */
+    @JsonIgnore
+    public JsonNullable<String> profileId() {
+        return profileId;
     }
 
     /**
@@ -664,6 +694,36 @@ public class SalesInvoiceResponse {
     public SalesInvoiceResponse withInvoiceNumber(JsonNullable<String> invoiceNumber) {
         Utils.checkNotNull(invoiceNumber, "invoiceNumber");
         this.invoiceNumber = invoiceNumber;
+        return this;
+    }
+
+    /**
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
+     * required.
+     */
+    public SalesInvoiceResponse withProfileId(String profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = JsonNullable.of(profileId);
+        return this;
+    }
+
+    /**
+     * The identifier referring to the [profile](get-profile) this entity belongs to.
+     * 
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
+     * in the creation
+     * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+     * parameter is
+     * required.
+     */
+    public SalesInvoiceResponse withProfileId(JsonNullable<String> profileId) {
+        Utils.checkNotNull(profileId, "profileId");
+        this.profileId = profileId;
         return this;
     }
 
@@ -1179,6 +1239,7 @@ public class SalesInvoiceResponse {
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.mode, other.mode) &&
             Utils.enhancedDeepEquals(this.invoiceNumber, other.invoiceNumber) &&
+            Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.vatScheme, other.vatScheme) &&
             Utils.enhancedDeepEquals(this.vatMode, other.vatMode) &&
@@ -1209,15 +1270,15 @@ public class SalesInvoiceResponse {
     public int hashCode() {
         return Utils.enhancedHash(
             resource, id, mode,
-            invoiceNumber, status, vatScheme,
-            vatMode, memo, metadata,
-            paymentTerm, paymentDetails, emailDetails,
-            customerId, mandateId, recipientIdentifier,
-            recipient, lines, discount,
-            amountDue, subtotalAmount, totalAmount,
-            totalVatAmount, discountedSubtotalAmount, createdAt,
-            issuedAt, paidAt, dueAt,
-            links);
+            invoiceNumber, profileId, status,
+            vatScheme, vatMode, memo,
+            metadata, paymentTerm, paymentDetails,
+            emailDetails, customerId, mandateId,
+            recipientIdentifier, recipient, lines,
+            discount, amountDue, subtotalAmount,
+            totalAmount, totalVatAmount, discountedSubtotalAmount,
+            createdAt, issuedAt, paidAt,
+            dueAt, links);
     }
     
     @Override
@@ -1227,6 +1288,7 @@ public class SalesInvoiceResponse {
                 "id", id,
                 "mode", mode,
                 "invoiceNumber", invoiceNumber,
+                "profileId", profileId,
                 "status", status,
                 "vatScheme", vatScheme,
                 "vatMode", vatMode,
@@ -1263,6 +1325,8 @@ public class SalesInvoiceResponse {
         private Mode mode;
 
         private JsonNullable<String> invoiceNumber = JsonNullable.undefined();
+
+        private JsonNullable<String> profileId = JsonNullable.undefined();
 
         private Optional<? extends SalesInvoiceStatusResponse> status = Optional.empty();
 
@@ -1364,6 +1428,37 @@ public class SalesInvoiceResponse {
         public Builder invoiceNumber(JsonNullable<String> invoiceNumber) {
             Utils.checkNotNull(invoiceNumber, "invoiceNumber");
             this.invoiceNumber = invoiceNumber;
+            return this;
+        }
+
+
+        /**
+         * The identifier referring to the [profile](get-profile) this entity belongs to.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
+         * required.
+         */
+        public Builder profileId(String profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = JsonNullable.of(profileId);
+            return this;
+        }
+
+        /**
+         * The identifier referring to the [profile](get-profile) this entity belongs to.
+         * 
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
+         * in the creation
+         * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
+         * parameter is
+         * required.
+         */
+        public Builder profileId(JsonNullable<String> profileId) {
+            Utils.checkNotNull(profileId, "profileId");
+            this.profileId = profileId;
             return this;
         }
 
@@ -1879,15 +1974,15 @@ public class SalesInvoiceResponse {
 
             return new SalesInvoiceResponse(
                 resource, id, mode,
-                invoiceNumber, status, vatScheme,
-                vatMode, memo, metadata,
-                paymentTerm, paymentDetails, emailDetails,
-                customerId, mandateId, recipientIdentifier,
-                recipient, lines, discount,
-                amountDue, subtotalAmount, totalAmount,
-                totalVatAmount, discountedSubtotalAmount, createdAt,
-                issuedAt, paidAt, dueAt,
-                links);
+                invoiceNumber, profileId, status,
+                vatScheme, vatMode, memo,
+                metadata, paymentTerm, paymentDetails,
+                emailDetails, customerId, mandateId,
+                recipientIdentifier, recipient, lines,
+                discount, amountDue, subtotalAmount,
+                totalAmount, totalVatAmount, discountedSubtotalAmount,
+                createdAt, issuedAt, paidAt,
+                dueAt, links);
         }
 
     }

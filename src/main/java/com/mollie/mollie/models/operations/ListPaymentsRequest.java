@@ -44,8 +44,8 @@ public class ListPaymentsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
-     * For
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be
+     * sent. For
      * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
      * required.
      */
@@ -55,7 +55,7 @@ public class ListPaymentsRequest {
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
      * `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
      * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
@@ -130,8 +130,8 @@ public class ListPaymentsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
-     * For
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be
+     * sent. For
      * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
      * required.
      */
@@ -143,7 +143,7 @@ public class ListPaymentsRequest {
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
      * `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
      * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
@@ -235,8 +235,8 @@ public class ListPaymentsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
-     * For
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be
+     * sent. For
      * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
      * required.
      */
@@ -251,8 +251,8 @@ public class ListPaymentsRequest {
      * The identifier referring to the [profile](get-profile) you wish to
      * retrieve the resources for.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
-     * For
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be
+     * sent. For
      * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
      * required.
      */
@@ -265,7 +265,7 @@ public class ListPaymentsRequest {
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
      * `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
      * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
@@ -281,7 +281,7 @@ public class ListPaymentsRequest {
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
      * `testmode` query
-     * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
      * enable test mode by
      * setting the `testmode` query parameter to `true`.
      * 
@@ -437,8 +437,8 @@ public class ListPaymentsRequest {
          * The identifier referring to the [profile](get-profile) you wish to
          * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
-         * For
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be
+         * sent. For
          * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
          * required.
          */
@@ -452,8 +452,8 @@ public class ListPaymentsRequest {
          * The identifier referring to the [profile](get-profile) you wish to
          * retrieve the resources for.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted.
-         * For
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be
+         * sent. For
          * organization-level credentials such as OAuth access tokens however, the `profileId` parameter is
          * required.
          */
@@ -467,7 +467,7 @@ public class ListPaymentsRequest {
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the
          * `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
          * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 
@@ -482,7 +482,7 @@ public class ListPaymentsRequest {
         /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the
          * `testmode` query
-         * parameter can be omitted. For organization-level credentials such as OAuth access tokens, you can
+         * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
          * enable test mode by
          * setting the `testmode` query parameter to `true`.
          * 

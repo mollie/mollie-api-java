@@ -101,9 +101,9 @@ public class UpdateSubscriptionRequestBody {
      * entity.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
      * `testmode` to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -236,9 +236,9 @@ public class UpdateSubscriptionRequestBody {
      * entity.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
      * `testmode` to `true`.
      */
     @JsonIgnore
@@ -443,9 +443,9 @@ public class UpdateSubscriptionRequestBody {
      * entity.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
      * `testmode` to `true`.
      */
     public UpdateSubscriptionRequestBody withTestmode(boolean testmode) {
@@ -460,9 +460,9 @@ public class UpdateSubscriptionRequestBody {
      * entity.
      * 
      * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-     * parameter can be
-     * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     * setting
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
      * `testmode` to `true`.
      */
     public UpdateSubscriptionRequestBody withTestmode(Optional<Boolean> testmode) {
@@ -733,9 +733,9 @@ public class UpdateSubscriptionRequestBody {
          * entity.
          * 
          * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-         * parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting
+         * parameter must
+         * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+         * mode by setting
          * `testmode` to `true`.
          */
         public Builder testmode(boolean testmode) {
@@ -749,9 +749,9 @@ public class UpdateSubscriptionRequestBody {
          * entity.
          * 
          * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
-         * parameter can be
-         * omitted. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-         * setting
+         * parameter must
+         * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+         * mode by setting
          * `testmode` to `true`.
          */
         public Builder testmode(Optional<Boolean> testmode) {

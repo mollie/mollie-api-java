@@ -120,7 +120,7 @@ public class PaymentLinkResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
      * in the creation
      * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
      * parameter is
@@ -421,7 +421,7 @@ public class PaymentLinkResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
      * in the creation
      * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
      * parameter is
@@ -740,7 +740,7 @@ public class PaymentLinkResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
      * in the creation
      * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
      * parameter is
@@ -756,7 +756,7 @@ public class PaymentLinkResponse {
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
-     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+     * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
      * in the creation
      * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
      * parameter is
@@ -1298,7 +1298,7 @@ public class PaymentLinkResponse {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
          * in the creation
          * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
          * parameter is
@@ -1313,7 +1313,7 @@ public class PaymentLinkResponse {
         /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
-         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
+         * <p>Most API credentials are linked to a single profile. In these cases the `profileId` must not be sent
          * in the creation
          * request. For organization-level credentials such as OAuth access tokens however, the `profileId`
          * parameter is

@@ -17,9 +17,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class DeleteCustomerRequestBody {
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For
-     * organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
+     * `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -39,9 +41,11 @@ public class DeleteCustomerRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For
-     * organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
+     * `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -56,9 +60,11 @@ public class DeleteCustomerRequestBody {
 
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For
-     * organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
+     * `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -69,9 +75,11 @@ public class DeleteCustomerRequestBody {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. For
-     * organization-level credentials
-     * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+     * Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
+     * `testmode` to `true`.
      * 
      * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      */
@@ -117,9 +125,11 @@ public class DeleteCustomerRequestBody {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For
-         * organization-level credentials
-         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter must
+         * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+         * mode by setting
+         * `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
@@ -130,9 +140,11 @@ public class DeleteCustomerRequestBody {
         }
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. For
-         * organization-level credentials
-         * such as OAuth access tokens, you can enable test mode by setting `testmode` to `true`.
+         * Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter must
+         * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+         * mode by setting
+         * `testmode` to `true`.
          * 
          * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
          */
