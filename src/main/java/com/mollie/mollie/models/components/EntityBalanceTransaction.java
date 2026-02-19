@@ -54,6 +54,15 @@ public class EntityBalanceTransaction {
     private JsonNullable<? extends AmountNullable> deductions;
 
     /**
+     * A detailed breakdown of the deductions withheld from the movement. Each field represents a specific
+     * type of
+     * deduction applied to the transaction. Only the applicable fields will be present.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("deductionDetails")
+    private JsonNullable<? extends DeductionDetails> deductionDetails;
+
+    /**
      * Depending on the type of the balance transaction, we will try to give more context about the
      * specific event that
      * triggered it. For example, the context object for a payment transaction will look like
@@ -129,6 +138,7 @@ public class EntityBalanceTransaction {
             @JsonProperty("resultAmount") Amount resultAmount,
             @JsonProperty("initialAmount") Amount initialAmount,
             @JsonProperty("deductions") JsonNullable<? extends AmountNullable> deductions,
+            @JsonProperty("deductionDetails") JsonNullable<? extends DeductionDetails> deductionDetails,
             @JsonProperty("context") JsonNullable<? extends Context> context,
             @JsonProperty("createdAt") String createdAt) {
         Utils.checkNotNull(resource, "resource");
@@ -137,6 +147,7 @@ public class EntityBalanceTransaction {
         Utils.checkNotNull(resultAmount, "resultAmount");
         Utils.checkNotNull(initialAmount, "initialAmount");
         Utils.checkNotNull(deductions, "deductions");
+        Utils.checkNotNull(deductionDetails, "deductionDetails");
         Utils.checkNotNull(context, "context");
         Utils.checkNotNull(createdAt, "createdAt");
         this.resource = resource;
@@ -145,6 +156,7 @@ public class EntityBalanceTransaction {
         this.resultAmount = resultAmount;
         this.initialAmount = initialAmount;
         this.deductions = deductions;
+        this.deductionDetails = deductionDetails;
         this.context = context;
         this.createdAt = createdAt;
     }
@@ -158,7 +170,7 @@ public class EntityBalanceTransaction {
             String createdAt) {
         this(resource, id, type,
             resultAmount, initialAmount, JsonNullable.undefined(),
-            JsonNullable.undefined(), createdAt);
+            JsonNullable.undefined(), JsonNullable.undefined(), createdAt);
     }
 
     /**
@@ -207,6 +219,17 @@ public class EntityBalanceTransaction {
     @JsonIgnore
     public JsonNullable<AmountNullable> deductions() {
         return (JsonNullable<AmountNullable>) deductions;
+    }
+
+    /**
+     * A detailed breakdown of the deductions withheld from the movement. Each field represents a specific
+     * type of
+     * deduction applied to the transaction. Only the applicable fields will be present.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<DeductionDetails> deductionDetails() {
+        return (JsonNullable<DeductionDetails>) deductionDetails;
     }
 
     /**
@@ -345,6 +368,28 @@ public class EntityBalanceTransaction {
     public EntityBalanceTransaction withDeductions(JsonNullable<? extends AmountNullable> deductions) {
         Utils.checkNotNull(deductions, "deductions");
         this.deductions = deductions;
+        return this;
+    }
+
+    /**
+     * A detailed breakdown of the deductions withheld from the movement. Each field represents a specific
+     * type of
+     * deduction applied to the transaction. Only the applicable fields will be present.
+     */
+    public EntityBalanceTransaction withDeductionDetails(DeductionDetails deductionDetails) {
+        Utils.checkNotNull(deductionDetails, "deductionDetails");
+        this.deductionDetails = JsonNullable.of(deductionDetails);
+        return this;
+    }
+
+    /**
+     * A detailed breakdown of the deductions withheld from the movement. Each field represents a specific
+     * type of
+     * deduction applied to the transaction. Only the applicable fields will be present.
+     */
+    public EntityBalanceTransaction withDeductionDetails(JsonNullable<? extends DeductionDetails> deductionDetails) {
+        Utils.checkNotNull(deductionDetails, "deductionDetails");
+        this.deductionDetails = deductionDetails;
         return this;
     }
 
@@ -500,6 +545,7 @@ public class EntityBalanceTransaction {
             Utils.enhancedDeepEquals(this.resultAmount, other.resultAmount) &&
             Utils.enhancedDeepEquals(this.initialAmount, other.initialAmount) &&
             Utils.enhancedDeepEquals(this.deductions, other.deductions) &&
+            Utils.enhancedDeepEquals(this.deductionDetails, other.deductionDetails) &&
             Utils.enhancedDeepEquals(this.context, other.context) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
@@ -509,7 +555,7 @@ public class EntityBalanceTransaction {
         return Utils.enhancedHash(
             resource, id, type,
             resultAmount, initialAmount, deductions,
-            context, createdAt);
+            deductionDetails, context, createdAt);
     }
     
     @Override
@@ -521,6 +567,7 @@ public class EntityBalanceTransaction {
                 "resultAmount", resultAmount,
                 "initialAmount", initialAmount,
                 "deductions", deductions,
+                "deductionDetails", deductionDetails,
                 "context", context,
                 "createdAt", createdAt);
     }
@@ -539,6 +586,8 @@ public class EntityBalanceTransaction {
         private Amount initialAmount;
 
         private JsonNullable<? extends AmountNullable> deductions = JsonNullable.undefined();
+
+        private JsonNullable<? extends DeductionDetails> deductionDetails = JsonNullable.undefined();
 
         private JsonNullable<? extends Context> context = JsonNullable.undefined();
 
@@ -613,6 +662,29 @@ public class EntityBalanceTransaction {
         public Builder deductions(JsonNullable<? extends AmountNullable> deductions) {
             Utils.checkNotNull(deductions, "deductions");
             this.deductions = deductions;
+            return this;
+        }
+
+
+        /**
+         * A detailed breakdown of the deductions withheld from the movement. Each field represents a specific
+         * type of
+         * deduction applied to the transaction. Only the applicable fields will be present.
+         */
+        public Builder deductionDetails(DeductionDetails deductionDetails) {
+            Utils.checkNotNull(deductionDetails, "deductionDetails");
+            this.deductionDetails = JsonNullable.of(deductionDetails);
+            return this;
+        }
+
+        /**
+         * A detailed breakdown of the deductions withheld from the movement. Each field represents a specific
+         * type of
+         * deduction applied to the transaction. Only the applicable fields will be present.
+         */
+        public Builder deductionDetails(JsonNullable<? extends DeductionDetails> deductionDetails) {
+            Utils.checkNotNull(deductionDetails, "deductionDetails");
+            this.deductionDetails = deductionDetails;
             return this;
         }
 
@@ -759,7 +831,7 @@ public class EntityBalanceTransaction {
             return new EntityBalanceTransaction(
                 resource, id, type,
                 resultAmount, initialAmount, deductions,
-                context, createdAt);
+                deductionDetails, context, createdAt);
         }
 
     }
