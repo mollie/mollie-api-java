@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 7a85853c68b05d7db860b9b1e4cf0688
+  docChecksum: 8adf953b284b04c21ebb38d52bffbfb8
   docVersion: 1.0.0
-  speakeasyVersion: 1.722.6
-  generationVersion: 2.832.6
-  releaseVersion: 1.0.13
-  configChecksum: dc29b4a73e35d723814ad74ec57ca32f
+  speakeasyVersion: 1.731.1
+  generationVersion: 2.844.3
+  releaseVersion: 1.0.14
+  configChecksum: 6ab75990a1c67be053c2241769c2e5ac
   repoURL: https://github.com/mollie/mollie-api-java.git
   published: true
 persistentEdits:
-  generation_id: bda4fae6-2eb8-49a7-a769-ef775aa890bc
-  pristine_commit_hash: 279e5bb8aa84cc00603fb4fd5811b6a05145ff81
-  pristine_tree_hash: 4a3eee3831c2c27e220fa6f87df40c49b59eeb1c
+  generation_id: a43c993f-5378-4c41-a22b-f8cc6bf3224b
+  pristine_commit_hash: dc4eb38543bef3aea1be3dd4d42a703d96aeabce
+  pristine_tree_hash: bf5bd1c9b9ca627b46e1bcbb27743f4a1dd8767e
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.55.12
+    core: 3.55.14
     deprecations: 2.81.2
     flattening: 2.81.1
     globalSecurity: 2.83.2
@@ -25,7 +25,7 @@ features:
     globals: 2.82.4
     groups: 2.81.3
     inputOutputModels: 2.83.0
-    nameOverrides: 2.81.3
+    nameOverrides: 2.81.5
     nullables: 0.1.0
     openEnums: 0.2.0
     retries: 0.1.1
@@ -3042,8 +3042,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:1508ff83a090abcdba12e05cf03c5b06787f8476
-    pristine_git_object: 29e90e9ce0ab68e5d7deaf9f265154a97339ff19
+    last_write_checksum: sha1:3301aea7449561c02e281a451e7c9f271ac6260b
+    pristine_git_object: 3d19ea5e705a804669a3833afe7095306fb04ff7
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3286,8 +3286,8 @@ trackedFiles:
     pristine_git_object: ead4b2ac4a047535240e95ae9c25f2395075fc4c
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:2cda156ece9449816c8980cc427cb3db73e4f4bf
-    pristine_git_object: 03c4bff39c924c708e1d4d901d8efca0797a129f
+    last_write_checksum: sha1:00c3913980c13d3aed3816db953fb9454ac6d872
+    pristine_git_object: 6343cce827014caf546fe0474159681e70b603ac
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:617992881068fc9a274d53f38422d215a0531ebd
@@ -12553,9 +12553,6 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `client.balances.listTransactions()`:  `response.Embedded.balanceTransactions[].deductionDetails` **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
