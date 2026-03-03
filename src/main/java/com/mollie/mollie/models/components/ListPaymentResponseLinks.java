@@ -13,6 +13,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ListPaymentResponseLinks
@@ -45,7 +46,7 @@ public class ListPaymentResponseLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("changePaymentState")
-    private Optional<? extends Url> changePaymentState;
+    private JsonNullable<? extends UrlNullable> changePaymentState;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -135,7 +136,7 @@ public class ListPaymentResponseLinks {
             @JsonProperty("self") Url self,
             @JsonProperty("checkout") Optional<? extends Url> checkout,
             @JsonProperty("mobileAppCheckout") Optional<? extends Url> mobileAppCheckout,
-            @JsonProperty("changePaymentState") Optional<? extends Url> changePaymentState,
+            @JsonProperty("changePaymentState") JsonNullable<? extends UrlNullable> changePaymentState,
             @JsonProperty("dashboard") Url dashboard,
             @JsonProperty("refunds") Optional<? extends Url> refunds,
             @JsonProperty("chargebacks") Optional<? extends Url> chargebacks,
@@ -186,7 +187,7 @@ public class ListPaymentResponseLinks {
             Url self,
             Url dashboard) {
         this(self, Optional.empty(), Optional.empty(),
-            Optional.empty(), dashboard, Optional.empty(),
+            JsonNullable.undefined(), dashboard, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
@@ -224,8 +225,8 @@ public class ListPaymentResponseLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Url> changePaymentState() {
-        return (Optional<Url>) changePaymentState;
+    public JsonNullable<UrlNullable> changePaymentState() {
+        return (JsonNullable<UrlNullable>) changePaymentState;
     }
 
     /**
@@ -390,17 +391,16 @@ public class ListPaymentResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListPaymentResponseLinks withChangePaymentState(Url changePaymentState) {
+    public ListPaymentResponseLinks withChangePaymentState(UrlNullable changePaymentState) {
         Utils.checkNotNull(changePaymentState, "changePaymentState");
-        this.changePaymentState = Optional.ofNullable(changePaymentState);
+        this.changePaymentState = JsonNullable.of(changePaymentState);
         return this;
     }
-
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListPaymentResponseLinks withChangePaymentState(Optional<? extends Url> changePaymentState) {
+    public ListPaymentResponseLinks withChangePaymentState(JsonNullable<? extends UrlNullable> changePaymentState) {
         Utils.checkNotNull(changePaymentState, "changePaymentState");
         this.changePaymentState = changePaymentState;
         return this;
@@ -693,7 +693,7 @@ public class ListPaymentResponseLinks {
 
         private Optional<? extends Url> mobileAppCheckout = Optional.empty();
 
-        private Optional<? extends Url> changePaymentState = Optional.empty();
+        private JsonNullable<? extends UrlNullable> changePaymentState = JsonNullable.undefined();
 
         private Url dashboard;
 
@@ -775,16 +775,16 @@ public class ListPaymentResponseLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder changePaymentState(Url changePaymentState) {
+        public Builder changePaymentState(UrlNullable changePaymentState) {
             Utils.checkNotNull(changePaymentState, "changePaymentState");
-            this.changePaymentState = Optional.ofNullable(changePaymentState);
+            this.changePaymentState = JsonNullable.of(changePaymentState);
             return this;
         }
 
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder changePaymentState(Optional<? extends Url> changePaymentState) {
+        public Builder changePaymentState(JsonNullable<? extends UrlNullable> changePaymentState) {
             Utils.checkNotNull(changePaymentState, "changePaymentState");
             this.changePaymentState = changePaymentState;
             return this;
