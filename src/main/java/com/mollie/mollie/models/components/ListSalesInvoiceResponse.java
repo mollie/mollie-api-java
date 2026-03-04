@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -180,6 +181,21 @@ public class ListSalesInvoiceResponse {
     private JsonNullable<? extends SalesInvoiceDiscountResponse> discount;
 
     /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
+     * 
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("isEInvoice")
+    private Optional<Boolean> isEInvoice;
+
+    /**
      * The amount that is left to be paid.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -277,6 +293,7 @@ public class ListSalesInvoiceResponse {
             @JsonProperty("recipient") JsonNullable<? extends SalesInvoiceRecipientResponse> recipient,
             @JsonProperty("lines") JsonNullable<? extends List<SalesInvoiceLineItemResponse>> lines,
             @JsonProperty("discount") JsonNullable<? extends SalesInvoiceDiscountResponse> discount,
+            @JsonProperty("isEInvoice") Optional<Boolean> isEInvoice,
             @JsonProperty("amountDue") Optional<? extends ListSalesInvoiceResponseAmountDue> amountDue,
             @JsonProperty("subtotalAmount") Optional<? extends ListSalesInvoiceResponseSubtotalAmount> subtotalAmount,
             @JsonProperty("totalAmount") Optional<? extends ListSalesInvoiceResponseTotalAmount> totalAmount,
@@ -306,6 +323,7 @@ public class ListSalesInvoiceResponse {
         Utils.checkNotNull(recipient, "recipient");
         Utils.checkNotNull(lines, "lines");
         Utils.checkNotNull(discount, "discount");
+        Utils.checkNotNull(isEInvoice, "isEInvoice");
         Utils.checkNotNull(amountDue, "amountDue");
         Utils.checkNotNull(subtotalAmount, "subtotalAmount");
         Utils.checkNotNull(totalAmount, "totalAmount");
@@ -335,6 +353,7 @@ public class ListSalesInvoiceResponse {
         this.recipient = recipient;
         this.lines = lines;
         this.discount = discount;
+        this.isEInvoice = isEInvoice;
         this.amountDue = amountDue;
         this.subtotalAmount = subtotalAmount;
         this.totalAmount = totalAmount;
@@ -359,8 +378,8 @@ public class ListSalesInvoiceResponse {
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -550,6 +569,22 @@ public class ListSalesInvoiceResponse {
     @JsonIgnore
     public JsonNullable<SalesInvoiceDiscountResponse> discount() {
         return (JsonNullable<SalesInvoiceDiscountResponse>) discount;
+    }
+
+    /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
+     * 
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
+     */
+    @JsonIgnore
+    public Optional<Boolean> isEInvoice() {
+        return isEInvoice;
     }
 
     /**
@@ -1025,6 +1060,41 @@ public class ListSalesInvoiceResponse {
     }
 
     /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
+     * 
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
+     */
+    public ListSalesInvoiceResponse withIsEInvoice(boolean isEInvoice) {
+        Utils.checkNotNull(isEInvoice, "isEInvoice");
+        this.isEInvoice = Optional.ofNullable(isEInvoice);
+        return this;
+    }
+
+
+    /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
+     * 
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
+     */
+    public ListSalesInvoiceResponse withIsEInvoice(Optional<Boolean> isEInvoice) {
+        Utils.checkNotNull(isEInvoice, "isEInvoice");
+        this.isEInvoice = isEInvoice;
+        return this;
+    }
+
+    /**
      * The amount that is left to be paid.
      */
     public ListSalesInvoiceResponse withAmountDue(ListSalesInvoiceResponseAmountDue amountDue) {
@@ -1254,6 +1324,7 @@ public class ListSalesInvoiceResponse {
             Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
             Utils.enhancedDeepEquals(this.lines, other.lines) &&
             Utils.enhancedDeepEquals(this.discount, other.discount) &&
+            Utils.enhancedDeepEquals(this.isEInvoice, other.isEInvoice) &&
             Utils.enhancedDeepEquals(this.amountDue, other.amountDue) &&
             Utils.enhancedDeepEquals(this.subtotalAmount, other.subtotalAmount) &&
             Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
@@ -1275,10 +1346,10 @@ public class ListSalesInvoiceResponse {
             metadata, paymentTerm, paymentDetails,
             emailDetails, customerId, mandateId,
             recipientIdentifier, recipient, lines,
-            discount, amountDue, subtotalAmount,
-            totalAmount, totalVatAmount, discountedSubtotalAmount,
-            createdAt, issuedAt, paidAt,
-            dueAt, links);
+            discount, isEInvoice, amountDue,
+            subtotalAmount, totalAmount, totalVatAmount,
+            discountedSubtotalAmount, createdAt, issuedAt,
+            paidAt, dueAt, links);
     }
     
     @Override
@@ -1303,6 +1374,7 @@ public class ListSalesInvoiceResponse {
                 "recipient", recipient,
                 "lines", lines,
                 "discount", discount,
+                "isEInvoice", isEInvoice,
                 "amountDue", amountDue,
                 "subtotalAmount", subtotalAmount,
                 "totalAmount", totalAmount,
@@ -1355,6 +1427,8 @@ public class ListSalesInvoiceResponse {
         private JsonNullable<? extends List<SalesInvoiceLineItemResponse>> lines = JsonNullable.undefined();
 
         private JsonNullable<? extends SalesInvoiceDiscountResponse> discount = JsonNullable.undefined();
+
+        private Optional<Boolean> isEInvoice = Optional.empty();
 
         private Optional<? extends ListSalesInvoiceResponseAmountDue> amountDue = Optional.empty();
 
@@ -1768,6 +1842,41 @@ public class ListSalesInvoiceResponse {
 
 
         /**
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+         * changed
+         * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+         * the
+         * recipient.
+         * 
+         * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+         * when
+         * the recipient is also located in one of these countries.
+         */
+        public Builder isEInvoice(boolean isEInvoice) {
+            Utils.checkNotNull(isEInvoice, "isEInvoice");
+            this.isEInvoice = Optional.ofNullable(isEInvoice);
+            return this;
+        }
+
+        /**
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+         * changed
+         * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+         * the
+         * recipient.
+         * 
+         * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+         * when
+         * the recipient is also located in one of these countries.
+         */
+        public Builder isEInvoice(Optional<Boolean> isEInvoice) {
+            Utils.checkNotNull(isEInvoice, "isEInvoice");
+            this.isEInvoice = isEInvoice;
+            return this;
+        }
+
+
+        /**
          * The amount that is left to be paid.
          */
         public Builder amountDue(ListSalesInvoiceResponseAmountDue amountDue) {
@@ -1979,10 +2088,10 @@ public class ListSalesInvoiceResponse {
                 metadata, paymentTerm, paymentDetails,
                 emailDetails, customerId, mandateId,
                 recipientIdentifier, recipient, lines,
-                discount, amountDue, subtotalAmount,
-                totalAmount, totalVatAmount, discountedSubtotalAmount,
-                createdAt, issuedAt, paidAt,
-                dueAt, links);
+                discount, isEInvoice, amountDue,
+                subtotalAmount, totalAmount, totalVatAmount,
+                discountedSubtotalAmount, createdAt, issuedAt,
+                paidAt, dueAt, links);
         }
 
     }

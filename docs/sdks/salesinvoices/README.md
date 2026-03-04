@@ -85,6 +85,7 @@ public class Application {
                         .type(SalesInvoiceDiscountType.AMOUNT)
                         .value("10.00")
                         .build())
+                    .isEInvoice(false)
                     .build())
                 .call();
 
@@ -328,6 +329,7 @@ public class Application {
                         .type(SalesInvoiceDiscountType.AMOUNT)
                         .value("10.00")
                         .build())
+                    .isEInvoice(false)
                     .build())
                 .call();
 

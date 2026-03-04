@@ -164,6 +164,21 @@ public class SalesInvoiceRequest {
     @JsonProperty("discount")
     private JsonNullable<? extends SalesInvoiceDiscount> discount;
 
+    /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
+     * 
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("isEInvoice")
+    private Optional<Boolean> isEInvoice;
+
     @JsonCreator
     public SalesInvoiceRequest(
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
@@ -181,7 +196,8 @@ public class SalesInvoiceRequest {
             @JsonProperty("recipientIdentifier") String recipientIdentifier,
             @JsonProperty("recipient") Optional<? extends SalesInvoiceRecipient> recipient,
             @JsonProperty("lines") Optional<? extends List<SalesInvoiceLineItem>> lines,
-            @JsonProperty("discount") JsonNullable<? extends SalesInvoiceDiscount> discount) {
+            @JsonProperty("discount") JsonNullable<? extends SalesInvoiceDiscount> discount,
+            @JsonProperty("isEInvoice") Optional<Boolean> isEInvoice) {
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(status, "status");
@@ -198,6 +214,7 @@ public class SalesInvoiceRequest {
         Utils.checkNotNull(recipient, "recipient");
         Utils.checkNotNull(lines, "lines");
         Utils.checkNotNull(discount, "discount");
+        Utils.checkNotNull(isEInvoice, "isEInvoice");
         this.testmode = testmode;
         this.profileId = profileId;
         this.status = status;
@@ -214,6 +231,7 @@ public class SalesInvoiceRequest {
         this.recipient = recipient;
         this.lines = lines;
         this.discount = discount;
+        this.isEInvoice = isEInvoice;
     }
     
     public SalesInvoiceRequest(
@@ -224,7 +242,7 @@ public class SalesInvoiceRequest {
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             recipientIdentifier, Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -393,6 +411,22 @@ public class SalesInvoiceRequest {
     @JsonIgnore
     public JsonNullable<SalesInvoiceDiscount> discount() {
         return (JsonNullable<SalesInvoiceDiscount>) discount;
+    }
+
+    /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
+     * 
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
+     */
+    @JsonIgnore
+    public Optional<Boolean> isEInvoice() {
+        return isEInvoice;
     }
 
     public static Builder builder() {
@@ -720,6 +754,41 @@ public class SalesInvoiceRequest {
         return this;
     }
 
+    /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
+     * 
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
+     */
+    public SalesInvoiceRequest withIsEInvoice(boolean isEInvoice) {
+        Utils.checkNotNull(isEInvoice, "isEInvoice");
+        this.isEInvoice = Optional.ofNullable(isEInvoice);
+        return this;
+    }
+
+
+    /**
+     * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+     * changed
+     * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+     * the
+     * recipient.
+     * 
+     * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+     * when
+     * the recipient is also located in one of these countries.
+     */
+    public SalesInvoiceRequest withIsEInvoice(Optional<Boolean> isEInvoice) {
+        Utils.checkNotNull(isEInvoice, "isEInvoice");
+        this.isEInvoice = isEInvoice;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -745,7 +814,8 @@ public class SalesInvoiceRequest {
             Utils.enhancedDeepEquals(this.recipientIdentifier, other.recipientIdentifier) &&
             Utils.enhancedDeepEquals(this.recipient, other.recipient) &&
             Utils.enhancedDeepEquals(this.lines, other.lines) &&
-            Utils.enhancedDeepEquals(this.discount, other.discount);
+            Utils.enhancedDeepEquals(this.discount, other.discount) &&
+            Utils.enhancedDeepEquals(this.isEInvoice, other.isEInvoice);
     }
     
     @Override
@@ -756,7 +826,7 @@ public class SalesInvoiceRequest {
             metadata, paymentTerm, paymentDetails,
             emailDetails, customerId, mandateId,
             recipientIdentifier, recipient, lines,
-            discount);
+            discount, isEInvoice);
     }
     
     @Override
@@ -777,7 +847,8 @@ public class SalesInvoiceRequest {
                 "recipientIdentifier", recipientIdentifier,
                 "recipient", recipient,
                 "lines", lines,
-                "discount", discount);
+                "discount", discount,
+                "isEInvoice", isEInvoice);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -814,6 +885,8 @@ public class SalesInvoiceRequest {
         private Optional<? extends List<SalesInvoiceLineItem>> lines = Optional.empty();
 
         private JsonNullable<? extends SalesInvoiceDiscount> discount = JsonNullable.undefined();
+
+        private Optional<Boolean> isEInvoice = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -1148,6 +1221,41 @@ public class SalesInvoiceRequest {
             return this;
         }
 
+
+        /**
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+         * changed
+         * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+         * the
+         * recipient.
+         * 
+         * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+         * when
+         * the recipient is also located in one of these countries.
+         */
+        public Builder isEInvoice(boolean isEInvoice) {
+            Utils.checkNotNull(isEInvoice, "isEInvoice");
+            this.isEInvoice = Optional.ofNullable(isEInvoice);
+            return this;
+        }
+
+        /**
+         * This indicates whether the invoice is an e-invoice. The default value is `false` and can't be
+         * changed
+         * after the invoice has been issued. When `emailDetails` is provided, an additional email is sent to
+         * the
+         * recipient.
+         * 
+         * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
+         * when
+         * the recipient is also located in one of these countries.
+         */
+        public Builder isEInvoice(Optional<Boolean> isEInvoice) {
+            Utils.checkNotNull(isEInvoice, "isEInvoice");
+            this.isEInvoice = isEInvoice;
+            return this;
+        }
+
         public SalesInvoiceRequest build() {
 
             return new SalesInvoiceRequest(
@@ -1156,7 +1264,7 @@ public class SalesInvoiceRequest {
                 metadata, paymentTerm, paymentDetails,
                 emailDetails, customerId, mandateId,
                 recipientIdentifier, recipient, lines,
-                discount);
+                discount, isEInvoice);
         }
 
     }
