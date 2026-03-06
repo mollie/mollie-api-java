@@ -60,7 +60,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.entitySession().isPresent()) {
+        if (res.entitySession2().isPresent()) {
             // handle response
         }
     }

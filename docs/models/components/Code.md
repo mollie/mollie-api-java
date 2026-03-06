@@ -2,6 +2,14 @@
 
 A machine-readable code that indicates the reason for the payment's status.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.Code;
+
+Code value = Code.APPROVED_OR_COMPLETED_SUCCESSFULLY;
+```
+
 
 ## Values
 

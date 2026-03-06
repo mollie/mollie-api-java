@@ -2,6 +2,17 @@
 
 The payment method, if applicable
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.PaymentMethod;
+
+PaymentMethod value = PaymentMethod.ALMA;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentMethod custom = PaymentMethod.of("custom_value");
+```
+
 
 ## Values
 

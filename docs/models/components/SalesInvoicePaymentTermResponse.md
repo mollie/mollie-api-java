@@ -2,6 +2,17 @@
 
 The payment term to be set on the invoice.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.SalesInvoicePaymentTermResponse;
+
+SalesInvoicePaymentTermResponse value = SalesInvoicePaymentTermResponse.SEVENDAYS;
+
+// Open enum: use .of() to create instances from custom string values
+SalesInvoicePaymentTermResponse custom = SalesInvoicePaymentTermResponse.of("custom_value");
+```
+
 
 ## Values
 

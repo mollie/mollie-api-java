@@ -77,7 +77,7 @@ public class Context {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment")
-    private JsonNullable<? extends Payment> payment;
+    private JsonNullable<? extends EntityBalanceTransactionPayment> payment;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -231,7 +231,7 @@ public class Context {
 
     @JsonCreator
     public Context(
-            @JsonProperty("payment") JsonNullable<? extends Payment> payment,
+            @JsonProperty("payment") JsonNullable<? extends EntityBalanceTransactionPayment> payment,
             @JsonProperty("capture") JsonNullable<? extends Capture> capture,
             @JsonProperty("capture-commision") JsonNullable<? extends CaptureCommision> captureCommision,
             @JsonProperty("capture-rolling-reserve-release") JsonNullable<? extends CaptureRollingReserveRelease> captureRollingReserveRelease,
@@ -342,8 +342,8 @@ public class Context {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Payment> payment() {
-        return (JsonNullable<Payment>) payment;
+    public JsonNullable<EntityBalanceTransactionPayment> payment() {
+        return (JsonNullable<EntityBalanceTransactionPayment>) payment;
     }
 
     @SuppressWarnings("unchecked")
@@ -531,13 +531,13 @@ public class Context {
     }
 
 
-    public Context withPayment(Payment payment) {
+    public Context withPayment(EntityBalanceTransactionPayment payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = JsonNullable.of(payment);
         return this;
     }
 
-    public Context withPayment(JsonNullable<? extends Payment> payment) {
+    public Context withPayment(JsonNullable<? extends EntityBalanceTransactionPayment> payment) {
         Utils.checkNotNull(payment, "payment");
         this.payment = payment;
         return this;
@@ -1001,7 +1001,7 @@ public class Context {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends Payment> payment = JsonNullable.undefined();
+        private JsonNullable<? extends EntityBalanceTransactionPayment> payment = JsonNullable.undefined();
 
         private JsonNullable<? extends Capture> capture = JsonNullable.undefined();
 
@@ -1068,13 +1068,13 @@ public class Context {
         }
 
 
-        public Builder payment(Payment payment) {
+        public Builder payment(EntityBalanceTransactionPayment payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = JsonNullable.of(payment);
             return this;
         }
 
-        public Builder payment(JsonNullable<? extends Payment> payment) {
+        public Builder payment(JsonNullable<? extends EntityBalanceTransactionPayment> payment) {
             Utils.checkNotNull(payment, "payment");
             this.payment = payment;
             return this;

@@ -451,7 +451,7 @@ public class Application {
             .build();
 
         GetMethodRequest req = GetMethodRequest.builder()
-                .methodId(MethodId.IDEAL)
+                .methodId(Method.IDEAL)
                 .locale(Locale.EN_US)
                 .currency("EUR")
                 .include("issuers")

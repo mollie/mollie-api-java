@@ -5,6 +5,14 @@ and capture at a later time.
 
 This field needs to be set to `manual` for method `riverty`.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.CaptureMode;
+
+CaptureMode value = CaptureMode.AUTOMATIC;
+```
+
 
 ## Values
 

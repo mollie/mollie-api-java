@@ -15,38 +15,34 @@ import java.util.Optional;
 
 
 public class Payment {
-
+    /**
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+     */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("paymentId")
-    private Optional<String> paymentId;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("paymentDescription")
-    private Optional<String> paymentDescription;
+    @JsonProperty("webhookUrl")
+    private Optional<String> webhookUrl;
 
     @JsonCreator
     public Payment(
-            @JsonProperty("paymentId") Optional<String> paymentId,
-            @JsonProperty("paymentDescription") Optional<String> paymentDescription) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        Utils.checkNotNull(paymentDescription, "paymentDescription");
-        this.paymentId = paymentId;
-        this.paymentDescription = paymentDescription;
+            @JsonProperty("webhookUrl") Optional<String> webhookUrl) {
+        Utils.checkNotNull(webhookUrl, "webhookUrl");
+        this.webhookUrl = webhookUrl;
     }
     
     public Payment() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty());
     }
 
+    /**
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+     */
     @JsonIgnore
-    public Optional<String> paymentId() {
-        return paymentId;
-    }
-
-    @JsonIgnore
-    public Optional<String> paymentDescription() {
-        return paymentDescription;
+    public Optional<String> webhookUrl() {
+        return webhookUrl;
     }
 
     public static Builder builder() {
@@ -54,29 +50,26 @@ public class Payment {
     }
 
 
-    public Payment withPaymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
+    /**
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+     */
+    public Payment withWebhookUrl(String webhookUrl) {
+        Utils.checkNotNull(webhookUrl, "webhookUrl");
+        this.webhookUrl = Optional.ofNullable(webhookUrl);
         return this;
     }
 
 
-    public Payment withPaymentId(Optional<String> paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-
-    public Payment withPaymentDescription(String paymentDescription) {
-        Utils.checkNotNull(paymentDescription, "paymentDescription");
-        this.paymentDescription = Optional.ofNullable(paymentDescription);
-        return this;
-    }
-
-
-    public Payment withPaymentDescription(Optional<String> paymentDescription) {
-        Utils.checkNotNull(paymentDescription, "paymentDescription");
-        this.paymentDescription = paymentDescription;
+    /**
+     * The webhook URL where we will send payment status updates to.
+     * 
+     * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+     */
+    public Payment withWebhookUrl(Optional<String> webhookUrl) {
+        Utils.checkNotNull(webhookUrl, "webhookUrl");
+        this.webhookUrl = webhookUrl;
         return this;
     }
 
@@ -90,64 +83,57 @@ public class Payment {
         }
         Payment other = (Payment) o;
         return 
-            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
-            Utils.enhancedDeepEquals(this.paymentDescription, other.paymentDescription);
+            Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, paymentDescription);
+            webhookUrl);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Payment.class,
-                "paymentId", paymentId,
-                "paymentDescription", paymentDescription);
+                "webhookUrl", webhookUrl);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> paymentId = Optional.empty();
-
-        private Optional<String> paymentDescription = Optional.empty();
+        private Optional<String> webhookUrl = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder paymentId(String paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
+        /**
+         * The webhook URL where we will send payment status updates to.
+         * 
+         * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+         */
+        public Builder webhookUrl(String webhookUrl) {
+            Utils.checkNotNull(webhookUrl, "webhookUrl");
+            this.webhookUrl = Optional.ofNullable(webhookUrl);
             return this;
         }
 
-        public Builder paymentId(Optional<String> paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = paymentId;
-            return this;
-        }
-
-
-        public Builder paymentDescription(String paymentDescription) {
-            Utils.checkNotNull(paymentDescription, "paymentDescription");
-            this.paymentDescription = Optional.ofNullable(paymentDescription);
-            return this;
-        }
-
-        public Builder paymentDescription(Optional<String> paymentDescription) {
-            Utils.checkNotNull(paymentDescription, "paymentDescription");
-            this.paymentDescription = paymentDescription;
+        /**
+         * The webhook URL where we will send payment status updates to.
+         * 
+         * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+         */
+        public Builder webhookUrl(Optional<String> webhookUrl) {
+            Utils.checkNotNull(webhookUrl, "webhookUrl");
+            this.webhookUrl = webhookUrl;
             return this;
         }
 
         public Payment build() {
 
             return new Payment(
-                paymentId, paymentDescription);
+                webhookUrl);
         }
 
     }

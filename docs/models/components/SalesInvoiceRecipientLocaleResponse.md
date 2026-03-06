@@ -2,6 +2,17 @@
 
 The locale for the recipient, to be used for translations in PDF generation and payment pages.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.SalesInvoiceRecipientLocaleResponse;
+
+SalesInvoiceRecipientLocaleResponse value = SalesInvoiceRecipientLocaleResponse.EN_US;
+
+// Open enum: use .of() to create instances from custom string values
+SalesInvoiceRecipientLocaleResponse custom = SalesInvoiceRecipientLocaleResponse.of("custom_value");
+```
+
 
 ## Values
 

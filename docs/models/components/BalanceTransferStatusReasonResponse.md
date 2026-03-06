@@ -2,6 +2,17 @@
 
 A machine-readable code that indicates the reason for the transfer's status.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.BalanceTransferStatusReasonResponse;
+
+BalanceTransferStatusReasonResponse value = BalanceTransferStatusReasonResponse.REQUEST_CREATED;
+
+// Open enum: use .of() to create instances from custom string values
+BalanceTransferStatusReasonResponse custom = BalanceTransferStatusReasonResponse.of("custom_value");
+```
+
 
 ## Values
 

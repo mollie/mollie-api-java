@@ -2,6 +2,17 @@
 
 The card's label. Available for card mandates, if the card label could be detected.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.MandateDetailsCardLabelResponse;
+
+MandateDetailsCardLabelResponse value = MandateDetailsCardLabelResponse.AMERICAN_EXPRESS;
+
+// Open enum: use .of() to create instances from custom string values
+MandateDetailsCardLabelResponse custom = MandateDetailsCardLabelResponse.of("custom_value");
+```
+
 
 ## Values
 

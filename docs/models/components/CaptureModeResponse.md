@@ -5,6 +5,17 @@ and capture at a later time.
 
 This field needs to be set to `manual` for method `riverty`.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.CaptureModeResponse;
+
+CaptureModeResponse value = CaptureModeResponse.AUTOMATIC;
+
+// Open enum: use .of() to create instances from custom string values
+CaptureModeResponse custom = CaptureModeResponse.of("custom_value");
+```
+
 
 ## Values
 

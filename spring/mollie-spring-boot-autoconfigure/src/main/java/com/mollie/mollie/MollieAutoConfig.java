@@ -409,6 +409,17 @@ public class MollieAutoConfig {
         return client.payments();
     }
     /**
+     * Creates a Sessions sub-SDK bean if none exists.
+     *
+     * @param client the main SDK instance
+     * @return A configured Sessions instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Sessions sessions(Client client) {
+        return client.sessions();
+    }
+    /**
      * Creates a Methods sub-SDK bean if none exists.
      *
      * @param client the main SDK instance
@@ -706,6 +717,17 @@ public class MollieAutoConfig {
     @ConditionalOnMissingBean
     public AsyncPayments asyncPayments(AsyncClient asyncClient) {
         return asyncClient.payments();
+    }
+    /**
+     * Creates an AsyncSessions sub-SDK bean if none exists.
+     *
+     * @param asyncClient the async SDK instance
+     * @return A configured AsyncSessions instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncSessions asyncSessions(AsyncClient asyncClient) {
+        return asyncClient.sessions();
     }
     /**
      * Creates an AsyncMethods sub-SDK bean if none exists.

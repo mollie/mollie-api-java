@@ -5,6 +5,17 @@ Kingdom, and shifted VAT for merchants in the European Union.
 
 The field is not present for merchants residing in other countries.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.OrganizationVatRegulation;
+
+OrganizationVatRegulation value = OrganizationVatRegulation.DUTCH;
+
+// Open enum: use .of() to create instances from custom string values
+OrganizationVatRegulation custom = OrganizationVatRegulation.of("custom_value");
+```
+
 
 ## Values
 

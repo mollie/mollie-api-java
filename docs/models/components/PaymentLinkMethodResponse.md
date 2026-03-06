@@ -1,5 +1,16 @@
 # PaymentLinkMethodResponse
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.PaymentLinkMethodResponse;
+
+PaymentLinkMethodResponse value = PaymentLinkMethodResponse.APPLEPAY;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentLinkMethodResponse custom = PaymentLinkMethodResponse.of("custom_value");
+```
+
 
 ## Values
 

@@ -39,22 +39,22 @@ public class RequestApplePayPaymentSessionResponse implements AsyncResponse {
      * Documentation,
      * is opaque, so we are not defining a response schema.
      */
-    private Optional<? extends Map<String, Object>> entitySession;
+    private Optional<? extends Map<String, Object>> entitySession2;
 
     @JsonCreator
     public RequestApplePayPaymentSessionResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends Map<String, Object>> entitySession) {
+            Optional<? extends Map<String, Object>> entitySession2) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(entitySession, "entitySession");
+        Utils.checkNotNull(entitySession2, "entitySession2");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.entitySession = entitySession;
+        this.entitySession2 = entitySession2;
     }
     
     public RequestApplePayPaymentSessionResponse(
@@ -96,8 +96,8 @@ public class RequestApplePayPaymentSessionResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Map<String, Object>> entitySession() {
-        return (Optional<Map<String, Object>>) entitySession;
+    public Optional<Map<String, Object>> entitySession2() {
+        return (Optional<Map<String, Object>>) entitySession2;
     }
 
     public static Builder builder() {
@@ -137,9 +137,9 @@ public class RequestApplePayPaymentSessionResponse implements AsyncResponse {
      * Documentation,
      * is opaque, so we are not defining a response schema.
      */
-    public RequestApplePayPaymentSessionResponse withEntitySession(Map<String, Object> entitySession) {
-        Utils.checkNotNull(entitySession, "entitySession");
-        this.entitySession = Optional.ofNullable(entitySession);
+    public RequestApplePayPaymentSessionResponse withEntitySession2(Map<String, Object> entitySession2) {
+        Utils.checkNotNull(entitySession2, "entitySession2");
+        this.entitySession2 = Optional.ofNullable(entitySession2);
         return this;
     }
 
@@ -149,9 +149,9 @@ public class RequestApplePayPaymentSessionResponse implements AsyncResponse {
      * Documentation,
      * is opaque, so we are not defining a response schema.
      */
-    public RequestApplePayPaymentSessionResponse withEntitySession(Optional<? extends Map<String, Object>> entitySession) {
-        Utils.checkNotNull(entitySession, "entitySession");
-        this.entitySession = entitySession;
+    public RequestApplePayPaymentSessionResponse withEntitySession2(Optional<? extends Map<String, Object>> entitySession2) {
+        Utils.checkNotNull(entitySession2, "entitySession2");
+        this.entitySession2 = entitySession2;
         return this;
     }
 
@@ -168,14 +168,14 @@ public class RequestApplePayPaymentSessionResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.entitySession, other.entitySession);
+            Utils.enhancedDeepEquals(this.entitySession2, other.entitySession2);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            entitySession);
+            entitySession2);
     }
     
     @Override
@@ -184,7 +184,7 @@ public class RequestApplePayPaymentSessionResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "entitySession", entitySession);
+                "entitySession2", entitySession2);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -196,7 +196,7 @@ public class RequestApplePayPaymentSessionResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends Map<String, Object>> entitySession = Optional.empty();
+        private Optional<? extends Map<String, Object>> entitySession2 = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -238,9 +238,9 @@ public class RequestApplePayPaymentSessionResponse implements AsyncResponse {
          * Documentation,
          * is opaque, so we are not defining a response schema.
          */
-        public Builder entitySession(Map<String, Object> entitySession) {
-            Utils.checkNotNull(entitySession, "entitySession");
-            this.entitySession = Optional.ofNullable(entitySession);
+        public Builder entitySession2(Map<String, Object> entitySession2) {
+            Utils.checkNotNull(entitySession2, "entitySession2");
+            this.entitySession2 = Optional.ofNullable(entitySession2);
             return this;
         }
 
@@ -249,9 +249,9 @@ public class RequestApplePayPaymentSessionResponse implements AsyncResponse {
          * Documentation,
          * is opaque, so we are not defining a response schema.
          */
-        public Builder entitySession(Optional<? extends Map<String, Object>> entitySession) {
-            Utils.checkNotNull(entitySession, "entitySession");
-            this.entitySession = entitySession;
+        public Builder entitySession2(Optional<? extends Map<String, Object>> entitySession2) {
+            Utils.checkNotNull(entitySession2, "entitySession2");
+            this.entitySession2 = entitySession2;
             return this;
         }
 
@@ -259,7 +259,7 @@ public class RequestApplePayPaymentSessionResponse implements AsyncResponse {
 
             return new RequestApplePayPaymentSessionResponse(
                 contentType, statusCode, rawResponse,
-                entitySession);
+                entitySession2);
         }
 
     }

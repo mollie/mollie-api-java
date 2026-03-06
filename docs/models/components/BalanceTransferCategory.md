@@ -2,6 +2,14 @@
 
 The type of the transfer. Different fees may apply to different types of transfers.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.BalanceTransferCategory;
+
+BalanceTransferCategory value = BalanceTransferCategory.INVOICE_COLLECTION;
+```
+
 
 ## Values
 

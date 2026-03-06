@@ -8,6 +8,17 @@ You can also specify the methods in an array. By doing so we will still show the
 but will only show the methods specified in the array. For example, you can use this functionality to only show
 payment methods from a specific country to your customer `['bancontact', 'belfius']`.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.MethodResponse;
+
+MethodResponse value = MethodResponse.ALMA;
+
+// Open enum: use .of() to create instances from custom string values
+MethodResponse custom = MethodResponse.of("custom_value");
+```
+
 
 ## Values
 

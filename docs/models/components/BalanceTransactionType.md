@@ -1,5 +1,16 @@
 # BalanceTransactionType
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.BalanceTransactionType;
+
+BalanceTransactionType value = BalanceTransactionType.PAYMENT;
+
+// Open enum: use .of() to create instances from custom string values
+BalanceTransactionType custom = BalanceTransactionType.of("custom_value");
+```
+
 
 ## Values
 

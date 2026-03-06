@@ -4,6 +4,17 @@ The type of product purchased. For example, a physical or a digital product.
 
 The `tip` payment line type is not available when creating a payment.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.PaymentLineTypeResponse;
+
+PaymentLineTypeResponse value = PaymentLineTypeResponse.PHYSICAL;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentLineTypeResponse custom = PaymentLineTypeResponse.of("custom_value");
+```
+
 
 ## Values
 

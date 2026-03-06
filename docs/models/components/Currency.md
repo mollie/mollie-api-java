@@ -2,6 +2,17 @@
 
 The balance's ISO 4217 currency code.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.Currency;
+
+Currency value = Currency.EUR;
+
+// Open enum: use .of() to create instances from custom string values
+Currency custom = Currency.of("custom_value");
+```
+
 
 ## Values
 

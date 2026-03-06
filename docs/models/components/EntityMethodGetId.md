@@ -3,6 +3,17 @@
 The unique identifier of the payment method. When used during [payment creation](create-payment), the payment
 method selection screen will be skipped.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.EntityMethodGetId;
+
+EntityMethodGetId value = EntityMethodGetId.ALMA;
+
+// Open enum: use .of() to create instances from custom string values
+EntityMethodGetId custom = EntityMethodGetId.of("custom_value");
+```
+
 
 ## Values
 

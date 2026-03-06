@@ -2,6 +2,14 @@
 
 Allows you to preset the language to be used.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.Locale;
+
+Locale value = Locale.EN_US;
+```
+
 
 ## Values
 

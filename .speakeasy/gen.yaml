@@ -29,7 +29,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 1.0.16
+  version: 1.0.17
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie
@@ -44,11 +44,13 @@ java:
   enableFormatting: false
   enableSlf4jLogging: false
   enableStreamingUploads: false
+  explicitDocImports: false
   flattenGlobalSecurity: true
   forwardCompatibleEnumsByDefault: false
   forwardCompatibleUnionsByDefault: "false"
   generateOptionalUnionAccessors: false
   generateSpringBootStarter: true
+  generateUnionDocs: false
   githubURL: https://github.com/mollie/mollie-api-java
   groupID: com.mollie
   imports:
@@ -71,7 +73,9 @@ java:
   nullFriendlyParameters: false
   operationScopedParams: true
   outputModelSuffix: output
+  prefixModeMethodNames: false
   projectName: openapi
   respectTitlesForPrimitiveUnionMembers: false
+  showSetterGetterTypesInDocs: false
   templateVersion: v2
   unionStrategy: populated-fields

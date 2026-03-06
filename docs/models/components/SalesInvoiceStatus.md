@@ -14,6 +14,14 @@ Dependent parameters:
   - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice to `paid`
   - `emailDetails` optional for `issued` and `paid` to send the invoice by email
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.SalesInvoiceStatus;
+
+SalesInvoiceStatus value = SalesInvoiceStatus.DRAFT;
+```
+
 
 ## Values
 

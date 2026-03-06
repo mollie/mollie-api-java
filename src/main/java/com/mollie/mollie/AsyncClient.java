@@ -36,6 +36,8 @@ public class AsyncClient {
 
     private final AsyncPayments payments;
 
+    private final AsyncSessions sessions;
+
     private final AsyncMethods methods;
 
     private final AsyncRefunds refunds;
@@ -116,6 +118,10 @@ public class AsyncClient {
         return payments;
     }
 
+    public AsyncSessions sessions() {
+        return sessions;
+    }
+
     public AsyncMethods methods() {
         return methods;
     }
@@ -184,6 +190,7 @@ public class AsyncClient {
         this.webhookEvents = new AsyncWebhookEvents(syncSDK.webhookEvents(), sdkConfiguration);
         this.balanceTransfers = new AsyncBalanceTransfers(syncSDK.balanceTransfers(), sdkConfiguration);
         this.payments = new AsyncPayments(syncSDK.payments(), sdkConfiguration);
+        this.sessions = new AsyncSessions(syncSDK.sessions(), sdkConfiguration);
         this.methods = new AsyncMethods(syncSDK.methods(), sdkConfiguration);
         this.refunds = new AsyncRefunds(syncSDK.refunds(), sdkConfiguration);
         this.chargebacks = new AsyncChargebacks(syncSDK.chargebacks(), sdkConfiguration);

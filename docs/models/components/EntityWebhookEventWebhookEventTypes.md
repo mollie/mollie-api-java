@@ -3,6 +3,17 @@
 The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
 that require explicit selection.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.EntityWebhookEventWebhookEventTypes;
+
+EntityWebhookEventWebhookEventTypes value = EntityWebhookEventWebhookEventTypes.PAYMENT_LINK_PAID;
+
+// Open enum: use .of() to create instances from custom string values
+EntityWebhookEventWebhookEventTypes custom = EntityWebhookEventWebhookEventTypes.of("custom_value");
+```
+
 
 ## Values
 

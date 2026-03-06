@@ -1,5 +1,13 @@
 # LineCategories
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.LineCategories;
+
+LineCategories value = LineCategories.ECO;
+```
+
 
 ## Values
 

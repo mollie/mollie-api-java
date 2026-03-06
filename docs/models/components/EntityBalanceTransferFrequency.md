@@ -5,6 +5,17 @@ destination.
 
 Settlements created during weekends or on bank holidays will take place on the next business day.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.EntityBalanceTransferFrequency;
+
+EntityBalanceTransferFrequency value = EntityBalanceTransferFrequency.EVERY_DAY;
+
+// Open enum: use .of() to create instances from custom string values
+EntityBalanceTransferFrequency custom = EntityBalanceTransferFrequency.of("custom_value");
+```
+
 
 ## Values
 

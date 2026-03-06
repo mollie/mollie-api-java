@@ -34,7 +34,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
@@ -89,7 +89,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
@@ -169,7 +169,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
@@ -230,7 +230,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 

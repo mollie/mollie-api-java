@@ -2,6 +2,17 @@
 
 The card's label, if known.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.PaymentDetailsCardLabelResponse;
+
+PaymentDetailsCardLabelResponse value = PaymentDetailsCardLabelResponse.AMERICAN_EXPRESS;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentDetailsCardLabelResponse custom = PaymentDetailsCardLabelResponse.of("custom_value");
+```
+
 
 ## Values
 

@@ -2,6 +2,17 @@
 
 The method used to verify the cardholder's identity.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.PaymentDetailsReceiptCardVerificationMethodResponse;
+
+PaymentDetailsReceiptCardVerificationMethodResponse value = PaymentDetailsReceiptCardVerificationMethodResponse.NO_CVM_REQUIRED;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentDetailsReceiptCardVerificationMethodResponse custom = PaymentDetailsReceiptCardVerificationMethodResponse.of("custom_value");
+```
+
 
 ## Values
 

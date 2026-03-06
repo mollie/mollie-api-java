@@ -206,7 +206,7 @@ public class RequestApplePayPaymentSession {
             
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withEntitySession(Utils.unmarshal(response, new TypeReference<Map<String, Object>>() {}));
+                    return res.withEntitySession2(Utils.unmarshal(response, new TypeReference<Map<String, Object>>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -295,7 +295,7 @@ public class RequestApplePayPaymentSession {
             if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<Map<String, Object>>() {})
-                            .thenApply(res::withEntitySession);
+                            .thenApply(res::withEntitySession2);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

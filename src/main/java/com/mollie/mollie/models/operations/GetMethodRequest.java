@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.models.components.Locale;
-import com.mollie.mollie.models.components.MethodId;
+import com.mollie.mollie.models.components.Method;
 import com.mollie.mollie.models.components.SequenceType;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
@@ -23,7 +23,7 @@ public class GetMethodRequest {
      * Provide the ID of the related payment method.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=methodId")
-    private Optional<? extends MethodId> methodId;
+    private Optional<? extends Method> methodId;
 
     /**
      * Passing a locale will sort the payment methods in the preferred order
@@ -88,7 +88,7 @@ public class GetMethodRequest {
 
     @JsonCreator
     public GetMethodRequest(
-            Optional<? extends MethodId> methodId,
+            Optional<? extends Method> methodId,
             JsonNullable<? extends Locale> locale,
             Optional<String> currency,
             Optional<String> profileId,
@@ -125,8 +125,8 @@ public class GetMethodRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<MethodId> methodId() {
-        return (Optional<MethodId>) methodId;
+    public Optional<Method> methodId() {
+        return (Optional<Method>) methodId;
     }
 
     /**
@@ -214,7 +214,7 @@ public class GetMethodRequest {
     /**
      * Provide the ID of the related payment method.
      */
-    public GetMethodRequest withMethodId(MethodId methodId) {
+    public GetMethodRequest withMethodId(Method methodId) {
         Utils.checkNotNull(methodId, "methodId");
         this.methodId = Optional.ofNullable(methodId);
         return this;
@@ -224,7 +224,7 @@ public class GetMethodRequest {
     /**
      * Provide the ID of the related payment method.
      */
-    public GetMethodRequest withMethodId(Optional<? extends MethodId> methodId) {
+    public GetMethodRequest withMethodId(Optional<? extends Method> methodId) {
         Utils.checkNotNull(methodId, "methodId");
         this.methodId = methodId;
         return this;
@@ -443,7 +443,7 @@ public class GetMethodRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends MethodId> methodId = Optional.empty();
+        private Optional<? extends Method> methodId = Optional.empty();
 
         private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
 
@@ -467,7 +467,7 @@ public class GetMethodRequest {
         /**
          * Provide the ID of the related payment method.
          */
-        public Builder methodId(MethodId methodId) {
+        public Builder methodId(Method methodId) {
             Utils.checkNotNull(methodId, "methodId");
             this.methodId = Optional.ofNullable(methodId);
             return this;
@@ -476,7 +476,7 @@ public class GetMethodRequest {
         /**
          * Provide the ID of the related payment method.
          */
-        public Builder methodId(Optional<? extends MethodId> methodId) {
+        public Builder methodId(Optional<? extends Method> methodId) {
             Utils.checkNotNull(methodId, "methodId");
             this.methodId = methodId;
             return this;

@@ -2,6 +2,17 @@
 
 The method by which the card was read by the terminal.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.PaymentDetailsReceiptCardReadMethodResponse;
+
+PaymentDetailsReceiptCardReadMethodResponse value = PaymentDetailsReceiptCardReadMethodResponse.CHIP;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentDetailsReceiptCardReadMethodResponse custom = PaymentDetailsReceiptCardReadMethodResponse.of("custom_value");
+```
+
 
 ## Values
 

@@ -2,6 +2,17 @@
 
 The applicable card fee region.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.PaymentDetailsFeeRegionResponse;
+
+PaymentDetailsFeeRegionResponse value = PaymentDetailsFeeRegionResponse.AMERICAN_EXPRESS;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentDetailsFeeRegionResponse custom = PaymentDetailsFeeRegionResponse.of("custom_value");
+```
+
 
 ## Values
 

@@ -1,5 +1,16 @@
 # BalanceFeeType
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.BalanceFeeType;
+
+BalanceFeeType value = BalanceFeeType.PAYMENT_FEE;
+
+// Open enum: use .of() to create instances from custom string values
+BalanceFeeType custom = BalanceFeeType.of("custom_value");
+```
+
 
 ## Values
 

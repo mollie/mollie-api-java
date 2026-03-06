@@ -1,5 +1,13 @@
 # PaymentLinkMethod
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.PaymentLinkMethod;
+
+PaymentLinkMethod value = PaymentLinkMethod.APPLEPAY;
+```
+
 
 ## Values
 

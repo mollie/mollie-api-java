@@ -1,5 +1,16 @@
 # EntityRefundResponseStatus
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.EntityRefundResponseStatus;
+
+EntityRefundResponseStatus value = EntityRefundResponseStatus.QUEUED;
+
+// Open enum: use .of() to create instances from custom string values
+EntityRefundResponseStatus custom = EntityRefundResponseStatus.of("custom_value");
+```
+
 
 ## Values
 

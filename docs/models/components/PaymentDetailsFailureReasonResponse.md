@@ -2,6 +2,17 @@
 
 A failure code to help understand why the payment failed.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.PaymentDetailsFailureReasonResponse;
+
+PaymentDetailsFailureReasonResponse value = PaymentDetailsFailureReasonResponse.AUTHENTICATION_ABANDONED;
+
+// Open enum: use .of() to create instances from custom string values
+PaymentDetailsFailureReasonResponse custom = PaymentDetailsFailureReasonResponse.of("custom_value");
+```
+
 
 ## Values
 

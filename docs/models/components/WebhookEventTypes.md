@@ -3,6 +3,14 @@
 The list of events to enable for this webhook. You may specify `'*'` to add all events, except those
 that require explicit selection.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.WebhookEventTypes;
+
+WebhookEventTypes value = WebhookEventTypes.PAYMENT_LINK_PAID;
+```
+
 
 ## Values
 

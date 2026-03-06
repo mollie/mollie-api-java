@@ -2,6 +2,14 @@
 
 The payment term to be set on the invoice.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.SalesInvoicePaymentTerm;
+
+SalesInvoicePaymentTerm value = SalesInvoicePaymentTerm.SEVENDAYS;
+```
+
 
 ## Values
 

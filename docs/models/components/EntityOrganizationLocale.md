@@ -2,6 +2,17 @@
 
 The preferred locale of the merchant, as set in their Mollie dashboard.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.EntityOrganizationLocale;
+
+EntityOrganizationLocale value = EntityOrganizationLocale.EN_US;
+
+// Open enum: use .of() to create instances from custom string values
+EntityOrganizationLocale custom = EntityOrganizationLocale.of("custom_value");
+```
+
 
 ## Values
 

@@ -4,6 +4,14 @@ The type of product purchased. For example, a physical or a digital product.
 
 The `tip` payment line type is not available when creating a payment.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.PaymentLineType;
+
+PaymentLineType value = PaymentLineType.PHYSICAL;
+```
+
 
 ## Values
 

@@ -53,7 +53,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.0.16'
+implementation 'com.mollie:mollie:1.0.17'
 ```
 
 Maven:
@@ -61,7 +61,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.0.16</version>
+    <version>1.0.17</version>
 </dependency>
 ```
 
@@ -102,7 +102,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
@@ -142,7 +142,7 @@ public class Application {
         AsyncClient sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build()
             .async();
@@ -532,6 +532,11 @@ Client sdk = Client.builder()
 * [update](docs/sdks/salesinvoices/README.md#update) - Update sales invoice
 * [delete](docs/sdks/salesinvoices/README.md#delete) - Delete sales invoice
 
+### [Sessions](docs/sdks/sessions/README.md)
+
+* [create](docs/sdks/sessions/README.md#create) - Create session [BETA]
+* [get](docs/sdks/sessions/README.md#get) - Get session
+
 ### [Settlements](docs/sdks/settlements/README.md)
 
 * [list](docs/sdks/settlements/README.md#list) - List settlements
@@ -617,7 +622,7 @@ public class Application {
                 .profileId("<id>")
                 .customUserAgent("<value>")
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
@@ -666,7 +671,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
@@ -729,7 +734,7 @@ public class Application {
                     .build())
                 .testmode(false)
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
@@ -791,7 +796,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
         try {
@@ -893,7 +898,7 @@ public class Application {
                 .serverURL("https://api.mollie.com/v2")
                 .testmode(false)
                 .security(Security.builder()
-                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 

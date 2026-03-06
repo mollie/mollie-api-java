@@ -2,6 +2,17 @@
 
 Allows you to preset the language to be used.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.LocaleResponse;
+
+LocaleResponse value = LocaleResponse.EN_US;
+
+// Open enum: use .of() to create instances from custom string values
+LocaleResponse custom = LocaleResponse.of("custom_value");
+```
+
 
 ## Values
 

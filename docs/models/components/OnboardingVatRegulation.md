@@ -5,6 +5,14 @@ The United Kingdom, and shifted VAT for merchants in the European Union.
 
 The field can be omitted for merchants residing in other countries.
 
+## Example Usage
+
+```java
+import com.mollie.mollie.models.components.OnboardingVatRegulation;
+
+OnboardingVatRegulation value = OnboardingVatRegulation.DUTCH;
+```
+
 
 ## Values
 
