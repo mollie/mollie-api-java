@@ -37,6 +37,7 @@ This documentation is for the new Mollie's SDK. You can find more details on how
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Debugging](#debugging)
+  * [Jackson Configuration](#jackson-configuration)
 * [Development](#development)
   * [Contributions](#contributions)
 
@@ -53,7 +54,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.0.17'
+implementation 'com.mollie:mollie:1.0.18'
 ```
 
 Maven:
@@ -61,7 +62,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.0.17</version>
+    <version>1.0.18</version>
 </dependency>
 ```
 
@@ -118,7 +119,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -160,7 +161,7 @@ public class Application {
 
         resFut.thenAccept(res -> {
             if (res.object().isPresent()) {
-            // handle response
+                System.out.println(res.object().get());
             }
         });
     }
@@ -168,6 +169,15 @@ public class Application {
 ```
 
 [comp-fut]: https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html
+
+#### Union Consumption Patterns
+
+When a response field is a union model:
+
+- Discriminated unions: branch on the discriminator (`switch`) and then narrow to the concrete type.
+- Non-discriminated unions: use generated accessors (for example `string()`, `asLong()`, `simpleObject()`) to determine the active variant.
+
+For full model-specific examples (including Java 11/16/21 variants), see each union model's **Supported Types** section in the generated model docs.
 <!-- End SDK Example Usage [usage] -->
 
 <!-- Start Asynchronous Support [async-support] -->
@@ -282,7 +292,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -534,7 +544,7 @@ Client sdk = Client.builder()
 
 ### [Sessions](docs/sdks/sessions/README.md)
 
-* [create](docs/sdks/sessions/README.md#create) - Create session [BETA]
+* [create](docs/sdks/sessions/README.md#create) - Create session
 * [get](docs/sdks/sessions/README.md#get) - Get session
 
 ### [Settlements](docs/sdks/settlements/README.md)
@@ -638,7 +648,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -697,7 +707,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -750,7 +760,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -813,7 +823,7 @@ public class Application {
                     .call();
 
             if (res.object().isPresent()) {
-                // handle response
+                System.out.println(res.object().get());
             }
         } catch (ClientError ex) { // all SDK exceptions inherit from ClientError
 
@@ -914,7 +924,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -1090,6 +1100,36 @@ __NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End Debugging [debug] -->
+
+<!-- Start Jackson Configuration [jackson] -->
+## Jackson Configuration
+
+The SDK ships with a pre-configured Jackson [`ObjectMapper`][jackson-databind] accessible via
+`JSON.getMapper()`. It is set up with type modules, strict deserializers, and the feature flags
+needed for full SDK compatibility (including ISO-8601 `OffsetDateTime` serialization):
+
+```java
+import com.mollie.mollie.utils.JSON;
+
+String json = JSON.getMapper().writeValueAsString(response);
+```
+
+To compose with your own `ObjectMapper`, register the provided `MollieJacksonModule`, which
+bundles all the same modules and feature flags as a single plug-and-play module:
+
+```java
+import com.mollie.mollie.utils.MollieJacksonModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+ObjectMapper myMapper = new ObjectMapper()
+    .registerModule(new MollieJacksonModule());
+
+String json = myMapper.writeValueAsString(response);
+```
+
+[jackson-databind]: https://github.com/FasterXML/jackson-databind
+[jackson-jsr310]: https://github.com/FasterXML/jackson-modules-java8/tree/master/datetime
+<!-- End Jackson Configuration [jackson] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

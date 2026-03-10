@@ -52,7 +52,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -93,7 +93,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -163,7 +163,7 @@ public class Application {
                 .call();
 
         if (res.entityBalance().isPresent()) {
-            // handle response
+            System.out.println(res.entityBalance().get());
         }
     }
 }
@@ -197,7 +197,7 @@ public class Application {
                 .call();
 
         if (res.entityBalance().isPresent()) {
-            // handle response
+            System.out.println(res.entityBalance().get());
         }
     }
 }
@@ -256,7 +256,7 @@ public class Application {
                 .call();
 
         if (res.entityBalance().isPresent()) {
-            // handle response
+            System.out.println(res.entityBalance().get());
         }
     }
 }
@@ -326,7 +326,7 @@ public class Application {
                 .call();
 
         if (res.entityBalanceReport().isPresent()) {
-            // handle response
+            System.out.println(res.entityBalanceReport().get());
         }
     }
 }
@@ -369,7 +369,7 @@ public class Application {
                 .call();
 
         if (res.entityBalanceReport().isPresent()) {
-            // handle response
+            System.out.println(res.entityBalanceReport().get());
         }
     }
 }
@@ -412,7 +412,7 @@ public class Application {
                 .call();
 
         if (res.entityBalanceReport().isPresent()) {
-            // handle response
+            System.out.println(res.entityBalanceReport().get());
         }
     }
 }
@@ -484,7 +484,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -525,7 +525,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }

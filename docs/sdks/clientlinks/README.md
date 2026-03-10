@@ -109,7 +109,7 @@ public class Application {
                 .call();
 
         if (res.clientLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.clientLinkResponse().get());
         }
     }
 }
@@ -161,7 +161,7 @@ public class Application {
                 .call();
 
         if (res.clientLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.clientLinkResponse().get());
         }
     }
 }
@@ -213,7 +213,7 @@ public class Application {
                 .call();
 
         if (res.clientLinkResponse().isPresent()) {
-            // handle response
+            System.out.println(res.clientLinkResponse().get());
         }
     }
 }

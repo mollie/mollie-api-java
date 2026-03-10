@@ -66,6 +66,15 @@ public class SessionResponse {
     private String description;
 
     /**
+     * List of items the customer will pay for in this session. The sum of all line items must equal the
+     * session's amount.
+     * 
+     * <p>All lines must have the same currency as the session.
+     */
+    @JsonProperty("lines")
+    private List<SessionLineItemResponse> lines;
+
+    /**
      * The URL your customer will be redirected to after the payment process.
      * 
      * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
@@ -112,15 +121,6 @@ public class SessionResponse {
     private Optional<? extends SessionResponsePayment> payment;
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
-     * 
-     * <p>All lines must have the same currency as the session.
-     */
-    @JsonProperty("lines")
-    private List<SessionLineItemResponse> lines;
-
-    /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
@@ -154,6 +154,7 @@ public class SessionResponse {
             @JsonProperty("status") SessionResponseStatus status,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("description") String description,
+            @JsonProperty("lines") List<SessionLineItemResponse> lines,
             @JsonProperty("redirectUrl") String redirectUrl,
             @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
@@ -161,7 +162,6 @@ public class SessionResponse {
             @JsonProperty("sequenceType") Optional<? extends SessionSequenceTypeResponse> sequenceType,
             @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
             @JsonProperty("payment") Optional<? extends SessionResponsePayment> payment,
-            @JsonProperty("lines") List<SessionLineItemResponse> lines,
             @JsonProperty("profileId") String profileId,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("_links") SessionResponseLinks links) {
@@ -172,6 +172,7 @@ public class SessionResponse {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(lines, "lines");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         Utils.checkNotNull(billingAddress, "billingAddress");
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -179,7 +180,6 @@ public class SessionResponse {
         Utils.checkNotNull(sequenceType, "sequenceType");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(payment, "payment");
-        Utils.checkNotNull(lines, "lines");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(links, "links");
@@ -190,6 +190,7 @@ public class SessionResponse {
         this.status = status;
         this.amount = amount;
         this.description = description;
+        this.lines = lines;
         this.redirectUrl = redirectUrl;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
@@ -197,7 +198,6 @@ public class SessionResponse {
         this.sequenceType = sequenceType;
         this.metadata = metadata;
         this.payment = payment;
-        this.lines = lines;
         this.profileId = profileId;
         this.createdAt = createdAt;
         this.links = links;
@@ -211,16 +211,16 @@ public class SessionResponse {
             SessionResponseStatus status,
             Amount amount,
             String description,
-            String redirectUrl,
             List<SessionLineItemResponse> lines,
+            String redirectUrl,
             String profileId,
             String createdAt,
             SessionResponseLinks links) {
         this(resource, id, mode,
             clientAccessToken, status, amount,
-            description, redirectUrl, Optional.empty(),
+            description, lines, redirectUrl,
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), lines,
+            Optional.empty(), Optional.empty(), Optional.empty(),
             profileId, createdAt, links);
     }
 
@@ -284,6 +284,17 @@ public class SessionResponse {
     }
 
     /**
+     * List of items the customer will pay for in this session. The sum of all line items must equal the
+     * session's amount.
+     * 
+     * <p>All lines must have the same currency as the session.
+     */
+    @JsonIgnore
+    public List<SessionLineItemResponse> lines() {
+        return lines;
+    }
+
+    /**
      * The URL your customer will be redirected to after the payment process.
      * 
      * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
@@ -335,17 +346,6 @@ public class SessionResponse {
     @JsonIgnore
     public Optional<SessionResponsePayment> payment() {
         return (Optional<SessionResponsePayment>) payment;
-    }
-
-    /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
-     * 
-     * <p>All lines must have the same currency as the session.
-     */
-    @JsonIgnore
-    public List<SessionLineItemResponse> lines() {
-        return lines;
     }
 
     /**
@@ -447,6 +447,18 @@ public class SessionResponse {
     public SessionResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
+        return this;
+    }
+
+    /**
+     * List of items the customer will pay for in this session. The sum of all line items must equal the
+     * session's amount.
+     * 
+     * <p>All lines must have the same currency as the session.
+     */
+    public SessionResponse withLines(List<SessionLineItemResponse> lines) {
+        Utils.checkNotNull(lines, "lines");
+        this.lines = lines;
         return this;
     }
 
@@ -556,18 +568,6 @@ public class SessionResponse {
     }
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
-     * 
-     * <p>All lines must have the same currency as the session.
-     */
-    public SessionResponse withLines(List<SessionLineItemResponse> lines) {
-        Utils.checkNotNull(lines, "lines");
-        this.lines = lines;
-        return this;
-    }
-
-    /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
@@ -618,6 +618,7 @@ public class SessionResponse {
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
             Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
             Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
             Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
@@ -625,7 +626,6 @@ public class SessionResponse {
             Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.payment, other.payment) &&
-            Utils.enhancedDeepEquals(this.lines, other.lines) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.links, other.links);
@@ -636,9 +636,9 @@ public class SessionResponse {
         return Utils.enhancedHash(
             resource, id, mode,
             clientAccessToken, status, amount,
-            description, redirectUrl, billingAddress,
-            shippingAddress, customerId, sequenceType,
-            metadata, payment, lines,
+            description, lines, redirectUrl,
+            billingAddress, shippingAddress, customerId,
+            sequenceType, metadata, payment,
             profileId, createdAt, links);
     }
     
@@ -652,6 +652,7 @@ public class SessionResponse {
                 "status", status,
                 "amount", amount,
                 "description", description,
+                "lines", lines,
                 "redirectUrl", redirectUrl,
                 "billingAddress", billingAddress,
                 "shippingAddress", shippingAddress,
@@ -659,7 +660,6 @@ public class SessionResponse {
                 "sequenceType", sequenceType,
                 "metadata", metadata,
                 "payment", payment,
-                "lines", lines,
                 "profileId", profileId,
                 "createdAt", createdAt,
                 "links", links);
@@ -682,6 +682,8 @@ public class SessionResponse {
 
         private String description;
 
+        private List<SessionLineItemResponse> lines;
+
         private String redirectUrl;
 
         private Optional<? extends PaymentAddress> billingAddress = Optional.empty();
@@ -695,8 +697,6 @@ public class SessionResponse {
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
 
         private Optional<? extends SessionResponsePayment> payment = Optional.empty();
-
-        private List<SessionLineItemResponse> lines;
 
         private String profileId;
 
@@ -778,6 +778,19 @@ public class SessionResponse {
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
+            return this;
+        }
+
+
+        /**
+         * List of items the customer will pay for in this session. The sum of all line items must equal the
+         * session's amount.
+         * 
+         * <p>All lines must have the same currency as the session.
+         */
+        public Builder lines(List<SessionLineItemResponse> lines) {
+            Utils.checkNotNull(lines, "lines");
+            this.lines = lines;
             return this;
         }
 
@@ -889,19 +902,6 @@ public class SessionResponse {
 
 
         /**
-         * List of items the customer will pay for in this session. The sum of all line items must equal the
-         * session's amount.
-         * 
-         * <p>All lines must have the same currency as the session.
-         */
-        public Builder lines(List<SessionLineItemResponse> lines) {
-            Utils.checkNotNull(lines, "lines");
-            this.lines = lines;
-            return this;
-        }
-
-
-        /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
          * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
@@ -942,9 +942,9 @@ public class SessionResponse {
             return new SessionResponse(
                 resource, id, mode,
                 clientAccessToken, status, amount,
-                description, redirectUrl, billingAddress,
-                shippingAddress, customerId, sequenceType,
-                metadata, payment, lines,
+                description, lines, redirectUrl,
+                billingAddress, shippingAddress, customerId,
+                sequenceType, metadata, payment,
                 profileId, createdAt, links);
         }
 

@@ -37,6 +37,15 @@ public class SessionRequest {
     private String description;
 
     /**
+     * List of items the customer will pay for in this session. The sum of all line items must equal the
+     * session's amount.
+     * 
+     * <p>All lines must have the same currency as the session.
+     */
+    @JsonProperty("lines")
+    private List<SessionLineItem> lines;
+
+    /**
      * The URL your customer will be redirected to after the payment process.
      * 
      * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
@@ -83,15 +92,6 @@ public class SessionRequest {
     private Optional<? extends Payment> payment;
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
-     * 
-     * <p>All lines must have the same currency as the session.
-     */
-    @JsonProperty("lines")
-    private List<SessionLineItem> lines;
-
-    /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
@@ -121,6 +121,7 @@ public class SessionRequest {
     public SessionRequest(
             @JsonProperty("amount") Amount amount,
             @JsonProperty("description") String description,
+            @JsonProperty("lines") List<SessionLineItem> lines,
             @JsonProperty("redirectUrl") String redirectUrl,
             @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
@@ -128,11 +129,11 @@ public class SessionRequest {
             @JsonProperty("sequenceType") Optional<? extends SessionSequenceType> sequenceType,
             @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
             @JsonProperty("payment") Optional<? extends Payment> payment,
-            @JsonProperty("lines") List<SessionLineItem> lines,
             @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
+        Utils.checkNotNull(lines, "lines");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         Utils.checkNotNull(billingAddress, "billingAddress");
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -140,11 +141,11 @@ public class SessionRequest {
         Utils.checkNotNull(sequenceType, "sequenceType");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(payment, "payment");
-        Utils.checkNotNull(lines, "lines");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(testmode, "testmode");
         this.amount = amount;
         this.description = description;
+        this.lines = lines;
         this.redirectUrl = redirectUrl;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
@@ -152,7 +153,6 @@ public class SessionRequest {
         this.sequenceType = sequenceType;
         this.metadata = metadata;
         this.payment = payment;
-        this.lines = lines;
         this.profileId = profileId;
         this.testmode = testmode;
     }
@@ -160,12 +160,12 @@ public class SessionRequest {
     public SessionRequest(
             Amount amount,
             String description,
-            String redirectUrl,
-            List<SessionLineItem> lines) {
-        this(amount, description, redirectUrl,
+            List<SessionLineItem> lines,
+            String redirectUrl) {
+        this(amount, description, lines,
+            redirectUrl, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            lines, Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -185,6 +185,17 @@ public class SessionRequest {
     @JsonIgnore
     public String description() {
         return description;
+    }
+
+    /**
+     * List of items the customer will pay for in this session. The sum of all line items must equal the
+     * session's amount.
+     * 
+     * <p>All lines must have the same currency as the session.
+     */
+    @JsonIgnore
+    public List<SessionLineItem> lines() {
+        return lines;
     }
 
     /**
@@ -242,17 +253,6 @@ public class SessionRequest {
     }
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
-     * 
-     * <p>All lines must have the same currency as the session.
-     */
-    @JsonIgnore
-    public List<SessionLineItem> lines() {
-        return lines;
-    }
-
-    /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
@@ -303,6 +303,18 @@ public class SessionRequest {
     public SessionRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
+        return this;
+    }
+
+    /**
+     * List of items the customer will pay for in this session. The sum of all line items must equal the
+     * session's amount.
+     * 
+     * <p>All lines must have the same currency as the session.
+     */
+    public SessionRequest withLines(List<SessionLineItem> lines) {
+        Utils.checkNotNull(lines, "lines");
+        this.lines = lines;
         return this;
     }
 
@@ -412,18 +424,6 @@ public class SessionRequest {
     }
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
-     * 
-     * <p>All lines must have the same currency as the session.
-     */
-    public SessionRequest withLines(List<SessionLineItem> lines) {
-        Utils.checkNotNull(lines, "lines");
-        this.lines = lines;
-        return this;
-    }
-
-    /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
      * 
      * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
@@ -496,6 +496,7 @@ public class SessionRequest {
         return 
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.lines, other.lines) &&
             Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
             Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
             Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
@@ -503,7 +504,6 @@ public class SessionRequest {
             Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.payment, other.payment) &&
-            Utils.enhancedDeepEquals(this.lines, other.lines) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
@@ -511,10 +511,10 @@ public class SessionRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount, description, redirectUrl,
-            billingAddress, shippingAddress, customerId,
-            sequenceType, metadata, payment,
-            lines, profileId, testmode);
+            amount, description, lines,
+            redirectUrl, billingAddress, shippingAddress,
+            customerId, sequenceType, metadata,
+            payment, profileId, testmode);
     }
     
     @Override
@@ -522,6 +522,7 @@ public class SessionRequest {
         return Utils.toString(SessionRequest.class,
                 "amount", amount,
                 "description", description,
+                "lines", lines,
                 "redirectUrl", redirectUrl,
                 "billingAddress", billingAddress,
                 "shippingAddress", shippingAddress,
@@ -529,7 +530,6 @@ public class SessionRequest {
                 "sequenceType", sequenceType,
                 "metadata", metadata,
                 "payment", payment,
-                "lines", lines,
                 "profileId", profileId,
                 "testmode", testmode);
     }
@@ -540,6 +540,8 @@ public class SessionRequest {
         private Amount amount;
 
         private String description;
+
+        private List<SessionLineItem> lines;
 
         private String redirectUrl;
 
@@ -554,8 +556,6 @@ public class SessionRequest {
         private Optional<? extends Map<String, Object>> metadata = Optional.empty();
 
         private Optional<? extends Payment> payment = Optional.empty();
-
-        private List<SessionLineItem> lines;
 
         private Optional<String> profileId = Optional.empty();
 
@@ -585,6 +585,19 @@ public class SessionRequest {
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
+            return this;
+        }
+
+
+        /**
+         * List of items the customer will pay for in this session. The sum of all line items must equal the
+         * session's amount.
+         * 
+         * <p>All lines must have the same currency as the session.
+         */
+        public Builder lines(List<SessionLineItem> lines) {
+            Utils.checkNotNull(lines, "lines");
+            this.lines = lines;
             return this;
         }
 
@@ -696,19 +709,6 @@ public class SessionRequest {
 
 
         /**
-         * List of items the customer will pay for in this session. The sum of all line items must equal the
-         * session's amount.
-         * 
-         * <p>All lines must have the same currency as the session.
-         */
-        public Builder lines(List<SessionLineItem> lines) {
-            Utils.checkNotNull(lines, "lines");
-            this.lines = lines;
-            return this;
-        }
-
-
-        /**
          * The identifier referring to the [profile](get-profile) this entity belongs to.
          * 
          * <p>Most API credentials are linked to a single profile. In these cases the `profileId` can be omitted
@@ -772,10 +772,10 @@ public class SessionRequest {
         public SessionRequest build() {
 
             return new SessionRequest(
-                amount, description, redirectUrl,
-                billingAddress, shippingAddress, customerId,
-                sequenceType, metadata, payment,
-                lines, profileId, testmode);
+                amount, description, lines,
+                redirectUrl, billingAddress, shippingAddress,
+                customerId, sequenceType, metadata,
+                payment, profileId, testmode);
         }
 
     }

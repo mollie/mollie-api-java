@@ -58,7 +58,7 @@ public class Application {
                 .call();
 
         if (res.profileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.profileResponse().get());
         }
     }
 }
@@ -103,7 +103,7 @@ public class Application {
                 .call();
 
         if (res.profileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.profileResponse().get());
         }
     }
 }
@@ -162,7 +162,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -220,7 +220,7 @@ public class Application {
                 .call();
 
         if (res.profileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.profileResponse().get());
         }
     }
 }
@@ -293,7 +293,7 @@ public class Application {
                 .call();
 
         if (res.profileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.profileResponse().get());
         }
     }
 }
@@ -339,7 +339,7 @@ public class Application {
                 .call();
 
         if (res.profileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.profileResponse().get());
         }
     }
 }
@@ -452,7 +452,7 @@ public class Application {
                 .call();
 
         if (res.profileResponse().isPresent()) {
-            // handle response
+            System.out.println(res.profileResponse().get());
         }
     }
 }

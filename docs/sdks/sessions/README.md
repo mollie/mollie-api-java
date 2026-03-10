@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [create](#create) - Create session [BETA]
+* [create](#create) - Create session
 * [get](#get) - Get session
 
 ## create
@@ -46,8 +46,8 @@ public class Application {
                         .value("10.00")
                         .build())
                     .description("Order #12345")
-                    .redirectUrl("https://example.org/redirect")
                     .lines(List.of())
+                    .redirectUrl("https://example.org/redirect")
                     .billingAddress(PaymentAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
@@ -87,7 +87,7 @@ public class Application {
                 .call();
 
         if (res.sessionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.sessionResponse().get());
         }
     }
 }
@@ -146,7 +146,7 @@ public class Application {
                 .call();
 
         if (res.sessionResponse().isPresent()) {
-            // handle response
+            System.out.println(res.sessionResponse().get());
         }
     }
 }

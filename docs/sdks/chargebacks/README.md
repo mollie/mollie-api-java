@@ -51,7 +51,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -93,7 +93,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -135,7 +135,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -198,7 +198,7 @@ public class Application {
                 .call();
 
         if (res.entityChargeback().isPresent()) {
-            // handle response
+            System.out.println(res.entityChargeback().get());
         }
     }
 }
@@ -239,7 +239,7 @@ public class Application {
                 .call();
 
         if (res.entityChargeback().isPresent()) {
-            // handle response
+            System.out.println(res.entityChargeback().get());
         }
     }
 }
@@ -307,7 +307,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -351,7 +351,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -395,7 +395,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }

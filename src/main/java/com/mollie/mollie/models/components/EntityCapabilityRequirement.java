@@ -18,7 +18,9 @@ public class EntityCapabilityRequirement {
     /**
      * The name of this requirement, referring to the task to be fulfilled by the organization
      * to enable or re-enable the capability. The name is unique among other requirements
-     * of the same capability.
+     * of the same capability. Requirements related to the onboarding process start with 'onboarding-',
+     * while
+     * requirements related to information requests start with 'information-request-'.
      */
     @JsonProperty("id")
     private String id;
@@ -68,7 +70,9 @@ public class EntityCapabilityRequirement {
     /**
      * The name of this requirement, referring to the task to be fulfilled by the organization
      * to enable or re-enable the capability. The name is unique among other requirements
-     * of the same capability.
+     * of the same capability. Requirements related to the onboarding process start with 'onboarding-',
+     * while
+     * requirements related to information requests start with 'information-request-'.
      */
     @JsonIgnore
     public String id() {
@@ -105,7 +109,9 @@ public class EntityCapabilityRequirement {
     /**
      * The name of this requirement, referring to the task to be fulfilled by the organization
      * to enable or re-enable the capability. The name is unique among other requirements
-     * of the same capability.
+     * of the same capability. Requirements related to the onboarding process start with 'onboarding-',
+     * while
+     * requirements related to information requests start with 'information-request-'.
      */
     public EntityCapabilityRequirement withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -199,7 +205,9 @@ public class EntityCapabilityRequirement {
         /**
          * The name of this requirement, referring to the task to be fulfilled by the organization
          * to enable or re-enable the capability. The name is unique among other requirements
-         * of the same capability.
+         * of the same capability. Requirements related to the onboarding process start with 'onboarding-',
+         * while
+         * requirements related to information requests start with 'information-request-'.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");

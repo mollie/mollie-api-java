@@ -90,7 +90,7 @@ public class Application {
                 .call();
 
         if (res.salesInvoiceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.salesInvoiceResponse().get());
         }
     }
 }
@@ -154,7 +154,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -217,7 +217,7 @@ public class Application {
                 .call();
 
         if (res.salesInvoiceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.salesInvoiceResponse().get());
         }
     }
 }
@@ -334,7 +334,7 @@ public class Application {
                 .call();
 
         if (res.salesInvoiceResponse().isPresent()) {
-            // handle response
+            System.out.println(res.salesInvoiceResponse().get());
         }
     }
 }

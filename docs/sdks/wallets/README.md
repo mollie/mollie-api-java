@@ -61,7 +61,7 @@ public class Application {
                 .call();
 
         if (res.entitySession2().isPresent()) {
-            // handle response
+            System.out.println(res.entitySession2().get());
         }
     }
 }

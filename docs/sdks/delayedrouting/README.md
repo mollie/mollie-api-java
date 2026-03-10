@@ -52,7 +52,7 @@ public class Application {
                 .call();
 
         if (res.routeCreateResponse().isPresent()) {
-            // handle response
+            System.out.println(res.routeCreateResponse().get());
         }
     }
 }
@@ -110,7 +110,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -168,7 +168,7 @@ public class Application {
                 .call();
 
         if (res.routeGetResponse().isPresent()) {
-            // handle response
+            System.out.println(res.routeGetResponse().get());
         }
     }
 }

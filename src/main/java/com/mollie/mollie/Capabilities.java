@@ -48,6 +48,11 @@ public class Capabilities {
      * 
      * <p>Capabilities are at the organization level, indicating if the organization can perform a given
      * capability.
+     * Capabilities may have requirements, which provide more information on what is needed to use this
+     * capability.
+     * Requirements may have a due date, which indicates the date by which the requirement should be
+     * fulfilled.
+     * If a requirement is past due, the capability is disabled until the requirement is fulfilled.
      * 
      * <p>For payments, regardless them being at the profile level, the capability is listed at the
      * organization level.
@@ -74,6 +79,11 @@ public class Capabilities {
      * 
      * <p>Capabilities are at the organization level, indicating if the organization can perform a given
      * capability.
+     * Capabilities may have requirements, which provide more information on what is needed to use this
+     * capability.
+     * Requirements may have a due date, which indicates the date by which the requirement should be
+     * fulfilled.
+     * If a requirement is past due, the capability is disabled until the requirement is fulfilled.
      * 
      * <p>For payments, regardless them being at the profile level, the capability is listed at the
      * organization level.
@@ -101,6 +111,11 @@ public class Capabilities {
      * 
      * <p>Capabilities are at the organization level, indicating if the organization can perform a given
      * capability.
+     * Capabilities may have requirements, which provide more information on what is needed to use this
+     * capability.
+     * Requirements may have a due date, which indicates the date by which the requirement should be
+     * fulfilled.
+     * If a requirement is past due, the capability is disabled until the requirement is fulfilled.
      * 
      * <p>For payments, regardless them being at the profile level, the capability is listed at the
      * organization level.

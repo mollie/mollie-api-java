@@ -40,7 +40,7 @@ public class Sessions {
     }
 
     /**
-     * Create session [BETA]
+     * Create session
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;
@@ -55,7 +55,7 @@ public class Sessions {
     }
 
     /**
-     * Create session [BETA]
+     * Create session
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;
@@ -71,7 +71,7 @@ public class Sessions {
     }
 
     /**
-     * Create session [BETA]
+     * Create session
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;

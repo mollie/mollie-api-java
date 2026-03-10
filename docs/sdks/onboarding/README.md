@@ -37,7 +37,7 @@ public class Application {
                 .call();
 
         if (res.entityOnboardingStatus().isPresent()) {
-            // handle response
+            System.out.println(res.entityOnboardingStatus().get());
         }
     }
 }

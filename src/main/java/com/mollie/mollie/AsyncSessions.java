@@ -42,7 +42,7 @@ public class AsyncSessions {
 
 
     /**
-     * Create session [BETA]
+     * Create session
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;
@@ -57,7 +57,7 @@ public class AsyncSessions {
     }
 
     /**
-     * Create session [BETA]
+     * Create session
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;
@@ -72,7 +72,7 @@ public class AsyncSessions {
     }
 
     /**
-     * Create session [BETA]
+     * Create session
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;

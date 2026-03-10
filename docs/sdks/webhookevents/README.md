@@ -39,7 +39,7 @@ public class Application {
                 .call();
 
         if (res.entityWebhookEvent().isPresent()) {
-            // handle response
+            System.out.println(res.entityWebhookEvent().get());
         }
     }
 }

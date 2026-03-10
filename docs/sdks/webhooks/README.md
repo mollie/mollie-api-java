@@ -49,7 +49,7 @@ public class Application {
                 .call();
 
         if (res.createWebhook().isPresent()) {
-            // handle response
+            System.out.println(res.createWebhook().get());
         }
     }
 }
@@ -114,7 +114,7 @@ public class Application {
                 .call();
 
         if (res.object().isPresent()) {
-            // handle response
+            System.out.println(res.object().get());
         }
     }
 }
@@ -176,7 +176,7 @@ public class Application {
                 .call();
 
         if (res.entityWebhook().isPresent()) {
-            // handle response
+            System.out.println(res.entityWebhook().get());
         }
     }
 }
@@ -234,7 +234,7 @@ public class Application {
                 .call();
 
         if (res.entityWebhook().isPresent()) {
-            // handle response
+            System.out.println(res.entityWebhook().get());
         }
     }
 }
@@ -268,7 +268,7 @@ public class Application {
                 .call();
 
         if (res.entityWebhook().isPresent()) {
-            // handle response
+            System.out.println(res.entityWebhook().get());
         }
     }
 }
