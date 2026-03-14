@@ -163,7 +163,7 @@ public class AsyncCaptures {
      * @return {@code CompletableFuture<ListCapturesResponse>} - The async response
      */
     public CompletableFuture<ListCapturesResponse> list(ListCapturesRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListCapturesRequest, ListCapturesResponse> operation
+        ListCaptures.Async operation
               = new ListCaptures.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

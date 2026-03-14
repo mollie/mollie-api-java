@@ -215,7 +215,7 @@ public class Subscriptions {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListSubscriptionsResponse list(ListSubscriptionsRequest request, Optional<Options> options) {
-        RequestOperation<ListSubscriptionsRequest, ListSubscriptionsResponse> operation
+        ListSubscriptions.Sync operation
               = new ListSubscriptions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -451,7 +451,7 @@ public class Subscriptions {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListAllSubscriptionsResponse all(ListAllSubscriptionsRequest request, Optional<Options> options) {
-        RequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
+        ListAllSubscriptions.Sync operation
               = new ListAllSubscriptions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -497,7 +497,7 @@ public class Subscriptions {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListSubscriptionPaymentsResponse listPayments(ListSubscriptionPaymentsRequest request, Optional<Options> options) {
-        RequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation
+        ListSubscriptionPayments.Sync operation
               = new ListSubscriptionPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

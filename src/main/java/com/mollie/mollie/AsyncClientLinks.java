@@ -67,7 +67,7 @@ public class AsyncClientLinks {
      * <p>* `scope` _string (required)_
      * 
      * <p>A space-separated list of permissions ('scopes') your app requires. See the
-     * [permissions list](https://docs.mollie.com/docs/connect-permissions) for more information about the
+     * [permissions list](https://docs.mollie.com/docs/permissions) for more information about the
      * available
      * scopes.
      * 
@@ -142,7 +142,7 @@ public class AsyncClientLinks {
      * <p>* `scope` _string (required)_
      * 
      * <p>A space-separated list of permissions ('scopes') your app requires. See the
-     * [permissions list](https://docs.mollie.com/docs/connect-permissions) for more information about the
+     * [permissions list](https://docs.mollie.com/docs/permissions) for more information about the
      * available
      * scopes.
      * 
@@ -217,7 +217,7 @@ public class AsyncClientLinks {
      * <p>* `scope` _string (required)_
      * 
      * <p>A space-separated list of permissions ('scopes') your app requires. See the
-     * [permissions list](https://docs.mollie.com/docs/connect-permissions) for more information about the
+     * [permissions list](https://docs.mollie.com/docs/permissions) for more information about the
      * available
      * scopes.
      * 

@@ -150,7 +150,7 @@ public class AsyncWebhooks {
      * @return {@code CompletableFuture<ListWebhooksResponse>} - The async response
      */
     public CompletableFuture<ListWebhooksResponse> list(ListWebhooksRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
+        ListWebhooks.Async operation
               = new ListWebhooks.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

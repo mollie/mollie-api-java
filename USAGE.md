@@ -27,13 +27,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListBalancesResponse res = sdk.balances().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.balances().list()
+                .callAsStream()
+                .forEach((ListBalancesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```

@@ -53,13 +53,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSettlementsResponse res = sdk.settlements().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.settlements().list()
+                .callAsStream()
+                .forEach((ListSettlementsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -308,13 +308,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSettlementPaymentsResponse res = sdk.settlements().listPayments()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.settlements().listPayments()
+                .callAsStream()
+                .forEach((ListSettlementPaymentsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -352,13 +352,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSettlementPaymentsResponse res = sdk.settlements().listPayments()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.settlements().listPayments()
+                .callAsStream()
+                .forEach((ListSettlementPaymentsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -396,13 +396,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSettlementPaymentsResponse res = sdk.settlements().listPayments()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.settlements().listPayments()
+                .callAsStream()
+                .forEach((ListSettlementPaymentsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -462,13 +462,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSettlementCapturesResponse res = sdk.settlements().listCaptures()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.settlements().listCaptures()
+                .callAsStream()
+                .forEach((ListSettlementCapturesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -504,13 +504,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSettlementCapturesResponse res = sdk.settlements().listCaptures()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.settlements().listCaptures()
+                .callAsStream()
+                .forEach((ListSettlementCapturesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -570,13 +570,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSettlementRefundsResponse res = sdk.settlements().listRefunds()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.settlements().listRefunds()
+                .callAsStream()
+                .forEach((ListSettlementRefundsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -636,13 +636,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSettlementChargebacksResponse res = sdk.settlements().listChargebacks()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.settlements().listChargebacks()
+                .callAsStream()
+                .forEach((ListSettlementChargebacksResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -678,13 +678,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSettlementChargebacksResponse res = sdk.settlements().listChargebacks()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.settlements().listChargebacks()
+                .callAsStream()
+                .forEach((ListSettlementChargebacksResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -720,13 +720,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSettlementChargebacksResponse res = sdk.settlements().listChargebacks()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.settlements().listChargebacks()
+                .callAsStream()
+                .forEach((ListSettlementChargebacksResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```

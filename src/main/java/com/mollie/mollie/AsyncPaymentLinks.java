@@ -186,7 +186,7 @@ public class AsyncPaymentLinks {
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();
-        AsyncRequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
+        ListPaymentLinks.Async operation
               = new ListPaymentLinks.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -427,7 +427,7 @@ public class AsyncPaymentLinks {
      * @return {@code CompletableFuture<GetPaymentLinkPaymentsResponse>} - The async response
      */
     public CompletableFuture<GetPaymentLinkPaymentsResponse> listPayments(GetPaymentLinkPaymentsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
+        GetPaymentLinkPayments.Async operation
               = new GetPaymentLinkPayments.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

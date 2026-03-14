@@ -187,7 +187,7 @@ public class Payments {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListPaymentsResponse list(ListPaymentsRequest request, Optional<Options> options) {
-        RequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
+        ListPayments.Sync operation
               = new ListPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

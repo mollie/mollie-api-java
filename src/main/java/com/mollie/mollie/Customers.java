@@ -165,7 +165,7 @@ public class Customers {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListCustomersResponse list(ListCustomersRequest request, Optional<Options> options) {
-        RequestOperation<ListCustomersRequest, ListCustomersResponse> operation
+        ListCustomers.Sync operation
               = new ListCustomers.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -468,7 +468,7 @@ public class Customers {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListCustomerPaymentsResponse listPayments(ListCustomerPaymentsRequest request, Optional<Options> options) {
-        RequestOperation<ListCustomerPaymentsRequest, ListCustomerPaymentsResponse> operation
+        ListCustomerPayments.Sync operation
               = new ListCustomerPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

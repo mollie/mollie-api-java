@@ -195,13 +195,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListRefundsResponse res = sdk.refunds().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.refunds().list()
+                .callAsStream()
+                .forEach((ListRefundsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -388,13 +388,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListAllRefundsResponse res = sdk.refunds().all()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.refunds().all()
+                .callAsStream()
+                .forEach((ListAllRefundsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```

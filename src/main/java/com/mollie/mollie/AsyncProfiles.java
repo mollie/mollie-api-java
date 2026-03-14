@@ -176,7 +176,7 @@ public class AsyncProfiles {
                 .limit(limit)
                 .idempotencyKey(idempotencyKey)
                 .build();
-        AsyncRequestOperation<ListProfilesRequest, ListProfilesResponse> operation
+        ListProfiles.Async operation
               = new ListProfiles.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

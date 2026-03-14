@@ -82,7 +82,7 @@ public class Invoices {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListInvoicesResponse list(ListInvoicesRequest request, Optional<Options> options) {
-        RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
+        ListInvoices.Sync operation
               = new ListInvoices.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

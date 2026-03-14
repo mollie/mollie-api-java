@@ -82,7 +82,7 @@ public class Chargebacks {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListChargebacksResponse list(ListChargebacksRequest request, Optional<Options> options) {
-        RequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
+        ListChargebacks.Sync operation
               = new ListChargebacks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -168,7 +168,7 @@ public class Chargebacks {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListAllChargebacksResponse all(ListAllChargebacksRequest request, Optional<Options> options) {
-        RequestOperation<ListAllChargebacksRequest, ListAllChargebacksResponse> operation
+        ListAllChargebacks.Sync operation
               = new ListAllChargebacks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

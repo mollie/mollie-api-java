@@ -163,7 +163,7 @@ public class AsyncMandates {
      * @return {@code CompletableFuture<ListMandatesResponse>} - The async response
      */
     public CompletableFuture<ListMandatesResponse> list(ListMandatesRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListMandatesRequest, ListMandatesResponse> operation
+        ListMandates.Async operation
               = new ListMandates.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

@@ -105,7 +105,7 @@ public class AsyncClients {
                 .limit(limit)
                 .idempotencyKey(idempotencyKey)
                 .build();
-        AsyncRequestOperation<ListClientsRequest, ListClientsResponse> operation
+        ListClients.Async operation
               = new ListClients.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

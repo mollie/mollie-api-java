@@ -80,7 +80,7 @@ public class AsyncTerminals {
      * @return {@code CompletableFuture<ListTerminalsResponse>} - The async response
      */
     public CompletableFuture<ListTerminalsResponse> list(ListTerminalsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
+        ListTerminals.Async operation
               = new ListTerminals.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

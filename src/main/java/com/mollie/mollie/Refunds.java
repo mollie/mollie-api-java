@@ -151,7 +151,7 @@ public class Refunds {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListRefundsResponse list(ListRefundsRequest request, Optional<Options> options) {
-        RequestOperation<ListRefundsRequest, ListRefundsResponse> operation
+        ListRefunds.Sync operation
               = new ListRefunds.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -312,7 +312,7 @@ public class Refunds {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListAllRefundsResponse all(ListAllRefundsRequest request, Optional<Options> options) {
-        RequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation
+        ListAllRefunds.Sync operation
               = new ListAllRefunds.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

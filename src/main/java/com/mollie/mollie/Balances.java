@@ -92,7 +92,7 @@ public class Balances {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListBalancesResponse list(ListBalancesRequest request, Optional<Options> options) {
-        RequestOperation<ListBalancesRequest, ListBalancesResponse> operation
+        ListBalances.Sync operation
               = new ListBalances.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -383,7 +383,7 @@ public class Balances {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListBalanceTransactionsResponse listTransactions(ListBalanceTransactionsRequest request, Optional<Options> options) {
-        RequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
+        ListBalanceTransactions.Sync operation
               = new ListBalanceTransactions.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

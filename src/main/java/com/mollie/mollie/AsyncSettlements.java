@@ -103,7 +103,7 @@ public class AsyncSettlements {
      * @return {@code CompletableFuture<ListSettlementsResponse>} - The async response
      */
     public CompletableFuture<ListSettlementsResponse> list(ListSettlementsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListSettlementsRequest, ListSettlementsResponse> operation
+        ListSettlements.Async operation
               = new ListSettlements.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -387,7 +387,7 @@ public class AsyncSettlements {
      * @return {@code CompletableFuture<ListSettlementPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListSettlementPaymentsResponse> listPayments(ListSettlementPaymentsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListSettlementPaymentsRequest, ListSettlementPaymentsResponse> operation
+        ListSettlementPayments.Async operation
               = new ListSettlementPayments.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -435,7 +435,7 @@ public class AsyncSettlements {
      * @return {@code CompletableFuture<ListSettlementCapturesResponse>} - The async response
      */
     public CompletableFuture<ListSettlementCapturesResponse> listCaptures(ListSettlementCapturesRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListSettlementCapturesRequest, ListSettlementCapturesResponse> operation
+        ListSettlementCaptures.Async operation
               = new ListSettlementCaptures.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -483,7 +483,7 @@ public class AsyncSettlements {
      * @return {@code CompletableFuture<ListSettlementRefundsResponse>} - The async response
      */
     public CompletableFuture<ListSettlementRefundsResponse> listRefunds(ListSettlementRefundsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListSettlementRefundsRequest, ListSettlementRefundsResponse> operation
+        ListSettlementRefunds.Async operation
               = new ListSettlementRefunds.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -534,7 +534,7 @@ public class AsyncSettlements {
      * @return {@code CompletableFuture<ListSettlementChargebacksResponse>} - The async response
      */
     public CompletableFuture<ListSettlementChargebacksResponse> listChargebacks(ListSettlementChargebacksRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListSettlementChargebacksRequest, ListSettlementChargebacksResponse> operation
+        ListSettlementChargebacks.Async operation
               = new ListSettlementChargebacks.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

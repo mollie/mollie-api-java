@@ -148,7 +148,7 @@ public class Webhooks {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListWebhooksResponse list(ListWebhooksRequest request, Optional<Options> options) {
-        RequestOperation<ListWebhooksRequest, ListWebhooksResponse> operation
+        ListWebhooks.Sync operation
               = new ListWebhooks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -160,7 +160,7 @@ public class Mandates {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListMandatesResponse list(ListMandatesRequest request, Optional<Options> options) {
-        RequestOperation<ListMandatesRequest, ListMandatesResponse> operation
+        ListMandates.Sync operation
               = new ListMandates.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

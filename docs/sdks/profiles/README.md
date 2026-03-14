@@ -155,15 +155,16 @@ public class Application {
                     .build())
             .build();
 
-        ListProfilesResponse res = sdk.profiles().list()
+
+        sdk.profiles().list()
                 .from("pfl_QkEhN94Ba")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .call();
+                .callAsStream()
+                .forEach((ListProfilesResponse item) -> {
+                   // handle page
+                });
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
     }
 }
 ```

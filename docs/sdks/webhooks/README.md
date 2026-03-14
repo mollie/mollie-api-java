@@ -109,13 +109,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListWebhooksResponse res = sdk.webhooks().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.webhooks().list()
+                .callAsStream()
+                .forEach((ListWebhooksResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```

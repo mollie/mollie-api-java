@@ -3,7 +3,9 @@
  */
 package com.mollie.mollie.models.operations;
 
-import static com.mollie.mollie.operations.Operations.RequestOperation;
+import static com.mollie.mollie.utils.Exceptions.unchecked;
+import static com.mollie.mollie.utils.Utils.transform;
+import static com.mollie.mollie.utils.Utils.toStream;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.ListInvoices;
@@ -11,7 +13,14 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import com.mollie.mollie.utils.pagination.Paginator;
+import com.mollie.mollie.utils.pagination.URLTracker;
+import java.io.InputStream;
+import java.lang.Iterable;
+import java.net.http.HttpResponse;
+import java.util.Iterator;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class ListInvoicesRequestBuilder {
 
@@ -47,9 +56,46 @@ public class ListInvoicesRequestBuilder {
             .retryConfig(retryConfig)
             .build());
 
-        RequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
+        ListInvoices.Sync operation
               = new ListInvoices.Sync(sdkConfiguration, options, _headers);
 
         return operation.handleResponse(operation.doRequest(request));
     }
+
+    /**
+    * Returns an iterable that performs next page calls till no more pages
+    * are returned.
+    *
+    * <p>The returned iterable can be used in a for-each loop:
+    * <pre><code>
+    * for (ListInvoicesResponse page : builder.callAsIterable()) {
+    *     // Process each page
+    * }
+    * </code></pre>
+    * 
+    * @return An iterable that can be used to iterate through all pages
+    */
+    public Iterable<ListInvoicesResponse> callAsIterable() {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        ListInvoices.Sync operation
+              = new ListInvoices.Sync(sdkConfiguration, options, _headers);
+        Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
+            request,
+            new URLTracker("$._links.next.href", operation.baseUrl()),
+            (req, url) -> unchecked(() -> operation.doRequest(req, url)).get());
+
+        return () -> transform(iterator, operation::handleResponse);
+    }
+
+    /**
+     * Returns a stream that performs next page calls till no more pages
+     * are returned.
+     **/  
+    public Stream<ListInvoicesResponse> callAsStream() {
+        return toStream(callAsIterable());
+    }
+
 }

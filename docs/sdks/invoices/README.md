@@ -47,13 +47,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListInvoicesResponse res = sdk.invoices().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.invoices().list()
+                .callAsStream()
+                .forEach((ListInvoicesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -90,13 +90,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListInvoicesResponse res = sdk.invoices().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.invoices().list()
+                .callAsStream()
+                .forEach((ListInvoicesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -133,13 +133,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListInvoicesResponse res = sdk.invoices().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.invoices().list()
+                .callAsStream()
+                .forEach((ListInvoicesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -176,13 +176,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListInvoicesResponse res = sdk.invoices().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.invoices().list()
+                .callAsStream()
+                .forEach((ListInvoicesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```

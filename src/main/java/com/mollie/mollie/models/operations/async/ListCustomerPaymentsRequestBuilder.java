@@ -3,17 +3,24 @@
  */
 package com.mollie.mollie.models.operations.async;
 
-import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
+import static com.mollie.mollie.utils.reactive.ReactiveUtils.mapAsync;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.ListCustomerPaymentsRequest;
 import com.mollie.mollie.operations.ListCustomerPayments;
+import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import com.mollie.mollie.utils.pagination.AsyncPaginator;
+import com.mollie.mollie.utils.pagination.URLTracker;
+import java.net.http.HttpResponse;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Flow;
+import org.reactivestreams.FlowAdapters;
+import org.reactivestreams.Publisher;
 
 public class ListCustomerPaymentsRequestBuilder {
 
@@ -49,7 +56,7 @@ public class ListCustomerPaymentsRequestBuilder {
             .retryConfig(retryConfig)
             .build());
 
-        AsyncRequestOperation<ListCustomerPaymentsRequest, ListCustomerPaymentsResponse> operation
+        ListCustomerPayments.Async operation
               = new ListCustomerPayments.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -57,4 +64,41 @@ public class ListCustomerPaymentsRequestBuilder {
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
+
+    /**
+     * Returns a Publisher that performs next page calls till no more pages
+     * are returned.
+     *
+     * <p>The returned publisher can be used with reactive frameworks:
+     * <pre><code>
+     * Publisher&lt;ListCustomerPaymentsResponse&gt; publisher = builder.callAsPublisher();
+     * publisher.subscribe(new Subscriber&lt;ListCustomerPaymentsResponse&gt;() {
+     *     // Handle onNext, onError, onComplete
+     * });
+     * </code></pre>
+     *
+     * @return A Publisher that emits pages asynchronously
+     */
+    public Publisher<ListCustomerPaymentsResponse> callAsPublisher() {
+        ListCustomerPaymentsRequest request = this.request;
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        ListCustomerPayments.Async operation
+              = new ListCustomerPayments.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+
+        Flow.Publisher<HttpResponse<Blob>> asyncPaginator = new AsyncPaginator<>(
+            request,
+            new URLTracker("$._links.next.href", operation.baseUrl()),
+            (req, url) -> operation.doRequest(req, url));
+
+        Flow.Publisher<ListCustomerPaymentsResponse> flowPublisher = mapAsync(asyncPaginator, operation::handleResponse);
+
+        // Convert Flow.Publisher to Reactive Streams Publisher at the last stage
+        return FlowAdapters.toPublisher(flowPublisher);
+    }
+
 }

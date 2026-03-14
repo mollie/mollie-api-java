@@ -218,7 +218,7 @@ public class AsyncSubscriptions {
      * @return {@code CompletableFuture<ListSubscriptionsResponse>} - The async response
      */
     public CompletableFuture<ListSubscriptionsResponse> list(ListSubscriptionsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListSubscriptionsRequest, ListSubscriptionsResponse> operation
+        ListSubscriptions.Async operation
               = new ListSubscriptions.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -465,7 +465,7 @@ public class AsyncSubscriptions {
      * @return {@code CompletableFuture<ListAllSubscriptionsResponse>} - The async response
      */
     public CompletableFuture<ListAllSubscriptionsResponse> all(ListAllSubscriptionsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListAllSubscriptionsRequest, ListAllSubscriptionsResponse> operation
+        ListAllSubscriptions.Async operation
               = new ListAllSubscriptions.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -513,7 +513,7 @@ public class AsyncSubscriptions {
      * @return {@code CompletableFuture<ListSubscriptionPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListSubscriptionPaymentsResponse> listPayments(ListSubscriptionPaymentsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListSubscriptionPaymentsRequest, ListSubscriptionPaymentsResponse> operation
+        ListSubscriptionPayments.Async operation
               = new ListSubscriptionPayments.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

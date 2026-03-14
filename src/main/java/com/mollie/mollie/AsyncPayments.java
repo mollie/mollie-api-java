@@ -190,7 +190,7 @@ public class AsyncPayments {
      * @return {@code CompletableFuture<ListPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListPaymentsResponse> list(ListPaymentsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListPaymentsRequest, ListPaymentsResponse> operation
+        ListPayments.Async operation
               = new ListPayments.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

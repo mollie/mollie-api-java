@@ -32,6 +32,7 @@ This documentation is for the new Mollie's SDK. You can find more details on how
   * [Add Profile ID and Testmode to Client](#add-profile-id-and-testmode-to-client)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Global Parameters](#global-parameters)
+  * [Pagination](#pagination)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
@@ -54,7 +55,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.0.18'
+implementation 'com.mollie:mollie:1.1.0'
 ```
 
 Maven:
@@ -62,7 +63,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.0.18</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -114,13 +115,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListBalancesResponse res = sdk.balances().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.balances().list()
+                .callAsStream()
+                .forEach((ListBalancesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -134,7 +135,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.operations.ListBalancesRequest;
 import com.mollie.mollie.models.operations.async.ListBalancesResponse;
-import java.util.concurrent.CompletableFuture;
+import reactor.core.publisher.Flux;
 
 public class Application {
 
@@ -155,15 +156,17 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        CompletableFuture<ListBalancesResponse> resFut = sdk.balances().list()
-                .request(req)
-                .call();
 
-        resFut.thenAccept(res -> {
-            if (res.object().isPresent()) {
-                System.out.println(res.object().get());
-            }
-        });
+        var b = sdk.balances().list();
+
+        // Example using Project Reactor (illustrative) - pages
+        Flux<ListBalancesResponse> pageFlux = Flux.from(b.callAsPublisher());
+        pageFlux.subscribe(
+            page -> System.out.println(page),
+            error -> error.printStackTrace(),
+            () -> System.out.println("Pagination completed")
+        );
+
     }
 }
 ```
@@ -287,13 +290,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListBalancesResponse res = sdk.balances().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.balances().list()
+                .callAsStream()
+                .forEach((ListBalancesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -643,17 +646,125 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListBalancesResponse res = sdk.balances().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.balances().list()
+                .callAsStream()
+                .forEach((ListBalancesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
 <!-- End Global Parameters [global-parameters] -->
+
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you can make your SDK calls using the `callAsIterable` or `callAsStream` methods.
+For certain operations, you can also use the `callAsStreamUnwrapped` method that streams individual page items directly.
+
+Here's an example depicting the different ways to use pagination:
+
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
+import java.lang.Exception;
+import java.lang.Iterable;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        ListBalancesRequest req = ListBalancesRequest.builder()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        var b = sdk.balances().list();
+
+        // Iterate through all pages using a traditional for-each loop
+        // Each iteration returns a complete page response
+        Iterable<ListBalancesResponse> iterable = b.callAsIterable();
+        for (ListBalancesResponse page : iterable) {
+            // handle page
+        }
+
+        // Stream through all pages and process individual items
+        // callAsStreamUnwrapped() flattens pages into individual items
+
+        // Stream through pages without unwrapping (each item is a complete page)
+        b.callAsStream()
+            .forEach((ListBalancesResponse page) -> {
+                // handle page
+            });
+
+    }
+}
+```
+#### Asynchronous Pagination
+An asynchronous SDK client is also available for pagination that returns a [`Flow.Publisher<T>`][flow-pub]. For async pagination, you can use `callAsPublisher()` to get pages as a publisher, or `callAsPublisherUnwrapped()` to get individual items directly. See [Asynchronous Support](#asynchronous-support) for more details on async benefits and reactive library integration.
+```java
+package hello.world;
+
+import com.mollie.mollie.AsyncClient;
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
+import com.mollie.mollie.models.operations.async.ListBalancesResponse;
+import reactor.core.publisher.Flux;
+
+public class Application {
+
+    public static void main(String[] args) {
+
+        AsyncClient sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build()
+            .async();
+
+        ListBalancesRequest req = ListBalancesRequest.builder()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        var b = sdk.balances().list();
+
+        // Example using Project Reactor (illustrative) - pages
+        Flux<ListBalancesResponse> pageFlux = Flux.from(b.callAsPublisher());
+        pageFlux.subscribe(
+            page -> System.out.println(page),
+            error -> error.printStackTrace(),
+            () -> System.out.println("Pagination completed")
+        );
+
+    }
+}
+```
+
+[flow-pub]: https://docs.oracle.com/javase/9/docs/api/java/util/concurrent/Flow.Publisher.html
+<!-- End Pagination [pagination] -->
 
 <!-- Start Retries [retries] -->
 ## Retries
@@ -692,8 +803,8 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListBalancesResponse res = sdk.balances().list()
-                .request(req)
+
+        sdk.balances().list()
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)
@@ -704,11 +815,11 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .call();
+                .callAsStream()
+                .forEach((ListBalancesResponse item) -> {
+                   // handle page
+                });
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
     }
 }
 ```
@@ -755,13 +866,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListBalancesResponse res = sdk.balances().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.balances().list()
+                .callAsStream()
+                .forEach((ListBalancesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -818,13 +929,13 @@ public class Application {
                     .idempotencyKey("123e4567-e89b-12d3-a456-426")
                     .build();
 
-            ListBalancesResponse res = sdk.balances().list()
-                    .request(req)
-                    .call();
 
-            if (res.object().isPresent()) {
-                System.out.println(res.object().get());
-            }
+            sdk.balances().list()
+                    .callAsStream()
+                    .forEach((ListBalancesResponse item) -> {
+                       // handle page
+                    });
+
         } catch (ClientError ex) { // all SDK exceptions inherit from ClientError
 
             // ex.ToString() provides a detailed error message including
@@ -919,13 +1030,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListBalancesResponse res = sdk.balances().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.balances().list()
+                .callAsStream()
+                .forEach((ListBalancesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```

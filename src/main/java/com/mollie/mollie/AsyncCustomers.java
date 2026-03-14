@@ -167,7 +167,7 @@ public class AsyncCustomers {
      * @return {@code CompletableFuture<ListCustomersResponse>} - The async response
      */
     public CompletableFuture<ListCustomersResponse> list(ListCustomersRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListCustomersRequest, ListCustomersResponse> operation
+        ListCustomers.Async operation
               = new ListCustomers.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -484,7 +484,7 @@ public class AsyncCustomers {
      * @return {@code CompletableFuture<ListCustomerPaymentsResponse>} - The async response
      */
     public CompletableFuture<ListCustomerPaymentsResponse> listPayments(ListCustomerPaymentsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListCustomerPaymentsRequest, ListCustomerPaymentsResponse> operation
+        ListCustomerPayments.Async operation
               = new ListCustomerPayments.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

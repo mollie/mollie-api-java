@@ -159,7 +159,7 @@ public class AsyncBalanceTransfers {
      * @return {@code CompletableFuture<ListConnectBalanceTransfersResponse>} - The async response
      */
     public CompletableFuture<ListConnectBalanceTransfersResponse> list(ListConnectBalanceTransfersRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListConnectBalanceTransfersRequest, ListConnectBalanceTransfersResponse> operation
+        ListConnectBalanceTransfers.Async operation
               = new ListConnectBalanceTransfers.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

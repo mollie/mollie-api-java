@@ -173,7 +173,7 @@ public class Profiles {
                 .limit(limit)
                 .idempotencyKey(idempotencyKey)
                 .build();
-        RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
+        ListProfiles.Sync operation
               = new ListProfiles.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

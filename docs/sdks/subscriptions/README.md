@@ -148,13 +148,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSubscriptionsResponse res = sdk.subscriptions().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.subscriptions().list()
+                .callAsStream()
+                .forEach((ListSubscriptionsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -462,13 +462,13 @@ public class Application {
                 .limit(50L)
                 .build();
 
-        ListAllSubscriptionsResponse res = sdk.subscriptions().all()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.subscriptions().all()
+                .callAsStream()
+                .forEach((ListAllSubscriptionsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -502,13 +502,13 @@ public class Application {
                 .limit(50L)
                 .build();
 
-        ListAllSubscriptionsResponse res = sdk.subscriptions().all()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.subscriptions().all()
+                .callAsStream()
+                .forEach((ListAllSubscriptionsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -542,13 +542,13 @@ public class Application {
                 .limit(50L)
                 .build();
 
-        ListAllSubscriptionsResponse res = sdk.subscriptions().all()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.subscriptions().all()
+                .callAsStream()
+                .forEach((ListAllSubscriptionsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -583,13 +583,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListAllSubscriptionsResponse res = sdk.subscriptions().all()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.subscriptions().all()
+                .callAsStream()
+                .forEach((ListAllSubscriptionsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -652,13 +652,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSubscriptionPaymentsResponse res = sdk.subscriptions().listPayments()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.subscriptions().listPayments()
+                .callAsStream()
+                .forEach((ListSubscriptionPaymentsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -697,13 +697,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSubscriptionPaymentsResponse res = sdk.subscriptions().listPayments()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.subscriptions().listPayments()
+                .callAsStream()
+                .forEach((ListSubscriptionPaymentsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -742,13 +742,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListSubscriptionPaymentsResponse res = sdk.subscriptions().listPayments()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.subscriptions().listPayments()
+                .callAsStream()
+                .forEach((ListSubscriptionPaymentsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```

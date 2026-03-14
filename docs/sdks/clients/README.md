@@ -35,16 +35,17 @@ public class Application {
                     .build())
             .build();
 
-        ListClientsResponse res = sdk.clients().list()
+
+        sdk.clients().list()
                 .embed("organization")
                 .from("org_12345678")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .call();
+                .callAsStream()
+                .forEach((ListClientsResponse item) -> {
+                   // handle page
+                });
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
     }
 }
 ```

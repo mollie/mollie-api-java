@@ -154,7 +154,7 @@ public class AsyncRefunds {
      * @return {@code CompletableFuture<ListRefundsResponse>} - The async response
      */
     public CompletableFuture<ListRefundsResponse> list(ListRefundsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListRefundsRequest, ListRefundsResponse> operation
+        ListRefunds.Async operation
               = new ListRefunds.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -322,7 +322,7 @@ public class AsyncRefunds {
      * @return {@code CompletableFuture<ListAllRefundsResponse>} - The async response
      */
     public CompletableFuture<ListAllRefundsResponse> all(ListAllRefundsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListAllRefundsRequest, ListAllRefundsResponse> operation
+        ListAllRefunds.Async operation
               = new ListAllRefunds.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

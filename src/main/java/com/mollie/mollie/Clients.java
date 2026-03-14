@@ -104,7 +104,7 @@ public class Clients {
                 .limit(limit)
                 .idempotencyKey(idempotencyKey)
                 .build();
-        RequestOperation<ListClientsRequest, ListClientsResponse> operation
+        ListClients.Sync operation
               = new ListClients.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

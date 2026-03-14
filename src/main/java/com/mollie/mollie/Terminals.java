@@ -80,7 +80,7 @@ public class Terminals {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListTerminalsResponse list(ListTerminalsRequest request, Optional<Options> options) {
-        RequestOperation<ListTerminalsRequest, ListTerminalsResponse> operation
+        ListTerminals.Sync operation
               = new ListTerminals.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -103,7 +103,7 @@ public class Settlements {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListSettlementsResponse list(ListSettlementsRequest request, Optional<Options> options) {
-        RequestOperation<ListSettlementsRequest, ListSettlementsResponse> operation
+        ListSettlements.Sync operation
               = new ListSettlements.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -379,7 +379,7 @@ public class Settlements {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListSettlementPaymentsResponse listPayments(ListSettlementPaymentsRequest request, Optional<Options> options) {
-        RequestOperation<ListSettlementPaymentsRequest, ListSettlementPaymentsResponse> operation
+        ListSettlementPayments.Sync operation
               = new ListSettlementPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -425,7 +425,7 @@ public class Settlements {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListSettlementCapturesResponse listCaptures(ListSettlementCapturesRequest request, Optional<Options> options) {
-        RequestOperation<ListSettlementCapturesRequest, ListSettlementCapturesResponse> operation
+        ListSettlementCaptures.Sync operation
               = new ListSettlementCaptures.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -471,7 +471,7 @@ public class Settlements {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListSettlementRefundsResponse listRefunds(ListSettlementRefundsRequest request, Optional<Options> options) {
-        RequestOperation<ListSettlementRefundsRequest, ListSettlementRefundsResponse> operation
+        ListSettlementRefunds.Sync operation
               = new ListSettlementRefunds.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -520,7 +520,7 @@ public class Settlements {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListSettlementChargebacksResponse listChargebacks(ListSettlementChargebacksRequest request, Optional<Options> options) {
-        RequestOperation<ListSettlementChargebacksRequest, ListSettlementChargebacksResponse> operation
+        ListSettlementChargebacks.Sync operation
               = new ListSettlementChargebacks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

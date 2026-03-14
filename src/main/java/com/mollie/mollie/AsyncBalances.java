@@ -92,7 +92,7 @@ public class AsyncBalances {
      * @return {@code CompletableFuture<ListBalancesResponse>} - The async response
      */
     public CompletableFuture<ListBalancesResponse> list(ListBalancesRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListBalancesRequest, ListBalancesResponse> operation
+        ListBalances.Async operation
               = new ListBalances.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -392,7 +392,7 @@ public class AsyncBalances {
      * @return {@code CompletableFuture<ListBalanceTransactionsResponse>} - The async response
      */
     public CompletableFuture<ListBalanceTransactionsResponse> listTransactions(ListBalanceTransactionsRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListBalanceTransactionsRequest, ListBalanceTransactionsResponse> operation
+        ListBalanceTransactions.Async operation
               = new ListBalanceTransactions.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

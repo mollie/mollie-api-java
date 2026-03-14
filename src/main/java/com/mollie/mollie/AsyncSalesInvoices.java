@@ -191,7 +191,7 @@ public class AsyncSalesInvoices {
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();
-        AsyncRequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
+        ListSalesInvoices.Async operation
               = new ListSalesInvoices.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

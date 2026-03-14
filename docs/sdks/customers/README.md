@@ -114,13 +114,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListCustomersResponse res = sdk.customers().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.customers().list()
+                .callAsStream()
+                .forEach((ListCustomersResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -2674,13 +2674,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListCustomerPaymentsResponse res = sdk.customers().listPayments()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.customers().listPayments()
+                .callAsStream()
+                .forEach((ListCustomerPaymentsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -2718,13 +2718,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListCustomerPaymentsResponse res = sdk.customers().listPayments()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.customers().listPayments()
+                .callAsStream()
+                .forEach((ListCustomerPaymentsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -2762,13 +2762,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListCustomerPaymentsResponse res = sdk.customers().listPayments()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.customers().listPayments()
+                .callAsStream()
+                .forEach((ListCustomerPaymentsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```

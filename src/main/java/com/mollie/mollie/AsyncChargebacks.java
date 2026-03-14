@@ -82,7 +82,7 @@ public class AsyncChargebacks {
      * @return {@code CompletableFuture<ListChargebacksResponse>} - The async response
      */
     public CompletableFuture<ListChargebacksResponse> list(ListChargebacksRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListChargebacksRequest, ListChargebacksResponse> operation
+        ListChargebacks.Async operation
               = new ListChargebacks.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
@@ -172,7 +172,7 @@ public class AsyncChargebacks {
      * @return {@code CompletableFuture<ListAllChargebacksResponse>} - The async response
      */
     public CompletableFuture<ListAllChargebacksResponse> all(ListAllChargebacksRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListAllChargebacksRequest, ListAllChargebacksResponse> operation
+        ListAllChargebacks.Async operation
               = new ListAllChargebacks.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

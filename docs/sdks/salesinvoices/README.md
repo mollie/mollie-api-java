@@ -147,15 +147,16 @@ public class Application {
                     .build())
             .build();
 
-        ListSalesInvoicesResponse res = sdk.salesInvoices().list()
+
+        sdk.salesInvoices().list()
                 .from("invoice_4Y0eZitmBnQ6IDoMqZQKh")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .call();
+                .callAsStream()
+                .forEach((ListSalesInvoicesResponse item) -> {
+                   // handle page
+                });
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
     }
 }
 ```

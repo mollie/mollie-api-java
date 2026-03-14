@@ -82,7 +82,7 @@ public class AsyncInvoices {
      * @return {@code CompletableFuture<ListInvoicesResponse>} - The async response
      */
     public CompletableFuture<ListInvoicesResponse> list(ListInvoicesRequest request, Optional<Options> options) {
-        AsyncRequestOperation<ListInvoicesRequest, ListInvoicesResponse> operation
+        ListInvoices.Async operation
               = new ListInvoices.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);

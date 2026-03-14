@@ -541,15 +541,16 @@ public class Application {
                     .build())
             .build();
 
-        ListPaymentLinksResponse res = sdk.paymentLinks().list()
+
+        sdk.paymentLinks().list()
                 .from("pl_d9fQur83kFdhH8hIhaZfq")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .call();
+                .callAsStream()
+                .forEach((ListPaymentLinksResponse item) -> {
+                   // handle page
+                });
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
     }
 }
 ```
@@ -576,15 +577,16 @@ public class Application {
                     .build())
             .build();
 
-        ListPaymentLinksResponse res = sdk.paymentLinks().list()
+
+        sdk.paymentLinks().list()
                 .from("pl_d9fQur83kFdhH8hIhaZfq")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .call();
+                .callAsStream()
+                .forEach((ListPaymentLinksResponse item) -> {
+                   // handle page
+                });
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
     }
 }
 ```
@@ -899,13 +901,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        GetPaymentLinkPaymentsResponse res = sdk.paymentLinks().listPayments()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.paymentLinks().listPayments()
+                .callAsStream()
+                .forEach((GetPaymentLinkPaymentsResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```

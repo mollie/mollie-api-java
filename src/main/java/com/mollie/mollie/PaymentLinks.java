@@ -183,7 +183,7 @@ public class PaymentLinks {
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();
-        RequestOperation<ListPaymentLinksRequest, ListPaymentLinksResponse> operation
+        ListPaymentLinks.Sync operation
               = new ListPaymentLinks.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -413,7 +413,7 @@ public class PaymentLinks {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPaymentLinkPaymentsResponse listPayments(GetPaymentLinkPaymentsRequest request, Optional<Options> options) {
-        RequestOperation<GetPaymentLinkPaymentsRequest, GetPaymentLinkPaymentsResponse> operation
+        GetPaymentLinkPayments.Sync operation
               = new GetPaymentLinkPayments.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

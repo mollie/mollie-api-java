@@ -157,7 +157,7 @@ public class BalanceTransfers {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListConnectBalanceTransfersResponse list(ListConnectBalanceTransfersRequest request, Optional<Options> options) {
-        RequestOperation<ListConnectBalanceTransfersRequest, ListConnectBalanceTransfersResponse> operation
+        ListConnectBalanceTransfers.Sync operation
               = new ListConnectBalanceTransfers.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

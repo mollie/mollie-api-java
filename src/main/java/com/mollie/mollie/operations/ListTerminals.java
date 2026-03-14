@@ -105,6 +105,10 @@ public class ListTerminals {
                     securitySource());
         }
 
+        public String baseUrl() {
+            return this.baseUrl;
+        }
+
         AfterErrorContextImpl createAfterErrorContext() {
             return new AfterErrorContextImpl(
                     this.sdkConfiguration,
@@ -117,6 +121,28 @@ public class ListTerminals {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/terminals");
+            HTTPRequest req = new HTTPRequest(url, "GET");
+            req.addHeader("Accept", "application/hal+json")
+                    .addHeader("user-agent", SDKConfiguration.USER_AGENT);
+            _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
+
+            req.addQueryParams(Utils.getQueryParams(
+                    klass,
+                    request,
+                    this.operationGlobals));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+
+            return req.build();
+        }
+
+        /**
+         * Builds an HTTP request using the given URL override instead of the
+         * default base URL + path. Used by pagination to follow next-page URLs
+         * without mutating any operation state.
+         */
+        <T>HttpRequest buildRequest(T request, Class<T> klass, String urlOverride) throws Exception {
+            String url = urlOverride;
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
@@ -183,6 +209,36 @@ public class ListTerminals {
                     .statusCodes(retryStatusCodes)
                     .build();
             return unchecked(() -> onSuccess(retries.run())).get();
+        }
+
+        /**
+         * Performs the request using the given URL override for pagination.
+         * This is a pure alternative to mutating state — the URL is passed as
+         * a parameter and threaded through to request building.
+         *
+         * @param urlOverride the full URL to use instead of the default, or null for the default URL
+         */
+        public HttpResponse<InputStream> doRequest(ListTerminalsRequest request, String urlOverride) {
+            if (urlOverride == null) {
+                return doRequest(request);
+            }
+            HttpRequest r = unchecked(() -> {
+                HttpRequest req = buildRequest(request, ListTerminalsRequest.class, urlOverride);
+                return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
+            }).get();
+            HttpResponse<InputStream> httpRes;
+            try {
+                httpRes = client.send(r);
+                if (Utils.statusCodeMatches(httpRes.statusCode(), "400", "4XX", "5XX")) {
+                    httpRes = onError(httpRes, null);
+                } else {
+                    httpRes = onSuccess(httpRes);
+                }
+            } catch (Exception e) {
+                httpRes = unchecked(() -> onError(null, e)).get();
+            }
+
+            return httpRes;
         }
 
 
@@ -270,6 +326,34 @@ public class ListTerminals {
                                 return CompletableFuture.completedFuture(resp);
                             })
                             .thenCompose(Function.identity()))
+                    .thenCompose(this::onSuccess);
+        }
+
+        /**
+         * Performs the async request using the given URL override for pagination.
+         * This is a pure alternative to mutating state — the URL is passed as
+         * a parameter and threaded through to request building.
+         *
+         * @param urlOverride the full URL to use instead of the default, or null for the default URL
+         */
+        public CompletableFuture<HttpResponse<Blob>> doRequest(ListTerminalsRequest request, String urlOverride) {
+            if (urlOverride == null) {
+                return doRequest(request);
+            }
+            return unchecked(() -> {
+                HttpRequest req = buildRequest(request, ListTerminalsRequest.class, urlOverride);
+                return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
+            }).get().thenCompose(client::sendAsync)
+                    .handle((resp, err) -> {
+                        if (err != null) {
+                            return onError(null, err);
+                        }
+                        if (Utils.statusCodeMatches(resp.statusCode(), "400", "4XX", "5XX")) {
+                            return onError(resp, null);
+                        }
+                        return CompletableFuture.completedFuture(resp);
+                    })
+                    .thenCompose(Function.identity())
                     .thenCompose(this::onSuccess);
         }
 

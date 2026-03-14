@@ -188,7 +188,7 @@ public class SalesInvoices {
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();
-        RequestOperation<ListSalesInvoicesRequest, ListSalesInvoicesResponse> operation
+        ListSalesInvoices.Sync operation
               = new ListSalesInvoices.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

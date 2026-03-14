@@ -168,13 +168,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListMandatesResponse res = sdk.mandates().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.mandates().list()
+                .callAsStream()
+                .forEach((ListMandatesResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```

@@ -160,7 +160,7 @@ public class Captures {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListCapturesResponse list(ListCapturesRequest request, Optional<Options> options) {
-        RequestOperation<ListCapturesRequest, ListCapturesResponse> operation
+        ListCaptures.Sync operation
               = new ListCaptures.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }

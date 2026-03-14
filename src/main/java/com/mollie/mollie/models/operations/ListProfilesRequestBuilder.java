@@ -3,7 +3,9 @@
  */
 package com.mollie.mollie.models.operations;
 
-import static com.mollie.mollie.operations.Operations.RequestOperation;
+import static com.mollie.mollie.utils.Exceptions.unchecked;
+import static com.mollie.mollie.utils.Utils.transform;
+import static com.mollie.mollie.utils.Utils.toStream;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.operations.ListProfiles;
@@ -11,9 +13,16 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import com.mollie.mollie.utils.pagination.Paginator;
+import com.mollie.mollie.utils.pagination.URLTracker;
+import java.io.InputStream;
+import java.lang.Iterable;
 import java.lang.Long;
 import java.lang.String;
+import java.net.http.HttpResponse;
+import java.util.Iterator;
 import java.util.Optional;
+import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListProfilesRequestBuilder {
@@ -92,10 +101,48 @@ public class ListProfilesRequestBuilder {
             .retryConfig(retryConfig)
             .build());
 
-        RequestOperation<ListProfilesRequest, ListProfilesResponse> operation
+        ListProfiles.Sync operation
               = new ListProfiles.Sync(sdkConfiguration, options, _headers);
         ListProfilesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }
+
+    /**
+    * Returns an iterable that performs next page calls till no more pages
+    * are returned.
+    *
+    * <p>The returned iterable can be used in a for-each loop:
+    * <pre><code>
+    * for (ListProfilesResponse page : builder.callAsIterable()) {
+    *     // Process each page
+    * }
+    * </code></pre>
+    * 
+    * @return An iterable that can be used to iterate through all pages
+    */
+    public Iterable<ListProfilesResponse> callAsIterable() {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        ListProfiles.Sync operation
+              = new ListProfiles.Sync(sdkConfiguration, options, _headers);
+        ListProfilesRequest request = buildRequest();
+        Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
+            request,
+            new URLTracker("$._links.next.href", operation.baseUrl()),
+            (req, url) -> unchecked(() -> operation.doRequest(req, url)).get());
+
+        return () -> transform(iterator, operation::handleResponse);
+    }
+
+    /**
+     * Returns a stream that performs next page calls till no more pages
+     * are returned.
+     **/  
+    public Stream<ListProfilesResponse> callAsStream() {
+        return toStream(callAsIterable());
+    }
+
 }

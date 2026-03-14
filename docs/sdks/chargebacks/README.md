@@ -46,13 +46,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListChargebacksResponse res = sdk.chargebacks().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.chargebacks().list()
+                .callAsStream()
+                .forEach((ListChargebacksResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -88,13 +88,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListChargebacksResponse res = sdk.chargebacks().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.chargebacks().list()
+                .callAsStream()
+                .forEach((ListChargebacksResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -130,13 +130,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListChargebacksResponse res = sdk.chargebacks().list()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.chargebacks().list()
+                .callAsStream()
+                .forEach((ListChargebacksResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -302,13 +302,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListAllChargebacksResponse res = sdk.chargebacks().all()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.chargebacks().all()
+                .callAsStream()
+                .forEach((ListAllChargebacksResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -346,13 +346,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListAllChargebacksResponse res = sdk.chargebacks().all()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.chargebacks().all()
+                .callAsStream()
+                .forEach((ListAllChargebacksResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
@@ -390,13 +390,13 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
-        ListAllChargebacksResponse res = sdk.chargebacks().all()
-                .request(req)
-                .call();
 
-        if (res.object().isPresent()) {
-            System.out.println(res.object().get());
-        }
+        sdk.chargebacks().all()
+                .callAsStream()
+                .forEach((ListAllChargebacksResponse item) -> {
+                   // handle page
+                });
+
     }
 }
 ```
