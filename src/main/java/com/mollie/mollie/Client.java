@@ -458,6 +458,32 @@ public class Client {
         sdkConfiguration.setServerUrl(data.baseUrl());
         sdkConfiguration.setClient(data.client());
         this.asyncSDK = new AsyncClient(this, sdkConfiguration);
+
+        if (!canHaveGlobalFields(sdkConfiguration) && hasGlobalFields(sdkConfiguration)) {
+            throw new IllegalArgumentException(
+                "Global fields like testmode and profileId can only be set when using an Access or OAuth token."
+            );
+        }
+    }
+
+    private boolean canHaveGlobalFields(SDKConfiguration sdkConfiguration) {
+        SecuritySource securitySource = sdkConfiguration.securitySource();
+        if (securitySource == null) {
+            return false;
+        }
+        com.mollie.mollie.utils.HasSecurity hasSecurity = securitySource.getSecurity();
+        if (!(hasSecurity instanceof com.mollie.mollie.models.components.Security)) {
+            return false;
+        }
+        com.mollie.mollie.models.components.Security security =
+            (com.mollie.mollie.models.components.Security) hasSecurity;
+        String token = security.apiKey().orElse(security.oAuth().orElse(null));
+        return token != null && token.startsWith("access_");
+    }
+
+    private boolean hasGlobalFields(SDKConfiguration sdkConfiguration) {
+        return sdkConfiguration.globals.getParam("queryParam", "testmode").isPresent()
+            || sdkConfiguration.globals.getParam("queryParam", "profileId").isPresent();
     }
 
     /**
