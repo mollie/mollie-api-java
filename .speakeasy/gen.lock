@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: d25b26115aed112972839e34ede72759
+  docChecksum: b33d3656b90c1de1eef08cb660aa8c83
   docVersion: 1.0.0
-  speakeasyVersion: 1.755.0
-  generationVersion: 2.865.2
-  releaseVersion: 1.1.0
-  configChecksum: 801660db3c54a10a8faf01f13c2b15c6
+  speakeasyVersion: 1.757.0
+  generationVersion: 2.866.0
+  releaseVersion: 1.1.1
+  configChecksum: 4a7c12da53c0de69738b8d368ac91a7e
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: ffa68b29-545c-4677-8b93-2ce1e2fe3a11
-  pristine_commit_hash: 3aa961b7f9f25b8a238e9f3f3f090e0e47fb056b
-  pristine_tree_hash: c77b792ea6a72b95528e59e8938ad04f618c7592
+  generation_id: 036eab48-0247-4b21-a48f-41e86cf29987
+  pristine_commit_hash: 81d5690db8b092f50650b6e373d5cce2d398efe6
+  pristine_tree_hash: a238431472616f12764518bab7ef61c6dbf1d908
 features:
   java:
     additionalDependencies: 0.1.0
@@ -304,8 +304,8 @@ trackedFiles:
     pristine_git_object: cf5ccacb4ffd9b12e431203d1b46f739d4e27446
   docs/models/components/Details.md:
     id: 4a96e879c620
-    last_write_checksum: sha1:33dd9882bebdd1b4d5c66e0a97b675ade2a971e5
-    pristine_git_object: 5a6f6f02175777610304dc20e7ea815164e7444e
+    last_write_checksum: sha1:33dca793065a7386286af7c94e10a0d178fa3bbc
+    pristine_git_object: 522c2f7428a3c770d3bcb5ce096fac47184701e4
   docs/models/components/DiscountedSubtotalAmount.md:
     id: 1e92f8ca8120
     last_write_checksum: sha1:f558f1f1d094b2b7ce8d099b69aa29bfaf651ec2
@@ -1124,8 +1124,8 @@ trackedFiles:
     pristine_git_object: b67e663d838b891cc0346a8b258053608514b44f
   docs/models/components/PaymentDetailsSellerProtectionResponse.md:
     id: 4e31b0459cff
-    last_write_checksum: sha1:a4e0c0883bf879c5b0c0e32820ab336682ae4a37
-    pristine_git_object: ded71b35a2677e200f1c9dce06165b05156c1e1c
+    last_write_checksum: sha1:97b024d75fb44a5a43a6eb5af71a4ea785d63c59
+    pristine_git_object: bcfb0ae46f2983555cb524a7eff8e7f29b86d057
   docs/models/components/PaymentDetailsWalletResponse.md:
     id: b1cea4ca113d
     last_write_checksum: sha1:0ba42f0f6ee20f477da7d6d50376c01a8d556535
@@ -1232,8 +1232,8 @@ trackedFiles:
     pristine_git_object: 9e15d483e47402f6b30217bd459690b660cec130
   docs/models/components/PaymentResponseDetails.md:
     id: 6cb7ce66964b
-    last_write_checksum: sha1:dc72d2a40371c2b08459abde49320686aac1948e
-    pristine_git_object: eda49313a4d3a45e571f80bd3f55b03bfadaef95
+    last_write_checksum: sha1:6c2d225642be70e6b8c53a180a73481c0085037a
+    pristine_git_object: 55da9dd605bde17e4bcbcf3223240536c6acfda0
   docs/models/components/PaymentResponseLines.md:
     id: b8afe1fc3571
     last_write_checksum: sha1:3c0c7d63ab1562cfc1e302da7d4323077ae4fcfb
@@ -3100,8 +3100,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:2ad7bc0f6842ee66a08ecbead4256bd17dd9a9ad
-    pristine_git_object: f81aee9111831a72fe72b593510ee634e174d4cb
+    last_write_checksum: sha1:3520aad4bd2026bbf99b137951b89fc26b3fbabb
+    pristine_git_object: f40eb9ab9b754e84e691bc2787e8f7762409122b
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3348,8 +3348,8 @@ trackedFiles:
     pristine_git_object: 3d83f719c687e4e6bb7efee432a0412928b9505c
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:989852dc52263be6573eb9835a338cb4ceadbe30
-    pristine_git_object: 991906c8fc81cf037a1126b7d94c3ca4993d4ebb
+    last_write_checksum: sha1:ce3ccc0b0b6c733bd5a870405d0bb59da6a188a7
+    pristine_git_object: 15c0cdf44c841e3c428a4c5b499afe228b076079
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:ee782ce28e8c2298bcdae3e466b9e2df1f69c485
@@ -4464,8 +4464,8 @@ trackedFiles:
     pristine_git_object: f3602a29b9eb8270c4e9f727ea6ee2a8e093effe
   src/main/java/com/mollie/mollie/models/components/PaymentDetailsSellerProtectionResponse.java:
     id: 0d40cc90459e
-    last_write_checksum: sha1:b46270a1917e3b330142e34df40a15600ac8e32f
-    pristine_git_object: 9d812bb85a561c81e5fd2023e0742fa9fdcc2836
+    last_write_checksum: sha1:31b67842635b152793af397871363a918dbb554a
+    pristine_git_object: 081dc0c0acef283ebc5f7a3d5875e4385bcf063f
   src/main/java/com/mollie/mollie/models/components/PaymentDetailsWalletResponse.java:
     id: 0fb854eeee70
     last_write_checksum: sha1:24fed7c9d7180577c8ea548369ca59bfeed3d49e
@@ -12770,6 +12770,18 @@ examples:
           application/hal+json: {"resource": "session", "id": "sess_CQBQJqxubaq4w6oresxMJ", "mode": "live", "clientAccessToken": "ewogICJzZXNzaW9uVG9rZW4iOiAic2Vzc19DUUJRSnF4dWJhcTR3Nm9yZXN4TUoiLAogICJzZWNyZXQiOiAiaGFja2Vycy1iZS1uaWNlIiwKICAidGVzdG1vZGUiOiBmYWxzZSwKICAicHJvZmlsZVRva2VuIjogInBmbF9Ra0VoTjk0QmEiLAogICJhdmFpbGFibGVQYXltZW50TWV0aG9kcyI6IFsKICAgICJpZGVhbCIsCiAgICAiY3JlZGl0Y2FyZCIsCiAgICAicGF5cGFsIiwKICAgICJwYXlieWJhbmsiLAogICAgImJhbmNvbnRhY3QiLAogICAgImFwcGxlcGF5IiwKICAgICJnb29nbGVwYXkiCiAgXSwKICAiYXZhaWxhYmxlQXV0aGVudGljYXRpb25NZXRob2RzIjogewogICAgImJhbmNvbnRhY3QiOiBbCiAgICAgICJtb2JpbGUiLAogICAgICAiY2FyZCIKICAgIF0KICB9LAogICJvcmdhbml6YXRpb25Db3VudHJ5Q29kZSI6ICJOTCIsCiAgIm1lcmNoYW50UHJvZmlsZU5hbWUiOiAiTW9sbGllIFN3YWcgU2hvcCIKfQ==", "status": "open", "amount": {"currency": "EUR", "value": "10.00"}, "description": "Order #12345", "lines": [{"description": "T-shirt", "quantity": 1, "unitPrice": {"currency": "EUR", "value": "10.00"}, "totalAmount": {"currency": "EUR", "value": "10.00"}}], "redirectUrl": "https://webshop.example.org/order/12345/", "sequenceType": "oneoff", "metadata": {"order_id": "12345"}, "payment": {"webhookUrl": "https://webshop.example.org/payments/webhook/"}, "profileId": "pfl_QkEhN94Ba", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Java SDK Changes:
+  * `client.settlements.listPayments()`:  `response.Embedded.payments[].details.sellerProtection` **Changed**
+  * `client.payments.create()`:  `response.details.sellerProtection` **Changed**
+  * `client.payments.list()`:  `response.Embedded.payments[].details.sellerProtection` **Changed**
+  * `client.payments.get()`:  `response.details.sellerProtection` **Changed**
+  * `client.payments.update()`:  `response.details.sellerProtection` **Changed**
+  * `client.payments.cancel()`:  `response.details.sellerProtection` **Changed**
+  * `client.paymentLinks.listPayments()`:  `response.Embedded.payments[].details.sellerProtection` **Changed**
+  * `client.customers.createPayment()`:  `response.details.sellerProtection` **Changed**
+  * `client.customers.listPayments()`:  `response.Embedded.payments[].details.sellerProtection` **Changed**
+  * `client.subscriptions.listPayments()`:  `response.Embedded.payments[].details.sellerProtection` **Changed**
 generatedFiles:
   - .gitattributes
   - USAGE.md

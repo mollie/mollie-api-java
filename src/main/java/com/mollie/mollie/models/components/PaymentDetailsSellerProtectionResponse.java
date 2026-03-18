@@ -27,11 +27,14 @@ import java.util.Optional;
  */
 public class PaymentDetailsSellerProtectionResponse {
 
-    public static final PaymentDetailsSellerProtectionResponse ELIGIBLE = new PaymentDetailsSellerProtectionResponse("Eligible");
+    public static final PaymentDetailsSellerProtectionResponse ELIGIBLE_UPPER = new PaymentDetailsSellerProtectionResponse("ELIGIBLE");
+    public static final PaymentDetailsSellerProtectionResponse PARTIALLY_ELIGIBLE_UPPER = new PaymentDetailsSellerProtectionResponse("PARTIALLY_ELIGIBLE");
+    public static final PaymentDetailsSellerProtectionResponse NOT_ELIGIBLE = new PaymentDetailsSellerProtectionResponse("NOT_ELIGIBLE");
+    public static final PaymentDetailsSellerProtectionResponse ELIGIBLE_MIXED = new PaymentDetailsSellerProtectionResponse("Eligible");
     public static final PaymentDetailsSellerProtectionResponse INELIGIBLE = new PaymentDetailsSellerProtectionResponse("Ineligible");
     public static final PaymentDetailsSellerProtectionResponse PARTIALLY_ELIGIBLE_INR_ONLY = new PaymentDetailsSellerProtectionResponse("Partially Eligible - INR Only");
     public static final PaymentDetailsSellerProtectionResponse PARTIALLY_ELIGIBLE_UNAUTH_ONLY = new PaymentDetailsSellerProtectionResponse("Partially Eligible - Unauth Only");
-    public static final PaymentDetailsSellerProtectionResponse PARTIALLY_ELIGIBLE = new PaymentDetailsSellerProtectionResponse("Partially Eligible");
+    public static final PaymentDetailsSellerProtectionResponse PARTIALLY_ELIGIBLE_MIXED = new PaymentDetailsSellerProtectionResponse("Partially Eligible");
     public static final PaymentDetailsSellerProtectionResponse NONE = new PaymentDetailsSellerProtectionResponse("None");
     public static final PaymentDetailsSellerProtectionResponse ACTIVE = new PaymentDetailsSellerProtectionResponse("Active");
     public static final PaymentDetailsSellerProtectionResponse FRAUD_CONTROL_UNAUTH_PREMIUM_ELIGIBLE = new PaymentDetailsSellerProtectionResponse("Fraud Control - Unauth Premium Eligible");
@@ -108,11 +111,14 @@ public class PaymentDetailsSellerProtectionResponse {
 
     private static final Map<String, PaymentDetailsSellerProtectionResponse> createValuesMap() {
         Map<String, PaymentDetailsSellerProtectionResponse> map = new LinkedHashMap<>();
-        map.put("Eligible", ELIGIBLE);
+        map.put("ELIGIBLE", ELIGIBLE_UPPER);
+        map.put("PARTIALLY_ELIGIBLE", PARTIALLY_ELIGIBLE_UPPER);
+        map.put("NOT_ELIGIBLE", NOT_ELIGIBLE);
+        map.put("Eligible", ELIGIBLE_MIXED);
         map.put("Ineligible", INELIGIBLE);
         map.put("Partially Eligible - INR Only", PARTIALLY_ELIGIBLE_INR_ONLY);
         map.put("Partially Eligible - Unauth Only", PARTIALLY_ELIGIBLE_UNAUTH_ONLY);
-        map.put("Partially Eligible", PARTIALLY_ELIGIBLE);
+        map.put("Partially Eligible", PARTIALLY_ELIGIBLE_MIXED);
         map.put("None", NONE);
         map.put("Active", ACTIVE);
         map.put("Fraud Control - Unauth Premium Eligible", FRAUD_CONTROL_UNAUTH_PREMIUM_ELIGIBLE);
@@ -121,11 +127,14 @@ public class PaymentDetailsSellerProtectionResponse {
 
     private static final Map<String, PaymentDetailsSellerProtectionResponseEnum> createEnumsMap() {
         Map<String, PaymentDetailsSellerProtectionResponseEnum> map = new HashMap<>();
-        map.put("Eligible", PaymentDetailsSellerProtectionResponseEnum.ELIGIBLE);
+        map.put("ELIGIBLE", PaymentDetailsSellerProtectionResponseEnum.ELIGIBLE_UPPER);
+        map.put("PARTIALLY_ELIGIBLE", PaymentDetailsSellerProtectionResponseEnum.PARTIALLY_ELIGIBLE_UPPER);
+        map.put("NOT_ELIGIBLE", PaymentDetailsSellerProtectionResponseEnum.NOT_ELIGIBLE);
+        map.put("Eligible", PaymentDetailsSellerProtectionResponseEnum.ELIGIBLE_MIXED);
         map.put("Ineligible", PaymentDetailsSellerProtectionResponseEnum.INELIGIBLE);
         map.put("Partially Eligible - INR Only", PaymentDetailsSellerProtectionResponseEnum.PARTIALLY_ELIGIBLE_INR_ONLY);
         map.put("Partially Eligible - Unauth Only", PaymentDetailsSellerProtectionResponseEnum.PARTIALLY_ELIGIBLE_UNAUTH_ONLY);
-        map.put("Partially Eligible", PaymentDetailsSellerProtectionResponseEnum.PARTIALLY_ELIGIBLE);
+        map.put("Partially Eligible", PaymentDetailsSellerProtectionResponseEnum.PARTIALLY_ELIGIBLE_MIXED);
         map.put("None", PaymentDetailsSellerProtectionResponseEnum.NONE);
         map.put("Active", PaymentDetailsSellerProtectionResponseEnum.ACTIVE);
         map.put("Fraud Control - Unauth Premium Eligible", PaymentDetailsSellerProtectionResponseEnum.FRAUD_CONTROL_UNAUTH_PREMIUM_ELIGIBLE);
@@ -135,11 +144,14 @@ public class PaymentDetailsSellerProtectionResponse {
     
     public enum PaymentDetailsSellerProtectionResponseEnum {
 
-        ELIGIBLE("Eligible"),
+        ELIGIBLE_UPPER("ELIGIBLE"),
+        PARTIALLY_ELIGIBLE_UPPER("PARTIALLY_ELIGIBLE"),
+        NOT_ELIGIBLE("NOT_ELIGIBLE"),
+        ELIGIBLE_MIXED("Eligible"),
         INELIGIBLE("Ineligible"),
         PARTIALLY_ELIGIBLE_INR_ONLY("Partially Eligible - INR Only"),
         PARTIALLY_ELIGIBLE_UNAUTH_ONLY("Partially Eligible - Unauth Only"),
-        PARTIALLY_ELIGIBLE("Partially Eligible"),
+        PARTIALLY_ELIGIBLE_MIXED("Partially Eligible"),
         NONE("None"),
         ACTIVE("Active"),
         FRAUD_CONTROL_UNAUTH_PREMIUM_ELIGIBLE("Fraud Control - Unauth Premium Eligible"),;
