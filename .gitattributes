@@ -1,0 +1,8 @@
+#
+# https://help.github.com/articles/dealing-with-line-endings/
+#
+# Linux start script should use lf
+/gradlew        text eol=lf
+
+# This allows generated code to be indexed correctly
+*.java linguist-generated=false

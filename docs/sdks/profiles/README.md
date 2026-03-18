@@ -1,0 +1,476 @@
+# Profiles
+
+## Overview
+
+### Available Operations
+
+* [create](#create) - Create profile
+* [list](#list) - List profiles
+* [get](#get) - Get profile
+* [update](#update) - Update profile
+* [delete](#delete) - Delete profile
+* [getCurrent](#getcurrent) - Get current profile
+
+## create
+
+Create a profile to process payments on.
+
+Profiles are required for payment processing. Normally they are created via the Mollie dashboard. Alternatively, you
+can use this endpoint to automate profile creation.
+
+### Example Usage: create-profile-201-1
+
+<!-- UsageSnippet language="java" operationID="create-profile" method="post" path="/profiles" example="create-profile-201-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ProfileRequest;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateProfileResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        CreateProfileResponse res = sdk.profiles().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .profileRequest(ProfileRequest.builder()
+                    .name("My website name")
+                    .website("https://example.com")
+                    .email("test@mollie.com")
+                    .phone("+31208202070")
+                    .description("My website description")
+                    .countriesOfActivity(List.of(
+                        "NL",
+                        "GB"))
+                    .businessCategory("OTHER_MERCHANDISE")
+                    .build())
+                .call();
+
+        if (res.profileResponse().isPresent()) {
+            System.out.println(res.profileResponse().get());
+        }
+    }
+}
+```
+### Example Usage: create-profile-201-2
+
+<!-- UsageSnippet language="java" operationID="create-profile" method="post" path="/profiles" example="create-profile-201-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.ProfileRequest;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateProfileResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        CreateProfileResponse res = sdk.profiles().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .profileRequest(ProfileRequest.builder()
+                    .name("My website name")
+                    .website("https://example.com")
+                    .email("test@mollie.com")
+                    .phone("+31208202070")
+                    .description("My website description")
+                    .countriesOfActivity(List.of(
+                        "NL",
+                        "GB"))
+                    .businessCategory("OTHER_MERCHANDISE")
+                    .build())
+                .call();
+
+        if (res.profileResponse().isPresent()) {
+            System.out.println(res.profileResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `profileRequest`                                                                 | [ProfileRequest](../../models/components/ProfileRequest.md)                      | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
+
+### Response
+
+**[CreateProfileResponse](../../models/operations/CreateProfileResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 422                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## list
+
+Retrieve a list of all of your profiles.
+
+The results are paginated.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="list-profiles" method="get" path="/profiles" example="list-profiles-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListProfilesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+
+        sdk.profiles().list()
+                .from("pfl_QkEhN94Ba")
+                .limit(50L)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .callAsStream()
+                .forEach((ListProfilesResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    | Example                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `from`                                                                                                                         | *JsonNullable\<String>*                                                                                                        | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set. |                                                                                                                                |
+| `limit`                                                                                                                        | *JsonNullable\<Long>*                                                                                                          | :heavy_minus_sign:                                                                                                             | The maximum number of items to return. Defaults to 50 items.                                                                   | 50                                                                                                                             |
+| `idempotencyKey`                                                                                                               | *Optional\<String>*                                                                                                            | :heavy_minus_sign:                                                                                                             | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                               | 123e4567-e89b-12d3-a456-426                                                                                                    |
+
+### Response
+
+**[ListProfilesResponse](../../models/operations/ListProfilesResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## get
+
+Retrieve a single profile by its ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="get-profile" method="get" path="/profiles/{profileId}" example="get-profile-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetProfileResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        GetProfileResponse res = sdk.profiles().get()
+                .profileId("pfl_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.profileResponse().isPresent()) {
+            System.out.println(res.profileResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                               | Type                                                                                                                                                                    | Required                                                                                                                                                                | Description                                                                                                                                                             | Example                                                                                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `profileId`                                                                                                                                                             | *String*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the related profile.                                                                                                                                  | pfl_5B8cwPMGnU                                                                                                                                                          |
+| `testmode`                                                                                                                                                              | *Optional\<Boolean>*                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                      | You can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                         |
+| `idempotencyKey`                                                                                                                                                        | *Optional\<String>*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                             |
+
+### Response
+
+**[GetProfileResponse](../../models/operations/GetProfileResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 410                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## update
+
+Update an existing profile.
+
+Profiles are required for payment processing. Normally they are created and updated via the Mollie dashboard.
+Alternatively, you can use this endpoint to automate profile management.
+
+### Example Usage: update-profile-200-1
+
+<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/profiles/{profileId}" example="update-profile-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
+import com.mollie.mollie.models.operations.UpdateProfileResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        UpdateProfileResponse res = sdk.profiles().update()
+                .profileId("pfl_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(UpdateProfileRequestBody.builder()
+                    .name("My new website name")
+                    .website("https://example.com")
+                    .email("test@mollie.com")
+                    .phone("+31208202071")
+                    .description("My website description")
+                    .countriesOfActivity(List.of(
+                        "NL",
+                        "GB"))
+                    .businessCategory("OTHER_MERCHANDISE")
+                    .build())
+                .call();
+
+        if (res.profileResponse().isPresent()) {
+            System.out.println(res.profileResponse().get());
+        }
+    }
+}
+```
+### Example Usage: update-profile-200-2
+
+<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/profiles/{profileId}" example="update-profile-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
+import com.mollie.mollie.models.operations.UpdateProfileResponse;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        UpdateProfileResponse res = sdk.profiles().update()
+                .profileId("pfl_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(UpdateProfileRequestBody.builder()
+                    .name("My new website name")
+                    .website("https://example.com")
+                    .email("test@mollie.com")
+                    .phone("+31208202071")
+                    .description("My website description")
+                    .countriesOfActivity(List.of(
+                        "NL",
+                        "GB"))
+                    .businessCategory("OTHER_MERCHANDISE")
+                    .build())
+                .call();
+
+        if (res.profileResponse().isPresent()) {
+            System.out.println(res.profileResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `profileId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `requestBody`                                                                    | [UpdateProfileRequestBody](../../models/operations/UpdateProfileRequestBody.md)  | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
+
+### Response
+
+**[UpdateProfileResponse](../../models/operations/UpdateProfileResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 410, 422               | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## delete
+
+Delete a profile. A deleted profile and its related credentials can no longer be used for accepting payments.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="delete-profile" method="delete" path="/profiles/{profileId}" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.DeleteProfileResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        DeleteProfileResponse res = sdk.profiles().delete()
+                .profileId("pfl_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `profileId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+
+### Response
+
+**[DeleteProfileResponse](../../models/operations/DeleteProfileResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 410                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## getCurrent
+
+Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile)
+endpoint.
+
+For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
+documentation.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="get-current-profile" method="get" path="/profiles/me" example="get-current-profile-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.GetCurrentProfileResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetCurrentProfileResponse res = sdk.profiles().getCurrent()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.profileResponse().isPresent()) {
+            System.out.println(res.profileResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+
+### Response
+
+**[GetCurrentProfileResponse](../../models/operations/GetCurrentProfileResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |

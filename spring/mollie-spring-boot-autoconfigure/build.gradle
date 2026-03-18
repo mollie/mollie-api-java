@@ -1,0 +1,35 @@
+description = 'openapi Spring Boot Auto Configuration'
+
+// Publishing configuration overrides
+ext {
+    publishingConfig = [
+        groupId: rootProject.group,
+        artifactId: 'mollie-spring-boot-autoconfigure',
+        version: rootProject.version,
+        name: 'Mollie Java SDK - Spring Boot Auto Configuration',
+        description: 'Spring Boot auto-configuration for the Mollie Java SDK.',
+    ]
+}
+
+dependencies {
+    api project(':')
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    dependsOn 'generatePomFileForMavenPublication'
+    archiveBaseName = 'mollie-spring-boot-autoconfigure'
+    into("META-INF/maven/com.mollie/mollie-spring-boot-autoconfigure") {
+        from(layout.buildDirectory.file("pom.xml")) {
+            // Only include if it exists to avoid build ordering issues
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+    }
+}

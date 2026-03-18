@@ -1,0 +1,417 @@
+# Refunds
+
+## Overview
+
+### Available Operations
+
+* [create](#create) - Create payment refund
+* [list](#list) - List payment refunds
+* [get](#get) - Get payment refund
+* [cancel](#cancel) - Cancel payment refund
+* [all](#all) - List all refunds
+
+## create
+
+Creates a refund for a specific payment. The refunded amount is credited to your customer usually either via a bank
+transfer or by refunding the amount to your customer's credit card.
+
+### Example Usage: create-refund-201-1
+
+<!-- UsageSnippet language="java" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" example="create-refund-201-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateRefundResponse;
+import java.lang.Exception;
+import java.util.List;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreateRefundResponse res = sdk.refunds().create()
+                .paymentId("tr_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .refundRequest(RefundRequest.builder()
+                    .description("Refunding a Chess Board")
+                    .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .metadata(Metadata.of(Map.ofEntries(
+                    )))
+                    .externalReference(RefundRequestExternalReference.builder()
+                        .type(RefundExternalReferenceType.ACQUIRER_REFERENCE)
+                        .id("123456789012345")
+                        .build())
+                    .reverseRouting(false)
+                    .routingReversals(List.of(
+                        RoutingReversals.builder()
+                            .amount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .source(Source.builder()
+                                .type(Type.ORGANIZATION)
+                                .organizationId("org_1234567")
+                                .build())
+                            .build()))
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.entityRefundResponse().isPresent()) {
+            System.out.println(res.entityRefundResponse().get());
+        }
+    }
+}
+```
+### Example Usage: create-refund-201-2
+
+<!-- UsageSnippet language="java" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" example="create-refund-201-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateRefundResponse;
+import java.lang.Exception;
+import java.util.List;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CreateRefundResponse res = sdk.refunds().create()
+                .paymentId("tr_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .refundRequest(RefundRequest.builder()
+                    .description("Refunding a Chess Board")
+                    .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .metadata(Metadata.of(Map.ofEntries(
+                    )))
+                    .externalReference(RefundRequestExternalReference.builder()
+                        .type(RefundExternalReferenceType.ACQUIRER_REFERENCE)
+                        .id("123456789012345")
+                        .build())
+                    .reverseRouting(false)
+                    .routingReversals(List.of(
+                        RoutingReversals.builder()
+                            .amount(Amount.builder()
+                                .currency("EUR")
+                                .value("10.00")
+                                .build())
+                            .source(Source.builder()
+                                .type(Type.ORGANIZATION)
+                                .organizationId("org_1234567")
+                                .build())
+                            .build()))
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.entityRefundResponse().isPresent()) {
+            System.out.println(res.entityRefundResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `paymentId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| `refundRequest`                                                                  | [Optional\<RefundRequest>](../../models/components/RefundRequest.md)             | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+
+### Response
+
+**[CreateRefundResponse](../../models/operations/CreateRefundResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404, 409, 422               | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## list
+
+Retrieve a list of all refunds created for a specific payment.
+
+The results are paginated.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="list-refunds" method="get" path="/payments/{paymentId}/refunds" example="list-refunds-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListRefundsRequest;
+import com.mollie.mollie.models.operations.ListRefundsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListRefundsRequest req = ListRefundsRequest.builder()
+                .paymentId("tr_5B8cwPMGnU")
+                .from("re_5B8cwPMGnU")
+                .limit(50L)
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.refunds().list()
+                .callAsStream()
+                .forEach((ListRefundsResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [ListRefundsRequest](../../models/operations/ListRefundsRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+
+### Response
+
+**[ListRefundsResponse](../../models/operations/ListRefundsResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## get
+
+Retrieve a single payment refund by its ID and the ID of its parent payment.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="get-refund" method="get" path="/payments/{paymentId}/refunds/{refundId}" example="get-refund-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetRefundRequest;
+import com.mollie.mollie.models.operations.GetRefundResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetRefundRequest req = GetRefundRequest.builder()
+                .paymentId("tr_5B8cwPMGnU")
+                .refundId("re_5B8cwPMGnU")
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        GetRefundResponse res = sdk.refunds().get()
+                .request(req)
+                .call();
+
+        if (res.entityRefundResponse().isPresent()) {
+            System.out.println(res.entityRefundResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [GetRefundRequest](../../models/operations/GetRefundRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
+
+### Response
+
+**[GetRefundResponse](../../models/operations/GetRefundResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## cancel
+
+Refunds will be executed with a delay of two hours. Until that time, refunds may be canceled manually via the
+Mollie Dashboard, or by using this endpoint.
+
+A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
+[Get refund endpoint](get-refund) for more information.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="cancel-refund" method="delete" path="/payments/{paymentId}/refunds/{refundId}" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CancelRefundResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        CancelRefundResponse res = sdk.refunds().cancel()
+                .paymentId("tr_5B8cwPMGnU")
+                .refundId("re_5B8cwPMGnU")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `paymentId`                                                                                                                                                                                                                                                                                                                                                                              | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                   | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                            |
+| `refundId`                                                                                                                                                                                                                                                                                                                                                                               | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related refund.                                                                                                                                                                                                                                                                                                                                                    | re_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                            |
+| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | *Optional\<Boolean>*                                                                                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
+| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
+
+### Response
+
+**[CancelRefundResponse](../../models/operations/CancelRefundResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## all
+
+Retrieve a list of all of your refunds.
+
+The results are paginated.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="list-all-refunds" method="get" path="/refunds" example="list-refunds-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllRefundsRequest;
+import com.mollie.mollie.models.operations.ListAllRefundsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListAllRefundsRequest req = ListAllRefundsRequest.builder()
+                .from("re_5B8cwPMGnU")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.refunds().all()
+                .callAsStream()
+                .forEach((ListAllRefundsResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [ListAllRefundsRequest](../../models/operations/ListAllRefundsRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[ListAllRefundsResponse](../../models/operations/ListAllRefundsResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

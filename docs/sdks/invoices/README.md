@@ -1,0 +1,264 @@
+# Invoices
+
+## Overview
+
+### Available Operations
+
+* [list](#list) - List invoices
+* [get](#get) - Get invoice
+
+## list
+
+Retrieve a list of all your invoices, optionally filtered by year or by
+invoice reference.
+
+The results are paginated.
+
+### Example Usage: list-invoices-200-1
+
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListInvoicesRequest;
+import com.mollie.mollie.models.operations.ListInvoicesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        ListInvoicesRequest req = ListInvoicesRequest.builder()
+                .reference("2024.10000")
+                .year("2024")
+                .from("inv_xBEbP9rvAq")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.invoices().list()
+                .callAsStream()
+                .forEach((ListInvoicesResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+### Example Usage: list-invoices-200-2
+
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListInvoicesRequest;
+import com.mollie.mollie.models.operations.ListInvoicesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        ListInvoicesRequest req = ListInvoicesRequest.builder()
+                .reference("2024.10000")
+                .year("2024")
+                .from("inv_xBEbP9rvAq")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.invoices().list()
+                .callAsStream()
+                .forEach((ListInvoicesResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+### Example Usage: list-invoices-200-3
+
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-3" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListInvoicesRequest;
+import com.mollie.mollie.models.operations.ListInvoicesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        ListInvoicesRequest req = ListInvoicesRequest.builder()
+                .reference("2024.10000")
+                .year("2024")
+                .from("inv_xBEbP9rvAq")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.invoices().list()
+                .callAsStream()
+                .forEach((ListInvoicesResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+### Example Usage: list-invoices-200-4
+
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-4" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListInvoicesRequest;
+import com.mollie.mollie.models.operations.ListInvoicesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        ListInvoicesRequest req = ListInvoicesRequest.builder()
+                .reference("2024.10000")
+                .year("2024")
+                .from("inv_xBEbP9rvAq")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.invoices().list()
+                .callAsStream()
+                .forEach((ListInvoicesResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [ListInvoicesRequest](../../models/operations/ListInvoicesRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
+
+### Response
+
+**[ListInvoicesResponse](../../models/operations/ListInvoicesResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## get
+
+Retrieve a single invoice by its ID.
+
+If you want to retrieve the details of an invoice by its invoice number,
+call the [List invoices](list-invoices) endpoint with the `reference` parameter.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="get-invoice" method="get" path="/invoices/{invoiceId}" example="get-invoice-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetInvoiceResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        GetInvoiceResponse res = sdk.invoices().get()
+                .invoiceId("inv_aHbjjdrUdm")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.entityInvoice().isPresent()) {
+            System.out.println(res.entityInvoice().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `invoiceId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related invoice.                                           | inv_aHbjjdrUdm                                                                   |
+| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+
+### Response
+
+**[GetInvoiceResponse](../../models/operations/GetInvoiceResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

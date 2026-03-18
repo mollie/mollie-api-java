@@ -1,0 +1,266 @@
+# BalanceTransfers
+
+## Overview
+
+### Available Operations
+
+* [create](#create) - Create a Connect balance transfer
+* [list](#list) - List all Connect balance transfers
+* [get](#get) - Get a Connect balance transfer
+
+## create
+
+This API endpoint allows you to create a balance transfer from your organization's balance to a connected organization's balance, or vice versa.
+You can also create a balance transfer between two connected organizations.
+To create a balance transfer, you must be authenticated as the source organization, and the destination organization must be a connected organization
+that has authorized the `balance-transfers.write` scope for your organization.
+
+### Example Usage: create-balance-transfer-200-1
+
+<!-- UsageSnippet language="java" operationID="create-connect-balance-transfer" method="post" path="/connect/balance-transfers" example="create-balance-transfer-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateConnectBalanceTransferResponse;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        CreateConnectBalanceTransferResponse res = sdk.balanceTransfers().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .entityBalanceTransfer(EntityBalanceTransfer.builder()
+                    .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .source(EntityBalanceTransferParty.builder()
+                        .type(BalanceTransferPartyType.ORGANIZATION)
+                        .id("org_1234567")
+                        .description("Invoice fee")
+                        .build())
+                    .destination(EntityBalanceTransferParty.builder()
+                        .type(BalanceTransferPartyType.ORGANIZATION)
+                        .id("org_1234567")
+                        .description("Invoice fee")
+                        .build())
+                    .description("Invoice fee")
+                    .category(BalanceTransferCategory.INVOICE_COLLECTION)
+                    .metadata(Map.ofEntries(
+                        Map.entry("order_id", 12345L),
+                        Map.entry("customer_id", 9876L)))
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.entityBalanceTransferResponse().isPresent()) {
+            System.out.println(res.entityBalanceTransferResponse().get());
+        }
+    }
+}
+```
+### Example Usage: create-balance-transfer-422-1
+
+<!-- UsageSnippet language="java" operationID="create-connect-balance-transfer" method="post" path="/connect/balance-transfers" example="create-balance-transfer-422-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.*;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateConnectBalanceTransferResponse;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        CreateConnectBalanceTransferResponse res = sdk.balanceTransfers().create()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .entityBalanceTransfer(EntityBalanceTransfer.builder()
+                    .amount(Amount.builder()
+                        .currency("EUR")
+                        .value("10.00")
+                        .build())
+                    .source(EntityBalanceTransferParty.builder()
+                        .type(BalanceTransferPartyType.ORGANIZATION)
+                        .id("org_1234567")
+                        .description("Invoice fee")
+                        .build())
+                    .destination(EntityBalanceTransferParty.builder()
+                        .type(BalanceTransferPartyType.ORGANIZATION)
+                        .id("org_1234567")
+                        .description("Invoice fee")
+                        .build())
+                    .description("Invoice fee")
+                    .category(BalanceTransferCategory.INVOICE_COLLECTION)
+                    .metadata(Map.ofEntries(
+                        Map.entry("order_id", 12345L),
+                        Map.entry("customer_id", 9876L)))
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.entityBalanceTransferResponse().isPresent()) {
+            System.out.println(res.entityBalanceTransferResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          | Example                                                                              |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `idempotencyKey`                                                                     | *Optional\<String>*                                                                  | :heavy_minus_sign:                                                                   | A unique key to ensure idempotent requests. This key should be a UUID v4 string.     | 123e4567-e89b-12d3-a456-426                                                          |
+| `entityBalanceTransfer`                                                              | [Optional\<EntityBalanceTransfer>](../../models/components/EntityBalanceTransfer.md) | :heavy_minus_sign:                                                                   | N/A                                                                                  |                                                                                      |
+
+### Response
+
+**[CreateConnectBalanceTransferResponse](../../models/operations/CreateConnectBalanceTransferResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 422                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## list
+
+Returns a paginated list of balance transfers associated with your organization. These may be a balance transfer that was received or sent from your balance, or a balance transfer that you initiated on behalf of your clients. If no balance transfers are available, the resulting array will be empty. This request should never throw an error.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="list-connect-balance-transfers" method="get" path="/connect/balance-transfers" example="list-balance-transfer-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListConnectBalanceTransfersRequest;
+import com.mollie.mollie.models.operations.ListConnectBalanceTransfersResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        ListConnectBalanceTransfersRequest req = ListConnectBalanceTransfersRequest.builder()
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.balanceTransfers().list()
+                .callAsStream()
+                .forEach((ListConnectBalanceTransfersResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `request`                                                                                           | [ListConnectBalanceTransfersRequest](../../models/operations/ListConnectBalanceTransfersRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+
+### Response
+
+**[ListConnectBalanceTransfersResponse](../../models/operations/ListConnectBalanceTransfersResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## get
+
+Retrieve a single Connect balance transfer object by its ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="java" operationID="get-connect-balance-transfer" method="get" path="/connect/balance-transfers/{balanceTransferId}" example="get-balance-transfer-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetConnectBalanceTransferResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        GetConnectBalanceTransferResponse res = sdk.balanceTransfers().get()
+                .balanceTransferId("cbtr_j8NvRAM2WNZtsykpLEX8J")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.entityBalanceTransferResponse().isPresent()) {
+            System.out.println(res.entityBalanceTransferResponse().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                               | Type                                                                                                                                                                    | Required                                                                                                                                                                | Description                                                                                                                                                             | Example                                                                                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `balanceTransferId`                                                                                                                                                     | *String*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the related balance transfer.                                                                                                                         | cbtr_j8NvRAM2WNZtsykpLEX8J                                                                                                                                              |
+| `testmode`                                                                                                                                                              | *Optional\<Boolean>*                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                      | You can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                         |
+| `idempotencyKey`                                                                                                                                                        | *Optional\<String>*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                             |
+
+### Response
+
+**[GetConnectBalanceTransferResponse](../../models/operations/GetConnectBalanceTransferResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

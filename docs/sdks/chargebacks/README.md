@@ -1,0 +1,419 @@
+# Chargebacks
+
+## Overview
+
+### Available Operations
+
+* [list](#list) - List payment chargebacks
+* [get](#get) - Get payment chargeback
+* [all](#all) - List all chargebacks
+
+## list
+
+Retrieve the chargebacks initiated for a specific payment.
+
+The results are paginated.
+
+### Example Usage: list-chargeback-200-1
+
+<!-- UsageSnippet language="java" operationID="list-chargebacks" method="get" path="/payments/{paymentId}/chargebacks" example="list-chargeback-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListChargebacksRequest;
+import com.mollie.mollie.models.operations.ListChargebacksResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListChargebacksRequest req = ListChargebacksRequest.builder()
+                .paymentId("tr_5B8cwPMGnU")
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.chargebacks().list()
+                .callAsStream()
+                .forEach((ListChargebacksResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+### Example Usage: list-chargeback-200-2
+
+<!-- UsageSnippet language="java" operationID="list-chargebacks" method="get" path="/payments/{paymentId}/chargebacks" example="list-chargeback-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListChargebacksRequest;
+import com.mollie.mollie.models.operations.ListChargebacksResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListChargebacksRequest req = ListChargebacksRequest.builder()
+                .paymentId("tr_5B8cwPMGnU")
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.chargebacks().list()
+                .callAsStream()
+                .forEach((ListChargebacksResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+### Example Usage: list-chargeback-200-3
+
+<!-- UsageSnippet language="java" operationID="list-chargebacks" method="get" path="/payments/{paymentId}/chargebacks" example="list-chargeback-200-3" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListChargebacksRequest;
+import com.mollie.mollie.models.operations.ListChargebacksResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListChargebacksRequest req = ListChargebacksRequest.builder()
+                .paymentId("tr_5B8cwPMGnU")
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.chargebacks().list()
+                .callAsStream()
+                .forEach((ListChargebacksResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [ListChargebacksRequest](../../models/operations/ListChargebacksRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[ListChargebacksResponse](../../models/operations/ListChargebacksResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## get
+
+Retrieve a single payment chargeback by its ID and the ID of its parent payment.
+
+### Example Usage: get-chargeback-200-1
+
+<!-- UsageSnippet language="java" operationID="get-chargeback" method="get" path="/payments/{paymentId}/chargebacks/{chargebackId}" example="get-chargeback-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetChargebackRequest;
+import com.mollie.mollie.models.operations.GetChargebackResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetChargebackRequest req = GetChargebackRequest.builder()
+                .paymentId("tr_5B8cwPMGnU")
+                .chargebackId("chb_xFzwUN4ci8HAmSGUACS4J")
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        GetChargebackResponse res = sdk.chargebacks().get()
+                .request(req)
+                .call();
+
+        if (res.entityChargeback().isPresent()) {
+            System.out.println(res.entityChargeback().get());
+        }
+    }
+}
+```
+### Example Usage: get-chargeback-200-2
+
+<!-- UsageSnippet language="java" operationID="get-chargeback" method="get" path="/payments/{paymentId}/chargebacks/{chargebackId}" example="get-chargeback-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetChargebackRequest;
+import com.mollie.mollie.models.operations.GetChargebackResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        GetChargebackRequest req = GetChargebackRequest.builder()
+                .paymentId("tr_5B8cwPMGnU")
+                .chargebackId("chb_xFzwUN4ci8HAmSGUACS4J")
+                .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        GetChargebackResponse res = sdk.chargebacks().get()
+                .request(req)
+                .call();
+
+        if (res.entityChargeback().isPresent()) {
+            System.out.println(res.entityChargeback().get());
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [GetChargebackRequest](../../models/operations/GetChargebackRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[GetChargebackResponse](../../models/operations/GetChargebackResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
+
+## all
+
+Retrieve all chargebacks initiated for all your payments.
+
+The results are paginated.
+
+### Example Usage: list-all-chargebacks-200-1
+
+<!-- UsageSnippet language="java" operationID="list-all-chargebacks" method="get" path="/chargebacks" example="list-all-chargebacks-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllChargebacksRequest;
+import com.mollie.mollie.models.operations.ListAllChargebacksResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListAllChargebacksRequest req = ListAllChargebacksRequest.builder()
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
+                .embed("payment")
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.chargebacks().all()
+                .callAsStream()
+                .forEach((ListAllChargebacksResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+### Example Usage: list-all-chargebacks-200-2
+
+<!-- UsageSnippet language="java" operationID="list-all-chargebacks" method="get" path="/chargebacks" example="list-all-chargebacks-200-2" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllChargebacksRequest;
+import com.mollie.mollie.models.operations.ListAllChargebacksResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListAllChargebacksRequest req = ListAllChargebacksRequest.builder()
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
+                .embed("payment")
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.chargebacks().all()
+                .callAsStream()
+                .forEach((ListAllChargebacksResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+### Example Usage: list-all-chargebacks-200-3
+
+<!-- UsageSnippet language="java" operationID="list-all-chargebacks" method="get" path="/chargebacks" example="list-all-chargebacks-200-3" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListAllChargebacksRequest;
+import com.mollie.mollie.models.operations.ListAllChargebacksResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .testmode(false)
+                .security(Security.builder()
+                    .apiKey(System.getenv().getOrDefault("API_KEY", ""))
+                    .build())
+            .build();
+
+        ListAllChargebacksRequest req = ListAllChargebacksRequest.builder()
+                .from("chb_xFzwUN4ci8HAmSGUACS4J")
+                .limit(50L)
+                .embed("payment")
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.chargebacks().all()
+                .callAsStream()
+                .forEach((ListAllChargebacksResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [ListAllChargebacksRequest](../../models/operations/ListAllChargebacksRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
+### Response
+
+**[ListAllChargebacksResponse](../../models/operations/ListAllChargebacksResponse.md)**
+
+### Errors
+
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

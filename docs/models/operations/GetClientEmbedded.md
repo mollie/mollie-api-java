@@ -1,0 +1,10 @@
+# GetClientEmbedded
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `organization`                                                                         | [Optional\<EntityOrganization>](../../models/components/EntityOrganization.md)         | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `onboarding`                                                                           | [Optional\<EntityOnboardingStatus>](../../models/components/EntityOnboardingStatus.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `capabilities`                                                                         | [Optional\<EntityCapability>](../../models/components/EntityCapability.md)             | :heavy_minus_sign:                                                                     | N/A                                                                                    |
