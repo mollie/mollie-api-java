@@ -8,6 +8,7 @@ package com.mollie.mollie;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Hook.SdkInitData;
+import com.mollie.mollie.utils.MollieAuthUtils;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.SpeakeasyHTTPClient;
 import com.mollie.mollie.utils.Utils;
@@ -460,7 +461,7 @@ public class Client {
         sdkConfiguration.setClient(data.client());
         this.asyncSDK = new AsyncClient(this, sdkConfiguration);
 
-        if (!canHaveGlobalFields(sdkConfiguration) && hasGlobalFields(sdkConfiguration)) {
+        if (MollieAuthUtils.canHaveGlobalFields(sdkConfiguration) && MollieAuthUtils.hasGlobalFields(sdkConfiguration)) {
             throw new IllegalArgumentException(
                 "Global fields like testmode and profileId can only be set when using an Access or OAuth token."
             );
