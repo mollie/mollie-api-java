@@ -3,17 +3,17 @@ id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
   docChecksum: b33d3656b90c1de1eef08cb660aa8c83
   docVersion: 1.0.0
-  speakeasyVersion: 1.757.1
-  generationVersion: 2.866.2
-  releaseVersion: 1.2.0
-  configChecksum: 76d914d208179a347f46a371acfd14b3
+  speakeasyVersion: 1.759.1
+  generationVersion: 2.869.10
+  releaseVersion: 1.3.0
+  configChecksum: f2897b3cf545d7d0c110940830fde90e
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: ab6f1717-8a6f-42b1-80a6-c0eb771c6951
-  pristine_commit_hash: 135799fb6955af9ca9ea39185b882825315589ba
-  pristine_tree_hash: 4ec0e04a0791f44fdb3e566e2c3666f518345d29
+  generation_id: 3bcbdb64-ff0e-48fa-b3d6-c0706d2307ed
+  pristine_commit_hash: a3160ae302e0190de24791f86e288f74b460a12f
+  pristine_tree_hash: e9dd42fc43af4e0beadf7b7316ad9adcb29eb964
 features:
   java:
     additionalDependencies: 0.1.0
@@ -3100,8 +3100,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:7cec5551e1c5b3e32a4d661f5d84427f9dce3646
-    pristine_git_object: 23abd0ebb1227e368c5575e9fb5ac3d6c7c528bd
+    last_write_checksum: sha1:1dcfaf8e4085d7d661df190ff3ae09b10957b3ae
+    pristine_git_object: 888a7829ffc7f974624ba85f01d349cb4d87006e
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3348,8 +3348,8 @@ trackedFiles:
     pristine_git_object: 2b69786ee19b5007595e2eda62b2503eff94974f
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:450dd645e85d36a8a8b065b2083e48e896966431
-    pristine_git_object: 81bf2eeb4ec10945f4327631dd979decf778b88b
+    last_write_checksum: sha1:a06fb5ff83ae9f0703e263e8890bd1daacc50d03
+    pristine_git_object: c879992eea79dcb551ada1328f0ddc12ba3957ad
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:2cdff7ce71f9ec62974ef3d118a882a2e149eaa1
