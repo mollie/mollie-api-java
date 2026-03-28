@@ -20,26 +20,38 @@ public class Security implements HasSecurity {
     private Optional<String> apiKey;
 
 
+    @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
+    private Optional<String> organizationAccessToken;
+
+
     @SpeakeasyMetadata("security:scheme=true,type=oauth2,name=Authorization")
     private Optional<String> oAuth;
 
     @JsonCreator
     public Security(
             Optional<String> apiKey,
+            Optional<String> organizationAccessToken,
             Optional<String> oAuth) {
         Utils.checkNotNull(apiKey, "apiKey");
+        Utils.checkNotNull(organizationAccessToken, "organizationAccessToken");
         Utils.checkNotNull(oAuth, "oAuth");
         this.apiKey = apiKey;
+        this.organizationAccessToken = organizationAccessToken;
         this.oAuth = oAuth;
     }
     
     public Security() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
     public Optional<String> apiKey() {
         return apiKey;
+    }
+
+    @JsonIgnore
+    public Optional<String> organizationAccessToken() {
+        return organizationAccessToken;
     }
 
     @JsonIgnore
@@ -62,6 +74,19 @@ public class Security implements HasSecurity {
     public Security withApiKey(Optional<String> apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
         this.apiKey = apiKey;
+        return this;
+    }
+
+    public Security withOrganizationAccessToken(String organizationAccessToken) {
+        Utils.checkNotNull(organizationAccessToken, "organizationAccessToken");
+        this.organizationAccessToken = Optional.ofNullable(organizationAccessToken);
+        return this;
+    }
+
+
+    public Security withOrganizationAccessToken(Optional<String> organizationAccessToken) {
+        Utils.checkNotNull(organizationAccessToken, "organizationAccessToken");
+        this.organizationAccessToken = organizationAccessToken;
         return this;
     }
 
@@ -89,19 +114,21 @@ public class Security implements HasSecurity {
         Security other = (Security) o;
         return 
             Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
+            Utils.enhancedDeepEquals(this.organizationAccessToken, other.organizationAccessToken) &&
             Utils.enhancedDeepEquals(this.oAuth, other.oAuth);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            apiKey, oAuth);
+            apiKey, organizationAccessToken, oAuth);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Security.class,
                 "apiKey", apiKey,
+                "organizationAccessToken", organizationAccessToken,
                 "oAuth", oAuth);
     }
 
@@ -109,6 +136,8 @@ public class Security implements HasSecurity {
     public final static class Builder {
 
         private Optional<String> apiKey = Optional.empty();
+
+        private Optional<String> organizationAccessToken = Optional.empty();
 
         private Optional<String> oAuth = Optional.empty();
 
@@ -130,6 +159,19 @@ public class Security implements HasSecurity {
         }
 
 
+        public Builder organizationAccessToken(String organizationAccessToken) {
+            Utils.checkNotNull(organizationAccessToken, "organizationAccessToken");
+            this.organizationAccessToken = Optional.ofNullable(organizationAccessToken);
+            return this;
+        }
+
+        public Builder organizationAccessToken(Optional<String> organizationAccessToken) {
+            Utils.checkNotNull(organizationAccessToken, "organizationAccessToken");
+            this.organizationAccessToken = organizationAccessToken;
+            return this;
+        }
+
+
         public Builder oAuth(String oAuth) {
             Utils.checkNotNull(oAuth, "oAuth");
             this.oAuth = Optional.ofNullable(oAuth);
@@ -145,7 +187,7 @@ public class Security implements HasSecurity {
         public Security build() {
 
             return new Security(
-                apiKey, oAuth);
+                apiKey, organizationAccessToken, oAuth);
         }
 
     }

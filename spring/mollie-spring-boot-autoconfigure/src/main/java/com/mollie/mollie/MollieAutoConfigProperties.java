@@ -573,6 +573,28 @@ public class MollieAutoConfigProperties {
             this.apiKey = apiKey;
         }
         /**
+         * organizationAccessToken for authentication.
+         */
+        private String organizationAccessToken;
+        
+        /**
+         * Gets the organizationAccessToken value.
+         *
+         * @return the organizationAccessToken value
+         */
+        public String getOrganizationAccessToken() {
+            return organizationAccessToken;
+        }
+
+        /**
+         * Sets the organizationAccessToken value.
+         *
+         * @param organizationAccessToken the organizationAccessToken value to use
+         */
+        public void setOrganizationAccessToken(String organizationAccessToken) {
+            this.organizationAccessToken = organizationAccessToken;
+        }
+        /**
          * oAuth for authentication.
          */
         private String oAuth;
