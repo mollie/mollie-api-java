@@ -3,7 +3,8 @@
 
 ## Fields
 
-| Field               | Type                | Required            | Description         |
-| ------------------- | ------------------- | ------------------- | ------------------- |
-| `apiKey`            | *Optional\<String>* | :heavy_minus_sign:  | N/A                 |
-| `oAuth`             | *Optional\<String>* | :heavy_minus_sign:  | N/A                 |
+| Field                     | Type                      | Required                  | Description               |
+| ------------------------- | ------------------------- | ------------------------- | ------------------------- |
+| `apiKey`                  | *Optional\<String>*       | :heavy_minus_sign:        | N/A                       |
+| `organizationAccessToken` | *Optional\<String>*       | :heavy_minus_sign:        | N/A                       |
+| `oAuth`                   | *Optional\<String>*       | :heavy_minus_sign:        | N/A                       |

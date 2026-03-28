@@ -129,6 +129,11 @@ public class MollieAutoConfig {
             securityBuilder.apiKey(securityProps.getApiKey());
             hasAnySecurityConfiguration = true;
         }
+        // Build organizationAccessToken security from direct properties (primitive value)
+        if (securityProps.getOrganizationAccessToken() != null) {
+            securityBuilder.organizationAccessToken(securityProps.getOrganizationAccessToken());
+            hasAnySecurityConfiguration = true;
+        }
         // Build oAuth security from direct properties (primitive value)
         if (securityProps.getOAuth() != null) {
             securityBuilder.oAuth(securityProps.getOAuth());
