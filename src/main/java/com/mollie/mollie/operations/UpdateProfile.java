@@ -181,7 +181,7 @@ public class UpdateProfile {
                         }
                         try {
                             HttpResponse<InputStream> httpRes = client.send(r);
-                            if (Utils.statusCodeMatches(httpRes.statusCode(), "404", "410", "422", "4XX", "5XX")) {
+                            if (Utils.statusCodeMatches(httpRes.statusCode(), "403", "404", "410", "422", "4XX", "5XX")) {
                                 return onError(httpRes, null);
                             }
                             return httpRes;
@@ -218,7 +218,7 @@ public class UpdateProfile {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "410", "422")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "403", "404", "410", "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     throw ErrorResponse.from(response);
                 } else {
@@ -274,7 +274,7 @@ public class UpdateProfile {
                                 if (err != null) {
                                     return onError(null, err);
                                 }
-                                if (Utils.statusCodeMatches(resp.statusCode(), "404", "410", "422", "4XX", "5XX")) {
+                                if (Utils.statusCodeMatches(resp.statusCode(), "403", "404", "410", "422", "4XX", "5XX")) {
                                     return onError(resp, null);
                                 }
                                 return CompletableFuture.completedFuture(resp);
@@ -307,7 +307,7 @@ public class UpdateProfile {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "410", "422")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "403", "404", "410", "422")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return ErrorResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
