@@ -38,7 +38,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -83,7 +83,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -124,7 +124,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 422                         | application/hal+json        |
+| models/errors/ErrorResponse | 403, 422                    | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## list
@@ -151,7 +151,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -211,7 +211,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -273,7 +273,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -319,7 +319,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -362,7 +362,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404, 410, 422               | application/hal+json        |
+| models/errors/ErrorResponse | 403, 404, 410, 422          | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## delete
@@ -387,7 +387,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 

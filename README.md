@@ -55,7 +55,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.3.1'
+implementation 'com.mollie:mollie:1.3.2'
 ```
 
 Maven:
@@ -63,7 +63,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
 </dependency>
 ```
 
@@ -104,7 +104,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -144,7 +144,7 @@ public class Application {
         AsyncClient sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build()
             .async();
@@ -636,7 +636,7 @@ public class Application {
                 .profileId("<id>")
                 .customUserAgent("<value>")
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -685,7 +685,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -737,7 +737,7 @@ public class Application {
         AsyncClient sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build()
             .async();
@@ -793,7 +793,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -856,7 +856,7 @@ public class Application {
                     .build())
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -918,7 +918,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
         try {
@@ -1020,7 +1020,7 @@ public class Application {
                 .serverURL("https://api.mollie.com/v2")
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 

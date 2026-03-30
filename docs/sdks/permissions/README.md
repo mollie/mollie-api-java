@@ -31,7 +31,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -63,7 +63,7 @@ public class Application {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -118,7 +118,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -152,7 +152,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
