@@ -16,8 +16,7 @@ import java.lang.String;
 /**
  * ListSettlementRefundsResponseBody
  * 
- * <p>A list of refund objects. For a complete reference of the refund object, refer to the
- * [Get refund endpoint](get-refund) documentation.
+ * <p>A list of refund objects.
  */
 public class ListSettlementRefundsResponseBody {
     /**

@@ -115,7 +115,7 @@ public class ListEntityRefund {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("externalReference")
-    private Optional<? extends ExternalReference> externalReference;
+    private Optional<? extends ListEntityRefundExternalReference> externalReference;
 
     /**
      * *This feature is only available to marketplace operators.*
@@ -153,7 +153,7 @@ public class ListEntityRefund {
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
             @JsonProperty("status") ListEntityRefundStatus status,
             @JsonProperty("createdAt") String createdAt,
-            @JsonProperty("externalReference") Optional<? extends ExternalReference> externalReference,
+            @JsonProperty("externalReference") Optional<? extends ListEntityRefundExternalReference> externalReference,
             @JsonProperty("routingReversals") JsonNullable<? extends List<ListEntityRefundRoutingReversals>> routingReversals,
             @JsonProperty("_links") ListEntityRefundLinks links) {
         Utils.checkNotNull(resource, "resource");
@@ -316,8 +316,8 @@ public class ListEntityRefund {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<ExternalReference> externalReference() {
-        return (Optional<ExternalReference>) externalReference;
+    public Optional<ListEntityRefundExternalReference> externalReference() {
+        return (Optional<ListEntityRefundExternalReference>) externalReference;
     }
 
     /**
@@ -531,14 +531,14 @@ public class ListEntityRefund {
         return this;
     }
 
-    public ListEntityRefund withExternalReference(ExternalReference externalReference) {
+    public ListEntityRefund withExternalReference(ListEntityRefundExternalReference externalReference) {
         Utils.checkNotNull(externalReference, "externalReference");
         this.externalReference = Optional.ofNullable(externalReference);
         return this;
     }
 
 
-    public ListEntityRefund withExternalReference(Optional<? extends ExternalReference> externalReference) {
+    public ListEntityRefund withExternalReference(Optional<? extends ListEntityRefundExternalReference> externalReference) {
         Utils.checkNotNull(externalReference, "externalReference");
         this.externalReference = externalReference;
         return this;
@@ -671,7 +671,7 @@ public class ListEntityRefund {
 
         private String createdAt;
 
-        private Optional<? extends ExternalReference> externalReference = Optional.empty();
+        private Optional<? extends ListEntityRefundExternalReference> externalReference = Optional.empty();
 
         private JsonNullable<? extends List<ListEntityRefundRoutingReversals>> routingReversals = JsonNullable.undefined();
 
@@ -870,13 +870,13 @@ public class ListEntityRefund {
         }
 
 
-        public Builder externalReference(ExternalReference externalReference) {
+        public Builder externalReference(ListEntityRefundExternalReference externalReference) {
             Utils.checkNotNull(externalReference, "externalReference");
             this.externalReference = Optional.ofNullable(externalReference);
             return this;
         }
 
-        public Builder externalReference(Optional<? extends ExternalReference> externalReference) {
+        public Builder externalReference(Optional<? extends ListEntityRefundExternalReference> externalReference) {
             Utils.checkNotNull(externalReference, "externalReference");
             this.externalReference = externalReference;
             return this;

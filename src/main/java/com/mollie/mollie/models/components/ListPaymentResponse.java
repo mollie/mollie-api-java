@@ -75,7 +75,7 @@ public class ListPaymentResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRefunded")
-    private Optional<? extends AmountRefunded> amountRefunded;
+    private Optional<? extends ListPaymentResponseAmountRefunded> amountRefunded;
 
     /**
      * The remaining amount that can be refunded. Only available when refunds are available for this
@@ -83,7 +83,7 @@ public class ListPaymentResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRemaining")
-    private Optional<? extends AmountRemaining> amountRemaining;
+    private Optional<? extends ListPaymentResponseAmountRemaining> amountRemaining;
 
     /**
      * The total amount that is already captured for this payment. Only available when this payment
@@ -91,7 +91,7 @@ public class ListPaymentResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountCaptured")
-    private Optional<? extends AmountCaptured> amountCaptured;
+    private Optional<? extends ListPaymentResponseAmountCaptured> amountCaptured;
 
     /**
      * The total amount that was charged back for this payment. Only available when the total charged back
@@ -100,7 +100,7 @@ public class ListPaymentResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountChargedBack")
-    private Optional<? extends AmountChargedBack> amountChargedBack;
+    private Optional<? extends ListPaymentResponseAmountChargedBack> amountChargedBack;
 
     /**
      * This optional field will contain the approximate amount that will be settled to your account,
@@ -118,7 +118,7 @@ public class ListPaymentResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
-    private Optional<? extends SettlementAmount> settlementAmount;
+    private Optional<? extends ListPaymentResponseSettlementAmount> settlementAmount;
 
     /**
      * The URL your customer will be redirected to after the payment process.
@@ -177,7 +177,7 @@ public class ListPaymentResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
-    private JsonNullable<? extends List<Lines>> lines;
+    private JsonNullable<? extends List<ListPaymentResponseLines>> lines;
 
     /**
      * The customer's billing address details. We advise to provide these details to improve fraud
@@ -320,7 +320,7 @@ public class ListPaymentResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applicationFee")
-    private JsonNullable<? extends ApplicationFee> applicationFee;
+    private JsonNullable<? extends ListPaymentResponseApplicationFee> applicationFee;
 
     /**
      * *This functionality is not enabled by default. Reach out to our partner management team if you wish
@@ -439,7 +439,7 @@ public class ListPaymentResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
-    private JsonNullable<? extends Details> details;
+    private JsonNullable<? extends ListPaymentResponseDetails> details;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -515,15 +515,15 @@ public class ListPaymentResponse {
             @JsonProperty("mode") Mode mode,
             @JsonProperty("description") String description,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("amountRefunded") Optional<? extends AmountRefunded> amountRefunded,
-            @JsonProperty("amountRemaining") Optional<? extends AmountRemaining> amountRemaining,
-            @JsonProperty("amountCaptured") Optional<? extends AmountCaptured> amountCaptured,
-            @JsonProperty("amountChargedBack") Optional<? extends AmountChargedBack> amountChargedBack,
-            @JsonProperty("settlementAmount") Optional<? extends SettlementAmount> settlementAmount,
+            @JsonProperty("amountRefunded") Optional<? extends ListPaymentResponseAmountRefunded> amountRefunded,
+            @JsonProperty("amountRemaining") Optional<? extends ListPaymentResponseAmountRemaining> amountRemaining,
+            @JsonProperty("amountCaptured") Optional<? extends ListPaymentResponseAmountCaptured> amountCaptured,
+            @JsonProperty("amountChargedBack") Optional<? extends ListPaymentResponseAmountChargedBack> amountChargedBack,
+            @JsonProperty("settlementAmount") Optional<? extends ListPaymentResponseSettlementAmount> settlementAmount,
             @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
-            @JsonProperty("lines") JsonNullable<? extends List<Lines>> lines,
+            @JsonProperty("lines") JsonNullable<? extends List<ListPaymentResponseLines>> lines,
             @JsonProperty("billingAddress") Optional<? extends ListPaymentResponseBillingAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
             @JsonProperty("locale") JsonNullable<? extends LocaleResponse> locale,
@@ -534,7 +534,7 @@ public class ListPaymentResponse {
             @JsonProperty("captureMode") JsonNullable<? extends CaptureModeResponse> captureMode,
             @JsonProperty("captureDelay") JsonNullable<String> captureDelay,
             @JsonProperty("captureBefore") JsonNullable<String> captureBefore,
-            @JsonProperty("applicationFee") JsonNullable<? extends ApplicationFee> applicationFee,
+            @JsonProperty("applicationFee") JsonNullable<? extends ListPaymentResponseApplicationFee> applicationFee,
             @JsonProperty("routing") JsonNullable<? extends List<EntityPaymentRouteResponse>> routing,
             @JsonProperty("sequenceType") SequenceTypeResponse sequenceType,
             @JsonProperty("subscriptionId") JsonNullable<String> subscriptionId,
@@ -546,7 +546,7 @@ public class ListPaymentResponse {
             @JsonProperty("status") ListPaymentResponseStatus status,
             @JsonProperty("statusReason") JsonNullable<? extends StatusReason> statusReason,
             @JsonProperty("isCancelable") JsonNullable<Boolean> isCancelable,
-            @JsonProperty("details") JsonNullable<? extends Details> details,
+            @JsonProperty("details") JsonNullable<? extends ListPaymentResponseDetails> details,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("authorizedAt") JsonNullable<String> authorizedAt,
             @JsonProperty("paidAt") JsonNullable<String> paidAt,
@@ -740,8 +740,8 @@ public class ListPaymentResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AmountRefunded> amountRefunded() {
-        return (Optional<AmountRefunded>) amountRefunded;
+    public Optional<ListPaymentResponseAmountRefunded> amountRefunded() {
+        return (Optional<ListPaymentResponseAmountRefunded>) amountRefunded;
     }
 
     /**
@@ -750,8 +750,8 @@ public class ListPaymentResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AmountRemaining> amountRemaining() {
-        return (Optional<AmountRemaining>) amountRemaining;
+    public Optional<ListPaymentResponseAmountRemaining> amountRemaining() {
+        return (Optional<ListPaymentResponseAmountRemaining>) amountRemaining;
     }
 
     /**
@@ -760,8 +760,8 @@ public class ListPaymentResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AmountCaptured> amountCaptured() {
-        return (Optional<AmountCaptured>) amountCaptured;
+    public Optional<ListPaymentResponseAmountCaptured> amountCaptured() {
+        return (Optional<ListPaymentResponseAmountCaptured>) amountCaptured;
     }
 
     /**
@@ -771,8 +771,8 @@ public class ListPaymentResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<AmountChargedBack> amountChargedBack() {
-        return (Optional<AmountChargedBack>) amountChargedBack;
+    public Optional<ListPaymentResponseAmountChargedBack> amountChargedBack() {
+        return (Optional<ListPaymentResponseAmountChargedBack>) amountChargedBack;
     }
 
     /**
@@ -791,8 +791,8 @@ public class ListPaymentResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SettlementAmount> settlementAmount() {
-        return (Optional<SettlementAmount>) settlementAmount;
+    public Optional<ListPaymentResponseSettlementAmount> settlementAmount() {
+        return (Optional<ListPaymentResponseSettlementAmount>) settlementAmount;
     }
 
     /**
@@ -855,8 +855,8 @@ public class ListPaymentResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<Lines>> lines() {
-        return (JsonNullable<List<Lines>>) lines;
+    public JsonNullable<List<ListPaymentResponseLines>> lines() {
+        return (JsonNullable<List<ListPaymentResponseLines>>) lines;
     }
 
     /**
@@ -1015,8 +1015,8 @@ public class ListPaymentResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ApplicationFee> applicationFee() {
-        return (JsonNullable<ApplicationFee>) applicationFee;
+    public JsonNullable<ListPaymentResponseApplicationFee> applicationFee() {
+        return (JsonNullable<ListPaymentResponseApplicationFee>) applicationFee;
     }
 
     /**
@@ -1149,8 +1149,8 @@ public class ListPaymentResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Details> details() {
-        return (JsonNullable<Details>) details;
+    public JsonNullable<ListPaymentResponseDetails> details() {
+        return (JsonNullable<ListPaymentResponseDetails>) details;
     }
 
     /**
@@ -1303,7 +1303,7 @@ public class ListPaymentResponse {
      * reimbursement of the
      * costs for a return shipment to the customer.
      */
-    public ListPaymentResponse withAmountRefunded(AmountRefunded amountRefunded) {
+    public ListPaymentResponse withAmountRefunded(ListPaymentResponseAmountRefunded amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = Optional.ofNullable(amountRefunded);
         return this;
@@ -1317,7 +1317,7 @@ public class ListPaymentResponse {
      * reimbursement of the
      * costs for a return shipment to the customer.
      */
-    public ListPaymentResponse withAmountRefunded(Optional<? extends AmountRefunded> amountRefunded) {
+    public ListPaymentResponse withAmountRefunded(Optional<? extends ListPaymentResponseAmountRefunded> amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = amountRefunded;
         return this;
@@ -1327,7 +1327,7 @@ public class ListPaymentResponse {
      * The remaining amount that can be refunded. Only available when refunds are available for this
      * payment.
      */
-    public ListPaymentResponse withAmountRemaining(AmountRemaining amountRemaining) {
+    public ListPaymentResponse withAmountRemaining(ListPaymentResponseAmountRemaining amountRemaining) {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
         this.amountRemaining = Optional.ofNullable(amountRemaining);
         return this;
@@ -1338,7 +1338,7 @@ public class ListPaymentResponse {
      * The remaining amount that can be refunded. Only available when refunds are available for this
      * payment.
      */
-    public ListPaymentResponse withAmountRemaining(Optional<? extends AmountRemaining> amountRemaining) {
+    public ListPaymentResponse withAmountRemaining(Optional<? extends ListPaymentResponseAmountRemaining> amountRemaining) {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
         this.amountRemaining = amountRemaining;
         return this;
@@ -1348,7 +1348,7 @@ public class ListPaymentResponse {
      * The total amount that is already captured for this payment. Only available when this payment
      * supports captures.
      */
-    public ListPaymentResponse withAmountCaptured(AmountCaptured amountCaptured) {
+    public ListPaymentResponse withAmountCaptured(ListPaymentResponseAmountCaptured amountCaptured) {
         Utils.checkNotNull(amountCaptured, "amountCaptured");
         this.amountCaptured = Optional.ofNullable(amountCaptured);
         return this;
@@ -1359,7 +1359,7 @@ public class ListPaymentResponse {
      * The total amount that is already captured for this payment. Only available when this payment
      * supports captures.
      */
-    public ListPaymentResponse withAmountCaptured(Optional<? extends AmountCaptured> amountCaptured) {
+    public ListPaymentResponse withAmountCaptured(Optional<? extends ListPaymentResponseAmountCaptured> amountCaptured) {
         Utils.checkNotNull(amountCaptured, "amountCaptured");
         this.amountCaptured = amountCaptured;
         return this;
@@ -1370,7 +1370,7 @@ public class ListPaymentResponse {
      * amount is not
      * zero.
      */
-    public ListPaymentResponse withAmountChargedBack(AmountChargedBack amountChargedBack) {
+    public ListPaymentResponse withAmountChargedBack(ListPaymentResponseAmountChargedBack amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
         this.amountChargedBack = Optional.ofNullable(amountChargedBack);
         return this;
@@ -1382,7 +1382,7 @@ public class ListPaymentResponse {
      * amount is not
      * zero.
      */
-    public ListPaymentResponse withAmountChargedBack(Optional<? extends AmountChargedBack> amountChargedBack) {
+    public ListPaymentResponse withAmountChargedBack(Optional<? extends ListPaymentResponseAmountChargedBack> amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
         this.amountChargedBack = amountChargedBack;
         return this;
@@ -1402,7 +1402,7 @@ public class ListPaymentResponse {
      * using the List balance transactions endpoint instead to get more accurate settlement amounts for
      * your payments.
      */
-    public ListPaymentResponse withSettlementAmount(SettlementAmount settlementAmount) {
+    public ListPaymentResponse withSettlementAmount(ListPaymentResponseSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = Optional.ofNullable(settlementAmount);
         return this;
@@ -1423,7 +1423,7 @@ public class ListPaymentResponse {
      * using the List balance transactions endpoint instead to get more accurate settlement amounts for
      * your payments.
      */
-    public ListPaymentResponse withSettlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
+    public ListPaymentResponse withSettlementAmount(Optional<? extends ListPaymentResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
         return this;
@@ -1542,7 +1542,7 @@ public class ListPaymentResponse {
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
-    public ListPaymentResponse withLines(List<Lines> lines) {
+    public ListPaymentResponse withLines(List<ListPaymentResponseLines> lines) {
         Utils.checkNotNull(lines, "lines");
         this.lines = JsonNullable.of(lines);
         return this;
@@ -1557,7 +1557,7 @@ public class ListPaymentResponse {
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
      */
-    public ListPaymentResponse withLines(JsonNullable<? extends List<Lines>> lines) {
+    public ListPaymentResponse withLines(JsonNullable<? extends List<ListPaymentResponseLines>> lines) {
         Utils.checkNotNull(lines, "lines");
         this.lines = lines;
         return this;
@@ -1866,7 +1866,7 @@ public class ListPaymentResponse {
      * merchant, refer to the
      * `routing` parameter.
      */
-    public ListPaymentResponse withApplicationFee(ApplicationFee applicationFee) {
+    public ListPaymentResponse withApplicationFee(ListPaymentResponseApplicationFee applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
         this.applicationFee = JsonNullable.of(applicationFee);
         return this;
@@ -1887,7 +1887,7 @@ public class ListPaymentResponse {
      * merchant, refer to the
      * `routing` parameter.
      */
-    public ListPaymentResponse withApplicationFee(JsonNullable<? extends ApplicationFee> applicationFee) {
+    public ListPaymentResponse withApplicationFee(JsonNullable<? extends ListPaymentResponseApplicationFee> applicationFee) {
         Utils.checkNotNull(applicationFee, "applicationFee");
         this.applicationFee = applicationFee;
         return this;
@@ -2134,7 +2134,7 @@ public class ListPaymentResponse {
      * to the
      * [method-specific parameters](extra-payment-parameters) guide.
      */
-    public ListPaymentResponse withDetails(Details details) {
+    public ListPaymentResponse withDetails(ListPaymentResponseDetails details) {
         Utils.checkNotNull(details, "details");
         this.details = JsonNullable.of(details);
         return this;
@@ -2147,7 +2147,7 @@ public class ListPaymentResponse {
      * to the
      * [method-specific parameters](extra-payment-parameters) guide.
      */
-    public ListPaymentResponse withDetails(JsonNullable<? extends Details> details) {
+    public ListPaymentResponse withDetails(JsonNullable<? extends ListPaymentResponseDetails> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
@@ -2444,15 +2444,15 @@ public class ListPaymentResponse {
 
         private Amount amount;
 
-        private Optional<? extends AmountRefunded> amountRefunded = Optional.empty();
+        private Optional<? extends ListPaymentResponseAmountRefunded> amountRefunded = Optional.empty();
 
-        private Optional<? extends AmountRemaining> amountRemaining = Optional.empty();
+        private Optional<? extends ListPaymentResponseAmountRemaining> amountRemaining = Optional.empty();
 
-        private Optional<? extends AmountCaptured> amountCaptured = Optional.empty();
+        private Optional<? extends ListPaymentResponseAmountCaptured> amountCaptured = Optional.empty();
 
-        private Optional<? extends AmountChargedBack> amountChargedBack = Optional.empty();
+        private Optional<? extends ListPaymentResponseAmountChargedBack> amountChargedBack = Optional.empty();
 
-        private Optional<? extends SettlementAmount> settlementAmount = Optional.empty();
+        private Optional<? extends ListPaymentResponseSettlementAmount> settlementAmount = Optional.empty();
 
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
 
@@ -2460,7 +2460,7 @@ public class ListPaymentResponse {
 
         private JsonNullable<String> webhookUrl = JsonNullable.undefined();
 
-        private JsonNullable<? extends List<Lines>> lines = JsonNullable.undefined();
+        private JsonNullable<? extends List<ListPaymentResponseLines>> lines = JsonNullable.undefined();
 
         private Optional<? extends ListPaymentResponseBillingAddress> billingAddress = Optional.empty();
 
@@ -2482,7 +2482,7 @@ public class ListPaymentResponse {
 
         private JsonNullable<String> captureBefore = JsonNullable.undefined();
 
-        private JsonNullable<? extends ApplicationFee> applicationFee = JsonNullable.undefined();
+        private JsonNullable<? extends ListPaymentResponseApplicationFee> applicationFee = JsonNullable.undefined();
 
         private JsonNullable<? extends List<EntityPaymentRouteResponse>> routing = JsonNullable.undefined();
 
@@ -2506,7 +2506,7 @@ public class ListPaymentResponse {
 
         private JsonNullable<Boolean> isCancelable = JsonNullable.undefined();
 
-        private JsonNullable<? extends Details> details = JsonNullable.undefined();
+        private JsonNullable<? extends ListPaymentResponseDetails> details = JsonNullable.undefined();
 
         private String createdAt;
 
@@ -2602,7 +2602,7 @@ public class ListPaymentResponse {
          * reimbursement of the
          * costs for a return shipment to the customer.
          */
-        public Builder amountRefunded(AmountRefunded amountRefunded) {
+        public Builder amountRefunded(ListPaymentResponseAmountRefunded amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = Optional.ofNullable(amountRefunded);
             return this;
@@ -2615,7 +2615,7 @@ public class ListPaymentResponse {
          * reimbursement of the
          * costs for a return shipment to the customer.
          */
-        public Builder amountRefunded(Optional<? extends AmountRefunded> amountRefunded) {
+        public Builder amountRefunded(Optional<? extends ListPaymentResponseAmountRefunded> amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = amountRefunded;
             return this;
@@ -2626,7 +2626,7 @@ public class ListPaymentResponse {
          * The remaining amount that can be refunded. Only available when refunds are available for this
          * payment.
          */
-        public Builder amountRemaining(AmountRemaining amountRemaining) {
+        public Builder amountRemaining(ListPaymentResponseAmountRemaining amountRemaining) {
             Utils.checkNotNull(amountRemaining, "amountRemaining");
             this.amountRemaining = Optional.ofNullable(amountRemaining);
             return this;
@@ -2636,7 +2636,7 @@ public class ListPaymentResponse {
          * The remaining amount that can be refunded. Only available when refunds are available for this
          * payment.
          */
-        public Builder amountRemaining(Optional<? extends AmountRemaining> amountRemaining) {
+        public Builder amountRemaining(Optional<? extends ListPaymentResponseAmountRemaining> amountRemaining) {
             Utils.checkNotNull(amountRemaining, "amountRemaining");
             this.amountRemaining = amountRemaining;
             return this;
@@ -2647,7 +2647,7 @@ public class ListPaymentResponse {
          * The total amount that is already captured for this payment. Only available when this payment
          * supports captures.
          */
-        public Builder amountCaptured(AmountCaptured amountCaptured) {
+        public Builder amountCaptured(ListPaymentResponseAmountCaptured amountCaptured) {
             Utils.checkNotNull(amountCaptured, "amountCaptured");
             this.amountCaptured = Optional.ofNullable(amountCaptured);
             return this;
@@ -2657,7 +2657,7 @@ public class ListPaymentResponse {
          * The total amount that is already captured for this payment. Only available when this payment
          * supports captures.
          */
-        public Builder amountCaptured(Optional<? extends AmountCaptured> amountCaptured) {
+        public Builder amountCaptured(Optional<? extends ListPaymentResponseAmountCaptured> amountCaptured) {
             Utils.checkNotNull(amountCaptured, "amountCaptured");
             this.amountCaptured = amountCaptured;
             return this;
@@ -2669,7 +2669,7 @@ public class ListPaymentResponse {
          * amount is not
          * zero.
          */
-        public Builder amountChargedBack(AmountChargedBack amountChargedBack) {
+        public Builder amountChargedBack(ListPaymentResponseAmountChargedBack amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
             this.amountChargedBack = Optional.ofNullable(amountChargedBack);
             return this;
@@ -2680,7 +2680,7 @@ public class ListPaymentResponse {
          * amount is not
          * zero.
          */
-        public Builder amountChargedBack(Optional<? extends AmountChargedBack> amountChargedBack) {
+        public Builder amountChargedBack(Optional<? extends ListPaymentResponseAmountChargedBack> amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
             this.amountChargedBack = amountChargedBack;
             return this;
@@ -2701,7 +2701,7 @@ public class ListPaymentResponse {
          * using the List balance transactions endpoint instead to get more accurate settlement amounts for
          * your payments.
          */
-        public Builder settlementAmount(SettlementAmount settlementAmount) {
+        public Builder settlementAmount(ListPaymentResponseSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = Optional.ofNullable(settlementAmount);
             return this;
@@ -2721,7 +2721,7 @@ public class ListPaymentResponse {
          * using the List balance transactions endpoint instead to get more accurate settlement amounts for
          * your payments.
          */
-        public Builder settlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
+        public Builder settlementAmount(Optional<? extends ListPaymentResponseSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;
             return this;
@@ -2844,7 +2844,7 @@ public class ListPaymentResponse {
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
-        public Builder lines(List<Lines> lines) {
+        public Builder lines(List<ListPaymentResponseLines> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = JsonNullable.of(lines);
             return this;
@@ -2859,7 +2859,7 @@ public class ListPaymentResponse {
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
          */
-        public Builder lines(JsonNullable<? extends List<Lines>> lines) {
+        public Builder lines(JsonNullable<? extends List<ListPaymentResponseLines>> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = lines;
             return this;
@@ -3177,7 +3177,7 @@ public class ListPaymentResponse {
          * merchant, refer to the
          * `routing` parameter.
          */
-        public Builder applicationFee(ApplicationFee applicationFee) {
+        public Builder applicationFee(ListPaymentResponseApplicationFee applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
             this.applicationFee = JsonNullable.of(applicationFee);
             return this;
@@ -3198,7 +3198,7 @@ public class ListPaymentResponse {
          * merchant, refer to the
          * `routing` parameter.
          */
-        public Builder applicationFee(JsonNullable<? extends ApplicationFee> applicationFee) {
+        public Builder applicationFee(JsonNullable<? extends ListPaymentResponseApplicationFee> applicationFee) {
             Utils.checkNotNull(applicationFee, "applicationFee");
             this.applicationFee = applicationFee;
             return this;
@@ -3456,7 +3456,7 @@ public class ListPaymentResponse {
          * to the
          * [method-specific parameters](extra-payment-parameters) guide.
          */
-        public Builder details(Details details) {
+        public Builder details(ListPaymentResponseDetails details) {
             Utils.checkNotNull(details, "details");
             this.details = JsonNullable.of(details);
             return this;
@@ -3469,7 +3469,7 @@ public class ListPaymentResponse {
          * to the
          * [method-specific parameters](extra-payment-parameters) guide.
          */
-        public Builder details(JsonNullable<? extends Details> details) {
+        public Builder details(JsonNullable<? extends ListPaymentResponseDetails> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;

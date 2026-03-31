@@ -294,7 +294,6 @@ public class Application {
 
         Client sdk = Client.builder()
                 .profileId("pfl_5B8cwPMGnU")
-                .testmode(false)
                 .security(Security.builder()
                     .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
@@ -338,7 +337,6 @@ public class Application {
 
         Client sdk = Client.builder()
                 .profileId("pfl_5B8cwPMGnU")
-                .testmode(false)
                 .security(Security.builder()
                     .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
@@ -382,7 +380,6 @@ public class Application {
 
         Client sdk = Client.builder()
                 .profileId("pfl_5B8cwPMGnU")
-                .testmode(false)
                 .security(Security.builder()
                     .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
@@ -448,7 +445,6 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .testmode(false)
                 .security(Security.builder()
                     .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
@@ -490,7 +486,6 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .testmode(false)
                 .security(Security.builder()
                     .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())
@@ -556,7 +551,6 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .testmode(false)
                 .security(Security.builder()
                     .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
                     .build())

@@ -82,8 +82,6 @@ public class ListSettlementPayments {
             this.operationGlobals = new Globals();
             this.sdkConfiguration.globals.getParam("queryParam", "profileId")
                 .ifPresent(param -> operationGlobals.putParam("queryParam", "profileId", param));
-            this.sdkConfiguration.globals.getParam("queryParam", "testmode")
-                .ifPresent(param -> operationGlobals.putParam("queryParam", "testmode", param));
         }
 
         Optional<SecuritySource> securitySource() {

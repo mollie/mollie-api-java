@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -25,8 +24,8 @@ public class ListSettlementRefundsRequest {
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
-     * to paginate the
-     * result set.
+     * to paginate
+     * the result set.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -46,18 +45,6 @@ public class ListSettlementRefundsRequest {
     private JsonNullable<String> embed;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private Optional<Boolean> testmode;
-
-    /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
@@ -69,26 +56,23 @@ public class ListSettlementRefundsRequest {
             Optional<String> from,
             JsonNullable<Long> limit,
             JsonNullable<String> embed,
-            Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(settlementId, "settlementId");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(embed, "embed");
-        Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.settlementId = settlementId;
         this.from = from;
         this.limit = limit;
         this.embed = embed;
-        this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
     }
     
     public ListSettlementRefundsRequest(
             String settlementId) {
         this(settlementId, Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -101,8 +85,8 @@ public class ListSettlementRefundsRequest {
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
-     * to paginate the
-     * result set.
+     * to paginate
+     * the result set.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -125,20 +109,6 @@ public class ListSettlementRefundsRequest {
     @JsonIgnore
     public JsonNullable<String> embed() {
         return embed;
-    }
-
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    @JsonIgnore
-    public Optional<Boolean> testmode() {
-        return testmode;
     }
 
     /**
@@ -165,8 +135,8 @@ public class ListSettlementRefundsRequest {
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
-     * to paginate the
-     * result set.
+     * to paginate
+     * the result set.
      */
     public ListSettlementRefundsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -177,8 +147,8 @@ public class ListSettlementRefundsRequest {
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
-     * to paginate the
-     * result set.
+     * to paginate
+     * the result set.
      */
     public ListSettlementRefundsRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -227,37 +197,6 @@ public class ListSettlementRefundsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public ListSettlementRefundsRequest withTestmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.ofNullable(testmode);
-        return this;
-    }
-
-
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public ListSettlementRefundsRequest withTestmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-
-    /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      */
     public ListSettlementRefundsRequest withIdempotencyKey(String idempotencyKey) {
@@ -290,7 +229,6 @@ public class ListSettlementRefundsRequest {
             Utils.enhancedDeepEquals(this.from, other.from) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.embed, other.embed) &&
-            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
@@ -298,7 +236,7 @@ public class ListSettlementRefundsRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             settlementId, from, limit,
-            embed, testmode, idempotencyKey);
+            embed, idempotencyKey);
     }
     
     @Override
@@ -308,7 +246,6 @@ public class ListSettlementRefundsRequest {
                 "from", from,
                 "limit", limit,
                 "embed", embed,
-                "testmode", testmode,
                 "idempotencyKey", idempotencyKey);
     }
 
@@ -322,8 +259,6 @@ public class ListSettlementRefundsRequest {
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
         private JsonNullable<String> embed = JsonNullable.undefined();
-
-        private Optional<Boolean> testmode = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -344,8 +279,8 @@ public class ListSettlementRefundsRequest {
 
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
-         * to paginate the
-         * result set.
+         * to paginate
+         * the result set.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -355,8 +290,8 @@ public class ListSettlementRefundsRequest {
 
         /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
-         * to paginate the
-         * result set.
+         * to paginate
+         * the result set.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -408,37 +343,6 @@ public class ListSettlementRefundsRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the
-         * `testmode` query
-         * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-         * enable test mode by
-         * setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(boolean testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = Optional.ofNullable(testmode);
-            return this;
-        }
-
-        /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the
-         * `testmode` query
-         * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-         * enable test mode by
-         * setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(Optional<Boolean> testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = testmode;
-            return this;
-        }
-
-
-        /**
          * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
          */
         public Builder idempotencyKey(String idempotencyKey) {
@@ -460,7 +364,7 @@ public class ListSettlementRefundsRequest {
 
             return new ListSettlementRefundsRequest(
                 settlementId, from, limit,
-                embed, testmode, idempotencyKey);
+                embed, idempotencyKey);
         }
 
     }
