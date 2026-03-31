@@ -19,11 +19,12 @@ public final class MollieAuthUtils {
         }
 
         Security securityObj = (Security) security;
-        String oAuth = securityObj.oAuth().orElse(null);
         String apiKey = securityObj.apiKey().orElse(null);
+        String organizationAccessToken = securityObj.organizationAccessToken().orElse(null);
+        String oAuth = securityObj.oAuth().orElse(null);
 
-        return (apiKey != null && apiKey.startsWith("access_")) ||
-               (oAuth != null && oAuth.startsWith("access_"));
+        String token = apiKey != null ? apiKey : organizationAccessToken != null ? organizationAccessToken : oAuth;
+        return token != null && token.startsWith("access_");
     }
 
     public static boolean hasGlobalFields(SDKConfiguration sdkConfiguration) {
