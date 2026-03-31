@@ -110,6 +110,12 @@ public class Client {
     private final SalesInvoices salesInvoices;
 
 
+    private final Transfers transfers;
+
+
+    private final VerifyPayees verifyPayees;
+
+
     public Balances balances() {
         return balances;
     }
@@ -242,6 +248,16 @@ public class Client {
 
     public SalesInvoices salesInvoices() {
         return salesInvoices;
+    }
+
+
+    public Transfers transfers() {
+        return transfers;
+    }
+
+
+    public VerifyPayees verifyPayees() {
+        return verifyPayees;
     }
     private final AsyncClient asyncSDK;
 
@@ -452,6 +468,8 @@ public class Client {
         this.mandates = new Mandates(sdkConfiguration);
         this.subscriptions = new Subscriptions(sdkConfiguration);
         this.salesInvoices = new SalesInvoices(sdkConfiguration);
+        this.transfers = new Transfers(sdkConfiguration);
+        this.verifyPayees = new VerifyPayees(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(
                 new SdkInitData(
                         sdkConfiguration.resolvedServerUrl(), 

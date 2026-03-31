@@ -12,6 +12,7 @@ class SecurityMetadata {
     String subtype;
     boolean option;
     boolean scheme;
+    boolean composite;
     String name;
 
     private SecurityMetadata() {

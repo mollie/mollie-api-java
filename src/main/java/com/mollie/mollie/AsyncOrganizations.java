@@ -57,6 +57,9 @@ public class AsyncOrganizations {
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The async call builder
      */
     public GetOrganizationRequestBuilder get() {
@@ -73,6 +76,9 @@ public class AsyncOrganizations {
      * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param organizationId Provide the ID of the related organization.
      * @return {@code CompletableFuture<GetOrganizationResponse>} - The async response
@@ -93,6 +99,9 @@ public class AsyncOrganizations {
      * for OAuth apps. See also [Get current organization](get-current-organization).
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param organizationId Provide the ID of the related organization.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -134,6 +143,9 @@ public class AsyncOrganizations {
      * organization](get-organization) endpoint
      * documentation.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The async call builder
      */
     public GetCurrentOrganizationRequestBuilder getCurrent() {
@@ -151,6 +163,9 @@ public class AsyncOrganizations {
      * organization](get-organization) endpoint
      * documentation.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return {@code CompletableFuture<GetCurrentOrganizationResponse>} - The async response
      */
     public CompletableFuture<GetCurrentOrganizationResponse> getCurrentDirect() {
@@ -167,6 +182,9 @@ public class AsyncOrganizations {
      * <p>For a complete reference of the organization object, refer to the [Get
      * organization](get-organization) endpoint
      * documentation.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
@@ -194,6 +212,9 @@ public class AsyncOrganizations {
      * so-called *partner
      * accounts*.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The async call builder
      */
     public GetPartnerStatusRequestBuilder getPartner() {
@@ -207,6 +228,9 @@ public class AsyncOrganizations {
      * so-called *partner
      * accounts*.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return {@code CompletableFuture<GetPartnerStatusResponse>} - The async response
      */
     public CompletableFuture<GetPartnerStatusResponse> getPartnerDirect() {
@@ -219,6 +243,9 @@ public class AsyncOrganizations {
      * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for
      * so-called *partner
      * accounts*.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options

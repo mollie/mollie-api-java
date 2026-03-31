@@ -62,6 +62,9 @@ public class AsyncCapabilities {
      * This means that if at least one of the clients's profiles can receive payments,
      * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The async call builder
      */
     public ListCapabilitiesRequestBuilder list() {
@@ -93,6 +96,9 @@ public class AsyncCapabilities {
      * This means that if at least one of the clients's profiles can receive payments,
      * the payments capability is enabled, communicating that the organization can indeed receive payments.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return {@code CompletableFuture<ListCapabilitiesResponse>} - The async response
      */
     public CompletableFuture<ListCapabilitiesResponse> listDirect() {
@@ -123,6 +129,9 @@ public class AsyncCapabilities {
      * organization level.
      * This means that if at least one of the clients's profiles can receive payments,
      * the payments capability is enabled, communicating that the organization can indeed receive payments.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
