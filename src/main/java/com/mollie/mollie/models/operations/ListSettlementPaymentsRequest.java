@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.models.components.Sorting;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -60,18 +59,6 @@ public class ListSettlementPaymentsRequest {
     private Optional<String> profileId;
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private Optional<Boolean> testmode;
-
-    /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
@@ -84,29 +71,25 @@ public class ListSettlementPaymentsRequest {
             JsonNullable<Long> limit,
             Optional<? extends Sorting> sort,
             Optional<String> profileId,
-            Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(settlementId, "settlementId");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(profileId, "profileId");
-        Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.settlementId = settlementId;
         this.from = from;
         this.limit = limit;
         this.sort = sort;
         this.profileId = profileId;
-        this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
     }
     
     public ListSettlementPaymentsRequest(
             String settlementId) {
         this(settlementId, Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -158,20 +141,6 @@ public class ListSettlementPaymentsRequest {
     @JsonIgnore
     public Optional<String> profileId() {
         return profileId;
-    }
-
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    @JsonIgnore
-    public Optional<Boolean> testmode() {
-        return testmode;
     }
 
     /**
@@ -292,37 +261,6 @@ public class ListSettlementPaymentsRequest {
     }
 
     /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public ListSettlementPaymentsRequest withTestmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.ofNullable(testmode);
-        return this;
-    }
-
-
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public ListSettlementPaymentsRequest withTestmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-
-    /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      */
     public ListSettlementPaymentsRequest withIdempotencyKey(String idempotencyKey) {
@@ -356,7 +294,6 @@ public class ListSettlementPaymentsRequest {
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.sort, other.sort) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
-            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
     
@@ -364,8 +301,7 @@ public class ListSettlementPaymentsRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             settlementId, from, limit,
-            sort, profileId, testmode,
-            idempotencyKey);
+            sort, profileId, idempotencyKey);
     }
     
     @Override
@@ -376,7 +312,6 @@ public class ListSettlementPaymentsRequest {
                 "limit", limit,
                 "sort", sort,
                 "profileId", profileId,
-                "testmode", testmode,
                 "idempotencyKey", idempotencyKey);
     }
 
@@ -392,8 +327,6 @@ public class ListSettlementPaymentsRequest {
         private Optional<? extends Sorting> sort = Optional.empty();
 
         private Optional<String> profileId = Optional.empty();
-
-        private Optional<Boolean> testmode = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -509,37 +442,6 @@ public class ListSettlementPaymentsRequest {
 
 
         /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the
-         * `testmode` query
-         * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-         * enable test mode by
-         * setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(boolean testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = Optional.ofNullable(testmode);
-            return this;
-        }
-
-        /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the
-         * `testmode` query
-         * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-         * enable test mode by
-         * setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(Optional<Boolean> testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = testmode;
-            return this;
-        }
-
-
-        /**
          * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
          */
         public Builder idempotencyKey(String idempotencyKey) {
@@ -561,8 +463,7 @@ public class ListSettlementPaymentsRequest {
 
             return new ListSettlementPaymentsRequest(
                 settlementId, from, limit,
-                sort, profileId, testmode,
-                idempotencyKey);
+                sort, profileId, idempotencyKey);
         }
 
     }

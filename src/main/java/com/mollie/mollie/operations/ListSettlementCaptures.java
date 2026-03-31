@@ -19,7 +19,6 @@ import com.mollie.mollie.models.operations.ListSettlementCapturesResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
-import com.mollie.mollie.utils.Globals;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Headers;
@@ -55,7 +54,6 @@ public class ListSettlementCaptures {
         final RetryConfig retryConfig;
         final HTTPClient client;
         final Headers _headers;
-        final Globals operationGlobals;
 
         public Base(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
@@ -79,9 +77,6 @@ public class ListSettlementCaptures {
                                     .build())
                             .build());
             this.client = this.sdkConfiguration.client();
-            this.operationGlobals = new Globals();
-            this.sdkConfiguration.globals.getParam("queryParam", "testmode")
-                .ifPresent(param -> operationGlobals.putParam("queryParam", "testmode", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -123,7 +118,7 @@ public class ListSettlementCaptures {
                     klass,
                     this.baseUrl,
                     "/settlements/{settlementId}/captures",
-                    request, this.operationGlobals);
+                    request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
@@ -132,8 +127,8 @@ public class ListSettlementCaptures {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.operationGlobals));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
+                    null));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "organizationAccessToken", "oAuth");
 
             return req.build();
@@ -154,8 +149,8 @@ public class ListSettlementCaptures {
             req.addQueryParams(Utils.getQueryParams(
                     klass,
                     request,
-                    this.operationGlobals));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
+                    null));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "organizationAccessToken", "oAuth");
 
             return req.build();
