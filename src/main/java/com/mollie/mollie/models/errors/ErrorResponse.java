@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
-import jakarta.annotation.Nonnull;
 import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Deprecated;

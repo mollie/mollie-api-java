@@ -127,7 +127,7 @@ public class ListProfiles {
                     request,
                     null));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "organizationAccessToken", "oAuth");
 
             return req.build();
         }
@@ -149,7 +149,7 @@ public class ListProfiles {
                     request,
                     null));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "organizationAccessToken", "oAuth");
 
             return req.build();
         }

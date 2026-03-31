@@ -49,6 +49,9 @@ public class AsyncPermissions {
      * 
      * <p>The results are **not** paginated.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The async call builder
      */
     public ListPermissionsRequestBuilder list() {
@@ -62,6 +65,9 @@ public class AsyncPermissions {
      * 
      * <p>The results are **not** paginated.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return {@code CompletableFuture<ListPermissionsResponse>} - The async response
      */
     public CompletableFuture<ListPermissionsResponse> listDirect() {
@@ -74,6 +80,9 @@ public class AsyncPermissions {
      * <p>Retrieve a list of all permissions available to the current access token.
      * 
      * <p>The results are **not** paginated.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
@@ -100,6 +109,9 @@ public class AsyncPermissions {
      * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access
      * token.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The async call builder
      */
     public GetPermissionRequestBuilder get() {
@@ -111,6 +123,9 @@ public class AsyncPermissions {
      * 
      * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access
      * token.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param permissionId Provide the ID of the related permission.
      * @return {@code CompletableFuture<GetPermissionResponse>} - The async response
@@ -126,6 +141,9 @@ public class AsyncPermissions {
      * 
      * <p>Retrieve a single permission by its ID, and see if the permission is granted to the current access
      * token.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param permissionId Provide the ID of the related permission.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query

@@ -69,6 +69,9 @@ public class Profiles {
      * Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The call builder
      */
     public CreateProfileRequestBuilder create() {
@@ -83,6 +86,9 @@ public class Profiles {
      * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard.
      * Alternatively, you
      * can use this endpoint to automate profile creation.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param profileRequest 
      * @return The response from the API call
@@ -100,6 +106,9 @@ public class Profiles {
      * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard.
      * Alternatively, you
      * can use this endpoint to automate profile creation.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param profileRequest 
@@ -128,6 +137,9 @@ public class Profiles {
      * 
      * <p>The results are paginated.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The call builder
      */
     public ListProfilesRequestBuilder list() {
@@ -140,6 +152,9 @@ public class Profiles {
      * <p>Retrieve a list of all of your profiles.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -155,6 +170,9 @@ public class Profiles {
      * <p>Retrieve a list of all of your profiles.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
@@ -184,6 +202,9 @@ public class Profiles {
      * 
      * <p>Retrieve a single profile by its ID.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The call builder
      */
     public GetProfileRequestBuilder get() {
@@ -194,6 +215,9 @@ public class Profiles {
      * Get profile
      * 
      * <p>Retrieve a single profile by its ID.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
      * @return The response from the API call
@@ -208,6 +232,9 @@ public class Profiles {
      * Get profile
      * 
      * <p>Retrieve a single profile by its ID.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -244,6 +271,9 @@ public class Profiles {
      * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The call builder
      */
     public UpdateProfileRequestBuilder update() {
@@ -258,6 +288,9 @@ public class Profiles {
      * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie
      * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
      * @param requestBody 
@@ -277,6 +310,9 @@ public class Profiles {
      * <p>Profiles are required for payment processing. Normally they are created and updated via the Mollie
      * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -306,6 +342,9 @@ public class Profiles {
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
      * payments.
      * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
+     * 
      * @return The call builder
      */
     public DeleteProfileRequestBuilder delete() {
@@ -317,6 +356,9 @@ public class Profiles {
      * 
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
      * payments.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
      * @return The response from the API call
@@ -331,6 +373,9 @@ public class Profiles {
      * 
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
      * payments.
+     * 
+     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -361,6 +406,9 @@ public class Profiles {
      * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
      * documentation.
      * 
+     * <p>This operation requires Security#apiKey to be set via the {@code security} builder method when
+     * initializing the SDK.
+     * 
      * @return The call builder
      */
     public GetCurrentProfileRequestBuilder getCurrent() {
@@ -375,6 +423,9 @@ public class Profiles {
      * 
      * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
      * documentation.
+     * 
+     * <p>This operation requires Security#apiKey to be set via the {@code security} builder method when
+     * initializing the SDK.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -391,6 +442,9 @@ public class Profiles {
      * 
      * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
      * documentation.
+     * 
+     * <p>This operation requires Security#apiKey to be set via the {@code security} builder method when
+     * initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options

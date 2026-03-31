@@ -557,6 +557,28 @@ public class MollieAutoConfig {
     public SalesInvoices salesInvoices(Client client) {
         return client.salesInvoices();
     }
+    /**
+     * Creates a Transfers sub-SDK bean if none exists.
+     *
+     * @param client the main SDK instance
+     * @return A configured Transfers instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Transfers transfers(Client client) {
+        return client.transfers();
+    }
+    /**
+     * Creates a VerifyPayees sub-SDK bean if none exists.
+     *
+     * @param client the main SDK instance
+     * @return A configured VerifyPayees instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public VerifyPayees verifyPayees(Client client) {
+        return client.verifyPayees();
+    }
 
     /**
      * Creates the async SDK bean if none exists.
@@ -866,5 +888,27 @@ public class MollieAutoConfig {
     @ConditionalOnMissingBean
     public AsyncSalesInvoices asyncSalesInvoices(AsyncClient asyncClient) {
         return asyncClient.salesInvoices();
+    }
+    /**
+     * Creates an AsyncTransfers sub-SDK bean if none exists.
+     *
+     * @param asyncClient the async SDK instance
+     * @return A configured AsyncTransfers instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncTransfers asyncTransfers(AsyncClient asyncClient) {
+        return asyncClient.transfers();
+    }
+    /**
+     * Creates an AsyncVerifyPayees sub-SDK bean if none exists.
+     *
+     * @param asyncClient the async SDK instance
+     * @return A configured AsyncVerifyPayees instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncVerifyPayees asyncVerifyPayees(AsyncClient asyncClient) {
+        return asyncClient.verifyPayees();
     }
 }
