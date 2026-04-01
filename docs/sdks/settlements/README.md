@@ -403,6 +403,49 @@ public class Application {
     }
 }
 ```
+### Example Usage: list-settlement-payments-200-1
+
+<!-- UsageSnippet language="java" operationID="list-settlement-payments" method="get" path="/settlements/{settlementId}/payments" example="list-settlement-payments-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsRequest;
+import com.mollie.mollie.models.operations.ListSettlementPaymentsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .profileId("pfl_5B8cwPMGnU")
+                .security(Security.builder()
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .build())
+            .build();
+
+        ListSettlementPaymentsRequest req = ListSettlementPaymentsRequest.builder()
+                .settlementId("stl_5B8cwPMGnU")
+                .from("tr_5B8cwPMGnU")
+                .limit(50L)
+                .sort(Sorting.DESC)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.settlements().listPayments()
+                .callAsStream()
+                .forEach((ListSettlementPaymentsResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
 
 ### Parameters
 
@@ -509,6 +552,46 @@ public class Application {
     }
 }
 ```
+### Example Usage: list-settlement-captures-200-1
+
+<!-- UsageSnippet language="java" operationID="list-settlement-captures" method="get" path="/settlements/{settlementId}/captures" example="list-settlement-captures-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementCapturesRequest;
+import com.mollie.mollie.models.operations.ListSettlementCapturesResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .build())
+            .build();
+
+        ListSettlementCapturesRequest req = ListSettlementCapturesRequest.builder()
+                .settlementId("stl_5B8cwPMGnU")
+                .from("cpt_vytxeTZskVKR7C7WgdSP3d")
+                .limit(50L)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.settlements().listCaptures()
+                .callAsStream()
+                .forEach((ListSettlementCapturesResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
 
 ### Parameters
 
@@ -533,7 +616,7 @@ Retrieve all refunds 'deducted' from the given settlement.
 
 The response is in the same format as the response of the [List refunds endpoint](list-refunds).
 
-### Example Usage
+### Example Usage: list-refunds-200-1
 
 <!-- UsageSnippet language="java" operationID="list-settlement-refunds" method="get" path="/settlements/{settlementId}/refunds" example="list-refunds-200-1" -->
 ```java
@@ -561,6 +644,46 @@ public class Application {
                 .from("re_5B8cwPMGnU")
                 .limit(50L)
                 .embed("payment")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.settlements().listRefunds()
+                .callAsStream()
+                .forEach((ListSettlementRefundsResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+### Example Usage: list-settlement-refunds-200-1
+
+<!-- UsageSnippet language="java" operationID="list-settlement-refunds" method="get" path="/settlements/{settlementId}/refunds" example="list-settlement-refunds-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListSettlementRefundsRequest;
+import com.mollie.mollie.models.operations.ListSettlementRefundsResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .build())
+            .build();
+
+        ListSettlementRefundsRequest req = ListSettlementRefundsRequest.builder()
+                .settlementId("stl_5B8cwPMGnU")
+                .from("re_5B8cwPMGnU")
+                .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 
