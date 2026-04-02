@@ -63,6 +63,8 @@ public class AsyncClient {
 
     private final AsyncSalesInvoices salesInvoices;
 
+    private final AsyncAccounts accounts;
+
     private final AsyncTransfers transfers;
 
     private final AsyncVerifyPayees verifyPayees;
@@ -175,6 +177,10 @@ public class AsyncClient {
         return salesInvoices;
     }
 
+    public AsyncAccounts accounts() {
+        return accounts;
+    }
+
     public AsyncTransfers transfers() {
         return transfers;
     }
@@ -216,6 +222,7 @@ public class AsyncClient {
         this.mandates = new AsyncMandates(syncSDK.mandates(), sdkConfiguration);
         this.subscriptions = new AsyncSubscriptions(syncSDK.subscriptions(), sdkConfiguration);
         this.salesInvoices = new AsyncSalesInvoices(syncSDK.salesInvoices(), sdkConfiguration);
+        this.accounts = new AsyncAccounts(syncSDK.accounts(), sdkConfiguration);
         this.transfers = new AsyncTransfers(syncSDK.transfers(), sdkConfiguration);
         this.verifyPayees = new AsyncVerifyPayees(syncSDK.verifyPayees(), sdkConfiguration);
     }

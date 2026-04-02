@@ -87,8 +87,7 @@ public class TransferResponse {
     private TransferSchemeResponse transferScheme;
 
     /**
-     * Indicates whether the transfer is a credit or debit transaction from the perspective of the account
-     * holder.
+     * Indicates whether the entry is a credit or debit from the perspective of the account holder.
      */
     @JsonProperty("creditDebitIndicator")
     private CreditDebitIndicator creditDebitIndicator;
@@ -288,8 +287,7 @@ public class TransferResponse {
     }
 
     /**
-     * Indicates whether the transfer is a credit or debit transaction from the perspective of the account
-     * holder.
+     * Indicates whether the entry is a credit or debit from the perspective of the account holder.
      */
     @JsonIgnore
     public CreditDebitIndicator creditDebitIndicator() {
@@ -464,8 +462,7 @@ public class TransferResponse {
     }
 
     /**
-     * Indicates whether the transfer is a credit or debit transaction from the perspective of the account
-     * holder.
+     * Indicates whether the entry is a credit or debit from the perspective of the account holder.
      */
     public TransferResponse withCreditDebitIndicator(CreditDebitIndicator creditDebitIndicator) {
         Utils.checkNotNull(creditDebitIndicator, "creditDebitIndicator");
@@ -768,8 +765,7 @@ public class TransferResponse {
 
 
         /**
-         * Indicates whether the transfer is a credit or debit transaction from the perspective of the account
-         * holder.
+         * Indicates whether the entry is a credit or debit from the perspective of the account holder.
          */
         public Builder creditDebitIndicator(CreditDebitIndicator creditDebitIndicator) {
             Utils.checkNotNull(creditDebitIndicator, "creditDebitIndicator");
