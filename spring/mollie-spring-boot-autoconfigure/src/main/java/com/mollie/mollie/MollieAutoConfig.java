@@ -558,6 +558,17 @@ public class MollieAutoConfig {
         return client.salesInvoices();
     }
     /**
+     * Creates a Accounts sub-SDK bean if none exists.
+     *
+     * @param client the main SDK instance
+     * @return A configured Accounts instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Accounts accounts(Client client) {
+        return client.accounts();
+    }
+    /**
      * Creates a Transfers sub-SDK bean if none exists.
      *
      * @param client the main SDK instance
@@ -888,6 +899,17 @@ public class MollieAutoConfig {
     @ConditionalOnMissingBean
     public AsyncSalesInvoices asyncSalesInvoices(AsyncClient asyncClient) {
         return asyncClient.salesInvoices();
+    }
+    /**
+     * Creates an AsyncAccounts sub-SDK bean if none exists.
+     *
+     * @param asyncClient the async SDK instance
+     * @return A configured AsyncAccounts instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncAccounts asyncAccounts(AsyncClient asyncClient) {
+        return asyncClient.accounts();
     }
     /**
      * Creates an AsyncTransfers sub-SDK bean if none exists.

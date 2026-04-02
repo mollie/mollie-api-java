@@ -111,6 +111,9 @@ public class Client {
     private final SalesInvoices salesInvoices;
 
 
+    private final Accounts accounts;
+
+
     private final Transfers transfers;
 
 
@@ -249,6 +252,11 @@ public class Client {
 
     public SalesInvoices salesInvoices() {
         return salesInvoices;
+    }
+
+
+    public Accounts accounts() {
+        return accounts;
     }
 
 
@@ -469,6 +477,7 @@ public class Client {
         this.mandates = new Mandates(sdkConfiguration);
         this.subscriptions = new Subscriptions(sdkConfiguration);
         this.salesInvoices = new SalesInvoices(sdkConfiguration);
+        this.accounts = new Accounts(sdkConfiguration);
         this.transfers = new Transfers(sdkConfiguration);
         this.verifyPayees = new VerifyPayees(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(

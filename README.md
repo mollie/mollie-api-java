@@ -55,7 +55,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.3.5'
+implementation 'com.mollie:mollie:1.3.6'
 ```
 
 Maven:
@@ -63,7 +63,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.3.5</version>
+    <version>1.3.6</version>
 </dependency>
 ```
 
@@ -413,6 +413,13 @@ Client sdk = Client.builder()
 
 <details open>
 <summary>Available methods</summary>
+
+### [Accounts](docs/sdks/accounts/README.md)
+
+* [listAccounts](docs/sdks/accounts/README.md#listaccounts) - List business accounts
+* [getAccount](docs/sdks/accounts/README.md#getaccount) - Get business account
+* [list](docs/sdks/accounts/README.md#list) - List transactions
+* [get](docs/sdks/accounts/README.md#get) - Get transaction
 
 ### [BalanceTransfers](docs/sdks/balancetransfers/README.md)
 
