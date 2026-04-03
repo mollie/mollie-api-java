@@ -71,6 +71,9 @@ public class Client {
     private final Payments payments;
 
 
+    private final UnmatchedCreditTransfers unmatchedCreditTransfers;
+
+
     private final Sessions sessions;
 
 
@@ -186,6 +189,11 @@ public class Client {
 
     public Payments payments() {
         return payments;
+    }
+
+
+    public UnmatchedCreditTransfers unmatchedCreditTransfers() {
+        return unmatchedCreditTransfers;
     }
 
 
@@ -463,6 +471,7 @@ public class Client {
         this.webhookEvents = new WebhookEvents(sdkConfiguration);
         this.balanceTransfers = new BalanceTransfers(sdkConfiguration);
         this.payments = new Payments(sdkConfiguration);
+        this.unmatchedCreditTransfers = new UnmatchedCreditTransfers(sdkConfiguration);
         this.sessions = new Sessions(sdkConfiguration);
         this.methods = new Methods(sdkConfiguration);
         this.refunds = new Refunds(sdkConfiguration);

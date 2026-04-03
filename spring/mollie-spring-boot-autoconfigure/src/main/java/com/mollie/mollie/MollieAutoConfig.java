@@ -415,6 +415,17 @@ public class MollieAutoConfig {
         return client.payments();
     }
     /**
+     * Creates a UnmatchedCreditTransfers sub-SDK bean if none exists.
+     *
+     * @param client the main SDK instance
+     * @return A configured UnmatchedCreditTransfers instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public UnmatchedCreditTransfers unmatchedCreditTransfers(Client client) {
+        return client.unmatchedCreditTransfers();
+    }
+    /**
      * Creates a Sessions sub-SDK bean if none exists.
      *
      * @param client the main SDK instance
@@ -756,6 +767,17 @@ public class MollieAutoConfig {
     @ConditionalOnMissingBean
     public AsyncPayments asyncPayments(AsyncClient asyncClient) {
         return asyncClient.payments();
+    }
+    /**
+     * Creates an AsyncUnmatchedCreditTransfers sub-SDK bean if none exists.
+     *
+     * @param asyncClient the async SDK instance
+     * @return A configured AsyncUnmatchedCreditTransfers instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncUnmatchedCreditTransfers asyncUnmatchedCreditTransfers(AsyncClient asyncClient) {
+        return asyncClient.unmatchedCreditTransfers();
     }
     /**
      * Creates an AsyncSessions sub-SDK bean if none exists.

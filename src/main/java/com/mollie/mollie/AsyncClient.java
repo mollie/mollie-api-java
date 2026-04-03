@@ -37,6 +37,8 @@ public class AsyncClient {
 
     private final AsyncPayments payments;
 
+    private final AsyncUnmatchedCreditTransfers unmatchedCreditTransfers;
+
     private final AsyncSessions sessions;
 
     private final AsyncMethods methods;
@@ -125,6 +127,10 @@ public class AsyncClient {
         return payments;
     }
 
+    public AsyncUnmatchedCreditTransfers unmatchedCreditTransfers() {
+        return unmatchedCreditTransfers;
+    }
+
     public AsyncSessions sessions() {
         return sessions;
     }
@@ -209,6 +215,7 @@ public class AsyncClient {
         this.webhookEvents = new AsyncWebhookEvents(syncSDK.webhookEvents(), sdkConfiguration);
         this.balanceTransfers = new AsyncBalanceTransfers(syncSDK.balanceTransfers(), sdkConfiguration);
         this.payments = new AsyncPayments(syncSDK.payments(), sdkConfiguration);
+        this.unmatchedCreditTransfers = new AsyncUnmatchedCreditTransfers(syncSDK.unmatchedCreditTransfers(), sdkConfiguration);
         this.sessions = new AsyncSessions(syncSDK.sessions(), sdkConfiguration);
         this.methods = new AsyncMethods(syncSDK.methods(), sdkConfiguration);
         this.refunds = new AsyncRefunds(syncSDK.refunds(), sdkConfiguration);
