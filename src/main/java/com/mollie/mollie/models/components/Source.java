@@ -6,54 +6,87 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * Source
  * 
- * <p>Where the funds will be pulled back from.
+ * <p>Details about the sender of the credit transfer.
  */
 public class Source {
+    /**
+     * The format of the source account. Currently always `iban`.
+     */
+    @JsonProperty("format")
+    private String format;
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("type")
-    private Optional<? extends Type> type;
+    /**
+     * The name of the account holder who sent the unmatched credit transfer.
+     */
+    @JsonProperty("accountHolderName")
+    private String accountHolderName;
 
+    /**
+     * The IBAN of the sender's bank account.
+     */
+    @JsonProperty("iban")
+    private String iban;
 
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("organizationId")
-    private Optional<String> organizationId;
+    /**
+     * The BIC of the sender's bank.
+     */
+    @JsonProperty("bic")
+    private String bic;
 
     @JsonCreator
     public Source(
-            @JsonProperty("type") Optional<? extends Type> type,
-            @JsonProperty("organizationId") Optional<String> organizationId) {
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(organizationId, "organizationId");
-        this.type = type;
-        this.organizationId = organizationId;
-    }
-    
-    public Source() {
-        this(Optional.empty(), Optional.empty());
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Type> type() {
-        return (Optional<Type>) type;
+            @JsonProperty("format") String format,
+            @JsonProperty("accountHolderName") String accountHolderName,
+            @JsonProperty("iban") String iban,
+            @JsonProperty("bic") String bic) {
+        Utils.checkNotNull(format, "format");
+        Utils.checkNotNull(accountHolderName, "accountHolderName");
+        Utils.checkNotNull(iban, "iban");
+        Utils.checkNotNull(bic, "bic");
+        this.format = format;
+        this.accountHolderName = accountHolderName;
+        this.iban = iban;
+        this.bic = bic;
     }
 
+    /**
+     * The format of the source account. Currently always `iban`.
+     */
     @JsonIgnore
-    public Optional<String> organizationId() {
-        return organizationId;
+    public String format() {
+        return format;
+    }
+
+    /**
+     * The name of the account holder who sent the unmatched credit transfer.
+     */
+    @JsonIgnore
+    public String accountHolderName() {
+        return accountHolderName;
+    }
+
+    /**
+     * The IBAN of the sender's bank account.
+     */
+    @JsonIgnore
+    public String iban() {
+        return iban;
+    }
+
+    /**
+     * The BIC of the sender's bank.
+     */
+    @JsonIgnore
+    public String bic() {
+        return bic;
     }
 
     public static Builder builder() {
@@ -61,29 +94,39 @@ public class Source {
     }
 
 
-    public Source withType(Type type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
+    /**
+     * The format of the source account. Currently always `iban`.
+     */
+    public Source withFormat(String format) {
+        Utils.checkNotNull(format, "format");
+        this.format = format;
         return this;
     }
 
-
-    public Source withType(Optional<? extends Type> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
+    /**
+     * The name of the account holder who sent the unmatched credit transfer.
+     */
+    public Source withAccountHolderName(String accountHolderName) {
+        Utils.checkNotNull(accountHolderName, "accountHolderName");
+        this.accountHolderName = accountHolderName;
         return this;
     }
 
-    public Source withOrganizationId(String organizationId) {
-        Utils.checkNotNull(organizationId, "organizationId");
-        this.organizationId = Optional.ofNullable(organizationId);
+    /**
+     * The IBAN of the sender's bank account.
+     */
+    public Source withIban(String iban) {
+        Utils.checkNotNull(iban, "iban");
+        this.iban = iban;
         return this;
     }
 
-
-    public Source withOrganizationId(Optional<String> organizationId) {
-        Utils.checkNotNull(organizationId, "organizationId");
-        this.organizationId = organizationId;
+    /**
+     * The BIC of the sender's bank.
+     */
+    public Source withBic(String bic) {
+        Utils.checkNotNull(bic, "bic");
+        this.bic = bic;
         return this;
     }
 
@@ -97,64 +140,88 @@ public class Source {
         }
         Source other = (Source) o;
         return 
-            Utils.enhancedDeepEquals(this.type, other.type) &&
-            Utils.enhancedDeepEquals(this.organizationId, other.organizationId);
+            Utils.enhancedDeepEquals(this.format, other.format) &&
+            Utils.enhancedDeepEquals(this.accountHolderName, other.accountHolderName) &&
+            Utils.enhancedDeepEquals(this.iban, other.iban) &&
+            Utils.enhancedDeepEquals(this.bic, other.bic);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            type, organizationId);
+            format, accountHolderName, iban,
+            bic);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Source.class,
-                "type", type,
-                "organizationId", organizationId);
+                "format", format,
+                "accountHolderName", accountHolderName,
+                "iban", iban,
+                "bic", bic);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Type> type = Optional.empty();
+        private String format;
 
-        private Optional<String> organizationId = Optional.empty();
+        private String accountHolderName;
+
+        private String iban;
+
+        private String bic;
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder type(Type type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
+        /**
+         * The format of the source account. Currently always `iban`.
+         */
+        public Builder format(String format) {
+            Utils.checkNotNull(format, "format");
+            this.format = format;
             return this;
         }
 
-        public Builder type(Optional<? extends Type> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
+
+        /**
+         * The name of the account holder who sent the unmatched credit transfer.
+         */
+        public Builder accountHolderName(String accountHolderName) {
+            Utils.checkNotNull(accountHolderName, "accountHolderName");
+            this.accountHolderName = accountHolderName;
             return this;
         }
 
 
-        public Builder organizationId(String organizationId) {
-            Utils.checkNotNull(organizationId, "organizationId");
-            this.organizationId = Optional.ofNullable(organizationId);
+        /**
+         * The IBAN of the sender's bank account.
+         */
+        public Builder iban(String iban) {
+            Utils.checkNotNull(iban, "iban");
+            this.iban = iban;
             return this;
         }
 
-        public Builder organizationId(Optional<String> organizationId) {
-            Utils.checkNotNull(organizationId, "organizationId");
-            this.organizationId = organizationId;
+
+        /**
+         * The BIC of the sender's bank.
+         */
+        public Builder bic(String bic) {
+            Utils.checkNotNull(bic, "bic");
+            this.bic = bic;
             return this;
         }
 
         public Source build() {
 
             return new Source(
-                type, organizationId);
+                format, accountHolderName, iban,
+                bic);
         }
 
     }

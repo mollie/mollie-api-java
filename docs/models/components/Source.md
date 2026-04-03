@@ -1,11 +1,13 @@
 # Source
 
-Where the funds will be pulled back from.
+Details about the sender of the credit transfer.
 
 
 ## Fields
 
-| Field                                              | Type                                               | Required                                           | Description                                        | Example                                            |
-| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
-| `type`                                             | [Optional\<Type>](../../models/components/Type.md) | :heavy_minus_sign:                                 | N/A                                                | organization                                       |
-| `organizationId`                                   | *Optional\<String>*                                | :heavy_minus_sign:                                 | N/A                                                | org_1234567                                        |
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `format`                                                               | *String*                                                               | :heavy_check_mark:                                                     | The format of the source account. Currently always `iban`.             | iban                                                                   |
+| `accountHolderName`                                                    | *String*                                                               | :heavy_check_mark:                                                     | The name of the account holder who sent the unmatched credit transfer. | Jan Jansen                                                             |
+| `iban`                                                                 | *String*                                                               | :heavy_check_mark:                                                     | The IBAN of the sender's bank account.                                 | NL91ABNA0417164300                                                     |
+| `bic`                                                                  | *String*                                                               | :heavy_check_mark:                                                     | The BIC of the sender's bank.                                          | ABNANL2A                                                               |

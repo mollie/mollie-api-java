@@ -29,12 +29,12 @@ public class RoutingReversals {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source")
-    private Optional<? extends Source> source;
+    private Optional<? extends RefundRequestSource> source;
 
     @JsonCreator
     public RoutingReversals(
             @JsonProperty("amount") Optional<? extends Amount> amount,
-            @JsonProperty("source") Optional<? extends Source> source) {
+            @JsonProperty("source") Optional<? extends RefundRequestSource> source) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(source, "source");
         this.amount = amount;
@@ -59,8 +59,8 @@ public class RoutingReversals {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Source> source() {
-        return (Optional<Source>) source;
+    public Optional<RefundRequestSource> source() {
+        return (Optional<RefundRequestSource>) source;
     }
 
     public static Builder builder() {
@@ -90,7 +90,7 @@ public class RoutingReversals {
     /**
      * Where the funds will be pulled back from.
      */
-    public RoutingReversals withSource(Source source) {
+    public RoutingReversals withSource(RefundRequestSource source) {
         Utils.checkNotNull(source, "source");
         this.source = Optional.ofNullable(source);
         return this;
@@ -100,7 +100,7 @@ public class RoutingReversals {
     /**
      * Where the funds will be pulled back from.
      */
-    public RoutingReversals withSource(Optional<? extends Source> source) {
+    public RoutingReversals withSource(Optional<? extends RefundRequestSource> source) {
         Utils.checkNotNull(source, "source");
         this.source = source;
         return this;
@@ -138,7 +138,7 @@ public class RoutingReversals {
 
         private Optional<? extends Amount> amount = Optional.empty();
 
-        private Optional<? extends Source> source = Optional.empty();
+        private Optional<? extends RefundRequestSource> source = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -167,7 +167,7 @@ public class RoutingReversals {
         /**
          * Where the funds will be pulled back from.
          */
-        public Builder source(Source source) {
+        public Builder source(RefundRequestSource source) {
             Utils.checkNotNull(source, "source");
             this.source = Optional.ofNullable(source);
             return this;
@@ -176,7 +176,7 @@ public class RoutingReversals {
         /**
          * Where the funds will be pulled back from.
          */
-        public Builder source(Optional<? extends Source> source) {
+        public Builder source(Optional<? extends RefundRequestSource> source) {
             Utils.checkNotNull(source, "source");
             this.source = source;
             return this;
