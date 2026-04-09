@@ -75,6 +75,9 @@ public class SalesInvoiceRecipientResponse {
 
     /**
      * The email address of the recipient.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     @JsonProperty("email")
     private String email;
@@ -265,6 +268,9 @@ public class SalesInvoiceRecipientResponse {
 
     /**
      * The email address of the recipient.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     @JsonIgnore
     public String email() {
@@ -476,6 +482,9 @@ public class SalesInvoiceRecipientResponse {
 
     /**
      * The email address of the recipient.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     public SalesInvoiceRecipientResponse withEmail(String email) {
         Utils.checkNotNull(email, "email");
@@ -825,6 +834,9 @@ public class SalesInvoiceRecipientResponse {
 
         /**
          * The email address of the recipient.
+         * 
+         * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+         * 3492](https://www.rfc-editor.org/rfc/rfc3492).
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");

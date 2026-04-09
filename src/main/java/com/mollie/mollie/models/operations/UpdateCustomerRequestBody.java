@@ -30,6 +30,9 @@ public class UpdateCustomerRequestBody {
 
     /**
      * The email address of the customer.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
@@ -100,6 +103,9 @@ public class UpdateCustomerRequestBody {
 
     /**
      * The email address of the customer.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     @JsonIgnore
     public JsonNullable<String> email() {
@@ -167,6 +173,9 @@ public class UpdateCustomerRequestBody {
 
     /**
      * The email address of the customer.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     public UpdateCustomerRequestBody withEmail(String email) {
         Utils.checkNotNull(email, "email");
@@ -176,6 +185,9 @@ public class UpdateCustomerRequestBody {
 
     /**
      * The email address of the customer.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     public UpdateCustomerRequestBody withEmail(JsonNullable<String> email) {
         Utils.checkNotNull(email, "email");
@@ -331,6 +343,9 @@ public class UpdateCustomerRequestBody {
 
         /**
          * The email address of the customer.
+         * 
+         * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+         * 3492](https://www.rfc-editor.org/rfc/rfc3492).
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
@@ -340,6 +355,9 @@ public class UpdateCustomerRequestBody {
 
         /**
          * The email address of the customer.
+         * 
+         * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+         * 3492](https://www.rfc-editor.org/rfc/rfc3492).
          */
         public Builder email(JsonNullable<String> email) {
             Utils.checkNotNull(email, "email");

@@ -85,6 +85,9 @@ public class PaymentAddress {
      * payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
@@ -246,6 +249,9 @@ public class PaymentAddress {
      * payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     @JsonIgnore
     public Optional<String> email() {
@@ -458,6 +464,9 @@ public class PaymentAddress {
      * payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     public PaymentAddress withEmail(String email) {
         Utils.checkNotNull(email, "email");
@@ -475,6 +484,9 @@ public class PaymentAddress {
      * payment.
      * 
      * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     public PaymentAddress withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
@@ -814,6 +826,9 @@ public class PaymentAddress {
          * payment.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * 
+         * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+         * 3492](https://www.rfc-editor.org/rfc/rfc3492).
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
@@ -830,6 +845,9 @@ public class PaymentAddress {
          * payment.
          * 
          * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * 
+         * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+         * 3492](https://www.rfc-editor.org/rfc/rfc3492).
          */
         public Builder email(Optional<String> email) {
             Utils.checkNotNull(email, "email");
