@@ -35,6 +35,9 @@ public class Profile {
 
     /**
      * The email address associated with the profile's trade name or brand.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
@@ -109,6 +112,9 @@ public class Profile {
 
     /**
      * The email address associated with the profile's trade name or brand.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     @JsonIgnore
     public Optional<String> email() {
@@ -189,6 +195,9 @@ public class Profile {
 
     /**
      * The email address associated with the profile's trade name or brand.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     public Profile withEmail(String email) {
         Utils.checkNotNull(email, "email");
@@ -199,6 +208,9 @@ public class Profile {
 
     /**
      * The email address associated with the profile's trade name or brand.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     public Profile withEmail(Optional<String> email) {
         Utils.checkNotNull(email, "email");
@@ -364,6 +376,9 @@ public class Profile {
 
         /**
          * The email address associated with the profile's trade name or brand.
+         * 
+         * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+         * 3492](https://www.rfc-editor.org/rfc/rfc3492).
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
@@ -373,6 +388,9 @@ public class Profile {
 
         /**
          * The email address associated with the profile's trade name or brand.
+         * 
+         * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+         * 3492](https://www.rfc-editor.org/rfc/rfc3492).
          */
         public Builder email(Optional<String> email) {
             Utils.checkNotNull(email, "email");

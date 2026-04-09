@@ -55,6 +55,9 @@ public class ProfileResponse {
 
     /**
      * The email address associated with the profile's trade name or brand.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     @JsonProperty("email")
     private String email;
@@ -227,6 +230,9 @@ public class ProfileResponse {
 
     /**
      * The email address associated with the profile's trade name or brand.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     @JsonIgnore
     public String email() {
@@ -360,6 +366,9 @@ public class ProfileResponse {
 
     /**
      * The email address associated with the profile's trade name or brand.
+     * 
+     * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+     * 3492](https://www.rfc-editor.org/rfc/rfc3492).
      */
     public ProfileResponse withEmail(String email) {
         Utils.checkNotNull(email, "email");
@@ -626,6 +635,9 @@ public class ProfileResponse {
 
         /**
          * The email address associated with the profile's trade name or brand.
+         * 
+         * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
+         * 3492](https://www.rfc-editor.org/rfc/rfc3492).
          */
         public Builder email(String email) {
             Utils.checkNotNull(email, "email");
