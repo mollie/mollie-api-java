@@ -142,12 +142,12 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListMandatesRequest;
 import com.mollie.mollie.models.operations.ListMandatesResponse;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -165,6 +165,8 @@ public class Application {
                 .from("mdt_5B8cwPMGnU")
                 .limit(50L)
                 .sort(Sorting.DESC)
+                .scopes(List.of(
+                    MandateScopes.CUSTOMER_PRESENT))
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .build();
 

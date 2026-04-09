@@ -12,7 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class MandateResponse {
@@ -63,6 +66,14 @@ public class MandateResponse {
     @JsonProperty("mandateReference")
     private Optional<String> mandateReference;
 
+    /**
+     * An array defining the eligible use cases for the mandate. This field will always be
+     * present and can contain one or both of the following values:
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("scopes")
+    private JsonNullable<? extends List<Scopes>> scopes;
+
 
     @JsonProperty("status")
     private MandateResponseStatus status;
@@ -95,6 +106,7 @@ public class MandateResponse {
             @JsonProperty("details") MandateResponseDetails details,
             @JsonProperty("signatureDate") Optional<String> signatureDate,
             @JsonProperty("mandateReference") Optional<String> mandateReference,
+            @JsonProperty("scopes") JsonNullable<? extends List<Scopes>> scopes,
             @JsonProperty("status") MandateResponseStatus status,
             @JsonProperty("customerId") String customerId,
             @JsonProperty("createdAt") String createdAt,
@@ -106,6 +118,7 @@ public class MandateResponse {
         Utils.checkNotNull(details, "details");
         Utils.checkNotNull(signatureDate, "signatureDate");
         Utils.checkNotNull(mandateReference, "mandateReference");
+        Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(createdAt, "createdAt");
@@ -117,6 +130,7 @@ public class MandateResponse {
         this.details = details;
         this.signatureDate = signatureDate;
         this.mandateReference = mandateReference;
+        this.scopes = scopes;
         this.status = status;
         this.customerId = customerId;
         this.createdAt = createdAt;
@@ -135,8 +149,8 @@ public class MandateResponse {
             MandateResponseLinks links) {
         this(resource, id, mode,
             method, details, Optional.empty(),
-            Optional.empty(), status, customerId,
-            createdAt, links);
+            Optional.empty(), JsonNullable.undefined(), status,
+            customerId, createdAt, links);
     }
 
     /**
@@ -195,6 +209,16 @@ public class MandateResponse {
     @JsonIgnore
     public Optional<String> mandateReference() {
         return mandateReference;
+    }
+
+    /**
+     * An array defining the eligible use cases for the mandate. This field will always be
+     * present and can contain one or both of the following values:
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<Scopes>> scopes() {
+        return (JsonNullable<List<Scopes>>) scopes;
     }
 
     @JsonIgnore
@@ -319,6 +343,26 @@ public class MandateResponse {
         return this;
     }
 
+    /**
+     * An array defining the eligible use cases for the mandate. This field will always be
+     * present and can contain one or both of the following values:
+     */
+    public MandateResponse withScopes(List<Scopes> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = JsonNullable.of(scopes);
+        return this;
+    }
+
+    /**
+     * An array defining the eligible use cases for the mandate. This field will always be
+     * present and can contain one or both of the following values:
+     */
+    public MandateResponse withScopes(JsonNullable<? extends List<Scopes>> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = scopes;
+        return this;
+    }
+
     public MandateResponse withStatus(MandateResponseStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -370,6 +414,7 @@ public class MandateResponse {
             Utils.enhancedDeepEquals(this.details, other.details) &&
             Utils.enhancedDeepEquals(this.signatureDate, other.signatureDate) &&
             Utils.enhancedDeepEquals(this.mandateReference, other.mandateReference) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
@@ -381,8 +426,8 @@ public class MandateResponse {
         return Utils.enhancedHash(
             resource, id, mode,
             method, details, signatureDate,
-            mandateReference, status, customerId,
-            createdAt, links);
+            mandateReference, scopes, status,
+            customerId, createdAt, links);
     }
     
     @Override
@@ -395,6 +440,7 @@ public class MandateResponse {
                 "details", details,
                 "signatureDate", signatureDate,
                 "mandateReference", mandateReference,
+                "scopes", scopes,
                 "status", status,
                 "customerId", customerId,
                 "createdAt", createdAt,
@@ -417,6 +463,8 @@ public class MandateResponse {
         private Optional<String> signatureDate = Optional.empty();
 
         private Optional<String> mandateReference = Optional.empty();
+
+        private JsonNullable<? extends List<Scopes>> scopes = JsonNullable.undefined();
 
         private MandateResponseStatus status;
 
@@ -523,6 +571,27 @@ public class MandateResponse {
         }
 
 
+        /**
+         * An array defining the eligible use cases for the mandate. This field will always be
+         * present and can contain one or both of the following values:
+         */
+        public Builder scopes(List<Scopes> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = JsonNullable.of(scopes);
+            return this;
+        }
+
+        /**
+         * An array defining the eligible use cases for the mandate. This field will always be
+         * present and can contain one or both of the following values:
+         */
+        public Builder scopes(JsonNullable<? extends List<Scopes>> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = scopes;
+            return this;
+        }
+
+
         public Builder status(MandateResponseStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
@@ -565,8 +634,8 @@ public class MandateResponse {
             return new MandateResponse(
                 resource, id, mode,
                 method, details, signatureDate,
-                mandateReference, status, customerId,
-                createdAt, links);
+                mandateReference, scopes, status,
+                customerId, createdAt, links);
         }
 
     }

@@ -280,11 +280,11 @@ public class PaymentRequest {
     private Optional<? extends SequenceType> sequenceType;
 
     /**
-     * **Only relevant for recurring payments.**
+     * **Only relevant for recurring payments and stored cards.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-     * indicate which of
-     * the customer's accounts should be credited.
+     * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+     * supplied to indicate which of
+     * the customer's accounts should be debited.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateId")
@@ -314,6 +314,16 @@ public class PaymentRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dueDate")
     private Optional<String> dueDate;
+
+    /**
+     * Whether the card details should be stored for the customer after a successful payment. This will
+     * create a mandate for the customer,
+     * allowing for future customer present saved-card CIT payments. Requires customerId, cardToken, and
+     * the creditcard method to be specified.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("storeCredentials")
+    private Optional<Boolean> storeCredentials;
 
     /**
      * Whether to create the entity in test mode or live mode.
@@ -460,6 +470,7 @@ public class PaymentRequest {
             @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("dueDate") Optional<String> dueDate,
+            @JsonProperty("storeCredentials") Optional<Boolean> storeCredentials,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
             @JsonProperty("applePayPaymentToken") Optional<String> applePayPaymentToken,
             @JsonProperty("company") Optional<? extends Company> company,
@@ -494,6 +505,7 @@ public class PaymentRequest {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(dueDate, "dueDate");
+        Utils.checkNotNull(storeCredentials, "storeCredentials");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
         Utils.checkNotNull(company, "company");
@@ -528,6 +540,7 @@ public class PaymentRequest {
         this.customerId = customerId;
         this.profileId = profileId;
         this.dueDate = dueDate;
+        this.storeCredentials = storeCredentials;
         this.testmode = testmode;
         this.applePayPaymentToken = applePayPaymentToken;
         this.company = company;
@@ -552,11 +565,11 @@ public class PaymentRequest {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -843,11 +856,11 @@ public class PaymentRequest {
     }
 
     /**
-     * **Only relevant for recurring payments.**
+     * **Only relevant for recurring payments and stored cards.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-     * indicate which of
-     * the customer's accounts should be credited.
+     * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+     * supplied to indicate which of
+     * the customer's accounts should be debited.
      */
     @JsonIgnore
     public JsonNullable<String> mandateId() {
@@ -879,6 +892,17 @@ public class PaymentRequest {
     @JsonIgnore
     public Optional<String> dueDate() {
         return dueDate;
+    }
+
+    /**
+     * Whether the card details should be stored for the customer after a successful payment. This will
+     * create a mandate for the customer,
+     * allowing for future customer present saved-card CIT payments. Requires customerId, cardToken, and
+     * the creditcard method to be specified.
+     */
+    @JsonIgnore
+    public Optional<Boolean> storeCredentials() {
+        return storeCredentials;
     }
 
     /**
@@ -1577,11 +1601,11 @@ public class PaymentRequest {
     }
 
     /**
-     * **Only relevant for recurring payments.**
+     * **Only relevant for recurring payments and stored cards.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-     * indicate which of
-     * the customer's accounts should be credited.
+     * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+     * supplied to indicate which of
+     * the customer's accounts should be debited.
      */
     public PaymentRequest withMandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
@@ -1590,11 +1614,11 @@ public class PaymentRequest {
     }
 
     /**
-     * **Only relevant for recurring payments.**
+     * **Only relevant for recurring payments and stored cards.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-     * indicate which of
-     * the customer's accounts should be credited.
+     * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+     * supplied to indicate which of
+     * the customer's accounts should be debited.
      */
     public PaymentRequest withMandateId(JsonNullable<String> mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
@@ -1662,6 +1686,31 @@ public class PaymentRequest {
     public PaymentRequest withDueDate(Optional<String> dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
         this.dueDate = dueDate;
+        return this;
+    }
+
+    /**
+     * Whether the card details should be stored for the customer after a successful payment. This will
+     * create a mandate for the customer,
+     * allowing for future customer present saved-card CIT payments. Requires customerId, cardToken, and
+     * the creditcard method to be specified.
+     */
+    public PaymentRequest withStoreCredentials(boolean storeCredentials) {
+        Utils.checkNotNull(storeCredentials, "storeCredentials");
+        this.storeCredentials = Optional.ofNullable(storeCredentials);
+        return this;
+    }
+
+
+    /**
+     * Whether the card details should be stored for the customer after a successful payment. This will
+     * create a mandate for the customer,
+     * allowing for future customer present saved-card CIT payments. Requires customerId, cardToken, and
+     * the creditcard method to be specified.
+     */
+    public PaymentRequest withStoreCredentials(Optional<Boolean> storeCredentials) {
+        Utils.checkNotNull(storeCredentials, "storeCredentials");
+        this.storeCredentials = storeCredentials;
         return this;
     }
 
@@ -1998,6 +2047,7 @@ public class PaymentRequest {
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.storeCredentials, other.storeCredentials) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.applePayPaymentToken, other.applePayPaymentToken) &&
             Utils.enhancedDeepEquals(this.company, other.company) &&
@@ -2022,11 +2072,11 @@ public class PaymentRequest {
             metadata, captureMode, captureDelay,
             applicationFee, routing, sequenceType,
             mandateId, customerId, profileId,
-            dueDate, testmode, applePayPaymentToken,
-            company, cardToken, voucherNumber,
-            voucherPin, consumerDateOfBirth, extraMerchantData,
-            sessionId, digitalGoods, customerReference,
-            terminalId);
+            dueDate, storeCredentials, testmode,
+            applePayPaymentToken, company, cardToken,
+            voucherNumber, voucherPin, consumerDateOfBirth,
+            extraMerchantData, sessionId, digitalGoods,
+            customerReference, terminalId);
     }
     
     @Override
@@ -2054,6 +2104,7 @@ public class PaymentRequest {
                 "customerId", customerId,
                 "profileId", profileId,
                 "dueDate", dueDate,
+                "storeCredentials", storeCredentials,
                 "testmode", testmode,
                 "applePayPaymentToken", applePayPaymentToken,
                 "company", company,
@@ -2114,6 +2165,8 @@ public class PaymentRequest {
         private Optional<String> profileId = Optional.empty();
 
         private Optional<String> dueDate = Optional.empty();
+
+        private Optional<Boolean> storeCredentials = Optional.empty();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -2714,11 +2767,11 @@ public class PaymentRequest {
 
 
         /**
-         * **Only relevant for recurring payments.**
+         * **Only relevant for recurring payments and stored cards.**
          * 
-         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-         * indicate which of
-         * the customer's accounts should be credited.
+         * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+         * supplied to indicate which of
+         * the customer's accounts should be debited.
          */
         public Builder mandateId(String mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
@@ -2727,11 +2780,11 @@ public class PaymentRequest {
         }
 
         /**
-         * **Only relevant for recurring payments.**
+         * **Only relevant for recurring payments and stored cards.**
          * 
-         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-         * indicate which of
-         * the customer's accounts should be credited.
+         * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+         * supplied to indicate which of
+         * the customer's accounts should be debited.
          */
         public Builder mandateId(JsonNullable<String> mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
@@ -2799,6 +2852,31 @@ public class PaymentRequest {
         public Builder dueDate(Optional<String> dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
             this.dueDate = dueDate;
+            return this;
+        }
+
+
+        /**
+         * Whether the card details should be stored for the customer after a successful payment. This will
+         * create a mandate for the customer,
+         * allowing for future customer present saved-card CIT payments. Requires customerId, cardToken, and
+         * the creditcard method to be specified.
+         */
+        public Builder storeCredentials(boolean storeCredentials) {
+            Utils.checkNotNull(storeCredentials, "storeCredentials");
+            this.storeCredentials = Optional.ofNullable(storeCredentials);
+            return this;
+        }
+
+        /**
+         * Whether the card details should be stored for the customer after a successful payment. This will
+         * create a mandate for the customer,
+         * allowing for future customer present saved-card CIT payments. Requires customerId, cardToken, and
+         * the creditcard method to be specified.
+         */
+        public Builder storeCredentials(Optional<Boolean> storeCredentials) {
+            Utils.checkNotNull(storeCredentials, "storeCredentials");
+            this.storeCredentials = storeCredentials;
             return this;
         }
 
@@ -3114,11 +3192,11 @@ public class PaymentRequest {
                 metadata, captureMode, captureDelay,
                 applicationFee, routing, sequenceType,
                 mandateId, customerId, profileId,
-                dueDate, testmode, applePayPaymentToken,
-                company, cardToken, voucherNumber,
-                voucherPin, consumerDateOfBirth, extraMerchantData,
-                sessionId, digitalGoods, customerReference,
-                terminalId);
+                dueDate, storeCredentials, testmode,
+                applePayPaymentToken, company, cardToken,
+                voucherNumber, voucherPin, consumerDateOfBirth,
+                extraMerchantData, sessionId, digitalGoods,
+                customerReference, terminalId);
         }
 
     }

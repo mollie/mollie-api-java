@@ -365,11 +365,11 @@ public class PaymentResponse {
     private JsonNullable<String> subscriptionId;
 
     /**
-     * **Only relevant for recurring payments.**
+     * **Only relevant for recurring payments and stored cards.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-     * indicate which of
-     * the customer's accounts should be credited.
+     * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+     * supplied to indicate which of
+     * the customer's accounts should be debited.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mandateId")
@@ -1066,11 +1066,11 @@ public class PaymentResponse {
     }
 
     /**
-     * **Only relevant for recurring payments.**
+     * **Only relevant for recurring payments and stored cards.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-     * indicate which of
-     * the customer's accounts should be credited.
+     * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+     * supplied to indicate which of
+     * the customer's accounts should be debited.
      */
     @JsonIgnore
     public JsonNullable<String> mandateId() {
@@ -1984,11 +1984,11 @@ public class PaymentResponse {
     }
 
     /**
-     * **Only relevant for recurring payments.**
+     * **Only relevant for recurring payments and stored cards.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-     * indicate which of
-     * the customer's accounts should be credited.
+     * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+     * supplied to indicate which of
+     * the customer's accounts should be debited.
      */
     public PaymentResponse withMandateId(String mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
@@ -1997,11 +1997,11 @@ public class PaymentResponse {
     }
 
     /**
-     * **Only relevant for recurring payments.**
+     * **Only relevant for recurring payments and stored cards.**
      * 
-     * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-     * indicate which of
-     * the customer's accounts should be credited.
+     * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+     * supplied to indicate which of
+     * the customer's accounts should be debited.
      */
     public PaymentResponse withMandateId(JsonNullable<String> mandateId) {
         Utils.checkNotNull(mandateId, "mandateId");
@@ -3299,11 +3299,11 @@ public class PaymentResponse {
 
 
         /**
-         * **Only relevant for recurring payments.**
+         * **Only relevant for recurring payments and stored cards.**
          * 
-         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-         * indicate which of
-         * the customer's accounts should be credited.
+         * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+         * supplied to indicate which of
+         * the customer's accounts should be debited.
          */
         public Builder mandateId(String mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");
@@ -3312,11 +3312,11 @@ public class PaymentResponse {
         }
 
         /**
-         * **Only relevant for recurring payments.**
+         * **Only relevant for recurring payments and stored cards.**
          * 
-         * <p>When creating recurring payments, the ID of a specific [mandate](get-mandate) can be supplied to
-         * indicate which of
-         * the customer's accounts should be credited.
+         * <p>When creating recurring or stored cards payments, the ID of a specific [mandate](get-mandate) can be
+         * supplied to indicate which of
+         * the customer's accounts should be debited.
          */
         public Builder mandateId(JsonNullable<String> mandateId) {
             Utils.checkNotNull(mandateId, "mandateId");

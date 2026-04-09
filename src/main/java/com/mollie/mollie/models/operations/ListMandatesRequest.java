@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.MandateScopes;
 import com.mollie.mollie.models.components.Sorting;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
@@ -14,6 +15,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -48,6 +50,12 @@ public class ListMandatesRequest {
     private Optional<? extends Sorting> sort;
 
     /**
+     * Returns only mandates that include the specified scopes.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=scopes")
+    private Optional<? extends List<MandateScopes>> scopes;
+
+    /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
      * `testmode` query
      * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
@@ -71,18 +79,21 @@ public class ListMandatesRequest {
             Optional<String> from,
             JsonNullable<Long> limit,
             Optional<? extends Sorting> sort,
+            Optional<? extends List<MandateScopes>> scopes,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(sort, "sort");
+        Utils.checkNotNull(scopes, "scopes");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.customerId = customerId;
         this.from = from;
         this.limit = limit;
         this.sort = sort;
+        this.scopes = scopes;
         this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
     }
@@ -90,7 +101,8 @@ public class ListMandatesRequest {
     public ListMandatesRequest(
             String customerId) {
         this(customerId, Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -128,6 +140,15 @@ public class ListMandatesRequest {
     @JsonIgnore
     public Optional<Sorting> sort() {
         return (Optional<Sorting>) sort;
+    }
+
+    /**
+     * Returns only mandates that include the specified scopes.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<MandateScopes>> scopes() {
+        return (Optional<List<MandateScopes>>) scopes;
     }
 
     /**
@@ -231,6 +252,25 @@ public class ListMandatesRequest {
     }
 
     /**
+     * Returns only mandates that include the specified scopes.
+     */
+    public ListMandatesRequest withScopes(List<MandateScopes> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = Optional.ofNullable(scopes);
+        return this;
+    }
+
+
+    /**
+     * Returns only mandates that include the specified scopes.
+     */
+    public ListMandatesRequest withScopes(Optional<? extends List<MandateScopes>> scopes) {
+        Utils.checkNotNull(scopes, "scopes");
+        this.scopes = scopes;
+        return this;
+    }
+
+    /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
      * `testmode` query
      * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
@@ -294,6 +334,7 @@ public class ListMandatesRequest {
             Utils.enhancedDeepEquals(this.from, other.from) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.sort, other.sort) &&
+            Utils.enhancedDeepEquals(this.scopes, other.scopes) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
@@ -302,7 +343,8 @@ public class ListMandatesRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             customerId, from, limit,
-            sort, testmode, idempotencyKey);
+            sort, scopes, testmode,
+            idempotencyKey);
     }
     
     @Override
@@ -312,6 +354,7 @@ public class ListMandatesRequest {
                 "from", from,
                 "limit", limit,
                 "sort", sort,
+                "scopes", scopes,
                 "testmode", testmode,
                 "idempotencyKey", idempotencyKey);
     }
@@ -326,6 +369,8 @@ public class ListMandatesRequest {
         private JsonNullable<Long> limit = JsonNullable.undefined();
 
         private Optional<? extends Sorting> sort = Optional.empty();
+
+        private Optional<? extends List<MandateScopes>> scopes = Optional.empty();
 
         private Optional<Boolean> testmode = Optional.empty();
 
@@ -412,6 +457,25 @@ public class ListMandatesRequest {
 
 
         /**
+         * Returns only mandates that include the specified scopes.
+         */
+        public Builder scopes(List<MandateScopes> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = Optional.ofNullable(scopes);
+            return this;
+        }
+
+        /**
+         * Returns only mandates that include the specified scopes.
+         */
+        public Builder scopes(Optional<? extends List<MandateScopes>> scopes) {
+            Utils.checkNotNull(scopes, "scopes");
+            this.scopes = scopes;
+            return this;
+        }
+
+
+        /**
          * Most API credentials are specifically created for either live mode or test mode. In those cases the
          * `testmode` query
          * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
@@ -464,7 +528,8 @@ public class ListMandatesRequest {
 
             return new ListMandatesRequest(
                 customerId, from, limit,
-                sort, testmode, idempotencyKey);
+                sort, scopes, testmode,
+                idempotencyKey);
         }
 
     }
