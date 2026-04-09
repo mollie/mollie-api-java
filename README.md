@@ -34,6 +34,7 @@ This documentation is for the new Mollie's SDK. You can find more details on how
   * [Global Parameters](#global-parameters)
   * [Pagination](#pagination)
   * [Retries](#retries)
+  * [Webhook Signature Validation](#webhook-signature-validation)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
@@ -901,6 +902,68 @@ public class Application {
 }
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Webhook Signature Validation [webhook-signature-validation] -->
+## Webhook Signature Validation
+
+The SDK includes a helper to validate Mollie webhook signatures using HMAC-SHA256.
+Use it with the raw request body exactly as received by your web framework and the value of the
+`X-Mollie-Signature` header.
+
+```java
+package hello.world;
+
+import com.mollie.mollie.utils.webhooks.InvalidSignatureException;
+import com.mollie.mollie.utils.webhooks.SignatureValidator;
+import java.util.Collections;
+
+public class Application {
+
+    public static void main(String[] args) {
+        SignatureValidator validator = new SignatureValidator(
+                System.getenv().getOrDefault("MOLLIE_WEBHOOK_SECRET", "")
+        );
+
+        String rawBody = "{\"id\":\"evt_123\"}";
+        String signatureHeader = "sha256=<signature>";
+
+        try {
+            boolean isVerified = validator.validatePayload(rawBody, Collections.singletonList(signatureHeader));
+
+            if (!isVerified) {
+                System.out.println("No signature header was provided; treating it as a legacy webhook");
+                return;
+            }
+
+            System.out.println("Webhook signature is valid");
+        } catch (InvalidSignatureException exception) {
+            System.out.println("Webhook signature is invalid");
+        }
+    }
+}
+```
+
+You can also use the static helper when you do not want to instantiate the validator yourself:
+
+```java
+import com.mollie.mollie.utils.webhooks.SignatureValidator;
+import java.util.Arrays;
+import java.util.Collections;
+
+boolean isVerified = SignatureValidator.validate(
+        rawBody,
+        Arrays.asList("current_secret", "previous_secret"),
+        Collections.singletonList(signatureHeader)
+);
+```
+
+Notes:
+
+- `validatePayload()` returns `true` when at least one signature matches.
+- It returns `false` when no signature is present, which lets you support legacy webhooks.
+- It throws `InvalidSignatureException` when a signature is present but does not match.
+- Header values with the `sha256=` prefix are supported automatically.
+<!-- End Webhook Signature Validation [webhook-signature-validation] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
