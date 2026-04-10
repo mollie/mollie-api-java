@@ -42,6 +42,7 @@ public class ListEntityMethodAllId {
     public static final ListEntityMethodAllId DIRECTDEBIT = new ListEntityMethodAllId("directdebit");
     public static final ListEntityMethodAllId EPS = new ListEntityMethodAllId("eps");
     public static final ListEntityMethodAllId GIFTCARD = new ListEntityMethodAllId("giftcard");
+    public static final ListEntityMethodAllId GOOGLEPAY = new ListEntityMethodAllId("googlepay");
     public static final ListEntityMethodAllId IDEAL = new ListEntityMethodAllId("ideal");
     public static final ListEntityMethodAllId IN3 = new ListEntityMethodAllId("in3");
     public static final ListEntityMethodAllId KBC = new ListEntityMethodAllId("kbc");
@@ -148,6 +149,7 @@ public class ListEntityMethodAllId {
         map.put("directdebit", DIRECTDEBIT);
         map.put("eps", EPS);
         map.put("giftcard", GIFTCARD);
+        map.put("googlepay", GOOGLEPAY);
         map.put("ideal", IDEAL);
         map.put("in3", IN3);
         map.put("kbc", KBC);
@@ -186,6 +188,7 @@ public class ListEntityMethodAllId {
         map.put("directdebit", ListEntityMethodAllIdEnum.DIRECTDEBIT);
         map.put("eps", ListEntityMethodAllIdEnum.EPS);
         map.put("giftcard", ListEntityMethodAllIdEnum.GIFTCARD);
+        map.put("googlepay", ListEntityMethodAllIdEnum.GOOGLEPAY);
         map.put("ideal", ListEntityMethodAllIdEnum.IDEAL);
         map.put("in3", ListEntityMethodAllIdEnum.IN3);
         map.put("kbc", ListEntityMethodAllIdEnum.KBC);
@@ -225,6 +228,7 @@ public class ListEntityMethodAllId {
         DIRECTDEBIT("directdebit"),
         EPS("eps"),
         GIFTCARD("giftcard"),
+        GOOGLEPAY("googlepay"),
         IDEAL("ideal"),
         IN3("in3"),
         KBC("kbc"),

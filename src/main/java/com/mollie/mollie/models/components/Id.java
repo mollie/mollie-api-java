@@ -42,6 +42,7 @@ public class Id {
     public static final Id DIRECTDEBIT = new Id("directdebit");
     public static final Id EPS = new Id("eps");
     public static final Id GIFTCARD = new Id("giftcard");
+    public static final Id GOOGLEPAY = new Id("googlepay");
     public static final Id IDEAL = new Id("ideal");
     public static final Id IN3 = new Id("in3");
     public static final Id KBC = new Id("kbc");
@@ -148,6 +149,7 @@ public class Id {
         map.put("directdebit", DIRECTDEBIT);
         map.put("eps", EPS);
         map.put("giftcard", GIFTCARD);
+        map.put("googlepay", GOOGLEPAY);
         map.put("ideal", IDEAL);
         map.put("in3", IN3);
         map.put("kbc", KBC);
@@ -186,6 +188,7 @@ public class Id {
         map.put("directdebit", IdEnum.DIRECTDEBIT);
         map.put("eps", IdEnum.EPS);
         map.put("giftcard", IdEnum.GIFTCARD);
+        map.put("googlepay", IdEnum.GOOGLEPAY);
         map.put("ideal", IdEnum.IDEAL);
         map.put("in3", IdEnum.IN3);
         map.put("kbc", IdEnum.KBC);
@@ -225,6 +228,7 @@ public class Id {
         DIRECTDEBIT("directdebit"),
         EPS("eps"),
         GIFTCARD("giftcard"),
+        GOOGLEPAY("googlepay"),
         IDEAL("ideal"),
         IN3("in3"),
         KBC("kbc"),

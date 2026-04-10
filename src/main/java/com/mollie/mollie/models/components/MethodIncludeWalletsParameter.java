@@ -10,7 +10,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 public enum MethodIncludeWalletsParameter {
-    APPLEPAY("applepay");
+    APPLEPAY("applepay"),
+    GOOGLEPAY("googlepay");
 
     @JsonValue
     private final String value;
