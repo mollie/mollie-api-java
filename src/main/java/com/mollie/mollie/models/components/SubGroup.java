@@ -29,12 +29,12 @@ public class SubGroup {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subtotals")
-    private JsonNullable<? extends List<ComponentsSubTotals>> subtotals;
+    private JsonNullable<? extends List<SubTotals2>> subtotals;
 
     @JsonCreator
     public SubGroup(
             @JsonProperty("amount") Optional<? extends Amount> amount,
-            @JsonProperty("subtotals") JsonNullable<? extends List<ComponentsSubTotals>> subtotals) {
+            @JsonProperty("subtotals") JsonNullable<? extends List<SubTotals2>> subtotals) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(subtotals, "subtotals");
         this.amount = amount;
@@ -56,8 +56,8 @@ public class SubGroup {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<List<ComponentsSubTotals>> subtotals() {
-        return (JsonNullable<List<ComponentsSubTotals>>) subtotals;
+    public JsonNullable<List<SubTotals2>> subtotals() {
+        return (JsonNullable<List<SubTotals2>>) subtotals;
     }
 
     public static Builder builder() {
@@ -84,13 +84,13 @@ public class SubGroup {
         return this;
     }
 
-    public SubGroup withSubtotals(List<ComponentsSubTotals> subtotals) {
+    public SubGroup withSubtotals(List<SubTotals2> subtotals) {
         Utils.checkNotNull(subtotals, "subtotals");
         this.subtotals = JsonNullable.of(subtotals);
         return this;
     }
 
-    public SubGroup withSubtotals(JsonNullable<? extends List<ComponentsSubTotals>> subtotals) {
+    public SubGroup withSubtotals(JsonNullable<? extends List<SubTotals2>> subtotals) {
         Utils.checkNotNull(subtotals, "subtotals");
         this.subtotals = subtotals;
         return this;
@@ -128,7 +128,7 @@ public class SubGroup {
 
         private Optional<? extends Amount> amount = Optional.empty();
 
-        private JsonNullable<? extends List<ComponentsSubTotals>> subtotals = JsonNullable.undefined();
+        private JsonNullable<? extends List<SubTotals2>> subtotals = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -154,13 +154,13 @@ public class SubGroup {
         }
 
 
-        public Builder subtotals(List<ComponentsSubTotals> subtotals) {
+        public Builder subtotals(List<SubTotals2> subtotals) {
             Utils.checkNotNull(subtotals, "subtotals");
             this.subtotals = JsonNullable.of(subtotals);
             return this;
         }
 
-        public Builder subtotals(JsonNullable<? extends List<ComponentsSubTotals>> subtotals) {
+        public Builder subtotals(JsonNullable<? extends List<SubTotals2>> subtotals) {
             Utils.checkNotNull(subtotals, "subtotals");
             this.subtotals = subtotals;
             return this;
