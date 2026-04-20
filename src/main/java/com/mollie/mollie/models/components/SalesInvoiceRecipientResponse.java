@@ -127,12 +127,6 @@ public class SalesInvoiceRecipientResponse {
     @JsonProperty("country")
     private String country;
 
-    /**
-     * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-     */
-    @JsonProperty("locale")
-    private SalesInvoiceRecipientLocaleResponse locale;
-
     @JsonCreator
     public SalesInvoiceRecipientResponse(
             @JsonProperty("type") SalesInvoiceRecipientTypeResponse type,
@@ -149,8 +143,7 @@ public class SalesInvoiceRecipientResponse {
             @JsonProperty("postalCode") String postalCode,
             @JsonProperty("city") String city,
             @JsonProperty("region") JsonNullable<String> region,
-            @JsonProperty("country") String country,
-            @JsonProperty("locale") SalesInvoiceRecipientLocaleResponse locale) {
+            @JsonProperty("country") String country) {
         Utils.checkNotNull(type, "type");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(givenName, "givenName");
@@ -166,7 +159,6 @@ public class SalesInvoiceRecipientResponse {
         Utils.checkNotNull(city, "city");
         Utils.checkNotNull(region, "region");
         Utils.checkNotNull(country, "country");
-        Utils.checkNotNull(locale, "locale");
         this.type = type;
         this.title = title;
         this.givenName = givenName;
@@ -182,7 +174,6 @@ public class SalesInvoiceRecipientResponse {
         this.city = city;
         this.region = region;
         this.country = country;
-        this.locale = locale;
     }
     
     public SalesInvoiceRecipientResponse(
@@ -191,14 +182,12 @@ public class SalesInvoiceRecipientResponse {
             String streetAndNumber,
             String postalCode,
             String city,
-            String country,
-            SalesInvoiceRecipientLocaleResponse locale) {
+            String country) {
         this(type, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), email, JsonNullable.undefined(),
             streetAndNumber, JsonNullable.undefined(), postalCode,
-            city, JsonNullable.undefined(), country,
-            locale);
+            city, JsonNullable.undefined(), country);
     }
 
     /**
@@ -331,14 +320,6 @@ public class SalesInvoiceRecipientResponse {
     @JsonIgnore
     public String country() {
         return country;
-    }
-
-    /**
-     * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-     */
-    @JsonIgnore
-    public SalesInvoiceRecipientLocaleResponse locale() {
-        return locale;
     }
 
     public static Builder builder() {
@@ -582,15 +563,6 @@ public class SalesInvoiceRecipientResponse {
         return this;
     }
 
-    /**
-     * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-     */
-    public SalesInvoiceRecipientResponse withLocale(SalesInvoiceRecipientLocaleResponse locale) {
-        Utils.checkNotNull(locale, "locale");
-        this.locale = locale;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -615,8 +587,7 @@ public class SalesInvoiceRecipientResponse {
             Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
             Utils.enhancedDeepEquals(this.city, other.city) &&
             Utils.enhancedDeepEquals(this.region, other.region) &&
-            Utils.enhancedDeepEquals(this.country, other.country) &&
-            Utils.enhancedDeepEquals(this.locale, other.locale);
+            Utils.enhancedDeepEquals(this.country, other.country);
     }
     
     @Override
@@ -626,8 +597,7 @@ public class SalesInvoiceRecipientResponse {
             familyName, organizationName, organizationNumber,
             vatNumber, email, phone,
             streetAndNumber, streetAdditional, postalCode,
-            city, region, country,
-            locale);
+            city, region, country);
     }
     
     @Override
@@ -647,8 +617,7 @@ public class SalesInvoiceRecipientResponse {
                 "postalCode", postalCode,
                 "city", city,
                 "region", region,
-                "country", country,
-                "locale", locale);
+                "country", country);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -683,8 +652,6 @@ public class SalesInvoiceRecipientResponse {
         private JsonNullable<String> region = JsonNullable.undefined();
 
         private String country;
-
-        private SalesInvoiceRecipientLocaleResponse locale;
 
         private Builder() {
           // force use of static builder() method
@@ -941,16 +908,6 @@ public class SalesInvoiceRecipientResponse {
             return this;
         }
 
-
-        /**
-         * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-         */
-        public Builder locale(SalesInvoiceRecipientLocaleResponse locale) {
-            Utils.checkNotNull(locale, "locale");
-            this.locale = locale;
-            return this;
-        }
-
         public SalesInvoiceRecipientResponse build() {
 
             return new SalesInvoiceRecipientResponse(
@@ -958,8 +915,7 @@ public class SalesInvoiceRecipientResponse {
                 familyName, organizationName, organizationNumber,
                 vatNumber, email, phone,
                 streetAndNumber, streetAdditional, postalCode,
-                city, region, country,
-                locale);
+                city, region, country);
         }
 
     }

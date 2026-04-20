@@ -127,9 +127,7 @@ public class SalesInvoiceRecipient {
     @JsonProperty("country")
     private String country;
 
-    /**
-     * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-     */
+
     @JsonProperty("locale")
     private SalesInvoiceRecipientLocale locale;
 
@@ -333,9 +331,6 @@ public class SalesInvoiceRecipient {
         return country;
     }
 
-    /**
-     * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-     */
     @JsonIgnore
     public SalesInvoiceRecipientLocale locale() {
         return locale;
@@ -582,9 +577,6 @@ public class SalesInvoiceRecipient {
         return this;
     }
 
-    /**
-     * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-     */
     public SalesInvoiceRecipient withLocale(SalesInvoiceRecipientLocale locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
@@ -942,9 +934,6 @@ public class SalesInvoiceRecipient {
         }
 
 
-        /**
-         * The locale for the recipient, to be used for translations in PDF generation and payment pages.
-         */
         public Builder locale(SalesInvoiceRecipientLocale locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;

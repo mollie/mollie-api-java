@@ -181,7 +181,7 @@ public class UpdateProfile {
                         }
                         try {
                             HttpResponse<InputStream> httpRes = client.send(r);
-                            if (Utils.statusCodeMatches(httpRes.statusCode(), "403", "404", "410", "422", "4XX", "5XX")) {
+                            if (Utils.statusCodeMatches(httpRes.statusCode(), "4XX", "5XX")) {
                                 return onError(httpRes, null);
                             }
                             return httpRes;
@@ -274,7 +274,7 @@ public class UpdateProfile {
                                 if (err != null) {
                                     return onError(null, err);
                                 }
-                                if (Utils.statusCodeMatches(resp.statusCode(), "403", "404", "410", "422", "4XX", "5XX")) {
+                                if (Utils.statusCodeMatches(resp.statusCode(), "4XX", "5XX")) {
                                     return onError(resp, null);
                                 }
                                 return CompletableFuture.completedFuture(resp);
