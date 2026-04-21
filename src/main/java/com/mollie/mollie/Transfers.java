@@ -63,21 +63,24 @@ public class Transfers {
      * allows you to
      * mimic the typical status progression of a real-world transfer. Note that a transfer's progression
      * will stop once
-     * it reaches a final status: `blocked`, `failed`, or `processed`.
+     * it reaches a final status: `blocked`, `failed`, `processed`, or `returned`.
      * 
-     * <p>| Amount  | Scenario                                           | Webhook sequence
+     * <p>| Amount  | Scenario                                            | Webhook sequence
      * |
-     * |---------|----------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-     * | `11.00` | Transfer initiated, pending review by Mollie       |
+     * |---------|-----------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     * | `11.00` | Transfer initiated, pending review by Mollie        |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.pending-review`                                         |
-     * | `12.00` | Transfer initiated, blocked by Mollie              |
+     * | `12.00` | Transfer initiated, blocked by Mollie               |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.pending-review` → `business-account-transfer.blocked`   |
-     * | `13.00` | Transfer initiated, failed on scheme submission    |
+     * | `13.00` | Transfer initiated, failed on scheme submission     |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.failed`                                                 |
-     * | Other   | Default: transfer is processed                     |
+     * | `14.00` | Transfer processed, then returned by receiving bank |
+     * `business-account-transfer.requested` → `business-account-transfer.initiated` →
+     * `business-account-transfer.processed` → `business-account-transfer.returned`       |
+     * | Other   | Default: transfer is processed                      |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.processed`                                              |
      * 
@@ -113,21 +116,24 @@ public class Transfers {
      * allows you to
      * mimic the typical status progression of a real-world transfer. Note that a transfer's progression
      * will stop once
-     * it reaches a final status: `blocked`, `failed`, or `processed`.
+     * it reaches a final status: `blocked`, `failed`, `processed`, or `returned`.
      * 
-     * <p>| Amount  | Scenario                                           | Webhook sequence
+     * <p>| Amount  | Scenario                                            | Webhook sequence
      * |
-     * |---------|----------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-     * | `11.00` | Transfer initiated, pending review by Mollie       |
+     * |---------|-----------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     * | `11.00` | Transfer initiated, pending review by Mollie        |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.pending-review`                                         |
-     * | `12.00` | Transfer initiated, blocked by Mollie              |
+     * | `12.00` | Transfer initiated, blocked by Mollie               |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.pending-review` → `business-account-transfer.blocked`   |
-     * | `13.00` | Transfer initiated, failed on scheme submission    |
+     * | `13.00` | Transfer initiated, failed on scheme submission     |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.failed`                                                 |
-     * | Other   | Default: transfer is processed                     |
+     * | `14.00` | Transfer processed, then returned by receiving bank |
+     * `business-account-transfer.requested` → `business-account-transfer.initiated` →
+     * `business-account-transfer.processed` → `business-account-transfer.returned`       |
+     * | Other   | Default: transfer is processed                      |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.processed`                                              |
      * 
@@ -165,21 +171,24 @@ public class Transfers {
      * allows you to
      * mimic the typical status progression of a real-world transfer. Note that a transfer's progression
      * will stop once
-     * it reaches a final status: `blocked`, `failed`, or `processed`.
+     * it reaches a final status: `blocked`, `failed`, `processed`, or `returned`.
      * 
-     * <p>| Amount  | Scenario                                           | Webhook sequence
+     * <p>| Amount  | Scenario                                            | Webhook sequence
      * |
-     * |---------|----------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-     * | `11.00` | Transfer initiated, pending review by Mollie       |
+     * |---------|-----------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     * | `11.00` | Transfer initiated, pending review by Mollie        |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.pending-review`                                         |
-     * | `12.00` | Transfer initiated, blocked by Mollie              |
+     * | `12.00` | Transfer initiated, blocked by Mollie               |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.pending-review` → `business-account-transfer.blocked`   |
-     * | `13.00` | Transfer initiated, failed on scheme submission    |
+     * | `13.00` | Transfer initiated, failed on scheme submission     |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.failed`                                                 |
-     * | Other   | Default: transfer is processed                     |
+     * | `14.00` | Transfer processed, then returned by receiving bank |
+     * `business-account-transfer.requested` → `business-account-transfer.initiated` →
+     * `business-account-transfer.processed` → `business-account-transfer.returned`       |
+     * | Other   | Default: transfer is processed                      |
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.processed`                                              |
      * 

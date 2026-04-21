@@ -16,12 +16,12 @@ TransferStatus custom = TransferStatus.of("custom_value");
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `REQUESTED`        | requested          |
-| `INITIATED`        | initiated          |
-| `PENDING_REVIEW`   | pending-review     |
-| `PROCESSED`        | processed          |
-| `FAILED`           | failed             |
-| `BLOCKED`          | blocked            |
-| `INCOMING_SETTLED` | incoming-settled   |
+| Name             | Value            |
+| ---------------- | ---------------- |
+| `REQUESTED`      | requested        |
+| `INITIATED`      | initiated        |
+| `PENDING_REVIEW` | pending-review   |
+| `PROCESSED`      | processed        |
+| `FAILED`         | failed           |
+| `BLOCKED`        | blocked          |
+| `RETURNED`       | returned         |

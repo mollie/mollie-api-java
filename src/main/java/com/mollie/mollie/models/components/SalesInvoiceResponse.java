@@ -11,10 +11,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -113,7 +115,7 @@ public class SalesInvoiceResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends SalesInvoiceResponseMetadata> metadata;
+    private JsonNullable<? extends Map<String, Object>> metadata;
 
     /**
      * The payment term to be set on the invoice.
@@ -284,7 +286,7 @@ public class SalesInvoiceResponse {
             @JsonProperty("vatScheme") Optional<? extends SalesInvoiceVatSchemeResponse> vatScheme,
             @JsonProperty("vatMode") Optional<? extends SalesInvoiceVatModeResponse> vatMode,
             @JsonProperty("memo") JsonNullable<String> memo,
-            @JsonProperty("metadata") JsonNullable<? extends SalesInvoiceResponseMetadata> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("paymentTerm") JsonNullable<? extends SalesInvoicePaymentTermResponse> paymentTerm,
             @JsonProperty("paymentDetails") Optional<? extends SalesInvoicePaymentDetailsResponse> paymentDetails,
             @JsonProperty("emailDetails") JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails,
@@ -491,8 +493,8 @@ public class SalesInvoiceResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<SalesInvoiceResponseMetadata> metadata() {
-        return (JsonNullable<SalesInvoiceResponseMetadata>) metadata;
+    public JsonNullable<Map<String, Object>> metadata() {
+        return (JsonNullable<Map<String, Object>>) metadata;
     }
 
     /**
@@ -879,7 +881,7 @@ public class SalesInvoiceResponse {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    public SalesInvoiceResponse withMetadata(SalesInvoiceResponseMetadata metadata) {
+    public SalesInvoiceResponse withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = JsonNullable.of(metadata);
         return this;
@@ -890,7 +892,7 @@ public class SalesInvoiceResponse {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    public SalesInvoiceResponse withMetadata(JsonNullable<? extends SalesInvoiceResponseMetadata> metadata) {
+    public SalesInvoiceResponse withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -1409,7 +1411,7 @@ public class SalesInvoiceResponse {
 
         private JsonNullable<String> memo = JsonNullable.undefined();
 
-        private JsonNullable<? extends SalesInvoiceResponseMetadata> metadata = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
 
         private JsonNullable<? extends SalesInvoicePaymentTermResponse> paymentTerm = JsonNullable.undefined();
 
@@ -1655,7 +1657,7 @@ public class SalesInvoiceResponse {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          */
-        public Builder metadata(SalesInvoiceResponseMetadata metadata) {
+        public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = JsonNullable.of(metadata);
             return this;
@@ -1666,7 +1668,7 @@ public class SalesInvoiceResponse {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          */
-        public Builder metadata(JsonNullable<? extends SalesInvoiceResponseMetadata> metadata) {
+        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
