@@ -26,6 +26,12 @@ public class VerificationOfPayeeResponse {
     private String resource;
 
     /**
+     * Whether this entity was created in live mode or in test mode.
+     */
+    @JsonProperty("mode")
+    private Mode mode;
+
+    /**
      * The bank account details of the creditor (recipient) for Verification of Payee.
      */
     @JsonProperty("creditorBankAccount")
@@ -45,14 +51,17 @@ public class VerificationOfPayeeResponse {
     @JsonCreator
     public VerificationOfPayeeResponse(
             @JsonProperty("resource") String resource,
+            @JsonProperty("mode") Mode mode,
             @JsonProperty("creditorBankAccount") CreditorBankAccountResponse creditorBankAccount,
             @JsonProperty("verificationResult") VerificationOfPayeeResponseVerificationResult verificationResult,
             @JsonProperty("createdAt") String createdAt) {
         Utils.checkNotNull(resource, "resource");
+        Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(creditorBankAccount, "creditorBankAccount");
         Utils.checkNotNull(verificationResult, "verificationResult");
         Utils.checkNotNull(createdAt, "createdAt");
         this.resource = resource;
+        this.mode = mode;
         this.creditorBankAccount = creditorBankAccount;
         this.verificationResult = verificationResult;
         this.createdAt = createdAt;
@@ -65,6 +74,14 @@ public class VerificationOfPayeeResponse {
     @JsonIgnore
     public String resource() {
         return resource;
+    }
+
+    /**
+     * Whether this entity was created in live mode or in test mode.
+     */
+    @JsonIgnore
+    public Mode mode() {
+        return mode;
     }
 
     /**
@@ -105,6 +122,15 @@ public class VerificationOfPayeeResponse {
     }
 
     /**
+     * Whether this entity was created in live mode or in test mode.
+     */
+    public VerificationOfPayeeResponse withMode(Mode mode) {
+        Utils.checkNotNull(mode, "mode");
+        this.mode = mode;
+        return this;
+    }
+
+    /**
      * The bank account details of the creditor (recipient) for Verification of Payee.
      */
     public VerificationOfPayeeResponse withCreditorBankAccount(CreditorBankAccountResponse creditorBankAccount) {
@@ -140,6 +166,7 @@ public class VerificationOfPayeeResponse {
         VerificationOfPayeeResponse other = (VerificationOfPayeeResponse) o;
         return 
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
             Utils.enhancedDeepEquals(this.creditorBankAccount, other.creditorBankAccount) &&
             Utils.enhancedDeepEquals(this.verificationResult, other.verificationResult) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
@@ -148,14 +175,15 @@ public class VerificationOfPayeeResponse {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            resource, creditorBankAccount, verificationResult,
-            createdAt);
+            resource, mode, creditorBankAccount,
+            verificationResult, createdAt);
     }
     
     @Override
     public String toString() {
         return Utils.toString(VerificationOfPayeeResponse.class,
                 "resource", resource,
+                "mode", mode,
                 "creditorBankAccount", creditorBankAccount,
                 "verificationResult", verificationResult,
                 "createdAt", createdAt);
@@ -165,6 +193,8 @@ public class VerificationOfPayeeResponse {
     public final static class Builder {
 
         private String resource;
+
+        private Mode mode;
 
         private CreditorBankAccountResponse creditorBankAccount;
 
@@ -184,6 +214,16 @@ public class VerificationOfPayeeResponse {
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
             this.resource = resource;
+            return this;
+        }
+
+
+        /**
+         * Whether this entity was created in live mode or in test mode.
+         */
+        public Builder mode(Mode mode) {
+            Utils.checkNotNull(mode, "mode");
+            this.mode = mode;
             return this;
         }
 
@@ -218,8 +258,8 @@ public class VerificationOfPayeeResponse {
         public VerificationOfPayeeResponse build() {
 
             return new VerificationOfPayeeResponse(
-                resource, creditorBankAccount, verificationResult,
-                createdAt);
+                resource, mode, creditorBankAccount,
+                verificationResult, createdAt);
         }
 
     }

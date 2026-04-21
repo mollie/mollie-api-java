@@ -32,7 +32,7 @@ public class TransferStatus {
     public static final TransferStatus PROCESSED = new TransferStatus("processed");
     public static final TransferStatus FAILED = new TransferStatus("failed");
     public static final TransferStatus BLOCKED = new TransferStatus("blocked");
-    public static final TransferStatus INCOMING_SETTLED = new TransferStatus("incoming-settled");
+    public static final TransferStatus RETURNED = new TransferStatus("returned");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -112,7 +112,7 @@ public class TransferStatus {
         map.put("processed", PROCESSED);
         map.put("failed", FAILED);
         map.put("blocked", BLOCKED);
-        map.put("incoming-settled", INCOMING_SETTLED);
+        map.put("returned", RETURNED);
         return map;
     }
 
@@ -124,7 +124,7 @@ public class TransferStatus {
         map.put("processed", TransferStatusEnum.PROCESSED);
         map.put("failed", TransferStatusEnum.FAILED);
         map.put("blocked", TransferStatusEnum.BLOCKED);
-        map.put("incoming-settled", TransferStatusEnum.INCOMING_SETTLED);
+        map.put("returned", TransferStatusEnum.RETURNED);
         return map;
     }
     
@@ -137,7 +137,7 @@ public class TransferStatus {
         PROCESSED("processed"),
         FAILED("failed"),
         BLOCKED("blocked"),
-        INCOMING_SETTLED("incoming-settled"),;
+        RETURNED("returned"),;
 
         private final String value;
 
