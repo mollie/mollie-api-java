@@ -4,36 +4,26 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.ListBalancesRequest;
-import com.mollie.mollie.models.operations.ListBalancesResponse;
+import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Client sdk = Client.builder()
-                .testmode(false)
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
-        ListBalancesRequest req = ListBalancesRequest.builder()
-                .currency("EUR")
-                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .limit(50L)
+        OauthGenerateTokensResponse res = sdk.oauth().generate()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .build();
+                .call();
 
-
-        sdk.balances().list()
-                .callAsStream()
-                .forEach((ListBalancesResponse item) -> {
-                   // handle page
-                });
-
+        if (res.body().isPresent()) {
+            System.out.println(res.body().get());
+        }
     }
 }
 ```

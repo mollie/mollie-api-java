@@ -116,7 +116,7 @@ public class UpdatePaymentLink {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payment-links/{paymentLinkId}",
+                    "/v2/payment-links/{paymentLinkId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "PATCH");
             Object convertedRequest = Utils.convertToShape(

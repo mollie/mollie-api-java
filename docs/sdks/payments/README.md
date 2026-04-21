@@ -28,7 +28,7 @@ guide on [method-specific parameters](extra-payment-parameters).
 
 ### Example Usage: create-payment-201-1
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-1" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-1" -->
 ```java
 package hello.world;
 
@@ -293,7 +293,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-10
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-10" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-10" -->
 ```java
 package hello.world;
 
@@ -558,7 +558,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-11
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-11" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-11" -->
 ```java
 package hello.world;
 
@@ -823,7 +823,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-12
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-12" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-12" -->
 ```java
 package hello.world;
 
@@ -1088,7 +1088,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-13
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-13" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-13" -->
 ```java
 package hello.world;
 
@@ -1352,7 +1352,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-2
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-2" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-2" -->
 ```java
 package hello.world;
 
@@ -1617,7 +1617,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-3
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-3" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-3" -->
 ```java
 package hello.world;
 
@@ -1882,7 +1882,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-4
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-4" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-4" -->
 ```java
 package hello.world;
 
@@ -2147,7 +2147,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-5
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-5" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-5" -->
 ```java
 package hello.world;
 
@@ -2412,7 +2412,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-6
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-6" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-6" -->
 ```java
 package hello.world;
 
@@ -2677,7 +2677,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-7
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-7" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-7" -->
 ```java
 package hello.world;
 
@@ -2942,7 +2942,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-8
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-8" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-8" -->
 ```java
 package hello.world;
 
@@ -3207,7 +3207,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-9
 
-<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/payments" example="create-payment-201-9" -->
+<!-- UsageSnippet language="java" operationID="create-payment" method="post" path="/v2/payments" example="create-payment-201-9" -->
 ```java
 package hello.world;
 
@@ -3499,7 +3499,7 @@ The results are paginated.
 
 ### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="java" operationID="list-payments" method="get" path="/payments" example="list-payments-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-payments" method="get" path="/v2/payments" example="list-payments-200-1" -->
 ```java
 package hello.world;
 
@@ -3542,7 +3542,7 @@ public class Application {
 ```
 ### Example Usage: list-payments-200-2
 
-<!-- UsageSnippet language="java" operationID="list-payments" method="get" path="/payments" example="list-payments-200-2" -->
+<!-- UsageSnippet language="java" operationID="list-payments" method="get" path="/v2/payments" example="list-payments-200-2" -->
 ```java
 package hello.world;
 
@@ -3585,7 +3585,7 @@ public class Application {
 ```
 ### Example Usage: list-payments-200-3
 
-<!-- UsageSnippet language="java" operationID="list-payments" method="get" path="/payments" example="list-payments-200-3" -->
+<!-- UsageSnippet language="java" operationID="list-payments" method="get" path="/v2/payments" example="list-payments-200-3" -->
 ```java
 package hello.world;
 
@@ -3650,7 +3650,7 @@ Retrieve a single payment object by its payment ID.
 
 ### Example Usage: get-payment-200-1
 
-<!-- UsageSnippet language="java" operationID="get-payment" method="get" path="/payments/{paymentId}" example="get-payment-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-payment" method="get" path="/v2/payments/{paymentId}" example="get-payment-200-1" -->
 ```java
 package hello.world;
 
@@ -3691,7 +3691,7 @@ public class Application {
 ```
 ### Example Usage: get-payment-200-2
 
-<!-- UsageSnippet language="java" operationID="get-payment" method="get" path="/payments/{paymentId}" example="get-payment-200-2" -->
+<!-- UsageSnippet language="java" operationID="get-payment" method="get" path="/v2/payments/{paymentId}" example="get-payment-200-2" -->
 ```java
 package hello.world;
 
@@ -3732,7 +3732,7 @@ public class Application {
 ```
 ### Example Usage: get-payment-200-3
 
-<!-- UsageSnippet language="java" operationID="get-payment" method="get" path="/payments/{paymentId}" example="get-payment-200-3" -->
+<!-- UsageSnippet language="java" operationID="get-payment" method="get" path="/v2/payments/{paymentId}" example="get-payment-200-3" -->
 ```java
 package hello.world;
 
@@ -3797,7 +3797,7 @@ Updating the payment details will not result in a webhook call.
 
 ### Example Usage: update-payment-200-1
 
-<!-- UsageSnippet language="java" operationID="update-payment" method="patch" path="/payments/{paymentId}" example="update-payment-200-1" -->
+<!-- UsageSnippet language="java" operationID="update-payment" method="patch" path="/v2/payments/{paymentId}" example="update-payment-200-1" -->
 ```java
 package hello.world;
 
@@ -3871,7 +3871,7 @@ public class Application {
 ```
 ### Example Usage: update-payment-200-2
 
-<!-- UsageSnippet language="java" operationID="update-payment" method="patch" path="/payments/{paymentId}" example="update-payment-200-2" -->
+<!-- UsageSnippet language="java" operationID="update-payment" method="patch" path="/v2/payments/{paymentId}" example="update-payment-200-2" -->
 ```java
 package hello.world;
 
@@ -3945,7 +3945,7 @@ public class Application {
 ```
 ### Example Usage: update-payment-200-3
 
-<!-- UsageSnippet language="java" operationID="update-payment" method="patch" path="/payments/{paymentId}" example="update-payment-200-3" -->
+<!-- UsageSnippet language="java" operationID="update-payment" method="patch" path="/v2/payments/{paymentId}" example="update-payment-200-3" -->
 ```java
 package hello.world;
 
@@ -4048,7 +4048,7 @@ The `isCancelable` property on the [Payment object](get-payment) will indicate i
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="cancel-payment" method="delete" path="/payments/{paymentId}" example="cancel-payment-200-1" -->
+<!-- UsageSnippet language="java" operationID="cancel-payment" method="delete" path="/v2/payments/{paymentId}" example="cancel-payment-200-1" -->
 ```java
 package hello.world;
 
@@ -4116,7 +4116,7 @@ If there is a successful capture, the payment will transition to `paid`.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="release-authorization" method="post" path="/payments/{paymentId}/release-authorization" -->
+<!-- UsageSnippet language="java" operationID="release-authorization" method="post" path="/v2/payments/{paymentId}/release-authorization" -->
 ```java
 package hello.world;
 

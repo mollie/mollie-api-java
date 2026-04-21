@@ -116,7 +116,7 @@ public class PaymentCreateRoute {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/routes",
+                    "/v2/payments/{paymentId}/routes",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

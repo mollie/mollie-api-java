@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.4.4'
+implementation 'com.mollie:mollie:1.5.0'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.4.4</version>
+    <version>1.5.0</version>
 </dependency>
 ```
 
@@ -93,36 +93,26 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.ListBalancesRequest;
-import com.mollie.mollie.models.operations.ListBalancesResponse;
+import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Client sdk = Client.builder()
-                .testmode(false)
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
-        ListBalancesRequest req = ListBalancesRequest.builder()
-                .currency("EUR")
-                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .limit(50L)
+        OauthGenerateTokensResponse res = sdk.oauth().generate()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .build();
+                .call();
 
-
-        sdk.balances().list()
-                .callAsStream()
-                .forEach((ListBalancesResponse item) -> {
-                   // handle page
-                });
-
+        if (res.body().isPresent()) {
+            System.out.println(res.body().get());
+        }
     }
 }
 ```
@@ -134,40 +124,29 @@ package hello.world;
 import com.mollie.mollie.AsyncClient;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.operations.ListBalancesRequest;
-import com.mollie.mollie.models.operations.async.ListBalancesResponse;
-import reactor.core.publisher.Flux;
+import com.mollie.mollie.models.operations.async.OauthGenerateTokensResponse;
+import java.util.concurrent.CompletableFuture;
 
 public class Application {
 
     public static void main(String[] args) {
 
         AsyncClient sdk = Client.builder()
-                .testmode(false)
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build()
             .async();
 
-        ListBalancesRequest req = ListBalancesRequest.builder()
-                .currency("EUR")
-                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .limit(50L)
+        CompletableFuture<OauthGenerateTokensResponse> resFut = sdk.oauth().generate()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .build();
+                .call();
 
-
-        var b = sdk.balances().list();
-
-        // Example using Project Reactor (illustrative) - pages
-        Flux<ListBalancesResponse> pageFlux = Flux.from(b.callAsPublisher());
-        pageFlux.subscribe(
-            page -> System.out.println(page),
-            error -> error.printStackTrace(),
-            () -> System.out.println("Pagination completed")
-        );
-
+        resFut.thenAccept(res -> {
+            if (res.body().isPresent()) {
+                System.out.println(res.body().get());
+            }
+        });
     }
 }
 ```
@@ -269,36 +248,26 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.ListBalancesRequest;
-import com.mollie.mollie.models.operations.ListBalancesResponse;
+import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
-                .testmode(false)
             .build();
 
-        ListBalancesRequest req = ListBalancesRequest.builder()
-                .currency("EUR")
-                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .limit(50L)
+        OauthGenerateTokensResponse res = sdk.oauth().generate()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .build();
+                .call();
 
-
-        sdk.balances().list()
-                .callAsStream()
-                .forEach((ListBalancesResponse item) -> {
-                   // handle page
-                });
-
+        if (res.body().isPresent()) {
+            System.out.println(res.body().get());
+        }
     }
 }
 ```
@@ -494,6 +463,11 @@ Client sdk = Client.builder()
 * [list](docs/sdks/methods/README.md#list) - List payment methods
 * [all](docs/sdks/methods/README.md#all) - List all payment methods
 * [get](docs/sdks/methods/README.md#get) - Get payment method
+
+### [Oauth](docs/sdks/oauth/README.md)
+
+* [generate](docs/sdks/oauth/README.md#generate) - Generate tokens
+* [revoke](docs/sdks/oauth/README.md#revoke) - Revoke tokens
 
 ### [Onboarding](docs/sdks/onboarding/README.md)
 
@@ -802,9 +776,7 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.ListBalancesRequest;
-import com.mollie.mollie.models.operations.ListBalancesResponse;
+import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
 import java.lang.Exception;
@@ -812,24 +784,15 @@ import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Client sdk = Client.builder()
-                .testmode(false)
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
-        ListBalancesRequest req = ListBalancesRequest.builder()
-                .currency("EUR")
-                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .limit(50L)
-                .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .build();
-
-
-        sdk.balances().list()
+        OauthGenerateTokensResponse res = sdk.oauth().generate()
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)
@@ -840,11 +803,12 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .callAsStream()
-                .forEach((ListBalancesResponse item) -> {
-                   // handle page
-                });
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
 
+        if (res.body().isPresent()) {
+            System.out.println(res.body().get());
+        }
     }
 }
 ```
@@ -855,9 +819,7 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.ListBalancesRequest;
-import com.mollie.mollie.models.operations.ListBalancesResponse;
+import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
 import java.lang.Exception;
@@ -865,7 +827,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws ErrorResponse, Exception {
+    public static void main(String[] args) throws Exception {
 
         Client sdk = Client.builder()
                 .retryConfig(RetryConfig.builder()
@@ -878,26 +840,18 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .testmode(false)
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
                     .build())
             .build();
 
-        ListBalancesRequest req = ListBalancesRequest.builder()
-                .currency("EUR")
-                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .limit(50L)
+        OauthGenerateTokensResponse res = sdk.oauth().generate()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .build();
+                .call();
 
-
-        sdk.balances().list()
-                .callAsStream()
-                .forEach((ListBalancesResponse item) -> {
-                   // handle page
-                });
-
+        if (res.body().isPresent()) {
+            System.out.println(res.body().get());
+        }
     }
 }
 ```
@@ -1103,7 +1057,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .serverURL("https://api.mollie.com/v2")
+                .serverURL("https://api.mollie.com")
                 .testmode(false)
                 .security(Security.builder()
                     .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
@@ -1124,6 +1078,39 @@ public class Application {
                    // handle page
                 });
 
+    }
+}
+```
+
+### Override Server URL Per-Operation
+
+The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
+                    .build())
+            .build();
+
+        OauthGenerateTokensResponse res = sdk.oauth().generate()
+                .serverURL("https://api.mollie.com/oauth2")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.body().isPresent()) {
+            System.out.println(res.body().get());
+        }
     }
 }
 ```

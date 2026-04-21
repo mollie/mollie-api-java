@@ -26,8 +26,11 @@ public class Client {
      */
     public static final String[] SERVERS = {
 
-        "https://api.mollie.com/v2",
+        "https://api.mollie.com",
     };
+
+
+    private final Oauth oauth;
 
 
     private final Balances balances;
@@ -121,6 +124,11 @@ public class Client {
 
 
     private final VerifyPayees verifyPayees;
+
+
+    public Oauth oauth() {
+        return oauth;
+    }
 
 
     public Balances balances() {
@@ -458,6 +466,7 @@ public class Client {
 
     public Client(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
+        this.oauth = new Oauth(sdkConfiguration);
         this.balances = new Balances(sdkConfiguration);
         this.settlements = new Settlements(sdkConfiguration);
         this.invoices = new Invoices(sdkConfiguration);

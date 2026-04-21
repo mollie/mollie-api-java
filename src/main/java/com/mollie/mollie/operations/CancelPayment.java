@@ -116,7 +116,7 @@ public class CancelPayment {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}",
+                    "/v2/payments/{paymentId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
             Object convertedRequest = Utils.convertToShape(

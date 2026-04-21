@@ -118,7 +118,7 @@ public class GetTransfer {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/business-accounts/transfers/{businessAccountsTransferId}",
+                    "/v2/business-accounts/transfers/{businessAccountsTransferId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

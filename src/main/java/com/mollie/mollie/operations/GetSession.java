@@ -112,7 +112,7 @@ public class GetSession {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/sessions/{sessionId}",
+                    "/v2/sessions/{sessionId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

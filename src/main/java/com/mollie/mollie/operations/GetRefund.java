@@ -118,7 +118,7 @@ public class GetRefund {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/refunds/{refundId}",
+                    "/v2/payments/{paymentId}/refunds/{refundId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

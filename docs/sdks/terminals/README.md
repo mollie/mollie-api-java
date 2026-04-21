@@ -15,7 +15,7 @@ The results are paginated.
 
 ### Example Usage: list-terminals-200-1
 
-<!-- UsageSnippet language="java" operationID="list-terminals" method="get" path="/terminals" example="list-terminals-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-terminals" method="get" path="/v2/terminals" example="list-terminals-200-1" -->
 ```java
 package hello.world;
 
@@ -57,7 +57,7 @@ public class Application {
 ```
 ### Example Usage: list-terminals-200-2
 
-<!-- UsageSnippet language="java" operationID="list-terminals" method="get" path="/terminals" example="list-terminals-200-2" -->
+<!-- UsageSnippet language="java" operationID="list-terminals" method="get" path="/v2/terminals" example="list-terminals-200-2" -->
 ```java
 package hello.world;
 
@@ -121,7 +121,7 @@ Retrieve a single terminal by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-terminal" method="get" path="/terminals/{terminalId}" example="get-terminal-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-terminal" method="get" path="/v2/terminals/{terminalId}" example="get-terminal-200-1" -->
 ```java
 package hello.world;
 

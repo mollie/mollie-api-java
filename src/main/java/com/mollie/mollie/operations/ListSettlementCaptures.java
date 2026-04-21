@@ -117,7 +117,7 @@ public class ListSettlementCaptures {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/settlements/{settlementId}/captures",
+                    "/v2/settlements/{settlementId}/captures",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

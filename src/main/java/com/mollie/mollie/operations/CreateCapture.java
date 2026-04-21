@@ -116,7 +116,7 @@ public class CreateCapture {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/captures",
+                    "/v2/payments/{paymentId}/captures",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

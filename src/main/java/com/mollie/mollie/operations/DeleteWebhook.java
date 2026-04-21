@@ -115,7 +115,7 @@ public class DeleteWebhook {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/webhooks/{webhookId}",
+                    "/v2/webhooks/{webhookId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
             Object convertedRequest = Utils.convertToShape(

@@ -116,7 +116,7 @@ public class CreateSubscription {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}/subscriptions",
+                    "/v2/customers/{customerId}/subscriptions",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

@@ -17,7 +17,7 @@ transfer or by refunding the amount to your customer's credit card.
 
 ### Example Usage: create-refund-201-1
 
-<!-- UsageSnippet language="java" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" example="create-refund-201-1" -->
+<!-- UsageSnippet language="java" operationID="create-refund" method="post" path="/v2/payments/{paymentId}/refunds" example="create-refund-201-1" -->
 ```java
 package hello.world;
 
@@ -78,7 +78,7 @@ public class Application {
 ```
 ### Example Usage: create-refund-201-2
 
-<!-- UsageSnippet language="java" operationID="create-refund" method="post" path="/payments/{paymentId}/refunds" example="create-refund-201-2" -->
+<!-- UsageSnippet language="java" operationID="create-refund" method="post" path="/v2/payments/{paymentId}/refunds" example="create-refund-201-2" -->
 ```java
 package hello.world;
 
@@ -165,7 +165,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-refunds" method="get" path="/payments/{paymentId}/refunds" example="list-refunds-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-refunds" method="get" path="/v2/payments/{paymentId}/refunds" example="list-refunds-200-1" -->
 ```java
 package hello.world;
 
@@ -229,7 +229,7 @@ Retrieve a single payment refund by its ID and the ID of its parent payment.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-refund" method="get" path="/payments/{paymentId}/refunds/{refundId}" example="get-refund-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-refund" method="get" path="/v2/payments/{paymentId}/refunds/{refundId}" example="get-refund-200-1" -->
 ```java
 package hello.world;
 
@@ -296,7 +296,7 @@ A refund can only be canceled while its `status` field is either `queued` or `pe
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="cancel-refund" method="delete" path="/payments/{paymentId}/refunds/{refundId}" -->
+<!-- UsageSnippet language="java" operationID="cancel-refund" method="delete" path="/v2/payments/{paymentId}/refunds/{refundId}" -->
 ```java
 package hello.world;
 
@@ -356,7 +356,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-all-refunds" method="get" path="/refunds" example="list-refunds-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-all-refunds" method="get" path="/v2/refunds" example="list-refunds-200-1" -->
 ```java
 package hello.world;
 

@@ -118,7 +118,7 @@ public class GetCapture {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/captures/{captureId}",
+                    "/v2/payments/{paymentId}/captures/{captureId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

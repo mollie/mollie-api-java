@@ -116,7 +116,7 @@ public class MatchUnmatchedCreditTransfer {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/unmatched-credit-transfers/{unmatchedCreditTransferId}/match",
+                    "/v2/unmatched-credit-transfers/{unmatchedCreditTransferId}/match",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

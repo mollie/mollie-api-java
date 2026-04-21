@@ -118,7 +118,7 @@ public class GetChargeback {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/chargebacks/{chargebackId}",
+                    "/v2/payments/{paymentId}/chargebacks/{chargebackId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

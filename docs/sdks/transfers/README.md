@@ -37,7 +37,7 @@ it reaches a final status: `blocked`, `failed`, `processed`, or `returned`.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="create-transfer" method="post" path="/business-accounts/transfers" example="create-transfer-201" -->
+<!-- UsageSnippet language="java" operationID="create-transfer" method="post" path="/v2/business-accounts/transfers" example="create-transfer-201" -->
 ```java
 package hello.world;
 
@@ -123,7 +123,7 @@ and details of a previously created transfer.
 
 ### Example Usage: get-transfer-200
 
-<!-- UsageSnippet language="java" operationID="get-transfer" method="get" path="/business-accounts/transfers/{businessAccountsTransferId}" example="get-transfer-200" -->
+<!-- UsageSnippet language="java" operationID="get-transfer" method="get" path="/v2/business-accounts/transfers/{businessAccountsTransferId}" example="get-transfer-200" -->
 ```java
 package hello.world;
 
@@ -157,7 +157,7 @@ public class Application {
 ```
 ### Example Usage: processed-transfer
 
-<!-- UsageSnippet language="java" operationID="get-transfer" method="get" path="/business-accounts/transfers/{businessAccountsTransferId}" example="processed-transfer" -->
+<!-- UsageSnippet language="java" operationID="get-transfer" method="get" path="/v2/business-accounts/transfers/{businessAccountsTransferId}" example="processed-transfer" -->
 ```java
 package hello.world;
 

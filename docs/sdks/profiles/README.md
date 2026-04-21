@@ -20,7 +20,7 @@ can use this endpoint to automate profile creation.
 
 ### Example Usage: create-profile-201-1
 
-<!-- UsageSnippet language="java" operationID="create-profile" method="post" path="/profiles" example="create-profile-201-1" -->
+<!-- UsageSnippet language="java" operationID="create-profile" method="post" path="/v2/profiles" example="create-profile-201-1" -->
 ```java
 package hello.world;
 
@@ -65,7 +65,7 @@ public class Application {
 ```
 ### Example Usage: create-profile-201-2
 
-<!-- UsageSnippet language="java" operationID="create-profile" method="post" path="/profiles" example="create-profile-201-2" -->
+<!-- UsageSnippet language="java" operationID="create-profile" method="post" path="/v2/profiles" example="create-profile-201-2" -->
 ```java
 package hello.world;
 
@@ -135,7 +135,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-profiles" method="get" path="/profiles" example="list-profiles-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-profiles" method="get" path="/v2/profiles" example="list-profiles-200-1" -->
 ```java
 package hello.world;
 
@@ -194,7 +194,7 @@ Retrieve a single profile by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-profile" method="get" path="/profiles/{profileId}" example="get-profile-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-profile" method="get" path="/v2/profiles/{profileId}" example="get-profile-200-1" -->
 ```java
 package hello.world;
 
@@ -255,7 +255,7 @@ Alternatively, you can use this endpoint to automate profile management.
 
 ### Example Usage: update-profile-200-1
 
-<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/profiles/{profileId}" example="update-profile-200-1" -->
+<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/v2/profiles/{profileId}" example="update-profile-200-1" -->
 ```java
 package hello.world;
 
@@ -301,7 +301,7 @@ public class Application {
 ```
 ### Example Usage: update-profile-200-2
 
-<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/profiles/{profileId}" example="update-profile-200-2" -->
+<!-- UsageSnippet language="java" operationID="update-profile" method="patch" path="/v2/profiles/{profileId}" example="update-profile-200-2" -->
 ```java
 package hello.world;
 
@@ -371,7 +371,7 @@ Delete a profile. A deleted profile and its related credentials can no longer be
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="delete-profile" method="delete" path="/profiles/{profileId}" -->
+<!-- UsageSnippet language="java" operationID="delete-profile" method="delete" path="/v2/profiles/{profileId}" -->
 ```java
 package hello.world;
 
@@ -429,7 +429,7 @@ documentation.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-current-profile" method="get" path="/profiles/me" example="get-current-profile-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-current-profile" method="get" path="/v2/profiles/me" example="get-current-profile-200-1" -->
 ```java
 package hello.world;
 

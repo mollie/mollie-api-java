@@ -36,7 +36,7 @@ Your customer will be charged €10 on the last day of each month, starting in A
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="create-subscription" method="post" path="/customers/{customerId}/subscriptions" example="get-subscription-200-1" -->
+<!-- UsageSnippet language="java" operationID="create-subscription" method="post" path="/v2/customers/{customerId}/subscriptions" example="get-subscription-200-1" -->
 ```java
 package hello.world;
 
@@ -117,7 +117,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-subscriptions" method="get" path="/customers/{customerId}/subscriptions" example="list-subscriptions-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-subscriptions" method="get" path="/v2/customers/{customerId}/subscriptions" example="list-subscriptions-200-1" -->
 ```java
 package hello.world;
 
@@ -182,7 +182,7 @@ Retrieve a single subscription by its ID and the ID of its parent customer.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-subscription" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="get-subscription-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-subscription" method="get" path="/v2/customers/{customerId}/subscriptions/{subscriptionId}" example="get-subscription-200-1" -->
 ```java
 package hello.world;
 
@@ -246,7 +246,7 @@ For an in-depth explanation of each parameter, refer to the [Create subscription
 
 ### Example Usage: update-subscription-200-1
 
-<!-- UsageSnippet language="java" operationID="update-subscription" method="patch" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="update-subscription-200-1" -->
+<!-- UsageSnippet language="java" operationID="update-subscription" method="patch" path="/v2/customers/{customerId}/subscriptions/{subscriptionId}" example="update-subscription-200-1" -->
 ```java
 package hello.world;
 
@@ -295,7 +295,7 @@ public class Application {
 ```
 ### Example Usage: update-subscription-200-2
 
-<!-- UsageSnippet language="java" operationID="update-subscription" method="patch" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="update-subscription-200-2" -->
+<!-- UsageSnippet language="java" operationID="update-subscription" method="patch" path="/v2/customers/{customerId}/subscriptions/{subscriptionId}" example="update-subscription-200-2" -->
 ```java
 package hello.world;
 
@@ -369,7 +369,7 @@ Cancel an existing subscription. Canceling a subscription has no effect on the m
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="cancel-subscription" method="delete" path="/customers/{customerId}/subscriptions/{subscriptionId}" example="cancel-subscription-200-1" -->
+<!-- UsageSnippet language="java" operationID="cancel-subscription" method="delete" path="/v2/customers/{customerId}/subscriptions/{subscriptionId}" example="cancel-subscription-200-1" -->
 ```java
 package hello.world;
 
@@ -434,7 +434,7 @@ The results are paginated.
 
 ### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/subscriptions" example="list-payments-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/v2/subscriptions" example="list-payments-200-1" -->
 ```java
 package hello.world;
 
@@ -474,7 +474,7 @@ public class Application {
 ```
 ### Example Usage: list-payments-200-2
 
-<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/subscriptions" example="list-payments-200-2" -->
+<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/v2/subscriptions" example="list-payments-200-2" -->
 ```java
 package hello.world;
 
@@ -514,7 +514,7 @@ public class Application {
 ```
 ### Example Usage: list-payments-200-3
 
-<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/subscriptions" example="list-payments-200-3" -->
+<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/v2/subscriptions" example="list-payments-200-3" -->
 ```java
 package hello.world;
 
@@ -554,7 +554,7 @@ public class Application {
 ```
 ### Example Usage: list-subscriptions-200-1
 
-<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/subscriptions" example="list-subscriptions-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-all-subscriptions" method="get" path="/v2/subscriptions" example="list-subscriptions-200-1" -->
 ```java
 package hello.world;
 
@@ -619,7 +619,7 @@ The results are paginated.
 
 ### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="java" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-subscription-payments" method="get" path="/v2/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-1" -->
 ```java
 package hello.world;
 
@@ -664,7 +664,7 @@ public class Application {
 ```
 ### Example Usage: list-payments-200-2
 
-<!-- UsageSnippet language="java" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-2" -->
+<!-- UsageSnippet language="java" operationID="list-subscription-payments" method="get" path="/v2/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-2" -->
 ```java
 package hello.world;
 
@@ -709,7 +709,7 @@ public class Application {
 ```
 ### Example Usage: list-payments-200-3
 
-<!-- UsageSnippet language="java" operationID="list-subscription-payments" method="get" path="/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-3" -->
+<!-- UsageSnippet language="java" operationID="list-subscription-payments" method="get" path="/v2/customers/{customerId}/subscriptions/{subscriptionId}/payments" example="list-payments-200-3" -->
 ```java
 package hello.world;
 

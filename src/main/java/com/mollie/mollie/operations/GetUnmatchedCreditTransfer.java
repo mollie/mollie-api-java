@@ -113,7 +113,7 @@ public class GetUnmatchedCreditTransfer {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/unmatched-credit-transfers/{unmatchedCreditTransferId}",
+                    "/v2/unmatched-credit-transfers/{unmatchedCreditTransferId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

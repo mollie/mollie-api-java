@@ -64,7 +64,7 @@ to the URL.
 
 ### Example Usage: create-client-link-201-1
 
-<!-- UsageSnippet language="java" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-1" -->
+<!-- UsageSnippet language="java" operationID="create-client-link" method="post" path="/v2/client-links" example="create-client-link-201-1" -->
 ```java
 package hello.world;
 
@@ -116,7 +116,7 @@ public class Application {
 ```
 ### Example Usage: create-client-link-201-2
 
-<!-- UsageSnippet language="java" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-2" -->
+<!-- UsageSnippet language="java" operationID="create-client-link" method="post" path="/v2/client-links" example="create-client-link-201-2" -->
 ```java
 package hello.world;
 
@@ -168,7 +168,7 @@ public class Application {
 ```
 ### Example Usage: create-client-link-201-3
 
-<!-- UsageSnippet language="java" operationID="create-client-link" method="post" path="/client-links" example="create-client-link-201-3" -->
+<!-- UsageSnippet language="java" operationID="create-client-link" method="post" path="/v2/client-links" example="create-client-link-201-3" -->
 ```java
 package hello.world;
 

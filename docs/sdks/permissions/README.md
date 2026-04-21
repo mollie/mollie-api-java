@@ -15,7 +15,7 @@ The results are **not** paginated.
 
 ### Example Usage: list-permissions-200-1
 
-<!-- UsageSnippet language="java" operationID="list-permissions" method="get" path="/permissions" example="list-permissions-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-permissions" method="get" path="/v2/permissions" example="list-permissions-200-1" -->
 ```java
 package hello.world;
 
@@ -47,7 +47,7 @@ public class Application {
 ```
 ### Example Usage: list-permissions-200-2
 
-<!-- UsageSnippet language="java" operationID="list-permissions" method="get" path="/permissions" example="list-permissions-200-2" -->
+<!-- UsageSnippet language="java" operationID="list-permissions" method="get" path="/v2/permissions" example="list-permissions-200-2" -->
 ```java
 package hello.world;
 
@@ -101,7 +101,7 @@ Retrieve a single permission by its ID, and see if the permission is granted to 
 
 ### Example Usage: get-permission-200-1
 
-<!-- UsageSnippet language="java" operationID="get-permission" method="get" path="/permissions/{permissionId}" example="get-permission-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-permission" method="get" path="/v2/permissions/{permissionId}" example="get-permission-200-1" -->
 ```java
 package hello.world;
 
@@ -135,7 +135,7 @@ public class Application {
 ```
 ### Example Usage: get-permission-200-2
 
-<!-- UsageSnippet language="java" operationID="get-permission" method="get" path="/permissions/{permissionId}" example="get-permission-200-2" -->
+<!-- UsageSnippet language="java" operationID="get-permission" method="get" path="/v2/permissions/{permissionId}" example="get-permission-200-2" -->
 ```java
 package hello.world;
 

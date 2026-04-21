@@ -116,7 +116,7 @@ public class CreateCustomerPayment {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}/payments",
+                    "/v2/customers/{customerId}/payments",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

@@ -115,7 +115,7 @@ public class RevokeMandate {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}/mandates/{mandateId}",
+                    "/v2/customers/{customerId}/mandates/{mandateId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
             Object convertedRequest = Utils.convertToShape(

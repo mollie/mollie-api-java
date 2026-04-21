@@ -122,7 +122,7 @@ public class ListChargebacks {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/chargebacks",
+                    "/v2/payments/{paymentId}/chargebacks",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

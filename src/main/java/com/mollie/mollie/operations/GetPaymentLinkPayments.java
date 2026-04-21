@@ -122,7 +122,7 @@ public class GetPaymentLinkPayments {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payment-links/{paymentLinkId}/payments",
+                    "/v2/payment-links/{paymentLinkId}/payments",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

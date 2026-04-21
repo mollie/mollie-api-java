@@ -115,7 +115,7 @@ public class RequestApplePayPaymentSession {
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/wallets/applepay/sessions");
+                    "/v2/wallets/applepay/sessions");
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,

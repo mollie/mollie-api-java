@@ -115,7 +115,7 @@ public class CreateConnectBalanceTransfer {
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/connect/balance-transfers");
+                    "/v2/connect/balance-transfers");
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,

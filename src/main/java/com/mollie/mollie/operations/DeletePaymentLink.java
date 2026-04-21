@@ -115,7 +115,7 @@ public class DeletePaymentLink {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payment-links/{paymentLinkId}",
+                    "/v2/payment-links/{paymentLinkId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
             Object convertedRequest = Utils.convertToShape(

@@ -111,7 +111,7 @@ public class GetCurrentOrganization {
         <T>HttpRequest buildRequest(T request) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/organizations/me");
+                    "/v2/organizations/me");
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);

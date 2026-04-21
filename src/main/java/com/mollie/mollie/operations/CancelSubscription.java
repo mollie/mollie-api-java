@@ -116,7 +116,7 @@ public class CancelSubscription {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}/subscriptions/{subscriptionId}",
+                    "/v2/customers/{customerId}/subscriptions/{subscriptionId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
             Object convertedRequest = Utils.convertToShape(

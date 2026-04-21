@@ -21,7 +21,7 @@ having collected the customer's authorization.
 
 ### Example Usage: get-capture-200-1
 
-<!-- UsageSnippet language="java" operationID="create-capture" method="post" path="/payments/{paymentId}/captures" example="get-capture-200-1" -->
+<!-- UsageSnippet language="java" operationID="create-capture" method="post" path="/v2/payments/{paymentId}/captures" example="get-capture-200-1" -->
 ```java
 package hello.world;
 
@@ -61,7 +61,7 @@ public class Application {
 ```
 ### Example Usage: get-capture-200-2
 
-<!-- UsageSnippet language="java" operationID="create-capture" method="post" path="/payments/{paymentId}/captures" example="get-capture-200-2" -->
+<!-- UsageSnippet language="java" operationID="create-capture" method="post" path="/v2/payments/{paymentId}/captures" example="get-capture-200-2" -->
 ```java
 package hello.world;
 
@@ -127,7 +127,7 @@ The results are paginated.
 
 ### Example Usage: list-captures-200-1
 
-<!-- UsageSnippet language="java" operationID="list-captures" method="get" path="/payments/{paymentId}/captures" example="list-captures-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-captures" method="get" path="/v2/payments/{paymentId}/captures" example="list-captures-200-1" -->
 ```java
 package hello.world;
 
@@ -169,7 +169,7 @@ public class Application {
 ```
 ### Example Usage: list-captures-200-2
 
-<!-- UsageSnippet language="java" operationID="list-captures" method="get" path="/payments/{paymentId}/captures" example="list-captures-200-2" -->
+<!-- UsageSnippet language="java" operationID="list-captures" method="get" path="/v2/payments/{paymentId}/captures" example="list-captures-200-2" -->
 ```java
 package hello.world;
 
@@ -234,7 +234,7 @@ payment.
 
 ### Example Usage: get-capture-200-1
 
-<!-- UsageSnippet language="java" operationID="get-capture" method="get" path="/payments/{paymentId}/captures/{captureId}" example="get-capture-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-capture" method="get" path="/v2/payments/{paymentId}/captures/{captureId}" example="get-capture-200-1" -->
 ```java
 package hello.world;
 
@@ -275,7 +275,7 @@ public class Application {
 ```
 ### Example Usage: get-capture-200-2
 
-<!-- UsageSnippet language="java" operationID="get-capture" method="get" path="/payments/{paymentId}/captures/{captureId}" example="get-capture-200-2" -->
+<!-- UsageSnippet language="java" operationID="get-capture" method="get" path="/v2/payments/{paymentId}/captures/{captureId}" example="get-capture-200-2" -->
 ```java
 package hello.world;
 

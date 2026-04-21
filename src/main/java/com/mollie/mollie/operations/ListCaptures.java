@@ -122,7 +122,7 @@ public class ListCaptures {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/captures",
+                    "/v2/payments/{paymentId}/captures",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

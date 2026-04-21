@@ -111,7 +111,7 @@ public class GetPartnerStatus {
         <T>HttpRequest buildRequest(T request) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/organizations/me/partner");
+                    "/v2/organizations/me/partner");
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);

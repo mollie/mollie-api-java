@@ -116,7 +116,7 @@ public class UpdateSalesInvoice {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/sales-invoices/{salesInvoiceId}",
+                    "/v2/sales-invoices/{salesInvoiceId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "PATCH");
             Object convertedRequest = Utils.convertToShape(
