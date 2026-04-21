@@ -118,7 +118,7 @@ public class GetWebhook {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/webhooks/{webhookId}",
+                    "/v2/webhooks/{webhookId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

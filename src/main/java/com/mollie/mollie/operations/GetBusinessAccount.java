@@ -118,7 +118,7 @@ public class GetBusinessAccount {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/business-accounts/accounts/{businessAccountId}",
+                    "/v2/business-accounts/accounts/{businessAccountId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

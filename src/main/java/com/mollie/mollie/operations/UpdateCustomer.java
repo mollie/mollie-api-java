@@ -116,7 +116,7 @@ public class UpdateCustomer {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}",
+                    "/v2/customers/{customerId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "PATCH");
             Object convertedRequest = Utils.convertToShape(

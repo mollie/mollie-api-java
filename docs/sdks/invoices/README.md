@@ -16,7 +16,7 @@ The results are paginated.
 
 ### Example Usage: list-invoices-200-1
 
-<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/v2/invoices" example="list-invoices-200-1" -->
 ```java
 package hello.world;
 
@@ -59,7 +59,7 @@ public class Application {
 ```
 ### Example Usage: list-invoices-200-2
 
-<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-2" -->
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/v2/invoices" example="list-invoices-200-2" -->
 ```java
 package hello.world;
 
@@ -102,7 +102,7 @@ public class Application {
 ```
 ### Example Usage: list-invoices-200-3
 
-<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-3" -->
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/v2/invoices" example="list-invoices-200-3" -->
 ```java
 package hello.world;
 
@@ -145,7 +145,7 @@ public class Application {
 ```
 ### Example Usage: list-invoices-200-4
 
-<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/invoices" example="list-invoices-200-4" -->
+<!-- UsageSnippet language="java" operationID="list-invoices" method="get" path="/v2/invoices" example="list-invoices-200-4" -->
 ```java
 package hello.world;
 
@@ -213,7 +213,7 @@ call the [List invoices](list-invoices) endpoint with the `reference` parameter.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-invoice" method="get" path="/invoices/{invoiceId}" example="get-invoice-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-invoice" method="get" path="/v2/invoices/{invoiceId}" example="get-invoice-200-1" -->
 ```java
 package hello.world;
 

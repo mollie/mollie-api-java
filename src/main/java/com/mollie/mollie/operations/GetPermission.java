@@ -118,7 +118,7 @@ public class GetPermission {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/permissions/{permissionId}",
+                    "/v2/permissions/{permissionId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

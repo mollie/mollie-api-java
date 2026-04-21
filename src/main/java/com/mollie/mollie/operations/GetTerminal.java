@@ -118,7 +118,7 @@ public class GetTerminal {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/terminals/{terminalId}",
+                    "/v2/terminals/{terminalId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

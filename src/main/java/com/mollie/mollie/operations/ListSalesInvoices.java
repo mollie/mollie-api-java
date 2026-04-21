@@ -121,7 +121,7 @@ public class ListSalesInvoices {
         <T>HttpRequest buildRequest(T request, Class<T> klass) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/sales-invoices");
+                    "/v2/sales-invoices");
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);

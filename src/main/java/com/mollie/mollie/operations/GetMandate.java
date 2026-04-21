@@ -118,7 +118,7 @@ public class GetMandate {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}/mandates/{mandateId}",
+                    "/v2/customers/{customerId}/mandates/{mandateId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

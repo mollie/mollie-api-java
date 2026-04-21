@@ -9,6 +9,8 @@ import com.mollie.mollie.utils.Headers;
 public class AsyncClient {
     private static final Headers _headers = Headers.EMPTY;
 
+    private final AsyncOauth oauth;
+
     private final AsyncBalances balances;
 
     private final AsyncSettlements settlements;
@@ -70,6 +72,10 @@ public class AsyncClient {
     private final AsyncTransfers transfers;
 
     private final AsyncVerifyPayees verifyPayees;
+
+    public AsyncOauth oauth() {
+        return oauth;
+    }
 
     public AsyncBalances balances() {
         return balances;
@@ -201,6 +207,7 @@ public class AsyncClient {
     AsyncClient(Client syncSDK, SDKConfiguration sdkConfiguration) {
         this.syncSDK = syncSDK;
         this.sdkConfiguration = sdkConfiguration;
+        this.oauth = new AsyncOauth(syncSDK.oauth(), sdkConfiguration);
         this.balances = new AsyncBalances(syncSDK.balances(), sdkConfiguration);
         this.settlements = new AsyncSettlements(syncSDK.settlements(), sdkConfiguration);
         this.invoices = new AsyncInvoices(syncSDK.invoices(), sdkConfiguration);

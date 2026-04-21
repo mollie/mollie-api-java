@@ -115,7 +115,7 @@ public class DeleteCustomer {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}",
+                    "/v2/customers/{customerId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
             Object convertedRequest = Utils.convertToShape(

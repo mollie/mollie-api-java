@@ -17,7 +17,7 @@ that has authorized the `balance-transfers.write` scope for your organization.
 
 ### Example Usage: create-balance-transfer-200-1
 
-<!-- UsageSnippet language="java" operationID="create-connect-balance-transfer" method="post" path="/connect/balance-transfers" example="create-balance-transfer-200-1" -->
+<!-- UsageSnippet language="java" operationID="create-connect-balance-transfer" method="post" path="/v2/connect/balance-transfers" example="create-balance-transfer-200-1" -->
 ```java
 package hello.world;
 
@@ -72,7 +72,7 @@ public class Application {
 ```
 ### Example Usage: create-balance-transfer-422-1
 
-<!-- UsageSnippet language="java" operationID="create-connect-balance-transfer" method="post" path="/connect/balance-transfers" example="create-balance-transfer-422-1" -->
+<!-- UsageSnippet language="java" operationID="create-connect-balance-transfer" method="post" path="/v2/connect/balance-transfers" example="create-balance-transfer-422-1" -->
 ```java
 package hello.world;
 
@@ -150,7 +150,7 @@ Returns a paginated list of balance transfers associated with your organization.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-connect-balance-transfers" method="get" path="/connect/balance-transfers" example="list-balance-transfer-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-connect-balance-transfers" method="get" path="/v2/connect/balance-transfers" example="list-balance-transfer-200-1" -->
 ```java
 package hello.world;
 
@@ -213,7 +213,7 @@ Retrieve a single Connect balance transfer object by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-connect-balance-transfer" method="get" path="/connect/balance-transfers/{balanceTransferId}" example="get-balance-transfer-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-connect-balance-transfer" method="get" path="/v2/connect/balance-transfers/{balanceTransferId}" example="get-balance-transfer-200-1" -->
 ```java
 package hello.world;
 

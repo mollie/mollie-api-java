@@ -32,7 +32,7 @@ a non-online payment method, you can use the [Get payment method endpoint](get-m
 
 ### Example Usage: list-method-200-3
 
-<!-- UsageSnippet language="java" operationID="list-methods" method="get" path="/methods" example="list-method-200-3" -->
+<!-- UsageSnippet language="java" operationID="list-methods" method="get" path="/v2/methods" example="list-method-200-3" -->
 ```java
 package hello.world;
 
@@ -82,7 +82,7 @@ public class Application {
 ```
 ### Example Usage: list-methods-200-1
 
-<!-- UsageSnippet language="java" operationID="list-methods" method="get" path="/methods" example="list-methods-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-methods" method="get" path="/v2/methods" example="list-methods-200-1" -->
 ```java
 package hello.world;
 
@@ -132,7 +132,7 @@ public class Application {
 ```
 ### Example Usage: list-methods-200-2
 
-<!-- UsageSnippet language="java" operationID="list-methods" method="get" path="/methods" example="list-methods-200-2" -->
+<!-- UsageSnippet language="java" operationID="list-methods" method="get" path="/v2/methods" example="list-methods-200-2" -->
 ```java
 package hello.world;
 
@@ -210,7 +210,7 @@ a non-online payment method, you can use the [Get payment method endpoint](get-m
 
 ### Example Usage: list-all-methods-200-1
 
-<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/v2/methods/all" example="list-all-methods-200-1" -->
 ```java
 package hello.world;
 
@@ -256,7 +256,7 @@ public class Application {
 ```
 ### Example Usage: list-all-methods-200-2
 
-<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-2" -->
+<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/v2/methods/all" example="list-all-methods-200-2" -->
 ```java
 package hello.world;
 
@@ -302,7 +302,7 @@ public class Application {
 ```
 ### Example Usage: list-all-methods-200-3
 
-<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-3" -->
+<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/v2/methods/all" example="list-all-methods-200-3" -->
 ```java
 package hello.world;
 
@@ -348,7 +348,7 @@ public class Application {
 ```
 ### Example Usage: list-all-methods-200-4
 
-<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/methods/all" example="list-all-methods-200-4" -->
+<!-- UsageSnippet language="java" operationID="list-all-methods" method="get" path="/v2/methods/all" example="list-all-methods-200-4" -->
 ```java
 package hello.world;
 
@@ -427,7 +427,7 @@ are enabled by passing the wallet ID (`applepay`) as the method ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-method" method="get" path="/methods/{methodId}" example="get-method-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-method" method="get" path="/v2/methods/{methodId}" example="get-method-200-1" -->
 ```java
 package hello.world;
 

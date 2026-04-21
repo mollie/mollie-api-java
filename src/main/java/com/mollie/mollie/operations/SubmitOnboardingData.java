@@ -113,7 +113,7 @@ public class SubmitOnboardingData {
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/onboarding/me");
+                    "/v2/onboarding/me");
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,

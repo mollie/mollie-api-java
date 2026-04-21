@@ -261,6 +261,17 @@ public class MollieAutoConfig {
         return new com.mollie.mollie.utils.Hooks();
     }
     /**
+     * Creates a Oauth sub-SDK bean if none exists.
+     *
+     * @param client the main SDK instance
+     * @return A configured Oauth instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Oauth oauth(Client client) {
+        return client.oauth();
+    }
+    /**
      * Creates a Balances sub-SDK bean if none exists.
      *
      * @param client the main SDK instance
@@ -613,6 +624,17 @@ public class MollieAutoConfig {
     @ConditionalOnMissingBean
     public AsyncClient asyncClient(Client client, SDKConfiguration sdkConfiguration) {
         return new AsyncClient(client, sdkConfiguration);
+    }
+    /**
+     * Creates an AsyncOauth sub-SDK bean if none exists.
+     *
+     * @param asyncClient the async SDK instance
+     * @return A configured AsyncOauth instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncOauth asyncOauth(AsyncClient asyncClient) {
+        return asyncClient.oauth();
     }
     /**
      * Creates an AsyncBalances sub-SDK bean if none exists.

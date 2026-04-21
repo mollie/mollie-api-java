@@ -118,7 +118,7 @@ public class GetSubscription {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}/subscriptions/{subscriptionId}",
+                    "/v2/customers/{customerId}/subscriptions/{subscriptionId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

@@ -124,7 +124,7 @@ public class ListSubscriptionPayments {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}/subscriptions/{subscriptionId}/payments",
+                    "/v2/customers/{customerId}/subscriptions/{subscriptionId}/payments",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

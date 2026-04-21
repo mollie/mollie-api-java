@@ -115,7 +115,7 @@ public class VerifyPayee {
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/business-accounts/payee-verifications");
+                    "/v2/business-accounts/payee-verifications");
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,

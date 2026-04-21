@@ -21,7 +21,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-unmatched-credit-transfers" method="get" path="/unmatched-credit-transfers" example="list-unmatched-credit-transfers-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-unmatched-credit-transfers" method="get" path="/v2/unmatched-credit-transfers" example="list-unmatched-credit-transfers-200-1" -->
 ```java
 package hello.world;
 
@@ -83,7 +83,7 @@ Retrieves a single unmatched credit transfer by its identifier.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-unmatched-credit-transfer" method="get" path="/unmatched-credit-transfers/{unmatchedCreditTransferId}" example="get-unmatched-credit-transfer-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-unmatched-credit-transfer" method="get" path="/v2/unmatched-credit-transfers/{unmatchedCreditTransferId}" example="get-unmatched-credit-transfer-200-1" -->
 ```java
 package hello.world;
 
@@ -143,7 +143,7 @@ Matches an unmatched credit transfer to one or more payments, settling the funds
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="match-unmatched-credit-transfer" method="post" path="/unmatched-credit-transfers/{unmatchedCreditTransferId}/match" example="match-unmatched-credit-transfer-201-1" -->
+<!-- UsageSnippet language="java" operationID="match-unmatched-credit-transfer" method="post" path="/v2/unmatched-credit-transfers/{unmatchedCreditTransferId}/match" example="match-unmatched-credit-transfer-201-1" -->
 ```java
 package hello.world;
 
@@ -210,7 +210,7 @@ Returns an unmatched credit transfer, sending the funds back to the original sen
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="return-unmatched-credit-transfer" method="post" path="/unmatched-credit-transfers/{unmatchedCreditTransferId}/return" example="return-unmatched-credit-transfer-201-1" -->
+<!-- UsageSnippet language="java" operationID="return-unmatched-credit-transfer" method="post" path="/v2/unmatched-credit-transfers/{unmatchedCreditTransferId}/return" example="return-unmatched-credit-transfer-201-1" -->
 ```java
 package hello.world;
 

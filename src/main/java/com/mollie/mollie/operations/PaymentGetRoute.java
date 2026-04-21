@@ -113,7 +113,7 @@ public class PaymentGetRoute {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/routes/{routeId}",
+                    "/v2/payments/{paymentId}/routes/{routeId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

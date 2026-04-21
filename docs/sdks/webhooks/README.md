@@ -17,7 +17,7 @@ A webhook must have a name, an url and a list of event types. You can also creat
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="create-webhook" method="post" path="/webhooks" example="create-webhook-200" -->
+<!-- UsageSnippet language="java" operationID="create-webhook" method="post" path="/v2/webhooks" example="create-webhook-200" -->
 ```java
 package hello.world;
 
@@ -79,7 +79,7 @@ Returns a paginated list of your webhooks. If no webhook endpoints are available
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-webhooks" method="get" path="/webhooks" example="list-webhook-200" -->
+<!-- UsageSnippet language="java" operationID="list-webhooks" method="get" path="/v2/webhooks" example="list-webhook-200" -->
 ```java
 package hello.world;
 
@@ -143,7 +143,7 @@ Updates the webhook. You may edit the name, url and the list of subscribed event
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="update-webhook" method="patch" path="/webhooks/{webhookId}" example="create-webhook-200" -->
+<!-- UsageSnippet language="java" operationID="update-webhook" method="patch" path="/v2/webhooks/{webhookId}" example="create-webhook-200" -->
 ```java
 package hello.world;
 
@@ -207,7 +207,7 @@ Retrieve a single webhook object by its ID.
 
 ### Example Usage: get-webhook-200
 
-<!-- UsageSnippet language="java" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" example="get-webhook-200" -->
+<!-- UsageSnippet language="java" operationID="get-webhook" method="get" path="/v2/webhooks/{webhookId}" example="get-webhook-200" -->
 ```java
 package hello.world;
 
@@ -241,7 +241,7 @@ public class Application {
 ```
 ### Example Usage: get-webhook-200-1
 
-<!-- UsageSnippet language="java" operationID="get-webhook" method="get" path="/webhooks/{webhookId}" example="get-webhook-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-webhook" method="get" path="/v2/webhooks/{webhookId}" example="get-webhook-200-1" -->
 ```java
 package hello.world;
 
@@ -299,7 +299,7 @@ Delete a single webhook object by its webhook ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="delete-webhook" method="delete" path="/webhooks/{webhookId}" -->
+<!-- UsageSnippet language="java" operationID="delete-webhook" method="delete" path="/v2/webhooks/{webhookId}" -->
 ```java
 package hello.world;
 
@@ -358,7 +358,7 @@ Sends a test event to the webhook to verify the endpoint is working as expected.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="test-webhook" method="post" path="/webhooks/{webhookId}/ping" -->
+<!-- UsageSnippet language="java" operationID="test-webhook" method="post" path="/v2/webhooks/{webhookId}/ping" -->
 ```java
 package hello.world;
 

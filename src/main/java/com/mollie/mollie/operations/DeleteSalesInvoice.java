@@ -115,7 +115,7 @@ public class DeleteSalesInvoice {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/sales-invoices/{salesInvoiceId}",
+                    "/v2/sales-invoices/{salesInvoiceId}",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
             Object convertedRequest = Utils.convertToShape(

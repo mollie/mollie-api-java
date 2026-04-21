@@ -21,7 +21,7 @@ Once registered, customers will also appear in your Mollie dashboard.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="create-customer" method="post" path="/customers" example="create-customer-201-1" -->
+<!-- UsageSnippet language="java" operationID="create-customer" method="post" path="/v2/customers" example="create-customer-201-1" -->
 ```java
 package hello.world;
 
@@ -84,7 +84,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-customers" method="get" path="/customers" example="list-customers" -->
+<!-- UsageSnippet language="java" operationID="list-customers" method="get" path="/v2/customers" example="list-customers" -->
 ```java
 package hello.world;
 
@@ -148,7 +148,7 @@ Retrieve a single customer by its ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="get-customer" method="get" path="/customers/{customerId}" example="get-customer-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-customer" method="get" path="/v2/customers/{customerId}" example="get-customer-200-1" -->
 ```java
 package hello.world;
 
@@ -210,7 +210,7 @@ For an in-depth explanation of each parameter, refer to the [Create customer](cr
 
 ### Example Usage: update-customer-200-1
 
-<!-- UsageSnippet language="java" operationID="update-customer" method="patch" path="/customers/{customerId}" example="update-customer-200-1" -->
+<!-- UsageSnippet language="java" operationID="update-customer" method="patch" path="/v2/customers/{customerId}" example="update-customer-200-1" -->
 ```java
 package hello.world;
 
@@ -251,7 +251,7 @@ public class Application {
 ```
 ### Example Usage: update-customer-200-2
 
-<!-- UsageSnippet language="java" operationID="update-customer" method="patch" path="/customers/{customerId}" example="update-customer-200-2" -->
+<!-- UsageSnippet language="java" operationID="update-customer" method="patch" path="/v2/customers/{customerId}" example="update-customer-200-2" -->
 ```java
 package hello.world;
 
@@ -316,7 +316,7 @@ Delete a customer. All mandates and subscriptions created for this customer will
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="delete-customer" method="delete" path="/customers/{customerId}" -->
+<!-- UsageSnippet language="java" operationID="delete-customer" method="delete" path="/v2/customers/{customerId}" -->
 ```java
 package hello.world;
 
@@ -385,7 +385,7 @@ parameter predefined.
 
 ### Example Usage: create-payment-201-1
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-1" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-1" -->
 ```java
 package hello.world;
 
@@ -572,7 +572,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-10
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-10" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-10" -->
 ```java
 package hello.world;
 
@@ -759,7 +759,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-11
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-11" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-11" -->
 ```java
 package hello.world;
 
@@ -946,7 +946,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-12
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-12" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-12" -->
 ```java
 package hello.world;
 
@@ -1133,7 +1133,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-13
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-13" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-13" -->
 ```java
 package hello.world;
 
@@ -1320,7 +1320,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-2
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-2" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-2" -->
 ```java
 package hello.world;
 
@@ -1507,7 +1507,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-3
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-3" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-3" -->
 ```java
 package hello.world;
 
@@ -1694,7 +1694,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-4
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-4" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-4" -->
 ```java
 package hello.world;
 
@@ -1881,7 +1881,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-5
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-5" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-5" -->
 ```java
 package hello.world;
 
@@ -2068,7 +2068,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-6
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-6" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-6" -->
 ```java
 package hello.world;
 
@@ -2255,7 +2255,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-7
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-7" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-7" -->
 ```java
 package hello.world;
 
@@ -2442,7 +2442,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-8
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-8" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-8" -->
 ```java
 package hello.world;
 
@@ -2629,7 +2629,7 @@ public class Application {
 ```
 ### Example Usage: create-payment-201-9
 
-<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/customers/{customerId}/payments" example="create-payment-201-9" -->
+<!-- UsageSnippet language="java" operationID="create-customer-payment" method="post" path="/v2/customers/{customerId}/payments" example="create-payment-201-9" -->
 ```java
 package hello.world;
 
@@ -2841,7 +2841,7 @@ Retrieve all payments linked to the customer.
 
 ### Example Usage: list-payments-200-1
 
-<!-- UsageSnippet language="java" operationID="list-customer-payments" method="get" path="/customers/{customerId}/payments" example="list-payments-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-customer-payments" method="get" path="/v2/customers/{customerId}/payments" example="list-payments-200-1" -->
 ```java
 package hello.world;
 
@@ -2885,7 +2885,7 @@ public class Application {
 ```
 ### Example Usage: list-payments-200-2
 
-<!-- UsageSnippet language="java" operationID="list-customer-payments" method="get" path="/customers/{customerId}/payments" example="list-payments-200-2" -->
+<!-- UsageSnippet language="java" operationID="list-customer-payments" method="get" path="/v2/customers/{customerId}/payments" example="list-payments-200-2" -->
 ```java
 package hello.world;
 
@@ -2929,7 +2929,7 @@ public class Application {
 ```
 ### Example Usage: list-payments-200-3
 
-<!-- UsageSnippet language="java" operationID="list-customer-payments" method="get" path="/customers/{customerId}/payments" example="list-payments-200-3" -->
+<!-- UsageSnippet language="java" operationID="list-customer-payments" method="get" path="/v2/customers/{customerId}/payments" example="list-payments-200-3" -->
 ```java
 package hello.world;
 

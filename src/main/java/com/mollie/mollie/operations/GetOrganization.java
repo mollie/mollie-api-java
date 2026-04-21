@@ -118,7 +118,7 @@ public class GetOrganization {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/organizations/{organizationId}",
+                    "/v2/organizations/{organizationId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

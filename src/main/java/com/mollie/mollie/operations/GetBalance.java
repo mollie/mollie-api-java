@@ -118,7 +118,7 @@ public class GetBalance {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/balances/{balanceId}",
+                    "/v2/balances/{balanceId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

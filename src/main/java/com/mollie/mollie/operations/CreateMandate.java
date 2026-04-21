@@ -116,7 +116,7 @@ public class CreateMandate {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}/mandates",
+                    "/v2/customers/{customerId}/mandates",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

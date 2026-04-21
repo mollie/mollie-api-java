@@ -122,7 +122,7 @@ public class ListMandates {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/customers/{customerId}/mandates",
+                    "/v2/customers/{customerId}/mandates",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

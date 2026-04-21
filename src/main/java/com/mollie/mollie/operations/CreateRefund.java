@@ -116,7 +116,7 @@ public class CreateRefund {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/refunds",
+                    "/v2/payments/{paymentId}/refunds",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

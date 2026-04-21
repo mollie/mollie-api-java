@@ -118,7 +118,7 @@ public class GetProfile {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/profiles/{profileId}",
+                    "/v2/profiles/{profileId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "GET");
             req.addHeader("Accept", "application/hal+json")

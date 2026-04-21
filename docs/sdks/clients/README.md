@@ -15,7 +15,7 @@ The results are paginated.
 
 ### Example Usage
 
-<!-- UsageSnippet language="java" operationID="list-clients" method="get" path="/clients" example="list-clients-200-1" -->
+<!-- UsageSnippet language="java" operationID="list-clients" method="get" path="/v2/clients" example="list-clients-200-1" -->
 ```java
 package hello.world;
 
@@ -76,7 +76,7 @@ Retrieve a single client by its ID.
 
 ### Example Usage: get-client-200-1
 
-<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-1" -->
+<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/v2/clients/{organizationId}" example="get-client-200-1" -->
 ```java
 package hello.world;
 
@@ -110,7 +110,7 @@ public class Application {
 ```
 ### Example Usage: get-client-200-2
 
-<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-2" -->
+<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/v2/clients/{organizationId}" example="get-client-200-2" -->
 ```java
 package hello.world;
 
@@ -144,7 +144,7 @@ public class Application {
 ```
 ### Example Usage: get-client-200-3
 
-<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-3" -->
+<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/v2/clients/{organizationId}" example="get-client-200-3" -->
 ```java
 package hello.world;
 
@@ -178,7 +178,7 @@ public class Application {
 ```
 ### Example Usage: get-client-200-4
 
-<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/clients/{organizationId}" example="get-client-200-4" -->
+<!-- UsageSnippet language="java" operationID="get-client" method="get" path="/v2/clients/{organizationId}" example="get-client-200-4" -->
 ```java
 package hello.world;
 

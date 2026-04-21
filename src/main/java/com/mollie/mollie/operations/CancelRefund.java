@@ -116,7 +116,7 @@ public class CancelRefund {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/refunds/{refundId}",
+                    "/v2/payments/{paymentId}/refunds/{refundId}",
                     request, this.operationGlobals);
             HTTPRequest req = new HTTPRequest(url, "DELETE");
             req.addHeader("Accept", "application/hal+json")

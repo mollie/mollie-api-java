@@ -115,7 +115,7 @@ public class ReleaseAuthorization {
             String url = Utils.generateURL(
                     klass,
                     this.baseUrl,
-                    "/payments/{paymentId}/release-authorization",
+                    "/v2/payments/{paymentId}/release-authorization",
                     request, null);
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(

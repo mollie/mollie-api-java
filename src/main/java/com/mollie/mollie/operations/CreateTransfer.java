@@ -115,7 +115,7 @@ public class CreateTransfer {
         <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
-                    "/business-accounts/transfers");
+                    "/v2/business-accounts/transfers");
             HTTPRequest req = new HTTPRequest(url, "POST");
             Object convertedRequest = Utils.convertToShape(
                     request,
