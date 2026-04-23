@@ -24,8 +24,8 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PaymentRequest {
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement
-     * when possible.
+     * The description of the payment will be shown to your customer on their card or bank statement when
+     * possible.
      * We truncate the description automatically according to the limits of the used payment method. The
      * description is
      * also visible in any exports you generate.
@@ -573,8 +573,8 @@ public class PaymentRequest {
     }
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement
-     * when possible.
+     * The description of the payment will be shown to your customer on their card or bank statement when
+     * possible.
      * We truncate the description automatically according to the limits of the used payment method. The
      * description is
      * also visible in any exports you generate.
@@ -1046,8 +1046,8 @@ public class PaymentRequest {
 
 
     /**
-     * The description of the payment. This will be shown to your customer on their card or bank statement
-     * when possible.
+     * The description of the payment will be shown to your customer on their card or bank statement when
+     * possible.
      * We truncate the description automatically according to the limits of the used payment method. The
      * description is
      * also visible in any exports you generate.
@@ -2198,8 +2198,8 @@ public class PaymentRequest {
 
 
         /**
-         * The description of the payment. This will be shown to your customer on their card or bank statement
-         * when possible.
+         * The description of the payment will be shown to your customer on their card or bank statement when
+         * possible.
          * We truncate the description automatically according to the limits of the used payment method. The
          * description is
          * also visible in any exports you generate.
