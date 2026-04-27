@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 5ca99cbc3ac1ba09d2ab0c3dbdadb530
+  docChecksum: ea0e5ed06e4c1ccdde296f092df8599b
   docVersion: 1.0.0
   speakeasyVersion: 1.761.9
   generationVersion: 2.881.4
-  releaseVersion: 1.5.2
-  configChecksum: ed115d3e9110babe3b7f9dcf577fbc9b
+  releaseVersion: 1.5.3
+  configChecksum: 7fdc4aeb9c97a52488f49b255091982e
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 60ecc7fe-2440-4e1f-aff8-a0a142a5938d
-  pristine_commit_hash: 580805ed010747bbcf23c0b59e46c50e8673874f
-  pristine_tree_hash: a2b899c39f3257c46c3341db1784173175868d33
+  generation_id: e62d4d71-224c-4e39-aad8-836201bcb1c8
+  pristine_commit_hash: 152dd6445c88e00e095765cd04b826ab10d71392
+  pristine_tree_hash: 1200d32374980cf43dca26a2d4f1af73043bfc32
 features:
   java:
     additionalDependencies: 0.1.0
@@ -3581,8 +3581,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:d4bb8800fcf28d5ea87dfe4432eacae837773b7a
-    pristine_git_object: b4ca887ee57f264f3ebe9261f3cb633e381a60f5
+    last_write_checksum: sha1:19bb5606f92b46cbc1e71358a35283a0dbd249be
+    pristine_git_object: 9ac8513ba04ee0314f49f1fb0136f3ef930ab5d9
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3857,8 +3857,8 @@ trackedFiles:
     pristine_git_object: 2b69786ee19b5007595e2eda62b2503eff94974f
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:f4ddb84f6d0204acb6b73cd61be0fbe0cbcd0f96
-    pristine_git_object: f52073c36663faf64c8995bba7ad0d15c27378c1
+    last_write_checksum: sha1:9bb2bb5e03035c0916b8e20c2fb2f786bb04139c
+    pristine_git_object: 7099930f86d218a862d7525c4a0eb0d6c2e5283a
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:2cdff7ce71f9ec62974ef3d118a882a2e149eaa1
@@ -9041,8 +9041,8 @@ trackedFiles:
     pristine_git_object: 775acf5dfd26ae883b13b11c25361dfd2bd4fd73
   src/main/java/com/mollie/mollie/operations/OauthGenerateTokens.java:
     id: 0f8109750f44
-    last_write_checksum: sha1:86c7efe80d97fdbd6e2ab6afe49a5b2cf0b82958
-    pristine_git_object: 61a1677a0a9d33f6b426617af54148fad4551904
+    last_write_checksum: sha1:1313dae5ba6d1a2dc2ce23889c5acf5766fe86f6
+    pristine_git_object: 58d8a6a39c28e255a7135f10b5fbff40ecac02bb
   src/main/java/com/mollie/mollie/operations/OauthRevokeTokens.java:
     id: d36f1e989d17
     last_write_checksum: sha1:bb0ab2cfd140babb2b8a74f2d20fb38138889f35
@@ -14336,6 +14336,7 @@ examples:
         "200":
           text/html: "{\"access_token\":\"access_46EUJ6x8jFJZZeAvhNH4JVey6qVpqR\",\"refresh_token\":\"refresh_FS4xc3Mgci2xQ5s5DzaLXh3HhaTZOP\",\"expires_in\":3600,\"token_type\":\"bearer\",\"scope\":\"payments.read organizations.read\"}"
           application/hal+json: {"access_token": "access_46EUJ6x8jFJZZeAvhNH4JVey6qVpqR", "refresh_token": "refresh_FS4xc3Mgci2xQ5s5DzaLXh3HhaTZOP", "expires_in": 3600, "token_type": "bearer", "scope": "payments.read organizations.read"}
+          application/json: {"access_token": "access_46EUJ6x8jFJZZeAvhNH4JVey6qVpqR", "refresh_token": "refresh_FS4xc3Mgci2xQ5s5DzaLXh3HhaTZOP", "expires_in": 3600, "token_type": "bearer", "scope": "payments.read organizations.read"}
   oauth-revoke-tokens:
     speakeasy-default-oauth-revoke-tokens:
       parameters:
@@ -14345,7 +14346,9 @@ examples:
         application/json: {"token_type_hint": "access_token", "token": "access_..."}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `client.oauth.generate()`: \n  *  `requestBody` **Changed** (Breaking ⚠️)\n  *  `response.status[200]` **Changed** (Breaking ⚠️)\n* `client.oauth.revoke()`: \n  *  `requestBody.tokenTypeHint` **Changed** (Breaking ⚠️)\n"
+releaseNotes: |
+  ## Java SDK Changes:
+  * `client.oauth.generate()`:  `response.status[200]` **Changed** (Breaking ⚠️)
 generatedFiles:
   - .gitattributes
   - USAGE.md
