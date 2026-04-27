@@ -138,7 +138,7 @@ public class OauthGenerateTokens {
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
-            req.addHeader("Accept", "application/hal+json")
+            req.addHeader("Accept", "application/json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
@@ -217,7 +217,7 @@ public class OauthGenerateTokens {
             OauthGenerateTokensResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return res.withObject(Utils.unmarshal(response, new TypeReference<OauthGenerateTokensResponseBody>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
@@ -299,7 +299,7 @@ public class OauthGenerateTokens {
             com.mollie.mollie.models.operations.async.OauthGenerateTokensResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
-                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<OauthGenerateTokensResponseBody>() {})
                             .thenApply(res::withObject);
                 } else {
