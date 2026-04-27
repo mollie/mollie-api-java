@@ -6,12 +6,14 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.operations.OauthGenerateTokensResponseBody;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -32,23 +34,25 @@ public class OauthGenerateTokensResponse implements AsyncResponse {
      */
     private HttpResponse<Blob> rawResponse;
 
-
-    private Optional<byte[]> body;
+    /**
+     * The newly generated access token and refresh token.
+     */
+    private Optional<? extends OauthGenerateTokensResponseBody> object;
 
     @JsonCreator
     public OauthGenerateTokensResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<byte[]> body) {
+            Optional<? extends OauthGenerateTokensResponseBody> object) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(body, "body");
+        Utils.checkNotNull(object, "object");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.body = body;
+        this.object = object;
     }
     
     public OauthGenerateTokensResponse(
@@ -83,9 +87,13 @@ public class OauthGenerateTokensResponse implements AsyncResponse {
         return rawResponse;
     }
 
+    /**
+     * The newly generated access token and refresh token.
+     */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Blob body() {
-        return rawResponse.body();
+    public Optional<OauthGenerateTokensResponseBody> object() {
+        return (Optional<OauthGenerateTokensResponseBody>) object;
     }
 
     public static Builder builder() {
@@ -120,16 +128,22 @@ public class OauthGenerateTokensResponse implements AsyncResponse {
         return this;
     }
 
-    public OauthGenerateTokensResponse withBody(byte[] body) {
-        Utils.checkNotNull(body, "body");
-        this.body = Optional.ofNullable(body);
+    /**
+     * The newly generated access token and refresh token.
+     */
+    public OauthGenerateTokensResponse withObject(OauthGenerateTokensResponseBody object) {
+        Utils.checkNotNull(object, "object");
+        this.object = Optional.ofNullable(object);
         return this;
     }
 
 
-    public OauthGenerateTokensResponse withBody(Optional<byte[]> body) {
-        Utils.checkNotNull(body, "body");
-        this.body = body;
+    /**
+     * The newly generated access token and refresh token.
+     */
+    public OauthGenerateTokensResponse withObject(Optional<? extends OauthGenerateTokensResponseBody> object) {
+        Utils.checkNotNull(object, "object");
+        this.object = object;
         return this;
     }
 
@@ -146,14 +160,14 @@ public class OauthGenerateTokensResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.body, other.body);
+            Utils.enhancedDeepEquals(this.object, other.object);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            body);
+            object);
     }
     
     @Override
@@ -162,7 +176,7 @@ public class OauthGenerateTokensResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "body", body);
+                "object", object);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -174,7 +188,7 @@ public class OauthGenerateTokensResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<byte[]> body = Optional.empty();
+        private Optional<? extends OauthGenerateTokensResponseBody> object = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -211,15 +225,21 @@ public class OauthGenerateTokensResponse implements AsyncResponse {
         }
 
 
-        public Builder body(byte[] body) {
-            Utils.checkNotNull(body, "body");
-            this.body = Optional.ofNullable(body);
+        /**
+         * The newly generated access token and refresh token.
+         */
+        public Builder object(OauthGenerateTokensResponseBody object) {
+            Utils.checkNotNull(object, "object");
+            this.object = Optional.ofNullable(object);
             return this;
         }
 
-        public Builder body(Optional<byte[]> body) {
-            Utils.checkNotNull(body, "body");
-            this.body = body;
+        /**
+         * The newly generated access token and refresh token.
+         */
+        public Builder object(Optional<? extends OauthGenerateTokensResponseBody> object) {
+            Utils.checkNotNull(object, "object");
+            this.object = object;
             return this;
         }
 
@@ -227,7 +247,7 @@ public class OauthGenerateTokensResponse implements AsyncResponse {
 
             return new OauthGenerateTokensResponse(
                 contentType, statusCode, rawResponse,
-                body);
+                object);
         }
 
     }

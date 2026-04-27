@@ -3,7 +3,9 @@
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
 import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import java.lang.Exception;
 
@@ -19,10 +21,16 @@ public class Application {
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(OauthGenerateTokensRequestBody.builder()
+                    .grantType(OauthGrantType.AUTHORIZATION_CODE)
+                    .code("auth_...")
+                    .refreshToken("refresh_...")
+                    .redirectUri("https://example.com/redirect")
+                    .build())
                 .call();
 
-        if (res.body().isPresent()) {
-            System.out.println(res.body().get());
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
         }
     }
 }

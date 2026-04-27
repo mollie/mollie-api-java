@@ -14,6 +14,7 @@ import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.operations.OauthGenerateTokensRequest;
 import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
+import com.mollie.mollie.models.operations.OauthGenerateTokensResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -137,7 +138,7 @@ public class OauthGenerateTokens {
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
-            req.addHeader("Accept", "text/html")
+            req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
@@ -216,8 +217,8 @@ public class OauthGenerateTokens {
             OauthGenerateTokensResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
-                if (Utils.contentTypeMatches(contentType, "text/html")) {
-                    return res;
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    return res.withObject(Utils.unmarshal(response, new TypeReference<OauthGenerateTokensResponseBody>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -298,8 +299,9 @@ public class OauthGenerateTokens {
             com.mollie.mollie.models.operations.async.OauthGenerateTokensResponse res = resBuilder.build();
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
-                if (Utils.contentTypeMatches(contentType, "text/html")) {
-                    return CompletableFuture.completedFuture(res);
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    return Utils.unmarshalAsync(response, new TypeReference<OauthGenerateTokensResponseBody>() {})
+                            .thenApply(res::withObject);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
