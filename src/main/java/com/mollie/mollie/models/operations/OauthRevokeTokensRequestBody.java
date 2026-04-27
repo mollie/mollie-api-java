@@ -7,19 +7,16 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.OauthTokenTypeHint;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 
 
 public class OauthRevokeTokensRequestBody {
-    /**
-     * The type of token you want to revoke.
-     * 
-     * <p>Possible values: `access_token` `refresh_token`
-     */
+
     @JsonProperty("token_type_hint")
-    private String tokenTypeHint;
+    private OauthTokenTypeHint tokenTypeHint;
 
     /**
      * The token you want to revoke.
@@ -29,7 +26,7 @@ public class OauthRevokeTokensRequestBody {
 
     @JsonCreator
     public OauthRevokeTokensRequestBody(
-            @JsonProperty("token_type_hint") String tokenTypeHint,
+            @JsonProperty("token_type_hint") OauthTokenTypeHint tokenTypeHint,
             @JsonProperty("token") String token) {
         Utils.checkNotNull(tokenTypeHint, "tokenTypeHint");
         Utils.checkNotNull(token, "token");
@@ -37,13 +34,8 @@ public class OauthRevokeTokensRequestBody {
         this.token = token;
     }
 
-    /**
-     * The type of token you want to revoke.
-     * 
-     * <p>Possible values: `access_token` `refresh_token`
-     */
     @JsonIgnore
-    public String tokenTypeHint() {
+    public OauthTokenTypeHint tokenTypeHint() {
         return tokenTypeHint;
     }
 
@@ -60,12 +52,7 @@ public class OauthRevokeTokensRequestBody {
     }
 
 
-    /**
-     * The type of token you want to revoke.
-     * 
-     * <p>Possible values: `access_token` `refresh_token`
-     */
-    public OauthRevokeTokensRequestBody withTokenTypeHint(String tokenTypeHint) {
+    public OauthRevokeTokensRequestBody withTokenTypeHint(OauthTokenTypeHint tokenTypeHint) {
         Utils.checkNotNull(tokenTypeHint, "tokenTypeHint");
         this.tokenTypeHint = tokenTypeHint;
         return this;
@@ -110,7 +97,7 @@ public class OauthRevokeTokensRequestBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String tokenTypeHint;
+        private OauthTokenTypeHint tokenTypeHint;
 
         private String token;
 
@@ -119,12 +106,7 @@ public class OauthRevokeTokensRequestBody {
         }
 
 
-        /**
-         * The type of token you want to revoke.
-         * 
-         * <p>Possible values: `access_token` `refresh_token`
-         */
-        public Builder tokenTypeHint(String tokenTypeHint) {
+        public Builder tokenTypeHint(OauthTokenTypeHint tokenTypeHint) {
             Utils.checkNotNull(tokenTypeHint, "tokenTypeHint");
             this.tokenTypeHint = tokenTypeHint;
             return this;

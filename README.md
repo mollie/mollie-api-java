@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.5.1'
+implementation 'com.mollie:mollie:1.5.2'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.5.1</version>
+    <version>1.5.2</version>
 </dependency>
 ```
 
@@ -92,7 +92,9 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
 import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import java.lang.Exception;
 
@@ -108,10 +110,16 @@ public class Application {
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(OauthGenerateTokensRequestBody.builder()
+                    .grantType(OauthGrantType.AUTHORIZATION_CODE)
+                    .code("auth_...")
+                    .refreshToken("refresh_...")
+                    .redirectUri("https://example.com/redirect")
+                    .build())
                 .call();
 
-        if (res.body().isPresent()) {
-            System.out.println(res.body().get());
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
         }
     }
 }
@@ -123,7 +131,9 @@ package hello.world;
 
 import com.mollie.mollie.AsyncClient;
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
 import com.mollie.mollie.models.operations.async.OauthGenerateTokensResponse;
 import java.util.concurrent.CompletableFuture;
 
@@ -140,11 +150,17 @@ public class Application {
 
         CompletableFuture<OauthGenerateTokensResponse> resFut = sdk.oauth().generate()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(OauthGenerateTokensRequestBody.builder()
+                    .grantType(OauthGrantType.AUTHORIZATION_CODE)
+                    .code("auth_...")
+                    .refreshToken("refresh_...")
+                    .redirectUri("https://example.com/redirect")
+                    .build())
                 .call();
 
         resFut.thenAccept(res -> {
-            if (res.body().isPresent()) {
-                System.out.println(res.body().get());
+            if (res.object().isPresent()) {
+                System.out.println(res.object().get());
             }
         });
     }
@@ -247,7 +263,9 @@ You can set the security parameters through the `security` builder method when i
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
 import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import java.lang.Exception;
 
@@ -263,10 +281,16 @@ public class Application {
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(OauthGenerateTokensRequestBody.builder()
+                    .grantType(OauthGrantType.AUTHORIZATION_CODE)
+                    .code("auth_...")
+                    .refreshToken("refresh_...")
+                    .redirectUri("https://example.com/redirect")
+                    .build())
                 .call();
 
-        if (res.body().isPresent()) {
-            System.out.println(res.body().get());
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
         }
     }
 }
@@ -775,7 +799,9 @@ To change the default retry strategy for a single API call, you can provide a `R
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
 import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
@@ -804,10 +830,16 @@ public class Application {
                         .build())
                     .build())
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(OauthGenerateTokensRequestBody.builder()
+                    .grantType(OauthGrantType.AUTHORIZATION_CODE)
+                    .code("auth_...")
+                    .refreshToken("refresh_...")
+                    .redirectUri("https://example.com/redirect")
+                    .build())
                 .call();
 
-        if (res.body().isPresent()) {
-            System.out.println(res.body().get());
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
         }
     }
 }
@@ -818,7 +850,9 @@ If you'd like to override the default retry strategy for all operations that sup
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
 import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
@@ -847,10 +881,16 @@ public class Application {
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(OauthGenerateTokensRequestBody.builder()
+                    .grantType(OauthGrantType.AUTHORIZATION_CODE)
+                    .code("auth_...")
+                    .refreshToken("refresh_...")
+                    .redirectUri("https://example.com/redirect")
+                    .build())
                 .call();
 
-        if (res.body().isPresent()) {
-            System.out.println(res.body().get());
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
         }
     }
 }
@@ -1089,7 +1129,9 @@ The server URL can also be overridden on a per-operation basis, provided a serve
 package hello.world;
 
 import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
 import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import java.lang.Exception;
 
@@ -1106,10 +1148,16 @@ public class Application {
         OauthGenerateTokensResponse res = sdk.oauth().generate()
                 .serverURL("https://api.mollie.com/oauth2")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(OauthGenerateTokensRequestBody.builder()
+                    .grantType(OauthGrantType.AUTHORIZATION_CODE)
+                    .code("auth_...")
+                    .refreshToken("refresh_...")
+                    .redirectUri("https://example.com/redirect")
+                    .build())
                 .call();
 
-        if (res.body().isPresent()) {
-            System.out.println(res.body().get());
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
         }
     }
 }

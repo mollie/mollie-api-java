@@ -6,6 +6,9 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -21,6 +24,8 @@ public class OauthGenerateTokensResponseBody {
     /**
      * The app access token, with which you will be able to access the Mollie API on the merchant's behalf.
      */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("access_token")
     private Optional<String> accessToken;
 
     /**
@@ -28,6 +33,8 @@ public class OauthGenerateTokensResponseBody {
      * The
      * refresh token does not expire.
      */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("refresh_token")
     private Optional<String> refreshToken;
 
     /**
@@ -35,6 +42,8 @@ public class OauthGenerateTokensResponseBody {
      * token
      * before this reaches zero.
      */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("expires_in")
     private Optional<Long> expiresIn;
 
     /**
@@ -42,20 +51,24 @@ public class OauthGenerateTokensResponseBody {
      * 
      * <p>Possible values: `bearer`
      */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("token_type")
     private Optional<String> tokenType;
 
     /**
      * A space-separated list of [permissions](https://docs.mollie.com/docs/permissions).
      */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("scope")
     private Optional<String> scope;
 
     @JsonCreator
     public OauthGenerateTokensResponseBody(
-            Optional<String> accessToken,
-            Optional<String> refreshToken,
-            Optional<Long> expiresIn,
-            Optional<String> tokenType,
-            Optional<String> scope) {
+            @JsonProperty("access_token") Optional<String> accessToken,
+            @JsonProperty("refresh_token") Optional<String> refreshToken,
+            @JsonProperty("expires_in") Optional<Long> expiresIn,
+            @JsonProperty("token_type") Optional<String> tokenType,
+            @JsonProperty("scope") Optional<String> scope) {
         Utils.checkNotNull(accessToken, "accessToken");
         Utils.checkNotNull(refreshToken, "refreshToken");
         Utils.checkNotNull(expiresIn, "expiresIn");

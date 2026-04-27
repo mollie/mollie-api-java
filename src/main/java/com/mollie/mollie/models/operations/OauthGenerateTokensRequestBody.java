@@ -9,23 +9,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.Optional;
 
 
 public class OauthGenerateTokensRequestBody {
-    /**
-     * If you wish to exchange your authorization code for an app access token, use grant type
-     * `authorization_code`. If you wish to renew your app access token with your refresh token, use grant
-     * type
-     * `refresh_token`.
-     * 
-     * <p>Possible values: `authorization_code` `refresh_token`
-     */
+
     @JsonProperty("grant_type")
-    private String grantType;
+    private OauthGrantType grantType;
 
     /**
      * The authorization code you received when creating the authorization. Only use this field when using
@@ -33,7 +27,7 @@ public class OauthGenerateTokensRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
-    private JsonNullable<String> code;
+    private Optional<String> code;
 
     /**
      * The refresh token you received when creating the authorization. Only use this field when using grant
@@ -41,7 +35,7 @@ public class OauthGenerateTokensRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refresh_token")
-    private JsonNullable<String> refreshToken;
+    private Optional<String> refreshToken;
 
     /**
      * The URL the merchant is sent back to once the request has been authorized. It must match the URL you
@@ -53,14 +47,14 @@ public class OauthGenerateTokensRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirect_uri")
-    private JsonNullable<String> redirectUri;
+    private Optional<String> redirectUri;
 
     @JsonCreator
     public OauthGenerateTokensRequestBody(
-            @JsonProperty("grant_type") String grantType,
-            @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("refresh_token") JsonNullable<String> refreshToken,
-            @JsonProperty("redirect_uri") JsonNullable<String> redirectUri) {
+            @JsonProperty("grant_type") OauthGrantType grantType,
+            @JsonProperty("code") Optional<String> code,
+            @JsonProperty("refresh_token") Optional<String> refreshToken,
+            @JsonProperty("redirect_uri") Optional<String> redirectUri) {
         Utils.checkNotNull(grantType, "grantType");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(refreshToken, "refreshToken");
@@ -72,21 +66,13 @@ public class OauthGenerateTokensRequestBody {
     }
     
     public OauthGenerateTokensRequestBody(
-            String grantType) {
-        this(grantType, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            OauthGrantType grantType) {
+        this(grantType, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
-    /**
-     * If you wish to exchange your authorization code for an app access token, use grant type
-     * `authorization_code`. If you wish to renew your app access token with your refresh token, use grant
-     * type
-     * `refresh_token`.
-     * 
-     * <p>Possible values: `authorization_code` `refresh_token`
-     */
     @JsonIgnore
-    public String grantType() {
+    public OauthGrantType grantType() {
         return grantType;
     }
 
@@ -95,7 +81,7 @@ public class OauthGenerateTokensRequestBody {
      * grant type `authorization_code`.
      */
     @JsonIgnore
-    public JsonNullable<String> code() {
+    public Optional<String> code() {
         return code;
     }
 
@@ -104,7 +90,7 @@ public class OauthGenerateTokensRequestBody {
      * type `refresh_token`.
      */
     @JsonIgnore
-    public JsonNullable<String> refreshToken() {
+    public Optional<String> refreshToken() {
         return refreshToken;
     }
 
@@ -117,7 +103,7 @@ public class OauthGenerateTokensRequestBody {
      * code grant request also contained a `redirect_uri`.
      */
     @JsonIgnore
-    public JsonNullable<String> redirectUri() {
+    public Optional<String> redirectUri() {
         return redirectUri;
     }
 
@@ -126,15 +112,7 @@ public class OauthGenerateTokensRequestBody {
     }
 
 
-    /**
-     * If you wish to exchange your authorization code for an app access token, use grant type
-     * `authorization_code`. If you wish to renew your app access token with your refresh token, use grant
-     * type
-     * `refresh_token`.
-     * 
-     * <p>Possible values: `authorization_code` `refresh_token`
-     */
-    public OauthGenerateTokensRequestBody withGrantType(String grantType) {
+    public OauthGenerateTokensRequestBody withGrantType(OauthGrantType grantType) {
         Utils.checkNotNull(grantType, "grantType");
         this.grantType = grantType;
         return this;
@@ -146,15 +124,16 @@ public class OauthGenerateTokensRequestBody {
      */
     public OauthGenerateTokensRequestBody withCode(String code) {
         Utils.checkNotNull(code, "code");
-        this.code = JsonNullable.of(code);
+        this.code = Optional.ofNullable(code);
         return this;
     }
+
 
     /**
      * The authorization code you received when creating the authorization. Only use this field when using
      * grant type `authorization_code`.
      */
-    public OauthGenerateTokensRequestBody withCode(JsonNullable<String> code) {
+    public OauthGenerateTokensRequestBody withCode(Optional<String> code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
         return this;
@@ -166,15 +145,16 @@ public class OauthGenerateTokensRequestBody {
      */
     public OauthGenerateTokensRequestBody withRefreshToken(String refreshToken) {
         Utils.checkNotNull(refreshToken, "refreshToken");
-        this.refreshToken = JsonNullable.of(refreshToken);
+        this.refreshToken = Optional.ofNullable(refreshToken);
         return this;
     }
+
 
     /**
      * The refresh token you received when creating the authorization. Only use this field when using grant
      * type `refresh_token`.
      */
-    public OauthGenerateTokensRequestBody withRefreshToken(JsonNullable<String> refreshToken) {
+    public OauthGenerateTokensRequestBody withRefreshToken(Optional<String> refreshToken) {
         Utils.checkNotNull(refreshToken, "refreshToken");
         this.refreshToken = refreshToken;
         return this;
@@ -190,9 +170,10 @@ public class OauthGenerateTokensRequestBody {
      */
     public OauthGenerateTokensRequestBody withRedirectUri(String redirectUri) {
         Utils.checkNotNull(redirectUri, "redirectUri");
-        this.redirectUri = JsonNullable.of(redirectUri);
+        this.redirectUri = Optional.ofNullable(redirectUri);
         return this;
     }
+
 
     /**
      * The URL the merchant is sent back to once the request has been authorized. It must match the URL you
@@ -202,7 +183,7 @@ public class OauthGenerateTokensRequestBody {
      * <p>For consecutive refresh token requests, this parameter is required only if the initial authorization
      * code grant request also contained a `redirect_uri`.
      */
-    public OauthGenerateTokensRequestBody withRedirectUri(JsonNullable<String> redirectUri) {
+    public OauthGenerateTokensRequestBody withRedirectUri(Optional<String> redirectUri) {
         Utils.checkNotNull(redirectUri, "redirectUri");
         this.redirectUri = redirectUri;
         return this;
@@ -243,28 +224,20 @@ public class OauthGenerateTokensRequestBody {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String grantType;
+        private OauthGrantType grantType;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private Optional<String> code = Optional.empty();
 
-        private JsonNullable<String> refreshToken = JsonNullable.undefined();
+        private Optional<String> refreshToken = Optional.empty();
 
-        private JsonNullable<String> redirectUri = JsonNullable.undefined();
+        private Optional<String> redirectUri = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        /**
-         * If you wish to exchange your authorization code for an app access token, use grant type
-         * `authorization_code`. If you wish to renew your app access token with your refresh token, use grant
-         * type
-         * `refresh_token`.
-         * 
-         * <p>Possible values: `authorization_code` `refresh_token`
-         */
-        public Builder grantType(String grantType) {
+        public Builder grantType(OauthGrantType grantType) {
             Utils.checkNotNull(grantType, "grantType");
             this.grantType = grantType;
             return this;
@@ -277,7 +250,7 @@ public class OauthGenerateTokensRequestBody {
          */
         public Builder code(String code) {
             Utils.checkNotNull(code, "code");
-            this.code = JsonNullable.of(code);
+            this.code = Optional.ofNullable(code);
             return this;
         }
 
@@ -285,7 +258,7 @@ public class OauthGenerateTokensRequestBody {
          * The authorization code you received when creating the authorization. Only use this field when using
          * grant type `authorization_code`.
          */
-        public Builder code(JsonNullable<String> code) {
+        public Builder code(Optional<String> code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
             return this;
@@ -298,7 +271,7 @@ public class OauthGenerateTokensRequestBody {
          */
         public Builder refreshToken(String refreshToken) {
             Utils.checkNotNull(refreshToken, "refreshToken");
-            this.refreshToken = JsonNullable.of(refreshToken);
+            this.refreshToken = Optional.ofNullable(refreshToken);
             return this;
         }
 
@@ -306,7 +279,7 @@ public class OauthGenerateTokensRequestBody {
          * The refresh token you received when creating the authorization. Only use this field when using grant
          * type `refresh_token`.
          */
-        public Builder refreshToken(JsonNullable<String> refreshToken) {
+        public Builder refreshToken(Optional<String> refreshToken) {
             Utils.checkNotNull(refreshToken, "refreshToken");
             this.refreshToken = refreshToken;
             return this;
@@ -323,7 +296,7 @@ public class OauthGenerateTokensRequestBody {
          */
         public Builder redirectUri(String redirectUri) {
             Utils.checkNotNull(redirectUri, "redirectUri");
-            this.redirectUri = JsonNullable.of(redirectUri);
+            this.redirectUri = Optional.ofNullable(redirectUri);
             return this;
         }
 
@@ -335,7 +308,7 @@ public class OauthGenerateTokensRequestBody {
          * <p>For consecutive refresh token requests, this parameter is required only if the initial authorization
          * code grant request also contained a `redirect_uri`.
          */
-        public Builder redirectUri(JsonNullable<String> redirectUri) {
+        public Builder redirectUri(Optional<String> redirectUri) {
             Utils.checkNotNull(redirectUri, "redirectUri");
             this.redirectUri = redirectUri;
             return this;
