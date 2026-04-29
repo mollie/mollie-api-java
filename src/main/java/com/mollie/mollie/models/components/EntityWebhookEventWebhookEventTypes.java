@@ -33,6 +33,13 @@ public class EntityWebhookEventWebhookEventTypes {
     public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_ISSUED = new EntityWebhookEventWebhookEventTypes("sales-invoice.issued");
     public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_CANCELED = new EntityWebhookEventWebhookEventTypes("sales-invoice.canceled");
     public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_PAID = new EntityWebhookEventWebhookEventTypes("sales-invoice.paid");
+    public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_TRANSFER_REQUESTED = new EntityWebhookEventWebhookEventTypes("business-account-transfer.requested");
+    public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_TRANSFER_INITIATED = new EntityWebhookEventWebhookEventTypes("business-account-transfer.initiated");
+    public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_TRANSFER_PENDING_REVIEW = new EntityWebhookEventWebhookEventTypes("business-account-transfer.pending-review");
+    public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_TRANSFER_PROCESSED = new EntityWebhookEventWebhookEventTypes("business-account-transfer.processed");
+    public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_TRANSFER_FAILED = new EntityWebhookEventWebhookEventTypes("business-account-transfer.failed");
+    public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_TRANSFER_BLOCKED = new EntityWebhookEventWebhookEventTypes("business-account-transfer.blocked");
+    public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_TRANSFER_RETURNED = new EntityWebhookEventWebhookEventTypes("business-account-transfer.returned");
     public static final EntityWebhookEventWebhookEventTypes WILDCARD = new EntityWebhookEventWebhookEventTypes("*");
 
     // This map will grow whenever a Color gets created with a new
@@ -113,6 +120,13 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("sales-invoice.issued", SALES_INVOICE_ISSUED);
         map.put("sales-invoice.canceled", SALES_INVOICE_CANCELED);
         map.put("sales-invoice.paid", SALES_INVOICE_PAID);
+        map.put("business-account-transfer.requested", BUSINESS_ACCOUNT_TRANSFER_REQUESTED);
+        map.put("business-account-transfer.initiated", BUSINESS_ACCOUNT_TRANSFER_INITIATED);
+        map.put("business-account-transfer.pending-review", BUSINESS_ACCOUNT_TRANSFER_PENDING_REVIEW);
+        map.put("business-account-transfer.processed", BUSINESS_ACCOUNT_TRANSFER_PROCESSED);
+        map.put("business-account-transfer.failed", BUSINESS_ACCOUNT_TRANSFER_FAILED);
+        map.put("business-account-transfer.blocked", BUSINESS_ACCOUNT_TRANSFER_BLOCKED);
+        map.put("business-account-transfer.returned", BUSINESS_ACCOUNT_TRANSFER_RETURNED);
         map.put("*", WILDCARD);
         return map;
     }
@@ -125,6 +139,13 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("sales-invoice.issued", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_ISSUED);
         map.put("sales-invoice.canceled", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_CANCELED);
         map.put("sales-invoice.paid", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_PAID);
+        map.put("business-account-transfer.requested", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_TRANSFER_REQUESTED);
+        map.put("business-account-transfer.initiated", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_TRANSFER_INITIATED);
+        map.put("business-account-transfer.pending-review", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_TRANSFER_PENDING_REVIEW);
+        map.put("business-account-transfer.processed", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_TRANSFER_PROCESSED);
+        map.put("business-account-transfer.failed", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_TRANSFER_FAILED);
+        map.put("business-account-transfer.blocked", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_TRANSFER_BLOCKED);
+        map.put("business-account-transfer.returned", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_TRANSFER_RETURNED);
         map.put("*", EntityWebhookEventWebhookEventTypesEnum.WILDCARD);
         return map;
     }
@@ -138,6 +159,13 @@ public class EntityWebhookEventWebhookEventTypes {
         SALES_INVOICE_ISSUED("sales-invoice.issued"),
         SALES_INVOICE_CANCELED("sales-invoice.canceled"),
         SALES_INVOICE_PAID("sales-invoice.paid"),
+        BUSINESS_ACCOUNT_TRANSFER_REQUESTED("business-account-transfer.requested"),
+        BUSINESS_ACCOUNT_TRANSFER_INITIATED("business-account-transfer.initiated"),
+        BUSINESS_ACCOUNT_TRANSFER_PENDING_REVIEW("business-account-transfer.pending-review"),
+        BUSINESS_ACCOUNT_TRANSFER_PROCESSED("business-account-transfer.processed"),
+        BUSINESS_ACCOUNT_TRANSFER_FAILED("business-account-transfer.failed"),
+        BUSINESS_ACCOUNT_TRANSFER_BLOCKED("business-account-transfer.blocked"),
+        BUSINESS_ACCOUNT_TRANSFER_RETURNED("business-account-transfer.returned"),
         WILDCARD("*"),;
 
         private final String value;
