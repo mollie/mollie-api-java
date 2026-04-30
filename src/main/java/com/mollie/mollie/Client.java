@@ -122,7 +122,7 @@ public class Client {
     private final Transfers transfers;
 
 
-    private final VerifyPayees verifyPayees;
+    private final VerifyPayee verifyPayee;
 
 
     public Oauth oauth() {
@@ -280,8 +280,8 @@ public class Client {
     }
 
 
-    public VerifyPayees verifyPayees() {
-        return verifyPayees;
+    public VerifyPayee verifyPayee() {
+        return verifyPayee;
     }
     private final AsyncClient asyncSDK;
 
@@ -496,7 +496,7 @@ public class Client {
         this.salesInvoices = new SalesInvoices(sdkConfiguration);
         this.accounts = new Accounts(sdkConfiguration);
         this.transfers = new Transfers(sdkConfiguration);
-        this.verifyPayees = new VerifyPayees(sdkConfiguration);
+        this.verifyPayee = new VerifyPayee(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(
                 new SdkInitData(
                         sdkConfiguration.resolvedServerUrl(), 

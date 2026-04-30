@@ -71,7 +71,7 @@ public class AsyncClient {
 
     private final AsyncTransfers transfers;
 
-    private final AsyncVerifyPayees verifyPayees;
+    private final AsyncVerifyPayee verifyPayee;
 
     public AsyncOauth oauth() {
         return oauth;
@@ -197,8 +197,8 @@ public class AsyncClient {
         return transfers;
     }
 
-    public AsyncVerifyPayees verifyPayees() {
-        return verifyPayees;
+    public AsyncVerifyPayee verifyPayee() {
+        return verifyPayee;
     }
 
     private final SDKConfiguration sdkConfiguration;
@@ -238,7 +238,7 @@ public class AsyncClient {
         this.salesInvoices = new AsyncSalesInvoices(syncSDK.salesInvoices(), sdkConfiguration);
         this.accounts = new AsyncAccounts(syncSDK.accounts(), sdkConfiguration);
         this.transfers = new AsyncTransfers(syncSDK.transfers(), sdkConfiguration);
-        this.verifyPayees = new AsyncVerifyPayees(syncSDK.verifyPayees(), sdkConfiguration);
+        this.verifyPayee = new AsyncVerifyPayee(syncSDK.verifyPayee(), sdkConfiguration);
     }
 
     /**

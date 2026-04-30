@@ -282,7 +282,7 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(UpdateSalesInvoiceRequestBody.builder()
                     .testmode(false)
-                    .status(SalesInvoiceStatus.DRAFT)
+                    .status(SalesInvoiceStatusUpdate.DRAFT)
                     .memo("An updated memo!")
                     .paymentTerm(SalesInvoicePaymentTerm.THIRTYDAYS)
                     .paymentDetails(SalesInvoicePaymentDetails.builder()
