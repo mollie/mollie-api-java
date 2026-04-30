@@ -1,4 +1,4 @@
-# VerifyPayees
+# VerifyPayee
 
 ## Overview
 
@@ -53,7 +53,7 @@ public class Application {
                     .build())
             .build();
 
-        VerifyPayeeResponse res = sdk.verifyPayees().create()
+        VerifyPayeeResponse res = sdk.verifyPayee().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .verificationOfPayeeRequest(VerificationOfPayeeRequest.builder()
                     .creditorBankAccount(CreditorBankAccount.builder()
@@ -93,7 +93,7 @@ public class Application {
                     .build())
             .build();
 
-        VerifyPayeeResponse res = sdk.verifyPayees().create()
+        VerifyPayeeResponse res = sdk.verifyPayee().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .verificationOfPayeeRequest(VerificationOfPayeeRequest.builder()
                     .creditorBankAccount(CreditorBankAccount.builder()
@@ -133,7 +133,7 @@ public class Application {
                     .build())
             .build();
 
-        VerifyPayeeResponse res = sdk.verifyPayees().create()
+        VerifyPayeeResponse res = sdk.verifyPayee().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .verificationOfPayeeRequest(VerificationOfPayeeRequest.builder()
                     .creditorBankAccount(CreditorBankAccount.builder()
@@ -173,7 +173,7 @@ public class Application {
                     .build())
             .build();
 
-        VerifyPayeeResponse res = sdk.verifyPayees().create()
+        VerifyPayeeResponse res = sdk.verifyPayee().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .verificationOfPayeeRequest(VerificationOfPayeeRequest.builder()
                     .creditorBankAccount(CreditorBankAccount.builder()

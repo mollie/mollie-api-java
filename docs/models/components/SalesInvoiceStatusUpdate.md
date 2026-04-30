@@ -1,4 +1,4 @@
-# SalesInvoiceStatus
+# SalesInvoiceStatusUpdate
 
 The status for the invoice to end up in.
 
@@ -14,16 +14,17 @@ Dependent parameters:
 ## Example Usage
 
 ```java
-import com.mollie.mollie.models.components.SalesInvoiceStatus;
+import com.mollie.mollie.models.components.SalesInvoiceStatusUpdate;
 
-SalesInvoiceStatus value = SalesInvoiceStatus.DRAFT;
+SalesInvoiceStatusUpdate value = SalesInvoiceStatusUpdate.DRAFT;
 ```
 
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `DRAFT`  | draft    |
-| `ISSUED` | issued   |
-| `PAID`   | paid     |
+| Name        | Value       |
+| ----------- | ----------- |
+| `DRAFT`     | draft       |
+| `ISSUED`    | issued      |
+| `PAID`      | paid        |
+| `CANCELLED` | cancelled   |

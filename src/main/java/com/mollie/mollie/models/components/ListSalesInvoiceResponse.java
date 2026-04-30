@@ -71,9 +71,6 @@ public class ListSalesInvoiceResponse {
      * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-     * 
      * <p>Dependent parameters:
      * - `paymentDetails` is required if invoice should be set directly to `paid`
      * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
@@ -124,10 +121,14 @@ public class ListSalesInvoiceResponse {
     @JsonProperty("paymentTerm")
     private JsonNullable<? extends SalesInvoicePaymentTermResponse> paymentTerm;
 
-
+    /**
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the
+     * invoice with the
+     * provided details. Required for `paid` status.
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentDetails")
-    private Optional<? extends SalesInvoicePaymentDetailsResponse> paymentDetails;
+    private Optional<? extends List<SalesInvoicePaymentDetailsResponse>> paymentDetails;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -288,7 +289,7 @@ public class ListSalesInvoiceResponse {
             @JsonProperty("memo") JsonNullable<String> memo,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("paymentTerm") JsonNullable<? extends SalesInvoicePaymentTermResponse> paymentTerm,
-            @JsonProperty("paymentDetails") Optional<? extends SalesInvoicePaymentDetailsResponse> paymentDetails,
+            @JsonProperty("paymentDetails") Optional<? extends List<SalesInvoicePaymentDetailsResponse>> paymentDetails,
             @JsonProperty("emailDetails") JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails,
             @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("mandateId") Optional<String> mandateId,
@@ -442,9 +443,6 @@ public class ListSalesInvoiceResponse {
      * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-     * 
      * <p>Dependent parameters:
      * - `paymentDetails` is required if invoice should be set directly to `paid`
      * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
@@ -506,10 +504,15 @@ public class ListSalesInvoiceResponse {
         return (JsonNullable<SalesInvoicePaymentTermResponse>) paymentTerm;
     }
 
+    /**
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the
+     * invoice with the
+     * provided details. Required for `paid` status.
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SalesInvoicePaymentDetailsResponse> paymentDetails() {
-        return (Optional<SalesInvoicePaymentDetailsResponse>) paymentDetails;
+    public Optional<List<SalesInvoicePaymentDetailsResponse>> paymentDetails() {
+        return (Optional<List<SalesInvoicePaymentDetailsResponse>>) paymentDetails;
     }
 
     @SuppressWarnings("unchecked")
@@ -774,9 +777,6 @@ public class ListSalesInvoiceResponse {
      * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-     * 
      * <p>Dependent parameters:
      * - `paymentDetails` is required if invoice should be set directly to `paid`
      * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
@@ -798,9 +798,6 @@ public class ListSalesInvoiceResponse {
      * the recipient so they may then pay through our payment system. To skip our payment process, set this
      * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-     * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
      * 
      * <p>Dependent parameters:
      * - `paymentDetails` is required if invoice should be set directly to `paid`
@@ -916,14 +913,24 @@ public class ListSalesInvoiceResponse {
         return this;
     }
 
-    public ListSalesInvoiceResponse withPaymentDetails(SalesInvoicePaymentDetailsResponse paymentDetails) {
+    /**
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the
+     * invoice with the
+     * provided details. Required for `paid` status.
+     */
+    public ListSalesInvoiceResponse withPaymentDetails(List<SalesInvoicePaymentDetailsResponse> paymentDetails) {
         Utils.checkNotNull(paymentDetails, "paymentDetails");
         this.paymentDetails = Optional.ofNullable(paymentDetails);
         return this;
     }
 
 
-    public ListSalesInvoiceResponse withPaymentDetails(Optional<? extends SalesInvoicePaymentDetailsResponse> paymentDetails) {
+    /**
+     * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the
+     * invoice with the
+     * provided details. Required for `paid` status.
+     */
+    public ListSalesInvoiceResponse withPaymentDetails(Optional<? extends List<SalesInvoicePaymentDetailsResponse>> paymentDetails) {
         Utils.checkNotNull(paymentDetails, "paymentDetails");
         this.paymentDetails = paymentDetails;
         return this;
@@ -1415,7 +1422,7 @@ public class ListSalesInvoiceResponse {
 
         private JsonNullable<? extends SalesInvoicePaymentTermResponse> paymentTerm = JsonNullable.undefined();
 
-        private Optional<? extends SalesInvoicePaymentDetailsResponse> paymentDetails = Optional.empty();
+        private Optional<? extends List<SalesInvoicePaymentDetailsResponse>> paymentDetails = Optional.empty();
 
         private JsonNullable<? extends SalesInvoiceEmailDetails> emailDetails = JsonNullable.undefined();
 
@@ -1549,9 +1556,6 @@ public class ListSalesInvoiceResponse {
          * to `paid` to
          * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
-         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-         * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-         * 
          * <p>Dependent parameters:
          * - `paymentDetails` is required if invoice should be set directly to `paid`
          * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
@@ -1572,9 +1576,6 @@ public class ListSalesInvoiceResponse {
          * the recipient so they may then pay through our payment system. To skip our payment process, set this
          * to `paid` to
          * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-         * 
-         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-         * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
          * 
          * <p>Dependent parameters:
          * - `paymentDetails` is required if invoice should be set directly to `paid`
@@ -1694,13 +1695,23 @@ public class ListSalesInvoiceResponse {
         }
 
 
-        public Builder paymentDetails(SalesInvoicePaymentDetailsResponse paymentDetails) {
+        /**
+         * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the
+         * invoice with the
+         * provided details. Required for `paid` status.
+         */
+        public Builder paymentDetails(List<SalesInvoicePaymentDetailsResponse> paymentDetails) {
             Utils.checkNotNull(paymentDetails, "paymentDetails");
             this.paymentDetails = Optional.ofNullable(paymentDetails);
             return this;
         }
 
-        public Builder paymentDetails(Optional<? extends SalesInvoicePaymentDetailsResponse> paymentDetails) {
+        /**
+         * Used when setting an invoice to status of `paid`, and will store a payment that fully pays the
+         * invoice with the
+         * provided details. Required for `paid` status.
+         */
+        public Builder paymentDetails(Optional<? extends List<SalesInvoicePaymentDetailsResponse>> paymentDetails) {
             Utils.checkNotNull(paymentDetails, "paymentDetails");
             this.paymentDetails = paymentDetails;
             return this;

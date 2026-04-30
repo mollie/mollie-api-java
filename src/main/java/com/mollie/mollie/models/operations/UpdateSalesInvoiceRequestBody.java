@@ -15,7 +15,7 @@ import com.mollie.mollie.models.components.SalesInvoiceLineItem;
 import com.mollie.mollie.models.components.SalesInvoicePaymentDetails;
 import com.mollie.mollie.models.components.SalesInvoicePaymentTerm;
 import com.mollie.mollie.models.components.SalesInvoiceRecipient;
-import com.mollie.mollie.models.components.SalesInvoiceStatus;
+import com.mollie.mollie.models.components.SalesInvoiceStatusUpdate;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -50,9 +50,6 @@ public class UpdateSalesInvoiceRequestBody {
      * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-     * 
      * <p>Dependent parameters:
      * - `paymentDetails` is required if invoice should be set directly to `paid`
      * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
@@ -61,7 +58,7 @@ public class UpdateSalesInvoiceRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends SalesInvoiceStatus> status;
+    private Optional<? extends SalesInvoiceStatusUpdate> status;
 
     /**
      * A free-form memo you can set on the invoice, and will be shown on the invoice PDF.
@@ -132,7 +129,7 @@ public class UpdateSalesInvoiceRequestBody {
     @JsonCreator
     public UpdateSalesInvoiceRequestBody(
             @JsonProperty("testmode") Optional<Boolean> testmode,
-            @JsonProperty("status") Optional<? extends SalesInvoiceStatus> status,
+            @JsonProperty("status") Optional<? extends SalesInvoiceStatusUpdate> status,
             @JsonProperty("memo") JsonNullable<String> memo,
             @JsonProperty("paymentTerm") JsonNullable<? extends SalesInvoicePaymentTerm> paymentTerm,
             @JsonProperty("paymentDetails") Optional<? extends SalesInvoicePaymentDetails> paymentDetails,
@@ -197,9 +194,6 @@ public class UpdateSalesInvoiceRequestBody {
      * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-     * 
      * <p>Dependent parameters:
      * - `paymentDetails` is required if invoice should be set directly to `paid`
      * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
@@ -208,8 +202,8 @@ public class UpdateSalesInvoiceRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SalesInvoiceStatus> status() {
-        return (Optional<SalesInvoiceStatus>) status;
+    public Optional<SalesInvoiceStatusUpdate> status() {
+        return (Optional<SalesInvoiceStatusUpdate>) status;
     }
 
     /**
@@ -336,16 +330,13 @@ public class UpdateSalesInvoiceRequestBody {
      * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-     * 
      * <p>Dependent parameters:
      * - `paymentDetails` is required if invoice should be set directly to `paid`
      * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
      * to `paid`
      * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    public UpdateSalesInvoiceRequestBody withStatus(SalesInvoiceStatus status) {
+    public UpdateSalesInvoiceRequestBody withStatus(SalesInvoiceStatusUpdate status) {
         Utils.checkNotNull(status, "status");
         this.status = Optional.ofNullable(status);
         return this;
@@ -361,16 +352,13 @@ public class UpdateSalesInvoiceRequestBody {
      * to `paid` to
      * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
      * 
-     * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-     * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-     * 
      * <p>Dependent parameters:
      * - `paymentDetails` is required if invoice should be set directly to `paid`
      * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
      * to `paid`
      * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
      */
-    public UpdateSalesInvoiceRequestBody withStatus(Optional<? extends SalesInvoiceStatus> status) {
+    public UpdateSalesInvoiceRequestBody withStatus(Optional<? extends SalesInvoiceStatusUpdate> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
         return this;
@@ -592,7 +580,7 @@ public class UpdateSalesInvoiceRequestBody {
 
         private Optional<Boolean> testmode = Optional.empty();
 
-        private Optional<? extends SalesInvoiceStatus> status = Optional.empty();
+        private Optional<? extends SalesInvoiceStatusUpdate> status = Optional.empty();
 
         private JsonNullable<String> memo = JsonNullable.undefined();
 
@@ -659,16 +647,13 @@ public class UpdateSalesInvoiceRequestBody {
          * to `paid` to
          * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
-         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-         * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-         * 
          * <p>Dependent parameters:
          * - `paymentDetails` is required if invoice should be set directly to `paid`
          * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
          * to `paid`
          * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
-        public Builder status(SalesInvoiceStatus status) {
+        public Builder status(SalesInvoiceStatusUpdate status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
             return this;
@@ -683,16 +668,13 @@ public class UpdateSalesInvoiceRequestBody {
          * to `paid` to
          * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
          * 
-         * <p>A status value that cannot be set but can be returned is `canceled`, for invoices which were
-         * issued, but then canceled. Currently this can only be done for invoices created in the dashboard.
-         * 
          * <p>Dependent parameters:
          * - `paymentDetails` is required if invoice should be set directly to `paid`
          * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
          * to `paid`
          * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
          */
-        public Builder status(Optional<? extends SalesInvoiceStatus> status) {
+        public Builder status(Optional<? extends SalesInvoiceStatusUpdate> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
             return this;
