@@ -4,154 +4,594 @@
  */
 package com.mollie.mollie.models.components;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.lang.Override;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
+/**
+ * Wrapper for an "open" enum that can handle unknown values from API responses
+ * without runtime errors. Instances are immutable singletons with reference equality.
+ * Use {@code asEnum()} for switch expressions.
+ */
 /**
  * Code
  * 
  * <p>A machine-readable code that indicates the reason for the payment's status.
  */
-public enum Code {
-    APPROVED_OR_COMPLETED_SUCCESSFULLY("approved_or_completed_successfully"),
-    REFER_TO_CARD_ISSUER("refer_to_card_issuer"),
-    INVALID_MERCHANT("invalid_merchant"),
-    CAPTURE_CARD("capture_card"),
-    DO_NOT_HONOR("do_not_honor"),
-    ERROR("error"),
-    PARTIAL_APPROVAL("partial_approval"),
-    INVALID_TRANSACTION("invalid_transaction"),
-    INVALID_AMOUNT("invalid_amount"),
-    INVALID_ISSUER("invalid_issuer"),
-    LOST_CARD("lost_card"),
-    STOLEN_CARD("stolen_card"),
-    INSUFFICIENT_FUNDS("insufficient_funds"),
-    EXPIRED_CARD("expired_card"),
-    INVALID_PIN("invalid_pin"),
-    TRANSACTION_NOT_PERMITTED_TO_CARDHOLDER("transaction_not_permitted_to_cardholder"),
-    TRANSACTION_NOT_ALLOWED_AT_TERMINAL("transaction_not_allowed_at_terminal"),
-    EXCEEDS_WITHDRAWAL_AMOUNT_LIMIT("exceeds_withdrawal_amount_limit"),
-    RESTRICTED_CARD("restricted_card"),
-    SECURITY_VIOLATION("security_violation"),
-    EXCEEDS_WITHDRAWAL_COUNT_LIMIT("exceeds_withdrawal_count_limit"),
-    ALLOWABLE_NUMBER_OF_PIN_TRIES_EXCEEDED("allowable_number_of_pin_tries_exceeded"),
-    NO_REASON_TO_DECLINE("no_reason_to_decline"),
-    CANNOT_VERIFY_PIN("cannot_verify_pin"),
-    ISSUER_UNAVAILABLE("issuer_unavailable"),
-    UNABLE_TO_ROUTE_TRANSACTION("unable_to_route_transaction"),
-    DUPLICATE_TRANSACTION("duplicate_transaction"),
-    SYSTEM_MALFUNCTION("system_malfunction"),
-    HONOR_WITH_ID("honor_with_id"),
-    INVALID_CARD_NUMBER("invalid_card_number"),
-    FORMAT_ERROR("format_error"),
-    CONTACT_CARD_ISSUER("contact_card_issuer"),
-    PIN_NOT_CHANGED("pin_not_changed"),
-    INVALID_NONEXISTENT_TO_ACCOUNT_SPECIFIED("invalid_nonexistent_to_account_specified"),
-    INVALID_NONEXISTENT_FROM_ACCOUNT_SPECIFIED("invalid_nonexistent_from_account_specified"),
-    INVALID_NONEXISTENT_ACCOUNT_SPECIFIED("invalid_nonexistent_account_specified"),
-    LIFECYCLE_RELATED("lifecycle_related"),
-    DOMESTIC_DEBIT_TRANSACTION_NOT_ALLOWED("domestic_debit_transaction_not_allowed"),
-    POLICY_RELATED("policy_related"),
-    FRAUD_SECURITY_RELATED("fraud_security_related"),
-    INVALID_AUTHORIZATION_LIFE_CYCLE("invalid_authorization_life_cycle"),
-    PURCHASE_AMOUNT_ONLY_NO_CASH_BACK_ALLOWED("purchase_amount_only_no_cash_back_allowed"),
-    CRYPTOGRAPHIC_FAILURE("cryptographic_failure"),
-    UNACCEPTABLE_PIN("unacceptable_pin"),
-    REFER_TO_CARD_ISSUER_SPECIAL_CONDITION("refer_to_card_issuer_special_condition"),
-    PICK_UP_CARD_SPECIAL_CONDITION("pick_up_card_special_condition"),
-    VIP_APPROVAL("vip_approval"),
-    INVALID_ACCOUNT_NUMBER("invalid_account_number"),
-    RE_ENTER_TRANSACTION("re_enter_transaction"),
-    NO_ACTION_TAKEN("no_action_taken"),
-    UNABLE_TO_LOCATE_RECORD("unable_to_locate_record"),
-    FILE_TEMPORARILY_UNAVAILABLE("file_temporarily_unavailable"),
-    NO_CREDIT_ACCOUNT("no_credit_account"),
-    CLOSED_ACCOUNT("closed_account"),
-    NO_CHECKING_ACCOUNT("no_checking_account"),
-    NO_SAVINGS_ACCOUNT("no_savings_account"),
-    SUSPECTED_FRAUD("suspected_fraud"),
-    TRANSACTION_DOES_NOT_FULFILL_AML_REQUIREMENT("transaction_does_not_fulfill_aml_requirement"),
-    PIN_DATA_REQUIRED("pin_data_required"),
-    UNABLE_TO_LOCATE_PREVIOUS_MESSAGE("unable_to_locate_previous_message"),
-    PREVIOUS_MESSAGE_LOCATED_INCONSISTENT_DATA("previous_message_located_inconsistent_data"),
-    BLOCKED_FIRST_USED("blocked_first_used"),
-    TRANSACTION_REVERSED("transaction_reversed"),
-    CREDIT_ISSUER_UNAVAILABLE("credit_issuer_unavailable"),
-    PIN_CRYPTOGRAPHIC_ERROR_FOUND("pin_cryptographic_error_found"),
-    NEGATIVE_ONLINE_CAM_RESULT("negative_online_cam_result"),
-    VIOLATION_OF_LAW("violation_of_law"),
-    FORCE_STIP("force_stip"),
-    CASH_SERVICE_NOT_AVAILABLE("cash_service_not_available"),
-    CASHBACK_REQUEST_EXCEEDS_ISSUER_LIMIT("cashback_request_exceeds_issuer_limit"),
-    DECLINE_FOR_CVV2_FAILURE("decline_for_cvv2_failure"),
-    TRANSACTION_AMOUNT_EXCEEDS_PRE_AUTHORIZED_AMOUNT("transaction_amount_exceeds_pre_authorized_amount"),
-    INVALID_BILLER_INFORMATION("invalid_biller_information"),
-    PIN_CHANGE_UNBLOCK_REQUEST_DECLINED("pin_change_unblock_request_declined"),
-    UNSAFE_PIN("unsafe_pin"),
-    CARD_AUTHENTICATION_FAILED("card_authentication_failed"),
-    STOP_PAYMENT_ORDER("stop_payment_order"),
-    REVOCATION_OF_AUTHORIZATION("revocation_of_authorization"),
-    REVOCATION_OF_ALL_AUTHORIZATIONS("revocation_of_all_authorizations"),
-    FORWARD_TO_ISSUER_XA("forward_to_issuer_xa"),
-    FORWARD_TO_ISSUER_XD("forward_to_issuer_xd"),
-    UNABLE_TO_GO_ONLINE("unable_to_go_online"),
-    ADDITIONAL_CUSTOMER_AUTHENTICATION_REQUIRED("additional_customer_authentication_required"),
-    MERCHANT_ID_NOT_FOUND("merchant_id_not_found"),
-    MERCHANT_ACCOUNT_CLOSED("merchant_account_closed"),
-    TERMINAL_ID_NOT_FOUND("terminal_id_not_found"),
-    TERMINAL_CLOSED("terminal_closed"),
-    INVALID_CATEGORY_CODE("invalid_category_code"),
-    INVALID_CURRENCY("invalid_currency"),
-    MISSING_CVV2_CVC2("missing_cvv2_cvc2"),
-    CVV2_NOT_ALLOWED("cvv2_not_allowed"),
-    MERCHANT_NOT_REGISTERED_VBV("merchant_not_registered_vbv"),
-    MERCHANT_NOT_REGISTERED_FOR_AMEX("merchant_not_registered_for_amex"),
-    TRANSACTION_NOT_PERMITTED_AT_TERMINAL("transaction_not_permitted_at_terminal"),
-    AGREEMENT_TERMINAL_NOT_RELATED("agreement_terminal_not_related"),
-    INVALID_PROCESSOR_ID("invalid_processor_id"),
-    INVALID_MERCHANT_DATA("invalid_merchant_data"),
-    SUB_MERCHANT_ACCOUNT_CLOSED("sub_merchant_account_closed"),
-    TERMINAL_BUSY("terminal_busy"),
-    TERMINAL_UNREACHABLE("terminal_unreachable"),
-    SERVICE_FAILED("service_failed"),
-    INVALID_OPERATION("invalid_operation"),
-    AUTHORIZATION_ERROR("authorization_error"),
-    LOGIN_FAILED_WITHOUT_REASON("login_failed_without_reason"),
-    INVALID_RETAILER("invalid_retailer"),
-    CARD_DOES_NOT_EXIST("card_does_not_exist"),
-    CARD_IS_BLOCKED("card_is_blocked"),
-    INVALID_CARD_ID("invalid_card_id"),
-    CARD_IS_TRANSFERRED("card_is_transferred"),
-    CARD_IS_NOT_ACTIVE("card_is_not_active"),
-    INCORRECT_PURCHASE_VALUE("incorrect_purchase_value"),
-    CARD_NOT_AVAILABLE("card_not_available"),
-    WRONG_CURRENCY("wrong_currency"),
-    LOGIN_FAILED_UNKNOWN_USER("login_failed_unknown_user"),
-    LOGIN_FAILED_INVALID_PASSWORD("login_failed_invalid_password"),
-    INVALID_EAN_CODE("invalid_ean_code"),
-    CARD_ERROR("card_error"),
-    TERMINAL_CONFIGURATION_ISSUE("terminal_configuration_issue");
+public class Code {
 
-    @JsonValue
+    public static final Code APPROVED_OR_COMPLETED_SUCCESSFULLY = new Code("approved_or_completed_successfully");
+    public static final Code REFER_TO_CARD_ISSUER = new Code("refer_to_card_issuer");
+    public static final Code INVALID_MERCHANT = new Code("invalid_merchant");
+    public static final Code CAPTURE_CARD = new Code("capture_card");
+    public static final Code DO_NOT_HONOR = new Code("do_not_honor");
+    public static final Code ERROR = new Code("error");
+    public static final Code PARTIAL_APPROVAL = new Code("partial_approval");
+    public static final Code INVALID_TRANSACTION = new Code("invalid_transaction");
+    public static final Code INVALID_AMOUNT = new Code("invalid_amount");
+    public static final Code INVALID_ISSUER = new Code("invalid_issuer");
+    public static final Code LOST_CARD = new Code("lost_card");
+    public static final Code STOLEN_CARD = new Code("stolen_card");
+    public static final Code INSUFFICIENT_FUNDS = new Code("insufficient_funds");
+    public static final Code EXPIRED_CARD = new Code("expired_card");
+    public static final Code INVALID_PIN = new Code("invalid_pin");
+    public static final Code TRANSACTION_NOT_PERMITTED_TO_CARDHOLDER = new Code("transaction_not_permitted_to_cardholder");
+    public static final Code TRANSACTION_NOT_ALLOWED_AT_TERMINAL = new Code("transaction_not_allowed_at_terminal");
+    public static final Code EXCEEDS_WITHDRAWAL_AMOUNT_LIMIT = new Code("exceeds_withdrawal_amount_limit");
+    public static final Code RESTRICTED_CARD = new Code("restricted_card");
+    public static final Code SECURITY_VIOLATION = new Code("security_violation");
+    public static final Code EXCEEDS_WITHDRAWAL_COUNT_LIMIT = new Code("exceeds_withdrawal_count_limit");
+    public static final Code ALLOWABLE_NUMBER_OF_PIN_TRIES_EXCEEDED = new Code("allowable_number_of_pin_tries_exceeded");
+    public static final Code NO_REASON_TO_DECLINE = new Code("no_reason_to_decline");
+    public static final Code CANNOT_VERIFY_PIN = new Code("cannot_verify_pin");
+    public static final Code ISSUER_UNAVAILABLE = new Code("issuer_unavailable");
+    public static final Code UNABLE_TO_ROUTE_TRANSACTION = new Code("unable_to_route_transaction");
+    public static final Code DUPLICATE_TRANSACTION = new Code("duplicate_transaction");
+    public static final Code SYSTEM_MALFUNCTION = new Code("system_malfunction");
+    public static final Code HONOR_WITH_ID = new Code("honor_with_id");
+    public static final Code INVALID_CARD_NUMBER = new Code("invalid_card_number");
+    public static final Code FORMAT_ERROR = new Code("format_error");
+    public static final Code CONTACT_CARD_ISSUER = new Code("contact_card_issuer");
+    public static final Code PIN_NOT_CHANGED = new Code("pin_not_changed");
+    public static final Code INVALID_NONEXISTENT_TO_ACCOUNT_SPECIFIED = new Code("invalid_nonexistent_to_account_specified");
+    public static final Code INVALID_NONEXISTENT_FROM_ACCOUNT_SPECIFIED = new Code("invalid_nonexistent_from_account_specified");
+    public static final Code INVALID_NONEXISTENT_ACCOUNT_SPECIFIED = new Code("invalid_nonexistent_account_specified");
+    public static final Code LIFECYCLE_RELATED = new Code("lifecycle_related");
+    public static final Code DOMESTIC_DEBIT_TRANSACTION_NOT_ALLOWED = new Code("domestic_debit_transaction_not_allowed");
+    public static final Code POLICY_RELATED = new Code("policy_related");
+    public static final Code FRAUD_SECURITY_RELATED = new Code("fraud_security_related");
+    public static final Code INVALID_AUTHORIZATION_LIFE_CYCLE = new Code("invalid_authorization_life_cycle");
+    public static final Code PURCHASE_AMOUNT_ONLY_NO_CASH_BACK_ALLOWED = new Code("purchase_amount_only_no_cash_back_allowed");
+    public static final Code CRYPTOGRAPHIC_FAILURE = new Code("cryptographic_failure");
+    public static final Code UNACCEPTABLE_PIN = new Code("unacceptable_pin");
+    public static final Code REFER_TO_CARD_ISSUER_SPECIAL_CONDITION = new Code("refer_to_card_issuer_special_condition");
+    public static final Code PICK_UP_CARD_SPECIAL_CONDITION = new Code("pick_up_card_special_condition");
+    public static final Code VIP_APPROVAL = new Code("vip_approval");
+    public static final Code INVALID_ACCOUNT_NUMBER = new Code("invalid_account_number");
+    public static final Code RE_ENTER_TRANSACTION = new Code("re_enter_transaction");
+    public static final Code NO_ACTION_TAKEN = new Code("no_action_taken");
+    public static final Code UNABLE_TO_LOCATE_RECORD = new Code("unable_to_locate_record");
+    public static final Code FILE_TEMPORARILY_UNAVAILABLE = new Code("file_temporarily_unavailable");
+    public static final Code NO_CREDIT_ACCOUNT = new Code("no_credit_account");
+    public static final Code CLOSED_ACCOUNT = new Code("closed_account");
+    public static final Code NO_CHECKING_ACCOUNT = new Code("no_checking_account");
+    public static final Code NO_SAVINGS_ACCOUNT = new Code("no_savings_account");
+    public static final Code SUSPECTED_FRAUD = new Code("suspected_fraud");
+    public static final Code TRANSACTION_DOES_NOT_FULFILL_AML_REQUIREMENT = new Code("transaction_does_not_fulfill_aml_requirement");
+    public static final Code PIN_DATA_REQUIRED = new Code("pin_data_required");
+    public static final Code UNABLE_TO_LOCATE_PREVIOUS_MESSAGE = new Code("unable_to_locate_previous_message");
+    public static final Code PREVIOUS_MESSAGE_LOCATED_INCONSISTENT_DATA = new Code("previous_message_located_inconsistent_data");
+    public static final Code BLOCKED_FIRST_USED = new Code("blocked_first_used");
+    public static final Code TRANSACTION_REVERSED = new Code("transaction_reversed");
+    public static final Code CREDIT_ISSUER_UNAVAILABLE = new Code("credit_issuer_unavailable");
+    public static final Code PIN_CRYPTOGRAPHIC_ERROR_FOUND = new Code("pin_cryptographic_error_found");
+    public static final Code NEGATIVE_ONLINE_CAM_RESULT = new Code("negative_online_cam_result");
+    public static final Code VIOLATION_OF_LAW = new Code("violation_of_law");
+    public static final Code FORCE_STIP = new Code("force_stip");
+    public static final Code CASH_SERVICE_NOT_AVAILABLE = new Code("cash_service_not_available");
+    public static final Code CASHBACK_REQUEST_EXCEEDS_ISSUER_LIMIT = new Code("cashback_request_exceeds_issuer_limit");
+    public static final Code DECLINE_FOR_CVV2_FAILURE = new Code("decline_for_cvv2_failure");
+    public static final Code TRANSACTION_AMOUNT_EXCEEDS_PRE_AUTHORIZED_AMOUNT = new Code("transaction_amount_exceeds_pre_authorized_amount");
+    public static final Code INVALID_BILLER_INFORMATION = new Code("invalid_biller_information");
+    public static final Code PIN_CHANGE_UNBLOCK_REQUEST_DECLINED = new Code("pin_change_unblock_request_declined");
+    public static final Code UNSAFE_PIN = new Code("unsafe_pin");
+    public static final Code CARD_AUTHENTICATION_FAILED = new Code("card_authentication_failed");
+    public static final Code STOP_PAYMENT_ORDER = new Code("stop_payment_order");
+    public static final Code REVOCATION_OF_AUTHORIZATION = new Code("revocation_of_authorization");
+    public static final Code REVOCATION_OF_ALL_AUTHORIZATIONS = new Code("revocation_of_all_authorizations");
+    public static final Code FORWARD_TO_ISSUER_XA = new Code("forward_to_issuer_xa");
+    public static final Code FORWARD_TO_ISSUER_XD = new Code("forward_to_issuer_xd");
+    public static final Code UNABLE_TO_GO_ONLINE = new Code("unable_to_go_online");
+    public static final Code ADDITIONAL_CUSTOMER_AUTHENTICATION_REQUIRED = new Code("additional_customer_authentication_required");
+    public static final Code MERCHANT_ID_NOT_FOUND = new Code("merchant_id_not_found");
+    public static final Code MERCHANT_ACCOUNT_CLOSED = new Code("merchant_account_closed");
+    public static final Code TERMINAL_ID_NOT_FOUND = new Code("terminal_id_not_found");
+    public static final Code TERMINAL_CLOSED = new Code("terminal_closed");
+    public static final Code INVALID_CATEGORY_CODE = new Code("invalid_category_code");
+    public static final Code INVALID_CURRENCY = new Code("invalid_currency");
+    public static final Code MISSING_CVV2_CVC2 = new Code("missing_cvv2_cvc2");
+    public static final Code CVV2_NOT_ALLOWED = new Code("cvv2_not_allowed");
+    public static final Code MERCHANT_NOT_REGISTERED_VBV = new Code("merchant_not_registered_vbv");
+    public static final Code MERCHANT_NOT_REGISTERED_FOR_AMEX = new Code("merchant_not_registered_for_amex");
+    public static final Code TRANSACTION_NOT_PERMITTED_AT_TERMINAL = new Code("transaction_not_permitted_at_terminal");
+    public static final Code AGREEMENT_TERMINAL_NOT_RELATED = new Code("agreement_terminal_not_related");
+    public static final Code INVALID_PROCESSOR_ID = new Code("invalid_processor_id");
+    public static final Code INVALID_MERCHANT_DATA = new Code("invalid_merchant_data");
+    public static final Code SUB_MERCHANT_ACCOUNT_CLOSED = new Code("sub_merchant_account_closed");
+    public static final Code TERMINAL_BUSY = new Code("terminal_busy");
+    public static final Code TERMINAL_UNREACHABLE = new Code("terminal_unreachable");
+    public static final Code SERVICE_FAILED = new Code("service_failed");
+    public static final Code INVALID_OPERATION = new Code("invalid_operation");
+    public static final Code AUTHORIZATION_ERROR = new Code("authorization_error");
+    public static final Code LOGIN_FAILED_WITHOUT_REASON = new Code("login_failed_without_reason");
+    public static final Code INVALID_RETAILER = new Code("invalid_retailer");
+    public static final Code CARD_DOES_NOT_EXIST = new Code("card_does_not_exist");
+    public static final Code CARD_IS_BLOCKED = new Code("card_is_blocked");
+    public static final Code INVALID_CARD_ID = new Code("invalid_card_id");
+    public static final Code CARD_IS_TRANSFERRED = new Code("card_is_transferred");
+    public static final Code CARD_IS_NOT_ACTIVE = new Code("card_is_not_active");
+    public static final Code INCORRECT_PURCHASE_VALUE = new Code("incorrect_purchase_value");
+    public static final Code CARD_NOT_AVAILABLE = new Code("card_not_available");
+    public static final Code WRONG_CURRENCY = new Code("wrong_currency");
+    public static final Code LOGIN_FAILED_UNKNOWN_USER = new Code("login_failed_unknown_user");
+    public static final Code LOGIN_FAILED_INVALID_PASSWORD = new Code("login_failed_invalid_password");
+    public static final Code INVALID_EAN_CODE = new Code("invalid_ean_code");
+    public static final Code CARD_ERROR = new Code("card_error");
+    public static final Code TERMINAL_CONFIGURATION_ISSUE = new Code("terminal_configuration_issue");
+
+    // This map will grow whenever a Color gets created with a new
+    // unrecognized value (a potential memory leak if the user is not
+    // careful). Keep this field lower case to avoid clashing with
+    // generated member names which will always be upper cased (Java
+    // convention)
+    private static final Map<String, Code> values = createValuesMap();
+    private static final Map<String, CodeEnum> enums = createEnumsMap();
+
     private final String value;
 
-    Code(String value) {
+    private Code(String value) {
         this.value = value;
     }
-    
+
+    /**
+     * Returns a Code with the given value. For a specific value the 
+     * returned object will always be a singleton so reference equality 
+     * is satisfied when the values are the same.
+     * 
+     * @param value value to be wrapped as Code
+     */ 
+    @JsonCreator
+    public static Code of(String value) {
+        synchronized (Code.class) {
+            return values.computeIfAbsent(value, v -> new Code(v));
+        }
+    }
+
+    @JsonValue
     public String value() {
         return value;
     }
-    
-    public static Optional<Code> fromValue(String value) {
-        for (Code o: Code.values()) {
-            if (Objects.deepEquals(o.value, value)) {
-                return Optional.of(o);
-            }
+
+    public Optional<CodeEnum> asEnum() {
+        return Optional.ofNullable(enums.getOrDefault(value, null));
+    }
+
+    public boolean isKnown() {
+        return asEnum().isPresent();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
+
+    @Override
+    public boolean equals(java.lang.Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Code other = (Code) obj;
+        return Objects.equals(value, other.value);
+    }
+
+    @Override
+    public String toString() {
+        return "Code [value=" + value + "]";
+    }
+
+    // return an array just like an enum
+    public static Code[] values() {
+        synchronized (Code.class) {
+            return values.values().toArray(new Code[] {});
         }
-        return Optional.empty();
+    }
+
+    private static final Map<String, Code> createValuesMap() {
+        Map<String, Code> map = new LinkedHashMap<>();
+        map.put("approved_or_completed_successfully", APPROVED_OR_COMPLETED_SUCCESSFULLY);
+        map.put("refer_to_card_issuer", REFER_TO_CARD_ISSUER);
+        map.put("invalid_merchant", INVALID_MERCHANT);
+        map.put("capture_card", CAPTURE_CARD);
+        map.put("do_not_honor", DO_NOT_HONOR);
+        map.put("error", ERROR);
+        map.put("partial_approval", PARTIAL_APPROVAL);
+        map.put("invalid_transaction", INVALID_TRANSACTION);
+        map.put("invalid_amount", INVALID_AMOUNT);
+        map.put("invalid_issuer", INVALID_ISSUER);
+        map.put("lost_card", LOST_CARD);
+        map.put("stolen_card", STOLEN_CARD);
+        map.put("insufficient_funds", INSUFFICIENT_FUNDS);
+        map.put("expired_card", EXPIRED_CARD);
+        map.put("invalid_pin", INVALID_PIN);
+        map.put("transaction_not_permitted_to_cardholder", TRANSACTION_NOT_PERMITTED_TO_CARDHOLDER);
+        map.put("transaction_not_allowed_at_terminal", TRANSACTION_NOT_ALLOWED_AT_TERMINAL);
+        map.put("exceeds_withdrawal_amount_limit", EXCEEDS_WITHDRAWAL_AMOUNT_LIMIT);
+        map.put("restricted_card", RESTRICTED_CARD);
+        map.put("security_violation", SECURITY_VIOLATION);
+        map.put("exceeds_withdrawal_count_limit", EXCEEDS_WITHDRAWAL_COUNT_LIMIT);
+        map.put("allowable_number_of_pin_tries_exceeded", ALLOWABLE_NUMBER_OF_PIN_TRIES_EXCEEDED);
+        map.put("no_reason_to_decline", NO_REASON_TO_DECLINE);
+        map.put("cannot_verify_pin", CANNOT_VERIFY_PIN);
+        map.put("issuer_unavailable", ISSUER_UNAVAILABLE);
+        map.put("unable_to_route_transaction", UNABLE_TO_ROUTE_TRANSACTION);
+        map.put("duplicate_transaction", DUPLICATE_TRANSACTION);
+        map.put("system_malfunction", SYSTEM_MALFUNCTION);
+        map.put("honor_with_id", HONOR_WITH_ID);
+        map.put("invalid_card_number", INVALID_CARD_NUMBER);
+        map.put("format_error", FORMAT_ERROR);
+        map.put("contact_card_issuer", CONTACT_CARD_ISSUER);
+        map.put("pin_not_changed", PIN_NOT_CHANGED);
+        map.put("invalid_nonexistent_to_account_specified", INVALID_NONEXISTENT_TO_ACCOUNT_SPECIFIED);
+        map.put("invalid_nonexistent_from_account_specified", INVALID_NONEXISTENT_FROM_ACCOUNT_SPECIFIED);
+        map.put("invalid_nonexistent_account_specified", INVALID_NONEXISTENT_ACCOUNT_SPECIFIED);
+        map.put("lifecycle_related", LIFECYCLE_RELATED);
+        map.put("domestic_debit_transaction_not_allowed", DOMESTIC_DEBIT_TRANSACTION_NOT_ALLOWED);
+        map.put("policy_related", POLICY_RELATED);
+        map.put("fraud_security_related", FRAUD_SECURITY_RELATED);
+        map.put("invalid_authorization_life_cycle", INVALID_AUTHORIZATION_LIFE_CYCLE);
+        map.put("purchase_amount_only_no_cash_back_allowed", PURCHASE_AMOUNT_ONLY_NO_CASH_BACK_ALLOWED);
+        map.put("cryptographic_failure", CRYPTOGRAPHIC_FAILURE);
+        map.put("unacceptable_pin", UNACCEPTABLE_PIN);
+        map.put("refer_to_card_issuer_special_condition", REFER_TO_CARD_ISSUER_SPECIAL_CONDITION);
+        map.put("pick_up_card_special_condition", PICK_UP_CARD_SPECIAL_CONDITION);
+        map.put("vip_approval", VIP_APPROVAL);
+        map.put("invalid_account_number", INVALID_ACCOUNT_NUMBER);
+        map.put("re_enter_transaction", RE_ENTER_TRANSACTION);
+        map.put("no_action_taken", NO_ACTION_TAKEN);
+        map.put("unable_to_locate_record", UNABLE_TO_LOCATE_RECORD);
+        map.put("file_temporarily_unavailable", FILE_TEMPORARILY_UNAVAILABLE);
+        map.put("no_credit_account", NO_CREDIT_ACCOUNT);
+        map.put("closed_account", CLOSED_ACCOUNT);
+        map.put("no_checking_account", NO_CHECKING_ACCOUNT);
+        map.put("no_savings_account", NO_SAVINGS_ACCOUNT);
+        map.put("suspected_fraud", SUSPECTED_FRAUD);
+        map.put("transaction_does_not_fulfill_aml_requirement", TRANSACTION_DOES_NOT_FULFILL_AML_REQUIREMENT);
+        map.put("pin_data_required", PIN_DATA_REQUIRED);
+        map.put("unable_to_locate_previous_message", UNABLE_TO_LOCATE_PREVIOUS_MESSAGE);
+        map.put("previous_message_located_inconsistent_data", PREVIOUS_MESSAGE_LOCATED_INCONSISTENT_DATA);
+        map.put("blocked_first_used", BLOCKED_FIRST_USED);
+        map.put("transaction_reversed", TRANSACTION_REVERSED);
+        map.put("credit_issuer_unavailable", CREDIT_ISSUER_UNAVAILABLE);
+        map.put("pin_cryptographic_error_found", PIN_CRYPTOGRAPHIC_ERROR_FOUND);
+        map.put("negative_online_cam_result", NEGATIVE_ONLINE_CAM_RESULT);
+        map.put("violation_of_law", VIOLATION_OF_LAW);
+        map.put("force_stip", FORCE_STIP);
+        map.put("cash_service_not_available", CASH_SERVICE_NOT_AVAILABLE);
+        map.put("cashback_request_exceeds_issuer_limit", CASHBACK_REQUEST_EXCEEDS_ISSUER_LIMIT);
+        map.put("decline_for_cvv2_failure", DECLINE_FOR_CVV2_FAILURE);
+        map.put("transaction_amount_exceeds_pre_authorized_amount", TRANSACTION_AMOUNT_EXCEEDS_PRE_AUTHORIZED_AMOUNT);
+        map.put("invalid_biller_information", INVALID_BILLER_INFORMATION);
+        map.put("pin_change_unblock_request_declined", PIN_CHANGE_UNBLOCK_REQUEST_DECLINED);
+        map.put("unsafe_pin", UNSAFE_PIN);
+        map.put("card_authentication_failed", CARD_AUTHENTICATION_FAILED);
+        map.put("stop_payment_order", STOP_PAYMENT_ORDER);
+        map.put("revocation_of_authorization", REVOCATION_OF_AUTHORIZATION);
+        map.put("revocation_of_all_authorizations", REVOCATION_OF_ALL_AUTHORIZATIONS);
+        map.put("forward_to_issuer_xa", FORWARD_TO_ISSUER_XA);
+        map.put("forward_to_issuer_xd", FORWARD_TO_ISSUER_XD);
+        map.put("unable_to_go_online", UNABLE_TO_GO_ONLINE);
+        map.put("additional_customer_authentication_required", ADDITIONAL_CUSTOMER_AUTHENTICATION_REQUIRED);
+        map.put("merchant_id_not_found", MERCHANT_ID_NOT_FOUND);
+        map.put("merchant_account_closed", MERCHANT_ACCOUNT_CLOSED);
+        map.put("terminal_id_not_found", TERMINAL_ID_NOT_FOUND);
+        map.put("terminal_closed", TERMINAL_CLOSED);
+        map.put("invalid_category_code", INVALID_CATEGORY_CODE);
+        map.put("invalid_currency", INVALID_CURRENCY);
+        map.put("missing_cvv2_cvc2", MISSING_CVV2_CVC2);
+        map.put("cvv2_not_allowed", CVV2_NOT_ALLOWED);
+        map.put("merchant_not_registered_vbv", MERCHANT_NOT_REGISTERED_VBV);
+        map.put("merchant_not_registered_for_amex", MERCHANT_NOT_REGISTERED_FOR_AMEX);
+        map.put("transaction_not_permitted_at_terminal", TRANSACTION_NOT_PERMITTED_AT_TERMINAL);
+        map.put("agreement_terminal_not_related", AGREEMENT_TERMINAL_NOT_RELATED);
+        map.put("invalid_processor_id", INVALID_PROCESSOR_ID);
+        map.put("invalid_merchant_data", INVALID_MERCHANT_DATA);
+        map.put("sub_merchant_account_closed", SUB_MERCHANT_ACCOUNT_CLOSED);
+        map.put("terminal_busy", TERMINAL_BUSY);
+        map.put("terminal_unreachable", TERMINAL_UNREACHABLE);
+        map.put("service_failed", SERVICE_FAILED);
+        map.put("invalid_operation", INVALID_OPERATION);
+        map.put("authorization_error", AUTHORIZATION_ERROR);
+        map.put("login_failed_without_reason", LOGIN_FAILED_WITHOUT_REASON);
+        map.put("invalid_retailer", INVALID_RETAILER);
+        map.put("card_does_not_exist", CARD_DOES_NOT_EXIST);
+        map.put("card_is_blocked", CARD_IS_BLOCKED);
+        map.put("invalid_card_id", INVALID_CARD_ID);
+        map.put("card_is_transferred", CARD_IS_TRANSFERRED);
+        map.put("card_is_not_active", CARD_IS_NOT_ACTIVE);
+        map.put("incorrect_purchase_value", INCORRECT_PURCHASE_VALUE);
+        map.put("card_not_available", CARD_NOT_AVAILABLE);
+        map.put("wrong_currency", WRONG_CURRENCY);
+        map.put("login_failed_unknown_user", LOGIN_FAILED_UNKNOWN_USER);
+        map.put("login_failed_invalid_password", LOGIN_FAILED_INVALID_PASSWORD);
+        map.put("invalid_ean_code", INVALID_EAN_CODE);
+        map.put("card_error", CARD_ERROR);
+        map.put("terminal_configuration_issue", TERMINAL_CONFIGURATION_ISSUE);
+        return map;
+    }
+
+    private static final Map<String, CodeEnum> createEnumsMap() {
+        Map<String, CodeEnum> map = new HashMap<>();
+        map.put("approved_or_completed_successfully", CodeEnum.APPROVED_OR_COMPLETED_SUCCESSFULLY);
+        map.put("refer_to_card_issuer", CodeEnum.REFER_TO_CARD_ISSUER);
+        map.put("invalid_merchant", CodeEnum.INVALID_MERCHANT);
+        map.put("capture_card", CodeEnum.CAPTURE_CARD);
+        map.put("do_not_honor", CodeEnum.DO_NOT_HONOR);
+        map.put("error", CodeEnum.ERROR);
+        map.put("partial_approval", CodeEnum.PARTIAL_APPROVAL);
+        map.put("invalid_transaction", CodeEnum.INVALID_TRANSACTION);
+        map.put("invalid_amount", CodeEnum.INVALID_AMOUNT);
+        map.put("invalid_issuer", CodeEnum.INVALID_ISSUER);
+        map.put("lost_card", CodeEnum.LOST_CARD);
+        map.put("stolen_card", CodeEnum.STOLEN_CARD);
+        map.put("insufficient_funds", CodeEnum.INSUFFICIENT_FUNDS);
+        map.put("expired_card", CodeEnum.EXPIRED_CARD);
+        map.put("invalid_pin", CodeEnum.INVALID_PIN);
+        map.put("transaction_not_permitted_to_cardholder", CodeEnum.TRANSACTION_NOT_PERMITTED_TO_CARDHOLDER);
+        map.put("transaction_not_allowed_at_terminal", CodeEnum.TRANSACTION_NOT_ALLOWED_AT_TERMINAL);
+        map.put("exceeds_withdrawal_amount_limit", CodeEnum.EXCEEDS_WITHDRAWAL_AMOUNT_LIMIT);
+        map.put("restricted_card", CodeEnum.RESTRICTED_CARD);
+        map.put("security_violation", CodeEnum.SECURITY_VIOLATION);
+        map.put("exceeds_withdrawal_count_limit", CodeEnum.EXCEEDS_WITHDRAWAL_COUNT_LIMIT);
+        map.put("allowable_number_of_pin_tries_exceeded", CodeEnum.ALLOWABLE_NUMBER_OF_PIN_TRIES_EXCEEDED);
+        map.put("no_reason_to_decline", CodeEnum.NO_REASON_TO_DECLINE);
+        map.put("cannot_verify_pin", CodeEnum.CANNOT_VERIFY_PIN);
+        map.put("issuer_unavailable", CodeEnum.ISSUER_UNAVAILABLE);
+        map.put("unable_to_route_transaction", CodeEnum.UNABLE_TO_ROUTE_TRANSACTION);
+        map.put("duplicate_transaction", CodeEnum.DUPLICATE_TRANSACTION);
+        map.put("system_malfunction", CodeEnum.SYSTEM_MALFUNCTION);
+        map.put("honor_with_id", CodeEnum.HONOR_WITH_ID);
+        map.put("invalid_card_number", CodeEnum.INVALID_CARD_NUMBER);
+        map.put("format_error", CodeEnum.FORMAT_ERROR);
+        map.put("contact_card_issuer", CodeEnum.CONTACT_CARD_ISSUER);
+        map.put("pin_not_changed", CodeEnum.PIN_NOT_CHANGED);
+        map.put("invalid_nonexistent_to_account_specified", CodeEnum.INVALID_NONEXISTENT_TO_ACCOUNT_SPECIFIED);
+        map.put("invalid_nonexistent_from_account_specified", CodeEnum.INVALID_NONEXISTENT_FROM_ACCOUNT_SPECIFIED);
+        map.put("invalid_nonexistent_account_specified", CodeEnum.INVALID_NONEXISTENT_ACCOUNT_SPECIFIED);
+        map.put("lifecycle_related", CodeEnum.LIFECYCLE_RELATED);
+        map.put("domestic_debit_transaction_not_allowed", CodeEnum.DOMESTIC_DEBIT_TRANSACTION_NOT_ALLOWED);
+        map.put("policy_related", CodeEnum.POLICY_RELATED);
+        map.put("fraud_security_related", CodeEnum.FRAUD_SECURITY_RELATED);
+        map.put("invalid_authorization_life_cycle", CodeEnum.INVALID_AUTHORIZATION_LIFE_CYCLE);
+        map.put("purchase_amount_only_no_cash_back_allowed", CodeEnum.PURCHASE_AMOUNT_ONLY_NO_CASH_BACK_ALLOWED);
+        map.put("cryptographic_failure", CodeEnum.CRYPTOGRAPHIC_FAILURE);
+        map.put("unacceptable_pin", CodeEnum.UNACCEPTABLE_PIN);
+        map.put("refer_to_card_issuer_special_condition", CodeEnum.REFER_TO_CARD_ISSUER_SPECIAL_CONDITION);
+        map.put("pick_up_card_special_condition", CodeEnum.PICK_UP_CARD_SPECIAL_CONDITION);
+        map.put("vip_approval", CodeEnum.VIP_APPROVAL);
+        map.put("invalid_account_number", CodeEnum.INVALID_ACCOUNT_NUMBER);
+        map.put("re_enter_transaction", CodeEnum.RE_ENTER_TRANSACTION);
+        map.put("no_action_taken", CodeEnum.NO_ACTION_TAKEN);
+        map.put("unable_to_locate_record", CodeEnum.UNABLE_TO_LOCATE_RECORD);
+        map.put("file_temporarily_unavailable", CodeEnum.FILE_TEMPORARILY_UNAVAILABLE);
+        map.put("no_credit_account", CodeEnum.NO_CREDIT_ACCOUNT);
+        map.put("closed_account", CodeEnum.CLOSED_ACCOUNT);
+        map.put("no_checking_account", CodeEnum.NO_CHECKING_ACCOUNT);
+        map.put("no_savings_account", CodeEnum.NO_SAVINGS_ACCOUNT);
+        map.put("suspected_fraud", CodeEnum.SUSPECTED_FRAUD);
+        map.put("transaction_does_not_fulfill_aml_requirement", CodeEnum.TRANSACTION_DOES_NOT_FULFILL_AML_REQUIREMENT);
+        map.put("pin_data_required", CodeEnum.PIN_DATA_REQUIRED);
+        map.put("unable_to_locate_previous_message", CodeEnum.UNABLE_TO_LOCATE_PREVIOUS_MESSAGE);
+        map.put("previous_message_located_inconsistent_data", CodeEnum.PREVIOUS_MESSAGE_LOCATED_INCONSISTENT_DATA);
+        map.put("blocked_first_used", CodeEnum.BLOCKED_FIRST_USED);
+        map.put("transaction_reversed", CodeEnum.TRANSACTION_REVERSED);
+        map.put("credit_issuer_unavailable", CodeEnum.CREDIT_ISSUER_UNAVAILABLE);
+        map.put("pin_cryptographic_error_found", CodeEnum.PIN_CRYPTOGRAPHIC_ERROR_FOUND);
+        map.put("negative_online_cam_result", CodeEnum.NEGATIVE_ONLINE_CAM_RESULT);
+        map.put("violation_of_law", CodeEnum.VIOLATION_OF_LAW);
+        map.put("force_stip", CodeEnum.FORCE_STIP);
+        map.put("cash_service_not_available", CodeEnum.CASH_SERVICE_NOT_AVAILABLE);
+        map.put("cashback_request_exceeds_issuer_limit", CodeEnum.CASHBACK_REQUEST_EXCEEDS_ISSUER_LIMIT);
+        map.put("decline_for_cvv2_failure", CodeEnum.DECLINE_FOR_CVV2_FAILURE);
+        map.put("transaction_amount_exceeds_pre_authorized_amount", CodeEnum.TRANSACTION_AMOUNT_EXCEEDS_PRE_AUTHORIZED_AMOUNT);
+        map.put("invalid_biller_information", CodeEnum.INVALID_BILLER_INFORMATION);
+        map.put("pin_change_unblock_request_declined", CodeEnum.PIN_CHANGE_UNBLOCK_REQUEST_DECLINED);
+        map.put("unsafe_pin", CodeEnum.UNSAFE_PIN);
+        map.put("card_authentication_failed", CodeEnum.CARD_AUTHENTICATION_FAILED);
+        map.put("stop_payment_order", CodeEnum.STOP_PAYMENT_ORDER);
+        map.put("revocation_of_authorization", CodeEnum.REVOCATION_OF_AUTHORIZATION);
+        map.put("revocation_of_all_authorizations", CodeEnum.REVOCATION_OF_ALL_AUTHORIZATIONS);
+        map.put("forward_to_issuer_xa", CodeEnum.FORWARD_TO_ISSUER_XA);
+        map.put("forward_to_issuer_xd", CodeEnum.FORWARD_TO_ISSUER_XD);
+        map.put("unable_to_go_online", CodeEnum.UNABLE_TO_GO_ONLINE);
+        map.put("additional_customer_authentication_required", CodeEnum.ADDITIONAL_CUSTOMER_AUTHENTICATION_REQUIRED);
+        map.put("merchant_id_not_found", CodeEnum.MERCHANT_ID_NOT_FOUND);
+        map.put("merchant_account_closed", CodeEnum.MERCHANT_ACCOUNT_CLOSED);
+        map.put("terminal_id_not_found", CodeEnum.TERMINAL_ID_NOT_FOUND);
+        map.put("terminal_closed", CodeEnum.TERMINAL_CLOSED);
+        map.put("invalid_category_code", CodeEnum.INVALID_CATEGORY_CODE);
+        map.put("invalid_currency", CodeEnum.INVALID_CURRENCY);
+        map.put("missing_cvv2_cvc2", CodeEnum.MISSING_CVV2_CVC2);
+        map.put("cvv2_not_allowed", CodeEnum.CVV2_NOT_ALLOWED);
+        map.put("merchant_not_registered_vbv", CodeEnum.MERCHANT_NOT_REGISTERED_VBV);
+        map.put("merchant_not_registered_for_amex", CodeEnum.MERCHANT_NOT_REGISTERED_FOR_AMEX);
+        map.put("transaction_not_permitted_at_terminal", CodeEnum.TRANSACTION_NOT_PERMITTED_AT_TERMINAL);
+        map.put("agreement_terminal_not_related", CodeEnum.AGREEMENT_TERMINAL_NOT_RELATED);
+        map.put("invalid_processor_id", CodeEnum.INVALID_PROCESSOR_ID);
+        map.put("invalid_merchant_data", CodeEnum.INVALID_MERCHANT_DATA);
+        map.put("sub_merchant_account_closed", CodeEnum.SUB_MERCHANT_ACCOUNT_CLOSED);
+        map.put("terminal_busy", CodeEnum.TERMINAL_BUSY);
+        map.put("terminal_unreachable", CodeEnum.TERMINAL_UNREACHABLE);
+        map.put("service_failed", CodeEnum.SERVICE_FAILED);
+        map.put("invalid_operation", CodeEnum.INVALID_OPERATION);
+        map.put("authorization_error", CodeEnum.AUTHORIZATION_ERROR);
+        map.put("login_failed_without_reason", CodeEnum.LOGIN_FAILED_WITHOUT_REASON);
+        map.put("invalid_retailer", CodeEnum.INVALID_RETAILER);
+        map.put("card_does_not_exist", CodeEnum.CARD_DOES_NOT_EXIST);
+        map.put("card_is_blocked", CodeEnum.CARD_IS_BLOCKED);
+        map.put("invalid_card_id", CodeEnum.INVALID_CARD_ID);
+        map.put("card_is_transferred", CodeEnum.CARD_IS_TRANSFERRED);
+        map.put("card_is_not_active", CodeEnum.CARD_IS_NOT_ACTIVE);
+        map.put("incorrect_purchase_value", CodeEnum.INCORRECT_PURCHASE_VALUE);
+        map.put("card_not_available", CodeEnum.CARD_NOT_AVAILABLE);
+        map.put("wrong_currency", CodeEnum.WRONG_CURRENCY);
+        map.put("login_failed_unknown_user", CodeEnum.LOGIN_FAILED_UNKNOWN_USER);
+        map.put("login_failed_invalid_password", CodeEnum.LOGIN_FAILED_INVALID_PASSWORD);
+        map.put("invalid_ean_code", CodeEnum.INVALID_EAN_CODE);
+        map.put("card_error", CodeEnum.CARD_ERROR);
+        map.put("terminal_configuration_issue", CodeEnum.TERMINAL_CONFIGURATION_ISSUE);
+        return map;
+    }
+    
+    
+    public enum CodeEnum {
+
+        APPROVED_OR_COMPLETED_SUCCESSFULLY("approved_or_completed_successfully"),
+        REFER_TO_CARD_ISSUER("refer_to_card_issuer"),
+        INVALID_MERCHANT("invalid_merchant"),
+        CAPTURE_CARD("capture_card"),
+        DO_NOT_HONOR("do_not_honor"),
+        ERROR("error"),
+        PARTIAL_APPROVAL("partial_approval"),
+        INVALID_TRANSACTION("invalid_transaction"),
+        INVALID_AMOUNT("invalid_amount"),
+        INVALID_ISSUER("invalid_issuer"),
+        LOST_CARD("lost_card"),
+        STOLEN_CARD("stolen_card"),
+        INSUFFICIENT_FUNDS("insufficient_funds"),
+        EXPIRED_CARD("expired_card"),
+        INVALID_PIN("invalid_pin"),
+        TRANSACTION_NOT_PERMITTED_TO_CARDHOLDER("transaction_not_permitted_to_cardholder"),
+        TRANSACTION_NOT_ALLOWED_AT_TERMINAL("transaction_not_allowed_at_terminal"),
+        EXCEEDS_WITHDRAWAL_AMOUNT_LIMIT("exceeds_withdrawal_amount_limit"),
+        RESTRICTED_CARD("restricted_card"),
+        SECURITY_VIOLATION("security_violation"),
+        EXCEEDS_WITHDRAWAL_COUNT_LIMIT("exceeds_withdrawal_count_limit"),
+        ALLOWABLE_NUMBER_OF_PIN_TRIES_EXCEEDED("allowable_number_of_pin_tries_exceeded"),
+        NO_REASON_TO_DECLINE("no_reason_to_decline"),
+        CANNOT_VERIFY_PIN("cannot_verify_pin"),
+        ISSUER_UNAVAILABLE("issuer_unavailable"),
+        UNABLE_TO_ROUTE_TRANSACTION("unable_to_route_transaction"),
+        DUPLICATE_TRANSACTION("duplicate_transaction"),
+        SYSTEM_MALFUNCTION("system_malfunction"),
+        HONOR_WITH_ID("honor_with_id"),
+        INVALID_CARD_NUMBER("invalid_card_number"),
+        FORMAT_ERROR("format_error"),
+        CONTACT_CARD_ISSUER("contact_card_issuer"),
+        PIN_NOT_CHANGED("pin_not_changed"),
+        INVALID_NONEXISTENT_TO_ACCOUNT_SPECIFIED("invalid_nonexistent_to_account_specified"),
+        INVALID_NONEXISTENT_FROM_ACCOUNT_SPECIFIED("invalid_nonexistent_from_account_specified"),
+        INVALID_NONEXISTENT_ACCOUNT_SPECIFIED("invalid_nonexistent_account_specified"),
+        LIFECYCLE_RELATED("lifecycle_related"),
+        DOMESTIC_DEBIT_TRANSACTION_NOT_ALLOWED("domestic_debit_transaction_not_allowed"),
+        POLICY_RELATED("policy_related"),
+        FRAUD_SECURITY_RELATED("fraud_security_related"),
+        INVALID_AUTHORIZATION_LIFE_CYCLE("invalid_authorization_life_cycle"),
+        PURCHASE_AMOUNT_ONLY_NO_CASH_BACK_ALLOWED("purchase_amount_only_no_cash_back_allowed"),
+        CRYPTOGRAPHIC_FAILURE("cryptographic_failure"),
+        UNACCEPTABLE_PIN("unacceptable_pin"),
+        REFER_TO_CARD_ISSUER_SPECIAL_CONDITION("refer_to_card_issuer_special_condition"),
+        PICK_UP_CARD_SPECIAL_CONDITION("pick_up_card_special_condition"),
+        VIP_APPROVAL("vip_approval"),
+        INVALID_ACCOUNT_NUMBER("invalid_account_number"),
+        RE_ENTER_TRANSACTION("re_enter_transaction"),
+        NO_ACTION_TAKEN("no_action_taken"),
+        UNABLE_TO_LOCATE_RECORD("unable_to_locate_record"),
+        FILE_TEMPORARILY_UNAVAILABLE("file_temporarily_unavailable"),
+        NO_CREDIT_ACCOUNT("no_credit_account"),
+        CLOSED_ACCOUNT("closed_account"),
+        NO_CHECKING_ACCOUNT("no_checking_account"),
+        NO_SAVINGS_ACCOUNT("no_savings_account"),
+        SUSPECTED_FRAUD("suspected_fraud"),
+        TRANSACTION_DOES_NOT_FULFILL_AML_REQUIREMENT("transaction_does_not_fulfill_aml_requirement"),
+        PIN_DATA_REQUIRED("pin_data_required"),
+        UNABLE_TO_LOCATE_PREVIOUS_MESSAGE("unable_to_locate_previous_message"),
+        PREVIOUS_MESSAGE_LOCATED_INCONSISTENT_DATA("previous_message_located_inconsistent_data"),
+        BLOCKED_FIRST_USED("blocked_first_used"),
+        TRANSACTION_REVERSED("transaction_reversed"),
+        CREDIT_ISSUER_UNAVAILABLE("credit_issuer_unavailable"),
+        PIN_CRYPTOGRAPHIC_ERROR_FOUND("pin_cryptographic_error_found"),
+        NEGATIVE_ONLINE_CAM_RESULT("negative_online_cam_result"),
+        VIOLATION_OF_LAW("violation_of_law"),
+        FORCE_STIP("force_stip"),
+        CASH_SERVICE_NOT_AVAILABLE("cash_service_not_available"),
+        CASHBACK_REQUEST_EXCEEDS_ISSUER_LIMIT("cashback_request_exceeds_issuer_limit"),
+        DECLINE_FOR_CVV2_FAILURE("decline_for_cvv2_failure"),
+        TRANSACTION_AMOUNT_EXCEEDS_PRE_AUTHORIZED_AMOUNT("transaction_amount_exceeds_pre_authorized_amount"),
+        INVALID_BILLER_INFORMATION("invalid_biller_information"),
+        PIN_CHANGE_UNBLOCK_REQUEST_DECLINED("pin_change_unblock_request_declined"),
+        UNSAFE_PIN("unsafe_pin"),
+        CARD_AUTHENTICATION_FAILED("card_authentication_failed"),
+        STOP_PAYMENT_ORDER("stop_payment_order"),
+        REVOCATION_OF_AUTHORIZATION("revocation_of_authorization"),
+        REVOCATION_OF_ALL_AUTHORIZATIONS("revocation_of_all_authorizations"),
+        FORWARD_TO_ISSUER_XA("forward_to_issuer_xa"),
+        FORWARD_TO_ISSUER_XD("forward_to_issuer_xd"),
+        UNABLE_TO_GO_ONLINE("unable_to_go_online"),
+        ADDITIONAL_CUSTOMER_AUTHENTICATION_REQUIRED("additional_customer_authentication_required"),
+        MERCHANT_ID_NOT_FOUND("merchant_id_not_found"),
+        MERCHANT_ACCOUNT_CLOSED("merchant_account_closed"),
+        TERMINAL_ID_NOT_FOUND("terminal_id_not_found"),
+        TERMINAL_CLOSED("terminal_closed"),
+        INVALID_CATEGORY_CODE("invalid_category_code"),
+        INVALID_CURRENCY("invalid_currency"),
+        MISSING_CVV2_CVC2("missing_cvv2_cvc2"),
+        CVV2_NOT_ALLOWED("cvv2_not_allowed"),
+        MERCHANT_NOT_REGISTERED_VBV("merchant_not_registered_vbv"),
+        MERCHANT_NOT_REGISTERED_FOR_AMEX("merchant_not_registered_for_amex"),
+        TRANSACTION_NOT_PERMITTED_AT_TERMINAL("transaction_not_permitted_at_terminal"),
+        AGREEMENT_TERMINAL_NOT_RELATED("agreement_terminal_not_related"),
+        INVALID_PROCESSOR_ID("invalid_processor_id"),
+        INVALID_MERCHANT_DATA("invalid_merchant_data"),
+        SUB_MERCHANT_ACCOUNT_CLOSED("sub_merchant_account_closed"),
+        TERMINAL_BUSY("terminal_busy"),
+        TERMINAL_UNREACHABLE("terminal_unreachable"),
+        SERVICE_FAILED("service_failed"),
+        INVALID_OPERATION("invalid_operation"),
+        AUTHORIZATION_ERROR("authorization_error"),
+        LOGIN_FAILED_WITHOUT_REASON("login_failed_without_reason"),
+        INVALID_RETAILER("invalid_retailer"),
+        CARD_DOES_NOT_EXIST("card_does_not_exist"),
+        CARD_IS_BLOCKED("card_is_blocked"),
+        INVALID_CARD_ID("invalid_card_id"),
+        CARD_IS_TRANSFERRED("card_is_transferred"),
+        CARD_IS_NOT_ACTIVE("card_is_not_active"),
+        INCORRECT_PURCHASE_VALUE("incorrect_purchase_value"),
+        CARD_NOT_AVAILABLE("card_not_available"),
+        WRONG_CURRENCY("wrong_currency"),
+        LOGIN_FAILED_UNKNOWN_USER("login_failed_unknown_user"),
+        LOGIN_FAILED_INVALID_PASSWORD("login_failed_invalid_password"),
+        INVALID_EAN_CODE("invalid_ean_code"),
+        CARD_ERROR("card_error"),
+        TERMINAL_CONFIGURATION_ISSUE("terminal_configuration_issue"),;
+
+        private final String value;
+
+        private CodeEnum(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 }
 

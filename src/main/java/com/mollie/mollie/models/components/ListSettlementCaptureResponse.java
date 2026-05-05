@@ -52,15 +52,8 @@ public class ListSettlementCaptureResponse {
     private Optional<? extends AmountNullable> amount;
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
-     * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-     * retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * The amount settled to your account for this capture, converted to the currency your account is
+     * settled in.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
@@ -222,15 +215,8 @@ public class ListSettlementCaptureResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
-     * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-     * retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * The amount settled to your account for this capture, converted to the currency your account is
+     * settled in.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -377,15 +363,8 @@ public class ListSettlementCaptureResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
-     * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-     * retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * The amount settled to your account for this capture, converted to the currency your account is
+     * settled in.
      */
     public ListSettlementCaptureResponse withSettlementAmount(ListSettlementCaptureResponseSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -394,15 +373,8 @@ public class ListSettlementCaptureResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
-     * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-     * retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * The amount settled to your account for this capture, converted to the currency your account is
+     * settled in.
      */
     public ListSettlementCaptureResponse withSettlementAmount(JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -674,15 +646,8 @@ public class ListSettlementCaptureResponse {
 
 
         /**
-         * This optional field will contain the approximate amount that will be settled to your account,
-         * converted to the
-         * currency your account is settled in.
-         * 
-         * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-         * retrieve
-         * accurate settlement amounts we recommend using the [List balance transactions
-         * endpoint](list-balance-transactions)
-         * instead.
+         * The amount settled to your account for this capture, converted to the currency your account is
+         * settled in.
          */
         public Builder settlementAmount(ListSettlementCaptureResponseSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -691,15 +656,8 @@ public class ListSettlementCaptureResponse {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be settled to your account,
-         * converted to the
-         * currency your account is settled in.
-         * 
-         * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-         * retrieve
-         * accurate settlement amounts we recommend using the [List balance transactions
-         * endpoint](list-balance-transactions)
-         * instead.
+         * The amount settled to your account for this capture, converted to the currency your account is
+         * settled in.
          */
         public Builder settlementAmount(JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");

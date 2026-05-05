@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -103,21 +104,23 @@ public class PaymentResponse {
     private Optional<? extends PaymentResponseAmountChargedBack> amountChargedBack;
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
-     * If no amount is
-     * settled by Mollie the `settlementAmount` is omitted from the response.
+     * <p>The amount that will be settled to your account, converted to the currency your account is settled
+     * in. Only
+     * available once the payment is finalized and the final settlement amount has been determined.
      * 
-     * <p>Please note that this amount might be recalculated and changed when the status of the payment
-     * changes. We suggest
-     * using the List balance transactions endpoint instead to get more accurate settlement amounts for
-     * your payments.
+     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+     * settled by
+     * Mollie, this field is omitted from the response.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
+    @Deprecated
     private Optional<? extends PaymentResponseSettlementAmount> settlementAmount;
 
     /**
@@ -776,19 +779,21 @@ public class PaymentResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
-     * If no amount is
-     * settled by Mollie the `settlementAmount` is omitted from the response.
+     * <p>The amount that will be settled to your account, converted to the currency your account is settled
+     * in. Only
+     * available once the payment is finalized and the final settlement amount has been determined.
      * 
-     * <p>Please note that this amount might be recalculated and changed when the status of the payment
-     * changes. We suggest
-     * using the List balance transactions endpoint instead to get more accurate settlement amounts for
-     * your payments.
+     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+     * settled by
+     * Mollie, this field is omitted from the response.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<PaymentResponseSettlementAmount> settlementAmount() {
@@ -1389,19 +1394,21 @@ public class PaymentResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
-     * If no amount is
-     * settled by Mollie the `settlementAmount` is omitted from the response.
+     * <p>The amount that will be settled to your account, converted to the currency your account is settled
+     * in. Only
+     * available once the payment is finalized and the final settlement amount has been determined.
      * 
-     * <p>Please note that this amount might be recalculated and changed when the status of the payment
-     * changes. We suggest
-     * using the List balance transactions endpoint instead to get more accurate settlement amounts for
-     * your payments.
+     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+     * settled by
+     * Mollie, this field is omitted from the response.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public PaymentResponse withSettlementAmount(PaymentResponseSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = Optional.ofNullable(settlementAmount);
@@ -1410,19 +1417,21 @@ public class PaymentResponse {
 
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
-     * If no amount is
-     * settled by Mollie the `settlementAmount` is omitted from the response.
+     * <p>The amount that will be settled to your account, converted to the currency your account is settled
+     * in. Only
+     * available once the payment is finalized and the final settlement amount has been determined.
      * 
-     * <p>Please note that this amount might be recalculated and changed when the status of the payment
-     * changes. We suggest
-     * using the List balance transactions endpoint instead to get more accurate settlement amounts for
-     * your payments.
+     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+     * settled by
+     * Mollie, this field is omitted from the response.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public PaymentResponse withSettlementAmount(Optional<? extends PaymentResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
@@ -2452,6 +2461,7 @@ public class PaymentResponse {
 
         private Optional<? extends PaymentResponseAmountChargedBack> amountChargedBack = Optional.empty();
 
+        @Deprecated
         private Optional<? extends PaymentResponseSettlementAmount> settlementAmount = Optional.empty();
 
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
@@ -2688,19 +2698,21 @@ public class PaymentResponse {
 
 
         /**
-         * This optional field will contain the approximate amount that will be settled to your account,
-         * converted to the
-         * currency your account is settled in.
+         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+         * API](list-settlements) or
+         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
          * 
-         * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
-         * If no amount is
-         * settled by Mollie the `settlementAmount` is omitted from the response.
+         * <p>The amount that will be settled to your account, converted to the currency your account is settled
+         * in. Only
+         * available once the payment is finalized and the final settlement amount has been determined.
          * 
-         * <p>Please note that this amount might be recalculated and changed when the status of the payment
-         * changes. We suggest
-         * using the List balance transactions endpoint instead to get more accurate settlement amounts for
-         * your payments.
+         * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+         * settled by
+         * Mollie, this field is omitted from the response.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder settlementAmount(PaymentResponseSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = Optional.ofNullable(settlementAmount);
@@ -2708,19 +2720,21 @@ public class PaymentResponse {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be settled to your account,
-         * converted to the
-         * currency your account is settled in.
+         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+         * API](list-settlements) or
+         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
          * 
-         * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
-         * If no amount is
-         * settled by Mollie the `settlementAmount` is omitted from the response.
+         * <p>The amount that will be settled to your account, converted to the currency your account is settled
+         * in. Only
+         * available once the payment is finalized and the final settlement amount has been determined.
          * 
-         * <p>Please note that this amount might be recalculated and changed when the status of the payment
-         * changes. We suggest
-         * using the List balance transactions endpoint instead to get more accurate settlement amounts for
-         * your payments.
+         * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+         * settled by
+         * Mollie, this field is omitted from the response.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder settlementAmount(Optional<? extends PaymentResponseSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;

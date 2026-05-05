@@ -8,6 +8,9 @@ A machine-readable code that indicates the reason for the payment's status.
 import com.mollie.mollie.models.components.Code;
 
 Code value = Code.APPROVED_OR_COMPLETED_SUCCESSFULLY;
+
+// Open enum: use .of() to create instances from custom string values
+Code custom = Code.of("custom_value");
 ```
 
 

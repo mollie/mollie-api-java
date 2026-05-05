@@ -14,15 +14,8 @@ import java.lang.String;
 /**
  * ListSettlementCaptureResponseSettlementAmount
  * 
- * <p>This optional field will contain the approximate amount that will be settled to your account,
- * converted to the
- * currency your account is settled in.
- * 
- * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
- * retrieve
- * accurate settlement amounts we recommend using the [List balance transactions
- * endpoint](list-balance-transactions)
- * instead.
+ * <p>The amount settled to your account for this capture, converted to the currency your account is
+ * settled in.
  */
 public class ListSettlementCaptureResponseSettlementAmount {
     /**

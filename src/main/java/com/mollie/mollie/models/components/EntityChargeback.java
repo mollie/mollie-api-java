@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -38,20 +39,21 @@ public class EntityChargeback {
     private Amount amount;
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>The amount is a **negative** amount.
+     * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
+     * final settlement
+     * amount has been determined.
      * 
-     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
-     * To retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
+    @Deprecated
     private JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount;
 
     /**
@@ -174,18 +176,19 @@ public class EntityChargeback {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>The amount is a **negative** amount.
+     * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
+     * final settlement
+     * amount has been determined.
      * 
-     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
-     * To retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<EntityChargebackSettlementAmount> settlementAmount() {
@@ -283,18 +286,19 @@ public class EntityChargeback {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>The amount is a **negative** amount.
+     * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
+     * final settlement
+     * amount has been determined.
      * 
-     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
-     * To retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public EntityChargeback withSettlementAmount(EntityChargebackSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = JsonNullable.of(settlementAmount);
@@ -302,18 +306,19 @@ public class EntityChargeback {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>The amount is a **negative** amount.
+     * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
+     * final settlement
+     * amount has been determined.
      * 
-     * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
-     * To retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public EntityChargeback withSettlementAmount(JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
@@ -467,6 +472,7 @@ public class EntityChargeback {
 
         private Amount amount;
 
+        @Deprecated
         private JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private JsonNullable<? extends EntityChargebackReason> reason = JsonNullable.undefined();
@@ -519,18 +525,19 @@ public class EntityChargeback {
 
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account
-         * balance, converted
-         * to the currency your account is settled in.
+         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+         * API](list-settlements) or
+         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
          * 
-         * <p>The amount is a **negative** amount.
+         * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
+         * account is
+         * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
+         * final settlement
+         * amount has been determined.
          * 
-         * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
-         * To retrieve
-         * accurate settlement amounts we recommend using the [List balance transactions
-         * endpoint](list-balance-transactions)
-         * instead.
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder settlementAmount(EntityChargebackSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = JsonNullable.of(settlementAmount);
@@ -538,18 +545,19 @@ public class EntityChargeback {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account
-         * balance, converted
-         * to the currency your account is settled in.
+         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+         * API](list-settlements) or
+         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
          * 
-         * <p>The amount is a **negative** amount.
+         * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
+         * account is
+         * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
+         * final settlement
+         * amount has been determined.
          * 
-         * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
-         * To retrieve
-         * accurate settlement amounts we recommend using the [List balance transactions
-         * endpoint](list-balance-transactions)
-         * instead.
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder settlementAmount(JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;

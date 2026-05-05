@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -52,18 +53,20 @@ public class CaptureResponse {
     private Optional<? extends AmountNullable> amount;
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-     * retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * <p>The amount that will be settled to your account for this capture, converted to the currency your
+     * account is
+     * settled in. Only available once the capture is finalized and the final settlement amount has been
+     * determined.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
+    @Deprecated
     private JsonNullable<? extends CaptureResponseSettlementAmount> settlementAmount;
 
 
@@ -220,16 +223,18 @@ public class CaptureResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-     * retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * <p>The amount that will be settled to your account for this capture, converted to the currency your
+     * account is
+     * settled in. Only available once the capture is finalized and the final settlement amount has been
+     * determined.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<CaptureResponseSettlementAmount> settlementAmount() {
@@ -372,16 +377,18 @@ public class CaptureResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-     * retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * <p>The amount that will be settled to your account for this capture, converted to the currency your
+     * account is
+     * settled in. Only available once the capture is finalized and the final settlement amount has been
+     * determined.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CaptureResponse withSettlementAmount(CaptureResponseSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = JsonNullable.of(settlementAmount);
@@ -389,16 +396,18 @@ public class CaptureResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be settled to your account,
-     * converted to the
-     * currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-     * retrieve
-     * accurate settlement amounts we recommend using the [List balance transactions
-     * endpoint](list-balance-transactions)
-     * instead.
+     * <p>The amount that will be settled to your account for this capture, converted to the currency your
+     * account is
+     * settled in. Only available once the capture is finalized and the final settlement amount has been
+     * determined.
+     * 
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public CaptureResponse withSettlementAmount(JsonNullable<? extends CaptureResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
@@ -575,6 +584,7 @@ public class CaptureResponse {
 
         private Optional<? extends AmountNullable> amount = Optional.empty();
 
+        @Deprecated
         private JsonNullable<? extends CaptureResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private CaptureResponseStatus status;
@@ -666,16 +676,18 @@ public class CaptureResponse {
 
 
         /**
-         * This optional field will contain the approximate amount that will be settled to your account,
-         * converted to the
-         * currency your account is settled in.
+         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+         * API](list-settlements) or
+         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
          * 
-         * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-         * retrieve
-         * accurate settlement amounts we recommend using the [List balance transactions
-         * endpoint](list-balance-transactions)
-         * instead.
+         * <p>The amount that will be settled to your account for this capture, converted to the currency your
+         * account is
+         * settled in. Only available once the capture is finalized and the final settlement amount has been
+         * determined.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder settlementAmount(CaptureResponseSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = JsonNullable.of(settlementAmount);
@@ -683,16 +695,18 @@ public class CaptureResponse {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be settled to your account,
-         * converted to the
-         * currency your account is settled in.
+         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+         * API](list-settlements) or
+         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
          * 
-         * <p>Since the field contains an estimated amount during capture processing, it may change over time. To
-         * retrieve
-         * accurate settlement amounts we recommend using the [List balance transactions
-         * endpoint](list-balance-transactions)
-         * instead.
+         * <p>The amount that will be settled to your account for this capture, converted to the currency your
+         * account is
+         * settled in. Only available once the capture is finalized and the final settlement amount has been
+         * determined.
+         * 
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder settlementAmount(JsonNullable<? extends CaptureResponseSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;
