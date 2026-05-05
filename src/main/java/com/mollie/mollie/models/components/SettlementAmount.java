@@ -14,18 +14,12 @@ import java.lang.String;
 /**
  * SettlementAmount
  * 
- * <p>This optional field will contain the approximate amount that will be settled to your account,
- * converted to the
- * currency your account is settled in.
+ * <p>The amount settled to your account for this payment, converted to the currency your account is
+ * settled in.
  * 
- * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
- * If no amount is
- * settled by Mollie the `settlementAmount` is omitted from the response.
- * 
- * <p>Please note that this amount might be recalculated and changed when the status of the payment
- * changes. We suggest
- * using the List balance transactions endpoint instead to get more accurate settlement amounts for
- * your payments.
+ * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+ * settled by
+ * Mollie, this field is omitted from the response.
  */
 public class SettlementAmount {
     /**

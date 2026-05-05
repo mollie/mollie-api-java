@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -54,25 +55,23 @@ public class EntityRefundResponse {
     private Amount amount;
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>The amount is a **negative** amount.
+     * <p>The amount deducted from your account balance for this refund, converted to the currency your
+     * account is settled
+     * in. Always a **negative** amount. Only available once the refund is finalized and the final
+     * settlement amount has
+     * been determined.
      * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-     * amount will be
-     * zero.
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
      * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-     * example, while
-     * the refund is queued the settlement amount is likely not yet available.
-     * 
-     * <p>To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
+    @Deprecated
     private JsonNullable<? extends EntityRefundResponseSettlementAmount> settlementAmount;
 
     /**
@@ -247,23 +246,21 @@ public class EntityRefundResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>The amount is a **negative** amount.
+     * <p>The amount deducted from your account balance for this refund, converted to the currency your
+     * account is settled
+     * in. Always a **negative** amount. Only available once the refund is finalized and the final
+     * settlement amount has
+     * been determined.
      * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-     * amount will be
-     * zero.
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
      * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-     * example, while
-     * the refund is queued the settlement amount is likely not yet available.
-     * 
-     * <p>To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<EntityRefundResponseSettlementAmount> settlementAmount() {
@@ -402,23 +399,21 @@ public class EntityRefundResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>The amount is a **negative** amount.
+     * <p>The amount deducted from your account balance for this refund, converted to the currency your
+     * account is settled
+     * in. Always a **negative** amount. Only available once the refund is finalized and the final
+     * settlement amount has
+     * been determined.
      * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-     * amount will be
-     * zero.
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
      * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-     * example, while
-     * the refund is queued the settlement amount is likely not yet available.
-     * 
-     * <p>To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public EntityRefundResponse withSettlementAmount(EntityRefundResponseSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = JsonNullable.of(settlementAmount);
@@ -426,23 +421,21 @@ public class EntityRefundResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+     * API](list-settlements) or
+     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
      * 
-     * <p>The amount is a **negative** amount.
+     * <p>The amount deducted from your account balance for this refund, converted to the currency your
+     * account is settled
+     * in. Always a **negative** amount. Only available once the refund is finalized and the final
+     * settlement amount has
+     * been determined.
      * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-     * amount will be
-     * zero.
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
      * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-     * example, while
-     * the refund is queued the settlement amount is likely not yet available.
-     * 
-     * <p>To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public EntityRefundResponse withSettlementAmount(JsonNullable<? extends EntityRefundResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
@@ -659,6 +652,7 @@ public class EntityRefundResponse {
 
         private Amount amount;
 
+        @Deprecated
         private JsonNullable<? extends EntityRefundResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private Optional<? extends Metadata> metadata = Optional.empty();
@@ -737,23 +731,21 @@ public class EntityRefundResponse {
 
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account
-         * balance, converted
-         * to the currency your account is settled in.
+         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+         * API](list-settlements) or
+         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
          * 
-         * <p>The amount is a **negative** amount.
+         * <p>The amount deducted from your account balance for this refund, converted to the currency your
+         * account is settled
+         * in. Always a **negative** amount. Only available once the refund is finalized and the final
+         * settlement amount has
+         * been determined.
          * 
-         * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-         * amount will be
-         * zero.
+         * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
          * 
-         * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-         * example, while
-         * the refund is queued the settlement amount is likely not yet available.
-         * 
-         * <p>To retrieve accurate settlement amounts we recommend using the
-         * [List balance transactions endpoint](list-balance-transactions) instead.
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder settlementAmount(EntityRefundResponseSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = JsonNullable.of(settlementAmount);
@@ -761,23 +753,21 @@ public class EntityRefundResponse {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account
-         * balance, converted
-         * to the currency your account is settled in.
+         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+         * API](list-settlements) or
+         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
          * 
-         * <p>The amount is a **negative** amount.
+         * <p>The amount deducted from your account balance for this refund, converted to the currency your
+         * account is settled
+         * in. Always a **negative** amount. Only available once the refund is finalized and the final
+         * settlement amount has
+         * been determined.
          * 
-         * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-         * amount will be
-         * zero.
+         * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
          * 
-         * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-         * example, while
-         * the refund is queued the settlement amount is likely not yet available.
-         * 
-         * <p>To retrieve accurate settlement amounts we recommend using the
-         * [List balance transactions endpoint](list-balance-transactions) instead.
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder settlementAmount(JsonNullable<? extends EntityRefundResponseSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;

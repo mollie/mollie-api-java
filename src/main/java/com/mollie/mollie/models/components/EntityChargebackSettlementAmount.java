@@ -8,24 +8,26 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * EntityChargebackSettlementAmount
  * 
- * <p>This optional field will contain the approximate amount that will be deducted from your account
- * balance, converted
- * to the currency your account is settled in.
+ * <p>**Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+ * API](list-settlements) or
+ * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
  * 
- * <p>The amount is a **negative** amount.
+ * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
+ * account is
+ * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
+ * final settlement
+ * amount has been determined.
  * 
- * <p>Since the field contains an estimated amount during chargeback processing, it may change over time.
- * To retrieve
- * accurate settlement amounts we recommend using the [List balance transactions
- * endpoint](list-balance-transactions)
- * instead.
+ * @deprecated class: This will be removed in a future release, please migrate away from it as soon as possible.
  */
+@Deprecated
 public class EntityChargebackSettlementAmount {
     /**
      * A three-character ISO 4217 currency code.

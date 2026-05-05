@@ -8,25 +8,28 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 
 /**
  * ListPaymentResponseSettlementAmount
  * 
- * <p>This optional field will contain the approximate amount that will be settled to your account,
- * converted to the
- * currency your account is settled in.
+ * <p>**Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
+ * API](list-settlements) or
+ * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
  * 
- * <p>Any amounts not settled by Mollie will not be reflected in this amount, e.g. PayPal or gift cards.
- * If no amount is
- * settled by Mollie the `settlementAmount` is omitted from the response.
+ * <p>The amount that will be settled to your account, converted to the currency your account is settled
+ * in. Only
+ * available once the payment is finalized and the final settlement amount has been determined.
  * 
- * <p>Please note that this amount might be recalculated and changed when the status of the payment
- * changes. We suggest
- * using the List balance transactions endpoint instead to get more accurate settlement amounts for
- * your payments.
+ * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+ * settled by
+ * Mollie, this field is omitted from the response.
+ * 
+ * @deprecated class: This will be removed in a future release, please migrate away from it as soon as possible.
  */
+@Deprecated
 public class ListPaymentResponseSettlementAmount {
     /**
      * A three-character ISO 4217 currency code.

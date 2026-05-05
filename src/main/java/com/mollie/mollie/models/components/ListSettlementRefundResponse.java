@@ -54,22 +54,11 @@ public class ListSettlementRefundResponse {
     private Amount amount;
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * The amount deducted from your account balance for this refund, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
      * 
-     * <p>The amount is a **negative** amount.
-     * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-     * amount will be
-     * zero.
-     * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-     * example, while
-     * the refund is queued the settlement amount is likely not yet available.
-     * 
-     * <p>To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
@@ -249,22 +238,11 @@ public class ListSettlementRefundResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * The amount deducted from your account balance for this refund, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
      * 
-     * <p>The amount is a **negative** amount.
-     * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-     * amount will be
-     * zero.
-     * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-     * example, while
-     * the refund is queued the settlement amount is likely not yet available.
-     * 
-     * <p>To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -407,22 +385,11 @@ public class ListSettlementRefundResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * The amount deducted from your account balance for this refund, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
      * 
-     * <p>The amount is a **negative** amount.
-     * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-     * amount will be
-     * zero.
-     * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-     * example, while
-     * the refund is queued the settlement amount is likely not yet available.
-     * 
-     * <p>To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
      */
     public ListSettlementRefundResponse withSettlementAmount(ListSettlementRefundResponseSettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -431,22 +398,11 @@ public class ListSettlementRefundResponse {
     }
 
     /**
-     * This optional field will contain the approximate amount that will be deducted from your account
-     * balance, converted
-     * to the currency your account is settled in.
+     * The amount deducted from your account balance for this refund, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
      * 
-     * <p>The amount is a **negative** amount.
-     * 
-     * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-     * amount will be
-     * zero.
-     * 
-     * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-     * example, while
-     * the refund is queued the settlement amount is likely not yet available.
-     * 
-     * <p>To retrieve accurate settlement amounts we recommend using the
-     * [List balance transactions endpoint](list-balance-transactions) instead.
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
      */
     public ListSettlementRefundResponse withSettlementAmount(JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -745,22 +701,11 @@ public class ListSettlementRefundResponse {
 
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account
-         * balance, converted
-         * to the currency your account is settled in.
+         * The amount deducted from your account balance for this refund, converted to the currency your
+         * account is
+         * settled in. Always a **negative** amount.
          * 
-         * <p>The amount is a **negative** amount.
-         * 
-         * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-         * amount will be
-         * zero.
-         * 
-         * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-         * example, while
-         * the refund is queued the settlement amount is likely not yet available.
-         * 
-         * <p>To retrieve accurate settlement amounts we recommend using the
-         * [List balance transactions endpoint](list-balance-transactions) instead.
+         * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
          */
         public Builder settlementAmount(ListSettlementRefundResponseSettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
@@ -769,22 +714,11 @@ public class ListSettlementRefundResponse {
         }
 
         /**
-         * This optional field will contain the approximate amount that will be deducted from your account
-         * balance, converted
-         * to the currency your account is settled in.
+         * The amount deducted from your account balance for this refund, converted to the currency your
+         * account is
+         * settled in. Always a **negative** amount.
          * 
-         * <p>The amount is a **negative** amount.
-         * 
-         * <p>If the refund is not directly processed by Mollie, for example for PayPal refunds, the settlement
-         * amount will be
-         * zero.
-         * 
-         * <p>Since the field contains an estimated amount during refund processing, it may change over time. For
-         * example, while
-         * the refund is queued the settlement amount is likely not yet available.
-         * 
-         * <p>To retrieve accurate settlement amounts we recommend using the
-         * [List balance transactions endpoint](list-balance-transactions) instead.
+         * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
          */
         public Builder settlementAmount(JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
