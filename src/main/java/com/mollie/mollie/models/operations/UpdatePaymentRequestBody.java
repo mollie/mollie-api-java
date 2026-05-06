@@ -118,7 +118,7 @@ public class UpdatePaymentRequestBody {
     private JsonNullable<? extends Method> method;
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
@@ -369,7 +369,7 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -690,7 +690,7 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public UpdatePaymentRequestBody withLocale(Locale locale) {
         Utils.checkNotNull(locale, "locale");
@@ -699,7 +699,7 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public UpdatePaymentRequestBody withLocale(JsonNullable<? extends Locale> locale) {
         Utils.checkNotNull(locale, "locale");
@@ -1222,7 +1222,7 @@ public class UpdatePaymentRequestBody {
 
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(Locale locale) {
             Utils.checkNotNull(locale, "locale");
@@ -1231,7 +1231,7 @@ public class UpdatePaymentRequestBody {
         }
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(JsonNullable<? extends Locale> locale) {
             Utils.checkNotNull(locale, "locale");

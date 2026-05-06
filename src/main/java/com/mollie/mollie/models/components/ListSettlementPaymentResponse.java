@@ -194,7 +194,7 @@ public class ListSettlementPaymentResponse {
     private Optional<? extends PaymentAddress> shippingAddress;
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
@@ -873,7 +873,7 @@ public class ListSettlementPaymentResponse {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1593,7 +1593,7 @@ public class ListSettlementPaymentResponse {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public ListSettlementPaymentResponse withLocale(LocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
@@ -1602,7 +1602,7 @@ public class ListSettlementPaymentResponse {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public ListSettlementPaymentResponse withLocale(JsonNullable<? extends LocaleResponse> locale) {
         Utils.checkNotNull(locale, "locale");
@@ -2887,7 +2887,7 @@ public class ListSettlementPaymentResponse {
 
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(LocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
@@ -2896,7 +2896,7 @@ public class ListSettlementPaymentResponse {
         }
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(JsonNullable<? extends LocaleResponse> locale) {
             Utils.checkNotNull(locale, "locale");

@@ -25,8 +25,10 @@ EntityOrganizationLocale custom = EntityOrganizationLocale.of("custom_value");
 | `DEDE`  | de_DE   |
 | `DE_AT` | de_AT   |
 | `DE_CH` | de_CH   |
+| `DE_LU` | de_LU   |
 | `FRFR`  | fr_FR   |
 | `FR_BE` | fr_BE   |
+| `FR_LU` | fr_LU   |
 | `ESES`  | es_ES   |
 | `CA_ES` | ca_ES   |
 | `PTPT`  | pt_PT   |

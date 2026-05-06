@@ -43,7 +43,7 @@ public class Owner {
     private String familyName;
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
@@ -101,7 +101,7 @@ public class Owner {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -145,7 +145,7 @@ public class Owner {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public Owner withLocale(LocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
@@ -154,7 +154,7 @@ public class Owner {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public Owner withLocale(JsonNullable<? extends LocaleResponse> locale) {
         Utils.checkNotNull(locale, "locale");
@@ -244,7 +244,7 @@ public class Owner {
 
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(LocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
@@ -253,7 +253,7 @@ public class Owner {
         }
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(JsonNullable<? extends LocaleResponse> locale) {
             Utils.checkNotNull(locale, "locale");

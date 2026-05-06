@@ -203,7 +203,7 @@ public class ListPaymentResponse {
     private Optional<? extends PaymentAddress> shippingAddress;
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
@@ -888,7 +888,7 @@ public class ListPaymentResponse {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1621,7 +1621,7 @@ public class ListPaymentResponse {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public ListPaymentResponse withLocale(LocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
@@ -1630,7 +1630,7 @@ public class ListPaymentResponse {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public ListPaymentResponse withLocale(JsonNullable<? extends LocaleResponse> locale) {
         Utils.checkNotNull(locale, "locale");
@@ -2929,7 +2929,7 @@ public class ListPaymentResponse {
 
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(LocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
@@ -2938,7 +2938,7 @@ public class ListPaymentResponse {
         }
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(JsonNullable<? extends LocaleResponse> locale) {
             Utils.checkNotNull(locale, "locale");
