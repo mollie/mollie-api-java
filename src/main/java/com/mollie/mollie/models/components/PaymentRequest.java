@@ -128,7 +128,7 @@ public class PaymentRequest {
     private Optional<? extends PaymentAddress> shippingAddress;
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
@@ -689,7 +689,7 @@ public class PaymentRequest {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1260,7 +1260,7 @@ public class PaymentRequest {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public PaymentRequest withLocale(Locale locale) {
         Utils.checkNotNull(locale, "locale");
@@ -1269,7 +1269,7 @@ public class PaymentRequest {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public PaymentRequest withLocale(JsonNullable<? extends Locale> locale) {
         Utils.checkNotNull(locale, "locale");
@@ -2417,7 +2417,7 @@ public class PaymentRequest {
 
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(Locale locale) {
             Utils.checkNotNull(locale, "locale");
@@ -2426,7 +2426,7 @@ public class PaymentRequest {
         }
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(JsonNullable<? extends Locale> locale) {
             Utils.checkNotNull(locale, "locale");

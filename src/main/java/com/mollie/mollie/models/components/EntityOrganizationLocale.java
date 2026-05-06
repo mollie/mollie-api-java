@@ -33,8 +33,10 @@ public class EntityOrganizationLocale {
     public static final EntityOrganizationLocale DEDE = new EntityOrganizationLocale("de_DE");
     public static final EntityOrganizationLocale DE_AT = new EntityOrganizationLocale("de_AT");
     public static final EntityOrganizationLocale DE_CH = new EntityOrganizationLocale("de_CH");
+    public static final EntityOrganizationLocale DE_LU = new EntityOrganizationLocale("de_LU");
     public static final EntityOrganizationLocale FRFR = new EntityOrganizationLocale("fr_FR");
     public static final EntityOrganizationLocale FR_BE = new EntityOrganizationLocale("fr_BE");
+    public static final EntityOrganizationLocale FR_LU = new EntityOrganizationLocale("fr_LU");
     public static final EntityOrganizationLocale ESES = new EntityOrganizationLocale("es_ES");
     public static final EntityOrganizationLocale CA_ES = new EntityOrganizationLocale("ca_ES");
     public static final EntityOrganizationLocale PTPT = new EntityOrganizationLocale("pt_PT");
@@ -129,8 +131,10 @@ public class EntityOrganizationLocale {
         map.put("de_DE", DEDE);
         map.put("de_AT", DE_AT);
         map.put("de_CH", DE_CH);
+        map.put("de_LU", DE_LU);
         map.put("fr_FR", FRFR);
         map.put("fr_BE", FR_BE);
+        map.put("fr_LU", FR_LU);
         map.put("es_ES", ESES);
         map.put("ca_ES", CA_ES);
         map.put("pt_PT", PTPT);
@@ -157,8 +161,10 @@ public class EntityOrganizationLocale {
         map.put("de_DE", EntityOrganizationLocaleEnum.DEDE);
         map.put("de_AT", EntityOrganizationLocaleEnum.DE_AT);
         map.put("de_CH", EntityOrganizationLocaleEnum.DE_CH);
+        map.put("de_LU", EntityOrganizationLocaleEnum.DE_LU);
         map.put("fr_FR", EntityOrganizationLocaleEnum.FRFR);
         map.put("fr_BE", EntityOrganizationLocaleEnum.FR_BE);
+        map.put("fr_LU", EntityOrganizationLocaleEnum.FR_LU);
         map.put("es_ES", EntityOrganizationLocaleEnum.ESES);
         map.put("ca_ES", EntityOrganizationLocaleEnum.CA_ES);
         map.put("pt_PT", EntityOrganizationLocaleEnum.PTPT);
@@ -186,8 +192,10 @@ public class EntityOrganizationLocale {
         DEDE("de_DE"),
         DE_AT("de_AT"),
         DE_CH("de_CH"),
+        DE_LU("de_LU"),
         FRFR("fr_FR"),
         FR_BE("fr_BE"),
+        FR_LU("fr_LU"),
         ESES("es_ES"),
         CA_ES("ca_ES"),
         PTPT("pt_PT"),

@@ -22,7 +22,7 @@ import java.util.Optional;
 /**
  * LocaleResponse
  * 
- * <p>Allows you to preset the language to be used.
+ * <p>Sets the language for customer-facing content and communications.
  */
 public class LocaleResponse {
 
@@ -33,8 +33,10 @@ public class LocaleResponse {
     public static final LocaleResponse DEDE = new LocaleResponse("de_DE");
     public static final LocaleResponse DE_AT = new LocaleResponse("de_AT");
     public static final LocaleResponse DE_CH = new LocaleResponse("de_CH");
+    public static final LocaleResponse DE_LU = new LocaleResponse("de_LU");
     public static final LocaleResponse FRFR = new LocaleResponse("fr_FR");
     public static final LocaleResponse FR_BE = new LocaleResponse("fr_BE");
+    public static final LocaleResponse FR_LU = new LocaleResponse("fr_LU");
     public static final LocaleResponse ESES = new LocaleResponse("es_ES");
     public static final LocaleResponse CA_ES = new LocaleResponse("ca_ES");
     public static final LocaleResponse PTPT = new LocaleResponse("pt_PT");
@@ -129,8 +131,10 @@ public class LocaleResponse {
         map.put("de_DE", DEDE);
         map.put("de_AT", DE_AT);
         map.put("de_CH", DE_CH);
+        map.put("de_LU", DE_LU);
         map.put("fr_FR", FRFR);
         map.put("fr_BE", FR_BE);
+        map.put("fr_LU", FR_LU);
         map.put("es_ES", ESES);
         map.put("ca_ES", CA_ES);
         map.put("pt_PT", PTPT);
@@ -157,8 +161,10 @@ public class LocaleResponse {
         map.put("de_DE", LocaleResponseEnum.DEDE);
         map.put("de_AT", LocaleResponseEnum.DE_AT);
         map.put("de_CH", LocaleResponseEnum.DE_CH);
+        map.put("de_LU", LocaleResponseEnum.DE_LU);
         map.put("fr_FR", LocaleResponseEnum.FRFR);
         map.put("fr_BE", LocaleResponseEnum.FR_BE);
+        map.put("fr_LU", LocaleResponseEnum.FR_LU);
         map.put("es_ES", LocaleResponseEnum.ESES);
         map.put("ca_ES", LocaleResponseEnum.CA_ES);
         map.put("pt_PT", LocaleResponseEnum.PTPT);
@@ -186,8 +192,10 @@ public class LocaleResponse {
         DEDE("de_DE"),
         DE_AT("de_AT"),
         DE_CH("de_CH"),
+        DE_LU("de_LU"),
         FRFR("fr_FR"),
         FR_BE("fr_BE"),
+        FR_LU("fr_LU"),
         ESES("es_ES"),
         CA_ES("ca_ES"),
         PTPT("pt_PT"),

@@ -54,7 +54,7 @@ public class CustomerResponse {
     private Optional<String> email;
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("locale")
@@ -170,7 +170,7 @@ public class CustomerResponse {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -285,7 +285,7 @@ public class CustomerResponse {
     }
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public CustomerResponse withLocale(LocaleResponse locale) {
         Utils.checkNotNull(locale, "locale");
@@ -295,7 +295,7 @@ public class CustomerResponse {
 
 
     /**
-     * Allows you to preset the language to be used.
+     * Sets the language for customer-facing content and communications.
      */
     public CustomerResponse withLocale(Optional<? extends LocaleResponse> locale) {
         Utils.checkNotNull(locale, "locale");
@@ -492,7 +492,7 @@ public class CustomerResponse {
 
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(LocaleResponse locale) {
             Utils.checkNotNull(locale, "locale");
@@ -501,7 +501,7 @@ public class CustomerResponse {
         }
 
         /**
-         * Allows you to preset the language to be used.
+         * Sets the language for customer-facing content and communications.
          */
         public Builder locale(Optional<? extends LocaleResponse> locale) {
             Utils.checkNotNull(locale, "locale");

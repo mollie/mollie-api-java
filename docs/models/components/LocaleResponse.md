@@ -1,6 +1,6 @@
 # LocaleResponse
 
-Allows you to preset the language to be used.
+Sets the language for customer-facing content and communications.
 
 ## Example Usage
 
@@ -25,8 +25,10 @@ LocaleResponse custom = LocaleResponse.of("custom_value");
 | `DEDE`  | de_DE   |
 | `DE_AT` | de_AT   |
 | `DE_CH` | de_CH   |
+| `DE_LU` | de_LU   |
 | `FRFR`  | fr_FR   |
 | `FR_BE` | fr_BE   |
+| `FR_LU` | fr_LU   |
 | `ESES`  | es_ES   |
 | `CA_ES` | ca_ES   |
 | `PTPT`  | pt_PT   |
