@@ -28,6 +28,7 @@ public class ListEntitySettlementStatus {
 
     public static final ListEntitySettlementStatus OPEN = new ListEntitySettlementStatus("open");
     public static final ListEntitySettlementStatus PENDING = new ListEntitySettlementStatus("pending");
+    public static final ListEntitySettlementStatus PROCESSING_AT_BANK = new ListEntitySettlementStatus("processing-at-bank");
     public static final ListEntitySettlementStatus PAIDOUT = new ListEntitySettlementStatus("paidout");
     public static final ListEntitySettlementStatus FAILED = new ListEntitySettlementStatus("failed");
 
@@ -105,6 +106,7 @@ public class ListEntitySettlementStatus {
         Map<String, ListEntitySettlementStatus> map = new LinkedHashMap<>();
         map.put("open", OPEN);
         map.put("pending", PENDING);
+        map.put("processing-at-bank", PROCESSING_AT_BANK);
         map.put("paidout", PAIDOUT);
         map.put("failed", FAILED);
         return map;
@@ -114,6 +116,7 @@ public class ListEntitySettlementStatus {
         Map<String, ListEntitySettlementStatusEnum> map = new HashMap<>();
         map.put("open", ListEntitySettlementStatusEnum.OPEN);
         map.put("pending", ListEntitySettlementStatusEnum.PENDING);
+        map.put("processing-at-bank", ListEntitySettlementStatusEnum.PROCESSING_AT_BANK);
         map.put("paidout", ListEntitySettlementStatusEnum.PAIDOUT);
         map.put("failed", ListEntitySettlementStatusEnum.FAILED);
         return map;
@@ -124,6 +127,7 @@ public class ListEntitySettlementStatus {
 
         OPEN("open"),
         PENDING("pending"),
+        PROCESSING_AT_BANK("processing-at-bank"),
         PAIDOUT("paidout"),
         FAILED("failed"),;
 
