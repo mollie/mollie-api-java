@@ -48,7 +48,7 @@ public class Clients {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return The call builder
@@ -64,7 +64,7 @@ public class Clients {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return The response from the API call
@@ -82,7 +82,7 @@ public class Clients {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @param embed This endpoint allows embedding related API items by appending the
@@ -124,7 +124,7 @@ public class Clients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return The call builder
@@ -138,7 +138,7 @@ public class Clients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @param organizationId Provide the ID of the related organization.
@@ -155,7 +155,7 @@ public class Clients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @param organizationId Provide the ID of the related organization.

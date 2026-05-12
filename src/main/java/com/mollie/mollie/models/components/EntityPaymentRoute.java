@@ -40,34 +40,23 @@ public class EntityPaymentRoute {
     @JsonProperty("releaseDate")
     private JsonNullable<String> releaseDate;
 
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    @JsonProperty("_links")
-    private EntityPaymentRouteLinks links;
-
     @JsonCreator
     public EntityPaymentRoute(
             @JsonProperty("amount") Amount amount,
             @JsonProperty("destination") EntityPaymentRouteDestination destination,
-            @JsonProperty("releaseDate") JsonNullable<String> releaseDate,
-            @JsonProperty("_links") EntityPaymentRouteLinks links) {
+            @JsonProperty("releaseDate") JsonNullable<String> releaseDate) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(destination, "destination");
         Utils.checkNotNull(releaseDate, "releaseDate");
-        Utils.checkNotNull(links, "links");
         this.amount = amount;
         this.destination = destination;
         this.releaseDate = releaseDate;
-        this.links = links;
     }
     
     public EntityPaymentRoute(
             Amount amount,
-            EntityPaymentRouteDestination destination,
-            EntityPaymentRouteLinks links) {
-        this(amount, destination, JsonNullable.undefined(),
-            links);
+            EntityPaymentRouteDestination destination) {
+        this(amount, destination, JsonNullable.undefined());
     }
 
     /**
@@ -97,14 +86,6 @@ public class EntityPaymentRoute {
     @JsonIgnore
     public JsonNullable<String> releaseDate() {
         return releaseDate;
-    }
-
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    @JsonIgnore
-    public EntityPaymentRouteLinks links() {
-        return links;
     }
 
     public static Builder builder() {
@@ -158,15 +139,6 @@ public class EntityPaymentRoute {
         return this;
     }
 
-    /**
-     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-     */
-    public EntityPaymentRoute withLinks(EntityPaymentRouteLinks links) {
-        Utils.checkNotNull(links, "links");
-        this.links = links;
-        return this;
-    }
-
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -179,15 +151,13 @@ public class EntityPaymentRoute {
         return 
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.destination, other.destination) &&
-            Utils.enhancedDeepEquals(this.releaseDate, other.releaseDate) &&
-            Utils.enhancedDeepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.releaseDate, other.releaseDate);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            amount, destination, releaseDate,
-            links);
+            amount, destination, releaseDate);
     }
     
     @Override
@@ -195,8 +165,7 @@ public class EntityPaymentRoute {
         return Utils.toString(EntityPaymentRoute.class,
                 "amount", amount,
                 "destination", destination,
-                "releaseDate", releaseDate,
-                "links", links);
+                "releaseDate", releaseDate);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -207,8 +176,6 @@ public class EntityPaymentRoute {
         private EntityPaymentRouteDestination destination;
 
         private JsonNullable<String> releaseDate = JsonNullable.undefined();
-
-        private EntityPaymentRouteLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -263,21 +230,10 @@ public class EntityPaymentRoute {
             return this;
         }
 
-
-        /**
-         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
-         */
-        public Builder links(EntityPaymentRouteLinks links) {
-            Utils.checkNotNull(links, "links");
-            this.links = links;
-            return this;
-        }
-
         public EntityPaymentRoute build() {
 
             return new EntityPaymentRoute(
-                amount, destination, releaseDate,
-                links);
+                amount, destination, releaseDate);
         }
 
     }

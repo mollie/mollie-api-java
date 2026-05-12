@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.5.8'
+implementation 'com.mollie:mollie:1.6.0'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.5.8</version>
+    <version>1.6.0</version>
 </dependency>
 ```
 
@@ -252,11 +252,11 @@ Async support is available for:
 
 This SDK supports the following security schemes globally:
 
-| Name                      | Type   | Scheme       |
-| ------------------------- | ------ | ------------ |
-| `apiKey`                  | http   | HTTP Bearer  |
-| `organizationAccessToken` | http   | HTTP Bearer  |
-| `oAuth`                   | oauth2 | OAuth2 token |
+| Name                  | Type   | Scheme       |
+| --------------------- | ------ | ------------ |
+| `apiKey`              | http   | HTTP Bearer  |
+| `advancedAccessToken` | http   | HTTP Bearer  |
+| `oAuth`               | oauth2 | OAuth2 token |
 
 You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```java
@@ -658,7 +658,7 @@ public class Application {
                 .profileId("<id>")
                 .customUserAgent("<value>")
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -707,7 +707,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
                     .build())
             .build();
 
@@ -759,7 +759,7 @@ public class Application {
         AsyncClient sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
                     .build())
             .build()
             .async();
@@ -998,7 +998,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
                     .build())
             .build();
         try {
@@ -1100,7 +1100,7 @@ public class Application {
                 .serverURL("https://api.mollie.com")
                 .testmode(false)
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
                     .build())
             .build();
 

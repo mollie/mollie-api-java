@@ -61,7 +61,7 @@ public class AsyncBalances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -77,7 +77,7 @@ public class AsyncBalances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -94,7 +94,7 @@ public class AsyncBalances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -133,7 +133,7 @@ public class AsyncBalances {
      * funds are available on your balance. These funds will be shown under the *pending amount* in the
      * meanwhile.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -164,7 +164,7 @@ public class AsyncBalances {
      * funds are available on your balance. These funds will be shown under the *pending amount* in the
      * meanwhile.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param balanceId Provide the ID of the related balance.
@@ -198,7 +198,7 @@ public class AsyncBalances {
      * funds are available on your balance. These funds will be shown under the *pending amount* in the
      * meanwhile.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param balanceId Provide the ID of the related balance.
@@ -239,7 +239,7 @@ public class AsyncBalances {
      * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
      * endpoint.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -257,7 +257,7 @@ public class AsyncBalances {
      * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
      * endpoint.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return {@code CompletableFuture<GetPrimaryBalanceResponse>} - The async response
@@ -275,7 +275,7 @@ public class AsyncBalances {
      * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
      * endpoint.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -309,7 +309,7 @@ public class AsyncBalances {
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
      * organization's primary balance.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -330,7 +330,7 @@ public class AsyncBalances {
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
      * organization's primary balance.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -352,7 +352,7 @@ public class AsyncBalances {
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
      * organization's primary balance.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -383,7 +383,7 @@ public class AsyncBalances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -406,7 +406,7 @@ public class AsyncBalances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -430,7 +430,7 @@ public class AsyncBalances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.

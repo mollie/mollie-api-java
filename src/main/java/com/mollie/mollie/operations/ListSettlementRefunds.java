@@ -129,7 +129,7 @@ public class ListSettlementRefunds {
                     request,
                     null));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "organizationAccessToken", "oAuth");
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "advancedAccessToken", "oAuth");
 
             return req.build();
         }
@@ -151,7 +151,7 @@ public class ListSettlementRefunds {
                     request,
                     null));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "organizationAccessToken", "oAuth");
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "advancedAccessToken", "oAuth");
 
             return req.build();
         }

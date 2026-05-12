@@ -71,7 +71,7 @@ public class AsyncProfiles {
      * Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -89,7 +89,7 @@ public class AsyncProfiles {
      * Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param profileRequest 
@@ -108,7 +108,7 @@ public class AsyncProfiles {
      * Alternatively, you
      * can use this endpoint to automate profile creation.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -141,7 +141,7 @@ public class AsyncProfiles {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -157,7 +157,7 @@ public class AsyncProfiles {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return {@code CompletableFuture<ListProfilesResponse>} - The async response
@@ -175,7 +175,7 @@ public class AsyncProfiles {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
@@ -209,7 +209,7 @@ public class AsyncProfiles {
      * 
      * <p>Retrieve a single profile by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -223,7 +223,7 @@ public class AsyncProfiles {
      * 
      * <p>Retrieve a single profile by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
@@ -240,7 +240,7 @@ public class AsyncProfiles {
      * 
      * <p>Retrieve a single profile by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
@@ -281,7 +281,7 @@ public class AsyncProfiles {
      * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -299,7 +299,7 @@ public class AsyncProfiles {
      * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
@@ -321,7 +321,7 @@ public class AsyncProfiles {
      * dashboard.
      * Alternatively, you can use this endpoint to automate profile management.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
@@ -355,7 +355,7 @@ public class AsyncProfiles {
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
      * payments.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -370,7 +370,7 @@ public class AsyncProfiles {
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
      * payments.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.
@@ -386,7 +386,7 @@ public class AsyncProfiles {
      * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
      * payments.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param profileId Provide the ID of the related profile.

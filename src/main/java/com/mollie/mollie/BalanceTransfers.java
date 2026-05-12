@@ -55,7 +55,7 @@ public class BalanceTransfers {
      * destination organization must be a connected organization
      * that has authorized the `balance-transfers.write` scope for your organization.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The call builder
@@ -74,7 +74,7 @@ public class BalanceTransfers {
      * destination organization must be a connected organization
      * that has authorized the `balance-transfers.write` scope for your organization.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The response from the API call
@@ -94,7 +94,7 @@ public class BalanceTransfers {
      * destination organization must be a connected organization
      * that has authorized the `balance-transfers.write` scope for your organization.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -127,7 +127,7 @@ public class BalanceTransfers {
      * 
      * <p>This request should never throw an error.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The call builder
@@ -146,7 +146,7 @@ public class BalanceTransfers {
      * 
      * <p>This request should never throw an error.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -167,7 +167,7 @@ public class BalanceTransfers {
      * 
      * <p>This request should never throw an error.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -186,7 +186,7 @@ public class BalanceTransfers {
      * 
      * <p>Retrieve a single Connect balance transfer object by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The call builder
@@ -200,7 +200,7 @@ public class BalanceTransfers {
      * 
      * <p>Retrieve a single Connect balance transfer object by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param balanceTransferId Provide the ID of the related balance transfer.
@@ -217,7 +217,7 @@ public class BalanceTransfers {
      * 
      * <p>Retrieve a single Connect balance transfer object by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param balanceTransferId Provide the ID of the related balance transfer.

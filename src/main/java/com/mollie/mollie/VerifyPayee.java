@@ -69,7 +69,7 @@ public class VerifyPayee {
      * | Any other name                         | Default: name matches the bank records         | `match`
      * | —              |
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return The call builder
@@ -112,7 +112,7 @@ public class VerifyPayee {
      * | Any other name                         | Default: name matches the bank records         | `match`
      * | —              |
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return The response from the API call
@@ -156,7 +156,7 @@ public class VerifyPayee {
      * | Any other name                         | Default: name matches the bank records         | `match`
      * | —              |
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

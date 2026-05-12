@@ -21,7 +21,7 @@ public class Security implements HasSecurity {
 
 
     @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
-    private Optional<String> organizationAccessToken;
+    private Optional<String> advancedAccessToken;
 
 
     @SpeakeasyMetadata("security:scheme=true,type=oauth2,name=Authorization")
@@ -30,13 +30,13 @@ public class Security implements HasSecurity {
     @JsonCreator
     public Security(
             Optional<String> apiKey,
-            Optional<String> organizationAccessToken,
+            Optional<String> advancedAccessToken,
             Optional<String> oAuth) {
         Utils.checkNotNull(apiKey, "apiKey");
-        Utils.checkNotNull(organizationAccessToken, "organizationAccessToken");
+        Utils.checkNotNull(advancedAccessToken, "advancedAccessToken");
         Utils.checkNotNull(oAuth, "oAuth");
         this.apiKey = apiKey;
-        this.organizationAccessToken = organizationAccessToken;
+        this.advancedAccessToken = advancedAccessToken;
         this.oAuth = oAuth;
     }
     
@@ -50,8 +50,8 @@ public class Security implements HasSecurity {
     }
 
     @JsonIgnore
-    public Optional<String> organizationAccessToken() {
-        return organizationAccessToken;
+    public Optional<String> advancedAccessToken() {
+        return advancedAccessToken;
     }
 
     @JsonIgnore
@@ -77,16 +77,16 @@ public class Security implements HasSecurity {
         return this;
     }
 
-    public Security withOrganizationAccessToken(String organizationAccessToken) {
-        Utils.checkNotNull(organizationAccessToken, "organizationAccessToken");
-        this.organizationAccessToken = Optional.ofNullable(organizationAccessToken);
+    public Security withAdvancedAccessToken(String advancedAccessToken) {
+        Utils.checkNotNull(advancedAccessToken, "advancedAccessToken");
+        this.advancedAccessToken = Optional.ofNullable(advancedAccessToken);
         return this;
     }
 
 
-    public Security withOrganizationAccessToken(Optional<String> organizationAccessToken) {
-        Utils.checkNotNull(organizationAccessToken, "organizationAccessToken");
-        this.organizationAccessToken = organizationAccessToken;
+    public Security withAdvancedAccessToken(Optional<String> advancedAccessToken) {
+        Utils.checkNotNull(advancedAccessToken, "advancedAccessToken");
+        this.advancedAccessToken = advancedAccessToken;
         return this;
     }
 
@@ -114,21 +114,21 @@ public class Security implements HasSecurity {
         Security other = (Security) o;
         return 
             Utils.enhancedDeepEquals(this.apiKey, other.apiKey) &&
-            Utils.enhancedDeepEquals(this.organizationAccessToken, other.organizationAccessToken) &&
+            Utils.enhancedDeepEquals(this.advancedAccessToken, other.advancedAccessToken) &&
             Utils.enhancedDeepEquals(this.oAuth, other.oAuth);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            apiKey, organizationAccessToken, oAuth);
+            apiKey, advancedAccessToken, oAuth);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Security.class,
                 "apiKey", apiKey,
-                "organizationAccessToken", organizationAccessToken,
+                "advancedAccessToken", advancedAccessToken,
                 "oAuth", oAuth);
     }
 
@@ -137,7 +137,7 @@ public class Security implements HasSecurity {
 
         private Optional<String> apiKey = Optional.empty();
 
-        private Optional<String> organizationAccessToken = Optional.empty();
+        private Optional<String> advancedAccessToken = Optional.empty();
 
         private Optional<String> oAuth = Optional.empty();
 
@@ -159,15 +159,15 @@ public class Security implements HasSecurity {
         }
 
 
-        public Builder organizationAccessToken(String organizationAccessToken) {
-            Utils.checkNotNull(organizationAccessToken, "organizationAccessToken");
-            this.organizationAccessToken = Optional.ofNullable(organizationAccessToken);
+        public Builder advancedAccessToken(String advancedAccessToken) {
+            Utils.checkNotNull(advancedAccessToken, "advancedAccessToken");
+            this.advancedAccessToken = Optional.ofNullable(advancedAccessToken);
             return this;
         }
 
-        public Builder organizationAccessToken(Optional<String> organizationAccessToken) {
-            Utils.checkNotNull(organizationAccessToken, "organizationAccessToken");
-            this.organizationAccessToken = organizationAccessToken;
+        public Builder advancedAccessToken(Optional<String> advancedAccessToken) {
+            Utils.checkNotNull(advancedAccessToken, "advancedAccessToken");
+            this.advancedAccessToken = advancedAccessToken;
             return this;
         }
 
@@ -187,7 +187,7 @@ public class Security implements HasSecurity {
         public Security build() {
 
             return new Security(
-                apiKey, organizationAccessToken, oAuth);
+                apiKey, advancedAccessToken, oAuth);
         }
 
     }

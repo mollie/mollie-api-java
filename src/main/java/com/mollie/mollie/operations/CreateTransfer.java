@@ -131,7 +131,7 @@ public class CreateTransfer {
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "organizationAccessToken");
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "advancedAccessToken");
 
             return req.build();
         }

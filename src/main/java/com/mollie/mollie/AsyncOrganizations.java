@@ -57,7 +57,7 @@ public class AsyncOrganizations {
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -77,7 +77,7 @@ public class AsyncOrganizations {
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param organizationId Provide the ID of the related organization.
@@ -100,7 +100,7 @@ public class AsyncOrganizations {
      * 
      * <p>If you have a *partner account*', you can retrieve organization details of connected organizations.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param organizationId Provide the ID of the related organization.
@@ -143,7 +143,7 @@ public class AsyncOrganizations {
      * organization](get-organization) endpoint
      * documentation.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -163,7 +163,7 @@ public class AsyncOrganizations {
      * organization](get-organization) endpoint
      * documentation.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return {@code CompletableFuture<GetCurrentOrganizationResponse>} - The async response
@@ -183,7 +183,7 @@ public class AsyncOrganizations {
      * organization](get-organization) endpoint
      * documentation.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -212,7 +212,7 @@ public class AsyncOrganizations {
      * so-called *partner
      * accounts*.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -228,7 +228,7 @@ public class AsyncOrganizations {
      * so-called *partner
      * accounts*.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return {@code CompletableFuture<GetPartnerStatusResponse>} - The async response
@@ -244,7 +244,7 @@ public class AsyncOrganizations {
      * so-called *partner
      * accounts*.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

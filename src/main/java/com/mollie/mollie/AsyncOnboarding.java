@@ -47,7 +47,7 @@ public class AsyncOnboarding {
      * 
      * <p>Retrieve the onboarding status of the currently authenticated organization.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -61,7 +61,7 @@ public class AsyncOnboarding {
      * 
      * <p>Retrieve the onboarding status of the currently authenticated organization.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return {@code CompletableFuture<GetOnboardingStatusResponse>} - The async response
@@ -75,7 +75,7 @@ public class AsyncOnboarding {
      * 
      * <p>Retrieve the onboarding status of the currently authenticated organization.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -109,7 +109,7 @@ public class AsyncOnboarding {
      * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -130,7 +130,7 @@ public class AsyncOnboarding {
      * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return {@code CompletableFuture<SubmitOnboardingDataResponse>} - The async response
@@ -151,7 +151,7 @@ public class AsyncOnboarding {
      * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

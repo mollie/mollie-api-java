@@ -68,7 +68,7 @@ public class AsyncWebhooks {
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
      * webhooks settings section of the Dashboard.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -83,7 +83,7 @@ public class AsyncWebhooks {
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
      * webhooks settings section of the Dashboard.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return {@code CompletableFuture<CreateWebhookResponse>} - The async response
@@ -98,7 +98,7 @@ public class AsyncWebhooks {
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
      * webhooks settings section of the Dashboard.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -130,7 +130,7 @@ public class AsyncWebhooks {
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
      * array will be empty. This request should never throw an error.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -145,7 +145,7 @@ public class AsyncWebhooks {
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
      * array will be empty. This request should never throw an error.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -161,7 +161,7 @@ public class AsyncWebhooks {
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
      * array will be empty. This request should never throw an error.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -183,7 +183,7 @@ public class AsyncWebhooks {
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -197,7 +197,7 @@ public class AsyncWebhooks {
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param webhookId Provide the ID of the related webhook.
@@ -214,7 +214,7 @@ public class AsyncWebhooks {
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param webhookId Provide the ID of the related webhook.
@@ -247,7 +247,7 @@ public class AsyncWebhooks {
      * 
      * <p>Retrieve a single webhook object by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -261,7 +261,7 @@ public class AsyncWebhooks {
      * 
      * <p>Retrieve a single webhook object by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param webhookId Provide the ID of the related webhook.
@@ -278,7 +278,7 @@ public class AsyncWebhooks {
      * 
      * <p>Retrieve a single webhook object by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param webhookId Provide the ID of the related webhook.
@@ -315,7 +315,7 @@ public class AsyncWebhooks {
      * 
      * <p>Delete a single webhook object by its webhook ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -329,7 +329,7 @@ public class AsyncWebhooks {
      * 
      * <p>Delete a single webhook object by its webhook ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param webhookId Provide the ID of the related webhook.
@@ -346,7 +346,7 @@ public class AsyncWebhooks {
      * 
      * <p>Delete a single webhook object by its webhook ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param webhookId Provide the ID of the related webhook.
@@ -379,7 +379,7 @@ public class AsyncWebhooks {
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -393,7 +393,7 @@ public class AsyncWebhooks {
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param webhookId Provide the ID of the related webhook.
@@ -410,7 +410,7 @@ public class AsyncWebhooks {
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param webhookId Provide the ID of the related webhook.

@@ -105,7 +105,7 @@ public class ClientLinks {
      * &gt; A client link must be used within 30 days of creation. After that period, it will expire and
      * you will need to create a new client link.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return The call builder
@@ -183,7 +183,7 @@ public class ClientLinks {
      * &gt; A client link must be used within 30 days of creation. After that period, it will expire and
      * you will need to create a new client link.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return The response from the API call
@@ -262,7 +262,7 @@ public class ClientLinks {
      * &gt; A client link must be used within 30 days of creation. After that period, it will expire and
      * you will need to create a new client link.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
