@@ -29,7 +29,7 @@ public class Application {
         Client sdk = Client.builder()
                 .testmode(false)
                 .security(Security.builder()
-                    .organizationAccessToken(System.getenv().getOrDefault("ORGANIZATION_ACCESS_TOKEN", ""))
+                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
                     .build())
             .build();
 

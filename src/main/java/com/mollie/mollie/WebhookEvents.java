@@ -41,7 +41,7 @@ public class WebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The call builder
@@ -55,7 +55,7 @@ public class WebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param webhookEventId Provide the ID of the related webhook event.
@@ -72,7 +72,7 @@ public class WebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param webhookEventId Provide the ID of the related webhook event.

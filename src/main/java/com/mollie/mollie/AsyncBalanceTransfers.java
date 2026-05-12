@@ -57,7 +57,7 @@ public class AsyncBalanceTransfers {
      * destination organization must be a connected organization
      * that has authorized the `balance-transfers.write` scope for your organization.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -76,7 +76,7 @@ public class AsyncBalanceTransfers {
      * destination organization must be a connected organization
      * that has authorized the `balance-transfers.write` scope for your organization.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return {@code CompletableFuture<CreateConnectBalanceTransferResponse>} - The async response
@@ -95,7 +95,7 @@ public class AsyncBalanceTransfers {
      * destination organization must be a connected organization
      * that has authorized the `balance-transfers.write` scope for your organization.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -131,7 +131,7 @@ public class AsyncBalanceTransfers {
      * 
      * <p>This request should never throw an error.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -150,7 +150,7 @@ public class AsyncBalanceTransfers {
      * 
      * <p>This request should never throw an error.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -170,7 +170,7 @@ public class AsyncBalanceTransfers {
      * 
      * <p>This request should never throw an error.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -192,7 +192,7 @@ public class AsyncBalanceTransfers {
      * 
      * <p>Retrieve a single Connect balance transfer object by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The async call builder
@@ -206,7 +206,7 @@ public class AsyncBalanceTransfers {
      * 
      * <p>Retrieve a single Connect balance transfer object by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param balanceTransferId Provide the ID of the related balance transfer.
@@ -223,7 +223,7 @@ public class AsyncBalanceTransfers {
      * 
      * <p>Retrieve a single Connect balance transfer object by its ID.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param balanceTransferId Provide the ID of the related balance transfer.

@@ -86,7 +86,7 @@ public class AsyncTransfers {
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.processed`                                              |
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return The async call builder
@@ -139,7 +139,7 @@ public class AsyncTransfers {
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.processed`                                              |
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -193,7 +193,7 @@ public class AsyncTransfers {
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.processed`                                              |
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -220,7 +220,7 @@ public class AsyncTransfers {
      * <p>Retrieve a single transfer object by its transfer ID. This allows you to check the current status
      * and details of a previously created transfer.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return The async call builder
@@ -239,7 +239,7 @@ public class AsyncTransfers {
      * <p>Retrieve a single transfer object by its transfer ID. This allows you to check the current status
      * and details of a previously created transfer.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @param businessAccountsTransferId Provide the ID of the related transfer.
@@ -261,7 +261,7 @@ public class AsyncTransfers {
      * <p>Retrieve a single transfer object by its transfer ID. This allows you to check the current status
      * and details of a previously created transfer.
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @param businessAccountsTransferId Provide the ID of the related transfer.

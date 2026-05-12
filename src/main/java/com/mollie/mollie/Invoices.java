@@ -47,7 +47,7 @@ public class Invoices {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The call builder
@@ -64,7 +64,7 @@ public class Invoices {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -83,7 +83,7 @@ public class Invoices {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param request The request object containing all the parameters for the API call.
@@ -105,7 +105,7 @@ public class Invoices {
      * <p>If you want to retrieve the details of an invoice by its invoice number,
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @return The call builder
@@ -122,7 +122,7 @@ public class Invoices {
      * <p>If you want to retrieve the details of an invoice by its invoice number,
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param invoiceId Provide the ID of the related invoice.
@@ -141,7 +141,7 @@ public class Invoices {
      * <p>If you want to retrieve the details of an invoice by its invoice number,
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
-     * <p>This operation requires either Security#organizationAccessToken or Security#oAuth to be set via the
+     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
      * {@code security} builder method when initializing the SDK.
      * 
      * @param invoiceId Provide the ID of the related invoice.

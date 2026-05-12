@@ -134,7 +134,7 @@ public class ListSettlementPayments {
                     request,
                     this.operationGlobals));
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "organizationAccessToken", "oAuth");
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "advancedAccessToken", "oAuth");
 
             return req.build();
         }
@@ -156,7 +156,7 @@ public class ListSettlementPayments {
                     request,
                     this.operationGlobals));
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "organizationAccessToken", "oAuth");
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "advancedAccessToken", "oAuth");
 
             return req.build();
         }

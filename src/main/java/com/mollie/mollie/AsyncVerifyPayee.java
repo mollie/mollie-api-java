@@ -71,7 +71,7 @@ public class AsyncVerifyPayee {
      * | Any other name                         | Default: name matches the bank records         | `match`
      * | —              |
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return The async call builder
@@ -114,7 +114,7 @@ public class AsyncVerifyPayee {
      * | Any other name                         | Default: name matches the bank records         | `match`
      * | —              |
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @return {@code CompletableFuture<VerifyPayeeResponse>} - The async response
@@ -157,7 +157,7 @@ public class AsyncVerifyPayee {
      * | Any other name                         | Default: name matches the bank records         | `match`
      * | —              |
      * 
-     * <p>This operation requires Security#organizationAccessToken to be set via the {@code security} builder
+     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
      * method when initializing the SDK.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

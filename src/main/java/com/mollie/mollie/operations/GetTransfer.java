@@ -130,7 +130,7 @@ public class GetTransfer {
                     request,
                     this.operationGlobals));
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "organizationAccessToken");
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "advancedAccessToken");
 
             return req.build();
         }
