@@ -20,10 +20,10 @@ public final class MollieAuthUtils {
 
         Security securityObj = (Security) security;
         String apiKey = securityObj.apiKey().orElse(null);
-        String organizationAccessToken = securityObj.organizationAccessToken().orElse(null);
+        String advancedAccessToken = securityObj.advancedAccessToken().orElse(null);
         String oAuth = securityObj.oAuth().orElse(null);
 
-        String token = apiKey != null ? apiKey : organizationAccessToken != null ? organizationAccessToken : oAuth;
+        String token = apiKey != null ? apiKey : advancedAccessToken != null ? advancedAccessToken : oAuth;
         return token != null && token.startsWith("access_");
     }
 
