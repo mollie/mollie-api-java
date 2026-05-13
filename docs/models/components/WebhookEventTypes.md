@@ -18,6 +18,11 @@ WebhookEventTypes value = WebhookEventTypes.PAYMENT_LINK_PAID;
 | ------------------------------------------ | ------------------------------------------ |
 | `PAYMENT_LINK_PAID`                        | payment-link.paid                          |
 | `BALANCE_TRANSACTION_CREATED`              | balance-transaction.created                |
+| `PAYOUT_INITIATED`                         | payout.initiated                           |
+| `PAYOUT_PROCESSING_AT_BANK`                | payout.processing-at-bank                  |
+| `PAYOUT_COMPLETED`                         | payout.completed                           |
+| `PAYOUT_CANCELED`                          | payout.canceled                            |
+| `PAYOUT_FAILED`                            | payout.failed                              |
 | `SALES_INVOICE_CREATED`                    | sales-invoice.created                      |
 | `SALES_INVOICE_ISSUED`                     | sales-invoice.issued                       |
 | `SALES_INVOICE_CANCELED`                   | sales-invoice.canceled                     |

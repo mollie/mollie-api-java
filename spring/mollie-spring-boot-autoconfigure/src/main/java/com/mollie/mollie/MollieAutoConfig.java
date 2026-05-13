@@ -612,6 +612,17 @@ public class MollieAutoConfig {
     public VerifyPayee verifyPayee(Client client) {
         return client.verifyPayee();
     }
+    /**
+     * Creates a Payouts sub-SDK bean if none exists.
+     *
+     * @param client the main SDK instance
+     * @return A configured Payouts instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public Payouts payouts(Client client) {
+        return client.payouts();
+    }
 
     /**
      * Creates the async SDK bean if none exists.
@@ -976,5 +987,16 @@ public class MollieAutoConfig {
     @ConditionalOnMissingBean
     public AsyncVerifyPayee asyncVerifyPayee(AsyncClient asyncClient) {
         return asyncClient.verifyPayee();
+    }
+    /**
+     * Creates an AsyncPayouts sub-SDK bean if none exists.
+     *
+     * @param asyncClient the async SDK instance
+     * @return A configured AsyncPayouts instance
+     */
+    @Bean
+    @ConditionalOnMissingBean
+    public AsyncPayouts asyncPayouts(AsyncClient asyncClient) {
+        return asyncClient.payouts();
     }
 }
