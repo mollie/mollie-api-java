@@ -29,6 +29,11 @@ public class EntityWebhookEventWebhookEventTypes {
 
     public static final EntityWebhookEventWebhookEventTypes PAYMENT_LINK_PAID = new EntityWebhookEventWebhookEventTypes("payment-link.paid");
     public static final EntityWebhookEventWebhookEventTypes BALANCE_TRANSACTION_CREATED = new EntityWebhookEventWebhookEventTypes("balance-transaction.created");
+    public static final EntityWebhookEventWebhookEventTypes PAYOUT_INITIATED = new EntityWebhookEventWebhookEventTypes("payout.initiated");
+    public static final EntityWebhookEventWebhookEventTypes PAYOUT_PROCESSING_AT_BANK = new EntityWebhookEventWebhookEventTypes("payout.processing-at-bank");
+    public static final EntityWebhookEventWebhookEventTypes PAYOUT_COMPLETED = new EntityWebhookEventWebhookEventTypes("payout.completed");
+    public static final EntityWebhookEventWebhookEventTypes PAYOUT_CANCELED = new EntityWebhookEventWebhookEventTypes("payout.canceled");
+    public static final EntityWebhookEventWebhookEventTypes PAYOUT_FAILED = new EntityWebhookEventWebhookEventTypes("payout.failed");
     public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_CREATED = new EntityWebhookEventWebhookEventTypes("sales-invoice.created");
     public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_ISSUED = new EntityWebhookEventWebhookEventTypes("sales-invoice.issued");
     public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_CANCELED = new EntityWebhookEventWebhookEventTypes("sales-invoice.canceled");
@@ -116,6 +121,11 @@ public class EntityWebhookEventWebhookEventTypes {
         Map<String, EntityWebhookEventWebhookEventTypes> map = new LinkedHashMap<>();
         map.put("payment-link.paid", PAYMENT_LINK_PAID);
         map.put("balance-transaction.created", BALANCE_TRANSACTION_CREATED);
+        map.put("payout.initiated", PAYOUT_INITIATED);
+        map.put("payout.processing-at-bank", PAYOUT_PROCESSING_AT_BANK);
+        map.put("payout.completed", PAYOUT_COMPLETED);
+        map.put("payout.canceled", PAYOUT_CANCELED);
+        map.put("payout.failed", PAYOUT_FAILED);
         map.put("sales-invoice.created", SALES_INVOICE_CREATED);
         map.put("sales-invoice.issued", SALES_INVOICE_ISSUED);
         map.put("sales-invoice.canceled", SALES_INVOICE_CANCELED);
@@ -135,6 +145,11 @@ public class EntityWebhookEventWebhookEventTypes {
         Map<String, EntityWebhookEventWebhookEventTypesEnum> map = new HashMap<>();
         map.put("payment-link.paid", EntityWebhookEventWebhookEventTypesEnum.PAYMENT_LINK_PAID);
         map.put("balance-transaction.created", EntityWebhookEventWebhookEventTypesEnum.BALANCE_TRANSACTION_CREATED);
+        map.put("payout.initiated", EntityWebhookEventWebhookEventTypesEnum.PAYOUT_INITIATED);
+        map.put("payout.processing-at-bank", EntityWebhookEventWebhookEventTypesEnum.PAYOUT_PROCESSING_AT_BANK);
+        map.put("payout.completed", EntityWebhookEventWebhookEventTypesEnum.PAYOUT_COMPLETED);
+        map.put("payout.canceled", EntityWebhookEventWebhookEventTypesEnum.PAYOUT_CANCELED);
+        map.put("payout.failed", EntityWebhookEventWebhookEventTypesEnum.PAYOUT_FAILED);
         map.put("sales-invoice.created", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_CREATED);
         map.put("sales-invoice.issued", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_ISSUED);
         map.put("sales-invoice.canceled", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_CANCELED);
@@ -155,6 +170,11 @@ public class EntityWebhookEventWebhookEventTypes {
 
         PAYMENT_LINK_PAID("payment-link.paid"),
         BALANCE_TRANSACTION_CREATED("balance-transaction.created"),
+        PAYOUT_INITIATED("payout.initiated"),
+        PAYOUT_PROCESSING_AT_BANK("payout.processing-at-bank"),
+        PAYOUT_COMPLETED("payout.completed"),
+        PAYOUT_CANCELED("payout.canceled"),
+        PAYOUT_FAILED("payout.failed"),
         SALES_INVOICE_CREATED("sales-invoice.created"),
         SALES_INVOICE_ISSUED("sales-invoice.issued"),
         SALES_INVOICE_CANCELED("sales-invoice.canceled"),

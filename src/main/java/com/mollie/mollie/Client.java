@@ -125,6 +125,9 @@ public class Client {
     private final VerifyPayee verifyPayee;
 
 
+    private final Payouts payouts;
+
+
     public Oauth oauth() {
         return oauth;
     }
@@ -282,6 +285,11 @@ public class Client {
 
     public VerifyPayee verifyPayee() {
         return verifyPayee;
+    }
+
+
+    public Payouts payouts() {
+        return payouts;
     }
     private final AsyncClient asyncSDK;
 
@@ -497,6 +505,7 @@ public class Client {
         this.accounts = new Accounts(sdkConfiguration);
         this.transfers = new Transfers(sdkConfiguration);
         this.verifyPayee = new VerifyPayee(sdkConfiguration);
+        this.payouts = new Payouts(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(
                 new SdkInitData(
                         sdkConfiguration.resolvedServerUrl(), 

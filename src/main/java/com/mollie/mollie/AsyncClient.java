@@ -73,6 +73,8 @@ public class AsyncClient {
 
     private final AsyncVerifyPayee verifyPayee;
 
+    private final AsyncPayouts payouts;
+
     public AsyncOauth oauth() {
         return oauth;
     }
@@ -201,6 +203,10 @@ public class AsyncClient {
         return verifyPayee;
     }
 
+    public AsyncPayouts payouts() {
+        return payouts;
+    }
+
     private final SDKConfiguration sdkConfiguration;
     private final Client syncSDK;
 
@@ -239,6 +245,7 @@ public class AsyncClient {
         this.accounts = new AsyncAccounts(syncSDK.accounts(), sdkConfiguration);
         this.transfers = new AsyncTransfers(syncSDK.transfers(), sdkConfiguration);
         this.verifyPayee = new AsyncVerifyPayee(syncSDK.verifyPayee(), sdkConfiguration);
+        this.payouts = new AsyncPayouts(syncSDK.payouts(), sdkConfiguration);
     }
 
     /**
