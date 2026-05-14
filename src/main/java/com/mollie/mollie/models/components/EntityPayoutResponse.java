@@ -40,15 +40,7 @@ public class EntityPayoutResponse {
     private String balanceId;
 
     /**
-     * The amount to pay out. When omitted from the request, the full available balance minus any
-     * configured
-     * balance reserve is paid out.
-     * 
-     * <p>Merchants registered in the United Kingdom cannot specify a custom amount — omit this field to pay
-     * out
-     * the full available balance.
-     * 
-     * <p>The value in the response reflects the amount paid out, excluding any applicable fees.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
@@ -206,15 +198,7 @@ public class EntityPayoutResponse {
     }
 
     /**
-     * The amount to pay out. When omitted from the request, the full available balance minus any
-     * configured
-     * balance reserve is paid out.
-     * 
-     * <p>Merchants registered in the United Kingdom cannot specify a custom amount — omit this field to pay
-     * out
-     * the full available balance.
-     * 
-     * <p>The value in the response reflects the amount paid out, excluding any applicable fees.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -338,15 +322,7 @@ public class EntityPayoutResponse {
     }
 
     /**
-     * The amount to pay out. When omitted from the request, the full available balance minus any
-     * configured
-     * balance reserve is paid out.
-     * 
-     * <p>Merchants registered in the United Kingdom cannot specify a custom amount — omit this field to pay
-     * out
-     * the full available balance.
-     * 
-     * <p>The value in the response reflects the amount paid out, excluding any applicable fees.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public EntityPayoutResponse withAmount(AmountNullable amount) {
         Utils.checkNotNull(amount, "amount");
@@ -355,15 +331,7 @@ public class EntityPayoutResponse {
     }
 
     /**
-     * The amount to pay out. When omitted from the request, the full available balance minus any
-     * configured
-     * balance reserve is paid out.
-     * 
-     * <p>Merchants registered in the United Kingdom cannot specify a custom amount — omit this field to pay
-     * out
-     * the full available balance.
-     * 
-     * <p>The value in the response reflects the amount paid out, excluding any applicable fees.
+     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
     public EntityPayoutResponse withAmount(JsonNullable<? extends AmountNullable> amount) {
         Utils.checkNotNull(amount, "amount");
@@ -633,15 +601,7 @@ public class EntityPayoutResponse {
 
 
         /**
-         * The amount to pay out. When omitted from the request, the full available balance minus any
-         * configured
-         * balance reserve is paid out.
-         * 
-         * <p>Merchants registered in the United Kingdom cannot specify a custom amount — omit this field to pay
-         * out
-         * the full available balance.
-         * 
-         * <p>The value in the response reflects the amount paid out, excluding any applicable fees.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder amount(AmountNullable amount) {
             Utils.checkNotNull(amount, "amount");
@@ -650,15 +610,7 @@ public class EntityPayoutResponse {
         }
 
         /**
-         * The amount to pay out. When omitted from the request, the full available balance minus any
-         * configured
-         * balance reserve is paid out.
-         * 
-         * <p>Merchants registered in the United Kingdom cannot specify a custom amount — omit this field to pay
-         * out
-         * the full available balance.
-         * 
-         * <p>The value in the response reflects the amount paid out, excluding any applicable fees.
+         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder amount(JsonNullable<? extends AmountNullable> amount) {
             Utils.checkNotNull(amount, "amount");
