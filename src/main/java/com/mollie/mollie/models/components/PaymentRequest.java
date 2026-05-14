@@ -374,6 +374,17 @@ public class PaymentRequest {
     private Optional<String> cardToken;
 
     /**
+     * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
+     * customer authorizes
+     * the payment. The token contains the payment information needed to complete the payment.
+     * 
+     * <p>The object should be passed encoded in a JSON string.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("googlePayPaymentToken")
+    private Optional<String> googlePayPaymentToken;
+
+    /**
      * The card token you received from the card component of Mollie Components. The token represents the
      * customer's card
      * information needed to complete the payment.
@@ -475,6 +486,7 @@ public class PaymentRequest {
             @JsonProperty("applePayPaymentToken") Optional<String> applePayPaymentToken,
             @JsonProperty("company") Optional<? extends Company> company,
             @JsonProperty("cardToken") Optional<String> cardToken,
+            @JsonProperty("googlePayPaymentToken") Optional<String> googlePayPaymentToken,
             @JsonProperty("voucherNumber") Optional<String> voucherNumber,
             @JsonProperty("voucherPin") Optional<String> voucherPin,
             @JsonProperty("consumerDateOfBirth") Optional<LocalDate> consumerDateOfBirth,
@@ -510,6 +522,7 @@ public class PaymentRequest {
         Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
         Utils.checkNotNull(company, "company");
         Utils.checkNotNull(cardToken, "cardToken");
+        Utils.checkNotNull(googlePayPaymentToken, "googlePayPaymentToken");
         Utils.checkNotNull(voucherNumber, "voucherNumber");
         Utils.checkNotNull(voucherPin, "voucherPin");
         Utils.checkNotNull(consumerDateOfBirth, "consumerDateOfBirth");
@@ -545,6 +558,7 @@ public class PaymentRequest {
         this.applePayPaymentToken = applePayPaymentToken;
         this.company = company;
         this.cardToken = cardToken;
+        this.googlePayPaymentToken = googlePayPaymentToken;
         this.voucherNumber = voucherNumber;
         this.voucherPin = voucherPin;
         this.consumerDateOfBirth = consumerDateOfBirth;
@@ -569,7 +583,7 @@ public class PaymentRequest {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -956,6 +970,18 @@ public class PaymentRequest {
     @JsonIgnore
     public Optional<String> cardToken() {
         return cardToken;
+    }
+
+    /**
+     * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
+     * customer authorizes
+     * the payment. The token contains the payment information needed to complete the payment.
+     * 
+     * <p>The object should be passed encoded in a JSON string.
+     */
+    @JsonIgnore
+    public Optional<String> googlePayPaymentToken() {
+        return googlePayPaymentToken;
     }
 
     /**
@@ -1830,6 +1856,33 @@ public class PaymentRequest {
     }
 
     /**
+     * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
+     * customer authorizes
+     * the payment. The token contains the payment information needed to complete the payment.
+     * 
+     * <p>The object should be passed encoded in a JSON string.
+     */
+    public PaymentRequest withGooglePayPaymentToken(String googlePayPaymentToken) {
+        Utils.checkNotNull(googlePayPaymentToken, "googlePayPaymentToken");
+        this.googlePayPaymentToken = Optional.ofNullable(googlePayPaymentToken);
+        return this;
+    }
+
+
+    /**
+     * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
+     * customer authorizes
+     * the payment. The token contains the payment information needed to complete the payment.
+     * 
+     * <p>The object should be passed encoded in a JSON string.
+     */
+    public PaymentRequest withGooglePayPaymentToken(Optional<String> googlePayPaymentToken) {
+        Utils.checkNotNull(googlePayPaymentToken, "googlePayPaymentToken");
+        this.googlePayPaymentToken = googlePayPaymentToken;
+        return this;
+    }
+
+    /**
      * The card token you received from the card component of Mollie Components. The token represents the
      * customer's card
      * information needed to complete the payment.
@@ -2052,6 +2105,7 @@ public class PaymentRequest {
             Utils.enhancedDeepEquals(this.applePayPaymentToken, other.applePayPaymentToken) &&
             Utils.enhancedDeepEquals(this.company, other.company) &&
             Utils.enhancedDeepEquals(this.cardToken, other.cardToken) &&
+            Utils.enhancedDeepEquals(this.googlePayPaymentToken, other.googlePayPaymentToken) &&
             Utils.enhancedDeepEquals(this.voucherNumber, other.voucherNumber) &&
             Utils.enhancedDeepEquals(this.voucherPin, other.voucherPin) &&
             Utils.enhancedDeepEquals(this.consumerDateOfBirth, other.consumerDateOfBirth) &&
@@ -2074,9 +2128,9 @@ public class PaymentRequest {
             mandateId, customerId, profileId,
             dueDate, storeCredentials, testmode,
             applePayPaymentToken, company, cardToken,
-            voucherNumber, voucherPin, consumerDateOfBirth,
-            extraMerchantData, sessionId, digitalGoods,
-            customerReference, terminalId);
+            googlePayPaymentToken, voucherNumber, voucherPin,
+            consumerDateOfBirth, extraMerchantData, sessionId,
+            digitalGoods, customerReference, terminalId);
     }
     
     @Override
@@ -2109,6 +2163,7 @@ public class PaymentRequest {
                 "applePayPaymentToken", applePayPaymentToken,
                 "company", company,
                 "cardToken", cardToken,
+                "googlePayPaymentToken", googlePayPaymentToken,
                 "voucherNumber", voucherNumber,
                 "voucherPin", voucherPin,
                 "consumerDateOfBirth", consumerDateOfBirth,
@@ -2175,6 +2230,8 @@ public class PaymentRequest {
         private Optional<? extends Company> company = Optional.empty();
 
         private Optional<String> cardToken = Optional.empty();
+
+        private Optional<String> googlePayPaymentToken = Optional.empty();
 
         private Optional<String> voucherNumber = Optional.empty();
 
@@ -2998,6 +3055,33 @@ public class PaymentRequest {
 
 
         /**
+         * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
+         * customer authorizes
+         * the payment. The token contains the payment information needed to complete the payment.
+         * 
+         * <p>The object should be passed encoded in a JSON string.
+         */
+        public Builder googlePayPaymentToken(String googlePayPaymentToken) {
+            Utils.checkNotNull(googlePayPaymentToken, "googlePayPaymentToken");
+            this.googlePayPaymentToken = Optional.ofNullable(googlePayPaymentToken);
+            return this;
+        }
+
+        /**
+         * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
+         * customer authorizes
+         * the payment. The token contains the payment information needed to complete the payment.
+         * 
+         * <p>The object should be passed encoded in a JSON string.
+         */
+        public Builder googlePayPaymentToken(Optional<String> googlePayPaymentToken) {
+            Utils.checkNotNull(googlePayPaymentToken, "googlePayPaymentToken");
+            this.googlePayPaymentToken = googlePayPaymentToken;
+            return this;
+        }
+
+
+        /**
          * The card token you received from the card component of Mollie Components. The token represents the
          * customer's card
          * information needed to complete the payment.
@@ -3194,9 +3278,9 @@ public class PaymentRequest {
                 mandateId, customerId, profileId,
                 dueDate, storeCredentials, testmode,
                 applePayPaymentToken, company, cardToken,
-                voucherNumber, voucherPin, consumerDateOfBirth,
-                extraMerchantData, sessionId, digitalGoods,
-                customerReference, terminalId);
+                googlePayPaymentToken, voucherNumber, voucherPin,
+                consumerDateOfBirth, extraMerchantData, sessionId,
+                digitalGoods, customerReference, terminalId);
         }
 
     }
