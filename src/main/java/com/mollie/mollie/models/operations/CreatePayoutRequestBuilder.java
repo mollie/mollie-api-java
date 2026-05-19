@@ -13,13 +13,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 
 public class CreatePayoutRequestBuilder {
 
-    private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private PayoutRequest payoutRequest;
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -28,18 +26,6 @@ public class CreatePayoutRequestBuilder {
 
     public CreatePayoutRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-    }
-                
-    public CreatePayoutRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public CreatePayoutRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
     }
                 
     public CreatePayoutRequestBuilder idempotencyKey(String idempotencyKey) {
@@ -75,8 +61,7 @@ public class CreatePayoutRequestBuilder {
 
     private CreatePayoutRequest buildRequest() {
 
-        CreatePayoutRequest request = new CreatePayoutRequest(testmode,
-            idempotencyKey,
+        CreatePayoutRequest request = new CreatePayoutRequest(idempotencyKey,
             payoutRequest);
 
         return request;

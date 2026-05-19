@@ -9,25 +9,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mollie.mollie.models.components.PayoutRequest;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
 
 
 public class CreatePayoutRequest {
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=testmode")
-    private Optional<Boolean> testmode;
-
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      */
@@ -40,34 +27,17 @@ public class CreatePayoutRequest {
 
     @JsonCreator
     public CreatePayoutRequest(
-            Optional<Boolean> testmode,
             Optional<String> idempotencyKey,
             PayoutRequest payoutRequest) {
-        Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         Utils.checkNotNull(payoutRequest, "payoutRequest");
-        this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
         this.payoutRequest = payoutRequest;
     }
     
     public CreatePayoutRequest(
             PayoutRequest payoutRequest) {
-        this(Optional.empty(), Optional.empty(), payoutRequest);
-    }
-
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    @JsonIgnore
-    public Optional<Boolean> testmode() {
-        return testmode;
+        this(Optional.empty(), payoutRequest);
     }
 
     /**
@@ -87,37 +57,6 @@ public class CreatePayoutRequest {
         return new Builder();
     }
 
-
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public CreatePayoutRequest withTestmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.ofNullable(testmode);
-        return this;
-    }
-
-
-    /**
-     * Most API credentials are specifically created for either live mode or test mode. In those cases the
-     * `testmode` query
-     * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-     * enable test mode by
-     * setting the `testmode` query parameter to `true`.
-     * 
-     * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     */
-    public CreatePayoutRequest withTestmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -154,7 +93,6 @@ public class CreatePayoutRequest {
         }
         CreatePayoutRequest other = (CreatePayoutRequest) o;
         return 
-            Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
             Utils.enhancedDeepEquals(this.payoutRequest, other.payoutRequest);
     }
@@ -162,13 +100,12 @@ public class CreatePayoutRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            testmode, idempotencyKey, payoutRequest);
+            idempotencyKey, payoutRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreatePayoutRequest.class,
-                "testmode", testmode,
                 "idempotencyKey", idempotencyKey,
                 "payoutRequest", payoutRequest);
     }
@@ -176,45 +113,12 @@ public class CreatePayoutRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Boolean> testmode = Optional.empty();
-
         private Optional<String> idempotencyKey = Optional.empty();
 
         private PayoutRequest payoutRequest;
 
         private Builder() {
           // force use of static builder() method
-        }
-
-
-        /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the
-         * `testmode` query
-         * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-         * enable test mode by
-         * setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(boolean testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = Optional.ofNullable(testmode);
-            return this;
-        }
-
-        /**
-         * Most API credentials are specifically created for either live mode or test mode. In those cases the
-         * `testmode` query
-         * parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can
-         * enable test mode by
-         * setting the `testmode` query parameter to `true`.
-         * 
-         * <p>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-         */
-        public Builder testmode(Optional<Boolean> testmode) {
-            Utils.checkNotNull(testmode, "testmode");
-            this.testmode = testmode;
-            return this;
         }
 
 
@@ -246,7 +150,7 @@ public class CreatePayoutRequest {
         public CreatePayoutRequest build() {
 
             return new CreatePayoutRequest(
-                testmode, idempotencyKey, payoutRequest);
+                idempotencyKey, payoutRequest);
         }
 
     }

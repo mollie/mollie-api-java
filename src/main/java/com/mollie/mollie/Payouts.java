@@ -144,8 +144,7 @@ public class Payouts {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePayoutResponse create(PayoutRequest payoutRequest) {
-        return create(Optional.empty(), Optional.empty(), payoutRequest,
-            Optional.empty());
+        return create(Optional.empty(), payoutRequest, Optional.empty());
     }
 
     /**
@@ -190,11 +189,6 @@ public class Payouts {
      * - One of the organization's balances is below the negative balance threshold.
      * - The payout destination (bank account) is invalid or not configured.
      * 
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param payoutRequest 
      * @param options additional options
@@ -202,12 +196,11 @@ public class Payouts {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePayoutResponse create(
-            Optional<Boolean> testmode, Optional<String> idempotencyKey,
-            PayoutRequest payoutRequest, Optional<Options> options) {
+            Optional<String> idempotencyKey, PayoutRequest payoutRequest,
+            Optional<Options> options) {
         CreatePayoutRequest request =
             CreatePayoutRequest
                 .builder()
-                .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .payoutRequest(payoutRequest)
                 .build();

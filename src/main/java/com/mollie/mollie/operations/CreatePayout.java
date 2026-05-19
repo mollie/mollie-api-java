@@ -19,7 +19,6 @@ import com.mollie.mollie.models.operations.CreatePayoutResponse;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
-import com.mollie.mollie.utils.Globals;
 import com.mollie.mollie.utils.HTTPClient;
 import com.mollie.mollie.utils.HTTPRequest;
 import com.mollie.mollie.utils.Headers;
@@ -59,7 +58,6 @@ public class CreatePayout {
         final RetryConfig retryConfig;
         final HTTPClient client;
         final Headers _headers;
-        final Globals operationGlobals;
 
         public Base(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
@@ -83,9 +81,6 @@ public class CreatePayout {
                                     .build())
                             .build());
             this.client = this.sdkConfiguration.client();
-            this.operationGlobals = new Globals();
-            this.sdkConfiguration.globals.getParam("queryParam", "testmode")
-                .ifPresent(param -> operationGlobals.putParam("queryParam", "testmode", param));
         }
 
         Optional<SecuritySource> securitySource() {
@@ -118,7 +113,7 @@ public class CreatePayout {
                     java.util.Optional.empty(),
                     securitySource());
         }
-        <T, U>HttpRequest buildRequest(T request, Class<T> klass, TypeReference<U> typeReference) throws Exception {
+        <T, U>HttpRequest buildRequest(T request, TypeReference<U> typeReference) throws Exception {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/v2/payouts");
@@ -139,12 +134,7 @@ public class CreatePayout {
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
-
-            req.addQueryParams(Utils.getQueryParams(
-                    klass,
-                    request,
-                    this.operationGlobals));
-            req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
+            req.addHeaders(Utils.getHeadersFromMetadata(request, null));
             Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
 
             return req.build();
@@ -162,7 +152,7 @@ public class CreatePayout {
         }
 
         private HttpRequest onBuildRequest(CreatePayoutRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, CreatePayoutRequest.class, new TypeReference<CreatePayoutRequest>() {});
+            HttpRequest req = buildRequest(request, new TypeReference<CreatePayoutRequest>() {});
             return sdkConfiguration.hooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
@@ -258,7 +248,7 @@ public class CreatePayout {
         }
 
         private CompletableFuture<HttpRequest> onBuildRequest(CreatePayoutRequest request) throws Exception {
-            HttpRequest req = buildRequest(request, CreatePayoutRequest.class, new TypeReference<CreatePayoutRequest>() {});
+            HttpRequest req = buildRequest(request, new TypeReference<CreatePayoutRequest>() {});
             return this.sdkConfiguration.asyncHooks().beforeRequest(createBeforeRequestContext(), req);
         }
 
