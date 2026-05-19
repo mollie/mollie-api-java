@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 536cfdf4a7ed1cc890da692cec8211a7
+  docChecksum: f407935ca22fe6fd9cab31d14286f1c8
   docVersion: 1.0.0
   speakeasyVersion: 1.763.1
   generationVersion: 2.884.4
-  releaseVersion: 1.6.3
-  configChecksum: 51d9a4a2c698eff818d8772813693831
+  releaseVersion: 1.6.4
+  configChecksum: 9ef7d7948c7d7a612a9070452c93b3b5
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 3a45a6f9-d9aa-4dea-a126-337c73d41f36
-  pristine_commit_hash: ed55a13856ded66d0aa902e351490420e8640d2f
-  pristine_tree_hash: d29389d4109a89599a3a0a499eb5bcc10fe90f70
+  generation_id: ebb793f0-1894-4835-b9e4-2553ef207360
+  pristine_commit_hash: b5cc29ea46e098cb177619d7caafdfa4700939bf
+  pristine_tree_hash: 9aabdedb68885df2b2a17fb3a68c22b67257e6aa
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2249,8 +2249,8 @@ trackedFiles:
     pristine_git_object: 2c178d8adfd52f2ce81fc26f733f18d1acac28f9
   docs/models/operations/CreatePayoutRequest.md:
     id: 534b2a52a450
-    last_write_checksum: sha1:7d02c640095bb33f9070d86e2c77a18941cc50cd
-    pristine_git_object: 5e4a5109e3db07c6eb481e7f476afe68ee6e707a
+    last_write_checksum: sha1:042ebf4084bbb86233cf372eceaa620e954a96f4
+    pristine_git_object: 61a0e8889f8f7bc3bf3db549c255fccfece9514d
   docs/models/operations/CreatePayoutResponse.md:
     id: 49408abcf080
     last_write_checksum: sha1:c97003eb626a1bd29ae22e997765202e0dbf8e18
@@ -3609,8 +3609,8 @@ trackedFiles:
     pristine_git_object: 48d9fd8f5164d5b79c33bb8e09ae92bd53d339b0
   docs/sdks/payouts/README.md:
     id: 184ed4a74471
-    last_write_checksum: sha1:a1562349dfa177983adad9fe4ba60e1ec5181177
-    pristine_git_object: 95fc58a22d41a294ad8b893114bc5a83ab7a900a
+    last_write_checksum: sha1:24574e0f36891ef433070b0d068ea2e92cd37aae
+    pristine_git_object: 15095311e9fc3f77d8ee7379a928971047484ab3
   docs/sdks/permissions/README.md:
     id: 2e4061ce50d4
     last_write_checksum: sha1:e342e56640987f2d749671cdc121ed1f8396be60
@@ -3673,8 +3673,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:beb244f59f52e853e7957ab79d700e348ebea987
-    pristine_git_object: e4b51daae78c601a3ef307b69ee5301cb602aa4a
+    last_write_checksum: sha1:0fc483fb6d5354c11994368a16d84e9446d1b49b
+    pristine_git_object: 373846b191a4c5024df4cfe49f1e9a694e6d721b
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3809,8 +3809,8 @@ trackedFiles:
     pristine_git_object: a1b5fc9d56d970b6ced8ef7ba4060f80a5991c95
   src/main/java/com/mollie/mollie/AsyncPayouts.java:
     id: bedf55df3754
-    last_write_checksum: sha1:4d9cf124dcf2dce1da795d1c911e08c445639a76
-    pristine_git_object: deb0d997c89e47329f9bc3c59043d49dd15bcb6f
+    last_write_checksum: sha1:aacaea7fc6aed22a83819571371ed87238b355d6
+    pristine_git_object: 4aa9df33735afd9564da5cd9f88736d8b2789173
   src/main/java/com/mollie/mollie/AsyncPermissions.java:
     id: 910d2b620318
     last_write_checksum: sha1:c56ba6d58bd46c8aefa61cf9c06b97fb4da8a71e
@@ -3941,8 +3941,8 @@ trackedFiles:
     pristine_git_object: 5e3d91b6b71c23e48a7d0d916a29fad97a1e80b9
   src/main/java/com/mollie/mollie/Payouts.java:
     id: cd74e182f207
-    last_write_checksum: sha1:f835b00f8ff9f9f72e07f22ba8e1592e24500dd3
-    pristine_git_object: 389a8f4d29f422368896050cc92cf141c6463326
+    last_write_checksum: sha1:480a5d3e7609309d654d974a19e2557e1a45701e
+    pristine_git_object: 95415c8cd8702e6fff6c61e76214a1f916293f87
   src/main/java/com/mollie/mollie/Permissions.java:
     id: 31f6a4da9216
     last_write_checksum: sha1:a846d5a9ac882af7234beadd038cae36bf0ac0d2
@@ -3957,8 +3957,8 @@ trackedFiles:
     pristine_git_object: 2b69786ee19b5007595e2eda62b2503eff94974f
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:5a3bf3331c3a75be0f0c5c96f68f7f702323c790
-    pristine_git_object: 8ab30e3f88ca9102b12760405b79bacbf9ecf3c7
+    last_write_checksum: sha1:6dc2b5ebaa9203d6a5c5f89ac5c042cdfdad60b9
+    pristine_git_object: ca12128409aa3dc78724d201eb4a4def5ecf7c1a
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:2cdff7ce71f9ec62974ef3d118a882a2e149eaa1
@@ -6153,8 +6153,8 @@ trackedFiles:
     pristine_git_object: ecf5f1f0435e0748cb90b45f312f386754e9a68d
   src/main/java/com/mollie/mollie/models/operations//async/CreatePayoutRequestBuilder.java:
     id: d9087ea61258
-    last_write_checksum: sha1:f1d7c538e170529bf96eace8e09ac17d64818f1a
-    pristine_git_object: 8ad0abbe259b363ba2cff0b99356201ea6161aa1
+    last_write_checksum: sha1:52ce896c286b08672596d185c950ed085fe0a10d
+    pristine_git_object: e3acdbabeeaed36ffb47562a9bfefecd05ef7b8b
   src/main/java/com/mollie/mollie/models/operations//async/CreateProfileRequestBuilder.java:
     id: 4c731032be29
     last_write_checksum: sha1:cb70093cfcda9f6b0a803f92078638631d611de3
@@ -6737,12 +6737,12 @@ trackedFiles:
     pristine_git_object: 7df7847e6dc17d72dbc9411fb4a35bc4a5f7db3b
   src/main/java/com/mollie/mollie/models/operations/CreatePayoutRequest.java:
     id: 75e4581e1dff
-    last_write_checksum: sha1:54212927f0db51b76f22b1da5b389baf7503d680
-    pristine_git_object: 5f9e9910f73bc59ee0ea61a17473da2351e1692f
+    last_write_checksum: sha1:80b0ea7fbc77e47095c0c2fd3217f5666aad55db
+    pristine_git_object: be37e16a8f9bb273335609d8404cc02c9720a37a
   src/main/java/com/mollie/mollie/models/operations/CreatePayoutRequestBuilder.java:
     id: 72b023c7743c
-    last_write_checksum: sha1:75c0751e285b1f86381a1ad08d95c2d62c965f81
-    pristine_git_object: 6344ef4e51edb1ae0bcc4cf4f57aba8dabf9ab85
+    last_write_checksum: sha1:aead7c11cc0397bdf68f21118d92abfb4ec24da0
+    pristine_git_object: 4f891c2ce637189b86cd068c161da84ee9f7cac5
   src/main/java/com/mollie/mollie/models/operations/CreatePayoutResponse.java:
     id: ce9c362aa993
     last_write_checksum: sha1:f02f126743ddae2d7c6af5e1cfb643c7f0c8834d
@@ -8953,8 +8953,8 @@ trackedFiles:
     pristine_git_object: b136514c280b9fa42f0624db13b059338e540d59
   src/main/java/com/mollie/mollie/operations/CreatePayout.java:
     id: 25a8b065323d
-    last_write_checksum: sha1:e20214c8bb78ea7b64676e6ca3027dfb8c32a5ac
-    pristine_git_object: 394c0a48cf7823b29fed8f5e8dee321c379f44b7
+    last_write_checksum: sha1:17701f9b47e62c3ff6842ecf29f445456a5e0ec4
+    pristine_git_object: 5806bb0ba07f56ccc58531804ab31afd181e96d2
   src/main/java/com/mollie/mollie/operations/CreateProfile.java:
     id: 168a94a774f0
     last_write_checksum: sha1:f967e3c65739af76584dc7a3c6e260d13a2f0f68
@@ -14704,6 +14704,9 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: |
+  ## Java SDK Changes:
+  * `client.payouts.create()`:  `request.testmode` **Removed** (Breaking ⚠️)
 generatedFiles:
   - .gitattributes
   - USAGE.md
