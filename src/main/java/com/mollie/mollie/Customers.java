@@ -74,6 +74,9 @@ public class Customers {
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CreateCustomerRequestBuilder create() {
@@ -88,6 +91,9 @@ public class Customers {
      * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -104,6 +110,9 @@ public class Customers {
      * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityCustomer 
@@ -132,6 +141,9 @@ public class Customers {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListCustomersRequestBuilder list() {
@@ -144,6 +156,9 @@ public class Customers {
      * <p>Retrieve a list of all customers.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -159,6 +174,9 @@ public class Customers {
      * <p>Retrieve a list of all customers.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -176,6 +194,9 @@ public class Customers {
      * 
      * <p>Retrieve a single customer by its ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetCustomerRequestBuilder get() {
@@ -186,6 +207,9 @@ public class Customers {
      * Get customer
      * 
      * <p>Retrieve a single customer by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -200,6 +224,9 @@ public class Customers {
      * Get customer
      * 
      * <p>Retrieve a single customer by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
@@ -238,6 +265,9 @@ public class Customers {
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
      * endpoint.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public UpdateCustomerRequestBuilder update() {
@@ -251,6 +281,9 @@ public class Customers {
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
      * endpoint.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -268,6 +301,9 @@ public class Customers {
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
      * endpoint.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -297,6 +333,9 @@ public class Customers {
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
      * well.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public DeleteCustomerRequestBuilder delete() {
@@ -308,6 +347,9 @@ public class Customers {
      * 
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
      * well.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -323,6 +365,9 @@ public class Customers {
      * 
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
      * well.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -363,6 +408,9 @@ public class Customers {
      * `customerId`
      * parameter predefined.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CreateCustomerPaymentRequestBuilder createPayment() {
@@ -385,6 +433,9 @@ public class Customers {
      * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the
      * `customerId`
      * parameter predefined.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -411,6 +462,9 @@ public class Customers {
      * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the
      * `customerId`
      * parameter predefined.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -439,6 +493,9 @@ public class Customers {
      * 
      * <p>Retrieve all payments linked to the customer.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListCustomerPaymentsRequestBuilder listPayments() {
@@ -449,6 +506,9 @@ public class Customers {
      * List customer payments
      * 
      * <p>Retrieve all payments linked to the customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -462,6 +522,9 @@ public class Customers {
      * List customer payments
      * 
      * <p>Retrieve all payments linked to the customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

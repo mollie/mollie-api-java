@@ -57,6 +57,9 @@ public class Captures {
      * after
      * having collected the customer's authorization.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CreateCaptureRequestBuilder create() {
@@ -75,6 +78,9 @@ public class Captures {
      * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint
      * after
      * having collected the customer's authorization.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -97,6 +103,9 @@ public class Captures {
      * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint
      * after
      * having collected the customer's authorization.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -127,6 +136,9 @@ public class Captures {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListCapturesRequestBuilder list() {
@@ -139,6 +151,9 @@ public class Captures {
      * <p>Retrieve a list of all captures created for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -154,6 +169,9 @@ public class Captures {
      * <p>Retrieve a list of all captures created for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -172,6 +190,9 @@ public class Captures {
      * <p>Retrieve a single payment capture by its ID and the ID of its parent
      * payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetCaptureRequestBuilder get() {
@@ -183,6 +204,9 @@ public class Captures {
      * 
      * <p>Retrieve a single payment capture by its ID and the ID of its parent
      * payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -197,6 +221,9 @@ public class Captures {
      * 
      * <p>Retrieve a single payment capture by its ID and the ID of its parent
      * payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

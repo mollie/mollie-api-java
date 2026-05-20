@@ -70,7 +70,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/ErrorResponse | 400, 429                    | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
@@ -130,7 +130,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/ErrorResponse | 404, 429                    | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## match
@@ -197,7 +197,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/ErrorResponse | 404, 422, 429               | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## return_
@@ -257,5 +257,5 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/ErrorResponse | 404, 429                    | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

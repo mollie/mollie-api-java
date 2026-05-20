@@ -63,6 +63,9 @@ public class AsyncMandates {
      * To create
      * mandates for cards, your customers need to perform a 'first payment' with their card.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CreateMandateRequestBuilder create() {
@@ -79,6 +82,9 @@ public class AsyncMandates {
      * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint.
      * To create
      * mandates for cards, your customers need to perform a 'first payment' with their card.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return {@code CompletableFuture<CreateMandateResponse>} - The async response
@@ -99,6 +105,9 @@ public class AsyncMandates {
      * <p>It is only possible to create mandates for IBANs and PayPal billing agreements with this endpoint.
      * To create
      * mandates for cards, your customers need to perform a 'first payment' with their card.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -132,6 +141,9 @@ public class AsyncMandates {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListMandatesRequestBuilder list() {
@@ -144,6 +156,9 @@ public class AsyncMandates {
      * <p>Retrieve a list of all mandates.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListMandatesResponse>} - The async response
@@ -158,6 +173,9 @@ public class AsyncMandates {
      * <p>Retrieve a list of all mandates.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -180,6 +198,9 @@ public class AsyncMandates {
      * customer's bank
      * account details, card details, or PayPal account details.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetMandateRequestBuilder get() {
@@ -192,6 +213,9 @@ public class AsyncMandates {
      * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the
      * customer's bank
      * account details, card details, or PayPal account details.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
@@ -209,6 +233,9 @@ public class AsyncMandates {
      * <p>Retrieve a single mandate by its ID. Depending on the type of mandate, the object will contain the
      * customer's bank
      * account details, card details, or PayPal account details.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
@@ -249,6 +276,9 @@ public class AsyncMandates {
      * card with this
      * mandate, and all connected subscriptions will be canceled.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public RevokeMandateRequestBuilder revoke() {
@@ -261,6 +291,9 @@ public class AsyncMandates {
      * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or
      * card with this
      * mandate, and all connected subscriptions will be canceled.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.
@@ -278,6 +311,9 @@ public class AsyncMandates {
      * <p>Revoke a customer's mandate. You will no longer be able to charge the customer's bank account or
      * card with this
      * mandate, and all connected subscriptions will be canceled.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param mandateId Provide the ID of the related mandate.

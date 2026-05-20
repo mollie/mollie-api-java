@@ -41,8 +41,8 @@ public class WebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -55,8 +55,8 @@ public class WebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param webhookEventId Provide the ID of the related webhook event.
      * @return The response from the API call
@@ -72,8 +72,8 @@ public class WebhookEvents {
      * 
      * <p>Retrieve a single webhook event object by its event ID.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param webhookEventId Provide the ID of the related webhook event.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query

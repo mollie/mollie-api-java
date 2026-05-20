@@ -59,8 +59,8 @@ public class Balances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -75,8 +75,8 @@ public class Balances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -93,8 +93,8 @@ public class Balances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -129,8 +129,8 @@ public class Balances {
      * funds are available on your balance. These funds will be shown under the *pending amount* in the
      * meanwhile.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -160,8 +160,8 @@ public class Balances {
      * funds are available on your balance. These funds will be shown under the *pending amount* in the
      * meanwhile.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param balanceId Provide the ID of the related balance.
      * @return The response from the API call
@@ -194,8 +194,8 @@ public class Balances {
      * funds are available on your balance. These funds will be shown under the *pending amount* in the
      * meanwhile.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param balanceId Provide the ID of the related balance.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -232,8 +232,8 @@ public class Balances {
      * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
      * endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -250,8 +250,8 @@ public class Balances {
      * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
      * endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -269,8 +269,8 @@ public class Balances {
      * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
      * endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
@@ -300,8 +300,8 @@ public class Balances {
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
      * organization's primary balance.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -321,8 +321,8 @@ public class Balances {
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
      * organization's primary balance.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -344,8 +344,8 @@ public class Balances {
      * <p>The alias `primary` can be used instead of the balance ID to refer to the
      * organization's primary balance.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -372,8 +372,8 @@ public class Balances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -395,8 +395,8 @@ public class Balances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -420,8 +420,8 @@ public class Balances {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

@@ -48,8 +48,7 @@ public class Clients {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @return The call builder
      */
@@ -64,8 +63,7 @@ public class Clients {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -82,8 +80,7 @@ public class Clients {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param embed This endpoint allows embedding related API items by appending the
      *         following values via the `embed` query string parameter.
@@ -124,8 +121,7 @@ public class Clients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @return The call builder
      */
@@ -138,8 +134,7 @@ public class Clients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param organizationId Provide the ID of the related organization.
      * @return The response from the API call
@@ -155,8 +150,7 @@ public class Clients {
      * 
      * <p>Retrieve a single client by its ID.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param organizationId Provide the ID of the related organization.
      * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string

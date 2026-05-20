@@ -66,7 +66,7 @@ public class DeleteWebhook {
             this.securitySource = this.sdkConfiguration.securitySource();
             options
                     .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
-            this.retryStatusCodes = List.of("5xx");
+            this.retryStatusCodes = List.of("429", "5xx");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
                     .or(sdkConfiguration::retryConfig)
@@ -210,7 +210,7 @@ public class DeleteWebhook {
                 // no content
                 return res;
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "422")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     throw ErrorResponse.from(response);
                 } else {
@@ -295,7 +295,7 @@ public class DeleteWebhook {
                 // no content
                 return CompletableFuture.completedFuture(res);
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "422")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return ErrorResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);

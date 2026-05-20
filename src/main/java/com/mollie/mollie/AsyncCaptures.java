@@ -59,6 +59,9 @@ public class AsyncCaptures {
      * after
      * having collected the customer's authorization.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CreateCaptureRequestBuilder create() {
@@ -77,6 +80,9 @@ public class AsyncCaptures {
      * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint
      * after
      * having collected the customer's authorization.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return {@code CompletableFuture<CreateCaptureResponse>} - The async response
@@ -99,6 +105,9 @@ public class AsyncCaptures {
      * configured your payment with `captureMode: manual`, you can capture the payment using this endpoint
      * after
      * having collected the customer's authorization.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -132,6 +141,9 @@ public class AsyncCaptures {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListCapturesRequestBuilder list() {
@@ -144,6 +156,9 @@ public class AsyncCaptures {
      * <p>Retrieve a list of all captures created for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListCapturesResponse>} - The async response
@@ -158,6 +173,9 @@ public class AsyncCaptures {
      * <p>Retrieve a list of all captures created for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -179,6 +197,9 @@ public class AsyncCaptures {
      * <p>Retrieve a single payment capture by its ID and the ID of its parent
      * payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetCaptureRequestBuilder get() {
@@ -190,6 +211,9 @@ public class AsyncCaptures {
      * 
      * <p>Retrieve a single payment capture by its ID and the ID of its parent
      * payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetCaptureResponse>} - The async response
@@ -203,6 +227,9 @@ public class AsyncCaptures {
      * 
      * <p>Retrieve a single payment capture by its ID and the ID of its parent
      * payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

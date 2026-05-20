@@ -66,6 +66,9 @@ public class SalesInvoices {
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CreateSalesInvoiceRequestBuilder create() {
@@ -80,6 +83,9 @@ public class SalesInvoices {
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -96,6 +102,9 @@ public class SalesInvoices {
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param salesInvoiceRequest 
@@ -128,6 +137,9 @@ public class SalesInvoices {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListSalesInvoicesRequestBuilder list() {
@@ -144,6 +156,9 @@ public class SalesInvoices {
      * <p>Retrieve a list of all sales invoices created through the API.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -163,6 +178,9 @@ public class SalesInvoices {
      * <p>Retrieve a list of all sales invoices created through the API.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
@@ -203,6 +221,9 @@ public class SalesInvoices {
      * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetSalesInvoiceRequestBuilder get() {
@@ -217,6 +238,9 @@ public class SalesInvoices {
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Retrieve a single sales invoice by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return The response from the API call
@@ -235,6 +259,9 @@ public class SalesInvoices {
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Retrieve a single sales invoice by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -275,6 +302,9 @@ public class SalesInvoices {
      * `emailDetails`,
      * respectively).
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public UpdateSalesInvoiceRequestBuilder update() {
@@ -293,6 +323,9 @@ public class SalesInvoices {
      * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
      * `emailDetails`,
      * respectively).
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return The response from the API call
@@ -315,6 +348,9 @@ public class SalesInvoices {
      * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
      * `emailDetails`,
      * respectively).
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -348,6 +384,9 @@ public class SalesInvoices {
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public DeleteSalesInvoiceRequestBuilder delete() {
@@ -363,6 +402,9 @@ public class SalesInvoices {
      * 
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return The response from the API call
@@ -382,6 +424,9 @@ public class SalesInvoices {
      * 
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

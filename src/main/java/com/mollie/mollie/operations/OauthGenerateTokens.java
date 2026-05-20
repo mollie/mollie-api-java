@@ -12,9 +12,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.errors.APIException;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.OauthGenerateTokensRequest;
 import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
 import com.mollie.mollie.models.operations.OauthGenerateTokensResponseBody;
+import com.mollie.mollie.models.operations.OauthGenerateTokensSecurity;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -59,6 +61,7 @@ public class OauthGenerateTokens {
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
         final String baseUrl;
+        final OauthGenerateTokensSecurity security;
         final SecuritySource securitySource;
         final List<String> retryStatusCodes;
         final RetryConfig retryConfig;
@@ -66,8 +69,9 @@ public class OauthGenerateTokens {
         final Headers _headers;
 
         public Base(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Optional<Options> options, Headers _headers) {
+                SDKConfiguration sdkConfiguration, OauthGenerateTokensSecurity security,
+                Optional<String> serverURL, Optional<Options> options,
+                Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
             this.baseUrl = serverURL
@@ -75,10 +79,12 @@ public class OauthGenerateTokens {
                     .orElse(Utils.templateUrl(
                         OAUTH_GENERATE_TOKENS_SERVERS[0], 
                         Map.of()));
-            this.securitySource = this.sdkConfiguration.securitySource();
+            this.security = security;
+            // hooks will be passed method level security only
+            this.securitySource = SecuritySource.of(security);
             options
                     .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
-            this.retryStatusCodes = List.of("5xx");
+            this.retryStatusCodes = List.of("429", "5xx");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
                     .or(sdkConfiguration::retryConfig)
@@ -142,7 +148,7 @@ public class OauthGenerateTokens {
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "oAuth");
+            Utils.configureSecurity(req, security);
 
             return req.build();
         }
@@ -151,11 +157,13 @@ public class OauthGenerateTokens {
     public static class Sync extends Base
             implements RequestOperation<OauthGenerateTokensRequest, OauthGenerateTokensResponse> {
         public Sync(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Optional<Options> options, Headers _headers) {
+                SDKConfiguration sdkConfiguration, OauthGenerateTokensSecurity security,
+                Optional<String> serverURL, Optional<Options> options,
+                Headers _headers) {
             super(
-                  sdkConfiguration, serverURL,
-                  options, _headers);
+                  sdkConfiguration, security,
+                  serverURL, options,
+                  _headers);
         }
 
         private HttpRequest onBuildRequest(OauthGenerateTokensRequest request) throws Exception {
@@ -223,6 +231,13 @@ public class OauthGenerateTokens {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
+            if (Utils.statusCodeMatches(response.statusCode(), "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    throw ErrorResponse.from(response);
+                } else {
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
+                }
+            }
             if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
                 // no content
                 throw APIException.from("API error occurred", response);
@@ -239,12 +254,13 @@ public class OauthGenerateTokens {
         private final ScheduledExecutorService retryScheduler;
 
         public Async(
-                SDKConfiguration sdkConfiguration, Optional<String> serverURL,
-                Optional<Options> options, ScheduledExecutorService retryScheduler,
-                Headers _headers) {
+                SDKConfiguration sdkConfiguration, OauthGenerateTokensSecurity security,
+                Optional<String> serverURL, Optional<Options> options,
+                ScheduledExecutorService retryScheduler, Headers _headers) {
             super(
-                  sdkConfiguration, serverURL,
-                  options, _headers);
+                  sdkConfiguration, security,
+                  serverURL, options,
+                  _headers);
             this.retryScheduler = retryScheduler;
         }
 
@@ -302,6 +318,14 @@ public class OauthGenerateTokens {
                 if (Utils.contentTypeMatches(contentType, "application/json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<OauthGenerateTokensResponseBody>() {})
                             .thenApply(res::withObject);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    return ErrorResponse.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

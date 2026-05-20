@@ -22,22 +22,22 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.OauthGrantType;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
-import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
-                    .build())
             .build();
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
+                .security(OauthGenerateTokensSecurity.builder()
+                    .username("")
+                    .password("")
+                    .build())
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(OauthGenerateTokensRequestBody.builder()
                     .grantType(OauthGrantType.AUTHORIZATION_CODE)
@@ -56,11 +56,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            | Example                                                                                                |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `idempotencyKey`                                                                                       | *Optional\<String>*                                                                                    | :heavy_minus_sign:                                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                       | 123e4567-e89b-12d3-a456-426                                                                            |
-| `requestBody`                                                                                          | [Optional\<OauthGenerateTokensRequestBody>](../../models/operations/OauthGenerateTokensRequestBody.md) | :heavy_minus_sign:                                                                                     | N/A                                                                                                    |                                                                                                        |
-| `serverURL`                                                                                            | *String*                                                                                               | :heavy_minus_sign:                                                                                     | An optional server URL to use.                                                                         | http://localhost:8080                                                                                  |
+| Parameter                                                                                                                 | Type                                                                                                                      | Required                                                                                                                  | Description                                                                                                               | Example                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                | [com.mollie.mollie.models.operations.OauthGenerateTokensSecurity](../../models/operations/OauthGenerateTokensSecurity.md) | :heavy_check_mark:                                                                                                        | The security requirements to use for the request.                                                                         |                                                                                                                           |
+| `idempotencyKey`                                                                                                          | *Optional\<String>*                                                                                                       | :heavy_minus_sign:                                                                                                        | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                          | 123e4567-e89b-12d3-a456-426                                                                                               |
+| `requestBody`                                                                                                             | [Optional\<OauthGenerateTokensRequestBody>](../../models/operations/OauthGenerateTokensRequestBody.md)                    | :heavy_minus_sign:                                                                                                        | N/A                                                                                                                       |                                                                                                                           |
+| `serverURL`                                                                                                               | *String*                                                                                                                  | :heavy_minus_sign:                                                                                                        | An optional server URL to use.                                                                                            | http://localhost:8080                                                                                                     |
 
 ### Response
 
@@ -68,9 +69,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 429                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## revoke
 
@@ -88,22 +90,22 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.OauthTokenTypeHint;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.operations.OauthRevokeTokensRequestBody;
-import com.mollie.mollie.models.operations.OauthRevokeTokensResponse;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
-                    .build())
             .build();
 
         OauthRevokeTokensResponse res = sdk.oauth().revoke()
+                .security(OauthRevokeTokensSecurity.builder()
+                    .username("")
+                    .password("")
+                    .build())
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(OauthRevokeTokensRequestBody.builder()
                     .tokenTypeHint(OauthTokenTypeHint.ACCESS_TOKEN)
@@ -118,11 +120,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        | Example                                                                                            |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `idempotencyKey`                                                                                   | *Optional\<String>*                                                                                | :heavy_minus_sign:                                                                                 | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                   | 123e4567-e89b-12d3-a456-426                                                                        |
-| `requestBody`                                                                                      | [Optional\<OauthRevokeTokensRequestBody>](../../models/operations/OauthRevokeTokensRequestBody.md) | :heavy_minus_sign:                                                                                 | N/A                                                                                                |                                                                                                    |
-| `serverURL`                                                                                        | *String*                                                                                           | :heavy_minus_sign:                                                                                 | An optional server URL to use.                                                                     | http://localhost:8080                                                                              |
+| Parameter                                                                                                             | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           | Example                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                            | [com.mollie.mollie.models.operations.OauthRevokeTokensSecurity](../../models/operations/OauthRevokeTokensSecurity.md) | :heavy_check_mark:                                                                                                    | The security requirements to use for the request.                                                                     |                                                                                                                       |
+| `idempotencyKey`                                                                                                      | *Optional\<String>*                                                                                                   | :heavy_minus_sign:                                                                                                    | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                      | 123e4567-e89b-12d3-a456-426                                                                                           |
+| `requestBody`                                                                                                         | [Optional\<OauthRevokeTokensRequestBody>](../../models/operations/OauthRevokeTokensRequestBody.md)                    | :heavy_minus_sign:                                                                                                    | N/A                                                                                                                   |                                                                                                                       |
+| `serverURL`                                                                                                           | *String*                                                                                                              | :heavy_minus_sign:                                                                                                    | An optional server URL to use.                                                                                        | http://localhost:8080                                                                                                 |
 
 ### Response
 
@@ -130,6 +133,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 429                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

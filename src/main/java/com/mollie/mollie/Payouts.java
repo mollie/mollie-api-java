@@ -91,6 +91,9 @@ public class Payouts {
      * - One of the organization's balances is below the negative balance threshold.
      * - The payout destination (bank account) is invalid or not configured.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CreatePayoutRequestBuilder create() {
@@ -138,6 +141,9 @@ public class Payouts {
      * - The balance has queued refunds.
      * - One of the organization's balances is below the negative balance threshold.
      * - The payout destination (bank account) is invalid or not configured.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param payoutRequest 
      * @return The response from the API call
@@ -189,6 +195,9 @@ public class Payouts {
      * - One of the organization's balances is below the negative balance threshold.
      * - The payout destination (bank account) is invalid or not configured.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param payoutRequest 
      * @param options additional options
@@ -222,6 +231,9 @@ public class Payouts {
      * through
      * the full result set.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListPayoutsRequestBuilder list() {
@@ -240,6 +252,9 @@ public class Payouts {
      * <p>The results are paginated. Use the `from` query parameter together with `_links.next` to iterate
      * through
      * the full result set.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -262,6 +277,9 @@ public class Payouts {
      * through
      * the full result set.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
@@ -278,6 +296,9 @@ public class Payouts {
      * 
      * <p>Retrieve a single payout by its ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetPayoutRequestBuilder get() {
@@ -288,6 +309,9 @@ public class Payouts {
      * Get payout
      * 
      * <p>Retrieve a single payout by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param payoutId Provide the ID of the payout.
      * @return The response from the API call
@@ -302,6 +326,9 @@ public class Payouts {
      * Get payout
      * 
      * <p>Retrieve a single payout by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param payoutId Provide the ID of the payout.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -338,6 +365,9 @@ public class Payouts {
      * 
      * <p>The canceled payout object is returned with the status set to `canceled`.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CancelPayoutRequestBuilder cancel() {
@@ -352,6 +382,9 @@ public class Payouts {
      * to `initiated`, it is too late to cancel.
      * 
      * <p>The canceled payout object is returned with the status set to `canceled`.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param payoutId Provide the ID of the payout.
      * @return The response from the API call
@@ -370,6 +403,9 @@ public class Payouts {
      * to `initiated`, it is too late to cancel.
      * 
      * <p>The canceled payout object is returned with the status set to `canceled`.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param payoutId Provide the ID of the payout.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query

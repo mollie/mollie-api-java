@@ -10,10 +10,12 @@ import com.mollie.mollie.models.operations.OauthGenerateTokensRequest;
 import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
 import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBuilder;
 import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
+import com.mollie.mollie.models.operations.OauthGenerateTokensSecurity;
 import com.mollie.mollie.models.operations.OauthRevokeTokensRequest;
 import com.mollie.mollie.models.operations.OauthRevokeTokensRequestBody;
 import com.mollie.mollie.models.operations.OauthRevokeTokensRequestBuilder;
 import com.mollie.mollie.models.operations.OauthRevokeTokensResponse;
+import com.mollie.mollie.models.operations.OauthRevokeTokensSecurity;
 import com.mollie.mollie.operations.OauthGenerateTokens;
 import com.mollie.mollie.operations.OauthRevokeTokens;
 import com.mollie.mollie.utils.Headers;
@@ -51,9 +53,6 @@ public class Oauth {
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
-     * 
      * @return The call builder
      */
     public OauthGenerateTokensRequestBuilder generate() {
@@ -70,15 +69,13 @@ public class Oauth {
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
-     * 
+     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public OauthGenerateTokensResponse generateDirect() {
-        return generate(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public OauthGenerateTokensResponse generate(OauthGenerateTokensSecurity security) {
+        return generate(security, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -91,9 +88,7 @@ public class Oauth {
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
-     * 
+     * @param security The security details to use for authentication.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param serverURL Overrides the server URL.
@@ -102,8 +97,9 @@ public class Oauth {
      * @throws RuntimeException subclass if the API call fails
      */
     public OauthGenerateTokensResponse generate(
-            Optional<String> idempotencyKey, Optional<? extends OauthGenerateTokensRequestBody> requestBody,
-            Optional<String> serverURL, Optional<Options> options) {
+            OauthGenerateTokensSecurity security, Optional<String> idempotencyKey,
+            Optional<? extends OauthGenerateTokensRequestBody> requestBody, Optional<String> serverURL,
+            Optional<Options> options) {
         OauthGenerateTokensRequest request =
             OauthGenerateTokensRequest
                 .builder()
@@ -112,8 +108,8 @@ public class Oauth {
                 .build();
         RequestOperation<OauthGenerateTokensRequest, OauthGenerateTokensResponse> operation
               = new OauthGenerateTokens.Sync(
-                                    sdkConfiguration, serverURL, options,
-                                    _headers);
+                                    sdkConfiguration, security, serverURL,
+                                    options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -125,9 +121,6 @@ public class Oauth {
      * <p>Revoking a refresh token revokes all access tokens that were created using the same authorization.
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
-     * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
      * 
      * @return The call builder
      */
@@ -144,15 +137,13 @@ public class Oauth {
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
-     * 
+     * @param security The security details to use for authentication.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public OauthRevokeTokensResponse revokeDirect() {
-        return revoke(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public OauthRevokeTokensResponse revoke(OauthRevokeTokensSecurity security) {
+        return revoke(security, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -164,9 +155,7 @@ public class Oauth {
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
-     * 
+     * @param security The security details to use for authentication.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param serverURL Overrides the server URL.
@@ -175,8 +164,9 @@ public class Oauth {
      * @throws RuntimeException subclass if the API call fails
      */
     public OauthRevokeTokensResponse revoke(
-            Optional<String> idempotencyKey, Optional<? extends OauthRevokeTokensRequestBody> requestBody,
-            Optional<String> serverURL, Optional<Options> options) {
+            OauthRevokeTokensSecurity security, Optional<String> idempotencyKey,
+            Optional<? extends OauthRevokeTokensRequestBody> requestBody, Optional<String> serverURL,
+            Optional<Options> options) {
         OauthRevokeTokensRequest request =
             OauthRevokeTokensRequest
                 .builder()
@@ -185,8 +175,8 @@ public class Oauth {
                 .build();
         RequestOperation<OauthRevokeTokensRequest, OauthRevokeTokensResponse> operation
               = new OauthRevokeTokens.Sync(
-                                    sdkConfiguration, serverURL, options,
-                                    _headers);
+                                    sdkConfiguration, security, serverURL,
+                                    options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

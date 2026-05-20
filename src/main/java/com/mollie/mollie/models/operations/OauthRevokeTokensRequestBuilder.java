@@ -17,6 +17,7 @@ import java.util.Optional;
 
 public class OauthRevokeTokensRequestBuilder {
 
+    private OauthRevokeTokensSecurity security;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends OauthRevokeTokensRequestBody> requestBody = Optional.empty();
     private Optional<String> serverURL = Optional.empty();
@@ -26,6 +27,12 @@ public class OauthRevokeTokensRequestBuilder {
 
     public OauthRevokeTokensRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+
+    public OauthRevokeTokensRequestBuilder security(OauthRevokeTokensSecurity security) {
+        Utils.checkNotNull(security, "security");
+        this.security = security;
+        return this;
     }
                 
     public OauthRevokeTokensRequestBuilder idempotencyKey(String idempotencyKey) {
@@ -92,8 +99,8 @@ public class OauthRevokeTokensRequestBuilder {
 
         RequestOperation<OauthRevokeTokensRequest, OauthRevokeTokensResponse> operation
               = new OauthRevokeTokens.Sync(
-                                    sdkConfiguration, serverURL, options,
-                                    _headers);
+                                    sdkConfiguration, security, serverURL,
+                                    options, _headers);
         OauthRevokeTokensRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

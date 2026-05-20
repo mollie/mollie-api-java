@@ -49,6 +49,9 @@ public class AsyncTerminals {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListTerminalsRequestBuilder list() {
@@ -61,6 +64,9 @@ public class AsyncTerminals {
      * <p>Retrieve a list of all physical point-of-sale devices.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListTerminalsResponse>} - The async response
@@ -75,6 +81,9 @@ public class AsyncTerminals {
      * <p>Retrieve a list of all physical point-of-sale devices.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -95,6 +104,9 @@ public class AsyncTerminals {
      * 
      * <p>Retrieve a single terminal by its ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetTerminalRequestBuilder get() {
@@ -105,6 +117,9 @@ public class AsyncTerminals {
      * Get terminal
      * 
      * <p>Retrieve a single terminal by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param terminalId Provide the ID of the related terminal.
      * @return {@code CompletableFuture<GetTerminalResponse>} - The async response
@@ -119,6 +134,9 @@ public class AsyncTerminals {
      * Get terminal
      * 
      * <p>Retrieve a single terminal by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param terminalId Provide the ID of the related terminal.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query

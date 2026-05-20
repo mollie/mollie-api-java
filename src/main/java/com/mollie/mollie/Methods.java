@@ -68,6 +68,9 @@ public class Methods {
      * information about
      * a non-online payment method, you can use the [Get payment method endpoint](get-method).
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListMethodsRequestBuilder list() {
@@ -99,6 +102,9 @@ public class Methods {
      * <p>ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the
      * information about
      * a non-online payment method, you can use the [Get payment method endpoint](get-method).
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -134,6 +140,9 @@ public class Methods {
      * information about
      * a non-online payment method, you can use the [Get payment method endpoint](get-method).
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
@@ -159,6 +168,9 @@ public class Methods {
      * information about
      * a non-online payment method, you can use the [Get payment method endpoint](get-method).
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListAllMethodsRequestBuilder all() {
@@ -178,6 +190,9 @@ public class Methods {
      * <p>ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the
      * information about
      * a non-online payment method, you can use the [Get payment method endpoint](get-method).
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -200,6 +215,9 @@ public class Methods {
      * <p>ℹ️ **Note:** This endpoint only returns **online** payment methods. If you wish to retrieve the
      * information about
      * a non-online payment method, you can use the [Get payment method endpoint](get-method).
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -229,6 +247,9 @@ public class Methods {
      * <p>Additionally, it is possible to check if wallet methods such as Apple Pay
      * are enabled by passing the wallet ID (`applepay`) as the method ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetMethodRequestBuilder get() {
@@ -251,6 +272,9 @@ public class Methods {
      * 
      * <p>Additionally, it is possible to check if wallet methods such as Apple Pay
      * are enabled by passing the wallet ID (`applepay`) as the method ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -276,6 +300,9 @@ public class Methods {
      * 
      * <p>Additionally, it is possible to check if wallet methods such as Apple Pay
      * are enabled by passing the wallet ID (`applepay`) as the method ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

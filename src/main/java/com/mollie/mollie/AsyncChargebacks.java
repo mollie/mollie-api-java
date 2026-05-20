@@ -51,6 +51,9 @@ public class AsyncChargebacks {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListChargebacksRequestBuilder list() {
@@ -63,6 +66,9 @@ public class AsyncChargebacks {
      * <p>Retrieve the chargebacks initiated for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListChargebacksResponse>} - The async response
@@ -77,6 +83,9 @@ public class AsyncChargebacks {
      * <p>Retrieve the chargebacks initiated for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -97,6 +106,9 @@ public class AsyncChargebacks {
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetChargebackRequestBuilder get() {
@@ -107,6 +119,9 @@ public class AsyncChargebacks {
      * Get payment chargeback
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetChargebackResponse>} - The async response
@@ -119,6 +134,9 @@ public class AsyncChargebacks {
      * Get payment chargeback
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -141,6 +159,9 @@ public class AsyncChargebacks {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListAllChargebacksRequestBuilder all() {
@@ -153,6 +174,9 @@ public class AsyncChargebacks {
      * <p>Retrieve all chargebacks initiated for all your payments.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListAllChargebacksResponse>} - The async response
@@ -167,6 +191,9 @@ public class AsyncChargebacks {
      * <p>Retrieve all chargebacks initiated for all your payments.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

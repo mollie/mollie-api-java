@@ -49,6 +49,9 @@ public class Chargebacks {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListChargebacksRequestBuilder list() {
@@ -61,6 +64,9 @@ public class Chargebacks {
      * <p>Retrieve the chargebacks initiated for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -76,6 +82,9 @@ public class Chargebacks {
      * <p>Retrieve the chargebacks initiated for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -93,6 +102,9 @@ public class Chargebacks {
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetChargebackRequestBuilder get() {
@@ -103,6 +115,9 @@ public class Chargebacks {
      * Get payment chargeback
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -116,6 +131,9 @@ public class Chargebacks {
      * Get payment chargeback
      * 
      * <p>Retrieve a single payment chargeback by its ID and the ID of its parent payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -135,6 +153,9 @@ public class Chargebacks {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListAllChargebacksRequestBuilder all() {
@@ -147,6 +168,9 @@ public class Chargebacks {
      * <p>Retrieve all chargebacks initiated for all your payments.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -162,6 +186,9 @@ public class Chargebacks {
      * <p>Retrieve all chargebacks initiated for all your payments.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

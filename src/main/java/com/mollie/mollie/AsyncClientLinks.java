@@ -107,8 +107,7 @@ public class AsyncClientLinks {
      * &gt; A client link must be used within 30 days of creation. After that period, it will expire and
      * you will need to create a new client link.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @return The async call builder
      */
@@ -185,8 +184,7 @@ public class AsyncClientLinks {
      * &gt; A client link must be used within 30 days of creation. After that period, it will expire and
      * you will need to create a new client link.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @return {@code CompletableFuture<CreateClientLinkResponse>} - The async response
      */
@@ -263,8 +261,7 @@ public class AsyncClientLinks {
      * &gt; A client link must be used within 30 days of creation. After that period, it will expire and
      * you will need to create a new client link.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param clientLinkRequest 

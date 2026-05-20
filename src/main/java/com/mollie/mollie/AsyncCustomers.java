@@ -76,6 +76,9 @@ public class AsyncCustomers {
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CreateCustomerRequestBuilder create() {
@@ -91,6 +94,9 @@ public class AsyncCustomers {
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return {@code CompletableFuture<CreateCustomerResponse>} - The async response
      */
     public CompletableFuture<CreateCustomerResponse> createDirect() {
@@ -105,6 +111,9 @@ public class AsyncCustomers {
      * to this customer object, which simplifies management of recurring payments.
      * 
      * <p>Once registered, customers will also appear in your Mollie dashboard.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param entityCustomer 
@@ -136,6 +145,9 @@ public class AsyncCustomers {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListCustomersRequestBuilder list() {
@@ -148,6 +160,9 @@ public class AsyncCustomers {
      * <p>Retrieve a list of all customers.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListCustomersResponse>} - The async response
@@ -162,6 +177,9 @@ public class AsyncCustomers {
      * <p>Retrieve a list of all customers.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -182,6 +200,9 @@ public class AsyncCustomers {
      * 
      * <p>Retrieve a single customer by its ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetCustomerRequestBuilder get() {
@@ -192,6 +213,9 @@ public class AsyncCustomers {
      * Get customer
      * 
      * <p>Retrieve a single customer by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return {@code CompletableFuture<GetCustomerResponse>} - The async response
@@ -206,6 +230,9 @@ public class AsyncCustomers {
      * Get customer
      * 
      * <p>Retrieve a single customer by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
@@ -247,6 +274,9 @@ public class AsyncCustomers {
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
      * endpoint.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public UpdateCustomerRequestBuilder update() {
@@ -260,6 +290,9 @@ public class AsyncCustomers {
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
      * endpoint.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return {@code CompletableFuture<UpdateCustomerResponse>} - The async response
@@ -277,6 +310,9 @@ public class AsyncCustomers {
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create customer](create-customer)
      * endpoint.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -309,6 +345,9 @@ public class AsyncCustomers {
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
      * well.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public DeleteCustomerRequestBuilder delete() {
@@ -320,6 +359,9 @@ public class AsyncCustomers {
      * 
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
      * well.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return {@code CompletableFuture<DeleteCustomerResponse>} - The async response
@@ -335,6 +377,9 @@ public class AsyncCustomers {
      * 
      * <p>Delete a customer. All mandates and subscriptions created for this customer will be canceled as
      * well.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -378,6 +423,9 @@ public class AsyncCustomers {
      * `customerId`
      * parameter predefined.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CreateCustomerPaymentRequestBuilder createPayment() {
@@ -400,6 +448,9 @@ public class AsyncCustomers {
      * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the
      * `customerId`
      * parameter predefined.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return {@code CompletableFuture<CreateCustomerPaymentResponse>} - The async response
@@ -426,6 +477,9 @@ public class AsyncCustomers {
      * <p>This endpoint is effectively an alias of the [Create payment endpoint](create-payment) with the
      * `customerId`
      * parameter predefined.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -457,6 +511,9 @@ public class AsyncCustomers {
      * 
      * <p>Retrieve all payments linked to the customer.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListCustomerPaymentsRequestBuilder listPayments() {
@@ -467,6 +524,9 @@ public class AsyncCustomers {
      * List customer payments
      * 
      * <p>Retrieve all payments linked to the customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListCustomerPaymentsResponse>} - The async response
@@ -479,6 +539,9 @@ public class AsyncCustomers {
      * List customer payments
      * 
      * <p>Retrieve all payments linked to the customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

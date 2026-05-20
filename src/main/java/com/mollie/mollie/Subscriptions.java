@@ -88,6 +88,9 @@ public class Subscriptions {
      * `startDate="2018-04-30"`
      * Your customer will be charged €10 on the last day of each month, starting in April 2018.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CreateSubscriptionRequestBuilder create() {
@@ -118,6 +121,9 @@ public class Subscriptions {
      * <p>`amount[currency]="EUR"` `amount[value]="10.00"` `interval="1 month"`
      * `startDate="2018-04-30"`
      * Your customer will be charged €10 on the last day of each month, starting in April 2018.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @return The response from the API call
@@ -153,6 +159,9 @@ public class Subscriptions {
      * `startDate="2018-04-30"`
      * Your customer will be charged €10 on the last day of each month, starting in April 2018.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @param customerId Provide the ID of the related customer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param subscriptionRequest 
@@ -182,6 +191,9 @@ public class Subscriptions {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListSubscriptionsRequestBuilder list() {
@@ -194,6 +206,9 @@ public class Subscriptions {
      * <p>Retrieve all subscriptions of a customer.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -209,6 +224,9 @@ public class Subscriptions {
      * <p>Retrieve all subscriptions of a customer.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -226,6 +244,9 @@ public class Subscriptions {
      * 
      * <p>Retrieve a single subscription by its ID and the ID of its parent customer.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetSubscriptionRequestBuilder get() {
@@ -236,6 +257,9 @@ public class Subscriptions {
      * Get subscription
      * 
      * <p>Retrieve a single subscription by its ID and the ID of its parent customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -251,6 +275,9 @@ public class Subscriptions {
      * Get subscription
      * 
      * <p>Retrieve a single subscription by its ID and the ID of its parent customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -291,6 +318,9 @@ public class Subscriptions {
      * <p>For an in-depth explanation of each parameter, refer to the [Create
      * subscription](create-subscription) endpoint.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public UpdateSubscriptionRequestBuilder update() {
@@ -306,6 +336,9 @@ public class Subscriptions {
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create
      * subscription](create-subscription) endpoint.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -326,6 +359,9 @@ public class Subscriptions {
      * 
      * <p>For an in-depth explanation of each parameter, refer to the [Create
      * subscription](create-subscription) endpoint.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -358,6 +394,9 @@ public class Subscriptions {
      * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the
      * customer.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CancelSubscriptionRequestBuilder cancel() {
@@ -369,6 +408,9 @@ public class Subscriptions {
      * 
      * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the
      * customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -385,6 +427,9 @@ public class Subscriptions {
      * 
      * <p>Cancel an existing subscription. Canceling a subscription has no effect on the mandates of the
      * customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
      * @param subscriptionId Provide the ID of the related subscription.
@@ -418,6 +463,9 @@ public class Subscriptions {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListAllSubscriptionsRequestBuilder all() {
@@ -430,6 +478,9 @@ public class Subscriptions {
      * <p>Retrieve all subscriptions initiated across all your customers.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -445,6 +496,9 @@ public class Subscriptions {
      * <p>Retrieve all subscriptions initiated across all your customers.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -464,6 +518,9 @@ public class Subscriptions {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListSubscriptionPaymentsRequestBuilder listPayments() {
@@ -476,6 +533,9 @@ public class Subscriptions {
      * <p>Retrieve all payments of a specific subscription.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -491,6 +551,9 @@ public class Subscriptions {
      * <p>Retrieve all payments of a specific subscription.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

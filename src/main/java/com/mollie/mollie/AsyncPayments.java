@@ -79,6 +79,9 @@ public class AsyncPayments {
      * refer to the
      * guide on [method-specific parameters](extra-payment-parameters).
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CreatePaymentRequestBuilder create() {
@@ -101,6 +104,9 @@ public class AsyncPayments {
      * additional parameters may be available for the payment method that are not listed below. Please
      * refer to the
      * guide on [method-specific parameters](extra-payment-parameters).
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @return {@code CompletableFuture<CreatePaymentResponse>} - The async response
      */
@@ -126,6 +132,9 @@ public class AsyncPayments {
      * additional parameters may be available for the payment method that are not listed below. Please
      * refer to the
      * guide on [method-specific parameters](extra-payment-parameters).
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param include This endpoint allows you to include additional information via the `include` query string parameter.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -159,6 +168,9 @@ public class AsyncPayments {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListPaymentsRequestBuilder list() {
@@ -171,6 +183,9 @@ public class AsyncPayments {
      * <p>Retrieve all payments created with the current website profile.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListPaymentsResponse>} - The async response
@@ -185,6 +200,9 @@ public class AsyncPayments {
      * <p>Retrieve all payments created with the current website profile.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -205,6 +223,9 @@ public class AsyncPayments {
      * 
      * <p>Retrieve a single payment object by its payment ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetPaymentRequestBuilder get() {
@@ -215,6 +236,9 @@ public class AsyncPayments {
      * Get payment
      * 
      * <p>Retrieve a single payment object by its payment ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetPaymentResponse>} - The async response
@@ -227,6 +251,9 @@ public class AsyncPayments {
      * Get payment
      * 
      * <p>Retrieve a single payment object by its payment ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -249,6 +276,9 @@ public class AsyncPayments {
      * 
      * <p>Updating the payment details will not result in a webhook call.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public UpdatePaymentRequestBuilder update() {
@@ -261,6 +291,9 @@ public class AsyncPayments {
      * <p>Certain details of an existing payment can be updated.
      * 
      * <p>Updating the payment details will not result in a webhook call.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return {@code CompletableFuture<UpdatePaymentResponse>} - The async response
@@ -277,6 +310,9 @@ public class AsyncPayments {
      * <p>Certain details of an existing payment can be updated.
      * 
      * <p>Updating the payment details will not result in a webhook call.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -315,6 +351,9 @@ public class AsyncPayments {
      * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be
      * canceled.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CancelPaymentRequestBuilder cancel() {
@@ -332,6 +371,9 @@ public class AsyncPayments {
      * 
      * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be
      * canceled.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return {@code CompletableFuture<CancelPaymentResponse>} - The async response
@@ -353,6 +395,9 @@ public class AsyncPayments {
      * 
      * <p>The `isCancelable` property on the [Payment object](get-payment) will indicate if the payment can be
      * canceled.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -394,6 +439,9 @@ public class AsyncPayments {
      * captures.
      * If there is a successful capture, the payment will transition to `paid`.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ReleaseAuthorizationRequestBuilder releaseAuthorization() {
@@ -414,6 +462,9 @@ public class AsyncPayments {
      * <p>If the request does succeed, the payment status will change to `canceled` for payments without
      * captures.
      * If there is a successful capture, the payment will transition to `paid`.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return {@code CompletableFuture<ReleaseAuthorizationResponse>} - The async response
@@ -438,6 +489,9 @@ public class AsyncPayments {
      * <p>If the request does succeed, the payment status will change to `canceled` for payments without
      * captures.
      * If there is a successful capture, the payment will transition to `paid`.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

@@ -69,8 +69,7 @@ public class VerifyPayee {
      * | Any other name                         | Default: name matches the bank records         | `match`
      * | —              |
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @return The call builder
      */
@@ -112,8 +111,7 @@ public class VerifyPayee {
      * | Any other name                         | Default: name matches the bank records         | `match`
      * | —              |
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -156,8 +154,7 @@ public class VerifyPayee {
      * | Any other name                         | Default: name matches the bank records         | `match`
      * | —              |
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param verificationOfPayeeRequest The request body for performing a Verification of Payee (VoP) check. VoP allows you to verify the

@@ -71,6 +71,9 @@ public class PaymentLinks {
      * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
      * payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CreatePaymentLinkRequestBuilder create() {
@@ -86,6 +89,9 @@ public class PaymentLinks {
      * where they can
      * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
      * payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -103,6 +109,9 @@ public class PaymentLinks {
      * where they can
      * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
      * payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
@@ -131,6 +140,9 @@ public class PaymentLinks {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListPaymentLinksRequestBuilder list() {
@@ -143,6 +155,9 @@ public class PaymentLinks {
      * <p>Retrieve a list of all payment links.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -158,6 +173,9 @@ public class PaymentLinks {
      * <p>Retrieve a list of all payment links.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
@@ -194,6 +212,9 @@ public class PaymentLinks {
      * 
      * <p>Retrieve a single payment link by its ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetPaymentLinkRequestBuilder get() {
@@ -204,6 +225,9 @@ public class PaymentLinks {
      * Get payment link
      * 
      * <p>Retrieve a single payment link by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return The response from the API call
@@ -218,6 +242,9 @@ public class PaymentLinks {
      * Get payment link
      * 
      * <p>Retrieve a single payment link by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -250,6 +277,9 @@ public class PaymentLinks {
      * 
      * <p>Certain details of an existing payment link can be updated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public UpdatePaymentLinkRequestBuilder update() {
@@ -260,6 +290,9 @@ public class PaymentLinks {
      * Update payment link
      * 
      * <p>Certain details of an existing payment link can be updated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return The response from the API call
@@ -274,6 +307,9 @@ public class PaymentLinks {
      * Update payment link
      * 
      * <p>Certain details of an existing payment link can be updated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -310,6 +346,9 @@ public class PaymentLinks {
      * the
      * [Update payment link](update-payment-link) endpoint instead.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public DeletePaymentLinkRequestBuilder delete() {
@@ -328,6 +367,9 @@ public class PaymentLinks {
      * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on
      * the
      * [Update payment link](update-payment-link) endpoint instead.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return The response from the API call
@@ -350,6 +392,9 @@ public class PaymentLinks {
      * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on
      * the
      * [Update payment link](update-payment-link) endpoint instead.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -380,6 +425,9 @@ public class PaymentLinks {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetPaymentLinkPaymentsRequestBuilder listPayments() {
@@ -392,6 +440,9 @@ public class PaymentLinks {
      * <p>Retrieve the list of payments for a specific payment link.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -407,6 +458,9 @@ public class PaymentLinks {
      * <p>Retrieve the list of payments for a specific payment link.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

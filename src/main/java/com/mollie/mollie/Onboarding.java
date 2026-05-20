@@ -45,8 +45,8 @@ public class Onboarding {
      * 
      * <p>Retrieve the onboarding status of the currently authenticated organization.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -59,8 +59,8 @@ public class Onboarding {
      * 
      * <p>Retrieve the onboarding status of the currently authenticated organization.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -74,8 +74,8 @@ public class Onboarding {
      * 
      * <p>Retrieve the onboarding status of the currently authenticated organization.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
@@ -105,8 +105,8 @@ public class Onboarding {
      * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -126,8 +126,8 @@ public class Onboarding {
      * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -148,8 +148,8 @@ public class Onboarding {
      * onboarding status is `needs-data`.
      * Information that the merchant has entered in their dashboard will not be overwritten.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 

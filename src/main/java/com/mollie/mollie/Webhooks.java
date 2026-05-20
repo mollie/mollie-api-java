@@ -66,8 +66,8 @@ public class Webhooks {
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
      * webhooks settings section of the Dashboard.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -81,8 +81,8 @@ public class Webhooks {
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
      * webhooks settings section of the Dashboard.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -97,8 +97,8 @@ public class Webhooks {
      * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
      * webhooks settings section of the Dashboard.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
@@ -126,8 +126,8 @@ public class Webhooks {
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
      * array will be empty. This request should never throw an error.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -141,8 +141,8 @@ public class Webhooks {
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
      * array will be empty. This request should never throw an error.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -158,8 +158,8 @@ public class Webhooks {
      * <p>Returns a paginated list of your webhooks. If no webhook endpoints are available, the resulting
      * array will be empty. This request should never throw an error.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -177,8 +177,8 @@ public class Webhooks {
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -191,8 +191,8 @@ public class Webhooks {
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param webhookId Provide the ID of the related webhook.
      * @return The response from the API call
@@ -208,8 +208,8 @@ public class Webhooks {
      * 
      * <p>Updates the webhook. You may edit the name, url and the list of subscribed event types.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param webhookId Provide the ID of the related webhook.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -238,8 +238,8 @@ public class Webhooks {
      * 
      * <p>Retrieve a single webhook object by its ID.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -252,8 +252,8 @@ public class Webhooks {
      * 
      * <p>Retrieve a single webhook object by its ID.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param webhookId Provide the ID of the related webhook.
      * @return The response from the API call
@@ -269,8 +269,8 @@ public class Webhooks {
      * 
      * <p>Retrieve a single webhook object by its ID.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param webhookId Provide the ID of the related webhook.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -303,8 +303,8 @@ public class Webhooks {
      * 
      * <p>Delete a single webhook object by its webhook ID.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -317,8 +317,8 @@ public class Webhooks {
      * 
      * <p>Delete a single webhook object by its webhook ID.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param webhookId Provide the ID of the related webhook.
      * @return The response from the API call
@@ -334,8 +334,8 @@ public class Webhooks {
      * 
      * <p>Delete a single webhook object by its webhook ID.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param webhookId Provide the ID of the related webhook.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -364,8 +364,8 @@ public class Webhooks {
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -378,8 +378,8 @@ public class Webhooks {
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param webhookId Provide the ID of the related webhook.
      * @return The response from the API call
@@ -395,8 +395,8 @@ public class Webhooks {
      * 
      * <p>Sends a test event to the webhook to verify the endpoint is working as expected.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param webhookId Provide the ID of the related webhook.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
