@@ -195,7 +195,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/ErrorResponse | 400, 429                    | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## all
@@ -407,7 +407,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/ErrorResponse | 400, 429                    | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
@@ -484,5 +484,5 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400, 404                    | application/hal+json        |
+| models/errors/ErrorResponse | 400, 404, 429               | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.errors.APIException;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataRequest;
 import com.mollie.mollie.models.operations.SubmitOnboardingDataResponse;
 import com.mollie.mollie.utils.AsyncRetries;
@@ -65,7 +66,7 @@ public class SubmitOnboardingData {
             this.securitySource = this.sdkConfiguration.securitySource();
             options
                     .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
-            this.retryStatusCodes = List.of("5xx");
+            this.retryStatusCodes = List.of("429", "5xx");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
                     .or(sdkConfiguration::retryConfig)
@@ -125,7 +126,7 @@ public class SubmitOnboardingData {
                     "json",
                     false);
             req.setBody(Optional.ofNullable(serializedRequestBody));
-            req.addHeader("Accept", "*/*")
+            req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
@@ -207,6 +208,13 @@ public class SubmitOnboardingData {
                 // no content
                 return res;
             }
+            if (Utils.statusCodeMatches(response.statusCode(), "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    throw ErrorResponse.from(response);
+                } else {
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
+                }
+            }
             if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
                 // no content
                 throw APIException.from("API error occurred", response);
@@ -284,6 +292,14 @@ public class SubmitOnboardingData {
             if (Utils.statusCodeMatches(response.statusCode(), "204")) {
                 // no content
                 return CompletableFuture.completedFuture(res);
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    return ErrorResponse.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
             }
             if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
                 // no content

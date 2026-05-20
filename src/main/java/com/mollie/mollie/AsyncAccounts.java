@@ -57,8 +57,7 @@ public class AsyncAccounts {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @return The async call builder
      */
@@ -73,8 +72,7 @@ public class AsyncAccounts {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListBusinessAccountsResponse>} - The async response
@@ -90,8 +88,7 @@ public class AsyncAccounts {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -114,8 +111,7 @@ public class AsyncAccounts {
      * status,
      * balance, and account details.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @return The async call builder
      */
@@ -130,8 +126,7 @@ public class AsyncAccounts {
      * status,
      * balance, and account details.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @param businessAccountId Provide the ID of the related business account.
      * @return {@code CompletableFuture<GetBusinessAccountResponse>} - The async response
@@ -149,8 +144,7 @@ public class AsyncAccounts {
      * status,
      * balance, and account details.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @param businessAccountId Provide the ID of the related business account.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -188,8 +182,7 @@ public class AsyncAccounts {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @return The async call builder
      */
@@ -204,8 +197,7 @@ public class AsyncAccounts {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListBusinessAccountTransactionsResponse>} - The async response
@@ -221,8 +213,7 @@ public class AsyncAccounts {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -244,8 +235,7 @@ public class AsyncAccounts {
      * <p>Retrieve a single transaction object by its transaction ID. This allows you to check the details,
      * amount, counterparty, and balance impact of a specific transaction.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @return The async call builder
      */
@@ -259,8 +249,7 @@ public class AsyncAccounts {
      * <p>Retrieve a single transaction object by its transaction ID. This allows you to check the details,
      * amount, counterparty, and balance impact of a specific transaction.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @param businessAccountId Provide the ID of the related business account.
      * @param transactionId Provide the ID of the related transaction.
@@ -278,8 +267,7 @@ public class AsyncAccounts {
      * <p>Retrieve a single transaction object by its transaction ID. This allows you to check the details,
      * amount, counterparty, and balance impact of a specific transaction.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
+     * <p>If set, this operation will use Security#oAuth from the global security.
      * 
      * @param businessAccountId Provide the ID of the related business account.
      * @param transactionId Provide the ID of the related transaction.

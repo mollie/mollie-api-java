@@ -17,6 +17,7 @@ import java.util.Optional;
 
 public class OauthGenerateTokensRequestBuilder {
 
+    private OauthGenerateTokensSecurity security;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends OauthGenerateTokensRequestBody> requestBody = Optional.empty();
     private Optional<String> serverURL = Optional.empty();
@@ -26,6 +27,12 @@ public class OauthGenerateTokensRequestBuilder {
 
     public OauthGenerateTokensRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+
+    public OauthGenerateTokensRequestBuilder security(OauthGenerateTokensSecurity security) {
+        Utils.checkNotNull(security, "security");
+        this.security = security;
+        return this;
     }
                 
     public OauthGenerateTokensRequestBuilder idempotencyKey(String idempotencyKey) {
@@ -92,8 +99,8 @@ public class OauthGenerateTokensRequestBuilder {
 
         RequestOperation<OauthGenerateTokensRequest, OauthGenerateTokensResponse> operation
               = new OauthGenerateTokens.Sync(
-                                    sdkConfiguration, serverURL, options,
-                                    _headers);
+                                    sdkConfiguration, security, serverURL,
+                                    options, _headers);
         OauthGenerateTokensRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

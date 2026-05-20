@@ -73,6 +73,9 @@ public class AsyncPaymentLinks {
      * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
      * payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CreatePaymentLinkRequestBuilder create() {
@@ -89,6 +92,9 @@ public class AsyncPaymentLinks {
      * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
      * payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return {@code CompletableFuture<CreatePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentLinkResponse> createDirect() {
@@ -104,6 +110,9 @@ public class AsyncPaymentLinks {
      * where they can
      * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
      * payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
@@ -135,6 +144,9 @@ public class AsyncPaymentLinks {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListPaymentLinksRequestBuilder list() {
@@ -147,6 +159,9 @@ public class AsyncPaymentLinks {
      * <p>Retrieve a list of all payment links.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @return {@code CompletableFuture<ListPaymentLinksResponse>} - The async response
      */
@@ -162,6 +177,9 @@ public class AsyncPaymentLinks {
      * <p>Retrieve a list of all payment links.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
@@ -201,6 +219,9 @@ public class AsyncPaymentLinks {
      * 
      * <p>Retrieve a single payment link by its ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetPaymentLinkRequestBuilder get() {
@@ -211,6 +232,9 @@ public class AsyncPaymentLinks {
      * Get payment link
      * 
      * <p>Retrieve a single payment link by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return {@code CompletableFuture<GetPaymentLinkResponse>} - The async response
@@ -225,6 +249,9 @@ public class AsyncPaymentLinks {
      * Get payment link
      * 
      * <p>Retrieve a single payment link by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -260,6 +287,9 @@ public class AsyncPaymentLinks {
      * 
      * <p>Certain details of an existing payment link can be updated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public UpdatePaymentLinkRequestBuilder update() {
@@ -270,6 +300,9 @@ public class AsyncPaymentLinks {
      * Update payment link
      * 
      * <p>Certain details of an existing payment link can be updated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return {@code CompletableFuture<UpdatePaymentLinkResponse>} - The async response
@@ -284,6 +317,9 @@ public class AsyncPaymentLinks {
      * Update payment link
      * 
      * <p>Certain details of an existing payment link can be updated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -323,6 +359,9 @@ public class AsyncPaymentLinks {
      * the
      * [Update payment link](update-payment-link) endpoint instead.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public DeletePaymentLinkRequestBuilder delete() {
@@ -341,6 +380,9 @@ public class AsyncPaymentLinks {
      * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on
      * the
      * [Update payment link](update-payment-link) endpoint instead.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @return {@code CompletableFuture<DeletePaymentLinkResponse>} - The async response
@@ -363,6 +405,9 @@ public class AsyncPaymentLinks {
      * <p>To simply disable a payment link without fully deleting it, you can use the `archived` parameter on
      * the
      * [Update payment link](update-payment-link) endpoint instead.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentLinkId Provide the ID of the related payment link.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -396,6 +441,9 @@ public class AsyncPaymentLinks {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetPaymentLinkPaymentsRequestBuilder listPayments() {
@@ -408,6 +456,9 @@ public class AsyncPaymentLinks {
      * <p>Retrieve the list of payments for a specific payment link.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetPaymentLinkPaymentsResponse>} - The async response
@@ -422,6 +473,9 @@ public class AsyncPaymentLinks {
      * <p>Retrieve the list of payments for a specific payment link.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

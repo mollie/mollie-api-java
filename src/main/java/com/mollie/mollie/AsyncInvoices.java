@@ -49,8 +49,8 @@ public class AsyncInvoices {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The async call builder
      */
@@ -66,8 +66,8 @@ public class AsyncInvoices {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListInvoicesResponse>} - The async response
@@ -84,8 +84,8 @@ public class AsyncInvoices {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -109,8 +109,8 @@ public class AsyncInvoices {
      * <p>If you want to retrieve the details of an invoice by its invoice number,
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The async call builder
      */
@@ -126,8 +126,8 @@ public class AsyncInvoices {
      * <p>If you want to retrieve the details of an invoice by its invoice number,
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param invoiceId Provide the ID of the related invoice.
      * @return {@code CompletableFuture<GetInvoiceResponse>} - The async response
@@ -144,8 +144,8 @@ public class AsyncInvoices {
      * <p>If you want to retrieve the details of an invoice by its invoice number,
      * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param invoiceId Provide the ID of the related invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

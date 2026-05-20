@@ -47,6 +47,9 @@ public class Terminals {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListTerminalsRequestBuilder list() {
@@ -59,6 +62,9 @@ public class Terminals {
      * <p>Retrieve a list of all physical point-of-sale devices.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -74,6 +80,9 @@ public class Terminals {
      * <p>Retrieve a list of all physical point-of-sale devices.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -91,6 +100,9 @@ public class Terminals {
      * 
      * <p>Retrieve a single terminal by its ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetTerminalRequestBuilder get() {
@@ -101,6 +113,9 @@ public class Terminals {
      * Get terminal
      * 
      * <p>Retrieve a single terminal by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param terminalId Provide the ID of the related terminal.
      * @return The response from the API call
@@ -115,6 +130,9 @@ public class Terminals {
      * Get terminal
      * 
      * <p>Retrieve a single terminal by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param terminalId Provide the ID of the related terminal.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query

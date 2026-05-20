@@ -8,8 +8,10 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.models.operations.OauthGenerateTokensRequest;
 import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
+import com.mollie.mollie.models.operations.OauthGenerateTokensSecurity;
 import com.mollie.mollie.models.operations.OauthRevokeTokensRequest;
 import com.mollie.mollie.models.operations.OauthRevokeTokensRequestBody;
+import com.mollie.mollie.models.operations.OauthRevokeTokensSecurity;
 import com.mollie.mollie.models.operations.async.OauthGenerateTokensRequestBuilder;
 import com.mollie.mollie.models.operations.async.OauthGenerateTokensResponse;
 import com.mollie.mollie.models.operations.async.OauthRevokeTokensRequestBuilder;
@@ -53,9 +55,6 @@ public class AsyncOauth {
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
-     * 
      * @return The async call builder
      */
     public OauthGenerateTokensRequestBuilder generate() {
@@ -72,15 +71,13 @@ public class AsyncOauth {
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
-     * 
+     * @param security The security details to use for authentication.
      * @return {@code CompletableFuture<OauthGenerateTokensResponse>} - The async response
      */
-    public CompletableFuture<OauthGenerateTokensResponse> generateDirect() {
+    public CompletableFuture<OauthGenerateTokensResponse> generate(OauthGenerateTokensSecurity security) {
         return generate(
-                Optional.empty(), Optional.empty(), Optional.empty(),
-                Optional.empty());
+                security, Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -93,9 +90,7 @@ public class AsyncOauth {
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
-     * 
+     * @param security The security details to use for authentication.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param serverURL Overrides the server URL.
@@ -103,8 +98,9 @@ public class AsyncOauth {
      * @return {@code CompletableFuture<OauthGenerateTokensResponse>} - The async response
      */
     public CompletableFuture<OauthGenerateTokensResponse> generate(
-            Optional<String> idempotencyKey, Optional<? extends OauthGenerateTokensRequestBody> requestBody,
-            Optional<String> serverURL, Optional<Options> options) {
+            OauthGenerateTokensSecurity security, Optional<String> idempotencyKey,
+            Optional<? extends OauthGenerateTokensRequestBody> requestBody, Optional<String> serverURL,
+            Optional<Options> options) {
         OauthGenerateTokensRequest request =
             OauthGenerateTokensRequest
                 .builder()
@@ -113,8 +109,8 @@ public class AsyncOauth {
                 .build();
         AsyncRequestOperation<OauthGenerateTokensRequest, OauthGenerateTokensResponse> operation
               = new OauthGenerateTokens.Async(
-                                    sdkConfiguration, serverURL, options,
-                                    sdkConfiguration.retryScheduler(), _headers);
+                                    sdkConfiguration, security, serverURL,
+                                    options, sdkConfiguration.retryScheduler(), _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -128,9 +124,6 @@ public class AsyncOauth {
      * <p>Revoking a refresh token revokes all access tokens that were created using the same authorization.
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
-     * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
      * 
      * @return The async call builder
      */
@@ -147,15 +140,13 @@ public class AsyncOauth {
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
-     * 
+     * @param security The security details to use for authentication.
      * @return {@code CompletableFuture<OauthRevokeTokensResponse>} - The async response
      */
-    public CompletableFuture<OauthRevokeTokensResponse> revokeDirect() {
+    public CompletableFuture<OauthRevokeTokensResponse> revoke(OauthRevokeTokensSecurity security) {
         return revoke(
-                Optional.empty(), Optional.empty(), Optional.empty(),
-                Optional.empty());
+                security, Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -167,9 +158,7 @@ public class AsyncOauth {
      * 
      * <p>This endpoint can only be accessed using **OAuth client credentials**.
      * 
-     * <p>This operation requires Security#oAuth to be set via the {@code security} builder method when
-     * initializing the SDK.
-     * 
+     * @param security The security details to use for authentication.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
      * @param serverURL Overrides the server URL.
@@ -177,8 +166,9 @@ public class AsyncOauth {
      * @return {@code CompletableFuture<OauthRevokeTokensResponse>} - The async response
      */
     public CompletableFuture<OauthRevokeTokensResponse> revoke(
-            Optional<String> idempotencyKey, Optional<? extends OauthRevokeTokensRequestBody> requestBody,
-            Optional<String> serverURL, Optional<Options> options) {
+            OauthRevokeTokensSecurity security, Optional<String> idempotencyKey,
+            Optional<? extends OauthRevokeTokensRequestBody> requestBody, Optional<String> serverURL,
+            Optional<Options> options) {
         OauthRevokeTokensRequest request =
             OauthRevokeTokensRequest
                 .builder()
@@ -187,8 +177,8 @@ public class AsyncOauth {
                 .build();
         AsyncRequestOperation<OauthRevokeTokensRequest, OauthRevokeTokensResponse> operation
               = new OauthRevokeTokens.Async(
-                                    sdkConfiguration, serverURL, options,
-                                    sdkConfiguration.retryScheduler(), _headers);
+                                    sdkConfiguration, security, serverURL,
+                                    options, sdkConfiguration.retryScheduler(), _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }

@@ -70,6 +70,9 @@ public class AsyncWallets {
      * [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api)
      * documentation.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public RequestApplePayPaymentSessionRequestBuilder requestApplePaySession() {
@@ -108,6 +111,9 @@ public class AsyncWallets {
      * [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api)
      * documentation.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return {@code CompletableFuture<RequestApplePayPaymentSessionResponse>} - The async response
      */
     public CompletableFuture<RequestApplePayPaymentSessionResponse> requestApplePaySessionDirect() {
@@ -145,6 +151,9 @@ public class AsyncWallets {
      * full documentation, see the official
      * [Apple Pay JS API](https://developer.apple.com/documentation/apple_pay_on_the_web/apple_pay_js_api)
      * documentation.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 

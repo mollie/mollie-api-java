@@ -4,22 +4,22 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.OauthGrantType;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
-import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
-                    .build())
             .build();
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
+                .security(OauthGenerateTokensSecurity.builder()
+                    .username("")
+                    .password("")
+                    .build())
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(OauthGenerateTokensRequestBody.builder()
                     .grantType(OauthGrantType.AUTHORIZATION_CODE)

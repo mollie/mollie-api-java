@@ -53,6 +53,9 @@ public class AsyncDelayedRouting {
      * <p>Create a route for a specific payment.
      * The routed amount is credited to the account of your customer.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public PaymentCreateRouteRequestBuilder create() {
@@ -64,6 +67,9 @@ public class AsyncDelayedRouting {
      * 
      * <p>Create a route for a specific payment.
      * The routed amount is credited to the account of your customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return {@code CompletableFuture<PaymentCreateRouteResponse>} - The async response
@@ -79,6 +85,9 @@ public class AsyncDelayedRouting {
      * 
      * <p>Create a route for a specific payment.
      * The routed amount is credited to the account of your customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -110,6 +119,9 @@ public class AsyncDelayedRouting {
      * 
      * <p>Retrieve a list of all routes created for a specific payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public PaymentListRoutesRequestBuilder list() {
@@ -120,6 +132,9 @@ public class AsyncDelayedRouting {
      * List payment routes
      * 
      * <p>Retrieve a list of all routes created for a specific payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return {@code CompletableFuture<PaymentListRoutesResponse>} - The async response
@@ -134,6 +149,9 @@ public class AsyncDelayedRouting {
      * List payment routes
      * 
      * <p>Retrieve a list of all routes created for a specific payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -169,6 +187,9 @@ public class AsyncDelayedRouting {
      * 
      * <p>Retrieve a single route created for a specific payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public PaymentGetRouteRequestBuilder get() {
@@ -179,6 +200,9 @@ public class AsyncDelayedRouting {
      * Get a delayed route
      * 
      * <p>Retrieve a single route created for a specific payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param routeId Provide the ID of the route.
@@ -194,6 +218,9 @@ public class AsyncDelayedRouting {
      * Get a delayed route
      * 
      * <p>Retrieve a single route created for a specific payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param routeId Provide the ID of the route.

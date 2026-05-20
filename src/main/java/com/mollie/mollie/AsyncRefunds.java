@@ -62,6 +62,9 @@ public class AsyncRefunds {
      * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CreateRefundRequestBuilder create() {
@@ -74,6 +77,9 @@ public class AsyncRefunds {
      * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually
      * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return {@code CompletableFuture<CreateRefundResponse>} - The async response
@@ -90,6 +96,9 @@ public class AsyncRefunds {
      * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually
      * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -123,6 +132,9 @@ public class AsyncRefunds {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListRefundsRequestBuilder list() {
@@ -135,6 +147,9 @@ public class AsyncRefunds {
      * <p>Retrieve a list of all refunds created for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListRefundsResponse>} - The async response
@@ -149,6 +164,9 @@ public class AsyncRefunds {
      * <p>Retrieve a list of all refunds created for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -169,6 +187,9 @@ public class AsyncRefunds {
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetRefundRequestBuilder get() {
@@ -179,6 +200,9 @@ public class AsyncRefunds {
      * Get payment refund
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetRefundResponse>} - The async response
@@ -191,6 +215,9 @@ public class AsyncRefunds {
      * Get payment refund
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -216,6 +243,9 @@ public class AsyncRefunds {
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
      * [Get refund endpoint](get-refund) for more information.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CancelRefundRequestBuilder cancel() {
@@ -231,6 +261,9 @@ public class AsyncRefunds {
      * 
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
      * [Get refund endpoint](get-refund) for more information.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
@@ -251,6 +284,9 @@ public class AsyncRefunds {
      * 
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
      * [Get refund endpoint](get-refund) for more information.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
@@ -291,6 +327,9 @@ public class AsyncRefunds {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListAllRefundsRequestBuilder all() {
@@ -303,6 +342,9 @@ public class AsyncRefunds {
      * <p>Retrieve a list of all of your refunds.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListAllRefundsResponse>} - The async response
@@ -317,6 +359,9 @@ public class AsyncRefunds {
      * <p>Retrieve a list of all of your refunds.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

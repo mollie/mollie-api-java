@@ -70,8 +70,8 @@ public class Settlements {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -86,8 +86,8 @@ public class Settlements {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -104,8 +104,8 @@ public class Settlements {
      * 
      * <p>The results are paginated.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -135,8 +135,8 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -161,8 +161,8 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param settlementId Provide the ID of the related settlement.
      * @return The response from the API call
@@ -189,8 +189,8 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param settlementId Provide the ID of the related settlement.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -226,8 +226,8 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -249,8 +249,8 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -273,8 +273,8 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
@@ -304,8 +304,8 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -325,8 +325,8 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -347,8 +347,8 @@ public class Settlements {
      * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
      * [balance transactions](list-balance-transactions) endpoint.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
@@ -376,8 +376,8 @@ public class Settlements {
      * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
      * [List captures endpoint](list-captures) endpoint instead.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -395,8 +395,8 @@ public class Settlements {
      * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
      * [List captures endpoint](list-captures) endpoint instead.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -416,8 +416,8 @@ public class Settlements {
      * <p>For capture-based payment methods such as Klarna, the payments are not listed here. Refer to the
      * [List captures endpoint](list-captures) endpoint instead.
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -437,8 +437,8 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List captures endpoint](list-captures).
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -453,8 +453,8 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List captures endpoint](list-captures).
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -471,8 +471,8 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List captures endpoint](list-captures).
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -492,8 +492,8 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds).
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -508,8 +508,8 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds).
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -526,8 +526,8 @@ public class Settlements {
      * 
      * <p>The response is in the same format as the response of the [List refunds endpoint](list-refunds).
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -548,8 +548,8 @@ public class Settlements {
      * <p>The response is in the same format as the response of the [List chargebacks
      * endpoint](list-chargebacks).
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -565,8 +565,8 @@ public class Settlements {
      * <p>The response is in the same format as the response of the [List chargebacks
      * endpoint](list-chargebacks).
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -584,8 +584,8 @@ public class Settlements {
      * <p>The response is in the same format as the response of the [List chargebacks
      * endpoint](list-chargebacks).
      * 
-     * <p>This operation requires either Security#advancedAccessToken or Security#oAuth to be set via the
-     * {@code security} builder method when initializing the SDK.
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

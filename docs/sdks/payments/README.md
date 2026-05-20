@@ -3240,7 +3240,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 422                         | application/hal+json        |
+| models/errors/ErrorResponse | 422, 429                    | application/hal+json        |
 | models/errors/ErrorResponse | 503                         | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
@@ -3394,7 +3394,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 400                         | application/hal+json        |
+| models/errors/ErrorResponse | 400, 429                    | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## get
@@ -3539,7 +3539,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404                         | application/hal+json        |
+| models/errors/ErrorResponse | 404, 429                    | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## update
@@ -3787,7 +3787,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/ErrorResponse | 404, 422, 429               | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## cancel
@@ -3853,7 +3853,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/ErrorResponse | 404, 422, 429               | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## releaseAuthorization
@@ -3920,5 +3920,5 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/ErrorResponse | 404, 422, 429               | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

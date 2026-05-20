@@ -51,6 +51,9 @@ public class DelayedRouting {
      * <p>Create a route for a specific payment.
      * The routed amount is credited to the account of your customer.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public PaymentCreateRouteRequestBuilder create() {
@@ -62,6 +65,9 @@ public class DelayedRouting {
      * 
      * <p>Create a route for a specific payment.
      * The routed amount is credited to the account of your customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -77,6 +83,9 @@ public class DelayedRouting {
      * 
      * <p>Create a route for a specific payment.
      * The routed amount is credited to the account of your customer.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -105,6 +114,9 @@ public class DelayedRouting {
      * 
      * <p>Retrieve a list of all routes created for a specific payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public PaymentListRoutesRequestBuilder list() {
@@ -115,6 +127,9 @@ public class DelayedRouting {
      * List payment routes
      * 
      * <p>Retrieve a list of all routes created for a specific payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -129,6 +144,9 @@ public class DelayedRouting {
      * List payment routes
      * 
      * <p>Retrieve a list of all routes created for a specific payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -161,6 +179,9 @@ public class DelayedRouting {
      * 
      * <p>Retrieve a single route created for a specific payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public PaymentGetRouteRequestBuilder get() {
@@ -171,6 +192,9 @@ public class DelayedRouting {
      * Get a delayed route
      * 
      * <p>Retrieve a single route created for a specific payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param routeId Provide the ID of the route.
@@ -186,6 +210,9 @@ public class DelayedRouting {
      * Get a delayed route
      * 
      * <p>Retrieve a single route created for a specific payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param routeId Provide the ID of the route.

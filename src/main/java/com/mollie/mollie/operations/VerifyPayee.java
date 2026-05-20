@@ -67,7 +67,7 @@ public class VerifyPayee {
             this.securitySource = this.sdkConfiguration.securitySource();
             options
                     .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
-            this.retryStatusCodes = List.of("5xx");
+            this.retryStatusCodes = List.of("429", "5xx");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
                     .or(sdkConfiguration::retryConfig)

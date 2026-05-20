@@ -13,6 +13,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.components.EntityOrganization;
 import com.mollie.mollie.models.errors.APIException;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetCurrentOrganizationRequest;
 import com.mollie.mollie.models.operations.GetCurrentOrganizationResponse;
 import com.mollie.mollie.utils.AsyncRetries;
@@ -63,7 +64,7 @@ public class GetCurrentOrganization {
             this.securitySource = this.sdkConfiguration.securitySource();
             options
                     .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
-            this.retryStatusCodes = List.of("5xx");
+            this.retryStatusCodes = List.of("429", "5xx");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
                     .or(sdkConfiguration::retryConfig)
@@ -198,6 +199,13 @@ public class GetCurrentOrganization {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
+            if (Utils.statusCodeMatches(response.statusCode(), "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    throw ErrorResponse.from(response);
+                } else {
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
+                }
+            }
             if (Utils.statusCodeMatches(response.statusCode(), "4XX")) {
                 // no content
                 throw APIException.from("API error occurred", response);
@@ -276,6 +284,14 @@ public class GetCurrentOrganization {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<EntityOrganization>() {})
                             .thenApply(res::withEntityOrganization);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    return ErrorResponse.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

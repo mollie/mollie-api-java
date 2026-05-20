@@ -68,6 +68,9 @@ public class AsyncSalesInvoices {
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CreateSalesInvoiceRequestBuilder create() {
@@ -83,6 +86,9 @@ public class AsyncSalesInvoices {
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return {@code CompletableFuture<CreateSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<CreateSalesInvoiceResponse> createDirect() {
@@ -97,6 +103,9 @@ public class AsyncSalesInvoices {
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param salesInvoiceRequest 
@@ -132,6 +141,9 @@ public class AsyncSalesInvoices {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public ListSalesInvoicesRequestBuilder list() {
@@ -148,6 +160,9 @@ public class AsyncSalesInvoices {
      * <p>Retrieve a list of all sales invoices created through the API.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @return {@code CompletableFuture<ListSalesInvoicesResponse>} - The async response
      */
@@ -167,6 +182,9 @@ public class AsyncSalesInvoices {
      * <p>Retrieve a list of all sales invoices created through the API.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
@@ -210,6 +228,9 @@ public class AsyncSalesInvoices {
      * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetSalesInvoiceRequestBuilder get() {
@@ -224,6 +245,9 @@ public class AsyncSalesInvoices {
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Retrieve a single sales invoice by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return {@code CompletableFuture<GetSalesInvoiceResponse>} - The async response
@@ -242,6 +266,9 @@ public class AsyncSalesInvoices {
      * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Retrieve a single sales invoice by its ID.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -285,6 +312,9 @@ public class AsyncSalesInvoices {
      * `emailDetails`,
      * respectively).
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public UpdateSalesInvoiceRequestBuilder update() {
@@ -303,6 +333,9 @@ public class AsyncSalesInvoices {
      * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
      * `emailDetails`,
      * respectively).
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return {@code CompletableFuture<UpdateSalesInvoiceResponse>} - The async response
@@ -325,6 +358,9 @@ public class AsyncSalesInvoices {
      * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
      * `emailDetails`,
      * respectively).
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -361,6 +397,9 @@ public class AsyncSalesInvoices {
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public DeleteSalesInvoiceRequestBuilder delete() {
@@ -376,6 +415,9 @@ public class AsyncSalesInvoices {
      * 
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @return {@code CompletableFuture<DeleteSalesInvoiceResponse>} - The async response
@@ -395,6 +437,9 @@ public class AsyncSalesInvoices {
      * 
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param salesInvoiceId Provide the ID of the related sales invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

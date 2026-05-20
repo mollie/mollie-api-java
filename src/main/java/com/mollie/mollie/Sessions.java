@@ -49,6 +49,9 @@ public class Sessions {
      * 
      * <p>Create a session to start a checkout process with Mollie Components.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CreateSessionRequestBuilder create() {
@@ -63,6 +66,9 @@ public class Sessions {
      * &gt; This feature is currently in private beta, and the final specification may still change.
      * 
      * <p>Create a session to start a checkout process with Mollie Components.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -79,6 +85,9 @@ public class Sessions {
      * &gt; This feature is currently in private beta, and the final specification may still change.
      * 
      * <p>Create a session to start a checkout process with Mollie Components.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param sessionRequest 
@@ -110,6 +119,9 @@ public class Sessions {
      * <p>Retrieve a session to view its details and status to inform your customers about the checkout
      * process.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetSessionRequestBuilder get() {
@@ -125,6 +137,9 @@ public class Sessions {
      * 
      * <p>Retrieve a session to view its details and status to inform your customers about the checkout
      * process.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param sessionId Provide the ID of the related session.
      * @return The response from the API call
@@ -143,6 +158,9 @@ public class Sessions {
      * 
      * <p>Retrieve a session to view its details and status to inform your customers about the checkout
      * process.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param sessionId Provide the ID of the related session.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

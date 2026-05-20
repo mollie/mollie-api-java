@@ -19,12 +19,13 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetOnboardingStatusResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -55,9 +56,10 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 429                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## submit
 
@@ -77,12 +79,13 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.OnboardingVatRegulation;
 import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
@@ -128,6 +131,7 @@ public class Application {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| models/errors/APIException | 4XX, 5XX                   | \*/\*                      |
+| Error Type                  | Status Code                 | Content Type                |
+| --------------------------- | --------------------------- | --------------------------- |
+| models/errors/ErrorResponse | 429                         | application/hal+json        |
+| models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

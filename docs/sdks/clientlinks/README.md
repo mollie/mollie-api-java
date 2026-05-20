@@ -234,5 +234,5 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 404, 422                    | application/hal+json        |
+| models/errors/ErrorResponse | 404, 422, 429               | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |

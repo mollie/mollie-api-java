@@ -51,6 +51,9 @@ public class AsyncSessions {
      * 
      * <p>Create a session to start a checkout process with Mollie Components.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public CreateSessionRequestBuilder create() {
@@ -66,6 +69,9 @@ public class AsyncSessions {
      * 
      * <p>Create a session to start a checkout process with Mollie Components.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return {@code CompletableFuture<CreateSessionResponse>} - The async response
      */
     public CompletableFuture<CreateSessionResponse> createDirect() {
@@ -80,6 +86,9 @@ public class AsyncSessions {
      * &gt; This feature is currently in private beta, and the final specification may still change.
      * 
      * <p>Create a session to start a checkout process with Mollie Components.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param sessionRequest 
@@ -114,6 +123,9 @@ public class AsyncSessions {
      * <p>Retrieve a session to view its details and status to inform your customers about the checkout
      * process.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The async call builder
      */
     public GetSessionRequestBuilder get() {
@@ -129,6 +141,9 @@ public class AsyncSessions {
      * 
      * <p>Retrieve a session to view its details and status to inform your customers about the checkout
      * process.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param sessionId Provide the ID of the related session.
      * @return {@code CompletableFuture<GetSessionResponse>} - The async response
@@ -146,6 +161,9 @@ public class AsyncSessions {
      * 
      * <p>Retrieve a session to view its details and status to inform your customers about the checkout
      * process.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param sessionId Provide the ID of the related session.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

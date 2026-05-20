@@ -60,6 +60,9 @@ public class Refunds {
      * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CreateRefundRequestBuilder create() {
@@ -72,6 +75,9 @@ public class Refunds {
      * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually
      * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @return The response from the API call
@@ -88,6 +94,9 @@ public class Refunds {
      * <p>Creates a refund for a specific payment. The refunded amount is credited to your customer usually
      * either via a bank
      * transfer or by refunding the amount to your customer's credit card.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -118,6 +127,9 @@ public class Refunds {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListRefundsRequestBuilder list() {
@@ -130,6 +142,9 @@ public class Refunds {
      * <p>Retrieve a list of all refunds created for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -145,6 +160,9 @@ public class Refunds {
      * <p>Retrieve a list of all refunds created for a specific payment.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -162,6 +180,9 @@ public class Refunds {
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetRefundRequestBuilder get() {
@@ -172,6 +193,9 @@ public class Refunds {
      * Get payment refund
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -185,6 +209,9 @@ public class Refunds {
      * Get payment refund
      * 
      * <p>Retrieve a single payment refund by its ID and the ID of its parent payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -207,6 +234,9 @@ public class Refunds {
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
      * [Get refund endpoint](get-refund) for more information.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public CancelRefundRequestBuilder cancel() {
@@ -222,6 +252,9 @@ public class Refunds {
      * 
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
      * [Get refund endpoint](get-refund) for more information.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
@@ -242,6 +275,9 @@ public class Refunds {
      * 
      * <p>A refund can only be canceled while its `status` field is either `queued` or `pending`. See the
      * [Get refund endpoint](get-refund) for more information.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param paymentId Provide the ID of the related payment.
      * @param refundId Provide the ID of the related refund.
@@ -279,6 +315,9 @@ public class Refunds {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListAllRefundsRequestBuilder all() {
@@ -291,6 +330,9 @@ public class Refunds {
      * <p>Retrieve a list of all of your refunds.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -306,6 +348,9 @@ public class Refunds {
      * <p>Retrieve a list of all of your refunds.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options

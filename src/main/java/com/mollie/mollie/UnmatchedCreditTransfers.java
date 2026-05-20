@@ -61,6 +61,9 @@ public class UnmatchedCreditTransfers {
      * 
      * <p>The results are paginated.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ListUnmatchedCreditTransfersRequestBuilder list() {
@@ -77,6 +80,9 @@ public class UnmatchedCreditTransfers {
      * <p>Retrieves a list of unmatched credit transfers for the profile.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -96,6 +102,9 @@ public class UnmatchedCreditTransfers {
      * <p>Retrieves a list of unmatched credit transfers for the profile.
      * 
      * <p>The results are paginated.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
      *         result set.
@@ -129,6 +138,9 @@ public class UnmatchedCreditTransfers {
      * 
      * <p>Retrieves a single unmatched credit transfer by its identifier.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public GetUnmatchedCreditTransferRequestBuilder get() {
@@ -143,6 +155,9 @@ public class UnmatchedCreditTransfers {
      * &gt; This feature is currently in private beta, and the final specification may still change.
      * 
      * <p>Retrieves a single unmatched credit transfer by its identifier.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
      * @return The response from the API call
@@ -160,6 +175,9 @@ public class UnmatchedCreditTransfers {
      * &gt; This feature is currently in private beta, and the final specification may still change.
      * 
      * <p>Retrieves a single unmatched credit transfer by its identifier.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -190,6 +208,9 @@ public class UnmatchedCreditTransfers {
      * 
      * <p>Matches an unmatched credit transfer to one or more payments, settling the funds accordingly.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public MatchUnmatchedCreditTransferRequestBuilder match() {
@@ -204,6 +225,9 @@ public class UnmatchedCreditTransfers {
      * &gt; This feature is currently in private beta, and the final specification may still change.
      * 
      * <p>Matches an unmatched credit transfer to one or more payments, settling the funds accordingly.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
      * @return The response from the API call
@@ -222,6 +246,9 @@ public class UnmatchedCreditTransfers {
      * &gt; This feature is currently in private beta, and the final specification may still change.
      * 
      * <p>Matches an unmatched credit transfer to one or more payments, settling the funds accordingly.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -254,6 +281,9 @@ public class UnmatchedCreditTransfers {
      * 
      * <p>Returns an unmatched credit transfer, sending the funds back to the original sender.
      * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
      * @return The call builder
      */
     public ReturnUnmatchedCreditTransferRequestBuilder return_() {
@@ -268,6 +298,9 @@ public class UnmatchedCreditTransfers {
      * &gt; This feature is currently in private beta, and the final specification may still change.
      * 
      * <p>Returns an unmatched credit transfer, sending the funds back to the original sender.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
      * @return The response from the API call
@@ -285,6 +318,9 @@ public class UnmatchedCreditTransfers {
      * &gt; This feature is currently in private beta, and the final specification may still change.
      * 
      * <p>Returns an unmatched credit transfer, sending the funds back to the original sender.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
      * 
      * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.

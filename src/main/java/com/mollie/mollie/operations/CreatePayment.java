@@ -67,7 +67,7 @@ public class CreatePayment {
             this.securitySource = this.sdkConfiguration.securitySource();
             options
                     .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
-            this.retryStatusCodes = List.of("5xx");
+            this.retryStatusCodes = List.of("429", "5xx");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
                     .or(sdkConfiguration::retryConfig)
@@ -136,7 +136,7 @@ public class CreatePayment {
                     request,
                     null));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "apiKey", "advancedAccessToken", "oAuth");
 
             return req.build();
         }
@@ -217,7 +217,7 @@ public class CreatePayment {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     throw ErrorResponse.from(response);
                 } else {
@@ -313,7 +313,7 @@ public class CreatePayment {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "422")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return ErrorResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);

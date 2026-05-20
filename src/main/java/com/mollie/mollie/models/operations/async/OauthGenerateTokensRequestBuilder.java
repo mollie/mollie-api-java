@@ -9,6 +9,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.OauthGenerateTokensRequest;
 import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
+import com.mollie.mollie.models.operations.OauthGenerateTokensSecurity;
 import com.mollie.mollie.operations.OauthGenerateTokens;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
@@ -20,6 +21,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class OauthGenerateTokensRequestBuilder {
 
+    private OauthGenerateTokensSecurity security;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends OauthGenerateTokensRequestBody> requestBody = Optional.empty();
     private Optional<String> serverURL = Optional.empty();
@@ -29,6 +31,12 @@ public class OauthGenerateTokensRequestBuilder {
 
     public OauthGenerateTokensRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+
+    public OauthGenerateTokensRequestBuilder security(OauthGenerateTokensSecurity security) {
+        Utils.checkNotNull(security, "security");
+        this.security = security;
+        return this;
     }
                 
     public OauthGenerateTokensRequestBuilder idempotencyKey(String idempotencyKey) {
@@ -95,8 +103,8 @@ public class OauthGenerateTokensRequestBuilder {
 
         AsyncRequestOperation<OauthGenerateTokensRequest, OauthGenerateTokensResponse> operation
               = new OauthGenerateTokens.Async(
-                                    sdkConfiguration, serverURL, options,
-                                    sdkConfiguration.retryScheduler(), _headers);
+                                    sdkConfiguration, security, serverURL,
+                                    options, sdkConfiguration.retryScheduler(), _headers);
         OauthGenerateTokensRequest request = buildRequest();
 
         return operation.doRequest(request)

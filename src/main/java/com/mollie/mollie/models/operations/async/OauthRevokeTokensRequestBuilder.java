@@ -9,6 +9,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.OauthRevokeTokensRequest;
 import com.mollie.mollie.models.operations.OauthRevokeTokensRequestBody;
+import com.mollie.mollie.models.operations.OauthRevokeTokensSecurity;
 import com.mollie.mollie.operations.OauthRevokeTokens;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
@@ -20,6 +21,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class OauthRevokeTokensRequestBuilder {
 
+    private OauthRevokeTokensSecurity security;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends OauthRevokeTokensRequestBody> requestBody = Optional.empty();
     private Optional<String> serverURL = Optional.empty();
@@ -29,6 +31,12 @@ public class OauthRevokeTokensRequestBuilder {
 
     public OauthRevokeTokensRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+    }
+
+    public OauthRevokeTokensRequestBuilder security(OauthRevokeTokensSecurity security) {
+        Utils.checkNotNull(security, "security");
+        this.security = security;
+        return this;
     }
                 
     public OauthRevokeTokensRequestBuilder idempotencyKey(String idempotencyKey) {
@@ -95,8 +103,8 @@ public class OauthRevokeTokensRequestBuilder {
 
         AsyncRequestOperation<OauthRevokeTokensRequest, OauthRevokeTokensResponse> operation
               = new OauthRevokeTokens.Async(
-                                    sdkConfiguration, serverURL, options,
-                                    sdkConfiguration.retryScheduler(), _headers);
+                                    sdkConfiguration, security, serverURL,
+                                    options, sdkConfiguration.retryScheduler(), _headers);
         OauthRevokeTokensRequest request = buildRequest();
 
         return operation.doRequest(request)

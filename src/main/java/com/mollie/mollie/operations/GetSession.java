@@ -13,6 +13,7 @@ import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
 import com.mollie.mollie.models.components.SessionResponse;
 import com.mollie.mollie.models.errors.APIException;
+import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetSessionRequest;
 import com.mollie.mollie.models.operations.GetSessionResponse;
 import com.mollie.mollie.utils.AsyncRetries;
@@ -63,7 +64,7 @@ public class GetSession {
             this.securitySource = this.sdkConfiguration.securitySource();
             options
                     .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
-            this.retryStatusCodes = List.of("5xx");
+            this.retryStatusCodes = List.of("429", "5xx");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
                     .or(sdkConfiguration::retryConfig)
@@ -119,7 +120,7 @@ public class GetSession {
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
             req.addHeaders(Utils.getHeadersFromMetadata(request, null));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity());
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "apiKey", "advancedAccessToken", "oAuth");
 
             return req.build();
         }
@@ -196,6 +197,13 @@ public class GetSession {
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return res.withSessionResponse(Utils.unmarshal(response, new TypeReference<SessionResponse>() {}));
+                } else {
+                    throw APIException.from("Unexpected content-type received: " + contentType, response);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    throw ErrorResponse.from(response);
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -278,6 +286,14 @@ public class GetSession {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<SessionResponse>() {})
                             .thenApply(res::withSessionResponse);
+                } else {
+                    return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
+                }
+            }
+            if (Utils.statusCodeMatches(response.statusCode(), "429")) {
+                if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
+                    return ErrorResponse.fromAsync(response)
+                            .thenCompose(CompletableFuture::failedFuture);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

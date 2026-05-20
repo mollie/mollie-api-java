@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.6.4'
+implementation 'com.mollie:mollie:1.7.0'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.6.4</version>
+    <version>1.7.0</version>
 </dependency>
 ```
 
@@ -93,22 +93,22 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.OauthGrantType;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
-import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
-                    .build())
             .build();
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
+                .security(OauthGenerateTokensSecurity.builder()
+                    .username("")
+                    .password("")
+                    .build())
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(OauthGenerateTokensRequestBody.builder()
                     .grantType(OauthGrantType.AUTHORIZATION_CODE)
@@ -132,8 +132,8 @@ package hello.world;
 import com.mollie.mollie.AsyncClient;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.OauthGrantType;
-import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
+import com.mollie.mollie.models.operations.OauthGenerateTokensSecurity;
 import com.mollie.mollie.models.operations.async.OauthGenerateTokensResponse;
 import java.util.concurrent.CompletableFuture;
 
@@ -142,13 +142,14 @@ public class Application {
     public static void main(String[] args) {
 
         AsyncClient sdk = Client.builder()
-                .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
-                    .build())
             .build()
             .async();
 
         CompletableFuture<OauthGenerateTokensResponse> resFut = sdk.oauth().generate()
+                .security(OauthGenerateTokensSecurity.builder()
+                    .username("")
+                    .password("")
+                    .build())
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(OauthGenerateTokensRequestBody.builder()
                     .grantType(OauthGrantType.AUTHORIZATION_CODE)
@@ -263,23 +264,65 @@ You can set the security parameters through the `security` builder method when i
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
-import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListBalancesRequest;
+import com.mollie.mollie.models.operations.ListBalancesResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .security(Security.builder()
                     .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                     .build())
+                .testmode(false)
+            .build();
+
+        ListBalancesRequest req = ListBalancesRequest.builder()
+                .currency("EUR")
+                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
+                .limit(50L)
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+
+        sdk.balances().list()
+                .callAsStream()
+                .forEach((ListBalancesResponse item) -> {
+                   // handle page
+                });
+
+    }
+}
+```
+
+### Per-Operation Security Schemes
+
+Some operations in this SDK require the security scheme to be specified at the request level. For example:
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.OauthGrantType;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
             .build();
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
+                .security(OauthGenerateTokensSecurity.builder()
+                    .username("")
+                    .password("")
+                    .build())
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(OauthGenerateTokensRequestBody.builder()
                     .grantType(OauthGrantType.AUTHORIZATION_CODE)
@@ -807,9 +850,8 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.OauthGrantType;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
-import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
 import java.lang.Exception;
@@ -817,15 +859,16 @@ import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
-                    .build())
             .build();
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
+                .security(OauthGenerateTokensSecurity.builder()
+                    .username("")
+                    .password("")
+                    .build())
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)
@@ -858,9 +901,8 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.OauthGrantType;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
-import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.RetryConfig;
 import java.lang.Exception;
@@ -868,7 +910,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
                 .retryConfig(RetryConfig.builder()
@@ -881,12 +923,13 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
-                    .build())
             .build();
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
+                .security(OauthGenerateTokensSecurity.builder()
+                    .username("")
+                    .password("")
+                    .build())
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(OauthGenerateTokensRequestBody.builder()
                     .grantType(OauthGrantType.AUTHORIZATION_CODE)
@@ -988,11 +1031,10 @@ Handling errors in this SDK should largely match your expectations. All operatio
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.models.errors.ClientError;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.ListBalancesRequest;
-import com.mollie.mollie.models.operations.ListBalancesResponse;
+import com.mollie.mollie.models.operations.*;
 import java.io.UncheckedIOException;
 import java.lang.Exception;
 import java.lang.String;
@@ -1003,27 +1045,26 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .testmode(false)
-                .security(Security.builder()
-                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
-                    .build())
             .build();
         try {
 
-            ListBalancesRequest req = ListBalancesRequest.builder()
-                    .currency("EUR")
-                    .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                    .limit(50L)
+            OauthGenerateTokensResponse res = sdk.oauth().generate()
+                    .security(OauthGenerateTokensSecurity.builder()
+                        .username("")
+                        .password("")
+                        .build())
                     .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                    .build();
+                    .requestBody(OauthGenerateTokensRequestBody.builder()
+                        .grantType(OauthGrantType.AUTHORIZATION_CODE)
+                        .code("auth_...")
+                        .refreshToken("refresh_...")
+                        .redirectUri("https://example.com/redirect")
+                        .build())
+                    .call();
 
-
-            sdk.balances().list()
-                    .callAsStream()
-                    .forEach((ListBalancesResponse item) -> {
-                       // handle page
-                    });
-
+            if (res.object().isPresent()) {
+                System.out.println(res.object().get());
+            }
         } catch (ClientError ex) { // all SDK exceptions inherit from ClientError
 
             // ex.ToString() provides a detailed error message including
@@ -1064,7 +1105,7 @@ public class Application {
 ### Error Classes
 **Primary errors:**
 * [`ClientError`](./src/main/java/models/errors/ClientError.java): The base class for HTTP error responses.
-  * [`com.mollie.mollie.models.errors.ErrorResponse`](./src/main/java/models/errors/com.mollie.mollie.models.errors.ErrorResponse.java): An error response object. *
+  * [`com.mollie.mollie.models.errors.ErrorResponse`](./src/main/java/models/errors/com.mollie.mollie.models.errors.ErrorResponse.java): An error response object.
 
 <details><summary>Less common errors (6)</summary>
 
@@ -1079,8 +1120,6 @@ many more subclasses in the JDK platform).
 
 
 </details>
-
-\* Check [the method documentation](#available-resources-and-operations) to see if the error is applicable.
 <!-- End Error Handling [errors] -->
 
 <!-- Start Server Selection [server] -->
@@ -1137,22 +1176,22 @@ package hello.world;
 
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.OauthGrantType;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.operations.OauthGenerateTokensRequestBody;
-import com.mollie.mollie.models.operations.OauthGenerateTokensResponse;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
-                .security(Security.builder()
-                    .oAuth(System.getenv().getOrDefault("O_AUTH", ""))
-                    .build())
             .build();
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
+                .security(OauthGenerateTokensSecurity.builder()
+                    .username("")
+                    .password("")
+                    .build())
                 .serverURL("https://api.mollie.com/oauth2")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(OauthGenerateTokensRequestBody.builder()

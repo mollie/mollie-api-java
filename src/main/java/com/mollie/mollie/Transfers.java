@@ -84,8 +84,7 @@ public class Transfers {
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.processed`                                              |
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @return The call builder
      */
@@ -137,8 +136,7 @@ public class Transfers {
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.processed`                                              |
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -192,8 +190,7 @@ public class Transfers {
      * `business-account-transfer.requested` → `business-account-transfer.initiated` →
      * `business-account-transfer.processed`                                              |
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -216,8 +213,7 @@ public class Transfers {
      * <p>Retrieve a single transfer object by its transfer ID. This allows you to check the current status
      * and details of a previously created transfer.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @return The call builder
      */
@@ -235,8 +231,7 @@ public class Transfers {
      * <p>Retrieve a single transfer object by its transfer ID. This allows you to check the current status
      * and details of a previously created transfer.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param businessAccountsTransferId Provide the ID of the related transfer.
      * @return The response from the API call
@@ -257,8 +252,7 @@ public class Transfers {
      * <p>Retrieve a single transfer object by its transfer ID. This allows you to check the current status
      * and details of a previously created transfer.
      * 
-     * <p>This operation requires Security#advancedAccessToken to be set via the {@code security} builder
-     * method when initializing the SDK.
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param businessAccountsTransferId Provide the ID of the related transfer.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
