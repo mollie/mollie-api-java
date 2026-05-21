@@ -12,13 +12,31 @@ import com.mollie.mollie.models.operations.GetTerminalResponse;
 import com.mollie.mollie.models.operations.ListTerminalsRequest;
 import com.mollie.mollie.models.operations.ListTerminalsRequestBuilder;
 import com.mollie.mollie.models.operations.ListTerminalsResponse;
+import com.mollie.mollie.models.operations.TerminalsGetPairingCodeRequest;
+import com.mollie.mollie.models.operations.TerminalsGetPairingCodeRequestBuilder;
+import com.mollie.mollie.models.operations.TerminalsGetPairingCodeResponse;
+import com.mollie.mollie.models.operations.TerminalsListPairingCodesRequest;
+import com.mollie.mollie.models.operations.TerminalsListPairingCodesRequestBuilder;
+import com.mollie.mollie.models.operations.TerminalsListPairingCodesResponse;
+import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeRequest;
+import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeRequestBody;
+import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeRequestBuilder;
+import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeResponse;
+import com.mollie.mollie.models.operations.TerminalsRevokePairingCodeRequest;
+import com.mollie.mollie.models.operations.TerminalsRevokePairingCodeRequestBuilder;
+import com.mollie.mollie.models.operations.TerminalsRevokePairingCodeResponse;
 import com.mollie.mollie.operations.GetTerminal;
 import com.mollie.mollie.operations.ListTerminals;
+import com.mollie.mollie.operations.TerminalsGetPairingCode;
+import com.mollie.mollie.operations.TerminalsListPairingCodes;
+import com.mollie.mollie.operations.TerminalsRequestPairingCode;
+import com.mollie.mollie.operations.TerminalsRevokePairingCode;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Terminals {
@@ -157,6 +175,306 @@ public class Terminals {
                 .build();
         RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
               = new GetTerminal.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Request terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Request a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal, and a QR Code as a
+     * base64 encoded SVG data URI for scanning if you specify the query parameter `include` with value
+     * `details.qrCode`.
+     * 
+     * <p>Pairing codes expire after 90 days (see `expiresAt`) and can be used multiple times.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @return The call builder
+     */
+    public TerminalsRequestPairingCodeRequestBuilder terminalsRequestPairingCode() {
+        return new TerminalsRequestPairingCodeRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Request terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Request a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal, and a QR Code as a
+     * base64 encoded SVG data URI for scanning if you specify the query parameter `include` with value
+     * `details.qrCode`.
+     * 
+     * <p>Pairing codes expire after 90 days (see `expiresAt`) and can be used multiple times.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public TerminalsRequestPairingCodeResponse terminalsRequestPairingCodeDirect() {
+        return terminalsRequestPairingCode(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty());
+    }
+
+    /**
+     * Request terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Request a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal, and a QR Code as a
+     * base64 encoded SVG data URI for scanning if you specify the query parameter `include` with value
+     * `details.qrCode`.
+     * 
+     * <p>Pairing codes expire after 90 days (see `expiresAt`) and can be used multiple times.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param include Include additional information in the response.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public TerminalsRequestPairingCodeResponse terminalsRequestPairingCode(
+            JsonNullable<String> include, Optional<String> idempotencyKey,
+            Optional<? extends TerminalsRequestPairingCodeRequestBody> requestBody, Optional<Options> options) {
+        TerminalsRequestPairingCodeRequest request =
+            TerminalsRequestPairingCodeRequest
+                .builder()
+                .include(include)
+                .idempotencyKey(idempotencyKey)
+                .requestBody(requestBody)
+                .build();
+        RequestOperation<TerminalsRequestPairingCodeRequest, TerminalsRequestPairingCodeResponse> operation
+              = new TerminalsRequestPairingCode.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * List terminal pairing codes
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Returns all pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @return The call builder
+     */
+    public TerminalsListPairingCodesRequestBuilder terminalsListPairingCodes() {
+        return new TerminalsListPairingCodesRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List terminal pairing codes
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Returns all pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public TerminalsListPairingCodesResponse terminalsListPairingCodes(TerminalsListPairingCodesRequest request) {
+        return terminalsListPairingCodes(request, Optional.empty());
+    }
+
+    /**
+     * List terminal pairing codes
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Returns all pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public TerminalsListPairingCodesResponse terminalsListPairingCodes(TerminalsListPairingCodesRequest request, Optional<Options> options) {
+        RequestOperation<TerminalsListPairingCodesRequest, TerminalsListPairingCodesResponse> operation
+              = new TerminalsListPairingCodes.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Get terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Get a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal and, optionally, a QR
+     * Code as a
+     * base64 encoded SVG data URI when you use the `include` query parameter with value `details.qrCode`.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @return The call builder
+     */
+    public TerminalsGetPairingCodeRequestBuilder terminalsGetPairingCode() {
+        return new TerminalsGetPairingCodeRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Get a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal and, optionally, a QR
+     * Code as a
+     * base64 encoded SVG data URI when you use the `include` query parameter with value `details.qrCode`.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public TerminalsGetPairingCodeResponse terminalsGetPairingCode(String pairingCodeId) {
+        return terminalsGetPairingCode(pairingCodeId, JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
+    }
+
+    /**
+     * Get terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Get a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal and, optionally, a QR
+     * Code as a
+     * base64 encoded SVG data URI when you use the `include` query parameter with value `details.qrCode`.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @param include Include additional information in the response.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public TerminalsGetPairingCodeResponse terminalsGetPairingCode(
+            String pairingCodeId, JsonNullable<String> include,
+            Optional<String> idempotencyKey, Optional<Options> options) {
+        TerminalsGetPairingCodeRequest request =
+            TerminalsGetPairingCodeRequest
+                .builder()
+                .pairingCodeId(pairingCodeId)
+                .include(include)
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<TerminalsGetPairingCodeRequest, TerminalsGetPairingCodeResponse> operation
+              = new TerminalsGetPairingCode.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+     * Revoke terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
+     * 
+     * <p>Terminals that have already paired with this code are not affected.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @return The call builder
+     */
+    public TerminalsRevokePairingCodeRequestBuilder terminalsRevokePairingCode() {
+        return new TerminalsRevokePairingCodeRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Revoke terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
+     * 
+     * <p>Terminals that have already paired with this code are not affected.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public TerminalsRevokePairingCodeResponse terminalsRevokePairingCode(String pairingCodeId) {
+        return terminalsRevokePairingCode(pairingCodeId, Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Revoke terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
+     * 
+     * <p>Terminals that have already paired with this code are not affected.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public TerminalsRevokePairingCodeResponse terminalsRevokePairingCode(
+            String pairingCodeId, Optional<String> idempotencyKey,
+            Optional<Options> options) {
+        TerminalsRevokePairingCodeRequest request =
+            TerminalsRevokePairingCodeRequest
+                .builder()
+                .pairingCodeId(pairingCodeId)
+                .idempotencyKey(idempotencyKey)
+                .build();
+        RequestOperation<TerminalsRevokePairingCodeRequest, TerminalsRevokePairingCodeResponse> operation
+              = new TerminalsRevokePairingCode.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

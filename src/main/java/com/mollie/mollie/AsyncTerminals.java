@@ -8,18 +8,36 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.models.operations.GetTerminalRequest;
 import com.mollie.mollie.models.operations.ListTerminalsRequest;
+import com.mollie.mollie.models.operations.TerminalsGetPairingCodeRequest;
+import com.mollie.mollie.models.operations.TerminalsListPairingCodesRequest;
+import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeRequest;
+import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeRequestBody;
+import com.mollie.mollie.models.operations.TerminalsRevokePairingCodeRequest;
 import com.mollie.mollie.models.operations.async.GetTerminalRequestBuilder;
 import com.mollie.mollie.models.operations.async.GetTerminalResponse;
 import com.mollie.mollie.models.operations.async.ListTerminalsRequestBuilder;
 import com.mollie.mollie.models.operations.async.ListTerminalsResponse;
+import com.mollie.mollie.models.operations.async.TerminalsGetPairingCodeRequestBuilder;
+import com.mollie.mollie.models.operations.async.TerminalsGetPairingCodeResponse;
+import com.mollie.mollie.models.operations.async.TerminalsListPairingCodesRequestBuilder;
+import com.mollie.mollie.models.operations.async.TerminalsListPairingCodesResponse;
+import com.mollie.mollie.models.operations.async.TerminalsRequestPairingCodeRequestBuilder;
+import com.mollie.mollie.models.operations.async.TerminalsRequestPairingCodeResponse;
+import com.mollie.mollie.models.operations.async.TerminalsRevokePairingCodeRequestBuilder;
+import com.mollie.mollie.models.operations.async.TerminalsRevokePairingCodeResponse;
 import com.mollie.mollie.operations.GetTerminal;
 import com.mollie.mollie.operations.ListTerminals;
+import com.mollie.mollie.operations.TerminalsGetPairingCode;
+import com.mollie.mollie.operations.TerminalsListPairingCodes;
+import com.mollie.mollie.operations.TerminalsRequestPairingCode;
+import com.mollie.mollie.operations.TerminalsRevokePairingCode;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncTerminals {
@@ -160,6 +178,316 @@ public class AsyncTerminals {
                 .build();
         AsyncRequestOperation<GetTerminalRequest, GetTerminalResponse> operation
               = new GetTerminal.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Request terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Request a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal, and a QR Code as a
+     * base64 encoded SVG data URI for scanning if you specify the query parameter `include` with value
+     * `details.qrCode`.
+     * 
+     * <p>Pairing codes expire after 90 days (see `expiresAt`) and can be used multiple times.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @return The async call builder
+     */
+    public TerminalsRequestPairingCodeRequestBuilder terminalsRequestPairingCode() {
+        return new TerminalsRequestPairingCodeRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Request terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Request a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal, and a QR Code as a
+     * base64 encoded SVG data URI for scanning if you specify the query parameter `include` with value
+     * `details.qrCode`.
+     * 
+     * <p>Pairing codes expire after 90 days (see `expiresAt`) and can be used multiple times.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @return {@code CompletableFuture<TerminalsRequestPairingCodeResponse>} - The async response
+     */
+    public CompletableFuture<TerminalsRequestPairingCodeResponse> terminalsRequestPairingCodeDirect() {
+        return terminalsRequestPairingCode(
+                JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+                Optional.empty());
+    }
+
+    /**
+     * Request terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Request a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal, and a QR Code as a
+     * base64 encoded SVG data URI for scanning if you specify the query parameter `include` with value
+     * `details.qrCode`.
+     * 
+     * <p>Pairing codes expire after 90 days (see `expiresAt`) and can be used multiple times.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param include Include additional information in the response.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
+     * @param options additional options
+     * @return {@code CompletableFuture<TerminalsRequestPairingCodeResponse>} - The async response
+     */
+    public CompletableFuture<TerminalsRequestPairingCodeResponse> terminalsRequestPairingCode(
+            JsonNullable<String> include, Optional<String> idempotencyKey,
+            Optional<? extends TerminalsRequestPairingCodeRequestBody> requestBody, Optional<Options> options) {
+        TerminalsRequestPairingCodeRequest request =
+            TerminalsRequestPairingCodeRequest
+                .builder()
+                .include(include)
+                .idempotencyKey(idempotencyKey)
+                .requestBody(requestBody)
+                .build();
+        AsyncRequestOperation<TerminalsRequestPairingCodeRequest, TerminalsRequestPairingCodeResponse> operation
+              = new TerminalsRequestPairingCode.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * List terminal pairing codes
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Returns all pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @return The async call builder
+     */
+    public TerminalsListPairingCodesRequestBuilder terminalsListPairingCodes() {
+        return new TerminalsListPairingCodesRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * List terminal pairing codes
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Returns all pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<TerminalsListPairingCodesResponse>} - The async response
+     */
+    public CompletableFuture<TerminalsListPairingCodesResponse> terminalsListPairingCodes(TerminalsListPairingCodesRequest request) {
+        return terminalsListPairingCodes(request, Optional.empty());
+    }
+
+    /**
+     * List terminal pairing codes
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Returns all pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<TerminalsListPairingCodesResponse>} - The async response
+     */
+    public CompletableFuture<TerminalsListPairingCodesResponse> terminalsListPairingCodes(TerminalsListPairingCodesRequest request, Optional<Options> options) {
+        AsyncRequestOperation<TerminalsListPairingCodesRequest, TerminalsListPairingCodesResponse> operation
+              = new TerminalsListPairingCodes.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Get terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Get a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal and, optionally, a QR
+     * Code as a
+     * base64 encoded SVG data URI when you use the `include` query parameter with value `details.qrCode`.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @return The async call builder
+     */
+    public TerminalsGetPairingCodeRequestBuilder terminalsGetPairingCode() {
+        return new TerminalsGetPairingCodeRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Get terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Get a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal and, optionally, a QR
+     * Code as a
+     * base64 encoded SVG data URI when you use the `include` query parameter with value `details.qrCode`.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @return {@code CompletableFuture<TerminalsGetPairingCodeResponse>} - The async response
+     */
+    public CompletableFuture<TerminalsGetPairingCodeResponse> terminalsGetPairingCode(String pairingCodeId) {
+        return terminalsGetPairingCode(
+                pairingCodeId, JsonNullable.undefined(), Optional.empty(),
+                Optional.empty());
+    }
+
+    /**
+     * Get terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Get a pairing code to onboard a point-of-sale terminal.
+     * 
+     * <p>The response includes a human-readable `code` for manual entry on the terminal and, optionally, a QR
+     * Code as a
+     * base64 encoded SVG data URI when you use the `include` query parameter with value `details.qrCode`.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @param include Include additional information in the response.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param options additional options
+     * @return {@code CompletableFuture<TerminalsGetPairingCodeResponse>} - The async response
+     */
+    public CompletableFuture<TerminalsGetPairingCodeResponse> terminalsGetPairingCode(
+            String pairingCodeId, JsonNullable<String> include,
+            Optional<String> idempotencyKey, Optional<Options> options) {
+        TerminalsGetPairingCodeRequest request =
+            TerminalsGetPairingCodeRequest
+                .builder()
+                .pairingCodeId(pairingCodeId)
+                .include(include)
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<TerminalsGetPairingCodeRequest, TerminalsGetPairingCodeResponse> operation
+              = new TerminalsGetPairingCode.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Revoke terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
+     * 
+     * <p>Terminals that have already paired with this code are not affected.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @return The async call builder
+     */
+    public TerminalsRevokePairingCodeRequestBuilder terminalsRevokePairingCode() {
+        return new TerminalsRevokePairingCodeRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Revoke terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
+     * 
+     * <p>Terminals that have already paired with this code are not affected.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @return {@code CompletableFuture<TerminalsRevokePairingCodeResponse>} - The async response
+     */
+    public CompletableFuture<TerminalsRevokePairingCodeResponse> terminalsRevokePairingCode(String pairingCodeId) {
+        return terminalsRevokePairingCode(pairingCodeId, Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Revoke terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
+     * 
+     * <p>Terminals that have already paired with this code are not affected.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param options additional options
+     * @return {@code CompletableFuture<TerminalsRevokePairingCodeResponse>} - The async response
+     */
+    public CompletableFuture<TerminalsRevokePairingCodeResponse> terminalsRevokePairingCode(
+            String pairingCodeId, Optional<String> idempotencyKey,
+            Optional<Options> options) {
+        TerminalsRevokePairingCodeRequest request =
+            TerminalsRevokePairingCodeRequest
+                .builder()
+                .pairingCodeId(pairingCodeId)
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<TerminalsRevokePairingCodeRequest, TerminalsRevokePairingCodeResponse> operation
+              = new TerminalsRevokePairingCode.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)

@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.7.0'
+implementation 'com.mollie:mollie:1.7.1'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.7.0</version>
+    <version>1.7.1</version>
 </dependency>
 ```
 
@@ -632,6 +632,10 @@ Client sdk = Client.builder()
 
 * [list](docs/sdks/terminals/README.md#list) - List terminals
 * [get](docs/sdks/terminals/README.md#get) - Get terminal
+* [terminalsRequestPairingCode](docs/sdks/terminals/README.md#terminalsrequestpairingcode) - Request terminal pairing code
+* [terminalsListPairingCodes](docs/sdks/terminals/README.md#terminalslistpairingcodes) - List terminal pairing codes
+* [terminalsGetPairingCode](docs/sdks/terminals/README.md#terminalsgetpairingcode) - Get terminal pairing code
+* [terminalsRevokePairingCode](docs/sdks/terminals/README.md#terminalsrevokepairingcode) - Revoke terminal pairing code
 
 ### [Transfers](docs/sdks/transfers/README.md)
 

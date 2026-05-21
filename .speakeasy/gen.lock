@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 8b0b6fefb1431e791ccd9167a06e4204
+  docChecksum: 8835ed62dc6fdd7ed4b481435a63a1ee
   docVersion: 1.0.0
-  speakeasyVersion: 1.763.3
-  generationVersion: 2.884.7
-  releaseVersion: 1.7.0
-  configChecksum: 3fc2b7cf4b203ab6eda6a254d6e5586b
+  speakeasyVersion: 1.763.4
+  generationVersion: 2.884.11
+  releaseVersion: 1.7.1
+  configChecksum: 464d7d2dadf51fef9d0ad719eaec8dd6
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: dad0ac77-a899-4863-b621-4c80f62b0dc8
-  pristine_commit_hash: 240089253405da6a2feff120c300b5da33123f50
-  pristine_tree_hash: 002e02e13fa8b9560525368bdb52487c7ce29d13
+  generation_id: 4a8f770b-f9ad-40c9-a869-d9ea14fa221c
+  pristine_commit_hash: d3f1cdbb61081e71ccdb1a5b2865398c22db7590
+  pristine_tree_hash: 460e7b98601c9add0f90ab1f75f626fc95d1b0f7
 features:
   java:
     additionalDependencies: 0.1.0
@@ -580,6 +580,26 @@ trackedFiles:
     id: cd9237f05fe7
     last_write_checksum: sha1:cb7e88c2d4a3a3b986c707b64da401ca8877c937
     pristine_git_object: d6104ba810b10e64cc2c6864bdcfc0fe485ab8dd
+  docs/models/components/EntityPairingCode.md:
+    id: 9cc6e09d93d0
+    last_write_checksum: sha1:014a65ac8195cc07a37884a07f409f3790156279
+    pristine_git_object: 2314dee05b274c6e9ae0b5ad12eb0d58e568cbbd
+  docs/models/components/EntityPairingCodeDetails.md:
+    id: cf259a03941e
+    last_write_checksum: sha1:188b44410f8bf3de23bbb2243f44b21a22fd9733
+    pristine_git_object: 5217639d363792e9077e19586f1e212f50229b07
+  docs/models/components/EntityPairingCodeLinks.md:
+    id: be060f7c5152
+    last_write_checksum: sha1:758cc0f269acb1add62ea5a41a57507ef8296248
+    pristine_git_object: 3352847a66094295afabeb4168251a4cf258a8fe
+  docs/models/components/EntityPairingCodeQrCode.md:
+    id: 4c427bc3a304
+    last_write_checksum: sha1:39e9f3c4e4711a69d0954c703f36b7858d89cc05
+    pristine_git_object: 145b8399110c59e37fea5cef37dd94f210d7d7fe
+  docs/models/components/EntityPairingCodeStatus.md:
+    id: 2ebb7f97524a
+    last_write_checksum: sha1:4e2ff80acfc42dd3119cf973f8f7ec0014c3c616
+    pristine_git_object: 7e0cd0481114fa109811ab0fbf7e33f83b9d0e35
   docs/models/components/EntityPaymentRoute.md:
     id: c3ee6a72e9df
     last_write_checksum: sha1:860a8141841ebe1f55ec13f3dcba7de4748eb801
@@ -3432,6 +3452,54 @@ trackedFiles:
     id: f87db416f410
     last_write_checksum: sha1:ab344302f163f944fd7de673dddd3f0b329b5800
     pristine_git_object: 62bfa844241a0d09aee395b7434345e81c0bc78c
+  docs/models/operations/TerminalPairingCodes.md:
+    id: 50e59da9ff11
+    last_write_checksum: sha1:cfc7cb3d30d4ee935fd1101a205eac58292107a4
+    pristine_git_object: c7597559000b19438ad84b5fc027dbcab482cbc8
+  docs/models/operations/TerminalsGetPairingCodeRequest.md:
+    id: 67fd3361d6b9
+    last_write_checksum: sha1:a4082e27da1a6a65d3010c0db48d54e392b8376e
+    pristine_git_object: dd13f7583f95ebd1105ee917957fb080b5d2ade3
+  docs/models/operations/TerminalsGetPairingCodeResponse.md:
+    id: 4481c129fa0e
+    last_write_checksum: sha1:bb0c46c0a53422bada28cb521bf820c9497b5507
+    pristine_git_object: 9c3499d61347e38bafbcc1b6109bd50c6ea04f51
+  docs/models/operations/TerminalsListPairingCodesEmbedded.md:
+    id: f2c6f90d5c85
+    last_write_checksum: sha1:bd46ccfa61966ad627c779f893f618eaa970a312
+    pristine_git_object: f0c56632d9e1b27e1d4387b2b47c9e1d47721655
+  docs/models/operations/TerminalsListPairingCodesRequest.md:
+    id: 4c860f569769
+    last_write_checksum: sha1:cebc12337b91ae11a1749e5a30789a9a4a5a421a
+    pristine_git_object: 23fdc9ccdf189963565899598ab1a9b7f21a1e25
+  docs/models/operations/TerminalsListPairingCodesResponse.md:
+    id: 2cd8c3c5100d
+    last_write_checksum: sha1:fcb3219e17ad1eb292670eb67e90014a5d8de3a1
+    pristine_git_object: 1409a4c0d06d45b641a12e97dff1a08415cecc7c
+  docs/models/operations/TerminalsListPairingCodesResponseBody.md:
+    id: dd8470b034a8
+    last_write_checksum: sha1:a993dd5f68a04d590d715bb7d1baf8c146cd114d
+    pristine_git_object: e837672a143965ce1cc09ed1c4b49487cde7d983
+  docs/models/operations/TerminalsRequestPairingCodeRequest.md:
+    id: d3885912aa1c
+    last_write_checksum: sha1:720bcd72e7e6d70d98552e1b75e3ddad9b6a2fa2
+    pristine_git_object: 8844427fece8231a436d338d56714d48bfd18430
+  docs/models/operations/TerminalsRequestPairingCodeRequestBody.md:
+    id: eeee3edffcd8
+    last_write_checksum: sha1:e8ed94b835c4aed29a1a114844b289312db72a83
+    pristine_git_object: 965be868850b25926bfb968b212f6cdedcdc2ad4
+  docs/models/operations/TerminalsRequestPairingCodeResponse.md:
+    id: 68d24e140c50
+    last_write_checksum: sha1:ce99d13210b7d4aa30027c7fd775c320896ec448
+    pristine_git_object: f51693fc91990c9c885f3843424167769f3ff88a
+  docs/models/operations/TerminalsRevokePairingCodeRequest.md:
+    id: abd1845ae69d
+    last_write_checksum: sha1:e39023e8c2f9f36190ef380b1b44344aca0d086a
+    pristine_git_object: 660f55c5c339e5703cdbe96bdeefcb666f9dd174
+  docs/models/operations/TerminalsRevokePairingCodeResponse.md:
+    id: add4906895f1
+    last_write_checksum: sha1:0b0a5ca6280e9f5e635cf8f458a882b033c81c55
+    pristine_git_object: 257ee52a0c75da0cdb6e32b00f808755399808aa
   docs/models/operations/TestWebhookRequest.md:
     id: 3c868e9cab4f
     last_write_checksum: sha1:5e105e8e669b8b5c84bce83f789f2e93bd37418c
@@ -3650,8 +3718,8 @@ trackedFiles:
     pristine_git_object: e188907068ea379a366846626ed2497e2d171fb3
   docs/sdks/terminals/README.md:
     id: 4b9f7986e224
-    last_write_checksum: sha1:0fc81fb1b4b449d900211a30cccc6578b3ac8f40
-    pristine_git_object: b0b3dd5a339f0a063ee0b153dc76013e409717e9
+    last_write_checksum: sha1:74e5edef39865634145eaad9b4eb5b82ac9d7fa3
+    pristine_git_object: 91bd44c1898e69d983e8e38f0fb800c8cf808f00
   docs/sdks/transfers/README.md:
     id: f56918861798
     last_write_checksum: sha1:16f9d7155b20f459aeaeaa4e5c300752af124de8
@@ -3682,8 +3750,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:d064a491ba86a9733889d74adb797178c7ec6026
-    pristine_git_object: fbfd5f12756e7bf29fb56d4f725d4faa1af5ddfb
+    last_write_checksum: sha1:e17ef12a92d56768cddcf44b7d70c7bdd863c719
+    pristine_git_object: 4ef6972ca072f668191a988fe81fa0b171d1ce05
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3850,8 +3918,8 @@ trackedFiles:
     pristine_git_object: 79013ce5c997ee7dc6d7fe470766e4baf12ec212
   src/main/java/com/mollie/mollie/AsyncTerminals.java:
     id: e91cc43a8a12
-    last_write_checksum: sha1:c900ad3e59bceb4e32da174db7992f8271f38473
-    pristine_git_object: c7abe56cf99d39522c4486c49c80e1514120c89f
+    last_write_checksum: sha1:505ec67d7ef7f1b239ece78e0e8b4908550f6ae5
+    pristine_git_object: 3ed424f69098d48cc30a7a71fa9a7505e0de50e1
   src/main/java/com/mollie/mollie/AsyncTransfers.java:
     id: b70e8d296421
     last_write_checksum: sha1:12e9703b0f227ad3bcfbe2c9f894c333bfd23171
@@ -3966,8 +4034,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:e2e8d483c062c0e3c7dc341ab9ab25cf99d5fb34
-    pristine_git_object: acd782293c50dd19c67b2d9f47b3437895a860bb
+    last_write_checksum: sha1:a9e61269d88b6e79058d41396f4651700c055cc1
+    pristine_git_object: 2e77be74c0473ae1005e5f67b3ec8fcf708ce33e
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:6cdf29ce849fc8d0132424ec727ca8bb41e46761
@@ -3990,8 +4058,8 @@ trackedFiles:
     pristine_git_object: c13580ca5fef61d1724a4c24b694d9022a339fab
   src/main/java/com/mollie/mollie/Terminals.java:
     id: 1d5a2a3ebb2d
-    last_write_checksum: sha1:2842c58002cd9a635706003a69426d8a8017d2e0
-    pristine_git_object: 171cd94dc93d9dc7be5e6afe23dd362227c4e2f5
+    last_write_checksum: sha1:916441da62df14f81d8c7a31a15ee61a238662dc
+    pristine_git_object: 893b55b9f7be004a9f2ff2510a54016d7308142d
   src/main/java/com/mollie/mollie/Transfers.java:
     id: f86e68bfabe3
     last_write_checksum: sha1:246950a136d23618a8f6bf5bf5471e3ed1fb54e8
@@ -4548,6 +4616,26 @@ trackedFiles:
     id: edceea3f8ae9
     last_write_checksum: sha1:ae3cf2e92e09cab37f41516273ca5d54ee0f361d
     pristine_git_object: f98ad2c2fcf56963f392e7bee1ebc41250ff83f3
+  src/main/java/com/mollie/mollie/models/components/EntityPairingCode.java:
+    id: c19c1de90858
+    last_write_checksum: sha1:9ee3528877fd30e7a9da983d21d92aa2016602fc
+    pristine_git_object: 2671c0584538f167c24f067f6a6156173945d45a
+  src/main/java/com/mollie/mollie/models/components/EntityPairingCodeDetails.java:
+    id: 2e6ce689bc1d
+    last_write_checksum: sha1:fd66113f9aab570acee1d716c5f67092971251de
+    pristine_git_object: b1089009d7ba96187287297f6582cd17730b7e9a
+  src/main/java/com/mollie/mollie/models/components/EntityPairingCodeLinks.java:
+    id: 3fb507636537
+    last_write_checksum: sha1:74606edfa533bac74d8bad9ab03419a2e1568ec4
+    pristine_git_object: fae86fd4976aba1eaf684273991a3838cf5fc7e2
+  src/main/java/com/mollie/mollie/models/components/EntityPairingCodeQrCode.java:
+    id: 1bcdff76ec08
+    last_write_checksum: sha1:90ed697e79b9f05e99c2bb5f33cf6d25fd67f474
+    pristine_git_object: 8df93cec60a9f07f2b9eb702a698ea077b293964
+  src/main/java/com/mollie/mollie/models/components/EntityPairingCodeStatus.java:
+    id: 8f8fafad4f7e
+    last_write_checksum: sha1:e0e393b7f98e80f0ea65a4bd7e62c6c28b467a1b
+    pristine_git_object: c106f21aaac8cf27eadee5623b8d62aefe3ad754
   src/main/java/com/mollie/mollie/models/components/EntityPaymentRoute.java:
     id: 2f1d10f5797a
     last_write_checksum: sha1:ae95b9fe65587086317b937f92ac82da7d61f3cf
@@ -6540,6 +6628,22 @@ trackedFiles:
     id: 9c5f0b8483fa
     last_write_checksum: sha1:0d8970a7010aab52140a43bc9b2284739d550f54
     pristine_git_object: 186d5663e22409689fea90d83e2fe1cb14d666ce
+  src/main/java/com/mollie/mollie/models/operations//async/TerminalsGetPairingCodeRequestBuilder.java:
+    id: 8336d8ca50a1
+    last_write_checksum: sha1:f471662a6fdc5424a2d2e84fa3db17294f0324c7
+    pristine_git_object: fb14ad46513c947cc965f5d956e2f5477c600c8b
+  src/main/java/com/mollie/mollie/models/operations//async/TerminalsListPairingCodesRequestBuilder.java:
+    id: 27b10c78b71e
+    last_write_checksum: sha1:3c8f97921c3c921be51f242f47f41a35d92f5c96
+    pristine_git_object: 04e7e33d1e62d34470d46e0a4831859330f41fe2
+  src/main/java/com/mollie/mollie/models/operations//async/TerminalsRequestPairingCodeRequestBuilder.java:
+    id: b097f7a3b167
+    last_write_checksum: sha1:f1604e78d9c2e2de104c0ce8901116154a87b0f6
+    pristine_git_object: 171853157242c3b8c277048f9fa4c6c9099d8622
+  src/main/java/com/mollie/mollie/models/operations//async/TerminalsRevokePairingCodeRequestBuilder.java:
+    id: 90bb45ce1085
+    last_write_checksum: sha1:becf52ca7ab555e13160f965642927f84e497023
+    pristine_git_object: 16b09956ddf7422ad770765ebb1efb01467bb521
   src/main/java/com/mollie/mollie/models/operations//async/TestWebhookRequestBuilder.java:
     id: 236bc7f29ddd
     last_write_checksum: sha1:4aa7bb6fea1fc4c68749bb10b6c1b724f3542280
@@ -8308,6 +8412,70 @@ trackedFiles:
     id: cc0fcc95debe
     last_write_checksum: sha1:87bf1db3e4d0f7608fd96c003dc9900af1d3f3eb
     pristine_git_object: 0ac38d973bfd8d4dd2915813e5c80f4ca31dd5fc
+  src/main/java/com/mollie/mollie/models/operations/TerminalPairingCodes.java:
+    id: b537149bd175
+    last_write_checksum: sha1:ead177466c057ef9687305fe03c51ec779ca8acb
+    pristine_git_object: a43f23b48ac70dc95fa43eb29bd367b0ddbb691a
+  src/main/java/com/mollie/mollie/models/operations/TerminalsGetPairingCodeRequest.java:
+    id: 6be308c16c7e
+    last_write_checksum: sha1:b3664697f21778ab555380e453f656544032b64c
+    pristine_git_object: 8f93c84ba9677694a9a2057eb8093ec0eb922cd2
+  src/main/java/com/mollie/mollie/models/operations/TerminalsGetPairingCodeRequestBuilder.java:
+    id: 038e187ef503
+    last_write_checksum: sha1:689a54d0b1cec7edd81831a9a478d0fc85179c01
+    pristine_git_object: 642072d2c50c80252ffdfd784d57ab3043486261
+  src/main/java/com/mollie/mollie/models/operations/TerminalsGetPairingCodeResponse.java:
+    id: f43296ad6709
+    last_write_checksum: sha1:dbc1fe8d84f964722758f62c068a505ab63dd22d
+    pristine_git_object: 2b806833e5edeffcc2e15c610bed3e52f2c8d945
+  src/main/java/com/mollie/mollie/models/operations/TerminalsListPairingCodesEmbedded.java:
+    id: 3033cf16c829
+    last_write_checksum: sha1:6d391c46f50f1106497b37ad73afc52f78799b11
+    pristine_git_object: 084e82019578baf97ed9ddf1564e70a81ed0e730
+  src/main/java/com/mollie/mollie/models/operations/TerminalsListPairingCodesRequest.java:
+    id: 50fa9e281c08
+    last_write_checksum: sha1:310fc9fc27c354beae25181467934572257e08bb
+    pristine_git_object: 3ab9e7536b81b675a628a1a4efd40be0b6f498b3
+  src/main/java/com/mollie/mollie/models/operations/TerminalsListPairingCodesRequestBuilder.java:
+    id: 329899cd380e
+    last_write_checksum: sha1:a31e6fa46a89a1c6077bacc8500dc826cbd026aa
+    pristine_git_object: 48a79f6920b6bf88fa40c11fb615fdd97c5ea088
+  src/main/java/com/mollie/mollie/models/operations/TerminalsListPairingCodesResponse.java:
+    id: f1c43bd27334
+    last_write_checksum: sha1:409664e68f28703dc40b1e1de9d9fdd261f54209
+    pristine_git_object: bdf2ecb09d1adb66488b4a5fcde8cf3591890a2a
+  src/main/java/com/mollie/mollie/models/operations/TerminalsListPairingCodesResponseBody.java:
+    id: e8474cb75da7
+    last_write_checksum: sha1:ecf4426b9bbc5a5d5d1bd6d48681acc55276ec18
+    pristine_git_object: 6c25ac90ba62709e62a20bbeea52405cfdad67d7
+  src/main/java/com/mollie/mollie/models/operations/TerminalsRequestPairingCodeRequest.java:
+    id: b73c66fff560
+    last_write_checksum: sha1:5413c4d06e779ca971d3cb4bd42cfbb8fd89af06
+    pristine_git_object: bd19e861ea6d117317eca48a13e40a73825871de
+  src/main/java/com/mollie/mollie/models/operations/TerminalsRequestPairingCodeRequestBody.java:
+    id: b1e37fd36943
+    last_write_checksum: sha1:bd2c98c3b0d0503f87358c7f0b2490659002e15e
+    pristine_git_object: d6c814022e5f1b62e5b3c4516d107dc3ca998155
+  src/main/java/com/mollie/mollie/models/operations/TerminalsRequestPairingCodeRequestBuilder.java:
+    id: 6e35a2f28694
+    last_write_checksum: sha1:2deff1a06d23e49993b1c4ad5b43ef223a96c618
+    pristine_git_object: 167dd9928ef6c0c46d3889aa18849a0c45c189a7
+  src/main/java/com/mollie/mollie/models/operations/TerminalsRequestPairingCodeResponse.java:
+    id: 793f651dc2a8
+    last_write_checksum: sha1:e2ae7bb689d20b4a1b4983fbd8154bb6ecd0c83b
+    pristine_git_object: 6a7a53c791964dfa75aefc946b3c867d3e516136
+  src/main/java/com/mollie/mollie/models/operations/TerminalsRevokePairingCodeRequest.java:
+    id: 99642f887b83
+    last_write_checksum: sha1:7e881ad053c89e720e76b33631562bedd1d0d023
+    pristine_git_object: 7b3681a1355e26efe2e3cb27b35785189b86b76c
+  src/main/java/com/mollie/mollie/models/operations/TerminalsRevokePairingCodeRequestBuilder.java:
+    id: da39d4ed9c74
+    last_write_checksum: sha1:01d3fdfe2900ffcf83b2b5c2e6175da015d8d9f1
+    pristine_git_object: 959699d9f633ed15c888d6b56d64f74d318ea8e6
+  src/main/java/com/mollie/mollie/models/operations/TerminalsRevokePairingCodeResponse.java:
+    id: 1895a153208f
+    last_write_checksum: sha1:8991c42f80b36ffad4f0be1ba8be40b400b6c3ae
+    pristine_git_object: c3f786231a68b9d66a3b9e8048fea5b3ccb3522e
   src/main/java/com/mollie/mollie/models/operations/TestWebhookRequest.java:
     id: 3dd464fcee1a
     last_write_checksum: sha1:0e25aae8d0d755c36a8b6be7fca7efc94a04a72c
@@ -8884,6 +9052,22 @@ trackedFiles:
     id: cc9589b96feb
     last_write_checksum: sha1:65bd06ce97210c4f6e7d071e4b8f0aa3a223d009
     pristine_git_object: 2b8c5583eeed4b8965d1c62ab53550ca3d83d4e7
+  src/main/java/com/mollie/mollie/models/operations/async/TerminalsGetPairingCodeResponse.java:
+    id: 75a4a0edc468
+    last_write_checksum: sha1:6b7d0335f09d38f961992f5b4fe09c5f79bb2f0e
+    pristine_git_object: 62a9590618e281d6a753bc4185016f3d4feeaa01
+  src/main/java/com/mollie/mollie/models/operations/async/TerminalsListPairingCodesResponse.java:
+    id: 321243ed4966
+    last_write_checksum: sha1:d25c97eac537112814a209445da5188dc5fca99e
+    pristine_git_object: 455de6c63bd2b51e9fb07933826069146c320f66
+  src/main/java/com/mollie/mollie/models/operations/async/TerminalsRequestPairingCodeResponse.java:
+    id: def4bc392885
+    last_write_checksum: sha1:5ff9a2a410f1da8a2706fa14fb9e050174c0d9ea
+    pristine_git_object: 6a5305c85f3782ad14582efc01d0923bd4a87d9f
+  src/main/java/com/mollie/mollie/models/operations/async/TerminalsRevokePairingCodeResponse.java:
+    id: 4313b01cf577
+    last_write_checksum: sha1:d52b3ed64c8d63b2cbb8882d1fa0612bca392911
+    pristine_git_object: c797fc1aca15bc00840e0eba5f9ba3bd2b2fdf09
   src/main/java/com/mollie/mollie/models/operations/async/TestWebhookResponse.java:
     id: 380dd0d70c9f
     last_write_checksum: sha1:dc29cdac8ee709130a1262c5964a0cfba536b8a9
@@ -9352,6 +9536,22 @@ trackedFiles:
     id: 3aff35f0f254
     last_write_checksum: sha1:289059df68018be56bfd967ee36917c0991ac4aa
     pristine_git_object: a3d38096628b72bb1878e02a31c15309ffa03625
+  src/main/java/com/mollie/mollie/operations/TerminalsGetPairingCode.java:
+    id: d968fac953b3
+    last_write_checksum: sha1:18dc533e0d1864c4540f9773ddb0e942b33d7ba4
+    pristine_git_object: 237a6a2012ab371651c8eb2e2a22a4f73940b06a
+  src/main/java/com/mollie/mollie/operations/TerminalsListPairingCodes.java:
+    id: 2c64b31496e2
+    last_write_checksum: sha1:b163d874869dbafa0893718233a711a74de32486
+    pristine_git_object: 958f924b15a39494f903ab7ef7092086c01d3f74
+  src/main/java/com/mollie/mollie/operations/TerminalsRequestPairingCode.java:
+    id: 7301196203a5
+    last_write_checksum: sha1:3405dc43e1ced5edc0d23a3833bba0b7fb526540
+    pristine_git_object: ffe73444b5b1ad98476099cab18c65a73cd01b73
+  src/main/java/com/mollie/mollie/operations/TerminalsRevokePairingCode.java:
+    id: 5b4ca5c14492
+    last_write_checksum: sha1:f26ad41eda8c88ab956b0c1d892f2b91dc4b9fe6
+    pristine_git_object: 8b5b798f9d97e3cab198c5e364c3308cfa9da5a6
   src/main/java/com/mollie/mollie/operations/TestWebhook.java:
     id: d7bb9a459de3
     last_write_checksum: sha1:9ce6ce9d3c02a3b20ae6a1267d760f0d2e0589ea
@@ -14818,9 +15018,63 @@ examples:
           application/hal+json: {"resource": "payout", "id": "payout_j8NvRAM2WNZtsykpLEX8J", "balanceId": "bal_gVMhHKqSSRYJyPsuoPNFH", "amount": {"currency": "EUR", "value": "10.00"}, "description": "My payout description", "status": "requested", "statusReason": {"code": "requested", "message": "The payout has been requested."}, "createdAt": "2024-03-20T09:13:37+00:00", "initiatedAt": "2024-03-20T09:13:40+00:00", "completedAt": "2024-03-20T14:00:00+00:00", "canceledAt": null, "mode": "live", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  terminals-request-pairing-code:
+    speakeasy-default-terminals-request-pairing-code:
+      parameters:
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      requestBody:
+        application/json: {"profileId": "pfl_jA9bC4DkFj3G"}
+      responses:
+        "201":
+          application/hal+json: {"resource": "terminal-pairing-code", "id": "termpc_R7gX5Ea9bC4DkFj3G", "mode": "live", "code": "20eb5ca1f78b48ae9e2b", "profileId": "pfl_jA9bC4DkFj3G", "status": "active", "details": {"qrCode": {"height": 256, "width": 256, "src": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4w..."}}, "expiresAt": "2025-12-10T10:15:00+00:00", "revokedAt": "2025-12-10T10:03:23+00:00", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+        "422":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  terminals-list-pairing-codes:
+    speakeasy-default-terminals-list-pairing-codes:
+      parameters:
+        query:
+          limit: 50
+          sort: "desc"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "200":
+          application/hal+json: {"count": 5, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+        "400":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  terminals-get-pairing-code:
+    speakeasy-default-terminals-get-pairing-code:
+      parameters:
+        path:
+          pairingCodeId: "termpc_R7gX5Ea9bC4DkFj3G"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "200":
+          application/hal+json: {"resource": "terminal-pairing-code", "id": "termpc_R7gX5Ea9bC4DkFj3G", "mode": "live", "code": "20eb5ca1f78b48ae9e2b", "profileId": "pfl_jA9bC4DkFj3G", "status": "active", "details": {"qrCode": null}, "expiresAt": "2025-12-10T10:15:00+00:00", "revokedAt": "2025-12-10T10:03:23+00:00", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+  terminals-revoke-pairing-code:
+    speakeasy-default-terminals-revoke-pairing-code:
+      parameters:
+        path:
+          pairingCodeId: "termpc_R7gX5Ea9bC4DkFj3G"
+        header:
+          idempotency-key: "123e4567-e89b-12d3-a456-426"
+      responses:
+        "200":
+          application/hal+json: {"resource": "terminal-pairing-code", "id": "termpc_R7gX5Ea9bC4DkFj3G", "mode": "live", "code": "20eb5ca1f78b48ae9e2b", "profileId": "pfl_jA9bC4DkFj3G", "status": "active", "details": {"qrCode": {"height": 256, "width": 256, "src": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4w..."}}, "expiresAt": "2025-12-10T10:15:00+00:00", "revokedAt": "2025-12-10T10:03:23+00:00", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+        "404":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `client.oauth.generate()`: \n  *  `request.security` **Added** (Breaking ⚠️)\n  *  `error.status[429]` **Added**\n* `client.oauth.revoke()`: \n  *  `request.security` **Added** (Breaking ⚠️)\n  *  `error.status[429]` **Added**\n* `client.balances.list()`:  `error.status[429]` **Added**\n* `client.balances.get()`:  `error.status[429]` **Added**\n* `client.balances.getPrimary()`:  `error.status[429]` **Added**\n* `client.balances.getReport()`:  `error.status[429]` **Added**\n* `client.settlements.list()`:  `error.status[429]` **Added**\n* `client.settlements.get()`:  `error.status[429]` **Added**\n* `client.settlements.getOpen()`:  `error.status[429]` **Added**\n* `client.settlements.getNext()`:  `error.status[429]` **Added**\n* `client.settlements.listPayments()`:  `error.status[429]` **Added**\n* `client.settlements.listCaptures()`:  `error.status[429]` **Added**\n* `client.settlements.listRefunds()`:  `error.status[429]` **Added**\n* `client.settlements.listChargebacks()`:  `error.status[429]` **Added**\n* `client.invoices.list()`:  `error.status[429]` **Added**\n* `client.invoices.get()`:  `error.status[429]` **Added**\n* `client.permissions.list()`:  `error.status[429]` **Added**\n* `client.permissions.get()`:  `error.status[429]` **Added**\n* `client.organizations.get()`:  `error.status[429]` **Added**\n* `client.organizations.getCurrent()`:  `error.status[429]` **Added**\n* `client.organizations.getPartner()`:  `error.status[429]` **Added**\n* `client.profiles.create()`:  `error.status[429]` **Added**\n* `client.profiles.list()`:  `error.status[429]` **Added**\n* `client.profiles.get()`:  `error.status[429]` **Added**\n* `client.profiles.update()`:  `error.status[429]` **Added**\n* `client.profiles.delete()`:  `error.status[429]` **Added**\n* `client.profiles.getCurrent()`:  `error.status[429]` **Added**\n* `client.onboarding.get()`:  `error.status[429]` **Added**\n* `client.onboarding.submit()`:  `error.status[429]` **Added**\n* `client.capabilities.list()`:  `error.status[429]` **Added**\n* `client.clients.list()`:  `error.status[429]` **Added**\n* `client.clients.get()`:  `error.status[429]` **Added**\n* `client.clientLinks.create()`:  `error.status[429]` **Added**\n* `client.webhooks.create()`:  `error.status[429]` **Added**\n* `client.webhooks.list()`:  `error.status[429]` **Added**\n* `client.webhooks.update()`:  `error.status[429]` **Added**\n* `client.webhooks.get()`:  `error.status[429]` **Added**\n* `client.webhooks.delete()`:  `error.status[429]` **Added**\n* `client.webhooks.test()`:  `error.status[429]` **Added**\n* `client.webhookEvents.get()`:  `error.status[429]` **Added**\n* `client.balanceTransfers.create()`:  `error.status[429]` **Added**\n* `client.balanceTransfers.list()`:  `error.status[429]` **Added**\n* `client.balanceTransfers.get()`:  `error.status[429]` **Added**\n* `client.payments.create()`:  `error.status[429]` **Added**\n* `client.payments.list()`:  `error.status[429]` **Added**\n* `client.payments.get()`:  `error.status[429]` **Added**\n* `client.payments.update()`:  `error.status[429]` **Added**\n* `client.payments.cancel()`:  `error.status[429]` **Added**\n* `client.payments.releaseAuthorization()`:  `error.status[429]` **Added**\n* `client.unmatchedCreditTransfers.list()`:  `error.status[429]` **Added**\n* `client.unmatchedCreditTransfers.get()`:  `error.status[429]` **Added**\n* `client.unmatchedCreditTransfers.match()`:  `error.status[429]` **Added**\n* `client.unmatchedCreditTransfers.return()`:  `error.status[429]` **Added**\n* `client.sessions.create()`:  `error.status[429]` **Added**\n* `client.sessions.get()`:  `error.status[429]` **Added**\n* `client.methods.list()`:  `error.status[429]` **Added**\n* `client.methods.all()`:  `error.status[429]` **Added**\n* `client.methods.get()`:  `error.status[429]` **Added**\n* `client.refunds.create()`:  `error.status[429]` **Added**\n* `client.refunds.list()`:  `error.status[429]` **Added**\n* `client.refunds.get()`:  `error.status[429]` **Added**\n* `client.refunds.cancel()`:  `error.status[429]` **Added**\n* `client.refunds.all()`:  `error.status[429]` **Added**\n* `client.chargebacks.list()`:  `error.status[429]` **Added**\n* `client.chargebacks.get()`:  `error.status[429]` **Added**\n* `client.chargebacks.all()`:  `error.status[429]` **Added**\n* `client.captures.create()`:  `error.status[429]` **Added**\n* `client.captures.list()`:  `error.status[429]` **Added**\n* `client.captures.get()`:  `error.status[429]` **Added**\n* `client.wallets.requestApplePaySession()`:  `error.status[429]` **Added**\n* `client.paymentLinks.create()`:  `error.status[429]` **Added**\n* `client.paymentLinks.list()`:  `error.status[429]` **Added**\n* `client.paymentLinks.get()`:  `error.status[429]` **Added**\n* `client.paymentLinks.update()`:  `error.status[429]` **Added**\n* `client.paymentLinks.delete()`:  `error.status[429]` **Added**\n* `client.paymentLinks.listPayments()`:  `error.status[429]` **Added**\n* `client.terminals.list()`:  `error.status[429]` **Added**\n* `client.terminals.get()`:  `error.status[429]` **Added**\n* `client.delayedRouting.create()`:  `error.status[429]` **Added**\n* `client.delayedRouting.list()`:  `error.status[429]` **Added**\n* `client.delayedRouting.get()`:  `error.status[429]` **Added**\n* `client.customers.create()`:  `error.status[429]` **Added**\n* `client.customers.list()`:  `error.status[429]` **Added**\n* `client.customers.get()`:  `error.status[429]` **Added**\n* `client.customers.update()`:  `error.status[429]` **Added**\n* `client.customers.delete()`:  `error.status[429]` **Added**\n* `client.customers.createPayment()`:  `error.status[429]` **Added**\n* `client.customers.listPayments()`:  `error.status[429]` **Added**\n* `client.mandates.create()`:  `error.status[429]` **Added**\n* `client.mandates.list()`:  `error.status[429]` **Added**\n* `client.mandates.get()`:  `error.status[429]` **Added**\n* `client.mandates.revoke()`:  `error.status[429]` **Added**\n* `client.subscriptions.create()`:  `error.status[429]` **Added**\n* `client.subscriptions.list()`:  `error.status[429]` **Added**\n* `client.subscriptions.get()`:  `error.status[429]` **Added**\n* `client.subscriptions.update()`:  `error.status[429]` **Added**\n* `client.subscriptions.cancel()`:  `error.status[429]` **Added**\n* `client.subscriptions.all()`:  `error.status[429]` **Added**\n* `client.subscriptions.listPayments()`:  `error.status[429]` **Added**\n* `client.salesInvoices.create()`:  `error.status[429]` **Added**\n* `client.salesInvoices.list()`:  `error.status[429]` **Added**\n* `client.salesInvoices.get()`:  `error.status[429]` **Added**\n* `client.salesInvoices.update()`:  `error.status[429]` **Added**\n* `client.salesInvoices.delete()`:  `error.status[429]` **Added**\n* `client.accounts.listAccounts()`:  `error.status[429]` **Added**\n* `client.accounts.getAccount()`:  `error.status[429]` **Added**\n* `client.accounts.list()`:  `error.status[429]` **Added**\n* `client.accounts.get()`:  `error.status[429]` **Added**\n* `client.transfers.create()`:  `error.status[429]` **Added**\n* `client.transfers.get()`:  `error.status[429]` **Added**\n* `client.payouts.create()`:  `error.status[429]` **Added**\n* `client.payouts.list()`:  `error.status[429]` **Added**\n* `client.payouts.get()`:  `error.status[429]` **Added**\n* `client.payouts.cancel()`:  `error.status[429]` **Added**\n"
+releaseNotes: |
+  ## Java SDK Changes:
+  * `client.terminals.terminalsRequestPairingCode()`: **Added**
+  * `client.terminals.terminalsListPairingCodes()`: **Added**
+  * `client.terminals.terminalsGetPairingCode()`: **Added**
+  * `client.terminals.terminalsRevokePairingCode()`: **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md
