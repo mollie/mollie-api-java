@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.7.1'
+implementation 'com.mollie:mollie:1.8.0'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.7.1</version>
+    <version>1.8.0</version>
 </dependency>
 ```
 
@@ -1136,49 +1136,6 @@ The default server can be overridden globally using the `.serverURL(String serve
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.ListBalancesRequest;
-import com.mollie.mollie.models.operations.ListBalancesResponse;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws ErrorResponse, Exception {
-
-        Client sdk = Client.builder()
-                .serverURL("https://api.mollie.com")
-                .testmode(false)
-                .security(Security.builder()
-                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
-                    .build())
-            .build();
-
-        ListBalancesRequest req = ListBalancesRequest.builder()
-                .currency("EUR")
-                .from("bal_gVMhHKqSSRYJyPsuoPNFH")
-                .limit(50L)
-                .idempotencyKey("123e4567-e89b-12d3-a456-426")
-                .build();
-
-
-        sdk.balances().list()
-                .callAsStream()
-                .forEach((ListBalancesResponse item) -> {
-                   // handle page
-                });
-
-    }
-}
-```
-
-### Override Server URL Per-Operation
-
-The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
-```java
-package hello.world;
-
-import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.OauthGrantType;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.*;
@@ -1189,6 +1146,7 @@ public class Application {
     public static void main(String[] args) throws ErrorResponse, Exception {
 
         Client sdk = Client.builder()
+                .serverURL("https://api.mollie.com")
             .build();
 
         OauthGenerateTokensResponse res = sdk.oauth().generate()
@@ -1196,7 +1154,6 @@ public class Application {
                     .username("")
                     .password("")
                     .build())
-                .serverURL("https://api.mollie.com/oauth2")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(OauthGenerateTokensRequestBody.builder()
                     .grantType(OauthGrantType.AUTHORIZATION_CODE)

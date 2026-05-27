@@ -20,7 +20,6 @@ public class OauthRevokeTokensRequestBuilder {
     private OauthRevokeTokensSecurity security;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends OauthRevokeTokensRequestBody> requestBody = Optional.empty();
-    private Optional<String> serverURL = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -59,18 +58,6 @@ public class OauthRevokeTokensRequestBuilder {
         return this;
     }
                 
-    public OauthRevokeTokensRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public OauthRevokeTokensRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
-                
     public OauthRevokeTokensRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -99,8 +86,8 @@ public class OauthRevokeTokensRequestBuilder {
 
         RequestOperation<OauthRevokeTokensRequest, OauthRevokeTokensResponse> operation
               = new OauthRevokeTokens.Sync(
-                                    sdkConfiguration, security, serverURL,
-                                    options, _headers);
+                                    sdkConfiguration, security, options,
+                                    _headers);
         OauthRevokeTokensRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

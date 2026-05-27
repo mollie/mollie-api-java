@@ -75,7 +75,7 @@ public class Oauth {
      */
     public OauthGenerateTokensResponse generate(OauthGenerateTokensSecurity security) {
         return generate(security, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -91,15 +91,13 @@ public class Oauth {
      * @param security The security details to use for authentication.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
-     * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public OauthGenerateTokensResponse generate(
             OauthGenerateTokensSecurity security, Optional<String> idempotencyKey,
-            Optional<? extends OauthGenerateTokensRequestBody> requestBody, Optional<String> serverURL,
-            Optional<Options> options) {
+            Optional<? extends OauthGenerateTokensRequestBody> requestBody, Optional<Options> options) {
         OauthGenerateTokensRequest request =
             OauthGenerateTokensRequest
                 .builder()
@@ -108,8 +106,8 @@ public class Oauth {
                 .build();
         RequestOperation<OauthGenerateTokensRequest, OauthGenerateTokensResponse> operation
               = new OauthGenerateTokens.Sync(
-                                    sdkConfiguration, security, serverURL,
-                                    options, _headers);
+                                    sdkConfiguration, security, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -143,7 +141,7 @@ public class Oauth {
      */
     public OauthRevokeTokensResponse revoke(OauthRevokeTokensSecurity security) {
         return revoke(security, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -158,15 +156,13 @@ public class Oauth {
      * @param security The security details to use for authentication.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
-     * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public OauthRevokeTokensResponse revoke(
             OauthRevokeTokensSecurity security, Optional<String> idempotencyKey,
-            Optional<? extends OauthRevokeTokensRequestBody> requestBody, Optional<String> serverURL,
-            Optional<Options> options) {
+            Optional<? extends OauthRevokeTokensRequestBody> requestBody, Optional<Options> options) {
         OauthRevokeTokensRequest request =
             OauthRevokeTokensRequest
                 .builder()
@@ -175,8 +171,8 @@ public class Oauth {
                 .build();
         RequestOperation<OauthRevokeTokensRequest, OauthRevokeTokensResponse> operation
               = new OauthRevokeTokens.Sync(
-                                    sdkConfiguration, security, serverURL,
-                                    options, _headers);
+                                    sdkConfiguration, security, options,
+                                    _headers);
         return operation.handleResponse(operation.doRequest(request));
     }
 

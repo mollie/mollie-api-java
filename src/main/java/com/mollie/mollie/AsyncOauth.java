@@ -77,7 +77,7 @@ public class AsyncOauth {
     public CompletableFuture<OauthGenerateTokensResponse> generate(OauthGenerateTokensSecurity security) {
         return generate(
                 security, Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty());
+                Optional.empty());
     }
 
     /**
@@ -93,14 +93,12 @@ public class AsyncOauth {
      * @param security The security details to use for authentication.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
-     * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return {@code CompletableFuture<OauthGenerateTokensResponse>} - The async response
      */
     public CompletableFuture<OauthGenerateTokensResponse> generate(
             OauthGenerateTokensSecurity security, Optional<String> idempotencyKey,
-            Optional<? extends OauthGenerateTokensRequestBody> requestBody, Optional<String> serverURL,
-            Optional<Options> options) {
+            Optional<? extends OauthGenerateTokensRequestBody> requestBody, Optional<Options> options) {
         OauthGenerateTokensRequest request =
             OauthGenerateTokensRequest
                 .builder()
@@ -109,8 +107,8 @@ public class AsyncOauth {
                 .build();
         AsyncRequestOperation<OauthGenerateTokensRequest, OauthGenerateTokensResponse> operation
               = new OauthGenerateTokens.Async(
-                                    sdkConfiguration, security, serverURL,
-                                    options, sdkConfiguration.retryScheduler(), _headers);
+                                    sdkConfiguration, security, options,
+                                    sdkConfiguration.retryScheduler(), _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
@@ -146,7 +144,7 @@ public class AsyncOauth {
     public CompletableFuture<OauthRevokeTokensResponse> revoke(OauthRevokeTokensSecurity security) {
         return revoke(
                 security, Optional.empty(), Optional.empty(),
-                Optional.empty(), Optional.empty());
+                Optional.empty());
     }
 
     /**
@@ -161,14 +159,12 @@ public class AsyncOauth {
      * @param security The security details to use for authentication.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
-     * @param serverURL Overrides the server URL.
      * @param options additional options
      * @return {@code CompletableFuture<OauthRevokeTokensResponse>} - The async response
      */
     public CompletableFuture<OauthRevokeTokensResponse> revoke(
             OauthRevokeTokensSecurity security, Optional<String> idempotencyKey,
-            Optional<? extends OauthRevokeTokensRequestBody> requestBody, Optional<String> serverURL,
-            Optional<Options> options) {
+            Optional<? extends OauthRevokeTokensRequestBody> requestBody, Optional<Options> options) {
         OauthRevokeTokensRequest request =
             OauthRevokeTokensRequest
                 .builder()
@@ -177,8 +173,8 @@ public class AsyncOauth {
                 .build();
         AsyncRequestOperation<OauthRevokeTokensRequest, OauthRevokeTokensResponse> operation
               = new OauthRevokeTokens.Async(
-                                    sdkConfiguration, security, serverURL,
-                                    options, sdkConfiguration.retryScheduler(), _headers);
+                                    sdkConfiguration, security, options,
+                                    sdkConfiguration.retryScheduler(), _headers);
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
     }
