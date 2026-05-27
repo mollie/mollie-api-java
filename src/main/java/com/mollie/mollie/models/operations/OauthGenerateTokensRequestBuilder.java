@@ -20,7 +20,6 @@ public class OauthGenerateTokensRequestBuilder {
     private OauthGenerateTokensSecurity security;
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends OauthGenerateTokensRequestBody> requestBody = Optional.empty();
-    private Optional<String> serverURL = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -59,18 +58,6 @@ public class OauthGenerateTokensRequestBuilder {
         return this;
     }
                 
-    public OauthGenerateTokensRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
-        return this;
-    }
-
-    public OauthGenerateTokensRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = serverURL;
-        return this;
-    }
-                
     public OauthGenerateTokensRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -99,8 +86,8 @@ public class OauthGenerateTokensRequestBuilder {
 
         RequestOperation<OauthGenerateTokensRequest, OauthGenerateTokensResponse> operation
               = new OauthGenerateTokens.Sync(
-                                    sdkConfiguration, security, serverURL,
-                                    options, _headers);
+                                    sdkConfiguration, security, options,
+                                    _headers);
         OauthGenerateTokensRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

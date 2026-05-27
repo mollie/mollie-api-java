@@ -41,7 +41,6 @@ import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ScheduledExecutorService;
@@ -50,13 +49,6 @@ import java.util.function.Function;
 
 
 public class OauthGenerateTokens {
-    
-    /**
-     * OAUTH_GENERATE_TOKENS_SERVERS contains the list of server urls available to the SDK.
-     */
-    public static final String[] OAUTH_GENERATE_TOKENS_SERVERS = {
-        "https://api.mollie.com/oauth2",
-    };
 
     static abstract class Base {
         final SDKConfiguration sdkConfiguration;
@@ -70,15 +62,10 @@ public class OauthGenerateTokens {
 
         public Base(
                 SDKConfiguration sdkConfiguration, OauthGenerateTokensSecurity security,
-                Optional<String> serverURL, Optional<Options> options,
-                Headers _headers) {
+                Optional<Options> options, Headers _headers) {
             this.sdkConfiguration = sdkConfiguration;
             this._headers =_headers;
-            this.baseUrl = serverURL
-                    .filter(u -> !u.isBlank())
-                    .orElse(Utils.templateUrl(
-                        OAUTH_GENERATE_TOKENS_SERVERS[0], 
-                        Map.of()));
+            this.baseUrl = this.sdkConfiguration.serverUrl();
             this.security = security;
             // hooks will be passed method level security only
             this.securitySource = SecuritySource.of(security);
@@ -158,12 +145,10 @@ public class OauthGenerateTokens {
             implements RequestOperation<OauthGenerateTokensRequest, OauthGenerateTokensResponse> {
         public Sync(
                 SDKConfiguration sdkConfiguration, OauthGenerateTokensSecurity security,
-                Optional<String> serverURL, Optional<Options> options,
-                Headers _headers) {
+                Optional<Options> options, Headers _headers) {
             super(
                   sdkConfiguration, security,
-                  serverURL, options,
-                  _headers);
+                  options, _headers);
         }
 
         private HttpRequest onBuildRequest(OauthGenerateTokensRequest request) throws Exception {
@@ -255,12 +240,11 @@ public class OauthGenerateTokens {
 
         public Async(
                 SDKConfiguration sdkConfiguration, OauthGenerateTokensSecurity security,
-                Optional<String> serverURL, Optional<Options> options,
-                ScheduledExecutorService retryScheduler, Headers _headers) {
+                Optional<Options> options, ScheduledExecutorService retryScheduler,
+                Headers _headers) {
             super(
                   sdkConfiguration, security,
-                  serverURL, options,
-                  _headers);
+                  options, _headers);
             this.retryScheduler = retryScheduler;
         }
 
