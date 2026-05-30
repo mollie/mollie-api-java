@@ -17,6 +17,7 @@ import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class SessionResponse {
@@ -141,6 +142,23 @@ public class SessionResponse {
     private String createdAt;
 
     /**
+     * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * Omitted if the session has not expired.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("expiredAt")
+    private JsonNullable<String> expiredAt;
+
+    /**
+     * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
+     * Omitted if the session has not been completed.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("completedAt")
+    private JsonNullable<String> completedAt;
+
+    /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     @JsonProperty("_links")
@@ -165,6 +183,8 @@ public class SessionResponse {
             @JsonProperty("payment") Optional<? extends SessionResponsePayment> payment,
             @JsonProperty("profileId") String profileId,
             @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("expiredAt") JsonNullable<String> expiredAt,
+            @JsonProperty("completedAt") JsonNullable<String> completedAt,
             @JsonProperty("_links") SessionResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -183,6 +203,8 @@ public class SessionResponse {
         Utils.checkNotNull(payment, "payment");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(createdAt, "createdAt");
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        Utils.checkNotNull(completedAt, "completedAt");
         Utils.checkNotNull(links, "links");
         this.resource = resource;
         this.id = id;
@@ -201,6 +223,8 @@ public class SessionResponse {
         this.payment = payment;
         this.profileId = profileId;
         this.createdAt = createdAt;
+        this.expiredAt = expiredAt;
+        this.completedAt = completedAt;
         this.links = links;
     }
     
@@ -222,7 +246,8 @@ public class SessionResponse {
             description, lines, redirectUrl,
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            profileId, createdAt, links);
+            profileId, createdAt, JsonNullable.undefined(),
+            JsonNullable.undefined(), links);
     }
 
     /**
@@ -370,6 +395,25 @@ public class SessionResponse {
     @JsonIgnore
     public String createdAt() {
         return createdAt;
+    }
+
+    /**
+     * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * Omitted if the session has not expired.
+     */
+    @JsonIgnore
+    public JsonNullable<String> expiredAt() {
+        return expiredAt;
+    }
+
+    /**
+     * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
+     * Omitted if the session has not been completed.
+     */
+    @JsonIgnore
+    public JsonNullable<String> completedAt() {
+        return completedAt;
     }
 
     /**
@@ -594,6 +638,48 @@ public class SessionResponse {
     }
 
     /**
+     * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * Omitted if the session has not expired.
+     */
+    public SessionResponse withExpiredAt(String expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = JsonNullable.of(expiredAt);
+        return this;
+    }
+
+    /**
+     * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * Omitted if the session has not expired.
+     */
+    public SessionResponse withExpiredAt(JsonNullable<String> expiredAt) {
+        Utils.checkNotNull(expiredAt, "expiredAt");
+        this.expiredAt = expiredAt;
+        return this;
+    }
+
+    /**
+     * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
+     * Omitted if the session has not been completed.
+     */
+    public SessionResponse withCompletedAt(String completedAt) {
+        Utils.checkNotNull(completedAt, "completedAt");
+        this.completedAt = JsonNullable.of(completedAt);
+        return this;
+    }
+
+    /**
+     * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format.
+     * Omitted if the session has not been completed.
+     */
+    public SessionResponse withCompletedAt(JsonNullable<String> completedAt) {
+        Utils.checkNotNull(completedAt, "completedAt");
+        this.completedAt = completedAt;
+        return this;
+    }
+
+    /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
      */
     public SessionResponse withLinks(SessionResponseLinks links) {
@@ -629,6 +715,8 @@ public class SessionResponse {
             Utils.enhancedDeepEquals(this.payment, other.payment) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.expiredAt, other.expiredAt) &&
+            Utils.enhancedDeepEquals(this.completedAt, other.completedAt) &&
             Utils.enhancedDeepEquals(this.links, other.links);
     }
     
@@ -640,7 +728,8 @@ public class SessionResponse {
             description, lines, redirectUrl,
             billingAddress, shippingAddress, customerId,
             sequenceType, metadata, payment,
-            profileId, createdAt, links);
+            profileId, createdAt, expiredAt,
+            completedAt, links);
     }
     
     @Override
@@ -663,6 +752,8 @@ public class SessionResponse {
                 "payment", payment,
                 "profileId", profileId,
                 "createdAt", createdAt,
+                "expiredAt", expiredAt,
+                "completedAt", completedAt,
                 "links", links);
     }
 
@@ -702,6 +793,10 @@ public class SessionResponse {
         private String profileId;
 
         private String createdAt;
+
+        private JsonNullable<String> expiredAt = JsonNullable.undefined();
+
+        private JsonNullable<String> completedAt = JsonNullable.undefined();
 
         private SessionResponseLinks links;
 
@@ -930,6 +1025,50 @@ public class SessionResponse {
 
 
         /**
+         * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * Omitted if the session has not expired.
+         */
+        public Builder expiredAt(String expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = JsonNullable.of(expiredAt);
+            return this;
+        }
+
+        /**
+         * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * Omitted if the session has not expired.
+         */
+        public Builder expiredAt(JsonNullable<String> expiredAt) {
+            Utils.checkNotNull(expiredAt, "expiredAt");
+            this.expiredAt = expiredAt;
+            return this;
+        }
+
+
+        /**
+         * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
+         * Omitted if the session has not been completed.
+         */
+        public Builder completedAt(String completedAt) {
+            Utils.checkNotNull(completedAt, "completedAt");
+            this.completedAt = JsonNullable.of(completedAt);
+            return this;
+        }
+
+        /**
+         * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format.
+         * Omitted if the session has not been completed.
+         */
+        public Builder completedAt(JsonNullable<String> completedAt) {
+            Utils.checkNotNull(completedAt, "completedAt");
+            this.completedAt = completedAt;
+            return this;
+        }
+
+
+        /**
          * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
          */
         public Builder links(SessionResponseLinks links) {
@@ -946,7 +1085,8 @@ public class SessionResponse {
                 description, lines, redirectUrl,
                 billingAddress, shippingAddress, customerId,
                 sequenceType, metadata, payment,
-                profileId, createdAt, links);
+                profileId, createdAt, expiredAt,
+                completedAt, links);
         }
 
     }
