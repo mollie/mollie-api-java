@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 017182f54e9fc0727b783f26195b93dc
+  docChecksum: 8466f8cd44e35230a20130badacdfaf8
   docVersion: 1.0.0
   speakeasyVersion: 1.768.2
   generationVersion: 2.889.1
-  releaseVersion: 1.8.1
-  configChecksum: 84b5ebbeeefc977b13161c6adf5633f0
+  releaseVersion: 1.8.2
+  configChecksum: d288984c751d1e3ed80449c40a29c076
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 40fd56e0-1432-4ade-bac0-8a4370dc2eea
-  pristine_commit_hash: e5986167e562690910aae30f584e1d0e582b3336
-  pristine_tree_hash: 5a6fb775bb539ac4bcdb9641c6bebb28fd046db4
+  generation_id: 5915f33a-ec98-4905-a9d6-4b5e3912373e
+  pristine_commit_hash: a725d9653b937fdce1a1d2f6af2d28b6b2a3c682
+  pristine_tree_hash: 6400525f76b8e39720fc169aa0bfc77907a7a325
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2445,8 +2445,8 @@ trackedFiles:
     pristine_git_object: e2ca8e6d1c1ef1f7a4f2858790885f66165ac6f4
   docs/models/operations/GetClientEmbedded.md:
     id: 26cf1fd54690
-    last_write_checksum: sha1:1cd358636fc5d966583b84a5c6f2f5a6f0277b54
-    pristine_git_object: bf33a95071dbe90d1b52d6e130dcd6d31abd6751
+    last_write_checksum: sha1:d4efc0986aff14960e947432820076c51a687e9f
+    pristine_git_object: c08a0a8135c82d2d448cf8de65c1c54d31861020
   docs/models/operations/GetClientLinks.md:
     id: 9561a89e40c1
     last_write_checksum: sha1:393a020af55410f7dff23890273c3c268a8bb3ce
@@ -2905,8 +2905,8 @@ trackedFiles:
     pristine_git_object: 898833a06ea57908c1136ec69ffcd36e12c03234
   docs/models/operations/ListClientsClientsEmbedded.md:
     id: 189634b2d254
-    last_write_checksum: sha1:9aea6f5328a2f7030587a110ca515de1d9c1a466
-    pristine_git_object: 42f82bc76ee70a166844a6e24a3ac908dd42b024
+    last_write_checksum: sha1:3e351e66a54034ad5ce93b5d686c4d610be311a9
+    pristine_git_object: ee2b817ffd26f737eea6f4b33ee80da11d02a3ed
   docs/models/operations/ListClientsCommission.md:
     id: 78fdfdfca983
     last_write_checksum: sha1:b3ac12a1a3605b8bf888486a5915209de9df7bd8
@@ -3749,8 +3749,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:de49eeb756c88a1405086528082a1b42538ddefb
-    pristine_git_object: c5687e140568dab8dbcc1798328b33125a6566d5
+    last_write_checksum: sha1:d29289121775ff2ea28adb14ca70a7d3a596b6a4
+    pristine_git_object: d6b55d454aad90e01752d20a8820ead72afefd73
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4033,8 +4033,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:4f4114395e28acd42f61b121f28ef016f31421d0
-    pristine_git_object: 6c5c6238ad543e2368ec3e7dcf55bbab7fff0f50
+    last_write_checksum: sha1:1571c167d1397348eed110d96882fb720fc73aa9
+    pristine_git_object: c5a80863a592d548d24109aa5c722b7b4ea13a0a
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:6cdf29ce849fc8d0132424ec727ca8bb41e46761
@@ -7101,8 +7101,8 @@ trackedFiles:
     pristine_git_object: e67d8901f137efe6dfcf7dafbac0abac41ebfb86
   src/main/java/com/mollie/mollie/models/operations/GetClientEmbedded.java:
     id: a25b4d6b52f4
-    last_write_checksum: sha1:9db4dd809e1f6569994cec9bdfc77e6fda754e4b
-    pristine_git_object: 0ceadf5df3c733eca99138a4f6e04fbe58e8b693
+    last_write_checksum: sha1:003e335c1d395f7debe92cefe00ea82d9da476a6
+    pristine_git_object: 4d8b00cddc3f531fad829fa7ff9a20bfec4cb2b7
   src/main/java/com/mollie/mollie/models/operations/GetClientLinks.java:
     id: f917df6982c8
     last_write_checksum: sha1:ea40e86b39b81fc3cb8939b2c4016841eb75b8c5
@@ -7725,8 +7725,8 @@ trackedFiles:
     pristine_git_object: c1344cee3f58ed95573bb0f3d46bafe808baf10c
   src/main/java/com/mollie/mollie/models/operations/ListClientsClientsEmbedded.java:
     id: ebb96d625701
-    last_write_checksum: sha1:9644559f2caa579cc495a4394469dff03336e2ac
-    pristine_git_object: 7418b567ec9fed64c66dc286ffa14ed3a24f1860
+    last_write_checksum: sha1:6f0ec142cf84140682a5beb33b05826b9b1f0206
+    pristine_git_object: b75eb004862336092b289f1f760449bc9b540a77
   src/main/java/com/mollie/mollie/models/operations/ListClientsCommission.java:
     id: 5948a0b87b76
     last_write_checksum: sha1:c4f6d59037f436f74516c59a4c25e75f193e6042
@@ -13012,7 +13012,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 5, "_embedded": {"clients": [{"resource": "client", "id": "org_1234567", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "<value>", "postalCode": "42979", "city": "Sammyfort", "country": "United Arab Emirates"}, "registrationNumber": "12345678", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": {"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
+          application/hal+json: {"count": 5, "_embedded": {"clients": [{"resource": "client", "id": "org_1234567", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "<value>", "postalCode": "42979", "city": "Sammyfort", "country": "United Arab Emirates"}, "registrationNumber": "12345678", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30Z", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": [{"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}]}}]}, "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "previous": {"href": "https://...", "type": "application/hal+json"}, "next": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
         "404":
@@ -13086,7 +13086,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "client", "id": "org_1234567", "commission": {"count": 10}, "organizationCreatedAt": "2023-01-15T13:45:30+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "Keizersgracht 126", "postalCode": "1015 CW", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "vatNumber": "NL123456789B01", "vatRegulation": "dutch", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": {"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}}}
+          application/hal+json: {"resource": "client", "id": "org_1234567", "commission": {"count": 10}, "organizationCreatedAt": "2023-01-15T13:45:30+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "onboarding": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}, "_embedded": {"organization": {"resource": "organization", "id": "org_1234567", "name": "My Online Store", "email": "example@mail.com", "locale": "en_US", "address": {"streetAndNumber": "Keizersgracht 126", "postalCode": "1015 CW", "city": "Amsterdam", "country": "NL"}, "registrationNumber": "12345678", "vatNumber": "NL123456789B01", "vatRegulation": "dutch", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "onboarding": {"resource": "onboarding", "name": "My webshop", "status": "completed", "canReceivePayments": true, "canReceiveSettlements": true, "signedUpAt": "2023-01-15T13:45:30+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "dashboard": {"href": "https://...", "type": "application/hal+json"}, "organization": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}, "capabilities": [{"resource": "capability", "name": "payments", "status": "pending", "statusReason": "requirement-past-due", "requirements": [{"id": "legal-representatives", "status": "past-due", "dueDate": "2024-01-01T12:00:00+00:00", "_links": {"dashboard": {"href": "https://my.mollie.com/dashboard/...", "type": "text/html"}}}]}]}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   create-client-link:
@@ -15070,8 +15070,8 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `client.sessions.create()`:  `response` **Changed**
-  * `client.sessions.get()`:  `response` **Changed**
+  * `client.clients.list()`:  `response.Embedded.clients[].Embedded.capabilities` **Changed** (Breaking ⚠️)
+  * `client.clients.get()`:  `response.Embedded.capabilities` **Changed** (Breaking ⚠️)
 generatedFiles:
   - .gitattributes
   - USAGE.md
