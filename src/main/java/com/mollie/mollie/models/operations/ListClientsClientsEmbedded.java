@@ -16,6 +16,7 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -33,13 +34,13 @@ public class ListClientsClientsEmbedded {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("capabilities")
-    private Optional<? extends EntityCapability> capabilities;
+    private Optional<? extends List<EntityCapability>> capabilities;
 
     @JsonCreator
     public ListClientsClientsEmbedded(
             @JsonProperty("organization") Optional<? extends EntityOrganization> organization,
             @JsonProperty("onboarding") Optional<? extends EntityOnboardingStatus> onboarding,
-            @JsonProperty("capabilities") Optional<? extends EntityCapability> capabilities) {
+            @JsonProperty("capabilities") Optional<? extends List<EntityCapability>> capabilities) {
         Utils.checkNotNull(organization, "organization");
         Utils.checkNotNull(onboarding, "onboarding");
         Utils.checkNotNull(capabilities, "capabilities");
@@ -66,8 +67,8 @@ public class ListClientsClientsEmbedded {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityCapability> capabilities() {
-        return (Optional<EntityCapability>) capabilities;
+    public Optional<List<EntityCapability>> capabilities() {
+        return (Optional<List<EntityCapability>>) capabilities;
     }
 
     public static Builder builder() {
@@ -101,14 +102,14 @@ public class ListClientsClientsEmbedded {
         return this;
     }
 
-    public ListClientsClientsEmbedded withCapabilities(EntityCapability capabilities) {
+    public ListClientsClientsEmbedded withCapabilities(List<EntityCapability> capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
         this.capabilities = Optional.ofNullable(capabilities);
         return this;
     }
 
 
-    public ListClientsClientsEmbedded withCapabilities(Optional<? extends EntityCapability> capabilities) {
+    public ListClientsClientsEmbedded withCapabilities(Optional<? extends List<EntityCapability>> capabilities) {
         Utils.checkNotNull(capabilities, "capabilities");
         this.capabilities = capabilities;
         return this;
@@ -150,7 +151,7 @@ public class ListClientsClientsEmbedded {
 
         private Optional<? extends EntityOnboardingStatus> onboarding = Optional.empty();
 
-        private Optional<? extends EntityCapability> capabilities = Optional.empty();
+        private Optional<? extends List<EntityCapability>> capabilities = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -183,13 +184,13 @@ public class ListClientsClientsEmbedded {
         }
 
 
-        public Builder capabilities(EntityCapability capabilities) {
+        public Builder capabilities(List<EntityCapability> capabilities) {
             Utils.checkNotNull(capabilities, "capabilities");
             this.capabilities = Optional.ofNullable(capabilities);
             return this;
         }
 
-        public Builder capabilities(Optional<? extends EntityCapability> capabilities) {
+        public Builder capabilities(Optional<? extends List<EntityCapability>> capabilities) {
             Utils.checkNotNull(capabilities, "capabilities");
             this.capabilities = capabilities;
             return this;
