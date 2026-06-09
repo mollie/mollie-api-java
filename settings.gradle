@@ -9,12 +9,6 @@
 
 rootProject.name = 'mollie'
 
-include 'mollie-spring-boot-autoconfigure'
-include 'mollie-spring-boot-starter'
-
-project(':mollie-spring-boot-autoconfigure').projectDir = file('spring/mollie-spring-boot-autoconfigure')
-project(':mollie-spring-boot-starter').projectDir = file('spring/mollie-spring-boot-starter')
-
 // Apply additional settings if the file exists
 if (file('settings-extra.gradle').exists()) {
     apply from: 'settings-extra.gradle'

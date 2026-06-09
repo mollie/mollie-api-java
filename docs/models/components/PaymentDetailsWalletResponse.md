@@ -16,6 +16,7 @@ PaymentDetailsWalletResponse custom = PaymentDetailsWalletResponse.of("custom_va
 
 ## Values
 
-| Name       | Value      |
-| ---------- | ---------- |
-| `APPLEPAY` | applepay   |
+| Name        | Value       |
+| ----------- | ----------- |
+| `APPLEPAY`  | applepay    |
+| `GOOGLEPAY` | googlepay   |

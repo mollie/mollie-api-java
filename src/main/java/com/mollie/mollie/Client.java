@@ -472,7 +472,7 @@ public class Client {
         return new Builder();
     }
 
-    public Client(SDKConfiguration sdkConfiguration) {
+    private Client(SDKConfiguration sdkConfiguration) {
         sdkConfiguration.initialize();
         this.oauth = new Oauth(sdkConfiguration);
         this.balances = new Balances(sdkConfiguration);
