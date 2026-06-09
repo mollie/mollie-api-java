@@ -13,7 +13,6 @@ import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -31,9 +30,8 @@ public class ListSubscriptionResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.ALWAYS)
     @JsonProperty("customer")
-    private Optional<? extends UrlNullable> customer;
+    private Url customer;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -45,9 +43,8 @@ public class ListSubscriptionResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.ALWAYS)
     @JsonProperty("profile")
-    private Optional<? extends UrlNullable> profile;
+    private Url profile;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
@@ -59,9 +56,9 @@ public class ListSubscriptionResponseLinks {
     @JsonCreator
     public ListSubscriptionResponseLinks(
             @JsonProperty("self") Url self,
-            @JsonProperty("customer") Optional<? extends UrlNullable> customer,
+            @JsonProperty("customer") Url customer,
             @JsonProperty("mandate") JsonNullable<? extends UrlNullable> mandate,
-            @JsonProperty("profile") Optional<? extends UrlNullable> profile,
+            @JsonProperty("profile") Url profile,
             @JsonProperty("payments") JsonNullable<? extends UrlNullable> payments) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(customer, "customer");
@@ -76,9 +73,11 @@ public class ListSubscriptionResponseLinks {
     }
     
     public ListSubscriptionResponseLinks(
-            Url self) {
-        this(self, Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined());
+            Url self,
+            Url customer,
+            Url profile) {
+        this(self, customer, JsonNullable.undefined(),
+            profile, JsonNullable.undefined());
     }
 
     /**
@@ -92,10 +91,9 @@ public class ListSubscriptionResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UrlNullable> customer() {
-        return (Optional<UrlNullable>) customer;
+    public Url customer() {
+        return customer;
     }
 
     /**
@@ -110,10 +108,9 @@ public class ListSubscriptionResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UrlNullable> profile() {
-        return (Optional<UrlNullable>) profile;
+    public Url profile() {
+        return profile;
     }
 
     /**
@@ -142,17 +139,7 @@ public class ListSubscriptionResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListSubscriptionResponseLinks withCustomer(UrlNullable customer) {
-        Utils.checkNotNull(customer, "customer");
-        this.customer = Optional.ofNullable(customer);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListSubscriptionResponseLinks withCustomer(Optional<? extends UrlNullable> customer) {
+    public ListSubscriptionResponseLinks withCustomer(Url customer) {
         Utils.checkNotNull(customer, "customer");
         this.customer = customer;
         return this;
@@ -179,17 +166,7 @@ public class ListSubscriptionResponseLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    public ListSubscriptionResponseLinks withProfile(UrlNullable profile) {
-        Utils.checkNotNull(profile, "profile");
-        this.profile = Optional.ofNullable(profile);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public ListSubscriptionResponseLinks withProfile(Optional<? extends UrlNullable> profile) {
+    public ListSubscriptionResponseLinks withProfile(Url profile) {
         Utils.checkNotNull(profile, "profile");
         this.profile = profile;
         return this;
@@ -252,11 +229,11 @@ public class ListSubscriptionResponseLinks {
 
         private Url self;
 
-        private Optional<? extends UrlNullable> customer = Optional.empty();
+        private Url customer;
 
         private JsonNullable<? extends UrlNullable> mandate = JsonNullable.undefined();
 
-        private Optional<? extends UrlNullable> profile = Optional.empty();
+        private Url profile;
 
         private JsonNullable<? extends UrlNullable> payments = JsonNullable.undefined();
 
@@ -278,16 +255,7 @@ public class ListSubscriptionResponseLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder customer(UrlNullable customer) {
-            Utils.checkNotNull(customer, "customer");
-            this.customer = Optional.ofNullable(customer);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder customer(Optional<? extends UrlNullable> customer) {
+        public Builder customer(Url customer) {
             Utils.checkNotNull(customer, "customer");
             this.customer = customer;
             return this;
@@ -316,16 +284,7 @@ public class ListSubscriptionResponseLinks {
         /**
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
-        public Builder profile(UrlNullable profile) {
-            Utils.checkNotNull(profile, "profile");
-            this.profile = Optional.ofNullable(profile);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder profile(Optional<? extends UrlNullable> profile) {
+        public Builder profile(Url profile) {
             Utils.checkNotNull(profile, "profile");
             this.profile = profile;
             return this;

@@ -27,6 +27,7 @@ import java.util.Optional;
 public class PaymentDetailsWalletResponse {
 
     public static final PaymentDetailsWalletResponse APPLEPAY = new PaymentDetailsWalletResponse("applepay");
+    public static final PaymentDetailsWalletResponse GOOGLEPAY = new PaymentDetailsWalletResponse("googlepay");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -101,19 +102,22 @@ public class PaymentDetailsWalletResponse {
     private static final Map<String, PaymentDetailsWalletResponse> createValuesMap() {
         Map<String, PaymentDetailsWalletResponse> map = new LinkedHashMap<>();
         map.put("applepay", APPLEPAY);
+        map.put("googlepay", GOOGLEPAY);
         return map;
     }
 
     private static final Map<String, PaymentDetailsWalletResponseEnum> createEnumsMap() {
         Map<String, PaymentDetailsWalletResponseEnum> map = new HashMap<>();
         map.put("applepay", PaymentDetailsWalletResponseEnum.APPLEPAY);
+        map.put("googlepay", PaymentDetailsWalletResponseEnum.GOOGLEPAY);
         return map;
     }
     
     
     public enum PaymentDetailsWalletResponseEnum {
 
-        APPLEPAY("applepay"),;
+        APPLEPAY("applepay"),
+        GOOGLEPAY("googlepay"),;
 
         private final String value;
 
