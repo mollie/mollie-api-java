@@ -6,14 +6,10 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * EntityPermissionLinks
@@ -24,47 +20,39 @@ public class EntityPermissionLinks {
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends Url> self;
+    private Url self;
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("documentation")
-    private Optional<? extends Url> documentation;
+    private Url documentation;
 
     @JsonCreator
     public EntityPermissionLinks(
-            @JsonProperty("self") Optional<? extends Url> self,
-            @JsonProperty("documentation") Optional<? extends Url> documentation) {
+            @JsonProperty("self") Url self,
+            @JsonProperty("documentation") Url documentation) {
         Utils.checkNotNull(self, "self");
         Utils.checkNotNull(documentation, "documentation");
         this.self = self;
         this.documentation = documentation;
     }
-    
-    public EntityPermissionLinks() {
-        this(Optional.empty(), Optional.empty());
+
+    /**
+     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
+     */
+    @JsonIgnore
+    public Url self() {
+        return self;
     }
 
     /**
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Url> self() {
-        return (Optional<Url>) self;
-    }
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Url> documentation() {
-        return (Optional<Url>) documentation;
+    public Url documentation() {
+        return documentation;
     }
 
     public static Builder builder() {
@@ -77,16 +65,6 @@ public class EntityPermissionLinks {
      */
     public EntityPermissionLinks withSelf(Url self) {
         Utils.checkNotNull(self, "self");
-        this.self = Optional.ofNullable(self);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public EntityPermissionLinks withSelf(Optional<? extends Url> self) {
-        Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
     }
@@ -95,16 +73,6 @@ public class EntityPermissionLinks {
      * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
      */
     public EntityPermissionLinks withDocumentation(Url documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-     */
-    public EntityPermissionLinks withDocumentation(Optional<? extends Url> documentation) {
         Utils.checkNotNull(documentation, "documentation");
         this.documentation = documentation;
         return this;
@@ -140,9 +108,9 @@ public class EntityPermissionLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Url> self = Optional.empty();
+        private Url self;
 
-        private Optional<? extends Url> documentation = Optional.empty();
+        private Url documentation;
 
         private Builder() {
           // force use of static builder() method
@@ -154,15 +122,6 @@ public class EntityPermissionLinks {
          */
         public Builder self(Url self) {
             Utils.checkNotNull(self, "self");
-            this.self = Optional.ofNullable(self);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder self(Optional<? extends Url> self) {
-            Utils.checkNotNull(self, "self");
             this.self = self;
             return this;
         }
@@ -172,15 +131,6 @@ public class EntityPermissionLinks {
          * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
          */
         public Builder documentation(Url documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, URLs are commonly represented as objects with an `href` and `type` field.
-         */
-        public Builder documentation(Optional<? extends Url> documentation) {
             Utils.checkNotNull(documentation, "documentation");
             this.documentation = documentation;
             return this;
