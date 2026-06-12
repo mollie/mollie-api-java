@@ -433,6 +433,13 @@ public class PaymentResponseDetails {
     @JsonProperty("multibancoEntity")
     private JsonNullable<String> multibancoEntity;
 
+    /**
+     * Bizum payment reference of the transaction
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("bizumReference")
+    private JsonNullable<String> bizumReference;
+
     @JsonCreator
     public PaymentResponseDetails(
             @JsonProperty("consumerName") JsonNullable<String> consumerName,
@@ -486,7 +493,8 @@ public class PaymentResponseDetails {
             @JsonProperty("remainderMethod") Optional<String> remainderMethod,
             @JsonProperty("remainderDetails") Optional<? extends Map<String, Object>> remainderDetails,
             @JsonProperty("multibancoReference") JsonNullable<String> multibancoReference,
-            @JsonProperty("multibancoEntity") JsonNullable<String> multibancoEntity) {
+            @JsonProperty("multibancoEntity") JsonNullable<String> multibancoEntity,
+            @JsonProperty("bizumReference") JsonNullable<String> bizumReference) {
         Utils.checkNotNull(consumerName, "consumerName");
         Utils.checkNotNull(consumerAccount, "consumerAccount");
         Utils.checkNotNull(consumerBic, "consumerBic");
@@ -539,6 +547,7 @@ public class PaymentResponseDetails {
         Utils.checkNotNull(remainderDetails, "remainderDetails");
         Utils.checkNotNull(multibancoReference, "multibancoReference");
         Utils.checkNotNull(multibancoEntity, "multibancoEntity");
+        Utils.checkNotNull(bizumReference, "bizumReference");
         this.consumerName = consumerName;
         this.consumerAccount = consumerAccount;
         this.consumerBic = consumerBic;
@@ -591,6 +600,7 @@ public class PaymentResponseDetails {
         this.remainderDetails = remainderDetails;
         this.multibancoReference = multibancoReference;
         this.multibancoEntity = multibancoEntity;
+        this.bizumReference = bizumReference;
     }
     
     public PaymentResponseDetails() {
@@ -611,7 +621,7 @@ public class PaymentResponseDetails {
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -1083,6 +1093,14 @@ public class PaymentResponseDetails {
     @JsonIgnore
     public JsonNullable<String> multibancoEntity() {
         return multibancoEntity;
+    }
+
+    /**
+     * Bizum payment reference of the transaction
+     */
+    @JsonIgnore
+    public JsonNullable<String> bizumReference() {
+        return bizumReference;
     }
 
     public static Builder builder() {
@@ -2118,6 +2136,24 @@ public class PaymentResponseDetails {
         return this;
     }
 
+    /**
+     * Bizum payment reference of the transaction
+     */
+    public PaymentResponseDetails withBizumReference(String bizumReference) {
+        Utils.checkNotNull(bizumReference, "bizumReference");
+        this.bizumReference = JsonNullable.of(bizumReference);
+        return this;
+    }
+
+    /**
+     * Bizum payment reference of the transaction
+     */
+    public PaymentResponseDetails withBizumReference(JsonNullable<String> bizumReference) {
+        Utils.checkNotNull(bizumReference, "bizumReference");
+        this.bizumReference = bizumReference;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -2179,7 +2215,8 @@ public class PaymentResponseDetails {
             Utils.enhancedDeepEquals(this.remainderMethod, other.remainderMethod) &&
             Utils.enhancedDeepEquals(this.remainderDetails, other.remainderDetails) &&
             Utils.enhancedDeepEquals(this.multibancoReference, other.multibancoReference) &&
-            Utils.enhancedDeepEquals(this.multibancoEntity, other.multibancoEntity);
+            Utils.enhancedDeepEquals(this.multibancoEntity, other.multibancoEntity) &&
+            Utils.enhancedDeepEquals(this.bizumReference, other.bizumReference);
     }
     
     @Override
@@ -2202,7 +2239,7 @@ public class PaymentResponseDetails {
             qrCode, voucherNumber, giftcards,
             issuer, vouchers, remainderAmount,
             remainderMethod, remainderDetails, multibancoReference,
-            multibancoEntity);
+            multibancoEntity, bizumReference);
     }
     
     @Override
@@ -2259,7 +2296,8 @@ public class PaymentResponseDetails {
                 "remainderMethod", remainderMethod,
                 "remainderDetails", remainderDetails,
                 "multibancoReference", multibancoReference,
-                "multibancoEntity", multibancoEntity);
+                "multibancoEntity", multibancoEntity,
+                "bizumReference", bizumReference);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -2368,6 +2406,8 @@ public class PaymentResponseDetails {
         private JsonNullable<String> multibancoReference = JsonNullable.undefined();
 
         private JsonNullable<String> multibancoEntity = JsonNullable.undefined();
+
+        private JsonNullable<String> bizumReference = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -3439,6 +3479,25 @@ public class PaymentResponseDetails {
             return this;
         }
 
+
+        /**
+         * Bizum payment reference of the transaction
+         */
+        public Builder bizumReference(String bizumReference) {
+            Utils.checkNotNull(bizumReference, "bizumReference");
+            this.bizumReference = JsonNullable.of(bizumReference);
+            return this;
+        }
+
+        /**
+         * Bizum payment reference of the transaction
+         */
+        public Builder bizumReference(JsonNullable<String> bizumReference) {
+            Utils.checkNotNull(bizumReference, "bizumReference");
+            this.bizumReference = bizumReference;
+            return this;
+        }
+
         public PaymentResponseDetails build() {
 
             return new PaymentResponseDetails(
@@ -3459,7 +3518,7 @@ public class PaymentResponseDetails {
                 qrCode, voucherNumber, giftcards,
                 issuer, vouchers, remainderAmount,
                 remainderMethod, remainderDetails, multibancoReference,
-                multibancoEntity);
+                multibancoEntity, bizumReference);
         }
 
     }
