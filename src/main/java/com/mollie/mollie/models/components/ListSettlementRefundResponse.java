@@ -78,9 +78,8 @@ public class ListSettlementRefundResponse {
      * The unique identifier of the payment this refund was created for.
      * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paymentId")
-    private Optional<String> paymentId;
+    private String paymentId;
 
     /**
      * The identifier referring to the settlement this refund was settled with. This field is omitted if
@@ -140,7 +139,7 @@ public class ListSettlementRefundResponse {
             @JsonProperty("amount") Amount amount,
             @JsonProperty("settlementAmount") JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount,
             @JsonProperty("metadata") Optional<? extends Metadata> metadata,
-            @JsonProperty("paymentId") Optional<String> paymentId,
+            @JsonProperty("paymentId") String paymentId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
             @JsonProperty("status") SettlementRefundStatus status,
             @JsonProperty("createdAt") String createdAt,
@@ -183,12 +182,13 @@ public class ListSettlementRefundResponse {
             SettlementMode mode,
             String description,
             Amount amount,
+            String paymentId,
             SettlementRefundStatus status,
             String createdAt,
             ListSettlementRefundResponseLinks links) {
         this(resource, id, mode,
             description, amount, JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), paymentId, JsonNullable.undefined(),
             status, createdAt, Optional.empty(),
             JsonNullable.undefined(), links);
     }
@@ -267,7 +267,7 @@ public class ListSettlementRefundResponse {
      * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     @JsonIgnore
-    public Optional<String> paymentId() {
+    public String paymentId() {
         return paymentId;
     }
 
@@ -440,17 +440,6 @@ public class ListSettlementRefundResponse {
      * The full payment object can be retrieved via the payment URL in the `_links` object.
      */
     public ListSettlementRefundResponse withPaymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = Optional.ofNullable(paymentId);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier of the payment this refund was created for.
-     * The full payment object can be retrieved via the payment URL in the `_links` object.
-     */
-    public ListSettlementRefundResponse withPaymentId(Optional<String> paymentId) {
         Utils.checkNotNull(paymentId, "paymentId");
         this.paymentId = paymentId;
         return this;
@@ -627,7 +616,7 @@ public class ListSettlementRefundResponse {
 
         private Optional<? extends Metadata> metadata = Optional.empty();
 
-        private Optional<String> paymentId = Optional.empty();
+        private String paymentId;
 
         private JsonNullable<String> settlementId = JsonNullable.undefined();
 
@@ -757,16 +746,6 @@ public class ListSettlementRefundResponse {
          * The full payment object can be retrieved via the payment URL in the `_links` object.
          */
         public Builder paymentId(String paymentId) {
-            Utils.checkNotNull(paymentId, "paymentId");
-            this.paymentId = Optional.ofNullable(paymentId);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the payment this refund was created for.
-         * The full payment object can be retrieved via the payment URL in the `_links` object.
-         */
-        public Builder paymentId(Optional<String> paymentId) {
             Utils.checkNotNull(paymentId, "paymentId");
             this.paymentId = paymentId;
             return this;
