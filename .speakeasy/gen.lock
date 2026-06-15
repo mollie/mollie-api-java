@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 209a2825519d071096a4f597e8f005b7
+  docChecksum: db15a87ae2baa66de62dfde1a2c094ad
   docVersion: 1.0.0
   speakeasyVersion: 1.778.0
   generationVersion: 2.904.2
-  releaseVersion: 1.8.6
-  configChecksum: f3e27c4727c149e42a868beec1863fc0
+  releaseVersion: 1.8.7
+  configChecksum: c2eee29f028bc4ad6e0dc85cdcdd3867
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: accd9f70-097a-4d98-b857-e6494d553563
-  pristine_commit_hash: 520678af59c24d09d428bb8b39f948449d224a45
-  pristine_tree_hash: 4d3bbedb5ac9e85485874e7cfab0fb0d8709cfe5
+  generation_id: fe0d9221-8a87-4e92-a35d-085f41b0ffce
+  pristine_commit_hash: bfe9b82bc1e4dec3b7f811ceadadfe8982f3918d
+  pristine_tree_hash: 8f559f5313d4ef037fd38b7829b0fda29cb6bdf2
 features:
   java:
     additionalDependencies: 0.1.0
@@ -3749,8 +3749,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:c9fb2de4b1f527def57415050efab67f9d85ebc9
-    pristine_git_object: 8a0f9d382816502e801b05b23dce8f3f055040fd
+    last_write_checksum: sha1:289a02599a3ea929b41e5c198df6a9dd7061e314
+    pristine_git_object: 9ea85164336733d08d788aeb61b7c8bd5e9b6ff1
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4005,8 +4005,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:6958c66642e680e9b886a2e8d40648bff23ef7b8
-    pristine_git_object: 10e9e59c7f5458d04c3940de2d601ca838aabb94
+    last_write_checksum: sha1:f71d1c465d285df77898620b9702a82c03891a55
+    pristine_git_object: a54924ed387c7928588f97f09d60876bf7bbfcb5
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:6cdf29ce849fc8d0132424ec727ca8bb41e46761
@@ -15040,13 +15040,6 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `client.settlements.listRefunds()`:  `response.Embedded.refunds[].paymentId` **Changed**
-  * `client.refunds.create()`:  `response.paymentId` **Changed**
-  * `client.refunds.list()`:  `response.Embedded.refunds[].paymentId` **Changed**
-  * `client.refunds.get()`:  `response.paymentId` **Changed**
-  * `client.refunds.all()`:  `response.Embedded.refunds[].paymentId` **Changed**
 generatedFiles:
   - .gitattributes
   - USAGE.md
