@@ -309,7 +309,21 @@ public class PaymentRequest {
     private Optional<String> profileId;
 
     /**
-     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
+     * tomorrow, and the
+     * maximum date is 100 days after tomorrow.
+     * 
+     * <p>After you created the payment, you can still update the `dueDate` via [Update
+     * payment](update-payment).
+     * 
+     * <p>&lt;Callout icon="📘" theme="info"&gt;
+     * If `dueDate` falls out of business days, it will be set to the **next business day** and the payment
+     * will
+     * expire at 00:00 (on the following business day).
+     * Example: `dueDate` is `2025-12-06` (Saturday) -&gt; `dueDate` will be set for `2025-12-08`,
+     * `expiresAt`
+     * `2025-12-09 00:00`
+     * &lt;/Callout&gt;
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dueDate")
@@ -339,11 +353,14 @@ public class PaymentRequest {
     private JsonNullable<Boolean> testmode;
 
     /**
-     * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a
-     * payment request.
-     * The token contains the payment information needed to authorize the payment.
+     * The [Apple Pay
+     * Payment](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypayment) token
+     * object (encoded as JSON) that is part of the result of authorizing a payment request. The token
+     * contains the
+     * payment information needed to authorize the payment.
      * 
-     * <p>The object should be passed encoded in a JSON string.
+     * <p>The object should be passed encoded in a JSON string. For example:
+     * `{"paymentData": {"version": "EC_v1", "data": "vK3BbrCbI/...."&rbrace;&rbrace;`
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applePayPaymentToken")
@@ -351,10 +368,15 @@ public class PaymentRequest {
 
     /**
      * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the
-     * organization
-     * that is completing the payment. It is recommended to include these parameters up front for a
-     * seamless flow.
-     * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+     * organization that is completing the payment. It is recommended to include these parameters up front
+     * for a
+     * seamless flow. Otherwise, Billie will ask the customer to complete the missing fields during
+     * checkout.
+     * 
+     * <p>* `billingAddress.organizationName`: The organization's name.
+     * * `registrationNumber` _string_: The organization's registration number.
+     * * `vatNumber` _string_: The organization's VAT number.
+     * * `entityType` _string_: The organization's entity type.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company")
@@ -362,12 +384,12 @@ public class PaymentRequest {
 
     /**
      * When creating credit card payments using Mollie Components, you need to provide the card token you
-     * received from
-     * the card component in this field. The token represents the customer's card information needed to
-     * complete the
-     * payment. Note: field only valid for oneoff and first payments. For recurring payments, the
-     * customerId alone is
-     * enough.
+     * received
+     * from the card component in this field. The token represents the customer's card information needed
+     * to complete
+     * the payment. **Note:** field only valid for `oneoff` and `first` payments. For recurring payments,
+     * the
+     * `customerId` alone is enough.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cardToken")
@@ -375,8 +397,8 @@ public class PaymentRequest {
 
     /**
      * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
-     * customer authorizes
-     * the payment. The token contains the payment information needed to complete the payment.
+     * customer
+     * authorizes the payment. The token contains the payment information needed to complete the payment.
      * 
      * <p>The object should be passed encoded in a JSON string.
      */
@@ -386,8 +408,8 @@ public class PaymentRequest {
 
     /**
      * The card token you received from the card component of Mollie Components. The token represents the
-     * customer's card
-     * information needed to complete the payment.
+     * customer's
+     * card information needed to complete the payment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("voucherNumber")
@@ -402,8 +424,8 @@ public class PaymentRequest {
 
     /**
      * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to
-     * provide it during
-     * the payment process.
+     * provide it
+     * during the payment process.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumerDateOfBirth")
@@ -414,8 +436,14 @@ public class PaymentRequest {
      * authorization rate.
      * You can submit your extra data in this field if you have agreed upon this with Klarna. This field
      * should be an
-     * object containing any of the allowed keys and sub-objects described at the Klarna Developer
-     * Documentation.
+     * object containing any of the allowed keys and sub-objects described at the
+     * &lt;Anchor label="Klarna Developer Documentation" target="_blank"
+     * href="https://docs.klarna.com/acquirer/mollie/api/extra-merchant-data/"&gt;Klarna Developer
+     * Documentation&lt;/Anchor&gt;.
+     * 
+     * <p>Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on
+     * which fields
+     * you can send.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("extraMerchantData")
@@ -432,8 +460,9 @@ public class PaymentRequest {
 
     /**
      * Indicate if you are about to deliver digital goods, such as for example a software license. Setting
-     * this parameter
-     * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more
+     * this
+     * parameter can have consequences for your PayPal Seller Protection. Refer to
+     * [PayPal's documentation](https://www.paypal.com/us/webapps/mpp/ua/seller-protection) for more
      * information.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -442,16 +471,20 @@ public class PaymentRequest {
 
     /**
      * Used by paysafecard for customer identification across payments. When you generate a customer
-     * reference yourself,
-     * make sure not to put personal identifiable information or IP addresses in the customer reference
+     * reference
+     * yourself, make sure not to put personal identifiable information or IP addresses in the customer
+     * reference
      * directly.
+     * 
+     * <p>If not provided, Mollie will use a hashed version of the customer's IP address.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customerReference")
     private Optional<String> customerReference;
 
     /**
-     * The ID of the terminal device where you want to initiate the payment on.
+     * The ID of the terminal device where you want to initiate the payment on. See also the
+     * [Terminals API](ref:terminals-api).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terminalId")
@@ -901,7 +934,21 @@ public class PaymentRequest {
     }
 
     /**
-     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
+     * tomorrow, and the
+     * maximum date is 100 days after tomorrow.
+     * 
+     * <p>After you created the payment, you can still update the `dueDate` via [Update
+     * payment](update-payment).
+     * 
+     * <p>&lt;Callout icon="📘" theme="info"&gt;
+     * If `dueDate` falls out of business days, it will be set to the **next business day** and the payment
+     * will
+     * expire at 00:00 (on the following business day).
+     * Example: `dueDate` is `2025-12-06` (Saturday) -&gt; `dueDate` will be set for `2025-12-08`,
+     * `expiresAt`
+     * `2025-12-09 00:00`
+     * &lt;/Callout&gt;
      */
     @JsonIgnore
     public Optional<String> dueDate() {
@@ -934,11 +981,14 @@ public class PaymentRequest {
     }
 
     /**
-     * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a
-     * payment request.
-     * The token contains the payment information needed to authorize the payment.
+     * The [Apple Pay
+     * Payment](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypayment) token
+     * object (encoded as JSON) that is part of the result of authorizing a payment request. The token
+     * contains the
+     * payment information needed to authorize the payment.
      * 
-     * <p>The object should be passed encoded in a JSON string.
+     * <p>The object should be passed encoded in a JSON string. For example:
+     * `{"paymentData": {"version": "EC_v1", "data": "vK3BbrCbI/...."&rbrace;&rbrace;`
      */
     @JsonIgnore
     public Optional<String> applePayPaymentToken() {
@@ -947,10 +997,15 @@ public class PaymentRequest {
 
     /**
      * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the
-     * organization
-     * that is completing the payment. It is recommended to include these parameters up front for a
-     * seamless flow.
-     * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+     * organization that is completing the payment. It is recommended to include these parameters up front
+     * for a
+     * seamless flow. Otherwise, Billie will ask the customer to complete the missing fields during
+     * checkout.
+     * 
+     * <p>* `billingAddress.organizationName`: The organization's name.
+     * * `registrationNumber` _string_: The organization's registration number.
+     * * `vatNumber` _string_: The organization's VAT number.
+     * * `entityType` _string_: The organization's entity type.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -960,12 +1015,12 @@ public class PaymentRequest {
 
     /**
      * When creating credit card payments using Mollie Components, you need to provide the card token you
-     * received from
-     * the card component in this field. The token represents the customer's card information needed to
-     * complete the
-     * payment. Note: field only valid for oneoff and first payments. For recurring payments, the
-     * customerId alone is
-     * enough.
+     * received
+     * from the card component in this field. The token represents the customer's card information needed
+     * to complete
+     * the payment. **Note:** field only valid for `oneoff` and `first` payments. For recurring payments,
+     * the
+     * `customerId` alone is enough.
      */
     @JsonIgnore
     public Optional<String> cardToken() {
@@ -974,8 +1029,8 @@ public class PaymentRequest {
 
     /**
      * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
-     * customer authorizes
-     * the payment. The token contains the payment information needed to complete the payment.
+     * customer
+     * authorizes the payment. The token contains the payment information needed to complete the payment.
      * 
      * <p>The object should be passed encoded in a JSON string.
      */
@@ -986,8 +1041,8 @@ public class PaymentRequest {
 
     /**
      * The card token you received from the card component of Mollie Components. The token represents the
-     * customer's card
-     * information needed to complete the payment.
+     * customer's
+     * card information needed to complete the payment.
      */
     @JsonIgnore
     public Optional<String> voucherNumber() {
@@ -1004,8 +1059,8 @@ public class PaymentRequest {
 
     /**
      * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to
-     * provide it during
-     * the payment process.
+     * provide it
+     * during the payment process.
      */
     @JsonIgnore
     public Optional<LocalDate> consumerDateOfBirth() {
@@ -1017,8 +1072,14 @@ public class PaymentRequest {
      * authorization rate.
      * You can submit your extra data in this field if you have agreed upon this with Klarna. This field
      * should be an
-     * object containing any of the allowed keys and sub-objects described at the Klarna Developer
-     * Documentation.
+     * object containing any of the allowed keys and sub-objects described at the
+     * &lt;Anchor label="Klarna Developer Documentation" target="_blank"
+     * href="https://docs.klarna.com/acquirer/mollie/api/extra-merchant-data/"&gt;Klarna Developer
+     * Documentation&lt;/Anchor&gt;.
+     * 
+     * <p>Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on
+     * which fields
+     * you can send.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1038,8 +1099,9 @@ public class PaymentRequest {
 
     /**
      * Indicate if you are about to deliver digital goods, such as for example a software license. Setting
-     * this parameter
-     * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more
+     * this
+     * parameter can have consequences for your PayPal Seller Protection. Refer to
+     * [PayPal's documentation](https://www.paypal.com/us/webapps/mpp/ua/seller-protection) for more
      * information.
      */
     @JsonIgnore
@@ -1049,9 +1111,12 @@ public class PaymentRequest {
 
     /**
      * Used by paysafecard for customer identification across payments. When you generate a customer
-     * reference yourself,
-     * make sure not to put personal identifiable information or IP addresses in the customer reference
+     * reference
+     * yourself, make sure not to put personal identifiable information or IP addresses in the customer
+     * reference
      * directly.
+     * 
+     * <p>If not provided, Mollie will use a hashed version of the customer's IP address.
      */
     @JsonIgnore
     public Optional<String> customerReference() {
@@ -1059,7 +1124,8 @@ public class PaymentRequest {
     }
 
     /**
-     * The ID of the terminal device where you want to initiate the payment on.
+     * The ID of the terminal device where you want to initiate the payment on. See also the
+     * [Terminals API](ref:terminals-api).
      */
     @JsonIgnore
     public Optional<String> terminalId() {
@@ -1697,7 +1763,21 @@ public class PaymentRequest {
     }
 
     /**
-     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
+     * tomorrow, and the
+     * maximum date is 100 days after tomorrow.
+     * 
+     * <p>After you created the payment, you can still update the `dueDate` via [Update
+     * payment](update-payment).
+     * 
+     * <p>&lt;Callout icon="📘" theme="info"&gt;
+     * If `dueDate` falls out of business days, it will be set to the **next business day** and the payment
+     * will
+     * expire at 00:00 (on the following business day).
+     * Example: `dueDate` is `2025-12-06` (Saturday) -&gt; `dueDate` will be set for `2025-12-08`,
+     * `expiresAt`
+     * `2025-12-09 00:00`
+     * &lt;/Callout&gt;
      */
     public PaymentRequest withDueDate(String dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
@@ -1707,7 +1787,21 @@ public class PaymentRequest {
 
 
     /**
-     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
+     * tomorrow, and the
+     * maximum date is 100 days after tomorrow.
+     * 
+     * <p>After you created the payment, you can still update the `dueDate` via [Update
+     * payment](update-payment).
+     * 
+     * <p>&lt;Callout icon="📘" theme="info"&gt;
+     * If `dueDate` falls out of business days, it will be set to the **next business day** and the payment
+     * will
+     * expire at 00:00 (on the following business day).
+     * Example: `dueDate` is `2025-12-06` (Saturday) -&gt; `dueDate` will be set for `2025-12-08`,
+     * `expiresAt`
+     * `2025-12-09 00:00`
+     * &lt;/Callout&gt;
      */
     public PaymentRequest withDueDate(Optional<String> dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
@@ -1771,11 +1865,14 @@ public class PaymentRequest {
     }
 
     /**
-     * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a
-     * payment request.
-     * The token contains the payment information needed to authorize the payment.
+     * The [Apple Pay
+     * Payment](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypayment) token
+     * object (encoded as JSON) that is part of the result of authorizing a payment request. The token
+     * contains the
+     * payment information needed to authorize the payment.
      * 
-     * <p>The object should be passed encoded in a JSON string.
+     * <p>The object should be passed encoded in a JSON string. For example:
+     * `{"paymentData": {"version": "EC_v1", "data": "vK3BbrCbI/...."&rbrace;&rbrace;`
      */
     public PaymentRequest withApplePayPaymentToken(String applePayPaymentToken) {
         Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
@@ -1785,11 +1882,14 @@ public class PaymentRequest {
 
 
     /**
-     * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a
-     * payment request.
-     * The token contains the payment information needed to authorize the payment.
+     * The [Apple Pay
+     * Payment](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypayment) token
+     * object (encoded as JSON) that is part of the result of authorizing a payment request. The token
+     * contains the
+     * payment information needed to authorize the payment.
      * 
-     * <p>The object should be passed encoded in a JSON string.
+     * <p>The object should be passed encoded in a JSON string. For example:
+     * `{"paymentData": {"version": "EC_v1", "data": "vK3BbrCbI/...."&rbrace;&rbrace;`
      */
     public PaymentRequest withApplePayPaymentToken(Optional<String> applePayPaymentToken) {
         Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
@@ -1799,10 +1899,15 @@ public class PaymentRequest {
 
     /**
      * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the
-     * organization
-     * that is completing the payment. It is recommended to include these parameters up front for a
-     * seamless flow.
-     * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+     * organization that is completing the payment. It is recommended to include these parameters up front
+     * for a
+     * seamless flow. Otherwise, Billie will ask the customer to complete the missing fields during
+     * checkout.
+     * 
+     * <p>* `billingAddress.organizationName`: The organization's name.
+     * * `registrationNumber` _string_: The organization's registration number.
+     * * `vatNumber` _string_: The organization's VAT number.
+     * * `entityType` _string_: The organization's entity type.
      */
     public PaymentRequest withCompany(Company company) {
         Utils.checkNotNull(company, "company");
@@ -1813,10 +1918,15 @@ public class PaymentRequest {
 
     /**
      * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the
-     * organization
-     * that is completing the payment. It is recommended to include these parameters up front for a
-     * seamless flow.
-     * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+     * organization that is completing the payment. It is recommended to include these parameters up front
+     * for a
+     * seamless flow. Otherwise, Billie will ask the customer to complete the missing fields during
+     * checkout.
+     * 
+     * <p>* `billingAddress.organizationName`: The organization's name.
+     * * `registrationNumber` _string_: The organization's registration number.
+     * * `vatNumber` _string_: The organization's VAT number.
+     * * `entityType` _string_: The organization's entity type.
      */
     public PaymentRequest withCompany(Optional<? extends Company> company) {
         Utils.checkNotNull(company, "company");
@@ -1826,12 +1936,12 @@ public class PaymentRequest {
 
     /**
      * When creating credit card payments using Mollie Components, you need to provide the card token you
-     * received from
-     * the card component in this field. The token represents the customer's card information needed to
-     * complete the
-     * payment. Note: field only valid for oneoff and first payments. For recurring payments, the
-     * customerId alone is
-     * enough.
+     * received
+     * from the card component in this field. The token represents the customer's card information needed
+     * to complete
+     * the payment. **Note:** field only valid for `oneoff` and `first` payments. For recurring payments,
+     * the
+     * `customerId` alone is enough.
      */
     public PaymentRequest withCardToken(String cardToken) {
         Utils.checkNotNull(cardToken, "cardToken");
@@ -1842,12 +1952,12 @@ public class PaymentRequest {
 
     /**
      * When creating credit card payments using Mollie Components, you need to provide the card token you
-     * received from
-     * the card component in this field. The token represents the customer's card information needed to
-     * complete the
-     * payment. Note: field only valid for oneoff and first payments. For recurring payments, the
-     * customerId alone is
-     * enough.
+     * received
+     * from the card component in this field. The token represents the customer's card information needed
+     * to complete
+     * the payment. **Note:** field only valid for `oneoff` and `first` payments. For recurring payments,
+     * the
+     * `customerId` alone is enough.
      */
     public PaymentRequest withCardToken(Optional<String> cardToken) {
         Utils.checkNotNull(cardToken, "cardToken");
@@ -1857,8 +1967,8 @@ public class PaymentRequest {
 
     /**
      * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
-     * customer authorizes
-     * the payment. The token contains the payment information needed to complete the payment.
+     * customer
+     * authorizes the payment. The token contains the payment information needed to complete the payment.
      * 
      * <p>The object should be passed encoded in a JSON string.
      */
@@ -1871,8 +1981,8 @@ public class PaymentRequest {
 
     /**
      * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
-     * customer authorizes
-     * the payment. The token contains the payment information needed to complete the payment.
+     * customer
+     * authorizes the payment. The token contains the payment information needed to complete the payment.
      * 
      * <p>The object should be passed encoded in a JSON string.
      */
@@ -1884,8 +1994,8 @@ public class PaymentRequest {
 
     /**
      * The card token you received from the card component of Mollie Components. The token represents the
-     * customer's card
-     * information needed to complete the payment.
+     * customer's
+     * card information needed to complete the payment.
      */
     public PaymentRequest withVoucherNumber(String voucherNumber) {
         Utils.checkNotNull(voucherNumber, "voucherNumber");
@@ -1896,8 +2006,8 @@ public class PaymentRequest {
 
     /**
      * The card token you received from the card component of Mollie Components. The token represents the
-     * customer's card
-     * information needed to complete the payment.
+     * customer's
+     * card information needed to complete the payment.
      */
     public PaymentRequest withVoucherNumber(Optional<String> voucherNumber) {
         Utils.checkNotNull(voucherNumber, "voucherNumber");
@@ -1926,8 +2036,8 @@ public class PaymentRequest {
 
     /**
      * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to
-     * provide it during
-     * the payment process.
+     * provide it
+     * during the payment process.
      */
     public PaymentRequest withConsumerDateOfBirth(LocalDate consumerDateOfBirth) {
         Utils.checkNotNull(consumerDateOfBirth, "consumerDateOfBirth");
@@ -1938,8 +2048,8 @@ public class PaymentRequest {
 
     /**
      * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to
-     * provide it during
-     * the payment process.
+     * provide it
+     * during the payment process.
      */
     public PaymentRequest withConsumerDateOfBirth(Optional<LocalDate> consumerDateOfBirth) {
         Utils.checkNotNull(consumerDateOfBirth, "consumerDateOfBirth");
@@ -1952,8 +2062,14 @@ public class PaymentRequest {
      * authorization rate.
      * You can submit your extra data in this field if you have agreed upon this with Klarna. This field
      * should be an
-     * object containing any of the allowed keys and sub-objects described at the Klarna Developer
-     * Documentation.
+     * object containing any of the allowed keys and sub-objects described at the
+     * &lt;Anchor label="Klarna Developer Documentation" target="_blank"
+     * href="https://docs.klarna.com/acquirer/mollie/api/extra-merchant-data/"&gt;Klarna Developer
+     * Documentation&lt;/Anchor&gt;.
+     * 
+     * <p>Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on
+     * which fields
+     * you can send.
      */
     public PaymentRequest withExtraMerchantData(Map<String, Object> extraMerchantData) {
         Utils.checkNotNull(extraMerchantData, "extraMerchantData");
@@ -1967,8 +2083,14 @@ public class PaymentRequest {
      * authorization rate.
      * You can submit your extra data in this field if you have agreed upon this with Klarna. This field
      * should be an
-     * object containing any of the allowed keys and sub-objects described at the Klarna Developer
-     * Documentation.
+     * object containing any of the allowed keys and sub-objects described at the
+     * &lt;Anchor label="Klarna Developer Documentation" target="_blank"
+     * href="https://docs.klarna.com/acquirer/mollie/api/extra-merchant-data/"&gt;Klarna Developer
+     * Documentation&lt;/Anchor&gt;.
+     * 
+     * <p>Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on
+     * which fields
+     * you can send.
      */
     public PaymentRequest withExtraMerchantData(Optional<? extends Map<String, Object>> extraMerchantData) {
         Utils.checkNotNull(extraMerchantData, "extraMerchantData");
@@ -2001,8 +2123,9 @@ public class PaymentRequest {
 
     /**
      * Indicate if you are about to deliver digital goods, such as for example a software license. Setting
-     * this parameter
-     * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more
+     * this
+     * parameter can have consequences for your PayPal Seller Protection. Refer to
+     * [PayPal's documentation](https://www.paypal.com/us/webapps/mpp/ua/seller-protection) for more
      * information.
      */
     public PaymentRequest withDigitalGoods(boolean digitalGoods) {
@@ -2014,8 +2137,9 @@ public class PaymentRequest {
 
     /**
      * Indicate if you are about to deliver digital goods, such as for example a software license. Setting
-     * this parameter
-     * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more
+     * this
+     * parameter can have consequences for your PayPal Seller Protection. Refer to
+     * [PayPal's documentation](https://www.paypal.com/us/webapps/mpp/ua/seller-protection) for more
      * information.
      */
     public PaymentRequest withDigitalGoods(Optional<Boolean> digitalGoods) {
@@ -2026,9 +2150,12 @@ public class PaymentRequest {
 
     /**
      * Used by paysafecard for customer identification across payments. When you generate a customer
-     * reference yourself,
-     * make sure not to put personal identifiable information or IP addresses in the customer reference
+     * reference
+     * yourself, make sure not to put personal identifiable information or IP addresses in the customer
+     * reference
      * directly.
+     * 
+     * <p>If not provided, Mollie will use a hashed version of the customer's IP address.
      */
     public PaymentRequest withCustomerReference(String customerReference) {
         Utils.checkNotNull(customerReference, "customerReference");
@@ -2039,9 +2166,12 @@ public class PaymentRequest {
 
     /**
      * Used by paysafecard for customer identification across payments. When you generate a customer
-     * reference yourself,
-     * make sure not to put personal identifiable information or IP addresses in the customer reference
+     * reference
+     * yourself, make sure not to put personal identifiable information or IP addresses in the customer
+     * reference
      * directly.
+     * 
+     * <p>If not provided, Mollie will use a hashed version of the customer's IP address.
      */
     public PaymentRequest withCustomerReference(Optional<String> customerReference) {
         Utils.checkNotNull(customerReference, "customerReference");
@@ -2050,7 +2180,8 @@ public class PaymentRequest {
     }
 
     /**
-     * The ID of the terminal device where you want to initiate the payment on.
+     * The ID of the terminal device where you want to initiate the payment on. See also the
+     * [Terminals API](ref:terminals-api).
      */
     public PaymentRequest withTerminalId(String terminalId) {
         Utils.checkNotNull(terminalId, "terminalId");
@@ -2060,7 +2191,8 @@ public class PaymentRequest {
 
 
     /**
-     * The ID of the terminal device where you want to initiate the payment on.
+     * The ID of the terminal device where you want to initiate the payment on. See also the
+     * [Terminals API](ref:terminals-api).
      */
     public PaymentRequest withTerminalId(Optional<String> terminalId) {
         Utils.checkNotNull(terminalId, "terminalId");
@@ -2895,7 +3027,21 @@ public class PaymentRequest {
 
 
         /**
-         * The date by which the payment should be completed in `YYYY-MM-DD` format
+         * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
+         * tomorrow, and the
+         * maximum date is 100 days after tomorrow.
+         * 
+         * <p>After you created the payment, you can still update the `dueDate` via [Update
+         * payment](update-payment).
+         * 
+         * <p>&lt;Callout icon="📘" theme="info"&gt;
+         * If `dueDate` falls out of business days, it will be set to the **next business day** and the payment
+         * will
+         * expire at 00:00 (on the following business day).
+         * Example: `dueDate` is `2025-12-06` (Saturday) -&gt; `dueDate` will be set for `2025-12-08`,
+         * `expiresAt`
+         * `2025-12-09 00:00`
+         * &lt;/Callout&gt;
          */
         public Builder dueDate(String dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
@@ -2904,7 +3050,21 @@ public class PaymentRequest {
         }
 
         /**
-         * The date by which the payment should be completed in `YYYY-MM-DD` format
+         * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
+         * tomorrow, and the
+         * maximum date is 100 days after tomorrow.
+         * 
+         * <p>After you created the payment, you can still update the `dueDate` via [Update
+         * payment](update-payment).
+         * 
+         * <p>&lt;Callout icon="📘" theme="info"&gt;
+         * If `dueDate` falls out of business days, it will be set to the **next business day** and the payment
+         * will
+         * expire at 00:00 (on the following business day).
+         * Example: `dueDate` is `2025-12-06` (Saturday) -&gt; `dueDate` will be set for `2025-12-08`,
+         * `expiresAt`
+         * `2025-12-09 00:00`
+         * &lt;/Callout&gt;
          */
         public Builder dueDate(Optional<String> dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
@@ -2970,11 +3130,14 @@ public class PaymentRequest {
 
 
         /**
-         * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a
-         * payment request.
-         * The token contains the payment information needed to authorize the payment.
+         * The [Apple Pay
+         * Payment](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypayment) token
+         * object (encoded as JSON) that is part of the result of authorizing a payment request. The token
+         * contains the
+         * payment information needed to authorize the payment.
          * 
-         * <p>The object should be passed encoded in a JSON string.
+         * <p>The object should be passed encoded in a JSON string. For example:
+         * `{"paymentData": {"version": "EC_v1", "data": "vK3BbrCbI/...."&rbrace;&rbrace;`
          */
         public Builder applePayPaymentToken(String applePayPaymentToken) {
             Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
@@ -2983,11 +3146,14 @@ public class PaymentRequest {
         }
 
         /**
-         * The Apple Pay Payment token object (encoded as JSON) that is part of the result of authorizing a
-         * payment request.
-         * The token contains the payment information needed to authorize the payment.
+         * The [Apple Pay
+         * Payment](https://developer.apple.com/documentation/apple_pay_on_the_web/applepaypayment) token
+         * object (encoded as JSON) that is part of the result of authorizing a payment request. The token
+         * contains the
+         * payment information needed to authorize the payment.
          * 
-         * <p>The object should be passed encoded in a JSON string.
+         * <p>The object should be passed encoded in a JSON string. For example:
+         * `{"paymentData": {"version": "EC_v1", "data": "vK3BbrCbI/...."&rbrace;&rbrace;`
          */
         public Builder applePayPaymentToken(Optional<String> applePayPaymentToken) {
             Utils.checkNotNull(applePayPaymentToken, "applePayPaymentToken");
@@ -2998,10 +3164,15 @@ public class PaymentRequest {
 
         /**
          * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the
-         * organization
-         * that is completing the payment. It is recommended to include these parameters up front for a
-         * seamless flow.
-         * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+         * organization that is completing the payment. It is recommended to include these parameters up front
+         * for a
+         * seamless flow. Otherwise, Billie will ask the customer to complete the missing fields during
+         * checkout.
+         * 
+         * <p>* `billingAddress.organizationName`: The organization's name.
+         * * `registrationNumber` _string_: The organization's registration number.
+         * * `vatNumber` _string_: The organization's VAT number.
+         * * `entityType` _string_: The organization's entity type.
          */
         public Builder company(Company company) {
             Utils.checkNotNull(company, "company");
@@ -3011,10 +3182,15 @@ public class PaymentRequest {
 
         /**
          * Billie is a business-to-business (B2B) payment method. It requires extra information to identify the
-         * organization
-         * that is completing the payment. It is recommended to include these parameters up front for a
-         * seamless flow.
-         * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+         * organization that is completing the payment. It is recommended to include these parameters up front
+         * for a
+         * seamless flow. Otherwise, Billie will ask the customer to complete the missing fields during
+         * checkout.
+         * 
+         * <p>* `billingAddress.organizationName`: The organization's name.
+         * * `registrationNumber` _string_: The organization's registration number.
+         * * `vatNumber` _string_: The organization's VAT number.
+         * * `entityType` _string_: The organization's entity type.
          */
         public Builder company(Optional<? extends Company> company) {
             Utils.checkNotNull(company, "company");
@@ -3025,12 +3201,12 @@ public class PaymentRequest {
 
         /**
          * When creating credit card payments using Mollie Components, you need to provide the card token you
-         * received from
-         * the card component in this field. The token represents the customer's card information needed to
-         * complete the
-         * payment. Note: field only valid for oneoff and first payments. For recurring payments, the
-         * customerId alone is
-         * enough.
+         * received
+         * from the card component in this field. The token represents the customer's card information needed
+         * to complete
+         * the payment. **Note:** field only valid for `oneoff` and `first` payments. For recurring payments,
+         * the
+         * `customerId` alone is enough.
          */
         public Builder cardToken(String cardToken) {
             Utils.checkNotNull(cardToken, "cardToken");
@@ -3040,12 +3216,12 @@ public class PaymentRequest {
 
         /**
          * When creating credit card payments using Mollie Components, you need to provide the card token you
-         * received from
-         * the card component in this field. The token represents the customer's card information needed to
-         * complete the
-         * payment. Note: field only valid for oneoff and first payments. For recurring payments, the
-         * customerId alone is
-         * enough.
+         * received
+         * from the card component in this field. The token represents the customer's card information needed
+         * to complete
+         * the payment. **Note:** field only valid for `oneoff` and `first` payments. For recurring payments,
+         * the
+         * `customerId` alone is enough.
          */
         public Builder cardToken(Optional<String> cardToken) {
             Utils.checkNotNull(cardToken, "cardToken");
@@ -3056,8 +3232,8 @@ public class PaymentRequest {
 
         /**
          * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
-         * customer authorizes
-         * the payment. The token contains the payment information needed to complete the payment.
+         * customer
+         * authorizes the payment. The token contains the payment information needed to complete the payment.
          * 
          * <p>The object should be passed encoded in a JSON string.
          */
@@ -3069,8 +3245,8 @@ public class PaymentRequest {
 
         /**
          * The Google Pay payment token object (encoded as JSON) returned by the Google Pay SDK after the
-         * customer authorizes
-         * the payment. The token contains the payment information needed to complete the payment.
+         * customer
+         * authorizes the payment. The token contains the payment information needed to complete the payment.
          * 
          * <p>The object should be passed encoded in a JSON string.
          */
@@ -3083,8 +3259,8 @@ public class PaymentRequest {
 
         /**
          * The card token you received from the card component of Mollie Components. The token represents the
-         * customer's card
-         * information needed to complete the payment.
+         * customer's
+         * card information needed to complete the payment.
          */
         public Builder voucherNumber(String voucherNumber) {
             Utils.checkNotNull(voucherNumber, "voucherNumber");
@@ -3094,8 +3270,8 @@ public class PaymentRequest {
 
         /**
          * The card token you received from the card component of Mollie Components. The token represents the
-         * customer's card
-         * information needed to complete the payment.
+         * customer's
+         * card information needed to complete the payment.
          */
         public Builder voucherNumber(Optional<String> voucherNumber) {
             Utils.checkNotNull(voucherNumber, "voucherNumber");
@@ -3125,8 +3301,8 @@ public class PaymentRequest {
 
         /**
          * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to
-         * provide it during
-         * the payment process.
+         * provide it
+         * during the payment process.
          */
         public Builder consumerDateOfBirth(LocalDate consumerDateOfBirth) {
             Utils.checkNotNull(consumerDateOfBirth, "consumerDateOfBirth");
@@ -3136,8 +3312,8 @@ public class PaymentRequest {
 
         /**
          * The customer's date of birth. If not provided via the API, iDeal in3 will ask the customer to
-         * provide it during
-         * the payment process.
+         * provide it
+         * during the payment process.
          */
         public Builder consumerDateOfBirth(Optional<LocalDate> consumerDateOfBirth) {
             Utils.checkNotNull(consumerDateOfBirth, "consumerDateOfBirth");
@@ -3151,8 +3327,14 @@ public class PaymentRequest {
          * authorization rate.
          * You can submit your extra data in this field if you have agreed upon this with Klarna. This field
          * should be an
-         * object containing any of the allowed keys and sub-objects described at the Klarna Developer
-         * Documentation.
+         * object containing any of the allowed keys and sub-objects described at the
+         * &lt;Anchor label="Klarna Developer Documentation" target="_blank"
+         * href="https://docs.klarna.com/acquirer/mollie/api/extra-merchant-data/"&gt;Klarna Developer
+         * Documentation&lt;/Anchor&gt;.
+         * 
+         * <p>Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on
+         * which fields
+         * you can send.
          */
         public Builder extraMerchantData(Map<String, Object> extraMerchantData) {
             Utils.checkNotNull(extraMerchantData, "extraMerchantData");
@@ -3165,8 +3347,14 @@ public class PaymentRequest {
          * authorization rate.
          * You can submit your extra data in this field if you have agreed upon this with Klarna. This field
          * should be an
-         * object containing any of the allowed keys and sub-objects described at the Klarna Developer
-         * Documentation.
+         * object containing any of the allowed keys and sub-objects described at the
+         * &lt;Anchor label="Klarna Developer Documentation" target="_blank"
+         * href="https://docs.klarna.com/acquirer/mollie/api/extra-merchant-data/"&gt;Klarna Developer
+         * Documentation&lt;/Anchor&gt;.
+         * 
+         * <p>Reach out to your account manager at Mollie to enable this feature with Klarna, and to agree on
+         * which fields
+         * you can send.
          */
         public Builder extraMerchantData(Optional<? extends Map<String, Object>> extraMerchantData) {
             Utils.checkNotNull(extraMerchantData, "extraMerchantData");
@@ -3200,8 +3388,9 @@ public class PaymentRequest {
 
         /**
          * Indicate if you are about to deliver digital goods, such as for example a software license. Setting
-         * this parameter
-         * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more
+         * this
+         * parameter can have consequences for your PayPal Seller Protection. Refer to
+         * [PayPal's documentation](https://www.paypal.com/us/webapps/mpp/ua/seller-protection) for more
          * information.
          */
         public Builder digitalGoods(boolean digitalGoods) {
@@ -3212,8 +3401,9 @@ public class PaymentRequest {
 
         /**
          * Indicate if you are about to deliver digital goods, such as for example a software license. Setting
-         * this parameter
-         * can have consequences for your PayPal Seller Protection. Refer to PayPal's documentation for more
+         * this
+         * parameter can have consequences for your PayPal Seller Protection. Refer to
+         * [PayPal's documentation](https://www.paypal.com/us/webapps/mpp/ua/seller-protection) for more
          * information.
          */
         public Builder digitalGoods(Optional<Boolean> digitalGoods) {
@@ -3225,9 +3415,12 @@ public class PaymentRequest {
 
         /**
          * Used by paysafecard for customer identification across payments. When you generate a customer
-         * reference yourself,
-         * make sure not to put personal identifiable information or IP addresses in the customer reference
+         * reference
+         * yourself, make sure not to put personal identifiable information or IP addresses in the customer
+         * reference
          * directly.
+         * 
+         * <p>If not provided, Mollie will use a hashed version of the customer's IP address.
          */
         public Builder customerReference(String customerReference) {
             Utils.checkNotNull(customerReference, "customerReference");
@@ -3237,9 +3430,12 @@ public class PaymentRequest {
 
         /**
          * Used by paysafecard for customer identification across payments. When you generate a customer
-         * reference yourself,
-         * make sure not to put personal identifiable information or IP addresses in the customer reference
+         * reference
+         * yourself, make sure not to put personal identifiable information or IP addresses in the customer
+         * reference
          * directly.
+         * 
+         * <p>If not provided, Mollie will use a hashed version of the customer's IP address.
          */
         public Builder customerReference(Optional<String> customerReference) {
             Utils.checkNotNull(customerReference, "customerReference");
@@ -3249,7 +3445,8 @@ public class PaymentRequest {
 
 
         /**
-         * The ID of the terminal device where you want to initiate the payment on.
+         * The ID of the terminal device where you want to initiate the payment on. See also the
+         * [Terminals API](ref:terminals-api).
          */
         public Builder terminalId(String terminalId) {
             Utils.checkNotNull(terminalId, "terminalId");
@@ -3258,7 +3455,8 @@ public class PaymentRequest {
         }
 
         /**
-         * The ID of the terminal device where you want to initiate the payment on.
+         * The ID of the terminal device where you want to initiate the payment on. See also the
+         * [Terminals API](ref:terminals-api).
          */
         public Builder terminalId(Optional<String> terminalId) {
             Utils.checkNotNull(terminalId, "terminalId");

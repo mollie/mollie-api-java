@@ -103,18 +103,6 @@ public class ListSettlementPaymentResponse {
     private Optional<? extends AmountChargedBack> amountChargedBack;
 
     /**
-     * The amount settled to your account for this payment, converted to the currency your account is
-     * settled in.
-     * 
-     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-     * settled by
-     * Mollie, this field is omitted from the response.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementAmount")
-    private Optional<? extends SettlementAmount> settlementAmount;
-
-    /**
      * The URL your customer will be redirected to after the payment process.
      * 
      * <p>It could make sense for the redirectUrl to contain a unique identifier – like your order ID – so you
@@ -435,7 +423,7 @@ public class ListSettlementPaymentResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
-    private JsonNullable<? extends Details> details;
+    private JsonNullable<? extends PaymentDetails> details;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -504,6 +492,18 @@ public class ListSettlementPaymentResponse {
     @JsonProperty("_links")
     private ListSettlementPaymentResponseLinks links;
 
+    /**
+     * The amount settled to your account for this payment, converted to the currency your account is
+     * settled in.
+     * 
+     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+     * settled by
+     * Mollie, this field is omitted from the response.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("settlementAmount")
+    private Optional<? extends SettlementAmount> settlementAmount;
+
     @JsonCreator
     public ListSettlementPaymentResponse(
             @JsonProperty("resource") String resource,
@@ -515,7 +515,6 @@ public class ListSettlementPaymentResponse {
             @JsonProperty("amountRemaining") Optional<? extends AmountRemaining> amountRemaining,
             @JsonProperty("amountCaptured") Optional<? extends AmountCaptured> amountCaptured,
             @JsonProperty("amountChargedBack") Optional<? extends AmountChargedBack> amountChargedBack,
-            @JsonProperty("settlementAmount") Optional<? extends SettlementAmount> settlementAmount,
             @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
@@ -542,7 +541,7 @@ public class ListSettlementPaymentResponse {
             @JsonProperty("status") SettlementPaymentStatus status,
             @JsonProperty("statusReason") JsonNullable<? extends StatusReason> statusReason,
             @JsonProperty("isCancelable") JsonNullable<Boolean> isCancelable,
-            @JsonProperty("details") JsonNullable<? extends Details> details,
+            @JsonProperty("details") JsonNullable<? extends PaymentDetails> details,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("authorizedAt") JsonNullable<String> authorizedAt,
             @JsonProperty("paidAt") JsonNullable<String> paidAt,
@@ -550,7 +549,8 @@ public class ListSettlementPaymentResponse {
             @JsonProperty("expiresAt") JsonNullable<String> expiresAt,
             @JsonProperty("expiredAt") JsonNullable<String> expiredAt,
             @JsonProperty("failedAt") JsonNullable<String> failedAt,
-            @JsonProperty("_links") ListSettlementPaymentResponseLinks links) {
+            @JsonProperty("_links") ListSettlementPaymentResponseLinks links,
+            @JsonProperty("settlementAmount") Optional<? extends SettlementAmount> settlementAmount) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
@@ -560,7 +560,6 @@ public class ListSettlementPaymentResponse {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
         Utils.checkNotNull(amountCaptured, "amountCaptured");
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         Utils.checkNotNull(cancelUrl, "cancelUrl");
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -596,6 +595,7 @@ public class ListSettlementPaymentResponse {
         Utils.checkNotNull(expiredAt, "expiredAt");
         Utils.checkNotNull(failedAt, "failedAt");
         Utils.checkNotNull(links, "links");
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.resource = resource;
         this.id = id;
         this.mode = mode;
@@ -605,7 +605,6 @@ public class ListSettlementPaymentResponse {
         this.amountRemaining = amountRemaining;
         this.amountCaptured = amountCaptured;
         this.amountChargedBack = amountChargedBack;
-        this.settlementAmount = settlementAmount;
         this.redirectUrl = redirectUrl;
         this.cancelUrl = cancelUrl;
         this.webhookUrl = webhookUrl;
@@ -641,6 +640,7 @@ public class ListSettlementPaymentResponse {
         this.expiredAt = expiredAt;
         this.failedAt = failedAt;
         this.links = links;
+        this.settlementAmount = settlementAmount;
     }
     
     public ListSettlementPaymentResponse(
@@ -657,18 +657,18 @@ public class ListSettlementPaymentResponse {
         this(resource, id, mode,
             description, amount, Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), sequenceType,
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            profileId, JsonNullable.undefined(), JsonNullable.undefined(),
-            status, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), createdAt, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), links);
+            JsonNullable.undefined(), sequenceType, JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), profileId,
+            JsonNullable.undefined(), JsonNullable.undefined(), status,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            createdAt, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), links, Optional.empty());
     }
 
     /**
@@ -769,20 +769,6 @@ public class ListSettlementPaymentResponse {
     @JsonIgnore
     public Optional<AmountChargedBack> amountChargedBack() {
         return (Optional<AmountChargedBack>) amountChargedBack;
-    }
-
-    /**
-     * The amount settled to your account for this payment, converted to the currency your account is
-     * settled in.
-     * 
-     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-     * settled by
-     * Mollie, this field is omitted from the response.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<SettlementAmount> settlementAmount() {
-        return (Optional<SettlementAmount>) settlementAmount;
     }
 
     /**
@@ -1142,8 +1128,8 @@ public class ListSettlementPaymentResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Details> details() {
-        return (JsonNullable<Details>) details;
+    public JsonNullable<PaymentDetails> details() {
+        return (JsonNullable<PaymentDetails>) details;
     }
 
     /**
@@ -1221,6 +1207,20 @@ public class ListSettlementPaymentResponse {
     @JsonIgnore
     public ListSettlementPaymentResponseLinks links() {
         return links;
+    }
+
+    /**
+     * The amount settled to your account for this payment, converted to the currency your account is
+     * settled in.
+     * 
+     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+     * settled by
+     * Mollie, this field is omitted from the response.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<SettlementAmount> settlementAmount() {
+        return (Optional<SettlementAmount>) settlementAmount;
     }
 
     public static Builder builder() {
@@ -1378,35 +1378,6 @@ public class ListSettlementPaymentResponse {
     public ListSettlementPaymentResponse withAmountChargedBack(Optional<? extends AmountChargedBack> amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
         this.amountChargedBack = amountChargedBack;
-        return this;
-    }
-
-    /**
-     * The amount settled to your account for this payment, converted to the currency your account is
-     * settled in.
-     * 
-     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-     * settled by
-     * Mollie, this field is omitted from the response.
-     */
-    public ListSettlementPaymentResponse withSettlementAmount(SettlementAmount settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = Optional.ofNullable(settlementAmount);
-        return this;
-    }
-
-
-    /**
-     * The amount settled to your account for this payment, converted to the currency your account is
-     * settled in.
-     * 
-     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-     * settled by
-     * Mollie, this field is omitted from the response.
-     */
-    public ListSettlementPaymentResponse withSettlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = settlementAmount;
         return this;
     }
 
@@ -2118,7 +2089,7 @@ public class ListSettlementPaymentResponse {
      * to the
      * [method-specific parameters](extra-payment-parameters) guide.
      */
-    public ListSettlementPaymentResponse withDetails(Details details) {
+    public ListSettlementPaymentResponse withDetails(PaymentDetails details) {
         Utils.checkNotNull(details, "details");
         this.details = JsonNullable.of(details);
         return this;
@@ -2131,7 +2102,7 @@ public class ListSettlementPaymentResponse {
      * to the
      * [method-specific parameters](extra-payment-parameters) guide.
      */
-    public ListSettlementPaymentResponse withDetails(JsonNullable<? extends Details> details) {
+    public ListSettlementPaymentResponse withDetails(JsonNullable<? extends PaymentDetails> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
@@ -2288,6 +2259,35 @@ public class ListSettlementPaymentResponse {
         return this;
     }
 
+    /**
+     * The amount settled to your account for this payment, converted to the currency your account is
+     * settled in.
+     * 
+     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+     * settled by
+     * Mollie, this field is omitted from the response.
+     */
+    public ListSettlementPaymentResponse withSettlementAmount(SettlementAmount settlementAmount) {
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
+        this.settlementAmount = Optional.ofNullable(settlementAmount);
+        return this;
+    }
+
+
+    /**
+     * The amount settled to your account for this payment, converted to the currency your account is
+     * settled in.
+     * 
+     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+     * settled by
+     * Mollie, this field is omitted from the response.
+     */
+    public ListSettlementPaymentResponse withSettlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
+        this.settlementAmount = settlementAmount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -2307,7 +2307,6 @@ public class ListSettlementPaymentResponse {
             Utils.enhancedDeepEquals(this.amountRemaining, other.amountRemaining) &&
             Utils.enhancedDeepEquals(this.amountCaptured, other.amountCaptured) &&
             Utils.enhancedDeepEquals(this.amountChargedBack, other.amountChargedBack) &&
-            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
             Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
             Utils.enhancedDeepEquals(this.cancelUrl, other.cancelUrl) &&
             Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
@@ -2342,7 +2341,8 @@ public class ListSettlementPaymentResponse {
             Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
             Utils.enhancedDeepEquals(this.expiredAt, other.expiredAt) &&
             Utils.enhancedDeepEquals(this.failedAt, other.failedAt) &&
-            Utils.enhancedDeepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount);
     }
     
     @Override
@@ -2351,18 +2351,18 @@ public class ListSettlementPaymentResponse {
             resource, id, mode,
             description, amount, amountRefunded,
             amountRemaining, amountCaptured, amountChargedBack,
-            settlementAmount, redirectUrl, cancelUrl,
-            webhookUrl, lines, billingAddress,
-            shippingAddress, locale, countryCode,
-            method, restrictPaymentMethodsToCountry, metadata,
-            captureMode, captureDelay, captureBefore,
-            applicationFee, routing, sequenceType,
-            subscriptionId, mandateId, customerId,
-            profileId, settlementId, orderId,
-            status, statusReason, isCancelable,
-            details, createdAt, authorizedAt,
-            paidAt, canceledAt, expiresAt,
-            expiredAt, failedAt, links);
+            redirectUrl, cancelUrl, webhookUrl,
+            lines, billingAddress, shippingAddress,
+            locale, countryCode, method,
+            restrictPaymentMethodsToCountry, metadata, captureMode,
+            captureDelay, captureBefore, applicationFee,
+            routing, sequenceType, subscriptionId,
+            mandateId, customerId, profileId,
+            settlementId, orderId, status,
+            statusReason, isCancelable, details,
+            createdAt, authorizedAt, paidAt,
+            canceledAt, expiresAt, expiredAt,
+            failedAt, links, settlementAmount);
     }
     
     @Override
@@ -2377,7 +2377,6 @@ public class ListSettlementPaymentResponse {
                 "amountRemaining", amountRemaining,
                 "amountCaptured", amountCaptured,
                 "amountChargedBack", amountChargedBack,
-                "settlementAmount", settlementAmount,
                 "redirectUrl", redirectUrl,
                 "cancelUrl", cancelUrl,
                 "webhookUrl", webhookUrl,
@@ -2412,7 +2411,8 @@ public class ListSettlementPaymentResponse {
                 "expiresAt", expiresAt,
                 "expiredAt", expiredAt,
                 "failedAt", failedAt,
-                "links", links);
+                "links", links,
+                "settlementAmount", settlementAmount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -2435,8 +2435,6 @@ public class ListSettlementPaymentResponse {
         private Optional<? extends AmountCaptured> amountCaptured = Optional.empty();
 
         private Optional<? extends AmountChargedBack> amountChargedBack = Optional.empty();
-
-        private Optional<? extends SettlementAmount> settlementAmount = Optional.empty();
 
         private JsonNullable<String> redirectUrl = JsonNullable.undefined();
 
@@ -2490,7 +2488,7 @@ public class ListSettlementPaymentResponse {
 
         private JsonNullable<Boolean> isCancelable = JsonNullable.undefined();
 
-        private JsonNullable<? extends Details> details = JsonNullable.undefined();
+        private JsonNullable<? extends PaymentDetails> details = JsonNullable.undefined();
 
         private String createdAt;
 
@@ -2507,6 +2505,8 @@ public class ListSettlementPaymentResponse {
         private JsonNullable<String> failedAt = JsonNullable.undefined();
 
         private ListSettlementPaymentResponseLinks links;
+
+        private Optional<? extends SettlementAmount> settlementAmount = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -2667,35 +2667,6 @@ public class ListSettlementPaymentResponse {
         public Builder amountChargedBack(Optional<? extends AmountChargedBack> amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
             this.amountChargedBack = amountChargedBack;
-            return this;
-        }
-
-
-        /**
-         * The amount settled to your account for this payment, converted to the currency your account is
-         * settled in.
-         * 
-         * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-         * settled by
-         * Mollie, this field is omitted from the response.
-         */
-        public Builder settlementAmount(SettlementAmount settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = Optional.ofNullable(settlementAmount);
-            return this;
-        }
-
-        /**
-         * The amount settled to your account for this payment, converted to the currency your account is
-         * settled in.
-         * 
-         * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-         * settled by
-         * Mollie, this field is omitted from the response.
-         */
-        public Builder settlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = settlementAmount;
             return this;
         }
 
@@ -3431,7 +3402,7 @@ public class ListSettlementPaymentResponse {
          * to the
          * [method-specific parameters](extra-payment-parameters) guide.
          */
-        public Builder details(Details details) {
+        public Builder details(PaymentDetails details) {
             Utils.checkNotNull(details, "details");
             this.details = JsonNullable.of(details);
             return this;
@@ -3444,7 +3415,7 @@ public class ListSettlementPaymentResponse {
          * to the
          * [method-specific parameters](extra-payment-parameters) guide.
          */
-        public Builder details(JsonNullable<? extends Details> details) {
+        public Builder details(JsonNullable<? extends PaymentDetails> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;
@@ -3609,24 +3580,53 @@ public class ListSettlementPaymentResponse {
             return this;
         }
 
+
+        /**
+         * The amount settled to your account for this payment, converted to the currency your account is
+         * settled in.
+         * 
+         * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+         * settled by
+         * Mollie, this field is omitted from the response.
+         */
+        public Builder settlementAmount(SettlementAmount settlementAmount) {
+            Utils.checkNotNull(settlementAmount, "settlementAmount");
+            this.settlementAmount = Optional.ofNullable(settlementAmount);
+            return this;
+        }
+
+        /**
+         * The amount settled to your account for this payment, converted to the currency your account is
+         * settled in.
+         * 
+         * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
+         * settled by
+         * Mollie, this field is omitted from the response.
+         */
+        public Builder settlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
+            Utils.checkNotNull(settlementAmount, "settlementAmount");
+            this.settlementAmount = settlementAmount;
+            return this;
+        }
+
         public ListSettlementPaymentResponse build() {
 
             return new ListSettlementPaymentResponse(
                 resource, id, mode,
                 description, amount, amountRefunded,
                 amountRemaining, amountCaptured, amountChargedBack,
-                settlementAmount, redirectUrl, cancelUrl,
-                webhookUrl, lines, billingAddress,
-                shippingAddress, locale, countryCode,
-                method, restrictPaymentMethodsToCountry, metadata,
-                captureMode, captureDelay, captureBefore,
-                applicationFee, routing, sequenceType,
-                subscriptionId, mandateId, customerId,
-                profileId, settlementId, orderId,
-                status, statusReason, isCancelable,
-                details, createdAt, authorizedAt,
-                paidAt, canceledAt, expiresAt,
-                expiredAt, failedAt, links);
+                redirectUrl, cancelUrl, webhookUrl,
+                lines, billingAddress, shippingAddress,
+                locale, countryCode, method,
+                restrictPaymentMethodsToCountry, metadata, captureMode,
+                captureDelay, captureBefore, applicationFee,
+                routing, sequenceType, subscriptionId,
+                mandateId, customerId, profileId,
+                settlementId, orderId, status,
+                statusReason, isCancelable, details,
+                createdAt, authorizedAt, paidAt,
+                canceledAt, expiresAt, expiredAt,
+                failedAt, links, settlementAmount);
         }
 
     }

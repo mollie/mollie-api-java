@@ -18,10 +18,15 @@ import java.util.Optional;
  * Company
  * 
  * <p>Billie is a business-to-business (B2B) payment method. It requires extra information to identify the
- * organization
- * that is completing the payment. It is recommended to include these parameters up front for a
- * seamless flow.
- * Otherwise, Billie will ask the customer to complete the missing fields during checkout.
+ * organization that is completing the payment. It is recommended to include these parameters up front
+ * for a
+ * seamless flow. Otherwise, Billie will ask the customer to complete the missing fields during
+ * checkout.
+ * 
+ * <p>* `billingAddress.organizationName`: The organization's name.
+ * * `registrationNumber` _string_: The organization's registration number.
+ * * `vatNumber` _string_: The organization's VAT number.
+ * * `entityType` _string_: The organization's entity type.
  */
 public class Company {
     /**

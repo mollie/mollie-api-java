@@ -19,10 +19,24 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * Receipt
  * 
  * <p>The Point of sale receipt object.
+ * 
+ * <p>* `authorizationCode` _string|null_ - a unique code provided by the cardholder's bank to confirm
+ * that the
+ * transaction was successfully approved.
+ * * `applicationIdentifier` _string|null_ - the unique number that identifies a specific payment
+ * application
+ * on a chip card.
+ * * `cardReadMethod` _string|null_ - the method by which the card was read by the terminal. Possible
+ * values:
+ * `chip` | `magnetic-stripe` | `near-field-communication` | `contactless` | `moto`.
+ * * `cardVerificationMethod` _string|null_ - the method used to verify the cardholder's identity.
+ * Possible
+ * values: `no-cvm-required` | `online-pin` | `offline-pin` | `consumer-device` | `signature` |
+ * `signature-and-online-pin` | `online-pin-and-signature` | `none` | `failed`.
  */
 public class Receipt {
     /**
-     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+     * A unique code provided by the cardholder's bank to confirm that the transaction was successfully
      * approved.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -72,7 +86,7 @@ public class Receipt {
     }
 
     /**
-     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+     * A unique code provided by the cardholder's bank to confirm that the transaction was successfully
      * approved.
      */
     @JsonIgnore
@@ -112,7 +126,7 @@ public class Receipt {
 
 
     /**
-     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+     * A unique code provided by the cardholder's bank to confirm that the transaction was successfully
      * approved.
      */
     public Receipt withAuthorizationCode(String authorizationCode) {
@@ -122,7 +136,7 @@ public class Receipt {
     }
 
     /**
-     * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+     * A unique code provided by the cardholder's bank to confirm that the transaction was successfully
      * approved.
      */
     public Receipt withAuthorizationCode(JsonNullable<String> authorizationCode) {
@@ -234,7 +248,7 @@ public class Receipt {
 
 
         /**
-         * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+         * A unique code provided by the cardholder's bank to confirm that the transaction was successfully
          * approved.
          */
         public Builder authorizationCode(String authorizationCode) {
@@ -244,7 +258,7 @@ public class Receipt {
         }
 
         /**
-         * A unique code provided by the cardholder’s bank to confirm that the transaction was successfully
+         * A unique code provided by the cardholder's bank to confirm that the transaction was successfully
          * approved.
          */
         public Builder authorizationCode(JsonNullable<String> authorizationCode) {

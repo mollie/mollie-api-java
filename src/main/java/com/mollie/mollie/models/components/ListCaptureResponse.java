@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -51,23 +50,6 @@ public class ListCaptureResponse {
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("amount")
     private Optional<? extends AmountNullable> amount;
-
-    /**
-     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-     * API](list-settlements) or
-     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-     * 
-     * <p>The amount that will be settled to your account for this capture, converted to the currency your
-     * account is
-     * settled in. Only available once the capture is finalized and the final settlement amount has been
-     * determined.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementAmount")
-    @Deprecated
-    private JsonNullable<? extends ListCaptureResponseSettlementAmount> settlementAmount;
 
 
     @JsonProperty("status")
@@ -129,7 +111,6 @@ public class ListCaptureResponse {
             @JsonProperty("mode") Mode mode,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") Optional<? extends AmountNullable> amount,
-            @JsonProperty("settlementAmount") JsonNullable<? extends ListCaptureResponseSettlementAmount> settlementAmount,
             @JsonProperty("status") ListCaptureResponseStatus status,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("paymentId") String paymentId,
@@ -142,7 +123,6 @@ public class ListCaptureResponse {
         Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(paymentId, "paymentId");
@@ -155,7 +135,6 @@ public class ListCaptureResponse {
         this.mode = mode;
         this.description = description;
         this.amount = amount;
-        this.settlementAmount = settlementAmount;
         this.status = status;
         this.metadata = metadata;
         this.paymentId = paymentId;
@@ -174,10 +153,9 @@ public class ListCaptureResponse {
             String createdAt,
             ListCaptureResponseLinks links) {
         this(resource, id, mode,
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            status, JsonNullable.undefined(), paymentId,
-            JsonNullable.undefined(), JsonNullable.undefined(), createdAt,
-            links);
+            Optional.empty(), Optional.empty(), status,
+            JsonNullable.undefined(), paymentId, JsonNullable.undefined(),
+            JsonNullable.undefined(), createdAt, links);
     }
 
     /**
@@ -220,25 +198,6 @@ public class ListCaptureResponse {
     @JsonIgnore
     public Optional<AmountNullable> amount() {
         return (Optional<AmountNullable>) amount;
-    }
-
-    /**
-     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-     * API](list-settlements) or
-     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-     * 
-     * <p>The amount that will be settled to your account for this capture, converted to the currency your
-     * account is
-     * settled in. Only available once the capture is finalized and the final settlement amount has been
-     * determined.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ListCaptureResponseSettlementAmount> settlementAmount() {
-        return (JsonNullable<ListCaptureResponseSettlementAmount>) settlementAmount;
     }
 
     @JsonIgnore
@@ -376,44 +335,6 @@ public class ListCaptureResponse {
         return this;
     }
 
-    /**
-     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-     * API](list-settlements) or
-     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-     * 
-     * <p>The amount that will be settled to your account for this capture, converted to the currency your
-     * account is
-     * settled in. Only available once the capture is finalized and the final settlement amount has been
-     * determined.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public ListCaptureResponse withSettlementAmount(ListCaptureResponseSettlementAmount settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = JsonNullable.of(settlementAmount);
-        return this;
-    }
-
-    /**
-     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-     * API](list-settlements) or
-     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-     * 
-     * <p>The amount that will be settled to your account for this capture, converted to the currency your
-     * account is
-     * settled in. Only available once the capture is finalized and the final settlement amount has been
-     * determined.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public ListCaptureResponse withSettlementAmount(JsonNullable<? extends ListCaptureResponseSettlementAmount> settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = settlementAmount;
-        return this;
-    }
-
     public ListCaptureResponse withStatus(ListCaptureResponseStatus status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
@@ -533,7 +454,6 @@ public class ListCaptureResponse {
             Utils.enhancedDeepEquals(this.mode, other.mode) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
@@ -547,10 +467,9 @@ public class ListCaptureResponse {
     public int hashCode() {
         return Utils.enhancedHash(
             resource, id, mode,
-            description, amount, settlementAmount,
-            status, metadata, paymentId,
-            shipmentId, settlementId, createdAt,
-            links);
+            description, amount, status,
+            metadata, paymentId, shipmentId,
+            settlementId, createdAt, links);
     }
     
     @Override
@@ -561,7 +480,6 @@ public class ListCaptureResponse {
                 "mode", mode,
                 "description", description,
                 "amount", amount,
-                "settlementAmount", settlementAmount,
                 "status", status,
                 "metadata", metadata,
                 "paymentId", paymentId,
@@ -583,9 +501,6 @@ public class ListCaptureResponse {
         private Optional<String> description = Optional.empty();
 
         private Optional<? extends AmountNullable> amount = Optional.empty();
-
-        @Deprecated
-        private JsonNullable<? extends ListCaptureResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private ListCaptureResponseStatus status;
 
@@ -671,45 +586,6 @@ public class ListCaptureResponse {
         public Builder amount(Optional<? extends AmountNullable> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
-            return this;
-        }
-
-
-        /**
-         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-         * API](list-settlements) or
-         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-         * 
-         * <p>The amount that will be settled to your account for this capture, converted to the currency your
-         * account is
-         * settled in. Only available once the capture is finalized and the final settlement amount has been
-         * determined.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder settlementAmount(ListCaptureResponseSettlementAmount settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = JsonNullable.of(settlementAmount);
-            return this;
-        }
-
-        /**
-         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-         * API](list-settlements) or
-         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-         * 
-         * <p>The amount that will be settled to your account for this capture, converted to the currency your
-         * account is
-         * settled in. Only available once the capture is finalized and the final settlement amount has been
-         * determined.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder settlementAmount(JsonNullable<? extends ListCaptureResponseSettlementAmount> settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = settlementAmount;
             return this;
         }
 
@@ -828,10 +704,9 @@ public class ListCaptureResponse {
 
             return new ListCaptureResponse(
                 resource, id, mode,
-                description, amount, settlementAmount,
-                status, metadata, paymentId,
-                shipmentId, settlementId, createdAt,
-                links);
+                description, amount, status,
+                metadata, paymentId, shipmentId,
+                settlementId, createdAt, links);
         }
 
     }

@@ -52,14 +52,6 @@ public class ListSettlementCaptureResponse {
     private Optional<? extends AmountNullable> amount;
 
     /**
-     * The amount settled to your account for this capture, converted to the currency your account is
-     * settled in.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementAmount")
-    private JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount;
-
-    /**
      * The capture's status. Settlement captures always have a status of `succeeded`.
      */
     @JsonProperty("status")
@@ -114,6 +106,14 @@ public class ListSettlementCaptureResponse {
     @JsonProperty("_links")
     private ListSettlementCaptureResponseLinks links;
 
+    /**
+     * The amount settled to your account for this capture, converted to the currency your account is
+     * settled in.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("settlementAmount")
+    private JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount;
+
     @JsonCreator
     public ListSettlementCaptureResponse(
             @JsonProperty("resource") String resource,
@@ -121,20 +121,19 @@ public class ListSettlementCaptureResponse {
             @JsonProperty("mode") SettlementMode mode,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") Optional<? extends AmountNullable> amount,
-            @JsonProperty("settlementAmount") JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount,
             @JsonProperty("status") SettlementCaptureStatus status,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("paymentId") String paymentId,
             @JsonProperty("shipmentId") JsonNullable<String> shipmentId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
             @JsonProperty("createdAt") String createdAt,
-            @JsonProperty("_links") ListSettlementCaptureResponseLinks links) {
+            @JsonProperty("_links") ListSettlementCaptureResponseLinks links,
+            @JsonProperty("settlementAmount") JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(paymentId, "paymentId");
@@ -142,12 +141,12 @@ public class ListSettlementCaptureResponse {
         Utils.checkNotNull(settlementId, "settlementId");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(links, "links");
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.resource = resource;
         this.id = id;
         this.mode = mode;
         this.description = description;
         this.amount = amount;
-        this.settlementAmount = settlementAmount;
         this.status = status;
         this.metadata = metadata;
         this.paymentId = paymentId;
@@ -155,6 +154,7 @@ public class ListSettlementCaptureResponse {
         this.settlementId = settlementId;
         this.createdAt = createdAt;
         this.links = links;
+        this.settlementAmount = settlementAmount;
     }
     
     public ListSettlementCaptureResponse(
@@ -166,10 +166,10 @@ public class ListSettlementCaptureResponse {
             String createdAt,
             ListSettlementCaptureResponseLinks links) {
         this(resource, id, mode,
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            status, JsonNullable.undefined(), paymentId,
-            JsonNullable.undefined(), JsonNullable.undefined(), createdAt,
-            links);
+            Optional.empty(), Optional.empty(), status,
+            JsonNullable.undefined(), paymentId, JsonNullable.undefined(),
+            JsonNullable.undefined(), createdAt, links,
+            JsonNullable.undefined());
     }
 
     /**
@@ -212,16 +212,6 @@ public class ListSettlementCaptureResponse {
     @JsonIgnore
     public Optional<AmountNullable> amount() {
         return (Optional<AmountNullable>) amount;
-    }
-
-    /**
-     * The amount settled to your account for this capture, converted to the currency your account is
-     * settled in.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ListSettlementCaptureResponseSettlementAmount> settlementAmount() {
-        return (JsonNullable<ListSettlementCaptureResponseSettlementAmount>) settlementAmount;
     }
 
     /**
@@ -289,6 +279,16 @@ public class ListSettlementCaptureResponse {
     @JsonIgnore
     public ListSettlementCaptureResponseLinks links() {
         return links;
+    }
+
+    /**
+     * The amount settled to your account for this capture, converted to the currency your account is
+     * settled in.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ListSettlementCaptureResponseSettlementAmount> settlementAmount() {
+        return (JsonNullable<ListSettlementCaptureResponseSettlementAmount>) settlementAmount;
     }
 
     public static Builder builder() {
@@ -359,26 +359,6 @@ public class ListSettlementCaptureResponse {
     public ListSettlementCaptureResponse withAmount(Optional<? extends AmountNullable> amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
-        return this;
-    }
-
-    /**
-     * The amount settled to your account for this capture, converted to the currency your account is
-     * settled in.
-     */
-    public ListSettlementCaptureResponse withSettlementAmount(ListSettlementCaptureResponseSettlementAmount settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = JsonNullable.of(settlementAmount);
-        return this;
-    }
-
-    /**
-     * The amount settled to your account for this capture, converted to the currency your account is
-     * settled in.
-     */
-    public ListSettlementCaptureResponse withSettlementAmount(JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = settlementAmount;
         return this;
     }
 
@@ -489,6 +469,26 @@ public class ListSettlementCaptureResponse {
         return this;
     }
 
+    /**
+     * The amount settled to your account for this capture, converted to the currency your account is
+     * settled in.
+     */
+    public ListSettlementCaptureResponse withSettlementAmount(ListSettlementCaptureResponseSettlementAmount settlementAmount) {
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
+        this.settlementAmount = JsonNullable.of(settlementAmount);
+        return this;
+    }
+
+    /**
+     * The amount settled to your account for this capture, converted to the currency your account is
+     * settled in.
+     */
+    public ListSettlementCaptureResponse withSettlementAmount(JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount) {
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
+        this.settlementAmount = settlementAmount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -504,24 +504,24 @@ public class ListSettlementCaptureResponse {
             Utils.enhancedDeepEquals(this.mode, other.mode) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.shipmentId, other.shipmentId) &&
             Utils.enhancedDeepEquals(this.settlementId, other.settlementId) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
-            Utils.enhancedDeepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             resource, id, mode,
-            description, amount, settlementAmount,
-            status, metadata, paymentId,
-            shipmentId, settlementId, createdAt,
-            links);
+            description, amount, status,
+            metadata, paymentId, shipmentId,
+            settlementId, createdAt, links,
+            settlementAmount);
     }
     
     @Override
@@ -532,14 +532,14 @@ public class ListSettlementCaptureResponse {
                 "mode", mode,
                 "description", description,
                 "amount", amount,
-                "settlementAmount", settlementAmount,
                 "status", status,
                 "metadata", metadata,
                 "paymentId", paymentId,
                 "shipmentId", shipmentId,
                 "settlementId", settlementId,
                 "createdAt", createdAt,
-                "links", links);
+                "links", links,
+                "settlementAmount", settlementAmount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -555,8 +555,6 @@ public class ListSettlementCaptureResponse {
 
         private Optional<? extends AmountNullable> amount = Optional.empty();
 
-        private JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
-
         private SettlementCaptureStatus status;
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
@@ -570,6 +568,8 @@ public class ListSettlementCaptureResponse {
         private String createdAt;
 
         private ListSettlementCaptureResponseLinks links;
+
+        private JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -641,27 +641,6 @@ public class ListSettlementCaptureResponse {
         public Builder amount(Optional<? extends AmountNullable> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
-            return this;
-        }
-
-
-        /**
-         * The amount settled to your account for this capture, converted to the currency your account is
-         * settled in.
-         */
-        public Builder settlementAmount(ListSettlementCaptureResponseSettlementAmount settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = JsonNullable.of(settlementAmount);
-            return this;
-        }
-
-        /**
-         * The amount settled to your account for this capture, converted to the currency your account is
-         * settled in.
-         */
-        public Builder settlementAmount(JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = settlementAmount;
             return this;
         }
 
@@ -779,14 +758,35 @@ public class ListSettlementCaptureResponse {
             return this;
         }
 
+
+        /**
+         * The amount settled to your account for this capture, converted to the currency your account is
+         * settled in.
+         */
+        public Builder settlementAmount(ListSettlementCaptureResponseSettlementAmount settlementAmount) {
+            Utils.checkNotNull(settlementAmount, "settlementAmount");
+            this.settlementAmount = JsonNullable.of(settlementAmount);
+            return this;
+        }
+
+        /**
+         * The amount settled to your account for this capture, converted to the currency your account is
+         * settled in.
+         */
+        public Builder settlementAmount(JsonNullable<? extends ListSettlementCaptureResponseSettlementAmount> settlementAmount) {
+            Utils.checkNotNull(settlementAmount, "settlementAmount");
+            this.settlementAmount = settlementAmount;
+            return this;
+        }
+
         public ListSettlementCaptureResponse build() {
 
             return new ListSettlementCaptureResponse(
                 resource, id, mode,
-                description, amount, settlementAmount,
-                status, metadata, paymentId,
-                shipmentId, settlementId, createdAt,
-                links);
+                description, amount, status,
+                metadata, paymentId, shipmentId,
+                settlementId, createdAt, links,
+                settlementAmount);
         }
 
     }
