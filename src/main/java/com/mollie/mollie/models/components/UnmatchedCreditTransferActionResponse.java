@@ -59,7 +59,7 @@ public class UnmatchedCreditTransferActionResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("details")
-    private Optional<? extends UnmatchedCreditTransferActionResponseDetails> details;
+    private Optional<? extends Details> details;
 
     /**
      * Links to related resources.
@@ -75,7 +75,7 @@ public class UnmatchedCreditTransferActionResponse {
             @JsonProperty("action") Action action,
             @JsonProperty("status") UnmatchedCreditTransferActionResponseStatus status,
             @JsonProperty("createdAt") String createdAt,
-            @JsonProperty("details") Optional<? extends UnmatchedCreditTransferActionResponseDetails> details,
+            @JsonProperty("details") Optional<? extends Details> details,
             @JsonProperty("_links") UnmatchedCreditTransferActionResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -162,8 +162,8 @@ public class UnmatchedCreditTransferActionResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<UnmatchedCreditTransferActionResponseDetails> details() {
-        return (Optional<UnmatchedCreditTransferActionResponseDetails>) details;
+    public Optional<Details> details() {
+        return (Optional<Details>) details;
     }
 
     /**
@@ -237,7 +237,7 @@ public class UnmatchedCreditTransferActionResponse {
     /**
      * Additional details about the action.
      */
-    public UnmatchedCreditTransferActionResponse withDetails(UnmatchedCreditTransferActionResponseDetails details) {
+    public UnmatchedCreditTransferActionResponse withDetails(Details details) {
         Utils.checkNotNull(details, "details");
         this.details = Optional.ofNullable(details);
         return this;
@@ -247,7 +247,7 @@ public class UnmatchedCreditTransferActionResponse {
     /**
      * Additional details about the action.
      */
-    public UnmatchedCreditTransferActionResponse withDetails(Optional<? extends UnmatchedCreditTransferActionResponseDetails> details) {
+    public UnmatchedCreditTransferActionResponse withDetails(Optional<? extends Details> details) {
         Utils.checkNotNull(details, "details");
         this.details = details;
         return this;
@@ -318,7 +318,7 @@ public class UnmatchedCreditTransferActionResponse {
 
         private String createdAt;
 
-        private Optional<? extends UnmatchedCreditTransferActionResponseDetails> details = Optional.empty();
+        private Optional<? extends Details> details = Optional.empty();
 
         private UnmatchedCreditTransferActionResponseLinks links;
 
@@ -391,7 +391,7 @@ public class UnmatchedCreditTransferActionResponse {
         /**
          * Additional details about the action.
          */
-        public Builder details(UnmatchedCreditTransferActionResponseDetails details) {
+        public Builder details(Details details) {
             Utils.checkNotNull(details, "details");
             this.details = Optional.ofNullable(details);
             return this;
@@ -400,7 +400,7 @@ public class UnmatchedCreditTransferActionResponse {
         /**
          * Additional details about the action.
          */
-        public Builder details(Optional<? extends UnmatchedCreditTransferActionResponseDetails> details) {
+        public Builder details(Optional<? extends Details> details) {
             Utils.checkNotNull(details, "details");
             this.details = details;
             return this;

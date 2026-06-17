@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -37,24 +36,6 @@ public class EntityChargeback {
      */
     @JsonProperty("amount")
     private Amount amount;
-
-    /**
-     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-     * API](list-settlements) or
-     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-     * 
-     * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
-     * final settlement
-     * amount has been determined.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementAmount")
-    @Deprecated
-    private JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount;
 
     /**
      * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
@@ -107,7 +88,6 @@ public class EntityChargeback {
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("settlementAmount") JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount,
             @JsonProperty("reason") JsonNullable<? extends EntityChargebackReason> reason,
             @JsonProperty("paymentId") String paymentId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
@@ -117,7 +97,6 @@ public class EntityChargeback {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
         Utils.checkNotNull(reason, "reason");
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(settlementId, "settlementId");
@@ -127,7 +106,6 @@ public class EntityChargeback {
         this.resource = resource;
         this.id = id;
         this.amount = amount;
-        this.settlementAmount = settlementAmount;
         this.reason = reason;
         this.paymentId = paymentId;
         this.settlementId = settlementId;
@@ -144,9 +122,8 @@ public class EntityChargeback {
             String createdAt,
             EntityChargebackLinks links) {
         this(resource, id, amount,
-            JsonNullable.undefined(), JsonNullable.undefined(), paymentId,
-            JsonNullable.undefined(), createdAt, JsonNullable.undefined(),
-            links);
+            JsonNullable.undefined(), paymentId, JsonNullable.undefined(),
+            createdAt, JsonNullable.undefined(), links);
     }
 
     /**
@@ -173,26 +150,6 @@ public class EntityChargeback {
     @JsonIgnore
     public Amount amount() {
         return amount;
-    }
-
-    /**
-     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-     * API](list-settlements) or
-     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-     * 
-     * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
-     * final settlement
-     * amount has been determined.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<EntityChargebackSettlementAmount> settlementAmount() {
-        return (JsonNullable<EntityChargebackSettlementAmount>) settlementAmount;
     }
 
     /**
@@ -282,46 +239,6 @@ public class EntityChargeback {
     public EntityChargeback withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
-        return this;
-    }
-
-    /**
-     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-     * API](list-settlements) or
-     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-     * 
-     * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
-     * final settlement
-     * amount has been determined.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public EntityChargeback withSettlementAmount(EntityChargebackSettlementAmount settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = JsonNullable.of(settlementAmount);
-        return this;
-    }
-
-    /**
-     * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-     * API](list-settlements) or
-     * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-     * 
-     * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
-     * final settlement
-     * amount has been determined.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public EntityChargeback withSettlementAmount(JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = settlementAmount;
         return this;
     }
 
@@ -430,7 +347,6 @@ public class EntityChargeback {
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
             Utils.enhancedDeepEquals(this.reason, other.reason) &&
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.settlementId, other.settlementId) &&
@@ -443,9 +359,8 @@ public class EntityChargeback {
     public int hashCode() {
         return Utils.enhancedHash(
             resource, id, amount,
-            settlementAmount, reason, paymentId,
-            settlementId, createdAt, reversedAt,
-            links);
+            reason, paymentId, settlementId,
+            createdAt, reversedAt, links);
     }
     
     @Override
@@ -454,7 +369,6 @@ public class EntityChargeback {
                 "resource", resource,
                 "id", id,
                 "amount", amount,
-                "settlementAmount", settlementAmount,
                 "reason", reason,
                 "paymentId", paymentId,
                 "settlementId", settlementId,
@@ -471,9 +385,6 @@ public class EntityChargeback {
         private String id;
 
         private Amount amount;
-
-        @Deprecated
-        private JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private JsonNullable<? extends EntityChargebackReason> reason = JsonNullable.undefined();
 
@@ -520,47 +431,6 @@ public class EntityChargeback {
         public Builder amount(Amount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
-            return this;
-        }
-
-
-        /**
-         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-         * API](list-settlements) or
-         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-         * 
-         * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
-         * account is
-         * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
-         * final settlement
-         * amount has been determined.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder settlementAmount(EntityChargebackSettlementAmount settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = JsonNullable.of(settlementAmount);
-            return this;
-        }
-
-        /**
-         * **Deprecated.** This field will be removed on January 1st, 2027. Use the [Settlements
-         * API](list-settlements) or
-         * the [List balance transactions endpoint](list-balance-transactions) for settlement data.
-         * 
-         * <p>The amount deducted from your account balance for this chargeback, converted to the currency your
-         * account is
-         * settled in. Always a **negative** amount. Only available once the chargeback is finalized and the
-         * final settlement
-         * amount has been determined.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder settlementAmount(JsonNullable<? extends EntityChargebackSettlementAmount> settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = settlementAmount;
             return this;
         }
 
@@ -666,9 +536,8 @@ public class EntityChargeback {
 
             return new EntityChargeback(
                 resource, id, amount,
-                settlementAmount, reason, paymentId,
-                settlementId, createdAt, reversedAt,
-                links);
+                reason, paymentId, settlementId,
+                createdAt, reversedAt, links);
         }
 
     }

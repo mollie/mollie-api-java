@@ -54,17 +54,6 @@ public class ListSettlementRefundResponse {
     private Amount amount;
 
     /**
-     * The amount deducted from your account balance for this refund, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount.
-     * 
-     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementAmount")
-    private JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount;
-
-    /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
      * the entity. Whenever
      * you fetch the entity with our API, we will also include the metadata. You can use up to
@@ -130,6 +119,17 @@ public class ListSettlementRefundResponse {
     @JsonProperty("_links")
     private ListSettlementRefundResponseLinks links;
 
+    /**
+     * The amount deducted from your account balance for this refund, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
+     * 
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("settlementAmount")
+    private JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount;
+
     @JsonCreator
     public ListSettlementRefundResponse(
             @JsonProperty("resource") String resource,
@@ -137,7 +137,6 @@ public class ListSettlementRefundResponse {
             @JsonProperty("mode") SettlementMode mode,
             @JsonProperty("description") String description,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("settlementAmount") JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount,
             @JsonProperty("metadata") Optional<? extends Metadata> metadata,
             @JsonProperty("paymentId") String paymentId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
@@ -145,13 +144,13 @@ public class ListSettlementRefundResponse {
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("externalReference") Optional<? extends ExternalReference> externalReference,
             @JsonProperty("routingReversals") JsonNullable<? extends List<ListSettlementRefundResponseRoutingReversals>> routingReversals,
-            @JsonProperty("_links") ListSettlementRefundResponseLinks links) {
+            @JsonProperty("_links") ListSettlementRefundResponseLinks links,
+            @JsonProperty("settlementAmount") JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
         Utils.checkNotNull(metadata, "metadata");
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(settlementId, "settlementId");
@@ -160,12 +159,12 @@ public class ListSettlementRefundResponse {
         Utils.checkNotNull(externalReference, "externalReference");
         Utils.checkNotNull(routingReversals, "routingReversals");
         Utils.checkNotNull(links, "links");
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.resource = resource;
         this.id = id;
         this.mode = mode;
         this.description = description;
         this.amount = amount;
-        this.settlementAmount = settlementAmount;
         this.metadata = metadata;
         this.paymentId = paymentId;
         this.settlementId = settlementId;
@@ -174,6 +173,7 @@ public class ListSettlementRefundResponse {
         this.externalReference = externalReference;
         this.routingReversals = routingReversals;
         this.links = links;
+        this.settlementAmount = settlementAmount;
     }
     
     public ListSettlementRefundResponse(
@@ -187,10 +187,10 @@ public class ListSettlementRefundResponse {
             String createdAt,
             ListSettlementRefundResponseLinks links) {
         this(resource, id, mode,
-            description, amount, JsonNullable.undefined(),
-            Optional.empty(), paymentId, JsonNullable.undefined(),
-            status, createdAt, Optional.empty(),
-            JsonNullable.undefined(), links);
+            description, amount, Optional.empty(),
+            paymentId, JsonNullable.undefined(), status,
+            createdAt, Optional.empty(), JsonNullable.undefined(),
+            links, JsonNullable.undefined());
     }
 
     /**
@@ -235,19 +235,6 @@ public class ListSettlementRefundResponse {
     @JsonIgnore
     public Amount amount() {
         return amount;
-    }
-
-    /**
-     * The amount deducted from your account balance for this refund, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount.
-     * 
-     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ListSettlementRefundResponseSettlementAmount> settlementAmount() {
-        return (JsonNullable<ListSettlementRefundResponseSettlementAmount>) settlementAmount;
     }
 
     /**
@@ -330,6 +317,19 @@ public class ListSettlementRefundResponse {
         return links;
     }
 
+    /**
+     * The amount deducted from your account balance for this refund, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
+     * 
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ListSettlementRefundResponseSettlementAmount> settlementAmount() {
+        return (JsonNullable<ListSettlementRefundResponseSettlementAmount>) settlementAmount;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -381,32 +381,6 @@ public class ListSettlementRefundResponse {
     public ListSettlementRefundResponse withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
-        return this;
-    }
-
-    /**
-     * The amount deducted from your account balance for this refund, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount.
-     * 
-     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
-     */
-    public ListSettlementRefundResponse withSettlementAmount(ListSettlementRefundResponseSettlementAmount settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = JsonNullable.of(settlementAmount);
-        return this;
-    }
-
-    /**
-     * The amount deducted from your account balance for this refund, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount.
-     * 
-     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
-     */
-    public ListSettlementRefundResponse withSettlementAmount(JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = settlementAmount;
         return this;
     }
 
@@ -544,6 +518,32 @@ public class ListSettlementRefundResponse {
         return this;
     }
 
+    /**
+     * The amount deducted from your account balance for this refund, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
+     * 
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
+     */
+    public ListSettlementRefundResponse withSettlementAmount(ListSettlementRefundResponseSettlementAmount settlementAmount) {
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
+        this.settlementAmount = JsonNullable.of(settlementAmount);
+        return this;
+    }
+
+    /**
+     * The amount deducted from your account balance for this refund, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
+     * 
+     * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
+     */
+    public ListSettlementRefundResponse withSettlementAmount(JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount) {
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
+        this.settlementAmount = settlementAmount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -559,7 +559,6 @@ public class ListSettlementRefundResponse {
             Utils.enhancedDeepEquals(this.mode, other.mode) &&
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.settlementId, other.settlementId) &&
@@ -567,17 +566,18 @@ public class ListSettlementRefundResponse {
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.externalReference, other.externalReference) &&
             Utils.enhancedDeepEquals(this.routingReversals, other.routingReversals) &&
-            Utils.enhancedDeepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             resource, id, mode,
-            description, amount, settlementAmount,
-            metadata, paymentId, settlementId,
-            status, createdAt, externalReference,
-            routingReversals, links);
+            description, amount, metadata,
+            paymentId, settlementId, status,
+            createdAt, externalReference, routingReversals,
+            links, settlementAmount);
     }
     
     @Override
@@ -588,7 +588,6 @@ public class ListSettlementRefundResponse {
                 "mode", mode,
                 "description", description,
                 "amount", amount,
-                "settlementAmount", settlementAmount,
                 "metadata", metadata,
                 "paymentId", paymentId,
                 "settlementId", settlementId,
@@ -596,7 +595,8 @@ public class ListSettlementRefundResponse {
                 "createdAt", createdAt,
                 "externalReference", externalReference,
                 "routingReversals", routingReversals,
-                "links", links);
+                "links", links,
+                "settlementAmount", settlementAmount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -611,8 +611,6 @@ public class ListSettlementRefundResponse {
         private String description;
 
         private Amount amount;
-
-        private JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private Optional<? extends Metadata> metadata = Optional.empty();
 
@@ -629,6 +627,8 @@ public class ListSettlementRefundResponse {
         private JsonNullable<? extends List<ListSettlementRefundResponseRoutingReversals>> routingReversals = JsonNullable.undefined();
 
         private ListSettlementRefundResponseLinks links;
+
+        private JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -685,33 +685,6 @@ public class ListSettlementRefundResponse {
         public Builder amount(Amount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
-            return this;
-        }
-
-
-        /**
-         * The amount deducted from your account balance for this refund, converted to the currency your
-         * account is
-         * settled in. Always a **negative** amount.
-         * 
-         * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
-         */
-        public Builder settlementAmount(ListSettlementRefundResponseSettlementAmount settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = JsonNullable.of(settlementAmount);
-            return this;
-        }
-
-        /**
-         * The amount deducted from your account balance for this refund, converted to the currency your
-         * account is
-         * settled in. Always a **negative** amount.
-         * 
-         * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
-         */
-        public Builder settlementAmount(JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = settlementAmount;
             return this;
         }
 
@@ -855,14 +828,41 @@ public class ListSettlementRefundResponse {
             return this;
         }
 
+
+        /**
+         * The amount deducted from your account balance for this refund, converted to the currency your
+         * account is
+         * settled in. Always a **negative** amount.
+         * 
+         * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
+         */
+        public Builder settlementAmount(ListSettlementRefundResponseSettlementAmount settlementAmount) {
+            Utils.checkNotNull(settlementAmount, "settlementAmount");
+            this.settlementAmount = JsonNullable.of(settlementAmount);
+            return this;
+        }
+
+        /**
+         * The amount deducted from your account balance for this refund, converted to the currency your
+         * account is
+         * settled in. Always a **negative** amount.
+         * 
+         * <p>For refunds not directly processed by Mollie (e.g. PayPal), the settlement amount is zero.
+         */
+        public Builder settlementAmount(JsonNullable<? extends ListSettlementRefundResponseSettlementAmount> settlementAmount) {
+            Utils.checkNotNull(settlementAmount, "settlementAmount");
+            this.settlementAmount = settlementAmount;
+            return this;
+        }
+
         public ListSettlementRefundResponse build() {
 
             return new ListSettlementRefundResponse(
                 resource, id, mode,
-                description, amount, settlementAmount,
-                metadata, paymentId, settlementId,
-                status, createdAt, externalReference,
-                routingReversals, links);
+                description, amount, metadata,
+                paymentId, settlementId, status,
+                createdAt, externalReference, routingReversals,
+                links, settlementAmount);
         }
 
     }

@@ -39,15 +39,6 @@ public class ListSettlementChargebackResponse {
     private Amount amount;
 
     /**
-     * The amount deducted from your account balance for this chargeback, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("settlementAmount")
-    private JsonNullable<? extends ListSettlementChargebackResponseSettlementAmount> settlementAmount;
-
-    /**
      * Reason for the chargeback as given by the bank. Only available for chargebacks of SEPA Direct Debit
      * payments.
      */
@@ -100,23 +91,31 @@ public class ListSettlementChargebackResponse {
     @JsonProperty("mode")
     private Optional<? extends SettlementMode> mode;
 
+    /**
+     * The amount deducted from your account balance for this chargeback, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("settlementAmount")
+    private JsonNullable<? extends ListSettlementChargebackResponseSettlementAmount> settlementAmount;
+
     @JsonCreator
     public ListSettlementChargebackResponse(
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("settlementAmount") JsonNullable<? extends ListSettlementChargebackResponseSettlementAmount> settlementAmount,
             @JsonProperty("reason") JsonNullable<? extends Reason> reason,
             @JsonProperty("paymentId") String paymentId,
             @JsonProperty("settlementId") JsonNullable<String> settlementId,
             @JsonProperty("createdAt") String createdAt,
             @JsonProperty("reversedAt") JsonNullable<String> reversedAt,
             @JsonProperty("_links") ListSettlementChargebackResponseLinks links,
-            @JsonProperty("mode") Optional<? extends SettlementMode> mode) {
+            @JsonProperty("mode") Optional<? extends SettlementMode> mode,
+            @JsonProperty("settlementAmount") JsonNullable<? extends ListSettlementChargebackResponseSettlementAmount> settlementAmount) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
         Utils.checkNotNull(reason, "reason");
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(settlementId, "settlementId");
@@ -124,10 +123,10 @@ public class ListSettlementChargebackResponse {
         Utils.checkNotNull(reversedAt, "reversedAt");
         Utils.checkNotNull(links, "links");
         Utils.checkNotNull(mode, "mode");
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.resource = resource;
         this.id = id;
         this.amount = amount;
-        this.settlementAmount = settlementAmount;
         this.reason = reason;
         this.paymentId = paymentId;
         this.settlementId = settlementId;
@@ -135,6 +134,7 @@ public class ListSettlementChargebackResponse {
         this.reversedAt = reversedAt;
         this.links = links;
         this.mode = mode;
+        this.settlementAmount = settlementAmount;
     }
     
     public ListSettlementChargebackResponse(
@@ -145,9 +145,9 @@ public class ListSettlementChargebackResponse {
             String createdAt,
             ListSettlementChargebackResponseLinks links) {
         this(resource, id, amount,
-            JsonNullable.undefined(), JsonNullable.undefined(), paymentId,
-            JsonNullable.undefined(), createdAt, JsonNullable.undefined(),
-            links, Optional.empty());
+            JsonNullable.undefined(), paymentId, JsonNullable.undefined(),
+            createdAt, JsonNullable.undefined(), links,
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -174,17 +174,6 @@ public class ListSettlementChargebackResponse {
     @JsonIgnore
     public Amount amount() {
         return amount;
-    }
-
-    /**
-     * The amount deducted from your account balance for this chargeback, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ListSettlementChargebackResponseSettlementAmount> settlementAmount() {
-        return (JsonNullable<ListSettlementChargebackResponseSettlementAmount>) settlementAmount;
     }
 
     /**
@@ -252,6 +241,17 @@ public class ListSettlementChargebackResponse {
         return (Optional<SettlementMode>) mode;
     }
 
+    /**
+     * The amount deducted from your account balance for this chargeback, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ListSettlementChargebackResponseSettlementAmount> settlementAmount() {
+        return (JsonNullable<ListSettlementChargebackResponseSettlementAmount>) settlementAmount;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -283,28 +283,6 @@ public class ListSettlementChargebackResponse {
     public ListSettlementChargebackResponse withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
-        return this;
-    }
-
-    /**
-     * The amount deducted from your account balance for this chargeback, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount.
-     */
-    public ListSettlementChargebackResponse withSettlementAmount(ListSettlementChargebackResponseSettlementAmount settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = JsonNullable.of(settlementAmount);
-        return this;
-    }
-
-    /**
-     * The amount deducted from your account balance for this chargeback, converted to the currency your
-     * account is
-     * settled in. Always a **negative** amount.
-     */
-    public ListSettlementChargebackResponse withSettlementAmount(JsonNullable<? extends ListSettlementChargebackResponseSettlementAmount> settlementAmount) {
-        Utils.checkNotNull(settlementAmount, "settlementAmount");
-        this.settlementAmount = settlementAmount;
         return this;
     }
 
@@ -419,6 +397,28 @@ public class ListSettlementChargebackResponse {
         return this;
     }
 
+    /**
+     * The amount deducted from your account balance for this chargeback, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
+     */
+    public ListSettlementChargebackResponse withSettlementAmount(ListSettlementChargebackResponseSettlementAmount settlementAmount) {
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
+        this.settlementAmount = JsonNullable.of(settlementAmount);
+        return this;
+    }
+
+    /**
+     * The amount deducted from your account balance for this chargeback, converted to the currency your
+     * account is
+     * settled in. Always a **negative** amount.
+     */
+    public ListSettlementChargebackResponse withSettlementAmount(JsonNullable<? extends ListSettlementChargebackResponseSettlementAmount> settlementAmount) {
+        Utils.checkNotNull(settlementAmount, "settlementAmount");
+        this.settlementAmount = settlementAmount;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -432,23 +432,23 @@ public class ListSettlementChargebackResponse {
             Utils.enhancedDeepEquals(this.resource, other.resource) &&
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount) &&
             Utils.enhancedDeepEquals(this.reason, other.reason) &&
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.settlementId, other.settlementId) &&
             Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
             Utils.enhancedDeepEquals(this.reversedAt, other.reversedAt) &&
             Utils.enhancedDeepEquals(this.links, other.links) &&
-            Utils.enhancedDeepEquals(this.mode, other.mode);
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.settlementAmount, other.settlementAmount);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             resource, id, amount,
-            settlementAmount, reason, paymentId,
-            settlementId, createdAt, reversedAt,
-            links, mode);
+            reason, paymentId, settlementId,
+            createdAt, reversedAt, links,
+            mode, settlementAmount);
     }
     
     @Override
@@ -457,14 +457,14 @@ public class ListSettlementChargebackResponse {
                 "resource", resource,
                 "id", id,
                 "amount", amount,
-                "settlementAmount", settlementAmount,
                 "reason", reason,
                 "paymentId", paymentId,
                 "settlementId", settlementId,
                 "createdAt", createdAt,
                 "reversedAt", reversedAt,
                 "links", links,
-                "mode", mode);
+                "mode", mode,
+                "settlementAmount", settlementAmount);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -475,8 +475,6 @@ public class ListSettlementChargebackResponse {
         private String id;
 
         private Amount amount;
-
-        private JsonNullable<? extends ListSettlementChargebackResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private JsonNullable<? extends Reason> reason = JsonNullable.undefined();
 
@@ -491,6 +489,8 @@ public class ListSettlementChargebackResponse {
         private ListSettlementChargebackResponseLinks links;
 
         private Optional<? extends SettlementMode> mode = Optional.empty();
+
+        private JsonNullable<? extends ListSettlementChargebackResponseSettlementAmount> settlementAmount = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -525,29 +525,6 @@ public class ListSettlementChargebackResponse {
         public Builder amount(Amount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
-            return this;
-        }
-
-
-        /**
-         * The amount deducted from your account balance for this chargeback, converted to the currency your
-         * account is
-         * settled in. Always a **negative** amount.
-         */
-        public Builder settlementAmount(ListSettlementChargebackResponseSettlementAmount settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = JsonNullable.of(settlementAmount);
-            return this;
-        }
-
-        /**
-         * The amount deducted from your account balance for this chargeback, converted to the currency your
-         * account is
-         * settled in. Always a **negative** amount.
-         */
-        public Builder settlementAmount(JsonNullable<? extends ListSettlementChargebackResponseSettlementAmount> settlementAmount) {
-            Utils.checkNotNull(settlementAmount, "settlementAmount");
-            this.settlementAmount = settlementAmount;
             return this;
         }
 
@@ -668,13 +645,36 @@ public class ListSettlementChargebackResponse {
             return this;
         }
 
+
+        /**
+         * The amount deducted from your account balance for this chargeback, converted to the currency your
+         * account is
+         * settled in. Always a **negative** amount.
+         */
+        public Builder settlementAmount(ListSettlementChargebackResponseSettlementAmount settlementAmount) {
+            Utils.checkNotNull(settlementAmount, "settlementAmount");
+            this.settlementAmount = JsonNullable.of(settlementAmount);
+            return this;
+        }
+
+        /**
+         * The amount deducted from your account balance for this chargeback, converted to the currency your
+         * account is
+         * settled in. Always a **negative** amount.
+         */
+        public Builder settlementAmount(JsonNullable<? extends ListSettlementChargebackResponseSettlementAmount> settlementAmount) {
+            Utils.checkNotNull(settlementAmount, "settlementAmount");
+            this.settlementAmount = settlementAmount;
+            return this;
+        }
+
         public ListSettlementChargebackResponse build() {
 
             return new ListSettlementChargebackResponse(
                 resource, id, amount,
-                settlementAmount, reason, paymentId,
-                settlementId, createdAt, reversedAt,
-                links, mode);
+                reason, paymentId, settlementId,
+                createdAt, reversedAt, links,
+                mode, settlementAmount);
         }
 
     }
