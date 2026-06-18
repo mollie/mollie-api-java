@@ -43,9 +43,7 @@ public class ListEntityMethodAll {
     @JsonProperty("description")
     private String description;
 
-    /**
-     * The minimum payment amount required to use this payment method.
-     */
+
     @JsonProperty("minimumAmount")
     private ListEntityMethodAllMinimumAmount minimumAmount;
 
@@ -172,9 +170,6 @@ public class ListEntityMethodAll {
         return description;
     }
 
-    /**
-     * The minimum payment amount required to use this payment method.
-     */
     @JsonIgnore
     public ListEntityMethodAllMinimumAmount minimumAmount() {
         return minimumAmount;
@@ -288,9 +283,6 @@ public class ListEntityMethodAll {
         return this;
     }
 
-    /**
-     * The minimum payment amount required to use this payment method.
-     */
     public ListEntityMethodAll withMinimumAmount(ListEntityMethodAllMinimumAmount minimumAmount) {
         Utils.checkNotNull(minimumAmount, "minimumAmount");
         this.minimumAmount = minimumAmount;
@@ -524,9 +516,6 @@ public class ListEntityMethodAll {
         }
 
 
-        /**
-         * The minimum payment amount required to use this payment method.
-         */
         public Builder minimumAmount(ListEntityMethodAllMinimumAmount minimumAmount) {
             Utils.checkNotNull(minimumAmount, "minimumAmount");
             this.minimumAmount = minimumAmount;
