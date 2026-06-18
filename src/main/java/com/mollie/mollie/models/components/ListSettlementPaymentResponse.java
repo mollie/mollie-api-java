@@ -66,38 +66,22 @@ public class ListSettlementPaymentResponse {
     @JsonProperty("amount")
     private Amount amount;
 
-    /**
-     * The total amount that is already refunded. Only available when refunds are available for this
-     * payment. For some
-     * payment methods, this amount may be higher than the payment amount, for example to allow
-     * reimbursement of the
-     * costs for a return shipment to the customer.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRefunded")
     private Optional<? extends AmountRefunded> amountRefunded;
 
-    /**
-     * The remaining amount that can be refunded. Only available when refunds are available for this
-     * payment.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRemaining")
     private Optional<? extends AmountRemaining> amountRemaining;
 
-    /**
-     * The total amount that is already captured for this payment. Only available when this payment
-     * supports captures.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountCaptured")
     private Optional<? extends AmountCaptured> amountCaptured;
 
-    /**
-     * The total amount that was charged back for this payment. Only available when the total charged back
-     * amount is not
-     * zero.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountChargedBack")
     private Optional<? extends AmountChargedBack> amountChargedBack;
@@ -492,14 +476,7 @@ public class ListSettlementPaymentResponse {
     @JsonProperty("_links")
     private ListSettlementPaymentResponseLinks links;
 
-    /**
-     * The amount settled to your account for this payment, converted to the currency your account is
-     * settled in.
-     * 
-     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-     * settled by
-     * Mollie, this field is omitted from the response.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settlementAmount")
     private Optional<? extends SettlementAmount> settlementAmount;
@@ -727,44 +704,24 @@ public class ListSettlementPaymentResponse {
         return amount;
     }
 
-    /**
-     * The total amount that is already refunded. Only available when refunds are available for this
-     * payment. For some
-     * payment methods, this amount may be higher than the payment amount, for example to allow
-     * reimbursement of the
-     * costs for a return shipment to the customer.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<AmountRefunded> amountRefunded() {
         return (Optional<AmountRefunded>) amountRefunded;
     }
 
-    /**
-     * The remaining amount that can be refunded. Only available when refunds are available for this
-     * payment.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<AmountRemaining> amountRemaining() {
         return (Optional<AmountRemaining>) amountRemaining;
     }
 
-    /**
-     * The total amount that is already captured for this payment. Only available when this payment
-     * supports captures.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<AmountCaptured> amountCaptured() {
         return (Optional<AmountCaptured>) amountCaptured;
     }
 
-    /**
-     * The total amount that was charged back for this payment. Only available when the total charged back
-     * amount is not
-     * zero.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<AmountChargedBack> amountChargedBack() {
@@ -1209,14 +1166,6 @@ public class ListSettlementPaymentResponse {
         return links;
     }
 
-    /**
-     * The amount settled to your account for this payment, converted to the currency your account is
-     * settled in.
-     * 
-     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-     * settled by
-     * Mollie, this field is omitted from the response.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<SettlementAmount> settlementAmount() {
@@ -1289,13 +1238,6 @@ public class ListSettlementPaymentResponse {
         return this;
     }
 
-    /**
-     * The total amount that is already refunded. Only available when refunds are available for this
-     * payment. For some
-     * payment methods, this amount may be higher than the payment amount, for example to allow
-     * reimbursement of the
-     * costs for a return shipment to the customer.
-     */
     public ListSettlementPaymentResponse withAmountRefunded(AmountRefunded amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = Optional.ofNullable(amountRefunded);
@@ -1303,23 +1245,12 @@ public class ListSettlementPaymentResponse {
     }
 
 
-    /**
-     * The total amount that is already refunded. Only available when refunds are available for this
-     * payment. For some
-     * payment methods, this amount may be higher than the payment amount, for example to allow
-     * reimbursement of the
-     * costs for a return shipment to the customer.
-     */
     public ListSettlementPaymentResponse withAmountRefunded(Optional<? extends AmountRefunded> amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = amountRefunded;
         return this;
     }
 
-    /**
-     * The remaining amount that can be refunded. Only available when refunds are available for this
-     * payment.
-     */
     public ListSettlementPaymentResponse withAmountRemaining(AmountRemaining amountRemaining) {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
         this.amountRemaining = Optional.ofNullable(amountRemaining);
@@ -1327,20 +1258,12 @@ public class ListSettlementPaymentResponse {
     }
 
 
-    /**
-     * The remaining amount that can be refunded. Only available when refunds are available for this
-     * payment.
-     */
     public ListSettlementPaymentResponse withAmountRemaining(Optional<? extends AmountRemaining> amountRemaining) {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
         this.amountRemaining = amountRemaining;
         return this;
     }
 
-    /**
-     * The total amount that is already captured for this payment. Only available when this payment
-     * supports captures.
-     */
     public ListSettlementPaymentResponse withAmountCaptured(AmountCaptured amountCaptured) {
         Utils.checkNotNull(amountCaptured, "amountCaptured");
         this.amountCaptured = Optional.ofNullable(amountCaptured);
@@ -1348,21 +1271,12 @@ public class ListSettlementPaymentResponse {
     }
 
 
-    /**
-     * The total amount that is already captured for this payment. Only available when this payment
-     * supports captures.
-     */
     public ListSettlementPaymentResponse withAmountCaptured(Optional<? extends AmountCaptured> amountCaptured) {
         Utils.checkNotNull(amountCaptured, "amountCaptured");
         this.amountCaptured = amountCaptured;
         return this;
     }
 
-    /**
-     * The total amount that was charged back for this payment. Only available when the total charged back
-     * amount is not
-     * zero.
-     */
     public ListSettlementPaymentResponse withAmountChargedBack(AmountChargedBack amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
         this.amountChargedBack = Optional.ofNullable(amountChargedBack);
@@ -1370,11 +1284,6 @@ public class ListSettlementPaymentResponse {
     }
 
 
-    /**
-     * The total amount that was charged back for this payment. Only available when the total charged back
-     * amount is not
-     * zero.
-     */
     public ListSettlementPaymentResponse withAmountChargedBack(Optional<? extends AmountChargedBack> amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
         this.amountChargedBack = amountChargedBack;
@@ -2259,14 +2168,6 @@ public class ListSettlementPaymentResponse {
         return this;
     }
 
-    /**
-     * The amount settled to your account for this payment, converted to the currency your account is
-     * settled in.
-     * 
-     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-     * settled by
-     * Mollie, this field is omitted from the response.
-     */
     public ListSettlementPaymentResponse withSettlementAmount(SettlementAmount settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = Optional.ofNullable(settlementAmount);
@@ -2274,14 +2175,6 @@ public class ListSettlementPaymentResponse {
     }
 
 
-    /**
-     * The amount settled to your account for this payment, converted to the currency your account is
-     * settled in.
-     * 
-     * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-     * settled by
-     * Mollie, this field is omitted from the response.
-     */
     public ListSettlementPaymentResponse withSettlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
         Utils.checkNotNull(settlementAmount, "settlementAmount");
         this.settlementAmount = settlementAmount;
@@ -2579,26 +2472,12 @@ public class ListSettlementPaymentResponse {
         }
 
 
-        /**
-         * The total amount that is already refunded. Only available when refunds are available for this
-         * payment. For some
-         * payment methods, this amount may be higher than the payment amount, for example to allow
-         * reimbursement of the
-         * costs for a return shipment to the customer.
-         */
         public Builder amountRefunded(AmountRefunded amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = Optional.ofNullable(amountRefunded);
             return this;
         }
 
-        /**
-         * The total amount that is already refunded. Only available when refunds are available for this
-         * payment. For some
-         * payment methods, this amount may be higher than the payment amount, for example to allow
-         * reimbursement of the
-         * costs for a return shipment to the customer.
-         */
         public Builder amountRefunded(Optional<? extends AmountRefunded> amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = amountRefunded;
@@ -2606,20 +2485,12 @@ public class ListSettlementPaymentResponse {
         }
 
 
-        /**
-         * The remaining amount that can be refunded. Only available when refunds are available for this
-         * payment.
-         */
         public Builder amountRemaining(AmountRemaining amountRemaining) {
             Utils.checkNotNull(amountRemaining, "amountRemaining");
             this.amountRemaining = Optional.ofNullable(amountRemaining);
             return this;
         }
 
-        /**
-         * The remaining amount that can be refunded. Only available when refunds are available for this
-         * payment.
-         */
         public Builder amountRemaining(Optional<? extends AmountRemaining> amountRemaining) {
             Utils.checkNotNull(amountRemaining, "amountRemaining");
             this.amountRemaining = amountRemaining;
@@ -2627,20 +2498,12 @@ public class ListSettlementPaymentResponse {
         }
 
 
-        /**
-         * The total amount that is already captured for this payment. Only available when this payment
-         * supports captures.
-         */
         public Builder amountCaptured(AmountCaptured amountCaptured) {
             Utils.checkNotNull(amountCaptured, "amountCaptured");
             this.amountCaptured = Optional.ofNullable(amountCaptured);
             return this;
         }
 
-        /**
-         * The total amount that is already captured for this payment. Only available when this payment
-         * supports captures.
-         */
         public Builder amountCaptured(Optional<? extends AmountCaptured> amountCaptured) {
             Utils.checkNotNull(amountCaptured, "amountCaptured");
             this.amountCaptured = amountCaptured;
@@ -2648,22 +2511,12 @@ public class ListSettlementPaymentResponse {
         }
 
 
-        /**
-         * The total amount that was charged back for this payment. Only available when the total charged back
-         * amount is not
-         * zero.
-         */
         public Builder amountChargedBack(AmountChargedBack amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
             this.amountChargedBack = Optional.ofNullable(amountChargedBack);
             return this;
         }
 
-        /**
-         * The total amount that was charged back for this payment. Only available when the total charged back
-         * amount is not
-         * zero.
-         */
         public Builder amountChargedBack(Optional<? extends AmountChargedBack> amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
             this.amountChargedBack = amountChargedBack;
@@ -3581,28 +3434,12 @@ public class ListSettlementPaymentResponse {
         }
 
 
-        /**
-         * The amount settled to your account for this payment, converted to the currency your account is
-         * settled in.
-         * 
-         * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-         * settled by
-         * Mollie, this field is omitted from the response.
-         */
         public Builder settlementAmount(SettlementAmount settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = Optional.ofNullable(settlementAmount);
             return this;
         }
 
-        /**
-         * The amount settled to your account for this payment, converted to the currency your account is
-         * settled in.
-         * 
-         * <p>Amounts not settled by Mollie are not reflected here (e.g. PayPal or gift cards). If no amount is
-         * settled by
-         * Mollie, this field is omitted from the response.
-         */
         public Builder settlementAmount(Optional<? extends SettlementAmount> settlementAmount) {
             Utils.checkNotNull(settlementAmount, "settlementAmount");
             this.settlementAmount = settlementAmount;

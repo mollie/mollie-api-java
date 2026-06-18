@@ -66,38 +66,22 @@ public class PaymentResponse {
     @JsonProperty("amount")
     private Amount amount;
 
-    /**
-     * The total amount that is already refunded. Only available when refunds are available for this
-     * payment. For some
-     * payment methods, this amount may be higher than the payment amount, for example to allow
-     * reimbursement of the
-     * costs for a return shipment to the customer.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRefunded")
     private Optional<? extends PaymentResponseAmountRefunded> amountRefunded;
 
-    /**
-     * The remaining amount that can be refunded. Only available when refunds are available for this
-     * payment.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountRemaining")
     private Optional<? extends PaymentResponseAmountRemaining> amountRemaining;
 
-    /**
-     * The total amount that is already captured for this payment. Only available when this payment
-     * supports captures.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountCaptured")
     private Optional<? extends PaymentResponseAmountCaptured> amountCaptured;
 
-    /**
-     * The total amount that was charged back for this payment. Only available when the total charged back
-     * amount is not
-     * zero.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountChargedBack")
     private Optional<? extends PaymentResponseAmountChargedBack> amountChargedBack;
@@ -710,44 +694,24 @@ public class PaymentResponse {
         return amount;
     }
 
-    /**
-     * The total amount that is already refunded. Only available when refunds are available for this
-     * payment. For some
-     * payment methods, this amount may be higher than the payment amount, for example to allow
-     * reimbursement of the
-     * costs for a return shipment to the customer.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<PaymentResponseAmountRefunded> amountRefunded() {
         return (Optional<PaymentResponseAmountRefunded>) amountRefunded;
     }
 
-    /**
-     * The remaining amount that can be refunded. Only available when refunds are available for this
-     * payment.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<PaymentResponseAmountRemaining> amountRemaining() {
         return (Optional<PaymentResponseAmountRemaining>) amountRemaining;
     }
 
-    /**
-     * The total amount that is already captured for this payment. Only available when this payment
-     * supports captures.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<PaymentResponseAmountCaptured> amountCaptured() {
         return (Optional<PaymentResponseAmountCaptured>) amountCaptured;
     }
 
-    /**
-     * The total amount that was charged back for this payment. Only available when the total charged back
-     * amount is not
-     * zero.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<PaymentResponseAmountChargedBack> amountChargedBack() {
@@ -1255,13 +1219,6 @@ public class PaymentResponse {
         return this;
     }
 
-    /**
-     * The total amount that is already refunded. Only available when refunds are available for this
-     * payment. For some
-     * payment methods, this amount may be higher than the payment amount, for example to allow
-     * reimbursement of the
-     * costs for a return shipment to the customer.
-     */
     public PaymentResponse withAmountRefunded(PaymentResponseAmountRefunded amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = Optional.ofNullable(amountRefunded);
@@ -1269,23 +1226,12 @@ public class PaymentResponse {
     }
 
 
-    /**
-     * The total amount that is already refunded. Only available when refunds are available for this
-     * payment. For some
-     * payment methods, this amount may be higher than the payment amount, for example to allow
-     * reimbursement of the
-     * costs for a return shipment to the customer.
-     */
     public PaymentResponse withAmountRefunded(Optional<? extends PaymentResponseAmountRefunded> amountRefunded) {
         Utils.checkNotNull(amountRefunded, "amountRefunded");
         this.amountRefunded = amountRefunded;
         return this;
     }
 
-    /**
-     * The remaining amount that can be refunded. Only available when refunds are available for this
-     * payment.
-     */
     public PaymentResponse withAmountRemaining(PaymentResponseAmountRemaining amountRemaining) {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
         this.amountRemaining = Optional.ofNullable(amountRemaining);
@@ -1293,20 +1239,12 @@ public class PaymentResponse {
     }
 
 
-    /**
-     * The remaining amount that can be refunded. Only available when refunds are available for this
-     * payment.
-     */
     public PaymentResponse withAmountRemaining(Optional<? extends PaymentResponseAmountRemaining> amountRemaining) {
         Utils.checkNotNull(amountRemaining, "amountRemaining");
         this.amountRemaining = amountRemaining;
         return this;
     }
 
-    /**
-     * The total amount that is already captured for this payment. Only available when this payment
-     * supports captures.
-     */
     public PaymentResponse withAmountCaptured(PaymentResponseAmountCaptured amountCaptured) {
         Utils.checkNotNull(amountCaptured, "amountCaptured");
         this.amountCaptured = Optional.ofNullable(amountCaptured);
@@ -1314,21 +1252,12 @@ public class PaymentResponse {
     }
 
 
-    /**
-     * The total amount that is already captured for this payment. Only available when this payment
-     * supports captures.
-     */
     public PaymentResponse withAmountCaptured(Optional<? extends PaymentResponseAmountCaptured> amountCaptured) {
         Utils.checkNotNull(amountCaptured, "amountCaptured");
         this.amountCaptured = amountCaptured;
         return this;
     }
 
-    /**
-     * The total amount that was charged back for this payment. Only available when the total charged back
-     * amount is not
-     * zero.
-     */
     public PaymentResponse withAmountChargedBack(PaymentResponseAmountChargedBack amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
         this.amountChargedBack = Optional.ofNullable(amountChargedBack);
@@ -1336,11 +1265,6 @@ public class PaymentResponse {
     }
 
 
-    /**
-     * The total amount that was charged back for this payment. Only available when the total charged back
-     * amount is not
-     * zero.
-     */
     public PaymentResponse withAmountChargedBack(Optional<? extends PaymentResponseAmountChargedBack> amountChargedBack) {
         Utils.checkNotNull(amountChargedBack, "amountChargedBack");
         this.amountChargedBack = amountChargedBack;
@@ -2509,26 +2433,12 @@ public class PaymentResponse {
         }
 
 
-        /**
-         * The total amount that is already refunded. Only available when refunds are available for this
-         * payment. For some
-         * payment methods, this amount may be higher than the payment amount, for example to allow
-         * reimbursement of the
-         * costs for a return shipment to the customer.
-         */
         public Builder amountRefunded(PaymentResponseAmountRefunded amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = Optional.ofNullable(amountRefunded);
             return this;
         }
 
-        /**
-         * The total amount that is already refunded. Only available when refunds are available for this
-         * payment. For some
-         * payment methods, this amount may be higher than the payment amount, for example to allow
-         * reimbursement of the
-         * costs for a return shipment to the customer.
-         */
         public Builder amountRefunded(Optional<? extends PaymentResponseAmountRefunded> amountRefunded) {
             Utils.checkNotNull(amountRefunded, "amountRefunded");
             this.amountRefunded = amountRefunded;
@@ -2536,20 +2446,12 @@ public class PaymentResponse {
         }
 
 
-        /**
-         * The remaining amount that can be refunded. Only available when refunds are available for this
-         * payment.
-         */
         public Builder amountRemaining(PaymentResponseAmountRemaining amountRemaining) {
             Utils.checkNotNull(amountRemaining, "amountRemaining");
             this.amountRemaining = Optional.ofNullable(amountRemaining);
             return this;
         }
 
-        /**
-         * The remaining amount that can be refunded. Only available when refunds are available for this
-         * payment.
-         */
         public Builder amountRemaining(Optional<? extends PaymentResponseAmountRemaining> amountRemaining) {
             Utils.checkNotNull(amountRemaining, "amountRemaining");
             this.amountRemaining = amountRemaining;
@@ -2557,20 +2459,12 @@ public class PaymentResponse {
         }
 
 
-        /**
-         * The total amount that is already captured for this payment. Only available when this payment
-         * supports captures.
-         */
         public Builder amountCaptured(PaymentResponseAmountCaptured amountCaptured) {
             Utils.checkNotNull(amountCaptured, "amountCaptured");
             this.amountCaptured = Optional.ofNullable(amountCaptured);
             return this;
         }
 
-        /**
-         * The total amount that is already captured for this payment. Only available when this payment
-         * supports captures.
-         */
         public Builder amountCaptured(Optional<? extends PaymentResponseAmountCaptured> amountCaptured) {
             Utils.checkNotNull(amountCaptured, "amountCaptured");
             this.amountCaptured = amountCaptured;
@@ -2578,22 +2472,12 @@ public class PaymentResponse {
         }
 
 
-        /**
-         * The total amount that was charged back for this payment. Only available when the total charged back
-         * amount is not
-         * zero.
-         */
         public Builder amountChargedBack(PaymentResponseAmountChargedBack amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
             this.amountChargedBack = Optional.ofNullable(amountChargedBack);
             return this;
         }
 
-        /**
-         * The total amount that was charged back for this payment. Only available when the total charged back
-         * amount is not
-         * zero.
-         */
         public Builder amountChargedBack(Optional<? extends PaymentResponseAmountChargedBack> amountChargedBack) {
             Utils.checkNotNull(amountChargedBack, "amountChargedBack");
             this.amountChargedBack = amountChargedBack;

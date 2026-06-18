@@ -65,13 +65,7 @@ public class ListEntityBalance {
     @JsonProperty("transferFrequency")
     private Optional<? extends TransferFrequency> transferFrequency;
 
-    /**
-     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
-     * balance exceeds
-     * this threshold, the complete balance will be paid out to the transfer destination according to the
-     * configured
-     * frequency.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transferThreshold")
     private Optional<? extends TransferThreshold> transferThreshold;
@@ -92,17 +86,11 @@ public class ListEntityBalance {
     @JsonProperty("transferDestination")
     private JsonNullable<? extends TransferDestination> transferDestination;
 
-    /**
-     * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
-     */
+
     @JsonProperty("availableAmount")
     private AvailableAmount availableAmount;
 
-    /**
-     * The total amount that is queued to be transferred to your balance. For example, a credit card
-     * payment can take a
-     * few days to clear.
-     */
+
     @JsonProperty("pendingAmount")
     private PendingAmount pendingAmount;
 
@@ -237,13 +225,6 @@ public class ListEntityBalance {
         return (Optional<TransferFrequency>) transferFrequency;
     }
 
-    /**
-     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
-     * balance exceeds
-     * this threshold, the complete balance will be paid out to the transfer destination according to the
-     * configured
-     * frequency.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<TransferThreshold> transferThreshold() {
@@ -269,19 +250,11 @@ public class ListEntityBalance {
         return (JsonNullable<TransferDestination>) transferDestination;
     }
 
-    /**
-     * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
-     */
     @JsonIgnore
     public AvailableAmount availableAmount() {
         return availableAmount;
     }
 
-    /**
-     * The total amount that is queued to be transferred to your balance. For example, a credit card
-     * payment can take a
-     * few days to clear.
-     */
     @JsonIgnore
     public PendingAmount pendingAmount() {
         return pendingAmount;
@@ -375,13 +348,6 @@ public class ListEntityBalance {
         return this;
     }
 
-    /**
-     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
-     * balance exceeds
-     * this threshold, the complete balance will be paid out to the transfer destination according to the
-     * configured
-     * frequency.
-     */
     public ListEntityBalance withTransferThreshold(TransferThreshold transferThreshold) {
         Utils.checkNotNull(transferThreshold, "transferThreshold");
         this.transferThreshold = Optional.ofNullable(transferThreshold);
@@ -389,13 +355,6 @@ public class ListEntityBalance {
     }
 
 
-    /**
-     * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
-     * balance exceeds
-     * this threshold, the complete balance will be paid out to the transfer destination according to the
-     * configured
-     * frequency.
-     */
     public ListEntityBalance withTransferThreshold(Optional<? extends TransferThreshold> transferThreshold) {
         Utils.checkNotNull(transferThreshold, "transferThreshold");
         this.transferThreshold = transferThreshold;
@@ -442,20 +401,12 @@ public class ListEntityBalance {
         return this;
     }
 
-    /**
-     * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
-     */
     public ListEntityBalance withAvailableAmount(AvailableAmount availableAmount) {
         Utils.checkNotNull(availableAmount, "availableAmount");
         this.availableAmount = availableAmount;
         return this;
     }
 
-    /**
-     * The total amount that is queued to be transferred to your balance. For example, a credit card
-     * payment can take a
-     * few days to clear.
-     */
     public ListEntityBalance withPendingAmount(PendingAmount pendingAmount) {
         Utils.checkNotNull(pendingAmount, "pendingAmount");
         this.pendingAmount = pendingAmount;
@@ -644,26 +595,12 @@ public class ListEntityBalance {
         }
 
 
-        /**
-         * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
-         * balance exceeds
-         * this threshold, the complete balance will be paid out to the transfer destination according to the
-         * configured
-         * frequency.
-         */
         public Builder transferThreshold(TransferThreshold transferThreshold) {
             Utils.checkNotNull(transferThreshold, "transferThreshold");
             this.transferThreshold = Optional.ofNullable(transferThreshold);
             return this;
         }
 
-        /**
-         * The minimum amount configured for scheduled automatic settlements. As soon as the amount on the
-         * balance exceeds
-         * this threshold, the complete balance will be paid out to the transfer destination according to the
-         * configured
-         * frequency.
-         */
         public Builder transferThreshold(Optional<? extends TransferThreshold> transferThreshold) {
             Utils.checkNotNull(transferThreshold, "transferThreshold");
             this.transferThreshold = transferThreshold;
@@ -713,9 +650,6 @@ public class ListEntityBalance {
         }
 
 
-        /**
-         * The amount directly available on the balance, e.g. `{"currency":"EUR", "value":"100.00"}`.
-         */
         public Builder availableAmount(AvailableAmount availableAmount) {
             Utils.checkNotNull(availableAmount, "availableAmount");
             this.availableAmount = availableAmount;
@@ -723,11 +657,6 @@ public class ListEntityBalance {
         }
 
 
-        /**
-         * The total amount that is queued to be transferred to your balance. For example, a credit card
-         * payment can take a
-         * few days to clear.
-         */
         public Builder pendingAmount(PendingAmount pendingAmount) {
             Utils.checkNotNull(pendingAmount, "pendingAmount");
             this.pendingAmount = pendingAmount;

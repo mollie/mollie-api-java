@@ -63,9 +63,7 @@ public class ListEntitySettlement {
     @JsonProperty("status")
     private ListEntitySettlementStatus status;
 
-    /**
-     * The total amount of the settlement.
-     */
+
     @JsonProperty("amount")
     private ListEntitySettlementAmount amount;
 
@@ -211,9 +209,6 @@ public class ListEntitySettlement {
         return status;
     }
 
-    /**
-     * The total amount of the settlement.
-     */
     @JsonIgnore
     public ListEntitySettlementAmount amount() {
         return amount;
@@ -362,9 +357,6 @@ public class ListEntitySettlement {
         return this;
     }
 
-    /**
-     * The total amount of the settlement.
-     */
     public ListEntitySettlement withAmount(ListEntitySettlementAmount amount) {
         Utils.checkNotNull(amount, "amount");
         this.amount = amount;
@@ -628,9 +620,6 @@ public class ListEntitySettlement {
         }
 
 
-        /**
-         * The total amount of the settlement.
-         */
         public Builder amount(ListEntitySettlementAmount amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;

@@ -199,37 +199,27 @@ public class SalesInvoiceResponse {
     @JsonProperty("isEInvoice")
     private Optional<Boolean> isEInvoice;
 
-    /**
-     * The amount that is left to be paid.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amountDue")
     private Optional<? extends AmountDue> amountDue;
 
-    /**
-     * The total amount without VAT before discounts.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subtotalAmount")
     private Optional<? extends SubtotalAmount> subtotalAmount;
 
-    /**
-     * The total amount with VAT.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totalAmount")
     private Optional<? extends TotalAmount> totalAmount;
 
-    /**
-     * The total VAT amount.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totalVatAmount")
     private Optional<? extends TotalVatAmount> totalVatAmount;
 
-    /**
-     * The total amount without VAT after discounts.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discountedSubtotalAmount")
     private Optional<? extends DiscountedSubtotalAmount> discountedSubtotalAmount;
@@ -593,45 +583,30 @@ public class SalesInvoiceResponse {
         return isEInvoice;
     }
 
-    /**
-     * The amount that is left to be paid.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<AmountDue> amountDue() {
         return (Optional<AmountDue>) amountDue;
     }
 
-    /**
-     * The total amount without VAT before discounts.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<SubtotalAmount> subtotalAmount() {
         return (Optional<SubtotalAmount>) subtotalAmount;
     }
 
-    /**
-     * The total amount with VAT.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<TotalAmount> totalAmount() {
         return (Optional<TotalAmount>) totalAmount;
     }
 
-    /**
-     * The total VAT amount.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<TotalVatAmount> totalVatAmount() {
         return (Optional<TotalVatAmount>) totalVatAmount;
     }
 
-    /**
-     * The total amount without VAT after discounts.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<DiscountedSubtotalAmount> discountedSubtotalAmount() {
@@ -1104,9 +1079,6 @@ public class SalesInvoiceResponse {
         return this;
     }
 
-    /**
-     * The amount that is left to be paid.
-     */
     public SalesInvoiceResponse withAmountDue(AmountDue amountDue) {
         Utils.checkNotNull(amountDue, "amountDue");
         this.amountDue = Optional.ofNullable(amountDue);
@@ -1114,18 +1086,12 @@ public class SalesInvoiceResponse {
     }
 
 
-    /**
-     * The amount that is left to be paid.
-     */
     public SalesInvoiceResponse withAmountDue(Optional<? extends AmountDue> amountDue) {
         Utils.checkNotNull(amountDue, "amountDue");
         this.amountDue = amountDue;
         return this;
     }
 
-    /**
-     * The total amount without VAT before discounts.
-     */
     public SalesInvoiceResponse withSubtotalAmount(SubtotalAmount subtotalAmount) {
         Utils.checkNotNull(subtotalAmount, "subtotalAmount");
         this.subtotalAmount = Optional.ofNullable(subtotalAmount);
@@ -1133,18 +1099,12 @@ public class SalesInvoiceResponse {
     }
 
 
-    /**
-     * The total amount without VAT before discounts.
-     */
     public SalesInvoiceResponse withSubtotalAmount(Optional<? extends SubtotalAmount> subtotalAmount) {
         Utils.checkNotNull(subtotalAmount, "subtotalAmount");
         this.subtotalAmount = subtotalAmount;
         return this;
     }
 
-    /**
-     * The total amount with VAT.
-     */
     public SalesInvoiceResponse withTotalAmount(TotalAmount totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = Optional.ofNullable(totalAmount);
@@ -1152,18 +1112,12 @@ public class SalesInvoiceResponse {
     }
 
 
-    /**
-     * The total amount with VAT.
-     */
     public SalesInvoiceResponse withTotalAmount(Optional<? extends TotalAmount> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = totalAmount;
         return this;
     }
 
-    /**
-     * The total VAT amount.
-     */
     public SalesInvoiceResponse withTotalVatAmount(TotalVatAmount totalVatAmount) {
         Utils.checkNotNull(totalVatAmount, "totalVatAmount");
         this.totalVatAmount = Optional.ofNullable(totalVatAmount);
@@ -1171,18 +1125,12 @@ public class SalesInvoiceResponse {
     }
 
 
-    /**
-     * The total VAT amount.
-     */
     public SalesInvoiceResponse withTotalVatAmount(Optional<? extends TotalVatAmount> totalVatAmount) {
         Utils.checkNotNull(totalVatAmount, "totalVatAmount");
         this.totalVatAmount = totalVatAmount;
         return this;
     }
 
-    /**
-     * The total amount without VAT after discounts.
-     */
     public SalesInvoiceResponse withDiscountedSubtotalAmount(DiscountedSubtotalAmount discountedSubtotalAmount) {
         Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
         this.discountedSubtotalAmount = Optional.ofNullable(discountedSubtotalAmount);
@@ -1190,9 +1138,6 @@ public class SalesInvoiceResponse {
     }
 
 
-    /**
-     * The total amount without VAT after discounts.
-     */
     public SalesInvoiceResponse withDiscountedSubtotalAmount(Optional<? extends DiscountedSubtotalAmount> discountedSubtotalAmount) {
         Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
         this.discountedSubtotalAmount = discountedSubtotalAmount;
@@ -1890,18 +1835,12 @@ public class SalesInvoiceResponse {
         }
 
 
-        /**
-         * The amount that is left to be paid.
-         */
         public Builder amountDue(AmountDue amountDue) {
             Utils.checkNotNull(amountDue, "amountDue");
             this.amountDue = Optional.ofNullable(amountDue);
             return this;
         }
 
-        /**
-         * The amount that is left to be paid.
-         */
         public Builder amountDue(Optional<? extends AmountDue> amountDue) {
             Utils.checkNotNull(amountDue, "amountDue");
             this.amountDue = amountDue;
@@ -1909,18 +1848,12 @@ public class SalesInvoiceResponse {
         }
 
 
-        /**
-         * The total amount without VAT before discounts.
-         */
         public Builder subtotalAmount(SubtotalAmount subtotalAmount) {
             Utils.checkNotNull(subtotalAmount, "subtotalAmount");
             this.subtotalAmount = Optional.ofNullable(subtotalAmount);
             return this;
         }
 
-        /**
-         * The total amount without VAT before discounts.
-         */
         public Builder subtotalAmount(Optional<? extends SubtotalAmount> subtotalAmount) {
             Utils.checkNotNull(subtotalAmount, "subtotalAmount");
             this.subtotalAmount = subtotalAmount;
@@ -1928,18 +1861,12 @@ public class SalesInvoiceResponse {
         }
 
 
-        /**
-         * The total amount with VAT.
-         */
         public Builder totalAmount(TotalAmount totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = Optional.ofNullable(totalAmount);
             return this;
         }
 
-        /**
-         * The total amount with VAT.
-         */
         public Builder totalAmount(Optional<? extends TotalAmount> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = totalAmount;
@@ -1947,18 +1874,12 @@ public class SalesInvoiceResponse {
         }
 
 
-        /**
-         * The total VAT amount.
-         */
         public Builder totalVatAmount(TotalVatAmount totalVatAmount) {
             Utils.checkNotNull(totalVatAmount, "totalVatAmount");
             this.totalVatAmount = Optional.ofNullable(totalVatAmount);
             return this;
         }
 
-        /**
-         * The total VAT amount.
-         */
         public Builder totalVatAmount(Optional<? extends TotalVatAmount> totalVatAmount) {
             Utils.checkNotNull(totalVatAmount, "totalVatAmount");
             this.totalVatAmount = totalVatAmount;
@@ -1966,18 +1887,12 @@ public class SalesInvoiceResponse {
         }
 
 
-        /**
-         * The total amount without VAT after discounts.
-         */
         public Builder discountedSubtotalAmount(DiscountedSubtotalAmount discountedSubtotalAmount) {
             Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
             this.discountedSubtotalAmount = Optional.ofNullable(discountedSubtotalAmount);
             return this;
         }
 
-        /**
-         * The total amount without VAT after discounts.
-         */
         public Builder discountedSubtotalAmount(Optional<? extends DiscountedSubtotalAmount> discountedSubtotalAmount) {
             Utils.checkNotNull(discountedSubtotalAmount, "discountedSubtotalAmount");
             this.discountedSubtotalAmount = discountedSubtotalAmount;

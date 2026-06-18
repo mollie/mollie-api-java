@@ -46,25 +46,15 @@ public class EntityInvoice {
     @JsonProperty("status")
     private EntityInvoiceStatus status;
 
-    /**
-     * Total amount of the invoice, excluding VAT.
-     */
+
     @JsonProperty("netAmount")
     private EntityInvoiceNetAmount netAmount;
 
-    /**
-     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU
-     * merchants, VAT will
-     * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For
-     * merchants outside
-     * the EU, no VAT will be charged.
-     */
+
     @JsonProperty("vatAmount")
     private EntityInvoiceVatAmount vatAmount;
 
-    /**
-     * Total amount of the invoice, including VAT.
-     */
+
     @JsonProperty("grossAmount")
     private EntityInvoiceGrossAmount grossAmount;
 
@@ -196,29 +186,16 @@ public class EntityInvoice {
         return status;
     }
 
-    /**
-     * Total amount of the invoice, excluding VAT.
-     */
     @JsonIgnore
     public EntityInvoiceNetAmount netAmount() {
         return netAmount;
     }
 
-    /**
-     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU
-     * merchants, VAT will
-     * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For
-     * merchants outside
-     * the EU, no VAT will be charged.
-     */
     @JsonIgnore
     public EntityInvoiceVatAmount vatAmount() {
         return vatAmount;
     }
 
-    /**
-     * Total amount of the invoice, including VAT.
-     */
     @JsonIgnore
     public EntityInvoiceGrossAmount grossAmount() {
         return grossAmount;
@@ -319,31 +296,18 @@ public class EntityInvoice {
         return this;
     }
 
-    /**
-     * Total amount of the invoice, excluding VAT.
-     */
     public EntityInvoice withNetAmount(EntityInvoiceNetAmount netAmount) {
         Utils.checkNotNull(netAmount, "netAmount");
         this.netAmount = netAmount;
         return this;
     }
 
-    /**
-     * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU
-     * merchants, VAT will
-     * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For
-     * merchants outside
-     * the EU, no VAT will be charged.
-     */
     public EntityInvoice withVatAmount(EntityInvoiceVatAmount vatAmount) {
         Utils.checkNotNull(vatAmount, "vatAmount");
         this.vatAmount = vatAmount;
         return this;
     }
 
-    /**
-     * Total amount of the invoice, including VAT.
-     */
     public EntityInvoice withGrossAmount(EntityInvoiceGrossAmount grossAmount) {
         Utils.checkNotNull(grossAmount, "grossAmount");
         this.grossAmount = grossAmount;
@@ -554,9 +518,6 @@ public class EntityInvoice {
         }
 
 
-        /**
-         * Total amount of the invoice, excluding VAT.
-         */
         public Builder netAmount(EntityInvoiceNetAmount netAmount) {
             Utils.checkNotNull(netAmount, "netAmount");
             this.netAmount = netAmount;
@@ -564,13 +525,6 @@ public class EntityInvoice {
         }
 
 
-        /**
-         * VAT amount of the invoice. Only applicable to merchants registered in the Netherlands. For EU
-         * merchants, VAT will
-         * be shifted to the recipient (as per article 44 and 196 in the EU VAT Directive 2006/112). For
-         * merchants outside
-         * the EU, no VAT will be charged.
-         */
         public Builder vatAmount(EntityInvoiceVatAmount vatAmount) {
             Utils.checkNotNull(vatAmount, "vatAmount");
             this.vatAmount = vatAmount;
@@ -578,9 +532,6 @@ public class EntityInvoice {
         }
 
 
-        /**
-         * Total amount of the invoice, including VAT.
-         */
         public Builder grossAmount(EntityInvoiceGrossAmount grossAmount) {
             Utils.checkNotNull(grossAmount, "grossAmount");
             this.grossAmount = grossAmount;
