@@ -82,6 +82,13 @@ public class SalesInvoiceResponse {
     private Optional<? extends SalesInvoiceStatusResponse> status;
 
     /**
+     * The e-invoice submission status for the invoice, if it was configured to be an e-invoice.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("eInvoiceStatus")
+    private Optional<? extends SalesInvoiceEInvoiceStatus> eInvoiceStatus;
+
+    /**
      * The VAT scheme to create the invoice for. You must be enrolled with One Stop Shop enabled to use it.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -274,6 +281,7 @@ public class SalesInvoiceResponse {
             @JsonProperty("invoiceNumber") JsonNullable<String> invoiceNumber,
             @JsonProperty("profileId") JsonNullable<String> profileId,
             @JsonProperty("status") Optional<? extends SalesInvoiceStatusResponse> status,
+            @JsonProperty("eInvoiceStatus") Optional<? extends SalesInvoiceEInvoiceStatus> eInvoiceStatus,
             @JsonProperty("vatScheme") Optional<? extends SalesInvoiceVatSchemeResponse> vatScheme,
             @JsonProperty("vatMode") Optional<? extends SalesInvoiceVatModeResponse> vatMode,
             @JsonProperty("memo") JsonNullable<String> memo,
@@ -304,6 +312,7 @@ public class SalesInvoiceResponse {
         Utils.checkNotNull(invoiceNumber, "invoiceNumber");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(status, "status");
+        Utils.checkNotNull(eInvoiceStatus, "eInvoiceStatus");
         Utils.checkNotNull(vatScheme, "vatScheme");
         Utils.checkNotNull(vatMode, "vatMode");
         Utils.checkNotNull(memo, "memo");
@@ -334,6 +343,7 @@ public class SalesInvoiceResponse {
         this.invoiceNumber = invoiceNumber;
         this.profileId = profileId;
         this.status = status;
+        this.eInvoiceStatus = eInvoiceStatus;
         this.vatScheme = vatScheme;
         this.vatMode = vatMode;
         this.memo = memo;
@@ -366,14 +376,15 @@ public class SalesInvoiceResponse {
             Mode mode) {
         this(resource, id, mode,
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -443,6 +454,15 @@ public class SalesInvoiceResponse {
     @JsonIgnore
     public Optional<SalesInvoiceStatusResponse> status() {
         return (Optional<SalesInvoiceStatusResponse>) status;
+    }
+
+    /**
+     * The e-invoice submission status for the invoice, if it was configured to be an e-invoice.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<SalesInvoiceEInvoiceStatus> eInvoiceStatus() {
+        return (Optional<SalesInvoiceEInvoiceStatus>) eInvoiceStatus;
     }
 
     /**
@@ -783,6 +803,25 @@ public class SalesInvoiceResponse {
     public SalesInvoiceResponse withStatus(Optional<? extends SalesInvoiceStatusResponse> status) {
         Utils.checkNotNull(status, "status");
         this.status = status;
+        return this;
+    }
+
+    /**
+     * The e-invoice submission status for the invoice, if it was configured to be an e-invoice.
+     */
+    public SalesInvoiceResponse withEInvoiceStatus(SalesInvoiceEInvoiceStatus eInvoiceStatus) {
+        Utils.checkNotNull(eInvoiceStatus, "eInvoiceStatus");
+        this.eInvoiceStatus = Optional.ofNullable(eInvoiceStatus);
+        return this;
+    }
+
+
+    /**
+     * The e-invoice submission status for the invoice, if it was configured to be an e-invoice.
+     */
+    public SalesInvoiceResponse withEInvoiceStatus(Optional<? extends SalesInvoiceEInvoiceStatus> eInvoiceStatus) {
+        Utils.checkNotNull(eInvoiceStatus, "eInvoiceStatus");
+        this.eInvoiceStatus = eInvoiceStatus;
         return this;
     }
 
@@ -1266,6 +1305,7 @@ public class SalesInvoiceResponse {
             Utils.enhancedDeepEquals(this.invoiceNumber, other.invoiceNumber) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.eInvoiceStatus, other.eInvoiceStatus) &&
             Utils.enhancedDeepEquals(this.vatScheme, other.vatScheme) &&
             Utils.enhancedDeepEquals(this.vatMode, other.vatMode) &&
             Utils.enhancedDeepEquals(this.memo, other.memo) &&
@@ -1297,14 +1337,15 @@ public class SalesInvoiceResponse {
         return Utils.enhancedHash(
             resource, id, mode,
             invoiceNumber, profileId, status,
-            vatScheme, vatMode, memo,
-            metadata, paymentTerm, paymentDetails,
-            emailDetails, customerId, mandateId,
-            recipientIdentifier, recipient, lines,
-            discount, isEInvoice, amountDue,
-            subtotalAmount, totalAmount, totalVatAmount,
-            discountedSubtotalAmount, createdAt, issuedAt,
-            paidAt, dueAt, links);
+            eInvoiceStatus, vatScheme, vatMode,
+            memo, metadata, paymentTerm,
+            paymentDetails, emailDetails, customerId,
+            mandateId, recipientIdentifier, recipient,
+            lines, discount, isEInvoice,
+            amountDue, subtotalAmount, totalAmount,
+            totalVatAmount, discountedSubtotalAmount, createdAt,
+            issuedAt, paidAt, dueAt,
+            links);
     }
     
     @Override
@@ -1316,6 +1357,7 @@ public class SalesInvoiceResponse {
                 "invoiceNumber", invoiceNumber,
                 "profileId", profileId,
                 "status", status,
+                "eInvoiceStatus", eInvoiceStatus,
                 "vatScheme", vatScheme,
                 "vatMode", vatMode,
                 "memo", memo,
@@ -1356,6 +1398,8 @@ public class SalesInvoiceResponse {
         private JsonNullable<String> profileId = JsonNullable.undefined();
 
         private Optional<? extends SalesInvoiceStatusResponse> status = Optional.empty();
+
+        private Optional<? extends SalesInvoiceEInvoiceStatus> eInvoiceStatus = Optional.empty();
 
         private Optional<? extends SalesInvoiceVatSchemeResponse> vatScheme = Optional.empty();
 
@@ -1531,6 +1575,25 @@ public class SalesInvoiceResponse {
         public Builder status(Optional<? extends SalesInvoiceStatusResponse> status) {
             Utils.checkNotNull(status, "status");
             this.status = status;
+            return this;
+        }
+
+
+        /**
+         * The e-invoice submission status for the invoice, if it was configured to be an e-invoice.
+         */
+        public Builder eInvoiceStatus(SalesInvoiceEInvoiceStatus eInvoiceStatus) {
+            Utils.checkNotNull(eInvoiceStatus, "eInvoiceStatus");
+            this.eInvoiceStatus = Optional.ofNullable(eInvoiceStatus);
+            return this;
+        }
+
+        /**
+         * The e-invoice submission status for the invoice, if it was configured to be an e-invoice.
+         */
+        public Builder eInvoiceStatus(Optional<? extends SalesInvoiceEInvoiceStatus> eInvoiceStatus) {
+            Utils.checkNotNull(eInvoiceStatus, "eInvoiceStatus");
+            this.eInvoiceStatus = eInvoiceStatus;
             return this;
         }
 
@@ -2013,14 +2076,15 @@ public class SalesInvoiceResponse {
             return new SalesInvoiceResponse(
                 resource, id, mode,
                 invoiceNumber, profileId, status,
-                vatScheme, vatMode, memo,
-                metadata, paymentTerm, paymentDetails,
-                emailDetails, customerId, mandateId,
-                recipientIdentifier, recipient, lines,
-                discount, isEInvoice, amountDue,
-                subtotalAmount, totalAmount, totalVatAmount,
-                discountedSubtotalAmount, createdAt, issuedAt,
-                paidAt, dueAt, links);
+                eInvoiceStatus, vatScheme, vatMode,
+                memo, metadata, paymentTerm,
+                paymentDetails, emailDetails, customerId,
+                mandateId, recipientIdentifier, recipient,
+                lines, discount, isEInvoice,
+                amountDue, subtotalAmount, totalAmount,
+                totalVatAmount, discountedSubtotalAmount, createdAt,
+                issuedAt, paidAt, dueAt,
+                links);
         }
 
     }
