@@ -38,6 +38,8 @@ public class EntityWebhookEventWebhookEventTypes {
     public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_ISSUED = new EntityWebhookEventWebhookEventTypes("sales-invoice.issued");
     public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_CANCELED = new EntityWebhookEventWebhookEventTypes("sales-invoice.canceled");
     public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_PAID = new EntityWebhookEventWebhookEventTypes("sales-invoice.paid");
+    public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_E_INVOICE_FAILED = new EntityWebhookEventWebhookEventTypes("sales-invoice.e-invoice-failed");
+    public static final EntityWebhookEventWebhookEventTypes SALES_INVOICE_E_INVOICE_ISSUED = new EntityWebhookEventWebhookEventTypes("sales-invoice.e-invoice-issued");
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_TRANSFER_REQUESTED = new EntityWebhookEventWebhookEventTypes("business-account-transfer.requested");
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_TRANSFER_INITIATED = new EntityWebhookEventWebhookEventTypes("business-account-transfer.initiated");
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_TRANSFER_PENDING_REVIEW = new EntityWebhookEventWebhookEventTypes("business-account-transfer.pending-review");
@@ -130,6 +132,8 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("sales-invoice.issued", SALES_INVOICE_ISSUED);
         map.put("sales-invoice.canceled", SALES_INVOICE_CANCELED);
         map.put("sales-invoice.paid", SALES_INVOICE_PAID);
+        map.put("sales-invoice.e-invoice-failed", SALES_INVOICE_E_INVOICE_FAILED);
+        map.put("sales-invoice.e-invoice-issued", SALES_INVOICE_E_INVOICE_ISSUED);
         map.put("business-account-transfer.requested", BUSINESS_ACCOUNT_TRANSFER_REQUESTED);
         map.put("business-account-transfer.initiated", BUSINESS_ACCOUNT_TRANSFER_INITIATED);
         map.put("business-account-transfer.pending-review", BUSINESS_ACCOUNT_TRANSFER_PENDING_REVIEW);
@@ -154,6 +158,8 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("sales-invoice.issued", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_ISSUED);
         map.put("sales-invoice.canceled", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_CANCELED);
         map.put("sales-invoice.paid", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_PAID);
+        map.put("sales-invoice.e-invoice-failed", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_E_INVOICE_FAILED);
+        map.put("sales-invoice.e-invoice-issued", EntityWebhookEventWebhookEventTypesEnum.SALES_INVOICE_E_INVOICE_ISSUED);
         map.put("business-account-transfer.requested", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_TRANSFER_REQUESTED);
         map.put("business-account-transfer.initiated", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_TRANSFER_INITIATED);
         map.put("business-account-transfer.pending-review", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_TRANSFER_PENDING_REVIEW);
@@ -179,6 +185,8 @@ public class EntityWebhookEventWebhookEventTypes {
         SALES_INVOICE_ISSUED("sales-invoice.issued"),
         SALES_INVOICE_CANCELED("sales-invoice.canceled"),
         SALES_INVOICE_PAID("sales-invoice.paid"),
+        SALES_INVOICE_E_INVOICE_FAILED("sales-invoice.e-invoice-failed"),
+        SALES_INVOICE_E_INVOICE_ISSUED("sales-invoice.e-invoice-issued"),
         BUSINESS_ACCOUNT_TRANSFER_REQUESTED("business-account-transfer.requested"),
         BUSINESS_ACCOUNT_TRANSFER_INITIATED("business-account-transfer.initiated"),
         BUSINESS_ACCOUNT_TRANSFER_PENDING_REVIEW("business-account-transfer.pending-review"),

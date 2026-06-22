@@ -27,6 +27,8 @@ public enum WebhookEventTypes {
     SALES_INVOICE_ISSUED("sales-invoice.issued"),
     SALES_INVOICE_CANCELED("sales-invoice.canceled"),
     SALES_INVOICE_PAID("sales-invoice.paid"),
+    SALES_INVOICE_E_INVOICE_FAILED("sales-invoice.e-invoice-failed"),
+    SALES_INVOICE_E_INVOICE_ISSUED("sales-invoice.e-invoice-issued"),
     BUSINESS_ACCOUNT_TRANSFER_REQUESTED("business-account-transfer.requested"),
     BUSINESS_ACCOUNT_TRANSFER_INITIATED("business-account-transfer.initiated"),
     BUSINESS_ACCOUNT_TRANSFER_PENDING_REVIEW("business-account-transfer.pending-review"),
