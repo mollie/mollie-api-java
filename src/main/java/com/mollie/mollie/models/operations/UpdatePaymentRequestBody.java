@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.models.components.BillingAddress;
 import com.mollie.mollie.models.components.Locale;
 import com.mollie.mollie.models.components.Metadata;
-import com.mollie.mollie.models.components.Method;
+import com.mollie.mollie.models.components.MethodRequest;
 import com.mollie.mollie.models.components.PaymentAddress;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
@@ -115,7 +115,7 @@ public class UpdatePaymentRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
-    private JsonNullable<? extends Method> method;
+    private JsonNullable<? extends MethodRequest> method;
 
     /**
      * Sets the language for customer-facing content and communications.
@@ -220,7 +220,7 @@ public class UpdatePaymentRequestBody {
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
-            @JsonProperty("method") JsonNullable<? extends Method> method,
+            @JsonProperty("method") JsonNullable<? extends MethodRequest> method,
             @JsonProperty("locale") JsonNullable<? extends Locale> locale,
             @JsonProperty("dueDate") Optional<String> dueDate,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
@@ -364,8 +364,8 @@ public class UpdatePaymentRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Method> method() {
-        return (JsonNullable<Method>) method;
+    public JsonNullable<MethodRequest> method() {
+        return (JsonNullable<MethodRequest>) method;
     }
 
     /**
@@ -664,7 +664,7 @@ public class UpdatePaymentRequestBody {
      * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
-    public UpdatePaymentRequestBody withMethod(Method method) {
+    public UpdatePaymentRequestBody withMethod(MethodRequest method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
@@ -683,7 +683,7 @@ public class UpdatePaymentRequestBody {
      * to only show
      * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      */
-    public UpdatePaymentRequestBody withMethod(JsonNullable<? extends Method> method) {
+    public UpdatePaymentRequestBody withMethod(JsonNullable<? extends MethodRequest> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -982,7 +982,7 @@ public class UpdatePaymentRequestBody {
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
-        private JsonNullable<? extends Method> method = JsonNullable.undefined();
+        private JsonNullable<? extends MethodRequest> method = JsonNullable.undefined();
 
         private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
 
@@ -1195,7 +1195,7 @@ public class UpdatePaymentRequestBody {
          * to only show
          * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          */
-        public Builder method(Method method) {
+        public Builder method(MethodRequest method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
@@ -1214,7 +1214,7 @@ public class UpdatePaymentRequestBody {
          * to only show
          * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
          */
-        public Builder method(JsonNullable<? extends Method> method) {
+        public Builder method(JsonNullable<? extends MethodRequest> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;
