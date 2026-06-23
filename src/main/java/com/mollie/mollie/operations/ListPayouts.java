@@ -132,7 +132,7 @@ public class ListPayouts {
                     request,
                     this.operationGlobals));
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "apiKey", "advancedAccessToken", "oAuth");
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "apiKey", "advancedAccessToken");
 
             return req.build();
         }
@@ -154,7 +154,7 @@ public class ListPayouts {
                     request,
                     this.operationGlobals));
             req.addHeaders(Utils.getHeadersFromMetadata(request, this.operationGlobals));
-            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "apiKey", "advancedAccessToken", "oAuth");
+            Utils.configureSecurity(req, this.sdkConfiguration.securitySource().getSecurity(), "apiKey", "advancedAccessToken");
 
             return req.build();
         }

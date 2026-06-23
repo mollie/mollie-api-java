@@ -91,8 +91,8 @@ public class Payouts {
      * - One of the organization's balances is below the negative balance threshold.
      * - The payout destination (bank account) is invalid or not configured.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -142,8 +142,8 @@ public class Payouts {
      * - One of the organization's balances is below the negative balance threshold.
      * - The payout destination (bank account) is invalid or not configured.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @param payoutRequest 
      * @return The response from the API call
@@ -195,8 +195,8 @@ public class Payouts {
      * - One of the organization's balances is below the negative balance threshold.
      * - The payout destination (bank account) is invalid or not configured.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param payoutRequest 
@@ -231,8 +231,8 @@ public class Payouts {
      * through
      * the full result set.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -253,8 +253,8 @@ public class Payouts {
      * through
      * the full result set.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
@@ -277,8 +277,8 @@ public class Payouts {
      * through
      * the full result set.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @param request The request object containing all the parameters for the API call.
      * @param options additional options
@@ -296,8 +296,8 @@ public class Payouts {
      * 
      * <p>Retrieve a single payout by its ID.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -310,8 +310,8 @@ public class Payouts {
      * 
      * <p>Retrieve a single payout by its ID.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @param payoutId Provide the ID of the payout.
      * @return The response from the API call
@@ -327,8 +327,8 @@ public class Payouts {
      * 
      * <p>Retrieve a single payout by its ID.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @param payoutId Provide the ID of the payout.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
@@ -365,8 +365,8 @@ public class Payouts {
      * 
      * <p>The canceled payout object is returned with the status set to `canceled`.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @return The call builder
      */
@@ -383,8 +383,8 @@ public class Payouts {
      * 
      * <p>The canceled payout object is returned with the status set to `canceled`.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @param payoutId Provide the ID of the payout.
      * @return The response from the API call
@@ -404,8 +404,8 @@ public class Payouts {
      * 
      * <p>The canceled payout object is returned with the status set to `canceled`.
      * 
-     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
-     * Security#oAuth from the global security.
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
      * 
      * @param payoutId Provide the ID of the payout.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query

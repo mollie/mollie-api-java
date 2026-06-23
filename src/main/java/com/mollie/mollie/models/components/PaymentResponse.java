@@ -181,19 +181,7 @@ public class PaymentResponse {
     @JsonProperty("countryCode")
     private JsonNullable<String> countryCode;
 
-    /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-     * specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment
-     * method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
-     * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-     * selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality
-     * to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-     */
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("method")
     private JsonNullable<? extends MethodResponse> method;
@@ -824,19 +812,6 @@ public class PaymentResponse {
         return countryCode;
     }
 
-    /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-     * specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment
-     * method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
-     * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-     * selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality
-     * to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public JsonNullable<MethodResponse> method() {
@@ -1493,38 +1468,12 @@ public class PaymentResponse {
         return this;
     }
 
-    /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-     * specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment
-     * method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
-     * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-     * selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality
-     * to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-     */
     public PaymentResponse withMethod(MethodResponse method) {
         Utils.checkNotNull(method, "method");
         this.method = JsonNullable.of(method);
         return this;
     }
 
-    /**
-     * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-     * specific payment
-     * method and your customer will skip the selection screen and is sent directly to the chosen payment
-     * method. The
-     * parameter enables you to fully integrate the payment method selection into your website.
-     * 
-     * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-     * selection screen
-     * but will only show the methods specified in the array. For example, you can use this functionality
-     * to only show
-     * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-     */
     public PaymentResponse withMethod(JsonNullable<? extends MethodResponse> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
@@ -2713,38 +2662,12 @@ public class PaymentResponse {
         }
 
 
-        /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-         * specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment
-         * method. The
-         * parameter enables you to fully integrate the payment method selection into your website.
-         * 
-         * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-         * selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality
-         * to only show
-         * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-         */
         public Builder method(MethodResponse method) {
             Utils.checkNotNull(method, "method");
             this.method = JsonNullable.of(method);
             return this;
         }
 
-        /**
-         * Normally, a payment method screen is shown. However, when using this parameter, you can choose a
-         * specific payment
-         * method and your customer will skip the selection screen and is sent directly to the chosen payment
-         * method. The
-         * parameter enables you to fully integrate the payment method selection into your website.
-         * 
-         * <p>You can also specify the methods in an array. By doing so we will still show the payment method
-         * selection screen
-         * but will only show the methods specified in the array. For example, you can use this functionality
-         * to only show
-         * payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-         */
         public Builder method(JsonNullable<? extends MethodResponse> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
