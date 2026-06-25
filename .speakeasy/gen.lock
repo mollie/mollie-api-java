@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 03616e6e659f670948346e92727e88ea
+  docChecksum: 881fddcc4175df3513c14383a24c21b9
   docVersion: 1.0.0
-  speakeasyVersion: 1.784.1
-  generationVersion: 2.911.3
-  releaseVersion: 1.8.12
-  configChecksum: 7b675dc2cdf92976ca768da731a3c10f
+  speakeasyVersion: 1.785.0
+  generationVersion: 2.912.1
+  releaseVersion: 1.8.13
+  configChecksum: fb4483bff5f6209901041762412ba305
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 5c481238-1f4b-462d-987f-546c57aa52aa
-  pristine_commit_hash: d5bbe09803077c369ed404d0e2314f4af78f259c
-  pristine_tree_hash: a7df26afb271961cf83c7928a4b86b680d02d687
+  generation_id: 272fbc40-c2f1-463c-9194-7def58bde10c
+  pristine_commit_hash: 25194e27a2c53634ce11ce8ac3b464fe07891a68
+  pristine_tree_hash: 20f7ede24500666702dc046c2d5e17062e44382e
 features:
   java:
     additionalDependencies: 0.1.0
@@ -729,8 +729,8 @@ trackedFiles:
     pristine_git_object: 8a85680a4d8b7ee1d9825ea7e02797cc1637c5bc
   docs/models/components/EntityWebhookEventWebhookEventTypes.md:
     id: 96dee939f25e
-    last_write_checksum: sha1:1b517980bbf86b4790a1f6218c9e28a3e0c08870
-    pristine_git_object: c83ffbe9333b3d8e7fd7143466f11cf6412bba50
+    last_write_checksum: sha1:98c4ef0ac4eef0ab5ac483812f5b6c1f533dbff7
+    pristine_git_object: b024209b582618a1b3e312365b1f0cdc3945f2ce
   docs/models/components/EntityWebhookLinks.md:
     id: ae5a41d4a9b0
     last_write_checksum: sha1:f83a644f96b8910f4190f7d345651cf033af8bd2
@@ -2097,8 +2097,8 @@ trackedFiles:
     pristine_git_object: 78fa4dff66ba3e05dabf1b0988bf26914544f081
   docs/models/components/WebhookEventTypes.md:
     id: 7123d0d2f47f
-    last_write_checksum: sha1:2d32377c7711540888f2d9c1427d4d2f2d9b344d
-    pristine_git_object: 90ba957a8eca89a3f7ba224f71bdf1e9902810e9
+    last_write_checksum: sha1:052dd7eb2ccfb76718e069dd8ee0dcccdec01a77
+    pristine_git_object: beb51aef94196ac91e0753a5ecf2f5310c8d7406
   docs/models/components/WebhookStatus.md:
     id: 19b31abdf904
     last_write_checksum: sha1:b9598b983218bebf5de04d5c7a1da50795c15e02
@@ -3717,8 +3717,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:0d9f292602e01d4e1fb5839515612c2c1affcef9
-    pristine_git_object: be97e7c95b23865db45eb34f04b2d983e26d2e34
+    last_write_checksum: sha1:d4bf60feb14e681a56758683c35b7a24fc9cdb85
+    pristine_git_object: 40a55ad28fd0b0b692b9e86215549e8ccfa970eb
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3973,8 +3973,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:d068247d6a2dd863543c061eba342055878bccaf
-    pristine_git_object: d8b60dd75dd53462654c3935ab4b8636ab7db87a
+    last_write_checksum: sha1:30e8b879bfec099a1b456d7b9a7775d8d07149ba
+    pristine_git_object: 184babc2069a5a1dfc9a0c5f7a7aa591b15b09c3
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:6cdf29ce849fc8d0132424ec727ca8bb41e46761
@@ -4345,8 +4345,8 @@ trackedFiles:
     pristine_git_object: 05c447bfd4be325bc07e329daea33f4f32415cbb
   src/main/java/com/mollie/mollie/models/components/Entity.java:
     id: 24cbc47eaa91
-    last_write_checksum: sha1:4690a4e31f0ba32935c8dc2ca158a7a303cdf661
-    pristine_git_object: 4251df4039c7c8008751e57321c3451c5b110898
+    last_write_checksum: sha1:21a32c391d43402c3433a67db97ffb8928b163ff
+    pristine_git_object: fb633ffe5a4dd305c192d31c6df4a180bc338af1
   src/main/java/com/mollie/mollie/models/components/EntityBalance.java:
     id: 7a797eb67e17
     last_write_checksum: sha1:d76946e5f1bf59bda588c468f55bfa642e948476
@@ -4705,8 +4705,8 @@ trackedFiles:
     pristine_git_object: cd336589224a10710653f819d9537f8e82621fce
   src/main/java/com/mollie/mollie/models/components/EntityWebhookEventWebhookEventTypes.java:
     id: ebdd2e6ad94c
-    last_write_checksum: sha1:33fc4b3cf5532db087c15daf680e321c1360929a
-    pristine_git_object: a88694bdf1c3362123fdb4891fa0a96a6daeeb1a
+    last_write_checksum: sha1:6013eddbea6b157ec699e9e9dfe0ae2f05ad05a5
+    pristine_git_object: 368ff8c289a5e227cad5ff4df6b26841ee14bb6d
   src/main/java/com/mollie/mollie/models/components/EntityWebhookLinks.java:
     id: 8fa396f06f25
     last_write_checksum: sha1:6f72dc96b36ceb37f55d02a66397c4e46154801c
@@ -6073,8 +6073,8 @@ trackedFiles:
     pristine_git_object: e01d813f20f74669a856d763ddfd6bc2b3b76fda
   src/main/java/com/mollie/mollie/models/components/WebhookEventTypes.java:
     id: bb45470b568c
-    last_write_checksum: sha1:be210258ad3f64985aec001d4d78ac9463268ca9
-    pristine_git_object: ebd47a2f4387331cdae4a7b689deab6b8dd8eb24
+    last_write_checksum: sha1:1d2a9fb51d05eb07378ff5596a050d064ab13073
+    pristine_git_object: 0f2c9b8618e076060afa35b184ea18662bc35c08
   src/main/java/com/mollie/mollie/models/components/WebhookStatus.java:
     id: ff1f7111dd7d
     last_write_checksum: sha1:b4dad9ff2532159ac849023c772dd9b069b5ffdf
@@ -14976,7 +14976,7 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `client.payments.update()`: \n  *  `requestBody.method` **Changed** (Breaking ⚠️)\n"
+releaseNotes: "## Java SDK Changes:\n* `client.webhooks.create()`: \n  *  `requestBody.eventTypes.union(Array<webhook-event-types>)[]` **Changed**\n  *  `response.eventTypes[]` **Changed** (Breaking ⚠️)\n* `client.webhooks.list()`: \n  *  `request.eventTypes` **Changed**\n  *  `response.Embedded.webhooks[].eventTypes[]` **Changed** (Breaking ⚠️)\n* `client.webhooks.update()`: \n  *  `requestBody.eventTypes.union(Array<webhook-event-types>)[]` **Changed**\n  *  `response.eventTypes[]` **Changed** (Breaking ⚠️)\n* `client.webhooks.get()`:  `response.eventTypes[]` **Changed** (Breaking ⚠️)\n* `client.webhookEvents.get()`:  `response` **Changed** (Breaking ⚠️)\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

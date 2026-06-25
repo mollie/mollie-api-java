@@ -26,6 +26,16 @@ public class Entity {
         this.value = value;
     }
 
+    public static Entity of(PaymentResponse value) {
+        Utils.checkNotNull(value, "value");
+        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
+    public static Entity of(EntityRefundResponse value) {
+        Utils.checkNotNull(value, "value");
+        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
     public static Entity of(PaymentLinkResponse value) {
         Utils.checkNotNull(value, "value");
         return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
@@ -49,6 +59,8 @@ public class Entity {
     /**
      * Returns an instance of one of these types:
      * <ul>
+     * <li>{@code com.mollie.mollie.models.components.PaymentResponse}</li>
+     * <li>{@code com.mollie.mollie.models.components.EntityRefundResponse}</li>
      * <li>{@code com.mollie.mollie.models.components.PaymentLinkResponse}</li>
      * <li>{@code com.mollie.mollie.models.components.EntityPayoutResponse}</li>
      * <li>{@code com.mollie.mollie.models.components.SalesInvoiceResponse}</li>
@@ -92,6 +104,8 @@ public class Entity {
 
         public _Deserializer() {
             super(Entity.class, false,
+                  TypeReferenceWithShape.of(new TypeReference<PaymentResponse>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<EntityRefundResponse>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<PaymentLinkResponse>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<EntityPayoutResponse>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<SalesInvoiceResponse>() {}, JsonShape.DEFAULT),
