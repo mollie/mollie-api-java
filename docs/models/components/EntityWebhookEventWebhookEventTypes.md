@@ -8,7 +8,7 @@ that require explicit selection.
 ```java
 import com.mollie.mollie.models.components.EntityWebhookEventWebhookEventTypes;
 
-EntityWebhookEventWebhookEventTypes value = EntityWebhookEventWebhookEventTypes.PAYMENT_LINK_PAID;
+EntityWebhookEventWebhookEventTypes value = EntityWebhookEventWebhookEventTypes.PAYMENT_PAID;
 
 // Open enum: use .of() to create instances from custom string values
 EntityWebhookEventWebhookEventTypes custom = EntityWebhookEventWebhookEventTypes.of("custom_value");
@@ -19,6 +19,18 @@ EntityWebhookEventWebhookEventTypes custom = EntityWebhookEventWebhookEventTypes
 
 | Name                                       | Value                                      |
 | ------------------------------------------ | ------------------------------------------ |
+| `PAYMENT_PAID`                             | payment.paid                               |
+| `PAYMENT_AUTHORIZED`                       | payment.authorized                         |
+| `PAYMENT_FAILED`                           | payment.failed                             |
+| `PAYMENT_CANCELED`                         | payment.canceled                           |
+| `PAYMENT_EXPIRED`                          | payment.expired                            |
+| `PAYMENT_PENDING`                          | payment.pending                            |
+| `REFUND_QUEUED`                            | refund.queued                              |
+| `REFUND_PENDING`                           | refund.pending                             |
+| `REFUND_PROCESSING`                        | refund.processing                          |
+| `REFUND_REFUNDED`                          | refund.refunded                            |
+| `REFUND_FAILED`                            | refund.failed                              |
+| `REFUND_CANCELED`                          | refund.canceled                            |
 | `PAYMENT_LINK_PAID`                        | payment-link.paid                          |
 | `BALANCE_TRANSACTION_CREATED`              | balance-transaction.created                |
 | `PAYOUT_INITIATED`                         | payout.initiated                           |

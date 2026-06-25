@@ -27,6 +27,18 @@ import java.util.Optional;
  */
 public class EntityWebhookEventWebhookEventTypes {
 
+    public static final EntityWebhookEventWebhookEventTypes PAYMENT_PAID = new EntityWebhookEventWebhookEventTypes("payment.paid");
+    public static final EntityWebhookEventWebhookEventTypes PAYMENT_AUTHORIZED = new EntityWebhookEventWebhookEventTypes("payment.authorized");
+    public static final EntityWebhookEventWebhookEventTypes PAYMENT_FAILED = new EntityWebhookEventWebhookEventTypes("payment.failed");
+    public static final EntityWebhookEventWebhookEventTypes PAYMENT_CANCELED = new EntityWebhookEventWebhookEventTypes("payment.canceled");
+    public static final EntityWebhookEventWebhookEventTypes PAYMENT_EXPIRED = new EntityWebhookEventWebhookEventTypes("payment.expired");
+    public static final EntityWebhookEventWebhookEventTypes PAYMENT_PENDING = new EntityWebhookEventWebhookEventTypes("payment.pending");
+    public static final EntityWebhookEventWebhookEventTypes REFUND_QUEUED = new EntityWebhookEventWebhookEventTypes("refund.queued");
+    public static final EntityWebhookEventWebhookEventTypes REFUND_PENDING = new EntityWebhookEventWebhookEventTypes("refund.pending");
+    public static final EntityWebhookEventWebhookEventTypes REFUND_PROCESSING = new EntityWebhookEventWebhookEventTypes("refund.processing");
+    public static final EntityWebhookEventWebhookEventTypes REFUND_REFUNDED = new EntityWebhookEventWebhookEventTypes("refund.refunded");
+    public static final EntityWebhookEventWebhookEventTypes REFUND_FAILED = new EntityWebhookEventWebhookEventTypes("refund.failed");
+    public static final EntityWebhookEventWebhookEventTypes REFUND_CANCELED = new EntityWebhookEventWebhookEventTypes("refund.canceled");
     public static final EntityWebhookEventWebhookEventTypes PAYMENT_LINK_PAID = new EntityWebhookEventWebhookEventTypes("payment-link.paid");
     public static final EntityWebhookEventWebhookEventTypes BALANCE_TRANSACTION_CREATED = new EntityWebhookEventWebhookEventTypes("balance-transaction.created");
     public static final EntityWebhookEventWebhookEventTypes PAYOUT_INITIATED = new EntityWebhookEventWebhookEventTypes("payout.initiated");
@@ -121,6 +133,18 @@ public class EntityWebhookEventWebhookEventTypes {
 
     private static final Map<String, EntityWebhookEventWebhookEventTypes> createValuesMap() {
         Map<String, EntityWebhookEventWebhookEventTypes> map = new LinkedHashMap<>();
+        map.put("payment.paid", PAYMENT_PAID);
+        map.put("payment.authorized", PAYMENT_AUTHORIZED);
+        map.put("payment.failed", PAYMENT_FAILED);
+        map.put("payment.canceled", PAYMENT_CANCELED);
+        map.put("payment.expired", PAYMENT_EXPIRED);
+        map.put("payment.pending", PAYMENT_PENDING);
+        map.put("refund.queued", REFUND_QUEUED);
+        map.put("refund.pending", REFUND_PENDING);
+        map.put("refund.processing", REFUND_PROCESSING);
+        map.put("refund.refunded", REFUND_REFUNDED);
+        map.put("refund.failed", REFUND_FAILED);
+        map.put("refund.canceled", REFUND_CANCELED);
         map.put("payment-link.paid", PAYMENT_LINK_PAID);
         map.put("balance-transaction.created", BALANCE_TRANSACTION_CREATED);
         map.put("payout.initiated", PAYOUT_INITIATED);
@@ -147,6 +171,18 @@ public class EntityWebhookEventWebhookEventTypes {
 
     private static final Map<String, EntityWebhookEventWebhookEventTypesEnum> createEnumsMap() {
         Map<String, EntityWebhookEventWebhookEventTypesEnum> map = new HashMap<>();
+        map.put("payment.paid", EntityWebhookEventWebhookEventTypesEnum.PAYMENT_PAID);
+        map.put("payment.authorized", EntityWebhookEventWebhookEventTypesEnum.PAYMENT_AUTHORIZED);
+        map.put("payment.failed", EntityWebhookEventWebhookEventTypesEnum.PAYMENT_FAILED);
+        map.put("payment.canceled", EntityWebhookEventWebhookEventTypesEnum.PAYMENT_CANCELED);
+        map.put("payment.expired", EntityWebhookEventWebhookEventTypesEnum.PAYMENT_EXPIRED);
+        map.put("payment.pending", EntityWebhookEventWebhookEventTypesEnum.PAYMENT_PENDING);
+        map.put("refund.queued", EntityWebhookEventWebhookEventTypesEnum.REFUND_QUEUED);
+        map.put("refund.pending", EntityWebhookEventWebhookEventTypesEnum.REFUND_PENDING);
+        map.put("refund.processing", EntityWebhookEventWebhookEventTypesEnum.REFUND_PROCESSING);
+        map.put("refund.refunded", EntityWebhookEventWebhookEventTypesEnum.REFUND_REFUNDED);
+        map.put("refund.failed", EntityWebhookEventWebhookEventTypesEnum.REFUND_FAILED);
+        map.put("refund.canceled", EntityWebhookEventWebhookEventTypesEnum.REFUND_CANCELED);
         map.put("payment-link.paid", EntityWebhookEventWebhookEventTypesEnum.PAYMENT_LINK_PAID);
         map.put("balance-transaction.created", EntityWebhookEventWebhookEventTypesEnum.BALANCE_TRANSACTION_CREATED);
         map.put("payout.initiated", EntityWebhookEventWebhookEventTypesEnum.PAYOUT_INITIATED);
@@ -174,6 +210,18 @@ public class EntityWebhookEventWebhookEventTypes {
     
     public enum EntityWebhookEventWebhookEventTypesEnum {
 
+        PAYMENT_PAID("payment.paid"),
+        PAYMENT_AUTHORIZED("payment.authorized"),
+        PAYMENT_FAILED("payment.failed"),
+        PAYMENT_CANCELED("payment.canceled"),
+        PAYMENT_EXPIRED("payment.expired"),
+        PAYMENT_PENDING("payment.pending"),
+        REFUND_QUEUED("refund.queued"),
+        REFUND_PENDING("refund.pending"),
+        REFUND_PROCESSING("refund.processing"),
+        REFUND_REFUNDED("refund.refunded"),
+        REFUND_FAILED("refund.failed"),
+        REFUND_CANCELED("refund.canceled"),
         PAYMENT_LINK_PAID("payment-link.paid"),
         BALANCE_TRANSACTION_CREATED("balance-transaction.created"),
         PAYOUT_INITIATED("payout.initiated"),
