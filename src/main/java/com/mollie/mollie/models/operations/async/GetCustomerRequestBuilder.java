@@ -17,12 +17,10 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class GetCustomerRequestBuilder {
 
     private String customerId;
-    private JsonNullable<String> include = JsonNullable.undefined();
     private Optional<Boolean> testmode = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -36,18 +34,6 @@ public class GetCustomerRequestBuilder {
     public GetCustomerRequestBuilder customerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
-        return this;
-    }
-
-    public GetCustomerRequestBuilder include(String include) {
-        Utils.checkNotNull(include, "include");
-        this.include = JsonNullable.of(include);
-        return this;
-    }
-
-    public GetCustomerRequestBuilder include(JsonNullable<String> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
         return this;
     }
                 
@@ -91,7 +77,6 @@ public class GetCustomerRequestBuilder {
     private GetCustomerRequest buildRequest() {
 
         GetCustomerRequest request = new GetCustomerRequest(customerId,
-            include,
             testmode,
             idempotencyKey);
 

@@ -44,7 +44,6 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncCustomers {
@@ -222,8 +221,8 @@ public class AsyncCustomers {
      */
     public CompletableFuture<GetCustomerResponse> get(String customerId) {
         return get(
-                customerId, JsonNullable.undefined(), Optional.empty(),
-                Optional.empty(), Optional.empty());
+                customerId, Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -235,7 +234,6 @@ public class AsyncCustomers {
      * Security#oAuth from the global security.
      * 
      * @param customerId Provide the ID of the related customer.
-     * @param include This endpoint allows you to include additional information via the `include` query string parameter.
      * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
      *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
      *         setting the `testmode` query parameter to `true`.
@@ -246,14 +244,12 @@ public class AsyncCustomers {
      * @return {@code CompletableFuture<GetCustomerResponse>} - The async response
      */
     public CompletableFuture<GetCustomerResponse> get(
-            String customerId, JsonNullable<String> include,
-            Optional<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) {
+            String customerId, Optional<Boolean> testmode,
+            Optional<String> idempotencyKey, Optional<Options> options) {
         GetCustomerRequest request =
             GetCustomerRequest
                 .builder()
                 .customerId(customerId)
-                .include(include)
                 .testmode(testmode)
                 .idempotencyKey(idempotencyKey)
                 .build();
