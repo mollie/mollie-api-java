@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.operations.GetCustomerResponseBody;
+import com.mollie.mollie.models.components.CustomerResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -37,22 +37,22 @@ public class GetCustomerResponse implements AsyncResponse {
     /**
      * The customer object.
      */
-    private Optional<? extends GetCustomerResponseBody> object;
+    private Optional<? extends CustomerResponse> customerResponse;
 
     @JsonCreator
     public GetCustomerResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends GetCustomerResponseBody> object) {
+            Optional<? extends CustomerResponse> customerResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(object, "object");
+        Utils.checkNotNull(customerResponse, "customerResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.object = object;
+        this.customerResponse = customerResponse;
     }
     
     public GetCustomerResponse(
@@ -92,8 +92,8 @@ public class GetCustomerResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<GetCustomerResponseBody> object() {
-        return (Optional<GetCustomerResponseBody>) object;
+    public Optional<CustomerResponse> customerResponse() {
+        return (Optional<CustomerResponse>) customerResponse;
     }
 
     public static Builder builder() {
@@ -131,9 +131,9 @@ public class GetCustomerResponse implements AsyncResponse {
     /**
      * The customer object.
      */
-    public GetCustomerResponse withObject(GetCustomerResponseBody object) {
-        Utils.checkNotNull(object, "object");
-        this.object = Optional.ofNullable(object);
+    public GetCustomerResponse withCustomerResponse(CustomerResponse customerResponse) {
+        Utils.checkNotNull(customerResponse, "customerResponse");
+        this.customerResponse = Optional.ofNullable(customerResponse);
         return this;
     }
 
@@ -141,9 +141,9 @@ public class GetCustomerResponse implements AsyncResponse {
     /**
      * The customer object.
      */
-    public GetCustomerResponse withObject(Optional<? extends GetCustomerResponseBody> object) {
-        Utils.checkNotNull(object, "object");
-        this.object = object;
+    public GetCustomerResponse withCustomerResponse(Optional<? extends CustomerResponse> customerResponse) {
+        Utils.checkNotNull(customerResponse, "customerResponse");
+        this.customerResponse = customerResponse;
         return this;
     }
 
@@ -160,14 +160,14 @@ public class GetCustomerResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.object, other.object);
+            Utils.enhancedDeepEquals(this.customerResponse, other.customerResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            object);
+            customerResponse);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class GetCustomerResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "object", object);
+                "customerResponse", customerResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -188,7 +188,7 @@ public class GetCustomerResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends GetCustomerResponseBody> object = Optional.empty();
+        private Optional<? extends CustomerResponse> customerResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -228,18 +228,18 @@ public class GetCustomerResponse implements AsyncResponse {
         /**
          * The customer object.
          */
-        public Builder object(GetCustomerResponseBody object) {
-            Utils.checkNotNull(object, "object");
-            this.object = Optional.ofNullable(object);
+        public Builder customerResponse(CustomerResponse customerResponse) {
+            Utils.checkNotNull(customerResponse, "customerResponse");
+            this.customerResponse = Optional.ofNullable(customerResponse);
             return this;
         }
 
         /**
          * The customer object.
          */
-        public Builder object(Optional<? extends GetCustomerResponseBody> object) {
-            Utils.checkNotNull(object, "object");
-            this.object = object;
+        public Builder customerResponse(Optional<? extends CustomerResponse> customerResponse) {
+            Utils.checkNotNull(customerResponse, "customerResponse");
+            this.customerResponse = customerResponse;
             return this;
         }
 
@@ -247,7 +247,7 @@ public class GetCustomerResponse implements AsyncResponse {
 
             return new GetCustomerResponse(
                 contentType, statusCode, rawResponse,
-                object);
+                customerResponse);
         }
 
     }

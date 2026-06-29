@@ -12,7 +12,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class GetCustomerRequest {
@@ -21,12 +20,6 @@ public class GetCustomerRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=customerId")
     private String customerId;
-
-    /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
-     */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")
-    private JsonNullable<String> include;
 
     /**
      * Most API credentials are specifically created for either live mode or test mode. In those cases the
@@ -49,23 +42,19 @@ public class GetCustomerRequest {
     @JsonCreator
     public GetCustomerRequest(
             String customerId,
-            JsonNullable<String> include,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(customerId, "customerId");
-        Utils.checkNotNull(include, "include");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.customerId = customerId;
-        this.include = include;
         this.testmode = testmode;
         this.idempotencyKey = idempotencyKey;
     }
     
     public GetCustomerRequest(
             String customerId) {
-        this(customerId, JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+        this(customerId, Optional.empty(), Optional.empty());
     }
 
     /**
@@ -74,14 +63,6 @@ public class GetCustomerRequest {
     @JsonIgnore
     public String customerId() {
         return customerId;
-    }
-
-    /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
-     */
-    @JsonIgnore
-    public JsonNullable<String> include() {
-        return include;
     }
 
     /**
@@ -117,24 +98,6 @@ public class GetCustomerRequest {
     public GetCustomerRequest withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
-        return this;
-    }
-
-    /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
-     */
-    public GetCustomerRequest withInclude(String include) {
-        Utils.checkNotNull(include, "include");
-        this.include = JsonNullable.of(include);
-        return this;
-    }
-
-    /**
-     * This endpoint allows you to include additional information via the `include` query string parameter.
-     */
-    public GetCustomerRequest withInclude(JsonNullable<String> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
         return this;
     }
 
@@ -199,7 +162,6 @@ public class GetCustomerRequest {
         GetCustomerRequest other = (GetCustomerRequest) o;
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
-            Utils.enhancedDeepEquals(this.include, other.include) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
     }
@@ -207,15 +169,13 @@ public class GetCustomerRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, include, testmode,
-            idempotencyKey);
+            customerId, testmode, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetCustomerRequest.class,
                 "customerId", customerId,
-                "include", include,
                 "testmode", testmode,
                 "idempotencyKey", idempotencyKey);
     }
@@ -224,8 +184,6 @@ public class GetCustomerRequest {
     public final static class Builder {
 
         private String customerId;
-
-        private JsonNullable<String> include = JsonNullable.undefined();
 
         private Optional<Boolean> testmode = Optional.empty();
 
@@ -242,25 +200,6 @@ public class GetCustomerRequest {
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = customerId;
-            return this;
-        }
-
-
-        /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
-         */
-        public Builder include(String include) {
-            Utils.checkNotNull(include, "include");
-            this.include = JsonNullable.of(include);
-            return this;
-        }
-
-        /**
-         * This endpoint allows you to include additional information via the `include` query string parameter.
-         */
-        public Builder include(JsonNullable<String> include) {
-            Utils.checkNotNull(include, "include");
-            this.include = include;
             return this;
         }
 
@@ -317,8 +256,7 @@ public class GetCustomerRequest {
         public GetCustomerRequest build() {
 
             return new GetCustomerRequest(
-                customerId, include, testmode,
-                idempotencyKey);
+                customerId, testmode, idempotencyKey);
         }
 
     }
