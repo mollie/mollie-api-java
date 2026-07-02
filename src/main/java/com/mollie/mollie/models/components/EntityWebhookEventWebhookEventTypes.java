@@ -39,6 +39,10 @@ public class EntityWebhookEventWebhookEventTypes {
     public static final EntityWebhookEventWebhookEventTypes REFUND_REFUNDED = new EntityWebhookEventWebhookEventTypes("refund.refunded");
     public static final EntityWebhookEventWebhookEventTypes REFUND_FAILED = new EntityWebhookEventWebhookEventTypes("refund.failed");
     public static final EntityWebhookEventWebhookEventTypes REFUND_CANCELED = new EntityWebhookEventWebhookEventTypes("refund.canceled");
+    public static final EntityWebhookEventWebhookEventTypes CHARGEBACK_RECEIVED = new EntityWebhookEventWebhookEventTypes("chargeback.received");
+    public static final EntityWebhookEventWebhookEventTypes CHARGEBACK_REVERSED = new EntityWebhookEventWebhookEventTypes("chargeback.reversed");
+    public static final EntityWebhookEventWebhookEventTypes CAPTURE_SUCCEEDED = new EntityWebhookEventWebhookEventTypes("capture.succeeded");
+    public static final EntityWebhookEventWebhookEventTypes CAPTURE_FAILED = new EntityWebhookEventWebhookEventTypes("capture.failed");
     public static final EntityWebhookEventWebhookEventTypes PAYMENT_LINK_PAID = new EntityWebhookEventWebhookEventTypes("payment-link.paid");
     public static final EntityWebhookEventWebhookEventTypes BALANCE_TRANSACTION_CREATED = new EntityWebhookEventWebhookEventTypes("balance-transaction.created");
     public static final EntityWebhookEventWebhookEventTypes PAYOUT_INITIATED = new EntityWebhookEventWebhookEventTypes("payout.initiated");
@@ -145,6 +149,10 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("refund.refunded", REFUND_REFUNDED);
         map.put("refund.failed", REFUND_FAILED);
         map.put("refund.canceled", REFUND_CANCELED);
+        map.put("chargeback.received", CHARGEBACK_RECEIVED);
+        map.put("chargeback.reversed", CHARGEBACK_REVERSED);
+        map.put("capture.succeeded", CAPTURE_SUCCEEDED);
+        map.put("capture.failed", CAPTURE_FAILED);
         map.put("payment-link.paid", PAYMENT_LINK_PAID);
         map.put("balance-transaction.created", BALANCE_TRANSACTION_CREATED);
         map.put("payout.initiated", PAYOUT_INITIATED);
@@ -183,6 +191,10 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("refund.refunded", EntityWebhookEventWebhookEventTypesEnum.REFUND_REFUNDED);
         map.put("refund.failed", EntityWebhookEventWebhookEventTypesEnum.REFUND_FAILED);
         map.put("refund.canceled", EntityWebhookEventWebhookEventTypesEnum.REFUND_CANCELED);
+        map.put("chargeback.received", EntityWebhookEventWebhookEventTypesEnum.CHARGEBACK_RECEIVED);
+        map.put("chargeback.reversed", EntityWebhookEventWebhookEventTypesEnum.CHARGEBACK_REVERSED);
+        map.put("capture.succeeded", EntityWebhookEventWebhookEventTypesEnum.CAPTURE_SUCCEEDED);
+        map.put("capture.failed", EntityWebhookEventWebhookEventTypesEnum.CAPTURE_FAILED);
         map.put("payment-link.paid", EntityWebhookEventWebhookEventTypesEnum.PAYMENT_LINK_PAID);
         map.put("balance-transaction.created", EntityWebhookEventWebhookEventTypesEnum.BALANCE_TRANSACTION_CREATED);
         map.put("payout.initiated", EntityWebhookEventWebhookEventTypesEnum.PAYOUT_INITIATED);
@@ -222,6 +234,10 @@ public class EntityWebhookEventWebhookEventTypes {
         REFUND_REFUNDED("refund.refunded"),
         REFUND_FAILED("refund.failed"),
         REFUND_CANCELED("refund.canceled"),
+        CHARGEBACK_RECEIVED("chargeback.received"),
+        CHARGEBACK_REVERSED("chargeback.reversed"),
+        CAPTURE_SUCCEEDED("capture.succeeded"),
+        CAPTURE_FAILED("capture.failed"),
         PAYMENT_LINK_PAID("payment-link.paid"),
         BALANCE_TRANSACTION_CREATED("balance-transaction.created"),
         PAYOUT_INITIATED("payout.initiated"),
