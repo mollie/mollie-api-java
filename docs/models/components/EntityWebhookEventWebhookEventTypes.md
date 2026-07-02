@@ -31,6 +31,10 @@ EntityWebhookEventWebhookEventTypes custom = EntityWebhookEventWebhookEventTypes
 | `REFUND_REFUNDED`                          | refund.refunded                            |
 | `REFUND_FAILED`                            | refund.failed                              |
 | `REFUND_CANCELED`                          | refund.canceled                            |
+| `CHARGEBACK_RECEIVED`                      | chargeback.received                        |
+| `CHARGEBACK_REVERSED`                      | chargeback.reversed                        |
+| `CAPTURE_SUCCEEDED`                        | capture.succeeded                          |
+| `CAPTURE_FAILED`                           | capture.failed                             |
 | `PAYMENT_LINK_PAID`                        | payment-link.paid                          |
 | `BALANCE_TRANSACTION_CREATED`              | balance-transaction.created                |
 | `PAYOUT_INITIATED`                         | payout.initiated                           |

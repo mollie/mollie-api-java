@@ -36,6 +36,16 @@ public class Entity {
         return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
 
+    public static Entity of(EntityChargeback value) {
+        Utils.checkNotNull(value, "value");
+        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
+    public static Entity of(CaptureResponse value) {
+        Utils.checkNotNull(value, "value");
+        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
+
     public static Entity of(PaymentLinkResponse value) {
         Utils.checkNotNull(value, "value");
         return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
@@ -61,6 +71,8 @@ public class Entity {
      * <ul>
      * <li>{@code com.mollie.mollie.models.components.PaymentResponse}</li>
      * <li>{@code com.mollie.mollie.models.components.EntityRefundResponse}</li>
+     * <li>{@code com.mollie.mollie.models.components.EntityChargeback}</li>
+     * <li>{@code com.mollie.mollie.models.components.CaptureResponse}</li>
      * <li>{@code com.mollie.mollie.models.components.PaymentLinkResponse}</li>
      * <li>{@code com.mollie.mollie.models.components.EntityPayoutResponse}</li>
      * <li>{@code com.mollie.mollie.models.components.SalesInvoiceResponse}</li>
@@ -106,6 +118,8 @@ public class Entity {
             super(Entity.class, false,
                   TypeReferenceWithShape.of(new TypeReference<PaymentResponse>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<EntityRefundResponse>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<EntityChargeback>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<CaptureResponse>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<PaymentLinkResponse>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<EntityPayoutResponse>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<SalesInvoiceResponse>() {}, JsonShape.DEFAULT),
