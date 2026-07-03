@@ -28,3 +28,4 @@ Currencies custom = Currencies.of("custom_value");
 | `HUF` | HUF   |
 | `AUD` | AUD   |
 | `CAD` | CAD   |
+| `RON` | RON   |

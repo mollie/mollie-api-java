@@ -38,6 +38,7 @@ public class Currency {
     public static final Currency HUF = new Currency("HUF");
     public static final Currency AUD = new Currency("AUD");
     public static final Currency CAD = new Currency("CAD");
+    public static final Currency RON = new Currency("RON");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -123,6 +124,7 @@ public class Currency {
         map.put("HUF", HUF);
         map.put("AUD", AUD);
         map.put("CAD", CAD);
+        map.put("RON", RON);
         return map;
     }
 
@@ -140,6 +142,7 @@ public class Currency {
         map.put("HUF", CurrencyEnum.HUF);
         map.put("AUD", CurrencyEnum.AUD);
         map.put("CAD", CurrencyEnum.CAD);
+        map.put("RON", CurrencyEnum.RON);
         return map;
     }
     
@@ -157,7 +160,8 @@ public class Currency {
         CZK("CZK"),
         HUF("HUF"),
         AUD("AUD"),
-        CAD("CAD"),;
+        CAD("CAD"),
+        RON("RON"),;
 
         private final String value;
 
