@@ -87,8 +87,9 @@ public class ListProfileResponse {
      * The industry associated with the profile's trade name or brand. Please refer to the
      * [business category list](common-data-types#business-category) for all possible options.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("businessCategory")
-    private String businessCategory;
+    private Optional<String> businessCategory;
 
 
     @JsonProperty("status")
@@ -129,7 +130,7 @@ public class ListProfileResponse {
             @JsonProperty("phone") String phone,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
-            @JsonProperty("businessCategory") String businessCategory,
+            @JsonProperty("businessCategory") Optional<String> businessCategory,
             @JsonProperty("status") ListProfileResponseStatus status,
             @JsonProperty("review") Optional<? extends ListProfileResponseReview> review,
             @JsonProperty("createdAt") String createdAt,
@@ -172,14 +173,13 @@ public class ListProfileResponse {
             String website,
             String email,
             String phone,
-            String businessCategory,
             ListProfileResponseStatus status,
             String createdAt,
             ListProfileResponseLinks links) {
         this(resource, id, mode,
             name, website, email,
             phone, Optional.empty(), Optional.empty(),
-            businessCategory, status, Optional.empty(),
+            Optional.empty(), status, Optional.empty(),
             createdAt, links);
     }
 
@@ -270,7 +270,7 @@ public class ListProfileResponse {
      * [business category list](common-data-types#business-category) for all possible options.
      */
     @JsonIgnore
-    public String businessCategory() {
+    public Optional<String> businessCategory() {
         return businessCategory;
     }
 
@@ -431,6 +431,17 @@ public class ListProfileResponse {
      */
     public ListProfileResponse withBusinessCategory(String businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
+        this.businessCategory = Optional.ofNullable(businessCategory);
+        return this;
+    }
+
+
+    /**
+     * The industry associated with the profile's trade name or brand. Please refer to the
+     * [business category list](common-data-types#business-category) for all possible options.
+     */
+    public ListProfileResponse withBusinessCategory(Optional<String> businessCategory) {
+        Utils.checkNotNull(businessCategory, "businessCategory");
         this.businessCategory = businessCategory;
         return this;
     }
@@ -563,7 +574,7 @@ public class ListProfileResponse {
 
         private Optional<? extends List<String>> countriesOfActivity = Optional.empty();
 
-        private String businessCategory;
+        private Optional<String> businessCategory = Optional.empty();
 
         private ListProfileResponseStatus status;
 
@@ -701,6 +712,16 @@ public class ListProfileResponse {
          * [business category list](common-data-types#business-category) for all possible options.
          */
         public Builder businessCategory(String businessCategory) {
+            Utils.checkNotNull(businessCategory, "businessCategory");
+            this.businessCategory = Optional.ofNullable(businessCategory);
+            return this;
+        }
+
+        /**
+         * The industry associated with the profile's trade name or brand. Please refer to the
+         * [business category list](common-data-types#business-category) for all possible options.
+         */
+        public Builder businessCategory(Optional<String> businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
             this.businessCategory = businessCategory;
             return this;

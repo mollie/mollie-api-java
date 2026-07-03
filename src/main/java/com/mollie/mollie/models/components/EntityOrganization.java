@@ -62,7 +62,7 @@ public class EntityOrganization {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("registrationNumber")
-    private Optional<String> registrationNumber;
+    private JsonNullable<String> registrationNumber;
 
     /**
      * The VAT number of the organization, if based in the European Union or in The United Kingdom. VAT
@@ -100,7 +100,7 @@ public class EntityOrganization {
             @JsonProperty("email") String email,
             @JsonProperty("locale") Optional<? extends EntityOrganizationLocale> locale,
             @JsonProperty("address") Optional<? extends Address> address,
-            @JsonProperty("registrationNumber") Optional<String> registrationNumber,
+            @JsonProperty("registrationNumber") JsonNullable<String> registrationNumber,
             @JsonProperty("vatNumber") JsonNullable<String> vatNumber,
             @JsonProperty("vatRegulation") JsonNullable<? extends OrganizationVatRegulation> vatRegulation,
             @JsonProperty("_links") EntityOrganizationLinks links) {
@@ -134,7 +134,7 @@ public class EntityOrganization {
             EntityOrganizationLinks links) {
         this(resource, id, name,
             email, Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             links);
     }
 
@@ -191,7 +191,7 @@ public class EntityOrganization {
      * The registration number of the organization at their local chamber of commerce.
      */
     @JsonIgnore
-    public Optional<String> registrationNumber() {
+    public JsonNullable<String> registrationNumber() {
         return registrationNumber;
     }
 
@@ -308,15 +308,14 @@ public class EntityOrganization {
      */
     public EntityOrganization withRegistrationNumber(String registrationNumber) {
         Utils.checkNotNull(registrationNumber, "registrationNumber");
-        this.registrationNumber = Optional.ofNullable(registrationNumber);
+        this.registrationNumber = JsonNullable.of(registrationNumber);
         return this;
     }
-
 
     /**
      * The registration number of the organization at their local chamber of commerce.
      */
-    public EntityOrganization withRegistrationNumber(Optional<String> registrationNumber) {
+    public EntityOrganization withRegistrationNumber(JsonNullable<String> registrationNumber) {
         Utils.checkNotNull(registrationNumber, "registrationNumber");
         this.registrationNumber = registrationNumber;
         return this;
@@ -444,7 +443,7 @@ public class EntityOrganization {
 
         private Optional<? extends Address> address = Optional.empty();
 
-        private Optional<String> registrationNumber = Optional.empty();
+        private JsonNullable<String> registrationNumber = JsonNullable.undefined();
 
         private JsonNullable<String> vatNumber = JsonNullable.undefined();
 
@@ -536,14 +535,14 @@ public class EntityOrganization {
          */
         public Builder registrationNumber(String registrationNumber) {
             Utils.checkNotNull(registrationNumber, "registrationNumber");
-            this.registrationNumber = Optional.ofNullable(registrationNumber);
+            this.registrationNumber = JsonNullable.of(registrationNumber);
             return this;
         }
 
         /**
          * The registration number of the organization at their local chamber of commerce.
          */
-        public Builder registrationNumber(Optional<String> registrationNumber) {
+        public Builder registrationNumber(JsonNullable<String> registrationNumber) {
             Utils.checkNotNull(registrationNumber, "registrationNumber");
             this.registrationNumber = registrationNumber;
             return this;

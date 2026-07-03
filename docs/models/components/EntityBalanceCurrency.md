@@ -30,3 +30,4 @@ EntityBalanceCurrency custom = EntityBalanceCurrency.of("custom_value");
 | `HUF` | HUF   |
 | `AUD` | AUD   |
 | `CAD` | CAD   |
+| `RON` | RON   |

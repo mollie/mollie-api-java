@@ -15,6 +15,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class ProfileRequest {
@@ -70,7 +71,7 @@ public class ProfileRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessCategory")
-    private Optional<String> businessCategory;
+    private JsonNullable<String> businessCategory;
 
     @JsonCreator
     public ProfileRequest(
@@ -80,7 +81,7 @@ public class ProfileRequest {
             @JsonProperty("phone") String phone,
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("countriesOfActivity") Optional<? extends List<String>> countriesOfActivity,
-            @JsonProperty("businessCategory") Optional<String> businessCategory) {
+            @JsonProperty("businessCategory") JsonNullable<String> businessCategory) {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(website, "website");
         Utils.checkNotNull(email, "email");
@@ -104,7 +105,7 @@ public class ProfileRequest {
             String phone) {
         this(name, website, email,
             phone, Optional.empty(), Optional.empty(),
-            Optional.empty());
+            JsonNullable.undefined());
     }
 
     /**
@@ -169,7 +170,7 @@ public class ProfileRequest {
      * [business category list](common-data-types#business-category) for all possible options.
      */
     @JsonIgnore
-    public Optional<String> businessCategory() {
+    public JsonNullable<String> businessCategory() {
         return businessCategory;
     }
 
@@ -267,16 +268,15 @@ public class ProfileRequest {
      */
     public ProfileRequest withBusinessCategory(String businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
-        this.businessCategory = Optional.ofNullable(businessCategory);
+        this.businessCategory = JsonNullable.of(businessCategory);
         return this;
     }
-
 
     /**
      * The industry associated with the profile's trade name or brand. Please refer to the
      * [business category list](common-data-types#business-category) for all possible options.
      */
-    public ProfileRequest withBusinessCategory(Optional<String> businessCategory) {
+    public ProfileRequest withBusinessCategory(JsonNullable<String> businessCategory) {
         Utils.checkNotNull(businessCategory, "businessCategory");
         this.businessCategory = businessCategory;
         return this;
@@ -336,7 +336,7 @@ public class ProfileRequest {
 
         private Optional<? extends List<String>> countriesOfActivity = Optional.empty();
 
-        private Optional<String> businessCategory = Optional.empty();
+        private JsonNullable<String> businessCategory = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -436,7 +436,7 @@ public class ProfileRequest {
          */
         public Builder businessCategory(String businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
-            this.businessCategory = Optional.ofNullable(businessCategory);
+            this.businessCategory = JsonNullable.of(businessCategory);
             return this;
         }
 
@@ -444,7 +444,7 @@ public class ProfileRequest {
          * The industry associated with the profile's trade name or brand. Please refer to the
          * [business category list](common-data-types#business-category) for all possible options.
          */
-        public Builder businessCategory(Optional<String> businessCategory) {
+        public Builder businessCategory(JsonNullable<String> businessCategory) {
             Utils.checkNotNull(businessCategory, "businessCategory");
             this.businessCategory = businessCategory;
             return this;

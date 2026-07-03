@@ -38,6 +38,7 @@ public class EntityBalanceCurrency {
     public static final EntityBalanceCurrency HUF = new EntityBalanceCurrency("HUF");
     public static final EntityBalanceCurrency AUD = new EntityBalanceCurrency("AUD");
     public static final EntityBalanceCurrency CAD = new EntityBalanceCurrency("CAD");
+    public static final EntityBalanceCurrency RON = new EntityBalanceCurrency("RON");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -123,6 +124,7 @@ public class EntityBalanceCurrency {
         map.put("HUF", HUF);
         map.put("AUD", AUD);
         map.put("CAD", CAD);
+        map.put("RON", RON);
         return map;
     }
 
@@ -140,6 +142,7 @@ public class EntityBalanceCurrency {
         map.put("HUF", EntityBalanceCurrencyEnum.HUF);
         map.put("AUD", EntityBalanceCurrencyEnum.AUD);
         map.put("CAD", EntityBalanceCurrencyEnum.CAD);
+        map.put("RON", EntityBalanceCurrencyEnum.RON);
         return map;
     }
     
@@ -157,7 +160,8 @@ public class EntityBalanceCurrency {
         CZK("CZK"),
         HUF("HUF"),
         AUD("AUD"),
-        CAD("CAD"),;
+        CAD("CAD"),
+        RON("RON"),;
 
         private final String value;
 

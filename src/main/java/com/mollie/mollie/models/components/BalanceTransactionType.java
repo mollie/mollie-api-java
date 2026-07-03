@@ -60,6 +60,9 @@ public class BalanceTransactionType {
     public static final BalanceTransactionType TO_BE_RELEASED_ROLLING_RESERVE = new BalanceTransactionType("to-be-released-rolling-reserve");
     public static final BalanceTransactionType HELD_ROLLING_RESERVE = new BalanceTransactionType("held-rolling-reserve");
     public static final BalanceTransactionType RELEASED_ROLLING_RESERVE = new BalanceTransactionType("released-rolling-reserve");
+    public static final BalanceTransactionType MOVEMENT = new BalanceTransactionType("movement");
+    public static final BalanceTransactionType INVOICE_COMPENSATION = new BalanceTransactionType("invoice-compensation");
+    public static final BalanceTransactionType TOPUP = new BalanceTransactionType("topup");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -172,6 +175,9 @@ public class BalanceTransactionType {
         map.put("to-be-released-rolling-reserve", TO_BE_RELEASED_ROLLING_RESERVE);
         map.put("held-rolling-reserve", HELD_ROLLING_RESERVE);
         map.put("released-rolling-reserve", RELEASED_ROLLING_RESERVE);
+        map.put("movement", MOVEMENT);
+        map.put("invoice-compensation", INVOICE_COMPENSATION);
+        map.put("topup", TOPUP);
         return map;
     }
 
@@ -216,6 +222,9 @@ public class BalanceTransactionType {
         map.put("to-be-released-rolling-reserve", BalanceTransactionTypeEnum.TO_BE_RELEASED_ROLLING_RESERVE);
         map.put("held-rolling-reserve", BalanceTransactionTypeEnum.HELD_ROLLING_RESERVE);
         map.put("released-rolling-reserve", BalanceTransactionTypeEnum.RELEASED_ROLLING_RESERVE);
+        map.put("movement", BalanceTransactionTypeEnum.MOVEMENT);
+        map.put("invoice-compensation", BalanceTransactionTypeEnum.INVOICE_COMPENSATION);
+        map.put("topup", BalanceTransactionTypeEnum.TOPUP);
         return map;
     }
     
@@ -260,7 +269,10 @@ public class BalanceTransactionType {
         PENDING_ROLLING_RESERVE("pending-rolling-reserve"),
         TO_BE_RELEASED_ROLLING_RESERVE("to-be-released-rolling-reserve"),
         HELD_ROLLING_RESERVE("held-rolling-reserve"),
-        RELEASED_ROLLING_RESERVE("released-rolling-reserve"),;
+        RELEASED_ROLLING_RESERVE("released-rolling-reserve"),
+        MOVEMENT("movement"),
+        INVOICE_COMPENSATION("invoice-compensation"),
+        TOPUP("topup"),;
 
         private final String value;
 
