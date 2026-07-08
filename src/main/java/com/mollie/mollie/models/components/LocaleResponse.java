@@ -26,30 +26,32 @@ import java.util.Optional;
  */
 public class LocaleResponse {
 
-    public static final LocaleResponse EN_US = new LocaleResponse("en_US");
-    public static final LocaleResponse EN_GB = new LocaleResponse("en_GB");
-    public static final LocaleResponse NLNL = new LocaleResponse("nl_NL");
-    public static final LocaleResponse NL_BE = new LocaleResponse("nl_BE");
-    public static final LocaleResponse DEDE = new LocaleResponse("de_DE");
+    public static final LocaleResponse CA_ES = new LocaleResponse("ca_ES");
+    public static final LocaleResponse CS_CZ = new LocaleResponse("cs_CZ");
+    public static final LocaleResponse DA_DK = new LocaleResponse("da_DK");
     public static final LocaleResponse DE_AT = new LocaleResponse("de_AT");
     public static final LocaleResponse DE_CH = new LocaleResponse("de_CH");
+    public static final LocaleResponse DEDE = new LocaleResponse("de_DE");
     public static final LocaleResponse DE_LU = new LocaleResponse("de_LU");
-    public static final LocaleResponse FRFR = new LocaleResponse("fr_FR");
-    public static final LocaleResponse FR_BE = new LocaleResponse("fr_BE");
-    public static final LocaleResponse FR_LU = new LocaleResponse("fr_LU");
+    public static final LocaleResponse EN_GB = new LocaleResponse("en_GB");
+    public static final LocaleResponse EN_US = new LocaleResponse("en_US");
     public static final LocaleResponse ESES = new LocaleResponse("es_ES");
-    public static final LocaleResponse CA_ES = new LocaleResponse("ca_ES");
-    public static final LocaleResponse PTPT = new LocaleResponse("pt_PT");
-    public static final LocaleResponse ITIT = new LocaleResponse("it_IT");
-    public static final LocaleResponse NB_NO = new LocaleResponse("nb_NO");
-    public static final LocaleResponse SV_SE = new LocaleResponse("sv_SE");
     public static final LocaleResponse FIFI = new LocaleResponse("fi_FI");
-    public static final LocaleResponse DA_DK = new LocaleResponse("da_DK");
-    public static final LocaleResponse ISIS = new LocaleResponse("is_IS");
+    public static final LocaleResponse FR_BE = new LocaleResponse("fr_BE");
+    public static final LocaleResponse FRFR = new LocaleResponse("fr_FR");
+    public static final LocaleResponse FR_LU = new LocaleResponse("fr_LU");
     public static final LocaleResponse HUHU = new LocaleResponse("hu_HU");
-    public static final LocaleResponse PLPL = new LocaleResponse("pl_PL");
-    public static final LocaleResponse LVLV = new LocaleResponse("lv_LV");
+    public static final LocaleResponse ISIS = new LocaleResponse("is_IS");
+    public static final LocaleResponse ITIT = new LocaleResponse("it_IT");
     public static final LocaleResponse LTLT = new LocaleResponse("lt_LT");
+    public static final LocaleResponse LVLV = new LocaleResponse("lv_LV");
+    public static final LocaleResponse NB_NO = new LocaleResponse("nb_NO");
+    public static final LocaleResponse NL_BE = new LocaleResponse("nl_BE");
+    public static final LocaleResponse NLNL = new LocaleResponse("nl_NL");
+    public static final LocaleResponse PLPL = new LocaleResponse("pl_PL");
+    public static final LocaleResponse PTPT = new LocaleResponse("pt_PT");
+    public static final LocaleResponse SKSK = new LocaleResponse("sk_SK");
+    public static final LocaleResponse SV_SE = new LocaleResponse("sv_SE");
     public static final LocaleResponse NULL = new LocaleResponse("null");
 
     // This map will grow whenever a Color gets created with a new
@@ -124,60 +126,64 @@ public class LocaleResponse {
 
     private static final Map<String, LocaleResponse> createValuesMap() {
         Map<String, LocaleResponse> map = new LinkedHashMap<>();
-        map.put("en_US", EN_US);
-        map.put("en_GB", EN_GB);
-        map.put("nl_NL", NLNL);
-        map.put("nl_BE", NL_BE);
-        map.put("de_DE", DEDE);
+        map.put("ca_ES", CA_ES);
+        map.put("cs_CZ", CS_CZ);
+        map.put("da_DK", DA_DK);
         map.put("de_AT", DE_AT);
         map.put("de_CH", DE_CH);
+        map.put("de_DE", DEDE);
         map.put("de_LU", DE_LU);
-        map.put("fr_FR", FRFR);
-        map.put("fr_BE", FR_BE);
-        map.put("fr_LU", FR_LU);
+        map.put("en_GB", EN_GB);
+        map.put("en_US", EN_US);
         map.put("es_ES", ESES);
-        map.put("ca_ES", CA_ES);
-        map.put("pt_PT", PTPT);
-        map.put("it_IT", ITIT);
-        map.put("nb_NO", NB_NO);
-        map.put("sv_SE", SV_SE);
         map.put("fi_FI", FIFI);
-        map.put("da_DK", DA_DK);
-        map.put("is_IS", ISIS);
+        map.put("fr_BE", FR_BE);
+        map.put("fr_FR", FRFR);
+        map.put("fr_LU", FR_LU);
         map.put("hu_HU", HUHU);
-        map.put("pl_PL", PLPL);
-        map.put("lv_LV", LVLV);
+        map.put("is_IS", ISIS);
+        map.put("it_IT", ITIT);
         map.put("lt_LT", LTLT);
+        map.put("lv_LV", LVLV);
+        map.put("nb_NO", NB_NO);
+        map.put("nl_BE", NL_BE);
+        map.put("nl_NL", NLNL);
+        map.put("pl_PL", PLPL);
+        map.put("pt_PT", PTPT);
+        map.put("sk_SK", SKSK);
+        map.put("sv_SE", SV_SE);
         map.put("null", NULL);
         return map;
     }
 
     private static final Map<String, LocaleResponseEnum> createEnumsMap() {
         Map<String, LocaleResponseEnum> map = new HashMap<>();
-        map.put("en_US", LocaleResponseEnum.EN_US);
-        map.put("en_GB", LocaleResponseEnum.EN_GB);
-        map.put("nl_NL", LocaleResponseEnum.NLNL);
-        map.put("nl_BE", LocaleResponseEnum.NL_BE);
-        map.put("de_DE", LocaleResponseEnum.DEDE);
+        map.put("ca_ES", LocaleResponseEnum.CA_ES);
+        map.put("cs_CZ", LocaleResponseEnum.CS_CZ);
+        map.put("da_DK", LocaleResponseEnum.DA_DK);
         map.put("de_AT", LocaleResponseEnum.DE_AT);
         map.put("de_CH", LocaleResponseEnum.DE_CH);
+        map.put("de_DE", LocaleResponseEnum.DEDE);
         map.put("de_LU", LocaleResponseEnum.DE_LU);
-        map.put("fr_FR", LocaleResponseEnum.FRFR);
-        map.put("fr_BE", LocaleResponseEnum.FR_BE);
-        map.put("fr_LU", LocaleResponseEnum.FR_LU);
+        map.put("en_GB", LocaleResponseEnum.EN_GB);
+        map.put("en_US", LocaleResponseEnum.EN_US);
         map.put("es_ES", LocaleResponseEnum.ESES);
-        map.put("ca_ES", LocaleResponseEnum.CA_ES);
-        map.put("pt_PT", LocaleResponseEnum.PTPT);
-        map.put("it_IT", LocaleResponseEnum.ITIT);
-        map.put("nb_NO", LocaleResponseEnum.NB_NO);
-        map.put("sv_SE", LocaleResponseEnum.SV_SE);
         map.put("fi_FI", LocaleResponseEnum.FIFI);
-        map.put("da_DK", LocaleResponseEnum.DA_DK);
-        map.put("is_IS", LocaleResponseEnum.ISIS);
+        map.put("fr_BE", LocaleResponseEnum.FR_BE);
+        map.put("fr_FR", LocaleResponseEnum.FRFR);
+        map.put("fr_LU", LocaleResponseEnum.FR_LU);
         map.put("hu_HU", LocaleResponseEnum.HUHU);
-        map.put("pl_PL", LocaleResponseEnum.PLPL);
-        map.put("lv_LV", LocaleResponseEnum.LVLV);
+        map.put("is_IS", LocaleResponseEnum.ISIS);
+        map.put("it_IT", LocaleResponseEnum.ITIT);
         map.put("lt_LT", LocaleResponseEnum.LTLT);
+        map.put("lv_LV", LocaleResponseEnum.LVLV);
+        map.put("nb_NO", LocaleResponseEnum.NB_NO);
+        map.put("nl_BE", LocaleResponseEnum.NL_BE);
+        map.put("nl_NL", LocaleResponseEnum.NLNL);
+        map.put("pl_PL", LocaleResponseEnum.PLPL);
+        map.put("pt_PT", LocaleResponseEnum.PTPT);
+        map.put("sk_SK", LocaleResponseEnum.SKSK);
+        map.put("sv_SE", LocaleResponseEnum.SV_SE);
         map.put("null", LocaleResponseEnum.NULL);
         return map;
     }
@@ -185,30 +191,32 @@ public class LocaleResponse {
     
     public enum LocaleResponseEnum {
 
-        EN_US("en_US"),
-        EN_GB("en_GB"),
-        NLNL("nl_NL"),
-        NL_BE("nl_BE"),
-        DEDE("de_DE"),
+        CA_ES("ca_ES"),
+        CS_CZ("cs_CZ"),
+        DA_DK("da_DK"),
         DE_AT("de_AT"),
         DE_CH("de_CH"),
+        DEDE("de_DE"),
         DE_LU("de_LU"),
-        FRFR("fr_FR"),
-        FR_BE("fr_BE"),
-        FR_LU("fr_LU"),
+        EN_GB("en_GB"),
+        EN_US("en_US"),
         ESES("es_ES"),
-        CA_ES("ca_ES"),
-        PTPT("pt_PT"),
-        ITIT("it_IT"),
-        NB_NO("nb_NO"),
-        SV_SE("sv_SE"),
         FIFI("fi_FI"),
-        DA_DK("da_DK"),
-        ISIS("is_IS"),
+        FR_BE("fr_BE"),
+        FRFR("fr_FR"),
+        FR_LU("fr_LU"),
         HUHU("hu_HU"),
-        PLPL("pl_PL"),
-        LVLV("lv_LV"),
+        ISIS("is_IS"),
+        ITIT("it_IT"),
         LTLT("lt_LT"),
+        LVLV("lv_LV"),
+        NB_NO("nb_NO"),
+        NL_BE("nl_BE"),
+        NLNL("nl_NL"),
+        PLPL("pl_PL"),
+        PTPT("pt_PT"),
+        SKSK("sk_SK"),
+        SV_SE("sv_SE"),
         NULL("null"),;
 
         private final String value;

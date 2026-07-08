@@ -26,30 +26,32 @@ import java.util.Optional;
  */
 public class EntityOrganizationLocale {
 
-    public static final EntityOrganizationLocale EN_US = new EntityOrganizationLocale("en_US");
-    public static final EntityOrganizationLocale EN_GB = new EntityOrganizationLocale("en_GB");
-    public static final EntityOrganizationLocale NLNL = new EntityOrganizationLocale("nl_NL");
-    public static final EntityOrganizationLocale NL_BE = new EntityOrganizationLocale("nl_BE");
-    public static final EntityOrganizationLocale DEDE = new EntityOrganizationLocale("de_DE");
+    public static final EntityOrganizationLocale CA_ES = new EntityOrganizationLocale("ca_ES");
+    public static final EntityOrganizationLocale CS_CZ = new EntityOrganizationLocale("cs_CZ");
+    public static final EntityOrganizationLocale DA_DK = new EntityOrganizationLocale("da_DK");
     public static final EntityOrganizationLocale DE_AT = new EntityOrganizationLocale("de_AT");
     public static final EntityOrganizationLocale DE_CH = new EntityOrganizationLocale("de_CH");
+    public static final EntityOrganizationLocale DEDE = new EntityOrganizationLocale("de_DE");
     public static final EntityOrganizationLocale DE_LU = new EntityOrganizationLocale("de_LU");
-    public static final EntityOrganizationLocale FRFR = new EntityOrganizationLocale("fr_FR");
-    public static final EntityOrganizationLocale FR_BE = new EntityOrganizationLocale("fr_BE");
-    public static final EntityOrganizationLocale FR_LU = new EntityOrganizationLocale("fr_LU");
+    public static final EntityOrganizationLocale EN_GB = new EntityOrganizationLocale("en_GB");
+    public static final EntityOrganizationLocale EN_US = new EntityOrganizationLocale("en_US");
     public static final EntityOrganizationLocale ESES = new EntityOrganizationLocale("es_ES");
-    public static final EntityOrganizationLocale CA_ES = new EntityOrganizationLocale("ca_ES");
-    public static final EntityOrganizationLocale PTPT = new EntityOrganizationLocale("pt_PT");
-    public static final EntityOrganizationLocale ITIT = new EntityOrganizationLocale("it_IT");
-    public static final EntityOrganizationLocale NB_NO = new EntityOrganizationLocale("nb_NO");
-    public static final EntityOrganizationLocale SV_SE = new EntityOrganizationLocale("sv_SE");
     public static final EntityOrganizationLocale FIFI = new EntityOrganizationLocale("fi_FI");
-    public static final EntityOrganizationLocale DA_DK = new EntityOrganizationLocale("da_DK");
-    public static final EntityOrganizationLocale ISIS = new EntityOrganizationLocale("is_IS");
+    public static final EntityOrganizationLocale FR_BE = new EntityOrganizationLocale("fr_BE");
+    public static final EntityOrganizationLocale FRFR = new EntityOrganizationLocale("fr_FR");
+    public static final EntityOrganizationLocale FR_LU = new EntityOrganizationLocale("fr_LU");
     public static final EntityOrganizationLocale HUHU = new EntityOrganizationLocale("hu_HU");
-    public static final EntityOrganizationLocale PLPL = new EntityOrganizationLocale("pl_PL");
-    public static final EntityOrganizationLocale LVLV = new EntityOrganizationLocale("lv_LV");
+    public static final EntityOrganizationLocale ISIS = new EntityOrganizationLocale("is_IS");
+    public static final EntityOrganizationLocale ITIT = new EntityOrganizationLocale("it_IT");
     public static final EntityOrganizationLocale LTLT = new EntityOrganizationLocale("lt_LT");
+    public static final EntityOrganizationLocale LVLV = new EntityOrganizationLocale("lv_LV");
+    public static final EntityOrganizationLocale NB_NO = new EntityOrganizationLocale("nb_NO");
+    public static final EntityOrganizationLocale NL_BE = new EntityOrganizationLocale("nl_BE");
+    public static final EntityOrganizationLocale NLNL = new EntityOrganizationLocale("nl_NL");
+    public static final EntityOrganizationLocale PLPL = new EntityOrganizationLocale("pl_PL");
+    public static final EntityOrganizationLocale PTPT = new EntityOrganizationLocale("pt_PT");
+    public static final EntityOrganizationLocale SKSK = new EntityOrganizationLocale("sk_SK");
+    public static final EntityOrganizationLocale SV_SE = new EntityOrganizationLocale("sv_SE");
     public static final EntityOrganizationLocale NULL = new EntityOrganizationLocale("null");
 
     // This map will grow whenever a Color gets created with a new
@@ -124,60 +126,64 @@ public class EntityOrganizationLocale {
 
     private static final Map<String, EntityOrganizationLocale> createValuesMap() {
         Map<String, EntityOrganizationLocale> map = new LinkedHashMap<>();
-        map.put("en_US", EN_US);
-        map.put("en_GB", EN_GB);
-        map.put("nl_NL", NLNL);
-        map.put("nl_BE", NL_BE);
-        map.put("de_DE", DEDE);
+        map.put("ca_ES", CA_ES);
+        map.put("cs_CZ", CS_CZ);
+        map.put("da_DK", DA_DK);
         map.put("de_AT", DE_AT);
         map.put("de_CH", DE_CH);
+        map.put("de_DE", DEDE);
         map.put("de_LU", DE_LU);
-        map.put("fr_FR", FRFR);
-        map.put("fr_BE", FR_BE);
-        map.put("fr_LU", FR_LU);
+        map.put("en_GB", EN_GB);
+        map.put("en_US", EN_US);
         map.put("es_ES", ESES);
-        map.put("ca_ES", CA_ES);
-        map.put("pt_PT", PTPT);
-        map.put("it_IT", ITIT);
-        map.put("nb_NO", NB_NO);
-        map.put("sv_SE", SV_SE);
         map.put("fi_FI", FIFI);
-        map.put("da_DK", DA_DK);
-        map.put("is_IS", ISIS);
+        map.put("fr_BE", FR_BE);
+        map.put("fr_FR", FRFR);
+        map.put("fr_LU", FR_LU);
         map.put("hu_HU", HUHU);
-        map.put("pl_PL", PLPL);
-        map.put("lv_LV", LVLV);
+        map.put("is_IS", ISIS);
+        map.put("it_IT", ITIT);
         map.put("lt_LT", LTLT);
+        map.put("lv_LV", LVLV);
+        map.put("nb_NO", NB_NO);
+        map.put("nl_BE", NL_BE);
+        map.put("nl_NL", NLNL);
+        map.put("pl_PL", PLPL);
+        map.put("pt_PT", PTPT);
+        map.put("sk_SK", SKSK);
+        map.put("sv_SE", SV_SE);
         map.put("null", NULL);
         return map;
     }
 
     private static final Map<String, EntityOrganizationLocaleEnum> createEnumsMap() {
         Map<String, EntityOrganizationLocaleEnum> map = new HashMap<>();
-        map.put("en_US", EntityOrganizationLocaleEnum.EN_US);
-        map.put("en_GB", EntityOrganizationLocaleEnum.EN_GB);
-        map.put("nl_NL", EntityOrganizationLocaleEnum.NLNL);
-        map.put("nl_BE", EntityOrganizationLocaleEnum.NL_BE);
-        map.put("de_DE", EntityOrganizationLocaleEnum.DEDE);
+        map.put("ca_ES", EntityOrganizationLocaleEnum.CA_ES);
+        map.put("cs_CZ", EntityOrganizationLocaleEnum.CS_CZ);
+        map.put("da_DK", EntityOrganizationLocaleEnum.DA_DK);
         map.put("de_AT", EntityOrganizationLocaleEnum.DE_AT);
         map.put("de_CH", EntityOrganizationLocaleEnum.DE_CH);
+        map.put("de_DE", EntityOrganizationLocaleEnum.DEDE);
         map.put("de_LU", EntityOrganizationLocaleEnum.DE_LU);
-        map.put("fr_FR", EntityOrganizationLocaleEnum.FRFR);
-        map.put("fr_BE", EntityOrganizationLocaleEnum.FR_BE);
-        map.put("fr_LU", EntityOrganizationLocaleEnum.FR_LU);
+        map.put("en_GB", EntityOrganizationLocaleEnum.EN_GB);
+        map.put("en_US", EntityOrganizationLocaleEnum.EN_US);
         map.put("es_ES", EntityOrganizationLocaleEnum.ESES);
-        map.put("ca_ES", EntityOrganizationLocaleEnum.CA_ES);
-        map.put("pt_PT", EntityOrganizationLocaleEnum.PTPT);
-        map.put("it_IT", EntityOrganizationLocaleEnum.ITIT);
-        map.put("nb_NO", EntityOrganizationLocaleEnum.NB_NO);
-        map.put("sv_SE", EntityOrganizationLocaleEnum.SV_SE);
         map.put("fi_FI", EntityOrganizationLocaleEnum.FIFI);
-        map.put("da_DK", EntityOrganizationLocaleEnum.DA_DK);
-        map.put("is_IS", EntityOrganizationLocaleEnum.ISIS);
+        map.put("fr_BE", EntityOrganizationLocaleEnum.FR_BE);
+        map.put("fr_FR", EntityOrganizationLocaleEnum.FRFR);
+        map.put("fr_LU", EntityOrganizationLocaleEnum.FR_LU);
         map.put("hu_HU", EntityOrganizationLocaleEnum.HUHU);
-        map.put("pl_PL", EntityOrganizationLocaleEnum.PLPL);
-        map.put("lv_LV", EntityOrganizationLocaleEnum.LVLV);
+        map.put("is_IS", EntityOrganizationLocaleEnum.ISIS);
+        map.put("it_IT", EntityOrganizationLocaleEnum.ITIT);
         map.put("lt_LT", EntityOrganizationLocaleEnum.LTLT);
+        map.put("lv_LV", EntityOrganizationLocaleEnum.LVLV);
+        map.put("nb_NO", EntityOrganizationLocaleEnum.NB_NO);
+        map.put("nl_BE", EntityOrganizationLocaleEnum.NL_BE);
+        map.put("nl_NL", EntityOrganizationLocaleEnum.NLNL);
+        map.put("pl_PL", EntityOrganizationLocaleEnum.PLPL);
+        map.put("pt_PT", EntityOrganizationLocaleEnum.PTPT);
+        map.put("sk_SK", EntityOrganizationLocaleEnum.SKSK);
+        map.put("sv_SE", EntityOrganizationLocaleEnum.SV_SE);
         map.put("null", EntityOrganizationLocaleEnum.NULL);
         return map;
     }
@@ -185,30 +191,32 @@ public class EntityOrganizationLocale {
     
     public enum EntityOrganizationLocaleEnum {
 
-        EN_US("en_US"),
-        EN_GB("en_GB"),
-        NLNL("nl_NL"),
-        NL_BE("nl_BE"),
-        DEDE("de_DE"),
+        CA_ES("ca_ES"),
+        CS_CZ("cs_CZ"),
+        DA_DK("da_DK"),
         DE_AT("de_AT"),
         DE_CH("de_CH"),
+        DEDE("de_DE"),
         DE_LU("de_LU"),
-        FRFR("fr_FR"),
-        FR_BE("fr_BE"),
-        FR_LU("fr_LU"),
+        EN_GB("en_GB"),
+        EN_US("en_US"),
         ESES("es_ES"),
-        CA_ES("ca_ES"),
-        PTPT("pt_PT"),
-        ITIT("it_IT"),
-        NB_NO("nb_NO"),
-        SV_SE("sv_SE"),
         FIFI("fi_FI"),
-        DA_DK("da_DK"),
-        ISIS("is_IS"),
+        FR_BE("fr_BE"),
+        FRFR("fr_FR"),
+        FR_LU("fr_LU"),
         HUHU("hu_HU"),
-        PLPL("pl_PL"),
-        LVLV("lv_LV"),
+        ISIS("is_IS"),
+        ITIT("it_IT"),
         LTLT("lt_LT"),
+        LVLV("lv_LV"),
+        NB_NO("nb_NO"),
+        NL_BE("nl_BE"),
+        NLNL("nl_NL"),
+        PLPL("pl_PL"),
+        PTPT("pt_PT"),
+        SKSK("sk_SK"),
+        SV_SE("sv_SE"),
         NULL("null"),;
 
         private final String value;
