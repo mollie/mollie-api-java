@@ -7,7 +7,7 @@ Sets the language for customer-facing content and communications.
 ```java
 import com.mollie.mollie.models.components.Locale;
 
-Locale value = Locale.EN_US;
+Locale value = Locale.CA_ES;
 ```
 
 
@@ -15,28 +15,30 @@ Locale value = Locale.EN_US;
 
 | Name    | Value   |
 | ------- | ------- |
-| `EN_US` | en_US   |
-| `EN_GB` | en_GB   |
-| `NLNL`  | nl_NL   |
-| `NL_BE` | nl_BE   |
-| `DEDE`  | de_DE   |
+| `CA_ES` | ca_ES   |
+| `CS_CZ` | cs_CZ   |
+| `DA_DK` | da_DK   |
 | `DE_AT` | de_AT   |
 | `DE_CH` | de_CH   |
+| `DEDE`  | de_DE   |
 | `DE_LU` | de_LU   |
-| `FRFR`  | fr_FR   |
-| `FR_BE` | fr_BE   |
-| `FR_LU` | fr_LU   |
+| `EN_GB` | en_GB   |
+| `EN_US` | en_US   |
 | `ESES`  | es_ES   |
-| `CA_ES` | ca_ES   |
-| `PTPT`  | pt_PT   |
-| `ITIT`  | it_IT   |
-| `NB_NO` | nb_NO   |
-| `SV_SE` | sv_SE   |
 | `FIFI`  | fi_FI   |
-| `DA_DK` | da_DK   |
-| `ISIS`  | is_IS   |
+| `FR_BE` | fr_BE   |
+| `FRFR`  | fr_FR   |
+| `FR_LU` | fr_LU   |
 | `HUHU`  | hu_HU   |
-| `PLPL`  | pl_PL   |
-| `LVLV`  | lv_LV   |
+| `ISIS`  | is_IS   |
+| `ITIT`  | it_IT   |
 | `LTLT`  | lt_LT   |
+| `LVLV`  | lv_LV   |
+| `NB_NO` | nb_NO   |
+| `NL_BE` | nl_BE   |
+| `NLNL`  | nl_NL   |
+| `PLPL`  | pl_PL   |
+| `PTPT`  | pt_PT   |
+| `SKSK`  | sk_SK   |
+| `SV_SE` | sv_SE   |
 | `NULL`  | null    |

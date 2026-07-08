@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: f37c11e53508ebd367999b108a7ca00f
+  docChecksum: 8593aecb906dbab90ddb6a74d1fe8078
   docVersion: 1.0.0
-  speakeasyVersion: 1.788.0
-  generationVersion: 2.915.0
-  releaseVersion: 1.8.16
-  configChecksum: bdf0053de6f42ea7b28ebb90943b0ecd
+  speakeasyVersion: 1.789.0
+  generationVersion: 2.916.2
+  releaseVersion: 1.8.17
+  configChecksum: cd6e34617b619cb84ccdd53772211c28
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 527ddfd2-9c9c-4ef9-b097-f291d8101bef
-  pristine_commit_hash: 6d1f914b29e9b0579d176967357818cba039031f
-  pristine_tree_hash: b09f508b4a8cf30d9bfff382a60025d626999b81
+  generation_id: 33b34b40-cea7-4856-b157-b78fa7952bce
+  pristine_commit_hash: d7bda449a2c10519b9f13b34c9b6976d8867e091
+  pristine_tree_hash: 467e1500704fd4a30ff0c879086d2debc7a580a8
 features:
   java:
     additionalDependencies: 0.1.0
@@ -561,8 +561,8 @@ trackedFiles:
     pristine_git_object: cd8c631454cbec8a8708bcd5656478b327d76a81
   docs/models/components/EntityOrganizationLocale.md:
     id: cd9237f05fe7
-    last_write_checksum: sha1:cb7e88c2d4a3a3b986c707b64da401ca8877c937
-    pristine_git_object: d6104ba810b10e64cc2c6864bdcfc0fe485ab8dd
+    last_write_checksum: sha1:46608eaccca7119a1e548d61eea8928772585458
+    pristine_git_object: e5bf57717c3c4829e30b15086f8f64808bc3e404
   docs/models/components/EntityPairingCode.md:
     id: 9cc6e09d93d0
     last_write_checksum: sha1:014a65ac8195cc07a37884a07f409f3790156279
@@ -1153,12 +1153,12 @@ trackedFiles:
     pristine_git_object: 85cbf45e971f52e9e913fe909145676b0ca2264c
   docs/models/components/Locale.md:
     id: 774283c70e16
-    last_write_checksum: sha1:9c4c23b0211af77a33a6cba01eae4907d95a8616
-    pristine_git_object: df5d56425dfd63d9ab649608c28046e020689cd0
+    last_write_checksum: sha1:a66cd5a8a46141eeeecd4393020a794ba9754edf
+    pristine_git_object: 6bcdf0a19be87c413bd9db6b68716b93615396a8
   docs/models/components/LocaleResponse.md:
     id: 5bd1477c143f
-    last_write_checksum: sha1:24d1b8511ec31dff1ce6f2e5c11bfa722647c502
-    pristine_git_object: e594b9ad8966f91c687e1c484dbcb22dfcade005
+    last_write_checksum: sha1:9835bfdba5ac52af1e910d42754ba4da6c11ee30
+    pristine_git_object: 3cdf4e1bc88e4e05d2aee3fe10ed04da42a2f180
   docs/models/components/ManagedFee.md:
     id: 0149d54c0539
     last_write_checksum: sha1:2e25240ab1785f7c333187b399f1a79e058d0552
@@ -3701,8 +3701,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:cb0aadccea65aaba6a4017dc2459ff9bd194b26b
-    pristine_git_object: 64725a13291274787665e6def82a864fcdf54836
+    last_write_checksum: sha1:3bab10204a622ac141d5b6bbac1cebbe3e049a54
+    pristine_git_object: ba13dfd08bd49deb47ffbf4527e248a1e022e19e
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3957,8 +3957,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:86966d052a81c976be08de4cb7bcb6093493d9ea
-    pristine_git_object: fc6da155059cda541faf11184e0c36f802b7ad1f
+    last_write_checksum: sha1:a66a115933d077723e6f170e38d870ed1a5e285d
+    pristine_git_object: 020dbe9e1f0d69ab541bed3eb9142744e3e56cf3
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:6cdf29ce849fc8d0132424ec727ca8bb41e46761
@@ -4521,8 +4521,8 @@ trackedFiles:
     pristine_git_object: 4c55b3999e07df5ac2619438170ba09c248e7242
   src/main/java/com/mollie/mollie/models/components/EntityOrganizationLocale.java:
     id: edceea3f8ae9
-    last_write_checksum: sha1:ae3cf2e92e09cab37f41516273ca5d54ee0f361d
-    pristine_git_object: f98ad2c2fcf56963f392e7bee1ebc41250ff83f3
+    last_write_checksum: sha1:a5bd68242b081899c41911266359b0196ac3d8d6
+    pristine_git_object: 83a1247815a0d38fcdf32b943de8bbe3e9a9725f
   src/main/java/com/mollie/mollie/models/components/EntityPairingCode.java:
     id: c19c1de90858
     last_write_checksum: sha1:9ee3528877fd30e7a9da983d21d92aa2016602fc
@@ -5113,12 +5113,12 @@ trackedFiles:
     pristine_git_object: de49564613f9b957786c6ebc45f361da055f83c4
   src/main/java/com/mollie/mollie/models/components/Locale.java:
     id: 654175b58afc
-    last_write_checksum: sha1:a9a29152d6cae8eb492f77c92eda1a5c72833ac7
-    pristine_git_object: 7662abbca0626cdf4246a021f948d8377a885fea
+    last_write_checksum: sha1:e1b936f3ad6f1fe1948d139538e308cb163102bd
+    pristine_git_object: 65b860bc856706ed6c6f296de8c8f8cc25140fc6
   src/main/java/com/mollie/mollie/models/components/LocaleResponse.java:
     id: 80ab85046348
-    last_write_checksum: sha1:49caa54bc0bc1c8646a81284ce3df0069af2339d
-    pristine_git_object: 521425ebe5e302cd6dcf38ae8f78e50d6fc59df4
+    last_write_checksum: sha1:99e77db92a13677b7888137538c371304f96045c
+    pristine_git_object: 7b0926cbf5bdae17bc2c10aef6ac75384f6f38dd
   src/main/java/com/mollie/mollie/models/components/ManagedFee.java:
     id: 965fbb3c4f99
     last_write_checksum: sha1:414f5df3ddff5c6133a2ec5cfc6eb5643b7a34ab
@@ -14944,7 +14944,7 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `client.profiles.create()`: \n  *  `request.profileRequest.businessCategory` **Changed**\n  *  `response.businessCategory` **Changed** (Breaking ⚠️)\n* `client.clients.get()`:  `response.Embedded.organization.registrationNumber` **Changed** (Breaking ⚠️)\n* `client.clients.list()`:  `response.Embedded.clients[].Embedded.organization.registrationNumber` **Changed** (Breaking ⚠️)\n* `client.profiles.getCurrent()`:  `response.businessCategory` **Changed** (Breaking ⚠️)\n* `client.profiles.update()`:  `response.businessCategory` **Changed** (Breaking ⚠️)\n* `client.profiles.get()`:  `response.businessCategory` **Changed** (Breaking ⚠️)\n* `client.profiles.list()`:  `response.Embedded.profiles[].businessCategory` **Changed** (Breaking ⚠️)\n* `client.organizations.get()`:  `response.registrationNumber` **Changed** (Breaking ⚠️)\n* `client.organizations.getCurrent()`:  `response.registrationNumber` **Changed** (Breaking ⚠️)\n* `client.settlements.listPayments()`:  `response.Embedded.payments[].details.feeRegion` **Changed**\n* `client.payments.list()`:  `response.Embedded.payments[].details.feeRegion` **Changed**\n* `client.settlements.list()`: \n  *  `request.currencies` **Changed**\n* `client.balances.listTransactions()`:  `response.Embedded.balanceTransactions[].type` **Changed**\n* `client.balances.getReport()`:  `response.totals.pendingBalance.open.subtotals[].subTotals[].transactionType` **Changed**\n* `client.balances.getPrimary()`:  `response.currency.enum(ron)` **Added**\n* `client.balances.get()`:  `response.currency.enum(ron)` **Added**\n* `client.webhookEvents.get()`:  `response.Embedded.entity.union(payment-response).details.feeRegion` **Changed**\n* `client.payments.create()`:  `response.details.feeRegion` **Changed**\n* `client.balances.list()`:  `response.Embedded.balances[].currency.enum(ron)` **Added**\n* `client.payments.get()`:  `response.details.feeRegion` **Changed**\n* `client.payments.update()`:  `response.details.feeRegion` **Changed**\n* `client.payments.cancel()`:  `response.details.feeRegion` **Changed**\n* `client.paymentLinks.listPayments()`:  `response.Embedded.payments[].details.feeRegion` **Changed**\n* `client.customers.createPayment()`:  `response.details.feeRegion` **Changed**\n* `client.customers.listPayments()`:  `response.Embedded.payments[].details.feeRegion` **Changed**\n* `client.subscriptions.listPayments()`:  `response.Embedded.payments[].details.feeRegion` **Changed**\n"
+releaseNotes: "## Java SDK Changes:\n* `client.settlements.listPayments()`:  `response.Embedded.payments[].locale` **Changed**\n* `client.organizations.get()`:  `response.locale` **Changed**\n* `client.organizations.getCurrent()`:  `response.locale` **Changed**\n* `client.clients.list()`:  `response.Embedded.clients[].Embedded.organization.locale` **Changed**\n* `client.clients.get()`:  `response.Embedded.organization.locale` **Changed**\n* `client.clientLinks.create()`: \n  *  `request.clientLinkRequest.owner.locale` **Changed**\n* `client.webhookEvents.get()`:  `response.Embedded.entity.union(payment-response).locale` **Changed**\n* `client.payments.create()`: \n  *  `request.paymentRequest.locale` **Changed**\n  *  `response.locale` **Changed**\n* `client.payments.list()`:  `response.Embedded.payments[].locale` **Changed**\n* `client.payments.get()`:  `response.locale` **Changed**\n* `client.payments.update()`: \n  *  `requestBody.locale` **Changed**\n  *  `response.locale` **Changed**\n* `client.payments.cancel()`:  `response.locale` **Changed**\n* `client.methods.list()`: \n  *  `request.locale` **Changed**\n* `client.methods.all()`: \n  *  `request.locale` **Changed**\n* `client.methods.get()`: \n  *  `request.locale` **Changed**\n* `client.paymentLinks.listPayments()`:  `response.Embedded.payments[].locale` **Changed**\n* `client.customers.create()`: \n  *  `request.entityCustomer.locale` **Changed**\n  *  `response.locale` **Changed**\n* `client.customers.list()`:  `response.Embedded.customers[].locale` **Changed**\n* `client.customers.get()`:  `response.locale` **Changed**\n* `client.customers.update()`: \n  *  `requestBody.locale` **Changed**\n  *  `response.locale` **Changed**\n* `client.customers.createPayment()`: \n  *  `request.paymentRequest.locale` **Changed**\n  *  `response.locale` **Changed**\n* `client.customers.listPayments()`:  `response.Embedded.payments[].locale` **Changed**\n* `client.subscriptions.listPayments()`:  `response.Embedded.payments[].locale` **Changed**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
