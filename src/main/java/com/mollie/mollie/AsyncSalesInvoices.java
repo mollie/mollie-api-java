@@ -62,10 +62,6 @@ public class AsyncSalesInvoices {
     /**
      * Create sales invoice
      * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
-     * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
@@ -80,10 +76,6 @@ public class AsyncSalesInvoices {
     /**
      * Create sales invoice
      * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
-     * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
@@ -97,10 +89,6 @@ public class AsyncSalesInvoices {
 
     /**
      * Create sales invoice
-     * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>With the Sales Invoice API you can generate sales invoices to send to your customers.
      * 
@@ -133,10 +121,6 @@ public class AsyncSalesInvoices {
     /**
      * List sales invoices
      * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
-     * 
      * <p>Retrieve a list of all sales invoices created through the API.
      * 
      * <p>The results are paginated.
@@ -152,10 +136,6 @@ public class AsyncSalesInvoices {
 
     /**
      * List sales invoices
-     * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Retrieve a list of all sales invoices created through the API.
      * 
@@ -174,10 +154,6 @@ public class AsyncSalesInvoices {
 
     /**
      * List sales invoices
-     * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Retrieve a list of all sales invoices created through the API.
      * 
@@ -222,10 +198,6 @@ public class AsyncSalesInvoices {
     /**
      * Get sales invoice
      * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
-     * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
@@ -239,10 +211,6 @@ public class AsyncSalesInvoices {
 
     /**
      * Get sales invoice
-     * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
@@ -260,10 +228,6 @@ public class AsyncSalesInvoices {
 
     /**
      * Get sales invoice
-     * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Retrieve a single sales invoice by its ID.
      * 
@@ -302,10 +266,6 @@ public class AsyncSalesInvoices {
     /**
      * Update sales invoice
      * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
-     * 
      * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed
      * below, but for
      * statuses `paid` and `issued` there are certain additional requirements (`paymentDetails` and
@@ -323,10 +283,6 @@ public class AsyncSalesInvoices {
 
     /**
      * Update sales invoice
-     * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed
      * below, but for
@@ -348,10 +304,6 @@ public class AsyncSalesInvoices {
 
     /**
      * Update sales invoice
-     * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Certain details of an existing sales invoice can be updated. For `draft` it is all values listed
      * below, but for
@@ -390,10 +342,6 @@ public class AsyncSalesInvoices {
     /**
      * Delete sales invoice
      * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
-     * 
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
      * 
@@ -408,10 +356,6 @@ public class AsyncSalesInvoices {
 
     /**
      * Delete sales invoice
-     * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
@@ -430,10 +374,6 @@ public class AsyncSalesInvoices {
 
     /**
      * Delete sales invoice
-     * 
-     * <p>&gt; 🚧 Beta feature
-     * &gt;
-     * &gt; This feature is currently in beta testing, and the final specification may still change.
      * 
      * <p>Sales invoices which are in status `draft` can be deleted. For all other statuses, please use the
      * [Update sales invoice](update-sales-invoice) endpoint instead.
