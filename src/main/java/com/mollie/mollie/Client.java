@@ -123,6 +123,9 @@ public class Client {
     private final Transfers transfers;
 
 
+    private final DraftTransfers draftTransfers;
+
+
     private final VerifyPayee verifyPayee;
 
 
@@ -281,6 +284,11 @@ public class Client {
 
     public Transfers transfers() {
         return transfers;
+    }
+
+
+    public DraftTransfers draftTransfers() {
+        return draftTransfers;
     }
 
 
@@ -505,6 +513,7 @@ public class Client {
         this.salesInvoices = new SalesInvoices(sdkConfiguration);
         this.accounts = new Accounts(sdkConfiguration);
         this.transfers = new Transfers(sdkConfiguration);
+        this.draftTransfers = new DraftTransfers(sdkConfiguration);
         this.verifyPayee = new VerifyPayee(sdkConfiguration);
         this.payouts = new Payouts(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(
