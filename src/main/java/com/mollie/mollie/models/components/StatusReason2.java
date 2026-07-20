@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * StatusReason2
@@ -39,12 +38,12 @@ public class StatusReason2 {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("message")
-    private JsonNullable<String> message;
+    private Optional<String> message;
 
     @JsonCreator
     public StatusReason2(
             @JsonProperty("code") Optional<? extends StatusReasonCodeResponse> code,
-            @JsonProperty("message") JsonNullable<String> message) {
+            @JsonProperty("message") Optional<String> message) {
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(message, "message");
         this.code = code;
@@ -52,7 +51,7 @@ public class StatusReason2 {
     }
     
     public StatusReason2() {
-        this(Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty());
     }
 
     /**
@@ -69,7 +68,7 @@ public class StatusReason2 {
      * set to `error`.
      */
     @JsonIgnore
-    public JsonNullable<String> message() {
+    public Optional<String> message() {
         return message;
     }
 
@@ -103,15 +102,16 @@ public class StatusReason2 {
      */
     public StatusReason2 withMessage(String message) {
         Utils.checkNotNull(message, "message");
-        this.message = JsonNullable.of(message);
+        this.message = Optional.ofNullable(message);
         return this;
     }
+
 
     /**
      * Provides further details about failure indicated. This field is only populated if the`code` field is
      * set to `error`.
      */
-    public StatusReason2 withMessage(JsonNullable<String> message) {
+    public StatusReason2 withMessage(Optional<String> message) {
         Utils.checkNotNull(message, "message");
         this.message = message;
         return this;
@@ -149,7 +149,7 @@ public class StatusReason2 {
 
         private Optional<? extends StatusReasonCodeResponse> code = Optional.empty();
 
-        private JsonNullable<String> message = JsonNullable.undefined();
+        private Optional<String> message = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -181,7 +181,7 @@ public class StatusReason2 {
          */
         public Builder message(String message) {
             Utils.checkNotNull(message, "message");
-            this.message = JsonNullable.of(message);
+            this.message = Optional.ofNullable(message);
             return this;
         }
 
@@ -189,7 +189,7 @@ public class StatusReason2 {
          * Provides further details about failure indicated. This field is only populated if the`code` field is
          * set to `error`.
          */
-        public Builder message(JsonNullable<String> message) {
+        public Builder message(Optional<String> message) {
             Utils.checkNotNull(message, "message");
             this.message = message;
             return this;
