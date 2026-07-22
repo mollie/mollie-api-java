@@ -56,6 +56,20 @@ public class SessionRequest {
     @JsonProperty("redirectUrl")
     private String redirectUrl;
 
+    /**
+     * &gt; 🚧 Private beta
+     * &gt;
+     * &gt; This property is currently in private beta, and the final specification may still change.
+     * 
+     * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
+     * for you
+     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * `shippingAddress`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("requiredCustomerDetails")
+    private Optional<? extends List<SessionRequiredCustomerDetails>> requiredCustomerDetails;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
@@ -124,6 +138,7 @@ public class SessionRequest {
             @JsonProperty("description") String description,
             @JsonProperty("lines") List<SessionLineItem> lines,
             @JsonProperty("redirectUrl") String redirectUrl,
+            @JsonProperty("requiredCustomerDetails") Optional<? extends List<SessionRequiredCustomerDetails>> requiredCustomerDetails,
             @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
             @JsonProperty("customerId") Optional<String> customerId,
@@ -136,6 +151,7 @@ public class SessionRequest {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(lines, "lines");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
+        Utils.checkNotNull(requiredCustomerDetails, "requiredCustomerDetails");
         Utils.checkNotNull(billingAddress, "billingAddress");
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         Utils.checkNotNull(customerId, "customerId");
@@ -148,6 +164,7 @@ public class SessionRequest {
         this.description = description;
         this.lines = lines;
         this.redirectUrl = redirectUrl;
+        this.requiredCustomerDetails = requiredCustomerDetails;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
         this.customerId = customerId;
@@ -166,7 +183,8 @@ public class SessionRequest {
         this(amount, description, lines,
             redirectUrl, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -209,6 +227,22 @@ public class SessionRequest {
     @JsonIgnore
     public String redirectUrl() {
         return redirectUrl;
+    }
+
+    /**
+     * &gt; 🚧 Private beta
+     * &gt;
+     * &gt; This property is currently in private beta, and the final specification may still change.
+     * 
+     * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
+     * for you
+     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * `shippingAddress`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<SessionRequiredCustomerDetails>> requiredCustomerDetails() {
+        return (Optional<List<SessionRequiredCustomerDetails>>) requiredCustomerDetails;
     }
 
     @SuppressWarnings("unchecked")
@@ -329,6 +363,39 @@ public class SessionRequest {
     public SessionRequest withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
+        return this;
+    }
+
+    /**
+     * &gt; 🚧 Private beta
+     * &gt;
+     * &gt; This property is currently in private beta, and the final specification may still change.
+     * 
+     * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
+     * for you
+     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * `shippingAddress`.
+     */
+    public SessionRequest withRequiredCustomerDetails(List<SessionRequiredCustomerDetails> requiredCustomerDetails) {
+        Utils.checkNotNull(requiredCustomerDetails, "requiredCustomerDetails");
+        this.requiredCustomerDetails = Optional.ofNullable(requiredCustomerDetails);
+        return this;
+    }
+
+
+    /**
+     * &gt; 🚧 Private beta
+     * &gt;
+     * &gt; This property is currently in private beta, and the final specification may still change.
+     * 
+     * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
+     * for you
+     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * `shippingAddress`.
+     */
+    public SessionRequest withRequiredCustomerDetails(Optional<? extends List<SessionRequiredCustomerDetails>> requiredCustomerDetails) {
+        Utils.checkNotNull(requiredCustomerDetails, "requiredCustomerDetails");
+        this.requiredCustomerDetails = requiredCustomerDetails;
         return this;
     }
 
@@ -499,6 +566,7 @@ public class SessionRequest {
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.lines, other.lines) &&
             Utils.enhancedDeepEquals(this.redirectUrl, other.redirectUrl) &&
+            Utils.enhancedDeepEquals(this.requiredCustomerDetails, other.requiredCustomerDetails) &&
             Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
             Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
@@ -513,9 +581,10 @@ public class SessionRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             amount, description, lines,
-            redirectUrl, billingAddress, shippingAddress,
-            customerId, sequenceType, metadata,
-            payment, profileId, testmode);
+            redirectUrl, requiredCustomerDetails, billingAddress,
+            shippingAddress, customerId, sequenceType,
+            metadata, payment, profileId,
+            testmode);
     }
     
     @Override
@@ -525,6 +594,7 @@ public class SessionRequest {
                 "description", description,
                 "lines", lines,
                 "redirectUrl", redirectUrl,
+                "requiredCustomerDetails", requiredCustomerDetails,
                 "billingAddress", billingAddress,
                 "shippingAddress", shippingAddress,
                 "customerId", customerId,
@@ -545,6 +615,8 @@ public class SessionRequest {
         private List<SessionLineItem> lines;
 
         private String redirectUrl;
+
+        private Optional<? extends List<SessionRequiredCustomerDetails>> requiredCustomerDetails = Optional.empty();
 
         private Optional<? extends PaymentAddress> billingAddress = Optional.empty();
 
@@ -613,6 +685,39 @@ public class SessionRequest {
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
             this.redirectUrl = redirectUrl;
+            return this;
+        }
+
+
+        /**
+         * &gt; 🚧 Private beta
+         * &gt;
+         * &gt; This property is currently in private beta, and the final specification may still change.
+         * 
+         * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
+         * for you
+         * with the Express Component and returns them on the session's and payment's `billingAddress` and
+         * `shippingAddress`.
+         */
+        public Builder requiredCustomerDetails(List<SessionRequiredCustomerDetails> requiredCustomerDetails) {
+            Utils.checkNotNull(requiredCustomerDetails, "requiredCustomerDetails");
+            this.requiredCustomerDetails = Optional.ofNullable(requiredCustomerDetails);
+            return this;
+        }
+
+        /**
+         * &gt; 🚧 Private beta
+         * &gt;
+         * &gt; This property is currently in private beta, and the final specification may still change.
+         * 
+         * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
+         * for you
+         * with the Express Component and returns them on the session's and payment's `billingAddress` and
+         * `shippingAddress`.
+         */
+        public Builder requiredCustomerDetails(Optional<? extends List<SessionRequiredCustomerDetails>> requiredCustomerDetails) {
+            Utils.checkNotNull(requiredCustomerDetails, "requiredCustomerDetails");
+            this.requiredCustomerDetails = requiredCustomerDetails;
             return this;
         }
 
@@ -774,9 +879,10 @@ public class SessionRequest {
 
             return new SessionRequest(
                 amount, description, lines,
-                redirectUrl, billingAddress, shippingAddress,
-                customerId, sequenceType, metadata,
-                payment, profileId, testmode);
+                redirectUrl, requiredCustomerDetails, billingAddress,
+                shippingAddress, customerId, sequenceType,
+                metadata, payment, profileId,
+                testmode);
         }
 
     }

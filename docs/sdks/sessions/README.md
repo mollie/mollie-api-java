@@ -48,6 +48,8 @@ public class Application {
                     .description("Order #12345")
                     .lines(List.of())
                     .redirectUrl("https://example.org/redirect")
+                    .requiredCustomerDetails(List.of(
+                        SessionRequiredCustomerDetails.BILLING_ADDRESS))
                     .billingAddress(PaymentAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
