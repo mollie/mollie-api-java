@@ -71,8 +71,6 @@ public class AsyncClient {
 
     private final AsyncTransfers transfers;
 
-    private final AsyncDraftTransfers draftTransfers;
-
     private final AsyncVerifyPayee verifyPayee;
 
     private final AsyncPayouts payouts;
@@ -201,10 +199,6 @@ public class AsyncClient {
         return transfers;
     }
 
-    public AsyncDraftTransfers draftTransfers() {
-        return draftTransfers;
-    }
-
     public AsyncVerifyPayee verifyPayee() {
         return verifyPayee;
     }
@@ -250,7 +244,6 @@ public class AsyncClient {
         this.salesInvoices = new AsyncSalesInvoices(syncSDK.salesInvoices(), sdkConfiguration);
         this.accounts = new AsyncAccounts(syncSDK.accounts(), sdkConfiguration);
         this.transfers = new AsyncTransfers(syncSDK.transfers(), sdkConfiguration);
-        this.draftTransfers = new AsyncDraftTransfers(syncSDK.draftTransfers(), sdkConfiguration);
         this.verifyPayee = new AsyncVerifyPayee(syncSDK.verifyPayee(), sdkConfiguration);
         this.payouts = new AsyncPayouts(syncSDK.payouts(), sdkConfiguration);
     }
