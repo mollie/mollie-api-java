@@ -1,1309 +1,557 @@
-# Migration Guide for Mollie API Java
-Learn how to migrate to the latest version of the Java SDK
+# Migrating from `be.woutschoovaerts:mollie` to `com.mollie:mollie`
 
-> [!WARNING]
-> ### Beta Feature
-> This feature is currently in Beta testing, and the final specification may still change.
+This guide covers migrating from the legacy community Java client (`be.woutschoovaerts:mollie`, "Mollie API for Java", v4.x) to the official Speakeasy-generated Java SDK (`com.mollie:mollie`).
 
-Mollie uses API specification to autogenerate the SDK and enhance its consistency, ensure frequent updates and provide a more streamlined integration experience for developers.
+## Table of contents
 
-The new version of Java SDK introduces a number of changes that might affect the way your integration works and require adjustments in your current setup: new ways of defining specific arguments, changes to methods and parameter names etc. 
+- [Why migrate?](#why-migrate)
+- [Installation](#installation)
+- [Client initialization](#client-initialization)
+- [Authentication](#authentication)
+- [Resources and methods](#resources-and-methods)
+- [Request parameters](#request-parameters)
+- [Pagination and listing resources](#pagination-and-listing-resources)
+- [Error handling](#error-handling)
+- [New features](#new-features)
+- [Full resource mapping](#full-resource-mapping)
 
-This guide takes you through all the changes specific to Java SDK to help you upgrade your integration.
+---
 
-*You can still use the legacy version of this SDK along with the new version but we advise to upgrade as soon as possible to ensure continuous compatibility.*
+## Why migrate?
 
-## Major Changes
-Here are some things you need to know about the new Java SDK to ensure a consistent integration:
+Mollie is working towards fully migrating to the new, **automatically generated SDKs**. Unlike our legacy SDKs, which are updated manually, the new SDKs are generated directly from our API specification, making new features and API updates available within 24 hours of changes being released. This ensures that your integration stays up to date with minimal effort and allows you to benefit from the latest version of our product at all times.
 
-1. **Client Creation**
-The method to create the client changed, consolidating the Api Key and the oAuth methods.
+Beyond staying up-to-date automatically, `com.mollie:mollie` also provides:
 
-2. **Method Names**
-The method names have been updated for better clarity and consistency across all the SDKs.
+- Complete API coverage, including Accounts, Balances, Delayed Routing, Payouts, Sales Invoices, Sessions, Transfers, Unmatched Credit Transfers, Verify Payee, Webhooks and Webhook Events.
+- Unchecked exceptions instead of a single checked `MollieException`, so you no longer need `throws` declarations everywhere.
+- Built-in idempotency key support on every mutating request.
+- Automatic pagination via `callAsStream()` / `callAsIterable()`, instead of manually following `_links.next`.
+- Built-in retry logic with configurable backoff strategies.
+- First-class webhook signature validation.
+- Full asynchronous support via `CompletableFuture` and Reactive Streams `Publisher`, alongside the synchronous client.
+- `profileId` and `testmode` available as global client options regardless of auth type.
+- A pre-configured Jackson `ObjectMapper` with strict deserializers, exposed for reuse in your own code.
 
-## Client Creation
-### Example - Api Key Client
-**Old**
+---
+
+## Installation
+
+Remove the old dependency and add the new one.
+
+Maven:
+
+```xml
+<!-- Remove -->
+<dependency>
+    <groupId>be.woutschoovaerts</groupId>
+    <artifactId>mollie</artifactId>
+    <version>4.6.3</version>
+</dependency>
+
+<!-- Add -->
+<dependency>
+    <groupId>com.mollie</groupId>
+    <artifactId>mollie</artifactId>
+    <version>1.8.18</version>
+</dependency>
+```
+
+Gradle:
+
+```groovy
+// Remove
+implementation 'be.woutschoovaerts:mollie:4.6.3'
+
+// Add
+implementation 'com.mollie:mollie:1.8.18'
+```
+
+JDK 11 or later is required for both SDKs.
+
+---
+
+## Client initialization
+
+The old SDK used a builder that only accepted a plain API key or organization token string. The new SDK uses a builder with a `Security` component that supports all authentication schemes.
+
+**Before:**
+
 ```java
 import be.woutschoovaerts.mollie.Client;
 import be.woutschoovaerts.mollie.ClientBuilder;
 
-public class Application {
-  public static void main(String[] args) {
-    Client client = new ClientBuilder()
-      .withApiKey("API_KEY")
-      .build();
-  }
-}
-
+Client client = new ClientBuilder()
+    .withApiKey("test_...")
+    .build();
 ```
 
-**New**
+**After:**
+
 ```java
-import com.mollie.mollie.Mollie;
+import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import java.lang.Exception;
 
-public class Application {
-  public static void main(String[] args) throws Exception {
-    Mollie sdk = Mollie.builder().security(
-      Security.builder().apiKey("API_KEY").build()
-    ).build();
-  }
-}
-
+Client sdk = Client.builder()
+    .security(Security.builder()
+        .apiKey("test_...")
+        .build())
+    .build();
 ```
 
-### Example - oAuth Client
-**Old**
+---
+
+## Authentication
+
+### API key
+
 ```
-Could not find an example.
+-Client client = new ClientBuilder()
+-    .withApiKey("test_...")
+-    .build();
++Client sdk = Client.builder()
++    .security(Security.builder()
++        .apiKey("test_...")
++        .build())
++    .build();
 ```
 
-**New**
+### Advanced Access Token
+
+The old SDK called this an "organization token", set either at build time or afterwards on the client instance. The new SDK calls it an `advancedAccessToken` and it is only ever set through `Security`.
+
+```
+-Client client = new ClientBuilder()
+-    .withApiKey("test_...")
+-    .withOrganizationToken("access_...")
+-    .build();
+-// or at runtime:
+-client.setAccessToken("access_...");
+-client.revokeAccessToken();
++Client sdk = Client.builder()
++    .security(Security.builder()
++        .advancedAccessToken("access_...")
++        .build())
++    .build();
+```
+
+### OAuth token
+
+The old SDK had no dedicated OAuth security scheme on the client. You exchanged an authorization code for an access token yourself via `client.oAuth().generateTokens(...)`, then fed the resulting token into `setAccessToken(...)`. The new SDK exposes `oAuth` as a first-class client security scheme:
+
 ```java
-import com.mollie.mollie.Mollie;
+import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
-import java.lang.Exception;
 
-public class Application {
-
-  public static void main(String[] args) throws Exception {
-    Mollie sdk = Mollie.builder().security(
-      Security.builder().apiKey("OAUTH_KEY").build()
-    ).build();
-  }
-}
-
+Client sdk = Client.builder()
+    .security(Security.builder()
+        .oAuth("Bearer eyJ...")
+        .build())
+    .build();
 ```
 
-## Method Names
-To see code examples for each method refer to the [README](./README.md).
+Token exchange itself is now a regular resource call instead of a bespoke handler method:
 
-<table>
-  <tr>
-    <td>
-      API
-    </td>
-    <td>
-      Endpoint
-    </td>
-    <td>
-      Java Method Name
-    </td>
-    <td>
-      New SDK Method Name
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="6">
-      Payments API
-    </td>
-    <td>
-      Create payment
-    </td>
-    <td>
-      client.payments.createPayment
-    </td>
-    <td>
-      client.payments.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List payments
-    </td>
-    <td>
-      client.payments.listPayments
-    </td>
-    <td>
-      client.payments.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get payment
-    </td>
-    <td>
-      client.payments.getPayment
-    </td>
-    <td>
-      client.payments.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Update payment
-    </td>
-    <td>
-      client.payments.updatePayment
-    </td>
-    <td>
-      client.payments.update
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Cancel payment
-    </td>
-    <td>
-      client.payments.cancelPayment
-    </td>
-    <td>
-      client.payments.cancel
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Release payment authorization
-    </td>
-    <td>
-      -
-    </td>
-    <td>
-      client.payments.releaseAuthorization
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="7">
-      Methods API
-    </td>
-    <td>
-      List payment methods
-    </td>
-    <td>
-      client.methods.listMethods
-    </td>
-    <td>
-      client.methods.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List all payment methods
-    </td>
-    <td>
-      client.methods.listAllMethods
-    </td>
-    <td>
-      client.methods.all
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get payment method
-    </td>
-    <td>
-      client.methods.getMethod
-    </td>
-    <td>
-      client.methods.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Enable payment method
-    </td>
-    <td>
-      client.profiles.enablePaymentMethod
-    </td>
-    <td>
-      client.methods.enable
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Disable payment method
-    </td>
-    <td>
-      client.profiles.disablePaymentMethod
-    </td>
-    <td>
-      client.methods.disable
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Enable payment method issuer
-    </td>
-    <td>
-      client.profiles.enableGiftCardIssuer
-      client.profiles.enableVoucherIssuer
-    </td>
-    <td>
-      client.methods.enableIssuer
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Disable payment method issuer
-    </td>
-    <td>
-      client.profiles.disableGiftCardIssuer
-      client.profiles.disableVoucherIssuer
-    </td>
-    <td>
-      client.methods.disableIssuer
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="7">
-      Refunds API
-    </td>
-    <td>
-      Create payment refund
-    </td>
-    <td>
-      client.refunds.createRefund
-    </td>
-    <td>
-      client.refunds.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List payment refunds
-    </td>
-    <td>
-      client.refunds.listRefunds
-    </td>
-    <td>
-      client.refunds.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get payment refund
-    </td>
-    <td>
-      client.refunds.getRefund
-    </td>
-    <td>
-      client.refunds.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Cancel payment refund
-    </td>
-    <td>
-      client.refunds.cancelRefund
-    </td>
-    <td>
-      client.refunds.cancel
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Create order refund
-    </td>
-    <td>
-      client.orders.createOrderRefund
-    </td>
-    <td>
-      client.refunds.createOrder
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List order refunds
-    </td>
-    <td>
-      client.orders.getOrderRefunds
-    </td>
-    <td>
-      client.refunds.getOrder
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List all refunds
-    </td>
-    <td>
-      client.refunds.listRefunds
-    </td>
-    <td>
-      client.refunds.all
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="3">
-      Chargebacks API
-    </td>
-    <td>
-      List payment chargebacks
-    </td>
-    <td>
-      client.chargebacks.listChargebacks
-    </td>
-    <td>
-      client.chargebacks.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get payment chargeback
-    </td>
-    <td>
-      client.chargebacks.getChargeback
-    </td>
-    <td>
-      client.chargebacks.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List all chargebacks
-    </td>
-    <td>
-      client.chargebacks.listChargebacks
-    </td>
-    <td>
-      client.chargebacks.all
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="3">
-      Captures API
-    </td>
-    <td>
-      Create capture
-    </td>
-    <td>
-      client.captures.createCapture
-    </td>
-    <td>
-      client.captures.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List captures
-    </td>
-    <td>
-      client.captures.listCaptures
-    </td>
-    <td>
-      client.captures.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get capture
-    </td>
-    <td>
-      client.captures.getCapture
-    </td>
-    <td>
-      client.captures.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Wallets API
-    </td>
-    <td>
-      Request Apple Pay payment session
-    </td>
-    <td>
-      client.wallets.requestApplePaySession
-    </td>
-    <td>
-      client.wallets.requestApplePaySession
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="6">
-      Payment Links API
-    </td>
-    <td>
-      Create payment link
-    </td>
-    <td>
-      client.paymentLinks.createPaymentLink
-    </td>
-    <td>
-      client.paymentLinks.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List payment links
-    </td>
-    <td>
-      client.paymentLinks.listPaymentLinks
-    </td>
-    <td>
-      client.paymentLinks.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get payment link
-    </td>
-    <td>
-      client.paymentLinks.getPaymentLink
-    </td>
-    <td>
-      client.paymentLinks.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Update payment link
-    </td>
-    <td>
-      client.paymentLinks.updatePaymentLink
-    </td>
-    <td>
-      client.paymentLinks.update
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Delete payment link
-    </td>
-    <td>
-      client.paymentLinks.deletePaymentLink
-    </td>
-    <td>
-      client.paymentLinks.delete
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get payment link payments
-    </td>
-    <td>
-      client.paymentLinks.listPaymentLinkPayments
-    </td>
-    <td>
-      client.paymentLinks.listPayments
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">
-      Terminals API
-    </td>
-    <td>
-      List terminals
-    </td>
-    <td>
-      client.terminals.listTerminals
-    </td>
-    <td>
-      client.terminals.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get terminal
-    </td>
-    <td>
-      client.terminals.getTerminal
-    </td>
-    <td>
-      client.terminals.get
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">
-      Delayed Routing API
-    </td>
-    <td>
-      Create a delayed route
-    </td>
-    <td>
-      -
-    </td>
-    <td>
-      client.delayedRouting.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List payment routes
-    </td>
-    <td>
-      -
-    </td>
-    <td>
-      client.delayedRouting.list
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="9">
-      Orders API
-    </td>
-    <td>
-      Create order
-    </td>
-    <td>
-      client.orders.createOrder
-    </td>
-    <td>
-      client.orders.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List orders
-    </td>
-    <td>
-      client.orders.getOrders
-    </td>
-    <td>
-      client.orders.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get order
-    </td>
-    <td>
-      client.orders.getOrder
-    </td>
-    <td>
-      client.orders.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Update order
-    </td>
-    <td>
-      client.orders.updateOrder
-    </td>
-    <td>
-      client.orders.update
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Cancel order
-    </td>
-    <td>
-      client.orders.cancelOrder
-    </td>
-    <td>
-      client.orders.cancel
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Manage order lines
-    </td>
-    <td>
-      client.orders.manageOrderLines
-    </td>
-    <td>
-      client.orders.manageLines
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Cancel order lines
-    </td>
-    <td>
-      client.orders.cancelOrderLines
-    </td>
-    <td>
-      client.orders.cancelLines
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Update order line
-    </td>
-    <td>
-      client.orders.updateOrderLine
-    </td>
-    <td>
-      client.orders.updateLine
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Create order payment
-    </td>
-    <td>
-      client.orders.createOrderPayment
-    </td>
-    <td>
-      client.orders.createPayment
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="4">
-      Shipments API
-    </td>
-    <td>
-      Create shipment
-    </td>
-    <td>
-      client.shipments.createShipment
-    </td>
-    <td>
-      client.shipments.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List shipments
-    </td>
-    <td>
-      client.shipments.getShipments
-    </td>
-    <td>
-      client.shipments.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get shipment
-    </td>
-    <td>
-      client.shipments.getShipment
-    </td>
-    <td>
-      client.shipments.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Update shipment
-    </td>
-    <td>
-      client.shipments.updateShipment
-    </td>
-    <td>
-      client.shipments.update
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="7">
-      Customers API
-    </td>
-    <td>
-      Create customer
-    </td>
-    <td>
-      client.customer.createCustomer
-    </td>
-    <td>
-      client.customers.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List customers
-    </td>
-    <td>
-      client.customer.listCustomers
-    </td>
-    <td>
-      client.customers.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get customer
-    </td>
-    <td>
-      client.customer.getCustomer
-    </td>
-    <td>
-      client.customers.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Update customer
-    </td>
-    <td>
-      client.customer.updateCustomer
-    </td>
-    <td>
-      client.customers.update
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Delete customer
-    </td>
-    <td>
-      client.customer.deleteCustomer
-    </td>
-    <td>
-      client.customers.delete
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Create customer payment
-    </td>
-    <td>
-      client.customer.createCustomerPayment
-    </td>
-    <td>
-      client.customers.createPayment
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List customer payments
-    </td>
-    <td>
-      client.customer.listCustomerPayments
-    </td>
-    <td>
-      client.customers.listPayment
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="4">
-      Mandates API
-    </td>
-    <td>
-      Create mandate
-    </td>
-    <td>
-      client.mandates.createMandate
-    </td>
-    <td>
-      client.mandates.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List mandates
-    </td>
-    <td>
-      client.mandates.listMandates
-    </td>
-    <td>
-      client.mandates.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get mandate
-    </td>
-    <td>
-      client.mandates.getMandate
-    </td>
-    <td>
-      client.mandates.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Revoke mandate
-    </td>
-    <td>
-      client.mandates.revokeMandate
-    </td>
-    <td>
-      client.mandates.revoke
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="7">
-      Subscriptions API
-    </td>
-    <td>
-      Create subscription
-    </td>
-    <td>
-      client.subscriptions.createSubscription
-    </td>
-    <td>
-      client.subscriptions.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List customer subscriptions
-    </td>
-    <td>
-      client.subscriptions.listSubscriptions
-    </td>
-    <td>
-      client.subscriptions.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get subscription
-    </td>
-    <td>
-      client.subscriptions.getSubscription
-    </td>
-    <td>
-      client.subscriptions.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Update subscription
-    </td>
-    <td>
-      client.subscriptions.updateSubscription
-    </td>
-    <td>
-      client.subscriptions.update
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Cancel subscription
-    </td>
-    <td>
-      client.subscriptions.cancelSubscription
-    </td>
-    <td>
-      client.subscriptions.cancel
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List all subscriptions
-    </td>
-    <td>
-      client.subscriptions.listAllSubscriptions
-    </td>
-    <td>
-      client.subscriptions.all
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List subscription payments
-    </td>
-    <td>
-      client.subscriptions.listSubscriptionPayments
-    </td>
-    <td>
-      client.subscriptions.listPayments
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="3">
-      OAuth API
-    </td>
-    <td>
-      Authorize
-    </td>
-    <td>
-      client.oAuth.createAuthorizationUrl
-    </td>
-    <td>
-      client.oauth.authorize
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Generate tokens
-    </td>
-    <td>
-      client.oAuth.generateTokens
-    </td>
-    <td>
-      client.oauth.generate
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Revoke tokens
-    </td>
-    <td>
-      client.oAuth.revokeToken
-    </td>
-    <td>
-      client.oauth.revoke
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">
-      Permissions API
-    </td>
-    <td>
-      List permissions
-    </td>
-    <td>
-      client.permissions.getPermissions
-    </td>
-    <td>
-      client.permissions.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get permission
-    </td>
-    <td>
-      client.permissions.getPermission
-    </td>
-    <td>
-      client.permissions.get
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="3">
-      Organizations API
-    </td>
-    <td>
-      Get organization
-    </td>
-    <td>
-      client.organizations.getOrganization
-    </td>
-    <td>
-      client.organizations.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get current organization
-    </td>
-    <td>
-      client.organizations.getMyOrganization
-    </td>
-    <td>
-      client.organizations.current
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get partner status
-    </td>
-    <td>
-      client.organizations.getPartner
-    </td>
-    <td>
-      client.organizations.partner
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="6">
-      Profiles API
-    </td>
-    <td>
-      Create profile
-    </td>
-    <td>
-      client.profiles.createProfile
-    </td>
-    <td>
-      client.profiles.create
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List profiles
-    </td>
-    <td>
-      client.profiles.getProfiles
-    </td>
-    <td>
-      client.profiles.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get profile
-    </td>
-    <td>
-      client.profiles.getProfile
-    </td>
-    <td>
-      client.profiles.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Update profile
-    </td>
-    <td>
-      client.profiles.updateProfile
-    </td>
-    <td>
-      client.profiles.update
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Delete profile
-    </td>
-    <td>
-      client.profiles.deleteProfile
-    </td>
-    <td>
-      client.profiles.delete
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get current profile
-    </td>
-    <td>
-      client.profiles.getMyProfile
-    </td>
-    <td>
-      client.profiles.current
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">
-      Onboarding API
-    </td>
-    <td>
-      Get onboarding status
-    </td>
-    <td>
-      client.onboarding.getOnboardingStatus
-    </td>
-    <td>
-      client.onboarding.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Submit onboarding data
-    </td>
-    <td>
-      client.onboarding.submitOnboardingData
-    </td>
-    <td>
-      client.onboarding.submit
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Capabilities API
-    </td>
-    <td>
-      List capabilities
-    </td>
-    <td>
-      -
-    </td>
-    <td>
-      client.capabilities.list
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">
-      Clients API
-    </td>
-    <td>
-      List clients
-    </td>
-    <td>
-      client.clients.getClients
-    </td>
-    <td>
-      client.clients.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get client
-    </td>
-    <td>
-      client.clients.getClient
-    </td>
-    <td>
-      client.clients.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Client Links API
-    </td>
-    <td>
-      Create client link
-    </td>
-    <td>
-      client.clientLinks.createClientLink
-    </td>
-    <td>
-      client.clientLinks.create
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="5">
-      Balances API
-    </td>
-    <td>
-      List balances
-    </td>
-    <td>
-      client.balances.getBalances
-    </td>
-    <td>
-      client.balances.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get balance
-    </td>
-    <td>
-      client.balances.getBalance
-    </td>
-    <td>
-      client.balances.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get primary balance
-    </td>
-    <td>
-      client.balances.getPrimaryBalance
-    </td>
-    <td>
-      client.balances.primary
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get balance report
-    </td>
-    <td>
-      client.balances.getBalanceReport
-    </td>
-    <td>
-      client.balances.report
-    </td>
-  </tr>
-  <tr>
-    <td>
-      List balance transactions
-    </td>
-    <td>
-      client.balances.getBalanceTransactions
-    </td>
-    <td>
-      client.balances.transactions
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="8">
-      Settlements API
-    </td>
-    <td>
-      List settlements
-    </td>
-    <td>
-      client.settlements.getSettlements
-    </td>
-    <td>
-      client.settlements.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get settlement
-    </td>
-    <td>
-      client.settlements.getSettlement
-    </td>
-    <td>
-      client.settlements.get
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get open settlement
-    </td>
-    <td>
-      client.settlements.getOpenSettlement
-    </td>
-    <td>
-      client.settlements.open
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get next settlement
-    </td>
-    <td>
-      client.settlements.getNextSettlement
-    </td>
-    <td>
-      client.settlements.next
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get settlement payments
-    </td>
-    <td>
-      client.settlements.getSettlementPayments
-    </td>
-    <td>
-      client.settlements.payments
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get settlement captures
-    </td>
-    <td>
-      client.settlements.getSettlementCaptures
-    </td>
-    <td>
-      client.settlements.captures
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get settlement refunds
-    </td>
-    <td>
-      client.settlements.getSettlementRefund
-    </td>
-    <td>
-      client.settlements.refunds
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get settlement chargebacks
-    </td>
-    <td>
-      client.settlements.getSettlementChargebacks
-    </td>
-    <td>
-      client.settlements.chargebacks
-    </td>
-  </tr>
-  <tr>
-    <td rowspan="2">
-      Invoices API
-    </td>
-    <td>
-      List invoices
-    </td>
-    <td>
-      client.invoices.getInvoices
-    </td>
-    <td>
-      client.invoices.list
-    </td>
-  </tr>
-  <tr>
-    <td>
-      Get invoice
-    </td>
-    <td>
-      client.invoices.getInvoice
-    </td>
-    <td>
-      client.invoices.get
-    </td>
-  </tr>
-</table>
+```
+-TokenResponse tokens = client.oAuth().generateTokens(clientId, clientSecret, TokenRequest.builder()
+-    .grantType(GrantType.AUTHORIZATION_CODE)
+-    .code("auth_...")
+-    .redirectUri("https://example.com/redirect")
+-    .build());
++OauthGenerateTokensResponse res = sdk.oauth().generate()
++    .security(OauthGenerateTokensSecurity.builder()
++        .username(clientId)
++        .password(clientSecret)
++        .build())
++    .requestBody(OauthGenerateTokensRequestBody.builder()
++        .grantType(OauthGrantType.AUTHORIZATION_CODE)
++        .code("auth_...")
++        .redirectUri("https://example.com/redirect")
++        .build())
++    .call();
+```
+
+### Global defaults (`profileId`, `testmode`)
+
+In the old SDK, `enableTestMode()` / `disableTestMode()` toggled test mode when using an organization token with no built-in concept of a global `profileId` — you had to add it manually to `QueryParams` on every call. In the new SDK, both `profileId` and `testmode` are configured once on the client and apply to every request that supports them:
+
+```
+-Client client = new ClientBuilder()
+-    .withApiKey("test_...")
+-    .withOrganizationToken("access_...")
+-    .withTestMode(true)
+-    .build();
++Client sdk = Client.builder()
++    .security(Security.builder()
++        .advancedAccessToken("access_...")
++        .build())
++    .testmode(true)
++    .profileId("pfl_...")
++    .build();
+```
+
+---
+
+## Resources and methods
+
+### Fluent request builders replace handler getters + POJO arguments
+
+The old SDK exposed a handler per resource (`client.payments()`, `client.customers()`, ...); each handler method took the request body and/or a `QueryParams` map directly as arguments and returned the response model, throwing a checked `MollieException` on failure. The new SDK exposes a resource object per domain; each operation starts a fluent request builder on which you set path parameters, the request body, and per-call options, then execute it with `.call()`. The response comes back wrapped in an operation-specific envelope (for example `CreatePaymentResponse`), which exposes the actual model through an `Optional` accessor (for example `.paymentResponse()`).
+
+```
+-PaymentRequest body = PaymentRequest.builder()
+-    .amount(new Amount("EUR", "10.00"))
+-    .description("Order #478")
+-    .redirectUrl("https://example.com/redirect")
+-    .build();
+-PaymentResponse payment = client.payments().createPayment(body);
++CreatePaymentResponse res = sdk.payments().create()
++    .paymentRequest(PaymentRequest.builder()
++        .amount(Amount.builder().currency("EUR").value("10.00").build())
++        .description("Order #478")
++        .redirectUrl("https://example.com/redirect")
++        .build())
++    .call();
++PaymentResponse payment = res.paymentResponse().orElseThrow();
+```
+
+```
+-PaymentResponse payment = client.payments().getPayment("tr_WDqYK6vllg");
++GetPaymentResponse res = sdk.payments().get()
++    .request(GetPaymentRequest.builder()
++        .paymentId("tr_WDqYK6vllg")
++        .build())
++    .call();
++PaymentResponse payment = res.paymentResponse().orElseThrow();
+```
+
+### Update
+
+```
+-PaymentResponse payment = client.payments().updatePayment("tr_...",
+-    UpdatePaymentRequest.builder()
+-        .description("New description")
+-        .build());
++UpdatePaymentResponse res = sdk.payments().update()
++    .paymentId("tr_...")
++    .requestBody(UpdatePaymentRequestBody.builder()
++        .description("New description")
++        .build())
++    .call();
+```
+
+### Cancel / delete
+
+```
+-client.payments().cancelPayment("tr_...");
++CancelPaymentResponse res = sdk.payments().cancel()
++    .paymentId("tr_...")
++    .call();
+```
+
+### Checked exceptions removed
+
+Every method in the old SDK declared `throws MollieException`, forcing a `try`/`catch` or a `throws` clause at every call site — even when you had no way to recover locally. In the new SDK, `ClientError` (the base error type) and its subclasses extend `RuntimeException`, so you only catch them where you actually want to handle a failure.
+
+```
+-public PaymentResponse charge(String id) throws MollieException {
+-    return client.payments().getPayment(id);
+-}
++public PaymentResponse charge(String id) {
++    return sdk.payments().get()
++        .request(GetPaymentRequest.builder().paymentId(id).build())
++        .call()
++        .paymentResponse()
++        .orElseThrow();
++}
+```
+
+### Nested resources
+
+The old SDK had a mix of dedicated nested handlers (`client.customers().createCustomerPayment(...)`) and flat handlers that took a parent ID as their first argument (`client.refunds().createRefund(paymentId, ...)`). In the new SDK, nested operations are consistently methods on the parent resource, with the parent ID set as a builder field:
+
+| Old | New |
+| --- | --- |
+| `client.customers().createCustomerPayment(customerId, body)` | `client.customers().createPayment().customerId(customerId).paymentRequest(...).call()` |
+| `client.customers().listCustomerPayments(customerId)` | `client.customers().listPayments().customerId(customerId).call()` |
+| `client.mandates().createMandate(customerId, body)` | `client.mandates().create().customerId(customerId).mandateRequest(...).call()` |
+| `client.mandates().listMandates(customerId)` | `client.mandates().list().customerId(customerId).call()` |
+| `client.mandates().revokeMandate(customerId, mandateId)` | `client.mandates().revoke().customerId(customerId).mandateId(mandateId).call()` |
+| `client.subscriptions().createSubscription(customerId, body)` | `client.subscriptions().create().customerId(customerId).subscriptionRequest(...).call()` |
+| `client.subscriptions().listAllSubscriptions()` | `client.subscriptions().all().call()` |
+| `client.subscriptions().listSubscriptionPayments(customerId, subscriptionId)` | `client.subscriptions().listPayments().customerId(customerId).subscriptionId(subscriptionId).call()` |
+| `client.refunds().createRefund(paymentId, body)` | `client.refunds().create().paymentId(paymentId).refundRequest(...).call()` |
+| `client.chargebacks().listChargebacks(paymentId)` | `client.chargebacks().list().paymentId(paymentId).call()` |
+| `client.captures().createCapture(paymentId, body)` | `client.captures().create().paymentId(paymentId).captureRequest(...).call()` |
+| `client.settlements().getSettlementPayments(settlementId)` | `client.settlements().listPayments().settlementId(settlementId).call()` |
+| `client.settlements().getSettlementRefund(settlementId)` | `client.settlements().listRefunds().settlementId(settlementId).call()` |
+| `client.settlements().getSettlementCaptures(settlementId)` | `client.settlements().listCaptures().settlementId(settlementId).call()` |
+| `client.settlements().getSettlementChargebacks(settlementId)` | `client.settlements().listChargebacks().settlementId(settlementId).call()` |
+| `client.wallet().requestApplePaySession(body)` | `client.wallets().requestApplePaySession().applePaySessionRequest(...).call()` |
+
+---
+
+## Request parameters
+
+### Idempotency key
+
+The old SDK didn't expose per-request idempotency keys. The new SDK accepts `idempotencyKey` as a builder option on every mutating request:
+
+```java
+CreatePaymentResponse res = sdk.payments().create()
+    .idempotencyKey("123e4567-e89b-12d3-a456-426614174000")
+    .paymentRequest(PaymentRequest.builder()
+        .description("My first payment")
+        .redirectUrl("https://example.org/redirect")
+        .amount(Amount.builder().currency("EUR").value("10.00").build())
+        .build())
+    .call();
+```
+
+### `testmode` and `profileId` per request
+
+These can be overridden per request even when defaults are set on the client:
+
+```java
+CreatePaymentResponse res = sdk.payments().create()
+    .paymentRequest(PaymentRequest.builder()
+        .testmode(false)
+        .profileId("pfl_other")
+        .description("My first payment")
+        .redirectUrl("https://example.org/redirect")
+        .amount(Amount.builder().currency("EUR").value("10.00").build())
+        .build())
+    .call();
+```
+
+---
+
+## Pagination and listing resources
+
+### Old SDK — manual `Pagination<T>`
+
+The old SDK returned a `Pagination<T>` wrapper (`count`, `_embedded`, `_links`) from every list method. There was no built-in way to fetch the next page — you had to inspect `_links.next` yourself and issue a new call with the right `from` / `limit` query parameters:
+
+```java
+Pagination<PaymentListResponse> page = client.payments().listPayments();
+System.out.println(page.getCount());
+
+if (page.getLinks().getNext() != null) {
+    // manually parse the next link's query string and call listPayments(QueryParams) again
+}
+```
+
+### New SDK — `callAsStream()` / `callAsIterable()` auto-paginate
+
+`list()` returns a request builder that can be executed with `callAsStream()` or `callAsIterable()`, both of which follow pagination automatically:
+
+```java
+sdk.payments().list()
+    .from("tr_5B8cwPMGnU")
+    .limit(50L)
+    .callAsStream()
+    .forEach(page -> {
+        // handle page
+    });
+```
+
+```java
+Iterable<ListPaymentsResponse> pages = sdk.payments().list().callAsIterable();
+for (ListPaymentsResponse page : pages) {
+    // handle page
+}
+```
+
+An asynchronous client is also available for pagination, returning a `Flow.Publisher<T>` via `callAsPublisher()`. See New features below.
+
+---
+
+## Error handling
+
+Because `ClientError` is unchecked, you no longer need a `throws MollieException` clause on every method that calls the SDK — only wrap calls in `try`/`catch` where you actually want to react to a failure.
+
+### Old SDK — `MollieException`
+
+```java
+try {
+    PaymentResponse payment = client.payments().getPayment("invalid");
+} catch (MollieException ex) {
+    System.out.println(ex.getMessage());
+    System.out.println(ex.getDetails()); // raw response details, if any
+}
+```
+
+### New SDK — `ClientError` / `ErrorResponse` / `APIException`
+
+```java
+import com.mollie.mollie.models.errors.ClientError;
+import com.mollie.mollie.models.errors.ErrorResponse;
+
+try {
+    GetPaymentResponse res = sdk.payments().get()
+        .request(GetPaymentRequest.builder().paymentId("invalid").build())
+        .call();
+} catch (ClientError ex) { // all SDK exceptions inherit from ClientError (a RuntimeException)
+    int statusCode = ex.code();
+    var headers = ex.headers();
+    var responseBody = ex.body();
+
+    if (ex instanceof ErrorResponse) {
+        ErrorResponse e = (ErrorResponse) ex;
+        e.data().ifPresent(payload -> {
+            long status = payload.status();
+            String title = payload.title();
+            String detail = payload.detail();
+        });
+    }
+}
+```
+
+---
+
+## New features
+
+### Webhook signature validation
+
+```java
+import com.mollie.mollie.utils.webhooks.InvalidSignatureException;
+import com.mollie.mollie.utils.webhooks.SignatureValidator;
+import java.util.Collections;
+
+SignatureValidator validator = new SignatureValidator(System.getenv("MOLLIE_WEBHOOK_SECRET"));
+
+try {
+    boolean isVerified = validator.validatePayload(rawBody, Collections.singletonList(signatureHeader));
+    if (!isVerified) {
+        // no signature header was provided; treat as a legacy webhook
+    }
+} catch (InvalidSignatureException exception) {
+    // reject the request
+}
+```
+
+### Asynchronous support
+
+The old SDK was synchronous only. The new SDK also ships an `AsyncClient` that returns `CompletableFuture<T>` for standard operations, and Reactive Streams `Publisher<T>` for paginated operations:
+
+```java
+import com.mollie.mollie.AsyncClient;
+import com.mollie.mollie.Client;
+import java.util.concurrent.CompletableFuture;
+
+AsyncClient sdk = Client.builder()
+    .security(Security.builder().apiKey("test_...").build())
+    .build()
+    .async();
+
+CompletableFuture<CreatePaymentResponse> future = sdk.payments().create()
+    .paymentRequest(PaymentRequest.builder()
+        .amount(Amount.builder().currency("EUR").value("10.00").build())
+        .description("Order #478")
+        .redirectUrl("https://example.com/redirect")
+        .build())
+    .call();
+
+future.thenAccept(res -> res.paymentResponse().ifPresent(System.out::println));
+```
+
+### Retries
+
+```java
+import com.mollie.mollie.utils.BackoffStrategy;
+import com.mollie.mollie.utils.RetryConfig;
+import java.util.concurrent.TimeUnit;
+
+Client sdk = Client.builder()
+    .retryConfig(RetryConfig.builder()
+        .backoff(BackoffStrategy.builder()
+            .initialInterval(1L, TimeUnit.MILLISECONDS)
+            .maxInterval(50L, TimeUnit.MILLISECONDS)
+            .maxElapsedTime(1000L, TimeUnit.MILLISECONDS)
+            .baseFactor(1.1)
+            .jitterFactor(0.15)
+            .retryConnectError(false)
+            .build())
+        .build())
+    .build();
+```
+
+Retry behaviour can also be overridden per operation via `.retryConfig(...)` on the request builder.
+
+### Custom HTTP client and debugging
+
+```java
+import com.mollie.mollie.utils.SpeakeasyHTTPClient;
+
+SpeakeasyHTTPClient httpClient = new SpeakeasyHTTPClient();
+httpClient.enableDebugLogging(true);
+
+Client sdk = Client.builder()
+    .client(httpClient)
+    .build();
+```
+
+The `HTTPClient` interface can also be implemented from scratch to add custom headers, executors, or SSL configuration.
+
+### Jackson configuration
+
+The SDK ships a pre-configured `ObjectMapper` accessible via `JSON.getMapper()`, and a `MollieJacksonModule` you can register on your own mapper for full compatibility:
+
+```java
+import com.mollie.mollie.utils.MollieJacksonModule;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+ObjectMapper myMapper = new ObjectMapper()
+    .registerModule(new MollieJacksonModule());
+```
+
+---
+
+## Full resource mapping
+
+### Resources available in both SDKs
+
+| Old (`client.`) | New (`sdk.`) |
+| --- | --- |
+| `payments()` | `payments()` |
+| `refunds()` (top-level, `paymentId` as arg) | `refunds()` (pass `paymentId` on the builder) |
+| `chargebacks()` (top-level, `paymentId` as arg) | `chargebacks()` (pass `paymentId` on the builder) |
+| `captures()` (top-level, `paymentId` as arg) | `captures()` (pass `paymentId` on the builder) |
+| `methods()` | `methods()` |
+| `customers()` | `customers()` |
+| `mandates()` (nested under `customers()` args) | `mandates()` (pass `customerId` on the builder) |
+| `subscriptions()` (nested under `customers()` args) | `subscriptions()` (pass `customerId` on the builder) |
+| `settlements()` | `settlements()` |
+| `profiles()` | `profiles()` |
+| `organizations()` | `organizations()` |
+| `permissions()` | `permissions()` |
+| `onboarding()` | `onboarding()` |
+| `terminals()` | `terminals()` |
+| `paymentLinks()` | `paymentLinks()` |
+| `clients()` | `clients()` |
+| `clientLinks()` | `clientLinks()` |
+| `invoices()` | `invoices()` |
+| `oAuth()` | `oauth()` |
+| `wallet()` | `wallets()` |
+| `balances()` | `balances()` |
+| `orders()` (deprecated) | not available — replaced by [Payment Links](https://docs.mollie.com/reference/v2/payment-links-api/create-payment-link) and standard Payments |
+| `shipments()` (deprecated) | not available |
+
+### Resources available only in the new SDK
+
+| New (`sdk.`) | Description |
+| --- | --- |
+| `accounts()` | Business account management |
+| `balanceTransfers()` | Connect balance transfers |
+| `capabilities()` | List capabilities |
+| `delayedRouting()` | Delayed payment routing rules |
+| `payouts()` | Payout management |
+| `salesInvoices()` | Sales invoice management |
+| `sessions()` | Payment sessions |
+| `transfers()` | Transfer management |
+| `unmatchedCreditTransfers()` | Unmatched credit transfer handling |
+| `verifyPayee()` | Payee verification |
+| `webhooks()` | Webhook management |
+| `webhookEvents()` | Webhook event retrieval |
+
+For a complete list of all resources and operations with usage examples, see the [Available Resources and Operations](https://github.com/mollie/mollie-api-java#available-resources-and-operations) section in the SDK's README.
