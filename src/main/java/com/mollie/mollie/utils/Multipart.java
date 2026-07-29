@@ -124,7 +124,7 @@ public final class Multipart {
         FormField(String name, String value, String contentType) {
             this.name = name;
             this.value = value;
-            this.contentType = contentType != null ? contentType : "text/plain; charset=UTF-8";
+            this.contentType = stripCrlf(contentType != null ? contentType : "text/plain; charset=UTF-8");
         }
 
         @Override
@@ -154,7 +154,7 @@ public final class Multipart {
         FilePart(String name, Blob blob, String filename, String contentType) {
             this.name = name;
             this.filename = filename;
-            this.contentType = contentType != null ? contentType : DEFAULT_FILE_CT;
+            this.contentType = stripCrlf(contentType != null ? contentType : DEFAULT_FILE_CT);
             this.blob = blob;
         }
 
@@ -187,6 +187,12 @@ public final class Multipart {
             else out.append(c);
         }
         return out.toString();
+    }
+
+    private static String stripCrlf(String s) {
+        if (s == null) return null;
+        if (s.indexOf('\r') < 0 && s.indexOf('\n') < 0) return s;
+        return s.replace("\r", "").replace("\n", "");
     }
 
     /**
