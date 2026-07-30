@@ -139,7 +139,7 @@ public class PaymentResponse {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     * <p>Required for payment methods `billie`, `billink`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
@@ -154,7 +154,7 @@ public class PaymentResponse {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
@@ -762,7 +762,7 @@ public class PaymentResponse {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     * <p>Required for payment methods `billie`, `billink`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -779,7 +779,7 @@ public class PaymentResponse {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -1357,7 +1357,7 @@ public class PaymentResponse {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     * <p>Required for payment methods `billie`, `billink`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     public PaymentResponse withLines(List<PaymentResponseLines> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -1372,7 +1372,7 @@ public class PaymentResponse {
      * 
      * <p>All lines must have the same currency as the payment.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+     * <p>Required for payment methods `billie`, `billink`, `in3`, `klarna`, `riverty` and `voucher`.
      */
     public PaymentResponse withLines(JsonNullable<? extends List<PaymentResponseLines>> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -1389,7 +1389,7 @@ public class PaymentResponse {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
      */
     public PaymentResponse withBillingAddress(PaymentResponseBillingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -1407,7 +1407,7 @@ public class PaymentResponse {
      * `city` and
      * `country`.
      * 
-     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
+     * <p>Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
      */
     public PaymentResponse withBillingAddress(Optional<? extends PaymentResponseBillingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
@@ -2548,7 +2548,7 @@ public class PaymentResponse {
          * 
          * <p>All lines must have the same currency as the payment.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+         * <p>Required for payment methods `billie`, `billink`, `in3`, `klarna`, `riverty` and `voucher`.
          */
         public Builder lines(List<PaymentResponseLines> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -2563,7 +2563,7 @@ public class PaymentResponse {
          * 
          * <p>All lines must have the same currency as the payment.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna`, `riverty` and `voucher`.
+         * <p>Required for payment methods `billie`, `billink`, `in3`, `klarna`, `riverty` and `voucher`.
          */
         public Builder lines(JsonNullable<? extends List<PaymentResponseLines>> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -2581,7 +2581,7 @@ public class PaymentResponse {
          * `city` and
          * `country`.
          * 
-         * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
+         * <p>Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
          */
         public Builder billingAddress(PaymentResponseBillingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
@@ -2598,7 +2598,7 @@ public class PaymentResponse {
          * `city` and
          * `country`.
          * 
-         * <p>Required for payment method `alma`, `in3`, `klarna`, `billie` and `riverty`.
+         * <p>Required for payment method `alma`, `in3`, `klarna`, `billie`, `billink` and `riverty`.
          */
         public Builder billingAddress(Optional<? extends PaymentResponseBillingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");

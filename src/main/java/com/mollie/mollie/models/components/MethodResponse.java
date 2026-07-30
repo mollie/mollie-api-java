@@ -29,6 +29,7 @@ public class MethodResponse {
     public static final MethodResponse BANKTRANSFER = new MethodResponse("banktransfer");
     public static final MethodResponse BELFIUS = new MethodResponse("belfius");
     public static final MethodResponse BILLIE = new MethodResponse("billie");
+    public static final MethodResponse BILLINK = new MethodResponse("billink");
     public static final MethodResponse BIZUM = new MethodResponse("bizum");
     public static final MethodResponse BLIK = new MethodResponse("blik");
     public static final MethodResponse CREDITCARD = new MethodResponse("creditcard");
@@ -140,6 +141,7 @@ public class MethodResponse {
         map.put("banktransfer", BANKTRANSFER);
         map.put("belfius", BELFIUS);
         map.put("billie", BILLIE);
+        map.put("billink", BILLINK);
         map.put("bizum", BIZUM);
         map.put("blik", BLIK);
         map.put("creditcard", CREDITCARD);
@@ -183,6 +185,7 @@ public class MethodResponse {
         map.put("banktransfer", MethodResponseEnum.BANKTRANSFER);
         map.put("belfius", MethodResponseEnum.BELFIUS);
         map.put("billie", MethodResponseEnum.BILLIE);
+        map.put("billink", MethodResponseEnum.BILLINK);
         map.put("bizum", MethodResponseEnum.BIZUM);
         map.put("blik", MethodResponseEnum.BLIK);
         map.put("creditcard", MethodResponseEnum.CREDITCARD);
@@ -227,6 +230,7 @@ public class MethodResponse {
         BANKTRANSFER("banktransfer"),
         BELFIUS("belfius"),
         BILLIE("billie"),
+        BILLINK("billink"),
         BIZUM("bizum"),
         BLIK("blik"),
         CREDITCARD("creditcard"),
