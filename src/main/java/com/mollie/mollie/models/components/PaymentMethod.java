@@ -34,6 +34,7 @@ public class PaymentMethod {
     public static final PaymentMethod BANKTRANSFER = new PaymentMethod("banktransfer");
     public static final PaymentMethod BELFIUS = new PaymentMethod("belfius");
     public static final PaymentMethod BILLIE = new PaymentMethod("billie");
+    public static final PaymentMethod BILLINK = new PaymentMethod("billink");
     public static final PaymentMethod BIZUM = new PaymentMethod("bizum");
     public static final PaymentMethod BITCOIN = new PaymentMethod("bitcoin");
     public static final PaymentMethod BLIK = new PaymentMethod("blik");
@@ -150,6 +151,7 @@ public class PaymentMethod {
         map.put("banktransfer", BANKTRANSFER);
         map.put("belfius", BELFIUS);
         map.put("billie", BILLIE);
+        map.put("billink", BILLINK);
         map.put("bizum", BIZUM);
         map.put("bitcoin", BITCOIN);
         map.put("blik", BLIK);
@@ -198,6 +200,7 @@ public class PaymentMethod {
         map.put("banktransfer", PaymentMethodEnum.BANKTRANSFER);
         map.put("belfius", PaymentMethodEnum.BELFIUS);
         map.put("billie", PaymentMethodEnum.BILLIE);
+        map.put("billink", PaymentMethodEnum.BILLINK);
         map.put("bizum", PaymentMethodEnum.BIZUM);
         map.put("bitcoin", PaymentMethodEnum.BITCOIN);
         map.put("blik", PaymentMethodEnum.BLIK);
@@ -247,6 +250,7 @@ public class PaymentMethod {
         BANKTRANSFER("banktransfer"),
         BELFIUS("belfius"),
         BILLIE("billie"),
+        BILLINK("billink"),
         BIZUM("bizum"),
         BITCOIN("bitcoin"),
         BLIK("blik"),

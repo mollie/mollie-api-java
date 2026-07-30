@@ -36,6 +36,7 @@ public class Id {
     public static final Id BANKTRANSFER = new Id("banktransfer");
     public static final Id BELFIUS = new Id("belfius");
     public static final Id BILLIE = new Id("billie");
+    public static final Id BILLINK = new Id("billink");
     public static final Id BIZUM = new Id("bizum");
     public static final Id BLIK = new Id("blik");
     public static final Id CREDITCARD = new Id("creditcard");
@@ -143,6 +144,7 @@ public class Id {
         map.put("banktransfer", BANKTRANSFER);
         map.put("belfius", BELFIUS);
         map.put("billie", BILLIE);
+        map.put("billink", BILLINK);
         map.put("bizum", BIZUM);
         map.put("blik", BLIK);
         map.put("creditcard", CREDITCARD);
@@ -182,6 +184,7 @@ public class Id {
         map.put("banktransfer", IdEnum.BANKTRANSFER);
         map.put("belfius", IdEnum.BELFIUS);
         map.put("billie", IdEnum.BILLIE);
+        map.put("billink", IdEnum.BILLINK);
         map.put("bizum", IdEnum.BIZUM);
         map.put("blik", IdEnum.BLIK);
         map.put("creditcard", IdEnum.CREDITCARD);
@@ -222,6 +225,7 @@ public class Id {
         BANKTRANSFER("banktransfer"),
         BELFIUS("belfius"),
         BILLIE("billie"),
+        BILLINK("billink"),
         BIZUM("bizum"),
         BLIK("blik"),
         CREDITCARD("creditcard"),

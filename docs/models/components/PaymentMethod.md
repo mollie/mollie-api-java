@@ -26,6 +26,7 @@ PaymentMethod custom = PaymentMethod.of("custom_value");
 | `BANKTRANSFER`      | banktransfer        |
 | `BELFIUS`           | belfius             |
 | `BILLIE`            | billie              |
+| `BILLINK`           | billink             |
 | `BIZUM`             | bizum               |
 | `BITCOIN`           | bitcoin             |
 | `BLIK`              | blik                |

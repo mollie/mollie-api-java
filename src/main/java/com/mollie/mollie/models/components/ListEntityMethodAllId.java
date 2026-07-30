@@ -36,6 +36,7 @@ public class ListEntityMethodAllId {
     public static final ListEntityMethodAllId BANKTRANSFER = new ListEntityMethodAllId("banktransfer");
     public static final ListEntityMethodAllId BELFIUS = new ListEntityMethodAllId("belfius");
     public static final ListEntityMethodAllId BILLIE = new ListEntityMethodAllId("billie");
+    public static final ListEntityMethodAllId BILLINK = new ListEntityMethodAllId("billink");
     public static final ListEntityMethodAllId BIZUM = new ListEntityMethodAllId("bizum");
     public static final ListEntityMethodAllId BLIK = new ListEntityMethodAllId("blik");
     public static final ListEntityMethodAllId CREDITCARD = new ListEntityMethodAllId("creditcard");
@@ -143,6 +144,7 @@ public class ListEntityMethodAllId {
         map.put("banktransfer", BANKTRANSFER);
         map.put("belfius", BELFIUS);
         map.put("billie", BILLIE);
+        map.put("billink", BILLINK);
         map.put("bizum", BIZUM);
         map.put("blik", BLIK);
         map.put("creditcard", CREDITCARD);
@@ -182,6 +184,7 @@ public class ListEntityMethodAllId {
         map.put("banktransfer", ListEntityMethodAllIdEnum.BANKTRANSFER);
         map.put("belfius", ListEntityMethodAllIdEnum.BELFIUS);
         map.put("billie", ListEntityMethodAllIdEnum.BILLIE);
+        map.put("billink", ListEntityMethodAllIdEnum.BILLINK);
         map.put("bizum", ListEntityMethodAllIdEnum.BIZUM);
         map.put("blik", ListEntityMethodAllIdEnum.BLIK);
         map.put("creditcard", ListEntityMethodAllIdEnum.CREDITCARD);
@@ -222,6 +225,7 @@ public class ListEntityMethodAllId {
         BANKTRANSFER("banktransfer"),
         BELFIUS("belfius"),
         BILLIE("billie"),
+        BILLINK("billink"),
         BIZUM("bizum"),
         BLIK("blik"),
         CREDITCARD("creditcard"),

@@ -36,6 +36,7 @@ public class EntityMethodGetId {
     public static final EntityMethodGetId BANKTRANSFER = new EntityMethodGetId("banktransfer");
     public static final EntityMethodGetId BELFIUS = new EntityMethodGetId("belfius");
     public static final EntityMethodGetId BILLIE = new EntityMethodGetId("billie");
+    public static final EntityMethodGetId BILLINK = new EntityMethodGetId("billink");
     public static final EntityMethodGetId BIZUM = new EntityMethodGetId("bizum");
     public static final EntityMethodGetId BLIK = new EntityMethodGetId("blik");
     public static final EntityMethodGetId CREDITCARD = new EntityMethodGetId("creditcard");
@@ -147,6 +148,7 @@ public class EntityMethodGetId {
         map.put("banktransfer", BANKTRANSFER);
         map.put("belfius", BELFIUS);
         map.put("billie", BILLIE);
+        map.put("billink", BILLINK);
         map.put("bizum", BIZUM);
         map.put("blik", BLIK);
         map.put("creditcard", CREDITCARD);
@@ -190,6 +192,7 @@ public class EntityMethodGetId {
         map.put("banktransfer", EntityMethodGetIdEnum.BANKTRANSFER);
         map.put("belfius", EntityMethodGetIdEnum.BELFIUS);
         map.put("billie", EntityMethodGetIdEnum.BILLIE);
+        map.put("billink", EntityMethodGetIdEnum.BILLINK);
         map.put("bizum", EntityMethodGetIdEnum.BIZUM);
         map.put("blik", EntityMethodGetIdEnum.BLIK);
         map.put("creditcard", EntityMethodGetIdEnum.CREDITCARD);
@@ -234,6 +237,7 @@ public class EntityMethodGetId {
         BANKTRANSFER("banktransfer"),
         BELFIUS("belfius"),
         BILLIE("billie"),
+        BILLINK("billink"),
         BIZUM("bizum"),
         BLIK("blik"),
         CREDITCARD("creditcard"),
