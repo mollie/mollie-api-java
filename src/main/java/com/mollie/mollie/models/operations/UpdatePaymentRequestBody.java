@@ -125,11 +125,13 @@ public class UpdatePaymentRequestBody {
     private JsonNullable<? extends Locale> locale;
 
     /**
-     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     * The date by which the payment should be completed in `YYYY-MM-DD` format. Sending `null` has the
+     * same effect
+     * as omitting the field.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dueDate")
-    private Optional<String> dueDate;
+    private JsonNullable<String> dueDate;
 
     /**
      * For digital goods in most jurisdictions, you must apply the VAT rate from your customer's country.
@@ -222,7 +224,7 @@ public class UpdatePaymentRequestBody {
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("method") JsonNullable<? extends MethodRequest> method,
             @JsonProperty("locale") JsonNullable<? extends Locale> locale,
-            @JsonProperty("dueDate") Optional<String> dueDate,
+            @JsonProperty("dueDate") JsonNullable<String> dueDate,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("testmode") Optional<Boolean> testmode,
             @JsonProperty("issuer") JsonNullable<String> issuer,
@@ -262,7 +264,7 @@ public class UpdatePaymentRequestBody {
     public UpdatePaymentRequestBody() {
         this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty());
     }
@@ -378,10 +380,12 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     * The date by which the payment should be completed in `YYYY-MM-DD` format. Sending `null` has the
+     * same effect
+     * as omitting the field.
      */
     @JsonIgnore
-    public Optional<String> dueDate() {
+    public JsonNullable<String> dueDate() {
         return dueDate;
     }
 
@@ -708,19 +712,22 @@ public class UpdatePaymentRequestBody {
     }
 
     /**
-     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     * The date by which the payment should be completed in `YYYY-MM-DD` format. Sending `null` has the
+     * same effect
+     * as omitting the field.
      */
     public UpdatePaymentRequestBody withDueDate(String dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
-        this.dueDate = Optional.ofNullable(dueDate);
+        this.dueDate = JsonNullable.of(dueDate);
         return this;
     }
 
-
     /**
-     * The date by which the payment should be completed in `YYYY-MM-DD` format
+     * The date by which the payment should be completed in `YYYY-MM-DD` format. Sending `null` has the
+     * same effect
+     * as omitting the field.
      */
-    public UpdatePaymentRequestBody withDueDate(Optional<String> dueDate) {
+    public UpdatePaymentRequestBody withDueDate(JsonNullable<String> dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
         this.dueDate = dueDate;
         return this;
@@ -986,7 +993,7 @@ public class UpdatePaymentRequestBody {
 
         private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
 
-        private Optional<String> dueDate = Optional.empty();
+        private JsonNullable<String> dueDate = JsonNullable.undefined();
 
         private JsonNullable<String> restrictPaymentMethodsToCountry = JsonNullable.undefined();
 
@@ -1241,18 +1248,22 @@ public class UpdatePaymentRequestBody {
 
 
         /**
-         * The date by which the payment should be completed in `YYYY-MM-DD` format
+         * The date by which the payment should be completed in `YYYY-MM-DD` format. Sending `null` has the
+         * same effect
+         * as omitting the field.
          */
         public Builder dueDate(String dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
-            this.dueDate = Optional.ofNullable(dueDate);
+            this.dueDate = JsonNullable.of(dueDate);
             return this;
         }
 
         /**
-         * The date by which the payment should be completed in `YYYY-MM-DD` format
+         * The date by which the payment should be completed in `YYYY-MM-DD` format. Sending `null` has the
+         * same effect
+         * as omitting the field.
          */
-        public Builder dueDate(Optional<String> dueDate) {
+        public Builder dueDate(JsonNullable<String> dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
             this.dueDate = dueDate;
             return this;

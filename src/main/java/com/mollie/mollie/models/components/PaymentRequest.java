@@ -323,7 +323,7 @@ public class PaymentRequest {
     /**
      * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
      * tomorrow, and the
-     * maximum date is 100 days after tomorrow.
+     * maximum date is 100 days after tomorrow. Sending `null` has the same effect as omitting the field.
      * 
      * <p>After you created the payment, you can still update the `dueDate` via [Update
      * payment](update-payment).
@@ -339,7 +339,7 @@ public class PaymentRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("dueDate")
-    private Optional<String> dueDate;
+    private JsonNullable<String> dueDate;
 
     /**
      * Whether the card details should be stored for the customer after a successful payment. This will
@@ -525,7 +525,7 @@ public class PaymentRequest {
             @JsonProperty("mandateId") JsonNullable<String> mandateId,
             @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("profileId") Optional<String> profileId,
-            @JsonProperty("dueDate") Optional<String> dueDate,
+            @JsonProperty("dueDate") JsonNullable<String> dueDate,
             @JsonProperty("storeCredentials") Optional<Boolean> storeCredentials,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode,
             @JsonProperty("applePayPaymentToken") Optional<String> applePayPaymentToken,
@@ -624,7 +624,7 @@ public class PaymentRequest {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
@@ -961,7 +961,7 @@ public class PaymentRequest {
     /**
      * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
      * tomorrow, and the
-     * maximum date is 100 days after tomorrow.
+     * maximum date is 100 days after tomorrow. Sending `null` has the same effect as omitting the field.
      * 
      * <p>After you created the payment, you can still update the `dueDate` via [Update
      * payment](update-payment).
@@ -976,7 +976,7 @@ public class PaymentRequest {
      * &lt;/Callout&gt;
      */
     @JsonIgnore
-    public Optional<String> dueDate() {
+    public JsonNullable<String> dueDate() {
         return dueDate;
     }
 
@@ -1816,7 +1816,7 @@ public class PaymentRequest {
     /**
      * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
      * tomorrow, and the
-     * maximum date is 100 days after tomorrow.
+     * maximum date is 100 days after tomorrow. Sending `null` has the same effect as omitting the field.
      * 
      * <p>After you created the payment, you can still update the `dueDate` via [Update
      * payment](update-payment).
@@ -1832,15 +1832,14 @@ public class PaymentRequest {
      */
     public PaymentRequest withDueDate(String dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
-        this.dueDate = Optional.ofNullable(dueDate);
+        this.dueDate = JsonNullable.of(dueDate);
         return this;
     }
-
 
     /**
      * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
      * tomorrow, and the
-     * maximum date is 100 days after tomorrow.
+     * maximum date is 100 days after tomorrow. Sending `null` has the same effect as omitting the field.
      * 
      * <p>After you created the payment, you can still update the `dueDate` via [Update
      * payment](update-payment).
@@ -1854,7 +1853,7 @@ public class PaymentRequest {
      * `2025-12-09 00:00`
      * &lt;/Callout&gt;
      */
-    public PaymentRequest withDueDate(Optional<String> dueDate) {
+    public PaymentRequest withDueDate(JsonNullable<String> dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
         this.dueDate = dueDate;
         return this;
@@ -2402,7 +2401,7 @@ public class PaymentRequest {
 
         private Optional<String> profileId = Optional.empty();
 
-        private Optional<String> dueDate = Optional.empty();
+        private JsonNullable<String> dueDate = JsonNullable.undefined();
 
         private Optional<Boolean> storeCredentials = Optional.empty();
 
@@ -3106,7 +3105,7 @@ public class PaymentRequest {
         /**
          * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
          * tomorrow, and the
-         * maximum date is 100 days after tomorrow.
+         * maximum date is 100 days after tomorrow. Sending `null` has the same effect as omitting the field.
          * 
          * <p>After you created the payment, you can still update the `dueDate` via [Update
          * payment](update-payment).
@@ -3122,14 +3121,14 @@ public class PaymentRequest {
          */
         public Builder dueDate(String dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
-            this.dueDate = Optional.ofNullable(dueDate);
+            this.dueDate = JsonNullable.of(dueDate);
             return this;
         }
 
         /**
          * The date the bank transfer payment should expire, in `YYYY-MM-DD` format. The minimum date is
          * tomorrow, and the
-         * maximum date is 100 days after tomorrow.
+         * maximum date is 100 days after tomorrow. Sending `null` has the same effect as omitting the field.
          * 
          * <p>After you created the payment, you can still update the `dueDate` via [Update
          * payment](update-payment).
@@ -3143,7 +3142,7 @@ public class PaymentRequest {
          * `2025-12-09 00:00`
          * &lt;/Callout&gt;
          */
-        public Builder dueDate(Optional<String> dueDate) {
+        public Builder dueDate(JsonNullable<String> dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
             this.dueDate = dueDate;
             return this;
