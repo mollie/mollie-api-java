@@ -50,6 +50,7 @@ public class Application {
                         .currency("EUR")
                         .value("10.00")
                         .build())
+                    .testmode(false)
                     .build())
                 .call();
 
@@ -90,6 +91,7 @@ public class Application {
                         .currency("EUR")
                         .value("10.00")
                         .build())
+                    .testmode(false)
                     .build())
                 .call();
 
