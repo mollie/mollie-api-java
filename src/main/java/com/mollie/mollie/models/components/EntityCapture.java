@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -42,21 +43,38 @@ public class EntityCapture {
     @JsonProperty("metadata")
     private JsonNullable<? extends Metadata> metadata;
 
+    /**
+     * Whether to create the entity in test mode or live mode.
+     * 
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
+     * `testmode` to `true`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("testmode")
+    private JsonNullable<Boolean> testmode;
+
     @JsonCreator
     public EntityCapture(
             @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") JsonNullable<? extends AmountNullable> amount,
-            @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata) {
+            @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
+            @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(metadata, "metadata");
+        Utils.checkNotNull(testmode, "testmode");
         this.description = description;
         this.amount = amount;
         this.metadata = metadata;
+        this.testmode = testmode;
     }
     
     public EntityCapture() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -86,6 +104,20 @@ public class EntityCapture {
     @JsonIgnore
     public JsonNullable<Metadata> metadata() {
         return (JsonNullable<Metadata>) metadata;
+    }
+
+    /**
+     * Whether to create the entity in test mode or live mode.
+     * 
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
+     * `testmode` to `true`.
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> testmode() {
+        return testmode;
     }
 
     public static Builder builder() {
@@ -154,6 +186,36 @@ public class EntityCapture {
         return this;
     }
 
+    /**
+     * Whether to create the entity in test mode or live mode.
+     * 
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
+     * `testmode` to `true`.
+     */
+    public EntityCapture withTestmode(boolean testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = JsonNullable.of(testmode);
+        return this;
+    }
+
+    /**
+     * Whether to create the entity in test mode or live mode.
+     * 
+     * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+     * parameter must
+     * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+     * mode by setting
+     * `testmode` to `true`.
+     */
+    public EntityCapture withTestmode(JsonNullable<Boolean> testmode) {
+        Utils.checkNotNull(testmode, "testmode");
+        this.testmode = testmode;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -166,13 +228,15 @@ public class EntityCapture {
         return 
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
-            Utils.enhancedDeepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.testmode, other.testmode);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            description, amount, metadata);
+            description, amount, metadata,
+            testmode);
     }
     
     @Override
@@ -180,7 +244,8 @@ public class EntityCapture {
         return Utils.toString(EntityCapture.class,
                 "description", description,
                 "amount", amount,
-                "metadata", metadata);
+                "metadata", metadata,
+                "testmode", testmode);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -191,6 +256,8 @@ public class EntityCapture {
         private JsonNullable<? extends AmountNullable> amount = JsonNullable.undefined();
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -259,10 +326,42 @@ public class EntityCapture {
             return this;
         }
 
+
+        /**
+         * Whether to create the entity in test mode or live mode.
+         * 
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter must
+         * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+         * mode by setting
+         * `testmode` to `true`.
+         */
+        public Builder testmode(boolean testmode) {
+            Utils.checkNotNull(testmode, "testmode");
+            this.testmode = JsonNullable.of(testmode);
+            return this;
+        }
+
+        /**
+         * Whether to create the entity in test mode or live mode.
+         * 
+         * <p>Most API credentials are specifically created for either live mode or test mode, in which case this
+         * parameter must
+         * not be sent. For organization-level credentials such as OAuth access tokens, you can enable test
+         * mode by setting
+         * `testmode` to `true`.
+         */
+        public Builder testmode(JsonNullable<Boolean> testmode) {
+            Utils.checkNotNull(testmode, "testmode");
+            this.testmode = testmode;
+            return this;
+        }
+
         public EntityCapture build() {
 
             return new EntityCapture(
-                description, amount, metadata);
+                description, amount, metadata,
+                testmode);
         }
 
     }

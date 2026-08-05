@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 5c818dcc3ed578a9c854103dd3395794
+  docChecksum: 72505fd7786203d39c9eed008dc2dbcd
   docVersion: 1.0.0
-  speakeasyVersion: 1.791.0
-  generationVersion: 2.924.0
-  releaseVersion: 1.9.0
-  configChecksum: cda567bb34470ded29d5f31dfa16b179
+  speakeasyVersion: 1.791.3
+  generationVersion: 2.926.2
+  releaseVersion: 1.9.1
+  configChecksum: df480cc8f2ba0b5020600e26d0d2def9
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 39713d48-8231-4a80-a425-1ef8109ae056
-  pristine_commit_hash: 4cb247fcd9c3c638c85dbe3b9cc28ccafbdced4e
-  pristine_tree_hash: b648bd797acbf61b60f4e7e6a9acf6cfe4a76066
+  generation_id: 67209ece-d7be-4aad-8fcd-f0460fc553aa
+  pristine_commit_hash: 036b36046e0a730b85e0ef67f35adac4ed537549
+  pristine_tree_hash: 462ef6d6413af26eb2a54c6c1a65719a17ffa962
 features:
   java:
     additionalDependencies: 0.1.0
@@ -149,8 +149,8 @@ trackedFiles:
     pristine_git_object: f34cdc278691634fe94a74daf73f3bd27e7f6163
   docs/models/components/BalanceTransactionType.md:
     id: 26f4f48d989c
-    last_write_checksum: sha1:45be74d167ce5f5f9bc54260eba227345146ba6c
-    pristine_git_object: c9362a8c251119bed1e53a6b3b4ad6de3c2f1d6b
+    last_write_checksum: sha1:2e947a4c5203c756ae74c07fa1e0d8a1b29d5ae8
+    pristine_git_object: 441fa0fe9dff1d0a8ab38a355c59da172673a266
   docs/models/components/BalanceTransferCategory.md:
     id: b5b6b125d907
     last_write_checksum: sha1:a5462fcf64ea5741a7b7ea60bf81d85803d0c408
@@ -461,8 +461,8 @@ trackedFiles:
     pristine_git_object: ef4dfe28b85303d21fe416d5e7656f2296f91530
   docs/models/components/EntityCapture.md:
     id: f40dc94ffb3b
-    last_write_checksum: sha1:6c09736ad0a4a2bea89c4f3f15b23eeb4f7e4712
-    pristine_git_object: af4a9bc75d9a6edf01efcc9359617f7f3765b1c0
+    last_write_checksum: sha1:9107906a8400bdbcb5f12ee96d336a65493f1175
+    pristine_git_object: 1ebbfe41632d4831693fb3aa74cff972586f0811
   docs/models/components/EntityChargeback.md:
     id: 64af93fc0092
     last_write_checksum: sha1:cd7227dfadadace02a5565b110c266d2d1b15759
@@ -3589,8 +3589,8 @@ trackedFiles:
     pristine_git_object: 2eb7859a759820f395802da329bf9c15f30964a1
   docs/sdks/captures/README.md:
     id: 7598191d8c6a
-    last_write_checksum: sha1:ce1d3e8e39c92515aed55258f785eaa6aaff3689
-    pristine_git_object: 6c425ddb5c4de17bac276848564283e883755c48
+    last_write_checksum: sha1:1b4952690e3aedbc113db52f55eab4f805db041a
+    pristine_git_object: d752b7047322c3e781bfbd5139d255ab64837f29
   docs/sdks/chargebacks/README.md:
     id: 651e1876c61b
     last_write_checksum: sha1:5888123187c5e6d34ec68c5434565da80b8f368f
@@ -3709,8 +3709,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:5e66c6a0b058217f3abefdf66214983ed70a05c3
-    pristine_git_object: 468005a902eb1c859a05456b93aa2a5b79d55f6b
+    last_write_checksum: sha1:7c49c691a8761ba413c0de7ad97753e5f97e53c8
+    pristine_git_object: c4c7a34997735c2fb899b169963afa800fc7630e
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3965,8 +3965,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:97cc6756d211dd10b5153290da92c8496d735c5f
-    pristine_git_object: 72d76eb642b15f0dc1f8779c11f1bcfff1c8c252
+    last_write_checksum: sha1:4d9c6df0b4f036180552bb2897e52214a9b456e3
+    pristine_git_object: ef760eb8f882065e38495e91c8d2c168e691a053
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:5b1b2448cd7365ef474e323a24f05b937422e9f1
@@ -4117,8 +4117,8 @@ trackedFiles:
     pristine_git_object: b95205ad10c742a81144ff8bf3ba183369b4c062
   src/main/java/com/mollie/mollie/models/components/BalanceTransactionType.java:
     id: 694ba97c8ffd
-    last_write_checksum: sha1:952352ca74d941e1c7a90db1b274cb1ced232799
-    pristine_git_object: f2f26715edff4fa32ac243bf6b38ca8f62e212e9
+    last_write_checksum: sha1:da0afff0384c46a6d78ea31160911a1dfc5ff7aa
+    pristine_git_object: c2d75d49c652e98a3c62173dad7ce2f24eed6866
   src/main/java/com/mollie/mollie/models/components/BalanceTransferCategory.java:
     id: 1181a1f67735
     last_write_checksum: sha1:94ed727462bfe653cdddd5d57293f66879768d25
@@ -4429,8 +4429,8 @@ trackedFiles:
     pristine_git_object: ff9703673a75eef13b0f69bc2f1f19a70c4c8135
   src/main/java/com/mollie/mollie/models/components/EntityCapture.java:
     id: e2c0e8decbe3
-    last_write_checksum: sha1:de9bc2ce880400f8a99b3c2b0d10c23f2b1f1394
-    pristine_git_object: 7b2e61a23d5ad0abc2d167a118e9f4a7bc147dbf
+    last_write_checksum: sha1:4c0c4464117a86e835607566446ab3aa1dcd35fc
+    pristine_git_object: d73c3a6799224428754332b6934aa2eada604ec6
   src/main/java/com/mollie/mollie/models/components/EntityChargeback.java:
     id: 02316fd6ad0a
     last_write_checksum: sha1:67247b482f68026c5773e7487f040e5f4ad1998f
@@ -10933,7 +10933,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}}
+        application/json: {"description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "live", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "35.95"}, "status": "pending", "metadata": "{\"bookkeeping_id\":12345}", "paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "createdAt": "2023-08-02T09:29:56+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -10944,7 +10944,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}}
+        application/json: {"description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "test", "amount": {"currency": "EUR", "value": "467.92"}, "status": "pending", "paymentId": "tr_V9kqkGtyUH", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "createdAt": "2021-06-03T11:50:58+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_V9kqkGtyUH", "type": "application/hal+json"}, "shipment": {"href": "https://api.mollie.com/v2/orders/ord_uvpptr/shipments/shp_5x4xQJDWGNcY3tKGL7X5J", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -10966,7 +10966,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}}
+        application/json: {"description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "capture", "id": "cpt_vytxeTZskVKR7C7WgdSP3d", "mode": "live", "description": "Capture for cart #12345", "amount": {"currency": "EUR", "value": "10.00"}, "status": "succeeded", "paymentId": "tr_5B8cwPMGnU", "shipmentId": "shp_5x4xQJDWGNcY3tKGL7X5J", "settlementId": "stl_5B8cwPMGnU", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}, "shipment": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
@@ -15057,7 +15057,7 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `client.balances.getReport()`:  `response.totals.pendingBalance.open.subtotals[].subTotals[].method.enum(billink)` **Added**\n* `client.settlements.list()`:  `response.Embedded.settlements[].periods.Map<Map<periods>>.Map<periods>.costs[].method.enum(billink)` **Added**\n* `client.settlements.get()`:  `response.periods.Map<Map<periods>>.Map<periods>.costs[].method.enum(billink)` **Added**\n* `client.settlements.getOpen()`:  `response.periods.Map<Map<periods>>.Map<periods>.costs[].method.enum(billink)` **Added**\n* `client.settlements.getNext()`:  `response.periods.Map<Map<periods>>.Map<periods>.costs[].method.enum(billink)` **Added**\n* `client.settlements.listPayments()`:  `response.Embedded.payments[].method.enum(billink)` **Added**\n* `client.webhookEvents.get()`:  `response.Embedded.entity.union(payment-response).method.enum(billink)` **Added**\n* `client.payments.create()`: \n  *  `request.paymentRequest.method.union(method).enum(billink)` **Added**\n  *  `response.method.enum(billink)` **Added**\n* `client.payments.list()`:  `response.Embedded.payments[].method.enum(billink)` **Added**\n* `client.payments.get()`:  `response.method.enum(billink)` **Added**\n* `client.payments.update()`: \n  *  `requestBody.method.union(method).enum(billink)` **Added**\n  *  `response.method.enum(billink)` **Added**\n* `client.payments.cancel()`:  `response.method.enum(billink)` **Added**\n* `client.methods.list()`:  `response.Embedded.methods[].id.enum(billink)` **Added**\n* `client.methods.all()`:  `response.Embedded.methods[].id.enum(billink)` **Added**\n* `client.methods.get()`: \n  *  `request.methodId` **Changed**\n  *  `response.id.enum(billink)` **Added**\n* `client.paymentLinks.listPayments()`:  `response.Embedded.payments[].method.enum(billink)` **Added**\n* `client.customers.createPayment()`: \n  *  `request.paymentRequest.method.union(method).enum(billink)` **Added**\n  *  `response.method.enum(billink)` **Added**\n* `client.customers.listPayments()`:  `response.Embedded.payments[].method.enum(billink)` **Added**\n* `client.subscriptions.listPayments()`:  `response.Embedded.payments[].method.enum(billink)` **Added**\n"
+releaseNotes: "## Java SDK Changes:\n* `client.balances.getReport()`:  `response.totals.pendingBalance.open.subtotals[].subTotals[].transactionType` **Changed** (Breaking ⚠️)\n* `client.balances.listTransactions()`:  `response.Embedded.balanceTransactions[].type` **Changed** (Breaking ⚠️)\n* `client.captures.create()`: \n  *  `request.entityCapture.testmode` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md
