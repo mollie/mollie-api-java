@@ -1,16 +1,13 @@
-# LocaleResponse
+# Locale2
 
 Sets the language for customer-facing content and communications.
 
 ## Example Usage
 
 ```java
-import com.mollie.mollie.models.components.LocaleResponse;
+import com.mollie.mollie.models.components.Locale2;
 
-LocaleResponse value = LocaleResponse.CA_ES;
-
-// Open enum: use .of() to create instances from custom string values
-LocaleResponse custom = LocaleResponse.of("custom_value");
+Locale2 value = Locale2.CA_ES;
 ```
 
 

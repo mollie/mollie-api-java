@@ -10,10 +10,10 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.models.components.BillingAddress;
-import com.mollie.mollie.models.components.Locale;
+import com.mollie.mollie.models.components.Locale2;
 import com.mollie.mollie.models.components.Metadata;
 import com.mollie.mollie.models.components.MethodRequest;
-import com.mollie.mollie.models.components.PaymentAddress;
+import com.mollie.mollie.models.components.ShippingAddress;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
@@ -122,7 +122,7 @@ public class UpdatePaymentRequestBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("locale")
-    private JsonNullable<? extends Locale> locale;
+    private JsonNullable<? extends Locale2> locale;
 
     /**
      * The date by which the payment should be completed in `YYYY-MM-DD` format. Sending `null` has the
@@ -208,7 +208,7 @@ public class UpdatePaymentRequestBody {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
-    private Optional<? extends PaymentAddress> shippingAddress;
+    private Optional<? extends ShippingAddress> shippingAddress;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -223,13 +223,13 @@ public class UpdatePaymentRequestBody {
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("method") JsonNullable<? extends MethodRequest> method,
-            @JsonProperty("locale") JsonNullable<? extends Locale> locale,
+            @JsonProperty("locale") JsonNullable<? extends Locale2> locale,
             @JsonProperty("dueDate") JsonNullable<String> dueDate,
             @JsonProperty("restrictPaymentMethodsToCountry") JsonNullable<String> restrictPaymentMethodsToCountry,
             @JsonProperty("testmode") Optional<Boolean> testmode,
             @JsonProperty("issuer") JsonNullable<String> issuer,
             @JsonProperty("billingAddress") Optional<? extends BillingAddress> billingAddress,
-            @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends ShippingAddress> shippingAddress,
             @JsonProperty("billingEmail") Optional<String> billingEmail) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(redirectUrl, "redirectUrl");
@@ -375,8 +375,8 @@ public class UpdatePaymentRequestBody {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Locale> locale() {
-        return (JsonNullable<Locale>) locale;
+    public JsonNullable<Locale2> locale() {
+        return (JsonNullable<Locale2>) locale;
     }
 
     /**
@@ -468,8 +468,8 @@ public class UpdatePaymentRequestBody {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentAddress> shippingAddress() {
-        return (Optional<PaymentAddress>) shippingAddress;
+    public Optional<ShippingAddress> shippingAddress() {
+        return (Optional<ShippingAddress>) shippingAddress;
     }
 
     @JsonIgnore
@@ -696,7 +696,7 @@ public class UpdatePaymentRequestBody {
     /**
      * Sets the language for customer-facing content and communications.
      */
-    public UpdatePaymentRequestBody withLocale(Locale locale) {
+    public UpdatePaymentRequestBody withLocale(Locale2 locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = JsonNullable.of(locale);
         return this;
@@ -705,7 +705,7 @@ public class UpdatePaymentRequestBody {
     /**
      * Sets the language for customer-facing content and communications.
      */
-    public UpdatePaymentRequestBody withLocale(JsonNullable<? extends Locale> locale) {
+    public UpdatePaymentRequestBody withLocale(JsonNullable<? extends Locale2> locale) {
         Utils.checkNotNull(locale, "locale");
         this.locale = locale;
         return this;
@@ -895,14 +895,14 @@ public class UpdatePaymentRequestBody {
         return this;
     }
 
-    public UpdatePaymentRequestBody withShippingAddress(PaymentAddress shippingAddress) {
+    public UpdatePaymentRequestBody withShippingAddress(ShippingAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
 
 
-    public UpdatePaymentRequestBody withShippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
+    public UpdatePaymentRequestBody withShippingAddress(Optional<? extends ShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = shippingAddress;
         return this;
@@ -991,7 +991,7 @@ public class UpdatePaymentRequestBody {
 
         private JsonNullable<? extends MethodRequest> method = JsonNullable.undefined();
 
-        private JsonNullable<? extends Locale> locale = JsonNullable.undefined();
+        private JsonNullable<? extends Locale2> locale = JsonNullable.undefined();
 
         private JsonNullable<String> dueDate = JsonNullable.undefined();
 
@@ -1003,7 +1003,7 @@ public class UpdatePaymentRequestBody {
 
         private Optional<? extends BillingAddress> billingAddress = Optional.empty();
 
-        private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
+        private Optional<? extends ShippingAddress> shippingAddress = Optional.empty();
 
         private Optional<String> billingEmail = Optional.empty();
 
@@ -1231,7 +1231,7 @@ public class UpdatePaymentRequestBody {
         /**
          * Sets the language for customer-facing content and communications.
          */
-        public Builder locale(Locale locale) {
+        public Builder locale(Locale2 locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = JsonNullable.of(locale);
             return this;
@@ -1240,7 +1240,7 @@ public class UpdatePaymentRequestBody {
         /**
          * Sets the language for customer-facing content and communications.
          */
-        public Builder locale(JsonNullable<? extends Locale> locale) {
+        public Builder locale(JsonNullable<? extends Locale2> locale) {
             Utils.checkNotNull(locale, "locale");
             this.locale = locale;
             return this;
@@ -1434,13 +1434,13 @@ public class UpdatePaymentRequestBody {
         }
 
 
-        public Builder shippingAddress(PaymentAddress shippingAddress) {
+        public Builder shippingAddress(ShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
             return this;
         }
 
-        public Builder shippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
+        public Builder shippingAddress(Optional<? extends ShippingAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = shippingAddress;
             return this;

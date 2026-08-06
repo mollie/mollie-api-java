@@ -41,4 +41,3 @@ Locale value = Locale.CA_ES;
 | `PTPT`  | pt_PT   |
 | `SKSK`  | sk_SK   |
 | `SV_SE` | sv_SE   |
-| `NULL`  | null    |

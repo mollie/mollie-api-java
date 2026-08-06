@@ -50,7 +50,7 @@ public class Application {
                     .redirectUrl("https://example.org/redirect")
                     .requiredCustomerDetails(List.of(
                         SessionRequiredCustomerDetails.BILLING_ADDRESS))
-                    .billingAddress(PaymentAddress.builder()
+                    .billingAddress(ShippingAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")
@@ -64,7 +64,7 @@ public class Application {
                         .region("Noord-Holland")
                         .country("NL")
                         .build())
-                    .shippingAddress(PaymentAddress.builder()
+                    .shippingAddress(ShippingAddress.builder()
                         .title("Mr.")
                         .givenName("Piet")
                         .familyName("Mondriaan")

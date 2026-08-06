@@ -111,12 +111,12 @@ public class PaymentLinkResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
-    private Optional<? extends PaymentAddress> billingAddress;
+    private Optional<? extends ShippingAddress> billingAddress;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
-    private Optional<? extends PaymentAddress> shippingAddress;
+    private Optional<? extends ShippingAddress> shippingAddress;
 
     /**
      * The identifier referring to the [profile](get-profile) this entity belongs to.
@@ -225,8 +225,8 @@ public class PaymentLinkResponse {
             @JsonProperty("redirectUrl") Optional<String> redirectUrl,
             @JsonProperty("webhookUrl") Optional<String> webhookUrl,
             @JsonProperty("lines") JsonNullable<? extends List<PaymentLineItemResponse>> lines,
-            @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
-            @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
+            @JsonProperty("billingAddress") Optional<? extends ShippingAddress> billingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends ShippingAddress> shippingAddress,
             @JsonProperty("profileId") Optional<String> profileId,
             @JsonProperty("reusable") Optional<Boolean> reusable,
             @JsonProperty("createdAt") String createdAt,
@@ -409,14 +409,14 @@ public class PaymentLinkResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentAddress> billingAddress() {
-        return (Optional<PaymentAddress>) billingAddress;
+    public Optional<ShippingAddress> billingAddress() {
+        return (Optional<ShippingAddress>) billingAddress;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentAddress> shippingAddress() {
-        return (Optional<PaymentAddress>) shippingAddress;
+    public Optional<ShippingAddress> shippingAddress() {
+        return (Optional<ShippingAddress>) shippingAddress;
     }
 
     /**
@@ -712,27 +712,27 @@ public class PaymentLinkResponse {
         return this;
     }
 
-    public PaymentLinkResponse withBillingAddress(PaymentAddress billingAddress) {
+    public PaymentLinkResponse withBillingAddress(ShippingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
         return this;
     }
 
 
-    public PaymentLinkResponse withBillingAddress(Optional<? extends PaymentAddress> billingAddress) {
+    public PaymentLinkResponse withBillingAddress(Optional<? extends ShippingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
         return this;
     }
 
-    public PaymentLinkResponse withShippingAddress(PaymentAddress shippingAddress) {
+    public PaymentLinkResponse withShippingAddress(ShippingAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
 
 
-    public PaymentLinkResponse withShippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
+    public PaymentLinkResponse withShippingAddress(Optional<? extends ShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = shippingAddress;
         return this;
@@ -1055,9 +1055,9 @@ public class PaymentLinkResponse {
 
         private JsonNullable<? extends List<PaymentLineItemResponse>> lines = JsonNullable.undefined();
 
-        private Optional<? extends PaymentAddress> billingAddress = Optional.empty();
+        private Optional<? extends ShippingAddress> billingAddress = Optional.empty();
 
-        private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
+        private Optional<? extends ShippingAddress> shippingAddress = Optional.empty();
 
         private Optional<String> profileId = Optional.empty();
 
@@ -1270,26 +1270,26 @@ public class PaymentLinkResponse {
         }
 
 
-        public Builder billingAddress(PaymentAddress billingAddress) {
+        public Builder billingAddress(ShippingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
             return this;
         }
 
-        public Builder billingAddress(Optional<? extends PaymentAddress> billingAddress) {
+        public Builder billingAddress(Optional<? extends ShippingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = billingAddress;
             return this;
         }
 
 
-        public Builder shippingAddress(PaymentAddress shippingAddress) {
+        public Builder shippingAddress(ShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
             return this;
         }
 
-        public Builder shippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
+        public Builder shippingAddress(Optional<? extends ShippingAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = shippingAddress;
             return this;

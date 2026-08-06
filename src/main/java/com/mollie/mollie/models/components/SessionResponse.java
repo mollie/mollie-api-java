@@ -103,12 +103,12 @@ public class SessionResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billingAddress")
-    private Optional<? extends PaymentAddress> billingAddress;
+    private Optional<? extends ShippingAddress> billingAddress;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
-    private Optional<? extends PaymentAddress> shippingAddress;
+    private Optional<? extends ShippingAddress> shippingAddress;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -190,8 +190,8 @@ public class SessionResponse {
             @JsonProperty("lines") List<SessionLineItemResponse> lines,
             @JsonProperty("redirectUrl") String redirectUrl,
             @JsonProperty("requiredCustomerDetails") Optional<? extends List<SessionRequiredCustomerDetailsResponse>> requiredCustomerDetails,
-            @JsonProperty("billingAddress") Optional<? extends PaymentAddress> billingAddress,
-            @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
+            @JsonProperty("billingAddress") Optional<? extends ShippingAddress> billingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends ShippingAddress> shippingAddress,
             @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("sequenceType") Optional<? extends SessionSequenceTypeResponse> sequenceType,
             @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
@@ -367,14 +367,14 @@ public class SessionResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentAddress> billingAddress() {
-        return (Optional<PaymentAddress>) billingAddress;
+    public Optional<ShippingAddress> billingAddress() {
+        return (Optional<ShippingAddress>) billingAddress;
     }
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentAddress> shippingAddress() {
-        return (Optional<PaymentAddress>) shippingAddress;
+    public Optional<ShippingAddress> shippingAddress() {
+        return (Optional<ShippingAddress>) shippingAddress;
     }
 
     @JsonIgnore
@@ -586,27 +586,27 @@ public class SessionResponse {
         return this;
     }
 
-    public SessionResponse withBillingAddress(PaymentAddress billingAddress) {
+    public SessionResponse withBillingAddress(ShippingAddress billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = Optional.ofNullable(billingAddress);
         return this;
     }
 
 
-    public SessionResponse withBillingAddress(Optional<? extends PaymentAddress> billingAddress) {
+    public SessionResponse withBillingAddress(Optional<? extends ShippingAddress> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
         return this;
     }
 
-    public SessionResponse withShippingAddress(PaymentAddress shippingAddress) {
+    public SessionResponse withShippingAddress(ShippingAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
 
 
-    public SessionResponse withShippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
+    public SessionResponse withShippingAddress(Optional<? extends ShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = shippingAddress;
         return this;
@@ -848,9 +848,9 @@ public class SessionResponse {
 
         private Optional<? extends List<SessionRequiredCustomerDetailsResponse>> requiredCustomerDetails = Optional.empty();
 
-        private Optional<? extends PaymentAddress> billingAddress = Optional.empty();
+        private Optional<? extends ShippingAddress> billingAddress = Optional.empty();
 
-        private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
+        private Optional<? extends ShippingAddress> shippingAddress = Optional.empty();
 
         private Optional<String> customerId = Optional.empty();
 
@@ -1008,26 +1008,26 @@ public class SessionResponse {
         }
 
 
-        public Builder billingAddress(PaymentAddress billingAddress) {
+        public Builder billingAddress(ShippingAddress billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
             return this;
         }
 
-        public Builder billingAddress(Optional<? extends PaymentAddress> billingAddress) {
+        public Builder billingAddress(Optional<? extends ShippingAddress> billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = billingAddress;
             return this;
         }
 
 
-        public Builder shippingAddress(PaymentAddress shippingAddress) {
+        public Builder shippingAddress(ShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
             return this;
         }
 
-        public Builder shippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
+        public Builder shippingAddress(Optional<? extends ShippingAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = shippingAddress;
             return this;

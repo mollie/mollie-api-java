@@ -51,7 +51,7 @@ public class EntityPayoutResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private JsonNullable<String> description;
 
     /**
      * The status of the payout.
@@ -118,7 +118,7 @@ public class EntityPayoutResponse {
             @JsonProperty("id") String id,
             @JsonProperty("balanceId") String balanceId,
             @JsonProperty("amount") JsonNullable<? extends AmountNullable> amount,
-            @JsonProperty("description") Optional<String> description,
+            @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("status") PayoutStatus status,
             @JsonProperty("statusReason") PayoutStatusReason statusReason,
             @JsonProperty("createdAt") String createdAt,
@@ -164,7 +164,7 @@ public class EntityPayoutResponse {
             String createdAt,
             Mode mode) {
         this(resource, id, balanceId,
-            JsonNullable.undefined(), Optional.empty(), status,
+            JsonNullable.undefined(), JsonNullable.undefined(), status,
             statusReason, createdAt, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), mode,
             Optional.empty());
@@ -210,7 +210,7 @@ public class EntityPayoutResponse {
      * The description that will appear on the bank statement for this payout.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public JsonNullable<String> description() {
         return description;
     }
 
@@ -344,15 +344,14 @@ public class EntityPayoutResponse {
      */
     public EntityPayoutResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
+        this.description = JsonNullable.of(description);
         return this;
     }
-
 
     /**
      * The description that will appear on the bank statement for this payout.
      */
-    public EntityPayoutResponse withDescription(Optional<String> description) {
+    public EntityPayoutResponse withDescription(JsonNullable<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -544,7 +543,7 @@ public class EntityPayoutResponse {
 
         private JsonNullable<? extends AmountNullable> amount = JsonNullable.undefined();
 
-        private Optional<String> description = Optional.empty();
+        private JsonNullable<String> description = JsonNullable.undefined();
 
         private PayoutStatus status;
 
@@ -624,14 +623,14 @@ public class EntityPayoutResponse {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
+            this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
          * The description that will appear on the bank statement for this payout.
          */
-        public Builder description(Optional<String> description) {
+        public Builder description(JsonNullable<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
