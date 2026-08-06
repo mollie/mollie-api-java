@@ -44,4 +44,3 @@ EntityOrganizationLocale custom = EntityOrganizationLocale.of("custom_value");
 | `PTPT`  | pt_PT   |
 | `SKSK`  | sk_SK   |
 | `SV_SE` | sv_SE   |
-| `NULL`  | null    |

@@ -52,7 +52,6 @@ public class EntityOrganizationLocale {
     public static final EntityOrganizationLocale PTPT = new EntityOrganizationLocale("pt_PT");
     public static final EntityOrganizationLocale SKSK = new EntityOrganizationLocale("sk_SK");
     public static final EntityOrganizationLocale SV_SE = new EntityOrganizationLocale("sv_SE");
-    public static final EntityOrganizationLocale NULL = new EntityOrganizationLocale("null");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -152,7 +151,6 @@ public class EntityOrganizationLocale {
         map.put("pt_PT", PTPT);
         map.put("sk_SK", SKSK);
         map.put("sv_SE", SV_SE);
-        map.put("null", NULL);
         return map;
     }
 
@@ -184,7 +182,6 @@ public class EntityOrganizationLocale {
         map.put("pt_PT", EntityOrganizationLocaleEnum.PTPT);
         map.put("sk_SK", EntityOrganizationLocaleEnum.SKSK);
         map.put("sv_SE", EntityOrganizationLocaleEnum.SV_SE);
-        map.put("null", EntityOrganizationLocaleEnum.NULL);
         return map;
     }
     
@@ -216,8 +213,7 @@ public class EntityOrganizationLocale {
         PLPL("pl_PL"),
         PTPT("pt_PT"),
         SKSK("sk_SK"),
-        SV_SE("sv_SE"),
-        NULL("null"),;
+        SV_SE("sv_SE"),;
 
         private final String value;
 

@@ -163,7 +163,7 @@ public class ListPaymentResponse {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shippingAddress")
-    private Optional<? extends PaymentAddress> shippingAddress;
+    private Optional<? extends ShippingAddress> shippingAddress;
 
     /**
      * Sets the language for customer-facing content and communications.
@@ -478,7 +478,7 @@ public class ListPaymentResponse {
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("lines") JsonNullable<? extends List<ListPaymentResponseLines>> lines,
             @JsonProperty("billingAddress") Optional<? extends ListPaymentResponseBillingAddress> billingAddress,
-            @JsonProperty("shippingAddress") Optional<? extends PaymentAddress> shippingAddress,
+            @JsonProperty("shippingAddress") Optional<? extends ShippingAddress> shippingAddress,
             @JsonProperty("locale") JsonNullable<? extends LocaleResponse> locale,
             @JsonProperty("countryCode") JsonNullable<String> countryCode,
             @JsonProperty("method") JsonNullable<? extends MethodResponse> method,
@@ -789,8 +789,8 @@ public class ListPaymentResponse {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentAddress> shippingAddress() {
-        return (Optional<PaymentAddress>) shippingAddress;
+    public Optional<ShippingAddress> shippingAddress() {
+        return (Optional<ShippingAddress>) shippingAddress;
     }
 
     /**
@@ -1415,14 +1415,14 @@ public class ListPaymentResponse {
         return this;
     }
 
-    public ListPaymentResponse withShippingAddress(PaymentAddress shippingAddress) {
+    public ListPaymentResponse withShippingAddress(ShippingAddress shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
 
 
-    public ListPaymentResponse withShippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
+    public ListPaymentResponse withShippingAddress(Optional<? extends ShippingAddress> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = shippingAddress;
         return this;
@@ -2251,7 +2251,7 @@ public class ListPaymentResponse {
 
         private Optional<? extends ListPaymentResponseBillingAddress> billingAddress = Optional.empty();
 
-        private Optional<? extends PaymentAddress> shippingAddress = Optional.empty();
+        private Optional<? extends ShippingAddress> shippingAddress = Optional.empty();
 
         private JsonNullable<? extends LocaleResponse> locale = JsonNullable.undefined();
 
@@ -2607,13 +2607,13 @@ public class ListPaymentResponse {
         }
 
 
-        public Builder shippingAddress(PaymentAddress shippingAddress) {
+        public Builder shippingAddress(ShippingAddress shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
             return this;
         }
 
-        public Builder shippingAddress(Optional<? extends PaymentAddress> shippingAddress) {
+        public Builder shippingAddress(Optional<? extends ShippingAddress> shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = shippingAddress;
             return this;

@@ -14,7 +14,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -37,7 +36,7 @@ public class PayoutRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private JsonNullable<String> description;
 
     /**
      * Whether to create the entity in test mode or live mode.
@@ -56,7 +55,7 @@ public class PayoutRequest {
     public PayoutRequest(
             @JsonProperty("balanceId") String balanceId,
             @JsonProperty("amount") JsonNullable<? extends AmountNullable> amount,
-            @JsonProperty("description") Optional<String> description,
+            @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(balanceId, "balanceId");
         Utils.checkNotNull(amount, "amount");
@@ -70,7 +69,7 @@ public class PayoutRequest {
     
     public PayoutRequest(
             String balanceId) {
-        this(balanceId, JsonNullable.undefined(), Optional.empty(),
+        this(balanceId, JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
 
@@ -95,7 +94,7 @@ public class PayoutRequest {
      * The description that will appear on the bank statement for this payout.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public JsonNullable<String> description() {
         return description;
     }
 
@@ -150,15 +149,14 @@ public class PayoutRequest {
      */
     public PayoutRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
+        this.description = JsonNullable.of(description);
         return this;
     }
-
 
     /**
      * The description that will appear on the bank statement for this payout.
      */
-    public PayoutRequest withDescription(Optional<String> description) {
+    public PayoutRequest withDescription(JsonNullable<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -233,7 +231,7 @@ public class PayoutRequest {
 
         private JsonNullable<? extends AmountNullable> amount = JsonNullable.undefined();
 
-        private Optional<String> description = Optional.empty();
+        private JsonNullable<String> description = JsonNullable.undefined();
 
         private JsonNullable<Boolean> testmode = JsonNullable.undefined();
 
@@ -276,14 +274,14 @@ public class PayoutRequest {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
+            this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
          * The description that will appear on the bank statement for this payout.
          */
-        public Builder description(Optional<String> description) {
+        public Builder description(JsonNullable<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;

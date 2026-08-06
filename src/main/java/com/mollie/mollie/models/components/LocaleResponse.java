@@ -52,7 +52,6 @@ public class LocaleResponse {
     public static final LocaleResponse PTPT = new LocaleResponse("pt_PT");
     public static final LocaleResponse SKSK = new LocaleResponse("sk_SK");
     public static final LocaleResponse SV_SE = new LocaleResponse("sv_SE");
-    public static final LocaleResponse NULL = new LocaleResponse("null");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -152,7 +151,6 @@ public class LocaleResponse {
         map.put("pt_PT", PTPT);
         map.put("sk_SK", SKSK);
         map.put("sv_SE", SV_SE);
-        map.put("null", NULL);
         return map;
     }
 
@@ -184,7 +182,6 @@ public class LocaleResponse {
         map.put("pt_PT", LocaleResponseEnum.PTPT);
         map.put("sk_SK", LocaleResponseEnum.SKSK);
         map.put("sv_SE", LocaleResponseEnum.SV_SE);
-        map.put("null", LocaleResponseEnum.NULL);
         return map;
     }
     
@@ -216,8 +213,7 @@ public class LocaleResponse {
         PLPL("pl_PL"),
         PTPT("pt_PT"),
         SKSK("sk_SK"),
-        SV_SE("sv_SE"),
-        NULL("null"),;
+        SV_SE("sv_SE"),;
 
         private final String value;
 
