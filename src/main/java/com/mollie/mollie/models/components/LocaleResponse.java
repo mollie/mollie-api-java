@@ -33,7 +33,9 @@ public class LocaleResponse {
     public static final LocaleResponse DE_CH = new LocaleResponse("de_CH");
     public static final LocaleResponse DEDE = new LocaleResponse("de_DE");
     public static final LocaleResponse DE_LU = new LocaleResponse("de_LU");
+    public static final LocaleResponse EN_BE = new LocaleResponse("en_BE");
     public static final LocaleResponse EN_GB = new LocaleResponse("en_GB");
+    public static final LocaleResponse EN_NL = new LocaleResponse("en_NL");
     public static final LocaleResponse EN_US = new LocaleResponse("en_US");
     public static final LocaleResponse ESES = new LocaleResponse("es_ES");
     public static final LocaleResponse FIFI = new LocaleResponse("fi_FI");
@@ -132,7 +134,9 @@ public class LocaleResponse {
         map.put("de_CH", DE_CH);
         map.put("de_DE", DEDE);
         map.put("de_LU", DE_LU);
+        map.put("en_BE", EN_BE);
         map.put("en_GB", EN_GB);
+        map.put("en_NL", EN_NL);
         map.put("en_US", EN_US);
         map.put("es_ES", ESES);
         map.put("fi_FI", FIFI);
@@ -163,7 +167,9 @@ public class LocaleResponse {
         map.put("de_CH", LocaleResponseEnum.DE_CH);
         map.put("de_DE", LocaleResponseEnum.DEDE);
         map.put("de_LU", LocaleResponseEnum.DE_LU);
+        map.put("en_BE", LocaleResponseEnum.EN_BE);
         map.put("en_GB", LocaleResponseEnum.EN_GB);
+        map.put("en_NL", LocaleResponseEnum.EN_NL);
         map.put("en_US", LocaleResponseEnum.EN_US);
         map.put("es_ES", LocaleResponseEnum.ESES);
         map.put("fi_FI", LocaleResponseEnum.FIFI);
@@ -195,7 +201,9 @@ public class LocaleResponse {
         DE_CH("de_CH"),
         DEDE("de_DE"),
         DE_LU("de_LU"),
+        EN_BE("en_BE"),
         EN_GB("en_GB"),
+        EN_NL("en_NL"),
         EN_US("en_US"),
         ESES("es_ES"),
         FIFI("fi_FI"),

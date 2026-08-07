@@ -22,7 +22,9 @@ Locale2 value = Locale2.CA_ES;
 | `DE_CH` | de_CH   |
 | `DEDE`  | de_DE   |
 | `DE_LU` | de_LU   |
+| `EN_BE` | en_BE   |
 | `EN_GB` | en_GB   |
+| `EN_NL` | en_NL   |
 | `EN_US` | en_US   |
 | `ESES`  | es_ES   |
 | `FIFI`  | fi_FI   |
