@@ -33,7 +33,9 @@ public class EntityOrganizationLocale {
     public static final EntityOrganizationLocale DE_CH = new EntityOrganizationLocale("de_CH");
     public static final EntityOrganizationLocale DEDE = new EntityOrganizationLocale("de_DE");
     public static final EntityOrganizationLocale DE_LU = new EntityOrganizationLocale("de_LU");
+    public static final EntityOrganizationLocale EN_BE = new EntityOrganizationLocale("en_BE");
     public static final EntityOrganizationLocale EN_GB = new EntityOrganizationLocale("en_GB");
+    public static final EntityOrganizationLocale EN_NL = new EntityOrganizationLocale("en_NL");
     public static final EntityOrganizationLocale EN_US = new EntityOrganizationLocale("en_US");
     public static final EntityOrganizationLocale ESES = new EntityOrganizationLocale("es_ES");
     public static final EntityOrganizationLocale FIFI = new EntityOrganizationLocale("fi_FI");
@@ -132,7 +134,9 @@ public class EntityOrganizationLocale {
         map.put("de_CH", DE_CH);
         map.put("de_DE", DEDE);
         map.put("de_LU", DE_LU);
+        map.put("en_BE", EN_BE);
         map.put("en_GB", EN_GB);
+        map.put("en_NL", EN_NL);
         map.put("en_US", EN_US);
         map.put("es_ES", ESES);
         map.put("fi_FI", FIFI);
@@ -163,7 +167,9 @@ public class EntityOrganizationLocale {
         map.put("de_CH", EntityOrganizationLocaleEnum.DE_CH);
         map.put("de_DE", EntityOrganizationLocaleEnum.DEDE);
         map.put("de_LU", EntityOrganizationLocaleEnum.DE_LU);
+        map.put("en_BE", EntityOrganizationLocaleEnum.EN_BE);
         map.put("en_GB", EntityOrganizationLocaleEnum.EN_GB);
+        map.put("en_NL", EntityOrganizationLocaleEnum.EN_NL);
         map.put("en_US", EntityOrganizationLocaleEnum.EN_US);
         map.put("es_ES", EntityOrganizationLocaleEnum.ESES);
         map.put("fi_FI", EntityOrganizationLocaleEnum.FIFI);
@@ -195,7 +201,9 @@ public class EntityOrganizationLocale {
         DE_CH("de_CH"),
         DEDE("de_DE"),
         DE_LU("de_LU"),
+        EN_BE("en_BE"),
         EN_GB("en_GB"),
+        EN_NL("en_NL"),
         EN_US("en_US"),
         ESES("es_ES"),
         FIFI("fi_FI"),
