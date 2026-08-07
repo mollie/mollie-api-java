@@ -159,7 +159,39 @@ documentation.
 For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 [balance transactions](list-balance-transactions) endpoint.
 
-### Example Usage
+### Example Usage: get-open-settlement-200-1
+
+<!-- UsageSnippet language="java" operationID="get-open-settlement" method="get" path="/v2/settlements/open" example="get-open-settlement-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetOpenSettlementResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
+                    .build())
+            .build();
+
+        GetOpenSettlementResponse res = sdk.settlements().getOpen()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
+        }
+    }
+}
+```
+### Example Usage: get-settlement-200-1
 
 <!-- UsageSnippet language="java" operationID="get-open-settlement" method="get" path="/v2/settlements/open" example="get-settlement-200-1" -->
 ```java
@@ -185,8 +217,8 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
-        if (res.entitySettlement().isPresent()) {
-            System.out.println(res.entitySettlement().get());
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
         }
     }
 }
@@ -219,7 +251,39 @@ documentation.
 For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
 [balance transactions](list-balance-transactions) endpoint.
 
-### Example Usage
+### Example Usage: get-next-settlement-200-1
+
+<!-- UsageSnippet language="java" operationID="get-next-settlement" method="get" path="/v2/settlements/next" example="get-next-settlement-200-1" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetNextSettlementResponse;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
+                    .build())
+            .build();
+
+        GetNextSettlementResponse res = sdk.settlements().getNext()
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .call();
+
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
+        }
+    }
+}
+```
+### Example Usage: get-settlement-200-1
 
 <!-- UsageSnippet language="java" operationID="get-next-settlement" method="get" path="/v2/settlements/next" example="get-settlement-200-1" -->
 ```java
@@ -245,8 +309,8 @@ public class Application {
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
-        if (res.entitySettlement().isPresent()) {
-            System.out.println(res.entitySettlement().get());
+        if (res.object().isPresent()) {
+            System.out.println(res.object().get());
         }
     }
 }

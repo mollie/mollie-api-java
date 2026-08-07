@@ -7,7 +7,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.ListEntitySettlement;
+import com.mollie.mollie.models.components.EntitySettlement;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -20,11 +20,11 @@ public class ListSettlementsEmbedded {
      * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
     @JsonProperty("settlements")
-    private List<ListEntitySettlement> settlements;
+    private List<EntitySettlement> settlements;
 
     @JsonCreator
     public ListSettlementsEmbedded(
-            @JsonProperty("settlements") List<ListEntitySettlement> settlements) {
+            @JsonProperty("settlements") List<EntitySettlement> settlements) {
         Utils.checkNotNull(settlements, "settlements");
         this.settlements = settlements;
     }
@@ -34,7 +34,7 @@ public class ListSettlementsEmbedded {
      * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
     @JsonIgnore
-    public List<ListEntitySettlement> settlements() {
+    public List<EntitySettlement> settlements() {
         return settlements;
     }
 
@@ -47,7 +47,7 @@ public class ListSettlementsEmbedded {
      * An array of settlement objects. For a complete reference
      * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
      */
-    public ListSettlementsEmbedded withSettlements(List<ListEntitySettlement> settlements) {
+    public ListSettlementsEmbedded withSettlements(List<EntitySettlement> settlements) {
         Utils.checkNotNull(settlements, "settlements");
         this.settlements = settlements;
         return this;
@@ -81,7 +81,7 @@ public class ListSettlementsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<ListEntitySettlement> settlements;
+        private List<EntitySettlement> settlements;
 
         private Builder() {
           // force use of static builder() method
@@ -92,7 +92,7 @@ public class ListSettlementsEmbedded {
          * An array of settlement objects. For a complete reference
          * of the settlement object, refer to the [Get settlement endpoint](get-settlement) documentation.
          */
-        public Builder settlements(List<ListEntitySettlement> settlements) {
+        public Builder settlements(List<EntitySettlement> settlements) {
             Utils.checkNotNull(settlements, "settlements");
             this.settlements = settlements;
             return this;

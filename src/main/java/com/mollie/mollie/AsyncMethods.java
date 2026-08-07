@@ -6,20 +6,39 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
+import com.mollie.mollie.models.components.Method;
+import com.mollie.mollie.models.components.MethodIdWithIssuer;
+import com.mollie.mollie.models.operations.DisableMethodIssuerRequest;
+import com.mollie.mollie.models.operations.DisableMethodRequest;
+import com.mollie.mollie.models.operations.EnableMethodIssuerRequest;
+import com.mollie.mollie.models.operations.EnableMethodRequest;
 import com.mollie.mollie.models.operations.GetMethodRequest;
 import com.mollie.mollie.models.operations.ListAllMethodsRequest;
 import com.mollie.mollie.models.operations.ListMethodsRequest;
+import com.mollie.mollie.models.operations.async.DisableMethodIssuerRequestBuilder;
+import com.mollie.mollie.models.operations.async.DisableMethodIssuerResponse;
+import com.mollie.mollie.models.operations.async.DisableMethodRequestBuilder;
+import com.mollie.mollie.models.operations.async.DisableMethodResponse;
+import com.mollie.mollie.models.operations.async.EnableMethodIssuerRequestBuilder;
+import com.mollie.mollie.models.operations.async.EnableMethodIssuerResponse;
+import com.mollie.mollie.models.operations.async.EnableMethodRequestBuilder;
+import com.mollie.mollie.models.operations.async.EnableMethodResponse;
 import com.mollie.mollie.models.operations.async.GetMethodRequestBuilder;
 import com.mollie.mollie.models.operations.async.GetMethodResponse;
 import com.mollie.mollie.models.operations.async.ListAllMethodsRequestBuilder;
 import com.mollie.mollie.models.operations.async.ListAllMethodsResponse;
 import com.mollie.mollie.models.operations.async.ListMethodsRequestBuilder;
 import com.mollie.mollie.models.operations.async.ListMethodsResponse;
+import com.mollie.mollie.operations.DisableMethod;
+import com.mollie.mollie.operations.DisableMethodIssuer;
+import com.mollie.mollie.operations.EnableMethod;
+import com.mollie.mollie.operations.EnableMethodIssuer;
 import com.mollie.mollie.operations.GetMethod;
 import com.mollie.mollie.operations.ListAllMethods;
 import com.mollie.mollie.operations.ListMethods;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -316,6 +335,331 @@ public class AsyncMethods {
     public CompletableFuture<GetMethodResponse> get(GetMethodRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetMethodRequest, GetMethodResponse> operation
               = new GetMethod.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Enable payment method
+     * 
+     * <p>Enable a payment method on a specific profile.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used
+     * instead of the profile ID to refer to the current profile.
+     * 
+     * <p>Some payment methods require extra steps in order to be activated. In cases
+     * where a step at the payment method provider needs to be completed first, the status will be set to
+     * `pending-external` and the response will contain a link to complete the activation at the provider.
+     * 
+     * <p>To enable voucher or gift card issuers, refer to the [Enable payment method
+     * issuer](enable-method-issuer) endpoint.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @return The async call builder
+     */
+    public EnableMethodRequestBuilder enable() {
+        return new EnableMethodRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Enable payment method
+     * 
+     * <p>Enable a payment method on a specific profile.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used
+     * instead of the profile ID to refer to the current profile.
+     * 
+     * <p>Some payment methods require extra steps in order to be activated. In cases
+     * where a step at the payment method provider needs to be completed first, the status will be set to
+     * `pending-external` and the response will contain a link to complete the activation at the provider.
+     * 
+     * <p>To enable voucher or gift card issuers, refer to the [Enable payment method
+     * issuer](enable-method-issuer) endpoint.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param profileId Provide the ID of the related profile.
+     * @return {@code CompletableFuture<EnableMethodResponse>} - The async response
+     */
+    public CompletableFuture<EnableMethodResponse> enable(String profileId) {
+        return enable(
+                profileId, Optional.empty(), Optional.empty(),
+                Optional.empty());
+    }
+
+    /**
+     * Enable payment method
+     * 
+     * <p>Enable a payment method on a specific profile.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used
+     * instead of the profile ID to refer to the current profile.
+     * 
+     * <p>Some payment methods require extra steps in order to be activated. In cases
+     * where a step at the payment method provider needs to be completed first, the status will be set to
+     * `pending-external` and the response will contain a link to complete the activation at the provider.
+     * 
+     * <p>To enable voucher or gift card issuers, refer to the [Enable payment method
+     * issuer](enable-method-issuer) endpoint.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param profileId Provide the ID of the related profile.
+     * @param methodId 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param options additional options
+     * @return {@code CompletableFuture<EnableMethodResponse>} - The async response
+     */
+    public CompletableFuture<EnableMethodResponse> enable(
+            String profileId, Optional<? extends Method> methodId,
+            Optional<String> idempotencyKey, Optional<Options> options) {
+        EnableMethodRequest request =
+            EnableMethodRequest
+                .builder()
+                .profileId(profileId)
+                .methodId(methodId)
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<EnableMethodRequest, EnableMethodResponse> operation
+              = new EnableMethod.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Disable payment method
+     * 
+     * <p>Disable a payment method on a specific profile.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used
+     * instead of the profile ID to refer to the current profile.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @return The async call builder
+     */
+    public DisableMethodRequestBuilder disable() {
+        return new DisableMethodRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Disable payment method
+     * 
+     * <p>Disable a payment method on a specific profile.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used
+     * instead of the profile ID to refer to the current profile.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param profileId Provide the ID of the related profile.
+     * @return {@code CompletableFuture<DisableMethodResponse>} - The async response
+     */
+    public CompletableFuture<DisableMethodResponse> disable(String profileId) {
+        return disable(
+                profileId, Optional.empty(), Optional.empty(),
+                Optional.empty());
+    }
+
+    /**
+     * Disable payment method
+     * 
+     * <p>Disable a payment method on a specific profile.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used
+     * instead of the profile ID to refer to the current profile.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param profileId Provide the ID of the related profile.
+     * @param methodId 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param options additional options
+     * @return {@code CompletableFuture<DisableMethodResponse>} - The async response
+     */
+    public CompletableFuture<DisableMethodResponse> disable(
+            String profileId, Optional<? extends Method> methodId,
+            Optional<String> idempotencyKey, Optional<Options> options) {
+        DisableMethodRequest request =
+            DisableMethodRequest
+                .builder()
+                .profileId(profileId)
+                .methodId(methodId)
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<DisableMethodRequest, DisableMethodResponse> operation
+              = new DisableMethod.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Enable payment method issuer
+     * 
+     * <p>Enable an issuer for a payment method on a specific profile.
+     * 
+     * <p>Currently only the payment methods `voucher` and `giftcard` are supported.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used instead of the profile ID
+     * to refer to the
+     * current profile.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @return The async call builder
+     */
+    public EnableMethodIssuerRequestBuilder enableIssuer() {
+        return new EnableMethodIssuerRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Enable payment method issuer
+     * 
+     * <p>Enable an issuer for a payment method on a specific profile.
+     * 
+     * <p>Currently only the payment methods `voucher` and `giftcard` are supported.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used instead of the profile ID
+     * to refer to the
+     * current profile.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @return {@code CompletableFuture<EnableMethodIssuerResponse>} - The async response
+     */
+    public CompletableFuture<EnableMethodIssuerResponse> enableIssuer(EnableMethodIssuerRequest request) {
+        return enableIssuer(request, Optional.empty());
+    }
+
+    /**
+     * Enable payment method issuer
+     * 
+     * <p>Enable an issuer for a payment method on a specific profile.
+     * 
+     * <p>Currently only the payment methods `voucher` and `giftcard` are supported.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used instead of the profile ID
+     * to refer to the
+     * current profile.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param request The request object containing all the parameters for the API call.
+     * @param options additional options
+     * @return {@code CompletableFuture<EnableMethodIssuerResponse>} - The async response
+     */
+    public CompletableFuture<EnableMethodIssuerResponse> enableIssuer(EnableMethodIssuerRequest request, Optional<Options> options) {
+        AsyncRequestOperation<EnableMethodIssuerRequest, EnableMethodIssuerResponse> operation
+              = new EnableMethodIssuer.Async(
+                                    sdkConfiguration, options, sdkConfiguration.retryScheduler(),
+                                    _headers);
+        return operation.doRequest(request)
+            .thenCompose(operation::handleResponse);
+    }
+
+
+    /**
+     * Disable payment method issuer
+     * 
+     * <p>Disable an issuer for a payment method on a specific profile.
+     * 
+     * <p>Currently only the payment methods `voucher` and `giftcard` are supported.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used instead of the profile ID
+     * to refer to the
+     * current profile.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @return The async call builder
+     */
+    public DisableMethodIssuerRequestBuilder disableIssuer() {
+        return new DisableMethodIssuerRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Disable payment method issuer
+     * 
+     * <p>Disable an issuer for a payment method on a specific profile.
+     * 
+     * <p>Currently only the payment methods `voucher` and `giftcard` are supported.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used instead of the profile ID
+     * to refer to the
+     * current profile.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param profileId Provide the ID of the related profile.
+     * @param methodId 
+     * @param issuerId Provide the ID of the related issuer.
+     * @return {@code CompletableFuture<DisableMethodIssuerResponse>} - The async response
+     */
+    public CompletableFuture<DisableMethodIssuerResponse> disableIssuer(
+            String profileId, MethodIdWithIssuer methodId,
+            String issuerId) {
+        return disableIssuer(
+                profileId, methodId, issuerId,
+                Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Disable payment method issuer
+     * 
+     * <p>Disable an issuer for a payment method on a specific profile.
+     * 
+     * <p>Currently only the payment methods `voucher` and `giftcard` are supported.
+     * 
+     * <p>When using a profile-specific API credential, the alias `me` can be used instead of the profile ID
+     * to refer to the
+     * current profile.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param profileId Provide the ID of the related profile.
+     * @param methodId 
+     * @param issuerId Provide the ID of the related issuer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param options additional options
+     * @return {@code CompletableFuture<DisableMethodIssuerResponse>} - The async response
+     */
+    public CompletableFuture<DisableMethodIssuerResponse> disableIssuer(
+            String profileId, MethodIdWithIssuer methodId,
+            String issuerId, Optional<String> idempotencyKey,
+            Optional<Options> options) {
+        DisableMethodIssuerRequest request =
+            DisableMethodIssuerRequest
+                .builder()
+                .profileId(profileId)
+                .methodId(methodId)
+                .issuerId(issuerId)
+                .idempotencyKey(idempotencyKey)
+                .build();
+        AsyncRequestOperation<DisableMethodIssuerRequest, DisableMethodIssuerResponse> operation
+              = new DisableMethodIssuer.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
         return operation.doRequest(request)
