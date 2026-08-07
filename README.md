@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.9.4'
+implementation 'com.mollie:mollie:1.9.5'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.9.4</version>
+    <version>1.9.5</version>
 </dependency>
 ```
 
@@ -530,6 +530,10 @@ Client sdk = Client.builder()
 * [list](docs/sdks/methods/README.md#list) - List payment methods
 * [all](docs/sdks/methods/README.md#all) - List all payment methods
 * [get](docs/sdks/methods/README.md#get) - Get payment method
+* [enable](docs/sdks/methods/README.md#enable) - Enable payment method
+* [disable](docs/sdks/methods/README.md#disable) - Disable payment method
+* [enableIssuer](docs/sdks/methods/README.md#enableissuer) - Enable payment method issuer
+* [disableIssuer](docs/sdks/methods/README.md#disableissuer) - Disable payment method issuer
 
 ### [Oauth](docs/sdks/oauth/README.md)
 

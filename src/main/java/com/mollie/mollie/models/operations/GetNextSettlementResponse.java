@@ -6,7 +6,6 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntitySettlement;
 import com.mollie.mollie.utils.Response;
 import com.mollie.mollie.utils.Utils;
 import java.io.InputStream;
@@ -38,22 +37,22 @@ public class GetNextSettlementResponse implements Response {
      * The next settlement object. For a complete reference of the settlement object, refer to the
      * [Get settlement](get-settlement) endpoint documentation.
      */
-    private Optional<? extends EntitySettlement> entitySettlement;
+    private Optional<? extends GetNextSettlementResponseBody> object;
 
     @JsonCreator
     public GetNextSettlementResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
-            Optional<? extends EntitySettlement> entitySettlement) {
+            Optional<? extends GetNextSettlementResponseBody> object) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(entitySettlement, "entitySettlement");
+        Utils.checkNotNull(object, "object");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.entitySettlement = entitySettlement;
+        this.object = object;
     }
     
     public GetNextSettlementResponse(
@@ -94,8 +93,8 @@ public class GetNextSettlementResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntitySettlement> entitySettlement() {
-        return (Optional<EntitySettlement>) entitySettlement;
+    public Optional<GetNextSettlementResponseBody> object() {
+        return (Optional<GetNextSettlementResponseBody>) object;
     }
 
     public static Builder builder() {
@@ -134,9 +133,9 @@ public class GetNextSettlementResponse implements Response {
      * The next settlement object. For a complete reference of the settlement object, refer to the
      * [Get settlement](get-settlement) endpoint documentation.
      */
-    public GetNextSettlementResponse withEntitySettlement(EntitySettlement entitySettlement) {
-        Utils.checkNotNull(entitySettlement, "entitySettlement");
-        this.entitySettlement = Optional.ofNullable(entitySettlement);
+    public GetNextSettlementResponse withObject(GetNextSettlementResponseBody object) {
+        Utils.checkNotNull(object, "object");
+        this.object = Optional.ofNullable(object);
         return this;
     }
 
@@ -145,9 +144,9 @@ public class GetNextSettlementResponse implements Response {
      * The next settlement object. For a complete reference of the settlement object, refer to the
      * [Get settlement](get-settlement) endpoint documentation.
      */
-    public GetNextSettlementResponse withEntitySettlement(Optional<? extends EntitySettlement> entitySettlement) {
-        Utils.checkNotNull(entitySettlement, "entitySettlement");
-        this.entitySettlement = entitySettlement;
+    public GetNextSettlementResponse withObject(Optional<? extends GetNextSettlementResponseBody> object) {
+        Utils.checkNotNull(object, "object");
+        this.object = object;
         return this;
     }
 
@@ -164,14 +163,14 @@ public class GetNextSettlementResponse implements Response {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.entitySettlement, other.entitySettlement);
+            Utils.enhancedDeepEquals(this.object, other.object);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            entitySettlement);
+            object);
     }
     
     @Override
@@ -180,7 +179,7 @@ public class GetNextSettlementResponse implements Response {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "entitySettlement", entitySettlement);
+                "object", object);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -192,7 +191,7 @@ public class GetNextSettlementResponse implements Response {
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends EntitySettlement> entitySettlement = Optional.empty();
+        private Optional<? extends GetNextSettlementResponseBody> object = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -233,9 +232,9 @@ public class GetNextSettlementResponse implements Response {
          * The next settlement object. For a complete reference of the settlement object, refer to the
          * [Get settlement](get-settlement) endpoint documentation.
          */
-        public Builder entitySettlement(EntitySettlement entitySettlement) {
-            Utils.checkNotNull(entitySettlement, "entitySettlement");
-            this.entitySettlement = Optional.ofNullable(entitySettlement);
+        public Builder object(GetNextSettlementResponseBody object) {
+            Utils.checkNotNull(object, "object");
+            this.object = Optional.ofNullable(object);
             return this;
         }
 
@@ -243,9 +242,9 @@ public class GetNextSettlementResponse implements Response {
          * The next settlement object. For a complete reference of the settlement object, refer to the
          * [Get settlement](get-settlement) endpoint documentation.
          */
-        public Builder entitySettlement(Optional<? extends EntitySettlement> entitySettlement) {
-            Utils.checkNotNull(entitySettlement, "entitySettlement");
-            this.entitySettlement = entitySettlement;
+        public Builder object(Optional<? extends GetNextSettlementResponseBody> object) {
+            Utils.checkNotNull(object, "object");
+            this.object = object;
             return this;
         }
 
@@ -253,7 +252,7 @@ public class GetNextSettlementResponse implements Response {
 
             return new GetNextSettlementResponse(
                 contentType, statusCode, rawResponse,
-                entitySettlement);
+                object);
         }
 
     }

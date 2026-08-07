@@ -11,11 +11,11 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.EntitySettlement;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetOpenSettlementRequest;
 import com.mollie.mollie.models.operations.GetOpenSettlementResponse;
+import com.mollie.mollie.models.operations.GetOpenSettlementResponseBody;
 import com.mollie.mollie.utils.AsyncRetries;
 import com.mollie.mollie.utils.BackoffStrategy;
 import com.mollie.mollie.utils.Blob;
@@ -194,7 +194,7 @@ public class GetOpenSettlement {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withEntitySettlement(Utils.unmarshal(response, new TypeReference<EntitySettlement>() {}));
+                    return res.withObject(Utils.unmarshal(response, new TypeReference<GetOpenSettlementResponseBody>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -282,8 +282,8 @@ public class GetOpenSettlement {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<EntitySettlement>() {})
-                            .thenApply(res::withEntitySettlement);
+                    return Utils.unmarshalAsync(response, new TypeReference<GetOpenSettlementResponseBody>() {})
+                            .thenApply(res::withObject);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
