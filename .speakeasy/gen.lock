@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 026c1f55dc079ec7865433150d1186ab
+  docChecksum: da3c7906c3501bcf695d51c94bab8c9e
   docVersion: 1.0.0
-  speakeasyVersion: 1.791.4
-  generationVersion: 2.926.8
-  releaseVersion: 1.9.5
-  configChecksum: 97fcb511fcebdf0cbb1f04c4c402ccad
+  speakeasyVersion: 1.793.2
+  generationVersion: 2.928.0
+  releaseVersion: 1.9.6
+  configChecksum: 7ed75c8175177808ff8a1f3163951c8e
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 2cca2950-76f8-4d3f-a731-1bed00f3989f
-  pristine_commit_hash: 7cd6191bde1d585d48353c726efd3c078d011f56
-  pristine_tree_hash: 6270622be0b7731ec3595fcacf86143f636c8457
+  generation_id: d5278dfd-444a-415d-9e37-7561d59bfdc1
+  pristine_commit_hash: 97d5b5cf01fcb58b123fc612df53b886f1978fea
+  pristine_tree_hash: 58a824d5525518d13f6801dc9421bbb816c6238d
 features:
   java:
     additionalDependencies: 0.1.0
@@ -33,7 +33,7 @@ features:
     pagination: 1.0.4
     retries: 0.1.3
     sdkHooks: 1.2.0
-    unions: 0.3.6
+    unions: 0.3.7
 trackedFiles:
   .gitattributes:
     id: 24139dae6567
@@ -3797,8 +3797,8 @@ trackedFiles:
     pristine_git_object: e188907068ea379a366846626ed2497e2d171fb3
   docs/sdks/terminals/README.md:
     id: 4b9f7986e224
-    last_write_checksum: sha1:74e5edef39865634145eaad9b4eb5b82ac9d7fa3
-    pristine_git_object: 91bd44c1898e69d983e8e38f0fb800c8cf808f00
+    last_write_checksum: sha1:4d239e02d8baf3ab4a987687559414ec22c6f23b
+    pristine_git_object: 7e84d750a79fbe7529ef628869fa64df613320c6
   docs/sdks/transfers/README.md:
     id: f56918861798
     last_write_checksum: sha1:16f9d7155b20f459aeaeaa4e5c300752af124de8
@@ -3829,8 +3829,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:b11f8c6278833af053eb10e9517a2db9fa2261a6
-    pristine_git_object: abc50f134f160a325216a5afecc078bd5e058ad0
+    last_write_checksum: sha1:db3e6c4d7bef5d1dc4444efe4bea74afd62f253b
+    pristine_git_object: 84932dcfedad9a4c371cf70484722043ec0b6f78
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3969,8 +3969,8 @@ trackedFiles:
     pristine_git_object: 79013ce5c997ee7dc6d7fe470766e4baf12ec212
   src/main/java/com/mollie/mollie/AsyncTerminals.java:
     id: e91cc43a8a12
-    last_write_checksum: sha1:505ec67d7ef7f1b239ece78e0e8b4908550f6ae5
-    pristine_git_object: 3ed424f69098d48cc30a7a71fa9a7505e0de50e1
+    last_write_checksum: sha1:aff7a7b514b000f6027b1f9f5026b67605cc16c0
+    pristine_git_object: a55f512680999f93ca06f753bb3d5a76dc165add
   src/main/java/com/mollie/mollie/AsyncTransfers.java:
     id: b70e8d296421
     last_write_checksum: sha1:12e9703b0f227ad3bcfbe2c9f894c333bfd23171
@@ -4085,8 +4085,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:ee1c2d513ed700037a075fa1b60828b68cc70e3a
-    pristine_git_object: abc84b224a3f7113ff59ca245461b40f33ef3ba0
+    last_write_checksum: sha1:09592dadb5fe76b6f08dfc723c6264156268f02e
+    pristine_git_object: c65997f28249139c5fff65a01ba7cb15a68734d5
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:5b1b2448cd7365ef474e323a24f05b937422e9f1
@@ -4109,8 +4109,8 @@ trackedFiles:
     pristine_git_object: c13580ca5fef61d1724a4c24b694d9022a339fab
   src/main/java/com/mollie/mollie/Terminals.java:
     id: 1d5a2a3ebb2d
-    last_write_checksum: sha1:916441da62df14f81d8c7a31a15ee61a238662dc
-    pristine_git_object: 893b55b9f7be004a9f2ff2510a54016d7308142d
+    last_write_checksum: sha1:2695e36a182da7acdabde284df1830223c912530
+    pristine_git_object: 8330104c78aa04783509e0894a6b694b31ea1025
   src/main/java/com/mollie/mollie/Transfers.java:
     id: f86e68bfabe3
     last_write_checksum: sha1:246950a136d23618a8f6bf5bf5471e3ed1fb54e8
@@ -9741,8 +9741,8 @@ trackedFiles:
     pristine_git_object: 958f924b15a39494f903ab7ef7092086c01d3f74
   src/main/java/com/mollie/mollie/operations/TerminalsRequestPairingCode.java:
     id: 7301196203a5
-    last_write_checksum: sha1:3405dc43e1ced5edc0d23a3833bba0b7fb526540
-    pristine_git_object: ffe73444b5b1ad98476099cab18c65a73cd01b73
+    last_write_checksum: sha1:3635c659c46b754c3648c5fb58388ce779c40112
+    pristine_git_object: 37fd6ec0f728efb5eb44d4c577b4094feceebf66
   src/main/java/com/mollie/mollie/operations/TerminalsRevokePairingCode.java:
     id: 5b4ca5c14492
     last_write_checksum: sha1:f26ad41eda8c88ab956b0c1d892f2b91dc4b9fe6
@@ -15239,6 +15239,8 @@ examples:
           application/hal+json: {"resource": "terminal-pairing-code", "id": "termpc_R7gX5Ea9bC4DkFj3G", "mode": "live", "code": "20eb5ca1f78b48ae9e2b", "profileId": "pfl_jA9bC4DkFj3G", "status": "active", "details": {"qrCode": {"height": 256, "width": 256, "src": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4w..."}}, "expiresAt": "2025-12-10T10:15:00+00:00", "revokedAt": "2025-12-10T10:03:23+00:00", "createdAt": "2024-03-20T09:13:37+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "profile": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
         "422":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "403":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   terminals-list-pairing-codes:
     speakeasy-default-terminals-list-pairing-codes:
       parameters:
@@ -15472,13 +15474,7 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `client.settlements.getOpen()`:  `response` **Changed** (Breaking ⚠️)
-  * `client.settlements.getNext()`:  `response` **Changed** (Breaking ⚠️)
-  * `client.methods.enable()`: **Added**
-  * `client.methods.disable()`: **Added**
-  * `client.methods.enableIssuer()`: **Added**
-  * `client.methods.disableIssuer()`: **Added**
-  * `client.settlements.list()`:  `response.Embedded.settlements[].Links.documentation` **Added**
+  * `client.terminals.terminalsRequestPairingCode()`:  `error.status[403]` **Added**
 generatedFiles:
   - .gitattributes
   - USAGE.md

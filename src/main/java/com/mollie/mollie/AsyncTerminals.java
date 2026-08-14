@@ -282,7 +282,11 @@ public class AsyncTerminals {
      * &gt;
      * &gt; This endpoint currently does not support test mode yet.
      * 
-     * <p>Returns all pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * <p>Returns your pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * 
+     * <p>We keep a pairing code for one month after it is revoked or expires, then delete it. Deleted codes
+     * drop out of
+     * this list. Active pairing codes are never deleted.
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
@@ -299,7 +303,11 @@ public class AsyncTerminals {
      * &gt;
      * &gt; This endpoint currently does not support test mode yet.
      * 
-     * <p>Returns all pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * <p>Returns your pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * 
+     * <p>We keep a pairing code for one month after it is revoked or expires, then delete it. Deleted codes
+     * drop out of
+     * this list. Active pairing codes are never deleted.
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
@@ -317,7 +325,11 @@ public class AsyncTerminals {
      * &gt;
      * &gt; This endpoint currently does not support test mode yet.
      * 
-     * <p>Returns all pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * <p>Returns your pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+     * 
+     * <p>We keep a pairing code for one month after it is revoked or expires, then delete it. Deleted codes
+     * drop out of
+     * this list. Active pairing codes are never deleted.
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
@@ -348,6 +360,10 @@ public class AsyncTerminals {
      * Code as a
      * base64 encoded SVG data URI when you use the `include` query parameter with value `details.qrCode`.
      * 
+     * <p>We keep a pairing code for one month after it is revoked or expires, then delete it. Once deleted,
+     * this endpoint
+     * returns a 404. Active pairing codes are never deleted.
+     * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
      * @return The async call builder
@@ -368,6 +384,10 @@ public class AsyncTerminals {
      * <p>The response includes a human-readable `code` for manual entry on the terminal and, optionally, a QR
      * Code as a
      * base64 encoded SVG data URI when you use the `include` query parameter with value `details.qrCode`.
+     * 
+     * <p>We keep a pairing code for one month after it is revoked or expires, then delete it. Once deleted,
+     * this endpoint
+     * returns a 404. Active pairing codes are never deleted.
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
@@ -392,6 +412,10 @@ public class AsyncTerminals {
      * <p>The response includes a human-readable `code` for manual entry on the terminal and, optionally, a QR
      * Code as a
      * base64 encoded SVG data URI when you use the `include` query parameter with value `details.qrCode`.
+     * 
+     * <p>We keep a pairing code for one month after it is revoked or expires, then delete it. Once deleted,
+     * this endpoint
+     * returns a 404. Active pairing codes are never deleted.
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
@@ -431,6 +455,9 @@ public class AsyncTerminals {
      * 
      * <p>Terminals that have already paired with this code are not affected.
      * 
+     * <p>We keep a revoked pairing code for one month, then delete it. Once deleted, this endpoint returns a
+     * 404.
+     * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
      * @return The async call builder
@@ -449,6 +476,9 @@ public class AsyncTerminals {
      * <p>Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
      * 
      * <p>Terminals that have already paired with this code are not affected.
+     * 
+     * <p>We keep a revoked pairing code for one month, then delete it. Once deleted, this endpoint returns a
+     * 404.
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
@@ -469,6 +499,9 @@ public class AsyncTerminals {
      * <p>Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
      * 
      * <p>Terminals that have already paired with this code are not affected.
+     * 
+     * <p>We keep a revoked pairing code for one month, then delete it. Once deleted, this endpoint returns a
+     * 404.
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
