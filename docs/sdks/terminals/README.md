@@ -243,7 +243,7 @@ public class Application {
 
 | Error Type                  | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
-| models/errors/ErrorResponse | 422, 429                    | application/hal+json        |
+| models/errors/ErrorResponse | 403, 422, 429               | application/hal+json        |
 | models/errors/APIException  | 4XX, 5XX                    | \*/\*                       |
 
 ## terminalsListPairingCodes
@@ -252,7 +252,10 @@ public class Application {
 >
 > This endpoint currently does not support test mode yet.
 
-Returns all pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+Returns your pairing codes: `active`, `expired`, and `revoked`. Results are paginated.
+
+We keep a pairing code for one month after it is revoked or expires, then delete it. Deleted codes drop out of
+this list. Active pairing codes are never deleted.
 
 ### Example Usage
 
@@ -324,6 +327,9 @@ Get a pairing code to onboard a point-of-sale terminal.
 The response includes a human-readable `code` for manual entry on the terminal and, optionally, a QR Code as a
 base64 encoded SVG data URI when you use the `include` query parameter with value `details.qrCode`.
 
+We keep a pairing code for one month after it is revoked or expires, then delete it. Once deleted, this endpoint
+returns a 404. Active pairing codes are never deleted.
+
 ### Example Usage
 
 <!-- UsageSnippet language="java" operationID="terminals-get-pairing-code" method="get" path="/v2/terminals/pairing-codes/{pairingCodeId}" -->
@@ -386,6 +392,8 @@ public class Application {
 Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
 
 Terminals that have already paired with this code are not affected.
+
+We keep a revoked pairing code for one month, then delete it. Once deleted, this endpoint returns a 404.
 
 ### Example Usage
 
