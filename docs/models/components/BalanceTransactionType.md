@@ -5,7 +5,7 @@
 ```java
 import com.mollie.mollie.models.components.BalanceTransactionType;
 
-BalanceTransactionType value = BalanceTransactionType.BALANCE_CHARGE_FEE;
+BalanceTransactionType value = BalanceTransactionType.APPLICATION_FEE;
 
 // Open enum: use .of() to create instances from custom string values
 BalanceTransactionType custom = BalanceTransactionType.of("custom_value");
@@ -16,6 +16,7 @@ BalanceTransactionType custom = BalanceTransactionType.of("custom_value");
 
 | Name                                   | Value                                  |
 | -------------------------------------- | -------------------------------------- |
+| `APPLICATION_FEE`                      | application-fee                        |
 | `BALANCE_CHARGE_FEE`                   | balance-charge-fee                     |
 | `BALANCE_CORRECTION`                   | balance-correction                     |
 | `BALANCE_RESERVE`                      | balance-reserve                        |
@@ -41,6 +42,7 @@ BalanceTransactionType custom = BalanceTransactionType.of("custom_value");
 | `OUTGOING_CUSTOM_AMOUNT_TRANSFER`      | outgoing-custom-amount-transfer        |
 | `OUTGOING_TRANSFER`                    | outgoing-transfer                      |
 | `PAYMENT`                              | payment                                |
+| `PAYMENT_FEE`                          | payment-fee                            |
 | `PENDING_ROLLING_RESERVE`              | pending-rolling-reserve                |
 | `PLATFORM_PAYMENT_CHARGEBACK`          | platform-payment-chargeback            |
 | `PLATFORM_PAYMENT_REFUND`              | platform-payment-refund                |
