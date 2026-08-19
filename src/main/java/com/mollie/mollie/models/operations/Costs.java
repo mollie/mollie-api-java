@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.models.components.Amount;
 import com.mollie.mollie.models.components.AmountNullable;
-import com.mollie.mollie.models.components.PaymentMethod;
+import com.mollie.mollie.models.components.SettlementMethod;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Long;
 import java.lang.Override;
@@ -28,11 +28,13 @@ public class Costs {
     private String description;
 
     /**
-     * The payment method, if applicable
+     * The method the cost or revenue subtotal applies to. This is usually a payment method, but can also
+     * represent a
+     * correction or transaction type that is not tied to a specific payment method.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("method")
-    private Optional<? extends PaymentMethod> method;
+    private Optional<? extends SettlementMethod> method;
 
     /**
      * The number of fees
@@ -68,7 +70,7 @@ public class Costs {
     @JsonCreator
     public Costs(
             @JsonProperty("description") String description,
-            @JsonProperty("method") Optional<? extends PaymentMethod> method,
+            @JsonProperty("method") Optional<? extends SettlementMethod> method,
             @JsonProperty("count") long count,
             @JsonProperty("rate") Rate rate,
             @JsonProperty("amountNet") Amount amountNet,
@@ -110,12 +112,14 @@ public class Costs {
     }
 
     /**
-     * The payment method, if applicable
+     * The method the cost or revenue subtotal applies to. This is usually a payment method, but can also
+     * represent a
+     * correction or transaction type that is not tied to a specific payment method.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<PaymentMethod> method() {
-        return (Optional<PaymentMethod>) method;
+    public Optional<SettlementMethod> method() {
+        return (Optional<SettlementMethod>) method;
     }
 
     /**
@@ -174,9 +178,11 @@ public class Costs {
     }
 
     /**
-     * The payment method, if applicable
+     * The method the cost or revenue subtotal applies to. This is usually a payment method, but can also
+     * represent a
+     * correction or transaction type that is not tied to a specific payment method.
      */
-    public Costs withMethod(PaymentMethod method) {
+    public Costs withMethod(SettlementMethod method) {
         Utils.checkNotNull(method, "method");
         this.method = Optional.ofNullable(method);
         return this;
@@ -184,9 +190,11 @@ public class Costs {
 
 
     /**
-     * The payment method, if applicable
+     * The method the cost or revenue subtotal applies to. This is usually a payment method, but can also
+     * represent a
+     * correction or transaction type that is not tied to a specific payment method.
      */
-    public Costs withMethod(Optional<? extends PaymentMethod> method) {
+    public Costs withMethod(Optional<? extends SettlementMethod> method) {
         Utils.checkNotNull(method, "method");
         this.method = method;
         return this;
@@ -291,7 +299,7 @@ public class Costs {
 
         private String description;
 
-        private Optional<? extends PaymentMethod> method = Optional.empty();
+        private Optional<? extends SettlementMethod> method = Optional.empty();
 
         private Long count;
 
@@ -319,18 +327,22 @@ public class Costs {
 
 
         /**
-         * The payment method, if applicable
+         * The method the cost or revenue subtotal applies to. This is usually a payment method, but can also
+         * represent a
+         * correction or transaction type that is not tied to a specific payment method.
          */
-        public Builder method(PaymentMethod method) {
+        public Builder method(SettlementMethod method) {
             Utils.checkNotNull(method, "method");
             this.method = Optional.ofNullable(method);
             return this;
         }
 
         /**
-         * The payment method, if applicable
+         * The method the cost or revenue subtotal applies to. This is usually a payment method, but can also
+         * represent a
+         * correction or transaction type that is not tied to a specific payment method.
          */
-        public Builder method(Optional<? extends PaymentMethod> method) {
+        public Builder method(Optional<? extends SettlementMethod> method) {
             Utils.checkNotNull(method, "method");
             this.method = method;
             return this;

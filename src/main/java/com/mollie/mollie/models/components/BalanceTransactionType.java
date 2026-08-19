@@ -21,6 +21,7 @@ import java.util.Optional;
  */
 public class BalanceTransactionType {
 
+    public static final BalanceTransactionType APPLICATION_FEE = new BalanceTransactionType("application-fee");
     public static final BalanceTransactionType BALANCE_CHARGE_FEE = new BalanceTransactionType("balance-charge-fee");
     public static final BalanceTransactionType BALANCE_CORRECTION = new BalanceTransactionType("balance-correction");
     public static final BalanceTransactionType BALANCE_RESERVE = new BalanceTransactionType("balance-reserve");
@@ -46,6 +47,7 @@ public class BalanceTransactionType {
     public static final BalanceTransactionType OUTGOING_CUSTOM_AMOUNT_TRANSFER = new BalanceTransactionType("outgoing-custom-amount-transfer");
     public static final BalanceTransactionType OUTGOING_TRANSFER = new BalanceTransactionType("outgoing-transfer");
     public static final BalanceTransactionType PAYMENT = new BalanceTransactionType("payment");
+    public static final BalanceTransactionType PAYMENT_FEE = new BalanceTransactionType("payment-fee");
     public static final BalanceTransactionType PENDING_ROLLING_RESERVE = new BalanceTransactionType("pending-rolling-reserve");
     public static final BalanceTransactionType PLATFORM_PAYMENT_CHARGEBACK = new BalanceTransactionType("platform-payment-chargeback");
     public static final BalanceTransactionType PLATFORM_PAYMENT_REFUND = new BalanceTransactionType("platform-payment-refund");
@@ -138,6 +140,7 @@ public class BalanceTransactionType {
 
     private static final Map<String, BalanceTransactionType> createValuesMap() {
         Map<String, BalanceTransactionType> map = new LinkedHashMap<>();
+        map.put("application-fee", APPLICATION_FEE);
         map.put("balance-charge-fee", BALANCE_CHARGE_FEE);
         map.put("balance-correction", BALANCE_CORRECTION);
         map.put("balance-reserve", BALANCE_RESERVE);
@@ -163,6 +166,7 @@ public class BalanceTransactionType {
         map.put("outgoing-custom-amount-transfer", OUTGOING_CUSTOM_AMOUNT_TRANSFER);
         map.put("outgoing-transfer", OUTGOING_TRANSFER);
         map.put("payment", PAYMENT);
+        map.put("payment-fee", PAYMENT_FEE);
         map.put("pending-rolling-reserve", PENDING_ROLLING_RESERVE);
         map.put("platform-payment-chargeback", PLATFORM_PAYMENT_CHARGEBACK);
         map.put("platform-payment-refund", PLATFORM_PAYMENT_REFUND);
@@ -187,6 +191,7 @@ public class BalanceTransactionType {
 
     private static final Map<String, BalanceTransactionTypeEnum> createEnumsMap() {
         Map<String, BalanceTransactionTypeEnum> map = new HashMap<>();
+        map.put("application-fee", BalanceTransactionTypeEnum.APPLICATION_FEE);
         map.put("balance-charge-fee", BalanceTransactionTypeEnum.BALANCE_CHARGE_FEE);
         map.put("balance-correction", BalanceTransactionTypeEnum.BALANCE_CORRECTION);
         map.put("balance-reserve", BalanceTransactionTypeEnum.BALANCE_RESERVE);
@@ -212,6 +217,7 @@ public class BalanceTransactionType {
         map.put("outgoing-custom-amount-transfer", BalanceTransactionTypeEnum.OUTGOING_CUSTOM_AMOUNT_TRANSFER);
         map.put("outgoing-transfer", BalanceTransactionTypeEnum.OUTGOING_TRANSFER);
         map.put("payment", BalanceTransactionTypeEnum.PAYMENT);
+        map.put("payment-fee", BalanceTransactionTypeEnum.PAYMENT_FEE);
         map.put("pending-rolling-reserve", BalanceTransactionTypeEnum.PENDING_ROLLING_RESERVE);
         map.put("platform-payment-chargeback", BalanceTransactionTypeEnum.PLATFORM_PAYMENT_CHARGEBACK);
         map.put("platform-payment-refund", BalanceTransactionTypeEnum.PLATFORM_PAYMENT_REFUND);
@@ -237,6 +243,7 @@ public class BalanceTransactionType {
     
     public enum BalanceTransactionTypeEnum {
 
+        APPLICATION_FEE("application-fee"),
         BALANCE_CHARGE_FEE("balance-charge-fee"),
         BALANCE_CORRECTION("balance-correction"),
         BALANCE_RESERVE("balance-reserve"),
@@ -262,6 +269,7 @@ public class BalanceTransactionType {
         OUTGOING_CUSTOM_AMOUNT_TRANSFER("outgoing-custom-amount-transfer"),
         OUTGOING_TRANSFER("outgoing-transfer"),
         PAYMENT("payment"),
+        PAYMENT_FEE("payment-fee"),
         PENDING_ROLLING_RESERVE("pending-rolling-reserve"),
         PLATFORM_PAYMENT_CHARGEBACK("platform-payment-chargeback"),
         PLATFORM_PAYMENT_REFUND("platform-payment-refund"),
