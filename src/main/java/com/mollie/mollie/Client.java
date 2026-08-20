@@ -126,6 +126,9 @@ public class Client {
     private final VerifyPayee verifyPayee;
 
 
+    private final DraftTransfers draftTransfers;
+
+
     private final Payouts payouts;
 
 
@@ -286,6 +289,11 @@ public class Client {
 
     public VerifyPayee verifyPayee() {
         return verifyPayee;
+    }
+
+
+    public DraftTransfers draftTransfers() {
+        return draftTransfers;
     }
 
 
@@ -506,6 +514,7 @@ public class Client {
         this.accounts = new Accounts(sdkConfiguration);
         this.transfers = new Transfers(sdkConfiguration);
         this.verifyPayee = new VerifyPayee(sdkConfiguration);
+        this.draftTransfers = new DraftTransfers(sdkConfiguration);
         this.payouts = new Payouts(sdkConfiguration);
         SdkInitData data = sdkConfiguration.hooks().sdkInit(
                 new SdkInitData(

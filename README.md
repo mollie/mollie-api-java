@@ -56,7 +56,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.10.0'
+implementation 'com.mollie:mollie:1.10.1'
 ```
 
 Maven:
@@ -64,7 +64,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.10.0</version>
+    <version>1.10.1</version>
 </dependency>
 ```
 
@@ -512,6 +512,13 @@ Client sdk = Client.builder()
 * [create](docs/sdks/delayedrouting/README.md#create) - Create a delayed route
 * [list](docs/sdks/delayedrouting/README.md#list) - List payment routes
 * [get](docs/sdks/delayedrouting/README.md#get) - Get a delayed route
+
+### [DraftTransfers](docs/sdks/drafttransfers/README.md)
+
+* [create](docs/sdks/drafttransfers/README.md#create) - Create draft transfer
+* [list](docs/sdks/drafttransfers/README.md#list) - List draft transfers
+* [get](docs/sdks/drafttransfers/README.md#get) - Get draft transfer
+* [cancel](docs/sdks/drafttransfers/README.md#cancel) - Cancel draft transfer
 
 ### [Invoices](docs/sdks/invoices/README.md)
 
