@@ -1,3 +1,7 @@
+> **Mollie is transitioning to new, automatically generated SDKs.**  
+>
+> As a part of this transition, new features will be developed exclusively for the [new Java SDK](https://github.com/mollie/mollie-api-java). We encourage you to migrate to this version by 24 November 2026, after which the legacy SDK will enter maintenance mode and receive no further updates.
+
 # mollie-api-java
 
 Developer-friendly & type-safe Java SDK specifically catered to leverage *mollie-api-java* API.
