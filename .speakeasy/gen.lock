@@ -1,23 +1,23 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 479ee18740b913960b6fbd04d2105ef6
+  docChecksum: eb6c4204228e5a94402ecdd9faadff64
   docVersion: 1.0.0
-  speakeasyVersion: 1.795.0
-  generationVersion: 2.931.0
-  releaseVersion: 1.10.1
-  configChecksum: d44f0f77edb8429b38dd42040056d8ba
+  speakeasyVersion: 1.796.0
+  generationVersion: 2.932.15
+  releaseVersion: 1.10.2
+  configChecksum: 65c42f4b254fe7c25bbc3c92caf8b5be
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 575c5515-61f9-4662-a511-154de007e3c2
-  pristine_commit_hash: e86f890fcf4fecdcdd8b8b6665067ec9b3ca57d0
-  pristine_tree_hash: 69b9ff2b5522d3eeb3cc5d699904fefe16382399
+  generation_id: 7d5a4753-f5b8-48de-80d1-02494a622005
+  pristine_commit_hash: 992d699594ad6ab72be8f269ea5d3f5b1c316744
+  pristine_tree_hash: f33398e3f2b58dd7fed74616cced7a6d955594c3
 features:
   java:
     additionalDependencies: 0.1.0
-    core: 3.57.0
+    core: 3.57.2
     deprecations: 2.81.2
     flattening: 2.81.1
     globalSecurity: 2.83.4
@@ -149,8 +149,8 @@ trackedFiles:
     pristine_git_object: f34cdc278691634fe94a74daf73f3bd27e7f6163
   docs/models/components/BalanceTransactionType.md:
     id: 26f4f48d989c
-    last_write_checksum: sha1:f4d3a90de1b9bc61eb9916a44571f142bd6067e2
-    pristine_git_object: 2805df781c8330964a5a55bf99172dc6a8cb1803
+    last_write_checksum: sha1:86cf1ca97f80f0fb879fb6bd1bb834d551cd1689
+    pristine_git_object: 739120b67df90c9ce4a0c3bb9abfa76ecf0e1015
   docs/models/components/BalanceTransferCategory.md:
     id: b5b6b125d907
     last_write_checksum: sha1:a5462fcf64ea5741a7b7ea60bf81d85803d0c408
@@ -3957,8 +3957,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:0dc22ffef33b3e802f3153bcd793a2a94927b5ac
-    pristine_git_object: 4ab60f557b3cd2d2bcaafd72a6c3d164f16641e0
+    last_write_checksum: sha1:bad4513c56350098dca73fb54a87edc3fc04a7f8
+    pristine_git_object: 6f7eb6c2a89549cc7bf8bbfbe4be11226eaa7fd0
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4221,8 +4221,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:2cf84f5bd5b311198c4b3097526e4a44e694d37a
-    pristine_git_object: 66e2f3b1dfb1108c1121d0a8a3a17df7fa8b4de5
+    last_write_checksum: sha1:82c3a48df6009b3674e794681cb53c8b41bf85ab
+    pristine_git_object: 4cac0563658e289a293a21e19de907c324fcfdee
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:5b1b2448cd7365ef474e323a24f05b937422e9f1
@@ -4373,8 +4373,8 @@ trackedFiles:
     pristine_git_object: b95205ad10c742a81144ff8bf3ba183369b4c062
   src/main/java/com/mollie/mollie/models/components/BalanceTransactionType.java:
     id: 694ba97c8ffd
-    last_write_checksum: sha1:6403fc95a9728f71461b95376018ece413ffee05
-    pristine_git_object: 5ed0a0ec4d54c792720fccc2f8ec46cde8a0c062
+    last_write_checksum: sha1:37d08c1c3c929674f615cded7c78f7b082000daa
+    pristine_git_object: f21ba12f88744fa56ca9be19bb2d358d780612de
   src/main/java/com/mollie/mollie/models/components/BalanceTransferCategory.java:
     id: 1181a1f67735
     last_write_checksum: sha1:94ed727462bfe653cdddd5d57293f66879768d25
@@ -15820,10 +15820,8 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `client.draftTransfers.create()`: **Added**
-  * `client.draftTransfers.list()`: **Added**
-  * `client.draftTransfers.get()`: **Added**
-  * `client.draftTransfers.cancel()`: **Added**
+  * `client.balances.getReport()`:  `response.totals.pendingBalance.open.subtotals[].subTotals[].transactionType` **Changed**
+  * `client.balances.listTransactions()`:  `response.Embedded.balanceTransactions[].type` **Changed**
 generatedFiles:
   - .gitattributes
   - USAGE.md
