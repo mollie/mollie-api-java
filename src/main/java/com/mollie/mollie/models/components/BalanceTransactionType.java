@@ -21,6 +21,7 @@ import java.util.Optional;
  */
 public class BalanceTransactionType {
 
+    public static final BalanceTransactionType API_PAYMENT_ROLLING_RESERVE_RELEASE = new BalanceTransactionType("api-payment-rolling-reserve-release");
     public static final BalanceTransactionType APPLICATION_FEE = new BalanceTransactionType("application-fee");
     public static final BalanceTransactionType BALANCE_CHARGE_FEE = new BalanceTransactionType("balance-charge-fee");
     public static final BalanceTransactionType BALANCE_CORRECTION = new BalanceTransactionType("balance-correction");
@@ -51,6 +52,7 @@ public class BalanceTransactionType {
     public static final BalanceTransactionType PENDING_ROLLING_RESERVE = new BalanceTransactionType("pending-rolling-reserve");
     public static final BalanceTransactionType PLATFORM_PAYMENT_CHARGEBACK = new BalanceTransactionType("platform-payment-chargeback");
     public static final BalanceTransactionType PLATFORM_PAYMENT_REFUND = new BalanceTransactionType("platform-payment-refund");
+    public static final BalanceTransactionType POST_PAYMENT_SPLIT_PAYMENT = new BalanceTransactionType("post-payment-split-payment");
     public static final BalanceTransactionType REFUND = new BalanceTransactionType("refund");
     public static final BalanceTransactionType REFUND_COMPENSATION = new BalanceTransactionType("refund-compensation");
     public static final BalanceTransactionType RELEASED_ROLLING_RESERVE = new BalanceTransactionType("released-rolling-reserve");
@@ -140,6 +142,7 @@ public class BalanceTransactionType {
 
     private static final Map<String, BalanceTransactionType> createValuesMap() {
         Map<String, BalanceTransactionType> map = new LinkedHashMap<>();
+        map.put("api-payment-rolling-reserve-release", API_PAYMENT_ROLLING_RESERVE_RELEASE);
         map.put("application-fee", APPLICATION_FEE);
         map.put("balance-charge-fee", BALANCE_CHARGE_FEE);
         map.put("balance-correction", BALANCE_CORRECTION);
@@ -170,6 +173,7 @@ public class BalanceTransactionType {
         map.put("pending-rolling-reserve", PENDING_ROLLING_RESERVE);
         map.put("platform-payment-chargeback", PLATFORM_PAYMENT_CHARGEBACK);
         map.put("platform-payment-refund", PLATFORM_PAYMENT_REFUND);
+        map.put("post-payment-split-payment", POST_PAYMENT_SPLIT_PAYMENT);
         map.put("refund", REFUND);
         map.put("refund-compensation", REFUND_COMPENSATION);
         map.put("released-rolling-reserve", RELEASED_ROLLING_RESERVE);
@@ -191,6 +195,7 @@ public class BalanceTransactionType {
 
     private static final Map<String, BalanceTransactionTypeEnum> createEnumsMap() {
         Map<String, BalanceTransactionTypeEnum> map = new HashMap<>();
+        map.put("api-payment-rolling-reserve-release", BalanceTransactionTypeEnum.API_PAYMENT_ROLLING_RESERVE_RELEASE);
         map.put("application-fee", BalanceTransactionTypeEnum.APPLICATION_FEE);
         map.put("balance-charge-fee", BalanceTransactionTypeEnum.BALANCE_CHARGE_FEE);
         map.put("balance-correction", BalanceTransactionTypeEnum.BALANCE_CORRECTION);
@@ -221,6 +226,7 @@ public class BalanceTransactionType {
         map.put("pending-rolling-reserve", BalanceTransactionTypeEnum.PENDING_ROLLING_RESERVE);
         map.put("platform-payment-chargeback", BalanceTransactionTypeEnum.PLATFORM_PAYMENT_CHARGEBACK);
         map.put("platform-payment-refund", BalanceTransactionTypeEnum.PLATFORM_PAYMENT_REFUND);
+        map.put("post-payment-split-payment", BalanceTransactionTypeEnum.POST_PAYMENT_SPLIT_PAYMENT);
         map.put("refund", BalanceTransactionTypeEnum.REFUND);
         map.put("refund-compensation", BalanceTransactionTypeEnum.REFUND_COMPENSATION);
         map.put("released-rolling-reserve", BalanceTransactionTypeEnum.RELEASED_ROLLING_RESERVE);
@@ -243,6 +249,7 @@ public class BalanceTransactionType {
     
     public enum BalanceTransactionTypeEnum {
 
+        API_PAYMENT_ROLLING_RESERVE_RELEASE("api-payment-rolling-reserve-release"),
         APPLICATION_FEE("application-fee"),
         BALANCE_CHARGE_FEE("balance-charge-fee"),
         BALANCE_CORRECTION("balance-correction"),
@@ -273,6 +280,7 @@ public class BalanceTransactionType {
         PENDING_ROLLING_RESERVE("pending-rolling-reserve"),
         PLATFORM_PAYMENT_CHARGEBACK("platform-payment-chargeback"),
         PLATFORM_PAYMENT_REFUND("platform-payment-refund"),
+        POST_PAYMENT_SPLIT_PAYMENT("post-payment-split-payment"),
         REFUND("refund"),
         REFUND_COMPENSATION("refund-compensation"),
         RELEASED_ROLLING_RESERVE("released-rolling-reserve"),
