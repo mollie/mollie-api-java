@@ -79,7 +79,8 @@ public class ListSettlementRefundResponse {
     private JsonNullable<String> settlementId;
 
     /**
-     * The refund's status. Settlement refunds always have a status of `refunded`.
+     * The refund's status. Settlement refunds are normally `refunded`, but can be `failed` if the refund
+     * could not be processed.
      */
     @JsonProperty("status")
     private SettlementRefundStatus status;
@@ -268,7 +269,8 @@ public class ListSettlementRefundResponse {
     }
 
     /**
-     * The refund's status. Settlement refunds always have a status of `refunded`.
+     * The refund's status. Settlement refunds are normally `refunded`, but can be `failed` if the refund
+     * could not be processed.
      */
     @JsonIgnore
     public SettlementRefundStatus status() {
@@ -440,7 +442,8 @@ public class ListSettlementRefundResponse {
     }
 
     /**
-     * The refund's status. Settlement refunds always have a status of `refunded`.
+     * The refund's status. Settlement refunds are normally `refunded`, but can be `failed` if the refund
+     * could not be processed.
      */
     public ListSettlementRefundResponse withStatus(SettlementRefundStatus status) {
         Utils.checkNotNull(status, "status");
@@ -747,7 +750,8 @@ public class ListSettlementRefundResponse {
 
 
         /**
-         * The refund's status. Settlement refunds always have a status of `refunded`.
+         * The refund's status. Settlement refunds are normally `refunded`, but can be `failed` if the refund
+         * could not be processed.
          */
         public Builder status(SettlementRefundStatus status) {
             Utils.checkNotNull(status, "status");

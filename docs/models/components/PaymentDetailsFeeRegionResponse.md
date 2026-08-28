@@ -21,6 +21,8 @@ PaymentDetailsFeeRegionResponse custom = PaymentDetailsFeeRegionResponse.of("cus
 | `AMERICAN_EXPRESS`                     | american-express                       |
 | `AMEX_INTRA_EEA`                       | amex-intra-eea                         |
 | `CARTE_BANCAIRE`                       | carte-bancaire                         |
+| `CARTES_BANCAIRES_BUSINESS`            | cartes-bancaires-business              |
+| `CARTES_BANCAIRES_CONSUMER`            | cartes-bancaires-consumer              |
 | `DOMESTIC`                             | domestic                               |
 | `INTER`                                | inter                                  |
 | `INTRA_EU`                             | intra-eu                               |
@@ -33,6 +35,7 @@ PaymentDetailsFeeRegionResponse custom = PaymentDetailsFeeRegionResponse.of("cus
 | `MASTERCARD_DEBIT_BUSINESS_DOMESTIC`   | mastercard-debit-business-domestic     |
 | `MASTERCARD_DEBIT_BUSINESS_INTRA_EEA`  | mastercard-debit-business-intra-eea    |
 | `MASTERCARD_DEBIT_CONSUMER_DOMESTIC`   | mastercard-debit-consumer-domestic     |
+| `MASTERCARD_DEBIT_CONSUMER_INTER`      | mastercard-debit-consumer-inter        |
 | `MASTERCARD_DEBIT_CONSUMER_INTRA_EEA`  | mastercard-debit-consumer-intra-eea    |
 | `OTHER`                                | other                                  |
 | `VISA_CREDIT_BUSINESS_DOMESTIC`        | visa-credit-business-domestic          |
@@ -42,3 +45,5 @@ PaymentDetailsFeeRegionResponse custom = PaymentDetailsFeeRegionResponse.of("cus
 | `VISA_DEBIT_BUSINESS_DOMESTIC`         | visa-debit-business-domestic           |
 | `VISA_DEBIT_BUSINESS_INTRA_EEA`        | visa-debit-business-intra-eea          |
 | `VISA_DEBIT_CONSUMER_DOMESTIC`         | visa-debit-consumer-domestic           |
+| `VISA_DEBIT_CONSUMER_INTER`            | visa-debit-consumer-inter              |
+| `VISA_DEBIT_CONSUMER_INTRA_EEA`        | visa-debit-consumer-intra-eea          |

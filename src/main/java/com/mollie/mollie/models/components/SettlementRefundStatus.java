@@ -22,11 +22,13 @@ import java.util.Optional;
 /**
  * SettlementRefundStatus
  * 
- * <p>The refund's status. Settlement refunds always have a status of `refunded`.
+ * <p>The refund's status. Settlement refunds are normally `refunded`, but can be `failed` if the refund
+ * could not be processed.
  */
 public class SettlementRefundStatus {
 
     public static final SettlementRefundStatus REFUNDED = new SettlementRefundStatus("refunded");
+    public static final SettlementRefundStatus FAILED = new SettlementRefundStatus("failed");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -101,19 +103,22 @@ public class SettlementRefundStatus {
     private static final Map<String, SettlementRefundStatus> createValuesMap() {
         Map<String, SettlementRefundStatus> map = new LinkedHashMap<>();
         map.put("refunded", REFUNDED);
+        map.put("failed", FAILED);
         return map;
     }
 
     private static final Map<String, SettlementRefundStatusEnum> createEnumsMap() {
         Map<String, SettlementRefundStatusEnum> map = new HashMap<>();
         map.put("refunded", SettlementRefundStatusEnum.REFUNDED);
+        map.put("failed", SettlementRefundStatusEnum.FAILED);
         return map;
     }
     
     
     public enum SettlementRefundStatusEnum {
 
-        REFUNDED("refunded"),;
+        REFUNDED("refunded"),
+        FAILED("failed"),;
 
         private final String value;
 
