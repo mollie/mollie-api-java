@@ -21,6 +21,7 @@ PaymentDetailsCardLabelResponse custom = PaymentDetailsCardLabelResponse.of("cus
 | `AMERICAN_EXPRESS` | American Express   |
 | `CARTA_SI`         | Carta Si           |
 | `CARTE_BLEUE`      | Carte Bleue        |
+| `CARTES_BANCAIRES` | Cartes Bancaires   |
 | `DANKORT`          | Dankort            |
 | `DINERS_CLUB`      | Diners Club        |
 | `DISCOVER`         | Discover           |

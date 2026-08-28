@@ -29,6 +29,8 @@ public class PaymentDetailsFeeRegionResponse {
     public static final PaymentDetailsFeeRegionResponse AMERICAN_EXPRESS = new PaymentDetailsFeeRegionResponse("american-express");
     public static final PaymentDetailsFeeRegionResponse AMEX_INTRA_EEA = new PaymentDetailsFeeRegionResponse("amex-intra-eea");
     public static final PaymentDetailsFeeRegionResponse CARTE_BANCAIRE = new PaymentDetailsFeeRegionResponse("carte-bancaire");
+    public static final PaymentDetailsFeeRegionResponse CARTES_BANCAIRES_BUSINESS = new PaymentDetailsFeeRegionResponse("cartes-bancaires-business");
+    public static final PaymentDetailsFeeRegionResponse CARTES_BANCAIRES_CONSUMER = new PaymentDetailsFeeRegionResponse("cartes-bancaires-consumer");
     public static final PaymentDetailsFeeRegionResponse DOMESTIC = new PaymentDetailsFeeRegionResponse("domestic");
     public static final PaymentDetailsFeeRegionResponse INTER = new PaymentDetailsFeeRegionResponse("inter");
     public static final PaymentDetailsFeeRegionResponse INTRA_EU = new PaymentDetailsFeeRegionResponse("intra-eu");
@@ -41,6 +43,7 @@ public class PaymentDetailsFeeRegionResponse {
     public static final PaymentDetailsFeeRegionResponse MASTERCARD_DEBIT_BUSINESS_DOMESTIC = new PaymentDetailsFeeRegionResponse("mastercard-debit-business-domestic");
     public static final PaymentDetailsFeeRegionResponse MASTERCARD_DEBIT_BUSINESS_INTRA_EEA = new PaymentDetailsFeeRegionResponse("mastercard-debit-business-intra-eea");
     public static final PaymentDetailsFeeRegionResponse MASTERCARD_DEBIT_CONSUMER_DOMESTIC = new PaymentDetailsFeeRegionResponse("mastercard-debit-consumer-domestic");
+    public static final PaymentDetailsFeeRegionResponse MASTERCARD_DEBIT_CONSUMER_INTER = new PaymentDetailsFeeRegionResponse("mastercard-debit-consumer-inter");
     public static final PaymentDetailsFeeRegionResponse MASTERCARD_DEBIT_CONSUMER_INTRA_EEA = new PaymentDetailsFeeRegionResponse("mastercard-debit-consumer-intra-eea");
     public static final PaymentDetailsFeeRegionResponse OTHER = new PaymentDetailsFeeRegionResponse("other");
     public static final PaymentDetailsFeeRegionResponse VISA_CREDIT_BUSINESS_DOMESTIC = new PaymentDetailsFeeRegionResponse("visa-credit-business-domestic");
@@ -50,6 +53,8 @@ public class PaymentDetailsFeeRegionResponse {
     public static final PaymentDetailsFeeRegionResponse VISA_DEBIT_BUSINESS_DOMESTIC = new PaymentDetailsFeeRegionResponse("visa-debit-business-domestic");
     public static final PaymentDetailsFeeRegionResponse VISA_DEBIT_BUSINESS_INTRA_EEA = new PaymentDetailsFeeRegionResponse("visa-debit-business-intra-eea");
     public static final PaymentDetailsFeeRegionResponse VISA_DEBIT_CONSUMER_DOMESTIC = new PaymentDetailsFeeRegionResponse("visa-debit-consumer-domestic");
+    public static final PaymentDetailsFeeRegionResponse VISA_DEBIT_CONSUMER_INTER = new PaymentDetailsFeeRegionResponse("visa-debit-consumer-inter");
+    public static final PaymentDetailsFeeRegionResponse VISA_DEBIT_CONSUMER_INTRA_EEA = new PaymentDetailsFeeRegionResponse("visa-debit-consumer-intra-eea");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -126,6 +131,8 @@ public class PaymentDetailsFeeRegionResponse {
         map.put("american-express", AMERICAN_EXPRESS);
         map.put("amex-intra-eea", AMEX_INTRA_EEA);
         map.put("carte-bancaire", CARTE_BANCAIRE);
+        map.put("cartes-bancaires-business", CARTES_BANCAIRES_BUSINESS);
+        map.put("cartes-bancaires-consumer", CARTES_BANCAIRES_CONSUMER);
         map.put("domestic", DOMESTIC);
         map.put("inter", INTER);
         map.put("intra-eu", INTRA_EU);
@@ -138,6 +145,7 @@ public class PaymentDetailsFeeRegionResponse {
         map.put("mastercard-debit-business-domestic", MASTERCARD_DEBIT_BUSINESS_DOMESTIC);
         map.put("mastercard-debit-business-intra-eea", MASTERCARD_DEBIT_BUSINESS_INTRA_EEA);
         map.put("mastercard-debit-consumer-domestic", MASTERCARD_DEBIT_CONSUMER_DOMESTIC);
+        map.put("mastercard-debit-consumer-inter", MASTERCARD_DEBIT_CONSUMER_INTER);
         map.put("mastercard-debit-consumer-intra-eea", MASTERCARD_DEBIT_CONSUMER_INTRA_EEA);
         map.put("other", OTHER);
         map.put("visa-credit-business-domestic", VISA_CREDIT_BUSINESS_DOMESTIC);
@@ -147,6 +155,8 @@ public class PaymentDetailsFeeRegionResponse {
         map.put("visa-debit-business-domestic", VISA_DEBIT_BUSINESS_DOMESTIC);
         map.put("visa-debit-business-intra-eea", VISA_DEBIT_BUSINESS_INTRA_EEA);
         map.put("visa-debit-consumer-domestic", VISA_DEBIT_CONSUMER_DOMESTIC);
+        map.put("visa-debit-consumer-inter", VISA_DEBIT_CONSUMER_INTER);
+        map.put("visa-debit-consumer-intra-eea", VISA_DEBIT_CONSUMER_INTRA_EEA);
         return map;
     }
 
@@ -155,6 +165,8 @@ public class PaymentDetailsFeeRegionResponse {
         map.put("american-express", PaymentDetailsFeeRegionResponseEnum.AMERICAN_EXPRESS);
         map.put("amex-intra-eea", PaymentDetailsFeeRegionResponseEnum.AMEX_INTRA_EEA);
         map.put("carte-bancaire", PaymentDetailsFeeRegionResponseEnum.CARTE_BANCAIRE);
+        map.put("cartes-bancaires-business", PaymentDetailsFeeRegionResponseEnum.CARTES_BANCAIRES_BUSINESS);
+        map.put("cartes-bancaires-consumer", PaymentDetailsFeeRegionResponseEnum.CARTES_BANCAIRES_CONSUMER);
         map.put("domestic", PaymentDetailsFeeRegionResponseEnum.DOMESTIC);
         map.put("inter", PaymentDetailsFeeRegionResponseEnum.INTER);
         map.put("intra-eu", PaymentDetailsFeeRegionResponseEnum.INTRA_EU);
@@ -167,6 +179,7 @@ public class PaymentDetailsFeeRegionResponse {
         map.put("mastercard-debit-business-domestic", PaymentDetailsFeeRegionResponseEnum.MASTERCARD_DEBIT_BUSINESS_DOMESTIC);
         map.put("mastercard-debit-business-intra-eea", PaymentDetailsFeeRegionResponseEnum.MASTERCARD_DEBIT_BUSINESS_INTRA_EEA);
         map.put("mastercard-debit-consumer-domestic", PaymentDetailsFeeRegionResponseEnum.MASTERCARD_DEBIT_CONSUMER_DOMESTIC);
+        map.put("mastercard-debit-consumer-inter", PaymentDetailsFeeRegionResponseEnum.MASTERCARD_DEBIT_CONSUMER_INTER);
         map.put("mastercard-debit-consumer-intra-eea", PaymentDetailsFeeRegionResponseEnum.MASTERCARD_DEBIT_CONSUMER_INTRA_EEA);
         map.put("other", PaymentDetailsFeeRegionResponseEnum.OTHER);
         map.put("visa-credit-business-domestic", PaymentDetailsFeeRegionResponseEnum.VISA_CREDIT_BUSINESS_DOMESTIC);
@@ -176,6 +189,8 @@ public class PaymentDetailsFeeRegionResponse {
         map.put("visa-debit-business-domestic", PaymentDetailsFeeRegionResponseEnum.VISA_DEBIT_BUSINESS_DOMESTIC);
         map.put("visa-debit-business-intra-eea", PaymentDetailsFeeRegionResponseEnum.VISA_DEBIT_BUSINESS_INTRA_EEA);
         map.put("visa-debit-consumer-domestic", PaymentDetailsFeeRegionResponseEnum.VISA_DEBIT_CONSUMER_DOMESTIC);
+        map.put("visa-debit-consumer-inter", PaymentDetailsFeeRegionResponseEnum.VISA_DEBIT_CONSUMER_INTER);
+        map.put("visa-debit-consumer-intra-eea", PaymentDetailsFeeRegionResponseEnum.VISA_DEBIT_CONSUMER_INTRA_EEA);
         return map;
     }
     
@@ -185,6 +200,8 @@ public class PaymentDetailsFeeRegionResponse {
         AMERICAN_EXPRESS("american-express"),
         AMEX_INTRA_EEA("amex-intra-eea"),
         CARTE_BANCAIRE("carte-bancaire"),
+        CARTES_BANCAIRES_BUSINESS("cartes-bancaires-business"),
+        CARTES_BANCAIRES_CONSUMER("cartes-bancaires-consumer"),
         DOMESTIC("domestic"),
         INTER("inter"),
         INTRA_EU("intra-eu"),
@@ -197,6 +214,7 @@ public class PaymentDetailsFeeRegionResponse {
         MASTERCARD_DEBIT_BUSINESS_DOMESTIC("mastercard-debit-business-domestic"),
         MASTERCARD_DEBIT_BUSINESS_INTRA_EEA("mastercard-debit-business-intra-eea"),
         MASTERCARD_DEBIT_CONSUMER_DOMESTIC("mastercard-debit-consumer-domestic"),
+        MASTERCARD_DEBIT_CONSUMER_INTER("mastercard-debit-consumer-inter"),
         MASTERCARD_DEBIT_CONSUMER_INTRA_EEA("mastercard-debit-consumer-intra-eea"),
         OTHER("other"),
         VISA_CREDIT_BUSINESS_DOMESTIC("visa-credit-business-domestic"),
@@ -205,7 +223,9 @@ public class PaymentDetailsFeeRegionResponse {
         VISA_CREDIT_CONSUMER_INTRA_EEA("visa-credit-consumer-intra-eea"),
         VISA_DEBIT_BUSINESS_DOMESTIC("visa-debit-business-domestic"),
         VISA_DEBIT_BUSINESS_INTRA_EEA("visa-debit-business-intra-eea"),
-        VISA_DEBIT_CONSUMER_DOMESTIC("visa-debit-consumer-domestic"),;
+        VISA_DEBIT_CONSUMER_DOMESTIC("visa-debit-consumer-domestic"),
+        VISA_DEBIT_CONSUMER_INTER("visa-debit-consumer-inter"),
+        VISA_DEBIT_CONSUMER_INTRA_EEA("visa-debit-consumer-intra-eea"),;
 
         private final String value;
 
