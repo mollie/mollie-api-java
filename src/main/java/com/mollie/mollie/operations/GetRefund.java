@@ -11,7 +11,7 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.SecuritySource;
-import com.mollie.mollie.models.components.EntityRefundResponse;
+import com.mollie.mollie.models.components.RefundResponse;
 import com.mollie.mollie.models.errors.APIException;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.GetRefundRequest;
@@ -206,7 +206,7 @@ public class GetRefund {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return res.withEntityRefundResponse(Utils.unmarshal(response, new TypeReference<EntityRefundResponse>() {}));
+                    return res.withRefundResponse(Utils.unmarshal(response, new TypeReference<RefundResponse>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
@@ -294,8 +294,8 @@ public class GetRefund {
             
             if (Utils.statusCodeMatches(response.statusCode(), "200")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
-                    return Utils.unmarshalAsync(response, new TypeReference<EntityRefundResponse>() {})
-                            .thenApply(res::withEntityRefundResponse);
+                    return Utils.unmarshalAsync(response, new TypeReference<RefundResponse>() {})
+                            .thenApply(res::withRefundResponse);
                 } else {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }

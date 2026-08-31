@@ -1,14 +1,14 @@
-# ListEntityRefundStatus
+# RefundResponseStatus
 
 ## Example Usage
 
 ```java
-import com.mollie.mollie.models.components.ListEntityRefundStatus;
+import com.mollie.mollie.models.components.RefundResponseStatus;
 
-ListEntityRefundStatus value = ListEntityRefundStatus.QUEUED;
+RefundResponseStatus value = RefundResponseStatus.QUEUED;
 
 // Open enum: use .of() to create instances from custom string values
-ListEntityRefundStatus custom = ListEntityRefundStatus.of("custom_value");
+RefundResponseStatus custom = RefundResponseStatus.of("custom_value");
 ```
 
 

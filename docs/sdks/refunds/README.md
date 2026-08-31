@@ -27,7 +27,6 @@ import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateRefundResponse;
 import java.lang.Exception;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -43,13 +42,11 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .refundRequest(RefundRequest.builder()
-                    .description("Refunding a Chess Board")
                     .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
-                    .metadata(Metadata.of(Map.ofEntries(
-                    )))
+                    .description("Refunding a Chess Board")
                     .externalReference(RefundRequestExternalReference.builder()
                         .type(RefundExternalReferenceType.ACQUIRER_REFERENCE)
                         .id("123456789012345")
@@ -70,8 +67,8 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.entityRefundResponse().isPresent()) {
-            System.out.println(res.entityRefundResponse().get());
+        if (res.refundResponse().isPresent()) {
+            System.out.println(res.refundResponse().get());
         }
     }
 }
@@ -88,7 +85,6 @@ import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.CreateRefundResponse;
 import java.lang.Exception;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -104,13 +100,11 @@ public class Application {
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .refundRequest(RefundRequest.builder()
-                    .description("Refunding a Chess Board")
                     .amount(Amount.builder()
                         .currency("EUR")
                         .value("10.00")
                         .build())
-                    .metadata(Metadata.of(Map.ofEntries(
-                    )))
+                    .description("Refunding a Chess Board")
                     .externalReference(RefundRequestExternalReference.builder()
                         .type(RefundExternalReferenceType.ACQUIRER_REFERENCE)
                         .id("123456789012345")
@@ -131,8 +125,8 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.entityRefundResponse().isPresent()) {
-            System.out.println(res.entityRefundResponse().get());
+        if (res.refundResponse().isPresent()) {
+            System.out.println(res.refundResponse().get());
         }
     }
 }
@@ -262,8 +256,8 @@ public class Application {
                 .request(req)
                 .call();
 
-        if (res.entityRefundResponse().isPresent()) {
-            System.out.println(res.entityRefundResponse().get());
+        if (res.refundResponse().isPresent()) {
+            System.out.println(res.refundResponse().get());
         }
     }
 }
