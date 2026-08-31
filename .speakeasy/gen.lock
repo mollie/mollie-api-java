@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 4cb8175c75ae161c5b97463c88ff628e
+  docChecksum: a17e4eb9f8dced190787adbc4ed6aba3
   docVersion: 1.0.0
   speakeasyVersion: 1.796.2
   generationVersion: 2.933.0
-  releaseVersion: 1.10.3
-  configChecksum: 7c359d66ad1607a4fa915a25c4568ed3
+  releaseVersion: 1.10.4
+  configChecksum: 1c17dac0fcb0154246412b9a46b9baf8
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 0050927f-3bec-40f9-8753-bcc18678e2b0
-  pristine_commit_hash: ad48860cdfe8e9719e3b24c89d08340f78cd9434
-  pristine_tree_hash: 8c1ec12dd2c2e13a4163b5866de5f99e8ec6970e
+  generation_id: 8f74ce6d-a915-4400-8355-09d3d4da6922
+  pristine_commit_hash: df8fdc99b505a428320528c5db61e885cbe1deee
+  pristine_tree_hash: 0cec467e707288331f111050961d298e6310b27b
 features:
   java:
     additionalDependencies: 0.1.0
@@ -671,30 +671,6 @@ trackedFiles:
     id: a89ea75d021b
     last_write_checksum: sha1:6b10fc2315692934fc016b4af0cca729206c97ec
     pristine_git_object: 3f64c70ec021c2b5a120274c9fbdf4f15d251f37
-  docs/models/components/EntityRefundResponse.md:
-    id: ad927f4f342e
-    last_write_checksum: sha1:92a9255bc9c564a83015f369d6a5671c554b3d20
-    pristine_git_object: 2f579c0858bd8006efbb5e288e6f400c69c306ab
-  docs/models/components/EntityRefundResponseExternalReference.md:
-    id: 2ebc9e76a287
-    last_write_checksum: sha1:76ac8ce50c16101b365ecb3602f692abdde505c5
-    pristine_git_object: 0db1083c1f89068ed7eee27405f95e31394344b4
-  docs/models/components/EntityRefundResponseLinks.md:
-    id: 5a691771d2f0
-    last_write_checksum: sha1:e5e7471e898cbd90a0c35654b48a0c3fc8d9bb06
-    pristine_git_object: 798432d4eca5d564dc785f30c585cc684555c6b7
-  docs/models/components/EntityRefundResponseRoutingReversals.md:
-    id: 02247a0cd1f3
-    last_write_checksum: sha1:c95d68bff2df37ba23269e024f85fa9f03f41df9
-    pristine_git_object: 28c8c9001d1e6c1c0f56486857bdae898178e2b3
-  docs/models/components/EntityRefundResponseSource.md:
-    id: 916ccb81f2e8
-    last_write_checksum: sha1:744d530f986f924791cb66daa77399a6cc645009
-    pristine_git_object: ef440227fc8259ef21efc3d93f546cc8b016504e
-  docs/models/components/EntityRefundResponseStatus.md:
-    id: e80d54650cbb
-    last_write_checksum: sha1:366404da71ffd6c5b3ec79d5bd29abeb3a2f9a8d
-    pristine_git_object: a136dc7c5fc1b0d743e2c7153e90bb20932b0f3f
   docs/models/components/EntitySettlement.md:
     id: f5e9583a5766
     last_write_checksum: sha1:17da533dee299d0c3a057d8056d3c5eda8e701db
@@ -963,30 +939,6 @@ trackedFiles:
     id: 60131ad1fcac
     last_write_checksum: sha1:930f33c22e2418a319b4cb630a72fc87cbd56153
     pristine_git_object: 5f14e4fde630cb29b7828f060fb3857ca4813174
-  docs/models/components/ListEntityRefund.md:
-    id: b73dd95c61b6
-    last_write_checksum: sha1:57022689d51c26cbbb9d40084c354404c00ab3e2
-    pristine_git_object: cd54c72ae01cefd8499f81019ef9e071a82ccc2d
-  docs/models/components/ListEntityRefundExternalReference.md:
-    id: 534af67ef56d
-    last_write_checksum: sha1:7eed5e01ac64c62195b6badadd919f079998fe04
-    pristine_git_object: 4921de74909a309d87814a35f9faffcaebd40705
-  docs/models/components/ListEntityRefundLinks.md:
-    id: bba9f082133d
-    last_write_checksum: sha1:9be92d6b6c9f8093ce047bc60ad7325be5d1c793
-    pristine_git_object: 761080679c2ee68e63a8871e5780da00ee71d0fe
-  docs/models/components/ListEntityRefundRoutingReversals.md:
-    id: cd5520aaf709
-    last_write_checksum: sha1:f0cb15e1e55783e71863c3ea4aea0a7951b26193
-    pristine_git_object: 29a4a60143799b7c99490ec80972cf6a38c73b44
-  docs/models/components/ListEntityRefundSource.md:
-    id: 9ae41054493d
-    last_write_checksum: sha1:b425c0e87e607152a2bdbca47702cd95aee89052
-    pristine_git_object: 7c50d82ebcf1b20673f9fca0f8950d4e8460485e
-  docs/models/components/ListEntityRefundStatus.md:
-    id: c567b49cec92
-    last_write_checksum: sha1:0b615f15d9a4e66af9c51233773ca4e8b69f60d8
-    pristine_git_object: bfc6f9ffa799507a169d51e5070c0b7f679bc0c5
   docs/models/components/ListEntityTerminal.md:
     id: 9c0b15178790
     last_write_checksum: sha1:47280ab112b1a99b845f3f13d94cc0c1b4a16421
@@ -1095,6 +1047,30 @@ trackedFiles:
     id: 01d0d9ab5834
     last_write_checksum: sha1:935b1709edf115ee5433e15b7ec8479824820ede
     pristine_git_object: ef55fcae1925bc4667c4e1bd3f45806b6a07a4fa
+  docs/models/components/ListRefundResponse.md:
+    id: eb1593d8490e
+    last_write_checksum: sha1:14818f961b8ffb92f777185f988c0f1981a32f22
+    pristine_git_object: 8f9b40ad14f112b9c9f8103b010700fc18b8bbe6
+  docs/models/components/ListRefundResponseExternalReference.md:
+    id: 62e944217d22
+    last_write_checksum: sha1:70eb0a9bb6101fc0888bd4b5b7b012aaca38e2ea
+    pristine_git_object: 9e82efe0a27e8f99c47545ae6246f6c818573904
+  docs/models/components/ListRefundResponseLinks.md:
+    id: 07706b083ad6
+    last_write_checksum: sha1:7e1c21cd836dd50166debdf54e0125ffc124c5f9
+    pristine_git_object: 9c129700d5df0413b8058f9c4ff1e29d7b83950f
+  docs/models/components/ListRefundResponseRoutingReversals.md:
+    id: 2ece325dcd15
+    last_write_checksum: sha1:9fceac99da08a92380705e11ca53e9a98da01301
+    pristine_git_object: 72e10de6189aafacd2088dbe3538090404012d36
+  docs/models/components/ListRefundResponseSource.md:
+    id: d9ebd5bb1acb
+    last_write_checksum: sha1:063c50cd7a8b502df1e0c1ce43f46665a38b0519
+    pristine_git_object: 4bba6f6594dee459e1ec8fd7b30e8d76cfadca7b
+  docs/models/components/ListRefundResponseStatus.md:
+    id: 83d502c97ea5
+    last_write_checksum: sha1:d58e6d4e8c2ba7941220b811b9b0b0062b3f87ef
+    pristine_git_object: 3b29769acdfbe52d92e154209bd0c17a5ef0e9a9
   docs/models/components/ListRouteGetResponse.md:
     id: 1eb69c960f47
     last_write_checksum: sha1:c5c734b993ac43b982302dfcda03883988828b2e
@@ -1109,8 +1085,8 @@ trackedFiles:
     pristine_git_object: 4d05a337f86ceef668ee15cfd4d9421092001c74
   docs/models/components/ListSalesInvoiceResponse.md:
     id: 3ba6c215c035
-    last_write_checksum: sha1:d7ec795703d48015829bb1cfe71f008bf4da164a
-    pristine_git_object: bfa68ed264985ed44b8f8aa704e9d4bdf751c21b
+    last_write_checksum: sha1:65e6353cbdaea50bb64a52c834779bcab902646e
+    pristine_git_object: 59c9b0f2d4dd19a03e95f540955aea77c819372c
   docs/models/components/ListSalesInvoiceResponseAmountDue.md:
     id: ab567998141c
     last_write_checksum: sha1:78e903223e971a246f807e5781c474be4faa165f
@@ -1621,8 +1597,8 @@ trackedFiles:
     pristine_git_object: ac12523e304d31c741d73ff99cd98f0f88e7d739
   docs/models/components/RefundRequest.md:
     id: 7ab65c6fcb99
-    last_write_checksum: sha1:0eb49783f1cee5829ce625131dc60d647b700fdd
-    pristine_git_object: 2abe395444194bfb9c93b85924631ac405dfd286
+    last_write_checksum: sha1:540156bc704aeb1927553b72fc2cc5efda0a7797
+    pristine_git_object: f1d48c7382c7e19096e74d07686b8eb79ca02898
   docs/models/components/RefundRequestExternalReference.md:
     id: 8464c057bc4f
     last_write_checksum: sha1:b495380a859b3658db7d13fec3d5a46ef959e04a
@@ -1631,6 +1607,30 @@ trackedFiles:
     id: 5b3137fa815c
     last_write_checksum: sha1:23ac2c549d7e7342a69d6dd95654a0300bb0a568
     pristine_git_object: c2bcd4d21a3a37ca4c1bcbae961ff4ac0cc8988e
+  docs/models/components/RefundResponse.md:
+    id: 85f093c3cfab
+    last_write_checksum: sha1:14ddbb9f46775f517445b961dfd13cb28dd42f8d
+    pristine_git_object: 313638acce1d56a1e828810554a9b02bc0f6bb14
+  docs/models/components/RefundResponseExternalReference.md:
+    id: 6118ea0fcb08
+    last_write_checksum: sha1:d699088852822644c3ff4bbb9d5329ad1d114f72
+    pristine_git_object: a30a3b8d0d22bb8e4e6e8d8ea5bacd540e43ed5c
+  docs/models/components/RefundResponseLinks.md:
+    id: b37b2190686c
+    last_write_checksum: sha1:d7798c6276e70d0a0236cfb2c9a93c01bf91b416
+    pristine_git_object: 05dbca233cec2db1599bd022c5efc1f5d2eeedfe
+  docs/models/components/RefundResponseRoutingReversals.md:
+    id: a79b1e038c99
+    last_write_checksum: sha1:0b368804d36cc41c3be3cba34483d7f0b31d7b2b
+    pristine_git_object: 3199fdfa7f5b3faf2e142beeecc4fa9ddcc767c4
+  docs/models/components/RefundResponseSource.md:
+    id: 5ab4db26acb1
+    last_write_checksum: sha1:0200c5592437d5226a42a415b15012f4e8bcb62b
+    pristine_git_object: 387e114fc02f7f6dbf879fa355980c984b36095e
+  docs/models/components/RefundResponseStatus.md:
+    id: 3dc726e829cd
+    last_write_checksum: sha1:c4b419f2c52bd7bf1c9326664bba22c02bcd9cea
+    pristine_git_object: bc130d6e38bd1e4d3b0c98f3fbe34f89bb61a213
   docs/models/components/Refunds.md:
     id: 9487ae6ffe90
     last_write_checksum: sha1:a57ffefd2e7363006c3705a1ea706a1be03fdd65
@@ -1801,12 +1801,12 @@ trackedFiles:
     pristine_git_object: 43a7d5a518105cc06e1bc8192be13f301e1d1f26
   docs/models/components/SalesInvoiceRequest.md:
     id: b3c4a46c28ac
-    last_write_checksum: sha1:d99b4c4b23c364f9d5823a69e5e98898745a1c4a
-    pristine_git_object: da1a2c80d6684ff47d31e2d387496790e9176f14
+    last_write_checksum: sha1:4bbda61db245068365edcf88a1081ed263345f11
+    pristine_git_object: 89ed1e77a06ea4a3ccf04c5e0b425f1fe3ab464e
   docs/models/components/SalesInvoiceResponse.md:
     id: eb7d31043c31
-    last_write_checksum: sha1:48dff0816ca47c0e4201e317f13c6232f41a321b
-    pristine_git_object: 6114c0bc3f30c90ee883b21e69ca51a0de18be74
+    last_write_checksum: sha1:2923743f122b77448df7ff07fdf9a178255b6a74
+    pristine_git_object: 6eeac8b7a9bdad6fb55c0cf504f152c8b38a1b72
   docs/models/components/SalesInvoiceResponseLinks.md:
     id: 52fd56eb021d
     last_write_checksum: sha1:9dfe8c4650d49e713f04bd78b7cb229a45094046
@@ -2389,8 +2389,8 @@ trackedFiles:
     pristine_git_object: 91586e2de4220abb5777499d033554f06fc0b46f
   docs/models/operations/CreateRefundResponse.md:
     id: 17f421636f8c
-    last_write_checksum: sha1:1294adf4b0bb653d7075a828ae5ecc9e062d1621
-    pristine_git_object: 19b57301895ddde252be6dc02fe38e1356e0c554
+    last_write_checksum: sha1:07b9a1ac41dfb38de98c0df267b4c1d50ad8cad4
+    pristine_git_object: 9d3c390cb050c45b5a305e4dc3bca4092245c3e1
   docs/models/operations/CreateSalesInvoiceRequest.md:
     id: 1c19a29bc465
     last_write_checksum: sha1:b43e9f6c47ef53dd338557e543d2362c2583a29b
@@ -2817,8 +2817,8 @@ trackedFiles:
     pristine_git_object: 323fb77f0efc3274de52af7a59770c4d33c6a639
   docs/models/operations/GetRefundResponse.md:
     id: 4c085f8d839b
-    last_write_checksum: sha1:c28188a853eacb3812e585a17364a2fdbbded8aa
-    pristine_git_object: 91448fc0016da7873763546f107959fbaf248c7e
+    last_write_checksum: sha1:949488e681e71feb05fb537931172069a03b3ebc
+    pristine_git_object: 4d66d999a1569cd3e5bdbeae8ef0ba1c4099c8f7
   docs/models/operations/GetSalesInvoiceRequest.md:
     id: 543e767de7b9
     last_write_checksum: sha1:5fb0d15d8afb4de51f3d19c2cecff94a120363bf
@@ -2933,8 +2933,8 @@ trackedFiles:
     pristine_git_object: 508b32e8c00cac8e8da86e86fc63b4db58b9b6f8
   docs/models/operations/ListAllRefundsEmbedded.md:
     id: 7a13ee58a219
-    last_write_checksum: sha1:f828f64c4e146d80c248ecfa7f580a6d71a66a98
-    pristine_git_object: e44c4d64d742adc0a07d8e7a181166fcb52e1d63
+    last_write_checksum: sha1:044c36ae7eea96b24739cf07bbcf7013ab7208b3
+    pristine_git_object: da501721386fa9ceb652f52122feb0bcab8045f9
   docs/models/operations/ListAllRefundsRequest.md:
     id: b2dbacc43c72
     last_write_checksum: sha1:5706de181033ab6ff42bc56a3486c0b06d8eb6e2
@@ -3301,8 +3301,8 @@ trackedFiles:
     pristine_git_object: 0cd12d1bae68fd13ac8955bf6007bc511d50349e
   docs/models/operations/ListRefundsEmbedded.md:
     id: cf7ca1b10c67
-    last_write_checksum: sha1:7f163c6465f20ee6dfaad0b5a78949b14300c309
-    pristine_git_object: 0465378c95b20dc4f2ea6cca5e69e0402de25722
+    last_write_checksum: sha1:7f8841818259db299564d53769a06d8729c5262e
+    pristine_git_object: ac97f55c4ad4a09a89df4478da7e2c1ed270b49a
   docs/models/operations/ListRefundsRequest.md:
     id: 66c35918ba15
     last_write_checksum: sha1:79533a9e9aea216d9a5c85315c7b8330099a40dc
@@ -3769,8 +3769,8 @@ trackedFiles:
     pristine_git_object: d25d2792e7c1e6c27ae107c6a7fab5c918a16a0e
   docs/models/operations/UpdateSalesInvoiceRequestBody.md:
     id: bcd5fd5fc355
-    last_write_checksum: sha1:774832df48ff4271d574218c922c7c7b43a0cc33
-    pristine_git_object: 1582dff4829bbf3082070633bb1f181c47b04c93
+    last_write_checksum: sha1:1b348259a244b2dc04547d3d388d9e1be34c387d
+    pristine_git_object: 9ea6efed4d70a28a6245b8ad9bf38fb85f334ee3
   docs/models/operations/UpdateSalesInvoiceResponse.md:
     id: 1a51ed6059ae
     last_write_checksum: sha1:7e7a738b64a4bca9fe809f0a9d55147b181ac4be
@@ -3905,8 +3905,8 @@ trackedFiles:
     pristine_git_object: 912004d71e30934d3df88594b75c4345b2ac83cc
   docs/sdks/refunds/README.md:
     id: 451a9838a921
-    last_write_checksum: sha1:c1799ac6a63b7233005f8a8899a1f6f8c66dcdb5
-    pristine_git_object: 6fc95c1ee9f326f5e1a83a906870c8830014a1d6
+    last_write_checksum: sha1:5cf055d8b095f1145a40a1a8ac3c6870ab175cc8
+    pristine_git_object: c24555063ea078256b9037a25751618cb1faa83c
   docs/sdks/salesinvoices/README.md:
     id: 7b2a80290a07
     last_write_checksum: sha1:900556c7a0dac6384ef1b0691fbd428109db1fee
@@ -3957,8 +3957,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:d81c2019c8945b8b53d920b86f62ca96dff0fe76
-    pristine_git_object: 913a13a5058123632313900ecd402b6b0a71f860
+    last_write_checksum: sha1:5d45bce2e61f99fd21690e8f39160b2eacc3b1aa
+    pristine_git_object: a60c2a877c228cbfca3dfec6161f4b61a6b8a481
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4221,8 +4221,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:4d90c10f7fbb5628585f40ed85da5ec7e1f6f941
-    pristine_git_object: db3b528e978e3ab66b025a96d099e48ea59f8803
+    last_write_checksum: sha1:c7e99eb5b0c400c95ef4e1e812d31e49edee2f3c
+    pristine_git_object: 129a97906d929b75e88993390bd52ebb0165ea81
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:5b1b2448cd7365ef474e323a24f05b937422e9f1
@@ -4649,8 +4649,8 @@ trackedFiles:
     pristine_git_object: 05c447bfd4be325bc07e329daea33f4f32415cbb
   src/main/java/com/mollie/mollie/models/components/Entity.java:
     id: 24cbc47eaa91
-    last_write_checksum: sha1:2f1de492733a426519dd1f9a24fbebbe455f0b17
-    pristine_git_object: ad3f68a7f69e97129dac7b72ef5a7f02d37f51aa
+    last_write_checksum: sha1:c3c308b10c1b3f4c0535c0dc8af4e7f63475c4f0
+    pristine_git_object: 991f1fb6bf227cb889fb027653e4d9c55f8ca27b
   src/main/java/com/mollie/mollie/models/components/EntityBalance.java:
     id: 7a797eb67e17
     last_write_checksum: sha1:d76946e5f1bf59bda588c468f55bfa642e948476
@@ -4895,30 +4895,6 @@ trackedFiles:
     id: 96271a830622
     last_write_checksum: sha1:864bd5bb0640bdf936155e5d26cb21b0733aae99
     pristine_git_object: d219364a334618a6fd3071e2b0c2b1ef828b09d6
-  src/main/java/com/mollie/mollie/models/components/EntityRefundResponse.java:
-    id: 59ec1cb190c5
-    last_write_checksum: sha1:fd15126fd81bfc1c481d2df702a42e1b1633f579
-    pristine_git_object: 0783c066a6af45dfcdaa6f26a0df163c116e2c72
-  src/main/java/com/mollie/mollie/models/components/EntityRefundResponseExternalReference.java:
-    id: 32e78eec9b8c
-    last_write_checksum: sha1:8503e1a6b1f48bec58d8521aa8e17ff8d7588919
-    pristine_git_object: 1d48a5deb6e4bb689db0b1af3eab7c29aa3a45b5
-  src/main/java/com/mollie/mollie/models/components/EntityRefundResponseLinks.java:
-    id: 813961fcd557
-    last_write_checksum: sha1:ad3ce8da62ec762813d0dec8a966e10e13f07038
-    pristine_git_object: d0d63463c98d9116cf72d2b9f1bb17cbfb39328e
-  src/main/java/com/mollie/mollie/models/components/EntityRefundResponseRoutingReversals.java:
-    id: 7f43dac60203
-    last_write_checksum: sha1:83010070bec7c4083cc72997bcbc84e2459dfd08
-    pristine_git_object: b8703dfb1b7cd834c5215a71ef8ff75f9cd2cc90
-  src/main/java/com/mollie/mollie/models/components/EntityRefundResponseSource.java:
-    id: a4b5bc7f1a39
-    last_write_checksum: sha1:744a2698f62707319f680962879367235e8b594b
-    pristine_git_object: 0e68caa87d92eafc85ec87535c50f4eb44826d00
-  src/main/java/com/mollie/mollie/models/components/EntityRefundResponseStatus.java:
-    id: 541eda75cdf8
-    last_write_checksum: sha1:07754d401d91a20b4bf3c0ff815d0be1705af362
-    pristine_git_object: 3d1216fc206e60c511370fa0bda0867a3949945b
   src/main/java/com/mollie/mollie/models/components/EntitySettlement.java:
     id: eaedac973ae6
     last_write_checksum: sha1:25d4901dce28d81c4ffbdb36a9e74fd3d580d49e
@@ -5187,30 +5163,6 @@ trackedFiles:
     id: 9d9b784dce9e
     last_write_checksum: sha1:176ae20ce8d1687a74c0b69141bd2a14507f1dac
     pristine_git_object: 46406ecee99bea1cfcf3a90fcd032c9128cc247e
-  src/main/java/com/mollie/mollie/models/components/ListEntityRefund.java:
-    id: 1df554c87dfb
-    last_write_checksum: sha1:96a4ee9010ba0c636ce3aca816daf016168e6b3d
-    pristine_git_object: 46652f9c173f93741a1ab9ce1b0e0a729f5a98ed
-  src/main/java/com/mollie/mollie/models/components/ListEntityRefundExternalReference.java:
-    id: e01aa9979db8
-    last_write_checksum: sha1:6d8c99d20e376cc54cf64f3a2f87e6e5bbdf1796
-    pristine_git_object: c144ecd675ab3368f3fd57e44fd17b1b77da99fd
-  src/main/java/com/mollie/mollie/models/components/ListEntityRefundLinks.java:
-    id: 4c4ef234782c
-    last_write_checksum: sha1:fe315d386bbd2a7dfabf083aba93816f99237f63
-    pristine_git_object: 2c7d96555ffe49c73e0c83dcba641320de536f36
-  src/main/java/com/mollie/mollie/models/components/ListEntityRefundRoutingReversals.java:
-    id: 68c2dc2a64e5
-    last_write_checksum: sha1:ea5dcc46a0af812dfb7627845bef6c8cc2194d24
-    pristine_git_object: 192e36ce51f95a7918a8888ca7618c45085849b9
-  src/main/java/com/mollie/mollie/models/components/ListEntityRefundSource.java:
-    id: ec5e4ecd9cb7
-    last_write_checksum: sha1:a660f896ac7d8335d99e02606ff8ae4caf4d427d
-    pristine_git_object: 7a421eaa10631506b7441b6ac022f38c1e0c6547
-  src/main/java/com/mollie/mollie/models/components/ListEntityRefundStatus.java:
-    id: 343b0fbe6b29
-    last_write_checksum: sha1:e138c241fe7aef2e4b615d5152cf677e0dfecfe4
-    pristine_git_object: b68ee4cd9ff728860ade67653b32311aaf5876d8
   src/main/java/com/mollie/mollie/models/components/ListEntityTerminal.java:
     id: 8581835294d2
     last_write_checksum: sha1:5afa7b33c625b92aa35bb4ef7851255cdedf7ff6
@@ -5319,6 +5271,30 @@ trackedFiles:
     id: 3e585ef5e3df
     last_write_checksum: sha1:46ff6ffcce07e57123b88738741e1dfdd8c8c72c
     pristine_git_object: ca85f75258356c4e52e6a1cafae9b83e8c2f43c0
+  src/main/java/com/mollie/mollie/models/components/ListRefundResponse.java:
+    id: 775834384a1e
+    last_write_checksum: sha1:58dc8537bf6069fa4a9174138613c20b27c22f58
+    pristine_git_object: a1a272d14b5d792e8cafc324abfecc0128db72e0
+  src/main/java/com/mollie/mollie/models/components/ListRefundResponseExternalReference.java:
+    id: a77cd6987788
+    last_write_checksum: sha1:a67c78d35dbf16b333161112e1f758e2bd3d4ca4
+    pristine_git_object: f7c9612bb9ac7e8f63fca4cf3a580f8476126447
+  src/main/java/com/mollie/mollie/models/components/ListRefundResponseLinks.java:
+    id: 30a079be8497
+    last_write_checksum: sha1:077d5cf261a2a0fa412bba3251ea65ae54273d51
+    pristine_git_object: 883d5ca85285b2f76061b98861bd0e03476a4806
+  src/main/java/com/mollie/mollie/models/components/ListRefundResponseRoutingReversals.java:
+    id: 06c3bb2dbce9
+    last_write_checksum: sha1:a0c0d98be47cbc71b54000de682d476bbdcbc108
+    pristine_git_object: 5039eadb082f337c785e65d3cffdbf0d8a7133a0
+  src/main/java/com/mollie/mollie/models/components/ListRefundResponseSource.java:
+    id: 70065e4fa284
+    last_write_checksum: sha1:f88fbd82a169f1aa1d76477f129f6f690fb79b2f
+    pristine_git_object: 8f8edbbfa26cacf83fed77c52852e171deb013c4
+  src/main/java/com/mollie/mollie/models/components/ListRefundResponseStatus.java:
+    id: e2b1555932ce
+    last_write_checksum: sha1:9ed7004774ea206b1d84116bceae4e789746bbb3
+    pristine_git_object: d715bd61d38ad67415ad52e98882b021859e5261
   src/main/java/com/mollie/mollie/models/components/ListRouteGetResponse.java:
     id: ecebf6d3ddd9
     last_write_checksum: sha1:44366b94891c1fa78e72c1244e61519ab043a14c
@@ -5333,8 +5309,8 @@ trackedFiles:
     pristine_git_object: 2b041230edd3e716f9d9831fa8c75838c6798c34
   src/main/java/com/mollie/mollie/models/components/ListSalesInvoiceResponse.java:
     id: 9f45f289868a
-    last_write_checksum: sha1:3fcca7636a62f8e7459d06e35b01b84e044fbebb
-    pristine_git_object: 1cc19a1a83cbddbc6aca7abf64a2ceada5448f43
+    last_write_checksum: sha1:58619da4908a82ef5b063511de1bdbbb41532ca2
+    pristine_git_object: e1f2596f8f2bfe34db13220d71078be7f9d35b3b
   src/main/java/com/mollie/mollie/models/components/ListSalesInvoiceResponseAmountDue.java:
     id: 3e86e2551006
     last_write_checksum: sha1:46a0bf8209cec8613a13409e7fc0f76b8563c71c
@@ -5845,8 +5821,8 @@ trackedFiles:
     pristine_git_object: 64dbfbf5dd5fddbb01e6c8439f4f7693f2082611
   src/main/java/com/mollie/mollie/models/components/RefundRequest.java:
     id: d2bd29c7c0f2
-    last_write_checksum: sha1:85038c219233b6d96c89f65e7571b368473df8a9
-    pristine_git_object: 6ba1660f9e4fc2b057ed549cfa2713134683f503
+    last_write_checksum: sha1:62541cced9c284080472c8334602d7a5309c95f7
+    pristine_git_object: e46368b044279c8c680a891db01d1ee294805ae6
   src/main/java/com/mollie/mollie/models/components/RefundRequestExternalReference.java:
     id: eb5ad80f0d04
     last_write_checksum: sha1:289fea0d05716b99a9cfb1439fd8a4245911f764
@@ -5855,6 +5831,30 @@ trackedFiles:
     id: f8a3ec16412d
     last_write_checksum: sha1:c3a415a4c8a621104868a86f3ded5a3a76dca8ce
     pristine_git_object: 1605be0406885c2556480eda10cbc6b4f108402f
+  src/main/java/com/mollie/mollie/models/components/RefundResponse.java:
+    id: 6c406abd95e7
+    last_write_checksum: sha1:8e7627d7b2d1a891424a9d0534c3bf9f539f7ac1
+    pristine_git_object: 635a9d399acb59a2253ea87d4d0b49449514031d
+  src/main/java/com/mollie/mollie/models/components/RefundResponseExternalReference.java:
+    id: 997fb6b0097a
+    last_write_checksum: sha1:c7053c5e0d6409ef64234d23e5a6477eada862ff
+    pristine_git_object: aea43430e147d12ab8b17d088cf0dca9d16cf90d
+  src/main/java/com/mollie/mollie/models/components/RefundResponseLinks.java:
+    id: b34242b2d98b
+    last_write_checksum: sha1:9c656d5ce6805725eb1244a562d8e305ddc91941
+    pristine_git_object: 8f7845fe5373fc543a890110e2cdf0bb50b43a3b
+  src/main/java/com/mollie/mollie/models/components/RefundResponseRoutingReversals.java:
+    id: 742eae78dd0a
+    last_write_checksum: sha1:5f1abd692cb3e29537dd187726dc0db71376d45b
+    pristine_git_object: ae575967e3aed8179ad1250211ed42d393e92576
+  src/main/java/com/mollie/mollie/models/components/RefundResponseSource.java:
+    id: 9f2cac87e2e4
+    last_write_checksum: sha1:b273e8fa468e8f1de74dcd08ffb19fe3dd4be220
+    pristine_git_object: 6f1a508da25fd894572a4a72822055db119c474f
+  src/main/java/com/mollie/mollie/models/components/RefundResponseStatus.java:
+    id: 585209208fca
+    last_write_checksum: sha1:9a661a6f17e901bd4b2b471dc3767aa75c4ac440
+    pristine_git_object: f9e236f6ecd1fd0586262ac8fdb44c7710655cac
   src/main/java/com/mollie/mollie/models/components/Refunds.java:
     id: 1898cc76cd01
     last_write_checksum: sha1:83760e0426917f0000d6ecea61254ec8bc651c1d
@@ -6025,12 +6025,12 @@ trackedFiles:
     pristine_git_object: 6d21a823000ffdb71eca4524023ff56d752b4cf9
   src/main/java/com/mollie/mollie/models/components/SalesInvoiceRequest.java:
     id: fdfe299e984b
-    last_write_checksum: sha1:598dbfb2208250513170a1865534041b68b6f020
-    pristine_git_object: 7744bd7ac4656e4e398794ec0d7e987e3ae1044b
+    last_write_checksum: sha1:f2ee121593b780a3e66498166a6de230bb470cd2
+    pristine_git_object: 05ca4d1b9203f1e4e6ae866bdb97cac030e83e07
   src/main/java/com/mollie/mollie/models/components/SalesInvoiceResponse.java:
     id: 73d956dabe32
-    last_write_checksum: sha1:367a1d486fd898d6a2e81da41538571e2d753d24
-    pristine_git_object: 44cf3c975c3d3e4d4fd1c07d916675af4a1365ee
+    last_write_checksum: sha1:6ca98cd68fdd08d7044d641138938fe0b084f56b
+    pristine_git_object: 8225a8ccf7146699c32c23424712384a433e0474
   src/main/java/com/mollie/mollie/models/components/SalesInvoiceResponseLinks.java:
     id: 87bf6f4076f2
     last_write_checksum: sha1:6df890ad396f572b4d9514e4e5e8699b9892a1b2
@@ -7209,8 +7209,8 @@ trackedFiles:
     pristine_git_object: 7fc4b31879e33784d43547aa59c07ad19e63b72a
   src/main/java/com/mollie/mollie/models/operations/CreateRefundResponse.java:
     id: ad9829134c80
-    last_write_checksum: sha1:5e09c8ecb4973cef0b3ea738b4b223d382b14acd
-    pristine_git_object: d1480cf1f6be1fc9705a3b9eda750c90c87dc657
+    last_write_checksum: sha1:86e506da722039dd048e7d3a7b0b8bae13aa8f5e
+    pristine_git_object: a639805d9a6626d512eb665f766a50af8dd2adf2
   src/main/java/com/mollie/mollie/models/operations/CreateSalesInvoiceRequest.java:
     id: aa0b609ad692
     last_write_checksum: sha1:ef9d70cacd2132944c4b8fb5a6998406cdc43e21
@@ -7805,8 +7805,8 @@ trackedFiles:
     pristine_git_object: 573d55966cb7044126982e7a44fbaa80877999f6
   src/main/java/com/mollie/mollie/models/operations/GetRefundResponse.java:
     id: ebb8219e80a2
-    last_write_checksum: sha1:f11cbfb8b7ca70aefb921ad227f9fda7ac0eec2a
-    pristine_git_object: 732577f9673800b1ec281dd463df904c5c7eb875
+    last_write_checksum: sha1:c1ba3eaff3d4f4f0b2d15feadd6889c8320d90c8
+    pristine_git_object: 9b0c3b26e2865d3d2af728db25ed408cb1a4b566
   src/main/java/com/mollie/mollie/models/operations/GetSalesInvoiceRequest.java:
     id: a90d45d711b5
     last_write_checksum: sha1:41fb2cbb949d22a78393f87834af0743629b7215
@@ -7965,8 +7965,8 @@ trackedFiles:
     pristine_git_object: 4c4d6755c63e5c6df64ccc3f1dfe663429cb0af4
   src/main/java/com/mollie/mollie/models/operations/ListAllRefundsEmbedded.java:
     id: b3b3cdcba2fc
-    last_write_checksum: sha1:39945a1a4b57a8076af9cd9ba3b9130b6af1c778
-    pristine_git_object: fa0f21b71a17a2272e853bf868027c2fa045c1fd
+    last_write_checksum: sha1:842b58d6c7a812efbfe7b2c2bfb3ed8f70c417e1
+    pristine_git_object: e607d4a5e2d762c760f0c36f36ca42d239813b75
   src/main/java/com/mollie/mollie/models/operations/ListAllRefundsRequest.java:
     id: cb109ec86a6f
     last_write_checksum: sha1:6f92f088fb3ef36717c2bea2c40a98fb9f7939b5
@@ -8421,8 +8421,8 @@ trackedFiles:
     pristine_git_object: 7f64a40773d7bae0a179884b5e8e76e28a83f590
   src/main/java/com/mollie/mollie/models/operations/ListRefundsEmbedded.java:
     id: 1b2f7caf2261
-    last_write_checksum: sha1:918ae2c287a43e6669b0bab6943d90653eb3613c
-    pristine_git_object: edac1739dabc07ff7c57411c76fc735e9cb06feb
+    last_write_checksum: sha1:9023a9b089894aa77e2f7a3549167bd16f05b621
+    pristine_git_object: cdfd172dc10595a26a3a9dcb68fcc348f1a00c0c
   src/main/java/com/mollie/mollie/models/operations/ListRefundsRequest.java:
     id: aa5d6f8944aa
     last_write_checksum: sha1:b9ca53a42d2e814bd58368e154bed6c27e1dfe26
@@ -9017,8 +9017,8 @@ trackedFiles:
     pristine_git_object: f3d3b0d88260d7af9db28267b4d788b2a6bebe5c
   src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceRequestBody.java:
     id: d23c1e3ed578
-    last_write_checksum: sha1:2791ad456de83b1d299ec28c0f779a5e90d80a45
-    pristine_git_object: 94645cafe8dcf06e7f8fda51cdc98646172b19ed
+    last_write_checksum: sha1:91b9715769c2710384d3f79678a037dcd0482698
+    pristine_git_object: ef412a4484803e595e0113b9ccf103f913fa81b9
   src/main/java/com/mollie/mollie/models/operations/UpdateSalesInvoiceRequestBuilder.java:
     id: 3d1340c3fa2e
     last_write_checksum: sha1:d7bc0df1f6dc314a20046a3542ff79d8148336e2
@@ -9145,8 +9145,8 @@ trackedFiles:
     pristine_git_object: ae326cbc32d3add9b0b9e74b6e49e59d599b4b8d
   src/main/java/com/mollie/mollie/models/operations/async/CreateRefundResponse.java:
     id: d9e5401ba079
-    last_write_checksum: sha1:ea5478900d52bc0b31049feb6833d48efd7dda03
-    pristine_git_object: 675c52ee98eeac5c4ac589e16b6ea99085ec9361
+    last_write_checksum: sha1:ecd1136551f8c56eefdefbe4796773416196dc17
+    pristine_git_object: bd92e5c832e454d21c59a72004e4ce558c2a3f93
   src/main/java/com/mollie/mollie/models/operations/async/CreateSalesInvoiceResponse.java:
     id: 00c80555698a
     last_write_checksum: sha1:8cead1af9d570f803499d6c55cfdd39f31317d56
@@ -9313,8 +9313,8 @@ trackedFiles:
     pristine_git_object: 3e4d51cea993999aca92c771a0ef96f5f76a1916
   src/main/java/com/mollie/mollie/models/operations/async/GetRefundResponse.java:
     id: 572013cd84b9
-    last_write_checksum: sha1:ceb83d718f48e4767122ce77526a705a1f4cf3db
-    pristine_git_object: 902c57ade164d7cd5f9e4c9a919f6db8a1a18190
+    last_write_checksum: sha1:200e71083e39c02751acdbbf3e10a746df6a2d8a
+    pristine_git_object: a5570e6c10ecefcf521c55a1167ea2845638d50c
   src/main/java/com/mollie/mollie/models/operations/async/GetSalesInvoiceResponse.java:
     id: 5248a8429b70
     last_write_checksum: sha1:9abb6194cb81a0f2bd174dbf008b07668c05cc86
@@ -9657,8 +9657,8 @@ trackedFiles:
     pristine_git_object: b08c531c6583d697f75d511cafebdc7099313564
   src/main/java/com/mollie/mollie/operations/CreateRefund.java:
     id: b7ebdeb734f4
-    last_write_checksum: sha1:e25617f6f7fb0f047bfaf31de9aaefef027f7453
-    pristine_git_object: e686b222cb752f959f68dd3a2127eb99bd3e5e4a
+    last_write_checksum: sha1:396e0e9e12b3746d970e286f030e60ecd8f9d953
+    pristine_git_object: ecc592839d8dad67699b9bf7ed0abf145a0d3601
   src/main/java/com/mollie/mollie/operations/CreateSalesInvoice.java:
     id: a50a735c0a7e
     last_write_checksum: sha1:f60712dd2dea849787b7df3d79188563a4b04207
@@ -9825,8 +9825,8 @@ trackedFiles:
     pristine_git_object: 7162854825e1d3c3bee8d374d2f48ac2524fae29
   src/main/java/com/mollie/mollie/operations/GetRefund.java:
     id: ab2ba49b861a
-    last_write_checksum: sha1:2939894cd2bc2910f5be5b31cde2a951abbbccea
-    pristine_git_object: 8fe4696ad95b2f14a436e8f221f58044e2eac94e
+    last_write_checksum: sha1:640fbc88babc21112814f9583827f084a0c9a6ea
+    pristine_git_object: 9261c1d1d6acd6eb909981595bfdd3d728f3ca14
   src/main/java/com/mollie/mollie/operations/GetSalesInvoice.java:
     id: 590343f86504
     last_write_checksum: sha1:05bef6877a6a3656f368c3960724da5e2f07cc7b
@@ -11071,7 +11071,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
+        application/json: {"description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "refund", "id": "re_4qqhO89gsT", "mode": "live", "description": "Order", "amount": {"currency": "EUR", "value": "5.95"}, "metadata": "{\"bookkeeping_id\":12345}", "paymentId": "tr_5B8cwPMGnU6qLbRvo7qEZo", "status": "pending", "createdAt": "2023-03-14T17:09:02+00:00", "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_5B8cwPMGnU6qLbRvo7qEZo", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -11082,7 +11082,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
+        application/json: {"description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "refund", "id": "re_GKQYmNNAfL", "mode": "live", "description": "Refund description of example payment", "amount": {"currency": "EUR", "value": "10.00"}, "metadata": null, "paymentId": "tr_aZm7dgj5zs", "status": "pending", "createdAt": "2023-02-06T15:55:57+00:00", "routingReversals": [{"amount": {"currency": "EUR", "value": "7.50"}, "source": {"organizationId": "org_7049691"}}], "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://api.mollie.com/v2/payments/tr_aZm7dgj5zs?testmode=true", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "text/html"}}}
@@ -11106,7 +11106,7 @@ examples:
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       requestBody:
-        application/json: {"description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
+        application/json: {"description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "reverseRouting": false, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"type": "organization", "organizationId": "org_1234567"}}], "testmode": false}
       responses:
         "201":
           application/hal+json: {"resource": "refund", "id": "re_5B8cwPMGnU", "mode": "live", "description": "Refunding a Chess Board", "amount": {"currency": "EUR", "value": "10.00"}, "metadata": {}, "paymentId": "tr_5B8cwPMGnU", "settlementId": "stl_5B8cwPMGnU", "status": "queued", "createdAt": "2024-03-20T09:13:37+00:00", "externalReference": {"type": "acquirer-reference", "id": "123456789012345"}, "routingReversals": [{"amount": {"currency": "EUR", "value": "10.00"}, "source": {"organizationId": "org_1234567"}}], "_links": {"self": {"href": "https://...", "type": "application/hal+json"}, "payment": {"href": "https://...", "type": "application/hal+json"}, "settlement": {"href": "https://...", "type": "application/hal+json"}, "documentation": {"href": "https://...", "type": "application/hal+json"}}}
@@ -15820,18 +15820,8 @@ examplesVersion: 1.0.2
 generatedTests: {}
 releaseNotes: |
   ## Java SDK Changes:
-  * `client.settlements.listPayments()`:  `response.Embedded.payments[].details` **Changed**
-  * `client.settlements.listRefunds()`:  `response.Embedded.refunds[].status.enum(failed)` **Added**
-  * `client.webhookEvents.get()`:  `response.Embedded.entity.union(payment-response).details` **Changed**
-  * `client.payments.create()`:  `response.details` **Changed**
-  * `client.payments.list()`:  `response.Embedded.payments[].details` **Changed**
-  * `client.payments.get()`:  `response.details` **Changed**
-  * `client.payments.update()`:  `response.details` **Changed**
-  * `client.payments.cancel()`:  `response.details` **Changed**
-  * `client.paymentLinks.listPayments()`:  `response.Embedded.payments[].details` **Changed**
-  * `client.customers.createPayment()`:  `response.details` **Changed**
-  * `client.customers.listPayments()`:  `response.Embedded.payments[].details` **Changed**
-  * `client.subscriptions.listPayments()`:  `response.Embedded.payments[].details` **Changed**
+  * `client.webhookEvents.get()`:  `response.Embedded.entity` **Changed** (Breaking ⚠️)
+  * `client.refunds.create()`:  `request.refundRequest` **Changed**
 generatedFiles:
   - .gitattributes
   - USAGE.md

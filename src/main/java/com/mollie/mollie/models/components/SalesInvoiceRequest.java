@@ -174,6 +174,13 @@ public class SalesInvoiceRequest {
      * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
      * when
      * the recipient is also located in one of these countries.
+     * 
+     * <p>When set to true, the invoice will be delivered via the Peppol network. In this case, the
+     * organizationNumber
+     * or vatNumber provided must match the identifier the recipient is actually registered with on Peppol,
+     * otherwise delivery will fail. Note: for recipients in Germany, the vatNumber is the required
+     * identifier
+     * for Peppol registration.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isEInvoice")
@@ -420,6 +427,13 @@ public class SalesInvoiceRequest {
      * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
      * when
      * the recipient is also located in one of these countries.
+     * 
+     * <p>When set to true, the invoice will be delivered via the Peppol network. In this case, the
+     * organizationNumber
+     * or vatNumber provided must match the identifier the recipient is actually registered with on Peppol,
+     * otherwise delivery will fail. Note: for recipients in Germany, the vatNumber is the required
+     * identifier
+     * for Peppol registration.
      */
     @JsonIgnore
     public Optional<Boolean> isEInvoice() {
@@ -758,6 +772,13 @@ public class SalesInvoiceRequest {
      * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
      * when
      * the recipient is also located in one of these countries.
+     * 
+     * <p>When set to true, the invoice will be delivered via the Peppol network. In this case, the
+     * organizationNumber
+     * or vatNumber provided must match the identifier the recipient is actually registered with on Peppol,
+     * otherwise delivery will fail. Note: for recipients in Germany, the vatNumber is the required
+     * identifier
+     * for Peppol registration.
      */
     public SalesInvoiceRequest withIsEInvoice(boolean isEInvoice) {
         Utils.checkNotNull(isEInvoice, "isEInvoice");
@@ -776,6 +797,13 @@ public class SalesInvoiceRequest {
      * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
      * when
      * the recipient is also located in one of these countries.
+     * 
+     * <p>When set to true, the invoice will be delivered via the Peppol network. In this case, the
+     * organizationNumber
+     * or vatNumber provided must match the identifier the recipient is actually registered with on Peppol,
+     * otherwise delivery will fail. Note: for recipients in Germany, the vatNumber is the required
+     * identifier
+     * for Peppol registration.
      */
     public SalesInvoiceRequest withIsEInvoice(Optional<Boolean> isEInvoice) {
         Utils.checkNotNull(isEInvoice, "isEInvoice");
@@ -1223,6 +1251,13 @@ public class SalesInvoiceRequest {
          * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
          * when
          * the recipient is also located in one of these countries.
+         * 
+         * <p>When set to true, the invoice will be delivered via the Peppol network. In this case, the
+         * organizationNumber
+         * or vatNumber provided must match the identifier the recipient is actually registered with on Peppol,
+         * otherwise delivery will fail. Note: for recipients in Germany, the vatNumber is the required
+         * identifier
+         * for Peppol registration.
          */
         public Builder isEInvoice(boolean isEInvoice) {
             Utils.checkNotNull(isEInvoice, "isEInvoice");
@@ -1240,6 +1275,13 @@ public class SalesInvoiceRequest {
          * <p>E-invoicing is only available for merchants based in Belgium, Germany, and the Netherlands, and only
          * when
          * the recipient is also located in one of these countries.
+         * 
+         * <p>When set to true, the invoice will be delivered via the Peppol network. In this case, the
+         * organizationNumber
+         * or vatNumber provided must match the identifier the recipient is actually registered with on Peppol,
+         * otherwise delivery will fail. Note: for recipients in Germany, the vatNumber is the required
+         * identifier
+         * for Peppol registration.
          */
         public Builder isEInvoice(Optional<Boolean> isEInvoice) {
             Utils.checkNotNull(isEInvoice, "isEInvoice");

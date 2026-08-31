@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations.async;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.EntityRefundResponse;
+import com.mollie.mollie.models.components.RefundResponse;
 import com.mollie.mollie.utils.AsyncResponse;
 import com.mollie.mollie.utils.Blob;
 import com.mollie.mollie.utils.Utils;
@@ -37,22 +37,22 @@ public class GetRefundResponse implements AsyncResponse {
     /**
      * The payment object.
      */
-    private Optional<? extends EntityRefundResponse> entityRefundResponse;
+    private Optional<? extends RefundResponse> refundResponse;
 
     @JsonCreator
     public GetRefundResponse(
             String contentType,
             int statusCode,
             HttpResponse<Blob> rawResponse,
-            Optional<? extends EntityRefundResponse> entityRefundResponse) {
+            Optional<? extends RefundResponse> refundResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(entityRefundResponse, "entityRefundResponse");
+        Utils.checkNotNull(refundResponse, "refundResponse");
         this.contentType = contentType;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-        this.entityRefundResponse = entityRefundResponse;
+        this.refundResponse = refundResponse;
     }
     
     public GetRefundResponse(
@@ -92,8 +92,8 @@ public class GetRefundResponse implements AsyncResponse {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<EntityRefundResponse> entityRefundResponse() {
-        return (Optional<EntityRefundResponse>) entityRefundResponse;
+    public Optional<RefundResponse> refundResponse() {
+        return (Optional<RefundResponse>) refundResponse;
     }
 
     public static Builder builder() {
@@ -131,9 +131,9 @@ public class GetRefundResponse implements AsyncResponse {
     /**
      * The payment object.
      */
-    public GetRefundResponse withEntityRefundResponse(EntityRefundResponse entityRefundResponse) {
-        Utils.checkNotNull(entityRefundResponse, "entityRefundResponse");
-        this.entityRefundResponse = Optional.ofNullable(entityRefundResponse);
+    public GetRefundResponse withRefundResponse(RefundResponse refundResponse) {
+        Utils.checkNotNull(refundResponse, "refundResponse");
+        this.refundResponse = Optional.ofNullable(refundResponse);
         return this;
     }
 
@@ -141,9 +141,9 @@ public class GetRefundResponse implements AsyncResponse {
     /**
      * The payment object.
      */
-    public GetRefundResponse withEntityRefundResponse(Optional<? extends EntityRefundResponse> entityRefundResponse) {
-        Utils.checkNotNull(entityRefundResponse, "entityRefundResponse");
-        this.entityRefundResponse = entityRefundResponse;
+    public GetRefundResponse withRefundResponse(Optional<? extends RefundResponse> refundResponse) {
+        Utils.checkNotNull(refundResponse, "refundResponse");
+        this.refundResponse = refundResponse;
         return this;
     }
 
@@ -160,14 +160,14 @@ public class GetRefundResponse implements AsyncResponse {
             Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
             Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
             Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
-            Utils.enhancedDeepEquals(this.entityRefundResponse, other.entityRefundResponse);
+            Utils.enhancedDeepEquals(this.refundResponse, other.refundResponse);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             contentType, statusCode, rawResponse,
-            entityRefundResponse);
+            refundResponse);
     }
     
     @Override
@@ -176,7 +176,7 @@ public class GetRefundResponse implements AsyncResponse {
                 "contentType", contentType,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
-                "entityRefundResponse", entityRefundResponse);
+                "refundResponse", refundResponse);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -188,7 +188,7 @@ public class GetRefundResponse implements AsyncResponse {
 
         private HttpResponse<Blob> rawResponse;
 
-        private Optional<? extends EntityRefundResponse> entityRefundResponse = Optional.empty();
+        private Optional<? extends RefundResponse> refundResponse = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -228,18 +228,18 @@ public class GetRefundResponse implements AsyncResponse {
         /**
          * The payment object.
          */
-        public Builder entityRefundResponse(EntityRefundResponse entityRefundResponse) {
-            Utils.checkNotNull(entityRefundResponse, "entityRefundResponse");
-            this.entityRefundResponse = Optional.ofNullable(entityRefundResponse);
+        public Builder refundResponse(RefundResponse refundResponse) {
+            Utils.checkNotNull(refundResponse, "refundResponse");
+            this.refundResponse = Optional.ofNullable(refundResponse);
             return this;
         }
 
         /**
          * The payment object.
          */
-        public Builder entityRefundResponse(Optional<? extends EntityRefundResponse> entityRefundResponse) {
-            Utils.checkNotNull(entityRefundResponse, "entityRefundResponse");
-            this.entityRefundResponse = entityRefundResponse;
+        public Builder refundResponse(Optional<? extends RefundResponse> refundResponse) {
+            Utils.checkNotNull(refundResponse, "refundResponse");
+            this.refundResponse = refundResponse;
             return this;
         }
 
@@ -247,7 +247,7 @@ public class GetRefundResponse implements AsyncResponse {
 
             return new GetRefundResponse(
                 contentType, statusCode, rawResponse,
-                entityRefundResponse);
+                refundResponse);
         }
 
     }

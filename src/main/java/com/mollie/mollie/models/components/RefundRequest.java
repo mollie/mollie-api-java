@@ -24,8 +24,9 @@ public class RefundRequest {
      * The description of the refund that may be shown to your customer, depending on the payment method
      * used.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private String description;
+    private Optional<String> description;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -39,9 +40,9 @@ public class RefundRequest {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends Metadata> metadata;
+    private JsonNullable<? extends Metadata> metadata;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -100,9 +101,9 @@ public class RefundRequest {
 
     @JsonCreator
     public RefundRequest(
-            @JsonProperty("description") String description,
+            @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("metadata") Optional<? extends Metadata> metadata,
+            @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("externalReference") Optional<? extends RefundRequestExternalReference> externalReference,
             @JsonProperty("reverseRouting") JsonNullable<Boolean> reverseRouting,
             @JsonProperty("routingReversals") JsonNullable<? extends List<RoutingReversals>> routingReversals,
@@ -124,9 +125,8 @@ public class RefundRequest {
     }
     
     public RefundRequest(
-            String description,
             Amount amount) {
-        this(description, amount, Optional.empty(),
+        this(Optional.empty(), amount, JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
@@ -136,7 +136,7 @@ public class RefundRequest {
      * used.
      */
     @JsonIgnore
-    public String description() {
+    public Optional<String> description() {
         return description;
     }
 
@@ -156,8 +156,8 @@ public class RefundRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Metadata> metadata() {
-        return (Optional<Metadata>) metadata;
+    public JsonNullable<Metadata> metadata() {
+        return (JsonNullable<Metadata>) metadata;
     }
 
     @SuppressWarnings("unchecked")
@@ -231,6 +231,17 @@ public class RefundRequest {
      */
     public RefundRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
+        this.description = Optional.ofNullable(description);
+        return this;
+    }
+
+
+    /**
+     * The description of the refund that may be shown to your customer, depending on the payment method
+     * used.
+     */
+    public RefundRequest withDescription(Optional<String> description) {
+        Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
     }
@@ -252,10 +263,9 @@ public class RefundRequest {
      */
     public RefundRequest withMetadata(Metadata metadata) {
         Utils.checkNotNull(metadata, "metadata");
-        this.metadata = Optional.ofNullable(metadata);
+        this.metadata = JsonNullable.of(metadata);
         return this;
     }
-
 
     /**
      * Provide any data you like, for example a string or a JSON object. We will save the data alongside
@@ -263,7 +273,7 @@ public class RefundRequest {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      */
-    public RefundRequest withMetadata(Optional<? extends Metadata> metadata) {
+    public RefundRequest withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
         return this;
@@ -436,11 +446,11 @@ public class RefundRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String description;
+        private Optional<String> description = Optional.empty();
 
         private Amount amount;
 
-        private Optional<? extends Metadata> metadata = Optional.empty();
+        private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
 
         private Optional<? extends RefundRequestExternalReference> externalReference = Optional.empty();
 
@@ -460,6 +470,16 @@ public class RefundRequest {
          * used.
          */
         public Builder description(String description) {
+            Utils.checkNotNull(description, "description");
+            this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        /**
+         * The description of the refund that may be shown to your customer, depending on the payment method
+         * used.
+         */
+        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
@@ -484,7 +504,7 @@ public class RefundRequest {
          */
         public Builder metadata(Metadata metadata) {
             Utils.checkNotNull(metadata, "metadata");
-            this.metadata = Optional.ofNullable(metadata);
+            this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
@@ -494,7 +514,7 @@ public class RefundRequest {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          */
-        public Builder metadata(Optional<? extends Metadata> metadata) {
+        public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
             return this;
