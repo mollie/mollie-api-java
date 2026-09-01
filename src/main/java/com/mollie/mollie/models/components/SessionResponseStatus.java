@@ -22,7 +22,7 @@ import java.util.Optional;
 /**
  * SessionResponseStatus
  * 
- * <p>The session's status.
+ * <p>The Checkout Session's status.
  */
 public class SessionResponseStatus {
 

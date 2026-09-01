@@ -78,7 +78,7 @@ public class Client {
     private final UnmatchedCreditTransfers unmatchedCreditTransfers;
 
 
-    private final Sessions sessions;
+    private final CheckoutSessions checkoutSessions;
 
 
     private final Methods methods;
@@ -212,8 +212,8 @@ public class Client {
     }
 
 
-    public Sessions sessions() {
-        return sessions;
+    public CheckoutSessions checkoutSessions() {
+        return checkoutSessions;
     }
 
 
@@ -498,7 +498,7 @@ public class Client {
         this.balanceTransfers = new BalanceTransfers(sdkConfiguration);
         this.payments = new Payments(sdkConfiguration);
         this.unmatchedCreditTransfers = new UnmatchedCreditTransfers(sdkConfiguration);
-        this.sessions = new Sessions(sdkConfiguration);
+        this.checkoutSessions = new CheckoutSessions(sdkConfiguration);
         this.methods = new Methods(sdkConfiguration);
         this.refunds = new Refunds(sdkConfiguration);
         this.chargebacks = new Chargebacks(sdkConfiguration);

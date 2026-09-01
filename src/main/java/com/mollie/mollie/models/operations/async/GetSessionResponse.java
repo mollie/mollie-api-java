@@ -35,7 +35,7 @@ public class GetSessionResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * The session object.
+     * The Checkout Session object.
      */
     private Optional<? extends SessionResponse> sessionResponse;
 
@@ -88,7 +88,7 @@ public class GetSessionResponse implements AsyncResponse {
     }
 
     /**
-     * The session object.
+     * The Checkout Session object.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -129,7 +129,7 @@ public class GetSessionResponse implements AsyncResponse {
     }
 
     /**
-     * The session object.
+     * The Checkout Session object.
      */
     public GetSessionResponse withSessionResponse(SessionResponse sessionResponse) {
         Utils.checkNotNull(sessionResponse, "sessionResponse");
@@ -139,7 +139,7 @@ public class GetSessionResponse implements AsyncResponse {
 
 
     /**
-     * The session object.
+     * The Checkout Session object.
      */
     public GetSessionResponse withSessionResponse(Optional<? extends SessionResponse> sessionResponse) {
         Utils.checkNotNull(sessionResponse, "sessionResponse");
@@ -226,7 +226,7 @@ public class GetSessionResponse implements AsyncResponse {
 
 
         /**
-         * The session object.
+         * The Checkout Session object.
          */
         public Builder sessionResponse(SessionResponse sessionResponse) {
             Utils.checkNotNull(sessionResponse, "sessionResponse");
@@ -235,7 +235,7 @@ public class GetSessionResponse implements AsyncResponse {
         }
 
         /**
-         * The session object.
+         * The Checkout Session object.
          */
         public Builder sessionResponse(Optional<? extends SessionResponse> sessionResponse) {
             Utils.checkNotNull(sessionResponse, "sessionResponse");

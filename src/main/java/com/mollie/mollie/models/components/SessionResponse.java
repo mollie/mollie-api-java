@@ -28,9 +28,10 @@ public class SessionResponse {
     private String resource;
 
     /**
-     * The identifier uniquely referring to this session. Mollie assigns this identifier at session
-     * creation time. Mollie
-     * will always refer to the session by this ID. Example: `sess_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this Checkout Session. Mollie assigns this identifier at
+     * Checkout
+     * Session creation time. Mollie will always refer to the Checkout Session by this ID. Example:
+     * `sess_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonProperty("id")
     private String id;
@@ -42,7 +43,7 @@ public class SessionResponse {
     private Mode mode;
 
     /**
-     * The client access token for the session. Use the client access token to initialize Mollie
+     * The client access token for the Checkout Session. Use the client access token to initialize Mollie
      * Components.
      */
     @JsonProperty("clientAccessToken")
@@ -59,19 +60,20 @@ public class SessionResponse {
     private Amount amount;
 
     /**
-     * A user-friendly description of the session that may be shown to the customer during the checkout
-     * process.
+     * A user-friendly description of the Checkout Session that may be shown to the customer during the
+     * checkout process.
      * 
-     * <p>Any payment created for the session will use the same description.
+     * <p>Any payment created for the Checkout Session will use the same description.
      */
     @JsonProperty("description")
     private String description;
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
+     * List of items the customer will pay for in this Checkout Session. The sum of all line items must
+     * equal the
+     * Checkout Session's amount.
      * 
-     * <p>All lines must have the same currency as the session.
+     * <p>All lines must have the same currency as the Checkout Session.
      */
     @JsonProperty("lines")
     private List<SessionLineItemResponse> lines;
@@ -93,7 +95,8 @@ public class SessionResponse {
      * 
      * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
      * for you
-     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+     * and
      * `shippingAddress`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -125,7 +128,7 @@ public class SessionResponse {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      * 
-     * <p>Any payment created for the session will use the same metadata.
+     * <p>Any payment created for the Checkout Session will use the same metadata.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -156,17 +159,18 @@ public class SessionResponse {
     private String createdAt;
 
     /**
-     * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     * Omitted if the session has not expired.
+     * The date and time the Checkout Session expired, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * Omitted if the Checkout Session has not expired.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expiredAt")
     private JsonNullable<String> expiredAt;
 
     /**
-     * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     * Omitted if the session has not been completed.
+     * The date and time the Checkout Session was completed, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format. Omitted if the Checkout Session has not been completed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("completedAt")
@@ -276,9 +280,10 @@ public class SessionResponse {
     }
 
     /**
-     * The identifier uniquely referring to this session. Mollie assigns this identifier at session
-     * creation time. Mollie
-     * will always refer to the session by this ID. Example: `sess_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this Checkout Session. Mollie assigns this identifier at
+     * Checkout
+     * Session creation time. Mollie will always refer to the Checkout Session by this ID. Example:
+     * `sess_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     @JsonIgnore
     public String id() {
@@ -294,7 +299,7 @@ public class SessionResponse {
     }
 
     /**
-     * The client access token for the session. Use the client access token to initialize Mollie
+     * The client access token for the Checkout Session. Use the client access token to initialize Mollie
      * Components.
      */
     @JsonIgnore
@@ -316,10 +321,10 @@ public class SessionResponse {
     }
 
     /**
-     * A user-friendly description of the session that may be shown to the customer during the checkout
-     * process.
+     * A user-friendly description of the Checkout Session that may be shown to the customer during the
+     * checkout process.
      * 
-     * <p>Any payment created for the session will use the same description.
+     * <p>Any payment created for the Checkout Session will use the same description.
      */
     @JsonIgnore
     public String description() {
@@ -327,10 +332,11 @@ public class SessionResponse {
     }
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
+     * List of items the customer will pay for in this Checkout Session. The sum of all line items must
+     * equal the
+     * Checkout Session's amount.
      * 
-     * <p>All lines must have the same currency as the session.
+     * <p>All lines must have the same currency as the Checkout Session.
      */
     @JsonIgnore
     public List<SessionLineItemResponse> lines() {
@@ -356,7 +362,8 @@ public class SessionResponse {
      * 
      * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
      * for you
-     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+     * and
      * `shippingAddress`.
      */
     @SuppressWarnings("unchecked")
@@ -393,7 +400,7 @@ public class SessionResponse {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      * 
-     * <p>Any payment created for the session will use the same metadata.
+     * <p>Any payment created for the Checkout Session will use the same metadata.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -431,8 +438,9 @@ public class SessionResponse {
     }
 
     /**
-     * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     * Omitted if the session has not expired.
+     * The date and time the Checkout Session expired, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * Omitted if the Checkout Session has not expired.
      */
     @JsonIgnore
     public JsonNullable<String> expiredAt() {
@@ -440,9 +448,9 @@ public class SessionResponse {
     }
 
     /**
-     * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     * Omitted if the session has not been completed.
+     * The date and time the Checkout Session was completed, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format. Omitted if the Checkout Session has not been completed.
      */
     @JsonIgnore
     public JsonNullable<String> completedAt() {
@@ -472,9 +480,10 @@ public class SessionResponse {
     }
 
     /**
-     * The identifier uniquely referring to this session. Mollie assigns this identifier at session
-     * creation time. Mollie
-     * will always refer to the session by this ID. Example: `sess_5B8cwPMGnU6qLbRvo7qEZo`.
+     * The identifier uniquely referring to this Checkout Session. Mollie assigns this identifier at
+     * Checkout
+     * Session creation time. Mollie will always refer to the Checkout Session by this ID. Example:
+     * `sess_5B8cwPMGnU6qLbRvo7qEZo`.
      */
     public SessionResponse withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -492,7 +501,7 @@ public class SessionResponse {
     }
 
     /**
-     * The client access token for the session. Use the client access token to initialize Mollie
+     * The client access token for the Checkout Session. Use the client access token to initialize Mollie
      * Components.
      */
     public SessionResponse withClientAccessToken(String clientAccessToken) {
@@ -517,10 +526,10 @@ public class SessionResponse {
     }
 
     /**
-     * A user-friendly description of the session that may be shown to the customer during the checkout
-     * process.
+     * A user-friendly description of the Checkout Session that may be shown to the customer during the
+     * checkout process.
      * 
-     * <p>Any payment created for the session will use the same description.
+     * <p>Any payment created for the Checkout Session will use the same description.
      */
     public SessionResponse withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -529,10 +538,11 @@ public class SessionResponse {
     }
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
+     * List of items the customer will pay for in this Checkout Session. The sum of all line items must
+     * equal the
+     * Checkout Session's amount.
      * 
-     * <p>All lines must have the same currency as the session.
+     * <p>All lines must have the same currency as the Checkout Session.
      */
     public SessionResponse withLines(List<SessionLineItemResponse> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -560,7 +570,8 @@ public class SessionResponse {
      * 
      * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
      * for you
-     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+     * and
      * `shippingAddress`.
      */
     public SessionResponse withRequiredCustomerDetails(List<SessionRequiredCustomerDetailsResponse> requiredCustomerDetails) {
@@ -577,7 +588,8 @@ public class SessionResponse {
      * 
      * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
      * for you
-     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+     * and
      * `shippingAddress`.
      */
     public SessionResponse withRequiredCustomerDetails(Optional<? extends List<SessionRequiredCustomerDetailsResponse>> requiredCustomerDetails) {
@@ -643,7 +655,7 @@ public class SessionResponse {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      * 
-     * <p>Any payment created for the session will use the same metadata.
+     * <p>Any payment created for the Checkout Session will use the same metadata.
      */
     public SessionResponse withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -657,7 +669,7 @@ public class SessionResponse {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      * 
-     * <p>Any payment created for the session will use the same metadata.
+     * <p>Any payment created for the Checkout Session will use the same metadata.
      */
     public SessionResponse withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -704,8 +716,9 @@ public class SessionResponse {
     }
 
     /**
-     * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     * Omitted if the session has not expired.
+     * The date and time the Checkout Session expired, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * Omitted if the Checkout Session has not expired.
      */
     public SessionResponse withExpiredAt(String expiredAt) {
         Utils.checkNotNull(expiredAt, "expiredAt");
@@ -714,8 +727,9 @@ public class SessionResponse {
     }
 
     /**
-     * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-     * Omitted if the session has not expired.
+     * The date and time the Checkout Session expired, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+     * Omitted if the Checkout Session has not expired.
      */
     public SessionResponse withExpiredAt(JsonNullable<String> expiredAt) {
         Utils.checkNotNull(expiredAt, "expiredAt");
@@ -724,9 +738,9 @@ public class SessionResponse {
     }
 
     /**
-     * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     * Omitted if the session has not been completed.
+     * The date and time the Checkout Session was completed, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format. Omitted if the Checkout Session has not been completed.
      */
     public SessionResponse withCompletedAt(String completedAt) {
         Utils.checkNotNull(completedAt, "completedAt");
@@ -735,9 +749,9 @@ public class SessionResponse {
     }
 
     /**
-     * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format.
-     * Omitted if the session has not been completed.
+     * The date and time the Checkout Session was completed, in [ISO
+     * 8601](https://en.wikipedia.org/wiki/ISO_8601)
+     * format. Omitted if the Checkout Session has not been completed.
      */
     public SessionResponse withCompletedAt(JsonNullable<String> completedAt) {
         Utils.checkNotNull(completedAt, "completedAt");
@@ -886,9 +900,10 @@ public class SessionResponse {
 
 
         /**
-         * The identifier uniquely referring to this session. Mollie assigns this identifier at session
-         * creation time. Mollie
-         * will always refer to the session by this ID. Example: `sess_5B8cwPMGnU6qLbRvo7qEZo`.
+         * The identifier uniquely referring to this Checkout Session. Mollie assigns this identifier at
+         * Checkout
+         * Session creation time. Mollie will always refer to the Checkout Session by this ID. Example:
+         * `sess_5B8cwPMGnU6qLbRvo7qEZo`.
          */
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -908,7 +923,7 @@ public class SessionResponse {
 
 
         /**
-         * The client access token for the session. Use the client access token to initialize Mollie
+         * The client access token for the Checkout Session. Use the client access token to initialize Mollie
          * Components.
          */
         public Builder clientAccessToken(String clientAccessToken) {
@@ -936,10 +951,10 @@ public class SessionResponse {
 
 
         /**
-         * A user-friendly description of the session that may be shown to the customer during the checkout
-         * process.
+         * A user-friendly description of the Checkout Session that may be shown to the customer during the
+         * checkout process.
          * 
-         * <p>Any payment created for the session will use the same description.
+         * <p>Any payment created for the Checkout Session will use the same description.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -949,10 +964,11 @@ public class SessionResponse {
 
 
         /**
-         * List of items the customer will pay for in this session. The sum of all line items must equal the
-         * session's amount.
+         * List of items the customer will pay for in this Checkout Session. The sum of all line items must
+         * equal the
+         * Checkout Session's amount.
          * 
-         * <p>All lines must have the same currency as the session.
+         * <p>All lines must have the same currency as the Checkout Session.
          */
         public Builder lines(List<SessionLineItemResponse> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -982,7 +998,8 @@ public class SessionResponse {
          * 
          * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
          * for you
-         * with the Express Component and returns them on the session's and payment's `billingAddress` and
+         * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+         * and
          * `shippingAddress`.
          */
         public Builder requiredCustomerDetails(List<SessionRequiredCustomerDetailsResponse> requiredCustomerDetails) {
@@ -998,7 +1015,8 @@ public class SessionResponse {
          * 
          * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
          * for you
-         * with the Express Component and returns them on the session's and payment's `billingAddress` and
+         * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+         * and
          * `shippingAddress`.
          */
         public Builder requiredCustomerDetails(Optional<? extends List<SessionRequiredCustomerDetailsResponse>> requiredCustomerDetails) {
@@ -1065,7 +1083,7 @@ public class SessionResponse {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          * 
-         * <p>Any payment created for the session will use the same metadata.
+         * <p>Any payment created for the Checkout Session will use the same metadata.
          */
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1078,7 +1096,7 @@ public class SessionResponse {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          * 
-         * <p>Any payment created for the session will use the same metadata.
+         * <p>Any payment created for the Checkout Session will use the same metadata.
          */
         public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -1128,8 +1146,9 @@ public class SessionResponse {
 
 
         /**
-         * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         * Omitted if the session has not expired.
+         * The date and time the Checkout Session expired, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * Omitted if the Checkout Session has not expired.
          */
         public Builder expiredAt(String expiredAt) {
             Utils.checkNotNull(expiredAt, "expiredAt");
@@ -1138,8 +1157,9 @@ public class SessionResponse {
         }
 
         /**
-         * The date and time the session expired, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
-         * Omitted if the session has not expired.
+         * The date and time the Checkout Session expired, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+         * Omitted if the Checkout Session has not expired.
          */
         public Builder expiredAt(JsonNullable<String> expiredAt) {
             Utils.checkNotNull(expiredAt, "expiredAt");
@@ -1149,9 +1169,9 @@ public class SessionResponse {
 
 
         /**
-         * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
-         * Omitted if the session has not been completed.
+         * The date and time the Checkout Session was completed, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format. Omitted if the Checkout Session has not been completed.
          */
         public Builder completedAt(String completedAt) {
             Utils.checkNotNull(completedAt, "completedAt");
@@ -1160,9 +1180,9 @@ public class SessionResponse {
         }
 
         /**
-         * The date and time the session was completed, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format.
-         * Omitted if the session has not been completed.
+         * The date and time the Checkout Session was completed, in [ISO
+         * 8601](https://en.wikipedia.org/wiki/ISO_8601)
+         * format. Omitted if the Checkout Session has not been completed.
          */
         public Builder completedAt(JsonNullable<String> completedAt) {
             Utils.checkNotNull(completedAt, "completedAt");

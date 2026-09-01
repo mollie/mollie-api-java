@@ -60,7 +60,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.10.4'
+implementation 'com.mollie:mollie:1.10.5'
 ```
 
 Maven:
@@ -68,7 +68,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.10.4</version>
+    <version>1.10.5</version>
 </dependency>
 ```
 
@@ -492,6 +492,11 @@ Client sdk = Client.builder()
 * [get](docs/sdks/chargebacks/README.md#get) - Get payment chargeback
 * [all](docs/sdks/chargebacks/README.md#all) - List all chargebacks
 
+### [CheckoutSessions](docs/sdks/checkoutsessions/README.md)
+
+* [create](docs/sdks/checkoutsessions/README.md#create) - Create Checkout Session
+* [get](docs/sdks/checkoutsessions/README.md#get) - Get Checkout Session
+
 ### [ClientLinks](docs/sdks/clientlinks/README.md)
 
 * [create](docs/sdks/clientlinks/README.md#create) - Create client link
@@ -616,11 +621,6 @@ Client sdk = Client.builder()
 * [get](docs/sdks/salesinvoices/README.md#get) - Get sales invoice
 * [update](docs/sdks/salesinvoices/README.md#update) - Update sales invoice
 * [delete](docs/sdks/salesinvoices/README.md#delete) - Delete sales invoice
-
-### [Sessions](docs/sdks/sessions/README.md)
-
-* [create](docs/sdks/sessions/README.md#create) - Create session
-* [get](docs/sdks/sessions/README.md#get) - Get session
 
 ### [Settlements](docs/sdks/settlements/README.md)
 

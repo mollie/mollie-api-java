@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public class GetSessionRequest {
     /**
-     * Provide the ID of the related session.
+     * Provide the ID of the related Checkout Session.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=sessionId")
     private String sessionId;
@@ -42,7 +42,7 @@ public class GetSessionRequest {
     }
 
     /**
-     * Provide the ID of the related session.
+     * Provide the ID of the related Checkout Session.
      */
     @JsonIgnore
     public String sessionId() {
@@ -63,7 +63,7 @@ public class GetSessionRequest {
 
 
     /**
-     * Provide the ID of the related session.
+     * Provide the ID of the related Checkout Session.
      */
     public GetSessionRequest withSessionId(String sessionId) {
         Utils.checkNotNull(sessionId, "sessionId");
@@ -130,7 +130,7 @@ public class GetSessionRequest {
 
 
         /**
-         * Provide the ID of the related session.
+         * Provide the ID of the related Checkout Session.
          */
         public Builder sessionId(String sessionId) {
             Utils.checkNotNull(sessionId, "sessionId");

@@ -53,6 +53,11 @@ public class AsyncAccounts {
     /**
      * List business accounts
      * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
+     * 
      * <p>Retrieve all business accounts for the authenticated organization.
      * 
      * <p>The results are paginated.
@@ -67,6 +72,11 @@ public class AsyncAccounts {
 
     /**
      * List business accounts
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
      * 
      * <p>Retrieve all business accounts for the authenticated organization.
      * 
@@ -83,6 +93,11 @@ public class AsyncAccounts {
 
     /**
      * List business accounts
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
      * 
      * <p>Retrieve all business accounts for the authenticated organization.
      * 
@@ -107,6 +122,11 @@ public class AsyncAccounts {
     /**
      * Get business account
      * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
+     * 
      * <p>Retrieve a single business account object by its account ID. This allows you to check the current
      * status,
      * balance, and account details.
@@ -121,6 +141,11 @@ public class AsyncAccounts {
 
     /**
      * Get business account
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
      * 
      * <p>Retrieve a single business account object by its account ID. This allows you to check the current
      * status,
@@ -139,6 +164,11 @@ public class AsyncAccounts {
 
     /**
      * Get business account
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
      * 
      * <p>Retrieve a single business account object by its account ID. This allows you to check the current
      * status,
@@ -178,6 +208,11 @@ public class AsyncAccounts {
     /**
      * List transactions
      * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
+     * 
      * <p>Retrieve all transactions for a specific business account.
      * 
      * <p>The results are paginated.
@@ -192,6 +227,11 @@ public class AsyncAccounts {
 
     /**
      * List transactions
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
      * 
      * <p>Retrieve all transactions for a specific business account.
      * 
@@ -208,6 +248,11 @@ public class AsyncAccounts {
 
     /**
      * List transactions
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
      * 
      * <p>Retrieve all transactions for a specific business account.
      * 
@@ -232,6 +277,11 @@ public class AsyncAccounts {
     /**
      * Get transaction
      * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
+     * 
      * <p>Retrieve a single transaction object by its transaction ID. This allows you to check the details,
      * amount, counterparty, and balance impact of a specific transaction.
      * 
@@ -245,6 +295,11 @@ public class AsyncAccounts {
 
     /**
      * Get transaction
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
      * 
      * <p>Retrieve a single transaction object by its transaction ID. This allows you to check the details,
      * amount, counterparty, and balance impact of a specific transaction.
@@ -263,6 +318,11 @@ public class AsyncAccounts {
 
     /**
      * Get transaction
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is only available to Mollie partners with a signed agreement for Business Accounts.
+     * [Get in touch](https://www.mollie.com/contact) if you'd like to integrate with it.
      * 
      * <p>Retrieve a single transaction object by its transaction ID. This allows you to check the details,
      * amount, counterparty, and balance impact of a specific transaction.

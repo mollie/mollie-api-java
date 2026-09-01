@@ -35,7 +35,7 @@ public class CreateSessionResponse implements AsyncResponse {
     private HttpResponse<Blob> rawResponse;
 
     /**
-     * The newly created session object.
+     * The newly created Checkout Session object.
      */
     private Optional<? extends SessionResponse> sessionResponse;
 
@@ -88,7 +88,7 @@ public class CreateSessionResponse implements AsyncResponse {
     }
 
     /**
-     * The newly created session object.
+     * The newly created Checkout Session object.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -129,7 +129,7 @@ public class CreateSessionResponse implements AsyncResponse {
     }
 
     /**
-     * The newly created session object.
+     * The newly created Checkout Session object.
      */
     public CreateSessionResponse withSessionResponse(SessionResponse sessionResponse) {
         Utils.checkNotNull(sessionResponse, "sessionResponse");
@@ -139,7 +139,7 @@ public class CreateSessionResponse implements AsyncResponse {
 
 
     /**
-     * The newly created session object.
+     * The newly created Checkout Session object.
      */
     public CreateSessionResponse withSessionResponse(Optional<? extends SessionResponse> sessionResponse) {
         Utils.checkNotNull(sessionResponse, "sessionResponse");
@@ -226,7 +226,7 @@ public class CreateSessionResponse implements AsyncResponse {
 
 
         /**
-         * The newly created session object.
+         * The newly created Checkout Session object.
          */
         public Builder sessionResponse(SessionResponse sessionResponse) {
             Utils.checkNotNull(sessionResponse, "sessionResponse");
@@ -235,7 +235,7 @@ public class CreateSessionResponse implements AsyncResponse {
         }
 
         /**
-         * The newly created session object.
+         * The newly created Checkout Session object.
          */
         public Builder sessionResponse(Optional<? extends SessionResponse> sessionResponse) {
             Utils.checkNotNull(sessionResponse, "sessionResponse");
