@@ -19,7 +19,8 @@ public class SessionResponsePayment {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+     * <p>This URL will be automatically set as the webhook URL for all payments created for this Checkout
+     * Session.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhookUrl")
@@ -39,7 +40,8 @@ public class SessionResponsePayment {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+     * <p>This URL will be automatically set as the webhook URL for all payments created for this Checkout
+     * Session.
      */
     @JsonIgnore
     public Optional<String> webhookUrl() {
@@ -54,7 +56,8 @@ public class SessionResponsePayment {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+     * <p>This URL will be automatically set as the webhook URL for all payments created for this Checkout
+     * Session.
      */
     public SessionResponsePayment withWebhookUrl(String webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -66,7 +69,8 @@ public class SessionResponsePayment {
     /**
      * The webhook URL where we will send payment status updates to.
      * 
-     * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+     * <p>This URL will be automatically set as the webhook URL for all payments created for this Checkout
+     * Session.
      */
     public SessionResponsePayment withWebhookUrl(Optional<String> webhookUrl) {
         Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -112,7 +116,8 @@ public class SessionResponsePayment {
         /**
          * The webhook URL where we will send payment status updates to.
          * 
-         * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+         * <p>This URL will be automatically set as the webhook URL for all payments created for this Checkout
+         * Session.
          */
         public Builder webhookUrl(String webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");
@@ -123,7 +128,8 @@ public class SessionResponsePayment {
         /**
          * The webhook URL where we will send payment status updates to.
          * 
-         * <p>This URL will be automatically set as the webhook URL for all payments created for this session.
+         * <p>This URL will be automatically set as the webhook URL for all payments created for this Checkout
+         * Session.
          */
         public Builder webhookUrl(Optional<String> webhookUrl) {
             Utils.checkNotNull(webhookUrl, "webhookUrl");

@@ -29,19 +29,20 @@ public class SessionRequest {
     private Amount amount;
 
     /**
-     * A user-friendly description of the session that may be shown to the customer during the checkout
-     * process.
+     * A user-friendly description of the Checkout Session that may be shown to the customer during the
+     * checkout process.
      * 
-     * <p>Any payment created for the session will use the same description.
+     * <p>Any payment created for the Checkout Session will use the same description.
      */
     @JsonProperty("description")
     private String description;
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
+     * List of items the customer will pay for in this Checkout Session. The sum of all line items must
+     * equal the
+     * Checkout Session's amount.
      * 
-     * <p>All lines must have the same currency as the session.
+     * <p>All lines must have the same currency as the Checkout Session.
      */
     @JsonProperty("lines")
     private List<SessionLineItem> lines;
@@ -63,7 +64,8 @@ public class SessionRequest {
      * 
      * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
      * for you
-     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+     * and
      * `shippingAddress`.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -95,7 +97,7 @@ public class SessionRequest {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      * 
-     * <p>Any payment created for the session will use the same metadata.
+     * <p>Any payment created for the Checkout Session will use the same metadata.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
@@ -196,10 +198,10 @@ public class SessionRequest {
     }
 
     /**
-     * A user-friendly description of the session that may be shown to the customer during the checkout
-     * process.
+     * A user-friendly description of the Checkout Session that may be shown to the customer during the
+     * checkout process.
      * 
-     * <p>Any payment created for the session will use the same description.
+     * <p>Any payment created for the Checkout Session will use the same description.
      */
     @JsonIgnore
     public String description() {
@@ -207,10 +209,11 @@ public class SessionRequest {
     }
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
+     * List of items the customer will pay for in this Checkout Session. The sum of all line items must
+     * equal the
+     * Checkout Session's amount.
      * 
-     * <p>All lines must have the same currency as the session.
+     * <p>All lines must have the same currency as the Checkout Session.
      */
     @JsonIgnore
     public List<SessionLineItem> lines() {
@@ -236,7 +239,8 @@ public class SessionRequest {
      * 
      * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
      * for you
-     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+     * and
      * `shippingAddress`.
      */
     @SuppressWarnings("unchecked")
@@ -273,7 +277,7 @@ public class SessionRequest {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      * 
-     * <p>Any payment created for the session will use the same metadata.
+     * <p>Any payment created for the Checkout Session will use the same metadata.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -330,10 +334,10 @@ public class SessionRequest {
     }
 
     /**
-     * A user-friendly description of the session that may be shown to the customer during the checkout
-     * process.
+     * A user-friendly description of the Checkout Session that may be shown to the customer during the
+     * checkout process.
      * 
-     * <p>Any payment created for the session will use the same description.
+     * <p>Any payment created for the Checkout Session will use the same description.
      */
     public SessionRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
@@ -342,10 +346,11 @@ public class SessionRequest {
     }
 
     /**
-     * List of items the customer will pay for in this session. The sum of all line items must equal the
-     * session's amount.
+     * List of items the customer will pay for in this Checkout Session. The sum of all line items must
+     * equal the
+     * Checkout Session's amount.
      * 
-     * <p>All lines must have the same currency as the session.
+     * <p>All lines must have the same currency as the Checkout Session.
      */
     public SessionRequest withLines(List<SessionLineItem> lines) {
         Utils.checkNotNull(lines, "lines");
@@ -373,7 +378,8 @@ public class SessionRequest {
      * 
      * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
      * for you
-     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+     * and
      * `shippingAddress`.
      */
     public SessionRequest withRequiredCustomerDetails(List<SessionRequiredCustomerDetails> requiredCustomerDetails) {
@@ -390,7 +396,8 @@ public class SessionRequest {
      * 
      * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
      * for you
-     * with the Express Component and returns them on the session's and payment's `billingAddress` and
+     * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+     * and
      * `shippingAddress`.
      */
     public SessionRequest withRequiredCustomerDetails(Optional<? extends List<SessionRequiredCustomerDetails>> requiredCustomerDetails) {
@@ -456,7 +463,7 @@ public class SessionRequest {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      * 
-     * <p>Any payment created for the session will use the same metadata.
+     * <p>Any payment created for the Checkout Session will use the same metadata.
      */
     public SessionRequest withMetadata(Map<String, Object> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -470,7 +477,7 @@ public class SessionRequest {
      * you fetch the entity with our API, we will also include the metadata. You can use up to
      * approximately 1kB.
      * 
-     * <p>Any payment created for the session will use the same metadata.
+     * <p>Any payment created for the Checkout Session will use the same metadata.
      */
     public SessionRequest withMetadata(Optional<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(metadata, "metadata");
@@ -650,10 +657,10 @@ public class SessionRequest {
 
 
         /**
-         * A user-friendly description of the session that may be shown to the customer during the checkout
-         * process.
+         * A user-friendly description of the Checkout Session that may be shown to the customer during the
+         * checkout process.
          * 
-         * <p>Any payment created for the session will use the same description.
+         * <p>Any payment created for the Checkout Session will use the same description.
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -663,10 +670,11 @@ public class SessionRequest {
 
 
         /**
-         * List of items the customer will pay for in this session. The sum of all line items must equal the
-         * session's amount.
+         * List of items the customer will pay for in this Checkout Session. The sum of all line items must
+         * equal the
+         * Checkout Session's amount.
          * 
-         * <p>All lines must have the same currency as the session.
+         * <p>All lines must have the same currency as the Checkout Session.
          */
         public Builder lines(List<SessionLineItem> lines) {
             Utils.checkNotNull(lines, "lines");
@@ -696,7 +704,8 @@ public class SessionRequest {
          * 
          * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
          * for you
-         * with the Express Component and returns them on the session's and payment's `billingAddress` and
+         * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+         * and
          * `shippingAddress`.
          */
         public Builder requiredCustomerDetails(List<SessionRequiredCustomerDetails> requiredCustomerDetails) {
@@ -712,7 +721,8 @@ public class SessionRequest {
          * 
          * <p>Declare which customer details should be collected during checkout. Mollie can collect these details
          * for you
-         * with the Express Component and returns them on the session's and payment's `billingAddress` and
+         * with the Express Component and returns them on the Checkout Session's and payment's `billingAddress`
+         * and
          * `shippingAddress`.
          */
         public Builder requiredCustomerDetails(Optional<? extends List<SessionRequiredCustomerDetails>> requiredCustomerDetails) {
@@ -779,7 +789,7 @@ public class SessionRequest {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          * 
-         * <p>Any payment created for the session will use the same metadata.
+         * <p>Any payment created for the Checkout Session will use the same metadata.
          */
         public Builder metadata(Map<String, Object> metadata) {
             Utils.checkNotNull(metadata, "metadata");
@@ -792,7 +802,7 @@ public class SessionRequest {
          * you fetch the entity with our API, we will also include the metadata. You can use up to
          * approximately 1kB.
          * 
-         * <p>Any payment created for the session will use the same metadata.
+         * <p>Any payment created for the Checkout Session will use the same metadata.
          */
         public Builder metadata(Optional<? extends Map<String, Object>> metadata) {
             Utils.checkNotNull(metadata, "metadata");
