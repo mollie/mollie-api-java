@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 40566afffc143891f099a3184ec36e0b
+  docChecksum: 4748f098a7a3c2671c5a60925e091964
   docVersion: 1.0.0
   speakeasyVersion: 1.796.2
   generationVersion: 2.933.0
-  releaseVersion: 1.10.5
-  configChecksum: de2c653ac02b7193810a6d231c19c98f
+  releaseVersion: 1.10.6
+  configChecksum: 0c8a1e3c013e1eb5c17d31a5eedcdd02
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 9e6ac6da-e011-4ffa-9ff4-3af61c4a7c4a
-  pristine_commit_hash: a7a1a78b5bc56ced96874651b5d346169aaea27f
-  pristine_tree_hash: 55d6b71ea48ad51986bc3c9973422d93946be2d8
+  generation_id: 2183da7b-a3c5-46c3-ae70-ed6ad53ff60f
+  pristine_commit_hash: 9bc4db93bd917b80d736d350368f8a472af5711f
+  pristine_tree_hash: 8f827da2ab73bb8d987b7d9c69d6766b44d15bf4
 features:
   java:
     additionalDependencies: 0.1.0
@@ -3817,8 +3817,8 @@ trackedFiles:
     pristine_git_object: d4287b4fb133f3098a8576955dbb863e6aa45c46
   docs/sdks/accounts/README.md:
     id: d6c754b1ca96
-    last_write_checksum: sha1:7e70e4321a6637a2cd5f7fde87cb74a8da8608c9
-    pristine_git_object: c241597c5aa73e6421858465f4924a15ecfe2026
+    last_write_checksum: sha1:a6069c7e587984cda6cdb6a64e7ea1589567befe
+    pristine_git_object: 78deb77bc305961660e38cfe3a88e48830411b85
   docs/sdks/balances/README.md:
     id: 6ca85866f00d
     last_write_checksum: sha1:3eaefe1e6033b73c15b99c97ac4ec3898bcd1527
@@ -3957,8 +3957,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:a1df9c32f35cad1477111dfc3293a43be4a1e2e4
-    pristine_git_object: d8bf40967d80de6af2ae274a36233e642e40ad65
+    last_write_checksum: sha1:786d6494e7dcdd4378ce895f6f56893f29de186c
+    pristine_git_object: 62afc918c3a3f3c1b4b070fe7b435a14b10d0d94
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -3985,12 +3985,12 @@ trackedFiles:
     pristine_git_object: 6b5dc88fa74590d0296f259729f91b5c02df81f7
   src/main/java/com/mollie/mollie/Accounts.java:
     id: f127b8156050
-    last_write_checksum: sha1:101c795684187cd94180e160b08824e54857a139
-    pristine_git_object: 6c4b45c777e50704d8ad2fb5308226aff97aee24
+    last_write_checksum: sha1:76e65bf8194fb5b6f47d96651f6095554b37db74
+    pristine_git_object: d8e1bcbbfc0923d88788214f25c860d0e93069e2
   src/main/java/com/mollie/mollie/AsyncAccounts.java:
     id: 795446f5b997
-    last_write_checksum: sha1:243cbe33397f93567850a576ae1698adff8632e7
-    pristine_git_object: ed5a7276fe82a6001582b7af37b0bbf7541ab624
+    last_write_checksum: sha1:6286db07ecba1718ec38ef8ba4285994b1d3ec03
+    pristine_git_object: 4e29ccf1401e1fca7998b71ab9e3927f314c60ea
   src/main/java/com/mollie/mollie/AsyncBalanceTransfers.java:
     id: 93a403153d13
     last_write_checksum: sha1:dca5711f7a2ff2ebd3a35e95a0dc73ba8d2e948c
@@ -4225,8 +4225,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:34490a2f038038fd8852fadd6cb23bc657f32eb0
-    pristine_git_object: 825d8b51b937eb43b80ae680e9cb6cb4d86d038d
+    last_write_checksum: sha1:9f280d40a90fa6e5c5586f7bc684568b611344b8
+    pristine_git_object: ef7c85aed4f39fda4575938d025fef2ad9b35922
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:5b1b2448cd7365ef474e323a24f05b937422e9f1
@@ -15845,12 +15845,6 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: |
-  ## Java SDK Changes:
-  * `client.checkoutSessions.create()`: **Added**
-  * `client.checkoutSessions.get()`: **Added**
-  * `client.sessions.create()`: **Removed** (Breaking ⚠️)
-  * `client.sessions.get()`: **Removed** (Breaking ⚠️)
 generatedFiles:
   - .gitattributes
   - USAGE.md
