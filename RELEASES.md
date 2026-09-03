@@ -1759,3 +1759,13 @@ Based on:
 - [java v1.10.6] .
 ### Releases
 - [Maven Central v1.10.6] https://central.sonatype.com/artifact/com.mollie/mollie/1.10.6 - .
+
+## 2026-09-03 10:05:56
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.796.3 (2.934.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v1.10.7] .
+### Releases
+- [Maven Central v1.10.7] https://central.sonatype.com/artifact/com.mollie/mollie/1.10.7 - .

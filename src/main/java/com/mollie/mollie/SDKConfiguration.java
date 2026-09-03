@@ -22,8 +22,8 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "1.10.6";
-    public static final String GEN_VERSION = "2.933.0";
+    public static final String SDK_VERSION = "1.10.7";
+    public static final String GEN_VERSION = "2.934.1";
     private static final String BASE_PACKAGE = "com.mollie.mollie";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
