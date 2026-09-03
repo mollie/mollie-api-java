@@ -41,7 +41,7 @@ public class BillingAddress {
      * The given name (first name) of the person should be at least two characters and cannot contain only
      * numbers.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("givenName")
@@ -52,7 +52,7 @@ public class BillingAddress {
      * only
      * numbers.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("familyName")
@@ -70,7 +70,7 @@ public class BillingAddress {
     /**
      * A street and street number.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("streetAndNumber")
@@ -86,7 +86,7 @@ public class BillingAddress {
     /**
      * A postal code. This field may be required if the provided country has a postal code system.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("postalCode")
@@ -100,7 +100,7 @@ public class BillingAddress {
      * email upon payment creation. The language of the email will follow the locale parameter of the
      * payment.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      * 
      * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
      * 3492](https://www.rfc-editor.org/rfc/rfc3492).
@@ -120,7 +120,7 @@ public class BillingAddress {
     /**
      * A city name.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("city")
@@ -136,7 +136,7 @@ public class BillingAddress {
     /**
      * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
@@ -201,7 +201,7 @@ public class BillingAddress {
      * The given name (first name) of the person should be at least two characters and cannot contain only
      * numbers.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonIgnore
     public Optional<String> givenName() {
@@ -213,7 +213,7 @@ public class BillingAddress {
      * only
      * numbers.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonIgnore
     public Optional<String> familyName() {
@@ -234,7 +234,7 @@ public class BillingAddress {
     /**
      * A street and street number.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonIgnore
     public Optional<String> streetAndNumber() {
@@ -252,7 +252,7 @@ public class BillingAddress {
     /**
      * A postal code. This field may be required if the provided country has a postal code system.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonIgnore
     public Optional<String> postalCode() {
@@ -267,7 +267,7 @@ public class BillingAddress {
      * email upon payment creation. The language of the email will follow the locale parameter of the
      * payment.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      * 
      * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
      * 3492](https://www.rfc-editor.org/rfc/rfc3492).
@@ -289,7 +289,7 @@ public class BillingAddress {
     /**
      * A city name.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonIgnore
     public Optional<String> city() {
@@ -307,7 +307,7 @@ public class BillingAddress {
     /**
      * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     @JsonIgnore
     public Optional<String> country() {
@@ -342,7 +342,7 @@ public class BillingAddress {
      * The given name (first name) of the person should be at least two characters and cannot contain only
      * numbers.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withGivenName(String givenName) {
         Utils.checkNotNull(givenName, "givenName");
@@ -355,7 +355,7 @@ public class BillingAddress {
      * The given name (first name) of the person should be at least two characters and cannot contain only
      * numbers.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withGivenName(Optional<String> givenName) {
         Utils.checkNotNull(givenName, "givenName");
@@ -368,7 +368,7 @@ public class BillingAddress {
      * only
      * numbers.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withFamilyName(String familyName) {
         Utils.checkNotNull(familyName, "familyName");
@@ -382,7 +382,7 @@ public class BillingAddress {
      * only
      * numbers.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withFamilyName(Optional<String> familyName) {
         Utils.checkNotNull(familyName, "familyName");
@@ -416,7 +416,7 @@ public class BillingAddress {
     /**
      * A street and street number.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withStreetAndNumber(String streetAndNumber) {
         Utils.checkNotNull(streetAndNumber, "streetAndNumber");
@@ -428,7 +428,7 @@ public class BillingAddress {
     /**
      * A street and street number.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withStreetAndNumber(Optional<String> streetAndNumber) {
         Utils.checkNotNull(streetAndNumber, "streetAndNumber");
@@ -458,7 +458,7 @@ public class BillingAddress {
     /**
      * A postal code. This field may be required if the provided country has a postal code system.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withPostalCode(String postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
@@ -470,7 +470,7 @@ public class BillingAddress {
     /**
      * A postal code. This field may be required if the provided country has a postal code system.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withPostalCode(Optional<String> postalCode) {
         Utils.checkNotNull(postalCode, "postalCode");
@@ -486,7 +486,7 @@ public class BillingAddress {
      * email upon payment creation. The language of the email will follow the locale parameter of the
      * payment.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      * 
      * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
      * 3492](https://www.rfc-editor.org/rfc/rfc3492).
@@ -506,7 +506,7 @@ public class BillingAddress {
      * email upon payment creation. The language of the email will follow the locale parameter of the
      * payment.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      * 
      * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
      * 3492](https://www.rfc-editor.org/rfc/rfc3492).
@@ -541,7 +541,7 @@ public class BillingAddress {
     /**
      * A city name.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withCity(String city) {
         Utils.checkNotNull(city, "city");
@@ -553,7 +553,7 @@ public class BillingAddress {
     /**
      * A city name.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withCity(Optional<String> city) {
         Utils.checkNotNull(city, "city");
@@ -583,7 +583,7 @@ public class BillingAddress {
     /**
      * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withCountry(String country) {
         Utils.checkNotNull(country, "country");
@@ -595,7 +595,7 @@ public class BillingAddress {
     /**
      * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
      * 
-     * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+     * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
      */
     public BillingAddress withCountry(Optional<String> country) {
         Utils.checkNotNull(country, "country");
@@ -708,7 +708,7 @@ public class BillingAddress {
          * The given name (first name) of the person should be at least two characters and cannot contain only
          * numbers.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder givenName(String givenName) {
             Utils.checkNotNull(givenName, "givenName");
@@ -720,7 +720,7 @@ public class BillingAddress {
          * The given name (first name) of the person should be at least two characters and cannot contain only
          * numbers.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder givenName(Optional<String> givenName) {
             Utils.checkNotNull(givenName, "givenName");
@@ -734,7 +734,7 @@ public class BillingAddress {
          * only
          * numbers.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder familyName(String familyName) {
             Utils.checkNotNull(familyName, "familyName");
@@ -747,7 +747,7 @@ public class BillingAddress {
          * only
          * numbers.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder familyName(Optional<String> familyName) {
             Utils.checkNotNull(familyName, "familyName");
@@ -782,7 +782,7 @@ public class BillingAddress {
         /**
          * A street and street number.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder streetAndNumber(String streetAndNumber) {
             Utils.checkNotNull(streetAndNumber, "streetAndNumber");
@@ -793,7 +793,7 @@ public class BillingAddress {
         /**
          * A street and street number.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder streetAndNumber(Optional<String> streetAndNumber) {
             Utils.checkNotNull(streetAndNumber, "streetAndNumber");
@@ -824,7 +824,7 @@ public class BillingAddress {
         /**
          * A postal code. This field may be required if the provided country has a postal code system.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder postalCode(String postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
@@ -835,7 +835,7 @@ public class BillingAddress {
         /**
          * A postal code. This field may be required if the provided country has a postal code system.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder postalCode(Optional<String> postalCode) {
             Utils.checkNotNull(postalCode, "postalCode");
@@ -852,7 +852,7 @@ public class BillingAddress {
          * email upon payment creation. The language of the email will follow the locale parameter of the
          * payment.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          * 
          * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
          * 3492](https://www.rfc-editor.org/rfc/rfc3492).
@@ -871,7 +871,7 @@ public class BillingAddress {
          * email upon payment creation. The language of the email will follow the locale parameter of the
          * payment.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          * 
          * <p>If the domain contains non-ASCII characters, encode it as Punycode per [RFC
          * 3492](https://www.rfc-editor.org/rfc/rfc3492).
@@ -907,7 +907,7 @@ public class BillingAddress {
         /**
          * A city name.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder city(String city) {
             Utils.checkNotNull(city, "city");
@@ -918,7 +918,7 @@ public class BillingAddress {
         /**
          * A city name.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder city(Optional<String> city) {
             Utils.checkNotNull(city, "city");
@@ -949,7 +949,7 @@ public class BillingAddress {
         /**
          * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder country(String country) {
             Utils.checkNotNull(country, "country");
@@ -960,7 +960,7 @@ public class BillingAddress {
         /**
          * A country code in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
          * 
-         * <p>Required for payment methods `billie`, `in3`, `klarna` and `riverty`.
+         * <p>Required for payment methods `alma`, `billie`, `in3`, `klarna` and `riverty`.
          */
         public Builder country(Optional<String> country) {
             Utils.checkNotNull(country, "country");
