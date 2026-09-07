@@ -63,6 +63,7 @@ public class EntityMethodGetId {
     public static final EntityMethodGetId TWINT = new EntityMethodGetId("twint");
     public static final EntityMethodGetId VIPPS = new EntityMethodGetId("vipps");
     public static final EntityMethodGetId VOUCHER = new EntityMethodGetId("voucher");
+    public static final EntityMethodGetId WERO = new EntityMethodGetId("wero");
     public static final EntityMethodGetId KLARNAPAYLATER = new EntityMethodGetId("klarnapaylater");
     public static final EntityMethodGetId KLARNAPAYNOW = new EntityMethodGetId("klarnapaynow");
     public static final EntityMethodGetId KLARNASLICEIT = new EntityMethodGetId("klarnasliceit");
@@ -175,6 +176,7 @@ public class EntityMethodGetId {
         map.put("twint", TWINT);
         map.put("vipps", VIPPS);
         map.put("voucher", VOUCHER);
+        map.put("wero", WERO);
         map.put("klarnapaylater", KLARNAPAYLATER);
         map.put("klarnapaynow", KLARNAPAYNOW);
         map.put("klarnasliceit", KLARNASLICEIT);
@@ -219,6 +221,7 @@ public class EntityMethodGetId {
         map.put("twint", EntityMethodGetIdEnum.TWINT);
         map.put("vipps", EntityMethodGetIdEnum.VIPPS);
         map.put("voucher", EntityMethodGetIdEnum.VOUCHER);
+        map.put("wero", EntityMethodGetIdEnum.WERO);
         map.put("klarnapaylater", EntityMethodGetIdEnum.KLARNAPAYLATER);
         map.put("klarnapaynow", EntityMethodGetIdEnum.KLARNAPAYNOW);
         map.put("klarnasliceit", EntityMethodGetIdEnum.KLARNASLICEIT);
@@ -264,6 +267,7 @@ public class EntityMethodGetId {
         TWINT("twint"),
         VIPPS("vipps"),
         VOUCHER("voucher"),
+        WERO("wero"),
         KLARNAPAYLATER("klarnapaylater"),
         KLARNAPAYNOW("klarnapaynow"),
         KLARNASLICEIT("klarnasliceit"),

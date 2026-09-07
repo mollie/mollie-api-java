@@ -54,3 +54,4 @@ ListEntityMethodAllId custom = ListEntityMethodAllId.of("custom_value");
 | `TWINT`        | twint          |
 | `VIPPS`        | vipps          |
 | `VOUCHER`      | voucher        |
+| `WERO`         | wero           |

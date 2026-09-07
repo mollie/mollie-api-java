@@ -66,7 +66,8 @@ public enum SettlementMethod {
     TRUSTLY("trustly"),
     TWINT("twint"),
     VIPPS("vipps"),
-    VOUCHER("voucher");
+    VOUCHER("voucher"),
+    WERO("wero");
 
     @JsonValue
     private final String value;

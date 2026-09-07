@@ -38,7 +38,8 @@ public enum PaymentLinkMethod {
     SWISH("swish"),
     TRUSTLY("trustly"),
     TWINT("twint"),
-    VOUCHER("voucher");
+    VOUCHER("voucher"),
+    WERO("wero");
 
     @JsonValue
     private final String value;

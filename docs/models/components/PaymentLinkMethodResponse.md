@@ -45,3 +45,4 @@ PaymentLinkMethodResponse custom = PaymentLinkMethodResponse.of("custom_value");
 | `TRUSTLY`      | trustly        |
 | `TWINT`        | twint          |
 | `VOUCHER`      | voucher        |
+| `WERO`         | wero           |
