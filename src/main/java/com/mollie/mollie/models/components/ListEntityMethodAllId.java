@@ -63,6 +63,7 @@ public class ListEntityMethodAllId {
     public static final ListEntityMethodAllId TWINT = new ListEntityMethodAllId("twint");
     public static final ListEntityMethodAllId VIPPS = new ListEntityMethodAllId("vipps");
     public static final ListEntityMethodAllId VOUCHER = new ListEntityMethodAllId("voucher");
+    public static final ListEntityMethodAllId WERO = new ListEntityMethodAllId("wero");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -171,6 +172,7 @@ public class ListEntityMethodAllId {
         map.put("twint", TWINT);
         map.put("vipps", VIPPS);
         map.put("voucher", VOUCHER);
+        map.put("wero", WERO);
         return map;
     }
 
@@ -211,6 +213,7 @@ public class ListEntityMethodAllId {
         map.put("twint", ListEntityMethodAllIdEnum.TWINT);
         map.put("vipps", ListEntityMethodAllIdEnum.VIPPS);
         map.put("voucher", ListEntityMethodAllIdEnum.VOUCHER);
+        map.put("wero", ListEntityMethodAllIdEnum.WERO);
         return map;
     }
     
@@ -251,7 +254,8 @@ public class ListEntityMethodAllId {
         TRUSTLY("trustly"),
         TWINT("twint"),
         VIPPS("vipps"),
-        VOUCHER("voucher"),;
+        VOUCHER("voucher"),
+        WERO("wero"),;
 
         private final String value;
 

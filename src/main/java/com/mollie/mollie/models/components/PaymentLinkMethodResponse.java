@@ -50,6 +50,7 @@ public class PaymentLinkMethodResponse {
     public static final PaymentLinkMethodResponse TRUSTLY = new PaymentLinkMethodResponse("trustly");
     public static final PaymentLinkMethodResponse TWINT = new PaymentLinkMethodResponse("twint");
     public static final PaymentLinkMethodResponse VOUCHER = new PaymentLinkMethodResponse("voucher");
+    public static final PaymentLinkMethodResponse WERO = new PaymentLinkMethodResponse("wero");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -152,6 +153,7 @@ public class PaymentLinkMethodResponse {
         map.put("trustly", TRUSTLY);
         map.put("twint", TWINT);
         map.put("voucher", VOUCHER);
+        map.put("wero", WERO);
         return map;
     }
 
@@ -186,6 +188,7 @@ public class PaymentLinkMethodResponse {
         map.put("trustly", PaymentLinkMethodResponseEnum.TRUSTLY);
         map.put("twint", PaymentLinkMethodResponseEnum.TWINT);
         map.put("voucher", PaymentLinkMethodResponseEnum.VOUCHER);
+        map.put("wero", PaymentLinkMethodResponseEnum.WERO);
         return map;
     }
     
@@ -220,7 +223,8 @@ public class PaymentLinkMethodResponse {
         SWISH("swish"),
         TRUSTLY("trustly"),
         TWINT("twint"),
-        VOUCHER("voucher"),;
+        VOUCHER("voucher"),
+        WERO("wero"),;
 
         private final String value;
 

@@ -63,6 +63,7 @@ public class Id {
     public static final Id TWINT = new Id("twint");
     public static final Id VIPPS = new Id("vipps");
     public static final Id VOUCHER = new Id("voucher");
+    public static final Id WERO = new Id("wero");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -171,6 +172,7 @@ public class Id {
         map.put("twint", TWINT);
         map.put("vipps", VIPPS);
         map.put("voucher", VOUCHER);
+        map.put("wero", WERO);
         return map;
     }
 
@@ -211,6 +213,7 @@ public class Id {
         map.put("twint", IdEnum.TWINT);
         map.put("vipps", IdEnum.VIPPS);
         map.put("voucher", IdEnum.VOUCHER);
+        map.put("wero", IdEnum.WERO);
         return map;
     }
     
@@ -251,7 +254,8 @@ public class Id {
         TRUSTLY("trustly"),
         TWINT("twint"),
         VIPPS("vipps"),
-        VOUCHER("voucher"),;
+        VOUCHER("voucher"),
+        WERO("wero"),;
 
         private final String value;
 

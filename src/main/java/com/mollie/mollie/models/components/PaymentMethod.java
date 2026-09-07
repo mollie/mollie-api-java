@@ -70,6 +70,7 @@ public class PaymentMethod {
     public static final PaymentMethod TWINT = new PaymentMethod("twint");
     public static final PaymentMethod VIPPS = new PaymentMethod("vipps");
     public static final PaymentMethod VOUCHER = new PaymentMethod("voucher");
+    public static final PaymentMethod WERO = new PaymentMethod("wero");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -187,6 +188,7 @@ public class PaymentMethod {
         map.put("twint", TWINT);
         map.put("vipps", VIPPS);
         map.put("voucher", VOUCHER);
+        map.put("wero", WERO);
         return map;
     }
 
@@ -236,6 +238,7 @@ public class PaymentMethod {
         map.put("twint", PaymentMethodEnum.TWINT);
         map.put("vipps", PaymentMethodEnum.VIPPS);
         map.put("voucher", PaymentMethodEnum.VOUCHER);
+        map.put("wero", PaymentMethodEnum.WERO);
         return map;
     }
     
@@ -285,7 +288,8 @@ public class PaymentMethod {
         TRUSTLY("trustly"),
         TWINT("twint"),
         VIPPS("vipps"),
-        VOUCHER("voucher"),;
+        VOUCHER("voucher"),
+        WERO("wero"),;
 
         private final String value;
 

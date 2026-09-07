@@ -54,3 +54,4 @@ Id custom = Id.of("custom_value");
 | `TWINT`        | twint          |
 | `VIPPS`        | vipps          |
 | `VOUCHER`      | voucher        |
+| `WERO`         | wero           |

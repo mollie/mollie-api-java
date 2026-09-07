@@ -56,6 +56,7 @@ public class MethodResponse {
     public static final MethodResponse TWINT = new MethodResponse("twint");
     public static final MethodResponse VIPPS = new MethodResponse("vipps");
     public static final MethodResponse VOUCHER = new MethodResponse("voucher");
+    public static final MethodResponse WERO = new MethodResponse("wero");
     public static final MethodResponse KLARNAPAYLATER = new MethodResponse("klarnapaylater");
     public static final MethodResponse KLARNAPAYNOW = new MethodResponse("klarnapaynow");
     public static final MethodResponse KLARNASLICEIT = new MethodResponse("klarnasliceit");
@@ -168,6 +169,7 @@ public class MethodResponse {
         map.put("twint", TWINT);
         map.put("vipps", VIPPS);
         map.put("voucher", VOUCHER);
+        map.put("wero", WERO);
         map.put("klarnapaylater", KLARNAPAYLATER);
         map.put("klarnapaynow", KLARNAPAYNOW);
         map.put("klarnasliceit", KLARNASLICEIT);
@@ -212,6 +214,7 @@ public class MethodResponse {
         map.put("twint", MethodResponseEnum.TWINT);
         map.put("vipps", MethodResponseEnum.VIPPS);
         map.put("voucher", MethodResponseEnum.VOUCHER);
+        map.put("wero", MethodResponseEnum.WERO);
         map.put("klarnapaylater", MethodResponseEnum.KLARNAPAYLATER);
         map.put("klarnapaynow", MethodResponseEnum.KLARNAPAYNOW);
         map.put("klarnasliceit", MethodResponseEnum.KLARNASLICEIT);
@@ -257,6 +260,7 @@ public class MethodResponse {
         TWINT("twint"),
         VIPPS("vipps"),
         VOUCHER("voucher"),
+        WERO("wero"),
         KLARNAPAYLATER("klarnapaylater"),
         KLARNAPAYNOW("klarnapaynow"),
         KLARNASLICEIT("klarnasliceit"),

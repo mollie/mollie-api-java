@@ -54,6 +54,7 @@ EntityMethodGetId custom = EntityMethodGetId.of("custom_value");
 | `TWINT`          | twint            |
 | `VIPPS`          | vipps            |
 | `VOUCHER`        | voucher          |
+| `WERO`           | wero             |
 | `KLARNAPAYLATER` | klarnapaylater   |
 | `KLARNAPAYNOW`   | klarnapaynow     |
 | `KLARNASLICEIT`  | klarnasliceit    |
