@@ -173,7 +173,7 @@ Token exchange itself is now a regular resource call instead of a bespoke handle
 
 ### Global defaults (`profileId`, `testmode`)
 
-In the old SDK, `enableTestMode()` / `disableTestMode()` toggled test mode when using an organization token with no built-in concept of a global `profileId` — you had to add it manually to `QueryParams` on every call. In the new SDK, both `profileId` and `testmode` are configured once on the client and apply to every request that supports them:
+In the old SDK, `enableTestMode()` / `disableTestMode()` toggled test mode when using an organization token with no built-in concept of a global `profileId` — you had to add it manually to `QueryParams` on every call. In the new SDK, both `profileId` and `testmode` are configured once on the client and apply to every request that supports them. As before, `profileId` and `testmode` (globally or per request) only work with an Advanced Access Token or OAuth — they are rejected when authenticating with a plain API key:
 
 ```
 -Client client = new ClientBuilder()
@@ -273,21 +273,21 @@ The old SDK had a mix of dedicated nested handlers (`client.customers().createCu
 | Old | New |
 | --- | --- |
 | `client.customers().createCustomerPayment(customerId, body)` | `client.customers().createPayment().customerId(customerId).paymentRequest(...).call()` |
-| `client.customers().listCustomerPayments(customerId)` | `client.customers().listPayments().customerId(customerId).call()` |
+| `client.customers().listCustomerPayments(customerId)` | `client.customers().listPayments().request(ListCustomerPaymentsRequest.builder().customerId(customerId).build()).call()` |
 | `client.mandates().createMandate(customerId, body)` | `client.mandates().create().customerId(customerId).mandateRequest(...).call()` |
-| `client.mandates().listMandates(customerId)` | `client.mandates().list().customerId(customerId).call()` |
+| `client.mandates().listMandates(customerId)` | `client.mandates().list().request(ListMandatesRequest.builder().customerId(customerId).build()).call()` |
 | `client.mandates().revokeMandate(customerId, mandateId)` | `client.mandates().revoke().customerId(customerId).mandateId(mandateId).call()` |
 | `client.subscriptions().createSubscription(customerId, body)` | `client.subscriptions().create().customerId(customerId).subscriptionRequest(...).call()` |
 | `client.subscriptions().listAllSubscriptions()` | `client.subscriptions().all().call()` |
-| `client.subscriptions().listSubscriptionPayments(customerId, subscriptionId)` | `client.subscriptions().listPayments().customerId(customerId).subscriptionId(subscriptionId).call()` |
+| `client.subscriptions().listSubscriptionPayments(customerId, subscriptionId)` | `client.subscriptions().listPayments().request(ListSubscriptionPaymentsRequest.builder().customerId(customerId).subscriptionId(subscriptionId).build()).call()` |
 | `client.refunds().createRefund(paymentId, body)` | `client.refunds().create().paymentId(paymentId).refundRequest(...).call()` |
-| `client.chargebacks().listChargebacks(paymentId)` | `client.chargebacks().list().paymentId(paymentId).call()` |
+| `client.chargebacks().listChargebacks(paymentId)` | `client.chargebacks().list().request(ListChargebacksRequest.builder().paymentId(paymentId).build()).call()` |
 | `client.captures().createCapture(paymentId, body)` | `client.captures().create().paymentId(paymentId).captureRequest(...).call()` |
-| `client.settlements().getSettlementPayments(settlementId)` | `client.settlements().listPayments().settlementId(settlementId).call()` |
-| `client.settlements().getSettlementRefund(settlementId)` | `client.settlements().listRefunds().settlementId(settlementId).call()` |
-| `client.settlements().getSettlementCaptures(settlementId)` | `client.settlements().listCaptures().settlementId(settlementId).call()` |
-| `client.settlements().getSettlementChargebacks(settlementId)` | `client.settlements().listChargebacks().settlementId(settlementId).call()` |
-| `client.wallet().requestApplePaySession(body)` | `client.wallets().requestApplePaySession().applePaySessionRequest(...).call()` |
+| `client.settlements().getSettlementPayments(settlementId)` | `client.settlements().listPayments().request(ListSettlementPaymentsRequest.builder().settlementId(settlementId).build()).call()` |
+| `client.settlements().getSettlementRefund(settlementId)` | `client.settlements().listRefunds().request(ListSettlementRefundsRequest.builder().settlementId(settlementId).build()).call()` |
+| `client.settlements().getSettlementCaptures(settlementId)` | `client.settlements().listCaptures().request(ListSettlementCapturesRequest.builder().settlementId(settlementId).build()).call()` |
+| `client.settlements().getSettlementChargebacks(settlementId)` | `client.settlements().listChargebacks().request(ListSettlementChargebacksRequest.builder().settlementId(settlementId).build()).call()` |
+| `client.wallet().requestApplePaySession(body)` | `client.wallets().requestApplePaySession().requestBody(...).call()` |
 
 ---
 
@@ -347,8 +347,7 @@ if (page.getLinks().getNext() != null) {
 
 ```java
 sdk.payments().list()
-    .from("tr_5B8cwPMGnU")
-    .limit(50L)
+    .request(ListPaymentsRequest.builder().from("tr_5B8cwPMGnU").limit(50L).build())
     .callAsStream()
     .forEach(page -> {
         // handle page
@@ -547,11 +546,12 @@ ObjectMapper myMapper = new ObjectMapper()
 | `delayedRouting()` | Delayed payment routing rules |
 | `payouts()` | Payout management |
 | `salesInvoices()` | Sales invoice management |
-| `sessions()` | Payment sessions |
+| `checkoutSessions()` | Checkout sessions |
 | `transfers()` | Transfer management |
 | `unmatchedCreditTransfers()` | Unmatched credit transfer handling |
 | `verifyPayee()` | Payee verification |
 | `webhooks()` | Webhook management |
 | `webhookEvents()` | Webhook event retrieval |
+| `draftTransfers()` | Draft transfer management |
 
 For a complete list of all resources and operations with usage examples, see the [Available Resources and Operations](https://github.com/mollie/mollie-api-java#available-resources-and-operations) section in the SDK's README.
