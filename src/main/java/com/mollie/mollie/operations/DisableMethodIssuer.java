@@ -196,7 +196,7 @@ public class DisableMethodIssuer {
                 // no content
                 return res;
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     throw ErrorResponse.from(response);
                 } else {
@@ -281,7 +281,7 @@ public class DisableMethodIssuer {
                 // no content
                 return CompletableFuture.completedFuture(res);
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return ErrorResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
