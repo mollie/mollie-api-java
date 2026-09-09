@@ -194,14 +194,14 @@ public class EnableMethod {
 
             EnableMethodResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return res.withEntityMethodGet(Utils.unmarshal(response, new TypeReference<EntityMethodGet>() {}));
                 } else {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     throw ErrorResponse.from(response);
                 } else {
@@ -282,7 +282,7 @@ public class EnableMethod {
 
             com.mollie.mollie.models.operations.async.EnableMethodResponse res = resBuilder.build();
             
-            if (Utils.statusCodeMatches(response.statusCode(), "200")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "201")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return Utils.unmarshalAsync(response, new TypeReference<EntityMethodGet>() {})
                             .thenApply(res::withEntityMethodGet);
@@ -290,7 +290,7 @@ public class EnableMethod {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "404", "422", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return ErrorResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
