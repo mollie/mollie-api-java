@@ -45,6 +45,7 @@ public class Application {
             .build();
 
         ListBusinessAccountsRequest req = ListBusinessAccountsRequest.builder()
+                .iban("NL95MLLE1234567890")
                 .from("ba_nopqrstuvwxyz23456789A")
                 .limit(50L)
                 .sort(Sorting.DESC)
@@ -159,12 +160,12 @@ The results are paginated.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Security;
-import com.mollie.mollie.models.components.Sorting;
+import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.ListBusinessAccountTransactionsRequest;
 import com.mollie.mollie.models.operations.ListBusinessAccountTransactionsResponse;
 import java.lang.Exception;
+import java.time.OffsetDateTime;
 
 public class Application {
 
@@ -179,6 +180,9 @@ public class Application {
 
         ListBusinessAccountTransactionsRequest req = ListBusinessAccountTransactionsRequest.builder()
                 .businessAccountId("ba_nopqrstuvwxyz23456789A")
+                .creditDebitIndicator(CreditDebitIndicator.DEBIT)
+                .processedAfter(OffsetDateTime.parse("2025-02-01T00:00:00+00:00"))
+                .processedBefore(OffsetDateTime.parse("2025-02-26T23:59:59+00:00"))
                 .from("batr_87GByBuj4UCcUTEbs6aGJ")
                 .limit(50L)
                 .sort(Sorting.DESC)

@@ -39,6 +39,7 @@ public class TransactionType {
     public static final TransactionType CORRECTION = new TransactionType("correction");
     public static final TransactionType DIRECT_DEBIT = new TransactionType("direct-debit");
     public static final TransactionType DIRECT_DEBIT_REFUND = new TransactionType("direct-debit-refund");
+    public static final TransactionType REWARDS_PAYOUT = new TransactionType("rewards-payout");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -121,6 +122,7 @@ public class TransactionType {
         map.put("correction", CORRECTION);
         map.put("direct-debit", DIRECT_DEBIT);
         map.put("direct-debit-refund", DIRECT_DEBIT_REFUND);
+        map.put("rewards-payout", REWARDS_PAYOUT);
         return map;
     }
 
@@ -135,6 +137,7 @@ public class TransactionType {
         map.put("correction", TransactionTypeEnum.CORRECTION);
         map.put("direct-debit", TransactionTypeEnum.DIRECT_DEBIT);
         map.put("direct-debit-refund", TransactionTypeEnum.DIRECT_DEBIT_REFUND);
+        map.put("rewards-payout", TransactionTypeEnum.REWARDS_PAYOUT);
         return map;
     }
     
@@ -149,7 +152,8 @@ public class TransactionType {
         FEE("fee"),
         CORRECTION("correction"),
         DIRECT_DEBIT("direct-debit"),
-        DIRECT_DEBIT_REFUND("direct-debit-refund"),;
+        DIRECT_DEBIT_REFUND("direct-debit-refund"),
+        REWARDS_PAYOUT("rewards-payout"),;
 
         private final String value;
 

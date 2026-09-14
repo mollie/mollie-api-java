@@ -6,6 +6,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mollie.mollie.models.components.CreditDebitIndicator;
 import com.mollie.mollie.models.components.Sorting;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
@@ -14,6 +15,7 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,9 +28,37 @@ public class ListBusinessAccountTransactionsRequest {
     private String businessAccountId;
 
     /**
+     * Filter the transactions by whether they credited or debited the account balance.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=creditDebitIndicator")
+    private Optional<? extends CreditDebitIndicator> creditDebitIndicator;
+
+    /**
+     * Filter the transactions to only include those processed on or after this date and time. Filters on
+     * the
+     * `processedAt` property.
+     * 
+     * <p>Cannot be combined with `from`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=processedAfter")
+    private Optional<OffsetDateTime> processedAfter;
+
+    /**
+     * Filter the transactions to only include those processed on or before this date and time. Filters on
+     * the
+     * `processedAt` property.
+     * 
+     * <p>Cannot be combined with `from`.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=processedBefore")
+    private Optional<OffsetDateTime> processedBefore;
+
+    /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
      * to paginate
      * the result set.
+     * 
+     * <p>Cannot be combined with `processedAfter` or `processedBefore`.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=from")
     private Optional<String> from;
@@ -68,18 +98,27 @@ public class ListBusinessAccountTransactionsRequest {
     @JsonCreator
     public ListBusinessAccountTransactionsRequest(
             String businessAccountId,
+            Optional<? extends CreditDebitIndicator> creditDebitIndicator,
+            Optional<OffsetDateTime> processedAfter,
+            Optional<OffsetDateTime> processedBefore,
             Optional<String> from,
             JsonNullable<Long> limit,
             Optional<? extends Sorting> sort,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(businessAccountId, "businessAccountId");
+        Utils.checkNotNull(creditDebitIndicator, "creditDebitIndicator");
+        Utils.checkNotNull(processedAfter, "processedAfter");
+        Utils.checkNotNull(processedBefore, "processedBefore");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.businessAccountId = businessAccountId;
+        this.creditDebitIndicator = creditDebitIndicator;
+        this.processedAfter = processedAfter;
+        this.processedBefore = processedBefore;
         this.from = from;
         this.limit = limit;
         this.sort = sort;
@@ -89,7 +128,8 @@ public class ListBusinessAccountTransactionsRequest {
     
     public ListBusinessAccountTransactionsRequest(
             String businessAccountId) {
-        this(businessAccountId, Optional.empty(), JsonNullable.undefined(),
+        this(businessAccountId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), Optional.empty());
     }
 
@@ -102,9 +142,44 @@ public class ListBusinessAccountTransactionsRequest {
     }
 
     /**
+     * Filter the transactions by whether they credited or debited the account balance.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CreditDebitIndicator> creditDebitIndicator() {
+        return (Optional<CreditDebitIndicator>) creditDebitIndicator;
+    }
+
+    /**
+     * Filter the transactions to only include those processed on or after this date and time. Filters on
+     * the
+     * `processedAt` property.
+     * 
+     * <p>Cannot be combined with `from`.
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> processedAfter() {
+        return processedAfter;
+    }
+
+    /**
+     * Filter the transactions to only include those processed on or before this date and time. Filters on
+     * the
+     * `processedAt` property.
+     * 
+     * <p>Cannot be combined with `from`.
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> processedBefore() {
+        return processedBefore;
+    }
+
+    /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
      * to paginate
      * the result set.
+     * 
+     * <p>Cannot be combined with `processedAfter` or `processedBefore`.
      */
     @JsonIgnore
     public Optional<String> from() {
@@ -167,9 +242,84 @@ public class ListBusinessAccountTransactionsRequest {
     }
 
     /**
+     * Filter the transactions by whether they credited or debited the account balance.
+     */
+    public ListBusinessAccountTransactionsRequest withCreditDebitIndicator(CreditDebitIndicator creditDebitIndicator) {
+        Utils.checkNotNull(creditDebitIndicator, "creditDebitIndicator");
+        this.creditDebitIndicator = Optional.ofNullable(creditDebitIndicator);
+        return this;
+    }
+
+
+    /**
+     * Filter the transactions by whether they credited or debited the account balance.
+     */
+    public ListBusinessAccountTransactionsRequest withCreditDebitIndicator(Optional<? extends CreditDebitIndicator> creditDebitIndicator) {
+        Utils.checkNotNull(creditDebitIndicator, "creditDebitIndicator");
+        this.creditDebitIndicator = creditDebitIndicator;
+        return this;
+    }
+
+    /**
+     * Filter the transactions to only include those processed on or after this date and time. Filters on
+     * the
+     * `processedAt` property.
+     * 
+     * <p>Cannot be combined with `from`.
+     */
+    public ListBusinessAccountTransactionsRequest withProcessedAfter(OffsetDateTime processedAfter) {
+        Utils.checkNotNull(processedAfter, "processedAfter");
+        this.processedAfter = Optional.ofNullable(processedAfter);
+        return this;
+    }
+
+
+    /**
+     * Filter the transactions to only include those processed on or after this date and time. Filters on
+     * the
+     * `processedAt` property.
+     * 
+     * <p>Cannot be combined with `from`.
+     */
+    public ListBusinessAccountTransactionsRequest withProcessedAfter(Optional<OffsetDateTime> processedAfter) {
+        Utils.checkNotNull(processedAfter, "processedAfter");
+        this.processedAfter = processedAfter;
+        return this;
+    }
+
+    /**
+     * Filter the transactions to only include those processed on or before this date and time. Filters on
+     * the
+     * `processedAt` property.
+     * 
+     * <p>Cannot be combined with `from`.
+     */
+    public ListBusinessAccountTransactionsRequest withProcessedBefore(OffsetDateTime processedBefore) {
+        Utils.checkNotNull(processedBefore, "processedBefore");
+        this.processedBefore = Optional.ofNullable(processedBefore);
+        return this;
+    }
+
+
+    /**
+     * Filter the transactions to only include those processed on or before this date and time. Filters on
+     * the
+     * `processedAt` property.
+     * 
+     * <p>Cannot be combined with `from`.
+     */
+    public ListBusinessAccountTransactionsRequest withProcessedBefore(Optional<OffsetDateTime> processedBefore) {
+        Utils.checkNotNull(processedBefore, "processedBefore");
+        this.processedBefore = processedBefore;
+        return this;
+    }
+
+    /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
      * to paginate
      * the result set.
+     * 
+     * <p>Cannot be combined with `processedAfter` or `processedBefore`.
      */
     public ListBusinessAccountTransactionsRequest withFrom(String from) {
         Utils.checkNotNull(from, "from");
@@ -182,6 +332,8 @@ public class ListBusinessAccountTransactionsRequest {
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
      * to paginate
      * the result set.
+     * 
+     * <p>Cannot be combined with `processedAfter` or `processedBefore`.
      */
     public ListBusinessAccountTransactionsRequest withFrom(Optional<String> from) {
         Utils.checkNotNull(from, "from");
@@ -291,6 +443,9 @@ public class ListBusinessAccountTransactionsRequest {
         ListBusinessAccountTransactionsRequest other = (ListBusinessAccountTransactionsRequest) o;
         return 
             Utils.enhancedDeepEquals(this.businessAccountId, other.businessAccountId) &&
+            Utils.enhancedDeepEquals(this.creditDebitIndicator, other.creditDebitIndicator) &&
+            Utils.enhancedDeepEquals(this.processedAfter, other.processedAfter) &&
+            Utils.enhancedDeepEquals(this.processedBefore, other.processedBefore) &&
             Utils.enhancedDeepEquals(this.from, other.from) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.sort, other.sort) &&
@@ -301,7 +456,8 @@ public class ListBusinessAccountTransactionsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            businessAccountId, from, limit,
+            businessAccountId, creditDebitIndicator, processedAfter,
+            processedBefore, from, limit,
             sort, testmode, idempotencyKey);
     }
     
@@ -309,6 +465,9 @@ public class ListBusinessAccountTransactionsRequest {
     public String toString() {
         return Utils.toString(ListBusinessAccountTransactionsRequest.class,
                 "businessAccountId", businessAccountId,
+                "creditDebitIndicator", creditDebitIndicator,
+                "processedAfter", processedAfter,
+                "processedBefore", processedBefore,
                 "from", from,
                 "limit", limit,
                 "sort", sort,
@@ -320,6 +479,12 @@ public class ListBusinessAccountTransactionsRequest {
     public final static class Builder {
 
         private String businessAccountId;
+
+        private Optional<? extends CreditDebitIndicator> creditDebitIndicator = Optional.empty();
+
+        private Optional<OffsetDateTime> processedAfter = Optional.empty();
+
+        private Optional<OffsetDateTime> processedBefore = Optional.empty();
 
         private Optional<String> from = Optional.empty();
 
@@ -347,9 +512,84 @@ public class ListBusinessAccountTransactionsRequest {
 
 
         /**
+         * Filter the transactions by whether they credited or debited the account balance.
+         */
+        public Builder creditDebitIndicator(CreditDebitIndicator creditDebitIndicator) {
+            Utils.checkNotNull(creditDebitIndicator, "creditDebitIndicator");
+            this.creditDebitIndicator = Optional.ofNullable(creditDebitIndicator);
+            return this;
+        }
+
+        /**
+         * Filter the transactions by whether they credited or debited the account balance.
+         */
+        public Builder creditDebitIndicator(Optional<? extends CreditDebitIndicator> creditDebitIndicator) {
+            Utils.checkNotNull(creditDebitIndicator, "creditDebitIndicator");
+            this.creditDebitIndicator = creditDebitIndicator;
+            return this;
+        }
+
+
+        /**
+         * Filter the transactions to only include those processed on or after this date and time. Filters on
+         * the
+         * `processedAt` property.
+         * 
+         * <p>Cannot be combined with `from`.
+         */
+        public Builder processedAfter(OffsetDateTime processedAfter) {
+            Utils.checkNotNull(processedAfter, "processedAfter");
+            this.processedAfter = Optional.ofNullable(processedAfter);
+            return this;
+        }
+
+        /**
+         * Filter the transactions to only include those processed on or after this date and time. Filters on
+         * the
+         * `processedAt` property.
+         * 
+         * <p>Cannot be combined with `from`.
+         */
+        public Builder processedAfter(Optional<OffsetDateTime> processedAfter) {
+            Utils.checkNotNull(processedAfter, "processedAfter");
+            this.processedAfter = processedAfter;
+            return this;
+        }
+
+
+        /**
+         * Filter the transactions to only include those processed on or before this date and time. Filters on
+         * the
+         * `processedAt` property.
+         * 
+         * <p>Cannot be combined with `from`.
+         */
+        public Builder processedBefore(OffsetDateTime processedBefore) {
+            Utils.checkNotNull(processedBefore, "processedBefore");
+            this.processedBefore = Optional.ofNullable(processedBefore);
+            return this;
+        }
+
+        /**
+         * Filter the transactions to only include those processed on or before this date and time. Filters on
+         * the
+         * `processedAt` property.
+         * 
+         * <p>Cannot be combined with `from`.
+         */
+        public Builder processedBefore(Optional<OffsetDateTime> processedBefore) {
+            Utils.checkNotNull(processedBefore, "processedBefore");
+            this.processedBefore = processedBefore;
+            return this;
+        }
+
+
+        /**
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
          * to paginate
          * the result set.
+         * 
+         * <p>Cannot be combined with `processedAfter` or `processedBefore`.
          */
         public Builder from(String from) {
             Utils.checkNotNull(from, "from");
@@ -361,6 +601,8 @@ public class ListBusinessAccountTransactionsRequest {
          * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
          * to paginate
          * the result set.
+         * 
+         * <p>Cannot be combined with `processedAfter` or `processedBefore`.
          */
         public Builder from(Optional<String> from) {
             Utils.checkNotNull(from, "from");
@@ -463,7 +705,8 @@ public class ListBusinessAccountTransactionsRequest {
         public ListBusinessAccountTransactionsRequest build() {
 
             return new ListBusinessAccountTransactionsRequest(
-                businessAccountId, from, limit,
+                businessAccountId, creditDebitIndicator, processedAfter,
+                processedBefore, from, limit,
                 sort, testmode, idempotencyKey);
         }
 
