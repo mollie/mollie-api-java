@@ -17,7 +17,7 @@ import java.util.Optional;
 /**
  * Self
  * 
- * <p>The URL to this unmatched credit transfer.
+ * <p>The URL to this draft transfer.
  */
 public class Self {
 

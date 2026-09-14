@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 27279387e877b7e37c0d9b2e56a8238a
+  docChecksum: 5583f3e9cc764e501f6b0a3ee188d05b
   docVersion: 1.0.0
   speakeasyVersion: 1.796.4
   generationVersion: 2.935.1
-  releaseVersion: 1.10.10
-  configChecksum: 85ffbc26a393e1ab81d0ec5f510061e9
+  releaseVersion: 1.10.11
+  configChecksum: d92f9fd99abc83db0d5900c34060e01a
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: a4b8cfc8-3f46-498b-b263-9b912a967dbe
-  pristine_commit_hash: b468b1ee5438f5a761cbd0f2f2d7525454c7eefd
-  pristine_tree_hash: 3bc0a5ee76c22b376b3190d2014be73e4fb1d291
+  generation_id: 7062ac5b-b5a9-4b06-b73b-fc102b9c2c8a
+  pristine_commit_hash: 48b48159e61f8bf3c2b2d66290ddf3340811b4f0
+  pristine_tree_hash: 38565b519b930b761d82d32d9e1bd2a5c116e735
 features:
   java:
     additionalDependencies: 0.1.0
@@ -53,8 +53,8 @@ trackedFiles:
     pristine_git_object: 88325d787f2f449d36ad0b714e874d7817121ef6
   docs/models/components/AccountDetails.md:
     id: 237d7bd9128f
-    last_write_checksum: sha1:a7e95e7d218fae1156612b036bc71cb210cc41ad
-    pristine_git_object: d806e3f8fcf6dfa396c077506d6a8fd01d2cd251
+    last_write_checksum: sha1:c996e44cf3819a0d668cdd67e1467a875c8e1089
+    pristine_git_object: 8d4883885cb4329d3d1045eaf9cea7ba7cceff8d
   docs/models/components/AccountNumberFormat.md:
     id: 92b389113e33
     last_write_checksum: sha1:0a834e7df3b5a5420364b11f7d81bb0a4afc0acf
@@ -301,12 +301,12 @@ trackedFiles:
     pristine_git_object: c22799538baf9229f43ef41a79b4bbc1259538b6
   docs/models/components/Counterparty.md:
     id: 9d972a3b0833
-    last_write_checksum: sha1:eb2c7cbd7a798bda9499eff0e886df45518590f4
-    pristine_git_object: 88190ca7159ff099debbe5181baa7c1ef747e65e
+    last_write_checksum: sha1:5b90baae5f1a9fc78eaa3ee68548d49a341fdacf
+    pristine_git_object: 33d5d5645bdd3d64ac06e29e7326b4f66700ac5e
   docs/models/components/CreateDraftTransferRequest.md:
     id: e9aca3ff4906
-    last_write_checksum: sha1:33ed82b25c8282f2458c299e452d42cbd52e81d1
-    pristine_git_object: 56eb4d4efbc7b3c9d5a0331281c3bfdfaa60466c
+    last_write_checksum: sha1:d48335d6483f594b5e5f906364187799ed58f5dc
+    pristine_git_object: d2c2e6e00cd154fbc9bd1a13eada602d7128d2fa
   docs/models/components/CreateWebhook.md:
     id: 28d4de8a82ba
     last_write_checksum: sha1:f502a7e582715d86bf711b19e40de6479e0fd090
@@ -391,18 +391,10 @@ trackedFiles:
     id: 726003d59720
     last_write_checksum: sha1:aa68f413a167638482a57a07abf7fc5e3ad3df48
     pristine_git_object: 052b9decddf9e6acd837f86b56ab16e2f275d54b
-  docs/models/components/DraftTransferResponseDocumentation.md:
-    id: 15650d43ab6b
-    last_write_checksum: sha1:0c681df9ba64de19190e61cef086f3fdea187749
-    pristine_git_object: c48563d595505a87442946da8069c8282536474e
   docs/models/components/DraftTransferResponseLinks.md:
     id: 650b7bda8992
-    last_write_checksum: sha1:d2b75b9964a09c02552c16a42bc8df72c4a0c515
-    pristine_git_object: cbd8aa4be123b9b379f59d1cfe249906cdb1bb0f
-  docs/models/components/DraftTransferResponseSelf.md:
-    id: 9180a457ccb4
-    last_write_checksum: sha1:daee15913ad1bcc22a93b14a2336c8a31a19d146
-    pristine_git_object: 338d05a293b9ff7822511d29508a475f77114855
+    last_write_checksum: sha1:5b3f4900e76c97220af5088f101e4004a4b0010e
+    pristine_git_object: 8e3ad73ee4dedaabd09e19ce63c4013fd9eaddeb
   docs/models/components/DraftTransferResponseStatus.md:
     id: 2513a226ac0d
     last_write_checksum: sha1:bd34da5cddf8c0a01768b9b69d823b8970c08d17
@@ -733,8 +725,8 @@ trackedFiles:
     pristine_git_object: 8a85680a4d8b7ee1d9825ea7e02797cc1637c5bc
   docs/models/components/EntityWebhookEventWebhookEventTypes.md:
     id: 96dee939f25e
-    last_write_checksum: sha1:1cdf3a5cf464ad36066a29162c57fc79585c6391
-    pristine_git_object: f347cd0d8c4f6b7e0406967a5767cb7f58fa6766
+    last_write_checksum: sha1:668b0ff67aab69d5358ba9b414f60e114d997195
+    pristine_git_object: 807ff1ec03527c3daca62a1ad2f3e580989e2bc4
   docs/models/components/EntityWebhookLinks.md:
     id: ae5a41d4a9b0
     last_write_checksum: sha1:f83a644f96b8910f4190f7d345651cf033af8bd2
@@ -823,30 +815,6 @@ trackedFiles:
     id: e5f77a8d5aa1
     last_write_checksum: sha1:77b50f9e912084dfe3a0fa297fab401f01d42f05
     pristine_git_object: 37ddae1445ba4a3874931d5a8fd6a209fdd46e97
-  docs/models/components/ListDraftTransferResponse.md:
-    id: 377ca8391f62
-    last_write_checksum: sha1:69b2ae323753aa3d1c2e771d76b025fb9e441ae4
-    pristine_git_object: aa84686182fa912ee5cce42f778dac2a50136ac8
-  docs/models/components/ListDraftTransferResponseAccount.md:
-    id: 31db15bb9c13
-    last_write_checksum: sha1:d211022cfe45106122514aafd6cd294cf8193cb4
-    pristine_git_object: 4d2a0088976522ed0810d6d4e5a51c7b8a0b31d3
-  docs/models/components/ListDraftTransferResponseDebtor.md:
-    id: 9954b861ead9
-    last_write_checksum: sha1:d8bf8ca86bd15dcbebe3449adfb24f7aa8a62598
-    pristine_git_object: 295a7646ff184e5e4bb7ad3d7414b1542badb623
-  docs/models/components/ListDraftTransferResponseLinks.md:
-    id: 2c5fa79548b2
-    last_write_checksum: sha1:29c246cd55b9387c728fbbb47efb476f5525f464
-    pristine_git_object: 6ab77854178b55515360b2dc0ada83eb7e7110b5
-  docs/models/components/ListDraftTransferResponseSelf.md:
-    id: 3b6c1ebb5ffc
-    last_write_checksum: sha1:942f45993932c39adb814b349f29c2592f7fa315
-    pristine_git_object: 58a142aef6660af97ab50ef25ba7b26ce227ac5d
-  docs/models/components/ListDraftTransferResponseStatus.md:
-    id: 21139e00ad77
-    last_write_checksum: sha1:df999ed5f89f01c6eb0bbeebdf1f1ade356d08bf
-    pristine_git_object: 9ab6f7cbd845e9156d4e19a0769f1754d4fa89aa
   docs/models/components/ListEntityBalance.md:
     id: 7921d1d8f9e0
     last_write_checksum: sha1:8412f8f36c5beadf98a1e6370e5da6d7fc24b956
@@ -957,8 +925,12 @@ trackedFiles:
     pristine_git_object: 020498c454e7da29f7bc77ab0a6b221ed50e6362
   docs/models/components/ListEntityUnmatchedCreditTransferLinks.md:
     id: d5b3fa205214
-    last_write_checksum: sha1:c9fe829b7fde31b08d59f8ee15ebe5017bd636c6
-    pristine_git_object: ab7c0a9a73b227d518faa4cf922ee1f1a4a96770
+    last_write_checksum: sha1:f651145445e97457b580b3b392180a521ae8a629
+    pristine_git_object: ab21a6396c79b0c962240f46bd84ebb0fb56b346
+  docs/models/components/ListEntityUnmatchedCreditTransferSelf.md:
+    id: b8b3a41fceeb
+    last_write_checksum: sha1:72d1f9077993cc62ad1b79c00df6ae7623ff4e9f
+    pristine_git_object: 9a83184db77c5ace040005502294501719542245
   docs/models/components/ListEntityWebhook.md:
     id: 677e89060415
     last_write_checksum: sha1:9268610ac52bbf2ff0c28ddb9166b41ae95d2299
@@ -1849,8 +1821,8 @@ trackedFiles:
     pristine_git_object: 56db5e3b4b25d0e71aeb1860de2f52442313897b
   docs/models/components/Self.md:
     id: ffc44c0d9323
-    last_write_checksum: sha1:dfdb6452dccacdb2d03e1f4a3b4f3e952287cd43
-    pristine_git_object: e59d4a2579d514828e5b32d04eea1802bb12292f
+    last_write_checksum: sha1:c74649bd2b5fc6c30adc43e2ec08b74078c63abc
+    pristine_git_object: da08d3a8c03d6011869f78248d86d7feb2a7b772
   docs/models/components/SequenceType.md:
     id: 82067420bea3
     last_write_checksum: sha1:1fa7e722318f1dda24b8d0edb6779b975a8ce86b
@@ -2065,8 +2037,8 @@ trackedFiles:
     pristine_git_object: 31c012dc9fa8f3db06248648c1c679238e95a4b8
   docs/models/components/TransactionType.md:
     id: 5215de6d66b8
-    last_write_checksum: sha1:72ac07f81537aab95f38f75ee37763c7517c99f1
-    pristine_git_object: 957ce51b6dbf5343384ad59faa156296a25a0b34
+    last_write_checksum: sha1:1669ddcfe3a632de7b33fd9ce1b12b50c649da26
+    pristine_git_object: ee755e96a8b395491bde77d148e41ae373dbd9b0
   docs/models/components/TransferDestination.md:
     id: 1759bd481353
     last_write_checksum: sha1:0e860d582cb3f07ac23046c2becc25ce72a8b4f7
@@ -2201,8 +2173,8 @@ trackedFiles:
     pristine_git_object: d50d616314248e13811a561af35d35779c473a36
   docs/models/components/WebhookEventTypes.md:
     id: 7123d0d2f47f
-    last_write_checksum: sha1:5b075a0cab720baf0745690aea2dadbd4c9c563b
-    pristine_git_object: a7decbc37d497759125b616132647746c303c1f1
+    last_write_checksum: sha1:24dd80299a3310833a2c9611f99af053412d4427
+    pristine_git_object: 9976b80eb51f2ae72b418be7d86efec64b63e0e2
   docs/models/components/WebhookStatus.md:
     id: 19b31abdf904
     last_write_checksum: sha1:b9598b983218bebf5de04d5c7a1da50795c15e02
@@ -2997,8 +2969,8 @@ trackedFiles:
     pristine_git_object: e72a5436645ca62ccf4b4f7a691e8fdd380ff817
   docs/models/operations/ListBusinessAccountTransactionsRequest.md:
     id: 681e9b47fbff
-    last_write_checksum: sha1:36a02e6f9564f0b702594aae34b20b22ae54202d
-    pristine_git_object: 978e3c78f7166a12745ed2e3efa9b8cfd8c26461
+    last_write_checksum: sha1:f2f3c8d74418edd823b96af44f4ad17610d04158
+    pristine_git_object: fcbd498b24ef32d3feacada561cb67157d18f6df
   docs/models/operations/ListBusinessAccountTransactionsResponse.md:
     id: 2140311c0cb6
     last_write_checksum: sha1:5f216764733dc2191b120cc00ae4ede3632d424f
@@ -3013,8 +2985,8 @@ trackedFiles:
     pristine_git_object: b8ba724612b5a2eba2872ce4419e784f16253337
   docs/models/operations/ListBusinessAccountsRequest.md:
     id: 083c5c281eef
-    last_write_checksum: sha1:27be17b9add4445f45b9668cfb9eff58a0b3a066
-    pristine_git_object: 4f7b09acd1d4501c876cd2b63e20390a53107374
+    last_write_checksum: sha1:be51c993e8a7ea5d4a94a1dcb35ede735c1de22c
+    pristine_git_object: 70736d61e3067ea8320aac60f0be3a8170db40f6
   docs/models/operations/ListBusinessAccountsResponse.md:
     id: a9aa7f0ff11b
     last_write_checksum: sha1:1117b30a853b09eaa83357ac5b626b7b28a0fb01
@@ -3153,8 +3125,8 @@ trackedFiles:
     pristine_git_object: cadd9a54a025ae6e5abdecfd65f195264764e094
   docs/models/operations/ListDraftTransfersEmbedded.md:
     id: bcb76b2a94b9
-    last_write_checksum: sha1:59102a09c35a5aa9b57e7a14c58aa9b0a81a1063
-    pristine_git_object: 5c9ab20655c3467093fc107786d857731528fd89
+    last_write_checksum: sha1:ecae66d93ba6ea181bbcf4dec6e11316e85e3615
+    pristine_git_object: 36e014f958f01be87bb43daaac1b0687d5a7dbbd
   docs/models/operations/ListDraftTransfersRequest.md:
     id: d8fb108d3b86
     last_write_checksum: sha1:005d1733c4689446ddf1a23e250c37d46f4373e3
@@ -3817,8 +3789,8 @@ trackedFiles:
     pristine_git_object: d4287b4fb133f3098a8576955dbb863e6aa45c46
   docs/sdks/accounts/README.md:
     id: d6c754b1ca96
-    last_write_checksum: sha1:a6069c7e587984cda6cdb6a64e7ea1589567befe
-    pristine_git_object: 78deb77bc305961660e38cfe3a88e48830411b85
+    last_write_checksum: sha1:e16baef826dda5d89ea7905e4b30c7a233587dfa
+    pristine_git_object: 99021c45c9851b76c73a76dad8e456e42571c7a0
   docs/sdks/balances/README.md:
     id: 6ca85866f00d
     last_write_checksum: sha1:3eaefe1e6033b73c15b99c97ac4ec3898bcd1527
@@ -3861,8 +3833,8 @@ trackedFiles:
     pristine_git_object: 53e2d8c1c75ebfb390ccfafe8713123f9aca8dc0
   docs/sdks/drafttransfers/README.md:
     id: 4ff4beedc26f
-    last_write_checksum: sha1:419bcc2bd34fd9f21589c20ab5125daa7aee038b
-    pristine_git_object: 547de1c093289dd91226cbcd3ba8ac13b37de319
+    last_write_checksum: sha1:e3cccade7f69eec304a45b645dc75885c196e420
+    pristine_git_object: 9ff89de6a6369dd15e13fe93c78c1d4ec9d7c385
   docs/sdks/invoices/README.md:
     id: a3f76a06eded
     last_write_checksum: sha1:4b382d997262510cb786d460688c37e5eed92e7f
@@ -3957,8 +3929,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:0ff72dc38e2affdce38d21f05e316bdf4ed00055
-    pristine_git_object: eb24495504ef22695bc9109dc8c48889b9cea92d
+    last_write_checksum: sha1:484a820b60e52d772c6891ddadb2cd812026b9cb
+    pristine_git_object: 1c88f9fbc338dc77a86726c1aed2c6554fbde58f
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4037,8 +4009,8 @@ trackedFiles:
     pristine_git_object: 1f05b517a97a10fb45ec0dea7db3b91b4b239553
   src/main/java/com/mollie/mollie/AsyncDraftTransfers.java:
     id: bb3d20c60d40
-    last_write_checksum: sha1:1393bb2565ebd0e3b06868919b2c5c3e53c91315
-    pristine_git_object: a727f715937825812083a034720e6a89a21a5296
+    last_write_checksum: sha1:9b4929cba76e1322af08129c8c94cf778a852848
+    pristine_git_object: 46deb4ba1c4fa2193c1eb9cc565a6edf9baacac0
   src/main/java/com/mollie/mollie/AsyncInvoices.java:
     id: 435be242d9d4
     last_write_checksum: sha1:4b96f8d84e250f0ef6894d983a444fba714950df
@@ -4173,8 +4145,8 @@ trackedFiles:
     pristine_git_object: 94944556f965560913fbcb86d82e6cf626351c29
   src/main/java/com/mollie/mollie/DraftTransfers.java:
     id: 95599902b698
-    last_write_checksum: sha1:c8af2b57234f1d97a4b07f0753a79ae3233b7341
-    pristine_git_object: 230447409a904cfd8115a575f5d8ef7c082c4452
+    last_write_checksum: sha1:041e7dbe601c7ba85f45698c8f49fabbd4420865
+    pristine_git_object: dc5f1b81954a0d19e12647b9afc176400b078dc2
   src/main/java/com/mollie/mollie/Invoices.java:
     id: 3e39052d2c9a
     last_write_checksum: sha1:907e3d3bfd6b8b794afa2223e462971099aa0b8b
@@ -4225,8 +4197,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:9f8574e7be5cbdcd11250161c6c806a4cb10a441
-    pristine_git_object: c0d552452d8a228774adb3e5ec1a8dc768c8c496
+    last_write_checksum: sha1:d97b9abefc7a8d25693593676e1740c78c4d3e05
+    pristine_git_object: b355ed49ea301e1b57a7ad77f2b122f6c033b760
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:5b1b2448cd7365ef474e323a24f05b937422e9f1
@@ -4529,8 +4501,8 @@ trackedFiles:
     pristine_git_object: b505507b67eaddcef30747f62e84683fbc62a2d1
   src/main/java/com/mollie/mollie/models/components/CreateDraftTransferRequest.java:
     id: beba5c60ff4c
-    last_write_checksum: sha1:324889122724c3abb1ab3180be9984195d3cd2ba
-    pristine_git_object: 7c9b75dc49c3db5a8104a3f0a389b39315a8d96f
+    last_write_checksum: sha1:438d1af673d3db9239d4d3683871c602828ae43a
+    pristine_git_object: 299818fd9938032967a626c38c0314c7c58c4458
   src/main/java/com/mollie/mollie/models/components/CreateWebhook.java:
     id: 5c7b5c029877
     last_write_checksum: sha1:fe3d1a63043dc67e79c411d382ce62105ea87cd3
@@ -4615,18 +4587,10 @@ trackedFiles:
     id: 6fba915c54e5
     last_write_checksum: sha1:d36bc4c30465ced7e6a51cf194788b5ebab0f97d
     pristine_git_object: 849ace243194dfad334c4ffb256e55623491e381
-  src/main/java/com/mollie/mollie/models/components/DraftTransferResponseDocumentation.java:
-    id: 4b5ae3af3c2f
-    last_write_checksum: sha1:aa859383fbe50d44f13d6605b2a10ac88db7df88
-    pristine_git_object: 3691be126a88f6af98984b9ebf751232750f779a
   src/main/java/com/mollie/mollie/models/components/DraftTransferResponseLinks.java:
     id: 6d9330c1b6d6
-    last_write_checksum: sha1:87a9f3e8e116fa7338a11382ac36a597a033e83c
-    pristine_git_object: c57f30f89256177e146d95f763b3bc01db5ec088
-  src/main/java/com/mollie/mollie/models/components/DraftTransferResponseSelf.java:
-    id: ce87e093d2b1
-    last_write_checksum: sha1:2db7c132673e4f976f4b4dedc139e11b348be080
-    pristine_git_object: 5aac21d382f0816271aff2dd79bb7c9e2edbd365
+    last_write_checksum: sha1:a685ee3368821268979730665650930d6d6f969a
+    pristine_git_object: a2952cbfd2207fe6508127182946cee076ec35c9
   src/main/java/com/mollie/mollie/models/components/DraftTransferResponseStatus.java:
     id: fd71a432b969
     last_write_checksum: sha1:685e211392f501699680e07042408582a587aeaa
@@ -4649,8 +4613,8 @@ trackedFiles:
     pristine_git_object: 05c447bfd4be325bc07e329daea33f4f32415cbb
   src/main/java/com/mollie/mollie/models/components/Entity.java:
     id: 24cbc47eaa91
-    last_write_checksum: sha1:c3c308b10c1b3f4c0535c0dc8af4e7f63475c4f0
-    pristine_git_object: 991f1fb6bf227cb889fb027653e4d9c55f8ca27b
+    last_write_checksum: sha1:5e8dcc65fac42290376cda31f14222bc009d7cf5
+    pristine_git_object: ce6c8a3c337ed99afded644b44036e7ff75053b2
   src/main/java/com/mollie/mollie/models/components/EntityBalance.java:
     id: 7a797eb67e17
     last_write_checksum: sha1:d76946e5f1bf59bda588c468f55bfa642e948476
@@ -4957,8 +4921,8 @@ trackedFiles:
     pristine_git_object: cd336589224a10710653f819d9537f8e82621fce
   src/main/java/com/mollie/mollie/models/components/EntityWebhookEventWebhookEventTypes.java:
     id: ebdd2e6ad94c
-    last_write_checksum: sha1:1467ef9e71d871456716e9bf127a2df3d875f859
-    pristine_git_object: c44bc7374b3d1c8602a09c99668bdcc11b9b3190
+    last_write_checksum: sha1:1fffe45f288276c0b8ad681243e5256cb8afc2f7
+    pristine_git_object: 68106d368d5193faa9719485a8c6c6129192b53e
   src/main/java/com/mollie/mollie/models/components/EntityWebhookLinks.java:
     id: 8fa396f06f25
     last_write_checksum: sha1:6f72dc96b36ceb37f55d02a66397c4e46154801c
@@ -5047,30 +5011,6 @@ trackedFiles:
     id: c508335badd1
     last_write_checksum: sha1:064e2561e0d5b505756b846bfe3ef01386b7e4aa
     pristine_git_object: 8a3c5480bb393c01fda4938a1cacc7198e685f54
-  src/main/java/com/mollie/mollie/models/components/ListDraftTransferResponse.java:
-    id: 40a1f4c7ef8c
-    last_write_checksum: sha1:cc830feb6d170735a6d2edeeece1fb0dda255580
-    pristine_git_object: 8e29e7a862363bc14f4c2ff8a7d11c02ed2c1689
-  src/main/java/com/mollie/mollie/models/components/ListDraftTransferResponseAccount.java:
-    id: 9caa6bbc5d9c
-    last_write_checksum: sha1:d118b006553db0de3924810f5b64865586ff9f50
-    pristine_git_object: 26ce32a7ce3dfbf72cb6f9a033a61d04b97e5cde
-  src/main/java/com/mollie/mollie/models/components/ListDraftTransferResponseDebtor.java:
-    id: 51846a611c3a
-    last_write_checksum: sha1:7850d39e6319e67094da8f110dab9e8e5c9539d3
-    pristine_git_object: 5ed70e78881c685030d8ad0cf8e4a019ee81d3d1
-  src/main/java/com/mollie/mollie/models/components/ListDraftTransferResponseLinks.java:
-    id: a07ffcad142e
-    last_write_checksum: sha1:21a50ebd342132e824733e055bf0d3c4c51c65b7
-    pristine_git_object: dfdaffecb84d65a9070764eecf6f96e9c0ac79b3
-  src/main/java/com/mollie/mollie/models/components/ListDraftTransferResponseSelf.java:
-    id: 5e7b584ab9e3
-    last_write_checksum: sha1:dd1f153e9b2d2e0e1ffcad9aed155032fb84e4dc
-    pristine_git_object: e9eb896812204c14c8b64afdeff4744d86d8bafb
-  src/main/java/com/mollie/mollie/models/components/ListDraftTransferResponseStatus.java:
-    id: 78f2d5f918bd
-    last_write_checksum: sha1:01670e9a2b3eccb230df643559cca6a925f6f305
-    pristine_git_object: 75af3abc4fd028b7504f7a8189a3408de4dd6faf
   src/main/java/com/mollie/mollie/models/components/ListEntityBalance.java:
     id: 97dcd243dcf2
     last_write_checksum: sha1:6691562b419673b2b3e3b8cef674d0b27ff97c38
@@ -5181,8 +5121,12 @@ trackedFiles:
     pristine_git_object: 88a176cd5a89587e6589c6eecdb31bf24114d063
   src/main/java/com/mollie/mollie/models/components/ListEntityUnmatchedCreditTransferLinks.java:
     id: ef2d8d983fb3
-    last_write_checksum: sha1:bdf1c62debb466e4bcff03656a3d9af62e9b43ab
-    pristine_git_object: fe85851a17eea82ced8a9665568bbee2bd746c63
+    last_write_checksum: sha1:20def6bcd602ed71ed66f35bf3a4fe302d1922a6
+    pristine_git_object: 7f28ce7d34a39aeb4d0c4ed35ae44facdbf763c7
+  src/main/java/com/mollie/mollie/models/components/ListEntityUnmatchedCreditTransferSelf.java:
+    id: f2289c01b936
+    last_write_checksum: sha1:5cd8516256a39a1cfa05d70b463def57f7520d17
+    pristine_git_object: 51bc26c52f203314ffad1dcd34fe2bfaf6dd5bb3
   src/main/java/com/mollie/mollie/models/components/ListEntityWebhook.java:
     id: 46a45ecea455
     last_write_checksum: sha1:b0c93d01ca8d9155b9bd1810fc578545a825befd
@@ -6073,8 +6017,8 @@ trackedFiles:
     pristine_git_object: 808e92c0a5d7eb932a940edbb016c160b10d77f0
   src/main/java/com/mollie/mollie/models/components/Self.java:
     id: 44c6751cfd42
-    last_write_checksum: sha1:e0b249dfd04ff989b01143b12518e4fe3174d934
-    pristine_git_object: 4a9c52e907e973cdf1b2bcdd3562c2b558898d4a
+    last_write_checksum: sha1:c565b5a9e146fbcebac00143cac0c680b63cad17
+    pristine_git_object: 717266a15811d0bd5026d3177ef6c9a8ae368e26
   src/main/java/com/mollie/mollie/models/components/SequenceType.java:
     id: a345ee1340de
     last_write_checksum: sha1:6aaa4f429395c0827adcac79e953dff8a65fb489
@@ -6289,8 +6233,8 @@ trackedFiles:
     pristine_git_object: 165630928750df7fd91ff9054b5c42084ccd6cbd
   src/main/java/com/mollie/mollie/models/components/TransactionType.java:
     id: 7348f1eb1476
-    last_write_checksum: sha1:d6e213613856330bddbad37b4006d3ced140ba7e
-    pristine_git_object: 4e9229d367245cec84164abb3d9fda12f06dec39
+    last_write_checksum: sha1:a0f3e301fed43babc213041fa17ad3bf9b67d8d3
+    pristine_git_object: e1e7161ba7d7b1c70f0d8ba9cd1cb484e06e0f06
   src/main/java/com/mollie/mollie/models/components/TransferDestination.java:
     id: 24c107ec660b
     last_write_checksum: sha1:83a94599bc4a9c167d04128dd76270e4fc54e6bc
@@ -6425,8 +6369,8 @@ trackedFiles:
     pristine_git_object: 34065db38701dd0c64d41bef0504ad1aa8c7e63b
   src/main/java/com/mollie/mollie/models/components/WebhookEventTypes.java:
     id: bb45470b568c
-    last_write_checksum: sha1:4059f880ec505aea9d53a83dffdda53bf2a00c9b
-    pristine_git_object: 3e654078adaba9cd24c220badf82d38bff5cb121
+    last_write_checksum: sha1:f790b1baf233fcc6f3f9a66f2199754fc02eff88
+    pristine_git_object: b27577e900f50d4b45190f8d2f31820b4ce90951
   src/main/java/com/mollie/mollie/models/components/WebhookStatus.java:
     id: ff1f7111dd7d
     last_write_checksum: sha1:b4dad9ff2532159ac849023c772dd9b069b5ffdf
@@ -8045,8 +7989,8 @@ trackedFiles:
     pristine_git_object: 92b4337e29577fb3bbc256a3fcd2b7b3292a2dc8
   src/main/java/com/mollie/mollie/models/operations/ListBusinessAccountTransactionsRequest.java:
     id: f75168f3045e
-    last_write_checksum: sha1:445d4636a12d1b6d18e0cab7cff4c7dd2583b160
-    pristine_git_object: 02de0484db619f705902c2c86071ad96bd2d99f4
+    last_write_checksum: sha1:9bb57142b06bb49a6928954674ec03ebd3e5c3fe
+    pristine_git_object: d4a02473adac8538ac4213ce45dac5ea4aac3468
   src/main/java/com/mollie/mollie/models/operations/ListBusinessAccountTransactionsRequestBuilder.java:
     id: a16fbd9c5234
     last_write_checksum: sha1:724f142cebd36181a76f0529b53483c3b88a5715
@@ -8065,8 +8009,8 @@ trackedFiles:
     pristine_git_object: 31e8fca157b5cb24611a8a7e0183ee51fef7ba2c
   src/main/java/com/mollie/mollie/models/operations/ListBusinessAccountsRequest.java:
     id: ee1a4d1aaef1
-    last_write_checksum: sha1:572fd60692722d8b1405eb782cfd5ca312b86183
-    pristine_git_object: df1fe243c6806fe29956e5f246968293430b07e9
+    last_write_checksum: sha1:2d043da4e109c536991602b75c66e9cb0cd0ac4e
+    pristine_git_object: fddb860ae80018ff23e29b290c02db22b4fc0df9
   src/main/java/com/mollie/mollie/models/operations/ListBusinessAccountsRequestBuilder.java:
     id: 52d396910342
     last_write_checksum: sha1:9c838fa456aa5355329c59c295bd2e24732dba76
@@ -8237,8 +8181,8 @@ trackedFiles:
     pristine_git_object: fd28ace8449d28b1b22fc2c42c1bf38600232279
   src/main/java/com/mollie/mollie/models/operations/ListDraftTransfersEmbedded.java:
     id: 0c4f35212a23
-    last_write_checksum: sha1:d618d258e04b796b3eea3ab817a66913fd8cc27f
-    pristine_git_object: 90f6505e66cc3293a468d64b7e0bc479a16bea36
+    last_write_checksum: sha1:c03df0f9ad250e15f78a6dd89ab3c41d4b37444f
+    pristine_git_object: efd3859e9441809ab595685ae1c0a3ca5dc7cd4e
   src/main/java/com/mollie/mollie/models/operations/ListDraftTransfersRequest.java:
     id: f1a6d7ddaed0
     last_write_checksum: sha1:1803b84a2462645b0ffd3848ad29256cfc0df8b8
@@ -9633,8 +9577,8 @@ trackedFiles:
     pristine_git_object: e50d7ca47f9227ccb52af54c337e96ddc44f00f8
   src/main/java/com/mollie/mollie/operations/CreateDraftTransfer.java:
     id: c58963d4b73e
-    last_write_checksum: sha1:ae336931d0d56ff08e6d745d3d32ad90544c7179
-    pristine_git_object: 6104470fa7d43c7cdbbc66efdffc532071d9233b
+    last_write_checksum: sha1:b1e69a1c7d5aa1a94b5001972a30873d055bfec1
+    pristine_git_object: 0c9d2c67f6b5f2bce12b2cd7ea77299025ef1d10
   src/main/java/com/mollie/mollie/operations/CreateMandate.java:
     id: 14f1e66d5ef4
     last_write_checksum: sha1:ef4675fc32f901742d5083b5579a3d1bbe4f6815
@@ -15250,17 +15194,19 @@ examples:
           from: "ba_nopqrstuvwxyz23456789A"
           limit: 50
           sort: "desc"
+          iban: "NL95MLLE1234567890"
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 1, "_embedded": {"businessAccounts": [{"resource": "business-account", "id": "ba_nopqrstuvwxyz23456789A", "accountDetails": {"accountHolderName": "Mollie B.V.", "name": "Main Checking Account", "currency": "EUR", "iban": "NL02MLLE123456780", "bic": "MLLEXX"}, "balance": {"total": {"currency": "EUR", "value": "5000.00"}}, "status": "active", "mode": "live", "createdAt": "2024-03-20T09:13:37+00:00"}]}}
+          application/hal+json: {"count": 1, "_embedded": {"businessAccounts": [{"resource": "business-account", "id": "ba_nopqrstuvwxyz23456789A", "accountDetails": {"accountHolderName": "Mollie B.V.", "name": "Main Checking Account", "currency": "EUR", "iban": "NL95MLLE1234567890", "bic": "MLLENL2AXXX"}, "balance": {"total": {"currency": "EUR", "value": "5000.00"}}, "status": "active", "mode": "live", "createdAt": "2024-03-20T09:13:37+00:00"}]}}
     speakeasy-default-list-business-accounts:
       parameters:
         query:
           from: "ba_nopqrstuvwxyz23456789A"
           limit: 50
           sort: "desc"
+          iban: "NL95MLLE1234567890"
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
@@ -15277,7 +15223,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "business-account", "id": "ba_nopqrstuvwxyz23456789A", "accountDetails": {"accountHolderName": "Mollie B.V.", "name": "Main Checking Account", "currency": "EUR", "iban": "NL02MLLE123456780", "bic": "MLLEXX"}, "balance": {"total": {"currency": "EUR", "value": "5000.00"}}, "status": "active", "mode": "live", "createdAt": "2024-03-20T09:13:37+00:00"}
+          application/hal+json: {"resource": "business-account", "id": "ba_nopqrstuvwxyz23456789A", "accountDetails": {"accountHolderName": "Mollie B.V.", "name": "Main Checking Account", "currency": "EUR", "iban": "NL95MLLE1234567890", "bic": "MLLENL2AXXX"}, "balance": {"total": {"currency": "EUR", "value": "5000.00"}}, "status": "active", "mode": "live", "createdAt": "2024-03-20T09:13:37+00:00"}
     speakeasy-default-get-business-account:
       parameters:
         path:
@@ -15298,11 +15244,14 @@ examples:
           from: "batr_87GByBuj4UCcUTEbs6aGJ"
           limit: 50
           sort: "desc"
+          creditDebitIndicator: "debit"
+          processedAfter: "2025-02-01T00:00:00+00:00"
+          processedBefore: "2025-02-26T23:59:59+00:00"
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"count": 2, "_embedded": {"transactions": [{"resource": "business-account-transaction", "id": "batr_jzQPWFaiDhzpkBcAeKEZH", "businessAccountId": "ba_nopqrstuvwxyz23456789A", "creditDebitIndicator": "debit", "type": "bank-transfer", "amount": {"currency": "EUR", "value": "100.00"}, "description": "Payment for services", "counterparty": {"identifier": "NL11ABNA01234567890", "name": "Beneficiary Name"}, "afterBalance": {"total": {"currency": "EUR", "value": "4900.00"}}, "processedAt": "2025-02-26T08:00:00+00:00", "mode": "live", "createdAt": "2025-02-26T08:15:00+00:00"}, {"resource": "business-account-transaction", "id": "batr_87GByBuj4UCcUTEbs6aGJ", "businessAccountId": "ba_nopqrstuvwxyz23456789A", "creditDebitIndicator": "credit", "type": "ideal-payment", "amount": {"currency": "EUR", "value": "250.00"}, "description": "iDEAL payment received", "counterparty": {"identifier": "NL91ABNA0417164300", "name": "Jan Jansen"}, "afterBalance": {"total": {"currency": "EUR", "value": "5250.00"}}, "processedAt": "2025-02-26T10:30:00+00:00", "mode": "live", "createdAt": "2025-02-26T10:30:00+00:00"}]}}
+          application/hal+json: {"count": 2, "_embedded": {"transactions": [{"resource": "business-account-transaction", "id": "batr_jzQPWFaiDhzpkBcAeKEZH", "businessAccountId": "ba_nopqrstuvwxyz23456789A", "creditDebitIndicator": "debit", "type": "bank-transfer", "amount": {"currency": "EUR", "value": "100.00"}, "description": "Payment for services", "counterparty": {"identifier": "NL02ABNA0123456789", "name": "Beneficiary Name"}, "afterBalance": {"total": {"currency": "EUR", "value": "4900.00"}}, "processedAt": "2025-02-26T08:00:00+00:00", "mode": "live", "createdAt": "2025-02-26T08:15:00+00:00"}, {"resource": "business-account-transaction", "id": "batr_87GByBuj4UCcUTEbs6aGJ", "businessAccountId": "ba_nopqrstuvwxyz23456789A", "creditDebitIndicator": "credit", "type": "bank-transfer", "amount": {"currency": "EUR", "value": "250.00"}, "description": "Bank transfer received", "counterparty": {"identifier": "NL91ABNA0417164300", "name": "Jan Jansen"}, "afterBalance": {"total": {"currency": "EUR", "value": "5250.00"}}, "processedAt": "2025-02-26T10:30:00+00:00", "mode": "live", "createdAt": "2025-02-26T10:30:00+00:00"}]}}
     speakeasy-default-list-business-account-transactions:
       parameters:
         path:
@@ -15311,6 +15260,9 @@ examples:
           from: "batr_87GByBuj4UCcUTEbs6aGJ"
           limit: 50
           sort: "desc"
+          creditDebitIndicator: "debit"
+          processedAfter: "2025-02-01T00:00:00+00:00"
+          processedBefore: "2025-02-26T23:59:59+00:00"
         header:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
@@ -15328,7 +15280,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "business-account-transaction", "id": "batr_jzQPWFaiDhzpkBcAeKEZH", "businessAccountId": "ba_nopqrstuvwxyz23456789A", "creditDebitIndicator": "debit", "type": "bank-transfer", "amount": {"currency": "EUR", "value": "100.00"}, "description": "Payment for services", "counterparty": {"identifier": "NL11ABNA01234567890", "name": "Beneficiary Name"}, "afterBalance": {"total": {"currency": "EUR", "value": "4900.00"}}, "processedAt": "2025-02-26T08:00:00+00:00", "mode": "live", "createdAt": "2025-02-26T08:15:00+00:00"}
+          application/hal+json: {"resource": "business-account-transaction", "id": "batr_jzQPWFaiDhzpkBcAeKEZH", "businessAccountId": "ba_nopqrstuvwxyz23456789A", "creditDebitIndicator": "debit", "type": "bank-transfer", "amount": {"currency": "EUR", "value": "100.00"}, "description": "Payment for services", "counterparty": {"identifier": "NL02ABNA0123456789", "name": "Beneficiary Name"}, "afterBalance": {"total": {"currency": "EUR", "value": "4900.00"}}, "processedAt": "2025-02-26T08:00:00+00:00", "mode": "live", "createdAt": "2025-02-26T08:15:00+00:00"}
     get-transaction-200-credit:
       parameters:
         path:
@@ -15338,7 +15290,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "business-account-transaction", "id": "batr_87GByBuj4UCcUTEbs6aGJ", "businessAccountId": "ba_nopqrstuvwxyz23456789A", "creditDebitIndicator": "credit", "type": "ideal-payment", "amount": {"currency": "EUR", "value": "250.00"}, "description": "iDEAL payment received", "counterparty": {"identifier": "NL91ABNA0417164300", "name": "Jan Jansen"}, "afterBalance": {"total": {"currency": "EUR", "value": "5250.00"}}, "processedAt": "2025-02-26T10:30:00+00:00", "mode": "live", "createdAt": "2025-02-26T10:30:00+00:00"}
+          application/hal+json: {"resource": "business-account-transaction", "id": "batr_87GByBuj4UCcUTEbs6aGJ", "businessAccountId": "ba_nopqrstuvwxyz23456789A", "creditDebitIndicator": "credit", "type": "bank-transfer", "amount": {"currency": "EUR", "value": "250.00"}, "description": "Bank transfer received", "counterparty": {"identifier": "NL91ABNA0417164300", "name": "Jan Jansen"}, "afterBalance": {"total": {"currency": "EUR", "value": "5250.00"}}, "processedAt": "2025-02-26T10:30:00+00:00", "mode": "live", "createdAt": "2025-02-26T10:30:00+00:00"}
     speakeasy-default-get-business-account-transaction:
       parameters:
         path:
@@ -15638,7 +15590,7 @@ examples:
         application/json: {"debtorIban": "NL55MLLE0123456789", "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "testmode": false}
       responses:
         "201":
-          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "pending-review", "statusReason": null, "createdAt": "2025-01-01T12:00:00+00:00", "approvedAt": null, "declinedAt": null, "deletedAt": null, "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-draft-transfer", "type": "text/html"}}}
+          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "pending-review", "statusReason": null, "createdAt": "2025-01-01T12:00:00+00:00", "approvedAt": null, "declinedAt": null, "deletedAt": null, "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}}}
     speakeasy-default-create-draft-transfer:
       parameters:
         header:
@@ -15647,8 +15599,10 @@ examples:
         application/json: {"debtorIban": "NL55MLLE0123456789", "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "testmode": false}
       responses:
         "201":
-          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "pending-review", "statusReason": {"code": "deleted-by-creator", "message": "The draft transfer has been deleted by the user who created it"}, "createdAt": "2024-03-20T09:13:37+00:00", "approvedAt": "2025-01-01T12:05:00+00:00", "declinedAt": "2025-01-01T12:05:00+00:00", "deletedAt": "2025-01-01T12:05:00+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-draft-transfer", "type": "text/html"}}}
+          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "pending-review", "statusReason": {"code": "deleted-by-creator", "message": "The draft transfer has been deleted by the user who created it"}, "createdAt": "2024-03-20T09:13:37+00:00", "approvedAt": "2025-01-01T12:05:00+00:00", "declinedAt": "2025-01-01T12:05:00+00:00", "deletedAt": "2025-01-01T12:05:00+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}}}
         "422":
+          application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
+        "400":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   list-draft-transfers:
     list-draft-transfers-200:
@@ -15684,7 +15638,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "pending-review", "statusReason": null, "createdAt": "2025-01-01T12:00:00+00:00", "approvedAt": null, "declinedAt": null, "deletedAt": null, "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-draft-transfer", "type": "text/html"}}}
+          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "pending-review", "statusReason": null, "createdAt": "2025-01-01T12:00:00+00:00", "approvedAt": null, "declinedAt": null, "deletedAt": null, "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}}}
     initiated-draft-transfer:
       parameters:
         path:
@@ -15702,7 +15656,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "pending-review", "statusReason": {"code": "deleted-by-creator", "message": "The draft transfer has been deleted by the user who created it"}, "createdAt": "2024-03-20T09:13:37+00:00", "approvedAt": "2025-01-01T12:05:00+00:00", "declinedAt": "2025-01-01T12:05:00+00:00", "deletedAt": "2025-01-01T12:05:00+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-draft-transfer", "type": "text/html"}}}
+          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "pending-review", "statusReason": {"code": "deleted-by-creator", "message": "The draft transfer has been deleted by the user who created it"}, "createdAt": "2024-03-20T09:13:37+00:00", "approvedAt": "2025-01-01T12:05:00+00:00", "declinedAt": "2025-01-01T12:05:00+00:00", "deletedAt": "2025-01-01T12:05:00+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
     approved-draft-transfer:
@@ -15713,7 +15667,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "approved", "statusReason": null, "createdAt": "2025-01-01T12:00:00+00:00", "approvedAt": "2025-01-01T12:05:00+00:00", "declinedAt": null, "deletedAt": null, "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-draft-transfer", "type": "text/html"}}}
+          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "approved", "statusReason": null, "createdAt": "2025-01-01T12:00:00+00:00", "approvedAt": "2025-01-01T12:05:00+00:00", "declinedAt": null, "deletedAt": null, "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}}}
     declined-by-initiator-draft-transfer:
       parameters:
         path:
@@ -15722,7 +15676,7 @@ examples:
           idempotency-key: "123e4567-e89b-12d3-a456-426"
       responses:
         "200":
-          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "test", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "13.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "declined", "statusReason": {"code": "declined-by-initiator", "message": "The draft transfer has been declined by the initiator: Insufficient budget approval"}, "createdAt": "2025-01-01T12:00:00+00:00", "approvedAt": null, "declinedAt": "2025-01-01T12:05:00+00:00", "deletedAt": null, "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-draft-transfer", "type": "text/html"}}}
+          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "test", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "13.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "declined", "statusReason": {"code": "declined-by-initiator", "message": "The draft transfer has been declined by the initiator: Insufficient budget approval"}, "createdAt": "2025-01-01T12:00:00+00:00", "approvedAt": null, "declinedAt": "2025-01-01T12:05:00+00:00", "deletedAt": null, "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}}}
   cancel-draft-transfer:
     cancel-draft-transfer-200:
       parameters:
@@ -15734,7 +15688,7 @@ examples:
         application/json: {"testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "declined", "statusReason": {"code": "deleted-by-creator", "message": "The draft transfer has been deleted by the user who created it"}, "createdAt": "2025-01-01T12:00:00+00:00", "approvedAt": null, "declinedAt": null, "deletedAt": "2025-01-01T12:05:00+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-draft-transfer", "type": "text/html"}}}
+          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Mollie B.V.", "account": {"iban": "NL55MLLE0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "100.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "declined", "statusReason": {"code": "deleted-by-creator", "message": "The draft transfer has been deleted by the user who created it"}, "createdAt": "2025-01-01T12:00:00+00:00", "approvedAt": null, "declinedAt": null, "deletedAt": "2025-01-01T12:05:00+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}}}
     speakeasy-default-cancel-draft-transfer:
       parameters:
         path:
@@ -15745,7 +15699,7 @@ examples:
         application/json: {"testmode": false}
       responses:
         "200":
-          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "approved", "statusReason": {"code": "deleted-by-creator", "message": "The draft transfer has been deleted by the user who created it"}, "createdAt": "2024-03-20T09:13:37+00:00", "approvedAt": "2025-01-01T12:05:00+00:00", "declinedAt": "2025-01-01T12:05:00+00:00", "deletedAt": "2025-01-01T12:05:00+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}, "documentation": {"href": "https://docs.mollie.com/reference/get-draft-transfer", "type": "text/html"}}}
+          application/hal+json: {"resource": "business-account-draft-transfer", "id": "badrt_87GByBuj4UCcUTEbs6aGJ", "mode": "live", "debtor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "creditor": {"fullName": "Jan Jansen", "account": {"iban": "NL02ABNA0123456789"}}, "amount": {"currency": "EUR", "value": "10.00"}, "description": "Invoice 12345", "scheduledExecutionDate": "2025-03-01", "status": "approved", "statusReason": {"code": "deleted-by-creator", "message": "The draft transfer has been deleted by the user who created it"}, "createdAt": "2024-03-20T09:13:37+00:00", "approvedAt": "2025-01-01T12:05:00+00:00", "declinedAt": "2025-01-01T12:05:00+00:00", "deletedAt": "2025-01-01T12:05:00+00:00", "_links": {"self": {"href": "https://api.mollie.com/v2/business-accounts/draft-transfers/badrt_87GByBuj4UCcUTEbs6aGJ", "type": "application/hal+json"}}}
         "404":
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
   enable-method:
@@ -15857,6 +15811,7 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
+releaseNotes: "## Java SDK Changes:\n* `client.webhooks.create()`: \n  *  `requestBody.eventTypes.union(Array<webhook-event-types>)[]` **Changed**\n  *  `response.eventTypes[]` **Changed** (Breaking ⚠️)\n* `client.webhooks.list()`: \n  *  `request.eventTypes` **Changed**\n  *  `response.Embedded.webhooks[].eventTypes[]` **Changed** (Breaking ⚠️)\n* `client.webhooks.update()`: \n  *  `requestBody.eventTypes.union(Array<webhook-event-types>)[]` **Changed**\n  *  `response.eventTypes[]` **Changed** (Breaking ⚠️)\n* `client.webhooks.get()`:  `response.eventTypes[]` **Changed** (Breaking ⚠️)\n* `client.draftTransfers.create()`: \n  *  `request.createDraftTransferRequest.debtorIban` **Changed** (Breaking ⚠️)\n  *  `response.Links.documentation` **Removed** (Breaking ⚠️)\n  *  `error.status[400]` **Added**\n* `client.draftTransfers.get()`:  `response.Links.documentation` **Removed** (Breaking ⚠️)\n* `client.draftTransfers.cancel()`:  `response.Links.documentation` **Removed** (Breaking ⚠️)\n* `client.webhookEvents.get()`:  `response` **Changed**\n* `client.accounts.listAccounts()`: \n  *  `request.iban` **Added**\n* `client.accounts.list()`: \n  *  `request` **Changed**\n  *  `response.Embedded.transactions[].type.enum(rewardsPayout)` **Added**\n* `client.accounts.get()`:  `response.type.enum(rewardsPayout)` **Added**\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

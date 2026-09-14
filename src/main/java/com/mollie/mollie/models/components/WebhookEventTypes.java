@@ -52,6 +52,9 @@ public enum WebhookEventTypes {
     BUSINESS_ACCOUNT_TRANSFER_FAILED("business-account-transfer.failed"),
     BUSINESS_ACCOUNT_TRANSFER_BLOCKED("business-account-transfer.blocked"),
     BUSINESS_ACCOUNT_TRANSFER_RETURNED("business-account-transfer.returned"),
+    BUSINESS_ACCOUNT_DRAFT_TRANSFER_CREATED("business-account-draft-transfer.created"),
+    BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED("business-account-draft-transfer.approved"),
+    BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED("business-account-draft-transfer.declined"),
     WILDCARD("*");
 
     @JsonValue

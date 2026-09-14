@@ -7,7 +7,7 @@ package com.mollie.mollie.models.operations;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.ListDraftTransferResponse;
+import com.mollie.mollie.models.components.DraftTransferResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -19,11 +19,11 @@ public class ListDraftTransfersEmbedded {
      * An array of draft transfer objects.
      */
     @JsonProperty("draft_transfers")
-    private List<ListDraftTransferResponse> draftTransfers;
+    private List<DraftTransferResponse> draftTransfers;
 
     @JsonCreator
     public ListDraftTransfersEmbedded(
-            @JsonProperty("draft_transfers") List<ListDraftTransferResponse> draftTransfers) {
+            @JsonProperty("draft_transfers") List<DraftTransferResponse> draftTransfers) {
         Utils.checkNotNull(draftTransfers, "draftTransfers");
         this.draftTransfers = draftTransfers;
     }
@@ -32,7 +32,7 @@ public class ListDraftTransfersEmbedded {
      * An array of draft transfer objects.
      */
     @JsonIgnore
-    public List<ListDraftTransferResponse> draftTransfers() {
+    public List<DraftTransferResponse> draftTransfers() {
         return draftTransfers;
     }
 
@@ -44,7 +44,7 @@ public class ListDraftTransfersEmbedded {
     /**
      * An array of draft transfer objects.
      */
-    public ListDraftTransfersEmbedded withDraftTransfers(List<ListDraftTransferResponse> draftTransfers) {
+    public ListDraftTransfersEmbedded withDraftTransfers(List<DraftTransferResponse> draftTransfers) {
         Utils.checkNotNull(draftTransfers, "draftTransfers");
         this.draftTransfers = draftTransfers;
         return this;
@@ -78,7 +78,7 @@ public class ListDraftTransfersEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private List<ListDraftTransferResponse> draftTransfers;
+        private List<DraftTransferResponse> draftTransfers;
 
         private Builder() {
           // force use of static builder() method
@@ -88,7 +88,7 @@ public class ListDraftTransfersEmbedded {
         /**
          * An array of draft transfer objects.
          */
-        public Builder draftTransfers(List<ListDraftTransferResponse> draftTransfers) {
+        public Builder draftTransfers(List<DraftTransferResponse> draftTransfers) {
             Utils.checkNotNull(draftTransfers, "draftTransfers");
             this.draftTransfers = draftTransfers;
             return this;

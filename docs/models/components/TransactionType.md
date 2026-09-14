@@ -30,3 +30,4 @@ TransactionType custom = TransactionType.of("custom_value");
 | `CORRECTION`          | correction            |
 | `DIRECT_DEBIT`        | direct-debit          |
 | `DIRECT_DEBIT_REFUND` | direct-debit-refund   |
+| `REWARDS_PAYOUT`      | rewards-payout        |

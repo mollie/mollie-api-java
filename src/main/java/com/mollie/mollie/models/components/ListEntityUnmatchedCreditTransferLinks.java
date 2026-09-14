@@ -26,11 +26,11 @@ public class ListEntityUnmatchedCreditTransferLinks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("self")
-    private Optional<? extends Self> self;
+    private Optional<? extends ListEntityUnmatchedCreditTransferSelf> self;
 
     @JsonCreator
     public ListEntityUnmatchedCreditTransferLinks(
-            @JsonProperty("self") Optional<? extends Self> self) {
+            @JsonProperty("self") Optional<? extends ListEntityUnmatchedCreditTransferSelf> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
     }
@@ -44,8 +44,8 @@ public class ListEntityUnmatchedCreditTransferLinks {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Self> self() {
-        return (Optional<Self>) self;
+    public Optional<ListEntityUnmatchedCreditTransferSelf> self() {
+        return (Optional<ListEntityUnmatchedCreditTransferSelf>) self;
     }
 
     public static Builder builder() {
@@ -56,7 +56,7 @@ public class ListEntityUnmatchedCreditTransferLinks {
     /**
      * The URL to this unmatched credit transfer.
      */
-    public ListEntityUnmatchedCreditTransferLinks withSelf(Self self) {
+    public ListEntityUnmatchedCreditTransferLinks withSelf(ListEntityUnmatchedCreditTransferSelf self) {
         Utils.checkNotNull(self, "self");
         this.self = Optional.ofNullable(self);
         return this;
@@ -66,7 +66,7 @@ public class ListEntityUnmatchedCreditTransferLinks {
     /**
      * The URL to this unmatched credit transfer.
      */
-    public ListEntityUnmatchedCreditTransferLinks withSelf(Optional<? extends Self> self) {
+    public ListEntityUnmatchedCreditTransferLinks withSelf(Optional<? extends ListEntityUnmatchedCreditTransferSelf> self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
         return this;
@@ -100,7 +100,7 @@ public class ListEntityUnmatchedCreditTransferLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Self> self = Optional.empty();
+        private Optional<? extends ListEntityUnmatchedCreditTransferSelf> self = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -110,7 +110,7 @@ public class ListEntityUnmatchedCreditTransferLinks {
         /**
          * The URL to this unmatched credit transfer.
          */
-        public Builder self(Self self) {
+        public Builder self(ListEntityUnmatchedCreditTransferSelf self) {
             Utils.checkNotNull(self, "self");
             this.self = Optional.ofNullable(self);
             return this;
@@ -119,7 +119,7 @@ public class ListEntityUnmatchedCreditTransferLinks {
         /**
          * The URL to this unmatched credit transfer.
          */
-        public Builder self(Optional<? extends Self> self) {
+        public Builder self(Optional<? extends ListEntityUnmatchedCreditTransferSelf> self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
             return this;

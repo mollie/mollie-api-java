@@ -20,13 +20,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateDraftTransferRequest {
     /**
-     * The IBAN of the debtor's (sender) Mollie Business Account. Defaults to your organization's primary
-     * account
-     * if omitted.
+     * The IBAN of the debtor's (sender) Mollie Business Account.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("debtorIban")
-    private Optional<String> debtorIban;
+    private String debtorIban;
 
     /**
      * A party involved in the draft transfer, representing either the debtor (sender) or creditor
@@ -74,7 +71,7 @@ public class CreateDraftTransferRequest {
 
     @JsonCreator
     public CreateDraftTransferRequest(
-            @JsonProperty("debtorIban") Optional<String> debtorIban,
+            @JsonProperty("debtorIban") String debtorIban,
             @JsonProperty("creditor") DraftTransferParty creditor,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("description") Optional<String> description,
@@ -95,19 +92,18 @@ public class CreateDraftTransferRequest {
     }
     
     public CreateDraftTransferRequest(
+            String debtorIban,
             DraftTransferParty creditor,
             Amount amount) {
-        this(Optional.empty(), creditor, amount,
+        this(debtorIban, creditor, amount,
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
-     * The IBAN of the debtor's (sender) Mollie Business Account. Defaults to your organization's primary
-     * account
-     * if omitted.
+     * The IBAN of the debtor's (sender) Mollie Business Account.
      */
     @JsonIgnore
-    public Optional<String> debtorIban() {
+    public String debtorIban() {
         return debtorIban;
     }
 
@@ -168,23 +164,9 @@ public class CreateDraftTransferRequest {
 
 
     /**
-     * The IBAN of the debtor's (sender) Mollie Business Account. Defaults to your organization's primary
-     * account
-     * if omitted.
+     * The IBAN of the debtor's (sender) Mollie Business Account.
      */
     public CreateDraftTransferRequest withDebtorIban(String debtorIban) {
-        Utils.checkNotNull(debtorIban, "debtorIban");
-        this.debtorIban = Optional.ofNullable(debtorIban);
-        return this;
-    }
-
-
-    /**
-     * The IBAN of the debtor's (sender) Mollie Business Account. Defaults to your organization's primary
-     * account
-     * if omitted.
-     */
-    public CreateDraftTransferRequest withDebtorIban(Optional<String> debtorIban) {
         Utils.checkNotNull(debtorIban, "debtorIban");
         this.debtorIban = debtorIban;
         return this;
@@ -323,7 +305,7 @@ public class CreateDraftTransferRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> debtorIban = Optional.empty();
+        private String debtorIban;
 
         private DraftTransferParty creditor;
 
@@ -341,22 +323,9 @@ public class CreateDraftTransferRequest {
 
 
         /**
-         * The IBAN of the debtor's (sender) Mollie Business Account. Defaults to your organization's primary
-         * account
-         * if omitted.
+         * The IBAN of the debtor's (sender) Mollie Business Account.
          */
         public Builder debtorIban(String debtorIban) {
-            Utils.checkNotNull(debtorIban, "debtorIban");
-            this.debtorIban = Optional.ofNullable(debtorIban);
-            return this;
-        }
-
-        /**
-         * The IBAN of the debtor's (sender) Mollie Business Account. Defaults to your organization's primary
-         * account
-         * if omitted.
-         */
-        public Builder debtorIban(Optional<String> debtorIban) {
             Utils.checkNotNull(debtorIban, "debtorIban");
             this.debtorIban = debtorIban;
             return this;

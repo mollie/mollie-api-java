@@ -20,6 +20,12 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListBusinessAccountsRequest {
     /**
+     * Filter the results by IBAN. Only the business account with an exact match is returned.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=iban")
+    private Optional<String> iban;
+
+    /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
      * to paginate
      * the result set.
@@ -61,16 +67,19 @@ public class ListBusinessAccountsRequest {
 
     @JsonCreator
     public ListBusinessAccountsRequest(
+            Optional<String> iban,
             Optional<String> from,
             JsonNullable<Long> limit,
             Optional<? extends Sorting> sort,
             Optional<Boolean> testmode,
             Optional<String> idempotencyKey) {
+        Utils.checkNotNull(iban, "iban");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(testmode, "testmode");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.iban = iban;
         this.from = from;
         this.limit = limit;
         this.sort = sort;
@@ -79,8 +88,16 @@ public class ListBusinessAccountsRequest {
     }
     
     public ListBusinessAccountsRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Filter the results by IBAN. Only the business account with an exact match is returned.
+     */
+    @JsonIgnore
+    public Optional<String> iban() {
+        return iban;
     }
 
     /**
@@ -138,6 +155,25 @@ public class ListBusinessAccountsRequest {
         return new Builder();
     }
 
+
+    /**
+     * Filter the results by IBAN. Only the business account with an exact match is returned.
+     */
+    public ListBusinessAccountsRequest withIban(String iban) {
+        Utils.checkNotNull(iban, "iban");
+        this.iban = Optional.ofNullable(iban);
+        return this;
+    }
+
+
+    /**
+     * Filter the results by IBAN. Only the business account with an exact match is returned.
+     */
+    public ListBusinessAccountsRequest withIban(Optional<String> iban) {
+        Utils.checkNotNull(iban, "iban");
+        this.iban = iban;
+        return this;
+    }
 
     /**
      * Provide an ID to start the result set from the item with the given ID and onwards. This allows you
@@ -263,6 +299,7 @@ public class ListBusinessAccountsRequest {
         }
         ListBusinessAccountsRequest other = (ListBusinessAccountsRequest) o;
         return 
+            Utils.enhancedDeepEquals(this.iban, other.iban) &&
             Utils.enhancedDeepEquals(this.from, other.from) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.sort, other.sort) &&
@@ -273,13 +310,14 @@ public class ListBusinessAccountsRequest {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            from, limit, sort,
-            testmode, idempotencyKey);
+            iban, from, limit,
+            sort, testmode, idempotencyKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListBusinessAccountsRequest.class,
+                "iban", iban,
                 "from", from,
                 "limit", limit,
                 "sort", sort,
@@ -289,6 +327,8 @@ public class ListBusinessAccountsRequest {
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
+
+        private Optional<String> iban = Optional.empty();
 
         private Optional<String> from = Optional.empty();
 
@@ -302,6 +342,25 @@ public class ListBusinessAccountsRequest {
 
         private Builder() {
           // force use of static builder() method
+        }
+
+
+        /**
+         * Filter the results by IBAN. Only the business account with an exact match is returned.
+         */
+        public Builder iban(String iban) {
+            Utils.checkNotNull(iban, "iban");
+            this.iban = Optional.ofNullable(iban);
+            return this;
+        }
+
+        /**
+         * Filter the results by IBAN. Only the business account with an exact match is returned.
+         */
+        public Builder iban(Optional<String> iban) {
+            Utils.checkNotNull(iban, "iban");
+            this.iban = iban;
+            return this;
         }
 
 
@@ -422,8 +481,8 @@ public class ListBusinessAccountsRequest {
         public ListBusinessAccountsRequest build() {
 
             return new ListBusinessAccountsRequest(
-                from, limit, sort,
-                testmode, idempotencyKey);
+                iban, from, limit,
+                sort, testmode, idempotencyKey);
         }
 
     }

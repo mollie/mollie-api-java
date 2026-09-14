@@ -63,20 +63,23 @@ public class DraftTransfers {
      * 
      * <p>### Test mode
      * 
-     * <p>Creating a draft transfer always returns a synthetic draft in `pending-review`, using synthetic
-     * data,
+     * <p>Creating a draft transfer always returns a synthetic draft in `pending-review` status, using
+     * synthetic data,
      * same as in live mode. No real funds move and nothing is sent to Mollie Apps.
      * 
-     * <p>Shortly after, you can simulate the initiator's decision by adjusting the transfer amount:
+     * <p>Editing a draft transfer after creation is not supported via the API. Instead, depending on the
+     * amount, you
+     * can simulate different outcomes for the initiator's decision at creation time:
      * 
      * <p>| Amount  | Simulated outcome                                    | Webhook sequence
      * |
      * |---------|-------------------------------------------------------|----------------------------------------------------------------------------------------------------|
      * | `13.00` | Declined by the initiator, with a free-text reason     |
      * `business-account-draft-transfer.created` → `business-account-draft-transfer.declined`             |
-     * | Other   | Approved by the initiator                              |
-     * `business-account-draft-transfer.created` → `business-account-draft-transfer.approved`
-     * |
+     * | `14.00` | Approved                                               |
+     * `business-account-draft-transfer.created` → `business-account-draft-transfer.approved`             |
+     * | Other   | Default behavior (pending review)                      |
+     * `business-account-draft-transfer.created`                                                          |
      * 
      * <p>The webhooks fire asynchronously, with a short delay between them to mimic real timing.
      * [Get](get-draft-transfer)
@@ -109,20 +112,23 @@ public class DraftTransfers {
      * 
      * <p>### Test mode
      * 
-     * <p>Creating a draft transfer always returns a synthetic draft in `pending-review`, using synthetic
-     * data,
+     * <p>Creating a draft transfer always returns a synthetic draft in `pending-review` status, using
+     * synthetic data,
      * same as in live mode. No real funds move and nothing is sent to Mollie Apps.
      * 
-     * <p>Shortly after, you can simulate the initiator's decision by adjusting the transfer amount:
+     * <p>Editing a draft transfer after creation is not supported via the API. Instead, depending on the
+     * amount, you
+     * can simulate different outcomes for the initiator's decision at creation time:
      * 
      * <p>| Amount  | Simulated outcome                                    | Webhook sequence
      * |
      * |---------|-------------------------------------------------------|----------------------------------------------------------------------------------------------------|
      * | `13.00` | Declined by the initiator, with a free-text reason     |
      * `business-account-draft-transfer.created` → `business-account-draft-transfer.declined`             |
-     * | Other   | Approved by the initiator                              |
-     * `business-account-draft-transfer.created` → `business-account-draft-transfer.approved`
-     * |
+     * | `14.00` | Approved                                               |
+     * `business-account-draft-transfer.created` → `business-account-draft-transfer.approved`             |
+     * | Other   | Default behavior (pending review)                      |
+     * `business-account-draft-transfer.created`                                                          |
      * 
      * <p>The webhooks fire asynchronously, with a short delay between them to mimic real timing.
      * [Get](get-draft-transfer)
@@ -156,20 +162,23 @@ public class DraftTransfers {
      * 
      * <p>### Test mode
      * 
-     * <p>Creating a draft transfer always returns a synthetic draft in `pending-review`, using synthetic
-     * data,
+     * <p>Creating a draft transfer always returns a synthetic draft in `pending-review` status, using
+     * synthetic data,
      * same as in live mode. No real funds move and nothing is sent to Mollie Apps.
      * 
-     * <p>Shortly after, you can simulate the initiator's decision by adjusting the transfer amount:
+     * <p>Editing a draft transfer after creation is not supported via the API. Instead, depending on the
+     * amount, you
+     * can simulate different outcomes for the initiator's decision at creation time:
      * 
      * <p>| Amount  | Simulated outcome                                    | Webhook sequence
      * |
      * |---------|-------------------------------------------------------|----------------------------------------------------------------------------------------------------|
      * | `13.00` | Declined by the initiator, with a free-text reason     |
      * `business-account-draft-transfer.created` → `business-account-draft-transfer.declined`             |
-     * | Other   | Approved by the initiator                              |
-     * `business-account-draft-transfer.created` → `business-account-draft-transfer.approved`
-     * |
+     * | `14.00` | Approved                                               |
+     * `business-account-draft-transfer.created` → `business-account-draft-transfer.approved`             |
+     * | Other   | Default behavior (pending review)                      |
+     * `business-account-draft-transfer.created`                                                          |
      * 
      * <p>The webhooks fire asynchronously, with a short delay between them to mimic real timing.
      * [Get](get-draft-transfer)
@@ -213,8 +222,7 @@ public class DraftTransfers {
      * 
      * <p>The results are paginated.
      * 
-     * <p>In test mode, this returns synthetic draft transfers only, not your real data. See [Create draft
-     * transfer](create-draft-transfer) for how to simulate `approved` and `declined` outcomes.
+     * <p>In test mode, this returns synthetic draft transfers only, not your real data.
      * 
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
@@ -236,8 +244,7 @@ public class DraftTransfers {
      * 
      * <p>The results are paginated.
      * 
-     * <p>In test mode, this returns synthetic draft transfers only, not your real data. See [Create draft
-     * transfer](create-draft-transfer) for how to simulate `approved` and `declined` outcomes.
+     * <p>In test mode, this returns synthetic draft transfers only, not your real data.
      * 
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
@@ -261,8 +268,7 @@ public class DraftTransfers {
      * 
      * <p>The results are paginated.
      * 
-     * <p>In test mode, this returns synthetic draft transfers only, not your real data. See [Create draft
-     * transfer](create-draft-transfer) for how to simulate `approved` and `declined` outcomes.
+     * <p>In test mode, this returns synthetic draft transfers only, not your real data.
      * 
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.

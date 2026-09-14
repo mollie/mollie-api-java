@@ -6,14 +6,10 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * DraftTransferResponseLinks
@@ -25,45 +21,21 @@ public class DraftTransferResponseLinks {
      * The URL to this draft transfer.
      */
     @JsonProperty("self")
-    private DraftTransferResponseSelf self;
-
-    /**
-     * The URL to the documentation of this endpoint.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("documentation")
-    private Optional<? extends DraftTransferResponseDocumentation> documentation;
+    private Self self;
 
     @JsonCreator
     public DraftTransferResponseLinks(
-            @JsonProperty("self") DraftTransferResponseSelf self,
-            @JsonProperty("documentation") Optional<? extends DraftTransferResponseDocumentation> documentation) {
+            @JsonProperty("self") Self self) {
         Utils.checkNotNull(self, "self");
-        Utils.checkNotNull(documentation, "documentation");
         this.self = self;
-        this.documentation = documentation;
-    }
-    
-    public DraftTransferResponseLinks(
-            DraftTransferResponseSelf self) {
-        this(self, Optional.empty());
     }
 
     /**
      * The URL to this draft transfer.
      */
     @JsonIgnore
-    public DraftTransferResponseSelf self() {
+    public Self self() {
         return self;
-    }
-
-    /**
-     * The URL to the documentation of this endpoint.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<DraftTransferResponseDocumentation> documentation() {
-        return (Optional<DraftTransferResponseDocumentation>) documentation;
     }
 
     public static Builder builder() {
@@ -74,28 +46,9 @@ public class DraftTransferResponseLinks {
     /**
      * The URL to this draft transfer.
      */
-    public DraftTransferResponseLinks withSelf(DraftTransferResponseSelf self) {
+    public DraftTransferResponseLinks withSelf(Self self) {
         Utils.checkNotNull(self, "self");
         this.self = self;
-        return this;
-    }
-
-    /**
-     * The URL to the documentation of this endpoint.
-     */
-    public DraftTransferResponseLinks withDocumentation(DraftTransferResponseDocumentation documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = Optional.ofNullable(documentation);
-        return this;
-    }
-
-
-    /**
-     * The URL to the documentation of this endpoint.
-     */
-    public DraftTransferResponseLinks withDocumentation(Optional<? extends DraftTransferResponseDocumentation> documentation) {
-        Utils.checkNotNull(documentation, "documentation");
-        this.documentation = documentation;
         return this;
     }
 
@@ -109,29 +62,25 @@ public class DraftTransferResponseLinks {
         }
         DraftTransferResponseLinks other = (DraftTransferResponseLinks) o;
         return 
-            Utils.enhancedDeepEquals(this.self, other.self) &&
-            Utils.enhancedDeepEquals(this.documentation, other.documentation);
+            Utils.enhancedDeepEquals(this.self, other.self);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            self, documentation);
+            self);
     }
     
     @Override
     public String toString() {
         return Utils.toString(DraftTransferResponseLinks.class,
-                "self", self,
-                "documentation", documentation);
+                "self", self);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private DraftTransferResponseSelf self;
-
-        private Optional<? extends DraftTransferResponseDocumentation> documentation = Optional.empty();
+        private Self self;
 
         private Builder() {
           // force use of static builder() method
@@ -141,35 +90,16 @@ public class DraftTransferResponseLinks {
         /**
          * The URL to this draft transfer.
          */
-        public Builder self(DraftTransferResponseSelf self) {
+        public Builder self(Self self) {
             Utils.checkNotNull(self, "self");
             this.self = self;
-            return this;
-        }
-
-
-        /**
-         * The URL to the documentation of this endpoint.
-         */
-        public Builder documentation(DraftTransferResponseDocumentation documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = Optional.ofNullable(documentation);
-            return this;
-        }
-
-        /**
-         * The URL to the documentation of this endpoint.
-         */
-        public Builder documentation(Optional<? extends DraftTransferResponseDocumentation> documentation) {
-            Utils.checkNotNull(documentation, "documentation");
-            this.documentation = documentation;
             return this;
         }
 
         public DraftTransferResponseLinks build() {
 
             return new DraftTransferResponseLinks(
-                self, documentation);
+                self);
         }
 
     }
