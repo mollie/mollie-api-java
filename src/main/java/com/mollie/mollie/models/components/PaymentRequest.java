@@ -59,9 +59,9 @@ public class PaymentRequest {
      * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirectUrl")
-    private Optional<String> redirectUrl;
+    private JsonNullable<String> redirectUrl;
 
     /**
      * The URL your customer will be redirected to when the customer explicitly cancels the payment. If
@@ -506,7 +506,7 @@ public class PaymentRequest {
     public PaymentRequest(
             @JsonProperty("description") String description,
             @JsonProperty("amount") Amount amount,
-            @JsonProperty("redirectUrl") Optional<String> redirectUrl,
+            @JsonProperty("redirectUrl") JsonNullable<String> redirectUrl,
             @JsonProperty("cancelUrl") JsonNullable<String> cancelUrl,
             @JsonProperty("webhookUrl") JsonNullable<String> webhookUrl,
             @JsonProperty("lines") JsonNullable<? extends List<PaymentRequestLines>> lines,
@@ -617,7 +617,7 @@ public class PaymentRequest {
     public PaymentRequest(
             String description,
             Amount amount) {
-        this(description, amount, Optional.empty(),
+        this(description, amount, JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             Optional.empty(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
@@ -672,7 +672,7 @@ public class PaymentRequest {
      * Apple Pay payments with an `applePayPaymentToken`.
      */
     @JsonIgnore
-    public Optional<String> redirectUrl() {
+    public JsonNullable<String> redirectUrl() {
         return redirectUrl;
     }
 
@@ -1206,10 +1206,9 @@ public class PaymentRequest {
      */
     public PaymentRequest withRedirectUrl(String redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
-        this.redirectUrl = Optional.ofNullable(redirectUrl);
+        this.redirectUrl = JsonNullable.of(redirectUrl);
         return this;
     }
-
 
     /**
      * The URL your customer will be redirected to after the payment process.
@@ -1222,7 +1221,7 @@ public class PaymentRequest {
      * recurring`) and for
      * Apple Pay payments with an `applePayPaymentToken`.
      */
-    public PaymentRequest withRedirectUrl(Optional<String> redirectUrl) {
+    public PaymentRequest withRedirectUrl(JsonNullable<String> redirectUrl) {
         Utils.checkNotNull(redirectUrl, "redirectUrl");
         this.redirectUrl = redirectUrl;
         return this;
@@ -2363,7 +2362,7 @@ public class PaymentRequest {
 
         private Amount amount;
 
-        private Optional<String> redirectUrl = Optional.empty();
+        private JsonNullable<String> redirectUrl = JsonNullable.undefined();
 
         private JsonNullable<String> cancelUrl = JsonNullable.undefined();
 
@@ -2482,7 +2481,7 @@ public class PaymentRequest {
          */
         public Builder redirectUrl(String redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
-            this.redirectUrl = Optional.ofNullable(redirectUrl);
+            this.redirectUrl = JsonNullable.of(redirectUrl);
             return this;
         }
 
@@ -2497,7 +2496,7 @@ public class PaymentRequest {
          * recurring`) and for
          * Apple Pay payments with an `applePayPaymentToken`.
          */
-        public Builder redirectUrl(Optional<String> redirectUrl) {
+        public Builder redirectUrl(JsonNullable<String> redirectUrl) {
             Utils.checkNotNull(redirectUrl, "redirectUrl");
             this.redirectUrl = redirectUrl;
             return this;

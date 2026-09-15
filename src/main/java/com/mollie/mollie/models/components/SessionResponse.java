@@ -75,8 +75,9 @@ public class SessionResponse {
      * 
      * <p>All lines must have the same currency as the Checkout Session.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("lines")
-    private List<SessionLineItemResponse> lines;
+    private Optional<? extends List<SessionLineItemResponse>> lines;
 
     /**
      * The URL your customer will be redirected to after the payment process.
@@ -191,7 +192,7 @@ public class SessionResponse {
             @JsonProperty("status") SessionResponseStatus status,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("description") String description,
-            @JsonProperty("lines") List<SessionLineItemResponse> lines,
+            @JsonProperty("lines") Optional<? extends List<SessionLineItemResponse>> lines,
             @JsonProperty("redirectUrl") String redirectUrl,
             @JsonProperty("requiredCustomerDetails") Optional<? extends List<SessionRequiredCustomerDetailsResponse>> requiredCustomerDetails,
             @JsonProperty("billingAddress") Optional<? extends ShippingAddress> billingAddress,
@@ -257,14 +258,13 @@ public class SessionResponse {
             SessionResponseStatus status,
             Amount amount,
             String description,
-            List<SessionLineItemResponse> lines,
             String redirectUrl,
             String profileId,
             String createdAt,
             SessionResponseLinks links) {
         this(resource, id, mode,
             clientAccessToken, status, amount,
-            description, lines, redirectUrl,
+            description, Optional.empty(), redirectUrl,
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), profileId, createdAt,
@@ -338,9 +338,10 @@ public class SessionResponse {
      * 
      * <p>All lines must have the same currency as the Checkout Session.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public List<SessionLineItemResponse> lines() {
-        return lines;
+    public Optional<List<SessionLineItemResponse>> lines() {
+        return (Optional<List<SessionLineItemResponse>>) lines;
     }
 
     /**
@@ -545,6 +546,20 @@ public class SessionResponse {
      * <p>All lines must have the same currency as the Checkout Session.
      */
     public SessionResponse withLines(List<SessionLineItemResponse> lines) {
+        Utils.checkNotNull(lines, "lines");
+        this.lines = Optional.ofNullable(lines);
+        return this;
+    }
+
+
+    /**
+     * List of items the customer will pay for in this Checkout Session. The sum of all line items must
+     * equal the
+     * Checkout Session's amount.
+     * 
+     * <p>All lines must have the same currency as the Checkout Session.
+     */
+    public SessionResponse withLines(Optional<? extends List<SessionLineItemResponse>> lines) {
         Utils.checkNotNull(lines, "lines");
         this.lines = lines;
         return this;
@@ -856,7 +871,7 @@ public class SessionResponse {
 
         private String description;
 
-        private List<SessionLineItemResponse> lines;
+        private Optional<? extends List<SessionLineItemResponse>> lines = Optional.empty();
 
         private String redirectUrl;
 
@@ -971,6 +986,19 @@ public class SessionResponse {
          * <p>All lines must have the same currency as the Checkout Session.
          */
         public Builder lines(List<SessionLineItemResponse> lines) {
+            Utils.checkNotNull(lines, "lines");
+            this.lines = Optional.ofNullable(lines);
+            return this;
+        }
+
+        /**
+         * List of items the customer will pay for in this Checkout Session. The sum of all line items must
+         * equal the
+         * Checkout Session's amount.
+         * 
+         * <p>All lines must have the same currency as the Checkout Session.
+         */
+        public Builder lines(Optional<? extends List<SessionLineItemResponse>> lines) {
             Utils.checkNotNull(lines, "lines");
             this.lines = lines;
             return this;

@@ -66,6 +66,7 @@ public class EntityWebhookEventWebhookEventTypes {
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_DRAFT_TRANSFER_CREATED = new EntityWebhookEventWebhookEventTypes("business-account-draft-transfer.created");
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED = new EntityWebhookEventWebhookEventTypes("business-account-draft-transfer.approved");
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED = new EntityWebhookEventWebhookEventTypes("business-account-draft-transfer.declined");
+    public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_RECEIVED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.received");
     public static final EntityWebhookEventWebhookEventTypes WILDCARD = new EntityWebhookEventWebhookEventTypes("*");
 
     // This map will grow whenever a Color gets created with a new
@@ -179,6 +180,7 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("business-account-draft-transfer.created", BUSINESS_ACCOUNT_DRAFT_TRANSFER_CREATED);
         map.put("business-account-draft-transfer.approved", BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED);
         map.put("business-account-draft-transfer.declined", BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED);
+        map.put("unmatched-credit-transfer.received", UNMATCHED_CREDIT_TRANSFER_RECEIVED);
         map.put("*", WILDCARD);
         return map;
     }
@@ -224,6 +226,7 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("business-account-draft-transfer.created", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_DRAFT_TRANSFER_CREATED);
         map.put("business-account-draft-transfer.approved", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED);
         map.put("business-account-draft-transfer.declined", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED);
+        map.put("unmatched-credit-transfer.received", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_RECEIVED);
         map.put("*", EntityWebhookEventWebhookEventTypesEnum.WILDCARD);
         return map;
     }
@@ -270,6 +273,7 @@ public class EntityWebhookEventWebhookEventTypes {
         BUSINESS_ACCOUNT_DRAFT_TRANSFER_CREATED("business-account-draft-transfer.created"),
         BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED("business-account-draft-transfer.approved"),
         BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED("business-account-draft-transfer.declined"),
+        UNMATCHED_CREDIT_TRANSFER_RECEIVED("unmatched-credit-transfer.received"),
         WILDCARD("*"),;
 
         private final String value;

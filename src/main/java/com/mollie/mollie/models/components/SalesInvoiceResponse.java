@@ -63,19 +63,7 @@ public class SalesInvoiceResponse {
     private JsonNullable<String> profileId;
 
     /**
-     * The status for the invoice to end up in.
-     * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
-     * sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this
-     * to `paid` to
-     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-     * 
-     * <p>Dependent parameters:
-     * - `paymentDetails` is required if invoice should be set directly to `paid`
-     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
-     * to `paid`
-     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * The current status of the invoice.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -443,19 +431,7 @@ public class SalesInvoiceResponse {
     }
 
     /**
-     * The status for the invoice to end up in.
-     * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
-     * sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this
-     * to `paid` to
-     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-     * 
-     * <p>Dependent parameters:
-     * - `paymentDetails` is required if invoice should be set directly to `paid`
-     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
-     * to `paid`
-     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * The current status of the invoice.
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -778,19 +754,7 @@ public class SalesInvoiceResponse {
     }
 
     /**
-     * The status for the invoice to end up in.
-     * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
-     * sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this
-     * to `paid` to
-     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-     * 
-     * <p>Dependent parameters:
-     * - `paymentDetails` is required if invoice should be set directly to `paid`
-     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
-     * to `paid`
-     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * The current status of the invoice.
      */
     public SalesInvoiceResponse withStatus(SalesInvoiceStatusResponse status) {
         Utils.checkNotNull(status, "status");
@@ -800,19 +764,7 @@ public class SalesInvoiceResponse {
 
 
     /**
-     * The status for the invoice to end up in.
-     * 
-     * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
-     * sends it to
-     * the recipient so they may then pay through our payment system. To skip our payment process, set this
-     * to `paid` to
-     * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-     * 
-     * <p>Dependent parameters:
-     * - `paymentDetails` is required if invoice should be set directly to `paid`
-     * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
-     * to `paid`
-     * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+     * The current status of the invoice.
      */
     public SalesInvoiceResponse withStatus(Optional<? extends SalesInvoiceStatusResponse> status) {
         Utils.checkNotNull(status, "status");
@@ -1565,19 +1517,7 @@ public class SalesInvoiceResponse {
 
 
         /**
-         * The status for the invoice to end up in.
-         * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
-         * sends it to
-         * the recipient so they may then pay through our payment system. To skip our payment process, set this
-         * to `paid` to
-         * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-         * 
-         * <p>Dependent parameters:
-         * - `paymentDetails` is required if invoice should be set directly to `paid`
-         * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
-         * to `paid`
-         * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+         * The current status of the invoice.
          */
         public Builder status(SalesInvoiceStatusResponse status) {
             Utils.checkNotNull(status, "status");
@@ -1586,19 +1526,7 @@ public class SalesInvoiceResponse {
         }
 
         /**
-         * The status for the invoice to end up in.
-         * 
-         * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
-         * sends it to
-         * the recipient so they may then pay through our payment system. To skip our payment process, set this
-         * to `paid` to
-         * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
-         * 
-         * <p>Dependent parameters:
-         * - `paymentDetails` is required if invoice should be set directly to `paid`
-         * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
-         * to `paid`
-         * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+         * The current status of the invoice.
          */
         public Builder status(Optional<? extends SalesInvoiceStatusResponse> status) {
             Utils.checkNotNull(status, "status");
