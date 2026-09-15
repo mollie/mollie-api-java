@@ -20,6 +20,7 @@ Status custom = Status.of("custom_value");
 | -------------------- | -------------------- |
 | `OPEN`               | open                 |
 | `PENDING`            | pending              |
+| `PROCESSING`         | processing           |
 | `PROCESSING_AT_BANK` | processing-at-bank   |
 | `PAIDOUT`            | paidout              |
 | `FAILED`             | failed               |

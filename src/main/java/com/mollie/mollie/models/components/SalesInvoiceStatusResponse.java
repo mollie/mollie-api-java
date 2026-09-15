@@ -22,25 +22,20 @@ import java.util.Optional;
 /**
  * SalesInvoiceStatusResponse
  * 
- * <p>The status for the invoice to end up in.
- * 
- * <p>A `draft` invoice is not paid or not sent and can be updated after creation. Setting it to `issued`
- * sends it to
- * the recipient so they may then pay through our payment system. To skip our payment process, set this
- * to `paid` to
- * mark it as paid. It can then subsequently be sent as well, same as with `issued`.
- * 
- * <p>Dependent parameters:
- * - `paymentDetails` is required if invoice should be set directly to `paid`
- * - `customerId` and `mandateId` are required if a recurring payment should be used to set the invoice
- * to `paid`
- * - `emailDetails` optional for `issued` and `paid` to send the invoice by email
+ * <p>The current status of the invoice.
  */
 public class SalesInvoiceStatusResponse {
 
     public static final SalesInvoiceStatusResponse DRAFT = new SalesInvoiceStatusResponse("draft");
+    public static final SalesInvoiceStatusResponse ISSUING = new SalesInvoiceStatusResponse("issuing");
     public static final SalesInvoiceStatusResponse ISSUED = new SalesInvoiceStatusResponse("issued");
+    public static final SalesInvoiceStatusResponse PENDING_PAYMENT = new SalesInvoiceStatusResponse("pending-payment");
     public static final SalesInvoiceStatusResponse PAID = new SalesInvoiceStatusResponse("paid");
+    public static final SalesInvoiceStatusResponse OVERDUE = new SalesInvoiceStatusResponse("overdue");
+    public static final SalesInvoiceStatusResponse PAYMENT_REVERSED = new SalesInvoiceStatusResponse("payment_reversed");
+    public static final SalesInvoiceStatusResponse CANCELLED = new SalesInvoiceStatusResponse("cancelled");
+    public static final SalesInvoiceStatusResponse EXPIRED = new SalesInvoiceStatusResponse("expired");
+    public static final SalesInvoiceStatusResponse FAILED = new SalesInvoiceStatusResponse("failed");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -115,16 +110,30 @@ public class SalesInvoiceStatusResponse {
     private static final Map<String, SalesInvoiceStatusResponse> createValuesMap() {
         Map<String, SalesInvoiceStatusResponse> map = new LinkedHashMap<>();
         map.put("draft", DRAFT);
+        map.put("issuing", ISSUING);
         map.put("issued", ISSUED);
+        map.put("pending-payment", PENDING_PAYMENT);
         map.put("paid", PAID);
+        map.put("overdue", OVERDUE);
+        map.put("payment_reversed", PAYMENT_REVERSED);
+        map.put("cancelled", CANCELLED);
+        map.put("expired", EXPIRED);
+        map.put("failed", FAILED);
         return map;
     }
 
     private static final Map<String, SalesInvoiceStatusResponseEnum> createEnumsMap() {
         Map<String, SalesInvoiceStatusResponseEnum> map = new HashMap<>();
         map.put("draft", SalesInvoiceStatusResponseEnum.DRAFT);
+        map.put("issuing", SalesInvoiceStatusResponseEnum.ISSUING);
         map.put("issued", SalesInvoiceStatusResponseEnum.ISSUED);
+        map.put("pending-payment", SalesInvoiceStatusResponseEnum.PENDING_PAYMENT);
         map.put("paid", SalesInvoiceStatusResponseEnum.PAID);
+        map.put("overdue", SalesInvoiceStatusResponseEnum.OVERDUE);
+        map.put("payment_reversed", SalesInvoiceStatusResponseEnum.PAYMENT_REVERSED);
+        map.put("cancelled", SalesInvoiceStatusResponseEnum.CANCELLED);
+        map.put("expired", SalesInvoiceStatusResponseEnum.EXPIRED);
+        map.put("failed", SalesInvoiceStatusResponseEnum.FAILED);
         return map;
     }
     
@@ -132,8 +141,15 @@ public class SalesInvoiceStatusResponse {
     public enum SalesInvoiceStatusResponseEnum {
 
         DRAFT("draft"),
+        ISSUING("issuing"),
         ISSUED("issued"),
-        PAID("paid"),;
+        PENDING_PAYMENT("pending-payment"),
+        PAID("paid"),
+        OVERDUE("overdue"),
+        PAYMENT_REVERSED("payment_reversed"),
+        CANCELLED("cancelled"),
+        EXPIRED("expired"),
+        FAILED("failed"),;
 
         private final String value;
 

@@ -28,6 +28,7 @@ public class Status {
 
     public static final Status OPEN = new Status("open");
     public static final Status PENDING = new Status("pending");
+    public static final Status PROCESSING = new Status("processing");
     public static final Status PROCESSING_AT_BANK = new Status("processing-at-bank");
     public static final Status PAIDOUT = new Status("paidout");
     public static final Status FAILED = new Status("failed");
@@ -106,6 +107,7 @@ public class Status {
         Map<String, Status> map = new LinkedHashMap<>();
         map.put("open", OPEN);
         map.put("pending", PENDING);
+        map.put("processing", PROCESSING);
         map.put("processing-at-bank", PROCESSING_AT_BANK);
         map.put("paidout", PAIDOUT);
         map.put("failed", FAILED);
@@ -116,6 +118,7 @@ public class Status {
         Map<String, StatusEnum> map = new HashMap<>();
         map.put("open", StatusEnum.OPEN);
         map.put("pending", StatusEnum.PENDING);
+        map.put("processing", StatusEnum.PROCESSING);
         map.put("processing-at-bank", StatusEnum.PROCESSING_AT_BANK);
         map.put("paidout", StatusEnum.PAIDOUT);
         map.put("failed", StatusEnum.FAILED);
@@ -127,6 +130,7 @@ public class Status {
 
         OPEN("open"),
         PENDING("pending"),
+        PROCESSING("processing"),
         PROCESSING_AT_BANK("processing-at-bank"),
         PAIDOUT("paidout"),
         FAILED("failed"),;

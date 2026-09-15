@@ -55,4 +55,5 @@ WebhookEventTypes value = WebhookEventTypes.PAYMENT_PAID;
 | `BUSINESS_ACCOUNT_DRAFT_TRANSFER_CREATED`  | business-account-draft-transfer.created    |
 | `BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED` | business-account-draft-transfer.approved   |
 | `BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED` | business-account-draft-transfer.declined   |
+| `UNMATCHED_CREDIT_TRANSFER_RECEIVED`       | unmatched-credit-transfer.received         |
 | `WILDCARD`                                 | *                                          |

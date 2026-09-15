@@ -28,6 +28,7 @@ public class GetNextSettlementStatus {
 
     public static final GetNextSettlementStatus OPEN = new GetNextSettlementStatus("open");
     public static final GetNextSettlementStatus PENDING = new GetNextSettlementStatus("pending");
+    public static final GetNextSettlementStatus PROCESSING = new GetNextSettlementStatus("processing");
     public static final GetNextSettlementStatus PROCESSING_AT_BANK = new GetNextSettlementStatus("processing-at-bank");
     public static final GetNextSettlementStatus PAIDOUT = new GetNextSettlementStatus("paidout");
     public static final GetNextSettlementStatus FAILED = new GetNextSettlementStatus("failed");
@@ -106,6 +107,7 @@ public class GetNextSettlementStatus {
         Map<String, GetNextSettlementStatus> map = new LinkedHashMap<>();
         map.put("open", OPEN);
         map.put("pending", PENDING);
+        map.put("processing", PROCESSING);
         map.put("processing-at-bank", PROCESSING_AT_BANK);
         map.put("paidout", PAIDOUT);
         map.put("failed", FAILED);
@@ -116,6 +118,7 @@ public class GetNextSettlementStatus {
         Map<String, GetNextSettlementStatusEnum> map = new HashMap<>();
         map.put("open", GetNextSettlementStatusEnum.OPEN);
         map.put("pending", GetNextSettlementStatusEnum.PENDING);
+        map.put("processing", GetNextSettlementStatusEnum.PROCESSING);
         map.put("processing-at-bank", GetNextSettlementStatusEnum.PROCESSING_AT_BANK);
         map.put("paidout", GetNextSettlementStatusEnum.PAIDOUT);
         map.put("failed", GetNextSettlementStatusEnum.FAILED);
@@ -127,6 +130,7 @@ public class GetNextSettlementStatus {
 
         OPEN("open"),
         PENDING("pending"),
+        PROCESSING("processing"),
         PROCESSING_AT_BANK("processing-at-bank"),
         PAIDOUT("paidout"),
         FAILED("failed"),;
