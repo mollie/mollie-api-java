@@ -33,6 +33,7 @@ public class LocaleResponse {
     public static final LocaleResponse DE_CH = new LocaleResponse("de_CH");
     public static final LocaleResponse DEDE = new LocaleResponse("de_DE");
     public static final LocaleResponse DE_LU = new LocaleResponse("de_LU");
+    public static final LocaleResponse EL_GR = new LocaleResponse("el_GR");
     public static final LocaleResponse EN_BE = new LocaleResponse("en_BE");
     public static final LocaleResponse EN_GB = new LocaleResponse("en_GB");
     public static final LocaleResponse EN_NL = new LocaleResponse("en_NL");
@@ -53,7 +54,9 @@ public class LocaleResponse {
     public static final LocaleResponse PLPL = new LocaleResponse("pl_PL");
     public static final LocaleResponse PTPT = new LocaleResponse("pt_PT");
     public static final LocaleResponse SKSK = new LocaleResponse("sk_SK");
+    public static final LocaleResponse SL_SI = new LocaleResponse("sl_SI");
     public static final LocaleResponse SV_SE = new LocaleResponse("sv_SE");
+    public static final LocaleResponse TRTR = new LocaleResponse("tr_TR");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -134,6 +137,7 @@ public class LocaleResponse {
         map.put("de_CH", DE_CH);
         map.put("de_DE", DEDE);
         map.put("de_LU", DE_LU);
+        map.put("el_GR", EL_GR);
         map.put("en_BE", EN_BE);
         map.put("en_GB", EN_GB);
         map.put("en_NL", EN_NL);
@@ -154,7 +158,9 @@ public class LocaleResponse {
         map.put("pl_PL", PLPL);
         map.put("pt_PT", PTPT);
         map.put("sk_SK", SKSK);
+        map.put("sl_SI", SL_SI);
         map.put("sv_SE", SV_SE);
+        map.put("tr_TR", TRTR);
         return map;
     }
 
@@ -167,6 +173,7 @@ public class LocaleResponse {
         map.put("de_CH", LocaleResponseEnum.DE_CH);
         map.put("de_DE", LocaleResponseEnum.DEDE);
         map.put("de_LU", LocaleResponseEnum.DE_LU);
+        map.put("el_GR", LocaleResponseEnum.EL_GR);
         map.put("en_BE", LocaleResponseEnum.EN_BE);
         map.put("en_GB", LocaleResponseEnum.EN_GB);
         map.put("en_NL", LocaleResponseEnum.EN_NL);
@@ -187,7 +194,9 @@ public class LocaleResponse {
         map.put("pl_PL", LocaleResponseEnum.PLPL);
         map.put("pt_PT", LocaleResponseEnum.PTPT);
         map.put("sk_SK", LocaleResponseEnum.SKSK);
+        map.put("sl_SI", LocaleResponseEnum.SL_SI);
         map.put("sv_SE", LocaleResponseEnum.SV_SE);
+        map.put("tr_TR", LocaleResponseEnum.TRTR);
         return map;
     }
     
@@ -201,6 +210,7 @@ public class LocaleResponse {
         DE_CH("de_CH"),
         DEDE("de_DE"),
         DE_LU("de_LU"),
+        EL_GR("el_GR"),
         EN_BE("en_BE"),
         EN_GB("en_GB"),
         EN_NL("en_NL"),
@@ -221,7 +231,9 @@ public class LocaleResponse {
         PLPL("pl_PL"),
         PTPT("pt_PT"),
         SKSK("sk_SK"),
-        SV_SE("sv_SE"),;
+        SL_SI("sl_SI"),
+        SV_SE("sv_SE"),
+        TRTR("tr_TR"),;
 
         private final String value;
 

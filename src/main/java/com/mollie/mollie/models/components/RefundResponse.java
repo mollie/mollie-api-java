@@ -44,8 +44,9 @@ public class RefundResponse {
      * The description of the refund that may be shown to your customer, depending on the payment method
      * used.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("description")
-    private String description;
+    private Optional<String> description;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -122,7 +123,7 @@ public class RefundResponse {
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") Mode mode,
-            @JsonProperty("description") String description,
+            @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("metadata") Optional<? extends Metadata> metadata,
             @JsonProperty("paymentId") String paymentId,
@@ -164,14 +165,13 @@ public class RefundResponse {
             String resource,
             String id,
             Mode mode,
-            String description,
             Amount amount,
             String paymentId,
             RefundResponseStatus status,
             String createdAt,
             RefundResponseLinks links) {
         this(resource, id, mode,
-            description, amount, Optional.empty(),
+            Optional.empty(), amount, Optional.empty(),
             paymentId, JsonNullable.undefined(), status,
             createdAt, Optional.empty(), JsonNullable.undefined(),
             links);
@@ -209,7 +209,7 @@ public class RefundResponse {
      * used.
      */
     @JsonIgnore
-    public String description() {
+    public Optional<String> description() {
         return description;
     }
 
@@ -338,6 +338,17 @@ public class RefundResponse {
      * used.
      */
     public RefundResponse withDescription(String description) {
+        Utils.checkNotNull(description, "description");
+        this.description = Optional.ofNullable(description);
+        return this;
+    }
+
+
+    /**
+     * The description of the refund that may be shown to your customer, depending on the payment method
+     * used.
+     */
+    public RefundResponse withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -545,7 +556,7 @@ public class RefundResponse {
 
         private Mode mode;
 
-        private String description;
+        private Optional<String> description = Optional.empty();
 
         private Amount amount;
 
@@ -608,6 +619,16 @@ public class RefundResponse {
          * used.
          */
         public Builder description(String description) {
+            Utils.checkNotNull(description, "description");
+            this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        /**
+         * The description of the refund that may be shown to your customer, depending on the payment method
+         * used.
+         */
+        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;

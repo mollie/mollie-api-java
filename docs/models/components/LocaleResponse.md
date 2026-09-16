@@ -25,6 +25,7 @@ LocaleResponse custom = LocaleResponse.of("custom_value");
 | `DE_CH` | de_CH   |
 | `DEDE`  | de_DE   |
 | `DE_LU` | de_LU   |
+| `EL_GR` | el_GR   |
 | `EN_BE` | en_BE   |
 | `EN_GB` | en_GB   |
 | `EN_NL` | en_NL   |
@@ -45,4 +46,6 @@ LocaleResponse custom = LocaleResponse.of("custom_value");
 | `PLPL`  | pl_PL   |
 | `PTPT`  | pt_PT   |
 | `SKSK`  | sk_SK   |
+| `SL_SI` | sl_SI   |
 | `SV_SE` | sv_SE   |
+| `TRTR`  | tr_TR   |

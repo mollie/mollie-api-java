@@ -44,8 +44,9 @@ public class ListSettlementRefundResponse {
      * The description of the refund that may be shown to your customer, depending on the payment method
      * used.
      */
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("description")
-    private String description;
+    private Optional<String> description;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -136,7 +137,7 @@ public class ListSettlementRefundResponse {
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("mode") SettlementMode mode,
-            @JsonProperty("description") String description,
+            @JsonProperty("description") Optional<String> description,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("metadata") Optional<? extends Metadata> metadata,
             @JsonProperty("paymentId") String paymentId,
@@ -181,14 +182,13 @@ public class ListSettlementRefundResponse {
             String resource,
             String id,
             SettlementMode mode,
-            String description,
             Amount amount,
             String paymentId,
             SettlementRefundStatus status,
             String createdAt,
             ListSettlementRefundResponseLinks links) {
         this(resource, id, mode,
-            description, amount, Optional.empty(),
+            Optional.empty(), amount, Optional.empty(),
             paymentId, JsonNullable.undefined(), status,
             createdAt, Optional.empty(), JsonNullable.undefined(),
             links, JsonNullable.undefined());
@@ -226,7 +226,7 @@ public class ListSettlementRefundResponse {
      * used.
      */
     @JsonIgnore
-    public String description() {
+    public Optional<String> description() {
         return description;
     }
 
@@ -372,6 +372,17 @@ public class ListSettlementRefundResponse {
      * used.
      */
     public ListSettlementRefundResponse withDescription(String description) {
+        Utils.checkNotNull(description, "description");
+        this.description = Optional.ofNullable(description);
+        return this;
+    }
+
+
+    /**
+     * The description of the refund that may be shown to your customer, depending on the payment method
+     * used.
+     */
+    public ListSettlementRefundResponse withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -611,7 +622,7 @@ public class ListSettlementRefundResponse {
 
         private SettlementMode mode;
 
-        private String description;
+        private Optional<String> description = Optional.empty();
 
         private Amount amount;
 
@@ -676,6 +687,16 @@ public class ListSettlementRefundResponse {
          * used.
          */
         public Builder description(String description) {
+            Utils.checkNotNull(description, "description");
+            this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        /**
+         * The description of the refund that may be shown to your customer, depending on the payment method
+         * used.
+         */
+        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
