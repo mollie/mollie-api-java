@@ -33,6 +33,7 @@ public class EntityOrganizationLocale {
     public static final EntityOrganizationLocale DE_CH = new EntityOrganizationLocale("de_CH");
     public static final EntityOrganizationLocale DEDE = new EntityOrganizationLocale("de_DE");
     public static final EntityOrganizationLocale DE_LU = new EntityOrganizationLocale("de_LU");
+    public static final EntityOrganizationLocale EL_GR = new EntityOrganizationLocale("el_GR");
     public static final EntityOrganizationLocale EN_BE = new EntityOrganizationLocale("en_BE");
     public static final EntityOrganizationLocale EN_GB = new EntityOrganizationLocale("en_GB");
     public static final EntityOrganizationLocale EN_NL = new EntityOrganizationLocale("en_NL");
@@ -53,7 +54,9 @@ public class EntityOrganizationLocale {
     public static final EntityOrganizationLocale PLPL = new EntityOrganizationLocale("pl_PL");
     public static final EntityOrganizationLocale PTPT = new EntityOrganizationLocale("pt_PT");
     public static final EntityOrganizationLocale SKSK = new EntityOrganizationLocale("sk_SK");
+    public static final EntityOrganizationLocale SL_SI = new EntityOrganizationLocale("sl_SI");
     public static final EntityOrganizationLocale SV_SE = new EntityOrganizationLocale("sv_SE");
+    public static final EntityOrganizationLocale TRTR = new EntityOrganizationLocale("tr_TR");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -134,6 +137,7 @@ public class EntityOrganizationLocale {
         map.put("de_CH", DE_CH);
         map.put("de_DE", DEDE);
         map.put("de_LU", DE_LU);
+        map.put("el_GR", EL_GR);
         map.put("en_BE", EN_BE);
         map.put("en_GB", EN_GB);
         map.put("en_NL", EN_NL);
@@ -154,7 +158,9 @@ public class EntityOrganizationLocale {
         map.put("pl_PL", PLPL);
         map.put("pt_PT", PTPT);
         map.put("sk_SK", SKSK);
+        map.put("sl_SI", SL_SI);
         map.put("sv_SE", SV_SE);
+        map.put("tr_TR", TRTR);
         return map;
     }
 
@@ -167,6 +173,7 @@ public class EntityOrganizationLocale {
         map.put("de_CH", EntityOrganizationLocaleEnum.DE_CH);
         map.put("de_DE", EntityOrganizationLocaleEnum.DEDE);
         map.put("de_LU", EntityOrganizationLocaleEnum.DE_LU);
+        map.put("el_GR", EntityOrganizationLocaleEnum.EL_GR);
         map.put("en_BE", EntityOrganizationLocaleEnum.EN_BE);
         map.put("en_GB", EntityOrganizationLocaleEnum.EN_GB);
         map.put("en_NL", EntityOrganizationLocaleEnum.EN_NL);
@@ -187,7 +194,9 @@ public class EntityOrganizationLocale {
         map.put("pl_PL", EntityOrganizationLocaleEnum.PLPL);
         map.put("pt_PT", EntityOrganizationLocaleEnum.PTPT);
         map.put("sk_SK", EntityOrganizationLocaleEnum.SKSK);
+        map.put("sl_SI", EntityOrganizationLocaleEnum.SL_SI);
         map.put("sv_SE", EntityOrganizationLocaleEnum.SV_SE);
+        map.put("tr_TR", EntityOrganizationLocaleEnum.TRTR);
         return map;
     }
     
@@ -201,6 +210,7 @@ public class EntityOrganizationLocale {
         DE_CH("de_CH"),
         DEDE("de_DE"),
         DE_LU("de_LU"),
+        EL_GR("el_GR"),
         EN_BE("en_BE"),
         EN_GB("en_GB"),
         EN_NL("en_NL"),
@@ -221,7 +231,9 @@ public class EntityOrganizationLocale {
         PLPL("pl_PL"),
         PTPT("pt_PT"),
         SKSK("sk_SK"),
-        SV_SE("sv_SE"),;
+        SL_SI("sl_SI"),
+        SV_SE("sv_SE"),
+        TRTR("tr_TR"),;
 
         private final String value;
 

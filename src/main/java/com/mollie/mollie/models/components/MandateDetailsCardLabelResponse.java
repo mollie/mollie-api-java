@@ -29,6 +29,7 @@ public class MandateDetailsCardLabelResponse {
     public static final MandateDetailsCardLabelResponse AMERICAN_EXPRESS = new MandateDetailsCardLabelResponse("American Express");
     public static final MandateDetailsCardLabelResponse CARTA_SI = new MandateDetailsCardLabelResponse("Carta Si");
     public static final MandateDetailsCardLabelResponse CARTE_BLEUE = new MandateDetailsCardLabelResponse("Carte Bleue");
+    public static final MandateDetailsCardLabelResponse CARTES_BANCAIRES = new MandateDetailsCardLabelResponse("Cartes Bancaires");
     public static final MandateDetailsCardLabelResponse DANKORT = new MandateDetailsCardLabelResponse("Dankort");
     public static final MandateDetailsCardLabelResponse DINERS_CLUB = new MandateDetailsCardLabelResponse("Diners Club");
     public static final MandateDetailsCardLabelResponse DISCOVER = new MandateDetailsCardLabelResponse("Discover");
@@ -114,6 +115,7 @@ public class MandateDetailsCardLabelResponse {
         map.put("American Express", AMERICAN_EXPRESS);
         map.put("Carta Si", CARTA_SI);
         map.put("Carte Bleue", CARTE_BLEUE);
+        map.put("Cartes Bancaires", CARTES_BANCAIRES);
         map.put("Dankort", DANKORT);
         map.put("Diners Club", DINERS_CLUB);
         map.put("Discover", DISCOVER);
@@ -131,6 +133,7 @@ public class MandateDetailsCardLabelResponse {
         map.put("American Express", MandateDetailsCardLabelResponseEnum.AMERICAN_EXPRESS);
         map.put("Carta Si", MandateDetailsCardLabelResponseEnum.CARTA_SI);
         map.put("Carte Bleue", MandateDetailsCardLabelResponseEnum.CARTE_BLEUE);
+        map.put("Cartes Bancaires", MandateDetailsCardLabelResponseEnum.CARTES_BANCAIRES);
         map.put("Dankort", MandateDetailsCardLabelResponseEnum.DANKORT);
         map.put("Diners Club", MandateDetailsCardLabelResponseEnum.DINERS_CLUB);
         map.put("Discover", MandateDetailsCardLabelResponseEnum.DISCOVER);
@@ -149,6 +152,7 @@ public class MandateDetailsCardLabelResponse {
         AMERICAN_EXPRESS("American Express"),
         CARTA_SI("Carta Si"),
         CARTE_BLEUE("Carte Bleue"),
+        CARTES_BANCAIRES("Cartes Bancaires"),
         DANKORT("Dankort"),
         DINERS_CLUB("Diners Club"),
         DISCOVER("Discover"),

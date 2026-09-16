@@ -26,7 +26,7 @@ public class RefundRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private JsonNullable<String> description;
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
@@ -101,7 +101,7 @@ public class RefundRequest {
 
     @JsonCreator
     public RefundRequest(
-            @JsonProperty("description") Optional<String> description,
+            @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
             @JsonProperty("externalReference") Optional<? extends RefundRequestExternalReference> externalReference,
@@ -126,7 +126,7 @@ public class RefundRequest {
     
     public RefundRequest(
             Amount amount) {
-        this(Optional.empty(), amount, JsonNullable.undefined(),
+        this(JsonNullable.undefined(), amount, JsonNullable.undefined(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined());
     }
@@ -136,7 +136,7 @@ public class RefundRequest {
      * used.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public JsonNullable<String> description() {
         return description;
     }
 
@@ -231,16 +231,15 @@ public class RefundRequest {
      */
     public RefundRequest withDescription(String description) {
         Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
+        this.description = JsonNullable.of(description);
         return this;
     }
-
 
     /**
      * The description of the refund that may be shown to your customer, depending on the payment method
      * used.
      */
-    public RefundRequest withDescription(Optional<String> description) {
+    public RefundRequest withDescription(JsonNullable<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -446,7 +445,7 @@ public class RefundRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> description = Optional.empty();
+        private JsonNullable<String> description = JsonNullable.undefined();
 
         private Amount amount;
 
@@ -471,7 +470,7 @@ public class RefundRequest {
          */
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
+            this.description = JsonNullable.of(description);
             return this;
         }
 
@@ -479,7 +478,7 @@ public class RefundRequest {
          * The description of the refund that may be shown to your customer, depending on the payment method
          * used.
          */
-        public Builder description(Optional<String> description) {
+        public Builder description(JsonNullable<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;

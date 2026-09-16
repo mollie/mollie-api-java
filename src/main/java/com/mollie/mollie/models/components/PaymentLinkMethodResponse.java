@@ -32,6 +32,7 @@ public class PaymentLinkMethodResponse {
     public static final PaymentLinkMethodResponse CREDITCARD = new PaymentLinkMethodResponse("creditcard");
     public static final PaymentLinkMethodResponse EPS = new PaymentLinkMethodResponse("eps");
     public static final PaymentLinkMethodResponse GIFTCARD = new PaymentLinkMethodResponse("giftcard");
+    public static final PaymentLinkMethodResponse GOOGLEPAY = new PaymentLinkMethodResponse("googlepay");
     public static final PaymentLinkMethodResponse IDEAL = new PaymentLinkMethodResponse("ideal");
     public static final PaymentLinkMethodResponse IN3 = new PaymentLinkMethodResponse("in3");
     public static final PaymentLinkMethodResponse KBC = new PaymentLinkMethodResponse("kbc");
@@ -135,6 +136,7 @@ public class PaymentLinkMethodResponse {
         map.put("creditcard", CREDITCARD);
         map.put("eps", EPS);
         map.put("giftcard", GIFTCARD);
+        map.put("googlepay", GOOGLEPAY);
         map.put("ideal", IDEAL);
         map.put("in3", IN3);
         map.put("kbc", KBC);
@@ -170,6 +172,7 @@ public class PaymentLinkMethodResponse {
         map.put("creditcard", PaymentLinkMethodResponseEnum.CREDITCARD);
         map.put("eps", PaymentLinkMethodResponseEnum.EPS);
         map.put("giftcard", PaymentLinkMethodResponseEnum.GIFTCARD);
+        map.put("googlepay", PaymentLinkMethodResponseEnum.GOOGLEPAY);
         map.put("ideal", PaymentLinkMethodResponseEnum.IDEAL);
         map.put("in3", PaymentLinkMethodResponseEnum.IN3);
         map.put("kbc", PaymentLinkMethodResponseEnum.KBC);
@@ -206,6 +209,7 @@ public class PaymentLinkMethodResponse {
         CREDITCARD("creditcard"),
         EPS("eps"),
         GIFTCARD("giftcard"),
+        GOOGLEPAY("googlepay"),
         IDEAL("ideal"),
         IN3("in3"),
         KBC("kbc"),

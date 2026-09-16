@@ -67,6 +67,13 @@ public class EntityWebhookEventWebhookEventTypes {
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED = new EntityWebhookEventWebhookEventTypes("business-account-draft-transfer.approved");
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED = new EntityWebhookEventWebhookEventTypes("business-account-draft-transfer.declined");
     public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_RECEIVED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.received");
+    public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_MATCHED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.matched");
+    public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_RETURNED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.returned");
+    public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_EXPIRED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.expired");
+    public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_MATCH_COMPLETED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.match.completed");
+    public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_MATCH_FAILED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.match.failed");
+    public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_RETURN_COMPLETED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.return.completed");
+    public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_RETURN_FAILED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.return.failed");
     public static final EntityWebhookEventWebhookEventTypes WILDCARD = new EntityWebhookEventWebhookEventTypes("*");
 
     // This map will grow whenever a Color gets created with a new
@@ -181,6 +188,13 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("business-account-draft-transfer.approved", BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED);
         map.put("business-account-draft-transfer.declined", BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED);
         map.put("unmatched-credit-transfer.received", UNMATCHED_CREDIT_TRANSFER_RECEIVED);
+        map.put("unmatched-credit-transfer.matched", UNMATCHED_CREDIT_TRANSFER_MATCHED);
+        map.put("unmatched-credit-transfer.returned", UNMATCHED_CREDIT_TRANSFER_RETURNED);
+        map.put("unmatched-credit-transfer.expired", UNMATCHED_CREDIT_TRANSFER_EXPIRED);
+        map.put("unmatched-credit-transfer.match.completed", UNMATCHED_CREDIT_TRANSFER_MATCH_COMPLETED);
+        map.put("unmatched-credit-transfer.match.failed", UNMATCHED_CREDIT_TRANSFER_MATCH_FAILED);
+        map.put("unmatched-credit-transfer.return.completed", UNMATCHED_CREDIT_TRANSFER_RETURN_COMPLETED);
+        map.put("unmatched-credit-transfer.return.failed", UNMATCHED_CREDIT_TRANSFER_RETURN_FAILED);
         map.put("*", WILDCARD);
         return map;
     }
@@ -227,6 +241,13 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("business-account-draft-transfer.approved", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED);
         map.put("business-account-draft-transfer.declined", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED);
         map.put("unmatched-credit-transfer.received", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_RECEIVED);
+        map.put("unmatched-credit-transfer.matched", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_MATCHED);
+        map.put("unmatched-credit-transfer.returned", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_RETURNED);
+        map.put("unmatched-credit-transfer.expired", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_EXPIRED);
+        map.put("unmatched-credit-transfer.match.completed", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_MATCH_COMPLETED);
+        map.put("unmatched-credit-transfer.match.failed", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_MATCH_FAILED);
+        map.put("unmatched-credit-transfer.return.completed", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_RETURN_COMPLETED);
+        map.put("unmatched-credit-transfer.return.failed", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_RETURN_FAILED);
         map.put("*", EntityWebhookEventWebhookEventTypesEnum.WILDCARD);
         return map;
     }
@@ -274,6 +295,13 @@ public class EntityWebhookEventWebhookEventTypes {
         BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED("business-account-draft-transfer.approved"),
         BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED("business-account-draft-transfer.declined"),
         UNMATCHED_CREDIT_TRANSFER_RECEIVED("unmatched-credit-transfer.received"),
+        UNMATCHED_CREDIT_TRANSFER_MATCHED("unmatched-credit-transfer.matched"),
+        UNMATCHED_CREDIT_TRANSFER_RETURNED("unmatched-credit-transfer.returned"),
+        UNMATCHED_CREDIT_TRANSFER_EXPIRED("unmatched-credit-transfer.expired"),
+        UNMATCHED_CREDIT_TRANSFER_MATCH_COMPLETED("unmatched-credit-transfer.match.completed"),
+        UNMATCHED_CREDIT_TRANSFER_MATCH_FAILED("unmatched-credit-transfer.match.failed"),
+        UNMATCHED_CREDIT_TRANSFER_RETURN_COMPLETED("unmatched-credit-transfer.return.completed"),
+        UNMATCHED_CREDIT_TRANSFER_RETURN_FAILED("unmatched-credit-transfer.return.failed"),
         WILDCARD("*"),;
 
         private final String value;

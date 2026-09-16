@@ -56,6 +56,13 @@ public enum WebhookEventTypes {
     BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED("business-account-draft-transfer.approved"),
     BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED("business-account-draft-transfer.declined"),
     UNMATCHED_CREDIT_TRANSFER_RECEIVED("unmatched-credit-transfer.received"),
+    UNMATCHED_CREDIT_TRANSFER_MATCHED("unmatched-credit-transfer.matched"),
+    UNMATCHED_CREDIT_TRANSFER_RETURNED("unmatched-credit-transfer.returned"),
+    UNMATCHED_CREDIT_TRANSFER_EXPIRED("unmatched-credit-transfer.expired"),
+    UNMATCHED_CREDIT_TRANSFER_MATCH_COMPLETED("unmatched-credit-transfer.match.completed"),
+    UNMATCHED_CREDIT_TRANSFER_MATCH_FAILED("unmatched-credit-transfer.match.failed"),
+    UNMATCHED_CREDIT_TRANSFER_RETURN_COMPLETED("unmatched-credit-transfer.return.completed"),
+    UNMATCHED_CREDIT_TRANSFER_RETURN_FAILED("unmatched-credit-transfer.return.failed"),
     WILDCARD("*");
 
     @JsonValue
