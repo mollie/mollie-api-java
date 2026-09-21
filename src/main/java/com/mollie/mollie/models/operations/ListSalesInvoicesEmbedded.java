@@ -24,14 +24,14 @@ public class ListSalesInvoicesEmbedded {
      * the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("sales_invoices")
-    private Optional<? extends List<ListSalesInvoiceResponse>> salesInvoices;
+    @JsonProperty("invoices")
+    private Optional<? extends List<ListSalesInvoiceResponse>> invoices;
 
     @JsonCreator
     public ListSalesInvoicesEmbedded(
-            @JsonProperty("sales_invoices") Optional<? extends List<ListSalesInvoiceResponse>> salesInvoices) {
-        Utils.checkNotNull(salesInvoices, "salesInvoices");
-        this.salesInvoices = salesInvoices;
+            @JsonProperty("invoices") Optional<? extends List<ListSalesInvoiceResponse>> invoices) {
+        Utils.checkNotNull(invoices, "invoices");
+        this.invoices = invoices;
     }
     
     public ListSalesInvoicesEmbedded() {
@@ -44,8 +44,8 @@ public class ListSalesInvoicesEmbedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<ListSalesInvoiceResponse>> salesInvoices() {
-        return (Optional<List<ListSalesInvoiceResponse>>) salesInvoices;
+    public Optional<List<ListSalesInvoiceResponse>> invoices() {
+        return (Optional<List<ListSalesInvoiceResponse>>) invoices;
     }
 
     public static Builder builder() {
@@ -57,9 +57,9 @@ public class ListSalesInvoicesEmbedded {
      * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
      * the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
-    public ListSalesInvoicesEmbedded withSalesInvoices(List<ListSalesInvoiceResponse> salesInvoices) {
-        Utils.checkNotNull(salesInvoices, "salesInvoices");
-        this.salesInvoices = Optional.ofNullable(salesInvoices);
+    public ListSalesInvoicesEmbedded withInvoices(List<ListSalesInvoiceResponse> invoices) {
+        Utils.checkNotNull(invoices, "invoices");
+        this.invoices = Optional.ofNullable(invoices);
         return this;
     }
 
@@ -68,9 +68,9 @@ public class ListSalesInvoicesEmbedded {
      * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
      * the [Get sales invoice endpoint](get-sales-invoice) documentation.
      */
-    public ListSalesInvoicesEmbedded withSalesInvoices(Optional<? extends List<ListSalesInvoiceResponse>> salesInvoices) {
-        Utils.checkNotNull(salesInvoices, "salesInvoices");
-        this.salesInvoices = salesInvoices;
+    public ListSalesInvoicesEmbedded withInvoices(Optional<? extends List<ListSalesInvoiceResponse>> invoices) {
+        Utils.checkNotNull(invoices, "invoices");
+        this.invoices = invoices;
         return this;
     }
 
@@ -84,25 +84,25 @@ public class ListSalesInvoicesEmbedded {
         }
         ListSalesInvoicesEmbedded other = (ListSalesInvoicesEmbedded) o;
         return 
-            Utils.enhancedDeepEquals(this.salesInvoices, other.salesInvoices);
+            Utils.enhancedDeepEquals(this.invoices, other.invoices);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            salesInvoices);
+            invoices);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ListSalesInvoicesEmbedded.class,
-                "salesInvoices", salesInvoices);
+                "invoices", invoices);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<ListSalesInvoiceResponse>> salesInvoices = Optional.empty();
+        private Optional<? extends List<ListSalesInvoiceResponse>> invoices = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -113,9 +113,9 @@ public class ListSalesInvoicesEmbedded {
          * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
          * the [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
-        public Builder salesInvoices(List<ListSalesInvoiceResponse> salesInvoices) {
-            Utils.checkNotNull(salesInvoices, "salesInvoices");
-            this.salesInvoices = Optional.ofNullable(salesInvoices);
+        public Builder invoices(List<ListSalesInvoiceResponse> invoices) {
+            Utils.checkNotNull(invoices, "invoices");
+            this.invoices = Optional.ofNullable(invoices);
             return this;
         }
 
@@ -123,16 +123,16 @@ public class ListSalesInvoicesEmbedded {
          * An array of sales invoice objects. For a complete reference of the sales invoice object, refer to
          * the [Get sales invoice endpoint](get-sales-invoice) documentation.
          */
-        public Builder salesInvoices(Optional<? extends List<ListSalesInvoiceResponse>> salesInvoices) {
-            Utils.checkNotNull(salesInvoices, "salesInvoices");
-            this.salesInvoices = salesInvoices;
+        public Builder invoices(Optional<? extends List<ListSalesInvoiceResponse>> invoices) {
+            Utils.checkNotNull(invoices, "invoices");
+            this.invoices = invoices;
             return this;
         }
 
         public ListSalesInvoicesEmbedded build() {
 
             return new ListSalesInvoicesEmbedded(
-                salesInvoices);
+                invoices);
         }
 
     }
