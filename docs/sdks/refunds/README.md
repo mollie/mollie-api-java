@@ -47,10 +47,6 @@ public class Application {
                         .value("10.00")
                         .build())
                     .description("Refunding a Chess Board")
-                    .externalReference(RefundRequestExternalReference.builder()
-                        .type(RefundExternalReferenceType.ACQUIRER_REFERENCE)
-                        .id("123456789012345")
-                        .build())
                     .reverseRouting(false)
                     .routingReversals(List.of(
                         RoutingReversals.builder()
@@ -105,10 +101,6 @@ public class Application {
                         .value("10.00")
                         .build())
                     .description("Refunding a Chess Board")
-                    .externalReference(RefundRequestExternalReference.builder()
-                        .type(RefundExternalReferenceType.ACQUIRER_REFERENCE)
-                        .id("123456789012345")
-                        .build())
                     .reverseRouting(false)
                     .routingReversals(List.of(
                         RoutingReversals.builder()
