@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -43,11 +42,6 @@ public class RefundRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Metadata> metadata;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("externalReference")
-    private Optional<? extends RefundRequestExternalReference> externalReference;
 
     /**
      * *This feature is only available to marketplace operators.*
@@ -104,21 +98,18 @@ public class RefundRequest {
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("amount") Amount amount,
             @JsonProperty("metadata") JsonNullable<? extends Metadata> metadata,
-            @JsonProperty("externalReference") Optional<? extends RefundRequestExternalReference> externalReference,
             @JsonProperty("reverseRouting") JsonNullable<Boolean> reverseRouting,
             @JsonProperty("routingReversals") JsonNullable<? extends List<RoutingReversals>> routingReversals,
             @JsonProperty("testmode") JsonNullable<Boolean> testmode) {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(metadata, "metadata");
-        Utils.checkNotNull(externalReference, "externalReference");
         Utils.checkNotNull(reverseRouting, "reverseRouting");
         Utils.checkNotNull(routingReversals, "routingReversals");
         Utils.checkNotNull(testmode, "testmode");
         this.description = description;
         this.amount = amount;
         this.metadata = metadata;
-        this.externalReference = externalReference;
         this.reverseRouting = reverseRouting;
         this.routingReversals = routingReversals;
         this.testmode = testmode;
@@ -127,8 +118,7 @@ public class RefundRequest {
     public RefundRequest(
             Amount amount) {
         this(JsonNullable.undefined(), amount, JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -158,12 +148,6 @@ public class RefundRequest {
     @JsonIgnore
     public JsonNullable<Metadata> metadata() {
         return (JsonNullable<Metadata>) metadata;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<RefundRequestExternalReference> externalReference() {
-        return (Optional<RefundRequestExternalReference>) externalReference;
     }
 
     /**
@@ -275,19 +259,6 @@ public class RefundRequest {
     public RefundRequest withMetadata(JsonNullable<? extends Metadata> metadata) {
         Utils.checkNotNull(metadata, "metadata");
         this.metadata = metadata;
-        return this;
-    }
-
-    public RefundRequest withExternalReference(RefundRequestExternalReference externalReference) {
-        Utils.checkNotNull(externalReference, "externalReference");
-        this.externalReference = Optional.ofNullable(externalReference);
-        return this;
-    }
-
-
-    public RefundRequest withExternalReference(Optional<? extends RefundRequestExternalReference> externalReference) {
-        Utils.checkNotNull(externalReference, "externalReference");
-        this.externalReference = externalReference;
         return this;
     }
 
@@ -416,7 +387,6 @@ public class RefundRequest {
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.amount, other.amount) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
-            Utils.enhancedDeepEquals(this.externalReference, other.externalReference) &&
             Utils.enhancedDeepEquals(this.reverseRouting, other.reverseRouting) &&
             Utils.enhancedDeepEquals(this.routingReversals, other.routingReversals) &&
             Utils.enhancedDeepEquals(this.testmode, other.testmode);
@@ -426,8 +396,7 @@ public class RefundRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             description, amount, metadata,
-            externalReference, reverseRouting, routingReversals,
-            testmode);
+            reverseRouting, routingReversals, testmode);
     }
     
     @Override
@@ -436,7 +405,6 @@ public class RefundRequest {
                 "description", description,
                 "amount", amount,
                 "metadata", metadata,
-                "externalReference", externalReference,
                 "reverseRouting", reverseRouting,
                 "routingReversals", routingReversals,
                 "testmode", testmode);
@@ -450,8 +418,6 @@ public class RefundRequest {
         private Amount amount;
 
         private JsonNullable<? extends Metadata> metadata = JsonNullable.undefined();
-
-        private Optional<? extends RefundRequestExternalReference> externalReference = Optional.empty();
 
         private JsonNullable<Boolean> reverseRouting = JsonNullable.undefined();
 
@@ -516,19 +482,6 @@ public class RefundRequest {
         public Builder metadata(JsonNullable<? extends Metadata> metadata) {
             Utils.checkNotNull(metadata, "metadata");
             this.metadata = metadata;
-            return this;
-        }
-
-
-        public Builder externalReference(RefundRequestExternalReference externalReference) {
-            Utils.checkNotNull(externalReference, "externalReference");
-            this.externalReference = Optional.ofNullable(externalReference);
-            return this;
-        }
-
-        public Builder externalReference(Optional<? extends RefundRequestExternalReference> externalReference) {
-            Utils.checkNotNull(externalReference, "externalReference");
-            this.externalReference = externalReference;
             return this;
         }
 
@@ -651,8 +604,7 @@ public class RefundRequest {
 
             return new RefundRequest(
                 description, amount, metadata,
-                externalReference, reverseRouting, routingReversals,
-                testmode);
+                reverseRouting, routingReversals, testmode);
         }
 
     }
