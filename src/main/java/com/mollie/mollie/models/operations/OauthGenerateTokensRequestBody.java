@@ -41,9 +41,6 @@ public class OauthGenerateTokensRequestBody {
      * The URL the merchant is sent back to once the request has been authorized. It must match the URL you
      * set
      * when registering your app.
-     * 
-     * <p>For consecutive refresh token requests, this parameter is required only if the initial authorization
-     * code grant request also contained a `redirect_uri`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirect_uri")
@@ -98,9 +95,6 @@ public class OauthGenerateTokensRequestBody {
      * The URL the merchant is sent back to once the request has been authorized. It must match the URL you
      * set
      * when registering your app.
-     * 
-     * <p>For consecutive refresh token requests, this parameter is required only if the initial authorization
-     * code grant request also contained a `redirect_uri`.
      */
     @JsonIgnore
     public Optional<String> redirectUri() {
@@ -164,9 +158,6 @@ public class OauthGenerateTokensRequestBody {
      * The URL the merchant is sent back to once the request has been authorized. It must match the URL you
      * set
      * when registering your app.
-     * 
-     * <p>For consecutive refresh token requests, this parameter is required only if the initial authorization
-     * code grant request also contained a `redirect_uri`.
      */
     public OauthGenerateTokensRequestBody withRedirectUri(String redirectUri) {
         Utils.checkNotNull(redirectUri, "redirectUri");
@@ -179,9 +170,6 @@ public class OauthGenerateTokensRequestBody {
      * The URL the merchant is sent back to once the request has been authorized. It must match the URL you
      * set
      * when registering your app.
-     * 
-     * <p>For consecutive refresh token requests, this parameter is required only if the initial authorization
-     * code grant request also contained a `redirect_uri`.
      */
     public OauthGenerateTokensRequestBody withRedirectUri(Optional<String> redirectUri) {
         Utils.checkNotNull(redirectUri, "redirectUri");
@@ -290,9 +278,6 @@ public class OauthGenerateTokensRequestBody {
          * The URL the merchant is sent back to once the request has been authorized. It must match the URL you
          * set
          * when registering your app.
-         * 
-         * <p>For consecutive refresh token requests, this parameter is required only if the initial authorization
-         * code grant request also contained a `redirect_uri`.
          */
         public Builder redirectUri(String redirectUri) {
             Utils.checkNotNull(redirectUri, "redirectUri");
@@ -304,9 +289,6 @@ public class OauthGenerateTokensRequestBody {
          * The URL the merchant is sent back to once the request has been authorized. It must match the URL you
          * set
          * when registering your app.
-         * 
-         * <p>For consecutive refresh token requests, this parameter is required only if the initial authorization
-         * code grant request also contained a `redirect_uri`.
          */
         public Builder redirectUri(Optional<String> redirectUri) {
             Utils.checkNotNull(redirectUri, "redirectUri");
