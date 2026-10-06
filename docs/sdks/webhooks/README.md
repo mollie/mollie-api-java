@@ -141,9 +141,89 @@ public class Application {
 
 Updates the webhook. You may edit the name, url and the list of subscribed event types.
 
-### Example Usage
+### Example Usage: create-webhook-200
 
 <!-- UsageSnippet language="java" operationID="update-webhook" method="patch" path="/v2/webhooks/{webhookId}" example="create-webhook-200" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.WebhookEventTypes;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
+                    .build())
+            .build();
+
+        UpdateWebhookResponse res = sdk.webhooks().update()
+                .webhookId("hook_1234567890")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(UpdateWebhookRequestBody.builder()
+                    .name("Webhook #1")
+                    .url("https://mollie.com/")
+                    .eventTypes(UpdateWebhookEventTypes.of(WebhookEventTypes.PAYMENT_LINK_PAID))
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.entityWebhook().isPresent()) {
+            System.out.println(res.entityWebhook().get());
+        }
+    }
+}
+```
+### Example Usage: get-webhook-200
+
+<!-- UsageSnippet language="java" operationID="update-webhook" method="patch" path="/v2/webhooks/{webhookId}" example="get-webhook-200" -->
+```java
+package hello.world;
+
+import com.mollie.mollie.Client;
+import com.mollie.mollie.models.components.Security;
+import com.mollie.mollie.models.components.WebhookEventTypes;
+import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.*;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws ErrorResponse, Exception {
+
+        Client sdk = Client.builder()
+                .security(Security.builder()
+                    .advancedAccessToken(System.getenv().getOrDefault("ADVANCED_ACCESS_TOKEN", ""))
+                    .build())
+            .build();
+
+        UpdateWebhookResponse res = sdk.webhooks().update()
+                .webhookId("hook_1234567890")
+                .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .requestBody(UpdateWebhookRequestBody.builder()
+                    .name("Webhook #1")
+                    .url("https://mollie.com/")
+                    .eventTypes(UpdateWebhookEventTypes.of(WebhookEventTypes.PAYMENT_LINK_PAID))
+                    .testmode(false)
+                    .build())
+                .call();
+
+        if (res.entityWebhook().isPresent()) {
+            System.out.println(res.entityWebhook().get());
+        }
+    }
+}
+```
+### Example Usage: get-webhook-200-1
+
+<!-- UsageSnippet language="java" operationID="update-webhook" method="patch" path="/v2/webhooks/{webhookId}" example="get-webhook-200-1" -->
 ```java
 package hello.world;
 

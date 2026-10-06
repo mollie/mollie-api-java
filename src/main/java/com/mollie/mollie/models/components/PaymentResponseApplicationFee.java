@@ -6,14 +6,10 @@ package com.mollie.mollie.models.components;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Optional;
 
 /**
  * PaymentResponseApplicationFee
@@ -36,40 +32,33 @@ public class PaymentResponseApplicationFee {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<? extends Amount> amount;
+    private Amount amount;
 
     /**
      * The description of the application fee. This will appear on settlement reports towards both you and
      * the
      * connected merchant.
      */
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     @JsonCreator
     public PaymentResponseApplicationFee(
-            @JsonProperty("amount") Optional<? extends Amount> amount,
-            @JsonProperty("description") Optional<String> description) {
+            @JsonProperty("amount") Amount amount,
+            @JsonProperty("description") String description) {
         Utils.checkNotNull(amount, "amount");
         Utils.checkNotNull(description, "description");
         this.amount = amount;
         this.description = description;
     }
-    
-    public PaymentResponseApplicationFee() {
-        this(Optional.empty(), Optional.empty());
-    }
 
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> amount() {
-        return (Optional<Amount>) amount;
+    public Amount amount() {
+        return amount;
     }
 
     /**
@@ -78,7 +67,7 @@ public class PaymentResponseApplicationFee {
      * connected merchant.
      */
     @JsonIgnore
-    public Optional<String> description() {
+    public String description() {
         return description;
     }
 
@@ -92,16 +81,6 @@ public class PaymentResponseApplicationFee {
      */
     public PaymentResponseApplicationFee withAmount(Amount amount) {
         Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-     */
-    public PaymentResponseApplicationFee withAmount(Optional<? extends Amount> amount) {
-        Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
@@ -112,18 +91,6 @@ public class PaymentResponseApplicationFee {
      * connected merchant.
      */
     public PaymentResponseApplicationFee withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
-
-    /**
-     * The description of the application fee. This will appear on settlement reports towards both you and
-     * the
-     * connected merchant.
-     */
-    public PaymentResponseApplicationFee withDescription(Optional<String> description) {
         Utils.checkNotNull(description, "description");
         this.description = description;
         return this;
@@ -159,9 +126,9 @@ public class PaymentResponseApplicationFee {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Amount> amount = Optional.empty();
+        private Amount amount;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
         private Builder() {
           // force use of static builder() method
@@ -172,15 +139,6 @@ public class PaymentResponseApplicationFee {
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
         public Builder amount(Amount amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
-         */
-        public Builder amount(Optional<? extends Amount> amount) {
             Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
@@ -193,17 +151,6 @@ public class PaymentResponseApplicationFee {
          * connected merchant.
          */
         public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * The description of the application fee. This will appear on settlement reports towards both you and
-         * the
-         * connected merchant.
-         */
-        public Builder description(Optional<String> description) {
             Utils.checkNotNull(description, "description");
             this.description = description;
             return this;
