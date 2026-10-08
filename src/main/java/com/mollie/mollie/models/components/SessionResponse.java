@@ -114,6 +114,21 @@ public class SessionResponse {
     @JsonProperty("shippingAddress")
     private Optional<? extends ShippingAddress> shippingAddress;
 
+    /**
+     * &gt; 🚧 Private beta
+     * &gt;
+     * &gt; This property is currently in private beta, and the final specification may still change.
+     * 
+     * <p>Shipping information for the Checkout Session. Provide either `options` or `callbackUrl`, not both.
+     * 
+     * <p>The `lines` of the Checkout Session must not contain a line with type `shipping_fee`. When
+     * `shipping` is set,
+     * `requiredCustomerDetails` must contain `shipping-address`.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("shipping")
+    private Optional<? extends SessionResponseShipping> shipping;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customerId")
@@ -197,6 +212,7 @@ public class SessionResponse {
             @JsonProperty("requiredCustomerDetails") Optional<? extends List<SessionRequiredCustomerDetailsResponse>> requiredCustomerDetails,
             @JsonProperty("billingAddress") Optional<? extends ShippingAddress> billingAddress,
             @JsonProperty("shippingAddress") Optional<? extends ShippingAddress> shippingAddress,
+            @JsonProperty("shipping") Optional<? extends SessionResponseShipping> shipping,
             @JsonProperty("customerId") Optional<String> customerId,
             @JsonProperty("sequenceType") Optional<? extends SessionSequenceTypeResponse> sequenceType,
             @JsonProperty("metadata") Optional<? extends Map<String, Object>> metadata,
@@ -218,6 +234,7 @@ public class SessionResponse {
         Utils.checkNotNull(requiredCustomerDetails, "requiredCustomerDetails");
         Utils.checkNotNull(billingAddress, "billingAddress");
         Utils.checkNotNull(shippingAddress, "shippingAddress");
+        Utils.checkNotNull(shipping, "shipping");
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(sequenceType, "sequenceType");
         Utils.checkNotNull(metadata, "metadata");
@@ -239,6 +256,7 @@ public class SessionResponse {
         this.requiredCustomerDetails = requiredCustomerDetails;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
+        this.shipping = shipping;
         this.customerId = customerId;
         this.sequenceType = sequenceType;
         this.metadata = metadata;
@@ -267,8 +285,9 @@ public class SessionResponse {
             description, Optional.empty(), redirectUrl,
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), profileId, createdAt,
-            JsonNullable.undefined(), JsonNullable.undefined(), links);
+            Optional.empty(), Optional.empty(), profileId,
+            createdAt, JsonNullable.undefined(), JsonNullable.undefined(),
+            links);
     }
 
     /**
@@ -383,6 +402,23 @@ public class SessionResponse {
     @JsonIgnore
     public Optional<ShippingAddress> shippingAddress() {
         return (Optional<ShippingAddress>) shippingAddress;
+    }
+
+    /**
+     * &gt; 🚧 Private beta
+     * &gt;
+     * &gt; This property is currently in private beta, and the final specification may still change.
+     * 
+     * <p>Shipping information for the Checkout Session. Provide either `options` or `callbackUrl`, not both.
+     * 
+     * <p>The `lines` of the Checkout Session must not contain a line with type `shipping_fee`. When
+     * `shipping` is set,
+     * `requiredCustomerDetails` must contain `shipping-address`.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<SessionResponseShipping> shipping() {
+        return (Optional<SessionResponseShipping>) shipping;
     }
 
     @JsonIgnore
@@ -639,6 +675,41 @@ public class SessionResponse {
         return this;
     }
 
+    /**
+     * &gt; 🚧 Private beta
+     * &gt;
+     * &gt; This property is currently in private beta, and the final specification may still change.
+     * 
+     * <p>Shipping information for the Checkout Session. Provide either `options` or `callbackUrl`, not both.
+     * 
+     * <p>The `lines` of the Checkout Session must not contain a line with type `shipping_fee`. When
+     * `shipping` is set,
+     * `requiredCustomerDetails` must contain `shipping-address`.
+     */
+    public SessionResponse withShipping(SessionResponseShipping shipping) {
+        Utils.checkNotNull(shipping, "shipping");
+        this.shipping = Optional.ofNullable(shipping);
+        return this;
+    }
+
+
+    /**
+     * &gt; 🚧 Private beta
+     * &gt;
+     * &gt; This property is currently in private beta, and the final specification may still change.
+     * 
+     * <p>Shipping information for the Checkout Session. Provide either `options` or `callbackUrl`, not both.
+     * 
+     * <p>The `lines` of the Checkout Session must not contain a line with type `shipping_fee`. When
+     * `shipping` is set,
+     * `requiredCustomerDetails` must contain `shipping-address`.
+     */
+    public SessionResponse withShipping(Optional<? extends SessionResponseShipping> shipping) {
+        Utils.checkNotNull(shipping, "shipping");
+        this.shipping = shipping;
+        return this;
+    }
+
     public SessionResponse withCustomerId(String customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = Optional.ofNullable(customerId);
@@ -805,6 +876,7 @@ public class SessionResponse {
             Utils.enhancedDeepEquals(this.requiredCustomerDetails, other.requiredCustomerDetails) &&
             Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
             Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.shipping, other.shipping) &&
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.sequenceType, other.sequenceType) &&
             Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
@@ -823,9 +895,10 @@ public class SessionResponse {
             clientAccessToken, status, amount,
             description, lines, redirectUrl,
             requiredCustomerDetails, billingAddress, shippingAddress,
-            customerId, sequenceType, metadata,
-            payment, profileId, createdAt,
-            expiredAt, completedAt, links);
+            shipping, customerId, sequenceType,
+            metadata, payment, profileId,
+            createdAt, expiredAt, completedAt,
+            links);
     }
     
     @Override
@@ -843,6 +916,7 @@ public class SessionResponse {
                 "requiredCustomerDetails", requiredCustomerDetails,
                 "billingAddress", billingAddress,
                 "shippingAddress", shippingAddress,
+                "shipping", shipping,
                 "customerId", customerId,
                 "sequenceType", sequenceType,
                 "metadata", metadata,
@@ -880,6 +954,8 @@ public class SessionResponse {
         private Optional<? extends ShippingAddress> billingAddress = Optional.empty();
 
         private Optional<? extends ShippingAddress> shippingAddress = Optional.empty();
+
+        private Optional<? extends SessionResponseShipping> shipping = Optional.empty();
 
         private Optional<String> customerId = Optional.empty();
 
@@ -1080,6 +1156,41 @@ public class SessionResponse {
         }
 
 
+        /**
+         * &gt; 🚧 Private beta
+         * &gt;
+         * &gt; This property is currently in private beta, and the final specification may still change.
+         * 
+         * <p>Shipping information for the Checkout Session. Provide either `options` or `callbackUrl`, not both.
+         * 
+         * <p>The `lines` of the Checkout Session must not contain a line with type `shipping_fee`. When
+         * `shipping` is set,
+         * `requiredCustomerDetails` must contain `shipping-address`.
+         */
+        public Builder shipping(SessionResponseShipping shipping) {
+            Utils.checkNotNull(shipping, "shipping");
+            this.shipping = Optional.ofNullable(shipping);
+            return this;
+        }
+
+        /**
+         * &gt; 🚧 Private beta
+         * &gt;
+         * &gt; This property is currently in private beta, and the final specification may still change.
+         * 
+         * <p>Shipping information for the Checkout Session. Provide either `options` or `callbackUrl`, not both.
+         * 
+         * <p>The `lines` of the Checkout Session must not contain a line with type `shipping_fee`. When
+         * `shipping` is set,
+         * `requiredCustomerDetails` must contain `shipping-address`.
+         */
+        public Builder shipping(Optional<? extends SessionResponseShipping> shipping) {
+            Utils.checkNotNull(shipping, "shipping");
+            this.shipping = shipping;
+            return this;
+        }
+
+
         public Builder customerId(String customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = Optional.ofNullable(customerId);
@@ -1235,9 +1346,10 @@ public class SessionResponse {
                 clientAccessToken, status, amount,
                 description, lines, redirectUrl,
                 requiredCustomerDetails, billingAddress, shippingAddress,
-                customerId, sequenceType, metadata,
-                payment, profileId, createdAt,
-                expiredAt, completedAt, links);
+                shipping, customerId, sequenceType,
+                metadata, payment, profileId,
+                createdAt, expiredAt, completedAt,
+                links);
         }
 
     }

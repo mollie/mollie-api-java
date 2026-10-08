@@ -295,27 +295,6 @@ public class PaymentDetails {
     private JsonNullable<String> maskedNumber;
 
     /**
-     * The Point of sale receipt object.
-     * 
-     * <p>* `authorizationCode` _string|null_ - a unique code provided by the cardholder's bank to confirm
-     * that the
-     * transaction was successfully approved.
-     * * `applicationIdentifier` _string|null_ - the unique number that identifies a specific payment
-     * application
-     * on a chip card.
-     * * `cardReadMethod` _string|null_ - the method by which the card was read by the terminal. Possible
-     * values:
-     * `chip` | `magnetic-stripe` | `near-field-communication` | `contactless` | `moto`.
-     * * `cardVerificationMethod` _string|null_ - the method used to verify the cardholder's identity.
-     * Possible
-     * values: `no-cvm-required` | `online-pin` | `offline-pin` | `consumer-device` | `signature` |
-     * `signature-and-online-pin` | `online-pin-and-signature` | `none` | `failed`.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("receipt")
-    private Optional<? extends Receipt> receipt;
-
-    /**
      * The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
      * reference
      * to Mollie.
@@ -488,7 +467,6 @@ public class PaymentDetails {
             @JsonProperty("customerReference") Optional<String> customerReference,
             @JsonProperty("terminalId") Optional<String> terminalId,
             @JsonProperty("maskedNumber") JsonNullable<String> maskedNumber,
-            @JsonProperty("receipt") Optional<? extends Receipt> receipt,
             @JsonProperty("creditorIdentifier") JsonNullable<String> creditorIdentifier,
             @JsonProperty("dueDate") JsonNullable<LocalDate> dueDate,
             @JsonProperty("signatureDate") JsonNullable<LocalDate> signatureDate,
@@ -541,7 +519,6 @@ public class PaymentDetails {
         Utils.checkNotNull(customerReference, "customerReference");
         Utils.checkNotNull(terminalId, "terminalId");
         Utils.checkNotNull(maskedNumber, "maskedNumber");
-        Utils.checkNotNull(receipt, "receipt");
         Utils.checkNotNull(creditorIdentifier, "creditorIdentifier");
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(signatureDate, "signatureDate");
@@ -594,7 +571,6 @@ public class PaymentDetails {
         this.customerReference = customerReference;
         this.terminalId = terminalId;
         this.maskedNumber = maskedNumber;
-        this.receipt = receipt;
         this.creditorIdentifier = creditorIdentifier;
         this.dueDate = dueDate;
         this.signatureDate = signatureDate;
@@ -626,13 +602,13 @@ public class PaymentDetails {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -942,29 +918,6 @@ public class PaymentDetails {
     @JsonIgnore
     public JsonNullable<String> maskedNumber() {
         return maskedNumber;
-    }
-
-    /**
-     * The Point of sale receipt object.
-     * 
-     * <p>* `authorizationCode` _string|null_ - a unique code provided by the cardholder's bank to confirm
-     * that the
-     * transaction was successfully approved.
-     * * `applicationIdentifier` _string|null_ - the unique number that identifies a specific payment
-     * application
-     * on a chip card.
-     * * `cardReadMethod` _string|null_ - the method by which the card was read by the terminal. Possible
-     * values:
-     * `chip` | `magnetic-stripe` | `near-field-communication` | `contactless` | `moto`.
-     * * `cardVerificationMethod` _string|null_ - the method used to verify the cardholder's identity.
-     * Possible
-     * values: `no-cvm-required` | `online-pin` | `offline-pin` | `consumer-device` | `signature` |
-     * `signature-and-online-pin` | `online-pin-and-signature` | `none` | `failed`.
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Receipt> receipt() {
-        return (Optional<Receipt>) receipt;
     }
 
     /**
@@ -1804,53 +1757,6 @@ public class PaymentDetails {
     }
 
     /**
-     * The Point of sale receipt object.
-     * 
-     * <p>* `authorizationCode` _string|null_ - a unique code provided by the cardholder's bank to confirm
-     * that the
-     * transaction was successfully approved.
-     * * `applicationIdentifier` _string|null_ - the unique number that identifies a specific payment
-     * application
-     * on a chip card.
-     * * `cardReadMethod` _string|null_ - the method by which the card was read by the terminal. Possible
-     * values:
-     * `chip` | `magnetic-stripe` | `near-field-communication` | `contactless` | `moto`.
-     * * `cardVerificationMethod` _string|null_ - the method used to verify the cardholder's identity.
-     * Possible
-     * values: `no-cvm-required` | `online-pin` | `offline-pin` | `consumer-device` | `signature` |
-     * `signature-and-online-pin` | `online-pin-and-signature` | `none` | `failed`.
-     */
-    public PaymentDetails withReceipt(Receipt receipt) {
-        Utils.checkNotNull(receipt, "receipt");
-        this.receipt = Optional.ofNullable(receipt);
-        return this;
-    }
-
-
-    /**
-     * The Point of sale receipt object.
-     * 
-     * <p>* `authorizationCode` _string|null_ - a unique code provided by the cardholder's bank to confirm
-     * that the
-     * transaction was successfully approved.
-     * * `applicationIdentifier` _string|null_ - the unique number that identifies a specific payment
-     * application
-     * on a chip card.
-     * * `cardReadMethod` _string|null_ - the method by which the card was read by the terminal. Possible
-     * values:
-     * `chip` | `magnetic-stripe` | `near-field-communication` | `contactless` | `moto`.
-     * * `cardVerificationMethod` _string|null_ - the method used to verify the cardholder's identity.
-     * Possible
-     * values: `no-cvm-required` | `online-pin` | `offline-pin` | `consumer-device` | `signature` |
-     * `signature-and-online-pin` | `online-pin-and-signature` | `none` | `failed`.
-     */
-    public PaymentDetails withReceipt(Optional<? extends Receipt> receipt) {
-        Utils.checkNotNull(receipt, "receipt");
-        this.receipt = receipt;
-        return this;
-    }
-
-    /**
      * The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
      * reference
      * to Mollie.
@@ -2243,7 +2149,6 @@ public class PaymentDetails {
             Utils.enhancedDeepEquals(this.customerReference, other.customerReference) &&
             Utils.enhancedDeepEquals(this.terminalId, other.terminalId) &&
             Utils.enhancedDeepEquals(this.maskedNumber, other.maskedNumber) &&
-            Utils.enhancedDeepEquals(this.receipt, other.receipt) &&
             Utils.enhancedDeepEquals(this.creditorIdentifier, other.creditorIdentifier) &&
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
             Utils.enhancedDeepEquals(this.signatureDate, other.signatureDate) &&
@@ -2277,13 +2182,13 @@ public class PaymentDetails {
             failureMessage, wallet, multibancoReference,
             multibancoEntity, paypalReference, paypalPayerId,
             sellerProtection, paypalFee, customerReference,
-            terminalId, maskedNumber, receipt,
-            creditorIdentifier, dueDate, signatureDate,
-            bankReasonCode, bankReason, endToEndIdentifier,
-            mandateReference, batchReference, fileReference,
-            qrCode, voucherNumber, giftcards,
-            issuer, vouchers, remainderAmount,
-            remainderMethod, remainderDetails);
+            terminalId, maskedNumber, creditorIdentifier,
+            dueDate, signatureDate, bankReasonCode,
+            bankReason, endToEndIdentifier, mandateReference,
+            batchReference, fileReference, qrCode,
+            voucherNumber, giftcards, issuer,
+            vouchers, remainderAmount, remainderMethod,
+            remainderDetails);
     }
     
     @Override
@@ -2324,7 +2229,6 @@ public class PaymentDetails {
                 "customerReference", customerReference,
                 "terminalId", terminalId,
                 "maskedNumber", maskedNumber,
-                "receipt", receipt,
                 "creditorIdentifier", creditorIdentifier,
                 "dueDate", dueDate,
                 "signatureDate", signatureDate,
@@ -2416,8 +2320,6 @@ public class PaymentDetails {
         private Optional<String> terminalId = Optional.empty();
 
         private JsonNullable<String> maskedNumber = JsonNullable.undefined();
-
-        private Optional<? extends Receipt> receipt = Optional.empty();
 
         private JsonNullable<String> creditorIdentifier = JsonNullable.undefined();
 
@@ -3162,53 +3064,6 @@ public class PaymentDetails {
 
 
         /**
-         * The Point of sale receipt object.
-         * 
-         * <p>* `authorizationCode` _string|null_ - a unique code provided by the cardholder's bank to confirm
-         * that the
-         * transaction was successfully approved.
-         * * `applicationIdentifier` _string|null_ - the unique number that identifies a specific payment
-         * application
-         * on a chip card.
-         * * `cardReadMethod` _string|null_ - the method by which the card was read by the terminal. Possible
-         * values:
-         * `chip` | `magnetic-stripe` | `near-field-communication` | `contactless` | `moto`.
-         * * `cardVerificationMethod` _string|null_ - the method used to verify the cardholder's identity.
-         * Possible
-         * values: `no-cvm-required` | `online-pin` | `offline-pin` | `consumer-device` | `signature` |
-         * `signature-and-online-pin` | `online-pin-and-signature` | `none` | `failed`.
-         */
-        public Builder receipt(Receipt receipt) {
-            Utils.checkNotNull(receipt, "receipt");
-            this.receipt = Optional.ofNullable(receipt);
-            return this;
-        }
-
-        /**
-         * The Point of sale receipt object.
-         * 
-         * <p>* `authorizationCode` _string|null_ - a unique code provided by the cardholder's bank to confirm
-         * that the
-         * transaction was successfully approved.
-         * * `applicationIdentifier` _string|null_ - the unique number that identifies a specific payment
-         * application
-         * on a chip card.
-         * * `cardReadMethod` _string|null_ - the method by which the card was read by the terminal. Possible
-         * values:
-         * `chip` | `magnetic-stripe` | `near-field-communication` | `contactless` | `moto`.
-         * * `cardVerificationMethod` _string|null_ - the method used to verify the cardholder's identity.
-         * Possible
-         * values: `no-cvm-required` | `online-pin` | `offline-pin` | `consumer-device` | `signature` |
-         * `signature-and-online-pin` | `online-pin-and-signature` | `none` | `failed`.
-         */
-        public Builder receipt(Optional<? extends Receipt> receipt) {
-            Utils.checkNotNull(receipt, "receipt");
-            this.receipt = receipt;
-            return this;
-        }
-
-
-        /**
          * The creditor identifier indicates who is authorized to execute the payment. In this case, it is a
          * reference
          * to Mollie.
@@ -3578,13 +3433,13 @@ public class PaymentDetails {
                 failureMessage, wallet, multibancoReference,
                 multibancoEntity, paypalReference, paypalPayerId,
                 sellerProtection, paypalFee, customerReference,
-                terminalId, maskedNumber, receipt,
-                creditorIdentifier, dueDate, signatureDate,
-                bankReasonCode, bankReason, endToEndIdentifier,
-                mandateReference, batchReference, fileReference,
-                qrCode, voucherNumber, giftcards,
-                issuer, vouchers, remainderAmount,
-                remainderMethod, remainderDetails);
+                terminalId, maskedNumber, creditorIdentifier,
+                dueDate, signatureDate, bankReasonCode,
+                bankReason, endToEndIdentifier, mandateReference,
+                batchReference, fileReference, qrCode,
+                voucherNumber, giftcards, issuer,
+                vouchers, remainderAmount, remainderMethod,
+                remainderDetails);
         }
 
     }
