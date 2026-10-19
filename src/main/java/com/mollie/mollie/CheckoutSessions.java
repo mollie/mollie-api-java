@@ -45,7 +45,9 @@ public class CheckoutSessions {
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;
-     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * &gt; This feature is currently in beta.
+     * &gt;
+     * &gt; The `shipping` and `requiredCustomerDetails` properties are still in private beta.
      * 
      * <p>Create a Checkout Session to start a checkout process with Mollie Components.
      * 
@@ -63,7 +65,9 @@ public class CheckoutSessions {
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;
-     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * &gt; This feature is currently in beta.
+     * &gt;
+     * &gt; The `shipping` and `requiredCustomerDetails` properties are still in private beta.
      * 
      * <p>Create a Checkout Session to start a checkout process with Mollie Components.
      * 
@@ -82,7 +86,9 @@ public class CheckoutSessions {
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;
-     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * &gt; This feature is currently in beta.
+     * &gt;
+     * &gt; The `shipping` and `requiredCustomerDetails` properties are still in private beta.
      * 
      * <p>Create a Checkout Session to start a checkout process with Mollie Components.
      * 
@@ -114,7 +120,9 @@ public class CheckoutSessions {
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;
-     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * &gt; This feature is currently in beta.
+     * &gt;
+     * &gt; The `shipping` and `requiredCustomerDetails` properties are still in private beta.
      * 
      * <p>Retrieve a Checkout Session to view its details and status to inform your customers about the
      * checkout process.
@@ -133,7 +141,9 @@ public class CheckoutSessions {
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;
-     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * &gt; This feature is currently in beta.
+     * &gt;
+     * &gt; The `shipping` and `requiredCustomerDetails` properties are still in private beta.
      * 
      * <p>Retrieve a Checkout Session to view its details and status to inform your customers about the
      * checkout process.
@@ -154,7 +164,9 @@ public class CheckoutSessions {
      * 
      * <p>&gt; 🚧 Beta feature
      * &gt;
-     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * &gt; This feature is currently in beta.
+     * &gt;
+     * &gt; The `shipping` and `requiredCustomerDetails` properties are still in private beta.
      * 
      * <p>Retrieve a Checkout Session to view its details and status to inform your customers about the
      * checkout process.
