@@ -22,9 +22,10 @@ SalesInvoiceStatusUpdate value = SalesInvoiceStatusUpdate.DRAFT;
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `DRAFT`     | draft       |
-| `ISSUED`    | issued      |
-| `PAID`      | paid        |
-| `CANCELLED` | cancelled   |
+| Name               | Value              |
+| ------------------ | ------------------ |
+| `DRAFT`            | draft              |
+| `ISSUED`           | issued             |
+| `PAID`             | paid               |
+| `CANCELLED`        | cancelled          |
+| `PAYMENT_REVERSED` | payment_reversed   |

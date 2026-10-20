@@ -28,6 +28,7 @@ public class BalanceTransactionType {
     public static final BalanceTransactionType BALANCE_RESERVE = new BalanceTransactionType("balance-reserve");
     public static final BalanceTransactionType BALANCE_RESERVE_RETURN = new BalanceTransactionType("balance-reserve-return");
     public static final BalanceTransactionType BALANCE_TOPUP = new BalanceTransactionType("balance-topup");
+    public static final BalanceTransactionType BANK_CHARGED_FAILURE_FEE = new BalanceTransactionType("bank-charged-failure-fee");
     public static final BalanceTransactionType CANCELED_TRANSFER = new BalanceTransactionType("canceled-transfer");
     public static final BalanceTransactionType CAPTURE = new BalanceTransactionType("capture");
     public static final BalanceTransactionType CASH_COLLATERAL_ISSUANCE = new BalanceTransactionType("cash-collateral-issuance");
@@ -36,6 +37,7 @@ public class BalanceTransactionType {
     public static final BalanceTransactionType CHARGEBACK_COMPENSATION = new BalanceTransactionType("chargeback-compensation");
     public static final BalanceTransactionType CHARGEBACK_REVERSAL = new BalanceTransactionType("chargeback-reversal");
     public static final BalanceTransactionType FAILED_PAYMENT = new BalanceTransactionType("failed-payment");
+    public static final BalanceTransactionType FAILED_PAYMENT_FEE = new BalanceTransactionType("failed-payment-fee");
     public static final BalanceTransactionType FAILED_PLATFORM_SPLIT_PAYMENT = new BalanceTransactionType("failed-platform-split-payment");
     public static final BalanceTransactionType FAILED_SPLIT_PAYMENT_COMPENSATION = new BalanceTransactionType("failed-split-payment-compensation");
     public static final BalanceTransactionType FEE_PREPAYMENT = new BalanceTransactionType("fee-prepayment");
@@ -149,6 +151,7 @@ public class BalanceTransactionType {
         map.put("balance-reserve", BALANCE_RESERVE);
         map.put("balance-reserve-return", BALANCE_RESERVE_RETURN);
         map.put("balance-topup", BALANCE_TOPUP);
+        map.put("bank-charged-failure-fee", BANK_CHARGED_FAILURE_FEE);
         map.put("canceled-transfer", CANCELED_TRANSFER);
         map.put("capture", CAPTURE);
         map.put("cash-collateral-issuance", CASH_COLLATERAL_ISSUANCE);
@@ -157,6 +160,7 @@ public class BalanceTransactionType {
         map.put("chargeback-compensation", CHARGEBACK_COMPENSATION);
         map.put("chargeback-reversal", CHARGEBACK_REVERSAL);
         map.put("failed-payment", FAILED_PAYMENT);
+        map.put("failed-payment-fee", FAILED_PAYMENT_FEE);
         map.put("failed-platform-split-payment", FAILED_PLATFORM_SPLIT_PAYMENT);
         map.put("failed-split-payment-compensation", FAILED_SPLIT_PAYMENT_COMPENSATION);
         map.put("fee-prepayment", FEE_PREPAYMENT);
@@ -202,6 +206,7 @@ public class BalanceTransactionType {
         map.put("balance-reserve", BalanceTransactionTypeEnum.BALANCE_RESERVE);
         map.put("balance-reserve-return", BalanceTransactionTypeEnum.BALANCE_RESERVE_RETURN);
         map.put("balance-topup", BalanceTransactionTypeEnum.BALANCE_TOPUP);
+        map.put("bank-charged-failure-fee", BalanceTransactionTypeEnum.BANK_CHARGED_FAILURE_FEE);
         map.put("canceled-transfer", BalanceTransactionTypeEnum.CANCELED_TRANSFER);
         map.put("capture", BalanceTransactionTypeEnum.CAPTURE);
         map.put("cash-collateral-issuance", BalanceTransactionTypeEnum.CASH_COLLATERAL_ISSUANCE);
@@ -210,6 +215,7 @@ public class BalanceTransactionType {
         map.put("chargeback-compensation", BalanceTransactionTypeEnum.CHARGEBACK_COMPENSATION);
         map.put("chargeback-reversal", BalanceTransactionTypeEnum.CHARGEBACK_REVERSAL);
         map.put("failed-payment", BalanceTransactionTypeEnum.FAILED_PAYMENT);
+        map.put("failed-payment-fee", BalanceTransactionTypeEnum.FAILED_PAYMENT_FEE);
         map.put("failed-platform-split-payment", BalanceTransactionTypeEnum.FAILED_PLATFORM_SPLIT_PAYMENT);
         map.put("failed-split-payment-compensation", BalanceTransactionTypeEnum.FAILED_SPLIT_PAYMENT_COMPENSATION);
         map.put("fee-prepayment", BalanceTransactionTypeEnum.FEE_PREPAYMENT);
@@ -256,6 +262,7 @@ public class BalanceTransactionType {
         BALANCE_RESERVE("balance-reserve"),
         BALANCE_RESERVE_RETURN("balance-reserve-return"),
         BALANCE_TOPUP("balance-topup"),
+        BANK_CHARGED_FAILURE_FEE("bank-charged-failure-fee"),
         CANCELED_TRANSFER("canceled-transfer"),
         CAPTURE("capture"),
         CASH_COLLATERAL_ISSUANCE("cash-collateral-issuance"),
@@ -264,6 +271,7 @@ public class BalanceTransactionType {
         CHARGEBACK_COMPENSATION("chargeback-compensation"),
         CHARGEBACK_REVERSAL("chargeback-reversal"),
         FAILED_PAYMENT("failed-payment"),
+        FAILED_PAYMENT_FEE("failed-payment-fee"),
         FAILED_PLATFORM_SPLIT_PAYMENT("failed-platform-split-payment"),
         FAILED_SPLIT_PAYMENT_COMPENSATION("failed-split-payment-compensation"),
         FEE_PREPAYMENT("fee-prepayment"),
