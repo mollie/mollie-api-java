@@ -28,4 +28,4 @@ SalesInvoiceStatusUpdate value = SalesInvoiceStatusUpdate.DRAFT;
 | `ISSUED`           | issued             |
 | `PAID`             | paid               |
 | `CANCELLED`        | cancelled          |
-| `PAYMENT_REVERSED` | payment_reversed   |
+| `PAYMENT_REVERSED` | payment-reversed   |

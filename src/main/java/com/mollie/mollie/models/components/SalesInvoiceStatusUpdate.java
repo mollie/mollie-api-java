@@ -31,7 +31,7 @@ public enum SalesInvoiceStatusUpdate {
     ISSUED("issued"),
     PAID("paid"),
     CANCELLED("cancelled"),
-    PAYMENT_REVERSED("payment_reversed");
+    PAYMENT_REVERSED("payment-reversed");
 
     @JsonValue
     private final String value;

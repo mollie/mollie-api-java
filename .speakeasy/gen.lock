@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 91150334105ebd8973b60bf680b8e5e4
+  docChecksum: 693e92eeef422ee7b8c54afd390dea7a
   docVersion: 1.0.0
   speakeasyVersion: 1.803.0
   generationVersion: 2.950.2
-  releaseVersion: 1.10.19
-  configChecksum: bb2a0bcc92de211438a6cc92fcea1ab9
+  releaseVersion: 1.10.20
+  configChecksum: 0b20465e5ca65f76dddcf3d76465ffaa
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 177137ff-b538-443a-a732-48b45c69c336
-  pristine_commit_hash: b148314e6b6fc097b1ffdd32bab45d66db28ce28
-  pristine_tree_hash: 38842847203f13d004dec5e6380c7bb1b91b55c8
+  generation_id: 7b8c26b5-ecea-4437-a1b5-7ac69affea1c
+  pristine_commit_hash: cc63e3597b097c42471ca45cab28400b6af757c2
+  pristine_tree_hash: 1ccd0ca81d2d15e65f729cdd913fbb2f07d64ec2
 features:
   java:
     additionalDependencies: 0.1.0
@@ -1777,12 +1777,12 @@ trackedFiles:
     pristine_git_object: e957f6f4ff51b48f329471753be4c2e9bcda83b2
   docs/models/components/SalesInvoiceStatusResponse.md:
     id: c666d1e59d24
-    last_write_checksum: sha1:49d3556c022cc3c2fe03f1130cfd92fb374cfbe0
-    pristine_git_object: 2217536f2e5b9d28dea3b12c07f84095be7d936d
+    last_write_checksum: sha1:dfacbfd51765f6125c4132022b247c9428310e6b
+    pristine_git_object: 4327ecf0de0ec435b410628c14ea988cc720bb7e
   docs/models/components/SalesInvoiceStatusUpdate.md:
     id: 31257dcbdffb
-    last_write_checksum: sha1:89ca4a527e735482e25bd4d5ecd0df1cf679de79
-    pristine_git_object: cd92020fcee1618538e9c03c77590797cf9a90d9
+    last_write_checksum: sha1:d7ed88040e0165357da5c9da8a6050f60d5d247e
+    pristine_git_object: 024438da5e62b255dcf23db9f34a4d7058c33951
   docs/models/components/SalesInvoiceVatMode.md:
     id: c3f5582bb768
     last_write_checksum: sha1:b9b07ac49b157534e6a205a83322caf4066dd573
@@ -3949,8 +3949,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:54774ea5827c579f6d1e249914b94a953914335a
-    pristine_git_object: c4b74e74783517204c874b7c17710a1dd206dbf0
+    last_write_checksum: sha1:4cb58a58b8754a4724697aa3b61e1c8d4bd40c7a
+    pristine_git_object: 88cb7b1bd635aafbe54e77242deb6f1ac010a97b
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4217,8 +4217,8 @@ trackedFiles:
     pristine_git_object: 1db82b4ffa34c0da5b5bd5bd6397c75353014cb5
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:1b89eb9755c2446121d3b3d4b6090c3873260fe6
-    pristine_git_object: 52daea4004f264654f6fbe99b49e767fef77bfdf
+    last_write_checksum: sha1:6f3ef10a79c19b1ace5034a3b6bbc582a1fad27c
+    pristine_git_object: 105a14a3da88681d593e9a98e9dff3dd3800a56a
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:5b1b2448cd7365ef474e323a24f05b937422e9f1
@@ -5993,12 +5993,12 @@ trackedFiles:
     pristine_git_object: 2785279020dc2edc8d0ab391fa384b103e6a14bd
   src/main/java/com/mollie/mollie/models/components/SalesInvoiceStatusResponse.java:
     id: c7843f5c346b
-    last_write_checksum: sha1:af1e033378e85a6303a7424d2e5c5b2b97fd1bff
-    pristine_git_object: 0d20301be305a8219d1cfe9ceb8de6311e4254b4
+    last_write_checksum: sha1:5b11f80fcea00d2fc005758c05623a2912025bed
+    pristine_git_object: c2f3dd20372bb8e0bd8a81a9a688ad2c8b49df86
   src/main/java/com/mollie/mollie/models/components/SalesInvoiceStatusUpdate.java:
     id: fb5cd4f3b847
-    last_write_checksum: sha1:15fd96d8f4bea68051675bd62bda4ffafda83872
-    pristine_git_object: c5d4f0493376c638061a067c58508942c851b434
+    last_write_checksum: sha1:14108626d6bf5b13cf5d72b3cf609c41f65ce873
+    pristine_git_object: 4ba92a5f283b5894446c3282bb8d5b090eabb451
   src/main/java/com/mollie/mollie/models/components/SalesInvoiceVatMode.java:
     id: 24532d639cca
     last_write_checksum: sha1:568a867b6a922f8caf6ffe74c0009b135ada1fd5
@@ -15873,7 +15873,7 @@ examples:
           application/hal+json: {"status": 404, "title": "Not Found", "detail": "The resource does not exist", "field": "description", "_links": {"documentation": {"href": "https://docs.mollie.com/errors", "type": "text/html"}}}
 examplesVersion: 1.0.2
 generatedTests: {}
-releaseNotes: "## Java SDK Changes:\n* `client.balances.getReport()`:  `response.totals.pendingBalance.open.subtotals[].subTotals[].transactionType` **Changed**\n* `client.balances.listTransactions()`:  `response.Embedded.balanceTransactions[].type` **Changed**\n* `client.salesInvoices.update()`: \n  *  `requestBody.status.enum(paymentReversed)` **Added**\n"
+releaseNotes: "## Java SDK Changes:\n* `client.webhookEvents.get()`:  `response.Embedded.entity.union(sales-invoice-response).status` **Changed** (Breaking ⚠️)\n* `client.salesInvoices.create()`:  `response.status` **Changed** (Breaking ⚠️)\n* `client.salesInvoices.list()`:  `response.Embedded.invoices[].status` **Changed** (Breaking ⚠️)\n* `client.salesInvoices.get()`:  `response.status` **Changed** (Breaking ⚠️)\n* `client.salesInvoices.update()`: \n  *  `requestBody.status` **Changed** (Breaking ⚠️)\n  *  `response.status` **Changed** (Breaking ⚠️)\n"
 generatedFiles:
   - .gitattributes
   - USAGE.md

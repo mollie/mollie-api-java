@@ -32,7 +32,7 @@ public class SalesInvoiceStatusResponse {
     public static final SalesInvoiceStatusResponse PENDING_PAYMENT = new SalesInvoiceStatusResponse("pending-payment");
     public static final SalesInvoiceStatusResponse PAID = new SalesInvoiceStatusResponse("paid");
     public static final SalesInvoiceStatusResponse OVERDUE = new SalesInvoiceStatusResponse("overdue");
-    public static final SalesInvoiceStatusResponse PAYMENT_REVERSED = new SalesInvoiceStatusResponse("payment_reversed");
+    public static final SalesInvoiceStatusResponse PAYMENT_REVERSED = new SalesInvoiceStatusResponse("payment-reversed");
     public static final SalesInvoiceStatusResponse CANCELLED = new SalesInvoiceStatusResponse("cancelled");
     public static final SalesInvoiceStatusResponse EXPIRED = new SalesInvoiceStatusResponse("expired");
     public static final SalesInvoiceStatusResponse FAILED = new SalesInvoiceStatusResponse("failed");
@@ -115,7 +115,7 @@ public class SalesInvoiceStatusResponse {
         map.put("pending-payment", PENDING_PAYMENT);
         map.put("paid", PAID);
         map.put("overdue", OVERDUE);
-        map.put("payment_reversed", PAYMENT_REVERSED);
+        map.put("payment-reversed", PAYMENT_REVERSED);
         map.put("cancelled", CANCELLED);
         map.put("expired", EXPIRED);
         map.put("failed", FAILED);
@@ -130,7 +130,7 @@ public class SalesInvoiceStatusResponse {
         map.put("pending-payment", SalesInvoiceStatusResponseEnum.PENDING_PAYMENT);
         map.put("paid", SalesInvoiceStatusResponseEnum.PAID);
         map.put("overdue", SalesInvoiceStatusResponseEnum.OVERDUE);
-        map.put("payment_reversed", SalesInvoiceStatusResponseEnum.PAYMENT_REVERSED);
+        map.put("payment-reversed", SalesInvoiceStatusResponseEnum.PAYMENT_REVERSED);
         map.put("cancelled", SalesInvoiceStatusResponseEnum.CANCELLED);
         map.put("expired", SalesInvoiceStatusResponseEnum.EXPIRED);
         map.put("failed", SalesInvoiceStatusResponseEnum.FAILED);
@@ -146,7 +146,7 @@ public class SalesInvoiceStatusResponse {
         PENDING_PAYMENT("pending-payment"),
         PAID("paid"),
         OVERDUE("overdue"),
-        PAYMENT_REVERSED("payment_reversed"),
+        PAYMENT_REVERSED("payment-reversed"),
         CANCELLED("cancelled"),
         EXPIRED("expired"),
         FAILED("failed"),;
