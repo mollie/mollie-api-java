@@ -45,10 +45,10 @@ afterEvaluate {
                     ]
                     name = config.name
                     description = config.description
-                    url = 'https://https://github.com/mollie/mollie-api-java'
+                    url = 'https://github.com/mollie/mollie-api-java'
                     scm {
                         url = 'https://github.com/mollie/mollie-api-java'
-                        connection = 'scm:git:ssh://git@https://github.com/mollie/mollie-api-java.git'
+                        connection = 'scm:git:ssh://git@github.com/mollie/mollie-api-java.git'
                     }
                     licenses {
                         license {
