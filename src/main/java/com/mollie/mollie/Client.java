@@ -35,6 +35,9 @@ public class Client {
     private final Balances balances;
 
 
+    private final Reports reports;
+
+
     private final Settlements settlements;
 
 
@@ -138,6 +141,11 @@ public class Client {
 
     public Balances balances() {
         return balances;
+    }
+
+
+    public Reports reports() {
+        return reports;
     }
 
 
@@ -483,6 +491,7 @@ public class Client {
         sdkConfiguration.initialize();
         this.oauth = new Oauth(sdkConfiguration);
         this.balances = new Balances(sdkConfiguration);
+        this.reports = new Reports(sdkConfiguration);
         this.settlements = new Settlements(sdkConfiguration);
         this.invoices = new Invoices(sdkConfiguration);
         this.permissions = new Permissions(sdkConfiguration);

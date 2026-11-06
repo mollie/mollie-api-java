@@ -19,23 +19,26 @@ import java.util.Optional;
  * Rate
  * 
  * <p>The service rates, further divided into `fixed` and `percentage` costs.
+ * 
+ * <p>For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+ * rate, both `fixed` and `percentage` are `null`.
  */
 public class Rate {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("fixed")
-    private Optional<? extends Amount> fixed;
+    private Optional<? extends AmountNullable> fixed;
 
 
-    @JsonInclude(Include.NON_ABSENT)
+    @JsonInclude(Include.ALWAYS)
     @JsonProperty("percentage")
     private Optional<String> percentage;
 
     @JsonCreator
     public Rate(
-            @JsonProperty("fixed") Optional<? extends Amount> fixed,
+            @JsonProperty("fixed") Optional<? extends AmountNullable> fixed,
             @JsonProperty("percentage") Optional<String> percentage) {
         Utils.checkNotNull(fixed, "fixed");
         Utils.checkNotNull(percentage, "percentage");
@@ -52,8 +55,8 @@ public class Rate {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Amount> fixed() {
-        return (Optional<Amount>) fixed;
+    public Optional<AmountNullable> fixed() {
+        return (Optional<AmountNullable>) fixed;
     }
 
     @JsonIgnore
@@ -69,7 +72,7 @@ public class Rate {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public Rate withFixed(Amount fixed) {
+    public Rate withFixed(AmountNullable fixed) {
         Utils.checkNotNull(fixed, "fixed");
         this.fixed = Optional.ofNullable(fixed);
         return this;
@@ -79,7 +82,7 @@ public class Rate {
     /**
      * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
      */
-    public Rate withFixed(Optional<? extends Amount> fixed) {
+    public Rate withFixed(Optional<? extends AmountNullable> fixed) {
         Utils.checkNotNull(fixed, "fixed");
         this.fixed = fixed;
         return this;
@@ -128,7 +131,7 @@ public class Rate {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Amount> fixed = Optional.empty();
+        private Optional<? extends AmountNullable> fixed = Optional.empty();
 
         private Optional<String> percentage = Optional.empty();
 
@@ -140,7 +143,7 @@ public class Rate {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder fixed(Amount fixed) {
+        public Builder fixed(AmountNullable fixed) {
             Utils.checkNotNull(fixed, "fixed");
             this.fixed = Optional.ofNullable(fixed);
             return this;
@@ -149,7 +152,7 @@ public class Rate {
         /**
          * In v2 endpoints, monetary amounts are represented as objects with a `currency` and `value` field.
          */
-        public Builder fixed(Optional<? extends Amount> fixed) {
+        public Builder fixed(Optional<? extends AmountNullable> fixed) {
             Utils.checkNotNull(fixed, "fixed");
             this.fixed = fixed;
             return this;

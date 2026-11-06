@@ -44,6 +44,9 @@ public class GetNextSettlementCosts {
 
     /**
      * The service rates, further divided into `fixed` and `percentage` costs.
+     * 
+     * <p>For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+     * rate, both `fixed` and `percentage` are `null`.
      */
     @JsonProperty("rate")
     private GetNextSettlementRate rate;
@@ -132,6 +135,9 @@ public class GetNextSettlementCosts {
 
     /**
      * The service rates, further divided into `fixed` and `percentage` costs.
+     * 
+     * <p>For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+     * rate, both `fixed` and `percentage` are `null`.
      */
     @JsonIgnore
     public GetNextSettlementRate rate() {
@@ -211,6 +217,9 @@ public class GetNextSettlementCosts {
 
     /**
      * The service rates, further divided into `fixed` and `percentage` costs.
+     * 
+     * <p>For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+     * rate, both `fixed` and `percentage` are `null`.
      */
     public GetNextSettlementCosts withRate(GetNextSettlementRate rate) {
         Utils.checkNotNull(rate, "rate");
@@ -361,6 +370,9 @@ public class GetNextSettlementCosts {
 
         /**
          * The service rates, further divided into `fixed` and `percentage` costs.
+         * 
+         * <p>For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+         * rate, both `fixed` and `percentage` are `null`.
          */
         public Builder rate(GetNextSettlementRate rate) {
             Utils.checkNotNull(rate, "rate");

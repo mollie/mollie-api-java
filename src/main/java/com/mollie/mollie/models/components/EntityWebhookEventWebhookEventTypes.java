@@ -74,6 +74,8 @@ public class EntityWebhookEventWebhookEventTypes {
     public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_MATCH_FAILED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.match.failed");
     public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_RETURN_COMPLETED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.return.completed");
     public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_RETURN_FAILED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.return.failed");
+    public static final EntityWebhookEventWebhookEventTypes REPORT_COMPLETED = new EntityWebhookEventWebhookEventTypes("report.completed");
+    public static final EntityWebhookEventWebhookEventTypes REPORT_FAILED = new EntityWebhookEventWebhookEventTypes("report.failed");
     public static final EntityWebhookEventWebhookEventTypes WILDCARD = new EntityWebhookEventWebhookEventTypes("*");
 
     // This map will grow whenever a Color gets created with a new
@@ -195,6 +197,8 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("unmatched-credit-transfer.match.failed", UNMATCHED_CREDIT_TRANSFER_MATCH_FAILED);
         map.put("unmatched-credit-transfer.return.completed", UNMATCHED_CREDIT_TRANSFER_RETURN_COMPLETED);
         map.put("unmatched-credit-transfer.return.failed", UNMATCHED_CREDIT_TRANSFER_RETURN_FAILED);
+        map.put("report.completed", REPORT_COMPLETED);
+        map.put("report.failed", REPORT_FAILED);
         map.put("*", WILDCARD);
         return map;
     }
@@ -248,6 +252,8 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("unmatched-credit-transfer.match.failed", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_MATCH_FAILED);
         map.put("unmatched-credit-transfer.return.completed", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_RETURN_COMPLETED);
         map.put("unmatched-credit-transfer.return.failed", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_RETURN_FAILED);
+        map.put("report.completed", EntityWebhookEventWebhookEventTypesEnum.REPORT_COMPLETED);
+        map.put("report.failed", EntityWebhookEventWebhookEventTypesEnum.REPORT_FAILED);
         map.put("*", EntityWebhookEventWebhookEventTypesEnum.WILDCARD);
         return map;
     }
@@ -302,6 +308,8 @@ public class EntityWebhookEventWebhookEventTypes {
         UNMATCHED_CREDIT_TRANSFER_MATCH_FAILED("unmatched-credit-transfer.match.failed"),
         UNMATCHED_CREDIT_TRANSFER_RETURN_COMPLETED("unmatched-credit-transfer.return.completed"),
         UNMATCHED_CREDIT_TRANSFER_RETURN_FAILED("unmatched-credit-transfer.return.failed"),
+        REPORT_COMPLETED("report.completed"),
+        REPORT_FAILED("report.failed"),
         WILDCARD("*"),;
 
         private final String value;

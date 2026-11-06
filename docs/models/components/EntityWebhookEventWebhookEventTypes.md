@@ -66,4 +66,6 @@ EntityWebhookEventWebhookEventTypes custom = EntityWebhookEventWebhookEventTypes
 | `UNMATCHED_CREDIT_TRANSFER_MATCH_FAILED`     | unmatched-credit-transfer.match.failed       |
 | `UNMATCHED_CREDIT_TRANSFER_RETURN_COMPLETED` | unmatched-credit-transfer.return.completed   |
 | `UNMATCHED_CREDIT_TRANSFER_RETURN_FAILED`    | unmatched-credit-transfer.return.failed      |
+| `REPORT_COMPLETED`                           | report.completed                             |
+| `REPORT_FAILED`                              | report.failed                                |
 | `WILDCARD`                                   | *                                            |
