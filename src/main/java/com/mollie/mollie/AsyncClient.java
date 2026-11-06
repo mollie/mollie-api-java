@@ -13,6 +13,8 @@ public class AsyncClient {
 
     private final AsyncBalances balances;
 
+    private final AsyncReports reports;
+
     private final AsyncSettlements settlements;
 
     private final AsyncInvoices invoices;
@@ -83,6 +85,10 @@ public class AsyncClient {
 
     public AsyncBalances balances() {
         return balances;
+    }
+
+    public AsyncReports reports() {
+        return reports;
     }
 
     public AsyncSettlements settlements() {
@@ -221,6 +227,7 @@ public class AsyncClient {
         this.sdkConfiguration = sdkConfiguration;
         this.oauth = new AsyncOauth(syncSDK.oauth(), sdkConfiguration);
         this.balances = new AsyncBalances(syncSDK.balances(), sdkConfiguration);
+        this.reports = new AsyncReports(syncSDK.reports(), sdkConfiguration);
         this.settlements = new AsyncSettlements(syncSDK.settlements(), sdkConfiguration);
         this.invoices = new AsyncInvoices(syncSDK.invoices(), sdkConfiguration);
         this.permissions = new AsyncPermissions(syncSDK.permissions(), sdkConfiguration);

@@ -31,7 +31,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 1.10.20
+  version: 1.10.21
   additionalDependencies: []
   additionalPlugins: []
   artifactID: mollie

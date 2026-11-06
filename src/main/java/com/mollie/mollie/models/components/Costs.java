@@ -41,6 +41,9 @@ public class Costs {
 
     /**
      * The service rates, further divided into `fixed` and `percentage` costs.
+     * 
+     * <p>For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+     * rate, both `fixed` and `percentage` are `null`.
      */
     @JsonProperty("rate")
     private Rate rate;
@@ -129,6 +132,9 @@ public class Costs {
 
     /**
      * The service rates, further divided into `fixed` and `percentage` costs.
+     * 
+     * <p>For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+     * rate, both `fixed` and `percentage` are `null`.
      */
     @JsonIgnore
     public Rate rate() {
@@ -208,6 +214,9 @@ public class Costs {
 
     /**
      * The service rates, further divided into `fixed` and `percentage` costs.
+     * 
+     * <p>For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+     * rate, both `fixed` and `percentage` are `null`.
      */
     public Costs withRate(Rate rate) {
         Utils.checkNotNull(rate, "rate");
@@ -358,6 +367,9 @@ public class Costs {
 
         /**
          * The service rates, further divided into `fixed` and `percentage` costs.
+         * 
+         * <p>For pass-through fees, which are charged by an external party rather than at an agreed Mollie
+         * rate, both `fixed` and `percentage` are `null`.
          */
         public Builder rate(Rate rate) {
             Utils.checkNotNull(rate, "rate");
