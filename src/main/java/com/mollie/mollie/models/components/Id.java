@@ -55,6 +55,7 @@ public class Id {
     public static final Id PAYBYBANK = new Id("paybybank");
     public static final Id PAYPAL = new Id("paypal");
     public static final Id PAYSAFECARD = new Id("paysafecard");
+    public static final Id POINTOFSALE = new Id("pointofsale");
     public static final Id PRZELEWY24 = new Id("przelewy24");
     public static final Id RIVERTY = new Id("riverty");
     public static final Id SATISPAY = new Id("satispay");
@@ -164,6 +165,7 @@ public class Id {
         map.put("paybybank", PAYBYBANK);
         map.put("paypal", PAYPAL);
         map.put("paysafecard", PAYSAFECARD);
+        map.put("pointofsale", POINTOFSALE);
         map.put("przelewy24", PRZELEWY24);
         map.put("riverty", RIVERTY);
         map.put("satispay", SATISPAY);
@@ -205,6 +207,7 @@ public class Id {
         map.put("paybybank", IdEnum.PAYBYBANK);
         map.put("paypal", IdEnum.PAYPAL);
         map.put("paysafecard", IdEnum.PAYSAFECARD);
+        map.put("pointofsale", IdEnum.POINTOFSALE);
         map.put("przelewy24", IdEnum.PRZELEWY24);
         map.put("riverty", IdEnum.RIVERTY);
         map.put("satispay", IdEnum.SATISPAY);
@@ -247,6 +250,7 @@ public class Id {
         PAYBYBANK("paybybank"),
         PAYPAL("paypal"),
         PAYSAFECARD("paysafecard"),
+        POINTOFSALE("pointofsale"),
         PRZELEWY24("przelewy24"),
         RIVERTY("riverty"),
         SATISPAY("satispay"),

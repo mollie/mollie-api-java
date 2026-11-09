@@ -6,7 +6,7 @@ package com.mollie.mollie.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mollie.mollie.models.components.Method;
+import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.utils.SpeakeasyMetadata;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
@@ -26,7 +26,7 @@ public class DisableMethodRequest {
      * Provide the ID of the related payment method.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=methodId")
-    private Optional<? extends Method> methodId;
+    private Optional<? extends MethodId> methodId;
 
     /**
      * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
@@ -37,7 +37,7 @@ public class DisableMethodRequest {
     @JsonCreator
     public DisableMethodRequest(
             String profileId,
-            Optional<? extends Method> methodId,
+            Optional<? extends MethodId> methodId,
             Optional<String> idempotencyKey) {
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(methodId, "methodId");
@@ -65,8 +65,8 @@ public class DisableMethodRequest {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Method> methodId() {
-        return (Optional<Method>) methodId;
+    public Optional<MethodId> methodId() {
+        return (Optional<MethodId>) methodId;
     }
 
     /**
@@ -94,7 +94,7 @@ public class DisableMethodRequest {
     /**
      * Provide the ID of the related payment method.
      */
-    public DisableMethodRequest withMethodId(Method methodId) {
+    public DisableMethodRequest withMethodId(MethodId methodId) {
         Utils.checkNotNull(methodId, "methodId");
         this.methodId = Optional.ofNullable(methodId);
         return this;
@@ -104,7 +104,7 @@ public class DisableMethodRequest {
     /**
      * Provide the ID of the related payment method.
      */
-    public DisableMethodRequest withMethodId(Optional<? extends Method> methodId) {
+    public DisableMethodRequest withMethodId(Optional<? extends MethodId> methodId) {
         Utils.checkNotNull(methodId, "methodId");
         this.methodId = methodId;
         return this;
@@ -163,7 +163,7 @@ public class DisableMethodRequest {
 
         private String profileId;
 
-        private Optional<? extends Method> methodId = Optional.empty();
+        private Optional<? extends MethodId> methodId = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
 
@@ -185,7 +185,7 @@ public class DisableMethodRequest {
         /**
          * Provide the ID of the related payment method.
          */
-        public Builder methodId(Method methodId) {
+        public Builder methodId(MethodId methodId) {
             Utils.checkNotNull(methodId, "methodId");
             this.methodId = Optional.ofNullable(methodId);
             return this;
@@ -194,7 +194,7 @@ public class DisableMethodRequest {
         /**
          * Provide the ID of the related payment method.
          */
-        public Builder methodId(Optional<? extends Method> methodId) {
+        public Builder methodId(Optional<? extends MethodId> methodId) {
             Utils.checkNotNull(methodId, "methodId");
             this.methodId = methodId;
             return this;

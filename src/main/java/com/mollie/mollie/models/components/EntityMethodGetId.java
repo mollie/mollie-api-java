@@ -43,6 +43,7 @@ public class EntityMethodGetId {
     public static final EntityMethodGetId DIRECTDEBIT = new EntityMethodGetId("directdebit");
     public static final EntityMethodGetId EPS = new EntityMethodGetId("eps");
     public static final EntityMethodGetId GIFTCARD = new EntityMethodGetId("giftcard");
+    public static final EntityMethodGetId GOOGLEPAY = new EntityMethodGetId("googlepay");
     public static final EntityMethodGetId IDEAL = new EntityMethodGetId("ideal");
     public static final EntityMethodGetId IN3 = new EntityMethodGetId("in3");
     public static final EntityMethodGetId KBC = new EntityMethodGetId("kbc");
@@ -64,10 +65,6 @@ public class EntityMethodGetId {
     public static final EntityMethodGetId VIPPS = new EntityMethodGetId("vipps");
     public static final EntityMethodGetId VOUCHER = new EntityMethodGetId("voucher");
     public static final EntityMethodGetId WERO = new EntityMethodGetId("wero");
-    public static final EntityMethodGetId KLARNAPAYLATER = new EntityMethodGetId("klarnapaylater");
-    public static final EntityMethodGetId KLARNAPAYNOW = new EntityMethodGetId("klarnapaynow");
-    public static final EntityMethodGetId KLARNASLICEIT = new EntityMethodGetId("klarnasliceit");
-    public static final EntityMethodGetId PAYCONIQ = new EntityMethodGetId("payconiq");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -156,6 +153,7 @@ public class EntityMethodGetId {
         map.put("directdebit", DIRECTDEBIT);
         map.put("eps", EPS);
         map.put("giftcard", GIFTCARD);
+        map.put("googlepay", GOOGLEPAY);
         map.put("ideal", IDEAL);
         map.put("in3", IN3);
         map.put("kbc", KBC);
@@ -177,10 +175,6 @@ public class EntityMethodGetId {
         map.put("vipps", VIPPS);
         map.put("voucher", VOUCHER);
         map.put("wero", WERO);
-        map.put("klarnapaylater", KLARNAPAYLATER);
-        map.put("klarnapaynow", KLARNAPAYNOW);
-        map.put("klarnasliceit", KLARNASLICEIT);
-        map.put("payconiq", PAYCONIQ);
         return map;
     }
 
@@ -201,6 +195,7 @@ public class EntityMethodGetId {
         map.put("directdebit", EntityMethodGetIdEnum.DIRECTDEBIT);
         map.put("eps", EntityMethodGetIdEnum.EPS);
         map.put("giftcard", EntityMethodGetIdEnum.GIFTCARD);
+        map.put("googlepay", EntityMethodGetIdEnum.GOOGLEPAY);
         map.put("ideal", EntityMethodGetIdEnum.IDEAL);
         map.put("in3", EntityMethodGetIdEnum.IN3);
         map.put("kbc", EntityMethodGetIdEnum.KBC);
@@ -222,10 +217,6 @@ public class EntityMethodGetId {
         map.put("vipps", EntityMethodGetIdEnum.VIPPS);
         map.put("voucher", EntityMethodGetIdEnum.VOUCHER);
         map.put("wero", EntityMethodGetIdEnum.WERO);
-        map.put("klarnapaylater", EntityMethodGetIdEnum.KLARNAPAYLATER);
-        map.put("klarnapaynow", EntityMethodGetIdEnum.KLARNAPAYNOW);
-        map.put("klarnasliceit", EntityMethodGetIdEnum.KLARNASLICEIT);
-        map.put("payconiq", EntityMethodGetIdEnum.PAYCONIQ);
         return map;
     }
     
@@ -247,6 +238,7 @@ public class EntityMethodGetId {
         DIRECTDEBIT("directdebit"),
         EPS("eps"),
         GIFTCARD("giftcard"),
+        GOOGLEPAY("googlepay"),
         IDEAL("ideal"),
         IN3("in3"),
         KBC("kbc"),
@@ -267,11 +259,7 @@ public class EntityMethodGetId {
         TWINT("twint"),
         VIPPS("vipps"),
         VOUCHER("voucher"),
-        WERO("wero"),
-        KLARNAPAYLATER("klarnapaylater"),
-        KLARNAPAYNOW("klarnapaynow"),
-        KLARNASLICEIT("klarnasliceit"),
-        PAYCONIQ("payconiq"),;
+        WERO("wero"),;
 
         private final String value;
 

@@ -46,6 +46,7 @@ ListEntityMethodAllId custom = ListEntityMethodAllId.of("custom_value");
 | `PAYBYBANK`    | paybybank      |
 | `PAYPAL`       | paypal         |
 | `PAYSAFECARD`  | paysafecard    |
+| `POINTOFSALE`  | pointofsale    |
 | `PRZELEWY24`   | przelewy24     |
 | `RIVERTY`      | riverty        |
 | `SATISPAY`     | satispay       |

@@ -55,6 +55,7 @@ public class ListEntityMethodAllId {
     public static final ListEntityMethodAllId PAYBYBANK = new ListEntityMethodAllId("paybybank");
     public static final ListEntityMethodAllId PAYPAL = new ListEntityMethodAllId("paypal");
     public static final ListEntityMethodAllId PAYSAFECARD = new ListEntityMethodAllId("paysafecard");
+    public static final ListEntityMethodAllId POINTOFSALE = new ListEntityMethodAllId("pointofsale");
     public static final ListEntityMethodAllId PRZELEWY24 = new ListEntityMethodAllId("przelewy24");
     public static final ListEntityMethodAllId RIVERTY = new ListEntityMethodAllId("riverty");
     public static final ListEntityMethodAllId SATISPAY = new ListEntityMethodAllId("satispay");
@@ -164,6 +165,7 @@ public class ListEntityMethodAllId {
         map.put("paybybank", PAYBYBANK);
         map.put("paypal", PAYPAL);
         map.put("paysafecard", PAYSAFECARD);
+        map.put("pointofsale", POINTOFSALE);
         map.put("przelewy24", PRZELEWY24);
         map.put("riverty", RIVERTY);
         map.put("satispay", SATISPAY);
@@ -205,6 +207,7 @@ public class ListEntityMethodAllId {
         map.put("paybybank", ListEntityMethodAllIdEnum.PAYBYBANK);
         map.put("paypal", ListEntityMethodAllIdEnum.PAYPAL);
         map.put("paysafecard", ListEntityMethodAllIdEnum.PAYSAFECARD);
+        map.put("pointofsale", ListEntityMethodAllIdEnum.POINTOFSALE);
         map.put("przelewy24", ListEntityMethodAllIdEnum.PRZELEWY24);
         map.put("riverty", ListEntityMethodAllIdEnum.RIVERTY);
         map.put("satispay", ListEntityMethodAllIdEnum.SATISPAY);
@@ -247,6 +250,7 @@ public class ListEntityMethodAllId {
         PAYBYBANK("paybybank"),
         PAYPAL("paypal"),
         PAYSAFECARD("paysafecard"),
+        POINTOFSALE("pointofsale"),
         PRZELEWY24("przelewy24"),
         RIVERTY("riverty"),
         SATISPAY("satispay"),

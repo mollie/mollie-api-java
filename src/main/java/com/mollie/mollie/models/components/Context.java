@@ -12,8 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.Optional;
 
 /**
  * Context
@@ -77,454 +76,223 @@ import org.openapitools.jackson.nullable.JsonNullable;
 public class Context {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("payment")
-    private JsonNullable<? extends EntityBalanceTransactionPayment> payment;
+    @JsonProperty("paymentId")
+    private Optional<String> paymentId;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("capture")
-    private JsonNullable<? extends Capture> capture;
+    @JsonProperty("paymentDescription")
+    private Optional<String> paymentDescription;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("capture-commision")
-    private JsonNullable<? extends CaptureCommision> captureCommision;
+    @JsonProperty("captureId")
+    private Optional<String> captureId;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("capture-rolling-reserve-release")
-    private JsonNullable<? extends CaptureRollingReserveRelease> captureRollingReserveRelease;
+    @JsonProperty("captureDescription")
+    private Optional<String> captureDescription;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("unauthorized-direct-debit")
-    private JsonNullable<? extends UnauthorizedDirectDebit> unauthorizedDirectDebit;
+    @JsonProperty("refundId")
+    private Optional<String> refundId;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("failed-payment")
-    private JsonNullable<? extends FailedPayment> failedPayment;
+    @JsonProperty("refundDescription")
+    private Optional<String> refundDescription;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("refund")
-    private JsonNullable<? extends Refund> refund;
+    @JsonProperty("chargebackId")
+    private Optional<String> chargebackId;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("refund-compensation")
-    private JsonNullable<? extends RefundCompensation> refundCompensation;
+    @JsonProperty("chargebackDescription")
+    private Optional<String> chargebackDescription;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("returned-refund")
-    private JsonNullable<? extends ReturnedRefund> returnedRefund;
+    @JsonProperty("transferId")
+    private Optional<String> transferId;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("returned-refund-compensation")
-    private JsonNullable<? extends ReturnedRefundCompensation> returnedRefundCompensation;
+    @JsonProperty("settlementId")
+    private Optional<String> settlementId;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("chargeback")
-    private JsonNullable<? extends Chargeback> chargeback;
+    @JsonProperty("invoiceId")
+    private Optional<String> invoiceId;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("chargeback-reversal")
-    private JsonNullable<? extends ChargebackReversal> chargebackReversal;
+    @JsonProperty("payingOwner")
+    private Optional<String> payingOwner;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("chargeback-compensation")
-    private JsonNullable<? extends ChargebackCompensation> chargebackCompensation;
+    @JsonProperty("paymentOwner")
+    private Optional<String> paymentOwner;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("reversed-chargeback-compensation")
-    private JsonNullable<? extends ReversedChargebackCompensation> reversedChargebackCompensation;
+    @JsonProperty("organizationId")
+    private Optional<String> organizationId;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("outgoing-transfer")
-    private JsonNullable<? extends OutgoingTransfer> outgoingTransfer;
+    @JsonProperty("feeType")
+    private Optional<String> feeType;
 
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("canceled-outgoing-transfer")
-    private JsonNullable<? extends CanceledOutgoingTransfer> canceledOutgoingTransfer;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("returned-transfer")
-    private JsonNullable<? extends ReturnedTransfer> returnedTransfer;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("invoice-compensation")
-    private JsonNullable<? extends InvoiceCompensation> invoiceCompensation;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("application-fee")
-    private JsonNullable<? extends EntityBalanceTransactionApplicationFee> applicationFee;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("split-payment")
-    private JsonNullable<? extends SplitPayment> splitPayment;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("platform-payment-refund")
-    private JsonNullable<? extends PlatformPaymentRefund> platformPaymentRefund;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("returned-platform-payment-refund")
-    private JsonNullable<? extends ReturnedPlatformPaymentRefund> returnedPlatformPaymentRefund;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("platform-payment-chargeback")
-    private JsonNullable<? extends PlatformPaymentChargeback> platformPaymentChargeback;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("reversed-platform-payment-chargeback")
-    private JsonNullable<? extends ReversedPlatformPaymentChargeback> reversedPlatformPaymentChargeback;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("payment-commission")
-    private JsonNullable<? extends PaymentCommission> paymentCommission;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("reimbursement-fee")
-    private JsonNullable<? extends ReimbursementFee> reimbursementFee;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("failed-payment-fee")
-    private JsonNullable<? extends FailedPaymentFee> failedPaymentFee;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("payment-fee")
-    private JsonNullable<? extends PaymentFee> paymentFee;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("managed-fee")
-    private JsonNullable<? extends ManagedFee> managedFee;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("returned-managed-fee")
-    private JsonNullable<? extends ReturnedManagedFee> returnedManagedFee;
-
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("post-payment-split-payment")
-    private JsonNullable<? extends PostPaymentSplitPayment> postPaymentSplitPayment;
+    @JsonProperty("feeId")
+    private Optional<String> feeId;
 
     @JsonCreator
     public Context(
-            @JsonProperty("payment") JsonNullable<? extends EntityBalanceTransactionPayment> payment,
-            @JsonProperty("capture") JsonNullable<? extends Capture> capture,
-            @JsonProperty("capture-commision") JsonNullable<? extends CaptureCommision> captureCommision,
-            @JsonProperty("capture-rolling-reserve-release") JsonNullable<? extends CaptureRollingReserveRelease> captureRollingReserveRelease,
-            @JsonProperty("unauthorized-direct-debit") JsonNullable<? extends UnauthorizedDirectDebit> unauthorizedDirectDebit,
-            @JsonProperty("failed-payment") JsonNullable<? extends FailedPayment> failedPayment,
-            @JsonProperty("refund") JsonNullable<? extends Refund> refund,
-            @JsonProperty("refund-compensation") JsonNullable<? extends RefundCompensation> refundCompensation,
-            @JsonProperty("returned-refund") JsonNullable<? extends ReturnedRefund> returnedRefund,
-            @JsonProperty("returned-refund-compensation") JsonNullable<? extends ReturnedRefundCompensation> returnedRefundCompensation,
-            @JsonProperty("chargeback") JsonNullable<? extends Chargeback> chargeback,
-            @JsonProperty("chargeback-reversal") JsonNullable<? extends ChargebackReversal> chargebackReversal,
-            @JsonProperty("chargeback-compensation") JsonNullable<? extends ChargebackCompensation> chargebackCompensation,
-            @JsonProperty("reversed-chargeback-compensation") JsonNullable<? extends ReversedChargebackCompensation> reversedChargebackCompensation,
-            @JsonProperty("outgoing-transfer") JsonNullable<? extends OutgoingTransfer> outgoingTransfer,
-            @JsonProperty("canceled-outgoing-transfer") JsonNullable<? extends CanceledOutgoingTransfer> canceledOutgoingTransfer,
-            @JsonProperty("returned-transfer") JsonNullable<? extends ReturnedTransfer> returnedTransfer,
-            @JsonProperty("invoice-compensation") JsonNullable<? extends InvoiceCompensation> invoiceCompensation,
-            @JsonProperty("application-fee") JsonNullable<? extends EntityBalanceTransactionApplicationFee> applicationFee,
-            @JsonProperty("split-payment") JsonNullable<? extends SplitPayment> splitPayment,
-            @JsonProperty("platform-payment-refund") JsonNullable<? extends PlatformPaymentRefund> platformPaymentRefund,
-            @JsonProperty("returned-platform-payment-refund") JsonNullable<? extends ReturnedPlatformPaymentRefund> returnedPlatformPaymentRefund,
-            @JsonProperty("platform-payment-chargeback") JsonNullable<? extends PlatformPaymentChargeback> platformPaymentChargeback,
-            @JsonProperty("reversed-platform-payment-chargeback") JsonNullable<? extends ReversedPlatformPaymentChargeback> reversedPlatformPaymentChargeback,
-            @JsonProperty("payment-commission") JsonNullable<? extends PaymentCommission> paymentCommission,
-            @JsonProperty("reimbursement-fee") JsonNullable<? extends ReimbursementFee> reimbursementFee,
-            @JsonProperty("failed-payment-fee") JsonNullable<? extends FailedPaymentFee> failedPaymentFee,
-            @JsonProperty("payment-fee") JsonNullable<? extends PaymentFee> paymentFee,
-            @JsonProperty("managed-fee") JsonNullable<? extends ManagedFee> managedFee,
-            @JsonProperty("returned-managed-fee") JsonNullable<? extends ReturnedManagedFee> returnedManagedFee,
-            @JsonProperty("post-payment-split-payment") JsonNullable<? extends PostPaymentSplitPayment> postPaymentSplitPayment) {
-        Utils.checkNotNull(payment, "payment");
-        Utils.checkNotNull(capture, "capture");
-        Utils.checkNotNull(captureCommision, "captureCommision");
-        Utils.checkNotNull(captureRollingReserveRelease, "captureRollingReserveRelease");
-        Utils.checkNotNull(unauthorizedDirectDebit, "unauthorizedDirectDebit");
-        Utils.checkNotNull(failedPayment, "failedPayment");
-        Utils.checkNotNull(refund, "refund");
-        Utils.checkNotNull(refundCompensation, "refundCompensation");
-        Utils.checkNotNull(returnedRefund, "returnedRefund");
-        Utils.checkNotNull(returnedRefundCompensation, "returnedRefundCompensation");
-        Utils.checkNotNull(chargeback, "chargeback");
-        Utils.checkNotNull(chargebackReversal, "chargebackReversal");
-        Utils.checkNotNull(chargebackCompensation, "chargebackCompensation");
-        Utils.checkNotNull(reversedChargebackCompensation, "reversedChargebackCompensation");
-        Utils.checkNotNull(outgoingTransfer, "outgoingTransfer");
-        Utils.checkNotNull(canceledOutgoingTransfer, "canceledOutgoingTransfer");
-        Utils.checkNotNull(returnedTransfer, "returnedTransfer");
-        Utils.checkNotNull(invoiceCompensation, "invoiceCompensation");
-        Utils.checkNotNull(applicationFee, "applicationFee");
-        Utils.checkNotNull(splitPayment, "splitPayment");
-        Utils.checkNotNull(platformPaymentRefund, "platformPaymentRefund");
-        Utils.checkNotNull(returnedPlatformPaymentRefund, "returnedPlatformPaymentRefund");
-        Utils.checkNotNull(platformPaymentChargeback, "platformPaymentChargeback");
-        Utils.checkNotNull(reversedPlatformPaymentChargeback, "reversedPlatformPaymentChargeback");
-        Utils.checkNotNull(paymentCommission, "paymentCommission");
-        Utils.checkNotNull(reimbursementFee, "reimbursementFee");
-        Utils.checkNotNull(failedPaymentFee, "failedPaymentFee");
-        Utils.checkNotNull(paymentFee, "paymentFee");
-        Utils.checkNotNull(managedFee, "managedFee");
-        Utils.checkNotNull(returnedManagedFee, "returnedManagedFee");
-        Utils.checkNotNull(postPaymentSplitPayment, "postPaymentSplitPayment");
-        this.payment = payment;
-        this.capture = capture;
-        this.captureCommision = captureCommision;
-        this.captureRollingReserveRelease = captureRollingReserveRelease;
-        this.unauthorizedDirectDebit = unauthorizedDirectDebit;
-        this.failedPayment = failedPayment;
-        this.refund = refund;
-        this.refundCompensation = refundCompensation;
-        this.returnedRefund = returnedRefund;
-        this.returnedRefundCompensation = returnedRefundCompensation;
-        this.chargeback = chargeback;
-        this.chargebackReversal = chargebackReversal;
-        this.chargebackCompensation = chargebackCompensation;
-        this.reversedChargebackCompensation = reversedChargebackCompensation;
-        this.outgoingTransfer = outgoingTransfer;
-        this.canceledOutgoingTransfer = canceledOutgoingTransfer;
-        this.returnedTransfer = returnedTransfer;
-        this.invoiceCompensation = invoiceCompensation;
-        this.applicationFee = applicationFee;
-        this.splitPayment = splitPayment;
-        this.platformPaymentRefund = platformPaymentRefund;
-        this.returnedPlatformPaymentRefund = returnedPlatformPaymentRefund;
-        this.platformPaymentChargeback = platformPaymentChargeback;
-        this.reversedPlatformPaymentChargeback = reversedPlatformPaymentChargeback;
-        this.paymentCommission = paymentCommission;
-        this.reimbursementFee = reimbursementFee;
-        this.failedPaymentFee = failedPaymentFee;
-        this.paymentFee = paymentFee;
-        this.managedFee = managedFee;
-        this.returnedManagedFee = returnedManagedFee;
-        this.postPaymentSplitPayment = postPaymentSplitPayment;
+            @JsonProperty("paymentId") Optional<String> paymentId,
+            @JsonProperty("paymentDescription") Optional<String> paymentDescription,
+            @JsonProperty("captureId") Optional<String> captureId,
+            @JsonProperty("captureDescription") Optional<String> captureDescription,
+            @JsonProperty("refundId") Optional<String> refundId,
+            @JsonProperty("refundDescription") Optional<String> refundDescription,
+            @JsonProperty("chargebackId") Optional<String> chargebackId,
+            @JsonProperty("chargebackDescription") Optional<String> chargebackDescription,
+            @JsonProperty("transferId") Optional<String> transferId,
+            @JsonProperty("settlementId") Optional<String> settlementId,
+            @JsonProperty("invoiceId") Optional<String> invoiceId,
+            @JsonProperty("payingOwner") Optional<String> payingOwner,
+            @JsonProperty("paymentOwner") Optional<String> paymentOwner,
+            @JsonProperty("organizationId") Optional<String> organizationId,
+            @JsonProperty("feeType") Optional<String> feeType,
+            @JsonProperty("feeId") Optional<String> feeId) {
+        Utils.checkNotNull(paymentId, "paymentId");
+        Utils.checkNotNull(paymentDescription, "paymentDescription");
+        Utils.checkNotNull(captureId, "captureId");
+        Utils.checkNotNull(captureDescription, "captureDescription");
+        Utils.checkNotNull(refundId, "refundId");
+        Utils.checkNotNull(refundDescription, "refundDescription");
+        Utils.checkNotNull(chargebackId, "chargebackId");
+        Utils.checkNotNull(chargebackDescription, "chargebackDescription");
+        Utils.checkNotNull(transferId, "transferId");
+        Utils.checkNotNull(settlementId, "settlementId");
+        Utils.checkNotNull(invoiceId, "invoiceId");
+        Utils.checkNotNull(payingOwner, "payingOwner");
+        Utils.checkNotNull(paymentOwner, "paymentOwner");
+        Utils.checkNotNull(organizationId, "organizationId");
+        Utils.checkNotNull(feeType, "feeType");
+        Utils.checkNotNull(feeId, "feeId");
+        this.paymentId = paymentId;
+        this.paymentDescription = paymentDescription;
+        this.captureId = captureId;
+        this.captureDescription = captureDescription;
+        this.refundId = refundId;
+        this.refundDescription = refundDescription;
+        this.chargebackId = chargebackId;
+        this.chargebackDescription = chargebackDescription;
+        this.transferId = transferId;
+        this.settlementId = settlementId;
+        this.invoiceId = invoiceId;
+        this.payingOwner = payingOwner;
+        this.paymentOwner = paymentOwner;
+        this.organizationId = organizationId;
+        this.feeType = feeType;
+        this.feeId = feeId;
     }
     
     public Context() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<EntityBalanceTransactionPayment> payment() {
-        return (JsonNullable<EntityBalanceTransactionPayment>) payment;
+    public Optional<String> paymentId() {
+        return paymentId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Capture> capture() {
-        return (JsonNullable<Capture>) capture;
+    public Optional<String> paymentDescription() {
+        return paymentDescription;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CaptureCommision> captureCommision() {
-        return (JsonNullable<CaptureCommision>) captureCommision;
+    public Optional<String> captureId() {
+        return captureId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CaptureRollingReserveRelease> captureRollingReserveRelease() {
-        return (JsonNullable<CaptureRollingReserveRelease>) captureRollingReserveRelease;
+    public Optional<String> captureDescription() {
+        return captureDescription;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<UnauthorizedDirectDebit> unauthorizedDirectDebit() {
-        return (JsonNullable<UnauthorizedDirectDebit>) unauthorizedDirectDebit;
+    public Optional<String> refundId() {
+        return refundId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<FailedPayment> failedPayment() {
-        return (JsonNullable<FailedPayment>) failedPayment;
+    public Optional<String> refundDescription() {
+        return refundDescription;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Refund> refund() {
-        return (JsonNullable<Refund>) refund;
+    public Optional<String> chargebackId() {
+        return chargebackId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<RefundCompensation> refundCompensation() {
-        return (JsonNullable<RefundCompensation>) refundCompensation;
+    public Optional<String> chargebackDescription() {
+        return chargebackDescription;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ReturnedRefund> returnedRefund() {
-        return (JsonNullable<ReturnedRefund>) returnedRefund;
+    public Optional<String> transferId() {
+        return transferId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ReturnedRefundCompensation> returnedRefundCompensation() {
-        return (JsonNullable<ReturnedRefundCompensation>) returnedRefundCompensation;
+    public Optional<String> settlementId() {
+        return settlementId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Chargeback> chargeback() {
-        return (JsonNullable<Chargeback>) chargeback;
+    public Optional<String> invoiceId() {
+        return invoiceId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ChargebackReversal> chargebackReversal() {
-        return (JsonNullable<ChargebackReversal>) chargebackReversal;
+    public Optional<String> payingOwner() {
+        return payingOwner;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ChargebackCompensation> chargebackCompensation() {
-        return (JsonNullable<ChargebackCompensation>) chargebackCompensation;
+    public Optional<String> paymentOwner() {
+        return paymentOwner;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ReversedChargebackCompensation> reversedChargebackCompensation() {
-        return (JsonNullable<ReversedChargebackCompensation>) reversedChargebackCompensation;
+    public Optional<String> organizationId() {
+        return organizationId;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<OutgoingTransfer> outgoingTransfer() {
-        return (JsonNullable<OutgoingTransfer>) outgoingTransfer;
+    public Optional<String> feeType() {
+        return feeType;
     }
 
-    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CanceledOutgoingTransfer> canceledOutgoingTransfer() {
-        return (JsonNullable<CanceledOutgoingTransfer>) canceledOutgoingTransfer;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ReturnedTransfer> returnedTransfer() {
-        return (JsonNullable<ReturnedTransfer>) returnedTransfer;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<InvoiceCompensation> invoiceCompensation() {
-        return (JsonNullable<InvoiceCompensation>) invoiceCompensation;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<EntityBalanceTransactionApplicationFee> applicationFee() {
-        return (JsonNullable<EntityBalanceTransactionApplicationFee>) applicationFee;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<SplitPayment> splitPayment() {
-        return (JsonNullable<SplitPayment>) splitPayment;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<PlatformPaymentRefund> platformPaymentRefund() {
-        return (JsonNullable<PlatformPaymentRefund>) platformPaymentRefund;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ReturnedPlatformPaymentRefund> returnedPlatformPaymentRefund() {
-        return (JsonNullable<ReturnedPlatformPaymentRefund>) returnedPlatformPaymentRefund;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<PlatformPaymentChargeback> platformPaymentChargeback() {
-        return (JsonNullable<PlatformPaymentChargeback>) platformPaymentChargeback;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ReversedPlatformPaymentChargeback> reversedPlatformPaymentChargeback() {
-        return (JsonNullable<ReversedPlatformPaymentChargeback>) reversedPlatformPaymentChargeback;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<PaymentCommission> paymentCommission() {
-        return (JsonNullable<PaymentCommission>) paymentCommission;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ReimbursementFee> reimbursementFee() {
-        return (JsonNullable<ReimbursementFee>) reimbursementFee;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<FailedPaymentFee> failedPaymentFee() {
-        return (JsonNullable<FailedPaymentFee>) failedPaymentFee;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<PaymentFee> paymentFee() {
-        return (JsonNullable<PaymentFee>) paymentFee;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ManagedFee> managedFee() {
-        return (JsonNullable<ManagedFee>) managedFee;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<ReturnedManagedFee> returnedManagedFee() {
-        return (JsonNullable<ReturnedManagedFee>) returnedManagedFee;
-    }
-
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public JsonNullable<PostPaymentSplitPayment> postPaymentSplitPayment() {
-        return (JsonNullable<PostPaymentSplitPayment>) postPaymentSplitPayment;
+    public Optional<String> feeId() {
+        return feeId;
     }
 
     public static Builder builder() {
@@ -532,375 +300,211 @@ public class Context {
     }
 
 
-    public Context withPayment(EntityBalanceTransactionPayment payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = JsonNullable.of(payment);
+    public Context withPaymentId(String paymentId) {
+        Utils.checkNotNull(paymentId, "paymentId");
+        this.paymentId = Optional.ofNullable(paymentId);
         return this;
     }
 
-    public Context withPayment(JsonNullable<? extends EntityBalanceTransactionPayment> payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = payment;
+
+    public Context withPaymentId(Optional<String> paymentId) {
+        Utils.checkNotNull(paymentId, "paymentId");
+        this.paymentId = paymentId;
         return this;
     }
 
-    public Context withCapture(Capture capture) {
-        Utils.checkNotNull(capture, "capture");
-        this.capture = JsonNullable.of(capture);
+    public Context withPaymentDescription(String paymentDescription) {
+        Utils.checkNotNull(paymentDescription, "paymentDescription");
+        this.paymentDescription = Optional.ofNullable(paymentDescription);
         return this;
     }
 
-    public Context withCapture(JsonNullable<? extends Capture> capture) {
-        Utils.checkNotNull(capture, "capture");
-        this.capture = capture;
+
+    public Context withPaymentDescription(Optional<String> paymentDescription) {
+        Utils.checkNotNull(paymentDescription, "paymentDescription");
+        this.paymentDescription = paymentDescription;
         return this;
     }
 
-    public Context withCaptureCommision(CaptureCommision captureCommision) {
-        Utils.checkNotNull(captureCommision, "captureCommision");
-        this.captureCommision = JsonNullable.of(captureCommision);
+    public Context withCaptureId(String captureId) {
+        Utils.checkNotNull(captureId, "captureId");
+        this.captureId = Optional.ofNullable(captureId);
         return this;
     }
 
-    public Context withCaptureCommision(JsonNullable<? extends CaptureCommision> captureCommision) {
-        Utils.checkNotNull(captureCommision, "captureCommision");
-        this.captureCommision = captureCommision;
+
+    public Context withCaptureId(Optional<String> captureId) {
+        Utils.checkNotNull(captureId, "captureId");
+        this.captureId = captureId;
         return this;
     }
 
-    public Context withCaptureRollingReserveRelease(CaptureRollingReserveRelease captureRollingReserveRelease) {
-        Utils.checkNotNull(captureRollingReserveRelease, "captureRollingReserveRelease");
-        this.captureRollingReserveRelease = JsonNullable.of(captureRollingReserveRelease);
+    public Context withCaptureDescription(String captureDescription) {
+        Utils.checkNotNull(captureDescription, "captureDescription");
+        this.captureDescription = Optional.ofNullable(captureDescription);
         return this;
     }
 
-    public Context withCaptureRollingReserveRelease(JsonNullable<? extends CaptureRollingReserveRelease> captureRollingReserveRelease) {
-        Utils.checkNotNull(captureRollingReserveRelease, "captureRollingReserveRelease");
-        this.captureRollingReserveRelease = captureRollingReserveRelease;
+
+    public Context withCaptureDescription(Optional<String> captureDescription) {
+        Utils.checkNotNull(captureDescription, "captureDescription");
+        this.captureDescription = captureDescription;
         return this;
     }
 
-    public Context withUnauthorizedDirectDebit(UnauthorizedDirectDebit unauthorizedDirectDebit) {
-        Utils.checkNotNull(unauthorizedDirectDebit, "unauthorizedDirectDebit");
-        this.unauthorizedDirectDebit = JsonNullable.of(unauthorizedDirectDebit);
+    public Context withRefundId(String refundId) {
+        Utils.checkNotNull(refundId, "refundId");
+        this.refundId = Optional.ofNullable(refundId);
         return this;
     }
 
-    public Context withUnauthorizedDirectDebit(JsonNullable<? extends UnauthorizedDirectDebit> unauthorizedDirectDebit) {
-        Utils.checkNotNull(unauthorizedDirectDebit, "unauthorizedDirectDebit");
-        this.unauthorizedDirectDebit = unauthorizedDirectDebit;
+
+    public Context withRefundId(Optional<String> refundId) {
+        Utils.checkNotNull(refundId, "refundId");
+        this.refundId = refundId;
         return this;
     }
 
-    public Context withFailedPayment(FailedPayment failedPayment) {
-        Utils.checkNotNull(failedPayment, "failedPayment");
-        this.failedPayment = JsonNullable.of(failedPayment);
+    public Context withRefundDescription(String refundDescription) {
+        Utils.checkNotNull(refundDescription, "refundDescription");
+        this.refundDescription = Optional.ofNullable(refundDescription);
         return this;
     }
 
-    public Context withFailedPayment(JsonNullable<? extends FailedPayment> failedPayment) {
-        Utils.checkNotNull(failedPayment, "failedPayment");
-        this.failedPayment = failedPayment;
+
+    public Context withRefundDescription(Optional<String> refundDescription) {
+        Utils.checkNotNull(refundDescription, "refundDescription");
+        this.refundDescription = refundDescription;
         return this;
     }
 
-    public Context withRefund(Refund refund) {
-        Utils.checkNotNull(refund, "refund");
-        this.refund = JsonNullable.of(refund);
+    public Context withChargebackId(String chargebackId) {
+        Utils.checkNotNull(chargebackId, "chargebackId");
+        this.chargebackId = Optional.ofNullable(chargebackId);
         return this;
     }
 
-    public Context withRefund(JsonNullable<? extends Refund> refund) {
-        Utils.checkNotNull(refund, "refund");
-        this.refund = refund;
+
+    public Context withChargebackId(Optional<String> chargebackId) {
+        Utils.checkNotNull(chargebackId, "chargebackId");
+        this.chargebackId = chargebackId;
         return this;
     }
 
-    public Context withRefundCompensation(RefundCompensation refundCompensation) {
-        Utils.checkNotNull(refundCompensation, "refundCompensation");
-        this.refundCompensation = JsonNullable.of(refundCompensation);
+    public Context withChargebackDescription(String chargebackDescription) {
+        Utils.checkNotNull(chargebackDescription, "chargebackDescription");
+        this.chargebackDescription = Optional.ofNullable(chargebackDescription);
         return this;
     }
 
-    public Context withRefundCompensation(JsonNullable<? extends RefundCompensation> refundCompensation) {
-        Utils.checkNotNull(refundCompensation, "refundCompensation");
-        this.refundCompensation = refundCompensation;
+
+    public Context withChargebackDescription(Optional<String> chargebackDescription) {
+        Utils.checkNotNull(chargebackDescription, "chargebackDescription");
+        this.chargebackDescription = chargebackDescription;
         return this;
     }
 
-    public Context withReturnedRefund(ReturnedRefund returnedRefund) {
-        Utils.checkNotNull(returnedRefund, "returnedRefund");
-        this.returnedRefund = JsonNullable.of(returnedRefund);
+    public Context withTransferId(String transferId) {
+        Utils.checkNotNull(transferId, "transferId");
+        this.transferId = Optional.ofNullable(transferId);
         return this;
     }
 
-    public Context withReturnedRefund(JsonNullable<? extends ReturnedRefund> returnedRefund) {
-        Utils.checkNotNull(returnedRefund, "returnedRefund");
-        this.returnedRefund = returnedRefund;
+
+    public Context withTransferId(Optional<String> transferId) {
+        Utils.checkNotNull(transferId, "transferId");
+        this.transferId = transferId;
         return this;
     }
 
-    public Context withReturnedRefundCompensation(ReturnedRefundCompensation returnedRefundCompensation) {
-        Utils.checkNotNull(returnedRefundCompensation, "returnedRefundCompensation");
-        this.returnedRefundCompensation = JsonNullable.of(returnedRefundCompensation);
+    public Context withSettlementId(String settlementId) {
+        Utils.checkNotNull(settlementId, "settlementId");
+        this.settlementId = Optional.ofNullable(settlementId);
         return this;
     }
 
-    public Context withReturnedRefundCompensation(JsonNullable<? extends ReturnedRefundCompensation> returnedRefundCompensation) {
-        Utils.checkNotNull(returnedRefundCompensation, "returnedRefundCompensation");
-        this.returnedRefundCompensation = returnedRefundCompensation;
+
+    public Context withSettlementId(Optional<String> settlementId) {
+        Utils.checkNotNull(settlementId, "settlementId");
+        this.settlementId = settlementId;
         return this;
     }
 
-    public Context withChargeback(Chargeback chargeback) {
-        Utils.checkNotNull(chargeback, "chargeback");
-        this.chargeback = JsonNullable.of(chargeback);
+    public Context withInvoiceId(String invoiceId) {
+        Utils.checkNotNull(invoiceId, "invoiceId");
+        this.invoiceId = Optional.ofNullable(invoiceId);
         return this;
     }
 
-    public Context withChargeback(JsonNullable<? extends Chargeback> chargeback) {
-        Utils.checkNotNull(chargeback, "chargeback");
-        this.chargeback = chargeback;
+
+    public Context withInvoiceId(Optional<String> invoiceId) {
+        Utils.checkNotNull(invoiceId, "invoiceId");
+        this.invoiceId = invoiceId;
         return this;
     }
 
-    public Context withChargebackReversal(ChargebackReversal chargebackReversal) {
-        Utils.checkNotNull(chargebackReversal, "chargebackReversal");
-        this.chargebackReversal = JsonNullable.of(chargebackReversal);
+    public Context withPayingOwner(String payingOwner) {
+        Utils.checkNotNull(payingOwner, "payingOwner");
+        this.payingOwner = Optional.ofNullable(payingOwner);
         return this;
     }
 
-    public Context withChargebackReversal(JsonNullable<? extends ChargebackReversal> chargebackReversal) {
-        Utils.checkNotNull(chargebackReversal, "chargebackReversal");
-        this.chargebackReversal = chargebackReversal;
+
+    public Context withPayingOwner(Optional<String> payingOwner) {
+        Utils.checkNotNull(payingOwner, "payingOwner");
+        this.payingOwner = payingOwner;
         return this;
     }
 
-    public Context withChargebackCompensation(ChargebackCompensation chargebackCompensation) {
-        Utils.checkNotNull(chargebackCompensation, "chargebackCompensation");
-        this.chargebackCompensation = JsonNullable.of(chargebackCompensation);
+    public Context withPaymentOwner(String paymentOwner) {
+        Utils.checkNotNull(paymentOwner, "paymentOwner");
+        this.paymentOwner = Optional.ofNullable(paymentOwner);
         return this;
     }
 
-    public Context withChargebackCompensation(JsonNullable<? extends ChargebackCompensation> chargebackCompensation) {
-        Utils.checkNotNull(chargebackCompensation, "chargebackCompensation");
-        this.chargebackCompensation = chargebackCompensation;
+
+    public Context withPaymentOwner(Optional<String> paymentOwner) {
+        Utils.checkNotNull(paymentOwner, "paymentOwner");
+        this.paymentOwner = paymentOwner;
         return this;
     }
 
-    public Context withReversedChargebackCompensation(ReversedChargebackCompensation reversedChargebackCompensation) {
-        Utils.checkNotNull(reversedChargebackCompensation, "reversedChargebackCompensation");
-        this.reversedChargebackCompensation = JsonNullable.of(reversedChargebackCompensation);
+    public Context withOrganizationId(String organizationId) {
+        Utils.checkNotNull(organizationId, "organizationId");
+        this.organizationId = Optional.ofNullable(organizationId);
         return this;
     }
 
-    public Context withReversedChargebackCompensation(JsonNullable<? extends ReversedChargebackCompensation> reversedChargebackCompensation) {
-        Utils.checkNotNull(reversedChargebackCompensation, "reversedChargebackCompensation");
-        this.reversedChargebackCompensation = reversedChargebackCompensation;
+
+    public Context withOrganizationId(Optional<String> organizationId) {
+        Utils.checkNotNull(organizationId, "organizationId");
+        this.organizationId = organizationId;
         return this;
     }
 
-    public Context withOutgoingTransfer(OutgoingTransfer outgoingTransfer) {
-        Utils.checkNotNull(outgoingTransfer, "outgoingTransfer");
-        this.outgoingTransfer = JsonNullable.of(outgoingTransfer);
+    public Context withFeeType(String feeType) {
+        Utils.checkNotNull(feeType, "feeType");
+        this.feeType = Optional.ofNullable(feeType);
         return this;
     }
 
-    public Context withOutgoingTransfer(JsonNullable<? extends OutgoingTransfer> outgoingTransfer) {
-        Utils.checkNotNull(outgoingTransfer, "outgoingTransfer");
-        this.outgoingTransfer = outgoingTransfer;
+
+    public Context withFeeType(Optional<String> feeType) {
+        Utils.checkNotNull(feeType, "feeType");
+        this.feeType = feeType;
         return this;
     }
 
-    public Context withCanceledOutgoingTransfer(CanceledOutgoingTransfer canceledOutgoingTransfer) {
-        Utils.checkNotNull(canceledOutgoingTransfer, "canceledOutgoingTransfer");
-        this.canceledOutgoingTransfer = JsonNullable.of(canceledOutgoingTransfer);
+    public Context withFeeId(String feeId) {
+        Utils.checkNotNull(feeId, "feeId");
+        this.feeId = Optional.ofNullable(feeId);
         return this;
     }
 
-    public Context withCanceledOutgoingTransfer(JsonNullable<? extends CanceledOutgoingTransfer> canceledOutgoingTransfer) {
-        Utils.checkNotNull(canceledOutgoingTransfer, "canceledOutgoingTransfer");
-        this.canceledOutgoingTransfer = canceledOutgoingTransfer;
-        return this;
-    }
 
-    public Context withReturnedTransfer(ReturnedTransfer returnedTransfer) {
-        Utils.checkNotNull(returnedTransfer, "returnedTransfer");
-        this.returnedTransfer = JsonNullable.of(returnedTransfer);
-        return this;
-    }
-
-    public Context withReturnedTransfer(JsonNullable<? extends ReturnedTransfer> returnedTransfer) {
-        Utils.checkNotNull(returnedTransfer, "returnedTransfer");
-        this.returnedTransfer = returnedTransfer;
-        return this;
-    }
-
-    public Context withInvoiceCompensation(InvoiceCompensation invoiceCompensation) {
-        Utils.checkNotNull(invoiceCompensation, "invoiceCompensation");
-        this.invoiceCompensation = JsonNullable.of(invoiceCompensation);
-        return this;
-    }
-
-    public Context withInvoiceCompensation(JsonNullable<? extends InvoiceCompensation> invoiceCompensation) {
-        Utils.checkNotNull(invoiceCompensation, "invoiceCompensation");
-        this.invoiceCompensation = invoiceCompensation;
-        return this;
-    }
-
-    public Context withApplicationFee(EntityBalanceTransactionApplicationFee applicationFee) {
-        Utils.checkNotNull(applicationFee, "applicationFee");
-        this.applicationFee = JsonNullable.of(applicationFee);
-        return this;
-    }
-
-    public Context withApplicationFee(JsonNullable<? extends EntityBalanceTransactionApplicationFee> applicationFee) {
-        Utils.checkNotNull(applicationFee, "applicationFee");
-        this.applicationFee = applicationFee;
-        return this;
-    }
-
-    public Context withSplitPayment(SplitPayment splitPayment) {
-        Utils.checkNotNull(splitPayment, "splitPayment");
-        this.splitPayment = JsonNullable.of(splitPayment);
-        return this;
-    }
-
-    public Context withSplitPayment(JsonNullable<? extends SplitPayment> splitPayment) {
-        Utils.checkNotNull(splitPayment, "splitPayment");
-        this.splitPayment = splitPayment;
-        return this;
-    }
-
-    public Context withPlatformPaymentRefund(PlatformPaymentRefund platformPaymentRefund) {
-        Utils.checkNotNull(platformPaymentRefund, "platformPaymentRefund");
-        this.platformPaymentRefund = JsonNullable.of(platformPaymentRefund);
-        return this;
-    }
-
-    public Context withPlatformPaymentRefund(JsonNullable<? extends PlatformPaymentRefund> platformPaymentRefund) {
-        Utils.checkNotNull(platformPaymentRefund, "platformPaymentRefund");
-        this.platformPaymentRefund = platformPaymentRefund;
-        return this;
-    }
-
-    public Context withReturnedPlatformPaymentRefund(ReturnedPlatformPaymentRefund returnedPlatformPaymentRefund) {
-        Utils.checkNotNull(returnedPlatformPaymentRefund, "returnedPlatformPaymentRefund");
-        this.returnedPlatformPaymentRefund = JsonNullable.of(returnedPlatformPaymentRefund);
-        return this;
-    }
-
-    public Context withReturnedPlatformPaymentRefund(JsonNullable<? extends ReturnedPlatformPaymentRefund> returnedPlatformPaymentRefund) {
-        Utils.checkNotNull(returnedPlatformPaymentRefund, "returnedPlatformPaymentRefund");
-        this.returnedPlatformPaymentRefund = returnedPlatformPaymentRefund;
-        return this;
-    }
-
-    public Context withPlatformPaymentChargeback(PlatformPaymentChargeback platformPaymentChargeback) {
-        Utils.checkNotNull(platformPaymentChargeback, "platformPaymentChargeback");
-        this.platformPaymentChargeback = JsonNullable.of(platformPaymentChargeback);
-        return this;
-    }
-
-    public Context withPlatformPaymentChargeback(JsonNullable<? extends PlatformPaymentChargeback> platformPaymentChargeback) {
-        Utils.checkNotNull(platformPaymentChargeback, "platformPaymentChargeback");
-        this.platformPaymentChargeback = platformPaymentChargeback;
-        return this;
-    }
-
-    public Context withReversedPlatformPaymentChargeback(ReversedPlatformPaymentChargeback reversedPlatformPaymentChargeback) {
-        Utils.checkNotNull(reversedPlatformPaymentChargeback, "reversedPlatformPaymentChargeback");
-        this.reversedPlatformPaymentChargeback = JsonNullable.of(reversedPlatformPaymentChargeback);
-        return this;
-    }
-
-    public Context withReversedPlatformPaymentChargeback(JsonNullable<? extends ReversedPlatformPaymentChargeback> reversedPlatformPaymentChargeback) {
-        Utils.checkNotNull(reversedPlatformPaymentChargeback, "reversedPlatformPaymentChargeback");
-        this.reversedPlatformPaymentChargeback = reversedPlatformPaymentChargeback;
-        return this;
-    }
-
-    public Context withPaymentCommission(PaymentCommission paymentCommission) {
-        Utils.checkNotNull(paymentCommission, "paymentCommission");
-        this.paymentCommission = JsonNullable.of(paymentCommission);
-        return this;
-    }
-
-    public Context withPaymentCommission(JsonNullable<? extends PaymentCommission> paymentCommission) {
-        Utils.checkNotNull(paymentCommission, "paymentCommission");
-        this.paymentCommission = paymentCommission;
-        return this;
-    }
-
-    public Context withReimbursementFee(ReimbursementFee reimbursementFee) {
-        Utils.checkNotNull(reimbursementFee, "reimbursementFee");
-        this.reimbursementFee = JsonNullable.of(reimbursementFee);
-        return this;
-    }
-
-    public Context withReimbursementFee(JsonNullable<? extends ReimbursementFee> reimbursementFee) {
-        Utils.checkNotNull(reimbursementFee, "reimbursementFee");
-        this.reimbursementFee = reimbursementFee;
-        return this;
-    }
-
-    public Context withFailedPaymentFee(FailedPaymentFee failedPaymentFee) {
-        Utils.checkNotNull(failedPaymentFee, "failedPaymentFee");
-        this.failedPaymentFee = JsonNullable.of(failedPaymentFee);
-        return this;
-    }
-
-    public Context withFailedPaymentFee(JsonNullable<? extends FailedPaymentFee> failedPaymentFee) {
-        Utils.checkNotNull(failedPaymentFee, "failedPaymentFee");
-        this.failedPaymentFee = failedPaymentFee;
-        return this;
-    }
-
-    public Context withPaymentFee(PaymentFee paymentFee) {
-        Utils.checkNotNull(paymentFee, "paymentFee");
-        this.paymentFee = JsonNullable.of(paymentFee);
-        return this;
-    }
-
-    public Context withPaymentFee(JsonNullable<? extends PaymentFee> paymentFee) {
-        Utils.checkNotNull(paymentFee, "paymentFee");
-        this.paymentFee = paymentFee;
-        return this;
-    }
-
-    public Context withManagedFee(ManagedFee managedFee) {
-        Utils.checkNotNull(managedFee, "managedFee");
-        this.managedFee = JsonNullable.of(managedFee);
-        return this;
-    }
-
-    public Context withManagedFee(JsonNullable<? extends ManagedFee> managedFee) {
-        Utils.checkNotNull(managedFee, "managedFee");
-        this.managedFee = managedFee;
-        return this;
-    }
-
-    public Context withReturnedManagedFee(ReturnedManagedFee returnedManagedFee) {
-        Utils.checkNotNull(returnedManagedFee, "returnedManagedFee");
-        this.returnedManagedFee = JsonNullable.of(returnedManagedFee);
-        return this;
-    }
-
-    public Context withReturnedManagedFee(JsonNullable<? extends ReturnedManagedFee> returnedManagedFee) {
-        Utils.checkNotNull(returnedManagedFee, "returnedManagedFee");
-        this.returnedManagedFee = returnedManagedFee;
-        return this;
-    }
-
-    public Context withPostPaymentSplitPayment(PostPaymentSplitPayment postPaymentSplitPayment) {
-        Utils.checkNotNull(postPaymentSplitPayment, "postPaymentSplitPayment");
-        this.postPaymentSplitPayment = JsonNullable.of(postPaymentSplitPayment);
-        return this;
-    }
-
-    public Context withPostPaymentSplitPayment(JsonNullable<? extends PostPaymentSplitPayment> postPaymentSplitPayment) {
-        Utils.checkNotNull(postPaymentSplitPayment, "postPaymentSplitPayment");
-        this.postPaymentSplitPayment = postPaymentSplitPayment;
+    public Context withFeeId(Optional<String> feeId) {
+        Utils.checkNotNull(feeId, "feeId");
+        this.feeId = feeId;
         return this;
     }
 
@@ -914,577 +518,312 @@ public class Context {
         }
         Context other = (Context) o;
         return 
-            Utils.enhancedDeepEquals(this.payment, other.payment) &&
-            Utils.enhancedDeepEquals(this.capture, other.capture) &&
-            Utils.enhancedDeepEquals(this.captureCommision, other.captureCommision) &&
-            Utils.enhancedDeepEquals(this.captureRollingReserveRelease, other.captureRollingReserveRelease) &&
-            Utils.enhancedDeepEquals(this.unauthorizedDirectDebit, other.unauthorizedDirectDebit) &&
-            Utils.enhancedDeepEquals(this.failedPayment, other.failedPayment) &&
-            Utils.enhancedDeepEquals(this.refund, other.refund) &&
-            Utils.enhancedDeepEquals(this.refundCompensation, other.refundCompensation) &&
-            Utils.enhancedDeepEquals(this.returnedRefund, other.returnedRefund) &&
-            Utils.enhancedDeepEquals(this.returnedRefundCompensation, other.returnedRefundCompensation) &&
-            Utils.enhancedDeepEquals(this.chargeback, other.chargeback) &&
-            Utils.enhancedDeepEquals(this.chargebackReversal, other.chargebackReversal) &&
-            Utils.enhancedDeepEquals(this.chargebackCompensation, other.chargebackCompensation) &&
-            Utils.enhancedDeepEquals(this.reversedChargebackCompensation, other.reversedChargebackCompensation) &&
-            Utils.enhancedDeepEquals(this.outgoingTransfer, other.outgoingTransfer) &&
-            Utils.enhancedDeepEquals(this.canceledOutgoingTransfer, other.canceledOutgoingTransfer) &&
-            Utils.enhancedDeepEquals(this.returnedTransfer, other.returnedTransfer) &&
-            Utils.enhancedDeepEquals(this.invoiceCompensation, other.invoiceCompensation) &&
-            Utils.enhancedDeepEquals(this.applicationFee, other.applicationFee) &&
-            Utils.enhancedDeepEquals(this.splitPayment, other.splitPayment) &&
-            Utils.enhancedDeepEquals(this.platformPaymentRefund, other.platformPaymentRefund) &&
-            Utils.enhancedDeepEquals(this.returnedPlatformPaymentRefund, other.returnedPlatformPaymentRefund) &&
-            Utils.enhancedDeepEquals(this.platformPaymentChargeback, other.platformPaymentChargeback) &&
-            Utils.enhancedDeepEquals(this.reversedPlatformPaymentChargeback, other.reversedPlatformPaymentChargeback) &&
-            Utils.enhancedDeepEquals(this.paymentCommission, other.paymentCommission) &&
-            Utils.enhancedDeepEquals(this.reimbursementFee, other.reimbursementFee) &&
-            Utils.enhancedDeepEquals(this.failedPaymentFee, other.failedPaymentFee) &&
-            Utils.enhancedDeepEquals(this.paymentFee, other.paymentFee) &&
-            Utils.enhancedDeepEquals(this.managedFee, other.managedFee) &&
-            Utils.enhancedDeepEquals(this.returnedManagedFee, other.returnedManagedFee) &&
-            Utils.enhancedDeepEquals(this.postPaymentSplitPayment, other.postPaymentSplitPayment);
+            Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
+            Utils.enhancedDeepEquals(this.paymentDescription, other.paymentDescription) &&
+            Utils.enhancedDeepEquals(this.captureId, other.captureId) &&
+            Utils.enhancedDeepEquals(this.captureDescription, other.captureDescription) &&
+            Utils.enhancedDeepEquals(this.refundId, other.refundId) &&
+            Utils.enhancedDeepEquals(this.refundDescription, other.refundDescription) &&
+            Utils.enhancedDeepEquals(this.chargebackId, other.chargebackId) &&
+            Utils.enhancedDeepEquals(this.chargebackDescription, other.chargebackDescription) &&
+            Utils.enhancedDeepEquals(this.transferId, other.transferId) &&
+            Utils.enhancedDeepEquals(this.settlementId, other.settlementId) &&
+            Utils.enhancedDeepEquals(this.invoiceId, other.invoiceId) &&
+            Utils.enhancedDeepEquals(this.payingOwner, other.payingOwner) &&
+            Utils.enhancedDeepEquals(this.paymentOwner, other.paymentOwner) &&
+            Utils.enhancedDeepEquals(this.organizationId, other.organizationId) &&
+            Utils.enhancedDeepEquals(this.feeType, other.feeType) &&
+            Utils.enhancedDeepEquals(this.feeId, other.feeId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            payment, capture, captureCommision,
-            captureRollingReserveRelease, unauthorizedDirectDebit, failedPayment,
-            refund, refundCompensation, returnedRefund,
-            returnedRefundCompensation, chargeback, chargebackReversal,
-            chargebackCompensation, reversedChargebackCompensation, outgoingTransfer,
-            canceledOutgoingTransfer, returnedTransfer, invoiceCompensation,
-            applicationFee, splitPayment, platformPaymentRefund,
-            returnedPlatformPaymentRefund, platformPaymentChargeback, reversedPlatformPaymentChargeback,
-            paymentCommission, reimbursementFee, failedPaymentFee,
-            paymentFee, managedFee, returnedManagedFee,
-            postPaymentSplitPayment);
+            paymentId, paymentDescription, captureId,
+            captureDescription, refundId, refundDescription,
+            chargebackId, chargebackDescription, transferId,
+            settlementId, invoiceId, payingOwner,
+            paymentOwner, organizationId, feeType,
+            feeId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Context.class,
-                "payment", payment,
-                "capture", capture,
-                "captureCommision", captureCommision,
-                "captureRollingReserveRelease", captureRollingReserveRelease,
-                "unauthorizedDirectDebit", unauthorizedDirectDebit,
-                "failedPayment", failedPayment,
-                "refund", refund,
-                "refundCompensation", refundCompensation,
-                "returnedRefund", returnedRefund,
-                "returnedRefundCompensation", returnedRefundCompensation,
-                "chargeback", chargeback,
-                "chargebackReversal", chargebackReversal,
-                "chargebackCompensation", chargebackCompensation,
-                "reversedChargebackCompensation", reversedChargebackCompensation,
-                "outgoingTransfer", outgoingTransfer,
-                "canceledOutgoingTransfer", canceledOutgoingTransfer,
-                "returnedTransfer", returnedTransfer,
-                "invoiceCompensation", invoiceCompensation,
-                "applicationFee", applicationFee,
-                "splitPayment", splitPayment,
-                "platformPaymentRefund", platformPaymentRefund,
-                "returnedPlatformPaymentRefund", returnedPlatformPaymentRefund,
-                "platformPaymentChargeback", platformPaymentChargeback,
-                "reversedPlatformPaymentChargeback", reversedPlatformPaymentChargeback,
-                "paymentCommission", paymentCommission,
-                "reimbursementFee", reimbursementFee,
-                "failedPaymentFee", failedPaymentFee,
-                "paymentFee", paymentFee,
-                "managedFee", managedFee,
-                "returnedManagedFee", returnedManagedFee,
-                "postPaymentSplitPayment", postPaymentSplitPayment);
+                "paymentId", paymentId,
+                "paymentDescription", paymentDescription,
+                "captureId", captureId,
+                "captureDescription", captureDescription,
+                "refundId", refundId,
+                "refundDescription", refundDescription,
+                "chargebackId", chargebackId,
+                "chargebackDescription", chargebackDescription,
+                "transferId", transferId,
+                "settlementId", settlementId,
+                "invoiceId", invoiceId,
+                "payingOwner", payingOwner,
+                "paymentOwner", paymentOwner,
+                "organizationId", organizationId,
+                "feeType", feeType,
+                "feeId", feeId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends EntityBalanceTransactionPayment> payment = JsonNullable.undefined();
+        private Optional<String> paymentId = Optional.empty();
 
-        private JsonNullable<? extends Capture> capture = JsonNullable.undefined();
+        private Optional<String> paymentDescription = Optional.empty();
 
-        private JsonNullable<? extends CaptureCommision> captureCommision = JsonNullable.undefined();
+        private Optional<String> captureId = Optional.empty();
 
-        private JsonNullable<? extends CaptureRollingReserveRelease> captureRollingReserveRelease = JsonNullable.undefined();
+        private Optional<String> captureDescription = Optional.empty();
 
-        private JsonNullable<? extends UnauthorizedDirectDebit> unauthorizedDirectDebit = JsonNullable.undefined();
+        private Optional<String> refundId = Optional.empty();
 
-        private JsonNullable<? extends FailedPayment> failedPayment = JsonNullable.undefined();
+        private Optional<String> refundDescription = Optional.empty();
 
-        private JsonNullable<? extends Refund> refund = JsonNullable.undefined();
+        private Optional<String> chargebackId = Optional.empty();
 
-        private JsonNullable<? extends RefundCompensation> refundCompensation = JsonNullable.undefined();
+        private Optional<String> chargebackDescription = Optional.empty();
 
-        private JsonNullable<? extends ReturnedRefund> returnedRefund = JsonNullable.undefined();
+        private Optional<String> transferId = Optional.empty();
 
-        private JsonNullable<? extends ReturnedRefundCompensation> returnedRefundCompensation = JsonNullable.undefined();
+        private Optional<String> settlementId = Optional.empty();
 
-        private JsonNullable<? extends Chargeback> chargeback = JsonNullable.undefined();
+        private Optional<String> invoiceId = Optional.empty();
 
-        private JsonNullable<? extends ChargebackReversal> chargebackReversal = JsonNullable.undefined();
+        private Optional<String> payingOwner = Optional.empty();
 
-        private JsonNullable<? extends ChargebackCompensation> chargebackCompensation = JsonNullable.undefined();
+        private Optional<String> paymentOwner = Optional.empty();
 
-        private JsonNullable<? extends ReversedChargebackCompensation> reversedChargebackCompensation = JsonNullable.undefined();
+        private Optional<String> organizationId = Optional.empty();
 
-        private JsonNullable<? extends OutgoingTransfer> outgoingTransfer = JsonNullable.undefined();
+        private Optional<String> feeType = Optional.empty();
 
-        private JsonNullable<? extends CanceledOutgoingTransfer> canceledOutgoingTransfer = JsonNullable.undefined();
-
-        private JsonNullable<? extends ReturnedTransfer> returnedTransfer = JsonNullable.undefined();
-
-        private JsonNullable<? extends InvoiceCompensation> invoiceCompensation = JsonNullable.undefined();
-
-        private JsonNullable<? extends EntityBalanceTransactionApplicationFee> applicationFee = JsonNullable.undefined();
-
-        private JsonNullable<? extends SplitPayment> splitPayment = JsonNullable.undefined();
-
-        private JsonNullable<? extends PlatformPaymentRefund> platformPaymentRefund = JsonNullable.undefined();
-
-        private JsonNullable<? extends ReturnedPlatformPaymentRefund> returnedPlatformPaymentRefund = JsonNullable.undefined();
-
-        private JsonNullable<? extends PlatformPaymentChargeback> platformPaymentChargeback = JsonNullable.undefined();
-
-        private JsonNullable<? extends ReversedPlatformPaymentChargeback> reversedPlatformPaymentChargeback = JsonNullable.undefined();
-
-        private JsonNullable<? extends PaymentCommission> paymentCommission = JsonNullable.undefined();
-
-        private JsonNullable<? extends ReimbursementFee> reimbursementFee = JsonNullable.undefined();
-
-        private JsonNullable<? extends FailedPaymentFee> failedPaymentFee = JsonNullable.undefined();
-
-        private JsonNullable<? extends PaymentFee> paymentFee = JsonNullable.undefined();
-
-        private JsonNullable<? extends ManagedFee> managedFee = JsonNullable.undefined();
-
-        private JsonNullable<? extends ReturnedManagedFee> returnedManagedFee = JsonNullable.undefined();
-
-        private JsonNullable<? extends PostPaymentSplitPayment> postPaymentSplitPayment = JsonNullable.undefined();
+        private Optional<String> feeId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
         }
 
 
-        public Builder payment(EntityBalanceTransactionPayment payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = JsonNullable.of(payment);
+        public Builder paymentId(String paymentId) {
+            Utils.checkNotNull(paymentId, "paymentId");
+            this.paymentId = Optional.ofNullable(paymentId);
             return this;
         }
 
-        public Builder payment(JsonNullable<? extends EntityBalanceTransactionPayment> payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = payment;
-            return this;
-        }
-
-
-        public Builder capture(Capture capture) {
-            Utils.checkNotNull(capture, "capture");
-            this.capture = JsonNullable.of(capture);
-            return this;
-        }
-
-        public Builder capture(JsonNullable<? extends Capture> capture) {
-            Utils.checkNotNull(capture, "capture");
-            this.capture = capture;
+        public Builder paymentId(Optional<String> paymentId) {
+            Utils.checkNotNull(paymentId, "paymentId");
+            this.paymentId = paymentId;
             return this;
         }
 
 
-        public Builder captureCommision(CaptureCommision captureCommision) {
-            Utils.checkNotNull(captureCommision, "captureCommision");
-            this.captureCommision = JsonNullable.of(captureCommision);
+        public Builder paymentDescription(String paymentDescription) {
+            Utils.checkNotNull(paymentDescription, "paymentDescription");
+            this.paymentDescription = Optional.ofNullable(paymentDescription);
             return this;
         }
 
-        public Builder captureCommision(JsonNullable<? extends CaptureCommision> captureCommision) {
-            Utils.checkNotNull(captureCommision, "captureCommision");
-            this.captureCommision = captureCommision;
-            return this;
-        }
-
-
-        public Builder captureRollingReserveRelease(CaptureRollingReserveRelease captureRollingReserveRelease) {
-            Utils.checkNotNull(captureRollingReserveRelease, "captureRollingReserveRelease");
-            this.captureRollingReserveRelease = JsonNullable.of(captureRollingReserveRelease);
-            return this;
-        }
-
-        public Builder captureRollingReserveRelease(JsonNullable<? extends CaptureRollingReserveRelease> captureRollingReserveRelease) {
-            Utils.checkNotNull(captureRollingReserveRelease, "captureRollingReserveRelease");
-            this.captureRollingReserveRelease = captureRollingReserveRelease;
+        public Builder paymentDescription(Optional<String> paymentDescription) {
+            Utils.checkNotNull(paymentDescription, "paymentDescription");
+            this.paymentDescription = paymentDescription;
             return this;
         }
 
 
-        public Builder unauthorizedDirectDebit(UnauthorizedDirectDebit unauthorizedDirectDebit) {
-            Utils.checkNotNull(unauthorizedDirectDebit, "unauthorizedDirectDebit");
-            this.unauthorizedDirectDebit = JsonNullable.of(unauthorizedDirectDebit);
+        public Builder captureId(String captureId) {
+            Utils.checkNotNull(captureId, "captureId");
+            this.captureId = Optional.ofNullable(captureId);
             return this;
         }
 
-        public Builder unauthorizedDirectDebit(JsonNullable<? extends UnauthorizedDirectDebit> unauthorizedDirectDebit) {
-            Utils.checkNotNull(unauthorizedDirectDebit, "unauthorizedDirectDebit");
-            this.unauthorizedDirectDebit = unauthorizedDirectDebit;
-            return this;
-        }
-
-
-        public Builder failedPayment(FailedPayment failedPayment) {
-            Utils.checkNotNull(failedPayment, "failedPayment");
-            this.failedPayment = JsonNullable.of(failedPayment);
-            return this;
-        }
-
-        public Builder failedPayment(JsonNullable<? extends FailedPayment> failedPayment) {
-            Utils.checkNotNull(failedPayment, "failedPayment");
-            this.failedPayment = failedPayment;
+        public Builder captureId(Optional<String> captureId) {
+            Utils.checkNotNull(captureId, "captureId");
+            this.captureId = captureId;
             return this;
         }
 
 
-        public Builder refund(Refund refund) {
-            Utils.checkNotNull(refund, "refund");
-            this.refund = JsonNullable.of(refund);
+        public Builder captureDescription(String captureDescription) {
+            Utils.checkNotNull(captureDescription, "captureDescription");
+            this.captureDescription = Optional.ofNullable(captureDescription);
             return this;
         }
 
-        public Builder refund(JsonNullable<? extends Refund> refund) {
-            Utils.checkNotNull(refund, "refund");
-            this.refund = refund;
-            return this;
-        }
-
-
-        public Builder refundCompensation(RefundCompensation refundCompensation) {
-            Utils.checkNotNull(refundCompensation, "refundCompensation");
-            this.refundCompensation = JsonNullable.of(refundCompensation);
-            return this;
-        }
-
-        public Builder refundCompensation(JsonNullable<? extends RefundCompensation> refundCompensation) {
-            Utils.checkNotNull(refundCompensation, "refundCompensation");
-            this.refundCompensation = refundCompensation;
+        public Builder captureDescription(Optional<String> captureDescription) {
+            Utils.checkNotNull(captureDescription, "captureDescription");
+            this.captureDescription = captureDescription;
             return this;
         }
 
 
-        public Builder returnedRefund(ReturnedRefund returnedRefund) {
-            Utils.checkNotNull(returnedRefund, "returnedRefund");
-            this.returnedRefund = JsonNullable.of(returnedRefund);
+        public Builder refundId(String refundId) {
+            Utils.checkNotNull(refundId, "refundId");
+            this.refundId = Optional.ofNullable(refundId);
             return this;
         }
 
-        public Builder returnedRefund(JsonNullable<? extends ReturnedRefund> returnedRefund) {
-            Utils.checkNotNull(returnedRefund, "returnedRefund");
-            this.returnedRefund = returnedRefund;
-            return this;
-        }
-
-
-        public Builder returnedRefundCompensation(ReturnedRefundCompensation returnedRefundCompensation) {
-            Utils.checkNotNull(returnedRefundCompensation, "returnedRefundCompensation");
-            this.returnedRefundCompensation = JsonNullable.of(returnedRefundCompensation);
-            return this;
-        }
-
-        public Builder returnedRefundCompensation(JsonNullable<? extends ReturnedRefundCompensation> returnedRefundCompensation) {
-            Utils.checkNotNull(returnedRefundCompensation, "returnedRefundCompensation");
-            this.returnedRefundCompensation = returnedRefundCompensation;
+        public Builder refundId(Optional<String> refundId) {
+            Utils.checkNotNull(refundId, "refundId");
+            this.refundId = refundId;
             return this;
         }
 
 
-        public Builder chargeback(Chargeback chargeback) {
-            Utils.checkNotNull(chargeback, "chargeback");
-            this.chargeback = JsonNullable.of(chargeback);
+        public Builder refundDescription(String refundDescription) {
+            Utils.checkNotNull(refundDescription, "refundDescription");
+            this.refundDescription = Optional.ofNullable(refundDescription);
             return this;
         }
 
-        public Builder chargeback(JsonNullable<? extends Chargeback> chargeback) {
-            Utils.checkNotNull(chargeback, "chargeback");
-            this.chargeback = chargeback;
-            return this;
-        }
-
-
-        public Builder chargebackReversal(ChargebackReversal chargebackReversal) {
-            Utils.checkNotNull(chargebackReversal, "chargebackReversal");
-            this.chargebackReversal = JsonNullable.of(chargebackReversal);
-            return this;
-        }
-
-        public Builder chargebackReversal(JsonNullable<? extends ChargebackReversal> chargebackReversal) {
-            Utils.checkNotNull(chargebackReversal, "chargebackReversal");
-            this.chargebackReversal = chargebackReversal;
+        public Builder refundDescription(Optional<String> refundDescription) {
+            Utils.checkNotNull(refundDescription, "refundDescription");
+            this.refundDescription = refundDescription;
             return this;
         }
 
 
-        public Builder chargebackCompensation(ChargebackCompensation chargebackCompensation) {
-            Utils.checkNotNull(chargebackCompensation, "chargebackCompensation");
-            this.chargebackCompensation = JsonNullable.of(chargebackCompensation);
+        public Builder chargebackId(String chargebackId) {
+            Utils.checkNotNull(chargebackId, "chargebackId");
+            this.chargebackId = Optional.ofNullable(chargebackId);
             return this;
         }
 
-        public Builder chargebackCompensation(JsonNullable<? extends ChargebackCompensation> chargebackCompensation) {
-            Utils.checkNotNull(chargebackCompensation, "chargebackCompensation");
-            this.chargebackCompensation = chargebackCompensation;
-            return this;
-        }
-
-
-        public Builder reversedChargebackCompensation(ReversedChargebackCompensation reversedChargebackCompensation) {
-            Utils.checkNotNull(reversedChargebackCompensation, "reversedChargebackCompensation");
-            this.reversedChargebackCompensation = JsonNullable.of(reversedChargebackCompensation);
-            return this;
-        }
-
-        public Builder reversedChargebackCompensation(JsonNullable<? extends ReversedChargebackCompensation> reversedChargebackCompensation) {
-            Utils.checkNotNull(reversedChargebackCompensation, "reversedChargebackCompensation");
-            this.reversedChargebackCompensation = reversedChargebackCompensation;
+        public Builder chargebackId(Optional<String> chargebackId) {
+            Utils.checkNotNull(chargebackId, "chargebackId");
+            this.chargebackId = chargebackId;
             return this;
         }
 
 
-        public Builder outgoingTransfer(OutgoingTransfer outgoingTransfer) {
-            Utils.checkNotNull(outgoingTransfer, "outgoingTransfer");
-            this.outgoingTransfer = JsonNullable.of(outgoingTransfer);
+        public Builder chargebackDescription(String chargebackDescription) {
+            Utils.checkNotNull(chargebackDescription, "chargebackDescription");
+            this.chargebackDescription = Optional.ofNullable(chargebackDescription);
             return this;
         }
 
-        public Builder outgoingTransfer(JsonNullable<? extends OutgoingTransfer> outgoingTransfer) {
-            Utils.checkNotNull(outgoingTransfer, "outgoingTransfer");
-            this.outgoingTransfer = outgoingTransfer;
-            return this;
-        }
-
-
-        public Builder canceledOutgoingTransfer(CanceledOutgoingTransfer canceledOutgoingTransfer) {
-            Utils.checkNotNull(canceledOutgoingTransfer, "canceledOutgoingTransfer");
-            this.canceledOutgoingTransfer = JsonNullable.of(canceledOutgoingTransfer);
-            return this;
-        }
-
-        public Builder canceledOutgoingTransfer(JsonNullable<? extends CanceledOutgoingTransfer> canceledOutgoingTransfer) {
-            Utils.checkNotNull(canceledOutgoingTransfer, "canceledOutgoingTransfer");
-            this.canceledOutgoingTransfer = canceledOutgoingTransfer;
+        public Builder chargebackDescription(Optional<String> chargebackDescription) {
+            Utils.checkNotNull(chargebackDescription, "chargebackDescription");
+            this.chargebackDescription = chargebackDescription;
             return this;
         }
 
 
-        public Builder returnedTransfer(ReturnedTransfer returnedTransfer) {
-            Utils.checkNotNull(returnedTransfer, "returnedTransfer");
-            this.returnedTransfer = JsonNullable.of(returnedTransfer);
+        public Builder transferId(String transferId) {
+            Utils.checkNotNull(transferId, "transferId");
+            this.transferId = Optional.ofNullable(transferId);
             return this;
         }
 
-        public Builder returnedTransfer(JsonNullable<? extends ReturnedTransfer> returnedTransfer) {
-            Utils.checkNotNull(returnedTransfer, "returnedTransfer");
-            this.returnedTransfer = returnedTransfer;
-            return this;
-        }
-
-
-        public Builder invoiceCompensation(InvoiceCompensation invoiceCompensation) {
-            Utils.checkNotNull(invoiceCompensation, "invoiceCompensation");
-            this.invoiceCompensation = JsonNullable.of(invoiceCompensation);
-            return this;
-        }
-
-        public Builder invoiceCompensation(JsonNullable<? extends InvoiceCompensation> invoiceCompensation) {
-            Utils.checkNotNull(invoiceCompensation, "invoiceCompensation");
-            this.invoiceCompensation = invoiceCompensation;
+        public Builder transferId(Optional<String> transferId) {
+            Utils.checkNotNull(transferId, "transferId");
+            this.transferId = transferId;
             return this;
         }
 
 
-        public Builder applicationFee(EntityBalanceTransactionApplicationFee applicationFee) {
-            Utils.checkNotNull(applicationFee, "applicationFee");
-            this.applicationFee = JsonNullable.of(applicationFee);
+        public Builder settlementId(String settlementId) {
+            Utils.checkNotNull(settlementId, "settlementId");
+            this.settlementId = Optional.ofNullable(settlementId);
             return this;
         }
 
-        public Builder applicationFee(JsonNullable<? extends EntityBalanceTransactionApplicationFee> applicationFee) {
-            Utils.checkNotNull(applicationFee, "applicationFee");
-            this.applicationFee = applicationFee;
-            return this;
-        }
-
-
-        public Builder splitPayment(SplitPayment splitPayment) {
-            Utils.checkNotNull(splitPayment, "splitPayment");
-            this.splitPayment = JsonNullable.of(splitPayment);
-            return this;
-        }
-
-        public Builder splitPayment(JsonNullable<? extends SplitPayment> splitPayment) {
-            Utils.checkNotNull(splitPayment, "splitPayment");
-            this.splitPayment = splitPayment;
+        public Builder settlementId(Optional<String> settlementId) {
+            Utils.checkNotNull(settlementId, "settlementId");
+            this.settlementId = settlementId;
             return this;
         }
 
 
-        public Builder platformPaymentRefund(PlatformPaymentRefund platformPaymentRefund) {
-            Utils.checkNotNull(platformPaymentRefund, "platformPaymentRefund");
-            this.platformPaymentRefund = JsonNullable.of(platformPaymentRefund);
+        public Builder invoiceId(String invoiceId) {
+            Utils.checkNotNull(invoiceId, "invoiceId");
+            this.invoiceId = Optional.ofNullable(invoiceId);
             return this;
         }
 
-        public Builder platformPaymentRefund(JsonNullable<? extends PlatformPaymentRefund> platformPaymentRefund) {
-            Utils.checkNotNull(platformPaymentRefund, "platformPaymentRefund");
-            this.platformPaymentRefund = platformPaymentRefund;
-            return this;
-        }
-
-
-        public Builder returnedPlatformPaymentRefund(ReturnedPlatformPaymentRefund returnedPlatformPaymentRefund) {
-            Utils.checkNotNull(returnedPlatformPaymentRefund, "returnedPlatformPaymentRefund");
-            this.returnedPlatformPaymentRefund = JsonNullable.of(returnedPlatformPaymentRefund);
-            return this;
-        }
-
-        public Builder returnedPlatformPaymentRefund(JsonNullable<? extends ReturnedPlatformPaymentRefund> returnedPlatformPaymentRefund) {
-            Utils.checkNotNull(returnedPlatformPaymentRefund, "returnedPlatformPaymentRefund");
-            this.returnedPlatformPaymentRefund = returnedPlatformPaymentRefund;
+        public Builder invoiceId(Optional<String> invoiceId) {
+            Utils.checkNotNull(invoiceId, "invoiceId");
+            this.invoiceId = invoiceId;
             return this;
         }
 
 
-        public Builder platformPaymentChargeback(PlatformPaymentChargeback platformPaymentChargeback) {
-            Utils.checkNotNull(platformPaymentChargeback, "platformPaymentChargeback");
-            this.platformPaymentChargeback = JsonNullable.of(platformPaymentChargeback);
+        public Builder payingOwner(String payingOwner) {
+            Utils.checkNotNull(payingOwner, "payingOwner");
+            this.payingOwner = Optional.ofNullable(payingOwner);
             return this;
         }
 
-        public Builder platformPaymentChargeback(JsonNullable<? extends PlatformPaymentChargeback> platformPaymentChargeback) {
-            Utils.checkNotNull(platformPaymentChargeback, "platformPaymentChargeback");
-            this.platformPaymentChargeback = platformPaymentChargeback;
-            return this;
-        }
-
-
-        public Builder reversedPlatformPaymentChargeback(ReversedPlatformPaymentChargeback reversedPlatformPaymentChargeback) {
-            Utils.checkNotNull(reversedPlatformPaymentChargeback, "reversedPlatformPaymentChargeback");
-            this.reversedPlatformPaymentChargeback = JsonNullable.of(reversedPlatformPaymentChargeback);
-            return this;
-        }
-
-        public Builder reversedPlatformPaymentChargeback(JsonNullable<? extends ReversedPlatformPaymentChargeback> reversedPlatformPaymentChargeback) {
-            Utils.checkNotNull(reversedPlatformPaymentChargeback, "reversedPlatformPaymentChargeback");
-            this.reversedPlatformPaymentChargeback = reversedPlatformPaymentChargeback;
+        public Builder payingOwner(Optional<String> payingOwner) {
+            Utils.checkNotNull(payingOwner, "payingOwner");
+            this.payingOwner = payingOwner;
             return this;
         }
 
 
-        public Builder paymentCommission(PaymentCommission paymentCommission) {
-            Utils.checkNotNull(paymentCommission, "paymentCommission");
-            this.paymentCommission = JsonNullable.of(paymentCommission);
+        public Builder paymentOwner(String paymentOwner) {
+            Utils.checkNotNull(paymentOwner, "paymentOwner");
+            this.paymentOwner = Optional.ofNullable(paymentOwner);
             return this;
         }
 
-        public Builder paymentCommission(JsonNullable<? extends PaymentCommission> paymentCommission) {
-            Utils.checkNotNull(paymentCommission, "paymentCommission");
-            this.paymentCommission = paymentCommission;
-            return this;
-        }
-
-
-        public Builder reimbursementFee(ReimbursementFee reimbursementFee) {
-            Utils.checkNotNull(reimbursementFee, "reimbursementFee");
-            this.reimbursementFee = JsonNullable.of(reimbursementFee);
-            return this;
-        }
-
-        public Builder reimbursementFee(JsonNullable<? extends ReimbursementFee> reimbursementFee) {
-            Utils.checkNotNull(reimbursementFee, "reimbursementFee");
-            this.reimbursementFee = reimbursementFee;
+        public Builder paymentOwner(Optional<String> paymentOwner) {
+            Utils.checkNotNull(paymentOwner, "paymentOwner");
+            this.paymentOwner = paymentOwner;
             return this;
         }
 
 
-        public Builder failedPaymentFee(FailedPaymentFee failedPaymentFee) {
-            Utils.checkNotNull(failedPaymentFee, "failedPaymentFee");
-            this.failedPaymentFee = JsonNullable.of(failedPaymentFee);
+        public Builder organizationId(String organizationId) {
+            Utils.checkNotNull(organizationId, "organizationId");
+            this.organizationId = Optional.ofNullable(organizationId);
             return this;
         }
 
-        public Builder failedPaymentFee(JsonNullable<? extends FailedPaymentFee> failedPaymentFee) {
-            Utils.checkNotNull(failedPaymentFee, "failedPaymentFee");
-            this.failedPaymentFee = failedPaymentFee;
-            return this;
-        }
-
-
-        public Builder paymentFee(PaymentFee paymentFee) {
-            Utils.checkNotNull(paymentFee, "paymentFee");
-            this.paymentFee = JsonNullable.of(paymentFee);
-            return this;
-        }
-
-        public Builder paymentFee(JsonNullable<? extends PaymentFee> paymentFee) {
-            Utils.checkNotNull(paymentFee, "paymentFee");
-            this.paymentFee = paymentFee;
+        public Builder organizationId(Optional<String> organizationId) {
+            Utils.checkNotNull(organizationId, "organizationId");
+            this.organizationId = organizationId;
             return this;
         }
 
 
-        public Builder managedFee(ManagedFee managedFee) {
-            Utils.checkNotNull(managedFee, "managedFee");
-            this.managedFee = JsonNullable.of(managedFee);
+        public Builder feeType(String feeType) {
+            Utils.checkNotNull(feeType, "feeType");
+            this.feeType = Optional.ofNullable(feeType);
             return this;
         }
 
-        public Builder managedFee(JsonNullable<? extends ManagedFee> managedFee) {
-            Utils.checkNotNull(managedFee, "managedFee");
-            this.managedFee = managedFee;
-            return this;
-        }
-
-
-        public Builder returnedManagedFee(ReturnedManagedFee returnedManagedFee) {
-            Utils.checkNotNull(returnedManagedFee, "returnedManagedFee");
-            this.returnedManagedFee = JsonNullable.of(returnedManagedFee);
-            return this;
-        }
-
-        public Builder returnedManagedFee(JsonNullable<? extends ReturnedManagedFee> returnedManagedFee) {
-            Utils.checkNotNull(returnedManagedFee, "returnedManagedFee");
-            this.returnedManagedFee = returnedManagedFee;
+        public Builder feeType(Optional<String> feeType) {
+            Utils.checkNotNull(feeType, "feeType");
+            this.feeType = feeType;
             return this;
         }
 
 
-        public Builder postPaymentSplitPayment(PostPaymentSplitPayment postPaymentSplitPayment) {
-            Utils.checkNotNull(postPaymentSplitPayment, "postPaymentSplitPayment");
-            this.postPaymentSplitPayment = JsonNullable.of(postPaymentSplitPayment);
+        public Builder feeId(String feeId) {
+            Utils.checkNotNull(feeId, "feeId");
+            this.feeId = Optional.ofNullable(feeId);
             return this;
         }
 
-        public Builder postPaymentSplitPayment(JsonNullable<? extends PostPaymentSplitPayment> postPaymentSplitPayment) {
-            Utils.checkNotNull(postPaymentSplitPayment, "postPaymentSplitPayment");
-            this.postPaymentSplitPayment = postPaymentSplitPayment;
+        public Builder feeId(Optional<String> feeId) {
+            Utils.checkNotNull(feeId, "feeId");
+            this.feeId = feeId;
             return this;
         }
 
         public Context build() {
 
             return new Context(
-                payment, capture, captureCommision,
-                captureRollingReserveRelease, unauthorizedDirectDebit, failedPayment,
-                refund, refundCompensation, returnedRefund,
-                returnedRefundCompensation, chargeback, chargebackReversal,
-                chargebackCompensation, reversedChargebackCompensation, outgoingTransfer,
-                canceledOutgoingTransfer, returnedTransfer, invoiceCompensation,
-                applicationFee, splitPayment, platformPaymentRefund,
-                returnedPlatformPaymentRefund, platformPaymentChargeback, reversedPlatformPaymentChargeback,
-                paymentCommission, reimbursementFee, failedPaymentFee,
-                paymentFee, managedFee, returnedManagedFee,
-                postPaymentSplitPayment);
+                paymentId, paymentDescription, captureId,
+                captureDescription, refundId, refundDescription,
+                chargebackId, chargebackDescription, transferId,
+                settlementId, invoiceId, payingOwner,
+                paymentOwner, organizationId, feeType,
+                feeId);
         }
 
     }

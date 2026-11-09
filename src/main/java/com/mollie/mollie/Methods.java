@@ -6,7 +6,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.Method;
+import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.components.MethodIdWithIssuer;
 import com.mollie.mollie.models.operations.DisableMethodIssuerRequest;
 import com.mollie.mollie.models.operations.DisableMethodIssuerRequestBuilder;
@@ -404,14 +404,20 @@ public class Methods {
      * Security#oAuth from the global security.
      * 
      * @param profileId Provide the ID of the related profile.
-     * @param methodId 
+     * @param methodId Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
+     *         method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     *         parameter enables you to fully integrate the payment method selection into your website.
+     *         
+     *         You can also specify the methods in an array. By doing so we will still show the payment method selection screen
+     *         but will only show the methods specified in the array. For example, you can use this functionality to only show
+     *         payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public EnableMethodResponse enable(
-            String profileId, Optional<? extends Method> methodId,
+            String profileId, Optional<? extends MethodId> methodId,
             Optional<String> idempotencyKey, Optional<Options> options) {
         EnableMethodRequest request =
             EnableMethodRequest
@@ -474,14 +480,20 @@ public class Methods {
      * Security#oAuth from the global security.
      * 
      * @param profileId Provide the ID of the related profile.
-     * @param methodId 
+     * @param methodId Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
+     *         method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
+     *         parameter enables you to fully integrate the payment method selection into your website.
+     *         
+     *         You can also specify the methods in an array. By doing so we will still show the payment method selection screen
+     *         but will only show the methods specified in the array. For example, you can use this functionality to only show
+     *         payment methods from a specific country to your customer `['bancontact', 'belfius']`.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public DisableMethodResponse disable(
-            String profileId, Optional<? extends Method> methodId,
+            String profileId, Optional<? extends MethodId> methodId,
             Optional<String> idempotencyKey, Optional<Options> options) {
         DisableMethodRequest request =
             DisableMethodRequest
