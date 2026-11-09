@@ -7,7 +7,7 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.Method;
+import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.operations.EnableMethodRequest;
 import com.mollie.mollie.operations.EnableMethod;
 import com.mollie.mollie.utils.Headers;
@@ -21,7 +21,7 @@ import java.util.concurrent.CompletableFuture;
 public class EnableMethodRequestBuilder {
 
     private String profileId;
-    private Optional<? extends Method> methodId = Optional.empty();
+    private Optional<? extends MethodId> methodId = Optional.empty();
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -37,13 +37,13 @@ public class EnableMethodRequestBuilder {
         return this;
     }
                 
-    public EnableMethodRequestBuilder methodId(Method methodId) {
+    public EnableMethodRequestBuilder methodId(MethodId methodId) {
         Utils.checkNotNull(methodId, "methodId");
         this.methodId = Optional.of(methodId);
         return this;
     }
 
-    public EnableMethodRequestBuilder methodId(Optional<? extends Method> methodId) {
+    public EnableMethodRequestBuilder methodId(Optional<? extends MethodId> methodId) {
         Utils.checkNotNull(methodId, "methodId");
         this.methodId = methodId;
         return this;

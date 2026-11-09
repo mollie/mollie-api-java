@@ -455,7 +455,7 @@ public class Application {
             .build();
 
         GetMethodRequest req = GetMethodRequest.builder()
-                .methodId(Method.IDEAL)
+                .methodId(MethodId.IDEAL)
                 .locale(Locale.EN_US)
                 .currency("EUR")
                 .include("issuers")
@@ -511,7 +511,7 @@ To enable voucher or gift card issuers, refer to the [Enable payment method issu
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Method;
+import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.EnableMethodResponse;
@@ -529,7 +529,7 @@ public class Application {
 
         EnableMethodResponse res = sdk.methods().enable()
                 .profileId("pfl_5B8cwPMGnU")
-                .methodId(Method.IDEAL)
+                .methodId(MethodId.IDEAL)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
@@ -546,7 +546,7 @@ public class Application {
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Method;
+import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.EnableMethodResponse;
@@ -564,7 +564,7 @@ public class Application {
 
         EnableMethodResponse res = sdk.methods().enable()
                 .profileId("pfl_5B8cwPMGnU")
-                .methodId(Method.IDEAL)
+                .methodId(MethodId.IDEAL)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
@@ -581,7 +581,7 @@ public class Application {
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Method;
+import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.EnableMethodResponse;
@@ -599,7 +599,7 @@ public class Application {
 
         EnableMethodResponse res = sdk.methods().enable()
                 .profileId("pfl_5B8cwPMGnU")
-                .methodId(Method.IDEAL)
+                .methodId(MethodId.IDEAL)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
@@ -615,7 +615,7 @@ public class Application {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `profileId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
-| `methodId`                                                                       | [Optional\<Method>](../../models/components/Method.md)                           | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
+| `methodId`                                                                       | [Optional\<MethodId>](../../models/components/MethodId.md)                       | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
@@ -643,7 +643,7 @@ instead of the profile ID to refer to the current profile.
 package hello.world;
 
 import com.mollie.mollie.Client;
-import com.mollie.mollie.models.components.Method;
+import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
 import com.mollie.mollie.models.operations.DisableMethodResponse;
@@ -661,7 +661,7 @@ public class Application {
 
         DisableMethodResponse res = sdk.methods().disable()
                 .profileId("pfl_5B8cwPMGnU")
-                .methodId(Method.IDEAL)
+                .methodId(MethodId.IDEAL)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .call();
 
@@ -675,7 +675,7 @@ public class Application {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `profileId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
-| `methodId`                                                                       | [Optional\<Method>](../../models/components/Method.md)                           | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
+| `methodId`                                                                       | [Optional\<MethodId>](../../models/components/MethodId.md)                       | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
 | `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
 
 ### Response
