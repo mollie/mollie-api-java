@@ -15,7 +15,7 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.Optional;
 
 
 public class EntityReport {
@@ -39,18 +39,18 @@ public class EntityReport {
     private ReportTypeResponse reportType;
 
     /**
-     * The start date of the report period. Set for date-range report types, `null` otherwise.
+     * The start date of the report period. Only present for date-range report types.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fromDate")
-    private JsonNullable<LocalDate> fromDate;
+    private Optional<LocalDate> fromDate;
 
     /**
-     * The end date of the report period. Set for date-range report types, `null` otherwise.
+     * The end date of the report period. Only present for date-range report types.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("untilDate")
-    private JsonNullable<LocalDate> untilDate;
+    private Optional<LocalDate> untilDate;
 
 
     @JsonProperty("status")
@@ -61,7 +61,7 @@ public class EntityReport {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("statusReason")
-    private JsonNullable<? extends ReportStatusReason> statusReason;
+    private Optional<? extends ReportStatusReason> statusReason;
 
     /**
      * The entity's date and time of creation, in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
@@ -77,7 +77,7 @@ public class EntityReport {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("completedAt")
-    private JsonNullable<OffsetDateTime> completedAt;
+    private Optional<OffsetDateTime> completedAt;
 
     /**
      * The date and time the report failed to generate, in [ISO
@@ -86,7 +86,7 @@ public class EntityReport {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("failedAt")
-    private JsonNullable<OffsetDateTime> failedAt;
+    private Optional<OffsetDateTime> failedAt;
 
     /**
      * The date and time the `_links.download` link expires, in [ISO
@@ -96,7 +96,7 @@ public class EntityReport {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("downloadExpiresAt")
-    private JsonNullable<OffsetDateTime> downloadExpiresAt;
+    private Optional<OffsetDateTime> downloadExpiresAt;
 
     /**
      * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
@@ -109,14 +109,14 @@ public class EntityReport {
             @JsonProperty("resource") String resource,
             @JsonProperty("id") String id,
             @JsonProperty("reportType") ReportTypeResponse reportType,
-            @JsonProperty("fromDate") JsonNullable<LocalDate> fromDate,
-            @JsonProperty("untilDate") JsonNullable<LocalDate> untilDate,
+            @JsonProperty("fromDate") Optional<LocalDate> fromDate,
+            @JsonProperty("untilDate") Optional<LocalDate> untilDate,
             @JsonProperty("status") EntityReportStatus status,
-            @JsonProperty("statusReason") JsonNullable<? extends ReportStatusReason> statusReason,
+            @JsonProperty("statusReason") Optional<? extends ReportStatusReason> statusReason,
             @JsonProperty("createdAt") String createdAt,
-            @JsonProperty("completedAt") JsonNullable<OffsetDateTime> completedAt,
-            @JsonProperty("failedAt") JsonNullable<OffsetDateTime> failedAt,
-            @JsonProperty("downloadExpiresAt") JsonNullable<OffsetDateTime> downloadExpiresAt,
+            @JsonProperty("completedAt") Optional<OffsetDateTime> completedAt,
+            @JsonProperty("failedAt") Optional<OffsetDateTime> failedAt,
+            @JsonProperty("downloadExpiresAt") Optional<OffsetDateTime> downloadExpiresAt,
             @JsonProperty("_links") EntityReportLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
@@ -152,9 +152,9 @@ public class EntityReport {
             String createdAt,
             EntityReportLinks links) {
         this(resource, id, reportType,
-            JsonNullable.undefined(), JsonNullable.undefined(), status,
-            JsonNullable.undefined(), createdAt, JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), links);
+            Optional.empty(), Optional.empty(), status,
+            Optional.empty(), createdAt, Optional.empty(),
+            Optional.empty(), Optional.empty(), links);
     }
 
     /**
@@ -182,18 +182,18 @@ public class EntityReport {
     }
 
     /**
-     * The start date of the report period. Set for date-range report types, `null` otherwise.
+     * The start date of the report period. Only present for date-range report types.
      */
     @JsonIgnore
-    public JsonNullable<LocalDate> fromDate() {
+    public Optional<LocalDate> fromDate() {
         return fromDate;
     }
 
     /**
-     * The end date of the report period. Set for date-range report types, `null` otherwise.
+     * The end date of the report period. Only present for date-range report types.
      */
     @JsonIgnore
-    public JsonNullable<LocalDate> untilDate() {
+    public Optional<LocalDate> untilDate() {
         return untilDate;
     }
 
@@ -207,8 +207,8 @@ public class EntityReport {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ReportStatusReason> statusReason() {
-        return (JsonNullable<ReportStatusReason>) statusReason;
+    public Optional<ReportStatusReason> statusReason() {
+        return (Optional<ReportStatusReason>) statusReason;
     }
 
     /**
@@ -226,7 +226,7 @@ public class EntityReport {
      * format. Only present once `status` is `completed`.
      */
     @JsonIgnore
-    public JsonNullable<OffsetDateTime> completedAt() {
+    public Optional<OffsetDateTime> completedAt() {
         return completedAt;
     }
 
@@ -236,7 +236,7 @@ public class EntityReport {
      * format. Only present once `status` is `failed`.
      */
     @JsonIgnore
-    public JsonNullable<OffsetDateTime> failedAt() {
+    public Optional<OffsetDateTime> failedAt() {
         return failedAt;
     }
 
@@ -247,7 +247,7 @@ public class EntityReport {
      * again once this one expires.
      */
     @JsonIgnore
-    public JsonNullable<OffsetDateTime> downloadExpiresAt() {
+    public Optional<OffsetDateTime> downloadExpiresAt() {
         return downloadExpiresAt;
     }
 
@@ -292,36 +292,38 @@ public class EntityReport {
     }
 
     /**
-     * The start date of the report period. Set for date-range report types, `null` otherwise.
+     * The start date of the report period. Only present for date-range report types.
      */
     public EntityReport withFromDate(LocalDate fromDate) {
         Utils.checkNotNull(fromDate, "fromDate");
-        this.fromDate = JsonNullable.of(fromDate);
+        this.fromDate = Optional.ofNullable(fromDate);
         return this;
     }
 
+
     /**
-     * The start date of the report period. Set for date-range report types, `null` otherwise.
+     * The start date of the report period. Only present for date-range report types.
      */
-    public EntityReport withFromDate(JsonNullable<LocalDate> fromDate) {
+    public EntityReport withFromDate(Optional<LocalDate> fromDate) {
         Utils.checkNotNull(fromDate, "fromDate");
         this.fromDate = fromDate;
         return this;
     }
 
     /**
-     * The end date of the report period. Set for date-range report types, `null` otherwise.
+     * The end date of the report period. Only present for date-range report types.
      */
     public EntityReport withUntilDate(LocalDate untilDate) {
         Utils.checkNotNull(untilDate, "untilDate");
-        this.untilDate = JsonNullable.of(untilDate);
+        this.untilDate = Optional.ofNullable(untilDate);
         return this;
     }
 
+
     /**
-     * The end date of the report period. Set for date-range report types, `null` otherwise.
+     * The end date of the report period. Only present for date-range report types.
      */
-    public EntityReport withUntilDate(JsonNullable<LocalDate> untilDate) {
+    public EntityReport withUntilDate(Optional<LocalDate> untilDate) {
         Utils.checkNotNull(untilDate, "untilDate");
         this.untilDate = untilDate;
         return this;
@@ -338,14 +340,15 @@ public class EntityReport {
      */
     public EntityReport withStatusReason(ReportStatusReason statusReason) {
         Utils.checkNotNull(statusReason, "statusReason");
-        this.statusReason = JsonNullable.of(statusReason);
+        this.statusReason = Optional.ofNullable(statusReason);
         return this;
     }
+
 
     /**
      * Present when `status` is `failed`. Explains what went wrong.
      */
-    public EntityReport withStatusReason(JsonNullable<? extends ReportStatusReason> statusReason) {
+    public EntityReport withStatusReason(Optional<? extends ReportStatusReason> statusReason) {
         Utils.checkNotNull(statusReason, "statusReason");
         this.statusReason = statusReason;
         return this;
@@ -368,16 +371,17 @@ public class EntityReport {
      */
     public EntityReport withCompletedAt(OffsetDateTime completedAt) {
         Utils.checkNotNull(completedAt, "completedAt");
-        this.completedAt = JsonNullable.of(completedAt);
+        this.completedAt = Optional.ofNullable(completedAt);
         return this;
     }
+
 
     /**
      * The date and time the report finished generating, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format. Only present once `status` is `completed`.
      */
-    public EntityReport withCompletedAt(JsonNullable<OffsetDateTime> completedAt) {
+    public EntityReport withCompletedAt(Optional<OffsetDateTime> completedAt) {
         Utils.checkNotNull(completedAt, "completedAt");
         this.completedAt = completedAt;
         return this;
@@ -390,16 +394,17 @@ public class EntityReport {
      */
     public EntityReport withFailedAt(OffsetDateTime failedAt) {
         Utils.checkNotNull(failedAt, "failedAt");
-        this.failedAt = JsonNullable.of(failedAt);
+        this.failedAt = Optional.ofNullable(failedAt);
         return this;
     }
+
 
     /**
      * The date and time the report failed to generate, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
      * format. Only present once `status` is `failed`.
      */
-    public EntityReport withFailedAt(JsonNullable<OffsetDateTime> failedAt) {
+    public EntityReport withFailedAt(Optional<OffsetDateTime> failedAt) {
         Utils.checkNotNull(failedAt, "failedAt");
         this.failedAt = failedAt;
         return this;
@@ -413,9 +418,10 @@ public class EntityReport {
      */
     public EntityReport withDownloadExpiresAt(OffsetDateTime downloadExpiresAt) {
         Utils.checkNotNull(downloadExpiresAt, "downloadExpiresAt");
-        this.downloadExpiresAt = JsonNullable.of(downloadExpiresAt);
+        this.downloadExpiresAt = Optional.ofNullable(downloadExpiresAt);
         return this;
     }
+
 
     /**
      * The date and time the `_links.download` link expires, in [ISO
@@ -423,7 +429,7 @@ public class EntityReport {
      * format. We issue a fresh link and expiry on every call to [Get report](get-report), so just call it
      * again once this one expires.
      */
-    public EntityReport withDownloadExpiresAt(JsonNullable<OffsetDateTime> downloadExpiresAt) {
+    public EntityReport withDownloadExpiresAt(Optional<OffsetDateTime> downloadExpiresAt) {
         Utils.checkNotNull(downloadExpiresAt, "downloadExpiresAt");
         this.downloadExpiresAt = downloadExpiresAt;
         return this;
@@ -497,21 +503,21 @@ public class EntityReport {
 
         private ReportTypeResponse reportType;
 
-        private JsonNullable<LocalDate> fromDate = JsonNullable.undefined();
+        private Optional<LocalDate> fromDate = Optional.empty();
 
-        private JsonNullable<LocalDate> untilDate = JsonNullable.undefined();
+        private Optional<LocalDate> untilDate = Optional.empty();
 
         private EntityReportStatus status;
 
-        private JsonNullable<? extends ReportStatusReason> statusReason = JsonNullable.undefined();
+        private Optional<? extends ReportStatusReason> statusReason = Optional.empty();
 
         private String createdAt;
 
-        private JsonNullable<OffsetDateTime> completedAt = JsonNullable.undefined();
+        private Optional<OffsetDateTime> completedAt = Optional.empty();
 
-        private JsonNullable<OffsetDateTime> failedAt = JsonNullable.undefined();
+        private Optional<OffsetDateTime> failedAt = Optional.empty();
 
-        private JsonNullable<OffsetDateTime> downloadExpiresAt = JsonNullable.undefined();
+        private Optional<OffsetDateTime> downloadExpiresAt = Optional.empty();
 
         private EntityReportLinks links;
 
@@ -551,18 +557,18 @@ public class EntityReport {
 
 
         /**
-         * The start date of the report period. Set for date-range report types, `null` otherwise.
+         * The start date of the report period. Only present for date-range report types.
          */
         public Builder fromDate(LocalDate fromDate) {
             Utils.checkNotNull(fromDate, "fromDate");
-            this.fromDate = JsonNullable.of(fromDate);
+            this.fromDate = Optional.ofNullable(fromDate);
             return this;
         }
 
         /**
-         * The start date of the report period. Set for date-range report types, `null` otherwise.
+         * The start date of the report period. Only present for date-range report types.
          */
-        public Builder fromDate(JsonNullable<LocalDate> fromDate) {
+        public Builder fromDate(Optional<LocalDate> fromDate) {
             Utils.checkNotNull(fromDate, "fromDate");
             this.fromDate = fromDate;
             return this;
@@ -570,18 +576,18 @@ public class EntityReport {
 
 
         /**
-         * The end date of the report period. Set for date-range report types, `null` otherwise.
+         * The end date of the report period. Only present for date-range report types.
          */
         public Builder untilDate(LocalDate untilDate) {
             Utils.checkNotNull(untilDate, "untilDate");
-            this.untilDate = JsonNullable.of(untilDate);
+            this.untilDate = Optional.ofNullable(untilDate);
             return this;
         }
 
         /**
-         * The end date of the report period. Set for date-range report types, `null` otherwise.
+         * The end date of the report period. Only present for date-range report types.
          */
-        public Builder untilDate(JsonNullable<LocalDate> untilDate) {
+        public Builder untilDate(Optional<LocalDate> untilDate) {
             Utils.checkNotNull(untilDate, "untilDate");
             this.untilDate = untilDate;
             return this;
@@ -600,14 +606,14 @@ public class EntityReport {
          */
         public Builder statusReason(ReportStatusReason statusReason) {
             Utils.checkNotNull(statusReason, "statusReason");
-            this.statusReason = JsonNullable.of(statusReason);
+            this.statusReason = Optional.ofNullable(statusReason);
             return this;
         }
 
         /**
          * Present when `status` is `failed`. Explains what went wrong.
          */
-        public Builder statusReason(JsonNullable<? extends ReportStatusReason> statusReason) {
+        public Builder statusReason(Optional<? extends ReportStatusReason> statusReason) {
             Utils.checkNotNull(statusReason, "statusReason");
             this.statusReason = statusReason;
             return this;
@@ -632,7 +638,7 @@ public class EntityReport {
          */
         public Builder completedAt(OffsetDateTime completedAt) {
             Utils.checkNotNull(completedAt, "completedAt");
-            this.completedAt = JsonNullable.of(completedAt);
+            this.completedAt = Optional.ofNullable(completedAt);
             return this;
         }
 
@@ -641,7 +647,7 @@ public class EntityReport {
          * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format. Only present once `status` is `completed`.
          */
-        public Builder completedAt(JsonNullable<OffsetDateTime> completedAt) {
+        public Builder completedAt(Optional<OffsetDateTime> completedAt) {
             Utils.checkNotNull(completedAt, "completedAt");
             this.completedAt = completedAt;
             return this;
@@ -655,7 +661,7 @@ public class EntityReport {
          */
         public Builder failedAt(OffsetDateTime failedAt) {
             Utils.checkNotNull(failedAt, "failedAt");
-            this.failedAt = JsonNullable.of(failedAt);
+            this.failedAt = Optional.ofNullable(failedAt);
             return this;
         }
 
@@ -664,7 +670,7 @@ public class EntityReport {
          * 8601](https://en.wikipedia.org/wiki/ISO_8601)
          * format. Only present once `status` is `failed`.
          */
-        public Builder failedAt(JsonNullable<OffsetDateTime> failedAt) {
+        public Builder failedAt(Optional<OffsetDateTime> failedAt) {
             Utils.checkNotNull(failedAt, "failedAt");
             this.failedAt = failedAt;
             return this;
@@ -679,7 +685,7 @@ public class EntityReport {
          */
         public Builder downloadExpiresAt(OffsetDateTime downloadExpiresAt) {
             Utils.checkNotNull(downloadExpiresAt, "downloadExpiresAt");
-            this.downloadExpiresAt = JsonNullable.of(downloadExpiresAt);
+            this.downloadExpiresAt = Optional.ofNullable(downloadExpiresAt);
             return this;
         }
 
@@ -689,7 +695,7 @@ public class EntityReport {
          * format. We issue a fresh link and expiry on every call to [Get report](get-report), so just call it
          * again once this one expires.
          */
-        public Builder downloadExpiresAt(JsonNullable<OffsetDateTime> downloadExpiresAt) {
+        public Builder downloadExpiresAt(Optional<OffsetDateTime> downloadExpiresAt) {
             Utils.checkNotNull(downloadExpiresAt, "downloadExpiresAt");
             this.downloadExpiresAt = downloadExpiresAt;
             return this;
