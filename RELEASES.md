@@ -1919,3 +1919,13 @@ Based on:
 - [java v1.10.22] .
 ### Releases
 - [Maven Central v1.10.22] https://central.sonatype.com/artifact/com.mollie/mollie/1.10.22 - .
+
+## 2026-11-12 10:04:36
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.808.1 (2.960.8) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v1.10.23] .
+### Releases
+- [Maven Central v1.10.23] https://central.sonatype.com/artifact/com.mollie/mollie/1.10.23 - .

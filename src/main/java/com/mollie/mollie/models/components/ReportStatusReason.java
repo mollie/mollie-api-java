@@ -21,7 +21,7 @@ public class ReportStatusReason {
      * A machine-readable code for the failure reason.
      */
     @JsonProperty("code")
-    private String code;
+    private ReportStatusReasonCode code;
 
     /**
      * A human-readable explanation of why the report failed.
@@ -31,7 +31,7 @@ public class ReportStatusReason {
 
     @JsonCreator
     public ReportStatusReason(
-            @JsonProperty("code") String code,
+            @JsonProperty("code") ReportStatusReasonCode code,
             @JsonProperty("message") String message) {
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(message, "message");
@@ -43,7 +43,7 @@ public class ReportStatusReason {
      * A machine-readable code for the failure reason.
      */
     @JsonIgnore
-    public String code() {
+    public ReportStatusReasonCode code() {
         return code;
     }
 
@@ -63,7 +63,7 @@ public class ReportStatusReason {
     /**
      * A machine-readable code for the failure reason.
      */
-    public ReportStatusReason withCode(String code) {
+    public ReportStatusReason withCode(ReportStatusReasonCode code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
         return this;
@@ -108,7 +108,7 @@ public class ReportStatusReason {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private String code;
+        private ReportStatusReasonCode code;
 
         private String message;
 
@@ -120,7 +120,7 @@ public class ReportStatusReason {
         /**
          * A machine-readable code for the failure reason.
          */
-        public Builder code(String code) {
+        public Builder code(ReportStatusReasonCode code) {
             Utils.checkNotNull(code, "code");
             this.code = code;
             return this;

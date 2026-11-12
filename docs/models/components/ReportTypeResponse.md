@@ -19,4 +19,4 @@ ReportTypeResponse custom = ReportTypeResponse.of("custom_value");
 
 | Name                 | Value                |
 | -------------------- | -------------------- |
-| `TRANSACTION_MARGIN` | transaction_margin   |
+| `TRANSACTION_MARGIN` | transaction-margin   |

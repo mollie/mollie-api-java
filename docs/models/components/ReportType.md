@@ -16,4 +16,4 @@ ReportType value = ReportType.TRANSACTION_MARGIN;
 
 | Name                 | Value                |
 | -------------------- | -------------------- |
-| `TRANSACTION_MARGIN` | transaction_margin   |
+| `TRANSACTION_MARGIN` | transaction-margin   |

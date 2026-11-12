@@ -17,7 +17,7 @@ import java.util.Optional;
  * on the resulting report.
  */
 public enum ReportType {
-    TRANSACTION_MARGIN("transaction_margin");
+    TRANSACTION_MARGIN("transaction-margin");
 
     @JsonValue
     private final String value;

@@ -28,7 +28,7 @@ import java.util.Optional;
  */
 public class ReportTypeResponse {
 
-    public static final ReportTypeResponse TRANSACTION_MARGIN = new ReportTypeResponse("transaction_margin");
+    public static final ReportTypeResponse TRANSACTION_MARGIN = new ReportTypeResponse("transaction-margin");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -102,20 +102,20 @@ public class ReportTypeResponse {
 
     private static final Map<String, ReportTypeResponse> createValuesMap() {
         Map<String, ReportTypeResponse> map = new LinkedHashMap<>();
-        map.put("transaction_margin", TRANSACTION_MARGIN);
+        map.put("transaction-margin", TRANSACTION_MARGIN);
         return map;
     }
 
     private static final Map<String, ReportTypeResponseEnum> createEnumsMap() {
         Map<String, ReportTypeResponseEnum> map = new HashMap<>();
-        map.put("transaction_margin", ReportTypeResponseEnum.TRANSACTION_MARGIN);
+        map.put("transaction-margin", ReportTypeResponseEnum.TRANSACTION_MARGIN);
         return map;
     }
     
     
     public enum ReportTypeResponseEnum {
 
-        TRANSACTION_MARGIN("transaction_margin"),;
+        TRANSACTION_MARGIN("transaction-margin"),;
 
         private final String value;
 

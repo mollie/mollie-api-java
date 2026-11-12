@@ -201,7 +201,7 @@ public class GetReport {
                     throw APIException.from("Unexpected content-type received: " + contentType, response);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "403", "404", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     throw ErrorResponse.from(response);
                 } else {
@@ -290,7 +290,7 @@ public class GetReport {
                     return Utils.createAsyncApiError(response, "Unexpected content-type received: " + contentType);
                 }
             }
-            if (Utils.statusCodeMatches(response.statusCode(), "404", "429")) {
+            if (Utils.statusCodeMatches(response.statusCode(), "400", "403", "404", "429")) {
                 if (Utils.contentTypeMatches(contentType, "application/hal+json")) {
                     return ErrorResponse.fromAsync(response)
                             .thenCompose(CompletableFuture::failedFuture);
