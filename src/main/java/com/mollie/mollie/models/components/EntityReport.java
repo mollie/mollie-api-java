@@ -73,7 +73,7 @@ public class EntityReport {
     /**
      * The date and time the report finished generating, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. Only present once `status` is `completed`.
+     * format. Only present when `status` is `completed`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("completedAt")
@@ -82,7 +82,7 @@ public class EntityReport {
     /**
      * The date and time the report failed to generate, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. Only present once `status` is `failed`.
+     * format. Only present when `status` is `failed`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("failedAt")
@@ -91,8 +91,7 @@ public class EntityReport {
     /**
      * The date and time the `_links.download` link expires, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. We issue a fresh link and expiry on every call to [Get report](get-report), so just call it
-     * again once this one expires.
+     * format. Only present when `status` is `completed`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("downloadExpiresAt")
@@ -223,7 +222,7 @@ public class EntityReport {
     /**
      * The date and time the report finished generating, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. Only present once `status` is `completed`.
+     * format. Only present when `status` is `completed`.
      */
     @JsonIgnore
     public Optional<OffsetDateTime> completedAt() {
@@ -233,7 +232,7 @@ public class EntityReport {
     /**
      * The date and time the report failed to generate, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. Only present once `status` is `failed`.
+     * format. Only present when `status` is `failed`.
      */
     @JsonIgnore
     public Optional<OffsetDateTime> failedAt() {
@@ -243,8 +242,7 @@ public class EntityReport {
     /**
      * The date and time the `_links.download` link expires, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. We issue a fresh link and expiry on every call to [Get report](get-report), so just call it
-     * again once this one expires.
+     * format. Only present when `status` is `completed`.
      */
     @JsonIgnore
     public Optional<OffsetDateTime> downloadExpiresAt() {
@@ -367,7 +365,7 @@ public class EntityReport {
     /**
      * The date and time the report finished generating, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. Only present once `status` is `completed`.
+     * format. Only present when `status` is `completed`.
      */
     public EntityReport withCompletedAt(OffsetDateTime completedAt) {
         Utils.checkNotNull(completedAt, "completedAt");
@@ -379,7 +377,7 @@ public class EntityReport {
     /**
      * The date and time the report finished generating, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. Only present once `status` is `completed`.
+     * format. Only present when `status` is `completed`.
      */
     public EntityReport withCompletedAt(Optional<OffsetDateTime> completedAt) {
         Utils.checkNotNull(completedAt, "completedAt");
@@ -390,7 +388,7 @@ public class EntityReport {
     /**
      * The date and time the report failed to generate, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. Only present once `status` is `failed`.
+     * format. Only present when `status` is `failed`.
      */
     public EntityReport withFailedAt(OffsetDateTime failedAt) {
         Utils.checkNotNull(failedAt, "failedAt");
@@ -402,7 +400,7 @@ public class EntityReport {
     /**
      * The date and time the report failed to generate, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. Only present once `status` is `failed`.
+     * format. Only present when `status` is `failed`.
      */
     public EntityReport withFailedAt(Optional<OffsetDateTime> failedAt) {
         Utils.checkNotNull(failedAt, "failedAt");
@@ -413,8 +411,7 @@ public class EntityReport {
     /**
      * The date and time the `_links.download` link expires, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. We issue a fresh link and expiry on every call to [Get report](get-report), so just call it
-     * again once this one expires.
+     * format. Only present when `status` is `completed`.
      */
     public EntityReport withDownloadExpiresAt(OffsetDateTime downloadExpiresAt) {
         Utils.checkNotNull(downloadExpiresAt, "downloadExpiresAt");
@@ -426,8 +423,7 @@ public class EntityReport {
     /**
      * The date and time the `_links.download` link expires, in [ISO
      * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-     * format. We issue a fresh link and expiry on every call to [Get report](get-report), so just call it
-     * again once this one expires.
+     * format. Only present when `status` is `completed`.
      */
     public EntityReport withDownloadExpiresAt(Optional<OffsetDateTime> downloadExpiresAt) {
         Utils.checkNotNull(downloadExpiresAt, "downloadExpiresAt");
@@ -634,7 +630,7 @@ public class EntityReport {
         /**
          * The date and time the report finished generating, in [ISO
          * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format. Only present once `status` is `completed`.
+         * format. Only present when `status` is `completed`.
          */
         public Builder completedAt(OffsetDateTime completedAt) {
             Utils.checkNotNull(completedAt, "completedAt");
@@ -645,7 +641,7 @@ public class EntityReport {
         /**
          * The date and time the report finished generating, in [ISO
          * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format. Only present once `status` is `completed`.
+         * format. Only present when `status` is `completed`.
          */
         public Builder completedAt(Optional<OffsetDateTime> completedAt) {
             Utils.checkNotNull(completedAt, "completedAt");
@@ -657,7 +653,7 @@ public class EntityReport {
         /**
          * The date and time the report failed to generate, in [ISO
          * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format. Only present once `status` is `failed`.
+         * format. Only present when `status` is `failed`.
          */
         public Builder failedAt(OffsetDateTime failedAt) {
             Utils.checkNotNull(failedAt, "failedAt");
@@ -668,7 +664,7 @@ public class EntityReport {
         /**
          * The date and time the report failed to generate, in [ISO
          * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format. Only present once `status` is `failed`.
+         * format. Only present when `status` is `failed`.
          */
         public Builder failedAt(Optional<OffsetDateTime> failedAt) {
             Utils.checkNotNull(failedAt, "failedAt");
@@ -680,8 +676,7 @@ public class EntityReport {
         /**
          * The date and time the `_links.download` link expires, in [ISO
          * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format. We issue a fresh link and expiry on every call to [Get report](get-report), so just call it
-         * again once this one expires.
+         * format. Only present when `status` is `completed`.
          */
         public Builder downloadExpiresAt(OffsetDateTime downloadExpiresAt) {
             Utils.checkNotNull(downloadExpiresAt, "downloadExpiresAt");
@@ -692,8 +687,7 @@ public class EntityReport {
         /**
          * The date and time the `_links.download` link expires, in [ISO
          * 8601](https://en.wikipedia.org/wiki/ISO_8601)
-         * format. We issue a fresh link and expiry on every call to [Get report](get-report), so just call it
-         * again once this one expires.
+         * format. Only present when `status` is `completed`.
          */
         public Builder downloadExpiresAt(Optional<OffsetDateTime> downloadExpiresAt) {
             Utils.checkNotNull(downloadExpiresAt, "downloadExpiresAt");
