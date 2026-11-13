@@ -419,9 +419,7 @@ public class PaymentRequest {
     private Optional<String> googlePayPaymentToken;
 
     /**
-     * The card token you received from the card component of Mollie Components. The token represents the
-     * customer's
-     * card information needed to complete the payment.
+     * Number of the voucher.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("voucherNumber")
@@ -1065,9 +1063,7 @@ public class PaymentRequest {
     }
 
     /**
-     * The card token you received from the card component of Mollie Components. The token represents the
-     * customer's
-     * card information needed to complete the payment.
+     * Number of the voucher.
      */
     @JsonIgnore
     public Optional<String> voucherNumber() {
@@ -2042,9 +2038,7 @@ public class PaymentRequest {
     }
 
     /**
-     * The card token you received from the card component of Mollie Components. The token represents the
-     * customer's
-     * card information needed to complete the payment.
+     * Number of the voucher.
      */
     public PaymentRequest withVoucherNumber(String voucherNumber) {
         Utils.checkNotNull(voucherNumber, "voucherNumber");
@@ -2054,9 +2048,7 @@ public class PaymentRequest {
 
 
     /**
-     * The card token you received from the card component of Mollie Components. The token represents the
-     * customer's
-     * card information needed to complete the payment.
+     * Number of the voucher.
      */
     public PaymentRequest withVoucherNumber(Optional<String> voucherNumber) {
         Utils.checkNotNull(voucherNumber, "voucherNumber");
@@ -3333,9 +3325,7 @@ public class PaymentRequest {
 
 
         /**
-         * The card token you received from the card component of Mollie Components. The token represents the
-         * customer's
-         * card information needed to complete the payment.
+         * Number of the voucher.
          */
         public Builder voucherNumber(String voucherNumber) {
             Utils.checkNotNull(voucherNumber, "voucherNumber");
@@ -3344,9 +3334,7 @@ public class PaymentRequest {
         }
 
         /**
-         * The card token you received from the card component of Mollie Components. The token represents the
-         * customer's
-         * card information needed to complete the payment.
+         * Number of the voucher.
          */
         public Builder voucherNumber(Optional<String> voucherNumber) {
             Utils.checkNotNull(voucherNumber, "voucherNumber");

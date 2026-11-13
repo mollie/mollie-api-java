@@ -27,8 +27,8 @@ import java.util.Optional;
 public class ReportStatusReasonCode {
 
     public static final ReportStatusReasonCode GENERATION_FAILED = new ReportStatusReasonCode("generation-failed");
+    public static final ReportStatusReasonCode VALIDATION_FAILED = new ReportStatusReasonCode("validation-failed");
     public static final ReportStatusReasonCode EMPTY_REPORT = new ReportStatusReasonCode("empty-report");
-    public static final ReportStatusReasonCode REPORT_VALIDATION_FAILED = new ReportStatusReasonCode("report-validation-failed");
 
     // This map will grow whenever a Color gets created with a new
     // unrecognized value (a potential memory leak if the user is not
@@ -103,16 +103,16 @@ public class ReportStatusReasonCode {
     private static final Map<String, ReportStatusReasonCode> createValuesMap() {
         Map<String, ReportStatusReasonCode> map = new LinkedHashMap<>();
         map.put("generation-failed", GENERATION_FAILED);
+        map.put("validation-failed", VALIDATION_FAILED);
         map.put("empty-report", EMPTY_REPORT);
-        map.put("report-validation-failed", REPORT_VALIDATION_FAILED);
         return map;
     }
 
     private static final Map<String, ReportStatusReasonCodeEnum> createEnumsMap() {
         Map<String, ReportStatusReasonCodeEnum> map = new HashMap<>();
         map.put("generation-failed", ReportStatusReasonCodeEnum.GENERATION_FAILED);
+        map.put("validation-failed", ReportStatusReasonCodeEnum.VALIDATION_FAILED);
         map.put("empty-report", ReportStatusReasonCodeEnum.EMPTY_REPORT);
-        map.put("report-validation-failed", ReportStatusReasonCodeEnum.REPORT_VALIDATION_FAILED);
         return map;
     }
     
@@ -120,8 +120,8 @@ public class ReportStatusReasonCode {
     public enum ReportStatusReasonCodeEnum {
 
         GENERATION_FAILED("generation-failed"),
-        EMPTY_REPORT("empty-report"),
-        REPORT_VALIDATION_FAILED("report-validation-failed"),;
+        VALIDATION_FAILED("validation-failed"),
+        EMPTY_REPORT("empty-report"),;
 
         private final String value;
 
