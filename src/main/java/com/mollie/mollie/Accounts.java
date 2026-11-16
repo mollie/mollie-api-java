@@ -6,6 +6,10 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.operations.CreateBusinessAccountRequest;
+import com.mollie.mollie.models.operations.CreateBusinessAccountRequestBody;
+import com.mollie.mollie.models.operations.CreateBusinessAccountRequestBuilder;
+import com.mollie.mollie.models.operations.CreateBusinessAccountResponse;
 import com.mollie.mollie.models.operations.GetBusinessAccountRequest;
 import com.mollie.mollie.models.operations.GetBusinessAccountRequestBuilder;
 import com.mollie.mollie.models.operations.GetBusinessAccountResponse;
@@ -18,13 +22,13 @@ import com.mollie.mollie.models.operations.ListBusinessAccountTransactionsRespon
 import com.mollie.mollie.models.operations.ListBusinessAccountsRequest;
 import com.mollie.mollie.models.operations.ListBusinessAccountsRequestBuilder;
 import com.mollie.mollie.models.operations.ListBusinessAccountsResponse;
+import com.mollie.mollie.operations.CreateBusinessAccount;
 import com.mollie.mollie.operations.GetBusinessAccount;
 import com.mollie.mollie.operations.GetBusinessAccountTransaction;
 import com.mollie.mollie.operations.ListBusinessAccountTransactions;
 import com.mollie.mollie.operations.ListBusinessAccounts;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 
@@ -46,6 +50,107 @@ public class Accounts {
      */
     public AsyncAccounts async() {
         return asyncSDK;
+    }
+
+    /**
+     * Create business account
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
+     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
+     * updates.
+     * 
+     * <p>Create a new business account for the authenticated organization.
+     * 
+     * <p>The response contains the newly created business account.
+     * 
+     * <p>Each organization can have up to 5 active business accounts. Need more? [Contact
+     * us](https://www.mollie.com/contact)
+     * and we'll help you out.
+     * 
+     * <p>If set, this operation will use Security#oAuth from the global security.
+     * 
+     * @return The call builder
+     */
+    public CreateBusinessAccountRequestBuilder createAccount() {
+        return new CreateBusinessAccountRequestBuilder(sdkConfiguration);
+    }
+
+    /**
+     * Create business account
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
+     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
+     * updates.
+     * 
+     * <p>Create a new business account for the authenticated organization.
+     * 
+     * <p>The response contains the newly created business account.
+     * 
+     * <p>Each organization can have up to 5 active business accounts. Need more? [Contact
+     * us](https://www.mollie.com/contact)
+     * and we'll help you out.
+     * 
+     * <p>If set, this operation will use Security#oAuth from the global security.
+     * 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateBusinessAccountResponse createAccountDirect() {
+        return createAccount(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Create business account
+     * 
+     * <p>&gt; 🔒 Restricted access
+     * &gt;
+     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
+     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
+     * updates.
+     * 
+     * <p>Create a new business account for the authenticated organization.
+     * 
+     * <p>The response contains the newly created business account.
+     * 
+     * <p>Each organization can have up to 5 active business accounts. Need more? [Contact
+     * us](https://www.mollie.com/contact)
+     * and we'll help you out.
+     * 
+     * <p>If set, this operation will use Security#oAuth from the global security.
+     * 
+     * @param idempotencyKey A unique value that identifies this request, so you can safely retry it without creating a second account.
+     *         Retrying with the same key within one hour returns the original response. We recommend a UUIDv4.
+     *         
+     *         Keys are tied to the credential that sent the original request, so a refreshed OAuth token won't match
+     *         earlier keys. View the [public documentation](https://docs.mollie.com/reference/api-idempotency) to learn
+     *         more.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param requestBody 
+     * @param options additional options
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateBusinessAccountResponse createAccount(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends CreateBusinessAccountRequestBody> requestBody,
+            Optional<Options> options) {
+        CreateBusinessAccountRequest request =
+            CreateBusinessAccountRequest
+                .builder()
+                .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
+                .requestBody(requestBody)
+                .build();
+        RequestOperation<CreateBusinessAccountRequest, CreateBusinessAccountResponse> operation
+              = new CreateBusinessAccount.Sync(sdkConfiguration, options, _headers);
+        return operation.handleResponse(operation.doRequest(request));
     }
 
     /**
@@ -154,13 +259,12 @@ public class Accounts {
      * 
      * <p>If set, this operation will use Security#oAuth from the global security.
      * 
-     * @param businessAccountId Provide the ID of the related business account.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetBusinessAccountResponse getAccount(String businessAccountId) {
-        return getAccount(businessAccountId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public GetBusinessAccountResponse getAccount(GetBusinessAccountRequest request) {
+        return getAccount(request, Optional.empty());
     }
 
     /**
@@ -178,27 +282,12 @@ public class Accounts {
      * 
      * <p>If set, this operation will use Security#oAuth from the global security.
      * 
-     * @param businessAccountId Provide the ID of the related business account.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetBusinessAccountResponse getAccount(
-            String businessAccountId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetBusinessAccountRequest request =
-            GetBusinessAccountRequest
-                .builder()
-                .businessAccountId(businessAccountId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetBusinessAccountResponse getAccount(GetBusinessAccountRequest request, Optional<Options> options) {
         RequestOperation<GetBusinessAccountRequest, GetBusinessAccountResponse> operation
               = new GetBusinessAccount.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -308,14 +397,12 @@ public class Accounts {
      * 
      * <p>If set, this operation will use Security#oAuth from the global security.
      * 
-     * @param businessAccountId Provide the ID of the related business account.
-     * @param transactionId Provide the ID of the related transaction.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetBusinessAccountTransactionResponse get(String businessAccountId, String transactionId) {
-        return get(businessAccountId, transactionId, Optional.empty(),
-            Optional.empty(), Optional.empty());
+    public GetBusinessAccountTransactionResponse get(GetBusinessAccountTransactionRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -332,30 +419,12 @@ public class Accounts {
      * 
      * <p>If set, this operation will use Security#oAuth from the global security.
      * 
-     * @param businessAccountId Provide the ID of the related business account.
-     * @param transactionId Provide the ID of the related transaction.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetBusinessAccountTransactionResponse get(
-            String businessAccountId, String transactionId,
-            Optional<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) {
-        GetBusinessAccountTransactionRequest request =
-            GetBusinessAccountTransactionRequest
-                .builder()
-                .businessAccountId(businessAccountId)
-                .transactionId(transactionId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetBusinessAccountTransactionResponse get(GetBusinessAccountTransactionRequest request, Optional<Options> options) {
         RequestOperation<GetBusinessAccountTransactionRequest, GetBusinessAccountTransactionResponse> operation
               = new GetBusinessAccountTransaction.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

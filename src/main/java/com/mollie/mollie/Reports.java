@@ -88,7 +88,8 @@ public class Reports {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateReportResponse create(CreateReportRequest createReportRequest) {
-        return create(Optional.empty(), createReportRequest, Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty(),
+            createReportRequest, Optional.empty());
     }
 
     /**
@@ -111,18 +112,23 @@ public class Reports {
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param createReportRequest Generate a transaction margin report for your organization over a date range.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateReportResponse create(
-            Optional<String> idempotencyKey, CreateReportRequest createReportRequest,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, CreateReportRequest createReportRequest,
             Optional<Options> options) {
         com.mollie.mollie.models.operations.CreateReportRequest request =
             com.mollie.mollie.models.operations.CreateReportRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .createReportRequest(createReportRequest)
                 .build();
         RequestOperation<com.mollie.mollie.models.operations.CreateReportRequest, CreateReportResponse> operation
@@ -181,7 +187,8 @@ public class Reports {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetReportResponse get(String reportId) {
-        return get(reportId, Optional.empty(), Optional.empty());
+        return get(reportId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -206,18 +213,23 @@ public class Reports {
      * 
      * @param reportId Provide the ID of the related report.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetReportResponse get(
             String reportId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         GetReportRequest request =
             GetReportRequest
                 .builder()
                 .reportId(reportId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<GetReportRequest, GetReportResponse> operation
               = new GetReport.Sync(sdkConfiguration, options, _headers);

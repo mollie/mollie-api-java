@@ -40,6 +40,8 @@ public class Application {
 
         CreateWebhookResponse res = sdk.webhooks().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(CreateWebhookRequestBody.builder()
                     .name("Webhook #1")
                     .url("https://mollie.com/")
@@ -57,10 +59,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
-| `requestBody`                                                                              | [Optional\<CreateWebhookRequestBody>](../../models/operations/CreateWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                                                                                                                                               | Type                                                                                                                                                                                    | Required                                                                                                                                                                                | Description                                                                                                                                                                             | Example                                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                                                                                                                        | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                                             |
+| `xClientSignature`                                                                                                                                                                      | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.        | MEUCIQDx8sJvK3z...                                                                                                                                                                      |
+| `xClientSignedAt`                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration. | 2025-01-01T12:00:00Z                                                                                                                                                                    |
+| `requestBody`                                                                                                                                                                           | [Optional\<CreateWebhookRequestBody>](../../models/operations/CreateWebhookRequestBody.md)                                                                                              | :heavy_minus_sign:                                                                                                                                                                      | N/A                                                                                                                                                                                     |                                                                                                                                                                                         |
 
 ### Response
 
@@ -107,6 +111,8 @@ public class Application {
                 .sort(Sorting.DESC)
                 .eventTypes(WebhookEventTypes.PAYMENT_LINK_PAID)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -164,7 +170,7 @@ public class Application {
                     .build())
             .build();
 
-        UpdateWebhookResponse res = sdk.webhooks().update()
+        UpdateWebhookRequest req = UpdateWebhookRequest.builder()
                 .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
                 .requestBody(UpdateWebhookRequestBody.builder()
@@ -173,6 +179,10 @@ public class Application {
                     .eventTypes(UpdateWebhookEventTypes.of(WebhookEventTypes.PAYMENT_LINK_PAID))
                     .testmode(false)
                     .build())
+                .build();
+
+        UpdateWebhookResponse res = sdk.webhooks().update()
+                .request(req)
                 .call();
 
         if (res.entityWebhook().isPresent()) {
@@ -204,15 +214,21 @@ public class Application {
                     .build())
             .build();
 
-        UpdateWebhookResponse res = sdk.webhooks().update()
+        UpdateWebhookRequest req = UpdateWebhookRequest.builder()
                 .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(UpdateWebhookRequestBody.builder()
                     .name("Webhook #1")
                     .url("https://mollie.com/")
                     .eventTypes(UpdateWebhookEventTypes.of(WebhookEventTypes.PAYMENT_LINK_PAID))
                     .testmode(false)
                     .build())
+                .build();
+
+        UpdateWebhookResponse res = sdk.webhooks().update()
+                .request(req)
                 .call();
 
         if (res.entityWebhook().isPresent()) {
@@ -244,15 +260,21 @@ public class Application {
                     .build())
             .build();
 
-        UpdateWebhookResponse res = sdk.webhooks().update()
+        UpdateWebhookRequest req = UpdateWebhookRequest.builder()
                 .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(UpdateWebhookRequestBody.builder()
                     .name("Webhook #1")
                     .url("https://mollie.com/")
                     .eventTypes(UpdateWebhookEventTypes.of(WebhookEventTypes.PAYMENT_LINK_PAID))
                     .testmode(false)
                     .build())
+                .build();
+
+        UpdateWebhookResponse res = sdk.webhooks().update()
+                .request(req)
                 .call();
 
         if (res.entityWebhook().isPresent()) {
@@ -264,11 +286,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `webhookId`                                                                                | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related webhook.                                                     | hook_1234567890                                                                            |
-| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
-| `requestBody`                                                                              | [Optional\<UpdateWebhookRequestBody>](../../models/operations/UpdateWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [UpdateWebhookRequest](../../models/operations/UpdateWebhookRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 
@@ -294,6 +314,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetWebhookRequest;
 import com.mollie.mollie.models.operations.GetWebhookResponse;
 import java.lang.Exception;
 
@@ -308,9 +329,15 @@ public class Application {
                     .build())
             .build();
 
-        GetWebhookResponse res = sdk.webhooks().get()
+        GetWebhookRequest req = GetWebhookRequest.builder()
                 .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetWebhookResponse res = sdk.webhooks().get()
+                .request(req)
                 .call();
 
         if (res.entityWebhook().isPresent()) {
@@ -328,6 +355,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetWebhookRequest;
 import com.mollie.mollie.models.operations.GetWebhookResponse;
 import java.lang.Exception;
 
@@ -342,9 +370,15 @@ public class Application {
                     .build())
             .build();
 
-        GetWebhookResponse res = sdk.webhooks().get()
+        GetWebhookRequest req = GetWebhookRequest.builder()
                 .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetWebhookResponse res = sdk.webhooks().get()
+                .request(req)
                 .call();
 
         if (res.entityWebhook().isPresent()) {
@@ -356,11 +390,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                               | Type                                                                                                                                                                    | Required                                                                                                                                                                | Description                                                                                                                                                             | Example                                                                                                                                                                 |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `webhookId`                                                                                                                                                             | *String*                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                      | Provide the ID of the related webhook.                                                                                                                                  | hook_1234567890                                                                                                                                                         |
-| `testmode`                                                                                                                                                              | *Optional\<Boolean>*                                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                      | You can enable test mode by setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                         |
-| `idempotencyKey`                                                                                                                                                        | *Optional\<String>*                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                             |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [GetWebhookRequest](../../models/operations/GetWebhookRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 ### Response
 
@@ -386,8 +418,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.DeleteWebhookRequestBody;
-import com.mollie.mollie.models.operations.DeleteWebhookResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -400,12 +431,18 @@ public class Application {
                     .build())
             .build();
 
-        DeleteWebhookResponse res = sdk.webhooks().delete()
+        DeleteWebhookRequest req = DeleteWebhookRequest.builder()
                 .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(DeleteWebhookRequestBody.builder()
                     .testmode(false)
                     .build())
+                .build();
+
+        DeleteWebhookResponse res = sdk.webhooks().delete()
+                .request(req)
                 .call();
 
         // handle response
@@ -415,11 +452,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `webhookId`                                                                                | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related webhook.                                                     | hook_1234567890                                                                            |
-| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
-| `requestBody`                                                                              | [Optional\<DeleteWebhookRequestBody>](../../models/operations/DeleteWebhookRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [DeleteWebhookRequest](../../models/operations/DeleteWebhookRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 
@@ -445,8 +480,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.TestWebhookRequestBody;
-import com.mollie.mollie.models.operations.TestWebhookResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -459,12 +493,18 @@ public class Application {
                     .build())
             .build();
 
-        TestWebhookResponse res = sdk.webhooks().test()
+        TestWebhookRequest req = TestWebhookRequest.builder()
                 .webhookId("hook_1234567890")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(TestWebhookRequestBody.builder()
                     .testmode(false)
                     .build())
+                .build();
+
+        TestWebhookResponse res = sdk.webhooks().test()
+                .request(req)
                 .call();
 
         // handle response
@@ -474,11 +514,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `webhookId`                                                                            | *String*                                                                               | :heavy_check_mark:                                                                     | Provide the ID of the related webhook.                                                 | hook_1234567890                                                                        |
-| `idempotencyKey`                                                                       | *Optional\<String>*                                                                    | :heavy_minus_sign:                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.       | 123e4567-e89b-12d3-a456-426                                                            |
-| `requestBody`                                                                          | [Optional\<TestWebhookRequestBody>](../../models/operations/TestWebhookRequestBody.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |                                                                                        |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [TestWebhookRequest](../../models/operations/TestWebhookRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 ### Response
 

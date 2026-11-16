@@ -21,6 +21,8 @@ import java.util.concurrent.CompletableFuture;
 public class VerifyPayeeRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<String> xClientSignature = Optional.empty();
+    private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<? extends VerificationOfPayeeRequest> verificationOfPayeeRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -39,6 +41,30 @@ public class VerifyPayeeRequestBuilder {
     public VerifyPayeeRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public VerifyPayeeRequestBuilder xClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.of(xClientSignature);
+        return this;
+    }
+
+    public VerifyPayeeRequestBuilder xClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+                
+    public VerifyPayeeRequestBuilder xClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.of(xClientSignedAt);
+        return this;
+    }
+
+    public VerifyPayeeRequestBuilder xClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
         return this;
     }
                 
@@ -70,6 +96,8 @@ public class VerifyPayeeRequestBuilder {
     private VerifyPayeeRequest buildRequest() {
 
         VerifyPayeeRequest request = new VerifyPayeeRequest(idempotencyKey,
+            xClientSignature,
+            xClientSignedAt,
             verificationOfPayeeRequest);
 
         return request;

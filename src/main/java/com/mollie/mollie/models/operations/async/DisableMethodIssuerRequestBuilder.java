@@ -7,23 +7,18 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.MethodIdWithIssuer;
 import com.mollie.mollie.models.operations.DisableMethodIssuerRequest;
 import com.mollie.mollie.operations.DisableMethodIssuer;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class DisableMethodIssuerRequestBuilder {
 
-    private String profileId;
-    private MethodIdWithIssuer methodId;
-    private String issuerId;
-    private Optional<String> idempotencyKey = Optional.empty();
+    private DisableMethodIssuerRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -32,33 +27,9 @@ public class DisableMethodIssuerRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public DisableMethodIssuerRequestBuilder profileId(String profileId) {
-        Utils.checkNotNull(profileId, "profileId");
-        this.profileId = profileId;
-        return this;
-    }
-
-    public DisableMethodIssuerRequestBuilder methodId(MethodIdWithIssuer methodId) {
-        Utils.checkNotNull(methodId, "methodId");
-        this.methodId = methodId;
-        return this;
-    }
-
-    public DisableMethodIssuerRequestBuilder issuerId(String issuerId) {
-        Utils.checkNotNull(issuerId, "issuerId");
-        this.issuerId = issuerId;
-        return this;
-    }
-                
-    public DisableMethodIssuerRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public DisableMethodIssuerRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public DisableMethodIssuerRequestBuilder request(DisableMethodIssuerRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -74,17 +45,6 @@ public class DisableMethodIssuerRequestBuilder {
         return this;
     }
 
-
-    private DisableMethodIssuerRequest buildRequest() {
-
-        DisableMethodIssuerRequest request = new DisableMethodIssuerRequest(profileId,
-            methodId,
-            issuerId,
-            idempotencyKey);
-
-        return request;
-    }
-
     public CompletableFuture<DisableMethodIssuerResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -94,7 +54,6 @@ public class DisableMethodIssuerRequestBuilder {
               = new DisableMethodIssuer.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        DisableMethodIssuerRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

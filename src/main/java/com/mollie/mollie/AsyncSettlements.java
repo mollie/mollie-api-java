@@ -172,7 +172,9 @@ public class AsyncSettlements {
      * @return {@code CompletableFuture<GetSettlementResponse>} - The async response
      */
     public CompletableFuture<GetSettlementResponse> get(String settlementId) {
-        return get(settlementId, Optional.empty(), Optional.empty());
+        return get(
+                settlementId, Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -197,17 +199,22 @@ public class AsyncSettlements {
      * 
      * @param settlementId Provide the ID of the related settlement.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetSettlementResponse>} - The async response
      */
     public CompletableFuture<GetSettlementResponse> get(
             String settlementId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         GetSettlementRequest request =
             GetSettlementRequest
                 .builder()
                 .settlementId(settlementId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<GetSettlementRequest, GetSettlementResponse> operation
               = new GetSettlement.Async(
@@ -261,7 +268,9 @@ public class AsyncSettlements {
      * @return {@code CompletableFuture<GetOpenSettlementResponse>} - The async response
      */
     public CompletableFuture<GetOpenSettlementResponse> getOpenDirect() {
-        return getOpen(Optional.empty(), Optional.empty());
+        return getOpen(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -282,14 +291,20 @@ public class AsyncSettlements {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetOpenSettlementResponse>} - The async response
      */
-    public CompletableFuture<GetOpenSettlementResponse> getOpen(Optional<String> idempotencyKey, Optional<Options> options) {
+    public CompletableFuture<GetOpenSettlementResponse> getOpen(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetOpenSettlementRequest request =
             GetOpenSettlementRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<GetOpenSettlementRequest, GetOpenSettlementResponse> operation
               = new GetOpenSettlement.Async(
@@ -339,7 +354,9 @@ public class AsyncSettlements {
      * @return {@code CompletableFuture<GetNextSettlementResponse>} - The async response
      */
     public CompletableFuture<GetNextSettlementResponse> getNextDirect() {
-        return getNext(Optional.empty(), Optional.empty());
+        return getNext(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -358,14 +375,20 @@ public class AsyncSettlements {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetNextSettlementResponse>} - The async response
      */
-    public CompletableFuture<GetNextSettlementResponse> getNext(Optional<String> idempotencyKey, Optional<Options> options) {
+    public CompletableFuture<GetNextSettlementResponse> getNext(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetNextSettlementRequest request =
             GetNextSettlementRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<GetNextSettlementRequest, GetNextSettlementResponse> operation
               = new GetNextSettlement.Async(

@@ -12,14 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class PaymentGetRouteRequestBuilder {
 
-    private String paymentId;
-    private String routeId;
-    private Optional<String> idempotencyKey = Optional.empty();
+    private PaymentGetRouteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -28,27 +25,9 @@ public class PaymentGetRouteRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public PaymentGetRouteRequestBuilder paymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-
-    public PaymentGetRouteRequestBuilder routeId(String routeId) {
-        Utils.checkNotNull(routeId, "routeId");
-        this.routeId = routeId;
-        return this;
-    }
-                
-    public PaymentGetRouteRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public PaymentGetRouteRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public PaymentGetRouteRequestBuilder request(PaymentGetRouteRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -64,16 +43,6 @@ public class PaymentGetRouteRequestBuilder {
         return this;
     }
 
-
-    private PaymentGetRouteRequest buildRequest() {
-
-        PaymentGetRouteRequest request = new PaymentGetRouteRequest(paymentId,
-            routeId,
-            idempotencyKey);
-
-        return request;
-    }
-
     public PaymentGetRouteResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -81,7 +50,6 @@ public class PaymentGetRouteRequestBuilder {
 
         RequestOperation<PaymentGetRouteRequest, PaymentGetRouteResponse> operation
               = new PaymentGetRoute.Sync(sdkConfiguration, options, _headers);
-        PaymentGetRouteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

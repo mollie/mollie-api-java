@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetPermissionRequestBuilder {
 
-    private String permissionId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetPermissionRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class GetPermissionRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetPermissionRequestBuilder permissionId(String permissionId) {
-        Utils.checkNotNull(permissionId, "permissionId");
-        this.permissionId = permissionId;
-        return this;
-    }
-                
-    public GetPermissionRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetPermissionRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetPermissionRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetPermissionRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetPermissionRequestBuilder request(GetPermissionRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class GetPermissionRequestBuilder {
         return this;
     }
 
-
-    private GetPermissionRequest buildRequest() {
-
-        GetPermissionRequest request = new GetPermissionRequest(permissionId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public GetPermissionResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class GetPermissionRequestBuilder {
 
         RequestOperation<GetPermissionRequest, GetPermissionResponse> operation
               = new GetPermission.Sync(sdkConfiguration, options, _headers);
-        GetPermissionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

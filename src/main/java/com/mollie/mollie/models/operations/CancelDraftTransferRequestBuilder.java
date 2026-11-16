@@ -12,14 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class CancelDraftTransferRequestBuilder {
 
-    private String draftTransferId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends CancelDraftTransferRequestBody> requestBody = Optional.empty();
+    private CancelDraftTransferRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -28,33 +25,9 @@ public class CancelDraftTransferRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CancelDraftTransferRequestBuilder draftTransferId(String draftTransferId) {
-        Utils.checkNotNull(draftTransferId, "draftTransferId");
-        this.draftTransferId = draftTransferId;
-        return this;
-    }
-                
-    public CancelDraftTransferRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public CancelDraftTransferRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public CancelDraftTransferRequestBuilder requestBody(CancelDraftTransferRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public CancelDraftTransferRequestBuilder requestBody(Optional<? extends CancelDraftTransferRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CancelDraftTransferRequestBuilder request(CancelDraftTransferRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -70,16 +43,6 @@ public class CancelDraftTransferRequestBuilder {
         return this;
     }
 
-
-    private CancelDraftTransferRequest buildRequest() {
-
-        CancelDraftTransferRequest request = new CancelDraftTransferRequest(draftTransferId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public CancelDraftTransferResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -87,7 +50,6 @@ public class CancelDraftTransferRequestBuilder {
 
         RequestOperation<CancelDraftTransferRequest, CancelDraftTransferResponse> operation
               = new CancelDraftTransfer.Sync(sdkConfiguration, options, _headers);
-        CancelDraftTransferRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

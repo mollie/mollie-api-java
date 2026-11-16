@@ -18,6 +18,8 @@ import java.util.Optional;
 public class GetPrimaryBalanceRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<String> xClientSignature = Optional.empty();
+    private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -38,6 +40,30 @@ public class GetPrimaryBalanceRequestBuilder {
         return this;
     }
                 
+    public GetPrimaryBalanceRequestBuilder xClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.of(xClientSignature);
+        return this;
+    }
+
+    public GetPrimaryBalanceRequestBuilder xClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+                
+    public GetPrimaryBalanceRequestBuilder xClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.of(xClientSignedAt);
+        return this;
+    }
+
+    public GetPrimaryBalanceRequestBuilder xClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+                
     public GetPrimaryBalanceRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -53,7 +79,9 @@ public class GetPrimaryBalanceRequestBuilder {
 
     private GetPrimaryBalanceRequest buildRequest() {
 
-        GetPrimaryBalanceRequest request = new GetPrimaryBalanceRequest(idempotencyKey);
+        GetPrimaryBalanceRequest request = new GetPrimaryBalanceRequest(idempotencyKey,
+            xClientSignature,
+            xClientSignedAt);
 
         return request;
     }

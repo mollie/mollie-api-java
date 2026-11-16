@@ -6,7 +6,6 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.UnmatchedCreditTransferMatchRequest;
 import com.mollie.mollie.models.operations.GetUnmatchedCreditTransferRequest;
 import com.mollie.mollie.models.operations.ListUnmatchedCreditTransfersRequest;
 import com.mollie.mollie.models.operations.MatchUnmatchedCreditTransferRequest;
@@ -25,11 +24,9 @@ import com.mollie.mollie.operations.MatchUnmatchedCreditTransfer;
 import com.mollie.mollie.operations.ReturnUnmatchedCreditTransfer;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncUnmatchedCreditTransfers {
@@ -86,12 +83,11 @@ public class AsyncUnmatchedCreditTransfers {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListUnmatchedCreditTransfersResponse>} - The async response
      */
-    public CompletableFuture<ListUnmatchedCreditTransfersResponse> listDirect() {
-        return list(
-                JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<ListUnmatchedCreditTransfersResponse> list(ListUnmatchedCreditTransfersRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -108,23 +104,11 @@ public class AsyncUnmatchedCreditTransfers {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<ListUnmatchedCreditTransfersResponse>} - The async response
      */
-    public CompletableFuture<ListUnmatchedCreditTransfersResponse> list(
-            JsonNullable<String> from, JsonNullable<Long> limit,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        ListUnmatchedCreditTransfersRequest request =
-            ListUnmatchedCreditTransfersRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<ListUnmatchedCreditTransfersResponse> list(ListUnmatchedCreditTransfersRequest request, Optional<Options> options) {
         ListUnmatchedCreditTransfers.Async operation
               = new ListUnmatchedCreditTransfers.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -168,7 +152,9 @@ public class AsyncUnmatchedCreditTransfers {
      * @return {@code CompletableFuture<GetUnmatchedCreditTransferResponse>} - The async response
      */
     public CompletableFuture<GetUnmatchedCreditTransferResponse> get(String unmatchedCreditTransferId) {
-        return get(unmatchedCreditTransferId, Optional.empty(), Optional.empty());
+        return get(
+                unmatchedCreditTransferId, Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -185,17 +171,22 @@ public class AsyncUnmatchedCreditTransfers {
      * 
      * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetUnmatchedCreditTransferResponse>} - The async response
      */
     public CompletableFuture<GetUnmatchedCreditTransferResponse> get(
             String unmatchedCreditTransferId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         GetUnmatchedCreditTransferRequest request =
             GetUnmatchedCreditTransferRequest
                 .builder()
                 .unmatchedCreditTransferId(unmatchedCreditTransferId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<GetUnmatchedCreditTransferRequest, GetUnmatchedCreditTransferResponse> operation
               = new GetUnmatchedCreditTransfer.Async(
@@ -209,9 +200,11 @@ public class AsyncUnmatchedCreditTransfers {
     /**
      * Match unmatched credit transfer
      * 
-     * <p>&gt; 🚧 Beta feature
+     * <p>&gt; 🚧
      * &gt;
-     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * &gt; To get access to this functionality, a virtual IBAN must be assigned to your webshop. We are
+     * currently rolling out virtual IBANs to our merchant base. Contact our support team or your
+     * account/sales manager to request access today.
      * 
      * <p>Matches an unmatched credit transfer to one or more payments, settling the funds accordingly.
      * 
@@ -227,52 +220,43 @@ public class AsyncUnmatchedCreditTransfers {
     /**
      * Match unmatched credit transfer
      * 
-     * <p>&gt; 🚧 Beta feature
+     * <p>&gt; 🚧
      * &gt;
-     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * &gt; To get access to this functionality, a virtual IBAN must be assigned to your webshop. We are
+     * currently rolling out virtual IBANs to our merchant base. Contact our support team or your
+     * account/sales manager to request access today.
      * 
      * <p>Matches an unmatched credit transfer to one or more payments, settling the funds accordingly.
      * 
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<MatchUnmatchedCreditTransferResponse>} - The async response
      */
-    public CompletableFuture<MatchUnmatchedCreditTransferResponse> match(String unmatchedCreditTransferId) {
-        return match(
-                unmatchedCreditTransferId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<MatchUnmatchedCreditTransferResponse> match(MatchUnmatchedCreditTransferRequest request) {
+        return match(request, Optional.empty());
     }
 
     /**
      * Match unmatched credit transfer
      * 
-     * <p>&gt; 🚧 Beta feature
+     * <p>&gt; 🚧
      * &gt;
-     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * &gt; To get access to this functionality, a virtual IBAN must be assigned to your webshop. We are
+     * currently rolling out virtual IBANs to our merchant base. Contact our support team or your
+     * account/sales manager to request access today.
      * 
      * <p>Matches an unmatched credit transfer to one or more payments, settling the funds accordingly.
      * 
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param unmatchedCreditTransferMatchRequest 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<MatchUnmatchedCreditTransferResponse>} - The async response
      */
-    public CompletableFuture<MatchUnmatchedCreditTransferResponse> match(
-            String unmatchedCreditTransferId, Optional<String> idempotencyKey,
-            Optional<? extends UnmatchedCreditTransferMatchRequest> unmatchedCreditTransferMatchRequest, Optional<Options> options) {
-        MatchUnmatchedCreditTransferRequest request =
-            MatchUnmatchedCreditTransferRequest
-                .builder()
-                .unmatchedCreditTransferId(unmatchedCreditTransferId)
-                .idempotencyKey(idempotencyKey)
-                .unmatchedCreditTransferMatchRequest(unmatchedCreditTransferMatchRequest)
-                .build();
+    public CompletableFuture<MatchUnmatchedCreditTransferResponse> match(MatchUnmatchedCreditTransferRequest request, Optional<Options> options) {
         AsyncRequestOperation<MatchUnmatchedCreditTransferRequest, MatchUnmatchedCreditTransferResponse> operation
               = new MatchUnmatchedCreditTransfer.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -316,7 +300,9 @@ public class AsyncUnmatchedCreditTransfers {
      * @return {@code CompletableFuture<ReturnUnmatchedCreditTransferResponse>} - The async response
      */
     public CompletableFuture<ReturnUnmatchedCreditTransferResponse> return_(String unmatchedCreditTransferId) {
-        return return_(unmatchedCreditTransferId, Optional.empty(), Optional.empty());
+        return return_(
+                unmatchedCreditTransferId, Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -333,17 +319,22 @@ public class AsyncUnmatchedCreditTransfers {
      * 
      * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<ReturnUnmatchedCreditTransferResponse>} - The async response
      */
     public CompletableFuture<ReturnUnmatchedCreditTransferResponse> return_(
             String unmatchedCreditTransferId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         ReturnUnmatchedCreditTransferRequest request =
             ReturnUnmatchedCreditTransferRequest
                 .builder()
                 .unmatchedCreditTransferId(unmatchedCreditTransferId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<ReturnUnmatchedCreditTransferRequest, ReturnUnmatchedCreditTransferResponse> operation
               = new ReturnUnmatchedCreditTransfer.Async(

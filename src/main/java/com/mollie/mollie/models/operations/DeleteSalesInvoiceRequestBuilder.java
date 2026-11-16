@@ -7,20 +7,16 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
 import com.mollie.mollie.operations.DeleteSalesInvoice;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class DeleteSalesInvoiceRequestBuilder {
 
-    private String salesInvoiceId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice = Optional.empty();
+    private DeleteSalesInvoiceRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class DeleteSalesInvoiceRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public DeleteSalesInvoiceRequestBuilder salesInvoiceId(String salesInvoiceId) {
-        Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
-        this.salesInvoiceId = salesInvoiceId;
-        return this;
-    }
-                
-    public DeleteSalesInvoiceRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public DeleteSalesInvoiceRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public DeleteSalesInvoiceRequestBuilder deleteValuesSalesInvoice(DeleteValuesSalesInvoice deleteValuesSalesInvoice) {
-        Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
-        this.deleteValuesSalesInvoice = Optional.of(deleteValuesSalesInvoice);
-        return this;
-    }
-
-    public DeleteSalesInvoiceRequestBuilder deleteValuesSalesInvoice(Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice) {
-        Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
-        this.deleteValuesSalesInvoice = deleteValuesSalesInvoice;
+    public DeleteSalesInvoiceRequestBuilder request(DeleteSalesInvoiceRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class DeleteSalesInvoiceRequestBuilder {
         return this;
     }
 
-
-    private DeleteSalesInvoiceRequest buildRequest() {
-
-        DeleteSalesInvoiceRequest request = new DeleteSalesInvoiceRequest(salesInvoiceId,
-            idempotencyKey,
-            deleteValuesSalesInvoice);
-
-        return request;
-    }
-
     public DeleteSalesInvoiceResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class DeleteSalesInvoiceRequestBuilder {
 
         RequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
               = new DeleteSalesInvoice.Sync(sdkConfiguration, options, _headers);
-        DeleteSalesInvoiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

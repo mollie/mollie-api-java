@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TerminalsGetPairingCodeRequestBuilder {
 
-    private String pairingCodeId;
-    private JsonNullable<String> include = JsonNullable.undefined();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private TerminalsGetPairingCodeRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class TerminalsGetPairingCodeRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public TerminalsGetPairingCodeRequestBuilder pairingCodeId(String pairingCodeId) {
-        Utils.checkNotNull(pairingCodeId, "pairingCodeId");
-        this.pairingCodeId = pairingCodeId;
-        return this;
-    }
-
-    public TerminalsGetPairingCodeRequestBuilder include(String include) {
-        Utils.checkNotNull(include, "include");
-        this.include = JsonNullable.of(include);
-        return this;
-    }
-
-    public TerminalsGetPairingCodeRequestBuilder include(JsonNullable<String> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
-        return this;
-    }
-                
-    public TerminalsGetPairingCodeRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public TerminalsGetPairingCodeRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public TerminalsGetPairingCodeRequestBuilder request(TerminalsGetPairingCodeRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class TerminalsGetPairingCodeRequestBuilder {
         return this;
     }
 
-
-    private TerminalsGetPairingCodeRequest buildRequest() {
-
-        TerminalsGetPairingCodeRequest request = new TerminalsGetPairingCodeRequest(pairingCodeId,
-            include,
-            idempotencyKey);
-
-        return request;
-    }
-
     public TerminalsGetPairingCodeResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class TerminalsGetPairingCodeRequestBuilder {
 
         RequestOperation<TerminalsGetPairingCodeRequest, TerminalsGetPairingCodeResponse> operation
               = new TerminalsGetPairingCode.Sync(sdkConfiguration, options, _headers);
-        TerminalsGetPairingCodeRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

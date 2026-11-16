@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetTerminalRequestBuilder {
 
-    private String terminalId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetTerminalRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class GetTerminalRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetTerminalRequestBuilder terminalId(String terminalId) {
-        Utils.checkNotNull(terminalId, "terminalId");
-        this.terminalId = terminalId;
-        return this;
-    }
-                
-    public GetTerminalRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetTerminalRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetTerminalRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetTerminalRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetTerminalRequestBuilder request(GetTerminalRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class GetTerminalRequestBuilder {
         return this;
     }
 
-
-    private GetTerminalRequest buildRequest() {
-
-        GetTerminalRequest request = new GetTerminalRequest(terminalId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public GetTerminalResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class GetTerminalRequestBuilder {
 
         RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
               = new GetTerminal.Sync(sdkConfiguration, options, _headers);
-        GetTerminalRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -19,6 +19,8 @@ public class ReturnUnmatchedCreditTransferRequestBuilder {
 
     private String unmatchedCreditTransferId;
     private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<String> xClientSignature = Optional.empty();
+    private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -45,6 +47,30 @@ public class ReturnUnmatchedCreditTransferRequestBuilder {
         return this;
     }
                 
+    public ReturnUnmatchedCreditTransferRequestBuilder xClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.of(xClientSignature);
+        return this;
+    }
+
+    public ReturnUnmatchedCreditTransferRequestBuilder xClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+                
+    public ReturnUnmatchedCreditTransferRequestBuilder xClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.of(xClientSignedAt);
+        return this;
+    }
+
+    public ReturnUnmatchedCreditTransferRequestBuilder xClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+                
     public ReturnUnmatchedCreditTransferRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -61,7 +87,9 @@ public class ReturnUnmatchedCreditTransferRequestBuilder {
     private ReturnUnmatchedCreditTransferRequest buildRequest() {
 
         ReturnUnmatchedCreditTransferRequest request = new ReturnUnmatchedCreditTransferRequest(unmatchedCreditTransferId,
-            idempotencyKey);
+            idempotencyKey,
+            xClientSignature,
+            xClientSignedAt);
 
         return request;
     }

@@ -16,7 +16,6 @@ import com.mollie.mollie.operations.GetPermission;
 import com.mollie.mollie.operations.ListPermissions;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -71,7 +70,9 @@ public class AsyncPermissions {
      * @return {@code CompletableFuture<ListPermissionsResponse>} - The async response
      */
     public CompletableFuture<ListPermissionsResponse> listDirect() {
-        return list(Optional.empty(), Optional.empty());
+        return list(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -85,14 +86,20 @@ public class AsyncPermissions {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<ListPermissionsResponse>} - The async response
      */
-    public CompletableFuture<ListPermissionsResponse> list(Optional<String> idempotencyKey, Optional<Options> options) {
+    public CompletableFuture<ListPermissionsResponse> list(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         ListPermissionsRequest request =
             ListPermissionsRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<ListPermissionsRequest, ListPermissionsResponse> operation
               = new ListPermissions.Async(
@@ -127,13 +134,11 @@ public class AsyncPermissions {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param permissionId Provide the ID of the related permission.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetPermissionResponse>} - The async response
      */
-    public CompletableFuture<GetPermissionResponse> get(String permissionId) {
-        return get(
-                permissionId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<GetPermissionResponse> get(GetPermissionRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -145,26 +150,11 @@ public class AsyncPermissions {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param permissionId Provide the ID of the related permission.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetPermissionResponse>} - The async response
      */
-    public CompletableFuture<GetPermissionResponse> get(
-            String permissionId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetPermissionRequest request =
-            GetPermissionRequest
-                .builder()
-                .permissionId(permissionId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetPermissionResponse> get(GetPermissionRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetPermissionRequest, GetPermissionResponse> operation
               = new GetPermission.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

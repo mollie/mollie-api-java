@@ -16,7 +16,6 @@ import com.mollie.mollie.operations.GetPermission;
 import com.mollie.mollie.operations.ListPermissions;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 
@@ -70,7 +69,8 @@ public class Permissions {
      * @throws RuntimeException subclass if the API call fails
      */
     public ListPermissionsResponse listDirect() {
-        return list(Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -84,15 +84,21 @@ public class Permissions {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListPermissionsResponse list(Optional<String> idempotencyKey, Optional<Options> options) {
+    public ListPermissionsResponse list(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         ListPermissionsRequest request =
             ListPermissionsRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<ListPermissionsRequest, ListPermissionsResponse> operation
               = new ListPermissions.Sync(sdkConfiguration, options, _headers);
@@ -123,13 +129,12 @@ public class Permissions {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param permissionId Provide the ID of the related permission.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetPermissionResponse get(String permissionId) {
-        return get(permissionId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public GetPermissionResponse get(GetPermissionRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -141,27 +146,12 @@ public class Permissions {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param permissionId Provide the ID of the related permission.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetPermissionResponse get(
-            String permissionId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetPermissionRequest request =
-            GetPermissionRequest
-                .builder()
-                .permissionId(permissionId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetPermissionResponse get(GetPermissionRequest request, Optional<Options> options) {
         RequestOperation<GetPermissionRequest, GetPermissionResponse> operation
               = new GetPermission.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

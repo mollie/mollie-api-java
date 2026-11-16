@@ -70,6 +70,11 @@ public class Entity {
         Utils.checkNotNull(value, "value");
         return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
     }
+
+    public static Entity of(BusinessAccountResponse value) {
+        Utils.checkNotNull(value, "value");
+        return new Entity(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<>(){}));
+    }
     
     /**
      * Returns an instance of one of these types:
@@ -83,6 +88,7 @@ public class Entity {
      * <li>{@code com.mollie.mollie.models.components.SalesInvoiceResponse}</li>
      * <li>{@code com.mollie.mollie.models.components.TransferResponse}</li>
      * <li>{@code com.mollie.mollie.models.components.DraftTransferResponse}</li>
+     * <li>{@code com.mollie.mollie.models.components.BusinessAccountResponse}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -130,7 +136,8 @@ public class Entity {
                   TypeReferenceWithShape.of(new TypeReference<EntityPayoutResponse>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<SalesInvoiceResponse>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<TransferResponse>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<DraftTransferResponse>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<DraftTransferResponse>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<BusinessAccountResponse>() {}, JsonShape.DEFAULT));
         }
     }
     

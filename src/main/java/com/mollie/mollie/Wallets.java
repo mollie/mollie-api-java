@@ -116,7 +116,8 @@ public class Wallets {
      * @throws RuntimeException subclass if the API call fails
      */
     public RequestApplePayPaymentSessionResponse requestApplePaySessionDirect() {
-        return requestApplePaySession(Optional.empty(), Optional.empty(), Optional.empty());
+        return requestApplePaySession(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -155,18 +156,23 @@ public class Wallets {
      * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public RequestApplePayPaymentSessionResponse requestApplePaySession(
-            Optional<String> idempotencyKey, Optional<? extends RequestApplePayPaymentSessionRequestBody> requestBody,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends RequestApplePayPaymentSessionRequestBody> requestBody,
             Optional<Options> options) {
         RequestApplePayPaymentSessionRequest request =
             RequestApplePayPaymentSessionRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<RequestApplePayPaymentSessionRequest, RequestApplePayPaymentSessionResponse> operation

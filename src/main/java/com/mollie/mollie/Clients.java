@@ -16,10 +16,7 @@ import com.mollie.mollie.operations.GetClient;
 import com.mollie.mollie.operations.ListClients;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Clients {
@@ -65,12 +62,12 @@ public class Clients {
      * 
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListClientsResponse listDirect() {
-        return list(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+    public ListClientsResponse list(ListClientsRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -82,35 +79,12 @@ public class Clients {
      * 
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
-     * @param embed This endpoint allows embedding related API items by appending the
-     *         following values via the `embed` query string parameter.
-     *         
-     *         * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *           partners with the `organizations.read` scope.
-     *         * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *           partners with the `onboarding.read` scope.
-     *         * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *           Available for *oauth* partners with the `onboarding.read` scope.
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListClientsResponse list(
-            JsonNullable<String> embed, JsonNullable<String> from,
-            JsonNullable<Long> limit, Optional<String> idempotencyKey,
-            Optional<Options> options) {
-        ListClientsRequest request =
-            ListClientsRequest
-                .builder()
-                .embed(embed)
-                .from(from)
-                .limit(limit)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public ListClientsResponse list(ListClientsRequest request, Optional<Options> options) {
         ListClients.Sync operation
               = new ListClients.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -136,13 +110,12 @@ public class Clients {
      * 
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
-     * @param organizationId Provide the ID of the related organization.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetClientResponse get(String organizationId) {
-        return get(organizationId, JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+    public GetClientResponse get(GetClientRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -152,31 +125,12 @@ public class Clients {
      * 
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
-     * @param organizationId Provide the ID of the related organization.
-     * @param embed This endpoint allows embedding related API items by appending the following values via the `embed` query string
-     *         parameter.
-     *         
-     *         * `organization`: Include the organization of the client. Available for `signuplink` partners, or for `oauth`
-     *           partners with the `organizations.read` scope.
-     *         * `onboarding`: Include the onboarding status of the client. Available for `signuplink` partners, or for `oauth`
-     *           partners with the `onboarding.read` scope.
-     *         * `capabilities`: Include the [capabilities](list-capabilities) of the client organization.
-     *           Available for *oauth* partners with the `onboarding.read` scope.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetClientResponse get(
-            String organizationId, JsonNullable<String> embed,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetClientRequest request =
-            GetClientRequest
-                .builder()
-                .organizationId(organizationId)
-                .embed(embed)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetClientResponse get(GetClientRequest request, Optional<Options> options) {
         RequestOperation<GetClientRequest, GetClientResponse> operation
               = new GetClient.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

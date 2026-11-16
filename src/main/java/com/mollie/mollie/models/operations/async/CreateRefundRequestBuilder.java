@@ -7,22 +7,18 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.RefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundRequest;
 import com.mollie.mollie.operations.CreateRefund;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateRefundRequestBuilder {
 
-    private String paymentId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends RefundRequest> refundRequest = Optional.empty();
+    private CreateRefundRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -31,33 +27,9 @@ public class CreateRefundRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CreateRefundRequestBuilder paymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-                
-    public CreateRefundRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public CreateRefundRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public CreateRefundRequestBuilder refundRequest(RefundRequest refundRequest) {
-        Utils.checkNotNull(refundRequest, "refundRequest");
-        this.refundRequest = Optional.of(refundRequest);
-        return this;
-    }
-
-    public CreateRefundRequestBuilder refundRequest(Optional<? extends RefundRequest> refundRequest) {
-        Utils.checkNotNull(refundRequest, "refundRequest");
-        this.refundRequest = refundRequest;
+    public CreateRefundRequestBuilder request(CreateRefundRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -73,16 +45,6 @@ public class CreateRefundRequestBuilder {
         return this;
     }
 
-
-    private CreateRefundRequest buildRequest() {
-
-        CreateRefundRequest request = new CreateRefundRequest(paymentId,
-            idempotencyKey,
-            refundRequest);
-
-        return request;
-    }
-
     public CompletableFuture<CreateRefundResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -92,7 +54,6 @@ public class CreateRefundRequestBuilder {
               = new CreateRefund.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        CreateRefundRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

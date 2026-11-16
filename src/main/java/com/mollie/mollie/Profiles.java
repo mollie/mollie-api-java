@@ -23,7 +23,6 @@ import com.mollie.mollie.models.operations.ListProfilesRequest;
 import com.mollie.mollie.models.operations.ListProfilesRequestBuilder;
 import com.mollie.mollie.models.operations.ListProfilesResponse;
 import com.mollie.mollie.models.operations.UpdateProfileRequest;
-import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
 import com.mollie.mollie.models.operations.UpdateProfileRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateProfileResponse;
 import com.mollie.mollie.operations.CreateProfile;
@@ -34,11 +33,8 @@ import com.mollie.mollie.operations.ListProfiles;
 import com.mollie.mollie.operations.UpdateProfile;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Profiles {
@@ -95,7 +91,8 @@ public class Profiles {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateProfileResponse create(ProfileRequest profileRequest) {
-        return create(Optional.empty(), profileRequest, Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty(),
+            profileRequest, Optional.empty());
     }
 
     /**
@@ -111,18 +108,23 @@ public class Profiles {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param profileRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateProfileResponse create(
-            Optional<String> idempotencyKey, ProfileRequest profileRequest,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, ProfileRequest profileRequest,
             Optional<Options> options) {
         CreateProfileRequest request =
             CreateProfileRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .profileRequest(profileRequest)
                 .build();
         RequestOperation<CreateProfileRequest, CreateProfileResponse> operation
@@ -156,12 +158,12 @@ public class Profiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListProfilesResponse listDirect() {
-        return list(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+    public ListProfilesResponse list(ListProfilesRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -174,24 +176,12 @@ public class Profiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ListProfilesResponse list(
-            JsonNullable<String> from, JsonNullable<Long> limit,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        ListProfilesRequest request =
-            ListProfilesRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public ListProfilesResponse list(ListProfilesRequest request, Optional<Options> options) {
         ListProfiles.Sync operation
               = new ListProfiles.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -219,13 +209,12 @@ public class Profiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param profileId Provide the ID of the related profile.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetProfileResponse get(String profileId) {
-        return get(profileId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public GetProfileResponse get(GetProfileRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -236,27 +225,12 @@ public class Profiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param profileId Provide the ID of the related profile.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetProfileResponse get(
-            String profileId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetProfileRequest request =
-            GetProfileRequest
-                .builder()
-                .profileId(profileId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetProfileResponse get(GetProfileRequest request, Optional<Options> options) {
         RequestOperation<GetProfileRequest, GetProfileResponse> operation
               = new GetProfile.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -292,14 +266,12 @@ public class Profiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param profileId Provide the ID of the related profile.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateProfileResponse update(String profileId, UpdateProfileRequestBody requestBody) {
-        return update(profileId, Optional.empty(), requestBody,
-            Optional.empty());
+    public UpdateProfileResponse update(UpdateProfileRequest request) {
+        return update(request, Optional.empty());
     }
 
     /**
@@ -314,23 +286,12 @@ public class Profiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param profileId Provide the ID of the related profile.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateProfileResponse update(
-            String profileId, Optional<String> idempotencyKey,
-            UpdateProfileRequestBody requestBody, Optional<Options> options) {
-        UpdateProfileRequest request =
-            UpdateProfileRequest
-                .builder()
-                .profileId(profileId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public UpdateProfileResponse update(UpdateProfileRequest request, Optional<Options> options) {
         RequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
               = new UpdateProfile.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -365,7 +326,8 @@ public class Profiles {
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteProfileResponse delete(String profileId) {
-        return delete(profileId, Optional.empty(), Optional.empty());
+        return delete(profileId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -379,18 +341,23 @@ public class Profiles {
      * 
      * @param profileId Provide the ID of the related profile.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public DeleteProfileResponse delete(
             String profileId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         DeleteProfileRequest request =
             DeleteProfileRequest
                 .builder()
                 .profileId(profileId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
               = new DeleteProfile.Sync(sdkConfiguration, options, _headers);
@@ -429,7 +396,8 @@ public class Profiles {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetCurrentProfileResponse getCurrentDirect() {
-        return getCurrent(Optional.empty(), Optional.empty());
+        return getCurrent(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -444,15 +412,21 @@ public class Profiles {
      * <p>If set, this operation will use Security#apiKey from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetCurrentProfileResponse getCurrent(Optional<String> idempotencyKey, Optional<Options> options) {
+    public GetCurrentProfileResponse getCurrent(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetCurrentProfileRequest request =
             GetCurrentProfileRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<GetCurrentProfileRequest, GetCurrentProfileResponse> operation
               = new GetCurrentProfile.Sync(sdkConfiguration, options, _headers);

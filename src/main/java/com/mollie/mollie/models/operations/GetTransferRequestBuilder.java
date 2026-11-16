@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetTransferRequestBuilder {
 
-    private String businessAccountsTransferId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetTransferRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class GetTransferRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetTransferRequestBuilder businessAccountsTransferId(String businessAccountsTransferId) {
-        Utils.checkNotNull(businessAccountsTransferId, "businessAccountsTransferId");
-        this.businessAccountsTransferId = businessAccountsTransferId;
-        return this;
-    }
-                
-    public GetTransferRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetTransferRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetTransferRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetTransferRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetTransferRequestBuilder request(GetTransferRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class GetTransferRequestBuilder {
         return this;
     }
 
-
-    private GetTransferRequest buildRequest() {
-
-        GetTransferRequest request = new GetTransferRequest(businessAccountsTransferId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public GetTransferResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class GetTransferRequestBuilder {
 
         RequestOperation<GetTransferRequest, GetTransferResponse> operation
               = new GetTransfer.Sync(sdkConfiguration, options, _headers);
-        GetTransferRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

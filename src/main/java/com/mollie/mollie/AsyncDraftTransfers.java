@@ -8,7 +8,6 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.models.components.CreateDraftTransferRequest;
 import com.mollie.mollie.models.operations.CancelDraftTransferRequest;
-import com.mollie.mollie.models.operations.CancelDraftTransferRequestBody;
 import com.mollie.mollie.models.operations.GetDraftTransferRequest;
 import com.mollie.mollie.models.operations.ListDraftTransfersRequest;
 import com.mollie.mollie.models.operations.async.CancelDraftTransferRequestBuilder;
@@ -25,7 +24,6 @@ import com.mollie.mollie.operations.GetDraftTransfer;
 import com.mollie.mollie.operations.ListDraftTransfers;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -146,7 +144,9 @@ public class AsyncDraftTransfers {
      * @return {@code CompletableFuture<CreateDraftTransferResponse>} - The async response
      */
     public CompletableFuture<CreateDraftTransferResponse> createDirect() {
-        return create(Optional.empty(), Optional.empty(), Optional.empty());
+        return create(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -193,17 +193,22 @@ public class AsyncDraftTransfers {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param createDraftTransferRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreateDraftTransferResponse>} - The async response
      */
     public CompletableFuture<CreateDraftTransferResponse> create(
-            Optional<String> idempotencyKey, Optional<? extends CreateDraftTransferRequest> createDraftTransferRequest,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends CreateDraftTransferRequest> createDraftTransferRequest,
             Optional<Options> options) {
         com.mollie.mollie.models.operations.CreateDraftTransferRequest request =
             com.mollie.mollie.models.operations.CreateDraftTransferRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .createDraftTransferRequest(createDraftTransferRequest)
                 .build();
         AsyncRequestOperation<com.mollie.mollie.models.operations.CreateDraftTransferRequest, CreateDraftTransferResponse> operation
@@ -334,13 +339,11 @@ public class AsyncDraftTransfers {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param draftTransferId Provide the ID of the related draft transfer.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetDraftTransferResponse>} - The async response
      */
-    public CompletableFuture<GetDraftTransferResponse> get(String draftTransferId) {
-        return get(
-                draftTransferId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<GetDraftTransferResponse> get(GetDraftTransferRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -362,26 +365,11 @@ public class AsyncDraftTransfers {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param draftTransferId Provide the ID of the related draft transfer.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetDraftTransferResponse>} - The async response
      */
-    public CompletableFuture<GetDraftTransferResponse> get(
-            String draftTransferId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetDraftTransferRequest request =
-            GetDraftTransferRequest
-                .builder()
-                .draftTransferId(draftTransferId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetDraftTransferResponse> get(GetDraftTransferRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetDraftTransferRequest, GetDraftTransferResponse> operation
               = new GetDraftTransfer.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -437,13 +425,11 @@ public class AsyncDraftTransfers {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param draftTransferId Provide the ID of the related draft transfer.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CancelDraftTransferResponse>} - The async response
      */
-    public CompletableFuture<CancelDraftTransferResponse> cancel(String draftTransferId) {
-        return cancel(
-                draftTransferId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<CancelDraftTransferResponse> cancel(CancelDraftTransferRequest request) {
+        return cancel(request, Optional.empty());
     }
 
     /**
@@ -466,22 +452,11 @@ public class AsyncDraftTransfers {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param draftTransferId Provide the ID of the related draft transfer.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<CancelDraftTransferResponse>} - The async response
      */
-    public CompletableFuture<CancelDraftTransferResponse> cancel(
-            String draftTransferId, Optional<String> idempotencyKey,
-            Optional<? extends CancelDraftTransferRequestBody> requestBody, Optional<Options> options) {
-        CancelDraftTransferRequest request =
-            CancelDraftTransferRequest
-                .builder()
-                .draftTransferId(draftTransferId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<CancelDraftTransferResponse> cancel(CancelDraftTransferRequest request, Optional<Options> options) {
         AsyncRequestOperation<CancelDraftTransferRequest, CancelDraftTransferResponse> operation
               = new CancelDraftTransfer.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

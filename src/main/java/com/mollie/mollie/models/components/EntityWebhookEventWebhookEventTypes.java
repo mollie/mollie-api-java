@@ -66,6 +66,7 @@ public class EntityWebhookEventWebhookEventTypes {
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_DRAFT_TRANSFER_CREATED = new EntityWebhookEventWebhookEventTypes("business-account-draft-transfer.created");
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED = new EntityWebhookEventWebhookEventTypes("business-account-draft-transfer.approved");
     public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED = new EntityWebhookEventWebhookEventTypes("business-account-draft-transfer.declined");
+    public static final EntityWebhookEventWebhookEventTypes BUSINESS_ACCOUNT_CREATED = new EntityWebhookEventWebhookEventTypes("business-account.created");
     public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_RECEIVED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.received");
     public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_MATCHED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.matched");
     public static final EntityWebhookEventWebhookEventTypes UNMATCHED_CREDIT_TRANSFER_RETURNED = new EntityWebhookEventWebhookEventTypes("unmatched-credit-transfer.returned");
@@ -189,6 +190,7 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("business-account-draft-transfer.created", BUSINESS_ACCOUNT_DRAFT_TRANSFER_CREATED);
         map.put("business-account-draft-transfer.approved", BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED);
         map.put("business-account-draft-transfer.declined", BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED);
+        map.put("business-account.created", BUSINESS_ACCOUNT_CREATED);
         map.put("unmatched-credit-transfer.received", UNMATCHED_CREDIT_TRANSFER_RECEIVED);
         map.put("unmatched-credit-transfer.matched", UNMATCHED_CREDIT_TRANSFER_MATCHED);
         map.put("unmatched-credit-transfer.returned", UNMATCHED_CREDIT_TRANSFER_RETURNED);
@@ -244,6 +246,7 @@ public class EntityWebhookEventWebhookEventTypes {
         map.put("business-account-draft-transfer.created", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_DRAFT_TRANSFER_CREATED);
         map.put("business-account-draft-transfer.approved", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED);
         map.put("business-account-draft-transfer.declined", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED);
+        map.put("business-account.created", EntityWebhookEventWebhookEventTypesEnum.BUSINESS_ACCOUNT_CREATED);
         map.put("unmatched-credit-transfer.received", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_RECEIVED);
         map.put("unmatched-credit-transfer.matched", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_MATCHED);
         map.put("unmatched-credit-transfer.returned", EntityWebhookEventWebhookEventTypesEnum.UNMATCHED_CREDIT_TRANSFER_RETURNED);
@@ -300,6 +303,7 @@ public class EntityWebhookEventWebhookEventTypes {
         BUSINESS_ACCOUNT_DRAFT_TRANSFER_CREATED("business-account-draft-transfer.created"),
         BUSINESS_ACCOUNT_DRAFT_TRANSFER_APPROVED("business-account-draft-transfer.approved"),
         BUSINESS_ACCOUNT_DRAFT_TRANSFER_DECLINED("business-account-draft-transfer.declined"),
+        BUSINESS_ACCOUNT_CREATED("business-account.created"),
         UNMATCHED_CREDIT_TRANSFER_RECEIVED("unmatched-credit-transfer.received"),
         UNMATCHED_CREDIT_TRANSFER_MATCHED("unmatched-credit-transfer.matched"),
         UNMATCHED_CREDIT_TRANSFER_RETURNED("unmatched-credit-transfer.returned"),

@@ -7,22 +7,18 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.EntityCapture;
 import com.mollie.mollie.models.operations.CreateCaptureRequest;
 import com.mollie.mollie.operations.CreateCapture;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateCaptureRequestBuilder {
 
-    private String paymentId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends EntityCapture> entityCapture = Optional.empty();
+    private CreateCaptureRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -31,33 +27,9 @@ public class CreateCaptureRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CreateCaptureRequestBuilder paymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-                
-    public CreateCaptureRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public CreateCaptureRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public CreateCaptureRequestBuilder entityCapture(EntityCapture entityCapture) {
-        Utils.checkNotNull(entityCapture, "entityCapture");
-        this.entityCapture = Optional.of(entityCapture);
-        return this;
-    }
-
-    public CreateCaptureRequestBuilder entityCapture(Optional<? extends EntityCapture> entityCapture) {
-        Utils.checkNotNull(entityCapture, "entityCapture");
-        this.entityCapture = entityCapture;
+    public CreateCaptureRequestBuilder request(CreateCaptureRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -73,16 +45,6 @@ public class CreateCaptureRequestBuilder {
         return this;
     }
 
-
-    private CreateCaptureRequest buildRequest() {
-
-        CreateCaptureRequest request = new CreateCaptureRequest(paymentId,
-            idempotencyKey,
-            entityCapture);
-
-        return request;
-    }
-
     public CompletableFuture<CreateCaptureResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -92,7 +54,6 @@ public class CreateCaptureRequestBuilder {
               = new CreateCapture.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        CreateCaptureRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

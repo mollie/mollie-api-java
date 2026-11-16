@@ -35,6 +35,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -50,9 +51,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -264,6 +267,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -281,6 +288,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -296,9 +304,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -510,6 +520,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -527,6 +541,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -542,9 +557,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -756,6 +773,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -773,6 +794,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -788,9 +810,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1002,6 +1026,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -1019,6 +1047,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -1034,8 +1063,10 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1247,6 +1278,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -1264,6 +1299,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -1279,9 +1315,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1493,6 +1531,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -1510,6 +1552,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -1525,9 +1568,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1739,6 +1784,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -1756,6 +1805,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -1771,9 +1821,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1985,6 +2037,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -2002,6 +2058,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -2017,9 +2074,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -2231,6 +2290,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -2248,6 +2311,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -2263,9 +2327,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -2477,6 +2543,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -2494,6 +2564,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -2509,9 +2580,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -2723,6 +2796,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -2740,6 +2817,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -2755,9 +2833,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -2969,6 +3049,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -2986,6 +3070,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.CreatePaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -3001,9 +3086,11 @@ public class Application {
                     .build())
             .build();
 
-        CreatePaymentResponse res = sdk.payments().create()
+        CreatePaymentRequest req = CreatePaymentRequest.builder()
                 .include("details.qrCode")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -3215,6 +3302,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreatePaymentResponse res = sdk.payments().create()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -3226,11 +3317,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `include`                                                                                            | *JsonNullable\<String>*                                                                              | :heavy_minus_sign:                                                                                   | This endpoint allows you to include additional information via the `include` query string parameter. |                                                                                                      |
-| `idempotencyKey`                                                                                     | *Optional\<String>*                                                                                  | :heavy_minus_sign:                                                                                   | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                     | 123e4567-e89b-12d3-a456-426                                                                          |
-| `paymentRequest`                                                                                     | [Optional\<PaymentRequest>](../../models/components/PaymentRequest.md)                               | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [CreatePaymentRequest](../../models/operations/CreatePaymentRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 
@@ -3281,6 +3370,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -3324,6 +3415,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -3367,6 +3460,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -3430,6 +3525,8 @@ public class Application {
                 .include("details.qrCode")
                 .embed("captures")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         GetPaymentResponse res = sdk.payments().get()
@@ -3471,6 +3568,8 @@ public class Application {
                 .include("details.qrCode")
                 .embed("captures")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         GetPaymentResponse res = sdk.payments().get()
@@ -3512,6 +3611,8 @@ public class Application {
                 .include("details.qrCode")
                 .embed("captures")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         GetPaymentResponse res = sdk.payments().get()
@@ -3557,8 +3658,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.UpdatePaymentRequestBody;
-import com.mollie.mollie.models.operations.UpdatePaymentResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -3571,9 +3671,11 @@ public class Application {
                     .build())
             .build();
 
-        UpdatePaymentResponse res = sdk.payments().update()
+        UpdatePaymentRequest req = UpdatePaymentRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(UpdatePaymentRequestBody.builder()
                     .description("Chess Board")
                     .redirectUrl("https://example.org/redirect")
@@ -3614,6 +3716,10 @@ public class Application {
                         .build())
                     .billingEmail("test@example.com")
                     .build())
+                .build();
+
+        UpdatePaymentResponse res = sdk.payments().update()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -3631,8 +3737,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.UpdatePaymentRequestBody;
-import com.mollie.mollie.models.operations.UpdatePaymentResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -3645,9 +3750,11 @@ public class Application {
                     .build())
             .build();
 
-        UpdatePaymentResponse res = sdk.payments().update()
+        UpdatePaymentRequest req = UpdatePaymentRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(UpdatePaymentRequestBody.builder()
                     .description("Chess Board")
                     .redirectUrl("https://example.org/redirect")
@@ -3688,6 +3795,10 @@ public class Application {
                         .build())
                     .billingEmail("test@example.com")
                     .build())
+                .build();
+
+        UpdatePaymentResponse res = sdk.payments().update()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -3705,8 +3816,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.UpdatePaymentRequestBody;
-import com.mollie.mollie.models.operations.UpdatePaymentResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -3719,9 +3829,11 @@ public class Application {
                     .build())
             .build();
 
-        UpdatePaymentResponse res = sdk.payments().update()
+        UpdatePaymentRequest req = UpdatePaymentRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(UpdatePaymentRequestBody.builder()
                     .description("Chess Board")
                     .redirectUrl("https://example.org/redirect")
@@ -3762,6 +3874,10 @@ public class Application {
                         .build())
                     .billingEmail("test@example.com")
                     .build())
+                .build();
+
+        UpdatePaymentResponse res = sdk.payments().update()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -3773,11 +3889,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `paymentId`                                                                                | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related payment.                                                     | tr_5B8cwPMGnU                                                                              |
-| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
-| `requestBody`                                                                              | [Optional\<UpdatePaymentRequestBody>](../../models/operations/UpdatePaymentRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [UpdatePaymentRequest](../../models/operations/UpdatePaymentRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 
@@ -3808,8 +3922,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.CancelPaymentRequestBody;
-import com.mollie.mollie.models.operations.CancelPaymentResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -3822,12 +3935,18 @@ public class Application {
                     .build())
             .build();
 
-        CancelPaymentResponse res = sdk.payments().cancel()
+        CancelPaymentRequest req = CancelPaymentRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(CancelPaymentRequestBody.builder()
                     .testmode(false)
                     .build())
+                .build();
+
+        CancelPaymentResponse res = sdk.payments().cancel()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -3839,11 +3958,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `paymentId`                                                                                | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related payment.                                                     | tr_5B8cwPMGnU                                                                              |
-| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
-| `requestBody`                                                                              | [Optional\<CancelPaymentRequestBody>](../../models/operations/CancelPaymentRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [CancelPaymentRequest](../../models/operations/CancelPaymentRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 
@@ -3876,8 +3993,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBody;
-import com.mollie.mollie.models.operations.ReleaseAuthorizationResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -3890,13 +4006,19 @@ public class Application {
                     .build())
             .build();
 
-        ReleaseAuthorizationResponse res = sdk.payments().releaseAuthorization()
+        ReleaseAuthorizationRequest req = ReleaseAuthorizationRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(ReleaseAuthorizationRequestBody.builder()
                     .profileId("pfl_5B8cwPMGnU")
                     .testmode(false)
                     .build())
+                .build();
+
+        ReleaseAuthorizationResponse res = sdk.payments().releaseAuthorization()
+                .request(req)
                 .call();
 
         // handle response
@@ -3906,11 +4028,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              | Example                                                                                                  |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                              | *String*                                                                                                 | :heavy_check_mark:                                                                                       | Provide the ID of the related payment.                                                                   | tr_5B8cwPMGnU                                                                                            |
-| `idempotencyKey`                                                                                         | *Optional\<String>*                                                                                      | :heavy_minus_sign:                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                         | 123e4567-e89b-12d3-a456-426                                                                              |
-| `requestBody`                                                                                            | [Optional\<ReleaseAuthorizationRequestBody>](../../models/operations/ReleaseAuthorizationRequestBody.md) | :heavy_minus_sign:                                                                                       | N/A                                                                                                      |                                                                                                          |
+| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `request`                                                                             | [ReleaseAuthorizationRequest](../../models/operations/ReleaseAuthorizationRequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
 
 ### Response
 

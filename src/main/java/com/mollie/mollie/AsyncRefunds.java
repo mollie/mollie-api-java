@@ -6,7 +6,6 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.RefundRequest;
 import com.mollie.mollie.models.operations.CancelRefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundRequest;
 import com.mollie.mollie.models.operations.GetRefundRequest;
@@ -29,8 +28,6 @@ import com.mollie.mollie.operations.ListAllRefunds;
 import com.mollie.mollie.operations.ListRefunds;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -81,13 +78,11 @@ public class AsyncRefunds {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CreateRefundResponse>} - The async response
      */
-    public CompletableFuture<CreateRefundResponse> create(String paymentId) {
-        return create(
-                paymentId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<CreateRefundResponse> create(CreateRefundRequest request) {
+        return create(request, Optional.empty());
     }
 
     /**
@@ -100,22 +95,11 @@ public class AsyncRefunds {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param refundRequest 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<CreateRefundResponse>} - The async response
      */
-    public CompletableFuture<CreateRefundResponse> create(
-            String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends RefundRequest> refundRequest, Optional<Options> options) {
-        CreateRefundRequest request =
-            CreateRefundRequest
-                .builder()
-                .paymentId(paymentId)
-                .idempotencyKey(idempotencyKey)
-                .refundRequest(refundRequest)
-                .build();
+    public CompletableFuture<CreateRefundResponse> create(CreateRefundRequest request, Optional<Options> options) {
         AsyncRequestOperation<CreateRefundRequest, CreateRefundResponse> operation
               = new CreateRefund.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -265,14 +249,11 @@ public class AsyncRefunds {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param refundId Provide the ID of the related refund.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CancelRefundResponse>} - The async response
      */
-    public CompletableFuture<CancelRefundResponse> cancel(String paymentId, String refundId) {
-        return cancel(
-                paymentId, refundId, Optional.empty(),
-                Optional.empty(), Optional.empty());
+    public CompletableFuture<CancelRefundResponse> cancel(CancelRefundRequest request) {
+        return cancel(request, Optional.empty());
     }
 
     /**
@@ -288,29 +269,11 @@ public class AsyncRefunds {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param refundId Provide the ID of the related refund.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<CancelRefundResponse>} - The async response
      */
-    public CompletableFuture<CancelRefundResponse> cancel(
-            String paymentId, String refundId,
-            Optional<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) {
-        CancelRefundRequest request =
-            CancelRefundRequest
-                .builder()
-                .paymentId(paymentId)
-                .refundId(refundId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<CancelRefundResponse> cancel(CancelRefundRequest request, Optional<Options> options) {
         AsyncRequestOperation<CancelRefundRequest, CancelRefundResponse> operation
               = new CancelRefund.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

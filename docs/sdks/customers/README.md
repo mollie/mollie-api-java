@@ -43,6 +43,8 @@ public class Application {
 
         CreateCustomerResponse res = sdk.customers().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .entityCustomer(EntityCustomer.builder()
                     .name("John Doe")
                     .email("example@email.com")
@@ -60,10 +62,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityCustomer`                                                                 | [Optional\<EntityCustomer>](../../models/components/EntityCustomer.md)           | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| Parameter                                                                                                                                                                               | Type                                                                                                                                                                                    | Required                                                                                                                                                                                | Description                                                                                                                                                                             | Example                                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                                                                                                                        | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                                             |
+| `xClientSignature`                                                                                                                                                                      | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.        | MEUCIQDx8sJvK3z...                                                                                                                                                                      |
+| `xClientSignedAt`                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration. | 2025-01-01T12:00:00Z                                                                                                                                                                    |
+| `entityCustomer`                                                                                                                                                                        | [Optional\<EntityCustomer>](../../models/components/EntityCustomer.md)                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                      | N/A                                                                                                                                                                                     |                                                                                                                                                                                         |
 
 ### Response
 
@@ -112,6 +116,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -155,6 +161,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetCustomerRequest;
 import com.mollie.mollie.models.operations.GetCustomerResponse;
 import java.lang.Exception;
 
@@ -169,9 +176,15 @@ public class Application {
                     .build())
             .build();
 
-        GetCustomerResponse res = sdk.customers().get()
+        GetCustomerRequest req = GetCustomerRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetCustomerResponse res = sdk.customers().get()
+                .request(req)
                 .call();
 
         if (res.customerResponse().isPresent()) {
@@ -183,11 +196,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                                                                                                                                                                                                                                                                                                             | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related customer.                                                                                                                                                                                                                                                                                                                                                  | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                           |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | *Optional\<Boolean>*                                                                                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [GetCustomerRequest](../../models/operations/GetCustomerRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 ### Response
 
@@ -216,8 +227,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.LocaleResponse;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
-import com.mollie.mollie.models.operations.UpdateCustomerResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -230,15 +240,21 @@ public class Application {
                     .build())
             .build();
 
-        UpdateCustomerResponse res = sdk.customers().update()
+        UpdateCustomerRequest req = UpdateCustomerRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(UpdateCustomerRequestBody.builder()
                     .name("John Doe")
                     .email("example@email.com")
                     .locale(LocaleResponse.EN_US)
                     .testmode(false)
                     .build())
+                .build();
+
+        UpdateCustomerResponse res = sdk.customers().update()
+                .request(req)
                 .call();
 
         if (res.customerResponse().isPresent()) {
@@ -257,8 +273,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.LocaleResponse;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.UpdateCustomerRequestBody;
-import com.mollie.mollie.models.operations.UpdateCustomerResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -271,15 +286,21 @@ public class Application {
                     .build())
             .build();
 
-        UpdateCustomerResponse res = sdk.customers().update()
+        UpdateCustomerRequest req = UpdateCustomerRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(UpdateCustomerRequestBody.builder()
                     .name("John Doe")
                     .email("example@email.com")
                     .locale(LocaleResponse.EN_US)
                     .testmode(false)
                     .build())
+                .build();
+
+        UpdateCustomerResponse res = sdk.customers().update()
+                .request(req)
                 .call();
 
         if (res.customerResponse().isPresent()) {
@@ -291,11 +312,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                 | *String*                                                                                     | :heavy_check_mark:                                                                           | Provide the ID of the related customer.                                                      | cst_5B8cwPMGnU                                                                               |
-| `idempotencyKey`                                                                             | *Optional\<String>*                                                                          | :heavy_minus_sign:                                                                           | A unique key to ensure idempotent requests. This key should be a UUID v4 string.             | 123e4567-e89b-12d3-a456-426                                                                  |
-| `requestBody`                                                                                | [Optional\<UpdateCustomerRequestBody>](../../models/operations/UpdateCustomerRequestBody.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |                                                                                              |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [UpdateCustomerRequest](../../models/operations/UpdateCustomerRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 ### Response
 
@@ -321,8 +340,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.DeleteCustomerRequestBody;
-import com.mollie.mollie.models.operations.DeleteCustomerResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -335,12 +353,18 @@ public class Application {
                     .build())
             .build();
 
-        DeleteCustomerResponse res = sdk.customers().delete()
+        DeleteCustomerRequest req = DeleteCustomerRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(DeleteCustomerRequestBody.builder()
                     .testmode(false)
                     .build())
+                .build();
+
+        DeleteCustomerResponse res = sdk.customers().delete()
+                .request(req)
                 .call();
 
         // handle response
@@ -350,11 +374,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  | Example                                                                                      |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                 | *String*                                                                                     | :heavy_check_mark:                                                                           | Provide the ID of the related customer.                                                      | cst_5B8cwPMGnU                                                                               |
-| `idempotencyKey`                                                                             | *Optional\<String>*                                                                          | :heavy_minus_sign:                                                                           | A unique key to ensure idempotent requests. This key should be a UUID v4 string.             | 123e4567-e89b-12d3-a456-426                                                                  |
-| `requestBody`                                                                                | [Optional\<DeleteCustomerRequestBody>](../../models/operations/DeleteCustomerRequestBody.md) | :heavy_minus_sign:                                                                           | N/A                                                                                          |                                                                                              |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [DeleteCustomerRequest](../../models/operations/DeleteCustomerRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 ### Response
 
@@ -390,6 +412,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -405,9 +428,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -541,6 +566,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -558,6 +587,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -573,9 +603,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -709,6 +741,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -726,6 +762,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -741,9 +778,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -877,6 +916,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -894,6 +937,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -909,9 +953,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1045,6 +1091,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -1062,6 +1112,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -1077,9 +1128,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1213,6 +1266,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -1230,6 +1287,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -1245,9 +1303,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1381,6 +1441,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -1398,6 +1462,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -1413,9 +1478,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1549,6 +1616,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -1566,6 +1637,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -1581,9 +1653,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1717,6 +1791,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -1734,6 +1812,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -1749,9 +1828,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -1885,6 +1966,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -1902,6 +1987,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -1917,9 +2003,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -2053,6 +2141,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -2070,6 +2162,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -2085,9 +2178,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -2221,6 +2316,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -2238,6 +2337,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -2253,9 +2353,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -2389,6 +2491,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -2406,6 +2512,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCustomerPaymentRequest;
 import com.mollie.mollie.models.operations.CreateCustomerPaymentResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
@@ -2421,9 +2528,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+        CreateCustomerPaymentRequest req = CreateCustomerPaymentRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .paymentRequest(PaymentRequest.builder()
                     .description("Chess Board")
                     .amount(Amount.builder()
@@ -2557,6 +2666,10 @@ public class Application {
                     .customerReference("1234567890")
                     .terminalId("term_1234567890")
                     .build())
+                .build();
+
+        CreateCustomerPaymentResponse res = sdk.customers().createPayment()
+                .request(req)
                 .call();
 
         if (res.paymentResponse().isPresent()) {
@@ -2568,11 +2681,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `customerId`                                                                     | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related customer.                                          | cst_5B8cwPMGnU                                                                   |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `paymentRequest`                                                                 | [Optional\<PaymentRequest>](../../models/components/PaymentRequest.md)           | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `request`                                                                               | [CreateCustomerPaymentRequest](../../models/operations/CreateCustomerPaymentRequest.md) | :heavy_check_mark:                                                                      | The request object to use for the request.                                              |
 
 ### Response
 
@@ -2622,6 +2733,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -2666,6 +2779,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -2710,6 +2825,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 

@@ -6,16 +6,12 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CancelPaymentRequest;
-import com.mollie.mollie.models.operations.CancelPaymentRequestBody;
 import com.mollie.mollie.models.operations.CreatePaymentRequest;
 import com.mollie.mollie.models.operations.GetPaymentRequest;
 import com.mollie.mollie.models.operations.ListPaymentsRequest;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequest;
-import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBody;
 import com.mollie.mollie.models.operations.UpdatePaymentRequest;
-import com.mollie.mollie.models.operations.UpdatePaymentRequestBody;
 import com.mollie.mollie.models.operations.async.CancelPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.async.CancelPaymentResponse;
 import com.mollie.mollie.models.operations.async.CreatePaymentRequestBuilder;
@@ -36,10 +32,8 @@ import com.mollie.mollie.operations.ReleaseAuthorization;
 import com.mollie.mollie.operations.UpdatePayment;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPayments {
@@ -108,12 +102,11 @@ public class AsyncPayments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CreatePaymentResponse>} - The async response
      */
-    public CompletableFuture<CreatePaymentResponse> createDirect() {
-        return create(
-                JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<CreatePaymentResponse> create(CreatePaymentRequest request) {
+        return create(request, Optional.empty());
     }
 
     /**
@@ -136,22 +129,11 @@ public class AsyncPayments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param paymentRequest 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<CreatePaymentResponse>} - The async response
      */
-    public CompletableFuture<CreatePaymentResponse> create(
-            JsonNullable<String> include, Optional<String> idempotencyKey,
-            Optional<? extends PaymentRequest> paymentRequest, Optional<Options> options) {
-        CreatePaymentRequest request =
-            CreatePaymentRequest
-                .builder()
-                .include(include)
-                .idempotencyKey(idempotencyKey)
-                .paymentRequest(paymentRequest)
-                .build();
+    public CompletableFuture<CreatePaymentResponse> create(CreatePaymentRequest request, Optional<Options> options) {
         AsyncRequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
               = new CreatePayment.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -295,13 +277,11 @@ public class AsyncPayments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<UpdatePaymentResponse>} - The async response
      */
-    public CompletableFuture<UpdatePaymentResponse> update(String paymentId) {
-        return update(
-                paymentId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<UpdatePaymentResponse> update(UpdatePaymentRequest request) {
+        return update(request, Optional.empty());
     }
 
     /**
@@ -314,22 +294,11 @@ public class AsyncPayments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<UpdatePaymentResponse>} - The async response
      */
-    public CompletableFuture<UpdatePaymentResponse> update(
-            String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends UpdatePaymentRequestBody> requestBody, Optional<Options> options) {
-        UpdatePaymentRequest request =
-            UpdatePaymentRequest
-                .builder()
-                .paymentId(paymentId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<UpdatePaymentResponse> update(UpdatePaymentRequest request, Optional<Options> options) {
         AsyncRequestOperation<UpdatePaymentRequest, UpdatePaymentResponse> operation
               = new UpdatePayment.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -375,13 +344,11 @@ public class AsyncPayments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CancelPaymentResponse>} - The async response
      */
-    public CompletableFuture<CancelPaymentResponse> cancel(String paymentId) {
-        return cancel(
-                paymentId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<CancelPaymentResponse> cancel(CancelPaymentRequest request) {
+        return cancel(request, Optional.empty());
     }
 
     /**
@@ -399,22 +366,11 @@ public class AsyncPayments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<CancelPaymentResponse>} - The async response
      */
-    public CompletableFuture<CancelPaymentResponse> cancel(
-            String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends CancelPaymentRequestBody> requestBody, Optional<Options> options) {
-        CancelPaymentRequest request =
-            CancelPaymentRequest
-                .builder()
-                .paymentId(paymentId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<CancelPaymentResponse> cancel(CancelPaymentRequest request, Optional<Options> options) {
         AsyncRequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
               = new CancelPayment.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -466,13 +422,11 @@ public class AsyncPayments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ReleaseAuthorizationResponse>} - The async response
      */
-    public CompletableFuture<ReleaseAuthorizationResponse> releaseAuthorization(String paymentId) {
-        return releaseAuthorization(
-                paymentId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<ReleaseAuthorizationResponse> releaseAuthorization(ReleaseAuthorizationRequest request) {
+        return releaseAuthorization(request, Optional.empty());
     }
 
     /**
@@ -493,22 +447,11 @@ public class AsyncPayments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<ReleaseAuthorizationResponse>} - The async response
      */
-    public CompletableFuture<ReleaseAuthorizationResponse> releaseAuthorization(
-            String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends ReleaseAuthorizationRequestBody> requestBody, Optional<Options> options) {
-        ReleaseAuthorizationRequest request =
-            ReleaseAuthorizationRequest
-                .builder()
-                .paymentId(paymentId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<ReleaseAuthorizationResponse> releaseAuthorization(ReleaseAuthorizationRequest request, Optional<Options> options) {
         AsyncRequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
               = new ReleaseAuthorization.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

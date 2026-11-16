@@ -28,6 +28,20 @@ public class DeleteSalesInvoiceRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private Optional<String> idempotencyKey;
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signature")
+    private Optional<String> xClientSignature;
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signed-At")
+    private Optional<String> xClientSignedAt;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice;
@@ -36,18 +50,25 @@ public class DeleteSalesInvoiceRequest {
     public DeleteSalesInvoiceRequest(
             String salesInvoiceId,
             Optional<String> idempotencyKey,
+            Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt,
             Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice) {
         Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
         Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
         this.salesInvoiceId = salesInvoiceId;
         this.idempotencyKey = idempotencyKey;
+        this.xClientSignature = xClientSignature;
+        this.xClientSignedAt = xClientSignedAt;
         this.deleteValuesSalesInvoice = deleteValuesSalesInvoice;
     }
     
     public DeleteSalesInvoiceRequest(
             String salesInvoiceId) {
-        this(salesInvoiceId, Optional.empty(), Optional.empty());
+        this(salesInvoiceId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -64,6 +85,24 @@ public class DeleteSalesInvoiceRequest {
     @JsonIgnore
     public Optional<String> idempotencyKey() {
         return idempotencyKey;
+    }
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignature() {
+        return xClientSignature;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignedAt() {
+        return xClientSignedAt;
     }
 
     @SuppressWarnings("unchecked")
@@ -105,6 +144,48 @@ public class DeleteSalesInvoiceRequest {
         return this;
     }
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public DeleteSalesInvoiceRequest withXClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.ofNullable(xClientSignature);
+        return this;
+    }
+
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public DeleteSalesInvoiceRequest withXClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public DeleteSalesInvoiceRequest withXClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+        return this;
+    }
+
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public DeleteSalesInvoiceRequest withXClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+
     public DeleteSalesInvoiceRequest withDeleteValuesSalesInvoice(DeleteValuesSalesInvoice deleteValuesSalesInvoice) {
         Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
         this.deleteValuesSalesInvoice = Optional.ofNullable(deleteValuesSalesInvoice);
@@ -130,13 +211,16 @@ public class DeleteSalesInvoiceRequest {
         return 
             Utils.enhancedDeepEquals(this.salesInvoiceId, other.salesInvoiceId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.xClientSignature, other.xClientSignature) &&
+            Utils.enhancedDeepEquals(this.xClientSignedAt, other.xClientSignedAt) &&
             Utils.enhancedDeepEquals(this.deleteValuesSalesInvoice, other.deleteValuesSalesInvoice);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            salesInvoiceId, idempotencyKey, deleteValuesSalesInvoice);
+            salesInvoiceId, idempotencyKey, xClientSignature,
+            xClientSignedAt, deleteValuesSalesInvoice);
     }
     
     @Override
@@ -144,6 +228,8 @@ public class DeleteSalesInvoiceRequest {
         return Utils.toString(DeleteSalesInvoiceRequest.class,
                 "salesInvoiceId", salesInvoiceId,
                 "idempotencyKey", idempotencyKey,
+                "xClientSignature", xClientSignature,
+                "xClientSignedAt", xClientSignedAt,
                 "deleteValuesSalesInvoice", deleteValuesSalesInvoice);
     }
 
@@ -153,6 +239,10 @@ public class DeleteSalesInvoiceRequest {
         private String salesInvoiceId;
 
         private Optional<String> idempotencyKey = Optional.empty();
+
+        private Optional<String> xClientSignature = Optional.empty();
+
+        private Optional<String> xClientSignedAt = Optional.empty();
 
         private Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice = Optional.empty();
 
@@ -190,6 +280,48 @@ public class DeleteSalesInvoiceRequest {
         }
 
 
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(String xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = Optional.ofNullable(xClientSignature);
+            return this;
+        }
+
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(Optional<String> xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = xClientSignature;
+            return this;
+        }
+
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(String xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(Optional<String> xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = xClientSignedAt;
+            return this;
+        }
+
+
         public Builder deleteValuesSalesInvoice(DeleteValuesSalesInvoice deleteValuesSalesInvoice) {
             Utils.checkNotNull(deleteValuesSalesInvoice, "deleteValuesSalesInvoice");
             this.deleteValuesSalesInvoice = Optional.ofNullable(deleteValuesSalesInvoice);
@@ -205,7 +337,8 @@ public class DeleteSalesInvoiceRequest {
         public DeleteSalesInvoiceRequest build() {
 
             return new DeleteSalesInvoiceRequest(
-                salesInvoiceId, idempotencyKey, deleteValuesSalesInvoice);
+                salesInvoiceId, idempotencyKey, xClientSignature,
+                xClientSignedAt, deleteValuesSalesInvoice);
         }
 
     }

@@ -20,7 +20,6 @@ import com.mollie.mollie.operations.GetOrganization;
 import com.mollie.mollie.operations.GetPartnerStatus;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -80,13 +79,11 @@ public class AsyncOrganizations {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param organizationId Provide the ID of the related organization.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetOrganizationResponse>} - The async response
      */
-    public CompletableFuture<GetOrganizationResponse> get(String organizationId) {
-        return get(
-                organizationId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<GetOrganizationResponse> get(GetOrganizationRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -103,26 +100,11 @@ public class AsyncOrganizations {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param organizationId Provide the ID of the related organization.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetOrganizationResponse>} - The async response
      */
-    public CompletableFuture<GetOrganizationResponse> get(
-            String organizationId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetOrganizationRequest request =
-            GetOrganizationRequest
-                .builder()
-                .organizationId(organizationId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetOrganizationResponse> get(GetOrganizationRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
               = new GetOrganization.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -169,7 +151,9 @@ public class AsyncOrganizations {
      * @return {@code CompletableFuture<GetCurrentOrganizationResponse>} - The async response
      */
     public CompletableFuture<GetCurrentOrganizationResponse> getCurrentDirect() {
-        return getCurrent(Optional.empty(), Optional.empty());
+        return getCurrent(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -187,14 +171,20 @@ public class AsyncOrganizations {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetCurrentOrganizationResponse>} - The async response
      */
-    public CompletableFuture<GetCurrentOrganizationResponse> getCurrent(Optional<String> idempotencyKey, Optional<Options> options) {
+    public CompletableFuture<GetCurrentOrganizationResponse> getCurrent(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetCurrentOrganizationRequest request =
             GetCurrentOrganizationRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<GetCurrentOrganizationRequest, GetCurrentOrganizationResponse> operation
               = new GetCurrentOrganization.Async(
@@ -234,7 +224,9 @@ public class AsyncOrganizations {
      * @return {@code CompletableFuture<GetPartnerStatusResponse>} - The async response
      */
     public CompletableFuture<GetPartnerStatusResponse> getPartnerDirect() {
-        return getPartner(Optional.empty(), Optional.empty());
+        return getPartner(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -248,14 +240,20 @@ public class AsyncOrganizations {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetPartnerStatusResponse>} - The async response
      */
-    public CompletableFuture<GetPartnerStatusResponse> getPartner(Optional<String> idempotencyKey, Optional<Options> options) {
+    public CompletableFuture<GetPartnerStatusResponse> getPartner(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetPartnerStatusRequest request =
             GetPartnerStatusRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<GetPartnerStatusRequest, GetPartnerStatusResponse> operation
               = new GetPartnerStatus.Async(

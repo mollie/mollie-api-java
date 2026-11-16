@@ -60,7 +60,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.mollie:mollie:1.10.24'
+implementation 'com.mollie:mollie:1.10.25'
 ```
 
 Maven:
@@ -68,7 +68,7 @@ Maven:
 <dependency>
     <groupId>com.mollie</groupId>
     <artifactId>mollie</artifactId>
-    <version>1.10.24</version>
+    <version>1.10.25</version>
 </dependency>
 ```
 
@@ -290,6 +290,8 @@ public class Application {
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -457,6 +459,7 @@ Client sdk = Client.builder()
 
 ### [Accounts](docs/sdks/accounts/README.md)
 
+* [createAccount](docs/sdks/accounts/README.md#createaccount) - Create business account
 * [listAccounts](docs/sdks/accounts/README.md#listaccounts) - List business accounts
 * [getAccount](docs/sdks/accounts/README.md#getaccount) - Get business account
 * [list](docs/sdks/accounts/README.md#list) - List transactions
@@ -741,6 +744,8 @@ public class Application {
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -790,6 +795,8 @@ public class Application {
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -843,6 +850,8 @@ public class Application {
                 .from("bal_gVMhHKqSSRYJyPsuoPNFH")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 

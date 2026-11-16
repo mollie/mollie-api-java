@@ -20,7 +20,6 @@ import com.mollie.mollie.operations.GetOrganization;
 import com.mollie.mollie.operations.GetPartnerStatus;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 
@@ -78,13 +77,12 @@ public class Organizations {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param organizationId Provide the ID of the related organization.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetOrganizationResponse get(String organizationId) {
-        return get(organizationId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public GetOrganizationResponse get(GetOrganizationRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -101,27 +99,12 @@ public class Organizations {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param organizationId Provide the ID of the related organization.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetOrganizationResponse get(
-            String organizationId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetOrganizationRequest request =
-            GetOrganizationRequest
-                .builder()
-                .organizationId(organizationId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetOrganizationResponse get(GetOrganizationRequest request, Optional<Options> options) {
         RequestOperation<GetOrganizationRequest, GetOrganizationResponse> operation
               = new GetOrganization.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -165,7 +148,8 @@ public class Organizations {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetCurrentOrganizationResponse getCurrentDirect() {
-        return getCurrent(Optional.empty(), Optional.empty());
+        return getCurrent(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -183,15 +167,21 @@ public class Organizations {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetCurrentOrganizationResponse getCurrent(Optional<String> idempotencyKey, Optional<Options> options) {
+    public GetCurrentOrganizationResponse getCurrent(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetCurrentOrganizationRequest request =
             GetCurrentOrganizationRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<GetCurrentOrganizationRequest, GetCurrentOrganizationResponse> operation
               = new GetCurrentOrganization.Sync(sdkConfiguration, options, _headers);
@@ -228,7 +218,8 @@ public class Organizations {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetPartnerStatusResponse getPartnerDirect() {
-        return getPartner(Optional.empty(), Optional.empty());
+        return getPartner(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -242,15 +233,21 @@ public class Organizations {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetPartnerStatusResponse getPartner(Optional<String> idempotencyKey, Optional<Options> options) {
+    public GetPartnerStatusResponse getPartner(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetPartnerStatusRequest request =
             GetPartnerStatusRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<GetPartnerStatusRequest, GetPartnerStatusResponse> operation
               = new GetPartnerStatus.Sync(sdkConfiguration, options, _headers);

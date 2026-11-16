@@ -13,16 +13,12 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetBusinessAccountRequestBuilder {
 
-    private String businessAccountId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetBusinessAccountRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -31,33 +27,9 @@ public class GetBusinessAccountRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetBusinessAccountRequestBuilder businessAccountId(String businessAccountId) {
-        Utils.checkNotNull(businessAccountId, "businessAccountId");
-        this.businessAccountId = businessAccountId;
-        return this;
-    }
-                
-    public GetBusinessAccountRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetBusinessAccountRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetBusinessAccountRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetBusinessAccountRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetBusinessAccountRequestBuilder request(GetBusinessAccountRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -73,16 +45,6 @@ public class GetBusinessAccountRequestBuilder {
         return this;
     }
 
-
-    private GetBusinessAccountRequest buildRequest() {
-
-        GetBusinessAccountRequest request = new GetBusinessAccountRequest(businessAccountId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public CompletableFuture<GetBusinessAccountResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -92,7 +54,6 @@ public class GetBusinessAccountRequestBuilder {
               = new GetBusinessAccount.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        GetBusinessAccountRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

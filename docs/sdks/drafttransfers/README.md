@@ -64,6 +64,8 @@ public class Application {
 
         CreateDraftTransferResponse res = sdk.draftTransfers().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .createDraftTransferRequest(CreateDraftTransferRequest.builder()
                     .debtorIban("NL55MLLE0123456789")
                     .creditor(DraftTransferParty.builder()
@@ -91,10 +93,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    | Example                                                                                        |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `idempotencyKey`                                                                               | *Optional\<String>*                                                                            | :heavy_minus_sign:                                                                             | A unique key to ensure idempotent requests. This key should be a UUID v4 string.               | 123e4567-e89b-12d3-a456-426                                                                    |
-| `createDraftTransferRequest`                                                                   | [Optional\<CreateDraftTransferRequest>](../../models/components/CreateDraftTransferRequest.md) | :heavy_minus_sign:                                                                             | N/A                                                                                            |                                                                                                |
+| Parameter                                                                                                                                                                               | Type                                                                                                                                                                                    | Required                                                                                                                                                                                | Description                                                                                                                                                                             | Example                                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                                                                                                                        | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                                             |
+| `xClientSignature`                                                                                                                                                                      | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.        | MEUCIQDx8sJvK3z...                                                                                                                                                                      |
+| `xClientSignedAt`                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration. | 2025-01-01T12:00:00Z                                                                                                                                                                    |
+| `createDraftTransferRequest`                                                                                                                                                            | [Optional\<CreateDraftTransferRequest>](../../models/components/CreateDraftTransferRequest.md)                                                                                          | :heavy_minus_sign:                                                                                                                                                                      | N/A                                                                                                                                                                                     |                                                                                                                                                                                         |
 
 ### Response
 
@@ -148,6 +152,8 @@ public class Application {
                 .limit(50L)
                 .status(DraftTransferStatus.APPROVED)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -201,6 +207,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetDraftTransferRequest;
 import com.mollie.mollie.models.operations.GetDraftTransferResponse;
 import java.lang.Exception;
 
@@ -215,9 +222,15 @@ public class Application {
                     .build())
             .build();
 
-        GetDraftTransferResponse res = sdk.draftTransfers().get()
+        GetDraftTransferRequest req = GetDraftTransferRequest.builder()
                 .draftTransferId("badrt_87GByBuj4UCcUTEbs6aGJ")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetDraftTransferResponse res = sdk.draftTransfers().get()
+                .request(req)
                 .call();
 
         if (res.draftTransferResponse().isPresent()) {
@@ -235,6 +248,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetDraftTransferRequest;
 import com.mollie.mollie.models.operations.GetDraftTransferResponse;
 import java.lang.Exception;
 
@@ -249,9 +263,15 @@ public class Application {
                     .build())
             .build();
 
-        GetDraftTransferResponse res = sdk.draftTransfers().get()
+        GetDraftTransferRequest req = GetDraftTransferRequest.builder()
                 .draftTransferId("badrt_87GByBuj4UCcUTEbs6aGJ")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetDraftTransferResponse res = sdk.draftTransfers().get()
+                .request(req)
                 .call();
 
         if (res.draftTransferResponse().isPresent()) {
@@ -269,6 +289,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetDraftTransferRequest;
 import com.mollie.mollie.models.operations.GetDraftTransferResponse;
 import java.lang.Exception;
 
@@ -283,9 +304,15 @@ public class Application {
                     .build())
             .build();
 
-        GetDraftTransferResponse res = sdk.draftTransfers().get()
+        GetDraftTransferRequest req = GetDraftTransferRequest.builder()
                 .draftTransferId("badrt_87GByBuj4UCcUTEbs6aGJ")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetDraftTransferResponse res = sdk.draftTransfers().get()
+                .request(req)
                 .call();
 
         if (res.draftTransferResponse().isPresent()) {
@@ -303,6 +330,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetDraftTransferRequest;
 import com.mollie.mollie.models.operations.GetDraftTransferResponse;
 import java.lang.Exception;
 
@@ -317,9 +345,13 @@ public class Application {
                     .build())
             .build();
 
-        GetDraftTransferResponse res = sdk.draftTransfers().get()
+        GetDraftTransferRequest req = GetDraftTransferRequest.builder()
                 .draftTransferId("badrt_87GByBuj4UCcUTEbs6aGJ")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .build();
+
+        GetDraftTransferResponse res = sdk.draftTransfers().get()
+                .request(req)
                 .call();
 
         if (res.draftTransferResponse().isPresent()) {
@@ -331,11 +363,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `draftTransferId`                                                                                                                                                                                                                                                                                                                                                                        | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related draft transfer.                                                                                                                                                                                                                                                                                                                                            | badrt_87GByBuj4UCcUTEbs6aGJ                                                                                                                                                                                                                                                                                                                                                              |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | *Optional\<Boolean>*                                                                                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [GetDraftTransferRequest](../../models/operations/GetDraftTransferRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 ### Response
 
@@ -372,8 +402,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.CancelDraftTransferRequestBody;
-import com.mollie.mollie.models.operations.CancelDraftTransferResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -386,12 +415,18 @@ public class Application {
                     .build())
             .build();
 
-        CancelDraftTransferResponse res = sdk.draftTransfers().cancel()
+        CancelDraftTransferRequest req = CancelDraftTransferRequest.builder()
                 .draftTransferId("badrt_87GByBuj4UCcUTEbs6aGJ")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(CancelDraftTransferRequestBody.builder()
                     .testmode(false)
                     .build())
+                .build();
+
+        CancelDraftTransferResponse res = sdk.draftTransfers().cancel()
+                .request(req)
                 .call();
 
         if (res.draftTransferResponse().isPresent()) {
@@ -403,11 +438,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            | Example                                                                                                |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `draftTransferId`                                                                                      | *String*                                                                                               | :heavy_check_mark:                                                                                     | Provide the ID of the related draft transfer.                                                          | badrt_87GByBuj4UCcUTEbs6aGJ                                                                            |
-| `idempotencyKey`                                                                                       | *Optional\<String>*                                                                                    | :heavy_minus_sign:                                                                                     | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                       | 123e4567-e89b-12d3-a456-426                                                                            |
-| `requestBody`                                                                                          | [Optional\<CancelDraftTransferRequestBody>](../../models/operations/CancelDraftTransferRequestBody.md) | :heavy_minus_sign:                                                                                     | N/A                                                                                                    |                                                                                                        |
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [CancelDraftTransferRequest](../../models/operations/CancelDraftTransferRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
 
 ### Response
 

@@ -13,16 +13,12 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetWebhookEventRequestBuilder {
 
-    private String webhookEventId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetWebhookEventRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -31,33 +27,9 @@ public class GetWebhookEventRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetWebhookEventRequestBuilder webhookEventId(String webhookEventId) {
-        Utils.checkNotNull(webhookEventId, "webhookEventId");
-        this.webhookEventId = webhookEventId;
-        return this;
-    }
-                
-    public GetWebhookEventRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetWebhookEventRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetWebhookEventRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetWebhookEventRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetWebhookEventRequestBuilder request(GetWebhookEventRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -73,16 +45,6 @@ public class GetWebhookEventRequestBuilder {
         return this;
     }
 
-
-    private GetWebhookEventRequest buildRequest() {
-
-        GetWebhookEventRequest request = new GetWebhookEventRequest(webhookEventId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public CompletableFuture<GetWebhookEventResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -92,7 +54,6 @@ public class GetWebhookEventRequestBuilder {
               = new GetWebhookEvent.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        GetWebhookEventRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

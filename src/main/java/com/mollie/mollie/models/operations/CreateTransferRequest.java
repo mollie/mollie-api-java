@@ -45,12 +45,6 @@ public class CreateTransferRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=Idempotency-Key")
     private String idempotencyKey;
 
-    /**
-     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     */
-    @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
-    private Optional<String> idempotencyKey1;
-
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends TransferRequest> transferRequest;
@@ -60,17 +54,14 @@ public class CreateTransferRequest {
             String xClientSignature,
             String xClientSignedAt,
             String idempotencyKey,
-            Optional<String> idempotencyKey1,
             Optional<? extends TransferRequest> transferRequest) {
         Utils.checkNotNull(xClientSignature, "xClientSignature");
         Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        Utils.checkNotNull(idempotencyKey1, "idempotencyKey1");
         Utils.checkNotNull(transferRequest, "transferRequest");
         this.xClientSignature = xClientSignature;
         this.xClientSignedAt = xClientSignedAt;
         this.idempotencyKey = idempotencyKey;
-        this.idempotencyKey1 = idempotencyKey1;
         this.transferRequest = transferRequest;
     }
     
@@ -79,7 +70,7 @@ public class CreateTransferRequest {
             String xClientSignedAt,
             String idempotencyKey) {
         this(xClientSignature, xClientSignedAt, idempotencyKey,
-            Optional.empty(), Optional.empty());
+            Optional.empty());
     }
 
     /**
@@ -115,14 +106,6 @@ public class CreateTransferRequest {
     @JsonIgnore
     public String idempotencyKey() {
         return idempotencyKey;
-    }
-
-    /**
-     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     */
-    @JsonIgnore
-    public Optional<String> idempotencyKey1() {
-        return idempotencyKey1;
     }
 
     @SuppressWarnings("unchecked")
@@ -174,25 +157,6 @@ public class CreateTransferRequest {
         return this;
     }
 
-    /**
-     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     */
-    public CreateTransferRequest withIdempotencyKey1(String idempotencyKey1) {
-        Utils.checkNotNull(idempotencyKey1, "idempotencyKey1");
-        this.idempotencyKey1 = Optional.ofNullable(idempotencyKey1);
-        return this;
-    }
-
-
-    /**
-     * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     */
-    public CreateTransferRequest withIdempotencyKey1(Optional<String> idempotencyKey1) {
-        Utils.checkNotNull(idempotencyKey1, "idempotencyKey1");
-        this.idempotencyKey1 = idempotencyKey1;
-        return this;
-    }
-
     public CreateTransferRequest withTransferRequest(TransferRequest transferRequest) {
         Utils.checkNotNull(transferRequest, "transferRequest");
         this.transferRequest = Optional.ofNullable(transferRequest);
@@ -219,7 +183,6 @@ public class CreateTransferRequest {
             Utils.enhancedDeepEquals(this.xClientSignature, other.xClientSignature) &&
             Utils.enhancedDeepEquals(this.xClientSignedAt, other.xClientSignedAt) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
-            Utils.enhancedDeepEquals(this.idempotencyKey1, other.idempotencyKey1) &&
             Utils.enhancedDeepEquals(this.transferRequest, other.transferRequest);
     }
     
@@ -227,7 +190,7 @@ public class CreateTransferRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             xClientSignature, xClientSignedAt, idempotencyKey,
-            idempotencyKey1, transferRequest);
+            transferRequest);
     }
     
     @Override
@@ -236,7 +199,6 @@ public class CreateTransferRequest {
                 "xClientSignature", xClientSignature,
                 "xClientSignedAt", xClientSignedAt,
                 "idempotencyKey", idempotencyKey,
-                "idempotencyKey1", idempotencyKey1,
                 "transferRequest", transferRequest);
     }
 
@@ -248,8 +210,6 @@ public class CreateTransferRequest {
         private String xClientSignedAt;
 
         private String idempotencyKey;
-
-        private Optional<String> idempotencyKey1 = Optional.empty();
 
         private Optional<? extends TransferRequest> transferRequest = Optional.empty();
 
@@ -299,25 +259,6 @@ public class CreateTransferRequest {
         }
 
 
-        /**
-         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-         */
-        public Builder idempotencyKey1(String idempotencyKey1) {
-            Utils.checkNotNull(idempotencyKey1, "idempotencyKey1");
-            this.idempotencyKey1 = Optional.ofNullable(idempotencyKey1);
-            return this;
-        }
-
-        /**
-         * A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-         */
-        public Builder idempotencyKey1(Optional<String> idempotencyKey1) {
-            Utils.checkNotNull(idempotencyKey1, "idempotencyKey1");
-            this.idempotencyKey1 = idempotencyKey1;
-            return this;
-        }
-
-
         public Builder transferRequest(TransferRequest transferRequest) {
             Utils.checkNotNull(transferRequest, "transferRequest");
             this.transferRequest = Optional.ofNullable(transferRequest);
@@ -334,7 +275,7 @@ public class CreateTransferRequest {
 
             return new CreateTransferRequest(
                 xClientSignature, xClientSignedAt, idempotencyKey,
-                idempotencyKey1, transferRequest);
+                transferRequest);
         }
 
     }

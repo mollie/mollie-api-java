@@ -6,6 +6,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
+import com.mollie.mollie.models.components.TransferRequest;
 import com.mollie.mollie.models.operations.CreateTransferRequest;
 import com.mollie.mollie.models.operations.CreateTransferRequestBuilder;
 import com.mollie.mollie.models.operations.CreateTransferResponse;
@@ -16,7 +17,6 @@ import com.mollie.mollie.operations.CreateTransfer;
 import com.mollie.mollie.operations.GetTransfer;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 
@@ -138,12 +138,23 @@ public class Transfers {
      * 
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param xClientSignature A cryptographic signature of the request payload, used to verify the authenticity of the transfer request.
+     * @param xClientSignedAt The timestamp (in ISO 8601 format) indicating when the client signed the request. Used in conjunction with
+     *         `X-Client-Signature` for request verification.
+     * @param idempotencyKey A unique value used to identify this request and prevent duplicate transfers. UUIDv4 is recommended to
+     *         guarantee uniqueness across multiple processes or servers. If two requests are received with the same
+     *         idempotency key, the second request will be discarded.
+     *         
+     *         View the [public documentation](https://docs.mollie.com/reference/api-idempotency#using-an-idempotency-key)
+     *         to learn more.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateTransferResponse create(CreateTransferRequest request) {
-        return create(request, Optional.empty());
+    public CreateTransferResponse create(
+            String xClientSignature, String xClientSignedAt,
+            String idempotencyKey) {
+        return create(xClientSignature, xClientSignedAt, idempotencyKey,
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -192,12 +203,32 @@ public class Transfers {
      * 
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
-     * @param request The request object containing all the parameters for the API call.
+     * @param xClientSignature A cryptographic signature of the request payload, used to verify the authenticity of the transfer request.
+     * @param xClientSignedAt The timestamp (in ISO 8601 format) indicating when the client signed the request. Used in conjunction with
+     *         `X-Client-Signature` for request verification.
+     * @param idempotencyKey A unique value used to identify this request and prevent duplicate transfers. UUIDv4 is recommended to
+     *         guarantee uniqueness across multiple processes or servers. If two requests are received with the same
+     *         idempotency key, the second request will be discarded.
+     *         
+     *         View the [public documentation](https://docs.mollie.com/reference/api-idempotency#using-an-idempotency-key)
+     *         to learn more.
+     * @param transferRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateTransferResponse create(CreateTransferRequest request, Optional<Options> options) {
+    public CreateTransferResponse create(
+            String xClientSignature, String xClientSignedAt,
+            String idempotencyKey, Optional<? extends TransferRequest> transferRequest,
+            Optional<Options> options) {
+        CreateTransferRequest request =
+            CreateTransferRequest
+                .builder()
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
+                .idempotencyKey(idempotencyKey)
+                .transferRequest(transferRequest)
+                .build();
         RequestOperation<CreateTransferRequest, CreateTransferResponse> operation
               = new CreateTransfer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -233,13 +264,12 @@ public class Transfers {
      * 
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
-     * @param businessAccountsTransferId Provide the ID of the related transfer.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetTransferResponse get(String businessAccountsTransferId) {
-        return get(businessAccountsTransferId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public GetTransferResponse get(GetTransferRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -254,27 +284,12 @@ public class Transfers {
      * 
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
-     * @param businessAccountsTransferId Provide the ID of the related transfer.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetTransferResponse get(
-            String businessAccountsTransferId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetTransferRequest request =
-            GetTransferRequest
-                .builder()
-                .businessAccountsTransferId(businessAccountsTransferId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetTransferResponse get(GetTransferRequest request, Optional<Options> options) {
         RequestOperation<GetTransferRequest, GetTransferResponse> operation
               = new GetTransfer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

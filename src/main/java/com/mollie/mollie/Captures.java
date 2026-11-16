@@ -6,7 +6,6 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.EntityCapture;
 import com.mollie.mollie.models.operations.CreateCaptureRequest;
 import com.mollie.mollie.models.operations.CreateCaptureRequestBuilder;
 import com.mollie.mollie.models.operations.CreateCaptureResponse;
@@ -21,7 +20,6 @@ import com.mollie.mollie.operations.GetCapture;
 import com.mollie.mollie.operations.ListCaptures;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.String;
 import java.util.Optional;
 
 
@@ -82,13 +80,12 @@ public class Captures {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateCaptureResponse create(String paymentId) {
-        return create(paymentId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public CreateCaptureResponse create(CreateCaptureRequest request) {
+        return create(request, Optional.empty());
     }
 
     /**
@@ -107,23 +104,12 @@ public class Captures {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param entityCapture 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateCaptureResponse create(
-            String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends EntityCapture> entityCapture, Optional<Options> options) {
-        CreateCaptureRequest request =
-            CreateCaptureRequest
-                .builder()
-                .paymentId(paymentId)
-                .idempotencyKey(idempotencyKey)
-                .entityCapture(entityCapture)
-                .build();
+    public CreateCaptureResponse create(CreateCaptureRequest request, Optional<Options> options) {
         RequestOperation<CreateCaptureRequest, CreateCaptureResponse> operation
               = new CreateCapture.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

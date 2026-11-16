@@ -6,9 +6,7 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.models.operations.CancelPaymentRequest;
-import com.mollie.mollie.models.operations.CancelPaymentRequestBody;
 import com.mollie.mollie.models.operations.CancelPaymentRequestBuilder;
 import com.mollie.mollie.models.operations.CancelPaymentResponse;
 import com.mollie.mollie.models.operations.CreatePaymentRequest;
@@ -21,11 +19,9 @@ import com.mollie.mollie.models.operations.ListPaymentsRequest;
 import com.mollie.mollie.models.operations.ListPaymentsRequestBuilder;
 import com.mollie.mollie.models.operations.ListPaymentsResponse;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequest;
-import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBody;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBuilder;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationResponse;
 import com.mollie.mollie.models.operations.UpdatePaymentRequest;
-import com.mollie.mollie.models.operations.UpdatePaymentRequestBody;
 import com.mollie.mollie.models.operations.UpdatePaymentRequestBuilder;
 import com.mollie.mollie.models.operations.UpdatePaymentResponse;
 import com.mollie.mollie.operations.CancelPayment;
@@ -36,9 +32,7 @@ import com.mollie.mollie.operations.ReleaseAuthorization;
 import com.mollie.mollie.operations.UpdatePayment;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Payments {
@@ -106,12 +100,12 @@ public class Payments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePaymentResponse createDirect() {
-        return create(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public CreatePaymentResponse create(CreatePaymentRequest request) {
+        return create(request, Optional.empty());
     }
 
     /**
@@ -134,23 +128,12 @@ public class Payments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param include This endpoint allows you to include additional information via the `include` query string parameter.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param paymentRequest 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreatePaymentResponse create(
-            JsonNullable<String> include, Optional<String> idempotencyKey,
-            Optional<? extends PaymentRequest> paymentRequest, Optional<Options> options) {
-        CreatePaymentRequest request =
-            CreatePaymentRequest
-                .builder()
-                .include(include)
-                .idempotencyKey(idempotencyKey)
-                .paymentRequest(paymentRequest)
-                .build();
+    public CreatePaymentResponse create(CreatePaymentRequest request, Optional<Options> options) {
         RequestOperation<CreatePaymentRequest, CreatePaymentResponse> operation
               = new CreatePayment.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -286,13 +269,12 @@ public class Payments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UpdatePaymentResponse update(String paymentId) {
-        return update(paymentId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public UpdatePaymentResponse update(UpdatePaymentRequest request) {
+        return update(request, Optional.empty());
     }
 
     /**
@@ -305,23 +287,12 @@ public class Payments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UpdatePaymentResponse update(
-            String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends UpdatePaymentRequestBody> requestBody, Optional<Options> options) {
-        UpdatePaymentRequest request =
-            UpdatePaymentRequest
-                .builder()
-                .paymentId(paymentId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public UpdatePaymentResponse update(UpdatePaymentRequest request, Optional<Options> options) {
         RequestOperation<UpdatePaymentRequest, UpdatePaymentResponse> operation
               = new UpdatePayment.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -363,13 +334,12 @@ public class Payments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CancelPaymentResponse cancel(String paymentId) {
-        return cancel(paymentId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public CancelPaymentResponse cancel(CancelPaymentRequest request) {
+        return cancel(request, Optional.empty());
     }
 
     /**
@@ -387,23 +357,12 @@ public class Payments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CancelPaymentResponse cancel(
-            String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends CancelPaymentRequestBody> requestBody, Optional<Options> options) {
-        CancelPaymentRequest request =
-            CancelPaymentRequest
-                .builder()
-                .paymentId(paymentId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CancelPaymentResponse cancel(CancelPaymentRequest request, Optional<Options> options) {
         RequestOperation<CancelPaymentRequest, CancelPaymentResponse> operation
               = new CancelPayment.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -451,13 +410,12 @@ public class Payments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ReleaseAuthorizationResponse releaseAuthorization(String paymentId) {
-        return releaseAuthorization(paymentId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public ReleaseAuthorizationResponse releaseAuthorization(ReleaseAuthorizationRequest request) {
+        return releaseAuthorization(request, Optional.empty());
     }
 
     /**
@@ -478,23 +436,12 @@ public class Payments {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public ReleaseAuthorizationResponse releaseAuthorization(
-            String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends ReleaseAuthorizationRequestBody> requestBody, Optional<Options> options) {
-        ReleaseAuthorizationRequest request =
-            ReleaseAuthorizationRequest
-                .builder()
-                .paymentId(paymentId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public ReleaseAuthorizationResponse releaseAuthorization(ReleaseAuthorizationRequest request, Optional<Options> options) {
         RequestOperation<ReleaseAuthorizationRequest, ReleaseAuthorizationResponse> operation
               = new ReleaseAuthorization.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

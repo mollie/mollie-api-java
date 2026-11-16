@@ -6,7 +6,6 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.RouteCreateRequest;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequest;
 import com.mollie.mollie.models.operations.PaymentCreateRouteRequestBuilder;
 import com.mollie.mollie.models.operations.PaymentCreateRouteResponse;
@@ -21,8 +20,6 @@ import com.mollie.mollie.operations.PaymentGetRoute;
 import com.mollie.mollie.operations.PaymentListRoutes;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 
@@ -69,13 +66,12 @@ public class DelayedRouting {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public PaymentCreateRouteResponse create(String paymentId) {
-        return create(paymentId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public PaymentCreateRouteResponse create(PaymentCreateRouteRequest request) {
+        return create(request, Optional.empty());
     }
 
     /**
@@ -87,23 +83,12 @@ public class DelayedRouting {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param routeCreateRequest Payload to create a new delayed route for a payment.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public PaymentCreateRouteResponse create(
-            String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends RouteCreateRequest> routeCreateRequest, Optional<Options> options) {
-        PaymentCreateRouteRequest request =
-            PaymentCreateRouteRequest
-                .builder()
-                .paymentId(paymentId)
-                .idempotencyKey(idempotencyKey)
-                .routeCreateRequest(routeCreateRequest)
-                .build();
+    public PaymentCreateRouteResponse create(PaymentCreateRouteRequest request, Optional<Options> options) {
         RequestOperation<PaymentCreateRouteRequest, PaymentCreateRouteResponse> operation
               = new PaymentCreateRoute.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -131,13 +116,12 @@ public class DelayedRouting {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public PaymentListRoutesResponse list(String paymentId) {
-        return list(paymentId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public PaymentListRoutesResponse list(PaymentListRoutesRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -148,27 +132,12 @@ public class DelayedRouting {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public PaymentListRoutesResponse list(
-            String paymentId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        PaymentListRoutesRequest request =
-            PaymentListRoutesRequest
-                .builder()
-                .paymentId(paymentId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public PaymentListRoutesResponse list(PaymentListRoutesRequest request, Optional<Options> options) {
         RequestOperation<PaymentListRoutesRequest, PaymentListRoutesResponse> operation
               = new PaymentListRoutes.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -196,14 +165,12 @@ public class DelayedRouting {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param routeId Provide the ID of the route.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public PaymentGetRouteResponse get(String paymentId, String routeId) {
-        return get(paymentId, routeId, Optional.empty(),
-            Optional.empty());
+    public PaymentGetRouteResponse get(PaymentGetRouteRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -214,23 +181,12 @@ public class DelayedRouting {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param routeId Provide the ID of the route.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public PaymentGetRouteResponse get(
-            String paymentId, String routeId,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        PaymentGetRouteRequest request =
-            PaymentGetRouteRequest
-                .builder()
-                .paymentId(paymentId)
-                .routeId(routeId)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public PaymentGetRouteResponse get(PaymentGetRouteRequest request, Optional<Options> options) {
         RequestOperation<PaymentGetRouteRequest, PaymentGetRouteResponse> operation
               = new PaymentGetRoute.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

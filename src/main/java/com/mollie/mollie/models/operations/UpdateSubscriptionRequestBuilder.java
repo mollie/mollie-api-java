@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class UpdateSubscriptionRequestBuilder {
 
-    private String customerId;
-    private String subscriptionId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends UpdateSubscriptionRequestBody> requestBody = Optional.empty();
+    private UpdateSubscriptionRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,39 +25,9 @@ public class UpdateSubscriptionRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdateSubscriptionRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
-        return this;
-    }
-
-    public UpdateSubscriptionRequestBuilder subscriptionId(String subscriptionId) {
-        Utils.checkNotNull(subscriptionId, "subscriptionId");
-        this.subscriptionId = subscriptionId;
-        return this;
-    }
-                
-    public UpdateSubscriptionRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public UpdateSubscriptionRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public UpdateSubscriptionRequestBuilder requestBody(UpdateSubscriptionRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public UpdateSubscriptionRequestBuilder requestBody(Optional<? extends UpdateSubscriptionRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public UpdateSubscriptionRequestBuilder request(UpdateSubscriptionRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -77,17 +43,6 @@ public class UpdateSubscriptionRequestBuilder {
         return this;
     }
 
-
-    private UpdateSubscriptionRequest buildRequest() {
-
-        UpdateSubscriptionRequest request = new UpdateSubscriptionRequest(customerId,
-            subscriptionId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public UpdateSubscriptionResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -95,7 +50,6 @@ public class UpdateSubscriptionRequestBuilder {
 
         RequestOperation<UpdateSubscriptionRequest, UpdateSubscriptionResponse> operation
               = new UpdateSubscription.Sync(sdkConfiguration, options, _headers);
-        UpdateSubscriptionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

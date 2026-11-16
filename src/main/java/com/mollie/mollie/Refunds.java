@@ -6,7 +6,6 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.RefundRequest;
 import com.mollie.mollie.models.operations.CancelRefundRequest;
 import com.mollie.mollie.models.operations.CancelRefundRequestBuilder;
 import com.mollie.mollie.models.operations.CancelRefundResponse;
@@ -29,8 +28,6 @@ import com.mollie.mollie.operations.ListAllRefunds;
 import com.mollie.mollie.operations.ListRefunds;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 
@@ -79,13 +76,12 @@ public class Refunds {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateRefundResponse create(String paymentId) {
-        return create(paymentId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public CreateRefundResponse create(CreateRefundRequest request) {
+        return create(request, Optional.empty());
     }
 
     /**
@@ -98,23 +94,12 @@ public class Refunds {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param refundRequest 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CreateRefundResponse create(
-            String paymentId, Optional<String> idempotencyKey,
-            Optional<? extends RefundRequest> refundRequest, Optional<Options> options) {
-        CreateRefundRequest request =
-            CreateRefundRequest
-                .builder()
-                .paymentId(paymentId)
-                .idempotencyKey(idempotencyKey)
-                .refundRequest(refundRequest)
-                .build();
+    public CreateRefundResponse create(CreateRefundRequest request, Optional<Options> options) {
         RequestOperation<CreateRefundRequest, CreateRefundResponse> operation
               = new CreateRefund.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -256,14 +241,12 @@ public class Refunds {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param refundId Provide the ID of the related refund.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CancelRefundResponse cancel(String paymentId, String refundId) {
-        return cancel(paymentId, refundId, Optional.empty(),
-            Optional.empty(), Optional.empty());
+    public CancelRefundResponse cancel(CancelRefundRequest request) {
+        return cancel(request, Optional.empty());
     }
 
     /**
@@ -279,30 +262,12 @@ public class Refunds {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentId Provide the ID of the related payment.
-     * @param refundId Provide the ID of the related refund.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CancelRefundResponse cancel(
-            String paymentId, String refundId,
-            Optional<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) {
-        CancelRefundRequest request =
-            CancelRefundRequest
-                .builder()
-                .paymentId(paymentId)
-                .refundId(refundId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CancelRefundResponse cancel(CancelRefundRequest request, Optional<Options> options) {
         RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
               = new CancelRefund.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

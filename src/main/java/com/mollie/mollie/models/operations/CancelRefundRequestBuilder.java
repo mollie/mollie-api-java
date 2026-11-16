@@ -12,16 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 public class CancelRefundRequestBuilder {
 
-    private String paymentId;
-    private String refundId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private CancelRefundRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -30,39 +25,9 @@ public class CancelRefundRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CancelRefundRequestBuilder paymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-
-    public CancelRefundRequestBuilder refundId(String refundId) {
-        Utils.checkNotNull(refundId, "refundId");
-        this.refundId = refundId;
-        return this;
-    }
-                
-    public CancelRefundRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public CancelRefundRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public CancelRefundRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public CancelRefundRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public CancelRefundRequestBuilder request(CancelRefundRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -78,17 +43,6 @@ public class CancelRefundRequestBuilder {
         return this;
     }
 
-
-    private CancelRefundRequest buildRequest() {
-
-        CancelRefundRequest request = new CancelRefundRequest(paymentId,
-            refundId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public CancelRefundResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -96,7 +50,6 @@ public class CancelRefundRequestBuilder {
 
         RequestOperation<CancelRefundRequest, CancelRefundResponse> operation
               = new CancelRefund.Sync(sdkConfiguration, options, _headers);
-        CancelRefundRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

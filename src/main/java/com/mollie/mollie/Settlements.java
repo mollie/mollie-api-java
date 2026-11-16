@@ -169,7 +169,8 @@ public class Settlements {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetSettlementResponse get(String settlementId) {
-        return get(settlementId, Optional.empty(), Optional.empty());
+        return get(settlementId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -194,18 +195,23 @@ public class Settlements {
      * 
      * @param settlementId Provide the ID of the related settlement.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetSettlementResponse get(
             String settlementId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         GetSettlementRequest request =
             GetSettlementRequest
                 .builder()
                 .settlementId(settlementId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<GetSettlementRequest, GetSettlementResponse> operation
               = new GetSettlement.Sync(sdkConfiguration, options, _headers);
@@ -256,7 +262,8 @@ public class Settlements {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetOpenSettlementResponse getOpenDirect() {
-        return getOpen(Optional.empty(), Optional.empty());
+        return getOpen(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -277,15 +284,21 @@ public class Settlements {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetOpenSettlementResponse getOpen(Optional<String> idempotencyKey, Optional<Options> options) {
+    public GetOpenSettlementResponse getOpen(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetOpenSettlementRequest request =
             GetOpenSettlementRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<GetOpenSettlementRequest, GetOpenSettlementResponse> operation
               = new GetOpenSettlement.Sync(sdkConfiguration, options, _headers);
@@ -332,7 +345,8 @@ public class Settlements {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetNextSettlementResponse getNextDirect() {
-        return getNext(Optional.empty(), Optional.empty());
+        return getNext(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -351,15 +365,21 @@ public class Settlements {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetNextSettlementResponse getNext(Optional<String> idempotencyKey, Optional<Options> options) {
+    public GetNextSettlementResponse getNext(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetNextSettlementRequest request =
             GetNextSettlementRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<GetNextSettlementRequest, GetNextSettlementResponse> operation
               = new GetNextSettlement.Sync(sdkConfiguration, options, _headers);

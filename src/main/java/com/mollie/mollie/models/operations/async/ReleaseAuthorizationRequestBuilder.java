@@ -8,21 +8,17 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.ReleaseAuthorizationRequest;
-import com.mollie.mollie.models.operations.ReleaseAuthorizationRequestBody;
 import com.mollie.mollie.operations.ReleaseAuthorization;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class ReleaseAuthorizationRequestBuilder {
 
-    private String paymentId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends ReleaseAuthorizationRequestBody> requestBody = Optional.empty();
+    private ReleaseAuthorizationRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -31,33 +27,9 @@ public class ReleaseAuthorizationRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ReleaseAuthorizationRequestBuilder paymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-                
-    public ReleaseAuthorizationRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public ReleaseAuthorizationRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public ReleaseAuthorizationRequestBuilder requestBody(ReleaseAuthorizationRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public ReleaseAuthorizationRequestBuilder requestBody(Optional<? extends ReleaseAuthorizationRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public ReleaseAuthorizationRequestBuilder request(ReleaseAuthorizationRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -73,16 +45,6 @@ public class ReleaseAuthorizationRequestBuilder {
         return this;
     }
 
-
-    private ReleaseAuthorizationRequest buildRequest() {
-
-        ReleaseAuthorizationRequest request = new ReleaseAuthorizationRequest(paymentId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public CompletableFuture<ReleaseAuthorizationResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -92,7 +54,6 @@ public class ReleaseAuthorizationRequestBuilder {
               = new ReleaseAuthorization.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        ReleaseAuthorizationRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

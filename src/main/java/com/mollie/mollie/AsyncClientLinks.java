@@ -189,7 +189,9 @@ public class AsyncClientLinks {
      * @return {@code CompletableFuture<CreateClientLinkResponse>} - The async response
      */
     public CompletableFuture<CreateClientLinkResponse> createDirect() {
-        return create(Optional.empty(), Optional.empty(), Optional.empty());
+        return create(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -264,17 +266,22 @@ public class AsyncClientLinks {
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param clientLinkRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreateClientLinkResponse>} - The async response
      */
     public CompletableFuture<CreateClientLinkResponse> create(
-            Optional<String> idempotencyKey, Optional<? extends ClientLinkRequest> clientLinkRequest,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends ClientLinkRequest> clientLinkRequest,
             Optional<Options> options) {
         CreateClientLinkRequest request =
             CreateClientLinkRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .clientLinkRequest(clientLinkRequest)
                 .build();
         AsyncRequestOperation<CreateClientLinkRequest, CreateClientLinkResponse> operation

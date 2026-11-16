@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class TerminalsRequestPairingCodeRequestBuilder {
 
-    private JsonNullable<String> include = JsonNullable.undefined();
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends TerminalsRequestPairingCodeRequestBody> requestBody = Optional.empty();
+    private TerminalsRequestPairingCodeRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,39 +25,9 @@ public class TerminalsRequestPairingCodeRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public TerminalsRequestPairingCodeRequestBuilder include(String include) {
-        Utils.checkNotNull(include, "include");
-        this.include = JsonNullable.of(include);
-        return this;
-    }
-
-    public TerminalsRequestPairingCodeRequestBuilder include(JsonNullable<String> include) {
-        Utils.checkNotNull(include, "include");
-        this.include = include;
-        return this;
-    }
-                
-    public TerminalsRequestPairingCodeRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public TerminalsRequestPairingCodeRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public TerminalsRequestPairingCodeRequestBuilder requestBody(TerminalsRequestPairingCodeRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public TerminalsRequestPairingCodeRequestBuilder requestBody(Optional<? extends TerminalsRequestPairingCodeRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public TerminalsRequestPairingCodeRequestBuilder request(TerminalsRequestPairingCodeRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -77,16 +43,6 @@ public class TerminalsRequestPairingCodeRequestBuilder {
         return this;
     }
 
-
-    private TerminalsRequestPairingCodeRequest buildRequest() {
-
-        TerminalsRequestPairingCodeRequest request = new TerminalsRequestPairingCodeRequest(include,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public TerminalsRequestPairingCodeResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -94,7 +50,6 @@ public class TerminalsRequestPairingCodeRequestBuilder {
 
         RequestOperation<TerminalsRequestPairingCodeRequest, TerminalsRequestPairingCodeResponse> operation
               = new TerminalsRequestPairingCode.Sync(sdkConfiguration, options, _headers);
-        TerminalsRequestPairingCodeRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -43,6 +43,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateSubscriptionRequest;
 import com.mollie.mollie.models.operations.CreateSubscriptionResponse;
 import java.lang.Exception;
 
@@ -56,9 +57,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateSubscriptionResponse res = sdk.subscriptions().create()
+        CreateSubscriptionRequest req = CreateSubscriptionRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .subscriptionRequest(SubscriptionRequest.builder()
                     .amount(Amount.builder()
                         .currency("EUR")
@@ -81,6 +84,10 @@ public class Application {
                     .profileId("pfl_5B8cwPMGnU")
                     .testmode(false)
                     .build())
+                .build();
+
+        CreateSubscriptionResponse res = sdk.subscriptions().create()
+                .request(req)
                 .call();
 
         if (res.subscriptionResponse().isPresent()) {
@@ -92,11 +99,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `customerId`                                                                     | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related customer.                                          | cst_5B8cwPMGnU                                                                   |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `subscriptionRequest`                                                            | [Optional\<SubscriptionRequest>](../../models/components/SubscriptionRequest.md) | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [CreateSubscriptionRequest](../../models/operations/CreateSubscriptionRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 ### Response
 
@@ -146,6 +151,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -189,6 +196,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetSubscriptionRequest;
 import com.mollie.mollie.models.operations.GetSubscriptionResponse;
 import java.lang.Exception;
 
@@ -203,10 +211,16 @@ public class Application {
                     .build())
             .build();
 
-        GetSubscriptionResponse res = sdk.subscriptions().get()
+        GetSubscriptionRequest req = GetSubscriptionRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .subscriptionId("sub_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetSubscriptionResponse res = sdk.subscriptions().get()
+                .request(req)
                 .call();
 
         if (res.subscriptionResponse().isPresent()) {
@@ -218,12 +232,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                                                                                                                                                                                                                                                                                                             | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related customer.                                                                                                                                                                                                                                                                                                                                                  | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                           |
-| `subscriptionId`                                                                                                                                                                                                                                                                                                                                                                         | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related subscription.                                                                                                                                                                                                                                                                                                                                              | sub_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                           |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | *Optional\<Boolean>*                                                                                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetSubscriptionRequest](../../models/operations/GetSubscriptionRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
 
 ### Response
 
@@ -254,8 +265,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Amount;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.UpdateSubscriptionRequestBody;
-import com.mollie.mollie.models.operations.UpdateSubscriptionResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -268,10 +278,12 @@ public class Application {
                     .build())
             .build();
 
-        UpdateSubscriptionResponse res = sdk.subscriptions().update()
+        UpdateSubscriptionRequest req = UpdateSubscriptionRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .subscriptionId("sub_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(UpdateSubscriptionRequestBody.builder()
                     .amount(Amount.builder()
                         .currency("EUR")
@@ -285,6 +297,10 @@ public class Application {
                     .mandateId("mdt_5B8cwPMGnU")
                     .testmode(false)
                     .build())
+                .build();
+
+        UpdateSubscriptionResponse res = sdk.subscriptions().update()
+                .request(req)
                 .call();
 
         if (res.subscriptionResponse().isPresent()) {
@@ -303,8 +319,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Amount;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.UpdateSubscriptionRequestBody;
-import com.mollie.mollie.models.operations.UpdateSubscriptionResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -317,10 +332,12 @@ public class Application {
                     .build())
             .build();
 
-        UpdateSubscriptionResponse res = sdk.subscriptions().update()
+        UpdateSubscriptionRequest req = UpdateSubscriptionRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .subscriptionId("sub_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(UpdateSubscriptionRequestBody.builder()
                     .amount(Amount.builder()
                         .currency("EUR")
@@ -334,6 +351,10 @@ public class Application {
                     .mandateId("mdt_5B8cwPMGnU")
                     .testmode(false)
                     .build())
+                .build();
+
+        UpdateSubscriptionResponse res = sdk.subscriptions().update()
+                .request(req)
                 .call();
 
         if (res.subscriptionResponse().isPresent()) {
@@ -345,12 +366,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                         | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related customer.                                                              | cst_5B8cwPMGnU                                                                                       |
-| `subscriptionId`                                                                                     | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related subscription.                                                          | sub_5B8cwPMGnU                                                                                       |
-| `idempotencyKey`                                                                                     | *Optional\<String>*                                                                                  | :heavy_minus_sign:                                                                                   | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                     | 123e4567-e89b-12d3-a456-426                                                                          |
-| `requestBody`                                                                                        | [Optional\<UpdateSubscriptionRequestBody>](../../models/operations/UpdateSubscriptionRequestBody.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [UpdateSubscriptionRequest](../../models/operations/UpdateSubscriptionRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 ### Response
 
@@ -376,8 +394,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.CancelSubscriptionRequestBody;
-import com.mollie.mollie.models.operations.CancelSubscriptionResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -390,13 +407,19 @@ public class Application {
                     .build())
             .build();
 
-        CancelSubscriptionResponse res = sdk.subscriptions().cancel()
+        CancelSubscriptionRequest req = CancelSubscriptionRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .subscriptionId("sub_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(CancelSubscriptionRequestBody.builder()
                     .testmode(false)
                     .build())
+                .build();
+
+        CancelSubscriptionResponse res = sdk.subscriptions().cancel()
+                .request(req)
                 .call();
 
         if (res.subscriptionResponse().isPresent()) {
@@ -408,12 +431,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                         | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related customer.                                                              | cst_5B8cwPMGnU                                                                                       |
-| `subscriptionId`                                                                                     | *String*                                                                                             | :heavy_check_mark:                                                                                   | Provide the ID of the related subscription.                                                          | sub_5B8cwPMGnU                                                                                       |
-| `idempotencyKey`                                                                                     | *Optional\<String>*                                                                                  | :heavy_minus_sign:                                                                                   | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                     | 123e4567-e89b-12d3-a456-426                                                                          |
-| `requestBody`                                                                                        | [Optional\<CancelSubscriptionRequestBody>](../../models/operations/CancelSubscriptionRequestBody.md) | :heavy_minus_sign:                                                                                   | N/A                                                                                                  |                                                                                                      |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [CancelSubscriptionRequest](../../models/operations/CancelSubscriptionRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
 
 ### Response
 
@@ -581,6 +601,8 @@ public class Application {
                 .from("sub_rVKGtNd6s3")
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -650,6 +672,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -695,6 +719,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -740,6 +766,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 

@@ -78,7 +78,8 @@ public class CheckoutSessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateSessionResponse createDirect() {
-        return create(Optional.empty(), Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -96,18 +97,23 @@ public class CheckoutSessions {
      * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param sessionRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateSessionResponse create(
-            Optional<String> idempotencyKey, Optional<? extends SessionRequest> sessionRequest,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends SessionRequest> sessionRequest,
             Optional<Options> options) {
         CreateSessionRequest request =
             CreateSessionRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .sessionRequest(sessionRequest)
                 .build();
         RequestOperation<CreateSessionRequest, CreateSessionResponse> operation
@@ -156,7 +162,8 @@ public class CheckoutSessions {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetSessionResponse get(String sessionId) {
-        return get(sessionId, Optional.empty(), Optional.empty());
+        return get(sessionId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -176,18 +183,23 @@ public class CheckoutSessions {
      * 
      * @param sessionId Provide the ID of the related Checkout Session.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetSessionResponse get(
             String sessionId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         GetSessionRequest request =
             GetSessionRequest
                 .builder()
                 .sessionId(sessionId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<GetSessionRequest, GetSessionResponse> operation
               = new GetSession.Sync(sdkConfiguration, options, _headers);

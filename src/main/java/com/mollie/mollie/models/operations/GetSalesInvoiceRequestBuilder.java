@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetSalesInvoiceRequestBuilder {
 
-    private String salesInvoiceId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetSalesInvoiceRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class GetSalesInvoiceRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetSalesInvoiceRequestBuilder salesInvoiceId(String salesInvoiceId) {
-        Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
-        this.salesInvoiceId = salesInvoiceId;
-        return this;
-    }
-                
-    public GetSalesInvoiceRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetSalesInvoiceRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetSalesInvoiceRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetSalesInvoiceRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetSalesInvoiceRequestBuilder request(GetSalesInvoiceRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class GetSalesInvoiceRequestBuilder {
         return this;
     }
 
-
-    private GetSalesInvoiceRequest buildRequest() {
-
-        GetSalesInvoiceRequest request = new GetSalesInvoiceRequest(salesInvoiceId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public GetSalesInvoiceResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class GetSalesInvoiceRequestBuilder {
 
         RequestOperation<GetSalesInvoiceRequest, GetSalesInvoiceResponse> operation
               = new GetSalesInvoice.Sync(sdkConfiguration, options, _headers);
-        GetSalesInvoiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

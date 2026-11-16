@@ -44,6 +44,8 @@ public class Application {
                 .limit(50L)
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -86,6 +88,8 @@ public class Application {
                 .limit(50L)
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -128,6 +132,8 @@ public class Application {
                 .limit(50L)
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -191,6 +197,8 @@ public class Application {
                 .chargebackId("chb_xFzwUN4ci8HAmSGUACS4J")
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         GetChargebackResponse res = sdk.chargebacks().get()
@@ -232,6 +240,8 @@ public class Application {
                 .chargebackId("chb_xFzwUN4ci8HAmSGUACS4J")
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         GetChargebackResponse res = sdk.chargebacks().get()
@@ -300,6 +310,8 @@ public class Application {
                 .embed("payment")
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -344,6 +356,8 @@ public class Application {
                 .embed("payment")
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -388,6 +402,8 @@ public class Application {
                 .embed("payment")
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 

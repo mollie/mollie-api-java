@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetBalanceRequestBuilder {
 
-    private String balanceId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetBalanceRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class GetBalanceRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetBalanceRequestBuilder balanceId(String balanceId) {
-        Utils.checkNotNull(balanceId, "balanceId");
-        this.balanceId = balanceId;
-        return this;
-    }
-                
-    public GetBalanceRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetBalanceRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetBalanceRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetBalanceRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetBalanceRequestBuilder request(GetBalanceRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class GetBalanceRequestBuilder {
         return this;
     }
 
-
-    private GetBalanceRequest buildRequest() {
-
-        GetBalanceRequest request = new GetBalanceRequest(balanceId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public GetBalanceResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class GetBalanceRequestBuilder {
 
         RequestOperation<GetBalanceRequest, GetBalanceResponse> operation
               = new GetBalance.Sync(sdkConfiguration, options, _headers);
-        GetBalanceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

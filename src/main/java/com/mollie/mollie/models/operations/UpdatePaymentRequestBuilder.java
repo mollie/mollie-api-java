@@ -12,14 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class UpdatePaymentRequestBuilder {
 
-    private String paymentId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends UpdatePaymentRequestBody> requestBody = Optional.empty();
+    private UpdatePaymentRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -28,33 +25,9 @@ public class UpdatePaymentRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdatePaymentRequestBuilder paymentId(String paymentId) {
-        Utils.checkNotNull(paymentId, "paymentId");
-        this.paymentId = paymentId;
-        return this;
-    }
-                
-    public UpdatePaymentRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public UpdatePaymentRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public UpdatePaymentRequestBuilder requestBody(UpdatePaymentRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public UpdatePaymentRequestBuilder requestBody(Optional<? extends UpdatePaymentRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public UpdatePaymentRequestBuilder request(UpdatePaymentRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -70,16 +43,6 @@ public class UpdatePaymentRequestBuilder {
         return this;
     }
 
-
-    private UpdatePaymentRequest buildRequest() {
-
-        UpdatePaymentRequest request = new UpdatePaymentRequest(paymentId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public UpdatePaymentResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -87,7 +50,6 @@ public class UpdatePaymentRequestBuilder {
 
         RequestOperation<UpdatePaymentRequest, UpdatePaymentResponse> operation
               = new UpdatePayment.Sync(sdkConfiguration, options, _headers);
-        UpdatePaymentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

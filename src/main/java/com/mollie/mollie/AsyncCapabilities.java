@@ -102,7 +102,9 @@ public class AsyncCapabilities {
      * @return {@code CompletableFuture<ListCapabilitiesResponse>} - The async response
      */
     public CompletableFuture<ListCapabilitiesResponse> listDirect() {
-        return list(Optional.empty(), Optional.empty());
+        return list(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -134,14 +136,20 @@ public class AsyncCapabilities {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<ListCapabilitiesResponse>} - The async response
      */
-    public CompletableFuture<ListCapabilitiesResponse> list(Optional<String> idempotencyKey, Optional<Options> options) {
+    public CompletableFuture<ListCapabilitiesResponse> list(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         ListCapabilitiesRequest request =
             ListCapabilitiesRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<ListCapabilitiesRequest, ListCapabilitiesResponse> operation
               = new ListCapabilities.Async(

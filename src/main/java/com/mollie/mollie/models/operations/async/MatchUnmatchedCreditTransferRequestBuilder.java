@@ -7,22 +7,18 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.UnmatchedCreditTransferMatchRequest;
 import com.mollie.mollie.models.operations.MatchUnmatchedCreditTransferRequest;
 import com.mollie.mollie.operations.MatchUnmatchedCreditTransfer;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class MatchUnmatchedCreditTransferRequestBuilder {
 
-    private String unmatchedCreditTransferId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends UnmatchedCreditTransferMatchRequest> unmatchedCreditTransferMatchRequest = Optional.empty();
+    private MatchUnmatchedCreditTransferRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -31,33 +27,9 @@ public class MatchUnmatchedCreditTransferRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public MatchUnmatchedCreditTransferRequestBuilder unmatchedCreditTransferId(String unmatchedCreditTransferId) {
-        Utils.checkNotNull(unmatchedCreditTransferId, "unmatchedCreditTransferId");
-        this.unmatchedCreditTransferId = unmatchedCreditTransferId;
-        return this;
-    }
-                
-    public MatchUnmatchedCreditTransferRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public MatchUnmatchedCreditTransferRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public MatchUnmatchedCreditTransferRequestBuilder unmatchedCreditTransferMatchRequest(UnmatchedCreditTransferMatchRequest unmatchedCreditTransferMatchRequest) {
-        Utils.checkNotNull(unmatchedCreditTransferMatchRequest, "unmatchedCreditTransferMatchRequest");
-        this.unmatchedCreditTransferMatchRequest = Optional.of(unmatchedCreditTransferMatchRequest);
-        return this;
-    }
-
-    public MatchUnmatchedCreditTransferRequestBuilder unmatchedCreditTransferMatchRequest(Optional<? extends UnmatchedCreditTransferMatchRequest> unmatchedCreditTransferMatchRequest) {
-        Utils.checkNotNull(unmatchedCreditTransferMatchRequest, "unmatchedCreditTransferMatchRequest");
-        this.unmatchedCreditTransferMatchRequest = unmatchedCreditTransferMatchRequest;
+    public MatchUnmatchedCreditTransferRequestBuilder request(MatchUnmatchedCreditTransferRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -73,16 +45,6 @@ public class MatchUnmatchedCreditTransferRequestBuilder {
         return this;
     }
 
-
-    private MatchUnmatchedCreditTransferRequest buildRequest() {
-
-        MatchUnmatchedCreditTransferRequest request = new MatchUnmatchedCreditTransferRequest(unmatchedCreditTransferId,
-            idempotencyKey,
-            unmatchedCreditTransferMatchRequest);
-
-        return request;
-    }
-
     public CompletableFuture<MatchUnmatchedCreditTransferResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -92,7 +54,6 @@ public class MatchUnmatchedCreditTransferRequestBuilder {
               = new MatchUnmatchedCreditTransfer.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        MatchUnmatchedCreditTransferRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

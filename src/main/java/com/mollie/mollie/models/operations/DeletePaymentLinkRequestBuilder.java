@@ -12,14 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class DeletePaymentLinkRequestBuilder {
 
-    private String paymentLinkId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends DeletePaymentLinkRequestBody> requestBody = Optional.empty();
+    private DeletePaymentLinkRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -28,33 +25,9 @@ public class DeletePaymentLinkRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public DeletePaymentLinkRequestBuilder paymentLinkId(String paymentLinkId) {
-        Utils.checkNotNull(paymentLinkId, "paymentLinkId");
-        this.paymentLinkId = paymentLinkId;
-        return this;
-    }
-                
-    public DeletePaymentLinkRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public DeletePaymentLinkRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public DeletePaymentLinkRequestBuilder requestBody(DeletePaymentLinkRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public DeletePaymentLinkRequestBuilder requestBody(Optional<? extends DeletePaymentLinkRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public DeletePaymentLinkRequestBuilder request(DeletePaymentLinkRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -70,16 +43,6 @@ public class DeletePaymentLinkRequestBuilder {
         return this;
     }
 
-
-    private DeletePaymentLinkRequest buildRequest() {
-
-        DeletePaymentLinkRequest request = new DeletePaymentLinkRequest(paymentLinkId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public DeletePaymentLinkResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -87,7 +50,6 @@ public class DeletePaymentLinkRequestBuilder {
 
         RequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
               = new DeletePaymentLink.Sync(sdkConfiguration, options, _headers);
-        DeletePaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

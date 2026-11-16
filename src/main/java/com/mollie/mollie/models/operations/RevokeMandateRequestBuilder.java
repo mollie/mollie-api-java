@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class RevokeMandateRequestBuilder {
 
-    private String customerId;
-    private String mandateId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends RevokeMandateRequestBody> requestBody = Optional.empty();
+    private RevokeMandateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,39 +25,9 @@ public class RevokeMandateRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public RevokeMandateRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
-        return this;
-    }
-
-    public RevokeMandateRequestBuilder mandateId(String mandateId) {
-        Utils.checkNotNull(mandateId, "mandateId");
-        this.mandateId = mandateId;
-        return this;
-    }
-                
-    public RevokeMandateRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public RevokeMandateRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public RevokeMandateRequestBuilder requestBody(RevokeMandateRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public RevokeMandateRequestBuilder requestBody(Optional<? extends RevokeMandateRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public RevokeMandateRequestBuilder request(RevokeMandateRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -77,17 +43,6 @@ public class RevokeMandateRequestBuilder {
         return this;
     }
 
-
-    private RevokeMandateRequest buildRequest() {
-
-        RevokeMandateRequest request = new RevokeMandateRequest(customerId,
-            mandateId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public RevokeMandateResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -95,7 +50,6 @@ public class RevokeMandateRequestBuilder {
 
         RequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
               = new RevokeMandate.Sync(sdkConfiguration, options, _headers);
-        RevokeMandateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

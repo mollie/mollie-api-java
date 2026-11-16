@@ -12,14 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class UpdateSalesInvoiceRequestBuilder {
 
-    private String salesInvoiceId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends UpdateSalesInvoiceRequestBody> requestBody = Optional.empty();
+    private UpdateSalesInvoiceRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -28,33 +25,9 @@ public class UpdateSalesInvoiceRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdateSalesInvoiceRequestBuilder salesInvoiceId(String salesInvoiceId) {
-        Utils.checkNotNull(salesInvoiceId, "salesInvoiceId");
-        this.salesInvoiceId = salesInvoiceId;
-        return this;
-    }
-                
-    public UpdateSalesInvoiceRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public UpdateSalesInvoiceRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public UpdateSalesInvoiceRequestBuilder requestBody(UpdateSalesInvoiceRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public UpdateSalesInvoiceRequestBuilder requestBody(Optional<? extends UpdateSalesInvoiceRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public UpdateSalesInvoiceRequestBuilder request(UpdateSalesInvoiceRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -70,16 +43,6 @@ public class UpdateSalesInvoiceRequestBuilder {
         return this;
     }
 
-
-    private UpdateSalesInvoiceRequest buildRequest() {
-
-        UpdateSalesInvoiceRequest request = new UpdateSalesInvoiceRequest(salesInvoiceId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public UpdateSalesInvoiceResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -87,7 +50,6 @@ public class UpdateSalesInvoiceRequestBuilder {
 
         RequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
               = new UpdateSalesInvoice.Sync(sdkConfiguration, options, _headers);
-        UpdateSalesInvoiceRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }
