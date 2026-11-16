@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetDraftTransferRequestBuilder {
 
-    private String draftTransferId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetDraftTransferRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class GetDraftTransferRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetDraftTransferRequestBuilder draftTransferId(String draftTransferId) {
-        Utils.checkNotNull(draftTransferId, "draftTransferId");
-        this.draftTransferId = draftTransferId;
-        return this;
-    }
-                
-    public GetDraftTransferRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetDraftTransferRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetDraftTransferRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetDraftTransferRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetDraftTransferRequestBuilder request(GetDraftTransferRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class GetDraftTransferRequestBuilder {
         return this;
     }
 
-
-    private GetDraftTransferRequest buildRequest() {
-
-        GetDraftTransferRequest request = new GetDraftTransferRequest(draftTransferId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public GetDraftTransferResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class GetDraftTransferRequestBuilder {
 
         RequestOperation<GetDraftTransferRequest, GetDraftTransferResponse> operation
               = new GetDraftTransfer.Sync(sdkConfiguration, options, _headers);
-        GetDraftTransferRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

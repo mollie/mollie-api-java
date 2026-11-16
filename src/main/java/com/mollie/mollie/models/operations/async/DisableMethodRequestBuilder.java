@@ -7,22 +7,18 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.operations.DisableMethodRequest;
 import com.mollie.mollie.operations.DisableMethod;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class DisableMethodRequestBuilder {
 
-    private String profileId;
-    private Optional<? extends MethodId> methodId = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private DisableMethodRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -31,33 +27,9 @@ public class DisableMethodRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public DisableMethodRequestBuilder profileId(String profileId) {
-        Utils.checkNotNull(profileId, "profileId");
-        this.profileId = profileId;
-        return this;
-    }
-                
-    public DisableMethodRequestBuilder methodId(MethodId methodId) {
-        Utils.checkNotNull(methodId, "methodId");
-        this.methodId = Optional.of(methodId);
-        return this;
-    }
-
-    public DisableMethodRequestBuilder methodId(Optional<? extends MethodId> methodId) {
-        Utils.checkNotNull(methodId, "methodId");
-        this.methodId = methodId;
-        return this;
-    }
-                
-    public DisableMethodRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public DisableMethodRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public DisableMethodRequestBuilder request(DisableMethodRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -73,16 +45,6 @@ public class DisableMethodRequestBuilder {
         return this;
     }
 
-
-    private DisableMethodRequest buildRequest() {
-
-        DisableMethodRequest request = new DisableMethodRequest(profileId,
-            methodId,
-            idempotencyKey);
-
-        return request;
-    }
-
     public CompletableFuture<DisableMethodResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -92,7 +54,6 @@ public class DisableMethodRequestBuilder {
               = new DisableMethod.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        DisableMethodRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

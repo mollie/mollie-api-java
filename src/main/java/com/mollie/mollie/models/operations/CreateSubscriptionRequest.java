@@ -28,6 +28,20 @@ public class CreateSubscriptionRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private Optional<String> idempotencyKey;
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signature")
+    private Optional<String> xClientSignature;
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signed-At")
+    private Optional<String> xClientSignedAt;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends SubscriptionRequest> subscriptionRequest;
@@ -36,18 +50,25 @@ public class CreateSubscriptionRequest {
     public CreateSubscriptionRequest(
             String customerId,
             Optional<String> idempotencyKey,
+            Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt,
             Optional<? extends SubscriptionRequest> subscriptionRequest) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
         Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
         this.customerId = customerId;
         this.idempotencyKey = idempotencyKey;
+        this.xClientSignature = xClientSignature;
+        this.xClientSignedAt = xClientSignedAt;
         this.subscriptionRequest = subscriptionRequest;
     }
     
     public CreateSubscriptionRequest(
             String customerId) {
-        this(customerId, Optional.empty(), Optional.empty());
+        this(customerId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -64,6 +85,24 @@ public class CreateSubscriptionRequest {
     @JsonIgnore
     public Optional<String> idempotencyKey() {
         return idempotencyKey;
+    }
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignature() {
+        return xClientSignature;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignedAt() {
+        return xClientSignedAt;
     }
 
     @SuppressWarnings("unchecked")
@@ -105,6 +144,48 @@ public class CreateSubscriptionRequest {
         return this;
     }
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public CreateSubscriptionRequest withXClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.ofNullable(xClientSignature);
+        return this;
+    }
+
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public CreateSubscriptionRequest withXClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public CreateSubscriptionRequest withXClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+        return this;
+    }
+
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public CreateSubscriptionRequest withXClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+
     public CreateSubscriptionRequest withSubscriptionRequest(SubscriptionRequest subscriptionRequest) {
         Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
         this.subscriptionRequest = Optional.ofNullable(subscriptionRequest);
@@ -130,13 +211,16 @@ public class CreateSubscriptionRequest {
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.xClientSignature, other.xClientSignature) &&
+            Utils.enhancedDeepEquals(this.xClientSignedAt, other.xClientSignedAt) &&
             Utils.enhancedDeepEquals(this.subscriptionRequest, other.subscriptionRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, idempotencyKey, subscriptionRequest);
+            customerId, idempotencyKey, xClientSignature,
+            xClientSignedAt, subscriptionRequest);
     }
     
     @Override
@@ -144,6 +228,8 @@ public class CreateSubscriptionRequest {
         return Utils.toString(CreateSubscriptionRequest.class,
                 "customerId", customerId,
                 "idempotencyKey", idempotencyKey,
+                "xClientSignature", xClientSignature,
+                "xClientSignedAt", xClientSignedAt,
                 "subscriptionRequest", subscriptionRequest);
     }
 
@@ -153,6 +239,10 @@ public class CreateSubscriptionRequest {
         private String customerId;
 
         private Optional<String> idempotencyKey = Optional.empty();
+
+        private Optional<String> xClientSignature = Optional.empty();
+
+        private Optional<String> xClientSignedAt = Optional.empty();
 
         private Optional<? extends SubscriptionRequest> subscriptionRequest = Optional.empty();
 
@@ -190,6 +280,48 @@ public class CreateSubscriptionRequest {
         }
 
 
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(String xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = Optional.ofNullable(xClientSignature);
+            return this;
+        }
+
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(Optional<String> xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = xClientSignature;
+            return this;
+        }
+
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(String xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(Optional<String> xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = xClientSignedAt;
+            return this;
+        }
+
+
         public Builder subscriptionRequest(SubscriptionRequest subscriptionRequest) {
             Utils.checkNotNull(subscriptionRequest, "subscriptionRequest");
             this.subscriptionRequest = Optional.ofNullable(subscriptionRequest);
@@ -205,7 +337,8 @@ public class CreateSubscriptionRequest {
         public CreateSubscriptionRequest build() {
 
             return new CreateSubscriptionRequest(
-                customerId, idempotencyKey, subscriptionRequest);
+                customerId, idempotencyKey, xClientSignature,
+                xClientSignedAt, subscriptionRequest);
         }
 
     }

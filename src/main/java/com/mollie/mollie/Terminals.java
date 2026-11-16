@@ -19,7 +19,6 @@ import com.mollie.mollie.models.operations.TerminalsListPairingCodesRequest;
 import com.mollie.mollie.models.operations.TerminalsListPairingCodesRequestBuilder;
 import com.mollie.mollie.models.operations.TerminalsListPairingCodesResponse;
 import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeRequest;
-import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeRequestBody;
 import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeRequestBuilder;
 import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeResponse;
 import com.mollie.mollie.models.operations.TerminalsRevokePairingCodeRequest;
@@ -33,10 +32,8 @@ import com.mollie.mollie.operations.TerminalsRequestPairingCode;
 import com.mollie.mollie.operations.TerminalsRevokePairingCode;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class Terminals {
@@ -135,13 +132,12 @@ public class Terminals {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param terminalId Provide the ID of the related terminal.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetTerminalResponse get(String terminalId) {
-        return get(terminalId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public GetTerminalResponse get(GetTerminalRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -152,27 +148,12 @@ public class Terminals {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param terminalId Provide the ID of the related terminal.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetTerminalResponse get(
-            String terminalId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetTerminalRequest request =
-            GetTerminalRequest
-                .builder()
-                .terminalId(terminalId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetTerminalResponse get(GetTerminalRequest request, Optional<Options> options) {
         RequestOperation<GetTerminalRequest, GetTerminalResponse> operation
               = new GetTerminal.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -218,12 +199,12 @@ public class Terminals {
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public TerminalsRequestPairingCodeResponse terminalsRequestPairingCodeDirect() {
-        return terminalsRequestPairingCode(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public TerminalsRequestPairingCodeResponse terminalsRequestPairingCode(TerminalsRequestPairingCodeRequest request) {
+        return terminalsRequestPairingCode(request, Optional.empty());
     }
 
     /**
@@ -243,23 +224,12 @@ public class Terminals {
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
-     * @param include Include additional information in the response.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public TerminalsRequestPairingCodeResponse terminalsRequestPairingCode(
-            JsonNullable<String> include, Optional<String> idempotencyKey,
-            Optional<? extends TerminalsRequestPairingCodeRequestBody> requestBody, Optional<Options> options) {
-        TerminalsRequestPairingCodeRequest request =
-            TerminalsRequestPairingCodeRequest
-                .builder()
-                .include(include)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public TerminalsRequestPairingCodeResponse terminalsRequestPairingCode(TerminalsRequestPairingCodeRequest request, Optional<Options> options) {
         RequestOperation<TerminalsRequestPairingCodeRequest, TerminalsRequestPairingCodeResponse> operation
               = new TerminalsRequestPairingCode.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -379,13 +349,12 @@ public class Terminals {
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
-     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public TerminalsGetPairingCodeResponse terminalsGetPairingCode(String pairingCodeId) {
-        return terminalsGetPairingCode(pairingCodeId, JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+    public TerminalsGetPairingCodeResponse terminalsGetPairingCode(TerminalsGetPairingCodeRequest request) {
+        return terminalsGetPairingCode(request, Optional.empty());
     }
 
     /**
@@ -407,23 +376,12 @@ public class Terminals {
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
-     * @param pairingCodeId Provide the ID of the terminal pairing code.
-     * @param include Include additional information in the response.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public TerminalsGetPairingCodeResponse terminalsGetPairingCode(
-            String pairingCodeId, JsonNullable<String> include,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        TerminalsGetPairingCodeRequest request =
-            TerminalsGetPairingCodeRequest
-                .builder()
-                .pairingCodeId(pairingCodeId)
-                .include(include)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public TerminalsGetPairingCodeResponse terminalsGetPairingCode(TerminalsGetPairingCodeRequest request, Optional<Options> options) {
         RequestOperation<TerminalsGetPairingCodeRequest, TerminalsGetPairingCodeResponse> operation
               = new TerminalsGetPairingCode.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -472,7 +430,8 @@ public class Terminals {
      * @throws RuntimeException subclass if the API call fails
      */
     public TerminalsRevokePairingCodeResponse terminalsRevokePairingCode(String pairingCodeId) {
-        return terminalsRevokePairingCode(pairingCodeId, Optional.empty(), Optional.empty());
+        return terminalsRevokePairingCode(pairingCodeId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -493,18 +452,23 @@ public class Terminals {
      * 
      * @param pairingCodeId Provide the ID of the terminal pairing code.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public TerminalsRevokePairingCodeResponse terminalsRevokePairingCode(
             String pairingCodeId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         TerminalsRevokePairingCodeRequest request =
             TerminalsRevokePairingCodeRequest
                 .builder()
                 .pairingCodeId(pairingCodeId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<TerminalsRevokePairingCodeRequest, TerminalsRevokePairingCodeResponse> operation
               = new TerminalsRevokePairingCode.Sync(sdkConfiguration, options, _headers);

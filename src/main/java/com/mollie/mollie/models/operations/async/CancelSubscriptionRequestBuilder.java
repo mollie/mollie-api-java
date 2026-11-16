@@ -8,22 +8,17 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequest;
-import com.mollie.mollie.models.operations.CancelSubscriptionRequestBody;
 import com.mollie.mollie.operations.CancelSubscription;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class CancelSubscriptionRequestBuilder {
 
-    private String customerId;
-    private String subscriptionId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends CancelSubscriptionRequestBody> requestBody = Optional.empty();
+    private CancelSubscriptionRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -32,39 +27,9 @@ public class CancelSubscriptionRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CancelSubscriptionRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
-        return this;
-    }
-
-    public CancelSubscriptionRequestBuilder subscriptionId(String subscriptionId) {
-        Utils.checkNotNull(subscriptionId, "subscriptionId");
-        this.subscriptionId = subscriptionId;
-        return this;
-    }
-                
-    public CancelSubscriptionRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public CancelSubscriptionRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public CancelSubscriptionRequestBuilder requestBody(CancelSubscriptionRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public CancelSubscriptionRequestBuilder requestBody(Optional<? extends CancelSubscriptionRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public CancelSubscriptionRequestBuilder request(CancelSubscriptionRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -80,17 +45,6 @@ public class CancelSubscriptionRequestBuilder {
         return this;
     }
 
-
-    private CancelSubscriptionRequest buildRequest() {
-
-        CancelSubscriptionRequest request = new CancelSubscriptionRequest(customerId,
-            subscriptionId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public CompletableFuture<CancelSubscriptionResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -100,7 +54,6 @@ public class CancelSubscriptionRequestBuilder {
               = new CancelSubscription.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        CancelSubscriptionRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

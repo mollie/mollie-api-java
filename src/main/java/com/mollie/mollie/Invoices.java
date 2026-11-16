@@ -130,7 +130,8 @@ public class Invoices {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetInvoiceResponse get(String invoiceId) {
-        return get(invoiceId, Optional.empty(), Optional.empty());
+        return get(invoiceId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -146,18 +147,23 @@ public class Invoices {
      * 
      * @param invoiceId Provide the ID of the related invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public GetInvoiceResponse get(
             String invoiceId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         GetInvoiceRequest request =
             GetInvoiceRequest
                 .builder()
                 .invoiceId(invoiceId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
               = new GetInvoice.Sync(sdkConfiguration, options, _headers);

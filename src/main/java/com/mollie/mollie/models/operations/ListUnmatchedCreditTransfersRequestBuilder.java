@@ -18,19 +18,14 @@ import com.mollie.mollie.utils.pagination.Paginator;
 import com.mollie.mollie.utils.pagination.URLTracker;
 import java.io.InputStream;
 import java.lang.Iterable;
-import java.lang.Long;
-import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListUnmatchedCreditTransfersRequestBuilder {
 
-    private JsonNullable<String> from = JsonNullable.undefined();
-    private JsonNullable<Long> limit = JsonNullable.undefined();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private ListUnmatchedCreditTransfersRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -39,39 +34,9 @@ public class ListUnmatchedCreditTransfersRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListUnmatchedCreditTransfersRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = JsonNullable.of(from);
-        return this;
-    }
-
-    public ListUnmatchedCreditTransfersRequestBuilder from(JsonNullable<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListUnmatchedCreditTransfersRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListUnmatchedCreditTransfersRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-                
-    public ListUnmatchedCreditTransfersRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public ListUnmatchedCreditTransfersRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public ListUnmatchedCreditTransfersRequestBuilder request(ListUnmatchedCreditTransfersRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -87,16 +52,6 @@ public class ListUnmatchedCreditTransfersRequestBuilder {
         return this;
     }
 
-
-    private ListUnmatchedCreditTransfersRequest buildRequest() {
-
-        ListUnmatchedCreditTransfersRequest request = new ListUnmatchedCreditTransfersRequest(from,
-            limit,
-            idempotencyKey);
-
-        return request;
-    }
-
     public ListUnmatchedCreditTransfersResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -104,7 +59,6 @@ public class ListUnmatchedCreditTransfersRequestBuilder {
 
         ListUnmatchedCreditTransfers.Sync operation
               = new ListUnmatchedCreditTransfers.Sync(sdkConfiguration, options, _headers);
-        ListUnmatchedCreditTransfersRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -129,7 +83,6 @@ public class ListUnmatchedCreditTransfersRequestBuilder {
 
         ListUnmatchedCreditTransfers.Sync operation
               = new ListUnmatchedCreditTransfers.Sync(sdkConfiguration, options, _headers);
-        ListUnmatchedCreditTransfersRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new URLTracker("$._links.next.href", operation.baseUrl()),

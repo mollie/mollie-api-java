@@ -18,6 +18,8 @@ import java.util.Optional;
 public class CreatePaymentLinkRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<String> xClientSignature = Optional.empty();
+    private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<? extends CreatePaymentLinkRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -36,6 +38,30 @@ public class CreatePaymentLinkRequestBuilder {
     public CreatePaymentLinkRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreatePaymentLinkRequestBuilder xClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.of(xClientSignature);
+        return this;
+    }
+
+    public CreatePaymentLinkRequestBuilder xClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+                
+    public CreatePaymentLinkRequestBuilder xClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.of(xClientSignedAt);
+        return this;
+    }
+
+    public CreatePaymentLinkRequestBuilder xClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
         return this;
     }
                 
@@ -67,6 +93,8 @@ public class CreatePaymentLinkRequestBuilder {
     private CreatePaymentLinkRequest buildRequest() {
 
         CreatePaymentLinkRequest request = new CreatePaymentLinkRequest(idempotencyKey,
+            xClientSignature,
+            xClientSignedAt,
             requestBody);
 
         return request;

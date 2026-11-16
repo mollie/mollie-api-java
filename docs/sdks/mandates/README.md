@@ -26,6 +26,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateMandateRequest;
 import com.mollie.mollie.models.operations.CreateMandateResponse;
 import java.lang.Exception;
 
@@ -39,9 +40,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateMandateResponse res = sdk.mandates().create()
+        CreateMandateRequest req = CreateMandateRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .mandateRequest(MandateRequest.builder()
                     .method(MandateMethod.DIRECTDEBIT)
                     .consumerName("John Doe")
@@ -55,6 +58,10 @@ public class Application {
                     .payPalVaultId("8kk8451t")
                     .testmode(false)
                     .build())
+                .build();
+
+        CreateMandateResponse res = sdk.mandates().create()
+                .request(req)
                 .call();
 
         if (res.mandateResponse().isPresent()) {
@@ -72,6 +79,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateMandateRequest;
 import com.mollie.mollie.models.operations.CreateMandateResponse;
 import java.lang.Exception;
 
@@ -85,9 +93,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateMandateResponse res = sdk.mandates().create()
+        CreateMandateRequest req = CreateMandateRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .mandateRequest(MandateRequest.builder()
                     .method(MandateMethod.DIRECTDEBIT)
                     .consumerName("John Doe")
@@ -101,6 +111,10 @@ public class Application {
                     .payPalVaultId("8kk8451t")
                     .testmode(false)
                     .build())
+                .build();
+
+        CreateMandateResponse res = sdk.mandates().create()
+                .request(req)
                 .call();
 
         if (res.mandateResponse().isPresent()) {
@@ -112,11 +126,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `customerId`                                                                     | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related customer.                                          | cst_5B8cwPMGnU                                                                   |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `mandateRequest`                                                                 | [Optional\<MandateRequest>](../../models/components/MandateRequest.md)           | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [CreateMandateRequest](../../models/operations/CreateMandateRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 
@@ -168,6 +180,8 @@ public class Application {
                 .scopes(List.of(
                     MandateScopes.CUSTOMER_PRESENT))
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -212,6 +226,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetMandateRequest;
 import com.mollie.mollie.models.operations.GetMandateResponse;
 import java.lang.Exception;
 
@@ -226,10 +241,16 @@ public class Application {
                     .build())
             .build();
 
-        GetMandateResponse res = sdk.mandates().get()
+        GetMandateRequest req = GetMandateRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .mandateId("mdt_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetMandateResponse res = sdk.mandates().get()
+                .request(req)
                 .call();
 
         if (res.mandateResponse().isPresent()) {
@@ -241,12 +262,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `customerId`                                                                                                                                                                                                                                                                                                                                                                             | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related customer.                                                                                                                                                                                                                                                                                                                                                  | cst_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                           |
-| `mandateId`                                                                                                                                                                                                                                                                                                                                                                              | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related mandate.                                                                                                                                                                                                                                                                                                                                                   | mdt_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                           |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | *Optional\<Boolean>*                                                                                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [GetMandateRequest](../../models/operations/GetMandateRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 ### Response
 
@@ -273,8 +291,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
-import com.mollie.mollie.models.operations.RevokeMandateRequestBody;
-import com.mollie.mollie.models.operations.RevokeMandateResponse;
+import com.mollie.mollie.models.operations.*;
 import java.lang.Exception;
 
 public class Application {
@@ -287,13 +304,19 @@ public class Application {
                     .build())
             .build();
 
-        RevokeMandateResponse res = sdk.mandates().revoke()
+        RevokeMandateRequest req = RevokeMandateRequest.builder()
                 .customerId("cst_5B8cwPMGnU")
                 .mandateId("mdt_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(RevokeMandateRequestBody.builder()
                     .testmode(false)
                     .build())
+                .build();
+
+        RevokeMandateResponse res = sdk.mandates().revoke()
+                .request(req)
                 .call();
 
         // handle response
@@ -303,12 +326,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                | Example                                                                                    |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `customerId`                                                                               | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related customer.                                                    | cst_5B8cwPMGnU                                                                             |
-| `mandateId`                                                                                | *String*                                                                                   | :heavy_check_mark:                                                                         | Provide the ID of the related mandate.                                                     | mdt_5B8cwPMGnU                                                                             |
-| `idempotencyKey`                                                                           | *Optional\<String>*                                                                        | :heavy_minus_sign:                                                                         | A unique key to ensure idempotent requests. This key should be a UUID v4 string.           | 123e4567-e89b-12d3-a456-426                                                                |
-| `requestBody`                                                                              | [Optional\<RevokeMandateRequestBody>](../../models/operations/RevokeMandateRequestBody.md) | :heavy_minus_sign:                                                                         | N/A                                                                                        |                                                                                            |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [RevokeMandateRequest](../../models/operations/RevokeMandateRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 

@@ -9,13 +9,10 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.mollie.mollie.models.operations.CreateWebhookRequest;
 import com.mollie.mollie.models.operations.CreateWebhookRequestBody;
 import com.mollie.mollie.models.operations.DeleteWebhookRequest;
-import com.mollie.mollie.models.operations.DeleteWebhookRequestBody;
 import com.mollie.mollie.models.operations.GetWebhookRequest;
 import com.mollie.mollie.models.operations.ListWebhooksRequest;
 import com.mollie.mollie.models.operations.TestWebhookRequest;
-import com.mollie.mollie.models.operations.TestWebhookRequestBody;
 import com.mollie.mollie.models.operations.UpdateWebhookRequest;
-import com.mollie.mollie.models.operations.UpdateWebhookRequestBody;
 import com.mollie.mollie.models.operations.async.CreateWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreateWebhookResponse;
 import com.mollie.mollie.models.operations.async.DeleteWebhookRequestBuilder;
@@ -36,7 +33,6 @@ import com.mollie.mollie.operations.TestWebhook;
 import com.mollie.mollie.operations.UpdateWebhook;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -89,7 +85,9 @@ public class AsyncWebhooks {
      * @return {@code CompletableFuture<CreateWebhookResponse>} - The async response
      */
     public CompletableFuture<CreateWebhookResponse> createDirect() {
-        return create(Optional.empty(), Optional.empty(), Optional.empty());
+        return create(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -102,17 +100,22 @@ public class AsyncWebhooks {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param requestBody 
      * @param options additional options
      * @return {@code CompletableFuture<CreateWebhookResponse>} - The async response
      */
     public CompletableFuture<CreateWebhookResponse> create(
-            Optional<String> idempotencyKey, Optional<? extends CreateWebhookRequestBody> requestBody,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends CreateWebhookRequestBody> requestBody,
             Optional<Options> options) {
         CreateWebhookRequest request =
             CreateWebhookRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CreateWebhookRequest, CreateWebhookResponse> operation
@@ -200,13 +203,11 @@ public class AsyncWebhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<UpdateWebhookResponse>} - The async response
      */
-    public CompletableFuture<UpdateWebhookResponse> update(String webhookId) {
-        return update(
-                webhookId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<UpdateWebhookResponse> update(UpdateWebhookRequest request) {
+        return update(request, Optional.empty());
     }
 
     /**
@@ -217,22 +218,11 @@ public class AsyncWebhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<UpdateWebhookResponse>} - The async response
      */
-    public CompletableFuture<UpdateWebhookResponse> update(
-            String webhookId, Optional<String> idempotencyKey,
-            Optional<? extends UpdateWebhookRequestBody> requestBody, Optional<Options> options) {
-        UpdateWebhookRequest request =
-            UpdateWebhookRequest
-                .builder()
-                .webhookId(webhookId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<UpdateWebhookResponse> update(UpdateWebhookRequest request, Optional<Options> options) {
         AsyncRequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
               = new UpdateWebhook.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -264,13 +254,11 @@ public class AsyncWebhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetWebhookResponse>} - The async response
      */
-    public CompletableFuture<GetWebhookResponse> get(String webhookId) {
-        return get(
-                webhookId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<GetWebhookResponse> get(GetWebhookRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -281,26 +269,11 @@ public class AsyncWebhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetWebhookResponse>} - The async response
      */
-    public CompletableFuture<GetWebhookResponse> get(
-            String webhookId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetWebhookRequest request =
-            GetWebhookRequest
-                .builder()
-                .webhookId(webhookId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetWebhookResponse> get(GetWebhookRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetWebhookRequest, GetWebhookResponse> operation
               = new GetWebhook.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -332,13 +305,11 @@ public class AsyncWebhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<DeleteWebhookResponse>} - The async response
      */
-    public CompletableFuture<DeleteWebhookResponse> delete(String webhookId) {
-        return delete(
-                webhookId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<DeleteWebhookResponse> delete(DeleteWebhookRequest request) {
+        return delete(request, Optional.empty());
     }
 
     /**
@@ -349,22 +320,11 @@ public class AsyncWebhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<DeleteWebhookResponse>} - The async response
      */
-    public CompletableFuture<DeleteWebhookResponse> delete(
-            String webhookId, Optional<String> idempotencyKey,
-            Optional<? extends DeleteWebhookRequestBody> requestBody, Optional<Options> options) {
-        DeleteWebhookRequest request =
-            DeleteWebhookRequest
-                .builder()
-                .webhookId(webhookId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<DeleteWebhookResponse> delete(DeleteWebhookRequest request, Optional<Options> options) {
         AsyncRequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
               = new DeleteWebhook.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -396,13 +356,11 @@ public class AsyncWebhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<TestWebhookResponse>} - The async response
      */
-    public CompletableFuture<TestWebhookResponse> test(String webhookId) {
-        return test(
-                webhookId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<TestWebhookResponse> test(TestWebhookRequest request) {
+        return test(request, Optional.empty());
     }
 
     /**
@@ -413,22 +371,11 @@ public class AsyncWebhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<TestWebhookResponse>} - The async response
      */
-    public CompletableFuture<TestWebhookResponse> test(
-            String webhookId, Optional<String> idempotencyKey,
-            Optional<? extends TestWebhookRequestBody> requestBody, Optional<Options> options) {
-        TestWebhookRequest request =
-            TestWebhookRequest
-                .builder()
-                .webhookId(webhookId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<TestWebhookResponse> test(TestWebhookRequest request, Optional<Options> options) {
         AsyncRequestOperation<TestWebhookRequest, TestWebhookResponse> operation
               = new TestWebhook.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

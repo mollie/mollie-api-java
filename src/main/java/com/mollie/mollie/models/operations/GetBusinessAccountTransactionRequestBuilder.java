@@ -12,16 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetBusinessAccountTransactionRequestBuilder {
 
-    private String businessAccountId;
-    private String transactionId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetBusinessAccountTransactionRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -30,39 +25,9 @@ public class GetBusinessAccountTransactionRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetBusinessAccountTransactionRequestBuilder businessAccountId(String businessAccountId) {
-        Utils.checkNotNull(businessAccountId, "businessAccountId");
-        this.businessAccountId = businessAccountId;
-        return this;
-    }
-
-    public GetBusinessAccountTransactionRequestBuilder transactionId(String transactionId) {
-        Utils.checkNotNull(transactionId, "transactionId");
-        this.transactionId = transactionId;
-        return this;
-    }
-                
-    public GetBusinessAccountTransactionRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetBusinessAccountTransactionRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetBusinessAccountTransactionRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetBusinessAccountTransactionRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetBusinessAccountTransactionRequestBuilder request(GetBusinessAccountTransactionRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -78,17 +43,6 @@ public class GetBusinessAccountTransactionRequestBuilder {
         return this;
     }
 
-
-    private GetBusinessAccountTransactionRequest buildRequest() {
-
-        GetBusinessAccountTransactionRequest request = new GetBusinessAccountTransactionRequest(businessAccountId,
-            transactionId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public GetBusinessAccountTransactionResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -96,7 +50,6 @@ public class GetBusinessAccountTransactionRequestBuilder {
 
         RequestOperation<GetBusinessAccountTransactionRequest, GetBusinessAccountTransactionResponse> operation
               = new GetBusinessAccountTransaction.Sync(sdkConfiguration, options, _headers);
-        GetBusinessAccountTransactionRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

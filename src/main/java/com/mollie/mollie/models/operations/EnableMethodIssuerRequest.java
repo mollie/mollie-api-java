@@ -40,6 +40,20 @@ public class EnableMethodIssuerRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private Optional<String> idempotencyKey;
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signature")
+    private Optional<String> xClientSignature;
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signed-At")
+    private Optional<String> xClientSignedAt;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends EnableMethodIssuerRequestBody> requestBody;
@@ -50,16 +64,22 @@ public class EnableMethodIssuerRequest {
             MethodIdWithIssuer methodId,
             String issuerId,
             Optional<String> idempotencyKey,
+            Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt,
             Optional<? extends EnableMethodIssuerRequestBody> requestBody) {
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(methodId, "methodId");
         Utils.checkNotNull(issuerId, "issuerId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
         Utils.checkNotNull(requestBody, "requestBody");
         this.profileId = profileId;
         this.methodId = methodId;
         this.issuerId = issuerId;
         this.idempotencyKey = idempotencyKey;
+        this.xClientSignature = xClientSignature;
+        this.xClientSignedAt = xClientSignedAt;
         this.requestBody = requestBody;
     }
     
@@ -68,7 +88,8 @@ public class EnableMethodIssuerRequest {
             MethodIdWithIssuer methodId,
             String issuerId) {
         this(profileId, methodId, issuerId,
-            Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -101,6 +122,24 @@ public class EnableMethodIssuerRequest {
     @JsonIgnore
     public Optional<String> idempotencyKey() {
         return idempotencyKey;
+    }
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignature() {
+        return xClientSignature;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignedAt() {
+        return xClientSignedAt;
     }
 
     @SuppressWarnings("unchecked")
@@ -160,6 +199,48 @@ public class EnableMethodIssuerRequest {
         return this;
     }
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public EnableMethodIssuerRequest withXClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.ofNullable(xClientSignature);
+        return this;
+    }
+
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public EnableMethodIssuerRequest withXClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public EnableMethodIssuerRequest withXClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+        return this;
+    }
+
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public EnableMethodIssuerRequest withXClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+
     public EnableMethodIssuerRequest withRequestBody(EnableMethodIssuerRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = Optional.ofNullable(requestBody);
@@ -187,6 +268,8 @@ public class EnableMethodIssuerRequest {
             Utils.enhancedDeepEquals(this.methodId, other.methodId) &&
             Utils.enhancedDeepEquals(this.issuerId, other.issuerId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.xClientSignature, other.xClientSignature) &&
+            Utils.enhancedDeepEquals(this.xClientSignedAt, other.xClientSignedAt) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
@@ -194,7 +277,8 @@ public class EnableMethodIssuerRequest {
     public int hashCode() {
         return Utils.enhancedHash(
             profileId, methodId, issuerId,
-            idempotencyKey, requestBody);
+            idempotencyKey, xClientSignature, xClientSignedAt,
+            requestBody);
     }
     
     @Override
@@ -204,6 +288,8 @@ public class EnableMethodIssuerRequest {
                 "methodId", methodId,
                 "issuerId", issuerId,
                 "idempotencyKey", idempotencyKey,
+                "xClientSignature", xClientSignature,
+                "xClientSignedAt", xClientSignedAt,
                 "requestBody", requestBody);
     }
 
@@ -217,6 +303,10 @@ public class EnableMethodIssuerRequest {
         private String issuerId;
 
         private Optional<String> idempotencyKey = Optional.empty();
+
+        private Optional<String> xClientSignature = Optional.empty();
+
+        private Optional<String> xClientSignedAt = Optional.empty();
 
         private Optional<? extends EnableMethodIssuerRequestBody> requestBody = Optional.empty();
 
@@ -274,6 +364,48 @@ public class EnableMethodIssuerRequest {
         }
 
 
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(String xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = Optional.ofNullable(xClientSignature);
+            return this;
+        }
+
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(Optional<String> xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = xClientSignature;
+            return this;
+        }
+
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(String xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(Optional<String> xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = xClientSignedAt;
+            return this;
+        }
+
+
         public Builder requestBody(EnableMethodIssuerRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = Optional.ofNullable(requestBody);
@@ -290,7 +422,8 @@ public class EnableMethodIssuerRequest {
 
             return new EnableMethodIssuerRequest(
                 profileId, methodId, issuerId,
-                idempotencyKey, requestBody);
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                requestBody);
         }
 
     }

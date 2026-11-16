@@ -19,6 +19,8 @@ import java.util.Optional;
 public class CreateCustomerRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<String> xClientSignature = Optional.empty();
+    private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<? extends EntityCustomer> entityCustomer = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -37,6 +39,30 @@ public class CreateCustomerRequestBuilder {
     public CreateCustomerRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreateCustomerRequestBuilder xClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.of(xClientSignature);
+        return this;
+    }
+
+    public CreateCustomerRequestBuilder xClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+                
+    public CreateCustomerRequestBuilder xClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.of(xClientSignedAt);
+        return this;
+    }
+
+    public CreateCustomerRequestBuilder xClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
         return this;
     }
                 
@@ -68,6 +94,8 @@ public class CreateCustomerRequestBuilder {
     private CreateCustomerRequest buildRequest() {
 
         CreateCustomerRequest request = new CreateCustomerRequest(idempotencyKey,
+            xClientSignature,
+            xClientSignedAt,
             entityCustomer);
 
         return request;

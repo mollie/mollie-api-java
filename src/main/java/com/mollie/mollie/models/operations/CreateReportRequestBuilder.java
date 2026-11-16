@@ -19,6 +19,8 @@ import java.util.Optional;
 public class CreateReportRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<String> xClientSignature = Optional.empty();
+    private Optional<String> xClientSignedAt = Optional.empty();
     private CreateReportRequest createReportRequest;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -37,6 +39,30 @@ public class CreateReportRequestBuilder {
     public CreateReportRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreateReportRequestBuilder xClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.of(xClientSignature);
+        return this;
+    }
+
+    public CreateReportRequestBuilder xClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+                
+    public CreateReportRequestBuilder xClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.of(xClientSignedAt);
+        return this;
+    }
+
+    public CreateReportRequestBuilder xClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
         return this;
     }
 
@@ -62,6 +88,8 @@ public class CreateReportRequestBuilder {
     private com.mollie.mollie.models.operations.CreateReportRequest buildRequest() {
 
         com.mollie.mollie.models.operations.CreateReportRequest request = new com.mollie.mollie.models.operations.CreateReportRequest(idempotencyKey,
+            xClientSignature,
+            xClientSignedAt,
             createReportRequest);
 
         return request;

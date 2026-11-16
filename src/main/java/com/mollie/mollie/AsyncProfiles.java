@@ -13,7 +13,6 @@ import com.mollie.mollie.models.operations.GetCurrentProfileRequest;
 import com.mollie.mollie.models.operations.GetProfileRequest;
 import com.mollie.mollie.models.operations.ListProfilesRequest;
 import com.mollie.mollie.models.operations.UpdateProfileRequest;
-import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
 import com.mollie.mollie.models.operations.async.CreateProfileRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreateProfileResponse;
 import com.mollie.mollie.models.operations.async.DeleteProfileRequestBuilder;
@@ -34,12 +33,9 @@ import com.mollie.mollie.operations.ListProfiles;
 import com.mollie.mollie.operations.UpdateProfile;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncProfiles {
@@ -96,7 +92,9 @@ public class AsyncProfiles {
      * @return {@code CompletableFuture<CreateProfileResponse>} - The async response
      */
     public CompletableFuture<CreateProfileResponse> create(ProfileRequest profileRequest) {
-        return create(Optional.empty(), profileRequest, Optional.empty());
+        return create(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                profileRequest, Optional.empty());
     }
 
     /**
@@ -112,17 +110,22 @@ public class AsyncProfiles {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param profileRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreateProfileResponse>} - The async response
      */
     public CompletableFuture<CreateProfileResponse> create(
-            Optional<String> idempotencyKey, ProfileRequest profileRequest,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, ProfileRequest profileRequest,
             Optional<Options> options) {
         CreateProfileRequest request =
             CreateProfileRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .profileRequest(profileRequest)
                 .build();
         AsyncRequestOperation<CreateProfileRequest, CreateProfileResponse> operation
@@ -160,12 +163,11 @@ public class AsyncProfiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListProfilesResponse>} - The async response
      */
-    public CompletableFuture<ListProfilesResponse> listDirect() {
-        return list(
-                JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<ListProfilesResponse> list(ListProfilesRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -178,23 +180,11 @@ public class AsyncProfiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<ListProfilesResponse>} - The async response
      */
-    public CompletableFuture<ListProfilesResponse> list(
-            JsonNullable<String> from, JsonNullable<Long> limit,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        ListProfilesRequest request =
-            ListProfilesRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<ListProfilesResponse> list(ListProfilesRequest request, Optional<Options> options) {
         ListProfiles.Async operation
               = new ListProfiles.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -226,13 +216,11 @@ public class AsyncProfiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param profileId Provide the ID of the related profile.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetProfileResponse>} - The async response
      */
-    public CompletableFuture<GetProfileResponse> get(String profileId) {
-        return get(
-                profileId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<GetProfileResponse> get(GetProfileRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -243,26 +231,11 @@ public class AsyncProfiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param profileId Provide the ID of the related profile.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetProfileResponse>} - The async response
      */
-    public CompletableFuture<GetProfileResponse> get(
-            String profileId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetProfileRequest request =
-            GetProfileRequest
-                .builder()
-                .profileId(profileId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetProfileResponse> get(GetProfileRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetProfileRequest, GetProfileResponse> operation
               = new GetProfile.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -302,14 +275,11 @@ public class AsyncProfiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param profileId Provide the ID of the related profile.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<UpdateProfileResponse>} - The async response
      */
-    public CompletableFuture<UpdateProfileResponse> update(String profileId, UpdateProfileRequestBody requestBody) {
-        return update(
-                profileId, Optional.empty(), requestBody,
-                Optional.empty());
+    public CompletableFuture<UpdateProfileResponse> update(UpdateProfileRequest request) {
+        return update(request, Optional.empty());
     }
 
     /**
@@ -324,22 +294,11 @@ public class AsyncProfiles {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param profileId Provide the ID of the related profile.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<UpdateProfileResponse>} - The async response
      */
-    public CompletableFuture<UpdateProfileResponse> update(
-            String profileId, Optional<String> idempotencyKey,
-            UpdateProfileRequestBody requestBody, Optional<Options> options) {
-        UpdateProfileRequest request =
-            UpdateProfileRequest
-                .builder()
-                .profileId(profileId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<UpdateProfileResponse> update(UpdateProfileRequest request, Optional<Options> options) {
         AsyncRequestOperation<UpdateProfileRequest, UpdateProfileResponse> operation
               = new UpdateProfile.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -377,7 +336,9 @@ public class AsyncProfiles {
      * @return {@code CompletableFuture<DeleteProfileResponse>} - The async response
      */
     public CompletableFuture<DeleteProfileResponse> delete(String profileId) {
-        return delete(profileId, Optional.empty(), Optional.empty());
+        return delete(
+                profileId, Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -391,17 +352,22 @@ public class AsyncProfiles {
      * 
      * @param profileId Provide the ID of the related profile.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<DeleteProfileResponse>} - The async response
      */
     public CompletableFuture<DeleteProfileResponse> delete(
             String profileId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         DeleteProfileRequest request =
             DeleteProfileRequest
                 .builder()
                 .profileId(profileId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<DeleteProfileRequest, DeleteProfileResponse> operation
               = new DeleteProfile.Async(
@@ -443,7 +409,9 @@ public class AsyncProfiles {
      * @return {@code CompletableFuture<GetCurrentProfileResponse>} - The async response
      */
     public CompletableFuture<GetCurrentProfileResponse> getCurrentDirect() {
-        return getCurrent(Optional.empty(), Optional.empty());
+        return getCurrent(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
     }
 
     /**
@@ -458,14 +426,20 @@ public class AsyncProfiles {
      * <p>If set, this operation will use Security#apiKey from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetCurrentProfileResponse>} - The async response
      */
-    public CompletableFuture<GetCurrentProfileResponse> getCurrent(Optional<String> idempotencyKey, Optional<Options> options) {
+    public CompletableFuture<GetCurrentProfileResponse> getCurrent(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetCurrentProfileRequest request =
             GetCurrentProfileRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<GetCurrentProfileRequest, GetCurrentProfileResponse> operation
               = new GetCurrentProfile.Async(

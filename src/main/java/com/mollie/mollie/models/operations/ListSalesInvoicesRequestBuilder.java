@@ -17,22 +17,15 @@ import com.mollie.mollie.utils.Utils;
 import com.mollie.mollie.utils.pagination.Paginator;
 import com.mollie.mollie.utils.pagination.URLTracker;
 import java.io.InputStream;
-import java.lang.Boolean;
 import java.lang.Iterable;
-import java.lang.Long;
-import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListSalesInvoicesRequestBuilder {
 
-    private JsonNullable<String> from = JsonNullable.undefined();
-    private JsonNullable<Long> limit = JsonNullable.undefined();
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private ListSalesInvoicesRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -41,51 +34,9 @@ public class ListSalesInvoicesRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListSalesInvoicesRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = JsonNullable.of(from);
-        return this;
-    }
-
-    public ListSalesInvoicesRequestBuilder from(JsonNullable<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListSalesInvoicesRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListSalesInvoicesRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-                
-    public ListSalesInvoicesRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public ListSalesInvoicesRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public ListSalesInvoicesRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public ListSalesInvoicesRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public ListSalesInvoicesRequestBuilder request(ListSalesInvoicesRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -101,17 +52,6 @@ public class ListSalesInvoicesRequestBuilder {
         return this;
     }
 
-
-    private ListSalesInvoicesRequest buildRequest() {
-
-        ListSalesInvoicesRequest request = new ListSalesInvoicesRequest(from,
-            limit,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public ListSalesInvoicesResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -119,7 +59,6 @@ public class ListSalesInvoicesRequestBuilder {
 
         ListSalesInvoices.Sync operation
               = new ListSalesInvoices.Sync(sdkConfiguration, options, _headers);
-        ListSalesInvoicesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -144,7 +83,6 @@ public class ListSalesInvoicesRequestBuilder {
 
         ListSalesInvoices.Sync operation
               = new ListSalesInvoices.Sync(sdkConfiguration, options, _headers);
-        ListSalesInvoicesRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new URLTracker("$._links.next.href", operation.baseUrl()),

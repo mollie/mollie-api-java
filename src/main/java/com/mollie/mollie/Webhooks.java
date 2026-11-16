@@ -11,7 +11,6 @@ import com.mollie.mollie.models.operations.CreateWebhookRequestBody;
 import com.mollie.mollie.models.operations.CreateWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.CreateWebhookResponse;
 import com.mollie.mollie.models.operations.DeleteWebhookRequest;
-import com.mollie.mollie.models.operations.DeleteWebhookRequestBody;
 import com.mollie.mollie.models.operations.DeleteWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.DeleteWebhookResponse;
 import com.mollie.mollie.models.operations.GetWebhookRequest;
@@ -21,11 +20,9 @@ import com.mollie.mollie.models.operations.ListWebhooksRequest;
 import com.mollie.mollie.models.operations.ListWebhooksRequestBuilder;
 import com.mollie.mollie.models.operations.ListWebhooksResponse;
 import com.mollie.mollie.models.operations.TestWebhookRequest;
-import com.mollie.mollie.models.operations.TestWebhookRequestBody;
 import com.mollie.mollie.models.operations.TestWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.TestWebhookResponse;
 import com.mollie.mollie.models.operations.UpdateWebhookRequest;
-import com.mollie.mollie.models.operations.UpdateWebhookRequestBody;
 import com.mollie.mollie.models.operations.UpdateWebhookRequestBuilder;
 import com.mollie.mollie.models.operations.UpdateWebhookResponse;
 import com.mollie.mollie.operations.CreateWebhook;
@@ -36,7 +33,6 @@ import com.mollie.mollie.operations.TestWebhook;
 import com.mollie.mollie.operations.UpdateWebhook;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 
@@ -88,7 +84,8 @@ public class Webhooks {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateWebhookResponse createDirect() {
-        return create(Optional.empty(), Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -101,18 +98,23 @@ public class Webhooks {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateWebhookResponse create(
-            Optional<String> idempotencyKey, Optional<? extends CreateWebhookRequestBody> requestBody,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends CreateWebhookRequestBody> requestBody,
             Optional<Options> options) {
         CreateWebhookRequest request =
             CreateWebhookRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<CreateWebhookRequest, CreateWebhookResponse> operation
@@ -194,13 +196,12 @@ public class Webhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateWebhookResponse update(String webhookId) {
-        return update(webhookId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public UpdateWebhookResponse update(UpdateWebhookRequest request) {
+        return update(request, Optional.empty());
     }
 
     /**
@@ -211,23 +212,12 @@ public class Webhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public UpdateWebhookResponse update(
-            String webhookId, Optional<String> idempotencyKey,
-            Optional<? extends UpdateWebhookRequestBody> requestBody, Optional<Options> options) {
-        UpdateWebhookRequest request =
-            UpdateWebhookRequest
-                .builder()
-                .webhookId(webhookId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public UpdateWebhookResponse update(UpdateWebhookRequest request, Optional<Options> options) {
         RequestOperation<UpdateWebhookRequest, UpdateWebhookResponse> operation
               = new UpdateWebhook.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -255,13 +245,12 @@ public class Webhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetWebhookResponse get(String webhookId) {
-        return get(webhookId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public GetWebhookResponse get(GetWebhookRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -272,27 +261,12 @@ public class Webhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetWebhookResponse get(
-            String webhookId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetWebhookRequest request =
-            GetWebhookRequest
-                .builder()
-                .webhookId(webhookId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetWebhookResponse get(GetWebhookRequest request, Optional<Options> options) {
         RequestOperation<GetWebhookRequest, GetWebhookResponse> operation
               = new GetWebhook.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -320,13 +294,12 @@ public class Webhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteWebhookResponse delete(String webhookId) {
-        return delete(webhookId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public DeleteWebhookResponse delete(DeleteWebhookRequest request) {
+        return delete(request, Optional.empty());
     }
 
     /**
@@ -337,23 +310,12 @@ public class Webhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DeleteWebhookResponse delete(
-            String webhookId, Optional<String> idempotencyKey,
-            Optional<? extends DeleteWebhookRequestBody> requestBody, Optional<Options> options) {
-        DeleteWebhookRequest request =
-            DeleteWebhookRequest
-                .builder()
-                .webhookId(webhookId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public DeleteWebhookResponse delete(DeleteWebhookRequest request, Optional<Options> options) {
         RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
               = new DeleteWebhook.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -381,13 +343,12 @@ public class Webhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public TestWebhookResponse test(String webhookId) {
-        return test(webhookId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public TestWebhookResponse test(TestWebhookRequest request) {
+        return test(request, Optional.empty());
     }
 
     /**
@@ -398,23 +359,12 @@ public class Webhooks {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookId Provide the ID of the related webhook.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public TestWebhookResponse test(
-            String webhookId, Optional<String> idempotencyKey,
-            Optional<? extends TestWebhookRequestBody> requestBody, Optional<Options> options) {
-        TestWebhookRequest request =
-            TestWebhookRequest
-                .builder()
-                .webhookId(webhookId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public TestWebhookResponse test(TestWebhookRequest request, Optional<Options> options) {
         RequestOperation<TestWebhookRequest, TestWebhookResponse> operation
               = new TestWebhook.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

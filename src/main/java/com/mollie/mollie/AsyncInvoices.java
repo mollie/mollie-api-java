@@ -133,7 +133,9 @@ public class AsyncInvoices {
      * @return {@code CompletableFuture<GetInvoiceResponse>} - The async response
      */
     public CompletableFuture<GetInvoiceResponse> get(String invoiceId) {
-        return get(invoiceId, Optional.empty(), Optional.empty());
+        return get(
+                invoiceId, Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -149,17 +151,22 @@ public class AsyncInvoices {
      * 
      * @param invoiceId Provide the ID of the related invoice.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetInvoiceResponse>} - The async response
      */
     public CompletableFuture<GetInvoiceResponse> get(
             String invoiceId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         GetInvoiceRequest request =
             GetInvoiceRequest
                 .builder()
                 .invoiceId(invoiceId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<GetInvoiceRequest, GetInvoiceResponse> operation
               = new GetInvoice.Async(

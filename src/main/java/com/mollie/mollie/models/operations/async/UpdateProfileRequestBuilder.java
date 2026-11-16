@@ -8,21 +8,17 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.UpdateProfileRequest;
-import com.mollie.mollie.models.operations.UpdateProfileRequestBody;
 import com.mollie.mollie.operations.UpdateProfile;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class UpdateProfileRequestBuilder {
 
-    private String profileId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private UpdateProfileRequestBody requestBody;
+    private UpdateProfileRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -31,27 +27,9 @@ public class UpdateProfileRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdateProfileRequestBuilder profileId(String profileId) {
-        Utils.checkNotNull(profileId, "profileId");
-        this.profileId = profileId;
-        return this;
-    }
-                
-    public UpdateProfileRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public UpdateProfileRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-
-    public UpdateProfileRequestBuilder requestBody(UpdateProfileRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public UpdateProfileRequestBuilder request(UpdateProfileRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -67,16 +45,6 @@ public class UpdateProfileRequestBuilder {
         return this;
     }
 
-
-    private UpdateProfileRequest buildRequest() {
-
-        UpdateProfileRequest request = new UpdateProfileRequest(profileId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public CompletableFuture<UpdateProfileResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -86,7 +54,6 @@ public class UpdateProfileRequestBuilder {
               = new UpdateProfile.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        UpdateProfileRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

@@ -24,6 +24,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateRefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -38,9 +39,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateRefundResponse res = sdk.refunds().create()
+        CreateRefundRequest req = CreateRefundRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .refundRequest(RefundRequest.builder()
                     .amount(Amount.builder()
                         .currency("EUR")
@@ -61,6 +64,10 @@ public class Application {
                             .build()))
                     .testmode(false)
                     .build())
+                .build();
+
+        CreateRefundResponse res = sdk.refunds().create()
+                .request(req)
                 .call();
 
         if (res.refundResponse().isPresent()) {
@@ -78,6 +85,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateRefundRequest;
 import com.mollie.mollie.models.operations.CreateRefundResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -92,9 +100,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateRefundResponse res = sdk.refunds().create()
+        CreateRefundRequest req = CreateRefundRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .refundRequest(RefundRequest.builder()
                     .amount(Amount.builder()
                         .currency("EUR")
@@ -115,6 +125,10 @@ public class Application {
                             .build()))
                     .testmode(false)
                     .build())
+                .build();
+
+        CreateRefundResponse res = sdk.refunds().create()
+                .request(req)
                 .call();
 
         if (res.refundResponse().isPresent()) {
@@ -126,11 +140,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `paymentId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `refundRequest`                                                                  | [Optional\<RefundRequest>](../../models/components/RefundRequest.md)             | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [CreateRefundRequest](../../models/operations/CreateRefundRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 ### Response
 
@@ -179,6 +191,8 @@ public class Application {
                 .limit(50L)
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -242,6 +256,8 @@ public class Application {
                 .refundId("re_5B8cwPMGnU")
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         GetRefundResponse res = sdk.refunds().get()
@@ -289,6 +305,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CancelRefundRequest;
 import com.mollie.mollie.models.operations.CancelRefundResponse;
 import java.lang.Exception;
 
@@ -303,10 +320,16 @@ public class Application {
                     .build())
             .build();
 
-        CancelRefundResponse res = sdk.refunds().cancel()
+        CancelRefundRequest req = CancelRefundRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .refundId("re_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        CancelRefundResponse res = sdk.refunds().cancel()
+                .request(req)
                 .call();
 
         // handle response
@@ -316,12 +339,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `paymentId`                                                                                                                                                                                                                                                                                                                                                                              | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related payment.                                                                                                                                                                                                                                                                                                                                                   | tr_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                            |
-| `refundId`                                                                                                                                                                                                                                                                                                                                                                               | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the related refund.                                                                                                                                                                                                                                                                                                                                                    | re_5B8cwPMGnU                                                                                                                                                                                                                                                                                                                                                                            |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | *Optional\<Boolean>*                                                                                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [CancelRefundRequest](../../models/operations/CancelRefundRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 ### Response
 
@@ -372,6 +392,8 @@ public class Application {
                 .sort(Sorting.DESC)
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 

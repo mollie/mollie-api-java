@@ -20,6 +20,8 @@ import java.util.concurrent.CompletableFuture;
 public class GetNextSettlementRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<String> xClientSignature = Optional.empty();
+    private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -40,6 +42,30 @@ public class GetNextSettlementRequestBuilder {
         return this;
     }
                 
+    public GetNextSettlementRequestBuilder xClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.of(xClientSignature);
+        return this;
+    }
+
+    public GetNextSettlementRequestBuilder xClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+                
+    public GetNextSettlementRequestBuilder xClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.of(xClientSignedAt);
+        return this;
+    }
+
+    public GetNextSettlementRequestBuilder xClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+                
     public GetNextSettlementRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
@@ -55,7 +81,9 @@ public class GetNextSettlementRequestBuilder {
 
     private GetNextSettlementRequest buildRequest() {
 
-        GetNextSettlementRequest request = new GetNextSettlementRequest(idempotencyKey);
+        GetNextSettlementRequest request = new GetNextSettlementRequest(idempotencyKey,
+            xClientSignature,
+            xClientSignedAt);
 
         return request;
     }

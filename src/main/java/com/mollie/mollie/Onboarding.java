@@ -66,7 +66,8 @@ public class Onboarding {
      * @throws RuntimeException subclass if the API call fails
      */
     public GetOnboardingStatusResponse getDirect() {
-        return get(Optional.empty(), Optional.empty());
+        return get(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -78,15 +79,21 @@ public class Onboarding {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetOnboardingStatusResponse get(Optional<String> idempotencyKey, Optional<Options> options) {
+    public GetOnboardingStatusResponse get(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<Options> options) {
         GetOnboardingStatusRequest request =
             GetOnboardingStatusRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         RequestOperation<GetOnboardingStatusRequest, GetOnboardingStatusResponse> operation
               = new GetOnboardingStatus.Sync(sdkConfiguration, options, _headers);
@@ -133,7 +140,8 @@ public class Onboarding {
      * @throws RuntimeException subclass if the API call fails
      */
     public SubmitOnboardingDataResponse submitDirect() {
-        return submit(Optional.empty(), Optional.empty(), Optional.empty());
+        return submit(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -152,18 +160,23 @@ public class Onboarding {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param requestBody 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public SubmitOnboardingDataResponse submit(
-            Optional<String> idempotencyKey, Optional<? extends SubmitOnboardingDataRequestBody> requestBody,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends SubmitOnboardingDataRequestBody> requestBody,
             Optional<Options> options) {
         SubmitOnboardingDataRequest request =
             SubmitOnboardingDataRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .requestBody(requestBody)
                 .build();
         RequestOperation<SubmitOnboardingDataRequest, SubmitOnboardingDataResponse> operation

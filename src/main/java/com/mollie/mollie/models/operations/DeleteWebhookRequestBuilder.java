@@ -12,14 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class DeleteWebhookRequestBuilder {
 
-    private String webhookId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends DeleteWebhookRequestBody> requestBody = Optional.empty();
+    private DeleteWebhookRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -28,33 +25,9 @@ public class DeleteWebhookRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public DeleteWebhookRequestBuilder webhookId(String webhookId) {
-        Utils.checkNotNull(webhookId, "webhookId");
-        this.webhookId = webhookId;
-        return this;
-    }
-                
-    public DeleteWebhookRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public DeleteWebhookRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public DeleteWebhookRequestBuilder requestBody(DeleteWebhookRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public DeleteWebhookRequestBuilder requestBody(Optional<? extends DeleteWebhookRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public DeleteWebhookRequestBuilder request(DeleteWebhookRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -70,16 +43,6 @@ public class DeleteWebhookRequestBuilder {
         return this;
     }
 
-
-    private DeleteWebhookRequest buildRequest() {
-
-        DeleteWebhookRequest request = new DeleteWebhookRequest(webhookId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public DeleteWebhookResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -87,7 +50,6 @@ public class DeleteWebhookRequestBuilder {
 
         RequestOperation<DeleteWebhookRequest, DeleteWebhookResponse> operation
               = new DeleteWebhook.Sync(sdkConfiguration, options, _headers);
-        DeleteWebhookRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

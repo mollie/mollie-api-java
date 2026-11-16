@@ -19,6 +19,8 @@ import java.util.Optional;
 public class CreateSalesInvoiceRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<String> xClientSignature = Optional.empty();
+    private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<? extends SalesInvoiceRequest> salesInvoiceRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -37,6 +39,30 @@ public class CreateSalesInvoiceRequestBuilder {
     public CreateSalesInvoiceRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreateSalesInvoiceRequestBuilder xClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.of(xClientSignature);
+        return this;
+    }
+
+    public CreateSalesInvoiceRequestBuilder xClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+                
+    public CreateSalesInvoiceRequestBuilder xClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.of(xClientSignedAt);
+        return this;
+    }
+
+    public CreateSalesInvoiceRequestBuilder xClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
         return this;
     }
                 
@@ -68,6 +94,8 @@ public class CreateSalesInvoiceRequestBuilder {
     private CreateSalesInvoiceRequest buildRequest() {
 
         CreateSalesInvoiceRequest request = new CreateSalesInvoiceRequest(idempotencyKey,
+            xClientSignature,
+            xClientSignedAt,
             salesInvoiceRequest);
 
         return request;

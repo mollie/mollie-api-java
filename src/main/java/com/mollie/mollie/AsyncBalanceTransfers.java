@@ -21,7 +21,6 @@ import com.mollie.mollie.operations.GetConnectBalanceTransfer;
 import com.mollie.mollie.operations.ListConnectBalanceTransfers;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -82,7 +81,9 @@ public class AsyncBalanceTransfers {
      * @return {@code CompletableFuture<CreateConnectBalanceTransferResponse>} - The async response
      */
     public CompletableFuture<CreateConnectBalanceTransferResponse> createDirect() {
-        return create(Optional.empty(), Optional.empty(), Optional.empty());
+        return create(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -99,17 +100,22 @@ public class AsyncBalanceTransfers {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param entityBalanceTransfer 
      * @param options additional options
      * @return {@code CompletableFuture<CreateConnectBalanceTransferResponse>} - The async response
      */
     public CompletableFuture<CreateConnectBalanceTransferResponse> create(
-            Optional<String> idempotencyKey, Optional<? extends EntityBalanceTransfer> entityBalanceTransfer,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends EntityBalanceTransfer> entityBalanceTransfer,
             Optional<Options> options) {
         CreateConnectBalanceTransferRequest request =
             CreateConnectBalanceTransferRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .entityBalanceTransfer(entityBalanceTransfer)
                 .build();
         AsyncRequestOperation<CreateConnectBalanceTransferRequest, CreateConnectBalanceTransferResponse> operation
@@ -209,13 +215,11 @@ public class AsyncBalanceTransfers {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param balanceTransferId Provide the ID of the related balance transfer.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetConnectBalanceTransferResponse>} - The async response
      */
-    public CompletableFuture<GetConnectBalanceTransferResponse> get(String balanceTransferId) {
-        return get(
-                balanceTransferId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<GetConnectBalanceTransferResponse> get(GetConnectBalanceTransferRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -226,26 +230,11 @@ public class AsyncBalanceTransfers {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param balanceTransferId Provide the ID of the related balance transfer.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetConnectBalanceTransferResponse>} - The async response
      */
-    public CompletableFuture<GetConnectBalanceTransferResponse> get(
-            String balanceTransferId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetConnectBalanceTransferRequest request =
-            GetConnectBalanceTransferRequest
-                .builder()
-                .balanceTransferId(balanceTransferId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetConnectBalanceTransferResponse> get(GetConnectBalanceTransferRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetConnectBalanceTransferRequest, GetConnectBalanceTransferResponse> operation
               = new GetConnectBalanceTransfer.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

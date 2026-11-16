@@ -12,8 +12,6 @@ import com.mollie.mollie.models.operations.async.GetWebhookEventResponse;
 import com.mollie.mollie.operations.GetWebhookEvent;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -60,13 +58,11 @@ public class AsyncWebhookEvents {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookEventId Provide the ID of the related webhook event.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetWebhookEventResponse>} - The async response
      */
-    public CompletableFuture<GetWebhookEventResponse> get(String webhookEventId) {
-        return get(
-                webhookEventId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<GetWebhookEventResponse> get(GetWebhookEventRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -77,26 +73,11 @@ public class AsyncWebhookEvents {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param webhookEventId Provide the ID of the related webhook event.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetWebhookEventResponse>} - The async response
      */
-    public CompletableFuture<GetWebhookEventResponse> get(
-            String webhookEventId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetWebhookEventRequest request =
-            GetWebhookEventRequest
-                .builder()
-                .webhookEventId(webhookEventId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetWebhookEventResponse> get(GetWebhookEventRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetWebhookEventRequest, GetWebhookEventResponse> operation
               = new GetWebhookEvent.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

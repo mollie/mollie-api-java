@@ -8,21 +8,17 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
 import com.mollie.mollie.models.operations.TestWebhookRequest;
-import com.mollie.mollie.models.operations.TestWebhookRequestBody;
 import com.mollie.mollie.operations.TestWebhook;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class TestWebhookRequestBuilder {
 
-    private String webhookId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends TestWebhookRequestBody> requestBody = Optional.empty();
+    private TestWebhookRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -31,33 +27,9 @@ public class TestWebhookRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public TestWebhookRequestBuilder webhookId(String webhookId) {
-        Utils.checkNotNull(webhookId, "webhookId");
-        this.webhookId = webhookId;
-        return this;
-    }
-                
-    public TestWebhookRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public TestWebhookRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public TestWebhookRequestBuilder requestBody(TestWebhookRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public TestWebhookRequestBuilder requestBody(Optional<? extends TestWebhookRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public TestWebhookRequestBuilder request(TestWebhookRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -73,16 +45,6 @@ public class TestWebhookRequestBuilder {
         return this;
     }
 
-
-    private TestWebhookRequest buildRequest() {
-
-        TestWebhookRequest request = new TestWebhookRequest(webhookId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public CompletableFuture<TestWebhookResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -92,7 +54,6 @@ public class TestWebhookRequestBuilder {
               = new TestWebhook.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        TestWebhookRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

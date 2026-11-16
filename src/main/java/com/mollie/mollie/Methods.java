@@ -6,8 +6,6 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
-import com.mollie.mollie.models.components.MethodId;
-import com.mollie.mollie.models.components.MethodIdWithIssuer;
 import com.mollie.mollie.models.operations.DisableMethodIssuerRequest;
 import com.mollie.mollie.models.operations.DisableMethodIssuerRequestBuilder;
 import com.mollie.mollie.models.operations.DisableMethodIssuerResponse;
@@ -38,7 +36,6 @@ import com.mollie.mollie.operations.ListAllMethods;
 import com.mollie.mollie.operations.ListMethods;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.String;
 import java.util.Optional;
 
 
@@ -376,13 +373,12 @@ public class Methods {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param profileId Provide the ID of the related profile.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public EnableMethodResponse enable(String profileId) {
-        return enable(profileId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public EnableMethodResponse enable(EnableMethodRequest request) {
+        return enable(request, Optional.empty());
     }
 
     /**
@@ -403,29 +399,12 @@ public class Methods {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param profileId Provide the ID of the related profile.
-     * @param methodId Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     *         method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-     *         parameter enables you to fully integrate the payment method selection into your website.
-     *         
-     *         You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     *         but will only show the methods specified in the array. For example, you can use this functionality to only show
-     *         payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public EnableMethodResponse enable(
-            String profileId, Optional<? extends MethodId> methodId,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        EnableMethodRequest request =
-            EnableMethodRequest
-                .builder()
-                .profileId(profileId)
-                .methodId(methodId)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public EnableMethodResponse enable(EnableMethodRequest request, Optional<Options> options) {
         RequestOperation<EnableMethodRequest, EnableMethodResponse> operation
               = new EnableMethod.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -459,13 +438,12 @@ public class Methods {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param profileId Provide the ID of the related profile.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DisableMethodResponse disable(String profileId) {
-        return disable(profileId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public DisableMethodResponse disable(DisableMethodRequest request) {
+        return disable(request, Optional.empty());
     }
 
     /**
@@ -479,29 +457,12 @@ public class Methods {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param profileId Provide the ID of the related profile.
-     * @param methodId Normally, a payment method screen is shown. However, when using this parameter, you can choose a specific payment
-     *         method and your customer will skip the selection screen and is sent directly to the chosen payment method. The
-     *         parameter enables you to fully integrate the payment method selection into your website.
-     *         
-     *         You can also specify the methods in an array. By doing so we will still show the payment method selection screen
-     *         but will only show the methods specified in the array. For example, you can use this functionality to only show
-     *         payment methods from a specific country to your customer `['bancontact', 'belfius']`.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DisableMethodResponse disable(
-            String profileId, Optional<? extends MethodId> methodId,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        DisableMethodRequest request =
-            DisableMethodRequest
-                .builder()
-                .profileId(profileId)
-                .methodId(methodId)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public DisableMethodResponse disable(DisableMethodRequest request, Optional<Options> options) {
         RequestOperation<DisableMethodRequest, DisableMethodResponse> operation
               = new DisableMethod.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -608,17 +569,12 @@ public class Methods {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param profileId Provide the ID of the related profile.
-     * @param methodId 
-     * @param issuerId Provide the ID of the related issuer.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DisableMethodIssuerResponse disableIssuer(
-            String profileId, MethodIdWithIssuer methodId,
-            String issuerId) {
-        return disableIssuer(profileId, methodId, issuerId,
-            Optional.empty(), Optional.empty());
+    public DisableMethodIssuerResponse disableIssuer(DisableMethodIssuerRequest request) {
+        return disableIssuer(request, Optional.empty());
     }
 
     /**
@@ -635,26 +591,12 @@ public class Methods {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param profileId Provide the ID of the related profile.
-     * @param methodId 
-     * @param issuerId Provide the ID of the related issuer.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public DisableMethodIssuerResponse disableIssuer(
-            String profileId, MethodIdWithIssuer methodId,
-            String issuerId, Optional<String> idempotencyKey,
-            Optional<Options> options) {
-        DisableMethodIssuerRequest request =
-            DisableMethodIssuerRequest
-                .builder()
-                .profileId(profileId)
-                .methodId(methodId)
-                .issuerId(issuerId)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public DisableMethodIssuerResponse disableIssuer(DisableMethodIssuerRequest request, Optional<Options> options) {
         RequestOperation<DisableMethodIssuerRequest, DisableMethodIssuerResponse> operation
               = new DisableMethodIssuer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

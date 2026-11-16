@@ -12,14 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class UpdateCustomerRequestBuilder {
 
-    private String customerId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends UpdateCustomerRequestBody> requestBody = Optional.empty();
+    private UpdateCustomerRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -28,33 +25,9 @@ public class UpdateCustomerRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdateCustomerRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
-        return this;
-    }
-                
-    public UpdateCustomerRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public UpdateCustomerRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public UpdateCustomerRequestBuilder requestBody(UpdateCustomerRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public UpdateCustomerRequestBuilder requestBody(Optional<? extends UpdateCustomerRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public UpdateCustomerRequestBuilder request(UpdateCustomerRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -70,16 +43,6 @@ public class UpdateCustomerRequestBuilder {
         return this;
     }
 
-
-    private UpdateCustomerRequest buildRequest() {
-
-        UpdateCustomerRequest request = new UpdateCustomerRequest(customerId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public UpdateCustomerResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -87,7 +50,6 @@ public class UpdateCustomerRequestBuilder {
 
         RequestOperation<UpdateCustomerRequest, UpdateCustomerResponse> operation
               = new UpdateCustomer.Sync(sdkConfiguration, options, _headers);
-        UpdateCustomerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -72,6 +72,8 @@ public class Application {
                 .orderLineCategories(LineCategories.ECO)
                 .include("issuers")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         ListMethodsResponse res = sdk.methods().list()
@@ -122,6 +124,8 @@ public class Application {
                 .orderLineCategories(LineCategories.ECO)
                 .include("issuers")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         ListMethodsResponse res = sdk.methods().list()
@@ -172,6 +176,8 @@ public class Application {
                 .orderLineCategories(LineCategories.ECO)
                 .include("issuers")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         ListMethodsResponse res = sdk.methods().list()
@@ -246,6 +252,8 @@ public class Application {
                 .include("issuers")
                 .sequenceType(SequenceType.ONEOFF)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         ListAllMethodsResponse res = sdk.methods().all()
@@ -292,6 +300,8 @@ public class Application {
                 .include("issuers")
                 .sequenceType(SequenceType.ONEOFF)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         ListAllMethodsResponse res = sdk.methods().all()
@@ -338,6 +348,8 @@ public class Application {
                 .include("issuers")
                 .sequenceType(SequenceType.ONEOFF)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         ListAllMethodsResponse res = sdk.methods().all()
@@ -384,6 +396,8 @@ public class Application {
                 .include("issuers")
                 .sequenceType(SequenceType.ONEOFF)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         ListAllMethodsResponse res = sdk.methods().all()
@@ -461,6 +475,8 @@ public class Application {
                 .include("issuers")
                 .sequenceType(SequenceType.ONEOFF)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         GetMethodResponse res = sdk.methods().get()
@@ -514,6 +530,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.EnableMethodRequest;
 import com.mollie.mollie.models.operations.EnableMethodResponse;
 import java.lang.Exception;
 
@@ -527,10 +544,16 @@ public class Application {
                     .build())
             .build();
 
-        EnableMethodResponse res = sdk.methods().enable()
+        EnableMethodRequest req = EnableMethodRequest.builder()
                 .profileId("pfl_5B8cwPMGnU")
                 .methodId(MethodId.IDEAL)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        EnableMethodResponse res = sdk.methods().enable()
+                .request(req)
                 .call();
 
         if (res.entityMethodGet().isPresent()) {
@@ -549,6 +572,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.EnableMethodRequest;
 import com.mollie.mollie.models.operations.EnableMethodResponse;
 import java.lang.Exception;
 
@@ -562,10 +586,16 @@ public class Application {
                     .build())
             .build();
 
-        EnableMethodResponse res = sdk.methods().enable()
+        EnableMethodRequest req = EnableMethodRequest.builder()
                 .profileId("pfl_5B8cwPMGnU")
                 .methodId(MethodId.IDEAL)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        EnableMethodResponse res = sdk.methods().enable()
+                .request(req)
                 .call();
 
         if (res.entityMethodGet().isPresent()) {
@@ -584,6 +614,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.EnableMethodRequest;
 import com.mollie.mollie.models.operations.EnableMethodResponse;
 import java.lang.Exception;
 
@@ -597,10 +628,16 @@ public class Application {
                     .build())
             .build();
 
-        EnableMethodResponse res = sdk.methods().enable()
+        EnableMethodRequest req = EnableMethodRequest.builder()
                 .profileId("pfl_5B8cwPMGnU")
                 .methodId(MethodId.IDEAL)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        EnableMethodResponse res = sdk.methods().enable()
+                .request(req)
                 .call();
 
         if (res.entityMethodGet().isPresent()) {
@@ -612,11 +649,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `profileId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
-| `methodId`                                                                       | [Optional\<MethodId>](../../models/components/MethodId.md)                       | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [EnableMethodRequest](../../models/operations/EnableMethodRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 ### Response
 
@@ -646,6 +681,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.DisableMethodRequest;
 import com.mollie.mollie.models.operations.DisableMethodResponse;
 import java.lang.Exception;
 
@@ -659,10 +695,16 @@ public class Application {
                     .build())
             .build();
 
-        DisableMethodResponse res = sdk.methods().disable()
+        DisableMethodRequest req = DisableMethodRequest.builder()
                 .profileId("pfl_5B8cwPMGnU")
                 .methodId(MethodId.IDEAL)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        DisableMethodResponse res = sdk.methods().disable()
+                .request(req)
                 .call();
 
         // handle response
@@ -672,11 +714,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `profileId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
-| `methodId`                                                                       | [Optional\<MethodId>](../../models/components/MethodId.md)                       | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | ideal                                                                            |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [DisableMethodRequest](../../models/operations/DisableMethodRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 
@@ -726,6 +766,8 @@ public class Application {
                 .methodId(MethodIdWithIssuer.VOUCHER)
                 .issuerId("edenred-france-sports")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .requestBody(EnableMethodIssuerRequestBody.builder()
                     .contractId("ideal")
                     .build())
@@ -788,6 +830,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.MethodIdWithIssuer;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.DisableMethodIssuerRequest;
 import com.mollie.mollie.models.operations.DisableMethodIssuerResponse;
 import java.lang.Exception;
 
@@ -801,11 +844,17 @@ public class Application {
                     .build())
             .build();
 
-        DisableMethodIssuerResponse res = sdk.methods().disableIssuer()
+        DisableMethodIssuerRequest req = DisableMethodIssuerRequest.builder()
                 .profileId("pfl_5B8cwPMGnU")
                 .methodId(MethodIdWithIssuer.VOUCHER)
                 .issuerId("edenred-france-sports")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        DisableMethodIssuerResponse res = sdk.methods().disableIssuer()
+                .request(req)
                 .call();
 
         // handle response
@@ -815,12 +864,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `profileId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related profile.                                           | pfl_5B8cwPMGnU                                                                   |
-| `methodId`                                                                       | [MethodIdWithIssuer](../../models/components/MethodIdWithIssuer.md)              | :heavy_check_mark:                                                               | Provide the ID of the related payment method.                                    | voucher                                                                          |
-| `issuerId`                                                                       | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related issuer.                                            | edenred-france-sports                                                            |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [DisableMethodIssuerRequest](../../models/operations/DisableMethodIssuerRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
 
 ### Response
 

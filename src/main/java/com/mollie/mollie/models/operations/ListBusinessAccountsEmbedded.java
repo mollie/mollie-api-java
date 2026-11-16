@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mollie.mollie.models.components.BusinessAccountResponse;
+import com.mollie.mollie.models.components.ListBusinessAccountResponse;
 import com.mollie.mollie.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
@@ -24,11 +24,11 @@ public class ListBusinessAccountsEmbedded {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("businessAccounts")
-    private Optional<? extends List<BusinessAccountResponse>> businessAccounts;
+    private Optional<? extends List<ListBusinessAccountResponse>> businessAccounts;
 
     @JsonCreator
     public ListBusinessAccountsEmbedded(
-            @JsonProperty("businessAccounts") Optional<? extends List<BusinessAccountResponse>> businessAccounts) {
+            @JsonProperty("businessAccounts") Optional<? extends List<ListBusinessAccountResponse>> businessAccounts) {
         Utils.checkNotNull(businessAccounts, "businessAccounts");
         this.businessAccounts = businessAccounts;
     }
@@ -42,8 +42,8 @@ public class ListBusinessAccountsEmbedded {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<BusinessAccountResponse>> businessAccounts() {
-        return (Optional<List<BusinessAccountResponse>>) businessAccounts;
+    public Optional<List<ListBusinessAccountResponse>> businessAccounts() {
+        return (Optional<List<ListBusinessAccountResponse>>) businessAccounts;
     }
 
     public static Builder builder() {
@@ -54,7 +54,7 @@ public class ListBusinessAccountsEmbedded {
     /**
      * An array of business account objects.
      */
-    public ListBusinessAccountsEmbedded withBusinessAccounts(List<BusinessAccountResponse> businessAccounts) {
+    public ListBusinessAccountsEmbedded withBusinessAccounts(List<ListBusinessAccountResponse> businessAccounts) {
         Utils.checkNotNull(businessAccounts, "businessAccounts");
         this.businessAccounts = Optional.ofNullable(businessAccounts);
         return this;
@@ -64,7 +64,7 @@ public class ListBusinessAccountsEmbedded {
     /**
      * An array of business account objects.
      */
-    public ListBusinessAccountsEmbedded withBusinessAccounts(Optional<? extends List<BusinessAccountResponse>> businessAccounts) {
+    public ListBusinessAccountsEmbedded withBusinessAccounts(Optional<? extends List<ListBusinessAccountResponse>> businessAccounts) {
         Utils.checkNotNull(businessAccounts, "businessAccounts");
         this.businessAccounts = businessAccounts;
         return this;
@@ -98,7 +98,7 @@ public class ListBusinessAccountsEmbedded {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<BusinessAccountResponse>> businessAccounts = Optional.empty();
+        private Optional<? extends List<ListBusinessAccountResponse>> businessAccounts = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -108,7 +108,7 @@ public class ListBusinessAccountsEmbedded {
         /**
          * An array of business account objects.
          */
-        public Builder businessAccounts(List<BusinessAccountResponse> businessAccounts) {
+        public Builder businessAccounts(List<ListBusinessAccountResponse> businessAccounts) {
             Utils.checkNotNull(businessAccounts, "businessAccounts");
             this.businessAccounts = Optional.ofNullable(businessAccounts);
             return this;
@@ -117,7 +117,7 @@ public class ListBusinessAccountsEmbedded {
         /**
          * An array of business account objects.
          */
-        public Builder businessAccounts(Optional<? extends List<BusinessAccountResponse>> businessAccounts) {
+        public Builder businessAccounts(Optional<? extends List<ListBusinessAccountResponse>> businessAccounts) {
             Utils.checkNotNull(businessAccounts, "businessAccounts");
             this.businessAccounts = businessAccounts;
             return this;

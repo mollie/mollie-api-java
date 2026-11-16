@@ -117,7 +117,8 @@ public class VerifyPayee {
      * @throws RuntimeException subclass if the API call fails
      */
     public VerifyPayeeResponse createDirect() {
-        return create(Optional.empty(), Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -157,6 +158,8 @@ public class VerifyPayee {
      * <p>If set, this operation will use Security#advancedAccessToken from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param verificationOfPayeeRequest The request body for performing a Verification of Payee (VoP) check. VoP allows you to verify the
      *         account holder name against the records held by the receiving bank before initiating a transfer.
      * @param options additional options
@@ -164,12 +167,15 @@ public class VerifyPayee {
      * @throws RuntimeException subclass if the API call fails
      */
     public VerifyPayeeResponse create(
-            Optional<String> idempotencyKey, Optional<? extends VerificationOfPayeeRequest> verificationOfPayeeRequest,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends VerificationOfPayeeRequest> verificationOfPayeeRequest,
             Optional<Options> options) {
         VerifyPayeeRequest request =
             VerifyPayeeRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .verificationOfPayeeRequest(verificationOfPayeeRequest)
                 .build();
         RequestOperation<VerifyPayeeRequest, VerifyPayeeResponse> operation

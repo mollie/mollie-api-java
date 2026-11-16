@@ -25,7 +25,6 @@ import com.mollie.mollie.operations.GetPayout;
 import com.mollie.mollie.operations.ListPayouts;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 
@@ -150,7 +149,8 @@ public class Payouts {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePayoutResponse create(PayoutRequest payoutRequest) {
-        return create(Optional.empty(), payoutRequest, Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty(),
+            payoutRequest, Optional.empty());
     }
 
     /**
@@ -199,18 +199,23 @@ public class Payouts {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param payoutRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreatePayoutResponse create(
-            Optional<String> idempotencyKey, PayoutRequest payoutRequest,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, PayoutRequest payoutRequest,
             Optional<Options> options) {
         CreatePayoutRequest request =
             CreatePayoutRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .payoutRequest(payoutRequest)
                 .build();
         RequestOperation<CreatePayoutRequest, CreatePayoutResponse> operation
@@ -313,13 +318,12 @@ public class Payouts {
      * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
      * global security.
      * 
-     * @param payoutId Provide the ID of the payout.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetPayoutResponse get(String payoutId) {
-        return get(payoutId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public GetPayoutResponse get(GetPayoutRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -330,27 +334,12 @@ public class Payouts {
      * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
      * global security.
      * 
-     * @param payoutId Provide the ID of the payout.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetPayoutResponse get(
-            String payoutId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetPayoutRequest request =
-            GetPayoutRequest
-                .builder()
-                .payoutId(payoutId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetPayoutResponse get(GetPayoutRequest request, Optional<Options> options) {
         RequestOperation<GetPayoutRequest, GetPayoutResponse> operation
               = new GetPayout.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -386,13 +375,12 @@ public class Payouts {
      * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
      * global security.
      * 
-     * @param payoutId Provide the ID of the payout.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CancelPayoutResponse cancel(String payoutId) {
-        return cancel(payoutId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public CancelPayoutResponse cancel(CancelPayoutRequest request) {
+        return cancel(request, Optional.empty());
     }
 
     /**
@@ -407,27 +395,12 @@ public class Payouts {
      * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
      * global security.
      * 
-     * @param payoutId Provide the ID of the payout.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CancelPayoutResponse cancel(
-            String payoutId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        CancelPayoutRequest request =
-            CancelPayoutRequest
-                .builder()
-                .payoutId(payoutId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CancelPayoutResponse cancel(CancelPayoutRequest request, Optional<Options> options) {
         RequestOperation<CancelPayoutRequest, CancelPayoutResponse> operation
               = new CancelPayout.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

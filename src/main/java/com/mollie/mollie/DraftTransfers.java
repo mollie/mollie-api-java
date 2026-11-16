@@ -8,7 +8,6 @@ import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.models.components.CreateDraftTransferRequest;
 import com.mollie.mollie.models.operations.CancelDraftTransferRequest;
-import com.mollie.mollie.models.operations.CancelDraftTransferRequestBody;
 import com.mollie.mollie.models.operations.CancelDraftTransferRequestBuilder;
 import com.mollie.mollie.models.operations.CancelDraftTransferResponse;
 import com.mollie.mollie.models.operations.CreateDraftTransferRequestBuilder;
@@ -25,7 +24,6 @@ import com.mollie.mollie.operations.GetDraftTransfer;
 import com.mollie.mollie.operations.ListDraftTransfers;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 
@@ -145,7 +143,8 @@ public class DraftTransfers {
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateDraftTransferResponse createDirect() {
-        return create(Optional.empty(), Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -192,18 +191,23 @@ public class DraftTransfers {
      * global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param createDraftTransferRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
     public CreateDraftTransferResponse create(
-            Optional<String> idempotencyKey, Optional<? extends CreateDraftTransferRequest> createDraftTransferRequest,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends CreateDraftTransferRequest> createDraftTransferRequest,
             Optional<Options> options) {
         com.mollie.mollie.models.operations.CreateDraftTransferRequest request =
             com.mollie.mollie.models.operations.CreateDraftTransferRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .createDraftTransferRequest(createDraftTransferRequest)
                 .build();
         RequestOperation<com.mollie.mollie.models.operations.CreateDraftTransferRequest, CreateDraftTransferResponse> operation
@@ -328,13 +332,12 @@ public class DraftTransfers {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param draftTransferId Provide the ID of the related draft transfer.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetDraftTransferResponse get(String draftTransferId) {
-        return get(draftTransferId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public GetDraftTransferResponse get(GetDraftTransferRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -356,27 +359,12 @@ public class DraftTransfers {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param draftTransferId Provide the ID of the related draft transfer.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public GetDraftTransferResponse get(
-            String draftTransferId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetDraftTransferRequest request =
-            GetDraftTransferRequest
-                .builder()
-                .draftTransferId(draftTransferId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public GetDraftTransferResponse get(GetDraftTransferRequest request, Optional<Options> options) {
         RequestOperation<GetDraftTransferRequest, GetDraftTransferResponse> operation
               = new GetDraftTransfer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));
@@ -428,13 +416,12 @@ public class DraftTransfers {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param draftTransferId Provide the ID of the related draft transfer.
+     * @param request The request object containing all the parameters for the API call.
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CancelDraftTransferResponse cancel(String draftTransferId) {
-        return cancel(draftTransferId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+    public CancelDraftTransferResponse cancel(CancelDraftTransferRequest request) {
+        return cancel(request, Optional.empty());
     }
 
     /**
@@ -457,23 +444,12 @@ public class DraftTransfers {
      * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
      * global security.
      * 
-     * @param draftTransferId Provide the ID of the related draft transfer.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
      */
-    public CancelDraftTransferResponse cancel(
-            String draftTransferId, Optional<String> idempotencyKey,
-            Optional<? extends CancelDraftTransferRequestBody> requestBody, Optional<Options> options) {
-        CancelDraftTransferRequest request =
-            CancelDraftTransferRequest
-                .builder()
-                .draftTransferId(draftTransferId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CancelDraftTransferResponse cancel(CancelDraftTransferRequest request, Optional<Options> options) {
         RequestOperation<CancelDraftTransferRequest, CancelDraftTransferResponse> operation
               = new CancelDraftTransfer.Sync(sdkConfiguration, options, _headers);
         return operation.handleResponse(operation.doRequest(request));

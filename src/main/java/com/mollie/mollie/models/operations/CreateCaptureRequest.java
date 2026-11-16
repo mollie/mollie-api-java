@@ -28,6 +28,20 @@ public class CreateCaptureRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private Optional<String> idempotencyKey;
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signature")
+    private Optional<String> xClientSignature;
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signed-At")
+    private Optional<String> xClientSignedAt;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends EntityCapture> entityCapture;
@@ -36,18 +50,25 @@ public class CreateCaptureRequest {
     public CreateCaptureRequest(
             String paymentId,
             Optional<String> idempotencyKey,
+            Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt,
             Optional<? extends EntityCapture> entityCapture) {
         Utils.checkNotNull(paymentId, "paymentId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
         Utils.checkNotNull(entityCapture, "entityCapture");
         this.paymentId = paymentId;
         this.idempotencyKey = idempotencyKey;
+        this.xClientSignature = xClientSignature;
+        this.xClientSignedAt = xClientSignedAt;
         this.entityCapture = entityCapture;
     }
     
     public CreateCaptureRequest(
             String paymentId) {
-        this(paymentId, Optional.empty(), Optional.empty());
+        this(paymentId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -64,6 +85,24 @@ public class CreateCaptureRequest {
     @JsonIgnore
     public Optional<String> idempotencyKey() {
         return idempotencyKey;
+    }
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignature() {
+        return xClientSignature;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignedAt() {
+        return xClientSignedAt;
     }
 
     @SuppressWarnings("unchecked")
@@ -105,6 +144,48 @@ public class CreateCaptureRequest {
         return this;
     }
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public CreateCaptureRequest withXClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.ofNullable(xClientSignature);
+        return this;
+    }
+
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public CreateCaptureRequest withXClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public CreateCaptureRequest withXClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+        return this;
+    }
+
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public CreateCaptureRequest withXClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+
     public CreateCaptureRequest withEntityCapture(EntityCapture entityCapture) {
         Utils.checkNotNull(entityCapture, "entityCapture");
         this.entityCapture = Optional.ofNullable(entityCapture);
@@ -130,13 +211,16 @@ public class CreateCaptureRequest {
         return 
             Utils.enhancedDeepEquals(this.paymentId, other.paymentId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.xClientSignature, other.xClientSignature) &&
+            Utils.enhancedDeepEquals(this.xClientSignedAt, other.xClientSignedAt) &&
             Utils.enhancedDeepEquals(this.entityCapture, other.entityCapture);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            paymentId, idempotencyKey, entityCapture);
+            paymentId, idempotencyKey, xClientSignature,
+            xClientSignedAt, entityCapture);
     }
     
     @Override
@@ -144,6 +228,8 @@ public class CreateCaptureRequest {
         return Utils.toString(CreateCaptureRequest.class,
                 "paymentId", paymentId,
                 "idempotencyKey", idempotencyKey,
+                "xClientSignature", xClientSignature,
+                "xClientSignedAt", xClientSignedAt,
                 "entityCapture", entityCapture);
     }
 
@@ -153,6 +239,10 @@ public class CreateCaptureRequest {
         private String paymentId;
 
         private Optional<String> idempotencyKey = Optional.empty();
+
+        private Optional<String> xClientSignature = Optional.empty();
+
+        private Optional<String> xClientSignedAt = Optional.empty();
 
         private Optional<? extends EntityCapture> entityCapture = Optional.empty();
 
@@ -190,6 +280,48 @@ public class CreateCaptureRequest {
         }
 
 
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(String xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = Optional.ofNullable(xClientSignature);
+            return this;
+        }
+
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(Optional<String> xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = xClientSignature;
+            return this;
+        }
+
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(String xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(Optional<String> xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = xClientSignedAt;
+            return this;
+        }
+
+
         public Builder entityCapture(EntityCapture entityCapture) {
             Utils.checkNotNull(entityCapture, "entityCapture");
             this.entityCapture = Optional.ofNullable(entityCapture);
@@ -205,7 +337,8 @@ public class CreateCaptureRequest {
         public CreateCaptureRequest build() {
 
             return new CreateCaptureRequest(
-                paymentId, idempotencyKey, entityCapture);
+                paymentId, idempotencyKey, xClientSignature,
+                xClientSignedAt, entityCapture);
         }
 
     }

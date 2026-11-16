@@ -9,12 +9,10 @@ import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 import com.mollie.mollie.models.operations.CreatePaymentLinkRequest;
 import com.mollie.mollie.models.operations.CreatePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.DeletePaymentLinkRequest;
-import com.mollie.mollie.models.operations.DeletePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.GetPaymentLinkPaymentsRequest;
 import com.mollie.mollie.models.operations.GetPaymentLinkRequest;
 import com.mollie.mollie.models.operations.ListPaymentLinksRequest;
 import com.mollie.mollie.models.operations.UpdatePaymentLinkRequest;
-import com.mollie.mollie.models.operations.UpdatePaymentLinkRequestBody;
 import com.mollie.mollie.models.operations.async.CreatePaymentLinkRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreatePaymentLinkResponse;
 import com.mollie.mollie.models.operations.async.DeletePaymentLinkRequestBuilder;
@@ -35,12 +33,9 @@ import com.mollie.mollie.operations.ListPaymentLinks;
 import com.mollie.mollie.operations.UpdatePaymentLink;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncPaymentLinks {
@@ -98,7 +93,9 @@ public class AsyncPaymentLinks {
      * @return {@code CompletableFuture<CreatePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentLinkResponse> createDirect() {
-        return create(Optional.empty(), Optional.empty(), Optional.empty());
+        return create(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -115,17 +112,22 @@ public class AsyncPaymentLinks {
      * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param requestBody 
      * @param options additional options
      * @return {@code CompletableFuture<CreatePaymentLinkResponse>} - The async response
      */
     public CompletableFuture<CreatePaymentLinkResponse> create(
-            Optional<String> idempotencyKey, Optional<? extends CreatePaymentLinkRequestBody> requestBody,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends CreatePaymentLinkRequestBody> requestBody,
             Optional<Options> options) {
         CreatePaymentLinkRequest request =
             CreatePaymentLinkRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .requestBody(requestBody)
                 .build();
         AsyncRequestOperation<CreatePaymentLinkRequest, CreatePaymentLinkResponse> operation
@@ -163,12 +165,11 @@ public class AsyncPaymentLinks {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListPaymentLinksResponse>} - The async response
      */
-    public CompletableFuture<ListPaymentLinksResponse> listDirect() {
-        return list(
-                Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-                Optional.empty(), Optional.empty());
+    public CompletableFuture<ListPaymentLinksResponse> list(ListPaymentLinksRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -181,30 +182,11 @@ public class AsyncPaymentLinks {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<ListPaymentLinksResponse>} - The async response
      */
-    public CompletableFuture<ListPaymentLinksResponse> list(
-            Optional<String> from, JsonNullable<Long> limit,
-            Optional<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) {
-        ListPaymentLinksRequest request =
-            ListPaymentLinksRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<ListPaymentLinksResponse> list(ListPaymentLinksRequest request, Optional<Options> options) {
         ListPaymentLinks.Async operation
               = new ListPaymentLinks.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -236,13 +218,11 @@ public class AsyncPaymentLinks {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentLinkId Provide the ID of the related payment link.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetPaymentLinkResponse>} - The async response
      */
-    public CompletableFuture<GetPaymentLinkResponse> get(String paymentLinkId) {
-        return get(
-                paymentLinkId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<GetPaymentLinkResponse> get(GetPaymentLinkRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -253,26 +233,11 @@ public class AsyncPaymentLinks {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentLinkId Provide the ID of the related payment link.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetPaymentLinkResponse>} - The async response
      */
-    public CompletableFuture<GetPaymentLinkResponse> get(
-            String paymentLinkId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetPaymentLinkRequest request =
-            GetPaymentLinkRequest
-                .builder()
-                .paymentLinkId(paymentLinkId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetPaymentLinkResponse> get(GetPaymentLinkRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
               = new GetPaymentLink.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -304,13 +269,11 @@ public class AsyncPaymentLinks {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentLinkId Provide the ID of the related payment link.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<UpdatePaymentLinkResponse>} - The async response
      */
-    public CompletableFuture<UpdatePaymentLinkResponse> update(String paymentLinkId) {
-        return update(
-                paymentLinkId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<UpdatePaymentLinkResponse> update(UpdatePaymentLinkRequest request) {
+        return update(request, Optional.empty());
     }
 
     /**
@@ -321,22 +284,11 @@ public class AsyncPaymentLinks {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentLinkId Provide the ID of the related payment link.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<UpdatePaymentLinkResponse>} - The async response
      */
-    public CompletableFuture<UpdatePaymentLinkResponse> update(
-            String paymentLinkId, Optional<String> idempotencyKey,
-            Optional<? extends UpdatePaymentLinkRequestBody> requestBody, Optional<Options> options) {
-        UpdatePaymentLinkRequest request =
-            UpdatePaymentLinkRequest
-                .builder()
-                .paymentLinkId(paymentLinkId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<UpdatePaymentLinkResponse> update(UpdatePaymentLinkRequest request, Optional<Options> options) {
         AsyncRequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
               = new UpdatePaymentLink.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -384,13 +336,11 @@ public class AsyncPaymentLinks {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentLinkId Provide the ID of the related payment link.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<DeletePaymentLinkResponse>} - The async response
      */
-    public CompletableFuture<DeletePaymentLinkResponse> delete(String paymentLinkId) {
-        return delete(
-                paymentLinkId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<DeletePaymentLinkResponse> delete(DeletePaymentLinkRequest request) {
+        return delete(request, Optional.empty());
     }
 
     /**
@@ -409,22 +359,11 @@ public class AsyncPaymentLinks {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param paymentLinkId Provide the ID of the related payment link.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<DeletePaymentLinkResponse>} - The async response
      */
-    public CompletableFuture<DeletePaymentLinkResponse> delete(
-            String paymentLinkId, Optional<String> idempotencyKey,
-            Optional<? extends DeletePaymentLinkRequestBody> requestBody, Optional<Options> options) {
-        DeletePaymentLinkRequest request =
-            DeletePaymentLinkRequest
-                .builder()
-                .paymentLinkId(paymentLinkId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<DeletePaymentLinkResponse> delete(DeletePaymentLinkRequest request, Optional<Options> options) {
         AsyncRequestOperation<DeletePaymentLinkRequest, DeletePaymentLinkResponse> operation
               = new DeletePaymentLink.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

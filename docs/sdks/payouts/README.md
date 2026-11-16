@@ -72,6 +72,8 @@ public class Application {
 
         CreatePayoutResponse res = sdk.payouts().create()
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .payoutRequest(PayoutRequest.builder()
                     .balanceId("bal_gVMhHKqSSRYJyPsuoPNFH")
                     .amount(AmountNullable.builder()
@@ -92,10 +94,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `payoutRequest`                                                                  | [PayoutRequest](../../models/components/PayoutRequest.md)                        | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
+| Parameter                                                                                                                                                                               | Type                                                                                                                                                                                    | Required                                                                                                                                                                                | Description                                                                                                                                                                             | Example                                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `idempotencyKey`                                                                                                                                                                        | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                                             |
+| `xClientSignature`                                                                                                                                                                      | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.        | MEUCIQDx8sJvK3z...                                                                                                                                                                      |
+| `xClientSignedAt`                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration. | 2025-01-01T12:00:00Z                                                                                                                                                                    |
+| `payoutRequest`                                                                                                                                                                         | [PayoutRequest](../../models/components/PayoutRequest.md)                                                                                                                               | :heavy_check_mark:                                                                                                                                                                      | N/A                                                                                                                                                                                     |                                                                                                                                                                                         |
 
 ### Response
 
@@ -148,6 +152,8 @@ public class Application {
                 .limit(50L)
                 .sort(Sorting.DESC)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -191,6 +197,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetPayoutRequest;
 import com.mollie.mollie.models.operations.GetPayoutResponse;
 import java.lang.Exception;
 
@@ -205,9 +212,15 @@ public class Application {
                     .build())
             .build();
 
-        GetPayoutResponse res = sdk.payouts().get()
+        GetPayoutRequest req = GetPayoutRequest.builder()
                 .payoutId("payout_j8NvRAM2WNZtsykpLEX8J")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetPayoutResponse res = sdk.payouts().get()
+                .request(req)
                 .call();
 
         if (res.entityPayoutResponse().isPresent()) {
@@ -225,6 +238,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetPayoutRequest;
 import com.mollie.mollie.models.operations.GetPayoutResponse;
 import java.lang.Exception;
 
@@ -239,9 +253,15 @@ public class Application {
                     .build())
             .build();
 
-        GetPayoutResponse res = sdk.payouts().get()
+        GetPayoutRequest req = GetPayoutRequest.builder()
                 .payoutId("payout_j8NvRAM2WNZtsykpLEX8J")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetPayoutResponse res = sdk.payouts().get()
+                .request(req)
                 .call();
 
         if (res.entityPayoutResponse().isPresent()) {
@@ -259,6 +279,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.GetPayoutRequest;
 import com.mollie.mollie.models.operations.GetPayoutResponse;
 import java.lang.Exception;
 
@@ -273,9 +294,15 @@ public class Application {
                     .build())
             .build();
 
-        GetPayoutResponse res = sdk.payouts().get()
+        GetPayoutRequest req = GetPayoutRequest.builder()
                 .payoutId("payout_j8NvRAM2WNZtsykpLEX8J")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        GetPayoutResponse res = sdk.payouts().get()
+                .request(req)
                 .call();
 
         if (res.entityPayoutResponse().isPresent()) {
@@ -287,11 +314,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `payoutId`                                                                                                                                                                                                                                                                                                                                                                               | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the payout.                                                                                                                                                                                                                                                                                                                                                            | payout_j8NvRAM2WNZtsykpLEX8J                                                                                                                                                                                                                                                                                                                                                             |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | *Optional\<Boolean>*                                                                                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [GetPayoutRequest](../../models/operations/GetPayoutRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 ### Response
 
@@ -320,6 +345,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CancelPayoutRequest;
 import com.mollie.mollie.models.operations.CancelPayoutResponse;
 import java.lang.Exception;
 
@@ -334,9 +360,15 @@ public class Application {
                     .build())
             .build();
 
-        CancelPayoutResponse res = sdk.payouts().cancel()
+        CancelPayoutRequest req = CancelPayoutRequest.builder()
                 .payoutId("payout_j8NvRAM2WNZtsykpLEX8J")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+        CancelPayoutResponse res = sdk.payouts().cancel()
+                .request(req)
                 .call();
 
         if (res.entityPayoutResponse().isPresent()) {
@@ -348,11 +380,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                                                                                                                                                                                | Type                                                                                                                                                                                                                                                                                                                                                                                     | Required                                                                                                                                                                                                                                                                                                                                                                                 | Description                                                                                                                                                                                                                                                                                                                                                                              | Example                                                                                                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `payoutId`                                                                                                                                                                                                                                                                                                                                                                               | *String*                                                                                                                                                                                                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                                                                                                                                                                                                       | Provide the ID of the payout.                                                                                                                                                                                                                                                                                                                                                            | payout_j8NvRAM2WNZtsykpLEX8J                                                                                                                                                                                                                                                                                                                                                             |
-| `testmode`                                                                                                                                                                                                                                                                                                                                                                               | *Optional\<Boolean>*                                                                                                                                                                                                                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query<br/>parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by<br/>setting the `testmode` query parameter to `true`.<br/><br/>Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa. |                                                                                                                                                                                                                                                                                                                                                                                          |
-| `idempotencyKey`                                                                                                                                                                                                                                                                                                                                                                         | *Optional\<String>*                                                                                                                                                                                                                                                                                                                                                                      | :heavy_minus_sign:                                                                                                                                                                                                                                                                                                                                                                       | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                                                                                                                                                                                                                         | 123e4567-e89b-12d3-a456-426                                                                                                                                                                                                                                                                                                                                                              |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [CancelPayoutRequest](../../models/operations/CancelPayoutRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 ### Response
 

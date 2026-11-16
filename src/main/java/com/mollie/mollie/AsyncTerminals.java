@@ -11,7 +11,6 @@ import com.mollie.mollie.models.operations.ListTerminalsRequest;
 import com.mollie.mollie.models.operations.TerminalsGetPairingCodeRequest;
 import com.mollie.mollie.models.operations.TerminalsListPairingCodesRequest;
 import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeRequest;
-import com.mollie.mollie.models.operations.TerminalsRequestPairingCodeRequestBody;
 import com.mollie.mollie.models.operations.TerminalsRevokePairingCodeRequest;
 import com.mollie.mollie.models.operations.async.GetTerminalRequestBuilder;
 import com.mollie.mollie.models.operations.async.GetTerminalResponse;
@@ -33,11 +32,9 @@ import com.mollie.mollie.operations.TerminalsRequestPairingCode;
 import com.mollie.mollie.operations.TerminalsRevokePairingCode;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncTerminals {
@@ -139,13 +136,11 @@ public class AsyncTerminals {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param terminalId Provide the ID of the related terminal.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetTerminalResponse>} - The async response
      */
-    public CompletableFuture<GetTerminalResponse> get(String terminalId) {
-        return get(
-                terminalId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<GetTerminalResponse> get(GetTerminalRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -156,26 +151,11 @@ public class AsyncTerminals {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param terminalId Provide the ID of the related terminal.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetTerminalResponse>} - The async response
      */
-    public CompletableFuture<GetTerminalResponse> get(
-            String terminalId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetTerminalRequest request =
-            GetTerminalRequest
-                .builder()
-                .terminalId(terminalId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetTerminalResponse> get(GetTerminalRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetTerminalRequest, GetTerminalResponse> operation
               = new GetTerminal.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -225,12 +205,11 @@ public class AsyncTerminals {
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<TerminalsRequestPairingCodeResponse>} - The async response
      */
-    public CompletableFuture<TerminalsRequestPairingCodeResponse> terminalsRequestPairingCodeDirect() {
-        return terminalsRequestPairingCode(
-                JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<TerminalsRequestPairingCodeResponse> terminalsRequestPairingCode(TerminalsRequestPairingCodeRequest request) {
+        return terminalsRequestPairingCode(request, Optional.empty());
     }
 
     /**
@@ -250,22 +229,11 @@ public class AsyncTerminals {
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
-     * @param include Include additional information in the response.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<TerminalsRequestPairingCodeResponse>} - The async response
      */
-    public CompletableFuture<TerminalsRequestPairingCodeResponse> terminalsRequestPairingCode(
-            JsonNullable<String> include, Optional<String> idempotencyKey,
-            Optional<? extends TerminalsRequestPairingCodeRequestBody> requestBody, Optional<Options> options) {
-        TerminalsRequestPairingCodeRequest request =
-            TerminalsRequestPairingCodeRequest
-                .builder()
-                .include(include)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<TerminalsRequestPairingCodeResponse> terminalsRequestPairingCode(TerminalsRequestPairingCodeRequest request, Optional<Options> options) {
         AsyncRequestOperation<TerminalsRequestPairingCodeRequest, TerminalsRequestPairingCodeResponse> operation
               = new TerminalsRequestPairingCode.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -391,13 +359,11 @@ public class AsyncTerminals {
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
-     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<TerminalsGetPairingCodeResponse>} - The async response
      */
-    public CompletableFuture<TerminalsGetPairingCodeResponse> terminalsGetPairingCode(String pairingCodeId) {
-        return terminalsGetPairingCode(
-                pairingCodeId, JsonNullable.undefined(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<TerminalsGetPairingCodeResponse> terminalsGetPairingCode(TerminalsGetPairingCodeRequest request) {
+        return terminalsGetPairingCode(request, Optional.empty());
     }
 
     /**
@@ -419,22 +385,11 @@ public class AsyncTerminals {
      * 
      * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
      * 
-     * @param pairingCodeId Provide the ID of the terminal pairing code.
-     * @param include Include additional information in the response.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<TerminalsGetPairingCodeResponse>} - The async response
      */
-    public CompletableFuture<TerminalsGetPairingCodeResponse> terminalsGetPairingCode(
-            String pairingCodeId, JsonNullable<String> include,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        TerminalsGetPairingCodeRequest request =
-            TerminalsGetPairingCodeRequest
-                .builder()
-                .pairingCodeId(pairingCodeId)
-                .include(include)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<TerminalsGetPairingCodeResponse> terminalsGetPairingCode(TerminalsGetPairingCodeRequest request, Optional<Options> options) {
         AsyncRequestOperation<TerminalsGetPairingCodeRequest, TerminalsGetPairingCodeResponse> operation
               = new TerminalsGetPairingCode.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -486,7 +441,9 @@ public class AsyncTerminals {
      * @return {@code CompletableFuture<TerminalsRevokePairingCodeResponse>} - The async response
      */
     public CompletableFuture<TerminalsRevokePairingCodeResponse> terminalsRevokePairingCode(String pairingCodeId) {
-        return terminalsRevokePairingCode(pairingCodeId, Optional.empty(), Optional.empty());
+        return terminalsRevokePairingCode(
+                pairingCodeId, Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -507,17 +464,22 @@ public class AsyncTerminals {
      * 
      * @param pairingCodeId Provide the ID of the terminal pairing code.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<TerminalsRevokePairingCodeResponse>} - The async response
      */
     public CompletableFuture<TerminalsRevokePairingCodeResponse> terminalsRevokePairingCode(
             String pairingCodeId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt,
             Optional<Options> options) {
         TerminalsRevokePairingCodeRequest request =
             TerminalsRevokePairingCodeRequest
                 .builder()
                 .pairingCodeId(pairingCodeId)
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .build();
         AsyncRequestOperation<TerminalsRevokePairingCodeRequest, TerminalsRevokePairingCodeResponse> operation
               = new TerminalsRevokePairingCode.Async(

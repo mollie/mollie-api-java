@@ -20,6 +20,8 @@ import java.util.concurrent.CompletableFuture;
 public class CreateDraftTransferRequestBuilder {
 
     private Optional<String> idempotencyKey = Optional.empty();
+    private Optional<String> xClientSignature = Optional.empty();
+    private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<? extends CreateDraftTransferRequest> createDraftTransferRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
@@ -38,6 +40,30 @@ public class CreateDraftTransferRequestBuilder {
     public CreateDraftTransferRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
         this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreateDraftTransferRequestBuilder xClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.of(xClientSignature);
+        return this;
+    }
+
+    public CreateDraftTransferRequestBuilder xClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+                
+    public CreateDraftTransferRequestBuilder xClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.of(xClientSignedAt);
+        return this;
+    }
+
+    public CreateDraftTransferRequestBuilder xClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
         return this;
     }
                 
@@ -69,6 +95,8 @@ public class CreateDraftTransferRequestBuilder {
     private com.mollie.mollie.models.operations.CreateDraftTransferRequest buildRequest() {
 
         com.mollie.mollie.models.operations.CreateDraftTransferRequest request = new com.mollie.mollie.models.operations.CreateDraftTransferRequest(idempotencyKey,
+            xClientSignature,
+            xClientSignedAt,
             createDraftTransferRequest);
 
         return request;

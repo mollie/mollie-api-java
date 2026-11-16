@@ -64,6 +64,20 @@ public class ListSettlementPaymentsRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private Optional<String> idempotencyKey;
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signature")
+    private Optional<String> xClientSignature;
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signed-At")
+    private Optional<String> xClientSignedAt;
+
     @JsonCreator
     public ListSettlementPaymentsRequest(
             String settlementId,
@@ -71,25 +85,32 @@ public class ListSettlementPaymentsRequest {
             JsonNullable<Long> limit,
             Optional<? extends Sorting> sort,
             Optional<String> profileId,
-            Optional<String> idempotencyKey) {
+            Optional<String> idempotencyKey,
+            Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt) {
         Utils.checkNotNull(settlementId, "settlementId");
         Utils.checkNotNull(from, "from");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
         this.settlementId = settlementId;
         this.from = from;
         this.limit = limit;
         this.sort = sort;
         this.profileId = profileId;
         this.idempotencyKey = idempotencyKey;
+        this.xClientSignature = xClientSignature;
+        this.xClientSignedAt = xClientSignedAt;
     }
     
     public ListSettlementPaymentsRequest(
             String settlementId) {
         this(settlementId, Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -149,6 +170,24 @@ public class ListSettlementPaymentsRequest {
     @JsonIgnore
     public Optional<String> idempotencyKey() {
         return idempotencyKey;
+    }
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignature() {
+        return xClientSignature;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignedAt() {
+        return xClientSignedAt;
     }
 
     public static Builder builder() {
@@ -279,6 +318,48 @@ public class ListSettlementPaymentsRequest {
         return this;
     }
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public ListSettlementPaymentsRequest withXClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.ofNullable(xClientSignature);
+        return this;
+    }
+
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public ListSettlementPaymentsRequest withXClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public ListSettlementPaymentsRequest withXClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+        return this;
+    }
+
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public ListSettlementPaymentsRequest withXClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -294,14 +375,17 @@ public class ListSettlementPaymentsRequest {
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
             Utils.enhancedDeepEquals(this.sort, other.sort) &&
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
-            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey);
+            Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.xClientSignature, other.xClientSignature) &&
+            Utils.enhancedDeepEquals(this.xClientSignedAt, other.xClientSignedAt);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             settlementId, from, limit,
-            sort, profileId, idempotencyKey);
+            sort, profileId, idempotencyKey,
+            xClientSignature, xClientSignedAt);
     }
     
     @Override
@@ -312,7 +396,9 @@ public class ListSettlementPaymentsRequest {
                 "limit", limit,
                 "sort", sort,
                 "profileId", profileId,
-                "idempotencyKey", idempotencyKey);
+                "idempotencyKey", idempotencyKey,
+                "xClientSignature", xClientSignature,
+                "xClientSignedAt", xClientSignedAt);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -329,6 +415,10 @@ public class ListSettlementPaymentsRequest {
         private Optional<String> profileId = Optional.empty();
 
         private Optional<String> idempotencyKey = Optional.empty();
+
+        private Optional<String> xClientSignature = Optional.empty();
+
+        private Optional<String> xClientSignedAt = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -459,11 +549,54 @@ public class ListSettlementPaymentsRequest {
             return this;
         }
 
+
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(String xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = Optional.ofNullable(xClientSignature);
+            return this;
+        }
+
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(Optional<String> xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = xClientSignature;
+            return this;
+        }
+
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(String xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(Optional<String> xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = xClientSignedAt;
+            return this;
+        }
+
         public ListSettlementPaymentsRequest build() {
 
             return new ListSettlementPaymentsRequest(
                 settlementId, from, limit,
-                sort, profileId, idempotencyKey);
+                sort, profileId, idempotencyKey,
+                xClientSignature, xClientSignedAt);
         }
 
     }

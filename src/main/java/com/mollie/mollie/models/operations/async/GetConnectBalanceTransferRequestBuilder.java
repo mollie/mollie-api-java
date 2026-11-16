@@ -13,16 +13,12 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class GetConnectBalanceTransferRequestBuilder {
 
-    private String balanceTransferId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetConnectBalanceTransferRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -31,33 +27,9 @@ public class GetConnectBalanceTransferRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetConnectBalanceTransferRequestBuilder balanceTransferId(String balanceTransferId) {
-        Utils.checkNotNull(balanceTransferId, "balanceTransferId");
-        this.balanceTransferId = balanceTransferId;
-        return this;
-    }
-                
-    public GetConnectBalanceTransferRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetConnectBalanceTransferRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetConnectBalanceTransferRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetConnectBalanceTransferRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetConnectBalanceTransferRequestBuilder request(GetConnectBalanceTransferRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -73,16 +45,6 @@ public class GetConnectBalanceTransferRequestBuilder {
         return this;
     }
 
-
-    private GetConnectBalanceTransferRequest buildRequest() {
-
-        GetConnectBalanceTransferRequest request = new GetConnectBalanceTransferRequest(balanceTransferId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public CompletableFuture<GetConnectBalanceTransferResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -92,7 +54,6 @@ public class GetConnectBalanceTransferRequestBuilder {
               = new GetConnectBalanceTransfer.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        GetConnectBalanceTransferRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

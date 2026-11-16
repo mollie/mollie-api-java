@@ -12,14 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class UpdatePaymentLinkRequestBuilder {
 
-    private String paymentLinkId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends UpdatePaymentLinkRequestBody> requestBody = Optional.empty();
+    private UpdatePaymentLinkRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -28,33 +25,9 @@ public class UpdatePaymentLinkRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public UpdatePaymentLinkRequestBuilder paymentLinkId(String paymentLinkId) {
-        Utils.checkNotNull(paymentLinkId, "paymentLinkId");
-        this.paymentLinkId = paymentLinkId;
-        return this;
-    }
-                
-    public UpdatePaymentLinkRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public UpdatePaymentLinkRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public UpdatePaymentLinkRequestBuilder requestBody(UpdatePaymentLinkRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public UpdatePaymentLinkRequestBuilder requestBody(Optional<? extends UpdatePaymentLinkRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public UpdatePaymentLinkRequestBuilder request(UpdatePaymentLinkRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -70,16 +43,6 @@ public class UpdatePaymentLinkRequestBuilder {
         return this;
     }
 
-
-    private UpdatePaymentLinkRequest buildRequest() {
-
-        UpdatePaymentLinkRequest request = new UpdatePaymentLinkRequest(paymentLinkId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public UpdatePaymentLinkResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -87,7 +50,6 @@ public class UpdatePaymentLinkRequestBuilder {
 
         RequestOperation<UpdatePaymentLinkRequest, UpdatePaymentLinkResponse> operation
               = new UpdatePaymentLink.Sync(sdkConfiguration, options, _headers);
-        UpdatePaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

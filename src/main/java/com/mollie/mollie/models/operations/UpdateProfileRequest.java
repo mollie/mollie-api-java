@@ -26,6 +26,20 @@ public class UpdateProfileRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private Optional<String> idempotencyKey;
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signature")
+    private Optional<String> xClientSignature;
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signed-At")
+    private Optional<String> xClientSignedAt;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private UpdateProfileRequestBody requestBody;
@@ -34,19 +48,26 @@ public class UpdateProfileRequest {
     public UpdateProfileRequest(
             String profileId,
             Optional<String> idempotencyKey,
+            Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt,
             UpdateProfileRequestBody requestBody) {
         Utils.checkNotNull(profileId, "profileId");
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
         Utils.checkNotNull(requestBody, "requestBody");
         this.profileId = profileId;
         this.idempotencyKey = idempotencyKey;
+        this.xClientSignature = xClientSignature;
+        this.xClientSignedAt = xClientSignedAt;
         this.requestBody = requestBody;
     }
     
     public UpdateProfileRequest(
             String profileId,
             UpdateProfileRequestBody requestBody) {
-        this(profileId, Optional.empty(), requestBody);
+        this(profileId, Optional.empty(), Optional.empty(),
+            Optional.empty(), requestBody);
     }
 
     /**
@@ -63,6 +84,24 @@ public class UpdateProfileRequest {
     @JsonIgnore
     public Optional<String> idempotencyKey() {
         return idempotencyKey;
+    }
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignature() {
+        return xClientSignature;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignedAt() {
+        return xClientSignedAt;
     }
 
     @JsonIgnore
@@ -103,6 +142,48 @@ public class UpdateProfileRequest {
         return this;
     }
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public UpdateProfileRequest withXClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.ofNullable(xClientSignature);
+        return this;
+    }
+
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public UpdateProfileRequest withXClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public UpdateProfileRequest withXClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+        return this;
+    }
+
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public UpdateProfileRequest withXClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+
     public UpdateProfileRequest withRequestBody(UpdateProfileRequestBody requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
@@ -121,13 +202,16 @@ public class UpdateProfileRequest {
         return 
             Utils.enhancedDeepEquals(this.profileId, other.profileId) &&
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.xClientSignature, other.xClientSignature) &&
+            Utils.enhancedDeepEquals(this.xClientSignedAt, other.xClientSignedAt) &&
             Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            profileId, idempotencyKey, requestBody);
+            profileId, idempotencyKey, xClientSignature,
+            xClientSignedAt, requestBody);
     }
     
     @Override
@@ -135,6 +219,8 @@ public class UpdateProfileRequest {
         return Utils.toString(UpdateProfileRequest.class,
                 "profileId", profileId,
                 "idempotencyKey", idempotencyKey,
+                "xClientSignature", xClientSignature,
+                "xClientSignedAt", xClientSignedAt,
                 "requestBody", requestBody);
     }
 
@@ -144,6 +230,10 @@ public class UpdateProfileRequest {
         private String profileId;
 
         private Optional<String> idempotencyKey = Optional.empty();
+
+        private Optional<String> xClientSignature = Optional.empty();
+
+        private Optional<String> xClientSignedAt = Optional.empty();
 
         private UpdateProfileRequestBody requestBody;
 
@@ -181,6 +271,48 @@ public class UpdateProfileRequest {
         }
 
 
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(String xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = Optional.ofNullable(xClientSignature);
+            return this;
+        }
+
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(Optional<String> xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = xClientSignature;
+            return this;
+        }
+
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(String xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(Optional<String> xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = xClientSignedAt;
+            return this;
+        }
+
+
         public Builder requestBody(UpdateProfileRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
@@ -190,7 +322,8 @@ public class UpdateProfileRequest {
         public UpdateProfileRequest build() {
 
             return new UpdateProfileRequest(
-                profileId, idempotencyKey, requestBody);
+                profileId, idempotencyKey, xClientSignature,
+                xClientSignedAt, requestBody);
         }
 
     }

@@ -16,23 +16,16 @@ import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import com.mollie.mollie.utils.pagination.AsyncPaginator;
 import com.mollie.mollie.utils.pagination.URLTracker;
-import java.lang.Boolean;
-import java.lang.Long;
-import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
-import org.openapitools.jackson.nullable.JsonNullable;
 import org.reactivestreams.FlowAdapters;
 import org.reactivestreams.Publisher;
 
 public class ListPaymentLinksRequestBuilder {
 
-    private Optional<String> from = Optional.empty();
-    private JsonNullable<Long> limit = JsonNullable.undefined();
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private ListPaymentLinksRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -40,52 +33,10 @@ public class ListPaymentLinksRequestBuilder {
     public ListPaymentLinksRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-                
-    public ListPaymentLinksRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = Optional.of(from);
-        return this;
-    }
 
-    public ListPaymentLinksRequestBuilder from(Optional<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListPaymentLinksRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListPaymentLinksRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-                
-    public ListPaymentLinksRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public ListPaymentLinksRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public ListPaymentLinksRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public ListPaymentLinksRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public ListPaymentLinksRequestBuilder request(ListPaymentLinksRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -101,17 +52,6 @@ public class ListPaymentLinksRequestBuilder {
         return this;
     }
 
-
-    private ListPaymentLinksRequest buildRequest() {
-
-        ListPaymentLinksRequest request = new ListPaymentLinksRequest(from,
-            limit,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public CompletableFuture<ListPaymentLinksResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -121,7 +61,6 @@ public class ListPaymentLinksRequestBuilder {
               = new ListPaymentLinks.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
-        ListPaymentLinksRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);
@@ -142,7 +81,7 @@ public class ListPaymentLinksRequestBuilder {
      * @return A Publisher that emits pages asynchronously
      */
     public Publisher<ListPaymentLinksResponse> callAsPublisher() {
-        ListPaymentLinksRequest request = this.buildRequest();
+        ListPaymentLinksRequest request = this.request;
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
             .build());

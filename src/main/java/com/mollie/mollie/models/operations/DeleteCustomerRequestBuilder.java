@@ -12,14 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class DeleteCustomerRequestBuilder {
 
-    private String customerId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends DeleteCustomerRequestBody> requestBody = Optional.empty();
+    private DeleteCustomerRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -28,33 +25,9 @@ public class DeleteCustomerRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public DeleteCustomerRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
-        return this;
-    }
-                
-    public DeleteCustomerRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public DeleteCustomerRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public DeleteCustomerRequestBuilder requestBody(DeleteCustomerRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.of(requestBody);
-        return this;
-    }
-
-    public DeleteCustomerRequestBuilder requestBody(Optional<? extends DeleteCustomerRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+    public DeleteCustomerRequestBuilder request(DeleteCustomerRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -70,16 +43,6 @@ public class DeleteCustomerRequestBuilder {
         return this;
     }
 
-
-    private DeleteCustomerRequest buildRequest() {
-
-        DeleteCustomerRequest request = new DeleteCustomerRequest(customerId,
-            idempotencyKey,
-            requestBody);
-
-        return request;
-    }
-
     public DeleteCustomerResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -87,7 +50,6 @@ public class DeleteCustomerRequestBuilder {
 
         RequestOperation<DeleteCustomerRequest, DeleteCustomerResponse> operation
               = new DeleteCustomer.Sync(sdkConfiguration, options, _headers);
-        DeleteCustomerRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

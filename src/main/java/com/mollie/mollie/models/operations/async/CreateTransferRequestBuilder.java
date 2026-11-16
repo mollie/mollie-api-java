@@ -7,18 +7,23 @@ package com.mollie.mollie.models.operations.async;
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
+import com.mollie.mollie.models.components.TransferRequest;
 import com.mollie.mollie.models.operations.CreateTransferRequest;
 import com.mollie.mollie.operations.CreateTransfer;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 public class CreateTransferRequestBuilder {
 
-    private CreateTransferRequest request;
+    private String xClientSignature;
+    private String xClientSignedAt;
+    private String idempotencyKey;
+    private Optional<? extends TransferRequest> transferRequest = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -27,9 +32,33 @@ public class CreateTransferRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CreateTransferRequestBuilder request(CreateTransferRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
+    public CreateTransferRequestBuilder xClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+
+    public CreateTransferRequestBuilder xClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+
+    public CreateTransferRequestBuilder idempotencyKey(String idempotencyKey) {
+        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        this.idempotencyKey = idempotencyKey;
+        return this;
+    }
+                
+    public CreateTransferRequestBuilder transferRequest(TransferRequest transferRequest) {
+        Utils.checkNotNull(transferRequest, "transferRequest");
+        this.transferRequest = Optional.of(transferRequest);
+        return this;
+    }
+
+    public CreateTransferRequestBuilder transferRequest(Optional<? extends TransferRequest> transferRequest) {
+        Utils.checkNotNull(transferRequest, "transferRequest");
+        this.transferRequest = transferRequest;
         return this;
     }
                 
@@ -45,6 +74,17 @@ public class CreateTransferRequestBuilder {
         return this;
     }
 
+
+    private CreateTransferRequest buildRequest() {
+
+        CreateTransferRequest request = new CreateTransferRequest(xClientSignature,
+            xClientSignedAt,
+            idempotencyKey,
+            transferRequest);
+
+        return request;
+    }
+
     public CompletableFuture<CreateTransferResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -54,6 +94,7 @@ public class CreateTransferRequestBuilder {
               = new CreateTransfer.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
                                     _headers);
+        CreateTransferRequest request = buildRequest();
 
         return operation.doRequest(request)
             .thenCompose(operation::handleResponse);

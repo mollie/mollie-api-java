@@ -7,20 +7,16 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.MandateRequest;
 import com.mollie.mollie.operations.CreateMandate;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class CreateMandateRequestBuilder {
 
-    private String customerId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends MandateRequest> mandateRequest = Optional.empty();
+    private CreateMandateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class CreateMandateRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CreateMandateRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
-        return this;
-    }
-                
-    public CreateMandateRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public CreateMandateRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public CreateMandateRequestBuilder mandateRequest(MandateRequest mandateRequest) {
-        Utils.checkNotNull(mandateRequest, "mandateRequest");
-        this.mandateRequest = Optional.of(mandateRequest);
-        return this;
-    }
-
-    public CreateMandateRequestBuilder mandateRequest(Optional<? extends MandateRequest> mandateRequest) {
-        Utils.checkNotNull(mandateRequest, "mandateRequest");
-        this.mandateRequest = mandateRequest;
+    public CreateMandateRequestBuilder request(CreateMandateRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class CreateMandateRequestBuilder {
         return this;
     }
 
-
-    private CreateMandateRequest buildRequest() {
-
-        CreateMandateRequest request = new CreateMandateRequest(customerId,
-            idempotencyKey,
-            mandateRequest);
-
-        return request;
-    }
-
     public CreateMandateResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class CreateMandateRequestBuilder {
 
         RequestOperation<CreateMandateRequest, CreateMandateResponse> operation
               = new CreateMandate.Sync(sdkConfiguration, options, _headers);
-        CreateMandateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

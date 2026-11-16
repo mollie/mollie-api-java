@@ -6,14 +6,12 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.DeleteValuesSalesInvoice;
 import com.mollie.mollie.models.components.SalesInvoiceRequest;
 import com.mollie.mollie.models.operations.CreateSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.DeleteSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.GetSalesInvoiceRequest;
 import com.mollie.mollie.models.operations.ListSalesInvoicesRequest;
 import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequest;
-import com.mollie.mollie.models.operations.UpdateSalesInvoiceRequestBody;
 import com.mollie.mollie.models.operations.async.CreateSalesInvoiceRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreateSalesInvoiceResponse;
 import com.mollie.mollie.models.operations.async.DeleteSalesInvoiceRequestBuilder;
@@ -31,12 +29,9 @@ import com.mollie.mollie.operations.ListSalesInvoices;
 import com.mollie.mollie.operations.UpdateSalesInvoice;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
-import java.lang.Long;
 import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class AsyncSalesInvoices {
@@ -84,7 +79,9 @@ public class AsyncSalesInvoices {
      * @return {@code CompletableFuture<CreateSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<CreateSalesInvoiceResponse> createDirect() {
-        return create(Optional.empty(), Optional.empty(), Optional.empty());
+        return create(
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty(), Optional.empty());
     }
 
     /**
@@ -96,17 +93,22 @@ public class AsyncSalesInvoices {
      * Security#oAuth from the global security.
      * 
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param salesInvoiceRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreateSalesInvoiceResponse>} - The async response
      */
     public CompletableFuture<CreateSalesInvoiceResponse> create(
-            Optional<String> idempotencyKey, Optional<? extends SalesInvoiceRequest> salesInvoiceRequest,
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends SalesInvoiceRequest> salesInvoiceRequest,
             Optional<Options> options) {
         CreateSalesInvoiceRequest request =
             CreateSalesInvoiceRequest
                 .builder()
                 .idempotencyKey(idempotencyKey)
+                .xClientSignature(xClientSignature)
+                .xClientSignedAt(xClientSignedAt)
                 .salesInvoiceRequest(salesInvoiceRequest)
                 .build();
         AsyncRequestOperation<CreateSalesInvoiceRequest, CreateSalesInvoiceResponse> operation
@@ -144,12 +146,11 @@ public class AsyncSalesInvoices {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<ListSalesInvoicesResponse>} - The async response
      */
-    public CompletableFuture<ListSalesInvoicesResponse> listDirect() {
-        return list(
-                JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-                Optional.empty(), Optional.empty());
+    public CompletableFuture<ListSalesInvoicesResponse> list(ListSalesInvoicesRequest request) {
+        return list(request, Optional.empty());
     }
 
     /**
@@ -162,30 +163,11 @@ public class AsyncSalesInvoices {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param from Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the
-     *         result set.
-     * @param limit The maximum number of items to return. Defaults to 50 items.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<ListSalesInvoicesResponse>} - The async response
      */
-    public CompletableFuture<ListSalesInvoicesResponse> list(
-            JsonNullable<String> from, JsonNullable<Long> limit,
-            Optional<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) {
-        ListSalesInvoicesRequest request =
-            ListSalesInvoicesRequest
-                .builder()
-                .from(from)
-                .limit(limit)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<ListSalesInvoicesResponse> list(ListSalesInvoicesRequest request, Optional<Options> options) {
         ListSalesInvoices.Async operation
               = new ListSalesInvoices.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -217,13 +199,11 @@ public class AsyncSalesInvoices {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param salesInvoiceId Provide the ID of the related sales invoice.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetSalesInvoiceResponse>} - The async response
      */
-    public CompletableFuture<GetSalesInvoiceResponse> get(String salesInvoiceId) {
-        return get(
-                salesInvoiceId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<GetSalesInvoiceResponse> get(GetSalesInvoiceRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -234,26 +214,11 @@ public class AsyncSalesInvoices {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param salesInvoiceId Provide the ID of the related sales invoice.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetSalesInvoiceResponse>} - The async response
      */
-    public CompletableFuture<GetSalesInvoiceResponse> get(
-            String salesInvoiceId, Optional<Boolean> testmode,
-            Optional<String> idempotencyKey, Optional<Options> options) {
-        GetSalesInvoiceRequest request =
-            GetSalesInvoiceRequest
-                .builder()
-                .salesInvoiceId(salesInvoiceId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetSalesInvoiceResponse> get(GetSalesInvoiceRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetSalesInvoiceRequest, GetSalesInvoiceResponse> operation
               = new GetSalesInvoice.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -293,13 +258,11 @@ public class AsyncSalesInvoices {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param salesInvoiceId Provide the ID of the related sales invoice.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<UpdateSalesInvoiceResponse>} - The async response
      */
-    public CompletableFuture<UpdateSalesInvoiceResponse> update(String salesInvoiceId) {
-        return update(
-                salesInvoiceId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<UpdateSalesInvoiceResponse> update(UpdateSalesInvoiceRequest request) {
+        return update(request, Optional.empty());
     }
 
     /**
@@ -314,22 +277,11 @@ public class AsyncSalesInvoices {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param salesInvoiceId Provide the ID of the related sales invoice.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<UpdateSalesInvoiceResponse>} - The async response
      */
-    public CompletableFuture<UpdateSalesInvoiceResponse> update(
-            String salesInvoiceId, Optional<String> idempotencyKey,
-            Optional<? extends UpdateSalesInvoiceRequestBody> requestBody, Optional<Options> options) {
-        UpdateSalesInvoiceRequest request =
-            UpdateSalesInvoiceRequest
-                .builder()
-                .salesInvoiceId(salesInvoiceId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<UpdateSalesInvoiceResponse> update(UpdateSalesInvoiceRequest request, Optional<Options> options) {
         AsyncRequestOperation<UpdateSalesInvoiceRequest, UpdateSalesInvoiceResponse> operation
               = new UpdateSalesInvoice.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -363,13 +315,11 @@ public class AsyncSalesInvoices {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param salesInvoiceId Provide the ID of the related sales invoice.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<DeleteSalesInvoiceResponse>} - The async response
      */
-    public CompletableFuture<DeleteSalesInvoiceResponse> delete(String salesInvoiceId) {
-        return delete(
-                salesInvoiceId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<DeleteSalesInvoiceResponse> delete(DeleteSalesInvoiceRequest request) {
+        return delete(request, Optional.empty());
     }
 
     /**
@@ -381,22 +331,11 @@ public class AsyncSalesInvoices {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param salesInvoiceId Provide the ID of the related sales invoice.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param deleteValuesSalesInvoice 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<DeleteSalesInvoiceResponse>} - The async response
      */
-    public CompletableFuture<DeleteSalesInvoiceResponse> delete(
-            String salesInvoiceId, Optional<String> idempotencyKey,
-            Optional<? extends DeleteValuesSalesInvoice> deleteValuesSalesInvoice, Optional<Options> options) {
-        DeleteSalesInvoiceRequest request =
-            DeleteSalesInvoiceRequest
-                .builder()
-                .salesInvoiceId(salesInvoiceId)
-                .idempotencyKey(idempotencyKey)
-                .deleteValuesSalesInvoice(deleteValuesSalesInvoice)
-                .build();
+    public CompletableFuture<DeleteSalesInvoiceResponse> delete(DeleteSalesInvoiceRequest request, Optional<Options> options) {
         AsyncRequestOperation<DeleteSalesInvoiceRequest, DeleteSalesInvoiceResponse> operation
               = new DeleteSalesInvoice.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

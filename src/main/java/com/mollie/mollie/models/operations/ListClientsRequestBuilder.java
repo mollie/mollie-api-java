@@ -18,20 +18,14 @@ import com.mollie.mollie.utils.pagination.Paginator;
 import com.mollie.mollie.utils.pagination.URLTracker;
 import java.io.InputStream;
 import java.lang.Iterable;
-import java.lang.Long;
-import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListClientsRequestBuilder {
 
-    private JsonNullable<String> embed = JsonNullable.undefined();
-    private JsonNullable<String> from = JsonNullable.undefined();
-    private JsonNullable<Long> limit = JsonNullable.undefined();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private ListClientsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -40,51 +34,9 @@ public class ListClientsRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListClientsRequestBuilder embed(String embed) {
-        Utils.checkNotNull(embed, "embed");
-        this.embed = JsonNullable.of(embed);
-        return this;
-    }
-
-    public ListClientsRequestBuilder embed(JsonNullable<String> embed) {
-        Utils.checkNotNull(embed, "embed");
-        this.embed = embed;
-        return this;
-    }
-
-    public ListClientsRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = JsonNullable.of(from);
-        return this;
-    }
-
-    public ListClientsRequestBuilder from(JsonNullable<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListClientsRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListClientsRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-                
-    public ListClientsRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public ListClientsRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public ListClientsRequestBuilder request(ListClientsRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -100,17 +52,6 @@ public class ListClientsRequestBuilder {
         return this;
     }
 
-
-    private ListClientsRequest buildRequest() {
-
-        ListClientsRequest request = new ListClientsRequest(embed,
-            from,
-            limit,
-            idempotencyKey);
-
-        return request;
-    }
-
     public ListClientsResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -118,7 +59,6 @@ public class ListClientsRequestBuilder {
 
         ListClients.Sync operation
               = new ListClients.Sync(sdkConfiguration, options, _headers);
-        ListClientsRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -143,7 +83,6 @@ public class ListClientsRequestBuilder {
 
         ListClients.Sync operation
               = new ListClients.Sync(sdkConfiguration, options, _headers);
-        ListClientsRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new URLTracker("$._links.next.href", operation.baseUrl()),

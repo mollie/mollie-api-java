@@ -28,6 +28,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.ListUnmatchedCreditTransfersRequest;
 import com.mollie.mollie.models.operations.ListUnmatchedCreditTransfersResponse;
 import java.lang.Exception;
 
@@ -41,10 +42,15 @@ public class Application {
                     .build())
             .build();
 
-
-        sdk.unmatchedCreditTransfers().list()
+        ListUnmatchedCreditTransfersRequest req = ListUnmatchedCreditTransfersRequest.builder()
                 .limit(50L)
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
+                .build();
+
+
+        sdk.unmatchedCreditTransfers().list()
                 .callAsStream()
                 .forEach((ListUnmatchedCreditTransfersResponse item) -> {
                    // handle page
@@ -56,11 +62,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    | Example                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `from`                                                                                                                         | *JsonNullable\<String>*                                                                                                        | :heavy_minus_sign:                                                                                                             | Provide an ID to start the result set from the item with the given ID and onwards. This allows you to paginate the<br/>result set. |                                                                                                                                |
-| `limit`                                                                                                                        | *JsonNullable\<Long>*                                                                                                          | :heavy_minus_sign:                                                                                                             | The maximum number of items to return. Defaults to 50 items.                                                                   | 50                                                                                                                             |
-| `idempotencyKey`                                                                                                               | *Optional\<String>*                                                                                                            | :heavy_minus_sign:                                                                                                             | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                               | 123e4567-e89b-12d3-a456-426                                                                                                    |
+| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `request`                                                                                             | [ListUnmatchedCreditTransfersRequest](../../models/operations/ListUnmatchedCreditTransfersRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 ### Response
 
@@ -106,6 +110,8 @@ public class Application {
         GetUnmatchedCreditTransferResponse res = sdk.unmatchedCreditTransfers().get()
                 .unmatchedCreditTransferId("uct_abcDEFghij123456789")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .call();
 
         if (res.entityUnmatchedCreditTransfer().isPresent()) {
@@ -117,10 +123,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `unmatchedCreditTransferId`                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related unmatched credit transfer.                         | uct_abcDEFghij123456789                                                          |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| Parameter                                                                                                                                                                               | Type                                                                                                                                                                                    | Required                                                                                                                                                                                | Description                                                                                                                                                                             | Example                                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `unmatchedCreditTransferId`                                                                                                                                                             | *String*                                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                                      | Provide the ID of the related unmatched credit transfer.                                                                                                                                | uct_abcDEFghij123456789                                                                                                                                                                 |
+| `idempotencyKey`                                                                                                                                                                        | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                                             |
+| `xClientSignature`                                                                                                                                                                      | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.        | MEUCIQDx8sJvK3z...                                                                                                                                                                      |
+| `xClientSignedAt`                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration. | 2025-01-01T12:00:00Z                                                                                                                                                                    |
 
 ### Response
 
@@ -135,9 +143,9 @@ public class Application {
 
 ## match
 
-> 🚧 Beta feature
+> 🚧
 >
-> This feature is currently in private beta, and the final specification may still change.
+> To get access to this functionality, a virtual IBAN must be assigned to your webshop. We are currently rolling out virtual IBANs to our merchant base. Contact our support team or your account/sales manager to request access today.
 
 Matches an unmatched credit transfer to one or more payments, settling the funds accordingly.
 
@@ -151,6 +159,7 @@ import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.Security;
 import com.mollie.mollie.models.components.UnmatchedCreditTransferMatchRequest;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.MatchUnmatchedCreditTransferRequest;
 import com.mollie.mollie.models.operations.MatchUnmatchedCreditTransferResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -165,13 +174,19 @@ public class Application {
                     .build())
             .build();
 
-        MatchUnmatchedCreditTransferResponse res = sdk.unmatchedCreditTransfers().match()
+        MatchUnmatchedCreditTransferRequest req = MatchUnmatchedCreditTransferRequest.builder()
                 .unmatchedCreditTransferId("uct_abcDEFghij123456789")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .unmatchedCreditTransferMatchRequest(UnmatchedCreditTransferMatchRequest.builder()
                     .paymentIds(List.of(
                         "tr_5B8cwPMGnU"))
                     .build())
+                .build();
+
+        MatchUnmatchedCreditTransferResponse res = sdk.unmatchedCreditTransfers().match()
+                .request(req)
                 .call();
 
         if (res.unmatchedCreditTransferActionResponse().isPresent()) {
@@ -183,11 +198,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      | Example                                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `unmatchedCreditTransferId`                                                                                      | *String*                                                                                                         | :heavy_check_mark:                                                                                               | Provide the ID of the related unmatched credit transfer.                                                         | uct_abcDEFghij123456789                                                                                          |
-| `idempotencyKey`                                                                                                 | *Optional\<String>*                                                                                              | :heavy_minus_sign:                                                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                 | 123e4567-e89b-12d3-a456-426                                                                                      |
-| `unmatchedCreditTransferMatchRequest`                                                                            | [Optional\<UnmatchedCreditTransferMatchRequest>](../../models/components/UnmatchedCreditTransferMatchRequest.md) | :heavy_minus_sign:                                                                                               | N/A                                                                                                              |                                                                                                                  |
+| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `request`                                                                                             | [MatchUnmatchedCreditTransferRequest](../../models/operations/MatchUnmatchedCreditTransferRequest.md) | :heavy_check_mark:                                                                                    | The request object to use for the request.                                                            |
 
 ### Response
 
@@ -233,6 +246,8 @@ public class Application {
         ReturnUnmatchedCreditTransferResponse res = sdk.unmatchedCreditTransfers().return_()
                 .unmatchedCreditTransferId("uct_abcDEFghij123456789")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .call();
 
         if (res.unmatchedCreditTransferActionResponse().isPresent()) {
@@ -244,10 +259,12 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `unmatchedCreditTransferId`                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related unmatched credit transfer.                         | uct_abcDEFghij123456789                                                          |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
+| Parameter                                                                                                                                                                               | Type                                                                                                                                                                                    | Required                                                                                                                                                                                | Description                                                                                                                                                                             | Example                                                                                                                                                                                 |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `unmatchedCreditTransferId`                                                                                                                                                             | *String*                                                                                                                                                                                | :heavy_check_mark:                                                                                                                                                                      | Provide the ID of the related unmatched credit transfer.                                                                                                                                | uct_abcDEFghij123456789                                                                                                                                                                 |
+| `idempotencyKey`                                                                                                                                                                        | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A unique key to ensure idempotent requests. This key should be a UUID v4 string.                                                                                                        | 123e4567-e89b-12d3-a456-426                                                                                                                                                             |
+| `xClientSignature`                                                                                                                                                                      | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.        | MEUCIQDx8sJvK3z...                                                                                                                                                                      |
+| `xClientSignedAt`                                                                                                                                                                       | *Optional\<String>*                                                                                                                                                                     | :heavy_minus_sign:                                                                                                                                                                      | The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration. | 2025-01-01T12:00:00Z                                                                                                                                                                    |
 
 ### Response
 

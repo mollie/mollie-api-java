@@ -6,12 +6,10 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.MandateRequest;
 import com.mollie.mollie.models.operations.CreateMandateRequest;
 import com.mollie.mollie.models.operations.GetMandateRequest;
 import com.mollie.mollie.models.operations.ListMandatesRequest;
 import com.mollie.mollie.models.operations.RevokeMandateRequest;
-import com.mollie.mollie.models.operations.RevokeMandateRequestBody;
 import com.mollie.mollie.models.operations.async.CreateMandateRequestBuilder;
 import com.mollie.mollie.models.operations.async.CreateMandateResponse;
 import com.mollie.mollie.models.operations.async.GetMandateRequestBuilder;
@@ -26,8 +24,6 @@ import com.mollie.mollie.operations.ListMandates;
 import com.mollie.mollie.operations.RevokeMandate;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -86,13 +82,11 @@ public class AsyncMandates {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CreateMandateResponse>} - The async response
      */
-    public CompletableFuture<CreateMandateResponse> create(String customerId) {
-        return create(
-                customerId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<CreateMandateResponse> create(CreateMandateRequest request) {
+        return create(request, Optional.empty());
     }
 
     /**
@@ -109,22 +103,11 @@ public class AsyncMandates {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param mandateRequest 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<CreateMandateResponse>} - The async response
      */
-    public CompletableFuture<CreateMandateResponse> create(
-            String customerId, Optional<String> idempotencyKey,
-            Optional<? extends MandateRequest> mandateRequest, Optional<Options> options) {
-        CreateMandateRequest request =
-            CreateMandateRequest
-                .builder()
-                .customerId(customerId)
-                .idempotencyKey(idempotencyKey)
-                .mandateRequest(mandateRequest)
-                .build();
+    public CompletableFuture<CreateMandateResponse> create(CreateMandateRequest request, Optional<Options> options) {
         AsyncRequestOperation<CreateMandateRequest, CreateMandateResponse> operation
               = new CreateMandate.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -217,14 +200,11 @@ public class AsyncMandates {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param mandateId Provide the ID of the related mandate.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetMandateResponse>} - The async response
      */
-    public CompletableFuture<GetMandateResponse> get(String customerId, String mandateId) {
-        return get(
-                customerId, mandateId, Optional.empty(),
-                Optional.empty(), Optional.empty());
+    public CompletableFuture<GetMandateResponse> get(GetMandateRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -237,29 +217,11 @@ public class AsyncMandates {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param mandateId Provide the ID of the related mandate.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetMandateResponse>} - The async response
      */
-    public CompletableFuture<GetMandateResponse> get(
-            String customerId, String mandateId,
-            Optional<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) {
-        GetMandateRequest request =
-            GetMandateRequest
-                .builder()
-                .customerId(customerId)
-                .mandateId(mandateId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetMandateResponse> get(GetMandateRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetMandateRequest, GetMandateResponse> operation
               = new GetMandate.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -295,14 +257,11 @@ public class AsyncMandates {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param mandateId Provide the ID of the related mandate.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<RevokeMandateResponse>} - The async response
      */
-    public CompletableFuture<RevokeMandateResponse> revoke(String customerId, String mandateId) {
-        return revoke(
-                customerId, mandateId, Optional.empty(),
-                Optional.empty(), Optional.empty());
+    public CompletableFuture<RevokeMandateResponse> revoke(RevokeMandateRequest request) {
+        return revoke(request, Optional.empty());
     }
 
     /**
@@ -315,25 +274,11 @@ public class AsyncMandates {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param mandateId Provide the ID of the related mandate.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<RevokeMandateResponse>} - The async response
      */
-    public CompletableFuture<RevokeMandateResponse> revoke(
-            String customerId, String mandateId,
-            Optional<String> idempotencyKey, Optional<? extends RevokeMandateRequestBody> requestBody,
-            Optional<Options> options) {
-        RevokeMandateRequest request =
-            RevokeMandateRequest
-                .builder()
-                .customerId(customerId)
-                .mandateId(mandateId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<RevokeMandateResponse> revoke(RevokeMandateRequest request, Optional<Options> options) {
         AsyncRequestOperation<RevokeMandateRequest, RevokeMandateResponse> operation
               = new RevokeMandate.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

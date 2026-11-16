@@ -20,6 +20,20 @@ public class CreateReportRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=idempotency-key")
     private Optional<String> idempotencyKey;
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signature")
+    private Optional<String> xClientSignature;
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @SpeakeasyMetadata("header:style=simple,explode=false,name=X-Client-Signed-At")
+    private Optional<String> xClientSignedAt;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private com.mollie.mollie.models.components.CreateReportRequest createReportRequest;
@@ -27,16 +41,23 @@ public class CreateReportRequest {
     @JsonCreator
     public CreateReportRequest(
             Optional<String> idempotencyKey,
+            Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt,
             com.mollie.mollie.models.components.CreateReportRequest createReportRequest) {
         Utils.checkNotNull(idempotencyKey, "idempotencyKey");
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
         Utils.checkNotNull(createReportRequest, "createReportRequest");
         this.idempotencyKey = idempotencyKey;
+        this.xClientSignature = xClientSignature;
+        this.xClientSignedAt = xClientSignedAt;
         this.createReportRequest = createReportRequest;
     }
     
     public CreateReportRequest(
             com.mollie.mollie.models.components.CreateReportRequest createReportRequest) {
-        this(Optional.empty(), createReportRequest);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            createReportRequest);
     }
 
     /**
@@ -45,6 +66,24 @@ public class CreateReportRequest {
     @JsonIgnore
     public Optional<String> idempotencyKey() {
         return idempotencyKey;
+    }
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignature() {
+        return xClientSignature;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    @JsonIgnore
+    public Optional<String> xClientSignedAt() {
+        return xClientSignedAt;
     }
 
     @JsonIgnore
@@ -76,6 +115,48 @@ public class CreateReportRequest {
         return this;
     }
 
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public CreateReportRequest withXClientSignature(String xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = Optional.ofNullable(xClientSignature);
+        return this;
+    }
+
+
+    /**
+     * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+     * tampered with. Required if you've enabled request signing for your integration.
+     */
+    public CreateReportRequest withXClientSignature(Optional<String> xClientSignature) {
+        Utils.checkNotNull(xClientSignature, "xClientSignature");
+        this.xClientSignature = xClientSignature;
+        return this;
+    }
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public CreateReportRequest withXClientSignedAt(String xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+        return this;
+    }
+
+
+    /**
+     * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+     * together with `X-Client-Signature` if you've enabled request signing for your integration.
+     */
+    public CreateReportRequest withXClientSignedAt(Optional<String> xClientSignedAt) {
+        Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+        this.xClientSignedAt = xClientSignedAt;
+        return this;
+    }
+
     public CreateReportRequest withCreateReportRequest(com.mollie.mollie.models.components.CreateReportRequest createReportRequest) {
         Utils.checkNotNull(createReportRequest, "createReportRequest");
         this.createReportRequest = createReportRequest;
@@ -93,19 +174,24 @@ public class CreateReportRequest {
         CreateReportRequest other = (CreateReportRequest) o;
         return 
             Utils.enhancedDeepEquals(this.idempotencyKey, other.idempotencyKey) &&
+            Utils.enhancedDeepEquals(this.xClientSignature, other.xClientSignature) &&
+            Utils.enhancedDeepEquals(this.xClientSignedAt, other.xClientSignedAt) &&
             Utils.enhancedDeepEquals(this.createReportRequest, other.createReportRequest);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            idempotencyKey, createReportRequest);
+            idempotencyKey, xClientSignature, xClientSignedAt,
+            createReportRequest);
     }
     
     @Override
     public String toString() {
         return Utils.toString(CreateReportRequest.class,
                 "idempotencyKey", idempotencyKey,
+                "xClientSignature", xClientSignature,
+                "xClientSignedAt", xClientSignedAt,
                 "createReportRequest", createReportRequest);
     }
 
@@ -113,6 +199,10 @@ public class CreateReportRequest {
     public final static class Builder {
 
         private Optional<String> idempotencyKey = Optional.empty();
+
+        private Optional<String> xClientSignature = Optional.empty();
+
+        private Optional<String> xClientSignedAt = Optional.empty();
 
         private com.mollie.mollie.models.components.CreateReportRequest createReportRequest;
 
@@ -140,6 +230,48 @@ public class CreateReportRequest {
         }
 
 
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(String xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = Optional.ofNullable(xClientSignature);
+            return this;
+        }
+
+        /**
+         * A cryptographic signature of the request, used to verify that it was sent by you and hasn't been
+         * tampered with. Required if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignature(Optional<String> xClientSignature) {
+            Utils.checkNotNull(xClientSignature, "xClientSignature");
+            this.xClientSignature = xClientSignature;
+            return this;
+        }
+
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(String xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = Optional.ofNullable(xClientSignedAt);
+            return this;
+        }
+
+        /**
+         * The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required
+         * together with `X-Client-Signature` if you've enabled request signing for your integration.
+         */
+        public Builder xClientSignedAt(Optional<String> xClientSignedAt) {
+            Utils.checkNotNull(xClientSignedAt, "xClientSignedAt");
+            this.xClientSignedAt = xClientSignedAt;
+            return this;
+        }
+
+
         public Builder createReportRequest(com.mollie.mollie.models.components.CreateReportRequest createReportRequest) {
             Utils.checkNotNull(createReportRequest, "createReportRequest");
             this.createReportRequest = createReportRequest;
@@ -149,7 +281,8 @@ public class CreateReportRequest {
         public CreateReportRequest build() {
 
             return new CreateReportRequest(
-                idempotencyKey, createReportRequest);
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                createReportRequest);
         }
 
     }

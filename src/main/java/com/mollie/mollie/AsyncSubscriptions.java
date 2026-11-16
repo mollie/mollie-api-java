@@ -6,16 +6,13 @@ package com.mollie.mollie;
 
 import static com.mollie.mollie.operations.Operations.AsyncRequestOperation;
 
-import com.mollie.mollie.models.components.SubscriptionRequest;
 import com.mollie.mollie.models.operations.CancelSubscriptionRequest;
-import com.mollie.mollie.models.operations.CancelSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.CreateSubscriptionRequest;
 import com.mollie.mollie.models.operations.GetSubscriptionRequest;
 import com.mollie.mollie.models.operations.ListAllSubscriptionsRequest;
 import com.mollie.mollie.models.operations.ListSubscriptionPaymentsRequest;
 import com.mollie.mollie.models.operations.ListSubscriptionsRequest;
 import com.mollie.mollie.models.operations.UpdateSubscriptionRequest;
-import com.mollie.mollie.models.operations.UpdateSubscriptionRequestBody;
 import com.mollie.mollie.models.operations.async.CancelSubscriptionRequestBuilder;
 import com.mollie.mollie.models.operations.async.CancelSubscriptionResponse;
 import com.mollie.mollie.models.operations.async.CreateSubscriptionRequestBuilder;
@@ -39,8 +36,6 @@ import com.mollie.mollie.operations.ListSubscriptions;
 import com.mollie.mollie.operations.UpdateSubscription;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -127,13 +122,11 @@ public class AsyncSubscriptions {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CreateSubscriptionResponse>} - The async response
      */
-    public CompletableFuture<CreateSubscriptionResponse> create(String customerId) {
-        return create(
-                customerId, Optional.empty(), Optional.empty(),
-                Optional.empty());
+    public CompletableFuture<CreateSubscriptionResponse> create(CreateSubscriptionRequest request) {
+        return create(request, Optional.empty());
     }
 
     /**
@@ -164,22 +157,11 @@ public class AsyncSubscriptions {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param subscriptionRequest 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<CreateSubscriptionResponse>} - The async response
      */
-    public CompletableFuture<CreateSubscriptionResponse> create(
-            String customerId, Optional<String> idempotencyKey,
-            Optional<? extends SubscriptionRequest> subscriptionRequest, Optional<Options> options) {
-        CreateSubscriptionRequest request =
-            CreateSubscriptionRequest
-                .builder()
-                .customerId(customerId)
-                .idempotencyKey(idempotencyKey)
-                .subscriptionRequest(subscriptionRequest)
-                .build();
+    public CompletableFuture<CreateSubscriptionResponse> create(CreateSubscriptionRequest request, Optional<Options> options) {
         AsyncRequestOperation<CreateSubscriptionRequest, CreateSubscriptionResponse> operation
               = new CreateSubscription.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -268,14 +250,11 @@ public class AsyncSubscriptions {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param subscriptionId Provide the ID of the related subscription.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<GetSubscriptionResponse>} - The async response
      */
-    public CompletableFuture<GetSubscriptionResponse> get(String customerId, String subscriptionId) {
-        return get(
-                customerId, subscriptionId, Optional.empty(),
-                Optional.empty(), Optional.empty());
+    public CompletableFuture<GetSubscriptionResponse> get(GetSubscriptionRequest request) {
+        return get(request, Optional.empty());
     }
 
     /**
@@ -286,29 +265,11 @@ public class AsyncSubscriptions {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param subscriptionId Provide the ID of the related subscription.
-     * @param testmode Most API credentials are specifically created for either live mode or test mode. In those cases the `testmode` query
-     *         parameter must not be sent. For organization-level credentials such as OAuth access tokens, you can enable test mode by
-     *         setting the `testmode` query parameter to `true`.
-     *         
-     *         Test entities cannot be retrieved when the endpoint is set to live mode, and vice versa.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<GetSubscriptionResponse>} - The async response
      */
-    public CompletableFuture<GetSubscriptionResponse> get(
-            String customerId, String subscriptionId,
-            Optional<Boolean> testmode, Optional<String> idempotencyKey,
-            Optional<Options> options) {
-        GetSubscriptionRequest request =
-            GetSubscriptionRequest
-                .builder()
-                .customerId(customerId)
-                .subscriptionId(subscriptionId)
-                .testmode(testmode)
-                .idempotencyKey(idempotencyKey)
-                .build();
+    public CompletableFuture<GetSubscriptionResponse> get(GetSubscriptionRequest request, Optional<Options> options) {
         AsyncRequestOperation<GetSubscriptionRequest, GetSubscriptionResponse> operation
               = new GetSubscription.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -350,14 +311,11 @@ public class AsyncSubscriptions {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param subscriptionId Provide the ID of the related subscription.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<UpdateSubscriptionResponse>} - The async response
      */
-    public CompletableFuture<UpdateSubscriptionResponse> update(String customerId, String subscriptionId) {
-        return update(
-                customerId, subscriptionId, Optional.empty(),
-                Optional.empty(), Optional.empty());
+    public CompletableFuture<UpdateSubscriptionResponse> update(UpdateSubscriptionRequest request) {
+        return update(request, Optional.empty());
     }
 
     /**
@@ -373,25 +331,11 @@ public class AsyncSubscriptions {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param subscriptionId Provide the ID of the related subscription.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<UpdateSubscriptionResponse>} - The async response
      */
-    public CompletableFuture<UpdateSubscriptionResponse> update(
-            String customerId, String subscriptionId,
-            Optional<String> idempotencyKey, Optional<? extends UpdateSubscriptionRequestBody> requestBody,
-            Optional<Options> options) {
-        UpdateSubscriptionRequest request =
-            UpdateSubscriptionRequest
-                .builder()
-                .customerId(customerId)
-                .subscriptionId(subscriptionId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<UpdateSubscriptionResponse> update(UpdateSubscriptionRequest request, Optional<Options> options) {
         AsyncRequestOperation<UpdateSubscriptionRequest, UpdateSubscriptionResponse> operation
               = new UpdateSubscription.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),
@@ -425,14 +369,11 @@ public class AsyncSubscriptions {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param subscriptionId Provide the ID of the related subscription.
+     * @param request The request object containing all the parameters for the API call.
      * @return {@code CompletableFuture<CancelSubscriptionResponse>} - The async response
      */
-    public CompletableFuture<CancelSubscriptionResponse> cancel(String customerId, String subscriptionId) {
-        return cancel(
-                customerId, subscriptionId, Optional.empty(),
-                Optional.empty(), Optional.empty());
+    public CompletableFuture<CancelSubscriptionResponse> cancel(CancelSubscriptionRequest request) {
+        return cancel(request, Optional.empty());
     }
 
     /**
@@ -444,25 +385,11 @@ public class AsyncSubscriptions {
      * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
      * Security#oAuth from the global security.
      * 
-     * @param customerId Provide the ID of the related customer.
-     * @param subscriptionId Provide the ID of the related subscription.
-     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
-     * @param requestBody 
+     * @param request The request object containing all the parameters for the API call.
      * @param options additional options
      * @return {@code CompletableFuture<CancelSubscriptionResponse>} - The async response
      */
-    public CompletableFuture<CancelSubscriptionResponse> cancel(
-            String customerId, String subscriptionId,
-            Optional<String> idempotencyKey, Optional<? extends CancelSubscriptionRequestBody> requestBody,
-            Optional<Options> options) {
-        CancelSubscriptionRequest request =
-            CancelSubscriptionRequest
-                .builder()
-                .customerId(customerId)
-                .subscriptionId(subscriptionId)
-                .idempotencyKey(idempotencyKey)
-                .requestBody(requestBody)
-                .build();
+    public CompletableFuture<CancelSubscriptionResponse> cancel(CancelSubscriptionRequest request, Optional<Options> options) {
         AsyncRequestOperation<CancelSubscriptionRequest, CancelSubscriptionResponse> operation
               = new CancelSubscription.Async(
                                     sdkConfiguration, options, sdkConfiguration.retryScheduler(),

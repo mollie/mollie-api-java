@@ -60,6 +60,12 @@ public class BusinessAccountResponse {
     @JsonProperty("createdAt")
     private String createdAt;
 
+    /**
+     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+     */
+    @JsonProperty("_links")
+    private BusinessAccountResponseLinks links;
+
     @JsonCreator
     public BusinessAccountResponse(
             @JsonProperty("resource") String resource,
@@ -68,7 +74,8 @@ public class BusinessAccountResponse {
             @JsonProperty("balance") Balance balance,
             @JsonProperty("status") AccountStatus status,
             @JsonProperty("mode") Mode mode,
-            @JsonProperty("createdAt") String createdAt) {
+            @JsonProperty("createdAt") String createdAt,
+            @JsonProperty("_links") BusinessAccountResponseLinks links) {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(accountDetails, "accountDetails");
@@ -76,6 +83,7 @@ public class BusinessAccountResponse {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(mode, "mode");
         Utils.checkNotNull(createdAt, "createdAt");
+        Utils.checkNotNull(links, "links");
         this.resource = resource;
         this.id = id;
         this.accountDetails = accountDetails;
@@ -83,6 +91,7 @@ public class BusinessAccountResponse {
         this.status = status;
         this.mode = mode;
         this.createdAt = createdAt;
+        this.links = links;
     }
 
     /**
@@ -144,6 +153,14 @@ public class BusinessAccountResponse {
     @JsonIgnore
     public String createdAt() {
         return createdAt;
+    }
+
+    /**
+     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+     */
+    @JsonIgnore
+    public BusinessAccountResponseLinks links() {
+        return links;
     }
 
     public static Builder builder() {
@@ -219,6 +236,15 @@ public class BusinessAccountResponse {
         return this;
     }
 
+    /**
+     * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+     */
+    public BusinessAccountResponse withLinks(BusinessAccountResponseLinks links) {
+        Utils.checkNotNull(links, "links");
+        this.links = links;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -235,7 +261,8 @@ public class BusinessAccountResponse {
             Utils.enhancedDeepEquals(this.balance, other.balance) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.mode, other.mode) &&
-            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
@@ -243,7 +270,7 @@ public class BusinessAccountResponse {
         return Utils.enhancedHash(
             resource, id, accountDetails,
             balance, status, mode,
-            createdAt);
+            createdAt, links);
     }
     
     @Override
@@ -255,7 +282,8 @@ public class BusinessAccountResponse {
                 "balance", balance,
                 "status", status,
                 "mode", mode,
-                "createdAt", createdAt);
+                "createdAt", createdAt,
+                "links", links);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -274,6 +302,8 @@ public class BusinessAccountResponse {
         private Mode mode;
 
         private String createdAt;
+
+        private BusinessAccountResponseLinks links;
 
         private Builder() {
           // force use of static builder() method
@@ -354,12 +384,22 @@ public class BusinessAccountResponse {
             return this;
         }
 
+
+        /**
+         * An object with several relevant URLs. Every URL object will contain an `href` and a `type` field.
+         */
+        public Builder links(BusinessAccountResponseLinks links) {
+            Utils.checkNotNull(links, "links");
+            this.links = links;
+            return this;
+        }
+
         public BusinessAccountResponse build() {
 
             return new BusinessAccountResponse(
                 resource, id, accountDetails,
                 balance, status, mode,
-                createdAt);
+                createdAt, links);
         }
 
     }

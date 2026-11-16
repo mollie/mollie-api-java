@@ -18,19 +18,14 @@ import com.mollie.mollie.utils.pagination.Paginator;
 import com.mollie.mollie.utils.pagination.URLTracker;
 import java.io.InputStream;
 import java.lang.Iterable;
-import java.lang.Long;
-import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ListProfilesRequestBuilder {
 
-    private JsonNullable<String> from = JsonNullable.undefined();
-    private JsonNullable<Long> limit = JsonNullable.undefined();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private ListProfilesRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -39,39 +34,9 @@ public class ListProfilesRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public ListProfilesRequestBuilder from(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = JsonNullable.of(from);
-        return this;
-    }
-
-    public ListProfilesRequestBuilder from(JsonNullable<String> from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
-        return this;
-    }
-
-    public ListProfilesRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = JsonNullable.of(limit);
-        return this;
-    }
-
-    public ListProfilesRequestBuilder limit(JsonNullable<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-                
-    public ListProfilesRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public ListProfilesRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public ListProfilesRequestBuilder request(ListProfilesRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -87,16 +52,6 @@ public class ListProfilesRequestBuilder {
         return this;
     }
 
-
-    private ListProfilesRequest buildRequest() {
-
-        ListProfilesRequest request = new ListProfilesRequest(from,
-            limit,
-            idempotencyKey);
-
-        return request;
-    }
-
     public ListProfilesResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -104,7 +59,6 @@ public class ListProfilesRequestBuilder {
 
         ListProfiles.Sync operation
               = new ListProfiles.Sync(sdkConfiguration, options, _headers);
-        ListProfilesRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -129,7 +83,6 @@ public class ListProfilesRequestBuilder {
 
         ListProfiles.Sync operation
               = new ListProfiles.Sync(sdkConfiguration, options, _headers);
-        ListProfilesRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new URLTracker("$._links.next.href", operation.baseUrl()),

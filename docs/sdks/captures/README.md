@@ -28,6 +28,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCaptureRequest;
 import com.mollie.mollie.models.operations.CreateCaptureResponse;
 import java.lang.Exception;
 
@@ -41,9 +42,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCaptureResponse res = sdk.captures().create()
+        CreateCaptureRequest req = CreateCaptureRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .entityCapture(EntityCapture.builder()
                     .description("Capture for cart #12345")
                     .amount(AmountNullable.builder()
@@ -52,6 +55,10 @@ public class Application {
                         .build())
                     .testmode(false)
                     .build())
+                .build();
+
+        CreateCaptureResponse res = sdk.captures().create()
+                .request(req)
                 .call();
 
         if (res.captureResponse().isPresent()) {
@@ -69,6 +76,7 @@ package hello.world;
 import com.mollie.mollie.Client;
 import com.mollie.mollie.models.components.*;
 import com.mollie.mollie.models.errors.ErrorResponse;
+import com.mollie.mollie.models.operations.CreateCaptureRequest;
 import com.mollie.mollie.models.operations.CreateCaptureResponse;
 import java.lang.Exception;
 
@@ -82,9 +90,11 @@ public class Application {
                     .build())
             .build();
 
-        CreateCaptureResponse res = sdk.captures().create()
+        CreateCaptureRequest req = CreateCaptureRequest.builder()
                 .paymentId("tr_5B8cwPMGnU")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .entityCapture(EntityCapture.builder()
                     .description("Capture for cart #12345")
                     .amount(AmountNullable.builder()
@@ -93,6 +103,10 @@ public class Application {
                         .build())
                     .testmode(false)
                     .build())
+                .build();
+
+        CreateCaptureResponse res = sdk.captures().create()
+                .request(req)
                 .call();
 
         if (res.captureResponse().isPresent()) {
@@ -104,11 +118,9 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `paymentId`                                                                      | *String*                                                                         | :heavy_check_mark:                                                               | Provide the ID of the related payment.                                           | tr_5B8cwPMGnU                                                                    |
-| `idempotencyKey`                                                                 | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | A unique key to ensure idempotent requests. This key should be a UUID v4 string. | 123e4567-e89b-12d3-a456-426                                                      |
-| `entityCapture`                                                                  | [Optional\<EntityCapture>](../../models/components/EntityCapture.md)             | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [CreateCaptureRequest](../../models/operations/CreateCaptureRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 
@@ -157,6 +169,8 @@ public class Application {
                 .limit(50L)
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -199,6 +213,8 @@ public class Application {
                 .limit(50L)
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
 
@@ -263,6 +279,8 @@ public class Application {
                 .captureId("cpt_vytxeTZskVKR7C7WgdSP3d")
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         GetCaptureResponse res = sdk.captures().get()
@@ -304,6 +322,8 @@ public class Application {
                 .captureId("cpt_vytxeTZskVKR7C7WgdSP3d")
                 .embed("payment")
                 .idempotencyKey("123e4567-e89b-12d3-a456-426")
+                .xClientSignature("MEUCIQDx8sJvK3z...")
+                .xClientSignedAt("2025-01-01T12:00:00Z")
                 .build();
 
         GetCaptureResponse res = sdk.captures().get()

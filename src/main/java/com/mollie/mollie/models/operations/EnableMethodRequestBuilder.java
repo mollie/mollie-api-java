@@ -7,20 +7,16 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.MethodId;
 import com.mollie.mollie.operations.EnableMethod;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class EnableMethodRequestBuilder {
 
-    private String profileId;
-    private Optional<? extends MethodId> methodId = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private EnableMethodRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class EnableMethodRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public EnableMethodRequestBuilder profileId(String profileId) {
-        Utils.checkNotNull(profileId, "profileId");
-        this.profileId = profileId;
-        return this;
-    }
-                
-    public EnableMethodRequestBuilder methodId(MethodId methodId) {
-        Utils.checkNotNull(methodId, "methodId");
-        this.methodId = Optional.of(methodId);
-        return this;
-    }
-
-    public EnableMethodRequestBuilder methodId(Optional<? extends MethodId> methodId) {
-        Utils.checkNotNull(methodId, "methodId");
-        this.methodId = methodId;
-        return this;
-    }
-                
-    public EnableMethodRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public EnableMethodRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public EnableMethodRequestBuilder request(EnableMethodRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class EnableMethodRequestBuilder {
         return this;
     }
 
-
-    private EnableMethodRequest buildRequest() {
-
-        EnableMethodRequest request = new EnableMethodRequest(profileId,
-            methodId,
-            idempotencyKey);
-
-        return request;
-    }
-
     public EnableMethodResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class EnableMethodRequestBuilder {
 
         RequestOperation<EnableMethodRequest, EnableMethodResponse> operation
               = new EnableMethod.Sync(sdkConfiguration, options, _headers);
-        EnableMethodRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

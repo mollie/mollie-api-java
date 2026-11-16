@@ -12,15 +12,11 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.Boolean;
-import java.lang.String;
 import java.util.Optional;
 
 public class GetPaymentLinkRequestBuilder {
 
-    private String paymentLinkId;
-    private Optional<Boolean> testmode = Optional.empty();
-    private Optional<String> idempotencyKey = Optional.empty();
+    private GetPaymentLinkRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class GetPaymentLinkRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public GetPaymentLinkRequestBuilder paymentLinkId(String paymentLinkId) {
-        Utils.checkNotNull(paymentLinkId, "paymentLinkId");
-        this.paymentLinkId = paymentLinkId;
-        return this;
-    }
-                
-    public GetPaymentLinkRequestBuilder testmode(boolean testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = Optional.of(testmode);
-        return this;
-    }
-
-    public GetPaymentLinkRequestBuilder testmode(Optional<Boolean> testmode) {
-        Utils.checkNotNull(testmode, "testmode");
-        this.testmode = testmode;
-        return this;
-    }
-                
-    public GetPaymentLinkRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public GetPaymentLinkRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
+    public GetPaymentLinkRequestBuilder request(GetPaymentLinkRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class GetPaymentLinkRequestBuilder {
         return this;
     }
 
-
-    private GetPaymentLinkRequest buildRequest() {
-
-        GetPaymentLinkRequest request = new GetPaymentLinkRequest(paymentLinkId,
-            testmode,
-            idempotencyKey);
-
-        return request;
-    }
-
     public GetPaymentLinkResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class GetPaymentLinkRequestBuilder {
 
         RequestOperation<GetPaymentLinkRequest, GetPaymentLinkResponse> operation
               = new GetPaymentLink.Sync(sdkConfiguration, options, _headers);
-        GetPaymentLinkRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }

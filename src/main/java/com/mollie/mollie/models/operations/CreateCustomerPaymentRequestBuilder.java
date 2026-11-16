@@ -7,20 +7,16 @@ package com.mollie.mollie.models.operations;
 import static com.mollie.mollie.operations.Operations.RequestOperation;
 
 import com.mollie.mollie.SDKConfiguration;
-import com.mollie.mollie.models.components.PaymentRequest;
 import com.mollie.mollie.operations.CreateCustomerPayment;
 import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
-import java.lang.String;
 import java.util.Optional;
 
 public class CreateCustomerPaymentRequestBuilder {
 
-    private String customerId;
-    private Optional<String> idempotencyKey = Optional.empty();
-    private Optional<? extends PaymentRequest> paymentRequest = Optional.empty();
+    private CreateCustomerPaymentRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
@@ -29,33 +25,9 @@ public class CreateCustomerPaymentRequestBuilder {
         this.sdkConfiguration = sdkConfiguration;
     }
 
-    public CreateCustomerPaymentRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
-        return this;
-    }
-                
-    public CreateCustomerPaymentRequestBuilder idempotencyKey(String idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = Optional.of(idempotencyKey);
-        return this;
-    }
-
-    public CreateCustomerPaymentRequestBuilder idempotencyKey(Optional<String> idempotencyKey) {
-        Utils.checkNotNull(idempotencyKey, "idempotencyKey");
-        this.idempotencyKey = idempotencyKey;
-        return this;
-    }
-                
-    public CreateCustomerPaymentRequestBuilder paymentRequest(PaymentRequest paymentRequest) {
-        Utils.checkNotNull(paymentRequest, "paymentRequest");
-        this.paymentRequest = Optional.of(paymentRequest);
-        return this;
-    }
-
-    public CreateCustomerPaymentRequestBuilder paymentRequest(Optional<? extends PaymentRequest> paymentRequest) {
-        Utils.checkNotNull(paymentRequest, "paymentRequest");
-        this.paymentRequest = paymentRequest;
+    public CreateCustomerPaymentRequestBuilder request(CreateCustomerPaymentRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
         return this;
     }
                 
@@ -71,16 +43,6 @@ public class CreateCustomerPaymentRequestBuilder {
         return this;
     }
 
-
-    private CreateCustomerPaymentRequest buildRequest() {
-
-        CreateCustomerPaymentRequest request = new CreateCustomerPaymentRequest(customerId,
-            idempotencyKey,
-            paymentRequest);
-
-        return request;
-    }
-
     public CreateCustomerPaymentResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
@@ -88,7 +50,6 @@ public class CreateCustomerPaymentRequestBuilder {
 
         RequestOperation<CreateCustomerPaymentRequest, CreateCustomerPaymentResponse> operation
               = new CreateCustomerPayment.Sync(sdkConfiguration, options, _headers);
-        CreateCustomerPaymentRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
     }
