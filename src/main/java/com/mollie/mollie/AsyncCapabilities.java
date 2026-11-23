@@ -138,6 +138,47 @@ public class AsyncCapabilities {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<ListCapabilitiesResponse>} - The async response
+     */
+    public CompletableFuture<ListCapabilitiesResponse> list(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt) {
+        return list(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                Optional.empty());
+    }
+
+    /**
+     * List capabilities
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in beta testing, and the final specification may still change.
+     * 
+     * <p>Retrieve a list of capabilities for an organization.
+     * 
+     * <p>This API provides detailed insights into the specific requirements and status of each client's
+     * onboarding journey.
+     * 
+     * <p>Capabilities are at the organization level, indicating if the organization can perform a given
+     * capability.
+     * Capabilities may have requirements, which provide more information on what is needed to use this
+     * capability.
+     * Requirements may have a due date, which indicates the date by which the requirement should be
+     * fulfilled.
+     * If a requirement is past due, the capability is disabled until the requirement is fulfilled.
+     * 
+     * <p>For payments, regardless them being at the profile level, the capability is listed at the
+     * organization level.
+     * This means that if at least one of the clients's profiles can receive payments,
+     * the payments capability is enabled, communicating that the organization can indeed receive payments.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<ListCapabilitiesResponse>} - The async response
      */

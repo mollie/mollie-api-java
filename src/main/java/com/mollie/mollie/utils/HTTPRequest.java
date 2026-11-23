@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.time.Duration;
 
 public class HTTPRequest {
 
@@ -27,6 +28,7 @@ public class HTTPRequest {
     private final List<QueryParameter> queryParams = new ArrayList<>();
     private final Map<String, List<String>> headers = new HashMap<>();
     private Optional<SerializedBody> body = Optional.empty(); // mutable
+    private Optional<Duration> timeout = Optional.empty();
 
     public HTTPRequest(String baseURL, String method) {
         Utils.checkNotNull(baseURL, "baseURL");
@@ -38,6 +40,12 @@ public class HTTPRequest {
     public void setBody(Optional<SerializedBody> body) {
         Utils.checkNotNull(body, "body");
         this.body = body;
+    }
+
+    public HTTPRequest timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
     }
     
     public HTTPRequest addHeader(String key, String value) {
@@ -89,6 +97,7 @@ public class HTTPRequest {
             throw new RuntimeException(e);
         }
         headers.forEach((k, list) -> list.forEach(v -> requestBuilder.header(k, v)));
+        timeout.ifPresent(requestBuilder::timeout);
         return requestBuilder.build();
     }
     

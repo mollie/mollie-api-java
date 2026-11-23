@@ -15,6 +15,7 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -25,6 +26,7 @@ public class CreateCustomerRequestBuilder {
     private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<? extends EntityCustomer> entityCustomer = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -91,6 +93,18 @@ public class CreateCustomerRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public CreateCustomerRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateCustomerRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateCustomerRequest buildRequest() {
@@ -106,6 +120,7 @@ public class CreateCustomerRequestBuilder {
     public CompletableFuture<CreateCustomerResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<CreateCustomerRequest, CreateCustomerResponse> operation

@@ -169,6 +169,32 @@ public class UnmatchedCreditTransfers {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetUnmatchedCreditTransferResponse get(
+            String unmatchedCreditTransferId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt) {
+        return get(unmatchedCreditTransferId, idempotencyKey, xClientSignature,
+            xClientSignedAt, Optional.empty());
+    }
+
+    /**
+     * Get unmatched credit transfer
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * 
+     * <p>Retrieves a single unmatched credit transfer by its identifier.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
@@ -294,6 +320,32 @@ public class UnmatchedCreditTransfers {
     public ReturnUnmatchedCreditTransferResponse return_(String unmatchedCreditTransferId) {
         return return_(unmatchedCreditTransferId, Optional.empty(), Optional.empty(),
             Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Return unmatched credit transfer
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in private beta, and the final specification may still change.
+     * 
+     * <p>Returns an unmatched credit transfer, sending the funds back to the original sender.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param unmatchedCreditTransferId Provide the ID of the related unmatched credit transfer.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public ReturnUnmatchedCreditTransferResponse return_(
+            String unmatchedCreditTransferId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt) {
+        return return_(unmatchedCreditTransferId, idempotencyKey, xClientSignature,
+            xClientSignedAt, Optional.empty());
     }
 
     /**

@@ -194,6 +194,63 @@ public class DraftTransfers {
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param createDraftTransferRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateDraftTransferResponse create(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends CreateDraftTransferRequest> createDraftTransferRequest) {
+        return create(idempotencyKey, xClientSignature, xClientSignedAt,
+            createDraftTransferRequest, Optional.empty());
+    }
+
+    /**
+     * Create draft transfer
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in beta testing, and the final specification may still change.
+     * 
+     * <p>Creates a draft transfer. The draft transfer immediately enters `pending-review` and appears in the
+     * initiator's queue in Mollie Apps. It carries no legal weight and moves no funds until a human
+     * initiator
+     * approves it there.
+     * 
+     * <p>### Test mode
+     * 
+     * <p>Creating a draft transfer always returns a synthetic draft in `pending-review` status, using
+     * synthetic data,
+     * same as in live mode. No real funds move and nothing is sent to Mollie Apps.
+     * 
+     * <p>Editing a draft transfer after creation is not supported via the API. Instead, depending on the
+     * amount, you
+     * can simulate different outcomes for the initiator's decision at creation time:
+     * 
+     * <p>| Amount  | Simulated outcome                                    | Webhook sequence
+     * |
+     * |---------|-------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+     * | `13.00` | Declined by the initiator, with a free-text reason     |
+     * `business-account-draft-transfer.created` → `business-account-draft-transfer.declined`             |
+     * | `14.00` | Approved                                               |
+     * `business-account-draft-transfer.created` → `business-account-draft-transfer.approved`             |
+     * | Other   | Default behavior (pending review)                      |
+     * `business-account-draft-transfer.created`                                                          |
+     * 
+     * <p>The webhooks fire asynchronously, with a short delay between them to mimic real timing.
+     * [Get](get-draft-transfer)
+     * and [list](list-draft-transfers) reflect the simulated outcome once it lands.
+     * 
+     * <p>Cancelling (via `DELETE`) is unaffected by the amount: it always transitions the draft to `declined`
+     * with
+     * `statusReason.code` set to `deleted-by-creator`, the same as in live mode.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param createDraftTransferRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

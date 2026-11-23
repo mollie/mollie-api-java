@@ -7,6 +7,8 @@ package com.mollie.mollie.utils;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.http.HttpResponse;
+import java.net.http.HttpConnectTimeoutException;
+import java.net.http.HttpTimeoutException;
 import java.net.ConnectException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -79,6 +81,12 @@ public class Retries {
 
         } catch(IOException e) {
             if(e instanceof ConnectException && retryConnectError) {
+                throw e;
+            }
+            if(e instanceof HttpConnectTimeoutException && retryConnectError) {
+                throw e;
+            }
+            if(e instanceof HttpTimeoutException && !(e instanceof HttpConnectTimeoutException) && retryReadTimeoutError) {
                 throw e;
             }
             String message = e.getMessage();

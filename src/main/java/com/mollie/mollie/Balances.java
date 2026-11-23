@@ -259,6 +259,31 @@ public class Balances {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public GetPrimaryBalanceResponse getPrimary(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt) {
+        return getPrimary(idempotencyKey, xClientSignature, xClientSignedAt,
+            Optional.empty());
+    }
+
+    /**
+     * Get primary balance
+     * 
+     * <p>Retrieve the primary balance. This is the balance of your account's primary
+     * currency, where all payments are settled to by default.
+     * 
+     * <p>This endpoint is a convenient alias of the [Get balance](get-balance)
+     * endpoint.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

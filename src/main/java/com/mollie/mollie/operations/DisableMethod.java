@@ -34,6 +34,7 @@ import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -48,6 +49,7 @@ public class DisableMethod {
         final SDKConfiguration sdkConfiguration;
         final String baseUrl;
         final SecuritySource securitySource;
+        final Optional<Duration> timeout;
         final List<String> retryStatusCodes;
         final RetryConfig retryConfig;
         final HTTPClient client;
@@ -61,7 +63,8 @@ public class DisableMethod {
             this.baseUrl = this.sdkConfiguration.serverUrl();
             this.securitySource = this.sdkConfiguration.securitySource();
             options
-                    .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+                    .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG, Options.Option.TIMEOUT)));
+            this.timeout = options.flatMap(Options::timeout).or(sdkConfiguration::timeout);
             this.retryStatusCodes = List.of("429", "5xx");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
@@ -113,7 +116,8 @@ public class DisableMethod {
                     this.baseUrl,
                     "/v2/profiles/{profileId}/methods/{methodId}",
                     request, null);
-            HTTPRequest req = new HTTPRequest(url, "DELETE");
+            HTTPRequest req = new HTTPRequest(url, "DELETE")
+                    .timeout(this.timeout);
             req.addHeader("Accept", "application/hal+json")
                     .addHeader("user-agent", SDKConfiguration.USER_AGENT);
             _headers.forEach((k, list) -> list.forEach(v -> req.addHeader(k, v)));
@@ -217,7 +221,6 @@ public class DisableMethod {
     public static class Async extends Base
             implements AsyncRequestOperation<DisableMethodRequest, com.mollie.mollie.models.operations.async.DisableMethodResponse> {
         private final ScheduledExecutorService retryScheduler;
-
         public Async(
                 SDKConfiguration sdkConfiguration, Optional<Options> options,
                 ScheduledExecutorService retryScheduler, Headers _headers) {

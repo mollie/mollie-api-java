@@ -40,6 +40,7 @@ import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -55,6 +56,7 @@ public class OauthGenerateTokens {
         final String baseUrl;
         final OauthGenerateTokensSecurity security;
         final SecuritySource securitySource;
+        final Optional<Duration> timeout;
         final List<String> retryStatusCodes;
         final RetryConfig retryConfig;
         final HTTPClient client;
@@ -70,7 +72,8 @@ public class OauthGenerateTokens {
             // hooks will be passed method level security only
             this.securitySource = SecuritySource.of(security);
             options
-                    .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+                    .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG, Options.Option.TIMEOUT)));
+            this.timeout = options.flatMap(Options::timeout).or(sdkConfiguration::timeout);
             this.retryStatusCodes = List.of("429", "5xx");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
@@ -120,7 +123,8 @@ public class OauthGenerateTokens {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/oauth2/tokens");
-            HTTPRequest req = new HTTPRequest(url, "POST");
+            HTTPRequest req = new HTTPRequest(url, "POST")
+                    .timeout(this.timeout);
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
@@ -237,7 +241,6 @@ public class OauthGenerateTokens {
     public static class Async extends Base
             implements AsyncRequestOperation<OauthGenerateTokensRequest, com.mollie.mollie.models.operations.async.OauthGenerateTokensResponse> {
         private final ScheduledExecutorService retryScheduler;
-
         public Async(
                 SDKConfiguration sdkConfiguration, OauthGenerateTokensSecurity security,
                 Optional<Options> options, ScheduledExecutorService retryScheduler,

@@ -466,6 +466,36 @@ public class AsyncTerminals {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<TerminalsRevokePairingCodeResponse>} - The async response
+     */
+    public CompletableFuture<TerminalsRevokePairingCodeResponse> terminalsRevokePairingCode(
+            String pairingCodeId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt) {
+        return terminalsRevokePairingCode(
+                pairingCodeId, idempotencyKey, xClientSignature,
+                xClientSignedAt, Optional.empty());
+    }
+
+    /**
+     * Revoke terminal pairing code
+     * 
+     * <p>&gt; ℹ️ **Test mode**
+     * &gt;
+     * &gt; This endpoint currently does not support test mode yet.
+     * 
+     * <p>Revoke a pairing code, preventing the onboarding of new point-of-sale terminals.
+     * 
+     * <p>Terminals that have already paired with this code are not affected.
+     * 
+     * <p>We keep a revoked pairing code for one month, then delete it. Once deleted, this endpoint returns a
+     * 404.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#oAuth from the global security.
+     * 
+     * @param pairingCodeId Provide the ID of the terminal pairing code.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<TerminalsRevokePairingCodeResponse>} - The async response
      */

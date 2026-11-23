@@ -113,6 +113,32 @@ public class AsyncProfiles {
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param profileRequest 
+     * @return {@code CompletableFuture<CreateProfileResponse>} - The async response
+     */
+    public CompletableFuture<CreateProfileResponse> create(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, ProfileRequest profileRequest) {
+        return create(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                profileRequest, Optional.empty());
+    }
+
+    /**
+     * Create profile
+     * 
+     * <p>Create a profile to process payments on.
+     * 
+     * <p>Profiles are required for payment processing. Normally they are created via the Mollie dashboard.
+     * Alternatively, you
+     * can use this endpoint to automate profile creation.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param profileRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreateProfileResponse>} - The async response
      */
@@ -354,6 +380,29 @@ public class AsyncProfiles {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<DeleteProfileResponse>} - The async response
+     */
+    public CompletableFuture<DeleteProfileResponse> delete(
+            String profileId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt) {
+        return delete(
+                profileId, idempotencyKey, xClientSignature,
+                xClientSignedAt, Optional.empty());
+    }
+
+    /**
+     * Delete profile
+     * 
+     * <p>Delete a profile. A deleted profile and its related credentials can no longer be used for accepting
+     * payments.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param profileId Provide the ID of the related profile.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<DeleteProfileResponse>} - The async response
      */
@@ -411,6 +460,30 @@ public class AsyncProfiles {
     public CompletableFuture<GetCurrentProfileResponse> getCurrentDirect() {
         return getCurrent(
                 Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
+    }
+
+    /**
+     * Get current profile
+     * 
+     * <p>Retrieve the currently authenticated profile. A convenient alias of the [Get profile](get-profile)
+     * endpoint.
+     * 
+     * <p>For a complete reference of the profile object, refer to the [Get profile](get-profile) endpoint
+     * documentation.
+     * 
+     * <p>If set, this operation will use Security#apiKey from the global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<GetCurrentProfileResponse>} - The async response
+     */
+    public CompletableFuture<GetCurrentProfileResponse> getCurrent(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt) {
+        return getCurrent(
+                idempotencyKey, xClientSignature, xClientSignedAt,
                 Optional.empty());
     }
 

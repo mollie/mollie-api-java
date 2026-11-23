@@ -13,6 +13,7 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class OauthGenerateTokensRequestBuilder {
@@ -21,6 +22,7 @@ public class OauthGenerateTokensRequestBuilder {
     private Optional<String> idempotencyKey = Optional.empty();
     private Optional<? extends OauthGenerateTokensRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -69,6 +71,18 @@ public class OauthGenerateTokensRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public OauthGenerateTokensRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public OauthGenerateTokensRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private OauthGenerateTokensRequest buildRequest() {
@@ -82,6 +96,7 @@ public class OauthGenerateTokensRequestBuilder {
     public OauthGenerateTokensResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<OauthGenerateTokensRequest, OauthGenerateTokensResponse> operation
