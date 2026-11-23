@@ -39,6 +39,7 @@ import java.lang.String;
 import java.lang.Throwable;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -54,6 +55,7 @@ public class OauthRevokeTokens {
         final String baseUrl;
         final OauthRevokeTokensSecurity security;
         final SecuritySource securitySource;
+        final Optional<Duration> timeout;
         final List<String> retryStatusCodes;
         final RetryConfig retryConfig;
         final HTTPClient client;
@@ -69,7 +71,8 @@ public class OauthRevokeTokens {
             // hooks will be passed method level security only
             this.securitySource = SecuritySource.of(security);
             options
-                    .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+                    .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG, Options.Option.TIMEOUT)));
+            this.timeout = options.flatMap(Options::timeout).or(sdkConfiguration::timeout);
             this.retryStatusCodes = List.of("429", "5xx");
             this.retryConfig = options
                     .flatMap(Options::retryConfig)
@@ -119,7 +122,8 @@ public class OauthRevokeTokens {
             String url = Utils.generateURL(
                     this.baseUrl,
                     "/oauth2/tokens");
-            HTTPRequest req = new HTTPRequest(url, "DELETE");
+            HTTPRequest req = new HTTPRequest(url, "DELETE")
+                    .timeout(this.timeout);
             Object convertedRequest = Utils.convertToShape(
                     request,
                     JsonShape.DEFAULT,
@@ -233,7 +237,6 @@ public class OauthRevokeTokens {
     public static class Async extends Base
             implements AsyncRequestOperation<OauthRevokeTokensRequest, com.mollie.mollie.models.operations.async.OauthRevokeTokensResponse> {
         private final ScheduledExecutorService retryScheduler;
-
         public Async(
                 SDKConfiguration sdkConfiguration, OauthRevokeTokensSecurity security,
                 Optional<Options> options, ScheduledExecutorService retryScheduler,

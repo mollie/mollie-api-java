@@ -162,6 +162,57 @@ public class VerifyPayee {
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param verificationOfPayeeRequest The request body for performing a Verification of Payee (VoP) check. VoP allows you to verify the
      *         account holder name against the records held by the receiving bank before initiating a transfer.
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public VerifyPayeeResponse create(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends VerificationOfPayeeRequest> verificationOfPayeeRequest) {
+        return create(idempotencyKey, xClientSignature, xClientSignedAt,
+            verificationOfPayeeRequest, Optional.empty());
+    }
+
+    /**
+     * Verify Payee
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in beta testing, and the final specification may still change.
+     * 
+     * <p>Perform a Verification of Payee (VoP) check. This allows you to verify the account holder name
+     * against the
+     * records held by the receiving bank before initiating a transfer.
+     * 
+     * <p>The verification result indicates whether the provided name matches, closely matches, or does not
+     * match the
+     * name on file at the receiving bank. This helps prevent misdirected payments.
+     * 
+     * <p>### Simulating verification scenarios in test mode
+     * 
+     * <p>In test mode, you can simulate various verification outcomes by adjusting the creditor name in the
+     * `creditorBankAccount.accountHolderName` property. This allows you to test all possible Verification
+     * of Payee
+     * results without needing special properties. The names are case insensitive.
+     * 
+     * <p>| Account holder name                    | Scenario                                      |
+     * Verification result | Suggested name |
+     * |----------------------------------------|-----------------------------------------------|---------------------|----------------|
+     * | `John Close Match`                     | Name closely matches the bank records          |
+     * `close-match`       | `John Match`   |
+     * | `John No Match`                        | Name does not match the bank records           |
+     * `no-match`          | —              |
+     * | `John Unavailable`                     | Verification is not available                  |
+     * `not-available`     | —              |
+     * | Any other name                         | Default: name matches the bank records         | `match`
+     * | —              |
+     * 
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param verificationOfPayeeRequest The request body for performing a Verification of Payee (VoP) check. VoP allows you to verify the
+     *         account holder name against the records held by the receiving bank before initiating a transfer.
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

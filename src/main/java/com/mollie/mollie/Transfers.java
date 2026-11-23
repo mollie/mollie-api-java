@@ -213,6 +213,72 @@ public class Transfers {
      *         View the [public documentation](https://docs.mollie.com/reference/api-idempotency#using-an-idempotency-key)
      *         to learn more.
      * @param transferRequest 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateTransferResponse create(
+            String xClientSignature, String xClientSignedAt,
+            String idempotencyKey, Optional<? extends TransferRequest> transferRequest) {
+        return create(xClientSignature, xClientSignedAt, idempotencyKey,
+            transferRequest, Optional.empty());
+    }
+
+    /**
+     * Create transfer
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in beta testing, and the final specification may still change.
+     * 
+     * <p>Create a SEPA Credit Transfer from your Mollie Business Account.
+     * 
+     * <p>To initiate a transfer, you must provide the transfer scheme, the amount, the debtor IBAN (your
+     * Mollie Business
+     * Account IBAN), and the creditor (recipient) details.
+     * 
+     * <p>Each request must include an `Idempotency-Key` header to prevent duplicate transfers, and must be
+     * signed using the
+     * `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * 
+     * <p>### Simulating transfer scenarios in test mode
+     * 
+     * <p>In test mode, you can simulate various transfer scenarios by adjusting the transfer amount. This
+     * allows you to
+     * mimic the typical status progression of a real-world transfer. Note that a transfer's progression
+     * will stop once
+     * it reaches a final status: `blocked`, `failed`, `processed`, or `returned`.
+     * 
+     * <p>| Amount  | Scenario                                            | Webhook sequence
+     * |
+     * |---------|-----------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+     * | `11.00` | Transfer initiated, pending review by Mollie        |
+     * `business-account-transfer.requested` → `business-account-transfer.initiated` →
+     * `business-account-transfer.pending-review`                                         |
+     * | `12.00` | Transfer initiated, blocked by Mollie               |
+     * `business-account-transfer.requested` → `business-account-transfer.initiated` →
+     * `business-account-transfer.pending-review` → `business-account-transfer.blocked`   |
+     * | `13.00` | Transfer initiated, failed on scheme submission     |
+     * `business-account-transfer.requested` → `business-account-transfer.initiated` →
+     * `business-account-transfer.failed`                                                 |
+     * | `14.00` | Transfer processed, then returned by receiving bank |
+     * `business-account-transfer.requested` → `business-account-transfer.initiated` →
+     * `business-account-transfer.processed` → `business-account-transfer.returned`       |
+     * | Other   | Default: transfer is processed                      |
+     * `business-account-transfer.requested` → `business-account-transfer.initiated` →
+     * `business-account-transfer.processed`                                              |
+     * 
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
+     * 
+     * @param xClientSignature A cryptographic signature of the request payload, used to verify the authenticity of the transfer request.
+     * @param xClientSignedAt The timestamp (in ISO 8601 format) indicating when the client signed the request. Used in conjunction with
+     *         `X-Client-Signature` for request verification.
+     * @param idempotencyKey A unique value used to identify this request and prevent duplicate transfers. UUIDv4 is recommended to
+     *         guarantee uniqueness across multiple processes or servers. If two requests are received with the same
+     *         idempotency key, the second request will be discarded.
+     *         
+     *         View the [public documentation](https://docs.mollie.com/reference/api-idempotency#using-an-idempotency-key)
+     *         to learn more.
+     * @param transferRequest 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails

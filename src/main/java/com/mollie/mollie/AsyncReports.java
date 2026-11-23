@@ -117,6 +117,39 @@ public class AsyncReports {
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param createReportRequest Generate a transaction margin report for your organization over a date range.
+     * @return {@code CompletableFuture<CreateReportResponse>} - The async response
+     */
+    public CompletableFuture<CreateReportResponse> create(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, CreateReportRequest createReportRequest) {
+        return create(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                createReportRequest, Optional.empty());
+    }
+
+    /**
+     * Create report
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in private beta, and the final specification may still change. To
+     * &gt; join the beta program, reach out to [partners@mollie.com](mailto:partners@mollie.com).
+     * 
+     * <p>Create a report. Mollie generates it in the background, so you get a `pending` status back right
+     * away.
+     * 
+     * <p>Poll [Get report](get-report) to check on progress, and grab a download link once it's ready.
+     * 
+     * <p>Creating a report with the exact same parameters while one is already pending or completed doesn't
+     * create
+     * a new one. You get the existing report back instead, whatever status it currently has.
+     * 
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param createReportRequest Generate a transaction margin report for your organization over a date range.
      * @param options additional options
      * @return {@code CompletableFuture<CreateReportResponse>} - The async response
      */
@@ -194,6 +227,40 @@ public class AsyncReports {
         return get(
                 reportId, Optional.empty(), Optional.empty(),
                 Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Get report
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in private beta, and the final specification may still change. To
+     * &gt; join the beta program, reach out to [partners@mollie.com](mailto:partners@mollie.com).
+     * 
+     * <p>Retrieve a single report by its ID. Poll this to check on a report you created, and to grab a
+     * download
+     * link once it's ready.
+     * 
+     * <p>The download link is pre-signed and freshly generated on every call, and expires 15 minutes after
+     * you get
+     * it. If it expires before you download the file, just call this endpoint again for a new one. Expiry
+     * of
+     * the link doesn't affect the report itself.
+     * 
+     * <p>If set, this operation will use Security#advancedAccessToken from the global security.
+     * 
+     * @param reportId Provide the ID of the related report.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<GetReportResponse>} - The async response
+     */
+    public CompletableFuture<GetReportResponse> get(
+            String reportId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt) {
+        return get(
+                reportId, idempotencyKey, xClientSignature,
+                xClientSignedAt, Optional.empty());
     }
 
     /**

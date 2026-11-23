@@ -115,6 +115,33 @@ public class AsyncPaymentLinks {
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param requestBody 
+     * @return {@code CompletableFuture<CreatePaymentLinkResponse>} - The async response
+     */
+    public CompletableFuture<CreatePaymentLinkResponse> create(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends CreatePaymentLinkRequestBody> requestBody) {
+        return create(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                requestBody, Optional.empty());
+    }
+
+    /**
+     * Create payment link
+     * 
+     * <p>With the Payment links API you can generate payment links that by default, unlike regular payments,
+     * do not expire.
+     * The payment link can be shared with your customers and will redirect them to them the payment page
+     * where they can
+     * complete the payment. A [payment](get-payment) will only be created once the customer initiates the
+     * payment.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param requestBody 
      * @param options additional options
      * @return {@code CompletableFuture<CreatePaymentLinkResponse>} - The async response
      */

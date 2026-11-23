@@ -83,6 +83,27 @@ public class AsyncOnboarding {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<GetOnboardingStatusResponse>} - The async response
+     */
+    public CompletableFuture<GetOnboardingStatusResponse> get(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt) {
+        return get(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                Optional.empty());
+    }
+
+    /**
+     * Get onboarding status
+     * 
+     * <p>Retrieve the onboarding status of the currently authenticated organization.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetOnboardingStatusResponse>} - The async response
      */
@@ -147,6 +168,35 @@ public class AsyncOnboarding {
         return submit(
                 Optional.empty(), Optional.empty(), Optional.empty(),
                 Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Submit onboarding data
+     * 
+     * <p>**⚠️ We no longer recommend implementing this endpoint. Please refer to the Client Links API instead
+     * to kick off the
+     * onboarding process for your merchants.**
+     * 
+     * <p>Submit data that will be prefilled in the merchant's onboarding. The data you submit will only be
+     * processed when the
+     * onboarding status is `needs-data`.
+     * Information that the merchant has entered in their dashboard will not be overwritten.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param requestBody 
+     * @return {@code CompletableFuture<SubmitOnboardingDataResponse>} - The async response
+     */
+    public CompletableFuture<SubmitOnboardingDataResponse> submit(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends SubmitOnboardingDataRequestBody> requestBody) {
+        return submit(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                requestBody, Optional.empty());
     }
 
     /**

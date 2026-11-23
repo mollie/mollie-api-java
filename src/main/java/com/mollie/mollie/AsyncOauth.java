@@ -93,6 +93,29 @@ public class AsyncOauth {
      * @param security The security details to use for authentication.
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param requestBody 
+     * @return {@code CompletableFuture<OauthGenerateTokensResponse>} - The async response
+     */
+    public CompletableFuture<OauthGenerateTokensResponse> generate(
+            OauthGenerateTokensSecurity security, Optional<String> idempotencyKey,
+            Optional<? extends OauthGenerateTokensRequestBody> requestBody) {
+        return generate(
+                security, idempotencyKey, requestBody,
+                Optional.empty());
+    }
+
+    /**
+     * Generate tokens
+     * 
+     * <p>Exchange the authorization code you received from the [Authorize endpoint](oauth-authorize) for an
+     * 'access token'
+     * API credential, with which you can communicate with the Mollie API on behalf of the consenting
+     * merchant.
+     * 
+     * <p>This endpoint can only be accessed using **OAuth client credentials**.
+     * 
+     * @param security The security details to use for authentication.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
      * @param options additional options
      * @return {@code CompletableFuture<OauthGenerateTokensResponse>} - The async response
      */
@@ -144,6 +167,28 @@ public class AsyncOauth {
     public CompletableFuture<OauthRevokeTokensResponse> revoke(OauthRevokeTokensSecurity security) {
         return revoke(
                 security, Optional.empty(), Optional.empty(),
+                Optional.empty());
+    }
+
+    /**
+     * Revoke tokens
+     * 
+     * <p>Revoke an access token or refresh token. Once revoked, the token can no longer be used.
+     * 
+     * <p>Revoking a refresh token revokes all access tokens that were created using the same authorization.
+     * 
+     * <p>This endpoint can only be accessed using **OAuth client credentials**.
+     * 
+     * @param security The security details to use for authentication.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param requestBody 
+     * @return {@code CompletableFuture<OauthRevokeTokensResponse>} - The async response
+     */
+    public CompletableFuture<OauthRevokeTokensResponse> revoke(
+            OauthRevokeTokensSecurity security, Optional<String> idempotencyKey,
+            Optional<? extends OauthRevokeTokensRequestBody> requestBody) {
+        return revoke(
+                security, idempotencyKey, requestBody,
                 Optional.empty());
     }
 

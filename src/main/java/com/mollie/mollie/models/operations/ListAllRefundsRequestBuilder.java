@@ -19,6 +19,7 @@ import com.mollie.mollie.utils.pagination.URLTracker;
 import java.io.InputStream;
 import java.lang.Iterable;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -27,6 +28,7 @@ public class ListAllRefundsRequestBuilder {
 
     private ListAllRefundsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -51,10 +53,23 @@ public class ListAllRefundsRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ListAllRefundsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListAllRefundsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public ListAllRefundsResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         ListAllRefunds.Sync operation
@@ -79,6 +94,7 @@ public class ListAllRefundsRequestBuilder {
     public Iterable<ListAllRefundsResponse> callAsIterable() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         ListAllRefunds.Sync operation

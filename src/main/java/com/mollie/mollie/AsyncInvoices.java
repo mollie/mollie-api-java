@@ -153,6 +153,31 @@ public class AsyncInvoices {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<GetInvoiceResponse>} - The async response
+     */
+    public CompletableFuture<GetInvoiceResponse> get(
+            String invoiceId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt) {
+        return get(
+                invoiceId, idempotencyKey, xClientSignature,
+                xClientSignedAt, Optional.empty());
+    }
+
+    /**
+     * Get invoice
+     * 
+     * <p>Retrieve a single invoice by its ID.
+     * 
+     * <p>If you want to retrieve the details of an invoice by its invoice number,
+     * call the [List invoices](list-invoices) endpoint with the `reference` parameter.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param invoiceId Provide the ID of the related invoice.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetInvoiceResponse>} - The async response
      */

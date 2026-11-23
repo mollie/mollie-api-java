@@ -13,6 +13,7 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 
 public class CreateBusinessAccountRequestBuilder {
@@ -22,6 +23,7 @@ public class CreateBusinessAccountRequestBuilder {
     private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<? extends CreateBusinessAccountRequestBody> requestBody = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -88,6 +90,18 @@ public class CreateBusinessAccountRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public CreateBusinessAccountRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public CreateBusinessAccountRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private CreateBusinessAccountRequest buildRequest() {
@@ -103,6 +117,7 @@ public class CreateBusinessAccountRequestBuilder {
     public CreateBusinessAccountResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<CreateBusinessAccountRequest, CreateBusinessAccountResponse> operation

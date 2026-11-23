@@ -173,6 +173,33 @@ public class AsyncOrganizations {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<GetCurrentOrganizationResponse>} - The async response
+     */
+    public CompletableFuture<GetCurrentOrganizationResponse> getCurrent(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt) {
+        return getCurrent(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                Optional.empty());
+    }
+
+    /**
+     * Get current organization
+     * 
+     * <p>Retrieve the currently authenticated organization. A convenient alias of the [Get
+     * organization](get-organization)
+     * endpoint.
+     * 
+     * <p>For a complete reference of the organization object, refer to the [Get
+     * organization](get-organization) endpoint
+     * documentation.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetCurrentOrganizationResponse>} - The async response
      */
@@ -226,6 +253,29 @@ public class AsyncOrganizations {
     public CompletableFuture<GetPartnerStatusResponse> getPartnerDirect() {
         return getPartner(
                 Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
+    }
+
+    /**
+     * Get partner status
+     * 
+     * <p>Retrieve partnership details about the currently authenticated organization. Only relevant for
+     * so-called *partner
+     * accounts*.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<GetPartnerStatusResponse>} - The async response
+     */
+    public CompletableFuture<GetPartnerStatusResponse> getPartner(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt) {
+        return getPartner(
+                idempotencyKey, xClientSignature, xClientSignedAt,
                 Optional.empty());
     }
 

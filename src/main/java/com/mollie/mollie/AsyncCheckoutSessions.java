@@ -102,6 +102,34 @@ public class AsyncCheckoutSessions {
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param sessionRequest 
+     * @return {@code CompletableFuture<CreateSessionResponse>} - The async response
+     */
+    public CompletableFuture<CreateSessionResponse> create(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends SessionRequest> sessionRequest) {
+        return create(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                sessionRequest, Optional.empty());
+    }
+
+    /**
+     * Create Checkout Session
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in beta.
+     * &gt;
+     * &gt; The `shipping` and `requiredCustomerDetails` properties are still in private beta.
+     * 
+     * <p>Create a Checkout Session to start a checkout process with Mollie Components.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param sessionRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreateSessionResponse>} - The async response
      */
@@ -169,6 +197,35 @@ public class AsyncCheckoutSessions {
         return get(
                 sessionId, Optional.empty(), Optional.empty(),
                 Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Get Checkout Session
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in beta.
+     * &gt;
+     * &gt; The `shipping` and `requiredCustomerDetails` properties are still in private beta.
+     * 
+     * <p>Retrieve a Checkout Session to view its details and status to inform your customers about the
+     * checkout process.
+     * 
+     * <p>If set, this operation will use one of Security#apiKey, Security#advancedAccessToken, or
+     * Security#oAuth from the global security.
+     * 
+     * @param sessionId Provide the ID of the related Checkout Session.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<GetSessionResponse>} - The async response
+     */
+    public CompletableFuture<GetSessionResponse> get(
+            String sessionId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt) {
+        return get(
+                sessionId, idempotencyKey, xClientSignature,
+                xClientSignedAt, Optional.empty());
     }
 
     /**

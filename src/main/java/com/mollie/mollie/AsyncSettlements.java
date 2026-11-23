@@ -201,6 +201,40 @@ public class AsyncSettlements {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<GetSettlementResponse>} - The async response
+     */
+    public CompletableFuture<GetSettlementResponse> get(
+            String settlementId, Optional<String> idempotencyKey,
+            Optional<String> xClientSignature, Optional<String> xClientSignedAt) {
+        return get(
+                settlementId, idempotencyKey, xClientSignature,
+                xClientSignedAt, Optional.empty());
+    }
+
+    /**
+     * Get settlement
+     * 
+     * <p>Retrieve a single settlement by its ID.
+     * 
+     * <p>To lookup settlements by their bank reference, replace the ID in the URL by
+     * a reference. For example: `1234567.2404.03`.
+     * 
+     * <p>A settlement represents a transfer of your balance funds to your external bank account.
+     * 
+     * <p>Settlements will typically include a report that details what balance transactions have taken place
+     * between this
+     * settlement and the previous one.
+     * 
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param settlementId Provide the ID of the related settlement.
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetSettlementResponse>} - The async response
      */
@@ -293,6 +327,36 @@ public class AsyncSettlements {
      * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<GetOpenSettlementResponse>} - The async response
+     */
+    public CompletableFuture<GetOpenSettlementResponse> getOpen(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt) {
+        return getOpen(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                Optional.empty());
+    }
+
+    /**
+     * Get open settlement
+     * 
+     * <p>Retrieve the details of the open balance of the organization. This will return a settlement object
+     * representing your
+     * organization's balance.
+     * 
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
+     * documentation.
+     * 
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param options additional options
      * @return {@code CompletableFuture<GetOpenSettlementResponse>} - The async response
      */
@@ -356,6 +420,34 @@ public class AsyncSettlements {
     public CompletableFuture<GetNextSettlementResponse> getNextDirect() {
         return getNext(
                 Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
+    }
+
+    /**
+     * Get next settlement
+     * 
+     * <p>Retrieve the details of the current settlement, that has not yet been paid out.
+     * 
+     * <p>For a complete reference of the settlement object, refer to the [Get settlement
+     * endpoint](get-settlement)
+     * documentation.
+     * 
+     * <p>For more accurate bookkeeping, refer to the [balance report](get-balance-report) endpoint or the
+     * [balance transactions](list-balance-transactions) endpoint.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @return {@code CompletableFuture<GetNextSettlementResponse>} - The async response
+     */
+    public CompletableFuture<GetNextSettlementResponse> getNext(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt) {
+        return getNext(
+                idempotencyKey, xClientSignature, xClientSignedAt,
                 Optional.empty());
     }
 

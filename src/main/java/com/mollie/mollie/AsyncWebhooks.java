@@ -103,6 +103,29 @@ public class AsyncWebhooks {
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param requestBody 
+     * @return {@code CompletableFuture<CreateWebhookResponse>} - The async response
+     */
+    public CompletableFuture<CreateWebhookResponse> create(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends CreateWebhookRequestBody> requestBody) {
+        return create(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                requestBody, Optional.empty());
+    }
+
+    /**
+     * Create a webhook
+     * 
+     * <p>A webhook must have a name, an url and a list of event types. You can also create webhooks in the
+     * webhooks settings section of the Dashboard.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param requestBody 
      * @param options additional options
      * @return {@code CompletableFuture<CreateWebhookResponse>} - The async response
      */

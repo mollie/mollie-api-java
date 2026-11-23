@@ -17,6 +17,7 @@ import com.mollie.mollie.utils.Utils;
 import com.mollie.mollie.utils.pagination.AsyncPaginator;
 import com.mollie.mollie.utils.pagination.URLTracker;
 import java.net.http.HttpResponse;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Flow;
@@ -27,6 +28,7 @@ public class ListAllSubscriptionsRequestBuilder {
 
     private ListAllSubscriptionsRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -51,10 +53,23 @@ public class ListAllSubscriptionsRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public ListAllSubscriptionsRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public ListAllSubscriptionsRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public CompletableFuture<ListAllSubscriptionsResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         ListAllSubscriptions.Async operation
@@ -84,6 +99,7 @@ public class ListAllSubscriptionsRequestBuilder {
         ListAllSubscriptionsRequest request = this.request;
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         ListAllSubscriptions.Async operation

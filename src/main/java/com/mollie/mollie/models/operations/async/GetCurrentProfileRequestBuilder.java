@@ -14,6 +14,7 @@ import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
 import java.lang.String;
+import java.time.Duration;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
@@ -23,6 +24,7 @@ public class GetCurrentProfileRequestBuilder {
     private Optional<String> xClientSignature = Optional.empty();
     private Optional<String> xClientSignedAt = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -77,6 +79,18 @@ public class GetCurrentProfileRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public GetCurrentProfileRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public GetCurrentProfileRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
 
     private GetCurrentProfileRequest buildRequest() {
@@ -91,6 +105,7 @@ public class GetCurrentProfileRequestBuilder {
     public CompletableFuture<GetCurrentProfileResponse> call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         AsyncRequestOperation<GetCurrentProfileRequest, GetCurrentProfileResponse> operation

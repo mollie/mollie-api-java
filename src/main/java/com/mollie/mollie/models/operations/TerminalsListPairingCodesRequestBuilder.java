@@ -12,12 +12,14 @@ import com.mollie.mollie.utils.Headers;
 import com.mollie.mollie.utils.Options;
 import com.mollie.mollie.utils.RetryConfig;
 import com.mollie.mollie.utils.Utils;
+import java.time.Duration;
 import java.util.Optional;
 
 public class TerminalsListPairingCodesRequestBuilder {
 
     private TerminalsListPairingCodesRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
+    private Optional<Duration> timeout = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
     private final Headers _headers = new Headers(); 
 
@@ -42,10 +44,23 @@ public class TerminalsListPairingCodesRequestBuilder {
         this.retryConfig = retryConfig;
         return this;
     }
+                
+    public TerminalsListPairingCodesRequestBuilder timeout(Duration timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = Optional.of(timeout);
+        return this;
+    }
+
+    public TerminalsListPairingCodesRequestBuilder timeout(Optional<Duration> timeout) {
+        Utils.checkNotNull(timeout, "timeout");
+        this.timeout = timeout;
+        return this;
+    }
 
     public TerminalsListPairingCodesResponse call() {
         Optional<Options> options = Optional.of(Options.builder()
             .retryConfig(retryConfig)
+            .timeout(timeout)
             .build());
 
         RequestOperation<TerminalsListPairingCodesRequest, TerminalsListPairingCodesResponse> operation

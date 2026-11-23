@@ -204,6 +204,65 @@ public class AsyncPayouts {
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param payoutRequest 
+     * @return {@code CompletableFuture<CreatePayoutResponse>} - The async response
+     */
+    public CompletableFuture<CreatePayoutResponse> create(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, PayoutRequest payoutRequest) {
+        return create(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                payoutRequest, Optional.empty());
+    }
+
+    /**
+     * Create payout
+     * 
+     * <p>Request a payout from one of your balances to the balance's configured bank account.
+     * 
+     * <p>The payout will be executed on the next scheduled business day. If no `amount` is specified, the
+     * full available
+     * balance minus any configured balance reserve is paid out.
+     * 
+     * <p>Once the payout is created with status `requested`, you can cancel it via the
+     * [Cancel payout](cancel-payout) endpoint, up until the payout moves to `initiated`.
+     * 
+     * <p>Creating a payout via the API automatically sets the balance's `transferFrequency` to `never`,
+     * pausing any previously configured automatic settlement schedule. To resume automatic settlements,
+     * update the transfer frequency via the dashboard.
+     * 
+     * <p>### Webhooks
+     * 
+     * <p>Subscribe to the following webhook events to track payout status changes. See the
+     * [Webhook Subscriptions API](list-webhooks) for details on subscribing.
+     * 
+     * <p>| Event | Description |
+     * |---|---|
+     * | `payout.initiated` | The payout is being executed and funds are reserved. |
+     * | `payout.processing-at-bank` | The payout has been submitted to the bank. |
+     * | `payout.completed` | The payout has been sent to the destination bank account. |
+     * | `payout.canceled` | The payout was canceled via the API before being submitted to the bank. |
+     * | `payout.failed` | The payout failed after creation, including bank rejections and post-submission
+     * cancellations. |
+     * 
+     * <p>### Payout failure reasons
+     * 
+     * <p>A payout request may fail immediately if one of the following conditions applies:
+     * 
+     * <p>- A payout is already scheduled for the next business day for this balance.
+     * - The balance has insufficient funds.
+     * - The balance is not active.
+     * - Payouts are blocked for this organization.
+     * - The balance has queued refunds.
+     * - One of the organization's balances is below the negative balance threshold.
+     * - The payout destination (bank account) is invalid or not configured.
+     * 
+     * <p>If set, this operation will use either Security#apiKey or Security#advancedAccessToken from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param payoutRequest 
      * @param options additional options
      * @return {@code CompletableFuture<CreatePayoutResponse>} - The async response
      */

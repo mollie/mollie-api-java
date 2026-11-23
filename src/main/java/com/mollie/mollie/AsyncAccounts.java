@@ -57,11 +57,17 @@ public class AsyncAccounts {
     /**
      * Create business account
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🚧 Beta feature
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; This feature is currently in beta testing, and the final specification may still change.
+     * 
+     * <p>&gt; 🔐 **Request signing required**
+     * &gt;
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Create a new business account for the authenticated organization.
      * 
@@ -82,11 +88,17 @@ public class AsyncAccounts {
     /**
      * Create business account
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🚧 Beta feature
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; This feature is currently in beta testing, and the final specification may still change.
+     * 
+     * <p>&gt; 🔐 **Request signing required**
+     * &gt;
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Create a new business account for the authenticated organization.
      * 
@@ -109,11 +121,61 @@ public class AsyncAccounts {
     /**
      * Create business account
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🚧 Beta feature
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; This feature is currently in beta testing, and the final specification may still change.
+     * 
+     * <p>&gt; 🔐 **Request signing required**
+     * &gt;
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
+     * 
+     * <p>Create a new business account for the authenticated organization.
+     * 
+     * <p>The response contains the newly created business account.
+     * 
+     * <p>Each organization can have up to 5 active business accounts. Need more? [Contact
+     * us](https://www.mollie.com/contact)
+     * and we'll help you out.
+     * 
+     * <p>If set, this operation will use Security#oAuth from the global security.
+     * 
+     * @param idempotencyKey A unique value that identifies this request, so you can safely retry it without creating a second account.
+     *         Retrying with the same key within one hour returns the original response. We recommend a UUIDv4.
+     *         
+     *         Keys are tied to the credential that sent the original request, so a refreshed OAuth token won't match
+     *         earlier keys. View the [public documentation](https://docs.mollie.com/reference/api-idempotency) to learn
+     *         more.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param requestBody 
+     * @return {@code CompletableFuture<CreateBusinessAccountResponse>} - The async response
+     */
+    public CompletableFuture<CreateBusinessAccountResponse> createAccount(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends CreateBusinessAccountRequestBody> requestBody) {
+        return createAccount(
+                idempotencyKey, xClientSignature, xClientSignedAt,
+                requestBody, Optional.empty());
+    }
+
+    /**
+     * Create business account
+     * 
+     * <p>&gt; 🚧 Beta feature
+     * &gt;
+     * &gt; This feature is currently in beta testing, and the final specification may still change.
+     * 
+     * <p>&gt; 🔐 **Request signing required**
+     * &gt;
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Create a new business account for the authenticated organization.
      * 
@@ -161,11 +223,13 @@ public class AsyncAccounts {
     /**
      * List business accounts
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve all business accounts for the authenticated organization.
      * 
@@ -182,11 +246,13 @@ public class AsyncAccounts {
     /**
      * List business accounts
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve all business accounts for the authenticated organization.
      * 
@@ -204,11 +270,13 @@ public class AsyncAccounts {
     /**
      * List business accounts
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve all business accounts for the authenticated organization.
      * 
@@ -233,11 +301,13 @@ public class AsyncAccounts {
     /**
      * Get business account
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve a single business account object by its account ID. This allows you to check the current
      * status,
@@ -254,11 +324,13 @@ public class AsyncAccounts {
     /**
      * Get business account
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve a single business account object by its account ID. This allows you to check the current
      * status,
@@ -276,11 +348,13 @@ public class AsyncAccounts {
     /**
      * Get business account
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve a single business account object by its account ID. This allows you to check the current
      * status,
@@ -305,11 +379,13 @@ public class AsyncAccounts {
     /**
      * List transactions
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve all transactions for a specific business account.
      * 
@@ -326,11 +402,13 @@ public class AsyncAccounts {
     /**
      * List transactions
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve all transactions for a specific business account.
      * 
@@ -348,11 +426,13 @@ public class AsyncAccounts {
     /**
      * List transactions
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve all transactions for a specific business account.
      * 
@@ -377,11 +457,13 @@ public class AsyncAccounts {
     /**
      * Get transaction
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve a single transaction object by its transaction ID. This allows you to check the details,
      * amount, counterparty, and balance impact of a specific transaction.
@@ -397,11 +479,13 @@ public class AsyncAccounts {
     /**
      * Get transaction
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve a single transaction object by its transaction ID. This allows you to check the details,
      * amount, counterparty, and balance impact of a specific transaction.
@@ -418,11 +502,13 @@ public class AsyncAccounts {
     /**
      * Get transaction
      * 
-     * <p>&gt; 🔒 Restricted access
+     * <p>&gt; 🔐 **Request signing required**
      * &gt;
-     * &gt; This API is currently only available to Mollie's authorized partners via OAuth. Direct access
-     * for individual businesses isn't available yet, but it's on our roadmap — check back here for
-     * updates.
+     * &gt; Signature enforcement is mandatory for Direct Customer API users for `live` mode requests.
+     * &gt;
+     * &gt; Sign every request with the `X-Client-Signature` and `X-Client-Signed-At` headers.
+     * &gt;
+     * &gt; [Learn how to sign requests](https://docs.mollie.com/reference/request-signing)
      * 
      * <p>Retrieve a single transaction object by its transaction ID. This allows you to check the details,
      * amount, counterparty, and balance impact of a specific transaction.

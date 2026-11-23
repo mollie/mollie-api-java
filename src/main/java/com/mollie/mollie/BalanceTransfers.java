@@ -101,6 +101,33 @@ public class BalanceTransfers {
      * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
      * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
      * @param entityBalanceTransfer 
+     * @return The response from the API call
+     * @throws RuntimeException subclass if the API call fails
+     */
+    public CreateConnectBalanceTransferResponse create(
+            Optional<String> idempotencyKey, Optional<String> xClientSignature,
+            Optional<String> xClientSignedAt, Optional<? extends EntityBalanceTransfer> entityBalanceTransfer) {
+        return create(idempotencyKey, xClientSignature, xClientSignedAt,
+            entityBalanceTransfer, Optional.empty());
+    }
+
+    /**
+     * Create a Connect balance transfer
+     * 
+     * <p>This API endpoint allows you to create a balance transfer from your organization's balance to a
+     * connected organization's balance, or vice versa.
+     * You can also create a balance transfer between two connected organizations.
+     * To create a balance transfer, you must be authenticated as the source organization, and the
+     * destination organization must be a connected organization
+     * that has authorized the `balance-transfers.write` scope for your organization.
+     * 
+     * <p>If set, this operation will use either Security#advancedAccessToken or Security#oAuth from the
+     * global security.
+     * 
+     * @param idempotencyKey A unique key to ensure idempotent requests. This key should be a UUID v4 string.
+     * @param xClientSignature A cryptographic signature of the request, used to verify that it was sent by you and hasn't been tampered with. Required if you've enabled request signing for your integration.
+     * @param xClientSignedAt The timestamp, in ISO 8601 format, at which you generated the `X-Client-Signature`. Required together with `X-Client-Signature` if you've enabled request signing for your integration.
+     * @param entityBalanceTransfer 
      * @param options additional options
      * @return The response from the API call
      * @throws RuntimeException subclass if the API call fails
