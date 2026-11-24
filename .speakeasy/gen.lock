@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 1f33533e-dfde-4f02-bf45-45ad476f00b3
 management:
-  docChecksum: 43bb426a6dacee4cfe87197a7e53739c
+  docChecksum: 86a079bcb9815920b2c98ce12c82d44f
   docVersion: 1.0.0
   speakeasyVersion: 1.811.0
   generationVersion: 2.968.1
-  releaseVersion: 1.10.26
-  configChecksum: c9c25b3990dd216d67a145d9f86b5abe
+  releaseVersion: 1.10.27
+  configChecksum: c3db4e712d6ce0442bef641b023ad70d
   repoURL: https://github.com/mollie/mollie-api-java.git
   installationURL: https://github.com/mollie/mollie-api-java
   published: true
 persistentEdits:
-  generation_id: 89bd0e0b-9106-4ff4-a331-5145a8041575
-  pristine_commit_hash: f2dff2b3aeaaf4272cb6ed0918763ecc6cbb9019
-  pristine_tree_hash: ac729059e9c42467c3d4e8014add66177c0e793a
+  generation_id: 2f8297dc-aced-4b6d-92c1-90ba26a286f4
+  pristine_commit_hash: 87bd5ef7c571e29af98fd62f7a5a11aee0bc8da4
+  pristine_tree_hash: fcb461e60554f306007627c3f07c48e9d4adc9f2
 features:
   java:
     additionalDependencies: 0.1.0
@@ -2213,8 +2213,8 @@ trackedFiles:
     pristine_git_object: 7305e1c0d8808b0cd41c1793a8dc654171236228
   docs/models/operations/CreateBusinessAccountRequest.md:
     id: 2ef376776516
-    last_write_checksum: sha1:353dc9da20c0d03e801e0125efe7c0a8cfc6e95c
-    pristine_git_object: 7ee449f85aabb6860fab019451221bdc377c1c44
+    last_write_checksum: sha1:006da4ddf17e4ea9146bc3633d8548c8f60c36fe
+    pristine_git_object: fcb20ce66569f007ff8248434764d4aca7cce526
   docs/models/operations/CreateBusinessAccountRequestBody.md:
     id: d44eda9f2107
     last_write_checksum: sha1:98f648c203de4c20b111b07623d32ed13758ac4f
@@ -3765,8 +3765,8 @@ trackedFiles:
     pristine_git_object: d4287b4fb133f3098a8576955dbb863e6aa45c46
   docs/sdks/accounts/README.md:
     id: d6c754b1ca96
-    last_write_checksum: sha1:caa5dbb81d616c1c0f80cb4348a389fc4917fda8
-    pristine_git_object: 670ec200e20d1be1d5e8ff20aa38b12c4f952cd4
+    last_write_checksum: sha1:bcf9a1ca2ea2b4d1a9b4d41093253eedf1e99e0a
+    pristine_git_object: 06e009547d3effb949c90750ae2e74b03e50156f
   docs/sdks/balances/README.md:
     id: 6ca85866f00d
     last_write_checksum: sha1:f5f425b45fa292b86389c88eca243566a588f458
@@ -3909,8 +3909,8 @@ trackedFiles:
     pristine_git_object: 3ae3069e2f3cb8ebb89f5fb2b39ac6c18732f4a4
   gradle.properties:
     id: 2afbb999f001
-    last_write_checksum: sha1:ebbc6ca5a6e7cdac8c4a76675c5ba5c5b178e1ca
-    pristine_git_object: ca686f6134b19165ae6f20611b503f19baf3bfda
+    last_write_checksum: sha1:a9b2b623fb0a5f67efb2e30fc7f8605f408007ac
+    pristine_git_object: 9107d4f08ebcb486dba769fb8d91ce0c5e72cd15
   gradle/wrapper/gradle-wrapper.jar:
     id: ec27dae6e852
     last_write_checksum: sha1:f725fb1467084142d74fd7cd8eab691ab3442611
@@ -4185,8 +4185,8 @@ trackedFiles:
     pristine_git_object: bbdd0ca0df9bb841a2063c94b0ac0cfc1f3c931e
   src/main/java/com/mollie/mollie/SDKConfiguration.java:
     id: 5a675f523c87
-    last_write_checksum: sha1:6a0a5ef850758ce967e6f3397e1d39b39d2e5466
-    pristine_git_object: 63da35e7b453c89eb8e449f26bc3eeeb64f19ad3
+    last_write_checksum: sha1:30df5bda59737afe91644da61652680a6a21293b
+    pristine_git_object: 3e3b344db5e6834418ec6c9ffce70cb4ada8c7bd
   src/main/java/com/mollie/mollie/SalesInvoices.java:
     id: f96827f8f3ec
     last_write_checksum: sha1:403101f4f32fb2dae3266a265a5a4aef5dcff0d1
