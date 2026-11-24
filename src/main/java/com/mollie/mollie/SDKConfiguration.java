@@ -23,7 +23,7 @@ public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "1.0.0";
-    public static final String SDK_VERSION = "1.10.26";
+    public static final String SDK_VERSION = "1.10.27";
     public static final String GEN_VERSION = "2.968.1";
     private static final String BASE_PACKAGE = "com.mollie.mollie";
     public static final String USER_AGENT = 
